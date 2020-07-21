@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.determineBaseTypes = void 0;
 const ts = require("typescript");
 /** Determines the base types of the specified class declaration. */
 function determineBaseTypes(node) {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DOCKER_CONTENT = exports.HMR_CONTENT = void 0;
 exports.HMR_CONTENT = {
     HMR_DOT_TS: `import { NgModuleRef, ApplicationRef } from '@angular/core';
 import { createNewHosts } from '@angularclass/hmr';

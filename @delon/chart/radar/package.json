@@ -1,10 +1,8 @@
 {
   "main": "../bundles/radar.umd.js",
-  "module": "../fesm5/radar.js",
+  "module": "../fesm2015/radar.js",
   "es2015": "../fesm2015/radar.js",
-  "esm5": "../esm5/radar/radar.js",
   "esm2015": "../esm2015/radar/radar.js",
-  "fesm5": "../fesm5/radar.js",
   "fesm2015": "../fesm2015/radar.js",
   "typings": "radar.d.ts",
   "metadata": "radar.metadata.json",

@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createTslintConfig = void 0;
 const glob_1 = require("glob");
 /**
  * List of upgrade rules that will be always enabled because the upgrade data for these rules

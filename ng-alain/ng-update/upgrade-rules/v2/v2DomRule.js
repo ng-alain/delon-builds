@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.v2DomRule = void 0;
 const change_1 = require("@schematics/angular/utility/change");
 const ts = require("typescript");
 const ast_1 = require("../../../utils/ast");

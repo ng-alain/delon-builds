@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.v9Rule = void 0;
 const colors = require("ansi-colors");
 const file_1 = require("../../../utils/file");
 const json_1 = require("../../../utils/json");

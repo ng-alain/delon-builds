@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.addHtmlToBody = exports.addHeadStyle = exports.addHeadLink = exports.getIndexHtmlContent = exports.getTagInV4 = exports.getTag = exports.getIndexHtmlPath = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");

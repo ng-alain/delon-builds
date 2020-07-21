@@ -9,7 +9,7 @@ import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/commo
 /**
  * @fileoverview added by tsickle
  * Generated from: src/auth.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const AUTH_DEFAULT_CONFIG = {
@@ -36,7 +36,7 @@ function mergeConfig(srv) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/store/local-storage.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -81,7 +81,7 @@ class LocalStorageStore {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/store/interface.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
@@ -114,7 +114,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/token.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -238,7 +238,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/interface.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
@@ -316,7 +316,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/social/social.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const OPENTYPE = '_delonAuthSocialType';
@@ -467,7 +467,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/store/memory.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
@@ -516,7 +516,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/store/session-storage.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * `sessionStorage` storage, **lost after closing the browser**.
@@ -555,7 +555,7 @@ class SessionStorageStore {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/store/cookie-storage.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/dist/js.cookie.js"` in `angular.json`
@@ -594,7 +594,7 @@ class CookieStorageStore {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/helper.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} model
@@ -639,7 +639,7 @@ function ToLogin(options, injector, url) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/base.interceptor.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HttpAuthInterceptorHandler {
     /**
@@ -805,7 +805,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/jwt/jwt.helper.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @param {?} str
@@ -882,7 +882,7 @@ function b64DecodeUnicode(str) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/jwt/jwt.model.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -978,7 +978,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/jwt/jwt.interceptor.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * JWT 拦截器
@@ -1017,7 +1017,7 @@ JWTInterceptor.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/jwt/jwt.guard.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
@@ -1125,7 +1125,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/simple/simple.model.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class SimpleTokenModel {
 }
@@ -1138,7 +1138,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/simple/simple.interceptor.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Simple 拦截器
@@ -1204,7 +1204,7 @@ SimpleInterceptor.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/token/simple/simple.guard.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
@@ -1312,7 +1312,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/auth.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonAuthModule {
 }
@@ -1323,13 +1323,13 @@ DelonAuthModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: auth.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };

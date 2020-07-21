@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.tryAddFile = exports.tryDelFile = exports.buildAlain = exports.addValueToVariable = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");

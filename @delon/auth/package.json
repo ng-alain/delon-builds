@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "9.5.5",
+  "version": "9.5.5-249807c7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,15 +25,13 @@
     "ng-zorro-antd"
   ],
   "dependencies": {
-    "@delon/util": "^9.5.5",
-    "tslib": "^1.10.0"
+    "@delon/util": "^9.5.5-249807c7",
+    "tslib": "^2.0.0"
   },
   "main": "bundles/auth.umd.js",
-  "module": "fesm5/auth.js",
+  "module": "fesm2015/auth.js",
   "es2015": "fesm2015/auth.js",
-  "esm5": "esm5/auth.js",
   "esm2015": "esm2015/auth.js",
-  "fesm5": "fesm5/auth.js",
   "fesm2015": "fesm2015/auth.js",
   "typings": "auth.d.ts",
   "metadata": "auth.metadata.json",

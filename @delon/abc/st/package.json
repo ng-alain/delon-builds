@@ -1,10 +1,8 @@
 {
   "main": "../bundles/table.umd.js",
-  "module": "../fesm5/table.js",
+  "module": "../fesm2015/table.js",
   "es2015": "../fesm2015/table.js",
-  "esm5": "../esm5/st/table.js",
   "esm2015": "../esm2015/st/table.js",
-  "fesm5": "../fesm5/table.js",
   "fesm2015": "../fesm2015/table.js",
   "typings": "table.d.ts",
   "metadata": "table.metadata.json",

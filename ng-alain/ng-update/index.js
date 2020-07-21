@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.postUpdate = exports.updateToV9 = exports.updateToV2 = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const glob_1 = require("glob");
 const target_version_1 = require("./target-version");

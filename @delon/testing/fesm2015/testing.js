@@ -5,7 +5,7 @@ import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
 /**
  * @fileoverview added by tsickle
  * Generated from: src/event-objects.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @license
@@ -113,7 +113,7 @@ function createFakeEvent(type, canBubble = true, cancelable = true) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/dispatch-events.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Utility to dispatch any event on a Node.
@@ -173,7 +173,7 @@ function dispatchTouchEvent(node, type, x = 0, y = 0) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/type-in-element.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Focuses an input, sets its value and dispatches
@@ -191,7 +191,7 @@ function typeInElement(value, element) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/zorro.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DROPDOWN_MIN_TIME = 1000;
@@ -223,7 +223,7 @@ function dispatchDropDown(dl, trigger, allowNull = true) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/g2.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const PageG2DataCount = 2;
@@ -550,7 +550,7 @@ function checkDelay(module, comp, page = null) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/suite.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @template T
@@ -618,13 +618,13 @@ const createTestContext = (/**
 /**
  * @fileoverview added by tsickle
  * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: testing.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };

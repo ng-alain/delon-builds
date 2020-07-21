@@ -1,10 +1,8 @@
 {
   "main": "../bundles/trend.umd.js",
-  "module": "../fesm5/trend.js",
+  "module": "../fesm2015/trend.js",
   "es2015": "../fesm2015/trend.js",
-  "esm5": "../esm5/trend/trend.js",
   "esm2015": "../esm2015/trend/trend.js",
-  "fesm5": "../fesm5/trend.js",
   "fesm2015": "../fesm2015/trend.js",
   "typings": "trend.d.ts",
   "metadata": "trend.metadata.json",

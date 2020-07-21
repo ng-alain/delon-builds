@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.pluginDocker = void 0;
 const alain_1 = require("../utils/alain");
 function setIgnore(host, options) {
     const filePath = `${options.root}/.dockerignore`;

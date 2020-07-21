@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getExportDeclaration = exports.getImportDeclaration = exports.isNamespaceImportNode = exports.isExportSpecifierNode = exports.isImportSpecifierNode = void 0;
 const ts = require("typescript");
 /** Checks whether the given node is part of an import specifier node. */
 function isImportSpecifierNode(node) {

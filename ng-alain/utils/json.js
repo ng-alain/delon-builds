@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
 const project_1 = require("./project");
 function getJSON(host, jsonFile, type) {
     if (!host.exists(jsonFile))

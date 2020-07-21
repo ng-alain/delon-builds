@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('ng-zorro-antd/table'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', 'ng-zorro-antd/table', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global['ng-zorro-antd/table'], global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, platformBrowser, acl, theme, util, common, rxjs, operators, xlsx, router, table, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, i0, platformBrowser, acl, theme, util, common, rxjs, operators, xlsx, router, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, table, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -24,35 +24,36 @@
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
+    var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
         return extendStatics(d, b);
     };
-
     function __extends(d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
-
-    var __assign = function() {
+    var __assign = function () {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
-
     function __rest(s, e) {
         var t = {};
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
             for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
                 if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
@@ -60,166 +61,247 @@
             }
         return t;
     }
-
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
-
     function __param(paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); }
+        return function (target, key) { decorator(target, key, paramIndex); };
     }
-
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
     }
-
     function __awaiter(thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
             function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
-
     function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
         function verb(n) { return function (v) { return step([n, v]); }; }
         function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (_) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
                 }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
-
-    function __createBinding(o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
+    var __createBinding = Object.create ? (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+    }) : (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
         o[k2] = m[k];
-    }
-
+    });
     function __exportStar(m, exports) {
-        for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+        for (var p in m)
+            if (p !== "default" && !exports.hasOwnProperty(p))
+                __createBinding(exports, m, p);
     }
-
     function __values(o) {
         var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m) return m.call(o);
-        if (o && typeof o.length === "number") return {
-            next: function () {
-                if (o && i >= o.length) o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
+        if (m)
+            return m.call(o);
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
         throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
-
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m) return o;
+        if (!m)
+            return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
         }
-        catch (error) { e = { error: error }; }
+        catch (error) {
+            e = { error: error };
+        }
         finally {
             try {
-                if (r && !r.done && (m = i["return"])) m.call(i);
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
             }
-            finally { if (e) throw e.error; }
+            finally {
+                if (e)
+                    throw e.error;
+            }
         }
         return ar;
     }
-
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
-
     function __spreadArrays() {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
         for (var r = Array(s), k = 0, i = 0; i < il; i++)
             for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
                 r[k] = a[j];
         return r;
-    };
-
+    }
+    ;
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
     }
-
     function __asyncGenerator(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var g = generator.apply(thisArg, _arguments || []), i, q = [];
         return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
         function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
         function fulfill(value) { resume("next", value); }
         function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
     }
-
     function __asyncDelegator(o) {
         var i, p;
         return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
         function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
     }
-
     function __asyncValues(o) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var m = o[Symbol.asyncIterator], i;
         return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
         function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
     }
-
     function __makeTemplateObject(cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
         return cooked;
+    }
+    ;
+    var __setModuleDefault = Object.create ? (function (o, v) {
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function (o, v) {
+        o["default"] = v;
     };
-
     function __importStar(mod) {
-        if (mod && mod.__esModule) return mod;
+        if (mod && mod.__esModule)
+            return mod;
         var result = {};
-        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-        result.default = mod;
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k))
+                    __createBinding(result, mod, k);
+        __setModuleDefault(result, mod);
         return result;
     }
-
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
-
     function __classPrivateFieldGet(receiver, privateMap) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to get private field on non-instance");
         }
         return privateMap.get(receiver);
     }
-
     function __classPrivateFieldSet(receiver, privateMap, value) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to set private field on non-instance");
@@ -230,1296 +312,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: st.interfaces.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function STWidthMode() { }
-    if (false) {
-        /**
-         * 宽度类型
-         * - `default` 默认行为
-         * - `strict` 严格模式，即强制按 `width` 指定的宽度呈现，并根据 `strictBehavior` 类型处理
-         * @type {?|undefined}
-         */
-        STWidthMode.prototype.type;
-        /**
-         * 严格模式的处理行为
-         * - `wrap` 强制换行
-         * - `truncate` 截短
-         * @type {?|undefined}
-         */
-        STWidthMode.prototype.strictBehavior;
-    }
-    /**
-     * @record
-     */
-    function STResetColumnsOption() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STResetColumnsOption.prototype.pi;
-        /** @type {?|undefined} */
-        STResetColumnsOption.prototype.ps;
-        /** @type {?|undefined} */
-        STResetColumnsOption.prototype.columns;
-        /**
-         * Whether to pre-clear data, Default: `false`
-         * @type {?|undefined}
-         */
-        STResetColumnsOption.prototype.preClearData;
-        /**
-         * Whether to trigger a data load, Default: `true`
-         * @type {?|undefined}
-         */
-        STResetColumnsOption.prototype.emitReload;
-    }
-    /**
-     * @record
-     */
-    function STReq() { }
-    if (false) {
-        /**
-         * 分页类型，默认：`page`
-         * - `page` 使用 `pi`，`ps` 组合
-         * - `skip` 使用 `skip`，`limit` 组合
-         * @type {?|undefined}
-         */
-        STReq.prototype.type;
-        /**
-         * 额外请求参数，默认自动附加 `pi`、`ps` 至URL
-         * - `{ status: 'new' }` => `url?pi=1&ps=10&status=new`
-         * @type {?|undefined}
-         */
-        STReq.prototype.params;
-        /**
-         * 请求方法，默认：`GET`
-         * @type {?|undefined}
-         */
-        STReq.prototype.method;
-        /**
-         * 请求体 `body`
-         * @type {?|undefined}
-         */
-        STReq.prototype.body;
-        /**
-         * 请求体 `Header`
-         * @type {?|undefined}
-         */
-        STReq.prototype.headers;
-        /**
-         * 重命名参数 `pi`、`ps`，默认：`{ pi: 'pi', ps: 'ps' }`
-         * - `{ pi: 'Page' }` => `pi` 会被替换成 Page
-         * @type {?|undefined}
-         */
-        STReq.prototype.reName;
-        /**
-         * 是否将请求所有参数数据都放入 `body` 当中（`url` 地址本身参数除外），仅当 `method: 'POST'` 时有效，默认：`false`
-         * @type {?|undefined}
-         */
-        STReq.prototype.allInBody;
-        /**
-         * 是否延迟加载数据，即渲染结束后不会主动发起请求，默认：`false`
-         * @type {?|undefined}
-         */
-        STReq.prototype.lazyLoad;
-        /**
-         * 请求前数据处理
-         * @type {?|undefined}
-         */
-        STReq.prototype.process;
-    }
-    /**
-     * @record
-     */
-    function STRequestOptions() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.body;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.headers;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.params;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.observe;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.reportProgress;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.responseType;
-        /** @type {?|undefined} */
-        STRequestOptions.prototype.withCredentials;
-    }
-    /**
-     * @record
-     */
-    function STLoadOptions() { }
-    if (false) {
-        /**
-         * 是否合并，默认：`false`
-         * @type {?|undefined}
-         */
-        STLoadOptions.prototype.merge;
-        /**
-         * 是否跳转至顶部，若不指定由 `page.toTop` 来决定
-         * @type {?|undefined}
-         */
-        STLoadOptions.prototype.toTop;
-    }
-    /**
-     * @record
-     */
-    function STRes() { }
-    if (false) {
-        /**
-         * 重命名返回参数 `total`、`list`
-         * - `{ total: 'Total' }` => Total 会被当作 `total`
-         * @type {?|undefined}
-         */
-        STRes.prototype.reName;
-        /**
-         * 数据预处理
-         * @type {?|undefined}
-         */
-        STRes.prototype.process;
-    }
-    /**
-     * @record
-     */
-    function STPage() { }
-    if (false) {
-        /**
-         * 前端分页，当 `data` 为`any[]` 或 `Observable<any[]>` 有效，默认：`true`
-         * - `true` 由 `st` 根据 `data` 长度受控分页，包括：排序、过滤等
-         * - `false` 由用户通过 `total` 和 `data` 参数受控分页，并维护 `(change)` 当分页变更时重新加载数据
-         * @type {?|undefined}
-         */
-        STPage.prototype.front;
-        /**
-         * 后端分页是否采用`0`基索引，只在`data`类型为`string`时有效，默认：`false`
-         * @type {?|undefined}
-         */
-        STPage.prototype.zeroIndexed;
-        /**
-         * 指定分页显示的位置，默认：`bottom`
-         * @type {?|undefined}
-         */
-        STPage.prototype.position;
-        /**
-         * 指定分页分页方向，默认：`right`
-         * @type {?|undefined}
-         */
-        STPage.prototype.placement;
-        /**
-         * 是否显示分页器，默认：`true`
-         * @type {?|undefined}
-         */
-        STPage.prototype.show;
-        /**
-         * 是否显示分页器中改变页数，默认：`false`
-         * @type {?|undefined}
-         */
-        STPage.prototype.showSize;
-        /**
-         * 分页器中每页显示条目数下拉框值，默认：`[10, 20, 30, 40, 50]`
-         * @type {?|undefined}
-         */
-        STPage.prototype.pageSizes;
-        /**
-         * 是否显示分页器中快速跳转，默认：`false`
-         * @type {?|undefined}
-         */
-        STPage.prototype.showQuickJumper;
-        /**
-         * 是否显示总数据量
-         * - `boolean` 类型显示与否，默认模板：`共 {{total}} 条`
-         * - `string` 自定义模板，模板变量：
-         *  - `{{total}}` 表示数据总量
-         *  - `{{range[0]}}` 表示当前页开始数量值
-         *  - `{{range[1]}}` 表示当前页结束数量值
-         * @type {?|undefined}
-         */
-        STPage.prototype.total;
-        /**
-         * 切换分页时返回顶部，默认：`true`
-         * @type {?|undefined}
-         */
-        STPage.prototype.toTop;
-        /**
-         * 返回顶部偏移值，默认：`100`
-         * @type {?|undefined}
-         */
-        STPage.prototype.toTopOffset;
-    }
-    /**
-     * 数据源
-     * @record
-     */
-    function STData() { }
-    if (false) {
-        /**
-         * 选择框或单选框状态值
-         * @type {?|undefined}
-         */
-        STData.prototype.checked;
-        /**
-         * 选择框或单选框 `disabled` 值
-         * @type {?|undefined}
-         */
-        STData.prototype.disabled;
-        /**
-         * 是否展开状态
-         * @type {?|undefined}
-         */
-        STData.prototype.expand;
-        /**
-         * 是否显示展开按钮
-         * @type {?|undefined}
-         */
-        STData.prototype.showExpand;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * 列描述
-     * @record
-     */
-    function STColumn() { }
-    if (false) {
-        /**
-         * 用于定义数据源主键，例如：`statistical`
-         * @type {?|undefined}
-         */
-        STColumn.prototype.key;
-        /**
-         * 列标题
-         * @type {?|undefined}
-         */
-        STColumn.prototype.title;
-        /**
-         * 列数据在数据项中对应的 key，支持 `a.b.c` 的嵌套写法，例如：
-         * - `id`
-         * - `price.market`
-         * - `[ 'price', 'market' ]`
-         * @type {?|undefined}
-         */
-        STColumn.prototype.index;
-        /**
-         * 类型
-         * - `no` 行号，计算规则：`index + noIndex`
-         * - `checkbox` 多选
-         * - `radio` 单选
-         * - `link` 链接，务必指定 `click`
-         * - `badge` [徽标](https://ng.ant.design/components/badge/zh)，务必指定 `badge` 参数配置徽标对应值
-         * - `tag` [标签](https://ng.ant.design/components/tag/zh)，务必指定 `tag` 参数配置标签对应值
-         * - `enum` 枚举转换，务必指定 `enum` 参数配置标签对应值
-         * - `img` 图片且居中(若 `className` 存在则优先)
-         * - `number` 数字且居右(若 `className` 存在则优先)
-         * - `currency` 货币且居右(若 `className` 存在则优先)
-         * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
-         * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
-         * - `widget` 使用自定义小部件动态创建
-         * @type {?|undefined}
-         */
-        STColumn.prototype.type;
-        /**
-         * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
-         * @type {?|undefined}
-         */
-        STColumn.prototype.click;
-        /**
-         * 按钮组
-         * @type {?|undefined}
-         */
-        STColumn.prototype.buttons;
-        /**
-         * 自定义渲染ID
-         * \@example
-         * <ng-template st-row="custom" let-item let-index="index" let-column="column">
-         *  {{ c.title }}
-         * </ng-template>
-         * @type {?|undefined}
-         */
-        STColumn.prototype.render;
-        /**
-         * 标题自定义渲染ID
-         * \@example
-         * <ng-template st-row="custom" type="title" let-c>
-         *  {{ item | json }}
-         * </ng-template>
-         * @type {?|undefined}
-         */
-        STColumn.prototype.renderTitle;
-        /**
-         * 列宽（数字型表示 `px` 值），例如：`100`、`10%`、`100px`
-         *
-         * **注意：** 若固定列必须是数字
-         * @type {?|undefined}
-         */
-        STColumn.prototype.width;
-        /**
-         * 排序配置项，远程数据配置**优先**规则：
-         * - `true` 表示允许排序，且若数据源为本地时自动生成 `compare: (a, b) => a[index] - b[index]` 方法
-         * - `string` 表示远程数据排序相对应 `key` 值
-         * @type {?|undefined}
-         */
-        STColumn.prototype.sort;
-        /**
-         * 过滤配置项
-         * @type {?|undefined}
-         */
-        STColumn.prototype.filter;
-        /**
-         * 格式化列值
-         * @type {?|undefined}
-         */
-        STColumn.prototype.format;
-        /**
-         * 自定义全/反选选择项
-         * @type {?|undefined}
-         */
-        STColumn.prototype.selections;
-        /**
-         * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
-         * - `text-center` 居中
-         * - `text-right` 居右
-         * - `text-success` 成功色
-         * - `text-danger` 异常色
-         * @type {?|undefined}
-         */
-        STColumn.prototype.className;
-        /**
-         * 合并列
-         * @type {?|undefined}
-         */
-        STColumn.prototype.colSpan;
-        /**
-         * 数字格式，`type=number` 有效
-         * @type {?|undefined}
-         */
-        STColumn.prototype.numberDigits;
-        /**
-         * 日期格式，`type=date` 有效，（默认：`yyyy-MM-dd HH:mm`）
-         * @type {?|undefined}
-         */
-        STColumn.prototype.dateFormat;
-        /**
-         * 当 `type=yn` 有效
-         * @type {?|undefined}
-         */
-        STColumn.prototype.yn;
-        /**
-         * 是否允许导出，默认 `true`
-         * @type {?|undefined}
-         */
-        STColumn.prototype.exported;
-        /**
-         * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
-         * @type {?|undefined}
-         */
-        STColumn.prototype.acl;
-        /**
-         * 当不存在数据时以默认值替代
-         * @type {?|undefined}
-         */
-        STColumn.prototype.default;
-        /**
-         * 固定前后列，当指定时务必指定 `width` 否则视为无效，有若干 **注意：** 项：
-         *
-         * - 若列头与内容不对齐或出现列重复，请指定列的宽度 `width`
-         * - 建议指定 `scroll.x` 为大于表格宽度的固定值或百分比。注意，且非固定列宽度之和不要超过 `scroll.x`
-         * @type {?|undefined}
-         */
-        STColumn.prototype.fixed;
-        /**
-         * 徽标配置项
-         * @type {?|undefined}
-         */
-        STColumn.prototype.badge;
-        /**
-         * 标签配置项
-         * @type {?|undefined}
-         */
-        STColumn.prototype.tag;
-        /**
-         * 行号索引，默认：`1`
-         * - 计算规则为：`index + noIndex`
-         * - 支持自定义方法
-         * @type {?|undefined}
-         */
-        STColumn.prototype.noIndex;
-        /**
-         * 条件表达式
-         * - 仅赋值 `columns` 时执行一次
-         * - 可调用 `resetColumns()` 再一次触发
-         * @type {?|undefined}
-         */
-        STColumn.prototype.iif;
-        /**
-         * 统计列数据
-         * - 若使用自定义统计函数可无须指定 `index`
-         * - 可以根据 `key` 来定义生成后需要的键名，如果未指定 `key` 则使用 `index` 来表示键名
-         * - 当无法找到有效键名时，使用下标（从 `0` 开始）来代替
-         * @type {?|undefined}
-         */
-        STColumn.prototype.statistical;
-        /** @type {?|undefined} */
-        STColumn.prototype.widget;
-        /** @type {?|undefined} */
-        STColumn.prototype.enum;
-        /**
-         * 分组表头
-         * @type {?|undefined}
-         */
-        STColumn.prototype.children;
-        /**
-         * @ignore internal property
-         * @type {?|undefined}
-         */
-        STColumn.prototype._sort;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function STWidgetColumn() { }
-    if (false) {
-        /** @type {?} */
-        STWidgetColumn.prototype.type;
-        /** @type {?|undefined} */
-        STWidgetColumn.prototype.params;
-    }
-    /**
-     * @record
-     */
-    function STColumnTitle() { }
-    if (false) {
-        /**
-         * Text of header, can be choose one of `text` or `i18n`
-         * @type {?|undefined}
-         */
-        STColumnTitle.prototype.text;
-        /**
-         * I18n key of header, can be choose one of `text` or `i18n`
-         * @type {?|undefined}
-         */
-        STColumnTitle.prototype.i18n;
-        /**
-         * Optional information of header
-         * @type {?|undefined}
-         */
-        STColumnTitle.prototype.optional;
-        /**
-         * Optional help of header
-         * @type {?|undefined}
-         */
-        STColumnTitle.prototype.optionalHelp;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function STStatistical() { }
-    if (false) {
-        /** @type {?} */
-        STStatistical.prototype.type;
-        /**
-         * 保留小数位数，默认：`2`
-         * @type {?|undefined}
-         */
-        STStatistical.prototype.digits;
-        /**
-         * 是否需要货币格式化，默认以下情况为 `true`
-         * - `type` 为 `STStatisticalFn`、 `sum`、`average`、`max`、`min`
-         * @type {?|undefined}
-         */
-        STStatistical.prototype.currency;
-    }
-    /**
-     * @record
-     */
-    function STStatisticalResults() { }
-    /**
-     * @record
-     */
-    function STStatisticalResult() { }
-    if (false) {
-        /** @type {?} */
-        STStatisticalResult.prototype.value;
-        /** @type {?|undefined} */
-        STStatisticalResult.prototype.text;
-    }
-    /**
-     * @record
-     */
-    function STColumnSort() { }
-    if (false) {
-        /**
-         * 排序的默认受控属性
-         * @type {?|undefined}
-         */
-        STColumnSort.prototype.default;
-        /**
-         * 本地数据的排序函数，使用一个函数(参考 [Array.sort](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort) 的 compareFunction)
-         * - `null` 忽略本地排序，但保持排序功能
-         * - 若数据源为本地时自动生成 `(a, b) => a[index] - b[index]` 方法
-         * @type {?|undefined}
-         */
-        STColumnSort.prototype.compare;
-        /**
-         * 远程数据的排序时后端相对应的KEY，默认使用 `index` 属性
-         * - 若 `multiSort: false` 时：`key: 'name' => ?name=1&pi=1`
-         * - 若 `multiSort: true` 允许多个排序 key 存在，或使用 `STMultiSort` 指定多列排序key合并规则
-         * @type {?|undefined}
-         */
-        STColumnSort.prototype.key;
-        /**
-         * 远程数据的排序时后端相对应的VALUE
-         * - `{ ascend: '0', descend: '1' }` 结果 `?name=1&pi=1`
-         * - `{ ascend: 'asc', descend: 'desc' }` 结果 `?name=desc&pi=1`
-         * @type {?|undefined}
-         */
-        STColumnSort.prototype.reName;
-    }
-    /**
-     * @record
-     */
-    function STSortMap() { }
-    if (false) {
-        /**
-         * 是否启用排序
-         * @type {?|undefined}
-         */
-        STSortMap.prototype.enabled;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function STColumnFilter() { }
-    if (false) {
-        /**
-         * 搜索方式
-         * - `defualt` 默认形式
-         * - `keyword` 文本框形式
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.type;
-        /**
-         * 表头的筛选菜单项，至少一项才会生效
-         * - 当 `type='keyword'` 时可为空
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.menus;
-        /**
-         * 本地数据的筛选函数
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.fn;
-        /**
-         * 标识数据是否已过滤，筛选图标会高亮
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.default;
-        /**
-         * 自定义 filter 图标
-         * - 当 `type='default'` 默认 `filter`
-         * - 当 `type='keyword'` 默认 `search`
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.icon;
-        /**
-         * 确认按钮文本，默认 `确认`
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.confirmText;
-        /**
-         * 清除按钮文本，默认 `重置`
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.clearText;
-        /**
-         * 是否多选，默认 `true`
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.multiple;
-        /**
-         * 远程数据的过滤时后端相对应的KEY，默认使用 `index` 属性
-         * `key: 'name'` 结果 `?name=1&pi=1`
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.key;
-        /**
-         * 远程数据的过滤时后端相对应的VALUE
-         * - 默认当 `multiple: true` 时以英文逗号拼接的字符串
-         * \@return 返回为 Object 对象
-         * @type {?|undefined}
-         */
-        STColumnFilter.prototype.reName;
-    }
-    /**
-     * @record
-     */
-    function STColumnFilterMenu() { }
-    if (false) {
-        /**
-         * 文本
-         * - 当 `type: 'keyword'` 时表示 `placeholder`
-         * @type {?|undefined}
-         */
-        STColumnFilterMenu.prototype.text;
-        /**
-         * 值
-         * @type {?|undefined}
-         */
-        STColumnFilterMenu.prototype.value;
-        /**
-         * 是否选中
-         * @type {?|undefined}
-         */
-        STColumnFilterMenu.prototype.checked;
-        /**
-         * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
-         * @type {?|undefined}
-         */
-        STColumnFilterMenu.prototype.acl;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function STColumnSelection() { }
-    if (false) {
-        /**
-         * 选择项显示的文字
-         * @type {?}
-         */
-        STColumnSelection.prototype.text;
-        /**
-         * 选择项点击回调，允许对参数 `data.checked` 进行操作
-         * @type {?}
-         */
-        STColumnSelection.prototype.select;
-        /**
-         * 权限，等同 `can()` 参数值
-         * @type {?|undefined}
-         */
-        STColumnSelection.prototype.acl;
-    }
-    /**
-     * 当 `type=yn` 有效
-     * @record
-     */
-    function STColumnYn() { }
-    if (false) {
-        /**
-         * 真值条件，（默认：`true`）
-         * @type {?|undefined}
-         */
-        STColumnYn.prototype.truth;
-        /**
-         * 徽章 `true` 时文本，（默认：`是`）
-         * @type {?|undefined}
-         */
-        STColumnYn.prototype.yes;
-        /**
-         * 徽章 `false` 时文本，（默认：`否`）
-         * @type {?|undefined}
-         */
-        STColumnYn.prototype.no;
-        /**
-         * 徽章显示风格
-         * - `full` 图标和文本
-         * - `icon` 图标
-         * - `text` 文本
-         * @type {?|undefined}
-         */
-        STColumnYn.prototype.mode;
-    }
-    /**
-     * @record
-     */
-    function STIcon() { }
-    if (false) {
-        /**
-         * 图标类型
-         * @type {?}
-         */
-        STIcon.prototype.type;
-        /**
-         * 图标主题风格，默认：`outline`
-         * @type {?|undefined}
-         */
-        STIcon.prototype.theme;
-        /**
-         * 是否有旋转动画，默认：`false`
-         * @type {?|undefined}
-         */
-        STIcon.prototype.spin;
-        /**
-         * 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效
-         * @type {?|undefined}
-         */
-        STIcon.prototype.twoToneColor;
-        /**
-         * 指定来自 IconFont 的图标类型
-         * @type {?|undefined}
-         */
-        STIcon.prototype.iconfont;
-    }
-    /**
-     * 按钮配置
-     * @record
-     */
-    function STColumnButton() { }
-    if (false) {
-        /**
-         * 文本
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.text;
-        /**
-         * 文本 i18n
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.i18n;
-        /**
-         * 图标
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.icon;
-        /**
-         * 按钮类型
-         * - `none` 无任何互动
-         * - `del` 删除，默认开启 `pop: true`
-         * - `modal` 对话框，需要指定 `component` 才会生效
-         * - `static` 静态对话框，需要指定 `component` 才会生效
-         * - `drawer` 抽屉，需要指定 `component` 才会生效
-         * - `link` 链接，当 `click` 返回字符串时自动调用 `navigateByUrl` 导航
-         * - `divider` 分割线
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.type;
-        /**
-         * 点击回调
-         * - Function
-         *  - `type=modal` 只会在当有传回值时才会触发回调
-         * - reload：重新刷新当前页
-         * - load：重新加载数据，并重置页码为：`1`
-         *
-         * \@todo Bad parameter design
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.click;
-        /**
-         * 气泡确认框参数，若 `string` 类型表示标题
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.pop;
-        /**
-         * 对话框参数
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.modal;
-        /**
-         * 抽屉参数
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.drawer;
-        /**
-         * 下拉菜单，当存在时以 `dropdown` 形式渲染
-         * - 只支持一级
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.children;
-        /**
-         * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.acl;
-        /**
-         * Conditional expression
-         *
-         * \@todo Bad parameter design
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.iif;
-        /**
-         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
-         * @type {?|undefined}
-         */
-        STColumnButton.prototype.iifBehavior;
-        /** @type {?|undefined} */
-        STColumnButton.prototype.tooltip;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonOK() { }
-    if (false) {
-        /** @type {?} */
-        STColumnButtonOK.prototype.record;
-        /**
-         * Modal or drawer return value when trigger confirm.
-         * @type {?|undefined}
-         */
-        STColumnButtonOK.prototype.ret;
-        /** @type {?|undefined} */
-        STColumnButtonOK.prototype.instance;
-        /** @type {?} */
-        STColumnButtonOK.prototype.event;
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonModal() { }
-    if (false) {
-        /**
-         * 对话框组件对象
-         * @type {?|undefined}
-         */
-        STColumnButtonModal.prototype.component;
-        /**
-         * 对话框参数
-         * @type {?|undefined}
-         */
-        STColumnButtonModal.prototype.params;
-        /**
-         * 对话框目标组件的接收参数名，默认：`record`
-         * @type {?|undefined}
-         */
-        STColumnButtonModal.prototype.paramsName;
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonModalConfig() { }
-    if (false) {
-        /**
-         * 指定模态框目标组件的接收参数名，默认：`record`
-         * @type {?|undefined}
-         */
-        STColumnButtonModalConfig.prototype.paramsName;
-        /**
-         * 大小；例如：lg、600，默认：`lg`
-         * @type {?|undefined}
-         */
-        STColumnButtonModalConfig.prototype.size;
-        /**
-         * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
-         * @type {?|undefined}
-         */
-        STColumnButtonModalConfig.prototype.modalOptions;
-        /**
-         * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
-         * @type {?|undefined}
-         */
-        STColumnButtonModalConfig.prototype.exact;
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonDrawer() { }
-    if (false) {
-        /**
-         * 标题
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawer.prototype.title;
-        /**
-         * 抽屉组件对象
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawer.prototype.component;
-        /**
-         * 抽屉参数
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawer.prototype.params;
-        /**
-         * 抽屉目标组件的接收参数名，默认：`record`
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawer.prototype.paramsName;
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonDrawerConfig() { }
-    if (false) {
-        /**
-         * 抽屉目标组件的接收参数名，默认：`record`
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawerConfig.prototype.paramsName;
-        /**
-         * 大小；例如：lg、600，默认：`md`
-         *
-         * | 类型 | 默认大小 |
-         * | --- | ------ |
-         * | `sm` | `300` |
-         * | `md` | `600` |
-         * | `lg` | `900` |
-         * | `xl` | `1200` |
-         *
-         * > 以上值，可通过覆盖相应的LESS参数自行调整
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawerConfig.prototype.size;
-        /**
-         * 是否包含底部工具条，默认：`true`
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawerConfig.prototype.footer;
-        /**
-         * 底部工具条高度，默认：`55`
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawerConfig.prototype.footerHeight;
-        /**
-         * 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数
-         * @type {?|undefined}
-         */
-        STColumnButtonDrawerConfig.prototype.drawerOptions;
-    }
-    /**
-     * @record
-     */
-    function STColumnButtonPop() { }
-    if (false) {
-        /**
-         * Title of the popover, default: `确认删除吗？`
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.title;
-        /**
-         * Popover trigger mode, default: `click`
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.trigger;
-        /**
-         * The position of the popover relative to the target, default: `top`
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.placement;
-        /**
-         * Class name of the popover card
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.overlayClassName;
-        /**
-         * Style of the popover card
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.overlayStyle;
-        /**
-         * Text of the Cancel button
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.cancelText;
-        /**
-         * Text of the Confirm button
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.okText;
-        /**
-         * Button `type` of the Confirm button
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.okType;
-        /**
-         * Customize icon of confirmation
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.icon;
-        /**
-         * Whether to directly emit `onConfirm` without showing Popconfirm, default: `() => false`
-         * @type {?|undefined}
-         */
-        STColumnButtonPop.prototype.condition;
-    }
-    /**
-     * @record
-     */
-    function STReqReNameType() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STReqReNameType.prototype.pi;
-        /** @type {?|undefined} */
-        STReqReNameType.prototype.ps;
-        /** @type {?|undefined} */
-        STReqReNameType.prototype.skip;
-        /** @type {?|undefined} */
-        STReqReNameType.prototype.limit;
-    }
-    /**
-     * @record
-     */
-    function STResReNameType() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STResReNameType.prototype.total;
-        /** @type {?|undefined} */
-        STResReNameType.prototype.list;
-    }
-    /**
-     * @record
-     */
-    function STExportOptions() { }
-    if (false) {
-        /**
-         * Specify the currently exported data, default the current table data
-         * @type {?|undefined}
-         */
-        STExportOptions.prototype.data;
-        /**
-         * Specify the currently exported column configuration, default the current table data
-         * @type {?|undefined}
-         */
-        STExportOptions.prototype.columens;
-        /**
-         * 工作溥名
-         * @type {?|undefined}
-         */
-        STExportOptions.prototype.sheetname;
-        /**
-         * 文件名
-         * @type {?|undefined}
-         */
-        STExportOptions.prototype.filename;
-        /**
-         * triggers when saveas
-         * @type {?|undefined}
-         */
-        STExportOptions.prototype.callback;
-    }
-    /**
-     * 单排序规则
-     * - 若不指定，则返回：`columnName=ascend|descend`
-     * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-     * @record
-     */
-    function STSingleSort() { }
-    if (false) {
-        /**
-         * 请求参数名，默认：`sort`
-         * @type {?|undefined}
-         */
-        STSingleSort.prototype.key;
-        /**
-         * 列名与状态间分隔符，默认：`.`
-         * @type {?|undefined}
-         */
-        STSingleSort.prototype.nameSeparator;
-    }
-    /**
-     * 多排序相同排序 key 时合并规则
-     * @record
-     */
-    function STMultiSort() { }
-    if (false) {
-        /**
-         * 请求参数名，默认：`sort`
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.key;
-        /**
-         * 不同属性间分隔符，默认：`-`
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.separator;
-        /**
-         * 列名与状态间分隔符，默认：`.`
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.nameSeparator;
-        /**
-         * 是否保持空值的键名，默认：`true`
-         * - `true` 表示不管是否有排序都会发送 `key` 键名
-         * - `false` 表示无排序动作时不会发送 `key` 键名
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.keepEmptyKey;
-        /**
-         * ## 仅限全局配置项有效
-         *
-         * 是否全局多排序模式，默认：`true`
-         * - `true` 表示所有 `st` 默认为多排序
-         * - `false` 表示需要为每个 `st` 添加 `multiSort` 才会视为多排序模式
-         * @type {?|undefined}
-         */
-        STMultiSort.prototype.global;
-    }
-    /**
-     * 徽标信息
-     * @record
-     */
-    function STColumnBadge() { }
-    /**
-     * @record
-     */
-    function STColumnBadgeValue() { }
-    if (false) {
-        /**
-         * 文本
-         * @type {?|undefined}
-         */
-        STColumnBadgeValue.prototype.text;
-        /**
-         * 徽标颜色值
-         * @type {?|undefined}
-         */
-        STColumnBadgeValue.prototype.color;
-    }
-    /**
-     * 标签信息
-     * @record
-     */
-    function STColumnTag() { }
-    /**
-     * @record
-     */
-    function STColumnTagValue() { }
-    if (false) {
-        /**
-         * 文本
-         * @type {?|undefined}
-         */
-        STColumnTagValue.prototype.text;
-        /**
-         * 颜色值，支持预设和色值
-         * - 预设：geekblue,blue,purple,success,red,volcano,orange,gold,lime,green,cyan
-         * - 色值：#f50,#ff0
-         * @type {?|undefined}
-         */
-        STColumnTagValue.prototype.color;
-    }
-    /**
-     * 回调数据
-     * @record
-     */
-    function STChange() { }
-    if (false) {
-        /**
-         * 回调类型
-         * @type {?}
-         */
-        STChange.prototype.type;
-        /**
-         * 当前页码
-         * @type {?}
-         */
-        STChange.prototype.pi;
-        /**
-         * 每页数量
-         * @type {?}
-         */
-        STChange.prototype.ps;
-        /**
-         * 数据总量
-         * @type {?}
-         */
-        STChange.prototype.total;
-        /**
-         * `loaded` 参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.loaded;
-        /**
-         * `checkbox` 参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.checkbox;
-        /**
-         * `radio` 参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.radio;
-        /**
-         * 排序参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.sort;
-        /**
-         * 过滤参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.filter;
-        /**
-         * 行点击参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.click;
-        /**
-         * 行双击参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.dblClick;
-        /**
-         * `expand` 参数
-         * @type {?|undefined}
-         */
-        STChange.prototype.expand;
-    }
-    /**
-     * 行单击参数
-     * @record
-     */
-    function STChangeSort() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STChangeSort.prototype.value;
-        /** @type {?|undefined} */
-        STChangeSort.prototype.map;
-        /** @type {?|undefined} */
-        STChangeSort.prototype.column;
-    }
-    /**
-     * 行单击参数
-     * @record
-     */
-    function STChangeRowClick() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STChangeRowClick.prototype.e;
-        /** @type {?|undefined} */
-        STChangeRowClick.prototype.item;
-        /** @type {?|undefined} */
-        STChangeRowClick.prototype.index;
-    }
-    /**
-     * @record
-     */
-    function STError() { }
-    if (false) {
-        /** @type {?|undefined} */
-        STError.prototype.type;
-        /** @type {?|undefined} */
-        STError.prototype.error;
-    }
-    /**
-     * @record
-     */
-    function STColumnGroupType() { }
-    if (false) {
-        /** @type {?} */
-        STColumnGroupType.prototype.column;
-        /** @type {?} */
-        STColumnGroupType.prototype.colStart;
-        /** @type {?|undefined} */
-        STColumnGroupType.prototype.colEnd;
-        /** @type {?|undefined} */
-        STColumnGroupType.prototype.colSpan;
-        /** @type {?|undefined} */
-        STColumnGroupType.prototype.rowSpan;
-        /** @type {?|undefined} */
-        STColumnGroupType.prototype.hasSubColumns;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: st-row.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STRowSource = /** @class */ (function () {
         function STRowSource() {
@@ -1532,42 +326,28 @@
          * @param {?} ref
          * @return {?}
          */
-        STRowSource.prototype.add = /**
-         * @param {?} type
-         * @param {?} path
-         * @param {?} ref
-         * @return {?}
-         */
-        function (type, path, ref) {
+        STRowSource.prototype.add = function (type, path, ref) {
             this[type === 'title' ? 'titles' : 'rows'][path] = ref;
         };
         /**
          * @param {?} path
          * @return {?}
          */
-        STRowSource.prototype.getTitle = /**
-         * @param {?} path
-         * @return {?}
-         */
-        function (path) {
+        STRowSource.prototype.getTitle = function (path) {
             return this.titles[path];
         };
         /**
          * @param {?} path
          * @return {?}
          */
-        STRowSource.prototype.getRow = /**
-         * @param {?} path
-         * @return {?}
-         */
-        function (path) {
+        STRowSource.prototype.getRow = function (path) {
             return this.rows[path];
         };
-        STRowSource.decorators = [
-            { type: core.Injectable }
-        ];
         return STRowSource;
     }());
+    STRowSource.decorators = [
+        { type: i0.Injectable }
+    ];
     if (false) {
         /**
          * @type {?}
@@ -1581,6 +361,10 @@
         STRowSource.prototype.rows;
     }
     var STRowDirective = /** @class */ (function () {
+        /**
+         * @param {?} ref
+         * @param {?} source
+         */
         function STRowDirective(ref, source) {
             this.ref = ref;
             this.source = source;
@@ -1588,26 +372,23 @@
         /**
          * @return {?}
          */
-        STRowDirective.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
+        STRowDirective.prototype.ngOnInit = function () {
             this.source.add(this.type, this.id, this.ref);
-        };
-        STRowDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[st-row]' },] }
-        ];
-        /** @nocollapse */
-        STRowDirective.ctorParameters = function () { return [
-            { type: core.TemplateRef },
-            { type: STRowSource, decorators: [{ type: core.Host }] }
-        ]; };
-        STRowDirective.propDecorators = {
-            id: [{ type: core.Input, args: ['st-row',] }],
-            type: [{ type: core.Input }]
         };
         return STRowDirective;
     }());
+    STRowDirective.decorators = [
+        { type: i0.Directive, args: [{ selector: '[st-row]' },] }
+    ];
+    /** @nocollapse */
+    STRowDirective.ctorParameters = function () { return [
+        { type: i0.TemplateRef },
+        { type: STRowSource, decorators: [{ type: i0.Host }] }
+    ]; };
+    STRowDirective.propDecorators = {
+        id: [{ type: i0.Input, args: ['st-row',] }],
+        type: [{ type: i0.Input }]
+    };
     if (false) {
         /** @type {?} */
         STRowDirective.prototype.id;
@@ -1628,20 +409,20 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: st-widget.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STWidgetRegistry = /** @class */ (function () {
         function STWidgetRegistry() {
             this._widgets = {};
         }
         Object.defineProperty(STWidgetRegistry.prototype, "widgets", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._widgets;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
@@ -1649,42 +430,29 @@
          * @param {?} widget
          * @return {?}
          */
-        STWidgetRegistry.prototype.register = /**
-         * @param {?} type
-         * @param {?} widget
-         * @return {?}
-         */
-        function (type, widget) {
+        STWidgetRegistry.prototype.register = function (type, widget) {
             this._widgets[type] = widget;
         };
         /**
          * @param {?} type
          * @return {?}
          */
-        STWidgetRegistry.prototype.has = /**
-         * @param {?} type
-         * @return {?}
-         */
-        function (type) {
+        STWidgetRegistry.prototype.has = function (type) {
             return this._widgets.hasOwnProperty(type);
         };
         /**
          * @param {?} type
          * @return {?}
          */
-        STWidgetRegistry.prototype.get = /**
-         * @param {?} type
-         * @return {?}
-         */
-        function (type) {
+        STWidgetRegistry.prototype.get = function (type) {
             return this._widgets[type];
         };
-        STWidgetRegistry.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ STWidgetRegistry.ɵprov = core.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
         return STWidgetRegistry;
     }());
+    STWidgetRegistry.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ STWidgetRegistry.ɵprov = i0.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1693,12 +461,14 @@
         STWidgetRegistry.prototype._widgets;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-column-source.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STColumnSource = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         * @param {?} rowSource
+         * @param {?} acl
+         * @param {?} i18nSrv
+         * @param {?} stWidgetRegistry
+         */
         function STColumnSource(dom, rowSource, acl, i18nSrv, stWidgetRegistry) {
             this.dom = dom;
             this.rowSource = rowSource;
@@ -1710,11 +480,7 @@
          * @param {?} val
          * @return {?}
          */
-        STColumnSource.prototype.setCog = /**
-         * @param {?} val
-         * @return {?}
-         */
-        function (val) {
+        STColumnSource.prototype.setCog = function (val) {
             this.cog = val;
         };
         /**
@@ -1723,30 +489,23 @@
          * @param {?} def
          * @return {?}
          */
-        STColumnSource.prototype.fixPop = /**
-         * @private
-         * @param {?} i
-         * @param {?} def
-         * @return {?}
-         */
-        function (i, def) {
+        STColumnSource.prototype.fixPop = function (i, def) {
             if (i.pop == null || i.pop === false) {
                 i.pop = false;
                 return;
             }
             /** @type {?} */
-            var pop = __assign({}, def);
+            var pop = Object.assign({}, def);
             if (typeof i.pop === 'string') {
                 pop.title = i.pop;
             }
             else if (typeof i.pop === 'object') {
-                pop = __assign(__assign({}, pop), i.pop);
+                pop = Object.assign(Object.assign({}, pop), i.pop);
             }
             if (typeof pop.condition !== 'function') {
-                pop.condition = (/**
+                pop.condition = ( /**
                  * @return {?}
-                 */
-                function () { return false; });
+                 */function () { return false; });
             }
             i.pop = pop;
         };
@@ -1755,18 +514,13 @@
          * @param {?} list
          * @return {?}
          */
-        STColumnSource.prototype.btnCoerce = /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
-        function (list) {
-            var e_1, _a;
+        STColumnSource.prototype.btnCoerce = function (list) {
+            var e_1, _b;
             if (!list)
                 return [];
             /** @type {?} */
             var ret = [];
-            var _b = this.cog, modal = _b.modal, drawer = _b.drawer, pop = _b.pop, btnIcon = _b.btnIcon;
+            var _c = this.cog, modal = _c.modal, drawer = _c.drawer, pop = _c.pop, btnIcon = _c.btnIcon;
             try {
                 for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
                     var item = list_1_1.value;
@@ -1779,7 +533,7 @@
                             item.type = 'none';
                         }
                         else {
-                            item.modal = __assign(__assign({ paramsName: 'record', size: 'lg' }, modal), item.modal);
+                            item.modal = Object.assign(Object.assign({ paramsName: 'record', size: 'lg' }, modal), item.modal);
                         }
                     }
                     if (item.type === 'drawer') {
@@ -1788,16 +542,16 @@
                             item.type = 'none';
                         }
                         else {
-                            item.drawer = __assign(__assign({ paramsName: 'record', size: 'lg' }, drawer), item.drawer);
+                            item.drawer = Object.assign(Object.assign({ paramsName: 'record', size: 'lg' }, drawer), item.drawer);
                         }
                     }
                     if (item.type === 'del' && typeof item.pop === 'undefined') {
                         item.pop = true;
                     }
                     // pop
-                    this.fixPop(item, (/** @type {?} */ (pop)));
+                    this.fixPop(item, ( /** @type {?} */(pop)));
                     if (item.icon) {
-                        item.icon = __assign(__assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
+                        item.icon = Object.assign(Object.assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                     }
                     item.children = item.children && item.children.length > 0 ? this.btnCoerce(item.children) : [];
                     // i18n
@@ -1810,7 +564,7 @@
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
-                    if (list_1_1 && !list_1_1.done && (_a = list_1.return)) _a.call(list_1);
+                    if (list_1_1 && !list_1_1.done && (_b = list_1.return)) _b.call(list_1);
                 }
                 finally { if (e_1) throw e_1.error; }
             }
@@ -1822,21 +576,15 @@
          * @param {?} list
          * @return {?}
          */
-        STColumnSource.prototype.btnCoerceIf = /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
-        function (list) {
-            var e_2, _a;
+        STColumnSource.prototype.btnCoerceIf = function (list) {
+            var e_2, _b;
             try {
                 for (var list_2 = __values(list), list_2_1 = list_2.next(); !list_2_1.done; list_2_1 = list_2.next()) {
                     var item = list_2_1.value;
                     if (!item.iif)
-                        item.iif = (/**
+                        item.iif = ( /**
                          * @return {?}
-                         */
-                        function () { return true; });
+                         */function () { return true; });
                     item.iifBehavior = item.iifBehavior || this.cog.iifBehavior;
                     if (item.children && item.children.length > 0) {
                         this.btnCoerceIf(item.children);
@@ -1849,7 +597,7 @@
             catch (e_2_1) { e_2 = { error: e_2_1 }; }
             finally {
                 try {
-                    if (list_2_1 && !list_2_1.done && (_a = list_2.return)) _a.call(list_2);
+                    if (list_2_1 && !list_2_1.done && (_b = list_2.return)) _b.call(list_2);
                 }
                 finally { if (e_2) throw e_2.error; }
             }
@@ -1859,61 +607,52 @@
          * @param {?} list
          * @return {?}
          */
-        STColumnSource.prototype.fixedCoerce = /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
-        function (list) {
+        STColumnSource.prototype.fixedCoerce = function (list) {
             /** @type {?} */
-            var countReduce = (/**
+            var countReduce = ( /**
              * @param {?} a
              * @param {?} b
              * @return {?}
-             */
-            function (a, b) { return a + +(/** @type {?} */ (b.width)).toString().replace('px', ''); });
+             */function (a, b) { return a + +( /** @type {?} */(b.width)).toString().replace('px', ''); });
             // left width
             list
-                .filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w.fixed && w.fixed === 'left' && w.width; }))
-                .forEach((/**
-             * @param {?} item
-             * @param {?} idx
-             * @return {?}
-             */
-            function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); }));
+                .filter(( /**
+         * @param {?} w
+         * @return {?}
+         */function (/**
+         * @param {?} w
+         * @return {?}
+         */ w) { return w.fixed && w.fixed === 'left' && w.width; }))
+                .forEach(( /**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); }));
             // right width
             list
-                .filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w.fixed && w.fixed === 'right' && w.width; }))
+                .filter(( /**
+         * @param {?} w
+         * @return {?}
+         */function (/**
+         * @param {?} w
+         * @return {?}
+         */ w) { return w.fixed && w.fixed === 'right' && w.width; }))
                 .reverse()
-                .forEach((/**
-             * @param {?} item
-             * @param {?} idx
-             * @return {?}
-             */
-            function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); }));
+                .forEach(( /**
+         * @param {?} item
+         * @param {?} idx
+         * @return {?}
+         */function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); }));
         };
         /**
          * @private
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.sortCoerce = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STColumnSource.prototype.sortCoerce = function (item) {
             /** @type {?} */
             var res = this.fixSortCoerce(item);
-            res.reName = __assign(__assign({}, this.cog.sortReName), res.reName);
+            res.reName = Object.assign(Object.assign({}, this.cog.sortReName), res.reName);
             return res;
         };
         /**
@@ -1921,12 +660,7 @@
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.fixSortCoerce = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STColumnSource.prototype.fixSortCoerce = function (item) {
             if (typeof item.sort === 'undefined') {
                 return { enabled: false };
             }
@@ -1939,12 +673,11 @@
                 res = item.sort;
             }
             else if (typeof item.sort === 'boolean') {
-                res.compare = (/**
+                res.compare = ( /**
                  * @param {?} a
                  * @param {?} b
                  * @return {?}
-                 */
-                function (a, b) { return a[item.indexKey] - b[item.indexKey]; });
+                 */function (a, b) { return a[item.indexKey] - b[item.indexKey]; });
             }
             if (!res.key) {
                 res.key = item.indexKey;
@@ -1957,12 +690,7 @@
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.filterCoerce = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STColumnSource.prototype.filterCoerce = function (item) {
             var _this = this;
             if (item.filter == null) {
                 return null;
@@ -1975,13 +703,13 @@
             /** @type {?} */
             var iconTheme = 'fill';
             if (res.type === 'keyword') {
-                if (res.menus == null || (/** @type {?} */ (res.menus)).length === 0) {
+                if (res.menus == null || ( /** @type {?} */(res.menus)).length === 0) {
                     res.menus = [{ value: '' }];
                 }
                 icon = 'search';
                 iconTheme = 'outline';
             }
-            if ((/** @type {?} */ (res.menus)).length === 0) {
+            if (( /** @type {?} */(res.menus)).length === 0) {
                 return null;
             }
             if (typeof res.multiple === 'undefined') {
@@ -1992,22 +720,24 @@
             res.key = res.key || item.indexKey;
             res.icon = res.icon || icon;
             /** @type {?} */
-            var baseIcon = (/** @type {?} */ ({ type: icon, theme: iconTheme }));
+            var baseIcon = ( /** @type {?} */({ type: icon, theme: iconTheme }));
             if (typeof res.icon === 'string') {
-                res.icon = (/** @type {?} */ (__assign(__assign({}, baseIcon), { type: res.icon })));
+                res.icon = ( /** @type {?} */(Object.assign(Object.assign({}, baseIcon), { type: res.icon })));
             }
             else {
-                res.icon = __assign(__assign({}, baseIcon), res.icon);
+                res.icon = Object.assign(Object.assign({}, baseIcon), res.icon);
             }
             this.updateDefault(res);
             if (this.acl) {
-                res.menus = (/** @type {?} */ (res.menus)).filter((/**
+                res.menus = ( /** @type {?} */(res.menus)).filter(( /**
                  * @param {?} w
                  * @return {?}
-                 */
-                function (w) { return _this.acl.can(w.acl); }));
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return _this.acl.can(w.acl); }));
             }
-            if ((/** @type {?} */ (res.menus)).length <= 0) {
+            if (( /** @type {?} */(res.menus)).length <= 0) {
                 res = null;
             }
             return res;
@@ -2017,12 +747,7 @@
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.restoreRender = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STColumnSource.prototype.restoreRender = function (item) {
             if (item.renderTitle) {
                 item.__renderTitle = this.rowSource.getTitle(item.renderTitle);
             }
@@ -2035,12 +760,7 @@
          * @param {?} item
          * @return {?}
          */
-        STColumnSource.prototype.widgetCoerce = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STColumnSource.prototype.widgetCoerce = function (item) {
             var _a;
             if (item.type !== 'widget')
                 return;
@@ -2054,35 +774,31 @@
          * @param {?} rootColumns
          * @return {?}
          */
-        STColumnSource.prototype.genHeaders = /**
-         * @private
-         * @param {?} rootColumns
-         * @return {?}
-         */
-        function (rootColumns) {
+        STColumnSource.prototype.genHeaders = function (rootColumns) {
             /** @type {?} */
             var rows = [];
             /** @type {?} */
             var widths = [];
             /** @type {?} */
-            var fillRowCells = (/**
+            var fillRowCells = ( /**
              * @param {?} columns
              * @param {?} colIndex
              * @param {?=} rowIndex
              * @return {?}
-             */
-            function (columns, colIndex, rowIndex) {
+             */function (columns, colIndex, rowIndex) {
                 if (rowIndex === void 0) { rowIndex = 0; }
                 // Init rows
                 rows[rowIndex] = rows[rowIndex] || [];
                 /** @type {?} */
                 var currentColIndex = colIndex;
                 /** @type {?} */
-                var colSpans = columns.map((/**
+                var colSpans = columns.map(( /**
                  * @param {?} column
                  * @return {?}
-                 */
-                function (column) {
+                 */function (/**
+                 * @param {?} column
+                 * @return {?}
+                 */ column) {
                     /** @type {?} */
                     var cell = {
                         column: column,
@@ -2093,19 +809,18 @@
                     /** @type {?} */
                     var subColumns = column.children;
                     if (Array.isArray(subColumns) && subColumns.length > 0) {
-                        colSpan = fillRowCells(subColumns, currentColIndex, rowIndex + 1).reduce((/**
+                        colSpan = fillRowCells(subColumns, currentColIndex, rowIndex + 1).reduce(( /**
                          * @param {?} total
                          * @param {?} count
                          * @return {?}
-                         */
-                        function (total, count) { return total + count; }), 0);
+                         */function (total, count) { return total + count; }), 0);
                         cell.hasSubColumns = true;
                     }
                     else {
-                        widths.push(((/** @type {?} */ (cell.column.width))) || '');
+                        widths.push((( /** @type {?} */(cell.column.width))) || '');
                     }
                     if ('colSpan' in column) {
-                        colSpan = (/** @type {?} */ (column.colSpan));
+                        colSpan = ( /** @type {?} */(column.colSpan));
                     }
                     if ('rowSpan' in column) {
                         cell.rowSpan = column.rowSpan;
@@ -2123,11 +838,13 @@
             /** @type {?} */
             var rowCount = rows.length;
             var _loop_1 = function (rowIndex) {
-                rows[rowIndex].forEach((/**
+                rows[rowIndex].forEach(( /**
                  * @param {?} cell
                  * @return {?}
-                 */
-                function (cell) {
+                 */function (/**
+                 * @param {?} cell
+                 * @return {?}
+                 */ cell) {
                     if (!('rowSpan' in cell) && !cell.hasSubColumns) {
                         cell.rowSpan = rowCount - rowIndex;
                     }
@@ -2143,13 +860,8 @@
          * @param {?} list
          * @return {?}
          */
-        STColumnSource.prototype.cleanCond = /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
-        function (list) {
-            var e_3, _a;
+        STColumnSource.prototype.cleanCond = function (list) {
+            var e_3, _b;
             /** @type {?} */
             var res = [];
             /** @type {?} */
@@ -2169,7 +881,7 @@
             catch (e_3_1) { e_3 = { error: e_3_1 }; }
             finally {
                 try {
-                    if (copyList_1_1 && !copyList_1_1.done && (_a = copyList_1.return)) _a.call(copyList_1);
+                    if (copyList_1_1 && !copyList_1_1.done && (_b = copyList_1.return)) _b.call(copyList_1);
                 }
                 finally { if (e_3) throw e_3.error; }
             }
@@ -2179,11 +891,7 @@
          * @param {?} list
          * @return {?}
          */
-        STColumnSource.prototype.process = /**
-         * @param {?} list
-         * @return {?}
-         */
-        function (list) {
+        STColumnSource.prototype.process = function (list) {
             var _this = this;
             if (!list || list.length === 0)
                 throw new Error("[st]: the columns property muse be define!");
@@ -2197,11 +905,10 @@
             /** @type {?} */
             var columns = [];
             /** @type {?} */
-            var processItem = (/**
+            var processItem = ( /**
              * @param {?} item
              * @return {?}
-             */
-            function (item) {
+             */function (item) {
                 // index
                 if (item.index) {
                     if (!Array.isArray(item.index)) {
@@ -2235,11 +942,13 @@
                     }
                 }
                 if (_this.acl) {
-                    item.selections = item.selections.filter((/**
+                    item.selections = item.selections.filter(( /**
                      * @param {?} w
                      * @return {?}
-                     */
-                    function (w) { return _this.acl.can(w.acl); }));
+                     */function (/**
+                     * @param {?} w
+                     * @return {?}
+                     */ w) { return _this.acl.can(w.acl); }));
                 }
                 // radio
                 if (item.type === 'radio') {
@@ -2251,21 +960,21 @@
                 }
                 // types
                 if (item.type === 'yn') {
-                    item.yn = __assign({ truth: true }, item.yn);
+                    item.yn = Object.assign({ truth: true }, item.yn);
                 }
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
                     (item.type === 'tag' && item.tag == null) ||
                     (item.type === 'enum' && item.enum == null)) {
-                    ((/** @type {?} */ (item))).type = '';
+                    (( /** @type {?} */(item))).type = '';
                 }
                 // className
                 if (!item.className) {
-                    item.className = ((/** @type {?} */ ({
+                    item.className = (( /** @type {?} */({
                         number: 'text-right',
                         currency: 'text-right',
                         date: 'text-center',
-                    })))[(/** @type {?} */ (item.type))];
+                    })))[( /** @type {?} */(item.type))];
                 }
                 // width
                 if (typeof item.width === 'number') {
@@ -2274,9 +983,9 @@
                 // sorter
                 item._sort = _this.sortCoerce(item);
                 // filter
-                item.filter = (/** @type {?} */ (_this.filterCoerce(item)));
+                item.filter = ( /** @type {?} */(_this.filterCoerce(item)));
                 // buttons
-                item.buttons = _this.btnCoerce((/** @type {?} */ (item.buttons)));
+                item.buttons = _this.btnCoerce(( /** @type {?} */(item.buttons)));
                 // widget
                 _this.widgetCoerce(item);
                 // restore custom row
@@ -2285,12 +994,11 @@
                 return item;
             });
             /** @type {?} */
-            var processList = (/**
+            var processList = ( /**
              * @param {?} data
              * @return {?}
-             */
-            function (data) {
-                var e_4, _a;
+             */function (data) {
+                var e_4, _b;
                 try {
                     for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                         var item = data_1_1.value;
@@ -2303,7 +1011,7 @@
                 catch (e_4_1) { e_4 = { error: e_4_1 }; }
                 finally {
                     try {
-                        if (data_1_1 && !data_1_1.done && (_a = data_1.return)) _a.call(data_1);
+                        if (data_1_1 && !data_1_1.done && (_b = data_1.return)) _b.call(data_1);
                     }
                     finally { if (e_4) throw e_4.error; }
                 }
@@ -2318,27 +1026,27 @@
                 throw new Error("[st]: just only one column radio");
             }
             this.fixedCoerce(columns);
-            return __assign({ columns: columns.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return !Array.isArray(w.children) || w.children.length === 0; })) }, this.genHeaders(copyList));
+            return Object.assign({ columns: columns.filter(( /**
+                     * @param {?} w
+                     * @return {?}
+                     */function (/**
+                     * @param {?} w
+                     * @return {?}
+                     */ w) { return !Array.isArray(w.children) || w.children.length === 0; })) }, this.genHeaders(copyList));
         };
         /**
          * @param {?} columns
          * @return {?}
          */
-        STColumnSource.prototype.restoreAllRender = /**
-         * @param {?} columns
-         * @return {?}
-         */
-        function (columns) {
+        STColumnSource.prototype.restoreAllRender = function (columns) {
             var _this = this;
-            columns.forEach((/**
+            columns.forEach(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return _this.restoreRender(i); }));
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return _this.restoreRender(i); }));
         };
         /**
          * @template THIS
@@ -2346,24 +1054,20 @@
          * @param {?} filter
          * @return {THIS}
          */
-        STColumnSource.prototype.updateDefault = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} filter
-         * @return {THIS}
-         */
-        function (filter) {
+        STColumnSource.prototype.updateDefault = function (filter) {
             if (filter.type === 'default') {
-                filter.default = (/** @type {?} */ (filter.menus)).findIndex((/**
+                filter.default = ( /** @type {?} */(filter.menus)).findIndex(( /**
                  * @param {?} w
                  * @return {?}
-                 */
-                function (w) { return (/** @type {?} */ (w.checked)); })) !== -1;
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return ( /** @type {?} */(w.checked)); })) !== -1;
             }
             else {
-                filter.default = !!(/** @type {?} */ (filter.menus))[0].value;
+                filter.default = !!( /** @type {?} */(filter.menus))[0].value;
             }
-            return (/** @type {?} */ (this));
+            return ( /** @type {?} */(this));
         };
         /**
          * @template THIS
@@ -2371,41 +1075,37 @@
          * @param {?} col
          * @return {THIS}
          */
-        STColumnSource.prototype.cleanFilter = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} col
-         * @return {THIS}
-         */
-        function (col) {
+        STColumnSource.prototype.cleanFilter = function (col) {
             /** @type {?} */
-            var f = (/** @type {?} */ (col.filter));
+            var f = ( /** @type {?} */(col.filter));
             f.default = false;
             if (f.type === 'default') {
-                (/** @type {?} */ (f.menus)).forEach((/**
+                ( /** @type {?} */(f.menus)).forEach(( /**
                  * @param {?} i
                  * @return {?}
-                 */
-                function (i) { return (i.checked = false); }));
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) { return (i.checked = false); }));
             }
             else {
-                (/** @type {?} */ (f.menus))[0].value = undefined;
+                ( /** @type {?} */(f.menus))[0].value = undefined;
             }
-            return (/** @type {?} */ (this));
+            return ( /** @type {?} */(this));
         };
-        STColumnSource.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        STColumnSource.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer },
-            { type: STRowSource, decorators: [{ type: core.Host }] },
-            { type: acl.ACLService, decorators: [{ type: core.Optional }] },
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
-            { type: STWidgetRegistry }
-        ]; };
         return STColumnSource;
     }());
+    STColumnSource.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    STColumnSource.ctorParameters = function () { return [
+        { type: platformBrowser.DomSanitizer },
+        { type: STRowSource, decorators: [{ type: i0.Host }] },
+        { type: acl.ACLService, decorators: [{ type: i0.Optional }] },
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
+        { type: STWidgetRegistry }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -2439,11 +1139,6 @@
         STColumnSource.prototype.stWidgetRegistry;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-data-source.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * @record
      */
@@ -2511,6 +1206,14 @@
         STDataSourceResult.prototype.statistical;
     }
     var STDataSource = /** @class */ (function () {
+        /**
+         * @param {?} http
+         * @param {?} currentyPipe
+         * @param {?} datePipe
+         * @param {?} ynPipe
+         * @param {?} numberPipe
+         * @param {?} dom
+         */
         function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
             this.http = http;
             this.currentyPipe = currentyPipe;
@@ -2524,11 +1227,7 @@
          * @param {?} options
          * @return {?}
          */
-        STDataSource.prototype.process = /**
-         * @param {?} options
-         * @return {?}
-         */
-        function (options) {
+        STDataSource.prototype.process = function (options) {
             var _this = this;
             /** @type {?} */
             var data$;
@@ -2549,11 +1248,13 @@
             var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(operators.map((/**
+                data$ = this.getByHttp(data, options).pipe(operators.map(( /**
                  * @param {?} result
                  * @return {?}
-                 */
-                function (result) {
+                 */function (/**
+                 * @param {?} result
+                 * @return {?}
+                 */ result) {
                     rawData = result;
                     /** @type {?} */
                     var ret;
@@ -2565,13 +1266,13 @@
                     }
                     else {
                         // list
-                        ret = util.deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).list)), []);
+                        ret = util.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).list)), []);
                         if (ret == null || !Array.isArray(ret)) {
                             ret = [];
                         }
                         // total
                         /** @type {?} */
-                        var resultTotal = (/** @type {?} */ (res.reName)).total && util.deepGet(result, (/** @type {?} */ ((/** @type {?} */ (res.reName)).total)), null);
+                        var resultTotal = ( /** @type {?} */(res.reName)).total && util.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return util.deepCopy(ret);
@@ -2587,11 +1288,10 @@
             if (!isRemote) {
                 data$ = data$.pipe(
                 // sort
-                operators.map((/**
+                operators.map(( /**
                  * @param {?} result
                  * @return {?}
-                 */
-                function (result) {
+                 */function (result) {
                     rawData = result;
                     /** @type {?} */
                     var copyResult = util.deepCopy(result);
@@ -2603,24 +1303,27 @@
                     return copyResult;
                 })), 
                 // filter
-                operators.map((/**
+                operators.map(( /**
                  * @param {?} result
                  * @return {?}
-                 */
-                function (result) {
+                 */function (result) {
                     columns
-                        .filter((/**
-                     * @param {?} w
-                     * @return {?}
-                     */
-                    function (w) { return w.filter; }))
-                        .forEach((/**
-                     * @param {?} c
-                     * @return {?}
-                     */
-                    function (c) {
+                        .filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.filter; }))
+                        .forEach(( /**
+                 * @param {?} c
+                 * @return {?}
+                 */function (/**
+                 * @param {?} c
+                 * @return {?}
+                 */ c) {
                         /** @type {?} */
-                        var filter = (/** @type {?} */ (c.filter));
+                        var filter = ( /** @type {?} */(c.filter));
                         /** @type {?} */
                         var values = _this.getFilteredData(filter);
                         if (values.length === 0)
@@ -2631,24 +1334,27 @@
                             console.warn("[st] Muse provide the fn function in filter");
                             return;
                         }
-                        result = result.filter((/**
+                        result = result.filter(( /**
                          * @param {?} record
                          * @return {?}
-                         */
-                        function (record) { return values.some((/**
+                         */function (/**
+                         * @param {?} record
+                         * @return {?}
+                         */ record) { return values.some(( /**
                          * @param {?} v
                          * @return {?}
-                         */
-                        function (v) { return onFilter(v, record); })); }));
+                         */function (/**
+                         * @param {?} v
+                         * @return {?}
+                         */ v) { return onFilter(v, record); })); }));
                     }));
                     return result;
                 })), 
                 // paging
-                operators.map((/**
+                operators.map(( /**
                  * @param {?} result
                  * @return {?}
-                 */
-                function (result) {
+                 */function (result) {
                     if (paginator && page.front) {
                         /** @type {?} */
                         var maxPageIndex = Math.ceil(result.length / ps);
@@ -2663,28 +1369,34 @@
             }
             // pre-process
             if (typeof res.process === 'function') {
-                data$ = data$.pipe(operators.map((/**
+                data$ = data$.pipe(operators.map(( /**
                  * @param {?} result
                  * @return {?}
-                 */
-                function (result) { return (/** @type {?} */ (res.process))(result, rawData); })));
+                 */function (/**
+                 * @param {?} result
+                 * @return {?}
+                 */ result) { return ( /** @type {?} */(res.process))(result, rawData); })));
             }
-            data$ = data$.pipe(operators.map((/**
+            data$ = data$.pipe(operators.map(( /**
              * @param {?} result
              * @return {?}
-             */
-            function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); })));
-            return data$.pipe(operators.map((/**
+             */function (/**
              * @param {?} result
              * @return {?}
-             */
-            function (result) {
+             */ result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); })));
+            return data$.pipe(operators.map(( /**
+             * @param {?} result
+             * @return {?}
+             */function (/**
+             * @param {?} result
+             * @return {?}
+             */ result) {
                 retList = result;
                 /** @type {?} */
                 var realTotal = retTotal || total;
                 /** @type {?} */
                 var realPs = retPs || ps;
-                return (/** @type {?} */ ({
+                return ( /** @type {?} */({
                     pi: retPi,
                     ps: retPs,
                     total: retTotal,
@@ -2701,14 +1413,7 @@
          * @param {?} idx
          * @return {?}
          */
-        STDataSource.prototype.get = /**
-         * @private
-         * @param {?} item
-         * @param {?} col
-         * @param {?} idx
-         * @return {?}
-         */
-        function (item, col, idx) {
+        STDataSource.prototype.get = function (item, col, idx) {
             if (col.format) {
                 /** @type {?} */
                 var formatRes = col.format(item, col, idx) || '';
@@ -2718,7 +1423,7 @@
                 return { text: formatRes, _text: formatRes, org: formatRes };
             }
             /** @type {?} */
-            var value = util.deepGet(item, (/** @type {?} */ (col.index)), col.default);
+            var value = util.deepGet(item, ( /** @type {?} */(col.index)), col.default);
             /** @type {?} */
             var text = value;
             /** @type {?} */
@@ -2740,10 +1445,10 @@
                     text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
                     break;
                 case 'yn':
-                    text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)), false);
+                    text = this.ynPipe.transform(value === ( /** @type {?} */(col.yn)).truth, ( /** @type {?} */(( /** @type {?} */(col.yn)).yes)), ( /** @type {?} */(( /** @type {?} */(col.yn)).no)), ( /** @type {?} */(( /** @type {?} */(col.yn)).mode)), false);
                     break;
                 case 'enum':
-                    text = (/** @type {?} */ (col.enum))[value];
+                    text = ( /** @type {?} */(col.enum))[value];
                     break;
                 case 'tag':
                 case 'badge':
@@ -2770,13 +1475,7 @@
          * @param {?} options
          * @return {?}
          */
-        STDataSource.prototype.getByHttp = /**
-         * @private
-         * @param {?} url
-         * @param {?} options
-         * @return {?}
-         */
-        function (url, options) {
+        STDataSource.prototype.getByHttp = function (url, options) {
             var _a, _b;
             var req = options.req, page = options.page, paginator = options.paginator, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
             /** @type {?} */
@@ -2784,22 +1483,22 @@
             /** @type {?} */
             var params = {};
             /** @type {?} */
-            var reName = (/** @type {?} */ (req.reName));
+            var reName = ( /** @type {?} */(req.reName));
             if (paginator) {
                 if (req.type === 'page') {
                     params = (_a = {},
-                        _a[(/** @type {?} */ (reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
-                        _a[(/** @type {?} */ (reName.ps))] = ps,
+                        _a[( /** @type {?} */(reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
+                        _a[( /** @type {?} */(reName.ps))] = ps,
                         _a);
                 }
                 else {
                     params = (_b = {},
-                        _b[(/** @type {?} */ (reName.skip))] = (pi - 1) * ps,
-                        _b[(/** @type {?} */ (reName.limit))] = ps,
+                        _b[( /** @type {?} */(reName.skip))] = (pi - 1) * ps,
+                        _b[( /** @type {?} */(reName.limit))] = ps,
                         _b);
                 }
             }
-            params = __assign(__assign(__assign(__assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
+            params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
             /** @type {?} */
             var reqOptions = {
                 params: params,
@@ -2808,7 +1507,7 @@
             };
             if (method === 'POST' && req.allInBody === true) {
                 reqOptions = {
-                    body: __assign(__assign({}, req.body), params),
+                    body: Object.assign(Object.assign({}, req.body), params),
                     headers: req.headers,
                 };
             }
@@ -2821,19 +1520,17 @@
          * @param {?} options
          * @return {?}
          */
-        STDataSource.prototype.optimizeData = /**
-         * @param {?} options
-         * @return {?}
-         */
-        function (options) {
+        STDataSource.prototype.optimizeData = function (options) {
             var _this = this;
             var result = options.result, columns = options.columns, rowClassName = options.rowClassName;
             var _loop_1 = function (i, len) {
-                result[i]._values = columns.map((/**
+                result[i]._values = columns.map(( /**
                  * @param {?} c
                  * @return {?}
-                 */
-                function (c) { return _this.get(result[i], c, i); }));
+                 */function (/**
+                 * @param {?} c
+                 * @return {?}
+                 */ c) { return _this.get(result[i], c, i); }));
                 if (rowClassName) {
                     result[i]._rowClassName = rowClassName(result[i], i);
                 }
@@ -2849,51 +1546,36 @@
          * @param {?} idx
          * @return {?}
          */
-        STDataSource.prototype.getNoIndex = /**
-         * @param {?} item
-         * @param {?} col
-         * @param {?} idx
-         * @return {?}
-         */
-        function (item, col, idx) {
-            return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : (/** @type {?} */ (col.noIndex)) + idx;
+        STDataSource.prototype.getNoIndex = function (item, col, idx) {
+            return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : ( /** @type {?} */(col.noIndex)) + idx;
         };
         // #region sort
-        // #region sort
         /**
          * @private
          * @param {?} columns
          * @return {?}
          */
-        STDataSource.prototype.getValidSort = 
-        // #region sort
-        /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
-        function (columns) {
-            return columns.filter((/**
+        STDataSource.prototype.getValidSort = function (columns) {
+            return columns.filter(( /**
              * @param {?} item
              * @return {?}
-             */
-            function (item) { return item._sort && item._sort.enabled && item._sort.default; })).map((/**
+             */function (/**
              * @param {?} item
              * @return {?}
-             */
-            function (item) { return (/** @type {?} */ (item._sort)); }));
+             */ item) { return item._sort && item._sort.enabled && item._sort.default; })).map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return ( /** @type {?} */(item._sort)); }));
         };
         /**
          * @private
          * @param {?} columns
          * @return {?}
          */
-        STDataSource.prototype.getSorterFn = /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
-        function (columns) {
+        STDataSource.prototype.getSorterFn = function (columns) {
             /** @type {?} */
             var sortList = this.getValidSort(columns);
             if (sortList.length === 0) {
@@ -2908,14 +1590,13 @@
                 console.warn("[st] Muse provide the compare function in sort");
                 return;
             }
-            return (/**
+            return ( /**
              * @param {?} a
              * @param {?} b
              * @return {?}
-             */
-            function (a, b) {
+             */function (a, b) {
                 /** @type {?} */
-                var result = (/** @type {?} */ (sortItem.compare))(a, b);
+                var result = ( /** @type {?} */(sortItem.compare))(a, b);
                 if (result !== 0) {
                     return sortItem.default === 'descend' ? -result : result;
                 }
@@ -2923,13 +1604,13 @@
             });
         };
         Object.defineProperty(STDataSource.prototype, "nextSortTick", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return ++this.sortTick;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
@@ -2938,13 +1619,7 @@
          * @param {?} columns
          * @return {?}
          */
-        STDataSource.prototype.getReqSortMap = /**
-         * @param {?} singleSort
-         * @param {?} multiSort
-         * @param {?} columns
-         * @return {?}
-         */
-        function (singleSort, multiSort, columns) {
+        STDataSource.prototype.getReqSortMap = function (singleSort, multiSort, columns) {
             var _a;
             /** @type {?} */
             var ret = {};
@@ -2954,20 +1629,21 @@
                 return ret;
             if (multiSort) {
                 /** @type {?} */
-                var ms_1 = __assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
+                var ms_1 = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
                 ret = (_a = {},
                     _a[ms_1.key] = sortList
-                        .sort((/**
-                     * @param {?} a
-                     * @param {?} b
-                     * @return {?}
-                     */
-                    function (a, b) { return a.tick - b.tick; }))
-                        .map((/**
-                     * @param {?} item
-                     * @return {?}
-                     */
-                    function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default); }))
+                        .sort(( /**
+                 * @param {?} a
+                 * @param {?} b
+                 * @return {?}
+                 */function (a, b) { return a.tick - b.tick; }))
+                        .map(( /**
+                 * @param {?} item
+                 * @return {?}
+                 */function (/**
+                 * @param {?} item
+                 * @return {?}
+                 */ item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[( /** @type {?} */(item.default))] || item.default); }))
                         .join(ms_1.separator),
                     _a);
                 if (multiSort.keepEmptyKey === false && ret[ms_1.key].length === 0) {
@@ -2980,88 +1656,79 @@
                 /** @type {?} */
                 var sortFiled = mapData.key;
                 /** @type {?} */
-                var sortValue = (sortList[0].reName || {})[(/** @type {?} */ (mapData.default))] || mapData.default;
+                var sortValue = (sortList[0].reName || {})[( /** @type {?} */(mapData.default))] || mapData.default;
                 if (singleSort) {
                     sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
                     sortFiled = singleSort.key || 'sort';
                 }
-                ret[(/** @type {?} */ (sortFiled))] = (/** @type {?} */ (sortValue));
+                ret[( /** @type {?} */(sortFiled))] = ( /** @type {?} */(sortValue));
             }
             return ret;
         };
         // #endregion
         // #region filter
-        // #endregion
-        // #region filter
         /**
          * @private
          * @param {?} filter
          * @return {?}
          */
-        STDataSource.prototype.getFilteredData = 
-        // #endregion
-        // #region filter
-        /**
-         * @private
-         * @param {?} filter
-         * @return {?}
-         */
-        function (filter) {
-            return filter.type === 'default' ? (/** @type {?} */ (filter.menus)).filter((/**
+        STDataSource.prototype.getFilteredData = function (filter) {
+            return filter.type === 'default' ? ( /** @type {?} */(filter.menus)).filter(( /**
              * @param {?} f
              * @return {?}
-             */
-            function (f) { return f.checked === true; })) : (/** @type {?} */ (filter.menus)).slice(0, 1);
+             */function (/**
+             * @param {?} f
+             * @return {?}
+             */ f) { return f.checked === true; })) : ( /** @type {?} */(filter.menus)).slice(0, 1);
         };
         /**
          * @private
          * @param {?} columns
          * @return {?}
          */
-        STDataSource.prototype.getReqFilterMap = /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
-        function (columns) {
+        STDataSource.prototype.getReqFilterMap = function (columns) {
             var _this = this;
             /** @type {?} */
             var ret = {};
             columns
-                .filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w.filter && w.filter.default === true; }))
-                .forEach((/**
-             * @param {?} col
-             * @return {?}
-             */
-            function (col) {
+                .filter(( /**
+         * @param {?} w
+         * @return {?}
+         */function (/**
+         * @param {?} w
+         * @return {?}
+         */ w) { return w.filter && w.filter.default === true; }))
+                .forEach(( /**
+         * @param {?} col
+         * @return {?}
+         */function (/**
+         * @param {?} col
+         * @return {?}
+         */ col) {
                 /** @type {?} */
-                var filter = (/** @type {?} */ (col.filter));
+                var filter = ( /** @type {?} */(col.filter));
                 /** @type {?} */
                 var values = _this.getFilteredData(filter);
                 /** @type {?} */
                 var obj = {};
                 if (filter.reName) {
-                    obj = (/** @type {?} */ (filter.reName))((/** @type {?} */ (filter.menus)), col);
+                    obj = ( /** @type {?} */(filter.reName))(( /** @type {?} */(filter.menus)), col);
                 }
                 else {
-                    obj[(/** @type {?} */ (filter.key))] = values.map((/**
+                    obj[( /** @type {?} */(filter.key))] = values.map(( /**
                      * @param {?} i
                      * @return {?}
-                     */
-                    function (i) { return i.value; })).join(',');
+                     */function (/**
+                     * @param {?} i
+                     * @return {?}
+                     */ i) { return i.value; })).join(',');
                 }
-                ret = __assign(__assign({}, ret), obj);
+                ret = Object.assign(Object.assign({}, ret), obj);
             }));
             return ret;
         };
         // #endregion
         // #region statistical
-        // #endregion
-        // #region statistical
         /**
          * @private
          * @param {?} columns
@@ -3069,26 +1736,15 @@
          * @param {?} rawData
          * @return {?}
          */
-        STDataSource.prototype.genStatistical = 
-        // #endregion
-        // #region statistical
-        /**
-         * @private
-         * @param {?} columns
-         * @param {?} list
-         * @param {?} rawData
-         * @return {?}
-         */
-        function (columns, list, rawData) {
+        STDataSource.prototype.genStatistical = function (columns, list, rawData) {
             var _this = this;
             /** @type {?} */
             var res = {};
-            columns.forEach((/**
+            columns.forEach(( /**
              * @param {?} col
              * @param {?} index
              * @return {?}
-             */
-            function (col, index) {
+             */function (col, index) {
                 res[col.key || col.indexKey || index] = col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
             }));
             return res;
@@ -3101,19 +1757,11 @@
          * @param {?} rawData
          * @return {?}
          */
-        STDataSource.prototype.getStatistical = /**
-         * @private
-         * @param {?} col
-         * @param {?} index
-         * @param {?} list
-         * @param {?} rawData
-         * @return {?}
-         */
-        function (col, index, list, rawData) {
+        STDataSource.prototype.getStatistical = function (col, index, list, rawData) {
             /** @type {?} */
             var val = col.statistical;
             /** @type {?} */
-            var item = __assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: (/** @type {?} */ (val)) } : ((/** @type {?} */ (val)))));
+            var item = Object.assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: ( /** @type {?} */(val)) } : (( /** @type {?} */(val)))));
             /** @type {?} */
             var res = { value: 0 };
             /** @type {?} */
@@ -3128,20 +1776,19 @@
                         res.value = list.length;
                         break;
                     case 'distinctCount':
-                        res.value = this.getValues(index, list).filter((/**
+                        res.value = this.getValues(index, list).filter(( /**
                          * @param {?} value
                          * @param {?} idx
                          * @param {?} self
                          * @return {?}
-                         */
-                        function (value, idx, self) { return self.indexOf(value) === idx; })).length;
+                         */function (value, idx, self) { return self.indexOf(value) === idx; })).length;
                         break;
                     case 'sum':
-                        res.value = this.toFixed(this.getSum(index, list), (/** @type {?} */ (item.digits)));
+                        res.value = this.toFixed(this.getSum(index, list), ( /** @type {?} */(item.digits)));
                         currency = true;
                         break;
                     case 'average':
-                        res.value = this.toFixed(this.getSum(index, list) / list.length, (/** @type {?} */ (item.digits)));
+                        res.value = this.toFixed(this.getSum(index, list) / list.length, ( /** @type {?} */(item.digits)));
                         currency = true;
                         break;
                     case 'max':
@@ -3155,7 +1802,7 @@
                 }
             }
             if (item.currency === true || (item.currency == null && currency === true)) {
-                res.text = (/** @type {?} */ (this.currentyPipe.transform(res.value)));
+                res.text = ( /** @type {?} */(this.currentyPipe.transform(res.value)));
             }
             else {
                 res.text = String(res.value);
@@ -3168,13 +1815,7 @@
          * @param {?} digits
          * @return {?}
          */
-        STDataSource.prototype.toFixed = /**
-         * @private
-         * @param {?} val
-         * @param {?} digits
-         * @return {?}
-         */
-        function (val, digits) {
+        STDataSource.prototype.toFixed = function (val, digits) {
             if (isNaN(val) || !isFinite(val)) {
                 return 0;
             }
@@ -3186,22 +1827,20 @@
          * @param {?} list
          * @return {?}
          */
-        STDataSource.prototype.getValues = /**
-         * @private
-         * @param {?} index
-         * @param {?} list
-         * @return {?}
-         */
-        function (index, list) {
-            return list.map((/**
+        STDataSource.prototype.getValues = function (index, list) {
+            return list.map(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return i._values[index].org; })).map((/**
+             */function (/**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return (i === '' || i == null ? 0 : i); }));
+             */ i) { return i._values[index].org; })).map(( /**
+             * @param {?} i
+             * @return {?}
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return (i === '' || i == null ? 0 : i); }));
         };
         /**
          * @private
@@ -3209,34 +1848,27 @@
          * @param {?} list
          * @return {?}
          */
-        STDataSource.prototype.getSum = /**
-         * @private
-         * @param {?} index
-         * @param {?} list
-         * @return {?}
-         */
-        function (index, list) {
-            return this.getValues(index, list).reduce((/**
+        STDataSource.prototype.getSum = function (index, list) {
+            return this.getValues(index, list).reduce(( /**
              * @param {?} p
              * @param {?} i
              * @return {?}
-             */
-            function (p, i) { return (p += parseFloat(String(i))); }), 0);
+             */function (p, i) { return (p += parseFloat(String(i))); }), 0);
         };
-        STDataSource.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        STDataSource.ctorParameters = function () { return [
-            { type: theme._HttpClient },
-            { type: theme.CNCurrencyPipe, decorators: [{ type: core.Host }] },
-            { type: theme.DatePipe, decorators: [{ type: core.Host }] },
-            { type: theme.YNPipe, decorators: [{ type: core.Host }] },
-            { type: common.DecimalPipe, decorators: [{ type: core.Host }] },
-            { type: platformBrowser.DomSanitizer }
-        ]; };
         return STDataSource;
     }());
+    STDataSource.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    STDataSource.ctorParameters = function () { return [
+        { type: theme._HttpClient },
+        { type: theme.CNCurrencyPipe, decorators: [{ type: i0.Host }] },
+        { type: theme.DatePipe, decorators: [{ type: i0.Host }] },
+        { type: theme.YNPipe, decorators: [{ type: i0.Host }] },
+        { type: common.DecimalPipe, decorators: [{ type: i0.Host }] },
+        { type: platformBrowser.DomSanitizer }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -3275,12 +1907,10 @@
         STDataSource.prototype.dom;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-export.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STExport = /** @class */ (function () {
+        /**
+         * @param {?} xlsxSrv
+         */
         function STExport(xlsxSrv) {
             this.xlsxSrv = xlsxSrv;
         }
@@ -3291,14 +1921,7 @@
          * @param {?} index
          * @return {?}
          */
-        STExport.prototype._stGet = /**
-         * @private
-         * @param {?} item
-         * @param {?} col
-         * @param {?} index
-         * @return {?}
-         */
-        function (item, col, index) {
+        STExport.prototype._stGet = function (item, col, index) {
             /** @type {?} */
             var ret = { t: 's', v: '' };
             if (col.format) {
@@ -3306,7 +1929,7 @@
             }
             else {
                 /** @type {?} */
-                var val = util.deepGet(item, (/** @type {?} */ (col.index)), '');
+                var val = util.deepGet(item, ( /** @type {?} */(col.index)), '');
                 ret.v = val;
                 if (val != null) {
                     switch (col.type) {
@@ -3318,7 +1941,7 @@
                             break;
                         case 'yn':
                             /** @type {?} */
-                            var yn = (/** @type {?} */ (col.yn));
+                            var yn = ( /** @type {?} */(col.yn));
                             ret.v = ret.v === yn.truth ? yn.yes || '是' : yn.no || '否';
                             break;
                     }
@@ -3332,26 +1955,23 @@
          * @param {?} opt
          * @return {?}
          */
-        STExport.prototype.genSheet = /**
-         * @private
-         * @param {?} opt
-         * @return {?}
-         */
-        function (opt) {
+        STExport.prototype.genSheet = function (opt) {
             /** @type {?} */
             var sheets = {};
             /** @type {?} */
             var sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
             /** @type {?} */
-            var colData = (/** @type {?} */ (opt.columens)).filter((/**
+            var colData = ( /** @type {?} */(opt.columens)).filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); }));
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); }));
             /** @type {?} */
             var colLen = colData.length;
             /** @type {?} */
-            var dataLen = (/** @type {?} */ (opt.data)).length;
+            var dataLen = ( /** @type {?} */(opt.data)).length;
             // column
             for (var i = 0; i < colLen; i++) {
                 /** @type {?} */
@@ -3364,7 +1984,7 @@
             // content
             for (var i = 0; i < dataLen; i++) {
                 for (var j = 0; j < colLen; j++) {
-                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet((/** @type {?} */ (opt.data))[i], colData[j], i);
+                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(( /** @type {?} */(opt.data))[i], colData[j], i);
                 }
             }
             if (colLen > 0 && dataLen > 0) {
@@ -3376,11 +1996,7 @@
          * @param {?} opt
          * @return {?}
          */
-        STExport.prototype.export = /**
-         * @param {?} opt
-         * @return {?}
-         */
-        function (opt) {
+        STExport.prototype.export = function (opt) {
             return __awaiter(this, void 0, void 0, function () {
                 var sheets;
                 return __generator(this, function (_a) {
@@ -3393,15 +2009,15 @@
                 });
             });
         };
-        STExport.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        STExport.ctorParameters = function () { return [
-            { type: xlsx.XlsxService, decorators: [{ type: core.Optional }] }
-        ]; };
         return STExport;
     }());
+    STExport.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    STExport.ctorParameters = function () { return [
+        { type: xlsx.XlsxService, decorators: [{ type: i0.Optional }] }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -3413,7 +2029,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: st.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var ST_DEFULAT_CONFIG = {
@@ -3480,12 +2096,21 @@
         iifBehavior: 'hide',
     };
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STComponent = /** @class */ (function () {
+        /**
+         * @param {?} i18nSrv
+         * @param {?} cdr
+         * @param {?} router
+         * @param {?} el
+         * @param {?} exportSrv
+         * @param {?} modalHelper
+         * @param {?} drawerHelper
+         * @param {?} doc
+         * @param {?} columnSource
+         * @param {?} dataSource
+         * @param {?} delonI18n
+         * @param {?} configSrv
+         */
         function STComponent(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv) {
             var _this = this;
             this.cdr = cdr;
@@ -3524,23 +2149,24 @@
             this.rowClickTime = 200;
             this.responsive = true;
             // tslint:disable-next-line:no-output-native
-            this.error = new core.EventEmitter();
+            this.error = new i0.EventEmitter();
             // tslint:disable-next-line:no-output-native
-            this.change = new core.EventEmitter();
+            this.change = new i0.EventEmitter();
             this.virtualScroll = false;
             this.virtualItemSize = 54;
             this.virtualMaxBufferPx = 200;
             this.virtualMinBufferPx = 100;
-            this.virtualForTrackBy = (/**
+            this.virtualForTrackBy = ( /**
              * @param {?} index
              * @return {?}
-             */
-            function (index) { return index; });
-            this.setCog((/** @type {?} */ (configSrv.merge('st', ST_DEFULAT_CONFIG))));
-            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe((/**
+             */function (/**
+             * @param {?} index
              * @return {?}
-             */
-            function () {
+             */ index) { return index; });
+            this.setCog(( /** @type {?} */(configSrv.merge('st', ST_DEFULAT_CONFIG))));
+            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
+             * @return {?}
+             */function () {
                 _this.locale = _this.delonI18n.getData('st');
                 if (_this._columns.length > 0) {
                     _this.updateTotalTpl();
@@ -3548,155 +2174,146 @@
                 }
             }));
             i18nSrv.change
-                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter((/**
-             * @return {?}
-             */
-            function () { return _this._columns.length > 0; })))
-                .subscribe((/**
-             * @template THIS
-             * @this {THIS}
-             * @return {THIS}
-             */
-            function () { return _this.refreshColumns(); }));
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(( /**
+         * @return {?}
+         */function () { return _this._columns.length > 0; })))
+                .subscribe(( /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */function () { return _this.refreshColumns(); }));
         }
         Object.defineProperty(STComponent.prototype, "req", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._req;
             },
-            set: /**
+            /**
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 this._req = util.deepMergeKey({}, true, this.cog.req, value);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "res", {
-            /** 返回体配置 */
-            get: /**
+            /**
              * 返回体配置
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._res;
             },
-            set: /**
+            /**
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 /** @type {?} */
                 var item = (this._res = util.deepMergeKey({}, true, this.cog.res, value));
                 /** @type {?} */
-                var reName = (/** @type {?} */ (item.reName));
+                var reName = ( /** @type {?} */(item.reName));
                 if (!Array.isArray(reName.list))
-                    reName.list = (/** @type {?} */ (reName.list)).split('.');
+                    reName.list = ( /** @type {?} */(reName.list)).split('.');
                 if (!Array.isArray(reName.total))
-                    reName.total = (/** @type {?} */ (reName.total)).split('.');
+                    reName.total = ( /** @type {?} */(reName.total)).split('.');
                 this._res = item;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "page", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._page;
             },
-            set: /**
+            /**
              * @param {?} value
              * @return {?}
              */
-            function (value) {
-                this._page = __assign(__assign({}, this.cog.page), value);
+            set: function (value) {
+                this._page = Object.assign(Object.assign({}, this.cog.page), value);
                 this.updateTotalTpl();
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "multiSort", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._multiSort;
             },
-            set: /**
+            /**
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 if ((typeof value === 'boolean' && !util.toBoolean(value)) || (typeof value === 'object' && Object.keys(value).length === 0)) {
                     this._multiSort = undefined;
                     return;
                 }
-                this._multiSort = __assign({}, (typeof value === 'object' ? value : {}));
+                this._multiSort = Object.assign({}, (typeof value === 'object' ? value : {}));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "widthMode", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._widthMode;
             },
-            set: /**
+            /**
              * @param {?} value
              * @return {?}
              */
-            function (value) {
-                this._widthMode = __assign(__assign({}, this.cog.widthMode), value);
+            set: function (value) {
+                this._widthMode = Object.assign(Object.assign({}, this.cog.widthMode), value);
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "count", {
             /**
              * Get the number of the current page
-             */
-            get: /**
-             * Get the number of the current page
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._data.length;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "list", {
             /**
              * Get the data of the current page
-             */
-            get: /**
-             * Get the data of the current page
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._data;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "routerState", {
-            get: /**
+            /**
              * @private
              * @return {?}
              */
-            function () {
+            get: function () {
                 var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
                 return { pi: pi, ps: ps, total: total };
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
@@ -3704,14 +2321,9 @@
          * @param {?} cog
          * @return {?}
          */
-        STComponent.prototype.setCog = /**
-         * @private
-         * @param {?} cog
-         * @return {?}
-         */
-        function (cog) {
+        STComponent.prototype.setCog = function (cog) {
             /** @type {?} */
-            var copyMultiSort = __assign({}, cog.multiSort);
+            var copyMultiSort = Object.assign({}, cog.multiSort);
             // Because multiSort.global will affect the result, it should be removed first, and multiSort will be operated again after processing.
             delete cog.multiSort;
             this.cog = cog;
@@ -3726,26 +2338,16 @@
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.cd = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
-            (/** @type {?} */ (this)).cdr.detectChanges();
-            return (/** @type {?} */ (this));
+        STComponent.prototype.cd = function () {
+            ( /** @type {?} */(this)).cdr.detectChanges();
+            return ( /** @type {?} */(this));
         };
         /**
          * @param {?} total
          * @param {?} range
          * @return {?}
          */
-        STComponent.prototype.renderTotal = /**
-         * @param {?} total
-         * @param {?} range
-         * @return {?}
-         */
-        function (total, range) {
+        STComponent.prototype.renderTotal = function (total, range) {
             return this.totalTpl
                 ? this.totalTpl.replace('{{total}}', total).replace('{{range[0]}}', range[0]).replace('{{range[1]}}', range[1])
                 : '';
@@ -3754,22 +2356,14 @@
          * @param {?} column
          * @return {?}
          */
-        STComponent.prototype.isTruncate = /**
-         * @param {?} column
-         * @return {?}
-         */
-        function (column) {
+        STComponent.prototype.isTruncate = function (column) {
             return !!column.width && this.widthMode.strictBehavior === 'truncate' && column.type !== 'img';
         };
         /**
          * @param {?} column
          * @return {?}
          */
-        STComponent.prototype.columnClass = /**
-         * @param {?} column
-         * @return {?}
-         */
-        function (column) {
+        STComponent.prototype.columnClass = function (column) {
             return column.className || (this.isTruncate(column) ? 'text-truncate' : null);
         };
         /**
@@ -3778,13 +2372,7 @@
          * @param {?=} data
          * @return {?}
          */
-        STComponent.prototype.changeEmit = /**
-         * @private
-         * @param {?} type
-         * @param {?=} data
-         * @return {?}
-         */
-        function (type, data) {
+        STComponent.prototype.changeEmit = function (type, data) {
             /** @type {?} */
             var res = {
                 type: type,
@@ -3803,34 +2391,25 @@
              * 获取过滤后所有数据
              * - 本地数据：包含排序、过滤后不分页数据
              * - 远程数据：不传递 `pi`、`ps` 两个参数
-             */
-            get: 
-            // #region data
-            /**
-             * 获取过滤后所有数据
-             * - 本地数据：包含排序、过滤后不分页数据
-             * - 远程数据：不传递 `pi`、`ps` 两个参数
              * @return {?}
              */
-            function () {
-                return this.loadData((/** @type {?} */ ({ paginator: false }))).then((/**
+            get: function () {
+                return this.loadData(( /** @type {?} */({ paginator: false }))).then(( /**
                  * @param {?} res
                  * @return {?}
-                 */
-                function (res) { return res.list; }));
+                 */function (/**
+                 * @param {?} res
+                 * @return {?}
+                 */ res) { return res.list; }));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @private
          * @return {?}
          */
-        STComponent.prototype.updateTotalTpl = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        STComponent.prototype.updateTotalTpl = function () {
             var total = this.page.total;
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;
@@ -3847,12 +2426,7 @@
          * @param {?} val
          * @return {?}
          */
-        STComponent.prototype.setLoading = /**
-         * @private
-         * @param {?} val
-         * @return {?}
-         */
-        function (val) {
+        STComponent.prototype.setLoading = function (val) {
             if (this.loading == null) {
                 this._loading = val;
                 this.cdr.detectChanges();
@@ -3863,25 +2437,19 @@
          * @param {?=} options
          * @return {?}
          */
-        STComponent.prototype.loadData = /**
-         * @private
-         * @param {?=} options
-         * @return {?}
-         */
-        function (options) {
+        STComponent.prototype.loadData = function (options) {
             var _this = this;
             var _a = this, pi = _a.pi, ps = _a.ps, data = _a.data, req = _a.req, res = _a.res, page = _a.page, total = _a.total, singleSort = _a.singleSort, multiSort = _a.multiSort, rowClassName = _a.rowClassName;
-            return new Promise((/**
+            return new Promise(( /**
              * @param {?} resolvePromise
              * @param {?} rejectPromise
              * @return {?}
-             */
-            function (resolvePromise, rejectPromise) {
+             */function (resolvePromise, rejectPromise) {
                 if (_this.data$) {
                     _this.data$.unsubscribe();
                 }
                 _this.data$ = _this.dataSource
-                    .process(__assign({ pi: pi,
+                    .process(Object.assign({ pi: pi,
                     ps: ps,
                     total: total,
                     data: data,
@@ -3891,15 +2459,19 @@
                     multiSort: multiSort,
                     rowClassName: rowClassName, paginator: true }, options))
                     .pipe(operators.takeUntil(_this.unsubscribe$))
-                    .subscribe((/**
-                 * @param {?} result
-                 * @return {?}
-                 */
-                function (result) { return resolvePromise(result); }), (/**
+                    .subscribe(( /**
+             * @param {?} result
+             * @return {?}
+             */function (/**
+             * @param {?} result
+             * @return {?}
+             */ result) { return resolvePromise(result); }), ( /**
                  * @param {?} error
                  * @return {?}
-                 */
-                function (error) {
+                 */function (/**
+                 * @param {?} error
+                 * @return {?}
+                 */ error) {
                     console.warn('st.loadDate', error);
                     rejectPromise(error);
                 }));
@@ -3909,11 +2481,7 @@
          * @private
          * @return {?}
          */
-        STComponent.prototype.loadPageData = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        STComponent.prototype.loadPageData = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var result, error_1;
                 return __generator(this, function (_a) {
@@ -3939,8 +2507,8 @@
                             if (typeof result.pageShow !== 'undefined') {
                                 this._isPagination = result.pageShow;
                             }
-                            this._data = (/** @type {?} */ (result.list));
-                            this._statistical = (/** @type {?} */ (result.statistical));
+                            this._data = ( /** @type {?} */(result.list));
+                            this._statistical = ( /** @type {?} */(result.statistical));
                             this.changeEmit('loaded', result.list);
                             return [2 /*return*/, this._refCheck()];
                         case 3:
@@ -3956,7 +2524,6 @@
                 });
             });
         };
-        /** 清空所有数据 */
         /**
          * 清空所有数据
          * @template THIS
@@ -3964,44 +2531,23 @@
          * @param {?=} cleanStatus
          * @return {THIS}
          */
-        STComponent.prototype.clear = /**
-         * 清空所有数据
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} cleanStatus
-         * @return {THIS}
-         */
-        function (cleanStatus) {
+        STComponent.prototype.clear = function (cleanStatus) {
             if (cleanStatus === void 0) { cleanStatus = true; }
             if (cleanStatus) {
-                (/** @type {?} */ (this)).clearStatus();
+                ( /** @type {?} */(this)).clearStatus();
             }
-            (/** @type {?} */ (this))._data = [];
-            return (/** @type {?} */ (this)).cd();
+            ( /** @type {?} */(this))._data = [];
+            return ( /** @type {?} */(this)).cd();
         };
-        /** 清空所有状态 */
         /**
          * 清空所有状态
          * @template THIS
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.clearStatus = /**
-         * 清空所有状态
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
-            return (/** @type {?} */ (this)).clearCheck().clearRadio().clearFilter().clearSort();
+        STComponent.prototype.clearStatus = function () {
+            return ( /** @type {?} */(this)).clearCheck().clearRadio().clearFilter().clearSort();
         };
-        /**
-         * 根据页码重新加载数据
-         *
-         * @param pi 指定当前页码，默认：`1`
-         * @param extraParams 重新指定 `extraParams` 值
-         * @param options 选项
-         */
         /**
          * 根据页码重新加载数据
          *
@@ -4012,48 +2558,26 @@
          * @param {?=} options 选项
          * @return {THIS}
          */
-        STComponent.prototype.load = /**
-         * 根据页码重新加载数据
-         *
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} pi 指定当前页码，默认：`1`
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options 选项
-         * @return {THIS}
-         */
-        function (pi, extraParams, options) {
+        STComponent.prototype.load = function (pi, extraParams, options) {
             if (pi === void 0) { pi = 1; }
             if (pi !== -1)
-                (/** @type {?} */ (this)).pi = pi;
+                ( /** @type {?} */(this)).pi = pi;
             if (typeof extraParams !== 'undefined') {
-                (/** @type {?} */ (this)).req.params = options && options.merge ? __assign(__assign({}, (/** @type {?} */ (this)).req.params), extraParams) : extraParams;
+                ( /** @type {?} */(this)).req.params = options && options.merge ? Object.assign(Object.assign({}, ( /** @type {?} */(this)).req.params), extraParams) : extraParams;
             }
-            (/** @type {?} */ (this))._change('pi', options);
-            return (/** @type {?} */ (this));
+            ( /** @type {?} */(this))._change('pi', options);
+            return ( /** @type {?} */(this));
         };
         /**
          * 重新刷新当前页
-         * @param extraParams 重新指定 `extraParams` 值
-         */
-        /**
-         * 重新刷新当前页
          * @template THIS
          * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
          * @return {THIS}
          */
-        STComponent.prototype.reload = /**
-         * 重新刷新当前页
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options
-         * @return {THIS}
-         */
-        function (extraParams, options) {
-            return (/** @type {?} */ (this)).load(-1, extraParams, options);
+        STComponent.prototype.reload = function (extraParams, options) {
+            return ( /** @type {?} */(this)).load(-1, extraParams, options);
         };
         /**
          * 重置且重新设置 `pi` 为 `1`，包含以下值：
@@ -4062,78 +2586,45 @@
          * - `sort` 数据
          * - `fileter` 数据
          *
-         * @param extraParams 重新指定 `extraParams` 值
-         */
-        /**
-         * 重置且重新设置 `pi` 为 `1`，包含以下值：
-         * - `check` 数据
-         * - `radio` 数据
-         * - `sort` 数据
-         * - `fileter` 数据
-         *
          * @template THIS
          * @this {THIS}
          * @param {?=} extraParams 重新指定 `extraParams` 值
          * @param {?=} options
          * @return {THIS}
          */
-        STComponent.prototype.reset = /**
-         * 重置且重新设置 `pi` 为 `1`，包含以下值：
-         * - `check` 数据
-         * - `radio` 数据
-         * - `sort` 数据
-         * - `fileter` 数据
-         *
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options
-         * @return {THIS}
-         */
-        function (extraParams, options) {
-            (/** @type {?} */ (this)).clearStatus().load(1, extraParams, options);
-            return (/** @type {?} */ (this));
+        STComponent.prototype.reset = function (extraParams, options) {
+            ( /** @type {?} */(this)).clearStatus().load(1, extraParams, options);
+            return ( /** @type {?} */(this));
         };
         /**
          * @private
          * @param {?=} enforce
          * @return {?}
          */
-        STComponent.prototype._toTop = /**
-         * @private
-         * @param {?=} enforce
-         * @return {?}
-         */
-        function (enforce) {
+        STComponent.prototype._toTop = function (enforce) {
             if (!(enforce == null ? this.page.toTop : enforce))
                 return;
             /** @type {?} */
-            var el = (/** @type {?} */ (this.el.nativeElement));
+            var el = ( /** @type {?} */(this.el.nativeElement));
             if (this.scroll) {
-                (/** @type {?} */ (el.querySelector('.ant-table-body'))).scrollTo(0, 0);
+                ( /** @type {?} */(el.querySelector('.ant-table-body'))).scrollTo(0, 0);
                 return;
             }
             el.scrollIntoView();
             // fix header height
-            this.doc.documentElement.scrollTop -= (/** @type {?} */ (this.page.toTopOffset));
+            this.doc.documentElement.scrollTop -= ( /** @type {?} */(this.page.toTopOffset));
         };
         /**
          * @param {?} type
          * @param {?=} options
          * @return {?}
          */
-        STComponent.prototype._change = /**
-         * @param {?} type
-         * @param {?=} options
-         * @return {?}
-         */
-        function (type, options) {
+        STComponent.prototype._change = function (type, options) {
             var _this = this;
             if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
-                this.loadPageData().then((/**
+                this.loadPageData().then(( /**
                  * @return {?}
-                 */
-                function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); }));
+                 */function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); }));
             }
             this.changeEmit(type);
         };
@@ -4143,17 +2634,11 @@
          * @param {?} col
          * @return {?}
          */
-        STComponent.prototype._click = /**
-         * @param {?} e
-         * @param {?} item
-         * @param {?} col
-         * @return {?}
-         */
-        function (e, item, col) {
+        STComponent.prototype._click = function (e, item, col) {
             e.preventDefault();
             e.stopPropagation();
             /** @type {?} */
-            var res = (/** @type {?} */ (col.click))(item, this);
+            var res = ( /** @type {?} */(col.click))(item, this);
             if (typeof res === 'string') {
                 this.router.navigateByUrl(res, { state: this.routerState });
             }
@@ -4164,23 +2649,22 @@
          * @param {?} item
          * @return {?}
          */
-        STComponent.prototype.closeOtherExpand = /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
-        function (item) {
+        STComponent.prototype.closeOtherExpand = function (item) {
             if (this.expandAccordion === false)
                 return;
-            this._data.filter((/**
+            this._data.filter(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return i !== item; })).forEach((/**
+             */function (/**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return (i.expand = false); }));
+             */ i) { return i !== item; })).forEach(( /**
+             * @param {?} i
+             * @return {?}
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return (i.expand = false); }));
         };
         /**
          * @param {?} e
@@ -4188,15 +2672,9 @@
          * @param {?} index
          * @return {?}
          */
-        STComponent.prototype._rowClick = /**
-         * @param {?} e
-         * @param {?} item
-         * @param {?} index
-         * @return {?}
-         */
-        function (e, item, index) {
+        STComponent.prototype._rowClick = function (e, item, index) {
             var _this = this;
-            if (((/** @type {?} */ (e.target))).nodeName === 'INPUT')
+            if ((( /** @type {?} */(e.target))).nodeName === 'INPUT')
                 return;
             var _a = this, expand = _a.expand, expandRowByClick = _a.expandRowByClick, rowClickTime = _a.rowClickTime;
             if (!!expand && item.showExpand !== false && expandRowByClick) {
@@ -4208,10 +2686,9 @@
             ++this.rowClickCount;
             if (this.rowClickCount !== 1)
                 return;
-            setTimeout((/**
+            setTimeout(( /**
              * @return {?}
-             */
-            function () {
+             */function () {
                 /** @type {?} */
                 var data = { e: e, item: item, index: index };
                 if (_this.rowClickCount === 1) {
@@ -4228,12 +2705,7 @@
          * @param {?} expand
          * @return {?}
          */
-        STComponent.prototype._expandChange = /**
-         * @param {?} item
-         * @param {?} expand
-         * @return {?}
-         */
-        function (item, expand) {
+        STComponent.prototype._expandChange = function (item, expand) {
             if (this.expandRowByClick) {
                 return;
             }
@@ -4248,75 +2720,64 @@
          * this.st.removeRow(0)
          * this.st.removeRow(stDataItem)
          * ```
-         */
-        /**
-         * Remove a row in the table, like this:
-         *
-         * ```
-         * this.st.removeRow(0)
-         * this.st.removeRow(stDataItem)
-         * ```
          * @template THIS
          * @this {THIS}
          * @param {?} data
          * @return {THIS}
          */
-        STComponent.prototype.removeRow = /**
-         * Remove a row in the table, like this:
-         *
-         * ```
-         * this.st.removeRow(0)
-         * this.st.removeRow(stDataItem)
-         * ```
-         * @template THIS
-         * @this {THIS}
-         * @param {?} data
-         * @return {THIS}
-         */
-        function (data) {
+        STComponent.prototype.removeRow = function (data) {
             var _this = this;
             if (typeof data === 'number') {
-                (/** @type {?} */ (this))._data.splice(data, 1);
+                ( /** @type {?} */(this))._data.splice(data, 1);
             }
             else {
                 if (!Array.isArray(data)) {
                     data = [data];
                 }
-                ((/** @type {?} */ (data)))
-                    .map((/**
-                 * @param {?} item
-                 * @return {?}
-                 */
-                function (item) { return (/** @type {?} */ (_this))._data.indexOf(item); }))
-                    .filter((/**
-                 * @param {?} pos
-                 * @return {?}
-                 */
-                function (pos) { return pos !== -1; }))
-                    .forEach((/**
-                 * @param {?} pos
-                 * @return {?}
-                 */
-                function (pos) { return (/** @type {?} */ (_this))._data.splice(pos, 1); }));
+                (( /** @type {?} */(data)))
+                    .map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return ( /** @type {?} */(_this))._data.indexOf(item); }))
+                    .filter(( /**
+             * @param {?} pos
+             * @return {?}
+             */function (/**
+             * @param {?} pos
+             * @return {?}
+             */ pos) { return pos !== -1; }))
+                    .forEach(( /**
+             * @param {?} pos
+             * @return {?}
+             */function (/**
+             * @param {?} pos
+             * @return {?}
+             */ pos) { return ( /** @type {?} */(_this))._data.splice(pos, 1); }));
             }
             // recalculate no
-            (/** @type {?} */ (this))._columns
-                .filter((/**
-             * @param {?} w
-             * @return {?}
-             */
-            function (w) { return w.type === 'no'; }))
-                .forEach((/**
-             * @param {?} c
-             * @return {?}
-             */
-            function (c) { return (/** @type {?} */ (_this))._data.forEach((/**
+            ( /** @type {?} */(this))._columns
+                .filter(( /**
+         * @param {?} w
+         * @return {?}
+         */function (/**
+         * @param {?} w
+         * @return {?}
+         */ w) { return w.type === 'no'; }))
+                .forEach(( /**
+         * @param {?} c
+         * @return {?}
+         */function (/**
+         * @param {?} c
+         * @return {?}
+         */ c) { return ( /** @type {?} */(_this))._data.forEach(( /**
              * @param {?} i
              * @param {?} idx
              * @return {?}
-             */
-            function (i, idx) { return (i._values[c.__point] = { _text: (/** @type {?} */ (_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
-            return (/** @type {?} */ (this)).cd();
+             */function (i, idx) { return (i._values[c.__point] = { _text: ( /** @type {?} */(_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
+            return ( /** @type {?} */(this)).cd();
         };
         /**
          * Sets the row value for the `index` in the table, like this:
@@ -4328,17 +2789,6 @@
          * this.st.setRow(0, { price: 100 })
          * this.st.setRow(0, { price: 100, name: 'asdf' })
          * ```
-         */
-        /**
-         * Sets the row value for the `index` in the table, like this:
-         *
-         * - `optinos.refreshSchema` Whether to refresh of st schemas
-         * - `optinos.emitReload` Whether to trigger a reload http request when data is url
-         *
-         * ```
-         * this.st.setRow(0, { price: 100 })
-         * this.st.setRow(0, { price: 100, name: 'asdf' })
-         * ```
          * @template THIS
          * @this {THIS}
          * @param {?} index
@@ -4346,65 +2796,36 @@
          * @param {?=} options
          * @return {THIS}
          */
-        STComponent.prototype.setRow = /**
-         * Sets the row value for the `index` in the table, like this:
-         *
-         * - `optinos.refreshSchema` Whether to refresh of st schemas
-         * - `optinos.emitReload` Whether to trigger a reload http request when data is url
-         *
-         * ```
-         * this.st.setRow(0, { price: 100 })
-         * this.st.setRow(0, { price: 100, name: 'asdf' })
-         * ```
-         * @template THIS
-         * @this {THIS}
-         * @param {?} index
-         * @param {?} item
-         * @param {?=} options
-         * @return {THIS}
-         */
-        function (index, item, options) {
-            options = __assign({ refreshSchema: false, emitReload: false }, options);
-            (/** @type {?} */ (this))._data[index] = util.deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
-            (/** @type {?} */ (this)).optimizeData();
+        STComponent.prototype.setRow = function (index, item, options) {
+            options = Object.assign({ refreshSchema: false, emitReload: false }, options);
+            ( /** @type {?} */(this))._data[index] = util.deepMergeKey(( /** @type {?} */(this))._data[index], false, item);
+            ( /** @type {?} */(this)).optimizeData();
             if (options.refreshSchema) {
-                (/** @type {?} */ (this)).resetColumns({ emitReload: options.emitReload });
-                return (/** @type {?} */ (this));
+                ( /** @type {?} */(this)).resetColumns({ emitReload: options.emitReload });
+                return ( /** @type {?} */(this));
             }
-            (/** @type {?} */ (this)).cdr.detectChanges();
-            return (/** @type {?} */ (this));
+            ( /** @type {?} */(this)).cdr.detectChanges();
+            return ( /** @type {?} */(this));
         };
         // #endregion
         // #region sort
-        // #endregion
-        // #region sort
         /**
          * @param {?} col
          * @param {?} idx
          * @param {?} value
          * @return {?}
          */
-        STComponent.prototype.sort = 
-        // #endregion
-        // #region sort
-        /**
-         * @param {?} col
-         * @param {?} idx
-         * @param {?} value
-         * @return {?}
-         */
-        function (col, idx, value) {
+        STComponent.prototype.sort = function (col, idx, value) {
             if (this.multiSort) {
-                (/** @type {?} */ (col._sort)).default = value;
-                (/** @type {?} */ (col._sort)).tick = this.dataSource.nextSortTick;
+                ( /** @type {?} */(col._sort)).default = value;
+                ( /** @type {?} */(col._sort)).tick = this.dataSource.nextSortTick;
             }
             else {
-                this._columns.forEach((/**
+                this._columns.forEach(( /**
                  * @param {?} item
                  * @param {?} index
                  * @return {?}
-                 */
-                function (item, index) { return ((/** @type {?} */ (item._sort)).default = index === idx ? value : null); }));
+                 */function (item, index) { return (( /** @type {?} */(item._sort)).default = index === idx ? value : null); }));
             }
             this.cdr.detectChanges();
             this.loadPageData();
@@ -4421,38 +2842,25 @@
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.clearSort = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
-            (/** @type {?} */ (this))._columns.forEach((/**
+        STComponent.prototype.clearSort = function () {
+            ( /** @type {?} */(this))._columns.forEach(( /**
              * @param {?} item
              * @return {?}
-             */
-            function (item) { return ((/** @type {?} */ (item._sort)).default = null); }));
-            return (/** @type {?} */ (this));
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return (( /** @type {?} */(item._sort)).default = null); }));
+            return ( /** @type {?} */(this));
         };
         // #endregion
         // #region filter
-        // #endregion
-        // #region filter
         /**
          * @private
          * @param {?} col
          * @return {?}
          */
-        STComponent.prototype.handleFilter = 
-        // #endregion
-        // #region filter
-        /**
-         * @private
-         * @param {?} col
-         * @return {?}
-         */
-        function (col) {
-            this.columnSource.updateDefault((/** @type {?} */ (col.filter)));
+        STComponent.prototype.handleFilter = function (col) {
+            this.columnSource.updateDefault(( /** @type {?} */(col.filter)));
             this.loadPageData();
             this.changeEmit('filter', col);
         };
@@ -4460,11 +2868,7 @@
          * @param {?} col
          * @return {?}
          */
-        STComponent.prototype._filterConfirm = /**
-         * @param {?} col
-         * @return {?}
-         */
-        function (col) {
+        STComponent.prototype._filterConfirm = function (col) {
             this.handleFilter(col);
         };
         /**
@@ -4473,29 +2877,21 @@
          * @param {?} checked
          * @return {?}
          */
-        STComponent.prototype._filterRadio = /**
-         * @param {?} col
-         * @param {?} item
-         * @param {?} checked
-         * @return {?}
-         */
-        function (col, item, checked) {
-            (/** @type {?} */ ((/** @type {?} */ (col.filter)).menus)).forEach((/**
+        STComponent.prototype._filterRadio = function (col, item, checked) {
+            ( /** @type {?} */(( /** @type {?} */(col.filter)).menus)).forEach(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return (i.checked = false); }));
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return (i.checked = false); }));
             item.checked = checked;
         };
         /**
          * @param {?} col
          * @return {?}
          */
-        STComponent.prototype._filterClear = /**
-         * @param {?} col
-         * @return {?}
-         */
-        function (col) {
+        STComponent.prototype._filterClear = function (col) {
             this.columnSource.cleanFilter(col);
             this.handleFilter(col);
         };
@@ -4504,57 +2900,40 @@
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.clearFilter = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
+        STComponent.prototype.clearFilter = function () {
             var _this = this;
-            (/** @type {?} */ (this))._columns.filter((/**
+            ( /** @type {?} */(this))._columns.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.filter && w.filter.default === true; })).forEach((/**
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.filter && w.filter.default === true; })).forEach(( /**
              * @param {?} col
              * @return {?}
-             */
-            function (col) { return (/** @type {?} */ (_this)).columnSource.cleanFilter(col); }));
-            return (/** @type {?} */ (this));
+             */function (/**
+             * @param {?} col
+             * @return {?}
+             */ col) { return ( /** @type {?} */(_this)).columnSource.cleanFilter(col); }));
+            return ( /** @type {?} */(this));
         };
         /**
          * @param {?} $event
          * @return {?}
          */
-        STComponent.prototype._filterClick = /**
-         * @param {?} $event
-         * @return {?}
-         */
-        function ($event) {
+        STComponent.prototype._filterClick = function ($event) {
             $event.stopPropagation();
         };
         // #endregion
         // #region checkbox
-        /** 清除所有 `checkbox` */
-        // #endregion
-        // #region checkbox
         /**
          * 清除所有 `checkbox`
          * @template THIS
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.clearCheck = 
-        // #endregion
-        // #region checkbox
-        /**
-         * 清除所有 `checkbox`
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
-            return (/** @type {?} */ (this))._checkAll(false);
+        STComponent.prototype.clearCheck = function () {
+            return ( /** @type {?} */(this))._checkAll(false);
         };
         /**
          * @private
@@ -4562,39 +2941,41 @@
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype._refCheck = /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
+        STComponent.prototype._refCheck = function () {
             /** @type {?} */
-            var validData = (/** @type {?} */ (this))._data.filter((/**
+            var validData = ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return !w.disabled; }));
-            /** @type {?} */
-            var checkedList = validData.filter((/**
+             */function (/**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.checked === true; }));
-            (/** @type {?} */ (this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
+             */ w) { return !w.disabled; }));
             /** @type {?} */
-            var allUnChecked = validData.every((/**
+            var checkedList = validData.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.checked === true; }));
+            ( /** @type {?} */(this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
+            /** @type {?} */
+            var allUnChecked = validData.every(( /**
              * @param {?} value
              * @return {?}
-             */
-            function (value) { return !value.checked; }));
-            (/** @type {?} */ (this))._indeterminate = !(/** @type {?} */ (this))._allChecked && !allUnChecked;
-            (/** @type {?} */ (this))._allCheckedDisabled = (/** @type {?} */ (this))._data.length === (/** @type {?} */ (this))._data.filter((/**
+             */function (/**
+             * @param {?} value
+             * @return {?}
+             */ value) { return !value.checked; }));
+            ( /** @type {?} */(this))._indeterminate = !( /** @type {?} */(this))._allChecked && !allUnChecked;
+            ( /** @type {?} */(this))._allCheckedDisabled = ( /** @type {?} */(this))._data.length === ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.disabled; })).length;
-            return (/** @type {?} */ (this)).cd();
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.disabled; })).length;
+            return ( /** @type {?} */(this)).cd();
         };
         /**
          * @template THIS
@@ -4602,24 +2983,22 @@
          * @param {?=} checked
          * @return {THIS}
          */
-        STComponent.prototype._checkAll = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} checked
-         * @return {THIS}
-         */
-        function (checked) {
-            checked = typeof checked === 'undefined' ? (/** @type {?} */ (this))._allChecked : checked;
-            (/** @type {?} */ (this))._data.filter((/**
+        STComponent.prototype._checkAll = function (checked) {
+            checked = typeof checked === 'undefined' ? ( /** @type {?} */(this))._allChecked : checked;
+            ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return !w.disabled; })).forEach((/**
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return !w.disabled; })).forEach(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return (i.checked = checked); }));
-            return (/** @type {?} */ (this))._refCheck()._checkNotify();
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return (i.checked = checked); }));
+            return ( /** @type {?} */(this))._refCheck()._checkNotify();
         };
         /**
          * @template THIS
@@ -4628,16 +3007,9 @@
          * @param {?} value
          * @return {THIS}
          */
-        STComponent.prototype._checkSelection = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} i
-         * @param {?} value
-         * @return {THIS}
-         */
-        function (i, value) {
+        STComponent.prototype._checkSelection = function (i, value) {
             i.checked = value;
-            return (/** @type {?} */ (this))._refCheck()._checkNotify();
+            return ( /** @type {?} */(this))._refCheck()._checkNotify();
         };
         /**
          * @template THIS
@@ -4645,68 +3017,51 @@
          * @param {?} row
          * @return {THIS}
          */
-        STComponent.prototype._rowSelection = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} row
-         * @return {THIS}
-         */
-        function (row) {
-            row.select((/** @type {?} */ (this))._data);
-            return (/** @type {?} */ (this))._refCheck()._checkNotify();
+        STComponent.prototype._rowSelection = function (row) {
+            row.select(( /** @type {?} */(this))._data);
+            return ( /** @type {?} */(this))._refCheck()._checkNotify();
         };
         /**
          * @template THIS
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype._checkNotify = /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
+        STComponent.prototype._checkNotify = function () {
             /** @type {?} */
-            var res = (/** @type {?} */ (this))._data.filter((/**
+            var res = ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return !w.disabled && w.checked === true; }));
-            (/** @type {?} */ (this)).changeEmit('checkbox', res);
-            return (/** @type {?} */ (this));
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return !w.disabled && w.checked === true; }));
+            ( /** @type {?} */(this)).changeEmit('checkbox', res);
+            return ( /** @type {?} */(this));
         };
         // #endregion
         // #region radio
-        /** 清除所有 `radio` */
-        // #endregion
-        // #region radio
         /**
          * 清除所有 `radio`
          * @template THIS
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.clearRadio = 
-        // #endregion
-        // #region radio
-        /**
-         * 清除所有 `radio`
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
-            (/** @type {?} */ (this))._data.filter((/**
+        STComponent.prototype.clearRadio = function () {
+            ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.checked; })).forEach((/**
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.checked; })).forEach(( /**
              * @param {?} item
              * @return {?}
-             */
-            function (item) { return (item.checked = false); }));
-            (/** @type {?} */ (this)).changeEmit('radio', null);
-            return (/** @type {?} */ (this));
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return (item.checked = false); }));
+            ( /** @type {?} */(this)).changeEmit('radio', null);
+            return ( /** @type {?} */(this));
         };
         /**
          * @template THIS
@@ -4715,48 +3070,34 @@
          * @param {?} item
          * @return {THIS}
          */
-        STComponent.prototype._refRadio = /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} checked
-         * @param {?} item
-         * @return {THIS}
-         */
-        function (checked, item) {
+        STComponent.prototype._refRadio = function (checked, item) {
             // if (item.disabled === true) return;
-            (/** @type {?} */ (this))._data.filter((/**
+            ( /** @type {?} */(this))._data.filter(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return !w.disabled; })).forEach((/**
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return !w.disabled; })).forEach(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) { return (i.checked = false); }));
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return (i.checked = false); }));
             item.checked = checked;
-            (/** @type {?} */ (this)).changeEmit('radio', item);
-            return (/** @type {?} */ (this));
+            ( /** @type {?} */(this)).changeEmit('radio', item);
+            return ( /** @type {?} */(this));
         };
         // #endregion
         // #region buttons
-        // #endregion
-        // #region buttons
         /**
          * @param {?} record
          * @param {?} btn
          * @param {?=} e
          * @return {?}
          */
-        STComponent.prototype._btnClick = 
-        // #endregion
-        // #region buttons
-        /**
-         * @param {?} record
-         * @param {?} btn
-         * @param {?=} e
-         * @return {?}
-         */
-        function (record, btn, e) {
+        STComponent.prototype._btnClick = function (record, btn, e) {
             var _a, _b;
             var _this = this;
             // should be stop propagation when expandRowByClick is true
@@ -4766,36 +3107,41 @@
             if (btn.type === 'modal' || btn.type === 'static') {
                 var modal = btn.modal;
                 /** @type {?} */
-                var obj = (_a = {}, _a[(/** @type {?} */ ((/** @type {?} */ (modal)).paramsName))] = record, _a);
-                ((/** @type {?} */ (this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))((/** @type {?} */ (modal)).component, __assign(__assign({}, obj), ((/** @type {?} */ (modal)).params && (/** @type {?} */ ((/** @type {?} */ (modal)).params))(record))), util.deepMergeKey({}, true, this.cog.modal, modal))
-                    .pipe(operators.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return typeof w !== 'undefined'; })))
-                    .subscribe((/**
-                 * @param {?} res
-                 * @return {?}
-                 */
-                function (res) { return _this.btnCallback(record, btn, res); }));
+                var obj = (_a = {}, _a[( /** @type {?} */(( /** @type {?} */(modal)).paramsName))] = record, _a);
+                (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(( /** @type {?} */(modal)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(modal)).params && ( /** @type {?} */(( /** @type {?} */(modal)).params))(record))), util.deepMergeKey({}, true, this.cog.modal, modal))
+                    .pipe(operators.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return typeof w !== 'undefined'; })))
+                    .subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (res) { return _this.btnCallback(record, btn, res); }));
                 return;
             }
             else if (btn.type === 'drawer') {
                 var drawer = btn.drawer;
                 /** @type {?} */
-                var obj = (_b = {}, _b[(/** @type {?} */ ((/** @type {?} */ (drawer)).paramsName))] = record, _b);
+                var obj = (_b = {}, _b[( /** @type {?} */(( /** @type {?} */(drawer)).paramsName))] = record, _b);
                 this.drawerHelper
-                    .create((/** @type {?} */ ((/** @type {?} */ (drawer)).title)), (/** @type {?} */ (drawer)).component, __assign(__assign({}, obj), ((/** @type {?} */ (drawer)).params && (/** @type {?} */ ((/** @type {?} */ (drawer)).params))(record))), util.deepMergeKey({}, true, this.cog.drawer, drawer))
-                    .pipe(operators.filter((/**
-                 * @param {?} w
-                 * @return {?}
-                 */
-                function (w) { return typeof w !== 'undefined'; })))
-                    .subscribe((/**
-                 * @param {?} res
-                 * @return {?}
-                 */
-                function (res) { return _this.btnCallback(record, btn, res); }));
+                    .create(( /** @type {?} */(( /** @type {?} */(drawer)).title)), ( /** @type {?} */(drawer)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(drawer)).params && ( /** @type {?} */(( /** @type {?} */(drawer)).params))(record))), util.deepMergeKey({}, true, this.cog.drawer, drawer))
+                    .pipe(operators.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return typeof w !== 'undefined'; })))
+                    .subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) { return _this.btnCallback(record, btn, res); }));
                 return;
             }
             else if (btn.type === 'link') {
@@ -4815,14 +3161,7 @@
          * @param {?=} modal
          * @return {?}
          */
-        STComponent.prototype.btnCallback = /**
-         * @private
-         * @param {?} record
-         * @param {?} btn
-         * @param {?=} modal
-         * @return {?}
-         */
-        function (record, btn, modal) {
+        STComponent.prototype.btnCallback = function (record, btn, modal) {
             if (!btn.click)
                 return;
             if (typeof btn.click === 'string') {
@@ -4844,12 +3183,7 @@
          * @param {?} btn
          * @return {?}
          */
-        STComponent.prototype._btnText = /**
-         * @param {?} record
-         * @param {?} btn
-         * @return {?}
-         */
-        function (record, btn) {
+        STComponent.prototype._btnText = function (record, btn) {
             return typeof btn.text === 'function' ? btn.text(record, btn) : btn.text || '';
         };
         /**
@@ -4858,20 +3192,16 @@
          * @param {?} col
          * @return {?}
          */
-        STComponent.prototype._validBtns = /**
-         * @param {?} btns
-         * @param {?} item
-         * @param {?} col
-         * @return {?}
-         */
-        function (btns, item, col) {
-            return btns.filter((/**
+        STComponent.prototype._validBtns = function (btns, item, col) {
+            return btns.filter(( /**
              * @param {?} btn
              * @return {?}
-             */
-            function (btn) {
+             */function (/**
+             * @param {?} btn
+             * @return {?}
+             */ btn) {
                 /** @type {?} */
-                var result = (/** @type {?} */ (btn.iif))(item, btn, col);
+                var result = ( /** @type {?} */(btn.iif))(item, btn, col);
                 /** @type {?} */
                 var isRenderDisabled = btn.iifBehavior === 'disabled';
                 btn._result = result;
@@ -4883,59 +3213,34 @@
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
-         * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
-         * @param opt 额外参数
-         */
-        // #endregion
-        // #region export
-        /**
-         * 导出当前页，确保已经注册 `XlsxModule`
          * @param {?=} newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
          * @param {?=} opt 额外参数
          * @return {?}
          */
-        STComponent.prototype.export = 
-        // #endregion
-        // #region export
-        /**
-         * 导出当前页，确保已经注册 `XlsxModule`
-         * @param {?=} newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
-         * @param {?=} opt 额外参数
-         * @return {?}
-         */
-        function (newData, opt) {
+        STComponent.prototype.export = function (newData, opt) {
             var _this = this;
-            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe((/**
+            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(( /**
              * @param {?} res
              * @return {?}
-             */
-            function (res) {
-                return _this.exportSrv.export(__assign(__assign({}, opt), { data: res, columens: _this._columns }));
-            }));
+             */function (res) { return _this.exportSrv.export(Object.assign(Object.assign({}, opt), { data: res, columens: _this._columns })); }));
         };
         Object.defineProperty(STComponent.prototype, "cdkVirtualScrollViewport", {
-            // #endregion
-            get: 
             // #endregion
             /**
              * @return {?}
              */
-            function () {
-                return (/** @type {?} */ (this.orgTable.cdkVirtualScrollViewport));
+            get: function () {
+                return ( /** @type {?} */(this.orgTable.cdkVirtualScrollViewport));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @param {?=} options
          * @return {?}
          */
-        STComponent.prototype.resetColumns = /**
-         * @param {?=} options
-         * @return {?}
-         */
-        function (options) {
-            options = __assign({ emitReload: true, preClearData: false }, options);
+        STComponent.prototype.resetColumns = function (options) {
+            options = Object.assign({ emitReload: true, preClearData: false }, options);
             if (typeof options.columns !== 'undefined') {
                 this.columns = options.columns;
             }
@@ -4967,51 +3272,34 @@
          * @this {THIS}
          * @return {THIS}
          */
-        STComponent.prototype.refreshColumns = /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        function () {
+        STComponent.prototype.refreshColumns = function () {
             /** @type {?} */
-            var res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ (this)).columns);
-            (/** @type {?} */ (this))._columns = res.columns;
-            (/** @type {?} */ (this))._headers = res.headers;
-            if ((/** @type {?} */ (this)).widthConfig.length === 0 && res.headerWidths != null) {
-                (/** @type {?} */ (this)).widthConfig = res.headerWidths;
+            var res = ( /** @type {?} */(this)).columnSource.process(( /** @type {?} */(this)).columns);
+            ( /** @type {?} */(this))._columns = res.columns;
+            ( /** @type {?} */(this))._headers = res.headers;
+            if (( /** @type {?} */(this)).widthConfig.length === 0 && res.headerWidths != null) {
+                ( /** @type {?} */(this)).widthConfig = res.headerWidths;
             }
-            return (/** @type {?} */ (this));
+            return ( /** @type {?} */(this));
         };
         /**
          * @private
          * @return {?}
          */
-        STComponent.prototype.optimizeData = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        STComponent.prototype.optimizeData = function () {
             this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
         };
         /**
          * @return {?}
          */
-        STComponent.prototype.ngAfterViewInit = /**
-         * @return {?}
-         */
-        function () {
+        STComponent.prototype.ngAfterViewInit = function () {
             this.columnSource.restoreAllRender(this._columns);
         };
         /**
          * @param {?} changes
          * @return {?}
          */
-        STComponent.prototype.ngOnChanges = /**
-         * @param {?} changes
-         * @return {?}
-         */
-        function (changes) {
+        STComponent.prototype.ngOnChanges = function (changes) {
             if (changes.columns) {
                 this.refreshColumns().optimizeData();
             }
@@ -5027,146 +3315,143 @@
         /**
          * @return {?}
          */
-        STComponent.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        STComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
             unsubscribe$.complete();
         };
-        STComponent.decorators = [
-            { type: core.Component, args: [{
-                        selector: 'st',
-                        exportAs: 'st',
-                        template: "<ng-template #btnTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"!btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </ng-container>\n  <span *ngIf=\"btn.tooltip\" nz-tooltip [nzTooltipTitle]=\"btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i let-btn=\"btn\">\n  <a\n    *ngIf=\"btn.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"btn.pop.title\"\n    [nzIcon]=\"btn.pop.icon\"\n    [nzCondition]=\"btn.pop.condition(i)\"\n    [nzCancelText]=\"btn.pop.cancelText\"\n    [nzOkText]=\"btn.pop.okText\"\n    [nzOkType]=\"btn.pop.okType\"\n    (nzOnConfirm)=\"_btnClick(i, btn, $event)\"\n    class=\"st__btn-text\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n  <a *ngIf=\"!btn.pop\" (click)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"btn.icon\">\n    <i\n      *ngIf=\"!btn.icon.iconfont\"\n      nz-icon\n      [nzType]=\"btn.icon.type\"\n      [nzTheme]=\"btn.icon.theme\"\n      [nzSpin]=\"btn.icon.spin\"\n      [nzTwotoneColor]=\"btn.icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"btn.icon.iconfont\" nz-icon [nzIconfont]=\"btn.icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"_btnText(i, btn)\" [ngClass]=\"{ 'pl-xs': btn.icon }\"></span>\n</ng-template>\n<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i *ngIf=\"i.optionalHelp\" class=\"st__head-tip\" nz-tooltip [nzTooltipTitle]=\"i.optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label\n    nz-checkbox\n    class=\"st__checkall\"\n    [nzDisabled]=\"_allCheckedDisabled\"\n    [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\"\n    (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"\n  ></label>\n</ng-template>\n<nz-table\n  #table\n  [nzData]=\"_data\"\n  [(nzPageIndex)]=\"pi\"\n  (nzPageIndexChange)=\"_change('pi')\"\n  [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\"\n  [nzTotal]=\"total\"\n  [nzShowPagination]=\"_isPagination\"\n  [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\"\n  [nzSize]=\"size\"\n  [nzLoading]=\"_loading\"\n  [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\"\n  [nzTitle]=\"header\"\n  [nzFooter]=\"footer\"\n  [nzScroll]=\"scroll\"\n  [nzVirtualItemSize]=\"virtualItemSize\"\n  [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\"\n  [nzVirtualForTrackBy]=\"virtualForTrackBy\"\n  [nzNoResult]=\"noResult\"\n  [nzPageSizeOptions]=\"page.pageSizes\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\"\n  [nzShowSizeChanger]=\"page.showSize\"\n  [nzPaginationPosition]=\"page.position\"\n  [nzShowTotal]=\"totalTpl\"\n  [nzWidthConfig]=\"widthConfig\"\n>\n  <thead class=\"st__head\">\n    <tr *ngFor=\"let row of _headers; let rowFirst = first\">\n      <th *ngIf=\"rowFirst && expand\" nzWidth=\"50px\" [rowSpan]=\"_headers.length\"></th>\n      <th\n        *ngFor=\"let h of row; let index = index\"\n        [colSpan]=\"h.colSpan\"\n        [rowSpan]=\"h.rowSpan\"\n        [nzWidth]=\"h.column.width\"\n        [nzLeft]=\"!!h.column._left\"\n        [nzRight]=\"!!h.column._right\"\n        [ngClass]=\"h.column.className\"\n        [attr.data-col]=\"h.column.indexKey\"\n        [nzShowSort]=\"h.column._sort.enabled\"\n        [nzSortOrder]=\"h.column._sort.default\"\n        (nzSortOrderChange)=\"sort(h.column, index, $event)\"\n        [nzCustomFilter]=\"h.column.filter\"\n      >\n        <ng-template #renderTitle [ngTemplateOutlet]=\"h.column.__renderTitle\" [ngTemplateOutletContext]=\"{ $implicit: h.column, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!h.column.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"h.column.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <ng-container *ngIf=\"h.column.selections.length === 0\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: false }\"> </ng-template>\n              </ng-container>\n              <div *ngIf=\"h.column.selections.length > 0\" class=\"ant-table-selection\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: true }\"> </ng-template>\n                <div\n                  *ngIf=\"h.column.selections.length\"\n                  nz-dropdown\n                  nzPlacement=\"bottomLeft\"\n                  [nzDropdownMenu]=\"selectionMenu\"\n                  class=\"ant-table-selection-down st__checkall-selection\"\n                >\n                  <i nz-icon nzType=\"down\"></i>\n                </div>\n                <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                  <ul nz-menu class=\"ant-table-selection-menu\">\n                    <li nz-menu-item *ngFor=\"let rw of h.column.selections\" (click)=\"_rowSelection(rw)\" [innerHTML]=\"rw.text\"></li>\n                  </ul>\n                </nz-dropdown-menu>\n              </div>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: h.column.title }\"></ng-template>\n            </ng-container>\n          </ng-container>\n        </ng-container>\n        <div\n          nz-th-extra\n          *ngIf=\"h.column.filter\"\n          class=\"ant-table-filter-trigger-container st__filter\"\n          [class.ant-table-filter-trigger-container-open]=\"h.column.filter.visible\"\n        >\n          <span\n            class=\"ant-table-filter-trigger\"\n            [class.active]=\"h.column.filter.visible || h.column.filter.default\"\n            nz-dropdown\n            [nzDropdownMenu]=\"filterMenu\"\n            nzTrigger=\"click\"\n            [nzClickHide]=\"false\"\n            [(nzVisible)]=\"h.column.filter.visible\"\n            nzOverlayClassName=\"st__filter-wrap\"\n            (click)=\"_filterClick($event)\"\n          >\n            <i nz-icon [nzType]=\"h.column.filter.icon.type\" [nzTheme]=\"h.column.filter.icon.theme\"></i>\n          </span>\n          <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n            <div class=\"ant-table-filter-dropdown\">\n              <ng-container [ngSwitch]=\"h.column.filter.type\">\n                <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n                  <input type=\"text\" nz-input [attr.placeholder]=\"h.column.filter.menus[0].text\" [(ngModel)]=\"h.column.filter.menus[0].value\" />\n                </div>\n                <ul *ngSwitchDefault nz-menu>\n                  <ng-container *ngIf=\"h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-checkbox [(ngModel)]=\"filter.checked\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                  <ng-container *ngIf=\"!h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"_filterRadio(h.column, filter, $event)\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                </ul>\n              </ng-container>\n              <div class=\"ant-table-filter-dropdown-btns\">\n                <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterConfirm(h.column)\">{{ h.column.filter.confirmText || locale.filterConfirm }}</span>\n                </a>\n                <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterClear(h.column)\">{{ h.column.filter.clearText || locale.filterReset }}</span>\n                </a>\n              </div>\n            </div>\n          </nz-dropdown-menu>\n        </div>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"bodyHeader\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n    <ng-template #bodyTpl let-i let-index=\"index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [ngClass]=\"i._rowClassName\">\n        <td\n          *ngIf=\"expand\"\n          [nzShowExpand]=\"expand && i.showExpand !== false\"\n          [nzExpand]=\"i.expand\"\n          (nzExpandChange)=\"_expandChange(i, $event)\"\n          nzWidth=\"50px\"\n        ></td>\n        <td *ngFor=\"let c of _columns; let cIdx = index\" [nzLeft]=\"!!c._left\" [nzRight]=\"!!c._right\" [ngClass]=\"columnClass(c)\" [attr.colspan]=\"c.colSpan\">\n          <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n            <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: c.title }\"></ng-template>\n          </span>\n          <span>\n            <ng-template #render [ngTemplateOutlet]=\"c.__render\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label\n                  *ngSwitchCase=\"'checkbox'\"\n                  nz-checkbox\n                  [nzDisabled]=\"i.disabled\"\n                  [ngModel]=\"i.checked\"\n                  (ngModelChange)=\"_checkSelection(i, $event)\"\n                ></label>\n                <label *ngSwitchCase=\"'radio'\" nz-radio [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\" (ngModelChange)=\"_refRadio($event, i)\"></label>\n                <a *ngSwitchCase=\"'link'\" (click)=\"_click($event, i, c)\" [innerHTML]=\"i._values[cIdx]._text\"></a>\n                <ng-container *ngIf=\"i._values[cIdx].text\">\n                  <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n                    <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n                  </nz-tag>\n                  <nz-badge *ngSwitchCase=\"'badge'\" [nzStatus]=\"i._values[cIdx].color\" [nzText]=\"i._values[cIdx].text\"></nz-badge>\n                </ng-container>\n                <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\"></ng-template>\n                <span *ngSwitchDefault [innerHTML]=\"i._values[cIdx]._text\" [attr.title]=\"isTruncate(c) ? i._values[cIdx].text : null\"></span>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of _validBtns(c.buttons, i, c); let last = last\">\n                <a *ngIf=\"btn.children.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n                  <span [innerHTML]=\"_btnText(i, btn)\"></span>\n                  <i nz-icon nzType=\"down\"></i>\n                </a>\n                <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of _validBtns(btn.children, i, c)\">\n                      <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                        <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn }\"> </ng-template>\n                      </li>\n                      <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown-menu>\n                <span *ngIf=\"btn.children.length == 0\" [class.st__btn-disabled]=\"btn._disabled\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"> </ng-template>\n                </span>\n                <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n              </ng-container>\n              <ng-template\n                [ngIf]=\"!c.__renderExpanded\"\n                [ngTemplateOutlet]=\"c.__renderExpanded\"\n                [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n              ></ng-template>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <ng-template [ngTemplateOutlet]=\"expand\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"></ng-template>\n      </tr>\n    </ng-template>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index = index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
-                        providers: [STDataSource, STRowSource, STColumnSource, STExport, theme.CNCurrencyPipe, theme.DatePipe, theme.YNPipe, common.DecimalPipe],
-                        host: {
-                            '[class.st]': "true",
-                            '[class.st__p-left]': "page.placement === 'left'",
-                            '[class.st__p-center]': "page.placement === 'center'",
-                            '[class.st__width-strict]': "widthMode.type === 'strict'",
-                            '[class.ant-table-rep]': "responsive",
-                            '[class.ant-table-rep__hide-header-footer]': "responsiveHideHeaderFooter",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: core.ChangeDetectionStrategy.OnPush,
-                        encapsulation: core.ViewEncapsulation.None
-                    }] }
-        ];
-        /** @nocollapse */
-        STComponent.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
-            { type: core.ChangeDetectorRef },
-            { type: router.Router },
-            { type: core.ElementRef },
-            { type: STExport },
-            { type: theme.ModalHelper },
-            { type: theme.DrawerHelper },
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-            { type: STColumnSource },
-            { type: STDataSource },
-            { type: theme.DelonLocaleService },
-            { type: util.AlainConfigService }
-        ]; };
-        STComponent.propDecorators = {
-            orgTable: [{ type: core.ViewChild, args: ['table', { static: false },] }],
-            req: [{ type: core.Input }],
-            res: [{ type: core.Input }],
-            page: [{ type: core.Input }],
-            data: [{ type: core.Input }],
-            columns: [{ type: core.Input }],
-            ps: [{ type: core.Input }],
-            pi: [{ type: core.Input }],
-            total: [{ type: core.Input }],
-            loading: [{ type: core.Input }],
-            loadingDelay: [{ type: core.Input }],
-            loadingIndicator: [{ type: core.Input }],
-            bordered: [{ type: core.Input }],
-            size: [{ type: core.Input }],
-            scroll: [{ type: core.Input }],
-            singleSort: [{ type: core.Input }],
-            multiSort: [{ type: core.Input }],
-            rowClassName: [{ type: core.Input }],
-            widthMode: [{ type: core.Input }],
-            header: [{ type: core.Input }],
-            footer: [{ type: core.Input }],
-            bodyHeader: [{ type: core.Input }],
-            body: [{ type: core.Input }],
-            expandRowByClick: [{ type: core.Input }],
-            expandAccordion: [{ type: core.Input }],
-            expand: [{ type: core.Input }],
-            noResult: [{ type: core.Input }],
-            widthConfig: [{ type: core.Input }],
-            rowClickTime: [{ type: core.Input }],
-            responsive: [{ type: core.Input }],
-            responsiveHideHeaderFooter: [{ type: core.Input }],
-            error: [{ type: core.Output }],
-            change: [{ type: core.Output }],
-            virtualScroll: [{ type: core.Input }],
-            virtualItemSize: [{ type: core.Input }],
-            virtualMaxBufferPx: [{ type: core.Input }],
-            virtualMinBufferPx: [{ type: core.Input }],
-            virtualForTrackBy: [{ type: core.Input }]
-        };
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "ps", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "pi", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "total", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "loadingDelay", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "bordered", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "expandRowByClick", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "expandAccordion", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "rowClickTime", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Boolean)
-        ], STComponent.prototype, "responsive", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Boolean)
-        ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
-        __decorate([
-            util.InputBoolean(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "virtualScroll", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "virtualItemSize", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "virtualMaxBufferPx", void 0);
-        __decorate([
-            util.InputNumber(),
-            __metadata("design:type", Object)
-        ], STComponent.prototype, "virtualMinBufferPx", void 0);
         return STComponent;
     }());
+    STComponent.decorators = [
+        { type: i0.Component, args: [{
+                    selector: 'st',
+                    exportAs: 'st',
+                    template: "<ng-template #btnTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"!btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </ng-container>\n  <span *ngIf=\"btn.tooltip\" nz-tooltip [nzTooltipTitle]=\"btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i let-btn=\"btn\">\n  <a\n    *ngIf=\"btn.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"btn.pop.title\"\n    [nzIcon]=\"btn.pop.icon\"\n    [nzCondition]=\"btn.pop.condition(i)\"\n    [nzCancelText]=\"btn.pop.cancelText\"\n    [nzOkText]=\"btn.pop.okText\"\n    [nzOkType]=\"btn.pop.okType\"\n    (nzOnConfirm)=\"_btnClick(i, btn, $event)\"\n    class=\"st__btn-text\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n  <a *ngIf=\"!btn.pop\" (click)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"btn.icon\">\n    <i\n      *ngIf=\"!btn.icon.iconfont\"\n      nz-icon\n      [nzType]=\"btn.icon.type\"\n      [nzTheme]=\"btn.icon.theme\"\n      [nzSpin]=\"btn.icon.spin\"\n      [nzTwotoneColor]=\"btn.icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"btn.icon.iconfont\" nz-icon [nzIconfont]=\"btn.icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"_btnText(i, btn)\" [ngClass]=\"{ 'pl-xs': btn.icon }\"></span>\n</ng-template>\n<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i *ngIf=\"i.optionalHelp\" class=\"st__head-tip\" nz-tooltip [nzTooltipTitle]=\"i.optionalHelp\" nz-icon nzType=\"question-circle\"></i>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label\n    nz-checkbox\n    class=\"st__checkall\"\n    [nzDisabled]=\"_allCheckedDisabled\"\n    [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\"\n    (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"\n  ></label>\n</ng-template>\n<nz-table\n  #table\n  [nzData]=\"_data\"\n  [(nzPageIndex)]=\"pi\"\n  (nzPageIndexChange)=\"_change('pi')\"\n  [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\"\n  [nzTotal]=\"total\"\n  [nzShowPagination]=\"_isPagination\"\n  [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\"\n  [nzSize]=\"size\"\n  [nzLoading]=\"_loading\"\n  [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\"\n  [nzTitle]=\"header\"\n  [nzFooter]=\"footer\"\n  [nzScroll]=\"scroll\"\n  [nzVirtualItemSize]=\"virtualItemSize\"\n  [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\"\n  [nzVirtualForTrackBy]=\"virtualForTrackBy\"\n  [nzNoResult]=\"noResult\"\n  [nzPageSizeOptions]=\"page.pageSizes\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\"\n  [nzShowSizeChanger]=\"page.showSize\"\n  [nzPaginationPosition]=\"page.position\"\n  [nzShowTotal]=\"totalTpl\"\n  [nzWidthConfig]=\"widthConfig\"\n>\n  <thead class=\"st__head\">\n    <tr *ngFor=\"let row of _headers; let rowFirst = first\">\n      <th *ngIf=\"rowFirst && expand\" nzWidth=\"50px\" [rowSpan]=\"_headers.length\"></th>\n      <th\n        *ngFor=\"let h of row; let index = index\"\n        [colSpan]=\"h.colSpan\"\n        [rowSpan]=\"h.rowSpan\"\n        [nzWidth]=\"h.column.width\"\n        [nzLeft]=\"!!h.column._left\"\n        [nzRight]=\"!!h.column._right\"\n        [ngClass]=\"h.column.className\"\n        [attr.data-col]=\"h.column.indexKey\"\n        [nzShowSort]=\"h.column._sort.enabled\"\n        [nzSortOrder]=\"h.column._sort.default\"\n        (nzSortOrderChange)=\"sort(h.column, index, $event)\"\n        [nzCustomFilter]=\"h.column.filter\"\n      >\n        <ng-template #renderTitle [ngTemplateOutlet]=\"h.column.__renderTitle\" [ngTemplateOutletContext]=\"{ $implicit: h.column, index: index }\"></ng-template>\n        <ng-container *ngIf=\"!h.column.__renderTitle; else renderTitle\">\n          <ng-container [ngSwitch]=\"h.column.type\">\n            <ng-container *ngSwitchCase=\"'checkbox'\">\n              <ng-container *ngIf=\"h.column.selections.length === 0\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: false }\"> </ng-template>\n              </ng-container>\n              <div *ngIf=\"h.column.selections.length > 0\" class=\"ant-table-selection\">\n                <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: true }\"> </ng-template>\n                <div\n                  *ngIf=\"h.column.selections.length\"\n                  nz-dropdown\n                  nzPlacement=\"bottomLeft\"\n                  [nzDropdownMenu]=\"selectionMenu\"\n                  class=\"ant-table-selection-down st__checkall-selection\"\n                >\n                  <i nz-icon nzType=\"down\"></i>\n                </div>\n                <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                  <ul nz-menu class=\"ant-table-selection-menu\">\n                    <li nz-menu-item *ngFor=\"let rw of h.column.selections\" (click)=\"_rowSelection(rw)\" [innerHTML]=\"rw.text\"></li>\n                  </ul>\n                </nz-dropdown-menu>\n              </div>\n            </ng-container>\n            <ng-container *ngSwitchDefault>\n              <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: h.column.title }\"></ng-template>\n            </ng-container>\n          </ng-container>\n        </ng-container>\n        <div\n          nz-th-extra\n          *ngIf=\"h.column.filter\"\n          class=\"ant-table-filter-trigger-container st__filter\"\n          [class.ant-table-filter-trigger-container-open]=\"h.column.filter.visible\"\n        >\n          <span\n            class=\"ant-table-filter-trigger\"\n            [class.active]=\"h.column.filter.visible || h.column.filter.default\"\n            nz-dropdown\n            [nzDropdownMenu]=\"filterMenu\"\n            nzTrigger=\"click\"\n            [nzClickHide]=\"false\"\n            [(nzVisible)]=\"h.column.filter.visible\"\n            nzOverlayClassName=\"st__filter-wrap\"\n            (click)=\"_filterClick($event)\"\n          >\n            <i nz-icon [nzType]=\"h.column.filter.icon.type\" [nzTheme]=\"h.column.filter.icon.theme\"></i>\n          </span>\n          <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n            <div class=\"ant-table-filter-dropdown\">\n              <ng-container [ngSwitch]=\"h.column.filter.type\">\n                <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n                  <input type=\"text\" nz-input [attr.placeholder]=\"h.column.filter.menus[0].text\" [(ngModel)]=\"h.column.filter.menus[0].value\" />\n                </div>\n                <ul *ngSwitchDefault nz-menu>\n                  <ng-container *ngIf=\"h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-checkbox [(ngModel)]=\"filter.checked\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                  <ng-container *ngIf=\"!h.column.filter.multiple\">\n                    <li nz-menu-item *ngFor=\"let filter of h.column.filter.menus\">\n                      <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"_filterRadio(h.column, filter, $event)\">{{ filter.text }}</label>\n                    </li>\n                  </ng-container>\n                </ul>\n              </ng-container>\n              <div class=\"ant-table-filter-dropdown-btns\">\n                <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterConfirm(h.column)\">{{ h.column.filter.confirmText || locale.filterConfirm }}</span>\n                </a>\n                <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"h.column.filter.visible = false\">\n                  <span (click)=\"_filterClear(h.column)\">{{ h.column.filter.clearText || locale.filterReset }}</span>\n                </a>\n              </div>\n            </div>\n          </nz-dropdown-menu>\n        </div>\n      </th>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"bodyHeader\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n    <ng-template #bodyTpl let-i let-index=\"index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [ngClass]=\"i._rowClassName\">\n        <td\n          *ngIf=\"expand\"\n          [nzShowExpand]=\"expand && i.showExpand !== false\"\n          [nzExpand]=\"i.expand\"\n          (nzExpandChange)=\"_expandChange(i, $event)\"\n          nzWidth=\"50px\"\n        ></td>\n        <td *ngFor=\"let c of _columns; let cIdx = index\" [nzLeft]=\"!!c._left\" [nzRight]=\"!!c._right\" [ngClass]=\"columnClass(c)\" [attr.colspan]=\"c.colSpan\">\n          <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n            <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: c.title }\"></ng-template>\n          </span>\n          <span>\n            <ng-template #render [ngTemplateOutlet]=\"c.__render\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label\n                  *ngSwitchCase=\"'checkbox'\"\n                  nz-checkbox\n                  [nzDisabled]=\"i.disabled\"\n                  [ngModel]=\"i.checked\"\n                  (ngModelChange)=\"_checkSelection(i, $event)\"\n                ></label>\n                <label *ngSwitchCase=\"'radio'\" nz-radio [nzDisabled]=\"i.disabled\" [ngModel]=\"i.checked\" (ngModelChange)=\"_refRadio($event, i)\"></label>\n                <a *ngSwitchCase=\"'link'\" (click)=\"_click($event, i, c)\" [innerHTML]=\"i._values[cIdx]._text\"></a>\n                <ng-container *ngIf=\"i._values[cIdx].text\">\n                  <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n                    <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n                  </nz-tag>\n                  <nz-badge *ngSwitchCase=\"'badge'\" [nzStatus]=\"i._values[cIdx].color\" [nzText]=\"i._values[cIdx].text\"></nz-badge>\n                </ng-container>\n                <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\"></ng-template>\n                <span *ngSwitchDefault [innerHTML]=\"i._values[cIdx]._text\" [attr.title]=\"isTruncate(c) ? i._values[cIdx].text : null\"></span>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of _validBtns(c.buttons, i, c); let last = last\">\n                <a *ngIf=\"btn.children.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n                  <span [innerHTML]=\"_btnText(i, btn)\"></span>\n                  <i nz-icon nzType=\"down\"></i>\n                </a>\n                <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of _validBtns(btn.children, i, c)\">\n                      <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                        <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn }\"> </ng-template>\n                      </li>\n                      <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown-menu>\n                <span *ngIf=\"btn.children.length == 0\" [class.st__btn-disabled]=\"btn._disabled\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"> </ng-template>\n                </span>\n                <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n              </ng-container>\n              <ng-template\n                [ngIf]=\"!c.__renderExpanded\"\n                [ngTemplateOutlet]=\"c.__renderExpanded\"\n                [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n              ></ng-template>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <ng-template [ngTemplateOutlet]=\"expand\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"></ng-template>\n      </tr>\n    </ng-template>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index = index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"> </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n",
+                    providers: [STDataSource, STRowSource, STColumnSource, STExport, theme.CNCurrencyPipe, theme.DatePipe, theme.YNPipe, common.DecimalPipe],
+                    host: {
+                        '[class.st]': "true",
+                        '[class.st__p-left]': "page.placement === 'left'",
+                        '[class.st__p-center]': "page.placement === 'center'",
+                        '[class.st__width-strict]': "widthMode.type === 'strict'",
+                        '[class.ant-table-rep]': "responsive",
+                        '[class.ant-table-rep__hide-header-footer]': "responsiveHideHeaderFooter",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                    encapsulation: i0.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    STComponent.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
+        { type: i0.ChangeDetectorRef },
+        { type: router.Router },
+        { type: i0.ElementRef },
+        { type: STExport },
+        { type: theme.ModalHelper },
+        { type: theme.DrawerHelper },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
+        { type: STColumnSource },
+        { type: STDataSource },
+        { type: theme.DelonLocaleService },
+        { type: util.AlainConfigService }
+    ]; };
+    STComponent.propDecorators = {
+        orgTable: [{ type: i0.ViewChild, args: ['table', { static: false },] }],
+        req: [{ type: i0.Input }],
+        res: [{ type: i0.Input }],
+        page: [{ type: i0.Input }],
+        data: [{ type: i0.Input }],
+        columns: [{ type: i0.Input }],
+        ps: [{ type: i0.Input }],
+        pi: [{ type: i0.Input }],
+        total: [{ type: i0.Input }],
+        loading: [{ type: i0.Input }],
+        loadingDelay: [{ type: i0.Input }],
+        loadingIndicator: [{ type: i0.Input }],
+        bordered: [{ type: i0.Input }],
+        size: [{ type: i0.Input }],
+        scroll: [{ type: i0.Input }],
+        singleSort: [{ type: i0.Input }],
+        multiSort: [{ type: i0.Input }],
+        rowClassName: [{ type: i0.Input }],
+        widthMode: [{ type: i0.Input }],
+        header: [{ type: i0.Input }],
+        footer: [{ type: i0.Input }],
+        bodyHeader: [{ type: i0.Input }],
+        body: [{ type: i0.Input }],
+        expandRowByClick: [{ type: i0.Input }],
+        expandAccordion: [{ type: i0.Input }],
+        expand: [{ type: i0.Input }],
+        noResult: [{ type: i0.Input }],
+        widthConfig: [{ type: i0.Input }],
+        rowClickTime: [{ type: i0.Input }],
+        responsive: [{ type: i0.Input }],
+        responsiveHideHeaderFooter: [{ type: i0.Input }],
+        error: [{ type: i0.Output }],
+        change: [{ type: i0.Output }],
+        virtualScroll: [{ type: i0.Input }],
+        virtualItemSize: [{ type: i0.Input }],
+        virtualMaxBufferPx: [{ type: i0.Input }],
+        virtualMinBufferPx: [{ type: i0.Input }],
+        virtualForTrackBy: [{ type: i0.Input }]
+    };
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "ps", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "pi", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "total", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "loadingDelay", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "bordered", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "expandRowByClick", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "expandAccordion", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "rowClickTime", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Boolean)
+    ], STComponent.prototype, "responsive", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Boolean)
+    ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualScroll", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualItemSize", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualMaxBufferPx", void 0);
+    __decorate([
+        util.InputNumber(),
+        __metadata("design:type", Object)
+    ], STComponent.prototype, "virtualMinBufferPx", void 0);
     if (false) {
         /**
          * @type {?}
@@ -5359,9 +3644,14 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: st-widget-host.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var STWidgetHostDirective = /** @class */ (function () {
+        /**
+         * @param {?} stWidgetRegistry
+         * @param {?} viewContainerRef
+         * @param {?} componentFactoryResolver
+         */
         function STWidgetHostDirective(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
             this.stWidgetRegistry = stWidgetRegistry;
             this.viewContainerRef = viewContainerRef;
@@ -5370,45 +3660,44 @@
         /**
          * @return {?}
          */
-        STWidgetHostDirective.prototype.ngOnInit = /**
-         * @return {?}
-         */
-        function () {
+        STWidgetHostDirective.prototype.ngOnInit = function () {
             /** @type {?} */
-            var widget = (/** @type {?} */ (this.column.widget));
+            var widget = ( /** @type {?} */(this.column.widget));
             /** @type {?} */
             var componentType = this.stWidgetRegistry.get(widget.type);
             /** @type {?} */
-            var componentFactory = this.componentFactoryResolver.resolveComponentFactory((/** @type {?} */ (componentType)));
+            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(( /** @type {?} */(componentType)));
             this.viewContainerRef.clear();
             /** @type {?} */
             var componentRef = this.viewContainerRef.createComponent(componentFactory);
             var _a = this, record = _a.record, column = _a.column;
             /** @type {?} */
             var data = widget.params ? widget.params({ record: record, column: column }) : { record: record };
-            Object.keys(data).forEach((/**
+            Object.keys(data).forEach(( /**
              * @param {?} key
              * @return {?}
-             */
-            function (key) {
-                ((/** @type {?} */ (componentRef.instance)))[key] = data[key];
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                (( /** @type {?} */(componentRef.instance)))[key] = data[key];
             }));
-        };
-        STWidgetHostDirective.decorators = [
-            { type: core.Directive, args: [{ selector: '[st-widget-host]' },] }
-        ];
-        /** @nocollapse */
-        STWidgetHostDirective.ctorParameters = function () { return [
-            { type: STWidgetRegistry },
-            { type: core.ViewContainerRef },
-            { type: core.ComponentFactoryResolver }
-        ]; };
-        STWidgetHostDirective.propDecorators = {
-            record: [{ type: core.Input }],
-            column: [{ type: core.Input }]
         };
         return STWidgetHostDirective;
     }());
+    STWidgetHostDirective.decorators = [
+        { type: i0.Directive, args: [{ selector: '[st-widget-host]' },] }
+    ];
+    /** @nocollapse */
+    STWidgetHostDirective.ctorParameters = function () { return [
+        { type: STWidgetRegistry },
+        { type: i0.ViewContainerRef },
+        { type: i0.ComponentFactoryResolver }
+    ]; };
+    STWidgetHostDirective.propDecorators = {
+        record: [{ type: i0.Input }],
+        column: [{ type: i0.Input }]
+    };
     if (false) {
         /** @type {?} */
         STWidgetHostDirective.prototype.record;
@@ -5431,11 +3720,6 @@
         STWidgetHostDirective.prototype.componentFactoryResolver;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /** @type {?} */
     var COMPONENTS = [STComponent];
     /** @type {?} */
@@ -5443,32 +3727,38 @@
     var STModule = /** @class */ (function () {
         function STModule() {
         }
-        STModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [
-                            common.CommonModule,
-                            forms.FormsModule,
-                            util.DelonUtilModule,
-                            acl.DelonACLModule,
-                            popconfirm.NzPopconfirmModule,
-                            table.NzTableModule,
-                            icon.NzIconModule,
-                            badge.NzBadgeModule,
-                            checkbox.NzCheckboxModule,
-                            divider.NzDividerModule,
-                            dropdown.NzDropDownModule,
-                            menu.NzMenuModule,
-                            radio.NzRadioModule,
-                            tag.NzTagModule,
-                            input.NzInputModule,
-                            tooltip.NzToolTipModule,
-                        ],
-                        declarations: __spread(COMPONENTS, DIRECTIVES),
-                        exports: __spread(COMPONENTS, DIRECTIVES),
-                    },] }
-        ];
         return STModule;
     }());
+    STModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    imports: [
+                        common.CommonModule,
+                        forms.FormsModule,
+                        util.DelonUtilModule,
+                        acl.DelonACLModule,
+                        popconfirm.NzPopconfirmModule,
+                        table.NzTableModule,
+                        icon.NzIconModule,
+                        badge.NzBadgeModule,
+                        checkbox.NzCheckboxModule,
+                        divider.NzDividerModule,
+                        dropdown.NzDropDownModule,
+                        menu.NzMenuModule,
+                        radio.NzRadioModule,
+                        tag.NzTagModule,
+                        input.NzInputModule,
+                        tooltip.NzToolTipModule,
+                    ],
+                    declarations: __spread(COMPONENTS, DIRECTIVES),
+                    exports: __spread(COMPONENTS, DIRECTIVES),
+                },] }
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: table.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     exports.STColumnSource = STColumnSource;
     exports.STComponent = STComponent;

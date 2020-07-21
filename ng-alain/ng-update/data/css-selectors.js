@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.cssSelectors = void 0;
 const target_version_1 = require("../target-version");
 exports.cssSelectors = {
     [target_version_1.TargetVersion.V2]: [

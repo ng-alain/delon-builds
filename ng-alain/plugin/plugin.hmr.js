@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.pluginHmr = void 0;
 const alain_1 = require("../utils/alain");
 const contents_1 = require("../utils/contents");
 const json_1 = require("../utils/json");

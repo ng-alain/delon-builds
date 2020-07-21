@@ -1,10 +1,8 @@
 {
   "main": "../bundles/reuseTab.umd.js",
-  "module": "../fesm5/reuseTab.js",
+  "module": "../fesm2015/reuseTab.js",
   "es2015": "../fesm2015/reuseTab.js",
-  "esm5": "../esm5/reuse-tab/reuseTab.js",
   "esm2015": "../esm2015/reuse-tab/reuseTab.js",
-  "fesm5": "../fesm5/reuseTab.js",
   "fesm2015": "../fesm2015/reuseTab.js",
   "typings": "reuseTab.d.ts",
   "metadata": "reuseTab.metadata.json",

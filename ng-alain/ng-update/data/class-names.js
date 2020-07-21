@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.classNames = void 0;
 const target_version_1 = require("../target-version");
 exports.classNames = {
     [target_version_1.TargetVersion.V2]: [

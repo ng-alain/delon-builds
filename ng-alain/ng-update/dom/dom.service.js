@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.DomService = void 0;
 // tslint:disable:no-string-literal
 const domhandler_1 = require("domhandler");
 const htmlparser2 = require("htmlparser2");

@@ -1,10 +1,8 @@
 {
   "main": "../bundles/bar.umd.js",
-  "module": "../fesm5/bar.js",
+  "module": "../fesm2015/bar.js",
   "es2015": "../fesm2015/bar.js",
-  "esm5": "../esm5/bar/bar.js",
   "esm2015": "../esm2015/bar/bar.js",
-  "fesm5": "../fesm5/bar.js",
   "fesm2015": "../fesm2015/bar.js",
   "typings": "bar.d.ts",
   "metadata": "bar.metadata.json",

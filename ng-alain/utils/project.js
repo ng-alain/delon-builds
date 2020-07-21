@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getProject = exports.getProjectFromWorkspace = exports.getWorkspace = exports.ANGULAR_CLI_WORKSPACE_PATH = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 exports.ANGULAR_CLI_WORKSPACE_PATH = '/angular.json';

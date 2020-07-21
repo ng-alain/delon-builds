@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.findOutputsOnElementWithAttr = exports.findOutputsOnElementWithTag = exports.findInputsOnElementWithAttr = exports.findInputsOnElementWithTag = void 0;
 const elements_1 = require("./elements");
 /** Finds the specified Angular @Input in the given elements with tag name. */
 function findInputsOnElementWithTag(html, inputName, tagNames) {

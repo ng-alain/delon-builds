@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createTestApp = exports.createAlainAndModuleApp = exports.createAlainApp = exports.createAlainRunner = exports.createNgRunner = exports.APPNAME = void 0;
 const testing_1 = require("@angular-devkit/schematics/testing");
 const path_1 = require("path");
 exports.APPNAME = 'foo';

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Walker = exports.Rule = void 0;
 const chalk = require("chalk");
 const tslint_1 = require("tslint");
 const elements_1 = require("../../html-parsing/elements");

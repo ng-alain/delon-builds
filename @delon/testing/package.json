@@ -1,6 +1,6 @@
 {
   "name": "@delon/testing",
-  "version": "9.5.5",
+  "version": "9.5.5-249807c7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -18,16 +18,14 @@
     "testing"
   ],
   "main": "bundles/testing.umd.js",
-  "module": "fesm5/testing.js",
+  "module": "fesm2015/testing.js",
   "es2015": "fesm2015/testing.js",
-  "esm5": "esm5/testing.js",
   "esm2015": "esm2015/testing.js",
-  "fesm5": "fesm5/testing.js",
   "fesm2015": "fesm2015/testing.js",
   "typings": "testing.d.ts",
   "metadata": "testing.metadata.json",
   "sideEffects": false,
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.0.0"
   }
 }

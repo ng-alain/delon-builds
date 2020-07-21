@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.createUpgradeRule = void 0;
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const glob_1 = require("glob");
 const project_tsconfig_paths_1 = require("./project-tsconfig-paths");

@@ -1,10 +1,8 @@
 {
   "main": "../bundles/number-info.umd.js",
-  "module": "../fesm5/number-info.js",
+  "module": "../fesm2015/number-info.js",
   "es2015": "../fesm2015/number-info.js",
-  "esm5": "../esm5/number-info/number-info.js",
   "esm2015": "../esm2015/number-info/number-info.js",
-  "fesm5": "../fesm5/number-info.js",
   "fesm2015": "../fesm2015/number-info.js",
   "typings": "number-info.d.ts",
   "metadata": "number-info.metadata.json",

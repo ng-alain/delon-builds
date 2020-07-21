@@ -1,8 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export { FooterToolbarComponent } from './footer-toolbar.component';
-export { FooterToolbarModule } from './footer-toolbar.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvZm9vdGVyLXRvb2xiYXIvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLHNCQUFzQixFQUFFLE1BQU0sNEJBQTRCLENBQUM7QUFDcEUsT0FBTyxFQUFFLG1CQUFtQixFQUFFLE1BQU0seUJBQXlCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgeyBGb290ZXJUb29sYmFyQ29tcG9uZW50IH0gZnJvbSAnLi9mb290ZXItdG9vbGJhci5jb21wb25lbnQnO1xuZXhwb3J0IHsgRm9vdGVyVG9vbGJhck1vZHVsZSB9IGZyb20gJy4vZm9vdGVyLXRvb2xiYXIubW9kdWxlJztcbiJdfQ==

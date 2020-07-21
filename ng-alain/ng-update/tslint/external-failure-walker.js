@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ExternalFailureWalker = void 0;
 const tslint_1 = require("tslint");
 /**
  * Enhanced TSLint rule walker that makes it easier to create rule failures that don't belong to

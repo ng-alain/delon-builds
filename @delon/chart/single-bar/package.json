@@ -1,10 +1,8 @@
 {
   "main": "../bundles/single-bar.umd.js",
-  "module": "../fesm5/single-bar.js",
+  "module": "../fesm2015/single-bar.js",
   "es2015": "../fesm2015/single-bar.js",
-  "esm5": "../esm5/single-bar/single-bar.js",
   "esm2015": "../esm2015/single-bar/single-bar.js",
-  "fesm5": "../fesm5/single-bar.js",
   "fesm2015": "../fesm2015/single-bar.js",
   "typings": "single-bar.d.ts",
   "metadata": "single-bar.metadata.json",

@@ -1,10 +1,8 @@
 {
   "main": "../bundles/timeline.umd.js",
-  "module": "../fesm5/timeline.js",
+  "module": "../fesm2015/timeline.js",
   "es2015": "../fesm2015/timeline.js",
-  "esm5": "../esm5/timeline/timeline.js",
   "esm2015": "../esm2015/timeline/timeline.js",
-  "fesm5": "../fesm5/timeline.js",
   "fesm2015": "../fesm2015/timeline.js",
   "typings": "timeline.d.ts",
   "metadata": "timeline.metadata.json",

@@ -1,8 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export { EllipsisComponent } from './ellipsis.component';
-export { EllipsisModule } from './ellipsis.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0BkZWxvbi9hYmMvZWxsaXBzaXMvIiwic291cmNlcyI6WyJwdWJsaWNfYXBpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sc0JBQXNCLENBQUM7QUFDekQsT0FBTyxFQUFFLGNBQWMsRUFBRSxNQUFNLG1CQUFtQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IHsgRWxsaXBzaXNDb21wb25lbnQgfSBmcm9tICcuL2VsbGlwc2lzLmNvbXBvbmVudCc7XG5leHBvcnQgeyBFbGxpcHNpc01vZHVsZSB9IGZyb20gJy4vZWxsaXBzaXMubW9kdWxlJztcbiJdfQ==

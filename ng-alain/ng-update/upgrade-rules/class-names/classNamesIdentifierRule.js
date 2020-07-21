@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Walker = exports.Rule = void 0;
 const chalk = require("chalk");
 const tslint_1 = require("tslint");
 const ts = require("typescript");

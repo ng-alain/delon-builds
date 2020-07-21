@@ -1,10 +1,8 @@
 {
   "main": "../bundles/grid.umd.js",
-  "module": "../fesm5/grid.js",
+  "module": "../fesm2015/grid.js",
   "es2015": "../fesm2015/grid.js",
-  "esm5": "../esm5/sg/grid.js",
   "esm2015": "../esm2015/sg/grid.js",
-  "fesm5": "../fesm5/grid.js",
   "fesm2015": "../fesm2015/grid.js",
   "typings": "grid.d.ts",
   "metadata": "grid.metadata.json",

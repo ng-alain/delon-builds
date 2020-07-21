@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getUpgradeDataFromWalker = exports.getAllChanges = exports.getChangesForTarget = exports.delonUpgradeData = void 0;
 const data_1 = require("./data");
 const target_version_1 = require("./target-version");
 exports.delonUpgradeData = {

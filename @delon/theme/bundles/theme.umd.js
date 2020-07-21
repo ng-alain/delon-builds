@@ -7,10 +7,67 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, acl, rxjs, operators, platform, common, util, platformBrowser, router, modal, drawer, http, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, router, i1$3, i1$4, i1$5, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
     formatDistanceToNow = formatDistanceToNow && Object.prototype.hasOwnProperty.call(formatDistanceToNow, 'default') ? formatDistanceToNow['default'] : formatDistanceToNow;
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/win_tokens.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
+    function WINDOW_FACTORY() {
+        return typeof window === 'object' && !!window ? window : null;
+    }
+    /** @type {?} */
+    var WINDOW = new i0.InjectionToken('Window', {
+        providedIn: 'root',
+        factory: WINDOW_FACTORY,
+    });
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/preloader/preloader.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
+    function preloaderFinished() {
+        /** @type {?} */
+        var body = ( /** @type {?} */(document.querySelector('body')));
+        /** @type {?} */
+        var preloader = ( /** @type {?} */(document.querySelector('.preloader')));
+        body.style.overflow = 'hidden';
+        /**
+         * @return {?}
+         */
+        function remove() {
+            // preloader value null when running --hmr
+            if (!preloader)
+                return;
+            preloader.addEventListener('transitionend', ( /**
+             * @return {?}
+             */function () {
+                preloader.className = 'preloader-hidden';
+            }));
+            preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
+        }
+        (( /** @type {?} */(window))).appBootstrap = ( /**
+         * @return {?}
+         */function () {
+            setTimeout(( /**
+             * @return {?}
+             */function () {
+                remove();
+                body.style.overflow = '';
+            }), 100);
+        });
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -27,35 +84,36 @@
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
+    var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
         return extendStatics(d, b);
     };
-
     function __extends(d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
-
-    var __assign = function() {
+    var __assign = function () {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
-
     function __rest(s, e) {
         var t = {};
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
             for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
                 if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
@@ -63,166 +121,247 @@
             }
         return t;
     }
-
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
-
     function __param(paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); }
+        return function (target, key) { decorator(target, key, paramIndex); };
     }
-
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
     }
-
     function __awaiter(thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
             function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
-
     function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
         function verb(n) { return function (v) { return step([n, v]); }; }
         function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (_) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
                 }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
-
-    function __createBinding(o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
+    var __createBinding = Object.create ? (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+    }) : (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
         o[k2] = m[k];
-    }
-
+    });
     function __exportStar(m, exports) {
-        for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+        for (var p in m)
+            if (p !== "default" && !exports.hasOwnProperty(p))
+                __createBinding(exports, m, p);
     }
-
     function __values(o) {
         var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m) return m.call(o);
-        if (o && typeof o.length === "number") return {
-            next: function () {
-                if (o && i >= o.length) o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
+        if (m)
+            return m.call(o);
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
         throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
-
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m) return o;
+        if (!m)
+            return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
         }
-        catch (error) { e = { error: error }; }
+        catch (error) {
+            e = { error: error };
+        }
         finally {
             try {
-                if (r && !r.done && (m = i["return"])) m.call(i);
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
             }
-            finally { if (e) throw e.error; }
+            finally {
+                if (e)
+                    throw e.error;
+            }
         }
         return ar;
     }
-
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
-
     function __spreadArrays() {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
         for (var r = Array(s), k = 0, i = 0; i < il; i++)
             for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
                 r[k] = a[j];
         return r;
-    };
-
+    }
+    ;
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
     }
-
     function __asyncGenerator(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var g = generator.apply(thisArg, _arguments || []), i, q = [];
         return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
         function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
         function fulfill(value) { resume("next", value); }
         function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
     }
-
     function __asyncDelegator(o) {
         var i, p;
         return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
         function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
     }
-
     function __asyncValues(o) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var m = o[Symbol.asyncIterator], i;
         return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
         function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
     }
-
     function __makeTemplateObject(cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
         return cooked;
+    }
+    ;
+    var __setModuleDefault = Object.create ? (function (o, v) {
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function (o, v) {
+        o["default"] = v;
     };
-
     function __importStar(mod) {
-        if (mod && mod.__esModule) return mod;
+        if (mod && mod.__esModule)
+            return mod;
         var result = {};
-        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-        result.default = mod;
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k))
+                    __createBinding(result, mod, k);
+        __setModuleDefault(result, mod);
         return result;
     }
-
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
-
     function __classPrivateFieldGet(receiver, privateMap) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to get private field on non-instance");
         }
         return privateMap.get(receiver);
     }
-
     function __classPrivateFieldSet(receiver, privateMap, value) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to set private field on non-instance");
@@ -233,252 +372,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: src/win_tokens.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @return {?}
-     */
-    function WINDOW_FACTORY() {
-        return typeof window === 'object' && !!window ? window : null;
-    }
-    /** @type {?} */
-    var WINDOW = new core.InjectionToken('Window', {
-        providedIn: 'root',
-        factory: WINDOW_FACTORY,
-    });
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/services/preloader/preloader.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @return {?}
-     */
-    function preloaderFinished() {
-        /** @type {?} */
-        var body = (/** @type {?} */ (document.querySelector('body')));
-        /** @type {?} */
-        var preloader = (/** @type {?} */ (document.querySelector('.preloader')));
-        body.style.overflow = 'hidden';
-        /**
-         * @return {?}
-         */
-        function remove() {
-            // preloader value null when running --hmr
-            if (!preloader)
-                return;
-            preloader.addEventListener('transitionend', (/**
-             * @return {?}
-             */
-            function () {
-                preloader.className = 'preloader-hidden';
-            }));
-            preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
-        }
-        ((/** @type {?} */ (window))).appBootstrap = (/**
-         * @return {?}
-         */
-        function () {
-            setTimeout((/**
-             * @return {?}
-             */
-            function () {
-                remove();
-                body.style.overflow = '';
-            }), 100);
-        });
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/services/menu/interface.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function MenuIcon() { }
-    if (false) {
-        /**
-         * Type for icon
-         * @type {?}
-         */
-        MenuIcon.prototype.type;
-        /**
-         * Value for the icon, can be set Class Name, nz-icon of `nzType`, image
-         * @type {?|undefined}
-         */
-        MenuIcon.prototype.value;
-        /**
-         * Type of the ant design icon, default: `outline`
-         * @type {?|undefined}
-         */
-        MenuIcon.prototype.theme;
-        /**
-         * Rotate icon with animation, default: `false`
-         * @type {?|undefined}
-         */
-        MenuIcon.prototype.spin;
-        /**
-         * Only support the two-tone icon. Specific the primary color
-         * @type {?|undefined}
-         */
-        MenuIcon.prototype.twoToneColor;
-        /**
-         * Type of the icon from iconfont
-         * @type {?|undefined}
-         */
-        MenuIcon.prototype.iconfont;
-    }
-    /**
-     * @record
-     */
-    function Menu() { }
-    if (false) {
-        /**
-         * Text of menu item, can be choose one of  `text` or `i18n` (Support HTML)
-         * @type {?|undefined}
-         */
-        Menu.prototype.text;
-        /**
-         * I18n key of menu item, can be choose one of  `text` or `i18n` (Support HTML)
-         * @type {?|undefined}
-         */
-        Menu.prototype.i18n;
-        /**
-         * Whether to display the group name, default: `true`
-         * @type {?|undefined}
-         */
-        Menu.prototype.group;
-        /**
-         * Routing for the menu item, can be choose one of `link` or `externalLink`
-         * @type {?|undefined}
-         */
-        Menu.prototype.link;
-        /**
-         * External link for the menu item, can be choose one of `link` or `externalLink`
-         * @type {?|undefined}
-         */
-        Menu.prototype.externalLink;
-        /**
-         * Specifies `externalLink` where to display the linked URL
-         * @type {?|undefined}
-         */
-        Menu.prototype.target;
-        /**
-         * Icon for the menu item, only valid for the first level menu
-         * @type {?|undefined}
-         */
-        Menu.prototype.icon;
-        /**
-         * Badget for the menu item when `group` is `true`
-         * @type {?|undefined}
-         */
-        Menu.prototype.badge;
-        /**
-         * Whether to display a red dot instead of `badge` value
-         * @type {?|undefined}
-         */
-        Menu.prototype.badgeDot;
-        /**
-         * Badge [color](https://ng.ant.design/components/badge/en#nz-badge)
-         * @type {?|undefined}
-         */
-        Menu.prototype.badgeStatus;
-        /**
-         * Whether disable for the menu item
-         * @type {?|undefined}
-         */
-        Menu.prototype.disabled;
-        /**
-         * Whether hidden for the menu item
-         * @type {?|undefined}
-         */
-        Menu.prototype.hide;
-        /**
-         * Whether hide in breadcrumbs, which are valid when the `page-header` component automatically generates breadcrumbs
-         * @type {?|undefined}
-         */
-        Menu.prototype.hideInBreadcrumb;
-        /**
-         * ACL configuration, it's equivalent to `ACLService.can(roleOrAbility: ACLCanType)` parameter value
-         * @type {?|undefined}
-         */
-        Menu.prototype.acl;
-        /**
-         * Whether shortcut menu item
-         * @type {?|undefined}
-         */
-        Menu.prototype.shortcut;
-        /**
-         * Wheter shortcut menu root node
-         * @type {?|undefined}
-         */
-        Menu.prototype.shortcutRoot;
-        /**
-         * Whether to allow reuse, need to cooperate with the `reuse-tab` component
-         * @type {?|undefined}
-         */
-        Menu.prototype.reuse;
-        /**
-         * Whether to expand, when `checkStrictly` is valid in `sidebar-nav` component
-         * @type {?|undefined}
-         */
-        Menu.prototype.open;
-        /**
-         * Unique identifier of the menu item, can be used in `getItem`,` setItem` to update a menu
-         * @type {?|undefined}
-         */
-        Menu.prototype.key;
-        /**
-         * Children menu of menu item
-         * @type {?|undefined}
-         */
-        Menu.prototype.children;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._id;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._parent;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._depth;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._hidden;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._selected;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._open;
-        /**
-         * \@inner Not recommended
-         * @type {?|undefined}
-         */
-        Menu.prototype._aclResult;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: src/services/i18n/i18n.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @record
@@ -515,7 +410,7 @@
         AlainI18NService.prototype.fanyi = function (key, params, isSafe) { };
     }
     /** @type {?} */
-    var ALAIN_I18N_TOKEN = new core.InjectionToken('alainTranslatorToken', {
+    var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainTranslatorToken', {
         providedIn: 'root',
         factory: ALAIN_I18N_TOKEN_FACTORY,
     });
@@ -530,56 +425,47 @@
             this.change$ = new rxjs.BehaviorSubject(null);
         }
         Object.defineProperty(AlainI18NServiceFake.prototype, "change", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
-                return (/** @type {?} */ (this.change$.asObservable().pipe(operators.filter((/**
+            get: function () {
+                return ( /** @type {?} */(this.change$.asObservable().pipe(operators.filter(( /**
                  * @param {?} w
                  * @return {?}
-                 */
-                function (w) { return w != null; })))));
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w != null; })))));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @param {?} lang
          * @return {?}
          */
-        AlainI18NServiceFake.prototype.use = /**
-         * @param {?} lang
-         * @return {?}
-         */
-        function (lang) {
+        AlainI18NServiceFake.prototype.use = function (lang) {
             this.change$.next(lang);
         };
         /**
          * @return {?}
          */
-        AlainI18NServiceFake.prototype.getLangs = /**
-         * @return {?}
-         */
-        function () {
+        AlainI18NServiceFake.prototype.getLangs = function () {
             return [];
         };
         /**
          * @param {?} key
          * @return {?}
          */
-        AlainI18NServiceFake.prototype.fanyi = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        AlainI18NServiceFake.prototype.fanyi = function (key) {
             return key;
         };
-        AlainI18NServiceFake.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */ AlainI18NServiceFake.ɵprov = core.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
         return AlainI18NServiceFake;
     }());
+    AlainI18NServiceFake.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -589,33 +475,31 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: src/services/menu/menu.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
      */
     var MenuService = /** @class */ (function () {
+        /**
+         * @param {?} i18nSrv
+         * @param {?} aclService
+         */
         function MenuService(i18nSrv, aclService) {
             var _this = this;
             this.i18nSrv = i18nSrv;
             this.aclService = aclService;
             this._change$ = new rxjs.BehaviorSubject([]);
             this.data = [];
-            this.i18n$ = this.i18nSrv.change.subscribe((/**
+            this.i18n$ = this.i18nSrv.change.subscribe(( /**
              * @return {?}
-             */
-            function () { return _this.resume(); }));
+             */function () { return _this.resume(); }));
         }
         Object.defineProperty(MenuService.prototype, "change", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._change$.pipe(operators.share());
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
@@ -623,20 +507,14 @@
          * @param {?} callback
          * @return {?}
          */
-        MenuService.prototype.visit = /**
-         * @param {?} data
-         * @param {?} callback
-         * @return {?}
-         */
-        function (data, callback) {
+        MenuService.prototype.visit = function (data, callback) {
             /** @type {?} */
-            var inFn = (/**
+            var inFn = ( /**
              * @param {?} list
              * @param {?} parentMenu
              * @param {?} depth
              * @return {?}
-             */
-            function (list, parentMenu, depth) {
+             */function (list, parentMenu, depth) {
                 var e_1, _a;
                 try {
                     for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
@@ -664,40 +542,27 @@
          * @param {?} items
          * @return {?}
          */
-        MenuService.prototype.add = /**
-         * @param {?} items
-         * @return {?}
-         */
-        function (items) {
+        MenuService.prototype.add = function (items) {
             this.data = items;
             this.resume();
         };
         /**
          * 重置菜单，可能I18N、用户权限变动时需要调用刷新
-         */
-        /**
-         * 重置菜单，可能I18N、用户权限变动时需要调用刷新
          * @param {?=} callback
          * @return {?}
          */
-        MenuService.prototype.resume = /**
-         * 重置菜单，可能I18N、用户权限变动时需要调用刷新
-         * @param {?=} callback
-         * @return {?}
-         */
-        function (callback) {
+        MenuService.prototype.resume = function (callback) {
             var _this = this;
             /** @type {?} */
             var i = 1;
             /** @type {?} */
             var shortcuts = [];
-            this.visit(this.data, (/**
+            this.visit(this.data, ( /**
              * @param {?} item
              * @param {?} parent
              * @param {?} depth
              * @return {?}
-             */
-            function (item, parent, depth) {
+             */function (item, parent, depth) {
                 item._aclResult = true;
                 item._id = i++;
                 item._parent = parent;
@@ -732,10 +597,10 @@
                     else if (/^https?:\/\//.test(item.icon)) {
                         type = 'img';
                     }
-                    item.icon = (/** @type {?} */ ({ type: type, value: value }));
+                    item.icon = ( /** @type {?} */({ type: type, value: value }));
                 }
                 if (item.icon != null) {
-                    item.icon = __assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
+                    item.icon = Object.assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
                 }
                 item.text = item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
                 // group
@@ -762,98 +627,80 @@
          *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
          *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
          *      3、否则放在0节点位置
-         */
-        /**
-         * 加载快捷菜单，加载位置规则如下：
-         * 1、统一在下标0的节点下（即【主导航】节点下方）
-         *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
-         *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
-         *      3、否则放在0节点位置
          * @private
          * @param {?} shortcuts
          * @return {?}
          */
-        MenuService.prototype.loadShortcut = /**
-         * 加载快捷菜单，加载位置规则如下：
-         * 1、统一在下标0的节点下（即【主导航】节点下方）
-         *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
-         *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
-         *      3、否则放在0节点位置
-         * @private
-         * @param {?} shortcuts
-         * @return {?}
-         */
-        function (shortcuts) {
+        MenuService.prototype.loadShortcut = function (shortcuts) {
             if (shortcuts.length === 0 || this.data.length === 0) {
                 return;
             }
             /** @type {?} */
-            var ls = (/** @type {?} */ (this.data[0].children));
+            var ls = ( /** @type {?} */(this.data[0].children));
             /** @type {?} */
-            var pos = ls.findIndex((/**
+            var pos = ls.findIndex(( /**
              * @param {?} w
              * @return {?}
-             */
-            function (w) { return w.shortcutRoot === true; }));
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.shortcutRoot === true; }));
             if (pos === -1) {
-                pos = ls.findIndex((/**
+                pos = ls.findIndex(( /**
                  * @param {?} w
                  * @return {?}
-                 */
-                function (w) { return (/** @type {?} */ (w.link)).includes('dashboard'); }));
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return ( /** @type {?} */(w.link)).includes('dashboard'); }));
                 pos = (pos !== -1 ? pos : -1) + 1;
                 /** @type {?} */
-                var shortcutMenu = (/** @type {?} */ ({
+                var shortcutMenu = ( /** @type {?} */({
                     text: '快捷菜单',
                     i18n: 'shortcut',
                     icon: 'icon-rocket',
                     children: [],
                 }));
-                (/** @type {?} */ (this.data[0].children)).splice(pos, 0, shortcutMenu);
+                ( /** @type {?} */(this.data[0].children)).splice(pos, 0, shortcutMenu);
             }
             /** @type {?} */
-            var _data = (/** @type {?} */ (this.data[0].children))[pos];
+            var _data = ( /** @type {?} */(this.data[0].children))[pos];
             if (_data.i18n && this.i18nSrv)
                 _data.text = this.i18nSrv.fanyi(_data.i18n);
             // tslint:disable-next-line:prefer-object-spread
-            _data = Object.assign(_data, (/** @type {?} */ ({
+            _data = Object.assign(_data, ( /** @type {?} */({
                 shortcutRoot: true,
                 _id: -1,
                 _parent: null,
                 _depth: 1,
             })));
-            _data.children = shortcuts.map((/**
+            _data.children = shortcuts.map(( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) {
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) {
                 i._depth = 2;
                 i._parent = _data;
                 return i;
             }));
         };
         Object.defineProperty(MenuService.prototype, "menus", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this.data;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * 清空菜单
-         */
-        /**
-         * 清空菜单
          * @return {?}
          */
-        MenuService.prototype.clear = /**
-         * 清空菜单
-         * @return {?}
-         */
-        function () {
+        MenuService.prototype.clear = function () {
             this.data = [];
             this._change$.next(this.data);
         };
@@ -864,24 +711,19 @@
          * @param {?=} cb
          * @return {?}
          */
-        MenuService.prototype.getHit = /**
-         * @param {?} data
-         * @param {?} url
-         * @param {?=} recursive
-         * @param {?=} cb
-         * @return {?}
-         */
-        function (data, url, recursive, cb) {
+        MenuService.prototype.getHit = function (data, url, recursive, cb) {
             if (recursive === void 0) { recursive = false; }
             if (cb === void 0) { cb = null; }
             /** @type {?} */
             var item = null;
             while (!item && url) {
-                this.visit(data, (/**
+                this.visit(data, ( /**
                  * @param {?} i
                  * @return {?}
-                 */
-                function (i) {
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) {
                     if (cb) {
                         cb(i);
                     }
@@ -904,33 +746,22 @@
          * 根据URL设置菜单 `_open` 属性
          * - 若 `recursive: true` 则会自动向上递归查找
          *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-         */
-        /**
-         * 根据URL设置菜单 `_open` 属性
-         * - 若 `recursive: true` 则会自动向上递归查找
-         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
          * @param {?} url
          * @param {?=} recursive
          * @return {?}
          */
-        MenuService.prototype.openedByUrl = /**
-         * 根据URL设置菜单 `_open` 属性
-         * - 若 `recursive: true` 则会自动向上递归查找
-         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-         * @param {?} url
-         * @param {?=} recursive
-         * @return {?}
-         */
-        function (url, recursive) {
+        MenuService.prototype.openedByUrl = function (url, recursive) {
             if (recursive === void 0) { recursive = false; }
             if (!url)
                 return;
             /** @type {?} */
-            var findItem = this.getHit(this.data, url, recursive, (/**
+            var findItem = this.getHit(this.data, url, recursive, ( /**
              * @param {?} i
              * @return {?}
-             */
-            function (i) {
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) {
                 i._selected = false;
                 i._open = false;
             }));
@@ -939,31 +770,18 @@
             do {
                 findItem._selected = true;
                 findItem._open = true;
-                findItem = (/** @type {?} */ (findItem._parent));
+                findItem = ( /** @type {?} */(findItem._parent));
             } while (findItem);
         };
         /**
          * 根据url获取菜单列表
          * - 若 `recursive: true` 则会自动向上递归查找
          *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-         */
-        /**
-         * 根据url获取菜单列表
-         * - 若 `recursive: true` 则会自动向上递归查找
-         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
          * @param {?} url
          * @param {?=} recursive
          * @return {?}
          */
-        MenuService.prototype.getPathByUrl = /**
-         * 根据url获取菜单列表
-         * - 若 `recursive: true` 则会自动向上递归查找
-         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-         * @param {?} url
-         * @param {?=} recursive
-         * @return {?}
-         */
-        function (url, recursive) {
+        MenuService.prototype.getPathByUrl = function (url, recursive) {
             if (recursive === void 0) { recursive = false; }
             /** @type {?} */
             var ret = [];
@@ -973,31 +791,25 @@
                 return ret;
             do {
                 ret.splice(0, 0, item);
-                item = (/** @type {?} */ (item._parent));
+                item = ( /** @type {?} */(item._parent));
             } while (item);
             return ret;
         };
         /**
          * Get menu based on `key`
-         */
-        /**
-         * Get menu based on `key`
          * @param {?} key
          * @return {?}
          */
-        MenuService.prototype.getItem = /**
-         * Get menu based on `key`
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        MenuService.prototype.getItem = function (key) {
             /** @type {?} */
             var res = null;
-            this.visit(this.data, (/**
+            this.visit(this.data, ( /**
              * @param {?} item
              * @return {?}
-             */
-            function (item) {
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) {
                 if (res == null && item.key === key) {
                     res = item;
                 }
@@ -1006,29 +818,22 @@
         };
         /**
          * Set menu based on `key`
-         */
-        /**
-         * Set menu based on `key`
          * @param {?} key
          * @param {?} value
          * @return {?}
          */
-        MenuService.prototype.setItem = /**
-         * Set menu based on `key`
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        function (key, value) {
+        MenuService.prototype.setItem = function (key, value) {
             /** @type {?} */
             var item = this.getItem(key);
             if (item == null)
                 return;
-            Object.keys(value).forEach((/**
+            Object.keys(value).forEach(( /**
              * @param {?} k
              * @return {?}
-             */
-            function (k) {
+             */function (/**
+             * @param {?} k
+             * @return {?}
+             */ k) {
                 item[k] = value[k];
             }));
             this._change$.next(this.data);
@@ -1036,24 +841,21 @@
         /**
          * @return {?}
          */
-        MenuService.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        MenuService.prototype.ngOnDestroy = function () {
             this._change$.unsubscribe();
             this.i18n$.unsubscribe();
         };
-        MenuService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        MenuService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
-            { type: acl.ACLService, decorators: [{ type: core.Optional }] }
-        ]; };
-        /** @nocollapse */ MenuService.ɵprov = core.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(acl.ACLService, 8)); }, token: MenuService, providedIn: "root" });
         return MenuService;
     }());
+    MenuService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    MenuService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+        { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
+    ]; };
+    /** @nocollapse */ MenuService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i2.ACLService, 8)); }, token: MenuService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1085,9 +887,13 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/scroll/scroll.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ScrollService = /** @class */ (function () {
+        /**
+         * @param {?} _doc
+         * @param {?} platform
+         */
         function ScrollService(_doc, platform) {
             this._doc = _doc;
             this.platform = platform;
@@ -1096,48 +902,31 @@
          * @private
          * @return {?}
          */
-        ScrollService.prototype._getDoc = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        ScrollService.prototype._getDoc = function () {
             return this._doc || document;
         };
         /**
          * @private
          * @return {?}
          */
-        ScrollService.prototype._getWin = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        ScrollService.prototype._getWin = function () {
             /** @type {?} */
             var doc = this._getDoc();
             return doc.defaultView || window;
         };
         /**
          * 获取滚动条位置
-         * @param element 指定元素，默认 `window`
-         */
-        /**
-         * 获取滚动条位置
          * @param {?=} element 指定元素，默认 `window`
          * @return {?}
          */
-        ScrollService.prototype.getScrollPosition = /**
-         * 获取滚动条位置
-         * @param {?=} element 指定元素，默认 `window`
-         * @return {?}
-         */
-        function (element) {
+        ScrollService.prototype.getScrollPosition = function (element) {
             if (!this.platform.isBrowser) {
                 return [0, 0];
             }
             /** @type {?} */
             var win = this._getWin();
             if (element && element !== win) {
-                return [((/** @type {?} */ (element))).scrollLeft, ((/** @type {?} */ (element))).scrollTop];
+                return [(( /** @type {?} */(element))).scrollLeft, (( /** @type {?} */(element))).scrollTop];
             }
             else {
                 return [win.pageXOffset, win.pageYOffset];
@@ -1145,21 +934,11 @@
         };
         /**
          * 设置滚动条位置
-         * @param element 指定元素
-         */
-        /**
-         * 设置滚动条位置
          * @param {?} element 指定元素
          * @param {?} position
          * @return {?}
          */
-        ScrollService.prototype.scrollToPosition = /**
-         * 设置滚动条位置
-         * @param {?} element 指定元素
-         * @param {?} position
-         * @return {?}
-         */
-        function (element, position) {
+        ScrollService.prototype.scrollToPosition = function (element, position) {
             if (!this.platform.isBrowser) {
                 return;
             }
@@ -1167,22 +946,11 @@
         };
         /**
          * 设置滚动条至指定元素
-         * @param element 指定元素，默认 `document.body`
-         * @param topOffset 偏移值，默认 `0`
-         */
-        /**
-         * 设置滚动条至指定元素
          * @param {?=} element 指定元素，默认 `document.body`
          * @param {?=} topOffset 偏移值，默认 `0`
          * @return {?}
          */
-        ScrollService.prototype.scrollToElement = /**
-         * 设置滚动条至指定元素
-         * @param {?=} element 指定元素，默认 `document.body`
-         * @param {?=} topOffset 偏移值，默认 `0`
-         * @return {?}
-         */
-        function (element, topOffset) {
+        ScrollService.prototype.scrollToElement = function (element, topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
             if (!this.platform.isBrowser) {
                 return;
@@ -1194,7 +962,7 @@
             /** @type {?} */
             var win = this._getWin();
             if (win && win.scrollBy) {
-                win.scrollBy(0, (/** @type {?} */ (element)).getBoundingClientRect().top - topOffset);
+                win.scrollBy(0, ( /** @type {?} */(element)).getBoundingClientRect().top - topOffset);
                 if (win.pageYOffset < 20) {
                     win.scrollBy(0, -win.pageYOffset);
                 }
@@ -1202,36 +970,27 @@
         };
         /**
          * 滚动至顶部
-         * @param topOffset 偏移值，默认 `0`
-         */
-        /**
-         * 滚动至顶部
          * @param {?=} topOffset 偏移值，默认 `0`
          * @return {?}
          */
-        ScrollService.prototype.scrollToTop = /**
-         * 滚动至顶部
-         * @param {?=} topOffset 偏移值，默认 `0`
-         * @return {?}
-         */
-        function (topOffset) {
+        ScrollService.prototype.scrollToTop = function (topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
             if (!this.platform.isBrowser) {
                 return;
             }
             this.scrollToElement(this._getDoc().body, topOffset);
         };
-        ScrollService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        ScrollService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-            { type: platform.Platform }
-        ]; };
-        /** @nocollapse */ ScrollService.ɵprov = core.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(core.ɵɵinject(common.DOCUMENT), core.ɵɵinject(platform.Platform)); }, token: ScrollService, providedIn: "root" });
         return ScrollService;
     }());
+    ScrollService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ScrollService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
+        { type: i2$1.Platform }
+    ]; };
+    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2$1.Platform)); }, token: ScrollService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1247,90 +1006,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: src/services/settings/interface.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function App() { }
-    if (false) {
-        /**
-         * Name for app
-         * @type {?|undefined}
-         */
-        App.prototype.name;
-        /**
-         * Description for app
-         * @type {?|undefined}
-         */
-        App.prototype.description;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function User() { }
-    if (false) {
-        /**
-         * Name for current user
-         * @type {?|undefined}
-         */
-        User.prototype.name;
-        /**
-         * Avatar for current user
-         * @type {?|undefined}
-         */
-        User.prototype.avatar;
-        /**
-         * Email for current user
-         * @type {?|undefined}
-         */
-        User.prototype.email;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function Layout() { }
-    if (false) {
-        /**
-         * Whether to fold menu
-         * @type {?}
-         */
-        Layout.prototype.collapsed;
-        /**
-         * Current language
-         * @type {?}
-         */
-        Layout.prototype.lang;
-        /**
-         * Color weak
-         * @type {?}
-         */
-        Layout.prototype.colorWeak;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function SettingsNotify() { }
-    if (false) {
-        /** @type {?} */
-        SettingsNotify.prototype.type;
-        /**
-         * Update `key` name, limited `layout` type
-         * @type {?|undefined}
-         */
-        SettingsNotify.prototype.name;
-        /** @type {?} */
-        SettingsNotify.prototype.value;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: src/services/settings/settings.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var LAYOUT = 'layout';
@@ -1339,6 +1016,9 @@
     /** @type {?} */
     var APP = 'app';
     var SettingsService = /** @class */ (function () {
+        /**
+         * @param {?} platform
+         */
         function SettingsService(platform) {
             this.platform = platform;
             this.notify$ = new rxjs.Subject();
@@ -1350,11 +1030,7 @@
          * @param {?} key
          * @return {?}
          */
-        SettingsService.prototype.getData = /**
-         * @param {?} key
-         * @return {?}
-         */
-        function (key) {
+        SettingsService.prototype.getData = function (key) {
             if (!this.platform.isBrowser) {
                 return null;
             }
@@ -1365,67 +1041,62 @@
          * @param {?} value
          * @return {?}
          */
-        SettingsService.prototype.setData = /**
-         * @param {?} key
-         * @param {?} value
-         * @return {?}
-         */
-        function (key, value) {
+        SettingsService.prototype.setData = function (key, value) {
             if (!this.platform.isBrowser) {
                 return;
             }
             localStorage.setItem(key, JSON.stringify(value));
         };
         Object.defineProperty(SettingsService.prototype, "layout", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 if (!this._layout) {
-                    this._layout = __assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
+                    this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
                     this.setData(LAYOUT, this._layout);
                 }
-                return (/** @type {?} */ (this._layout));
+                return ( /** @type {?} */(this._layout));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "app", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 if (!this._app) {
-                    this._app = __assign({ year: new Date().getFullYear() }, this.getData(APP));
+                    this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(APP));
                     this.setData(APP, this._app);
                 }
-                return (/** @type {?} */ (this._app));
+                return ( /** @type {?} */(this._app));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "user", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 if (!this._user) {
-                    this._user = __assign({}, this.getData(USER));
+                    this._user = Object.assign({}, this.getData(USER));
                     this.setData(USER, this._user);
                 }
-                return (/** @type {?} */ (this._user));
+                return ( /** @type {?} */(this._user));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "notify", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this.notify$.asObservable();
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
@@ -1433,12 +1104,7 @@
          * @param {?=} value
          * @return {?}
          */
-        SettingsService.prototype.setLayout = /**
-         * @param {?} name
-         * @param {?=} value
-         * @return {?}
-         */
-        function (name, value) {
+        SettingsService.prototype.setLayout = function (name, value) {
             if (typeof name === 'string') {
                 this.layout[name] = value;
             }
@@ -1446,18 +1112,14 @@
                 this._layout = name;
             }
             this.setData(LAYOUT, this._layout);
-            this.notify$.next((/** @type {?} */ ({ type: 'layout', name: name, value: value })));
+            this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
             return true;
         };
         /**
          * @param {?} value
          * @return {?}
          */
-        SettingsService.prototype.setApp = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        SettingsService.prototype.setApp = function (value) {
             this._app = value;
             this.setData(APP, value);
             this.notify$.next({ type: 'app', value: value });
@@ -1467,26 +1129,22 @@
          * @param {?} value
          * @return {?}
          */
-        SettingsService.prototype.setUser = /**
-         * @param {?} value
-         * @return {?}
-         */
-        function (value) {
+        SettingsService.prototype.setUser = function (value) {
             this._user = value;
             this.setData(USER, value);
             this.notify$.next({ type: 'user', value: value });
             return true;
         };
-        SettingsService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        SettingsService.ctorParameters = function () { return [
-            { type: platform.Platform }
-        ]; };
-        /** @nocollapse */ SettingsService.ɵprov = core.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(core.ɵɵinject(platform.Platform)); }, token: SettingsService, providedIn: "root" });
         return SettingsService;
     }());
+    SettingsService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    SettingsService.ctorParameters = function () { return [
+        { type: i2$1.Platform }
+    ]; };
+    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform)); }, token: SettingsService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1518,13 +1176,16 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/responsive/responsive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var REP_MAX = 6;
     var ResponsiveService = /** @class */ (function () {
+        /**
+         * @param {?} cogSrv
+         */
         function ResponsiveService(cogSrv) {
-            this.cog = (/** @type {?} */ (cogSrv.merge('themeResponsive', {
+            this.cog = ( /** @type {?} */(cogSrv.merge('themeResponsive', {
                 rules: {
                     1: { xs: 24 },
                     2: { xs: 24, sm: 12 },
@@ -1535,16 +1196,17 @@
                 },
             })));
             if (Object.keys(this.cog.rules)
-                .map((/**
-             * @param {?} i
-             * @return {?}
-             */
-            function (i) { return +i; }))
-                .some((/**
-             * @param {?} i
-             * @return {?}
-             */
-            function (i) { return i < 1 || i > REP_MAX; }))) {
+                .map(( /**
+         * @param {?} i
+         * @return {?}
+         */function (/**
+         * @param {?} i
+         * @return {?}
+         */ i) { return +i; }))
+                .some(( /**
+         * @param {?} i
+         * @return {?}
+         */function (i) { return i < 1 || i > REP_MAX; }))) {
                 throw new Error("[theme] the responseive rule index value range must be 1-" + REP_MAX);
             }
         }
@@ -1552,11 +1214,7 @@
          * @param {?} count
          * @return {?}
          */
-        ResponsiveService.prototype.genCls = /**
-         * @param {?} count
-         * @return {?}
-         */
-        function (count) {
+        ResponsiveService.prototype.genCls = function (count) {
             /** @type {?} */
             var rule = this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)];
             /** @type {?} */
@@ -1575,16 +1233,16 @@
                 clsMap.push(antColClass + "-xxl-" + rule.xxl);
             return clsMap;
         };
-        ResponsiveService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        ResponsiveService.ctorParameters = function () { return [
-            { type: util.AlainConfigService }
-        ]; };
-        /** @nocollapse */ ResponsiveService.ɵprov = core.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(core.ɵɵinject(util.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
         return ResponsiveService;
     }());
+    ResponsiveService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ResponsiveService.ctorParameters = function () { return [
+        { type: i1$1.AlainConfigService }
+    ]; };
+    /** @nocollapse */ ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1593,12 +1251,14 @@
         ResponsiveService.prototype.cog;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/services/title/title.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var TitleService = /** @class */ (function () {
+        /**
+         * @param {?} injector
+         * @param {?} title
+         * @param {?} menuSrv
+         * @param {?} i18nSrv
+         * @param {?} doc
+         */
         function TitleService(injector, title, menuSrv, i18nSrv, doc) {
             var _this = this;
             this.injector = injector;
@@ -1615,90 +1275,82 @@
              * 设置默认标题名
              */
             this.default = "Not Page Name";
-            this.i18n$ = this.i18nSrv.change.pipe(operators.filter((/**
+            this.i18n$ = this.i18nSrv.change.pipe(operators.filter(( /**
              * @return {?}
-             */
-            function () { return !!_this.i18n$; }))).subscribe((/**
+             */function () { return !!_this.i18n$; }))).subscribe(( /**
              * @return {?}
-             */
-            function () { return _this.setTitle(); }));
+             */function () { return _this.setTitle(); }));
         }
         Object.defineProperty(TitleService.prototype, "separator", {
-            /** 设置分隔符 */
-            set: /**
+            /**
              * 设置分隔符
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 this._separator = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "prefix", {
-            /** 设置前缀 */
-            set: /**
+            /**
              * 设置前缀
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 this._prefix = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "suffix", {
-            /** 设置后缀 */
-            set: /**
+            /**
              * 设置后缀
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 this._suffix = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "reverse", {
-            /** 设置是否反转 */
-            set: /**
+            /**
              * 设置是否反转
              * @param {?} value
              * @return {?}
              */
-            function (value) {
+            set: function (value) {
                 this._reverse = value;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @private
          * @return {?}
          */
-        TitleService.prototype.getByElement = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        TitleService.prototype.getByElement = function () {
             /** @type {?} */
-            var el = (/** @type {?} */ ((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
+            var el = ( /** @type {?} */((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
             if (el) {
                 /** @type {?} */
                 var text_1 = '';
-                el.childNodes.forEach((/**
+                el.childNodes.forEach(( /**
                  * @param {?} val
                  * @return {?}
-                 */
-                function (val) {
+                 */function (/**
+                 * @param {?} val
+                 * @return {?}
+                 */ val) {
                     if (!text_1 && val.nodeType === 3) {
-                        text_1 = (/** @type {?} */ (val.textContent)).trim();
+                        text_1 = ( /** @type {?} */(val.textContent)).trim();
                     }
                 }));
-                return text_1 || (/** @type {?} */ ((/** @type {?} */ (el.firstChild)).textContent)).trim();
+                return text_1 || ( /** @type {?} */(( /** @type {?} */(el.firstChild)).textContent)).trim();
             }
             return '';
         };
@@ -1706,11 +1358,7 @@
          * @private
          * @return {?}
          */
-        TitleService.prototype.getByRoute = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        TitleService.prototype.getByRoute = function () {
             /** @type {?} */
             var next = this.injector.get(router.ActivatedRoute);
             while (next.firstChild)
@@ -1725,11 +1373,7 @@
          * @private
          * @return {?}
          */
-        TitleService.prototype.getByMenu = /**
-         * @private
-         * @return {?}
-         */
-        function () {
+        TitleService.prototype.getByMenu = function () {
             /** @type {?} */
             var menus = this.menuSrv.getPathByUrl(this.injector.get(router.Router).url);
             if (!menus || menus.length <= 0)
@@ -1740,19 +1384,14 @@
             var title;
             if (item.i18n && this.i18nSrv)
                 title = this.i18nSrv.fanyi(item.i18n);
-            return title || (/** @type {?} */ (item.text));
+            return title || ( /** @type {?} */(item.text));
         };
         /**
          * @private
          * @param {?=} title
          * @return {?}
          */
-        TitleService.prototype._setTitle = /**
-         * @private
-         * @param {?=} title
-         * @return {?}
-         */
-        function (title) {
+        TitleService.prototype._setTitle = function (title) {
             if (!title) {
                 title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
             }
@@ -1764,7 +1403,7 @@
             if (this._prefix) {
                 newTitles.push(this._prefix);
             }
-            newTitles.push.apply(newTitles, __spread(((/** @type {?} */ (title)))));
+            newTitles.push.apply(newTitles, __spread((( /** @type {?} */(title)))));
             if (this._suffix) {
                 newTitles.push(this._suffix);
             }
@@ -1775,65 +1414,44 @@
         };
         /**
          * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
-         */
-        /**
-         * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
          * @param {?=} title
          * @return {?}
          */
-        TitleService.prototype.setTitle = /**
-         * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
-         * @param {?=} title
-         * @return {?}
-         */
-        function (title) {
+        TitleService.prototype.setTitle = function (title) {
             var _this = this;
-            setTimeout((/**
+            setTimeout(( /**
              * @return {?}
-             */
-            function () { return _this._setTitle(title); }), this.DELAY_TIME);
+             */function () { return _this._setTitle(title); }), this.DELAY_TIME);
         };
         /**
          * Set i18n key of the document title
-         */
-        /**
-         * Set i18n key of the document title
          * @param {?} key
          * @param {?=} params
          * @return {?}
          */
-        TitleService.prototype.setTitleByI18n = /**
-         * Set i18n key of the document title
-         * @param {?} key
-         * @param {?=} params
-         * @return {?}
-         */
-        function (key, params) {
+        TitleService.prototype.setTitleByI18n = function (key, params) {
             this.setTitle(this.i18nSrv.fanyi(key, params));
         };
         /**
          * @return {?}
          */
-        TitleService.prototype.ngOnDestroy = /**
-         * @return {?}
-         */
-        function () {
+        TitleService.prototype.ngOnDestroy = function () {
             this.i18n$.unsubscribe();
         };
-        TitleService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        TitleService.ctorParameters = function () { return [
-            { type: core.Injector },
-            { type: platformBrowser.Title },
-            { type: MenuService },
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] },
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
-        ]; };
-        /** @nocollapse */ TitleService.ɵprov = core.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(core.ɵɵinject(core.INJECTOR), core.ɵɵinject(platformBrowser.Title), core.ɵɵinject(MenuService), core.ɵɵinject(ALAIN_I18N_TOKEN, 8), core.ɵɵinject(common.DOCUMENT)); }, token: TitleService, providedIn: "root" });
         return TitleService;
     }());
+    TitleService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    TitleService.ctorParameters = function () { return [
+        { type: i0.Injector },
+        { type: i1$2.Title },
+        { type: MenuService },
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$2.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -1897,215 +1515,17 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/locale.tokens.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var DELON_LOCALE = new core.InjectionToken('delon-locale');
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/locale/locale.types.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function LocaleData() { }
-    /**
-     * @record
-     */
-    function ExceptionLocaleData() { }
-    if (false) {
-        /* Skipping unnamed member:
-        403: string;*/
-        /* Skipping unnamed member:
-        404: string;*/
-        /* Skipping unnamed member:
-        500: string;*/
-        /** @type {?} */
-        ExceptionLocaleData.prototype.backToHome;
-    }
-    /**
-     * @record
-     */
-    function NoticeIconLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        NoticeIconLocaleData.prototype.emptyText;
-        /** @type {?} */
-        NoticeIconLocaleData.prototype.clearText;
-    }
-    /**
-     * @record
-     */
-    function ReuseTabLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        ReuseTabLocaleData.prototype.close;
-        /** @type {?} */
-        ReuseTabLocaleData.prototype.closeOther;
-        /** @type {?} */
-        ReuseTabLocaleData.prototype.closeRight;
-        /** @type {?} */
-        ReuseTabLocaleData.prototype.clear;
-        /** @type {?} */
-        ReuseTabLocaleData.prototype.refresh;
-    }
-    /**
-     * @record
-     */
-    function TagSelectLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        TagSelectLocaleData.prototype.expand;
-        /** @type {?} */
-        TagSelectLocaleData.prototype.collapse;
-    }
-    /**
-     * @record
-     */
-    function MiniProgressLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        MiniProgressLocaleData.prototype.target;
-    }
-    /**
-     * @record
-     */
-    function STLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        STLocaleData.prototype.total;
-        /** @type {?} */
-        STLocaleData.prototype.filterConfirm;
-        /** @type {?} */
-        STLocaleData.prototype.filterReset;
-    }
-    /**
-     * @record
-     */
-    function SFLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        SFLocaleData.prototype.submit;
-        /** @type {?} */
-        SFLocaleData.prototype.reset;
-        /** @type {?} */
-        SFLocaleData.prototype.search;
-        /** @type {?} */
-        SFLocaleData.prototype.edit;
-        /** @type {?} */
-        SFLocaleData.prototype.addText;
-        /** @type {?} */
-        SFLocaleData.prototype.removeText;
-        /** @type {?} */
-        SFLocaleData.prototype.checkAllText;
-        /** @type {?} */
-        SFLocaleData.prototype.error;
-    }
-    /**
-     * @record
-     */
-    function SFErrorLocaleData() { }
-    if (false) {
-        /* Skipping unnamed member:
-        'false schema': string;*/
-        /** @type {?} */
-        SFErrorLocaleData.prototype.$ref;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.additionalItems;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.additionalProperties;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.anyOf;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.dependencies;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.enum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.format;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.type;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.required;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.maxLength;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.minLength;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.minimum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.formatMinimum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.maximum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.formatMaximum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.maxItems;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.minItems;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.maxProperties;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.minProperties;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.multipleOf;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.not;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.oneOf;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.pattern;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.uniqueItems;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.custom;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.propertyNames;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.patternRequired;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.switch;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.const;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.contains;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.formatExclusiveMaximum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.formatExclusiveMinimum;
-        /** @type {?} */
-        SFErrorLocaleData.prototype.if;
-    }
-    /**
-     * @record
-     */
-    function FullLocaleData() { }
-    if (false) {
-        /** @type {?} */
-        FullLocaleData.prototype.abbr;
-        /** @type {?} */
-        FullLocaleData.prototype.exception;
-        /** @type {?} */
-        FullLocaleData.prototype.noticeIcon;
-        /** @type {?} */
-        FullLocaleData.prototype.reuseTab;
-        /** @type {?} */
-        FullLocaleData.prototype.tagSelect;
-        /** @type {?} */
-        FullLocaleData.prototype.miniProgress;
-        /** @type {?} */
-        FullLocaleData.prototype.st;
-        /** @type {?} */
-        FullLocaleData.prototype.sf;
-    }
+    var DELON_LOCALE = new i0.InjectionToken('delon-locale');
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/zh-CN.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var zhCN = (/** @type {?} */ ({
+    var zhCN = ( /** @type {?} */({
         abbr: 'zh-CN',
         exception: {
             403: '抱歉，你无权访问该页面',
@@ -2185,32 +1605,31 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/locale.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonLocaleService = /** @class */ (function () {
+        /**
+         * @param {?} locale
+         */
         function DelonLocaleService(locale) {
             this.change$ = new rxjs.BehaviorSubject(this._locale);
             this.setLocale(locale || zhCN);
         }
         Object.defineProperty(DelonLocaleService.prototype, "change", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this.change$.asObservable();
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @param {?} locale
          * @return {?}
          */
-        DelonLocaleService.prototype.setLocale = /**
-         * @param {?} locale
-         * @return {?}
-         */
-        function (locale) {
+        DelonLocaleService.prototype.setLocale = function (locale) {
             if (this._locale && this._locale.abbr === locale.abbr) {
                 return;
             }
@@ -2218,35 +1637,31 @@
             this.change$.next(locale);
         };
         Object.defineProperty(DelonLocaleService.prototype, "locale", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._locale;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @param {?} path
          * @return {?}
          */
-        DelonLocaleService.prototype.getData = /**
-         * @param {?} path
-         * @return {?}
-         */
-        function (path) {
-            return (/** @type {?} */ ((this._locale[path] || {})));
+        DelonLocaleService.prototype.getData = function (path) {
+            return ( /** @type {?} */((this._locale[path] || {})));
         };
-        DelonLocaleService.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        DelonLocaleService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [DELON_LOCALE,] }] }
-        ]; };
         return DelonLocaleService;
     }());
+    DelonLocaleService.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    DelonLocaleService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DELON_LOCALE,] }] }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -2271,32 +1686,32 @@
     var DELON_LOCALE_SERVICE_PROVIDER = {
         provide: DelonLocaleService,
         useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-        deps: [[new core.Optional(), new core.SkipSelf(), DelonLocaleService], DELON_LOCALE],
+        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
     };
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/locale.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var ɵ0 = zhCN;
     var DelonLocaleModule = /** @class */ (function () {
         function DelonLocaleModule() {
         }
-        DelonLocaleModule.decorators = [
-            { type: core.NgModule, args: [{
-                        providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
-                    },] }
-        ];
         return DelonLocaleModule;
     }());
+    DelonLocaleModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
+                },] }
+    ];
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/en-US.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var enUS = (/** @type {?} */ ({
+    var enUS = ( /** @type {?} */({
         abbr: 'en-US',
         exception: {
             403: "Sorry, you don't have access to this page",
@@ -2376,9 +1791,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/zh-TW.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var zhTW = (/** @type {?} */ ({
+    var zhTW = ( /** @type {?} */({
         abbr: 'zh-TW',
         exception: {
             403: '抱歉，你無權訪問該頁面',
@@ -2458,9 +1873,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/tr-TR.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var trTR = (/** @type {?} */ ({
+    var trTR = ( /** @type {?} */({
         abbr: 'tr-TR',
         exception: {
             403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
@@ -2540,9 +1955,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/pl-PL.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var plPL = (/** @type {?} */ ({
+    var plPL = ( /** @type {?} */({
         abbr: 'en-US',
         exception: {
             403: "Niestety, nie masz uprawnie\u0144 do tej strony",
@@ -2622,9 +2037,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/el-GR.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var elGR = (/** @type {?} */ ({
+    var elGR = ( /** @type {?} */({
         abbr: 'el-GR',
         exception: {
             403: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7 \u03C3\u03B5\u03BB\u03AF\u03B4\u03B1",
@@ -2704,9 +2119,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/ko-KR.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var koKR = (/** @type {?} */ ({
+    var koKR = ( /** @type {?} */({
         abbr: 'ko-KR',
         exception: {
             403: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4.\uC774 \uD398\uC774\uC9C0\uC5D0 \uC561\uC138\uC2A4 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.",
@@ -2786,9 +2201,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/hr-HR.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var hrHR = (/** @type {?} */ ({
+    var hrHR = ( /** @type {?} */({
         abbr: 'hr-HR',
         exception: {
             403: "Na\u017Ealost, nemate pristup ovoj lokaciji",
@@ -2832,9 +2247,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/ja-JP.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var jaJP = (/** @type {?} */ ({
+    var jaJP = ( /** @type {?} */({
         abbr: 'ja-JP',
         exception: {
             403: 'ページへのアクセス権限がありません',
@@ -2914,9 +2329,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/languages/sl-SI.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var slSI = (/** @type {?} */ ({
+    var slSI = ( /** @type {?} */({
         abbr: 'sl-SI',
         exception: {
             403: "\u017Dal nimate dostopa do te strani",
@@ -2996,19 +2411,19 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/locale/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/modal/modal.helper.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @record
@@ -3040,28 +2455,15 @@
      * 对话框辅助类
      */
     var ModalHelper = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
         function ModalHelper(srv) {
             this.srv = srv;
         }
         /**
          * 构建一个对话框
          *
-         * @param comp 组件
-         * @param params 组件参数
-         * @param options 额外参数
-         *
-         * @example
-         * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         */
-        /**
-         * 构建一个对话框
-         *
          * \@example
          * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -3076,36 +2478,18 @@
          *
          * @return {?}
          */
-        ModalHelper.prototype.create = /**
-         * 构建一个对话框
-         *
-         * \@example
-         * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} options 额外参数
-         *
-         * @return {?}
-         */
-        function (comp, params, options) {
+        ModalHelper.prototype.create = function (comp, params, options) {
             var _this = this;
-            options = util.deepMerge({
+            options = i1$1.deepMerge({
                 size: 'lg',
                 exact: true,
                 includeTabs: false,
             }, options);
-            return new rxjs.Observable((/**
+            return new rxjs.Observable(( /**
              * @param {?} observer
              * @return {?}
-             */
-            function (observer) {
-                var _a = (/** @type {?} */ (options)), size = _a.size, includeTabs = _a.includeTabs, modalOptions = _a.modalOptions;
+             */function (observer) {
+                var _a = ( /** @type {?} */(options)), size = _a.size, includeTabs = _a.includeTabs, modalOptions = _a.modalOptions;
                 /** @type {?} */
                 var cls = '';
                 /** @type {?} */
@@ -3134,14 +2518,13 @@
                     nzComponentParams: params,
                 };
                 /** @type {?} */
-                var subject = _this.srv.create(__assign(__assign({}, defaultOptions), modalOptions));
+                var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
                 /** @type {?} */
-                var afterClose$ = subject.afterClose.subscribe((/**
+                var afterClose$ = subject.afterClose.subscribe(( /**
                  * @param {?} res
                  * @return {?}
-                 */
-                function (res) {
-                    if ((/** @type {?} */ (options)).exact === true) {
+                 */function (res) {
+                    if (( /** @type {?} */(options)).exact === true) {
                         if (res != null) {
                             observer.next(res);
                         }
@@ -3157,22 +2540,6 @@
         /**
          * 构建静态框，点击蒙层不允许关闭
          *
-         * @param comp 组件
-         * @param params 组件参数
-         * @param options 额外参数
-         *
-         * @example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         */
-        /**
-         * 构建静态框，点击蒙层不允许关闭
-         *
          * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -3187,45 +2554,13 @@
          *
          * @return {?}
          */
-        ModalHelper.prototype.createStatic = /**
-         * 构建静态框，点击蒙层不允许关闭
-         *
-         * \@example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} options 额外参数
-         *
-         * @return {?}
-         */
-        function (comp, params, options) {
+        ModalHelper.prototype.createStatic = function (comp, params, options) {
             /** @type {?} */
-            var modalOptions = __assign({ nzMaskClosable: false }, (options && options.modalOptions));
-            return this.create(comp, params, __assign(__assign({}, options), { modalOptions: modalOptions }));
+            var modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
+            return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions: modalOptions }));
         };
         /**
          * 打开对话框
-         * @param comp 组件
-         * @param params 组件参数
-         * @param size 大小；例如：lg、600，默认：lg
-         *
-         * @example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         */
-        /**
-         * 打开对话框
          * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -3241,24 +2576,7 @@
          * @param {?=} options
          * @return {?}
          */
-        ModalHelper.prototype.open = /**
-         * 打开对话框
-         * \@example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} size 大小；例如：lg、600，默认：lg
-         *
-         * @param {?=} options
-         * @return {?}
-         */
-        function (comp, params, size, options) {
+        ModalHelper.prototype.open = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
             return this.create(comp, params, {
                 size: size,
@@ -3268,21 +2586,6 @@
         };
         /**
          * 静态框，点击蒙层不允许关闭
-         * @param comp 组件
-         * @param params 组件参数
-         * @param size 大小；例如：lg、600，默认：lg
-         *
-         * @example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         */
-        /**
-         * 静态框，点击蒙层不允许关闭
          * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -3298,37 +2601,20 @@
          * @param {?=} options
          * @return {?}
          */
-        ModalHelper.prototype.static = /**
-         * 静态框，点击蒙层不允许关闭
-         * \@example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
-         * // 关闭
-         * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} size 大小；例如：lg、600，默认：lg
-         *
-         * @param {?=} options
-         * @return {?}
-         */
-        function (comp, params, size, options) {
+        ModalHelper.prototype.static = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
-            return this.open(comp, params, size, __assign({ nzMaskClosable: false }, options));
+            return this.open(comp, params, size, Object.assign({ nzMaskClosable: false }, options));
         };
-        ModalHelper.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        ModalHelper.ctorParameters = function () { return [
-            { type: modal.NzModalService }
-        ]; };
-        /** @nocollapse */ ModalHelper.ɵprov = core.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(core.ɵɵinject(modal.NzModalService)); }, token: ModalHelper, providedIn: "root" });
         return ModalHelper;
     }());
+    ModalHelper.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ModalHelper.ctorParameters = function () { return [
+        { type: i1$3.NzModalService }
+    ]; };
+    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$3.NzModalService)); }, token: ModalHelper, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3340,7 +2626,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/drawer/drawer.helper.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @record
@@ -3398,31 +2684,23 @@
      * this.NzDrawerRef.close(false);
      */
     var DrawerHelper = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
         function DrawerHelper(srv) {
             this.srv = srv;
         }
         /**
          * 构建一个抽屉
-         */
-        /**
-         * 构建一个抽屉
          * @param {?} title
          * @param {?} comp
          * @param {?=} params
          * @param {?=} options
          * @return {?}
          */
-        DrawerHelper.prototype.create = /**
-         * 构建一个抽屉
-         * @param {?} title
-         * @param {?} comp
-         * @param {?=} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (title, comp, params, options) {
+        DrawerHelper.prototype.create = function (title, comp, params, options) {
             var _this = this;
-            options = util.deepMerge({
+            options = i1$1.deepMerge({
                 size: 'md',
                 footer: true,
                 footerHeight: 50,
@@ -3432,12 +2710,11 @@
                     nzWrapClassName: '',
                 },
             }, options);
-            return new rxjs.Observable((/**
+            return new rxjs.Observable(( /**
              * @param {?} observer
              * @return {?}
-             */
-            function (observer) {
-                var _a = (/** @type {?} */ (options)), size = _a.size, footer = _a.footer, footerHeight = _a.footerHeight, drawerOptions = _a.drawerOptions;
+             */function (observer) {
+                var _a = ( /** @type {?} */(options)), size = _a.size, footer = _a.footer, footerHeight = _a.footerHeight, drawerOptions = _a.drawerOptions;
                 /** @type {?} */
                 var defaultOptions = {
                     nzContent: comp,
@@ -3445,27 +2722,26 @@
                     nzTitle: title,
                 };
                 if (typeof size === 'number') {
-                    defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = (/** @type {?} */ (options)).size;
+                    defaultOptions[( /** @type {?} */(drawerOptions)).nzPlacement === 'top' || ( /** @type {?} */(drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = ( /** @type {?} */(options)).size;
                 }
-                else if (!(/** @type {?} */ (drawerOptions)).nzWidth) {
-                    defaultOptions.nzWrapClassName = ((/** @type {?} */ (drawerOptions)).nzWrapClassName + (" drawer-" + (/** @type {?} */ (options)).size)).trim();
-                    delete (/** @type {?} */ (drawerOptions)).nzWrapClassName;
+                else if (!( /** @type {?} */(drawerOptions)).nzWidth) {
+                    defaultOptions.nzWrapClassName = (( /** @type {?} */(drawerOptions)).nzWrapClassName + (" drawer-" + ( /** @type {?} */(options)).size)).trim();
+                    delete ( /** @type {?} */(drawerOptions)).nzWrapClassName;
                 }
                 if (footer) {
                     // The 24 value is @drawer-body-padding
                     defaultOptions.nzBodyStyle = {
-                        'padding-bottom.px': (/** @type {?} */ (footerHeight)) + 24,
+                        'padding-bottom.px': ( /** @type {?} */(footerHeight)) + 24,
                     };
                 }
                 /** @type {?} */
-                var subject = _this.srv.create(__assign(__assign({}, defaultOptions), drawerOptions));
+                var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
                 /** @type {?} */
-                var afterClose$ = subject.afterClose.subscribe((/**
+                var afterClose$ = subject.afterClose.subscribe(( /**
                  * @param {?} res
                  * @return {?}
-                 */
-                function (res) {
-                    if ((/** @type {?} */ (options)).exact === true) {
+                 */function (res) {
+                    if (( /** @type {?} */(options)).exact === true) {
                         if (res != null) {
                             observer.next(res);
                         }
@@ -3480,38 +2756,27 @@
         };
         /**
          * 构建一个抽屉，点击蒙层不允许关闭
-         */
-        /**
-         * 构建一个抽屉，点击蒙层不允许关闭
          * @param {?} title
          * @param {?} comp
          * @param {?=} params
          * @param {?=} options
          * @return {?}
          */
-        DrawerHelper.prototype.static = /**
-         * 构建一个抽屉，点击蒙层不允许关闭
-         * @param {?} title
-         * @param {?} comp
-         * @param {?=} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (title, comp, params, options) {
+        DrawerHelper.prototype.static = function (title, comp, params, options) {
             /** @type {?} */
-            var drawerOptions = __assign({ nzMaskClosable: false }, (options && options.drawerOptions));
-            return this.create(title, comp, params, __assign(__assign({}, options), { drawerOptions: drawerOptions }));
+            var drawerOptions = Object.assign({ nzMaskClosable: false }, (options && options.drawerOptions));
+            return this.create(title, comp, params, Object.assign(Object.assign({}, options), { drawerOptions: drawerOptions }));
         };
-        DrawerHelper.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        DrawerHelper.ctorParameters = function () { return [
-            { type: drawer.NzDrawerService }
-        ]; };
-        /** @nocollapse */ DrawerHelper.ɵprov = core.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(core.ɵɵinject(drawer.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
         return DrawerHelper;
     }());
+    DrawerHelper.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    DrawerHelper.ctorParameters = function () { return [
+        { type: i1$4.NzDrawerService }
+    ]; };
+    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$4.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3523,7 +2788,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/http/http.client.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 封装HttpClient，主要解决：
@@ -3531,44 +2796,46 @@
      * + 统一实现 loading
      * + 统一处理时间格式问题
      */
+    // tslint:disable-next-line:class-name
     var _HttpClient = /** @class */ (function () {
+        /**
+         * @param {?} http
+         * @param {?} cogSrv
+         */
         function _HttpClient(http, cogSrv) {
             this.http = http;
             this._loading = false;
-            this.cog = (/** @type {?} */ (cogSrv.merge('themeHttp', {
+            this.cog = ( /** @type {?} */(cogSrv.merge('themeHttp', {
                 nullValueHandling: 'include',
                 dateValueHandling: 'timestamp',
             })));
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
-            /** 是否正在加载中 */
-            get: /**
+            /**
              * 是否正在加载中
              * @return {?}
              */
-            function () {
+            get: function () {
                 return this._loading;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @param {?} params
          * @return {?}
          */
-        _HttpClient.prototype.parseParams = /**
-         * @param {?} params
-         * @return {?}
-         */
-        function (params) {
+        _HttpClient.prototype.parseParams = function (params) {
             var _this = this;
             /** @type {?} */
             var newParams = {};
-            Object.keys(params).forEach((/**
+            Object.keys(params).forEach(( /**
              * @param {?} key
              * @return {?}
-             */
-            function (key) {
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
                 /** @type {?} */
                 var _data = params[key];
                 // 忽略空值
@@ -3580,19 +2847,14 @@
                 }
                 newParams[key] = _data;
             }));
-            return new http.HttpParams({ fromObject: newParams });
+            return new i1$5.HttpParams({ fromObject: newParams });
         };
         /**
          * @param {?} url
          * @param {?=} params
          * @return {?}
          */
-        _HttpClient.prototype.appliedUrl = /**
-         * @param {?} url
-         * @param {?=} params
-         * @return {?}
-         */
-        function (url, params) {
+        _HttpClient.prototype.appliedUrl = function (url, params) {
             if (!params)
                 return url;
             url += ~url.indexOf('?') ? '' : '?';
@@ -3607,32 +2869,21 @@
         /**
          * @return {?}
          */
-        _HttpClient.prototype.begin = /**
-         * @return {?}
-         */
-        function () {
+        _HttpClient.prototype.begin = function () {
             var _this = this;
-            Promise.resolve(null).then((/**
+            Promise.resolve(null).then(( /**
              * @return {?}
-             */
-            function () { return (_this._loading = true); }));
+             */function () { return (_this._loading = true); }));
         };
         /**
          * @return {?}
          */
-        _HttpClient.prototype.end = /**
-         * @return {?}
-         */
-        function () {
+        _HttpClient.prototype.end = function () {
             var _this = this;
-            Promise.resolve(null).then((/**
+            Promise.resolve(null).then(( /**
              * @return {?}
-             */
-            function () { return (_this._loading = false); }));
+             */function () { return (_this._loading = false); }));
         };
-        /**
-         * GET 请求
-         */
         /**
          * GET 请求
          * @param {?} url
@@ -3640,20 +2891,10 @@
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.get = /**
-         * GET 请求
-         * @param {?} url
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, params, options) {
+        _HttpClient.prototype.get = function (url, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('GET', url, __assign({ params: params }, options));
+            return this.request('GET', url, Object.assign({ params: params }, options));
         };
-        /**
-         * POST 请求
-         */
         /**
          * POST 请求
          * @param {?} url
@@ -3662,156 +2903,86 @@
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.post = /**
-         * POST 请求
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, body, params, options) {
+        _HttpClient.prototype.post = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('POST', url, __assign({ body: body,
+            return this.request('POST', url, Object.assign({ body: body,
                 params: params }, options));
         };
         /**
          * DELETE 请求
-         */
-        /**
-         * DELETE 请求
          * @param {?} url
          * @param {?} params
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.delete = /**
-         * DELETE 请求
-         * @param {?} url
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, params, options) {
+        _HttpClient.prototype.delete = function (url, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('DELETE', url, __assign({ params: params }, options));
+            return this.request('DELETE', url, Object.assign({ params: params }, options));
         };
         // #endregion
         // #region jsonp
         /**
          * `jsonp` 请求
          *
-         * @param url URL地址
-         * @param params 请求参数
-         * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
-         */
-        // #endregion
-        // #region jsonp
-        /**
-         * `jsonp` 请求
-         *
          * @param {?} url URL地址
          * @param {?=} params 请求参数
          * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
          * @return {?}
          */
-        _HttpClient.prototype.jsonp = 
-        // #endregion
-        // #region jsonp
-        /**
-         * `jsonp` 请求
-         *
-         * @param {?} url URL地址
-         * @param {?=} params 请求参数
-         * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
-         * @return {?}
-         */
-        function (url, params, callbackParam) {
+        _HttpClient.prototype.jsonp = function (url, params, callbackParam) {
             var _this = this;
             if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
             this.begin();
-            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap((/**
+            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap(( /**
              * @return {?}
-             */
-            function () { return _this.end(); })), operators.catchError((/**
+             */function () { return _this.end(); })), operators.catchError(( /**
              * @param {?} res
              * @return {?}
-             */
-            function (res) {
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
                 _this.end();
                 return rxjs.throwError(res);
             })));
         };
         /**
          * PATCH 请求
-         */
-        /**
-         * PATCH 请求
          * @param {?} url
          * @param {?} body
          * @param {?} params
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.patch = /**
-         * PATCH 请求
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, body, params, options) {
+        _HttpClient.prototype.patch = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('PATCH', url, __assign({ body: body,
+            return this.request('PATCH', url, Object.assign({ body: body,
                 params: params }, options));
         };
         /**
          * PUT 请求
-         */
-        /**
-         * PUT 请求
          * @param {?} url
          * @param {?} body
          * @param {?} params
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.put = /**
-         * PUT 请求
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, body, params, options) {
+        _HttpClient.prototype.put = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('PUT', url, __assign({ body: body,
+            return this.request('PUT', url, Object.assign({ body: body,
                 params: params }, options));
         };
         /**
          * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-         */
-        /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
          * @param {?} url
          * @param {?} body
          * @param {?} params
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.form = /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
-         * @param {?} url
-         * @param {?} body
-         * @param {?} params
-         * @param {?=} options
-         * @return {?}
-         */
-        function (url, body, params, options) {
+        _HttpClient.prototype.form = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('POST', url, __assign(__assign({ body: body,
+            return this.request('POST', url, Object.assign(Object.assign({ body: body,
                 params: params }, options), { headers: {
                     'content-type': "application/x-www-form-urlencoded",
                 } }));
@@ -3822,47 +2993,40 @@
          * @param {?=} options
          * @return {?}
          */
-        _HttpClient.prototype.request = /**
-         * @param {?} method
-         * @param {?} url
-         * @param {?=} options
-         * @return {?}
-         */
-        function (method, url, options) {
+        _HttpClient.prototype.request = function (method, url, options) {
             var _this = this;
             if (options === void 0) { options = {}; }
             this.begin();
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return rxjs.of(null).pipe(operators.tap((/**
+            return rxjs.of(null).pipe(operators.tap(( /**
              * @return {?}
-             */
-            function () { return _this.begin(); })), operators.switchMap((/**
+             */function () { return _this.begin(); })), operators.switchMap(( /**
              * @return {?}
-             */
-            function () { return _this.http.request(method, url, options); })), operators.tap((/**
+             */function () { return _this.http.request(method, url, options); })), operators.tap(( /**
              * @return {?}
-             */
-            function () { return _this.end(); })), operators.catchError((/**
+             */function () { return _this.end(); })), operators.catchError(( /**
              * @param {?} res
              * @return {?}
-             */
-            function (res) {
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
                 _this.end();
                 return rxjs.throwError(res);
             })));
         };
-        _HttpClient.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        _HttpClient.ctorParameters = function () { return [
-            { type: http.HttpClient },
-            { type: util.AlainConfigService }
-        ]; };
-        /** @nocollapse */ _HttpClient.ɵprov = core.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(core.ɵɵinject(http.HttpClient), core.ɵɵinject(util.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
         return _HttpClient;
     }());
+    _HttpClient.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    _HttpClient.ctorParameters = function () { return [
+        { type: i1$5.HttpClient },
+        { type: i1$1.AlainConfigService }
+    ]; };
+    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$5.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3884,7 +3048,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/http/http.decorator.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * Every http decorator must be based on `BaseAPI`, Like this:
@@ -3895,18 +3059,21 @@
      * @abstract
      */
     var BaseApi = /** @class */ (function () {
+        /**
+         * @param {?} injector
+         */
         function BaseApi(injector) {
             this.injector = injector;
         }
-        BaseApi.decorators = [
-            { type: core.Injectable }
-        ];
-        /** @nocollapse */
-        BaseApi.ctorParameters = function () { return [
-            { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] }
-        ]; };
         return BaseApi;
     }());
+    BaseApi.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    BaseApi.ctorParameters = function () { return [
+        { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -3968,12 +3135,11 @@
      * @return {?}
      */
     function BaseUrl(url) {
-        return (/**
+        return ( /**
          * @template TClass
          * @param {?} target
          * @return {?}
-         */
-        function (target) {
+         */function (target) {
             /** @type {?} */
             var params = setParam(target.prototype);
             params.baseUrl = url;
@@ -3987,12 +3153,11 @@
      * @return {?}
      */
     function BaseHeaders(headers) {
-        return (/**
+        return ( /**
          * @template TClass
          * @param {?} target
          * @return {?}
-         */
-        function (target) {
+         */function (target) {
             /** @type {?} */
             var params = setParam(target.prototype);
             params.baseHeaders = headers;
@@ -4004,18 +3169,16 @@
      * @return {?}
      */
     function makeParam(paramName) {
-        return (/**
+        return ( /**
          * @param {?=} key
          * @return {?}
-         */
-        function (key) {
-            return (/**
+         */function (key) {
+            return ( /**
              * @param {?} target
              * @param {?} propertyKey
              * @param {?} index
              * @return {?}
-             */
-            function (target, propertyKey, index) {
+             */function (target, propertyKey, index) {
                 /** @type {?} */
                 var params = setParam(setParam(target), propertyKey);
                 /** @type {?} */
@@ -4092,34 +3255,31 @@
      * @return {?}
      */
     function makeMethod(method) {
-        return (/**
+        return ( /**
          * @param {?=} url
          * @param {?=} options
          * @return {?}
-         */
-        function (url, options) {
+         */function (url, options) {
             if (url === void 0) { url = ''; }
-            return (/**
+            return ( /**
              * @param {?} _target
              * @param {?=} targetKey
              * @param {?=} descriptor
              * @return {?}
-             */
-            function (_target, targetKey, descriptor) {
-                (/** @type {?} */ (descriptor)).value = (/**
+             */function (_target, targetKey, descriptor) {
+                ( /** @type {?} */(descriptor)).value = ( /**
                  * @param {...?} args
                  * @return {?}
-                 */
-                function () {
+                 */function () {
                     var args = [];
                     for (var _i = 0; _i < arguments.length; _i++) {
                         args[_i] = arguments[_i];
                     }
                     options = options || {};
                     /** @type {?} */
-                    var injector = (/** @type {?} */ (((/** @type {?} */ (this))).injector));
+                    var injector = ( /** @type {?} */((( /** @type {?} */(this))).injector));
                     /** @type {?} */
-                    var http = (/** @type {?} */ (injector.get(_HttpClient, null)));
+                    var http = ( /** @type {?} */(injector.get(_HttpClient, null)));
                     if (http == null) {
                         throw new TypeError("Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.");
                     }
@@ -4136,7 +3296,7 @@
                     }
                     if (options.acl) {
                         /** @type {?} */
-                        var aclSrv = injector.get(acl.ACLService, null);
+                        var aclSrv = injector.get(i2.ACLService, null);
                         if (aclSrv && !aclSrv.can(options.acl)) {
                             return rxjs.throwError({
                                 url: requestUrl,
@@ -4147,37 +3307,36 @@
                         delete options.acl;
                     }
                     requestUrl = requestUrl.replace(/::/g, '^^');
-                    (((/** @type {?} */ (data.path))) || [])
-                        .filter((/**
-                     * @param {?} w
-                     * @return {?}
-                     */
-                    function (w) { return typeof args[w.index] !== 'undefined'; }))
-                        .forEach((/**
-                     * @param {?} i
-                     * @return {?}
-                     */
-                    function (i) {
+                    ((( /** @type {?} */(data.path))) || [])
+                        .filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return typeof args[w.index] !== 'undefined'; }))
+                        .forEach(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (i) {
                         requestUrl = requestUrl.replace(new RegExp(":" + i.key, 'g'), encodeURIComponent(args[i.index]));
                     }));
                     requestUrl = requestUrl.replace(/\^\^/g, ":");
                     /** @type {?} */
-                    var params = (data.query || []).reduce((/**
+                    var params = (data.query || []).reduce(( /**
                      * @param {?} p
                      * @param {?} i
                      * @return {?}
-                     */
-                    function (p, i) {
+                     */function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
                     /** @type {?} */
-                    var headers = (data.headers || []).reduce((/**
+                    var headers = (data.headers || []).reduce(( /**
                      * @param {?} p
                      * @param {?} i
                      * @return {?}
-                     */
-                    function (p, i) {
+                     */function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
                     }), {});
@@ -4188,7 +3347,7 @@
                     var payload = getValidArgs(data, 'payload', args);
                     /** @type {?} */
                     var supportedBody = method === 'POST' || method === 'PUT';
-                    return http.request(method, requestUrl, __assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? __assign(__assign({}, params), payload) : params, headers: __assign(__assign({}, baseData.baseHeaders), headers) }, options));
+                    return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign(Object.assign({}, params), payload) : params, headers: Object.assign(Object.assign({}, baseData.baseHeaders), headers) }, options));
                 });
                 return descriptor;
             });
@@ -4252,9 +3411,12 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/pipes/date/date.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DatePipe = /** @class */ (function () {
+        /**
+         * @param {?} nzI18n
+         */
         function DatePipe(nzI18n) {
             this.nzI18n = nzI18n;
         }
@@ -4263,29 +3425,24 @@
          * @param {?=} formatString
          * @return {?}
          */
-        DatePipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?=} formatString
-         * @return {?}
-         */
-        function (value, formatString) {
+        DatePipe.prototype.transform = function (value, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-            value = util.toDate(value);
-            if (isNaN((/** @type {?} */ (value))))
+            value = i1$1.toDate(value);
+            if (isNaN(( /** @type {?} */(value))))
                 return '';
             /** @type {?} */
             var langOpt = { locale: this.nzI18n.getDateLocale() };
             return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
         };
-        DatePipe.decorators = [
-            { type: core.Pipe, args: [{ name: '_date' },] }
-        ];
-        /** @nocollapse */
-        DatePipe.ctorParameters = function () { return [
-            { type: i18n.NzI18nService }
-        ]; };
         return DatePipe;
     }());
+    DatePipe.decorators = [
+        { type: i0.Pipe, args: [{ name: '_date' },] }
+    ];
+    /** @nocollapse */
+    DatePipe.ctorParameters = function () { return [
+        { type: i18n.NzI18nService }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -4294,11 +3451,6 @@
         DatePipe.prototype.nzI18n;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/pipes/currency/cn-currency.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * @see https://ng-alain.com/theme/currency
      */
@@ -4315,28 +3467,21 @@
          * @param {?=} digits
          * @return {?}
          */
-        CNCurrencyPipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?=} currencyCode
-         * @param {?=} display
-         * @param {?=} digits
-         * @return {?}
-         */
-        function (value, currencyCode, display, digits) {
+        CNCurrencyPipe.prototype.transform = function (value, currencyCode, display, digits) {
             if (currencyCode === void 0) { currencyCode = '￥'; }
             if (display === void 0) { display = 'code'; }
-            return _super.prototype.transform.call(this, value, currencyCode, (/** @type {?} */ (display)), digits);
+            return _super.prototype.transform.call(this, value, currencyCode, ( /** @type {?} */(display)), digits);
         };
-        CNCurrencyPipe.decorators = [
-            { type: core.Pipe, args: [{ name: '_currency' },] }
-        ];
         return CNCurrencyPipe;
-    }(common.CurrencyPipe));
+    }(i1.CurrencyPipe));
+    CNCurrencyPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: '_currency' },] }
+    ];
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/pipes/keys/keys.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @see https://ng-alain.com/theme/keys
@@ -4349,12 +3494,7 @@
          * @param {?=} keyIsNumber
          * @return {?}
          */
-        KeysPipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?=} keyIsNumber
-         * @return {?}
-         */
-        function (value, keyIsNumber) {
+        KeysPipe.prototype.transform = function (value, keyIsNumber) {
             if (keyIsNumber === void 0) { keyIsNumber = false; }
             /** @type {?} */
             var ret = [];
@@ -4364,16 +3504,16 @@
             }
             return ret;
         };
-        KeysPipe.decorators = [
-            { type: core.Pipe, args: [{ name: 'keys' },] }
-        ];
         return KeysPipe;
     }());
+    KeysPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'keys' },] }
+    ];
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/pipes/yn/yn.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var ICON_YES = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg>";
@@ -4384,6 +3524,9 @@
     /** @type {?} */
     var CLS_NO = "class=\"yn__no\"";
     var YNPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function YNPipe(dom) {
             this.dom = dom;
         }
@@ -4395,15 +3538,7 @@
          * @param {?=} isSafeHtml
          * @return {?}
          */
-        YNPipe.prototype.transform = /**
-         * @param {?} value
-         * @param {?=} yes
-         * @param {?=} no
-         * @param {?=} mode
-         * @param {?=} isSafeHtml
-         * @return {?}
-         */
-        function (value, yes, no, mode, isSafeHtml) {
+        YNPipe.prototype.transform = function (value, yes, no, mode, isSafeHtml) {
             if (isSafeHtml === void 0) { isSafeHtml = true; }
             /** @type {?} */
             var html = '';
@@ -4422,15 +3557,15 @@
             }
             return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
         };
-        YNPipe.decorators = [
-            { type: core.Pipe, args: [{ name: 'yn' },] }
-        ];
-        /** @nocollapse */
-        YNPipe.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer }
-        ]; };
         return YNPipe;
     }());
+    YNPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'yn' },] }
+    ];
+    /** @nocollapse */
+    YNPipe.ctorParameters = function () { return [
+        { type: i1$2.DomSanitizer }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -4442,9 +3577,12 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/pipes/safe/html.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var HTMLPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function HTMLPipe(dom) {
             this.dom = dom;
         }
@@ -4452,22 +3590,18 @@
          * @param {?} html
          * @return {?}
          */
-        HTMLPipe.prototype.transform = /**
-         * @param {?} html
-         * @return {?}
-         */
-        function (html) {
+        HTMLPipe.prototype.transform = function (html) {
             return html ? this.dom.bypassSecurityTrustHtml(html) : '';
         };
-        HTMLPipe.decorators = [
-            { type: core.Pipe, args: [{ name: 'html' },] }
-        ];
-        /** @nocollapse */
-        HTMLPipe.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer }
-        ]; };
         return HTMLPipe;
     }());
+    HTMLPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'html' },] }
+    ];
+    /** @nocollapse */
+    HTMLPipe.ctorParameters = function () { return [
+        { type: i1$2.DomSanitizer }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -4479,9 +3613,12 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/pipes/safe/url.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var URLPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function URLPipe(dom) {
             this.dom = dom;
         }
@@ -4489,22 +3626,18 @@
          * @param {?} url
          * @return {?}
          */
-        URLPipe.prototype.transform = /**
-         * @param {?} url
-         * @return {?}
-         */
-        function (url) {
+        URLPipe.prototype.transform = function (url) {
             return url ? this.dom.bypassSecurityTrustUrl(url) : '';
         };
-        URLPipe.decorators = [
-            { type: core.Pipe, args: [{ name: 'url' },] }
-        ];
-        /** @nocollapse */
-        URLPipe.ctorParameters = function () { return [
-            { type: platformBrowser.DomSanitizer }
-        ]; };
         return URLPipe;
     }());
+    URLPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'url' },] }
+    ];
+    /** @nocollapse */
+    URLPipe.ctorParameters = function () { return [
+        { type: i1$2.DomSanitizer }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -4516,9 +3649,12 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/services/i18n/i18n.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var I18nPipe = /** @class */ (function () {
+        /**
+         * @param {?} i18n
+         */
         function I18nPipe(i18n) {
             this.i18n = i18n;
         }
@@ -4528,24 +3664,18 @@
          * @param {?=} isSafe
          * @return {?}
          */
-        I18nPipe.prototype.transform = /**
-         * @param {?} key
-         * @param {?=} interpolateParams
-         * @param {?=} isSafe
-         * @return {?}
-         */
-        function (key, interpolateParams, isSafe) {
+        I18nPipe.prototype.transform = function (key, interpolateParams, isSafe) {
             return this.i18n.fanyi(key, interpolateParams, isSafe);
         };
-        I18nPipe.decorators = [
-            { type: core.Pipe, args: [{ name: 'i18n' },] }
-        ];
-        /** @nocollapse */
-        I18nPipe.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [ALAIN_I18N_TOKEN,] }] }
-        ]; };
         return I18nPipe;
     }());
+    I18nPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'i18n' },] }
+    ];
+    /** @nocollapse */
+    I18nPipe.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] }
+    ]; };
     if (false) {
         /**
          * @type {?}
@@ -4554,11 +3684,6 @@
         I18nPipe.prototype.i18n;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/theme.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /** @type {?} */
     var HELPERS = [ModalHelper, DrawerHelper];
     /** @type {?} */
@@ -4567,16 +3692,16 @@
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
+        /**
+         * @param {?} iconSrv
+         */
         function AlainThemeModule(iconSrv) {
             iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
         }
         /**
          * @return {?}
          */
-        AlainThemeModule.forRoot = /**
-         * @return {?}
-         */
-        function () {
+        AlainThemeModule.forRoot = function () {
             return {
                 ngModule: AlainThemeModule,
                 providers: __spread(HELPERS),
@@ -4585,36 +3710,45 @@
         /**
          * @return {?}
          */
-        AlainThemeModule.forChild = /**
-         * @return {?}
-         */
-        function () {
+        AlainThemeModule.forChild = function () {
             return {
                 ngModule: AlainThemeModule,
                 providers: __spread(HELPERS),
             };
         };
-        AlainThemeModule.decorators = [
-            { type: core.NgModule, args: [{
-                        imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
-                        declarations: __spread(PIPES),
-                        exports: __spread(PIPES, [DelonLocaleModule]),
-                    },] }
-        ];
-        /** @nocollapse */
-        AlainThemeModule.ctorParameters = function () { return [
-            { type: icon.NzIconService }
-        ]; };
         return AlainThemeModule;
     }());
+    AlainThemeModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    imports: [i1.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
+                    declarations: __spread(PIPES),
+                    exports: __spread(PIPES, [DelonLocaleModule]),
+                },] }
+    ];
+    /** @nocollapse */
+    AlainThemeModule.ctorParameters = function () { return [
+        { type: icon.NzIconService }
+    ]; };
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/version.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new core.Version('9.5.5');
+    var VERSION = new i0.Version('9.5.5');
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: theme.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.APP = APP;

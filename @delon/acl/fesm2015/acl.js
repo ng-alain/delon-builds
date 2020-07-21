@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const ACL_DEFAULT_CONFIG = {
@@ -19,7 +19,7 @@ const ACL_DEFAULT_CONFIG = {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
@@ -306,7 +306,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl-if.directive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLIfDirective {
     /**
@@ -461,7 +461,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl.directive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ACLDirective {
     /**
@@ -568,7 +568,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl.type.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -603,7 +603,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl-guard.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
@@ -700,7 +700,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/acl.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const COMPONENTS = [ACLDirective, ACLIfDirective];
@@ -726,13 +726,13 @@ DelonACLModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: acl.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, ACL_DEFAULT_CONFIG, DelonACLModule };

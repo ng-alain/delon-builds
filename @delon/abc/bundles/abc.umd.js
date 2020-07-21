@@ -12,7 +12,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: abc.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULES = [
@@ -53,13 +53,25 @@
         function DelonABCModule() {
             util.warnDeprecation("The `DelonABCModule` has been deprecated and will be removed in 10.0.0. Please use secondary entry instead.\ne.g. `import { STModule } from 'ng-zorro-antd/st';`");
         }
-        DelonABCModule.decorators = [
-            { type: core.NgModule, args: [{ exports: MODULES },] }
-        ];
-        /** @nocollapse */
-        DelonABCModule.ctorParameters = function () { return []; };
         return DelonABCModule;
     }());
+    DelonABCModule.decorators = [
+        { type: core.NgModule, args: [{ exports: MODULES },] }
+    ];
+    /** @nocollapse */
+    DelonABCModule.ctorParameters = function () { return []; };
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: abc.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     Object.defineProperty(exports, 'AvatarListComponent', {
         enumerable: true,

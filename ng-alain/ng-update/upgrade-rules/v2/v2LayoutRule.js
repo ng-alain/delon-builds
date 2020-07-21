@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.v2LayoutRule = void 0;
 const change_1 = require("@schematics/angular/utility/change");
 const ast_1 = require("../../../utils/ast");
 const json_1 = require("../../../utils/json");

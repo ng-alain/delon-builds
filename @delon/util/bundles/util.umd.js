@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parse'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/environments'), require('ng-zorro-antd/core/tree')) :
     typeof define === 'function' && define.amd ? define('@delon/util', ['exports', 'extend', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parse', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/environments', 'ng-zorro-antd/core/tree'], factory) :
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.Extend, global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.environments, global.tree));
-}(this, (function (exports, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, common, core, rxjs, operators, environments, tree) { 'use strict';
+}(this, (function (exports, extend, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, i1, i0, rxjs, operators, environments, tree) { 'use strict';
 
     extend = extend && Object.prototype.hasOwnProperty.call(extend, 'default') ? extend['default'] : extend;
     addDays = addDays && Object.prototype.hasOwnProperty.call(addDays, 'default') ? addDays['default'] : addDays;
@@ -40,35 +40,36 @@
     PERFORMANCE OF THIS SOFTWARE.
     ***************************************************************************** */
     /* global Reflect, Promise */
-
-    var extendStatics = function(d, b) {
+    var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b)
+                if (b.hasOwnProperty(p))
+                    d[p] = b[p]; };
         return extendStatics(d, b);
     };
-
     function __extends(d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     }
-
-    var __assign = function() {
+    var __assign = function () {
         __assign = Object.assign || function __assign(t) {
             for (var s, i = 1, n = arguments.length; i < n; i++) {
                 s = arguments[i];
-                for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
             }
             return t;
         };
         return __assign.apply(this, arguments);
     };
-
     function __rest(s, e) {
         var t = {};
-        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-            t[p] = s[p];
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
         if (s != null && typeof Object.getOwnPropertySymbols === "function")
             for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
                 if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
@@ -76,166 +77,247 @@
             }
         return t;
     }
-
     function __decorate(decorators, target, key, desc) {
         var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
         return c > 3 && r && Object.defineProperty(target, key, r), r;
     }
-
     function __param(paramIndex, decorator) {
-        return function (target, key) { decorator(target, key, paramIndex); }
+        return function (target, key) { decorator(target, key, paramIndex); };
     }
-
     function __metadata(metadataKey, metadataValue) {
-        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(metadataKey, metadataValue);
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
     }
-
     function __awaiter(thisArg, _arguments, P, generator) {
         function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
         return new (P || (P = Promise))(function (resolve, reject) {
-            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
             function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
             step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
     }
-
     function __generator(thisArg, body) {
-        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
         function verb(n) { return function (v) { return step([n, v]); }; }
         function step(op) {
-            if (f) throw new TypeError("Generator is already executing.");
-            while (_) try {
-                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-                if (y = 0, t) op = [op[0] & 2, t.value];
-                switch (op[0]) {
-                    case 0: case 1: t = op; break;
-                    case 4: _.label++; return { value: op[1], done: false };
-                    case 5: _.label++; y = op[1]; op = [0]; continue;
-                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                    default:
-                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                        if (t[2]) _.ops.pop();
-                        _.trys.pop(); continue;
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
                 }
-                op = body.call(thisArg, _);
-            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
         }
     }
-
-    function __createBinding(o, m, k, k2) {
-        if (k2 === undefined) k2 = k;
+    var __createBinding = Object.create ? (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+    }) : (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
         o[k2] = m[k];
-    }
-
+    });
     function __exportStar(m, exports) {
-        for (var p in m) if (p !== "default" && !exports.hasOwnProperty(p)) exports[p] = m[p];
+        for (var p in m)
+            if (p !== "default" && !exports.hasOwnProperty(p))
+                __createBinding(exports, m, p);
     }
-
     function __values(o) {
         var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-        if (m) return m.call(o);
-        if (o && typeof o.length === "number") return {
-            next: function () {
-                if (o && i >= o.length) o = void 0;
-                return { value: o && o[i++], done: !o };
-            }
-        };
+        if (m)
+            return m.call(o);
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
         throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
     }
-
     function __read(o, n) {
         var m = typeof Symbol === "function" && o[Symbol.iterator];
-        if (!m) return o;
+        if (!m)
+            return o;
         var i = m.call(o), r, ar = [], e;
         try {
-            while ((n === void 0 || n-- > 0) && !(r = i.next()).done) ar.push(r.value);
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
         }
-        catch (error) { e = { error: error }; }
+        catch (error) {
+            e = { error: error };
+        }
         finally {
             try {
-                if (r && !r.done && (m = i["return"])) m.call(i);
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
             }
-            finally { if (e) throw e.error; }
+            finally {
+                if (e)
+                    throw e.error;
+            }
         }
         return ar;
     }
-
     function __spread() {
         for (var ar = [], i = 0; i < arguments.length; i++)
             ar = ar.concat(__read(arguments[i]));
         return ar;
     }
-
     function __spreadArrays() {
-        for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
         for (var r = Array(s), k = 0, i = 0; i < il; i++)
             for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
                 r[k] = a[j];
         return r;
-    };
-
+    }
+    ;
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);
     }
-
     function __asyncGenerator(thisArg, _arguments, generator) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var g = generator.apply(thisArg, _arguments || []), i, q = [];
         return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-        function verb(n) { if (g[n]) i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-        function resume(n, v) { try { step(g[n](v)); } catch (e) { settle(q[0][3], e); } }
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
         function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
         function fulfill(value) { resume("next", value); }
         function reject(value) { resume("throw", value); }
-        function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
     }
-
     function __asyncDelegator(o) {
         var i, p;
         return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
         function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
     }
-
     function __asyncValues(o) {
-        if (!Symbol.asyncIterator) throw new TypeError("Symbol.asyncIterator is not defined.");
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
         var m = o[Symbol.asyncIterator], i;
         return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
         function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function(v) { resolve({ value: v, done: d }); }, reject); }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
     }
-
     function __makeTemplateObject(cooked, raw) {
-        if (Object.defineProperty) { Object.defineProperty(cooked, "raw", { value: raw }); } else { cooked.raw = raw; }
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
         return cooked;
+    }
+    ;
+    var __setModuleDefault = Object.create ? (function (o, v) {
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function (o, v) {
+        o["default"] = v;
     };
-
     function __importStar(mod) {
-        if (mod && mod.__esModule) return mod;
+        if (mod && mod.__esModule)
+            return mod;
         var result = {};
-        if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
-        result.default = mod;
+        if (mod != null)
+            for (var k in mod)
+                if (Object.hasOwnProperty.call(mod, k))
+                    __createBinding(result, mod, k);
+        __setModuleDefault(result, mod);
         return result;
     }
-
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
-
     function __classPrivateFieldGet(receiver, privateMap) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to get private field on non-instance");
         }
         return privateMap.get(receiver);
     }
-
     function __classPrivateFieldSet(receiver, privateMap, value) {
         if (!privateMap.has(receiver)) {
             throw new TypeError("attempted to set private field on non-instance");
@@ -244,11 +326,6 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/other/deep.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * 类似 `_.get`，根据 `path` 获取安全值
      * jsperf: https://jsperf.com/es-deep-getttps://jsperf.com/es-deep-get
@@ -270,12 +347,11 @@
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
         /** @type {?} */
-        var res = path.reduce((/**
+        var res = path.reduce(( /**
          * @param {?} o
          * @param {?} k
          * @return {?}
-         */
-        function (o, k) { return (o || {})[k]; }), obj);
+         */function (o, k) { return (o || {})[k]; }), obj);
         return typeof res === 'undefined' ? defaultValue : res;
     }
     /**
@@ -306,29 +382,31 @@
         if (Array.isArray(original) || typeof original !== 'object')
             return original;
         /** @type {?} */
-        var isObject = (/**
+        var isObject = ( /**
          * @param {?} v
          * @return {?}
-         */
-        function (v) { return typeof v === 'object' || typeof v === 'function'; });
+         */function (v) { return typeof v === 'object' || typeof v === 'function'; });
         /** @type {?} */
-        var merge = (/**
+        var merge = ( /**
          * @param {?} target
          * @param {?} obj
          * @return {?}
-         */
-        function (target, obj) {
+         */function (target, obj) {
             Object.keys(obj)
-                .filter((/**
-             * @param {?} key
-             * @return {?}
-             */
-            function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); }))
-                .forEach((/**
-             * @param {?} key
-             * @return {?}
-             */
-            function (key) {
+                .filter(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); }))
+                .forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) {
                 /** @type {?} */
                 var fromValue = obj[key];
                 /** @type {?} */
@@ -345,15 +423,19 @@
             }));
             return target;
         });
-        objects.filter((/**
+        objects.filter(( /**
          * @param {?} v
          * @return {?}
-         */
-        function (v) { return v != null && isObject(v); })).forEach((/**
+         */function (/**
          * @param {?} v
          * @return {?}
-         */
-        function (v) { return merge(original, v); }));
+         */ v) { return v != null && isObject(v); })).forEach(( /**
+         * @param {?} v
+         * @return {?}
+         */function (/**
+         * @param {?} v
+         * @return {?}
+         */ v) { return merge(original, v); }));
         return original;
     }
     /**
@@ -374,7 +456,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/string/string.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 字符串格式化
@@ -391,20 +473,17 @@
      */
     function format(str, obj, needDeepGet) {
         if (needDeepGet === void 0) { needDeepGet = false; }
-        return (str || '').replace(/\${([^}]+)}/g, (/**
+        return (str || '').replace(/\${([^}]+)}/g, ( /**
          * @param {?} _work
          * @param {?} key
          * @return {?}
-         */
-        function (_work, key) {
-            return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '';
-        }));
+         */function (_work, key) { return needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''; }));
     }
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/time/time.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 获取时间范围
@@ -470,7 +549,7 @@
     function toDate(value, options) {
         if (typeof options === 'string')
             options = { formatString: options };
-        var _a = __assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options), formatString = _a.formatString, defaultValue = _a.defaultValue;
+        var _a = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options), formatString = _a.formatString, defaultValue = _a.defaultValue;
         if (value == null)
             return defaultValue;
         if (value instanceof Date)
@@ -479,16 +558,16 @@
             return new Date(value);
         /** @type {?} */
         var tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
-        if (isNaN((/** @type {?} */ (tryDate)))) {
-            tryDate = parse(value, (/** @type {?} */ (formatString)), defaultValue);
+        if (isNaN(( /** @type {?} */(tryDate)))) {
+            tryDate = parse(value, ( /** @type {?} */(formatString)), defaultValue);
         }
-        return isNaN((/** @type {?} */ (tryDate))) ? defaultValue : tryDate;
+        return isNaN(( /** @type {?} */(tryDate))) ? defaultValue : tryDate;
     }
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/lazy/lazy.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @record
@@ -511,6 +590,9 @@
      * 延迟加载资源（js 或 css）服务
      */
     var LazyService = /** @class */ (function () {
+        /**
+         * @param {?} doc
+         */
         function LazyService(doc) {
             this.doc = doc;
             this.list = {};
@@ -518,26 +600,25 @@
             this._notify = new rxjs.BehaviorSubject([]);
         }
         Object.defineProperty(LazyService.prototype, "change", {
-            get: /**
+            /**
              * @return {?}
              */
-            function () {
-                return this._notify.asObservable().pipe(operators.share(), operators.filter((/**
+            get: function () {
+                return this._notify.asObservable().pipe(operators.share(), operators.filter(( /**
                  * @param {?} ls
                  * @return {?}
-                 */
-                function (ls) { return ls.length !== 0; })));
+                 */function (/**
+                 * @param {?} ls
+                 * @return {?}
+                 */ ls) { return ls.length !== 0; })));
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         /**
          * @return {?}
          */
-        LazyService.prototype.clear = /**
-         * @return {?}
-         */
-        function () {
+        LazyService.prototype.clear = function () {
             this.list = {};
             this.cached = {};
         };
@@ -545,22 +626,20 @@
          * @param {?} paths
          * @return {?}
          */
-        LazyService.prototype.load = /**
-         * @param {?} paths
-         * @return {?}
-         */
-        function (paths) {
+        LazyService.prototype.load = function (paths) {
             var _this = this;
             if (!Array.isArray(paths)) {
                 paths = [paths];
             }
             /** @type {?} */
             var promises = [];
-            paths.forEach((/**
+            paths.forEach(( /**
              * @param {?} path
              * @return {?}
-             */
-            function (path) {
+             */function (/**
+             * @param {?} path
+             * @return {?}
+             */ path) {
                 if (path.endsWith('.js')) {
                     promises.push(_this.loadScript(path));
                 }
@@ -568,11 +647,13 @@
                     promises.push(_this.loadStyle(path));
                 }
             }));
-            return Promise.all(promises).then((/**
+            return Promise.all(promises).then(( /**
              * @param {?} res
              * @return {?}
-             */
-            function (res) {
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
                 _this._notify.next(res);
                 return Promise.resolve(res);
             }));
@@ -582,35 +663,31 @@
          * @param {?=} innerContent
          * @return {?}
          */
-        LazyService.prototype.loadScript = /**
-         * @param {?} path
-         * @param {?=} innerContent
-         * @return {?}
-         */
-        function (path, innerContent) {
+        LazyService.prototype.loadScript = function (path, innerContent) {
             var _this = this;
-            return new Promise((/**
+            return new Promise(( /**
              * @param {?} resolve
              * @return {?}
-             */
-            function (resolve) {
+             */function (/**
+             * @param {?} resolve
+             * @return {?}
+             */ resolve) {
                 if (_this.list[path] === true) {
-                    resolve(__assign(__assign({}, _this.cached[path]), { status: 'loading' }));
+                    resolve(Object.assign(Object.assign({}, _this.cached[path]), { status: 'loading' }));
                     return;
                 }
                 _this.list[path] = true;
                 /** @type {?} */
-                var onSuccess = (/**
+                var onSuccess = ( /**
                  * @param {?} item
                  * @return {?}
-                 */
-                function (item) {
+                 */function (item) {
                     _this.cached[path] = item;
                     resolve(item);
                     _this._notify.next([item]);
                 });
                 /** @type {?} */
-                var node = (/** @type {?} */ (_this.doc.createElement('script')));
+                var node = ( /** @type {?} */(_this.doc.createElement('script')));
                 node.type = 'text/javascript';
                 node.src = path;
                 node.charset = 'utf-8';
@@ -619,10 +696,9 @@
                 }
                 if (node.readyState) {
                     // IE
-                    node.onreadystatechange = (/**
+                    node.onreadystatechange = ( /**
                      * @return {?}
-                     */
-                    function () {
+                     */function () {
                         if (node.readyState === 'loaded' || node.readyState === 'complete') {
                             node.onreadystatechange = null;
                             onSuccess({
@@ -634,29 +710,23 @@
                     });
                 }
                 else {
-                    node.onload = (/**
+                    node.onload = ( /**
                      * @return {?}
-                     */
-                    function () {
-                        return onSuccess({
-                            path: path,
-                            loaded: true,
-                            status: 'ok',
-                        });
-                    });
+                     */function () { return onSuccess({
+                        path: path,
+                        loaded: true,
+                        status: 'ok',
+                    }); });
                 }
-                node.onerror = (/**
+                node.onerror = ( /**
                  * @param {?} error
                  * @return {?}
-                 */
-                function (error) {
-                    return onSuccess({
-                        path: path,
-                        loaded: false,
-                        status: 'error',
-                        error: error,
-                    });
-                });
+                 */function (error) { return onSuccess({
+                    path: path,
+                    loaded: false,
+                    status: 'error',
+                    error: error,
+                }); });
                 _this.doc.getElementsByTagName('head')[0].appendChild(node);
             }));
         };
@@ -666,27 +736,23 @@
          * @param {?=} innerContent
          * @return {?}
          */
-        LazyService.prototype.loadStyle = /**
-         * @param {?} path
-         * @param {?=} rel
-         * @param {?=} innerContent
-         * @return {?}
-         */
-        function (path, rel, innerContent) {
+        LazyService.prototype.loadStyle = function (path, rel, innerContent) {
             var _this = this;
             if (rel === void 0) { rel = 'stylesheet'; }
-            return new Promise((/**
+            return new Promise(( /**
              * @param {?} resolve
              * @return {?}
-             */
-            function (resolve) {
+             */function (/**
+             * @param {?} resolve
+             * @return {?}
+             */ resolve) {
                 if (_this.list[path] === true) {
                     resolve(_this.cached[path]);
                     return;
                 }
                 _this.list[path] = true;
                 /** @type {?} */
-                var node = (/** @type {?} */ (_this.doc.createElement('link')));
+                var node = ( /** @type {?} */(_this.doc.createElement('link')));
                 node.rel = rel;
                 node.type = 'text/css';
                 node.href = path;
@@ -704,16 +770,16 @@
                 resolve(item);
             }));
         };
-        LazyService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        LazyService.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
-        ]; };
-        /** @nocollapse */ LazyService.ɵprov = core.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(core.ɵɵinject(common.DOCUMENT)); }, token: LazyService, providedIn: "root" });
         return LazyService;
     }());
+    LazyService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    LazyService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ LazyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(i0.ɵɵinject(i1.DOCUMENT)); }, token: LazyService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -740,7 +806,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/validate/validate.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 是否为数字
@@ -794,111 +860,66 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/validate/validators.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 一套日常验证器
      */
     // tslint:disable-next-line:class-name
-    var   /**
-     * 一套日常验证器
-     */
-    // tslint:disable-next-line:class-name
-    _Validators = /** @class */ (function () {
+    var _Validators = /** @class */ (function () {
         function _Validators() {
         }
-        /** 是否为数字 */
         /**
          * 是否为数字
          * @param {?} control
          * @return {?}
          */
-        _Validators.num = /**
-         * 是否为数字
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.num = function (control) {
             return isNum(control.value) ? null : { num: true };
         };
-        /** 是否为整数 */
         /**
          * 是否为整数
          * @param {?} control
          * @return {?}
          */
-        _Validators.int = /**
-         * 是否为整数
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.int = function (control) {
             return isInt(control.value) ? null : { int: true };
         };
-        /** 是否为小数 */
         /**
          * 是否为小数
          * @param {?} control
          * @return {?}
          */
-        _Validators.decimal = /**
-         * 是否为小数
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.decimal = function (control) {
             return isDecimal(control.value) ? null : { decimal: true };
         };
-        /** 是否为身份证 */
         /**
          * 是否为身份证
          * @param {?} control
          * @return {?}
          */
-        _Validators.idCard = /**
-         * 是否为身份证
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.idCard = function (control) {
             return isIdCard(control.value) ? null : { idCard: true };
         };
-        /** 是否为手机号 */
         /**
          * 是否为手机号
          * @param {?} control
          * @return {?}
          */
-        _Validators.mobile = /**
-         * 是否为手机号
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.mobile = function (control) {
             return isMobile(control.value) ? null : { mobile: true };
         };
-        /** 是否URL地址 */
         /**
          * 是否URL地址
          * @param {?} control
          * @return {?}
          */
-        _Validators.url = /**
-         * 是否URL地址
-         * @param {?} control
-         * @return {?}
-         */
-        function (control) {
+        _Validators.url = function (control) {
             return isUrl(control.value) ? null : { url: true };
         };
         return _Validators;
     }());
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/logger/logger.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /** @type {?} */
     var record = {};
     /** @type {?} */
@@ -913,12 +934,11 @@
             args[_i] = arguments[_i];
         }
         /** @type {?} */
-        var asRecord = args.reduce((/**
+        var asRecord = args.reduce(( /**
          * @param {?} acc
          * @param {?} c
          * @return {?}
-         */
-        function (acc, c) { return acc + c.toString(); }), '');
+         */function (acc, c) { return acc + c.toString(); }), '');
         if (record[asRecord]) {
             return false;
         }
@@ -937,26 +957,24 @@
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        if (environments.environment.isTestMode || (core.isDevMode() && notRecorded.apply(void 0, __spread(args)))) {
+        if (environments.environment.isTestMode || (i0.isDevMode() && notRecorded.apply(void 0, __spread(args)))) {
             consoleFunc.apply(void 0, __spread(args));
         }
     }
     // Warning should only be printed in dev mode and only once.
     /** @type {?} */
-    var warn = (/**
+    var warn = ( /**
      * @param {...?} args
      * @return {?}
-     */
-    function () {
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return consoleCommonBehavior.apply(void 0, __spread([(/**
+        return consoleCommonBehavior.apply(void 0, __spread([( /**
              * @param {...?} arg
              * @return {?}
-             */
-            function () {
+             */function () {
                 var arg = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
                     arg[_i] = arguments[_i];
@@ -965,21 +983,19 @@
             })], args));
     });
     /** @type {?} */
-    var deprecation10 = (/**
+    var deprecation10 = ( /**
      * @param {?} comp
      * @param {?} from
      * @param {?=} to
      * @return {?}
-     */
-    function (comp, from, to) {
+     */function (comp, from, to) {
         warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
     });
     /** @type {?} */
-    var warnDeprecation = (/**
+    var warnDeprecation = ( /**
      * @param {...?} args
      * @return {?}
-     */
-    function () {
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
@@ -987,11 +1003,10 @@
         if (!environments.environment.isTestMode) {
             /** @type {?} */
             var stack_1 = new Error().stack;
-            return consoleCommonBehavior.apply(void 0, __spread([(/**
+            return consoleCommonBehavior.apply(void 0, __spread([( /**
                  * @param {...?} arg
                  * @return {?}
-                 */
-                function () {
+                 */function () {
                     var arg = [];
                     for (var _i = 0; _i < arguments.length; _i++) {
                         arg[_i] = arguments[_i];
@@ -1000,24 +1015,22 @@
                 })], args));
         }
         else {
-            return (/**
+            return ( /**
              * @return {?}
-             */
-            function () { });
+             */function () { });
         }
     });
     // Log should only be printed in dev mode.
     /** @type {?} */
-    var log = (/**
+    var log = ( /**
      * @param {...?} args
      * @return {?}
-     */
-    function () {
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (core.isDevMode()) {
+        if (i0.isDevMode()) {
             console.log.apply(console, __spread([PREFIX], args));
         }
     });
@@ -1025,7 +1038,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/other/check.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} element
@@ -1037,10 +1050,10 @@
         for (var i = 0; i < nodes.length; i++) {
             /** @type {?} */
             var node = nodes.item(i);
-            if (node.nodeType === 1 && ((/** @type {?} */ (node))).outerHTML.toString().trim().length !== 0) {
+            if (node.nodeType === 1 && (( /** @type {?} */(node))).outerHTML.toString().trim().length !== 0) {
                 return false;
             }
-            else if (node.nodeType === 3 && (/** @type {?} */ (node.textContent)).toString().trim().length !== 0) {
+            else if (node.nodeType === 3 && ( /** @type {?} */(node.textContent)).toString().trim().length !== 0) {
                 return false;
             }
         }
@@ -1071,17 +1084,17 @@
                 writable: true,
             });
             return {
-                get: /**
+                /**
                  * @return {?}
                  */
-                function () {
+                get: function () {
                     return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
                 },
-                set: /**
+                /**
                  * @param {?} value
                  * @return {?}
                  */
-                function (value) {
+                set: function (value) {
                     if (originalDescriptor && originalDescriptor.set) {
                         originalDescriptor.set.bind(this)(fallback(value, defaultValue));
                     }
@@ -1120,7 +1133,7 @@
      */
     function toNumber(value, fallbackValue) {
         if (fallbackValue === void 0) { fallbackValue = 0; }
-        return !isNaN(parseFloat((/** @type {?} */ (value)))) && !isNaN(Number(value)) ? Number(value) : fallbackValue;
+        return !isNaN(parseFloat(( /** @type {?} */(value)))) && !isNaN(Number(value)) ? Number(value) : fallbackValue;
     }
     /**
      * Input decorator that handle a prop to do get/set automatically with toNumber
@@ -1139,7 +1152,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/other/copy.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * 复制字符串文档至剪贴板
@@ -1147,11 +1160,10 @@
      * @return {?}
      */
     function copy(value) {
-        return new Promise((/**
+        return new Promise(( /**
          * @param {?} resolve
          * @return {?}
-         */
-        function (resolve) {
+         */function (resolve) {
             /** @type {?} */
             var copyTextArea = null;
             try {
@@ -1176,7 +1188,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/other/style.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @param {?} el
@@ -1232,404 +1244,20 @@
         else {
             removeClass(el, classMap, renderer);
         }
-        classMap = __assign({}, classMap);
+        classMap = Object.assign({}, classMap);
         addClass(el, classMap, renderer);
     }
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/other/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/error-collect.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainErrorCollectConfig() { }
-    if (false) {
-        /**
-         * 监听频率，默认：`500`
-         * @type {?|undefined}
-         */
-        AlainErrorCollectConfig.prototype.freq;
-        /**
-         * 顶部偏移值，默认：`145`
-         * @type {?|undefined}
-         */
-        AlainErrorCollectConfig.prototype.offsetTop;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/image.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainImageConfig() { }
-    if (false) {
-        /**
-         * 默认大小，默认值：`64`，单位：px
-         * @type {?|undefined}
-         */
-        AlainImageConfig.prototype.size;
-        /**
-         * 错误图片，默认：`./assets/img/logo.svg`
-         * @type {?|undefined}
-         */
-        AlainImageConfig.prototype.error;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/date-picker.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainDateRangePickerConfig() { }
-    if (false) {
-        /**
-         * 默认：`yyyy-MM-dd`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzFormat;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzClassName;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzSize;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzStyle;
-        /**
-         * 默认：`true`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzAllowClear;
-        /**
-         * 默认：`false`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzAutoFocus;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzDisabledDate;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzDisabledTime;
-        /**
-         * 默认：`{ position: 'relative' }`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzPopupStyle;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzDropdownClassName;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzRenderExtraFooter;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzShowTime;
-        /**
-         * 默认：`true`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerConfig.prototype.nzShowToday;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzMode;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.nzRanges;
-        /** @type {?|undefined} */
-        AlainDateRangePickerConfig.prototype.shortcuts;
-    }
-    /**
-     * @record
-     */
-    function AlainDateRangePickerShortcut() { }
-    if (false) {
-        /**
-         * Whether to enable, default: `false`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerShortcut.prototype.enabled;
-        /**
-         * Whether to close the panel after clicking, default: `true`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerShortcut.prototype.closed;
-        /**
-         * Shortcut list, default: `今天`, `昨天`, `近3天`, `近7天`, `本周`, `本月`, `全年`
-         * @type {?|undefined}
-         */
-        AlainDateRangePickerShortcut.prototype.list;
-    }
-    /**
-     * @record
-     */
-    function AlainDateRangePickerShortcutItem() { }
-    if (false) {
-        /** @type {?} */
-        AlainDateRangePickerShortcutItem.prototype.text;
-        /** @type {?} */
-        AlainDateRangePickerShortcutItem.prototype.fn;
-        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/loading.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainLoadingConfig() { }
-    if (false) {
-        /**
-         * 类型，默认：`spin`
-         * @type {?|undefined}
-         */
-        AlainLoadingConfig.prototype.type;
-        /**
-         * 显示文本，默认：`加载中...`
-         * @type {?|undefined}
-         */
-        AlainLoadingConfig.prototype.text;
-        /** @type {?|undefined} */
-        AlainLoadingConfig.prototype.icon;
-        /** @type {?|undefined} */
-        AlainLoadingConfig.prototype.custom;
-        /**
-         * 延迟，默认：`0`
-         * @type {?|undefined}
-         */
-        AlainLoadingConfig.prototype.delay;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/lodop.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainLodopConfig() { }
-    if (false) {
-        /**
-         * 注册信息：主注册号
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.license;
-        /**
-         * 注册信息：附加注册号A
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.licenseA;
-        /**
-         * 注册信息：附加注册号B
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.licenseB;
-        /**
-         * 注册信息：注册单位名称
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.companyName;
-        /**
-         * Lodop 远程脚本URL地址，**注意**务必使用 `name` 属性指定变量值
-         *
-         * - http://localhost:18000/CLodopfuncs.js
-         * - https://localhost:8443/CLodopfuncs.js [默认]
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.url;
-        /**
-         * Lodop 变量名，默认：`CLODOP`
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.name;
-        /**
-         * 检查次数，默认 `100`，当检查超过时视为异常，这是因为 Lodop 需要连接 WebSocket
-         * @type {?|undefined}
-         */
-        AlainLodopConfig.prototype.checkMaxCount;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/page-header.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainPageHeaderConfig() { }
-    if (false) {
-        /**
-         * 首页文本，若指定空表示不显示，默认：`首页`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.home;
-        /**
-         * 首页链接，默认：`/`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.homeLink;
-        /**
-         * 首页链接国际化参数
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.homeI18n;
-        /**
-         * 自动生成导航，以当前路由从主菜单中定位，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.autoBreadcrumb;
-        /**
-         * 自动向上递归查找，默认：`false`
-         *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.recursiveBreadcrumb;
-        /**
-         * 自动生成标题，以当前路由从主菜单中定位，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.autoTitle;
-        /**
-         * 是否自动将标准信息同步至 `TitleService`、`ReuseService` 下，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.syncTitle;
-        /**
-         * 是否固定模式，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.fixed;
-        /**
-         * 固定偏移值，默认：`64`
-         * @type {?|undefined}
-         */
-        AlainPageHeaderConfig.prototype.fixedOffsetTop;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/qr.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainQRConfig() { }
-    if (false) {
-        /**
-         * [qrious](https://neocotic.com/qrious) 外网地址，默认：`https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js`
-         *
-         * 若在 `angular.json` 配置 `"scripts": [ "node_modules/qrious/dist/qrious.min.js" ]` 则优先使用
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.lib;
-        /**
-         * 背景，默认：`white`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.background;
-        /**
-         * 背景透明级别，范围：`0-1` 之间，默认：`1`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.backgroundAlpha;
-        /**
-         * 前景，默认：`black`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.foreground;
-        /**
-         * 前景透明级别，范围：`0-1` 之间，默认：`1`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.foregroundAlpha;
-        /**
-         * 误差校正级别，默认：`L`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.level;
-        /**
-         * 二维码输出图片MIME类型，默认：`image/png`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.mime;
-        /**
-         * 内边距（单位：px），默认：`10`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.padding;
-        /**
-         * 大小（单位：px），默认：`220`
-         * @type {?|undefined}
-         */
-        AlainQRConfig.prototype.size;
-        /** @type {?|undefined} */
-        AlainQRConfig.prototype.delay;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/se.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainSEConfig() { }
-    if (false) {
-        /**
-         * 大小，默认：`default`
-         * - `compact` 紧凑型，强制忽略 `error`、`extra` 展示
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.size;
-        /**
-         * 布局类型，等同 `nzLayout`，默认：`horizontal`
-         * - `inline` 时强制大小为 `compact`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.nzLayout;
-        /**
-         * 间距，当 `nzLayout:horizontal` 时有效，默认：`32`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.gutter;
-        /**
-         * 列数，默认：`2`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.col;
-        /**
-         * 标签文本宽度，单位：`px`，默认：`150`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.labelWidth;
-        /**
-         * 是否立即呈现错误视觉，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.firstVisual;
-        /**
-         * 是否忽略 `dirty` 校验，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSEConfig.prototype.ingoreDirty;
-    }
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/config/abc/sv.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var AlainSVConfig = /** @class */ (function () {
         function AlainSVConfig() {
@@ -1671,714 +1299,8 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: src/config/abc/sg.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainSGConfig() { }
-    if (false) {
-        /**
-         * 间距，默认：`32`
-         * @type {?|undefined}
-         */
-        AlainSGConfig.prototype.gutter;
-        /**
-         * 列数，默认：`2`
-         * @type {?|undefined}
-         */
-        AlainSGConfig.prototype.col;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/st.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainSTConfig() { }
-    if (false) {
-        /**
-         * 起始页码，默认为：`1`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.pi;
-        /**
-         * 每页数量，当设置为 `0` 表示不分页，默认：`10`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.ps;
-        /**
-         * 是否显示边框，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.bordered;
-        /**
-         * table大小，默认：`default`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.size;
-        /**
-         * 是否开启响应式，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.responsive;
-        /**
-         * 是否在小屏幕下才显示顶部与底部，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.responsiveHideHeaderFooter;
-        /**
-         * 请求体配置
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.req;
-        /**
-         * 返回体配置
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.res;
-        /**
-         * 返回体配置
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.page;
-        /**
-         * 重命名排序值，`columns` 的重命名高于属性
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.sortReName;
-        /**
-         * 单排序规则
-         * - 若不指定，则返回：`columnName=ascend|descend`
-         * - 若指定，则返回：`sort=columnName.(ascend|descend)`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.singleSort;
-        /**
-         * 是否多排序，当 `sort` 多个相同值时自动合并，建议后端支持时使用
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.multiSort;
-        /**
-         * 按钮模态框配置
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.modal;
-        /**
-         * 按钮抽屉配置
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.drawer;
-        /**
-         * 气泡参数
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.pop;
-        /**
-         * 行单击多少时长之类为双击（单位：毫秒），默认：`200`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.rowClickTime;
-        /**
-         * 过滤按钮确认文本
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.filterConfirmText;
-        /**
-         * 过滤按钮重置文本
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.filterClearText;
-        /**
-         * 按钮图标
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.btnIcon;
-        /**
-         * 行号索引，默认：`1`
-         * - 计算规则为：`index + noIndex`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.noIndex;
-        /**
-         * 表格行的类名
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.rowClassName;
-        /**
-         * 通过点击行来展开子行，Default: `false`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.expandRowByClick;
-        /**
-         * 手风琴模式，Default: `false`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.expandAccordion;
-        /**
-         * 指定 `width` 模式
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.widthMode;
-        /**
-         * Default: `54`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.virtualItemSize;
-        /**
-         * Default: `200`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.virtualMaxBufferPx;
-        /**
-         * Default: `100`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.virtualMinBufferPx;
-        /**
-         * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`, Default: `hide`
-         * @type {?|undefined}
-         */
-        AlainSTConfig.prototype.iifBehavior;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/xlsx.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainXlsxConfig() { }
-    if (false) {
-        /**
-         * Xlsx library path, default: `//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js`
-         * @type {?|undefined}
-         */
-        AlainXlsxConfig.prototype.url;
-        /**
-         * Defines which Xlsx optional modules should get loaded, e.g:
-         *
-         * `[ '//cdn.bootcss.com/xlsx/0.15.6/cpexcel.js' ]`
-         * @type {?|undefined}
-         */
-        AlainXlsxConfig.prototype.modules;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/zip.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainZipConfig() { }
-    if (false) {
-        /**
-         * Zip library path, Default: `//cdn.bootcss.com/jszip/3.3.0/jszip.min.js`
-         * @type {?|undefined}
-         */
-        AlainZipConfig.prototype.url;
-        /**
-         * Defines which zip optional utils should get loaded
-         * @type {?|undefined}
-         */
-        AlainZipConfig.prototype.utils;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/media.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainMediaConfig() { }
-    if (false) {
-        /**
-         * Plyr library path, default: `["https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js", "https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css"]`
-         * @type {?|undefined}
-         */
-        AlainMediaConfig.prototype.urls;
-        /**
-         * Please refer to [plyr options](https://github.com/sampotts/plyr#options)
-         * @type {?|undefined}
-         */
-        AlainMediaConfig.prototype.options;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/abc/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/acl/acl.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainACLConfig() { }
-    if (false) {
-        /**
-         * Router URL when guard fail, default: `/403`
-         * @type {?|undefined}
-         */
-        AlainACLConfig.prototype.guard_url;
-        /**
-         * `can` before execution callback
-         * @type {?|undefined}
-         */
-        AlainACLConfig.prototype.preCan;
-    }
-    /**
-     * @record
-     */
-    function AlainACLType() { }
-    if (false) {
-        /**
-         * 角色
-         * @type {?|undefined}
-         */
-        AlainACLType.prototype.role;
-        /**
-         * 权限点
-         * @type {?|undefined}
-         */
-        AlainACLType.prototype.ability;
-        /**
-         * 校验模式，默认：`oneOf`
-         * - `allOf` 表示必须满足所有角色或权限点数组算有效
-         * - `oneOf` 表示只须满足角色或权限点数组中的一项算有效
-         * @type {?|undefined}
-         */
-        AlainACLType.prototype.mode;
-        /**
-         * 是否取反，即结果为 `true` 时表示未授权
-         * @type {?|undefined}
-         */
-        AlainACLType.prototype.except;
-        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/auth/auth.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainAuthConfig() { }
-    if (false) {
-        /**
-         * 存储KEY值，默认：`_token`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.store_key;
-        /**
-         * 无效时跳转至登录页，默认：`true`，包括：
-         * - 无效token值
-         * - token已过期（限JWT）
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.token_invalid_redirect;
-        /**
-         * token过期时间偏移值，默认：`10` 秒（单位：秒）
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.token_exp_offset;
-        /**
-         * 发送token参数名，默认：·
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.token_send_key;
-        /**
-         * 发送token模板（默认为：`'${token}'`），使用 `${token}` 表示token点位符（**注意：**请务必使用 \`\` 包裹），例如：
-         *
-         * - `Bearer ${token}`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.token_send_template;
-        /**
-         * 发送token参数位置，默认：`header`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.token_send_place;
-        /**
-         * 登录页路由地址，默认：`/login`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.login_url;
-        /**
-         * 忽略TOKEN的URL地址列表，默认值为：`[/\/login/, /assets\//, /passport\//]`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.ignores;
-        /**
-         * 允许匿名登录KEY，若请求参数中带有该KEY表示忽略TOKEN，默认：`_allow_anonymous`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.allow_anonymous_key;
-        /**
-         * 是否校验失效时命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainAuthConfig.prototype.executeOtherInterceptors;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/cache/cache.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainCacheConfig() { }
-    if (false) {
-        /**
-         * Cache mode, default: `promise`
-         * - `promise` Convention mode, allowing `key` to get data as http
-         * - `none` Normal mode
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.mode;
-        /**
-         * Rename the return parameters, default: ``, for example:
-         * - `null` The response body is content
-         * - `list` The response body should be `{ list: [] }`
-         * - `result.list` The response body should be `{ result: { list: [] } }`
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.reName;
-        /**
-         * Set the default storage type
-         * - `m` Storage via memory
-         * - `s` Storage via `localStorage`
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.type;
-        /**
-         * Set the default expire time (Unit: second)
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.expire;
-        /**
-         * Key prefix of persistent data, default: ``
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.prefix;
-        /**
-         * Key name of persistent data metadata storage, default: `__cache_meta`
-         * @type {?|undefined}
-         */
-        AlainCacheConfig.prototype.meta_key;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/chart/chart.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainChartConfig() { }
-    if (false) {
-        /** @type {?|undefined} */
-        AlainChartConfig.prototype.theme;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/util/array.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainUtilArrayConfig() { }
-    if (false) {
-        /**
-         * 深度项名，默认：`'deep'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.deepMapName;
-        /**
-         * 扁平后数组的父数据项名，默认：`'parent'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.parentMapName;
-        /**
-         * 编号项名，默认：`'id'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.idMapName;
-        /**
-         * 父编号项名，默认：`'parent_id'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.parentIdMapName;
-        /**
-         * 源数据子项名，默认：`'children'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.childrenMapName;
-        /**
-         * 标题项名，默认：`'title'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.titleMapName;
-        /**
-         * 节点 Checkbox 是否选中项名，默认：`'checked'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.checkedMapname;
-        /**
-         * 节点本身是否选中项名，默认：`'selected'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.selectedMapname;
-        /**
-         * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.expandedMapname;
-        /**
-         * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
-         * @type {?|undefined}
-         */
-        AlainUtilArrayConfig.prototype.disabledMapname;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/theme/http.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainThemeHttpClientConfig() { }
-    if (false) {
-        /**
-         * 空值处理，默认：`include`
-         * - include：包含
-         * - ignore：忽略
-         * @type {?|undefined}
-         */
-        AlainThemeHttpClientConfig.prototype.nullValueHandling;
-        /**
-         * 时间值处理，默认：`timestamp`
-         * - timestamp：时间戳
-         * - ignore：忽略处理，保持原始状态
-         * @type {?|undefined}
-         */
-        AlainThemeHttpClientConfig.prototype.dateValueHandling;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/theme/responsive.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainThemeResponsiveConfig() { }
-    if (false) {
-        /** @type {?} */
-        AlainThemeResponsiveConfig.prototype.rules;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/theme/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/mock/mock.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainMockConfig() { }
-    if (false) {
-        /**
-         * 规则定义数据
-         * @type {?}
-         */
-        AlainMockConfig.prototype.data;
-        /**
-         * 请求延迟，单位：毫秒，默认：`300`
-         * @type {?|undefined}
-         */
-        AlainMockConfig.prototype.delay;
-        /**
-         * 是否强制所有请求都Mock，默认：`false`，`true` 表示当请求的URL不存在时直接返回 404 错误，`false` 表示未命中时发送真实HTTP请求
-         * @type {?|undefined}
-         */
-        AlainMockConfig.prototype.force;
-        /**
-         * 是否打印 Mock 请求信息，弥补浏览器无Network信息，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainMockConfig.prototype.log;
-        /**
-         * 是否拦截命中后继续调用后续拦截器的 `intercept` 方法，默认：`true`
-         * @type {?|undefined}
-         */
-        AlainMockConfig.prototype.executeOtherInterceptors;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/sf/sf.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainSFConfigFormatMap() { }
-    if (false) {
-        /* Skipping unnamed member:
-        'date-time': { widget?: string; showTime?: boolean; format?: string };*/
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.date;
-        /* Skipping unnamed member:
-        'full-date': { widget?: string; format?: string };*/
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.time;
-        /* Skipping unnamed member:
-        'full-time': { widget?: string; format?: string };*/
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.week;
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.month;
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.uri;
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.email;
-        /** @type {?} */
-        AlainSFConfigFormatMap.prototype.color;
-        /* Skipping unnamed member:
-        '': { widget?: string };*/
-    }
-    /**
-     * @record
-     */
-    function AlainSFConfig() { }
-    if (false) {
-        /** @type {?|undefined} */
-        AlainSFConfig.prototype.formatMap;
-        /**
-         * 是否忽略某些数据类型校验 `ERRORSDEFAULT`，默认：`[ 'type', 'enum' ]`
-         *
-         * - `type` 限定 Schema 中 `type` 类型
-         * - `enum` 限定应当是预设定的枚举值之一
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.ingoreKeywords;
-        /**
-         * [ajv](http://epoberezkin.github.io/ajv/#options) 参数
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.ajv;
-        /**
-         * 是否实时校验，默认：`true`
-         * - `true` 每一次都校验
-         * - `false` 提交时校验
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.liveValidate;
-        /**
-         * 指定表单 `autocomplete` 值，默认：`on`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.autocomplete;
-        /**
-         * 是否立即呈现错误视觉，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.firstVisual;
-        /**
-         * 是否只展示错误视觉不显示错误文本，默认：`false`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.onlyVisual;
-        /**
-         * 自定义通用错误信息，默认：`{}`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.errors;
-        /**
-         * 默认全局布局，类型为：`SFUISchemaItem`，使用时加上可智能提示，例如：
-         *
-         * ```ts
-         * ui: {} as SFUISchemaItem
-         * ```
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.ui;
-        /**
-         * 元素组件大小，用于 `nzSize` 值
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.size;
-        /**
-         * 按钮风格，类型为：`SFButton`，使用时加上可智能提示，例如：
-         *
-         * ```ts
-         * button: {} as SFButton
-         * ```
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.button;
-        /**
-         * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.uiDateStringFormat;
-        /**
-         * date小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`T` 13位 Unix Timestamp
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.uiDateNumberFormat;
-        /**
-         * time小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`HH:mm:ss`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.uiTimeStringFormat;
-        /**
-         * time小部件：`type="number"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`T` 13位 Unix Timestamp，日期统一使用 `1970-01-01`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.uiTimeNumberFormat;
-        /**
-         * 指定 `format: 'email'` 的默认Email后缀，默认：`['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com']`
-         * @type {?|undefined}
-         */
-        AlainSFConfig.prototype.uiEmailSuffixes;
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: src/config/config.types.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * @record
@@ -2433,7 +1355,7 @@
         AlainConfig.prototype.themeResponsive;
     }
     /** @type {?} */
-    var ALAIN_CONFIG = new core.InjectionToken('alain-config', {
+    var ALAIN_CONFIG = new i0.InjectionToken('alain-config', {
         providedIn: 'root',
         factory: ALAIN_CONFIG_FACTORY,
     });
@@ -2444,14 +1366,12 @@
         return {};
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/config/config.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var AlainConfigService = /** @class */ (function () {
-        function AlainConfigService$1(defaultConfig) {
-            this.config = __assign({}, defaultConfig);
+        /**
+         * @param {?=} defaultConfig
+         */
+        function AlainConfigService(defaultConfig) {
+            this.config = Object.assign({}, defaultConfig);
         }
         /**
          * @template T
@@ -2459,16 +1379,10 @@
          * @param {?=} key
          * @return {?}
          */
-        AlainConfigService$1.prototype.get = /**
-         * @template T
-         * @param {?} componentName
-         * @param {?=} key
-         * @return {?}
-         */
-        function (componentName, key) {
+        AlainConfigService.prototype.get = function (componentName, key) {
             var _a;
             /** @type {?} */
-            var res = (/** @type {?} */ ((((/** @type {?} */ (this.config[componentName]))) || {})));
+            var res = ( /** @type {?} */(((( /** @type {?} */(this.config[componentName]))) || {})));
             return key ? (_a = {}, _a[key] = res[key], _a) : res;
         };
         /**
@@ -2477,13 +1391,7 @@
          * @param {...?} defaultValues
          * @return {?}
          */
-        AlainConfigService$1.prototype.merge = /**
-         * @template T
-         * @param {?} componentName
-         * @param {...?} defaultValues
-         * @return {?}
-         */
-        function (componentName) {
+        AlainConfigService.prototype.merge = function (componentName) {
             var defaultValues = [];
             for (var _i = 1; _i < arguments.length; _i++) {
                 defaultValues[_i - 1] = arguments[_i];
@@ -2497,14 +1405,7 @@
          * @param {?} defaultValues
          * @return {?}
          */
-        AlainConfigService$1.prototype.attach = /**
-         * @template T
-         * @param {?} componentThis
-         * @param {?} componentName
-         * @param {?} defaultValues
-         * @return {?}
-         */
-        function (componentThis, componentName, defaultValues) {
+        AlainConfigService.prototype.attach = function (componentThis, componentName, defaultValues) {
             Object.assign(componentThis, this.merge(componentName, defaultValues));
         };
         /**
@@ -2514,14 +1415,7 @@
          * @param {?} key
          * @return {?}
          */
-        AlainConfigService$1.prototype.attachKey = /**
-         * @template T
-         * @param {?} componentThis
-         * @param {?} componentName
-         * @param {?} key
-         * @return {?}
-         */
-        function (componentThis, componentName, key) {
+        AlainConfigService.prototype.attachKey = function (componentThis, componentName, key) {
             Object.assign(componentThis, this.get(componentName, key));
         };
         /**
@@ -2530,25 +1424,19 @@
          * @param {?} value
          * @return {?}
          */
-        AlainConfigService$1.prototype.set = /**
-         * @template T
-         * @param {?} componentName
-         * @param {?} value
-         * @return {?}
-         */
-        function (componentName, value) {
-            this.config[componentName] = __assign(__assign({}, this.config[componentName]), value);
+        AlainConfigService.prototype.set = function (componentName, value) {
+            this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), value);
         };
-        AlainConfigService$1.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        AlainConfigService$1.ctorParameters = function () { return [
-            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [ALAIN_CONFIG,] }] }
-        ]; };
-        /** @nocollapse */ AlainConfigService$1.ɵprov = core.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(core.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
-        return AlainConfigService$1;
+        return AlainConfigService;
     }());
+    AlainConfigService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    AlainConfigService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_CONFIG,] }] }
+    ]; };
+    /** @nocollapse */ AlainConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(i0.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -2560,14 +1448,9 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/config/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: src/array/array.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * @record
      */
@@ -2698,8 +1581,11 @@
         ArrayServiceGetKeysByTreeNodeOptions.prototype.cb;
     }
     var ArrayService = /** @class */ (function () {
+        /**
+         * @param {?} cog
+         */
         function ArrayService(cog) {
-            this.c = (/** @type {?} */ (cog.merge('utilArray', {
+            this.c = ( /** @type {?} */(cog.merge('utilArray', {
                 deepMapName: 'deep',
                 parentMapName: 'parent',
                 idMapName: 'id',
@@ -2714,50 +1600,40 @@
         }
         /**
          * 将树结构转换成数组结构
-         */
-        /**
-         * 将树结构转换成数组结构
          * @param {?} tree
          * @param {?=} options
          * @return {?}
          */
-        ArrayService.prototype.treeToArr = /**
-         * 将树结构转换成数组结构
-         * @param {?} tree
-         * @param {?=} options
-         * @return {?}
-         */
-        function (tree, options) {
+        ArrayService.prototype.treeToArr = function (tree, options) {
             /** @type {?} */
-            var opt = (/** @type {?} */ (__assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options)));
+            var opt = ( /** @type {?} */(Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options)));
             /** @type {?} */
             var result = [];
             /** @type {?} */
-            var inFn = (/**
+            var inFn = ( /**
              * @param {?} list
              * @param {?} parent
              * @param {?=} deep
              * @return {?}
-             */
-            function (list, parent, deep) {
+             */function (list, parent, deep) {
                 var e_1, _a;
                 if (deep === void 0) { deep = 0; }
                 try {
                     for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
                         var i = list_1_1.value;
-                        i[(/** @type {?} */ (opt.deepMapName))] = deep;
-                        i[(/** @type {?} */ (opt.parentMapName))] = parent;
+                        i[( /** @type {?} */(opt.deepMapName))] = deep;
+                        i[( /** @type {?} */(opt.parentMapName))] = parent;
                         if (opt.cb) {
                             opt.cb(i, parent, deep);
                         }
                         result.push(i);
                         /** @type {?} */
-                        var children = i[(/** @type {?} */ (opt.childrenMapName))];
+                        var children = i[( /** @type {?} */(opt.childrenMapName))];
                         if (children != null && Array.isArray(children) && children.length > 0) {
                             inFn(children, i, deep + 1);
                         }
                         if (opt.clearChildren) {
-                            delete i[(/** @type {?} */ (opt.childrenMapName))];
+                            delete i[( /** @type {?} */(opt.childrenMapName))];
                         }
                     }
                 }
@@ -2774,23 +1650,14 @@
         };
         /**
          * 数组转换成树数据
-         */
-        /**
-         * 数组转换成树数据
          * @param {?} arr
          * @param {?=} options
          * @return {?}
          */
-        ArrayService.prototype.arrToTree = /**
-         * 数组转换成树数据
-         * @param {?} arr
-         * @param {?=} options
-         * @return {?}
-         */
-        function (arr, options) {
+        ArrayService.prototype.arrToTree = function (arr, options) {
             var e_2, _a;
             /** @type {?} */
-            var opt = (/** @type {?} */ (__assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+            var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
             /** @type {?} */
             var tree = [];
             /** @type {?} */
@@ -2799,11 +1666,11 @@
                 for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
                     var item = arr_1_1.value;
                     /** @type {?} */
-                    var id = item[(/** @type {?} */ (opt.idMapName))];
+                    var id = item[( /** @type {?} */(opt.idMapName))];
                     /** @type {?} */
-                    var pid = item[(/** @type {?} */ (opt.parentIdMapName))];
+                    var pid = item[( /** @type {?} */(opt.parentIdMapName))];
                     childrenOf[id] = childrenOf[id] || [];
-                    item[(/** @type {?} */ (opt.childrenMapName))] = childrenOf[id];
+                    item[( /** @type {?} */(opt.childrenMapName))] = childrenOf[id];
                     if (opt.cb) {
                         opt.cb(item);
                     }
@@ -2827,91 +1694,72 @@
         };
         /**
          * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
-         */
-        /**
-         * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
          * @param {?} arr
          * @param {?=} options
          * @return {?}
          */
-        ArrayService.prototype.arrToTreeNode = /**
-         * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
-         * @param {?} arr
-         * @param {?=} options
-         * @return {?}
-         */
-        function (arr, options) {
+        ArrayService.prototype.arrToTreeNode = function (arr, options) {
             /** @type {?} */
-            var opt = (/** @type {?} */ (__assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
+            var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
             /** @type {?} */
             var tree$1 = this.arrToTree(arr, {
                 idMapName: opt.idMapName,
                 parentIdMapName: opt.parentIdMapName,
                 childrenMapName: 'children',
             });
-            this.visitTree(tree$1, (/**
+            this.visitTree(tree$1, ( /**
              * @param {?} item
              * @param {?} parent
              * @param {?} deep
              * @return {?}
-             */
-            function (item, parent, deep) {
-                item.key = item[(/** @type {?} */ (opt.idMapName))];
-                item.title = item[(/** @type {?} */ (opt.titleMapName))];
-                item.checked = item[(/** @type {?} */ (opt.checkedMapname))];
-                item.selected = item[(/** @type {?} */ (opt.selectedMapname))];
-                item.expanded = item[(/** @type {?} */ (opt.expandedMapname))];
-                item.disabled = item[(/** @type {?} */ (opt.disabledMapname))];
-                if (item[(/** @type {?} */ (opt.isLeafMapName))] == null) {
+             */function (item, parent, deep) {
+                item.key = item[( /** @type {?} */(opt.idMapName))];
+                item.title = item[( /** @type {?} */(opt.titleMapName))];
+                item.checked = item[( /** @type {?} */(opt.checkedMapname))];
+                item.selected = item[( /** @type {?} */(opt.selectedMapname))];
+                item.expanded = item[( /** @type {?} */(opt.expandedMapname))];
+                item.disabled = item[( /** @type {?} */(opt.disabledMapname))];
+                if (item[( /** @type {?} */(opt.isLeafMapName))] == null) {
                     item.isLeaf = item.children.length === 0;
                 }
                 else {
-                    item.isLeaf = item[(/** @type {?} */ (opt.isLeafMapName))];
+                    item.isLeaf = item[( /** @type {?} */(opt.isLeafMapName))];
                 }
                 if (opt.cb) {
                     opt.cb(item, parent, deep);
                 }
             }));
-            return tree$1.map((/**
+            return tree$1.map(( /**
              * @param {?} node
              * @return {?}
-             */
-            function (node) { return new tree.NzTreeNode(node); }));
+             */function (/**
+             * @param {?} node
+             * @return {?}
+             */ node) { return new tree.NzTreeNode(node); }));
         };
         /**
          * 递归访问整个树
-         */
-        /**
-         * 递归访问整个树
          * @param {?} tree
          * @param {?} cb
          * @param {?=} options
          * @return {?}
          */
-        ArrayService.prototype.visitTree = /**
-         * 递归访问整个树
-         * @param {?} tree
-         * @param {?} cb
-         * @param {?=} options
-         * @return {?}
-         */
-        function (tree, cb, options) {
-            options = __assign({ childrenMapName: this.c.childrenMapName }, options);
+        ArrayService.prototype.visitTree = function (tree, cb, options) {
+            options = Object.assign({ childrenMapName: this.c.childrenMapName }, options);
             /** @type {?} */
-            var inFn = (/**
+            var inFn = ( /**
              * @param {?} data
              * @param {?} parent
              * @param {?} deep
              * @return {?}
-             */
-            function (data, parent, deep) {
+             */function (data, parent, deep) {
                 var e_3, _a;
                 try {
                     for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                         var item = data_1_1.value;
                         cb(item, parent, deep);
                         /** @type {?} */
-                        var childrenVal = item[(/** @type {?} */ ((/** @type {?} */ (options)).childrenMapName))];
+                        var childrenVal = item[( /** @type {?} */(( /** @type {?} */(options)).childrenMapName))];
                         if (childrenVal && childrenVal.length > 0) {
                             inFn(childrenVal, item, deep + 1);
                         }
@@ -2929,47 +1777,37 @@
         };
         /**
          * 获取所有已经选中的 `key` 值
-         */
-        /**
-         * 获取所有已经选中的 `key` 值
          * @param {?} tree
          * @param {?=} options
          * @return {?}
          */
-        ArrayService.prototype.getKeysByTreeNode = /**
-         * 获取所有已经选中的 `key` 值
-         * @param {?} tree
-         * @param {?=} options
-         * @return {?}
-         */
-        function (tree, options) {
+        ArrayService.prototype.getKeysByTreeNode = function (tree, options) {
             /** @type {?} */
-            var opt = (/** @type {?} */ (__assign({ includeHalfChecked: true }, options)));
+            var opt = ( /** @type {?} */(Object.assign({ includeHalfChecked: true }, options)));
             /** @type {?} */
             var keys = [];
-            this.visitTree(tree, (/**
+            this.visitTree(tree, ( /**
              * @param {?} item
              * @param {?} parent
              * @param {?} deep
              * @return {?}
-             */
-            function (item, parent, deep) {
+             */function (item, parent, deep) {
                 if (item.isChecked || (opt.includeHalfChecked && item.isHalfChecked)) {
                     keys.push(opt.cb ? opt.cb(item, parent, deep) : opt.keyMapName ? item.origin[opt.keyMapName] : item.key);
                 }
             }));
             return keys;
         };
-        ArrayService.decorators = [
-            { type: core.Injectable, args: [{ providedIn: 'root' },] }
-        ];
-        /** @nocollapse */
-        ArrayService.ctorParameters = function () { return [
-            { type: AlainConfigService }
-        ]; };
-        /** @nocollapse */ ArrayService.ɵprov = core.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(core.ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
         return ArrayService;
     }());
+    ArrayService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ArrayService.ctorParameters = function () { return [
+        { type: AlainConfigService }
+    ]; };
+    /** @nocollapse */ ArrayService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -2981,28 +1819,40 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: src/logger/public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/logger/index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     /**
      * @fileoverview added by tsickle
      * Generated from: src/util.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var DelonUtilModule = /** @class */ (function () {
         function DelonUtilModule() {
         }
-        DelonUtilModule.decorators = [
-            { type: core.NgModule, args: [{},] }
-        ];
         return DelonUtilModule;
     }());
+    DelonUtilModule.decorators = [
+        { type: i0.NgModule, args: [{},] }
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: util.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     exports.ALAIN_CONFIG = ALAIN_CONFIG;
     exports.ALAIN_CONFIG_FACTORY = ALAIN_CONFIG_FACTORY;

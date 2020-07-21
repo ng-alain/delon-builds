@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.pluginDefaultLanguage = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const lang_config_1 = require("../core/lang.config");
 const project_1 = require("../utils/project");

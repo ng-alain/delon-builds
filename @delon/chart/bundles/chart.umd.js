@@ -12,7 +12,7 @@
     /**
      * @fileoverview added by tsickle
      * Generated from: chart.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
     var MODULES = [
@@ -36,11 +36,23 @@
     var DelonChartModule = /** @class */ (function () {
         function DelonChartModule() {
         }
-        DelonChartModule.decorators = [
-            { type: core.NgModule, args: [{ exports: MODULES },] }
-        ];
         return DelonChartModule;
     }());
+    DelonChartModule.decorators = [
+        { type: core.NgModule, args: [{ exports: MODULES },] }
+    ];
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: chart.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
 
     Object.defineProperty(exports, 'G2BarComponent', {
         enumerable: true,

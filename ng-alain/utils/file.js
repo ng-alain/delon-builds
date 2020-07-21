@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.addFiles = exports.overwriteFiles = exports.overwriteFile = exports.readContent = void 0;
 const fs = require("fs");
 const path_1 = require("path");
 function readContent(host, filePath) {

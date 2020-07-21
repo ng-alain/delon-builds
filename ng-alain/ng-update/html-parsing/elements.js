@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getStartOffsetOfAttribute = exports.findElementHasAttributes = exports.findElementHasAttribute = exports.findElements = exports.findAttributeOnElementWithAttrs = exports.findAttributeOnElementWithTag = exports.findElementsWithAttribute = exports.findElementsWithTagName = exports.parseDocument = void 0;
 const parse5_1 = require("parse5");
 function parseDocument(html) {
     return parse5_1.parseFragment(html, {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isDelonExportDeclaration = exports.isDelonImportDeclaration = exports.delonModulesSpecifier = void 0;
 const imports_1 = require("../typescript/imports");
 exports.delonModulesSpecifier = ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}`);
 /** Whether the specified node is part of an `@delon/*` declaration. */

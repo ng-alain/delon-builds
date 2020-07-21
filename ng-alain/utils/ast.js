@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.updateComponentMetadata = exports.commitChanges = exports.getSourceFile = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const change_1 = require("@schematics/angular/utility/change");

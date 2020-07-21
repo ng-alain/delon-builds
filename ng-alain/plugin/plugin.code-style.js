@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.pluginCodeStyle = void 0;
 const json_1 = require("../utils/json");
 function pluginCodeStyle(options) {
     return (host) => {

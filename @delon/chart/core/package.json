@@ -1,10 +1,8 @@
 {
   "main": "../bundles/delon-chart-core.umd.js",
-  "module": "../fesm5/delon-chart-core.js",
+  "module": "../fesm2015/delon-chart-core.js",
   "es2015": "../fesm2015/delon-chart-core.js",
-  "esm5": "../esm5/core/delon-chart-core.js",
   "esm2015": "../esm2015/core/delon-chart-core.js",
-  "fesm5": "../fesm5/delon-chart-core.js",
   "fesm2015": "../fesm2015/delon-chart-core.js",
   "typings": "delon-chart-core.d.ts",
   "metadata": "delon-chart-core.metadata.json",

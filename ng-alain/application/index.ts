@@ -86,7 +86,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
       `ng-zorro-antd@${ZORROVERSION}`,
       // ng-zorro-antd need
       'screenfull@^5.0.2',
-      'ajv@^6.12.2',
+      'ajv@^6.12.3',
     ]);
     // add ajv
     scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -113,7 +113,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions) {
     );
     // i18n
     if (options.i18n) {
-      addPackageToPackageJson(host, [`@ngx-translate/core@^12.1.2`, `@ngx-translate/http-loader@^5.0.0`]);
+      addPackageToPackageJson(host, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
     }
     return host;
   };

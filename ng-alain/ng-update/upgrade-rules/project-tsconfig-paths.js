@@ -7,6 +7,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.getProjectTsConfigPaths = void 0;
 const config_1 = require("@schematics/angular/utility/config");
 /**
  * Gets all tsconfig paths from a CLI project by reading the workspace configuration

@@ -20,7 +20,7 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 /**
  * @fileoverview added by tsickle
  * Generated from: src/win_tokens.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -37,7 +37,7 @@ const WINDOW = new InjectionToken('Window', {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/preloader/preloader.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @return {?}
@@ -80,7 +80,7 @@ function preloaderFinished() {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/menu/interface.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -264,7 +264,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/i18n/i18n.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -361,7 +361,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/menu/menu.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
@@ -739,7 +739,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/scroll/scroll.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class ScrollService {
     /**
@@ -856,7 +856,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/settings/interface.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -938,7 +938,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/settings/settings.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const LAYOUT = 'layout';
@@ -1090,7 +1090,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/responsive/responsive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const REP_MAX = 6;
@@ -1166,7 +1166,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/title/title.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class TitleService {
     /**
@@ -1414,7 +1414,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/locale.tokens.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const DELON_LOCALE = new InjectionToken('delon-locale');
@@ -1422,7 +1422,7 @@ const DELON_LOCALE = new InjectionToken('delon-locale');
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/locale.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -1620,7 +1620,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/zh-CN.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhCN = (/** @type {?} */ ({
     abbr: 'zh-CN',
@@ -1702,7 +1702,7 @@ var zhCN = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/locale.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DelonLocaleService {
     /**
@@ -1780,7 +1780,7 @@ const DELON_LOCALE_SERVICE_PROVIDER = {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/locale.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 const ɵ0 = zhCN;
 class DelonLocaleModule {
@@ -1794,7 +1794,7 @@ DelonLocaleModule.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/en-US.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var enUS = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -1876,7 +1876,7 @@ var enUS = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/zh-TW.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var zhTW = (/** @type {?} */ ({
     abbr: 'zh-TW',
@@ -1958,7 +1958,7 @@ var zhTW = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/tr-TR.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var trTR = (/** @type {?} */ ({
     abbr: 'tr-TR',
@@ -2040,7 +2040,7 @@ var trTR = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/pl-PL.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var plPL = (/** @type {?} */ ({
     abbr: 'en-US',
@@ -2122,7 +2122,7 @@ var plPL = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/el-GR.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var elGR = (/** @type {?} */ ({
     abbr: 'el-GR',
@@ -2204,7 +2204,7 @@ var elGR = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/ko-KR.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var koKR = (/** @type {?} */ ({
     abbr: 'ko-KR',
@@ -2286,7 +2286,7 @@ var koKR = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/hr-HR.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var hrHR = (/** @type {?} */ ({
     abbr: 'hr-HR',
@@ -2332,7 +2332,7 @@ var hrHR = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/ja-JP.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var jaJP = (/** @type {?} */ ({
     abbr: 'ja-JP',
@@ -2414,7 +2414,7 @@ var jaJP = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/languages/sl-SI.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 var slSI = (/** @type {?} */ ({
     abbr: 'sl-SI',
@@ -2496,19 +2496,19 @@ var slSI = (/** @type {?} */ ({
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: src/locale/index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/modal/modal.helper.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -2709,7 +2709,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/drawer/drawer.helper.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
@@ -2871,7 +2871,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/http/http.client.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * 封装HttpClient，主要解决：
@@ -3113,7 +3113,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/http/http.decorator.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * Every http decorator must be based on `BaseAPI`, Like this:
@@ -3477,7 +3477,7 @@ const FORM = makeMethod('FORM');
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/date/date.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class DatePipe {
     /**
@@ -3518,7 +3518,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/currency/cn-currency.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/currency
@@ -3543,7 +3543,7 @@ CNCurrencyPipe.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/keys/keys.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @see https://ng-alain.com/theme/keys
@@ -3571,7 +3571,7 @@ KeysPipe.decorators = [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/yn/yn.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg>`;
@@ -3633,7 +3633,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/safe/html.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class HTMLPipe {
     /**
@@ -3668,7 +3668,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/pipes/safe/url.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class URLPipe {
     /**
@@ -3703,7 +3703,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/services/i18n/i18n.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class I18nPipe {
     /**
@@ -3740,7 +3740,7 @@ if (false) {
 /**
  * @fileoverview added by tsickle
  * Generated from: src/theme.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
 const HELPERS = [ModalHelper, DrawerHelper];
@@ -3790,21 +3790,21 @@ AlainThemeModule.ctorParameters = () => [
 /**
  * @fileoverview added by tsickle
  * Generated from: src/version.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('9.5.5');
+const VERSION = new Version('9.5.5-249807c7');
 
 /**
  * @fileoverview added by tsickle
  * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 /**
  * @fileoverview added by tsickle
  * Generated from: theme.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };

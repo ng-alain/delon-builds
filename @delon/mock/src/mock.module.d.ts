@@ -1,5 +1,5 @@
 import { ModuleWithProviders } from '@angular/core';
 export declare class DelonMockModule {
-    static forRoot(): ModuleWithProviders;
-    static forChild(): ModuleWithProviders;
+    static forRoot(): ModuleWithProviders<DelonMockModule>;
+    static forChild(): ModuleWithProviders<DelonMockModule>;
 }
