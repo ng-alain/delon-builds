@@ -584,6 +584,12 @@
             return loading.LoadingService;
         }
     });
+    Object.defineProperty(exports, 'OnboardingComponent', {
+        enumerable: true,
+        get: function () {
+            return onboarding.OnboardingComponent;
+        }
+    });
     Object.defineProperty(exports, 'OnboardingModule', {
         enumerable: true,
         get: function () {
@@ -594,12 +600,6 @@
         enumerable: true,
         get: function () {
             return onboarding.OnboardingService;
-        }
-    });
-    Object.defineProperty(exports, 'ɵOnboardingComponent', {
-        enumerable: true,
-        get: function () {
-            return onboarding.ɵOnboardingComponent;
         }
     });
     exports.DelonABCModule = DelonABCModule;
