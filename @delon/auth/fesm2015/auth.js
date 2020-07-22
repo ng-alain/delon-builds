@@ -1,9 +1,9 @@
 import { DOCUMENT } from '@angular/common';
-import { InjectionToken, inject, Inject, Injectable, Injector, Optional, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
+import { InjectionToken, inject, Injectable, Inject, Injector, Optional, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Subject, BehaviorSubject, interval, Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util';
-import { share } from 'rxjs/operators';
+import { share, map, filter } from 'rxjs/operators';
 import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 /**
@@ -24,6 +24,8 @@ const AUTH_DEFAULT_CONFIG = {
     ignores: [/\/login/, /assets\//, /passport\//],
     allow_anonymous_key: `_allow_anonymous`,
     executeOtherInterceptors: true,
+    refreshTime: 3000,
+    refreshOffset: 6000,
 };
 /**
  * @param {?} srv
@@ -132,19 +134,25 @@ class TokenService {
      */
     constructor(configSrv, store) {
         this.store = store;
+        this.refresh$ = new Subject();
         this.change$ = new BehaviorSubject(null);
         this._referrer = {};
         this._options = mergeConfig(configSrv);
     }
     /**
-     * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+     * @return {?}
+     */
+    get refresh() {
+        this.builderRefresh();
+        return this.refresh$.pipe(share());
+    }
+    /**
      * @return {?}
      */
     get login_url() {
         return this._options.login_url;
     }
     /**
-     * 当前请求页面的来源页面的地址
      * @return {?}
      */
     get referrer() {
@@ -157,7 +165,6 @@ class TokenService {
         return this._options;
     }
     /**
-     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
      * @param {?} data
      * @return {?}
      */
@@ -176,13 +183,6 @@ class TokenService {
         return type ? ((/** @type {?} */ (Object.assign(new type(), data)))) : ((/** @type {?} */ (data)));
     }
     /**
-     * 清除 Token 信息，当用户退出登录时调用。
-     * ```
-     * // 清除所有 Token 信息
-     * tokenService.clear();
-     * // 只清除 token 字段
-     * tokenService.clear({ onlyToken: true });
-     * ```
      * @param {?=} options
      * @return {?}
      */
@@ -200,13 +200,63 @@ class TokenService {
         this.change$.next(data);
     }
     /**
-     * 订阅 Token 对象变更通知
      * @return {?}
      */
     change() {
         return this.change$.pipe(share());
     }
+    /**
+     * @private
+     * @return {?}
+     */
+    builderRefresh() {
+        const { refreshTime, refreshOffset } = this._options;
+        this.cleanRefresh();
+        this.interval$ = interval(refreshTime)
+            .pipe(map((/**
+         * @return {?}
+         */
+        () => {
+            /** @type {?} */
+            const item = (/** @type {?} */ (this.get()));
+            /** @type {?} */
+            const expired = item.expired || 0;
+            if (expired <= 0) {
+                return null;
+            }
+            /** @type {?} */
+            const curTime = new Date().valueOf() + (/** @type {?} */ (refreshOffset));
+            return expired <= curTime ? item : null;
+        })), filter((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => v != null)))
+            .subscribe((/**
+         * @param {?} res
+         * @return {?}
+         */
+        res => this.refresh$.next((/** @type {?} */ (res)))));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    cleanRefresh() {
+        if (this.interval$ && !this.interval$.closed) {
+            this.interval$.unsubscribe();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.cleanRefresh();
+    }
 }
+TokenService.decorators = [
+    { type: Injectable }
+];
 /** @nocollapse */
 TokenService.ctorParameters = () => [
     { type: AlainConfigService },
@@ -217,7 +267,17 @@ if (false) {
      * @type {?}
      * @private
      */
+    TokenService.prototype.refresh$;
+    /**
+     * @type {?}
+     * @private
+     */
     TokenService.prototype.change$;
+    /**
+     * @type {?}
+     * @private
+     */
+    TokenService.prototype.interval$;
     /**
      * @type {?}
      * @private
@@ -252,6 +312,12 @@ function ITokenModel() { }
 if (false) {
     /** @type {?} */
     ITokenModel.prototype.token;
+    /**
+     * 过期时间，单位：ms
+     * - 不管Simple、JWT模式都必须指定
+     * @type {?|undefined}
+     */
+    ITokenModel.prototype.expired;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -268,18 +334,26 @@ if (false) {
 function ITokenService() { }
 if (false) {
     /**
-     * 获取登录地址
+     * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
      * @type {?}
      */
     ITokenService.prototype.login_url;
     /**
-     * 获取授权失败前路由信息
+     * 当前请求页面的来源页面的地址
      * @type {?|undefined}
      */
     ITokenService.prototype.referrer;
     /** @type {?} */
     ITokenService.prototype.options;
     /**
+     * 订阅刷新，订阅时会自动产生一个定时器，每隔一段时间进行一些校验
+     * - **注意** 会多次触发，请务必做好业务判断
+     * @type {?}
+     */
+    ITokenService.prototype.refresh;
+    /**
+     * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
+     * - 如果需要监听过期，需要传递 `expired` 值
      * @param {?} data
      * @return {?}
      */
@@ -302,12 +376,19 @@ if (false) {
      */
     ITokenService.prototype.get = function (type) { };
     /**
-     * Clean authorization data
+     * 清除 Token 信息，当用户退出登录时调用。
+     * ```
+     * // 清除所有 Token 信息
+     * tokenService.clear();
+     * // 只清除 token 字段
+     * tokenService.clear({ onlyToken: true });
+     * ```
      * @param {?=} options
      * @return {?}
      */
     ITokenService.prototype.clear = function (options) { };
     /**
+     * 订阅 Token 对象变更通知
      * @return {?}
      */
     ITokenService.prototype.change = function () { };
@@ -972,6 +1053,8 @@ class JWTTokenModel {
 if (false) {
     /** @type {?} */
     JWTTokenModel.prototype.token;
+    /** @type {?} */
+    JWTTokenModel.prototype.expired;
     /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
@@ -1132,6 +1215,8 @@ class SimpleTokenModel {
 if (false) {
     /** @type {?} */
     SimpleTokenModel.prototype.token;
+    /** @type {?} */
+    SimpleTokenModel.prototype.expired;
     /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 
