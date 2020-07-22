@@ -27,8 +27,6 @@
         ignores: [/\/login/, /assets\//, /passport\//],
         allow_anonymous_key: "_allow_anonymous",
         executeOtherInterceptors: true,
-        refreshTime: 3000,
-        refreshOffset: 6000,
     };
     /**
      * @param {?} srv
@@ -140,24 +138,13 @@
          */
         function TokenService(configSrv, store) {
             this.store = store;
-            this.refresh$ = new rxjs.Subject();
             this.change$ = new rxjs.BehaviorSubject(null);
             this._referrer = {};
             this._options = mergeConfig(configSrv);
         }
-        Object.defineProperty(TokenService.prototype, "refresh", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                this.builderRefresh();
-                return this.refresh$.pipe(operators.share());
-            },
-            enumerable: false,
-            configurable: true
-        });
         Object.defineProperty(TokenService.prototype, "login_url", {
             /**
+             * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
              * @return {?}
              */
             get: function () {
@@ -168,6 +155,7 @@
         });
         Object.defineProperty(TokenService.prototype, "referrer", {
             /**
+             * 当前请求页面的来源页面的地址
              * @return {?}
              */
             get: function () {
@@ -187,6 +175,7 @@
             configurable: true
         });
         /**
+         * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
          * @param {?} data
          * @return {?}
          */
@@ -205,6 +194,13 @@
             return type ? (( /** @type {?} */(Object.assign(new type(), data)))) : (( /** @type {?} */(data)));
         };
         /**
+         * 清除 Token 信息，当用户退出登录时调用。
+         * ```
+         * // 清除所有 Token 信息
+         * tokenService.clear();
+         * // 只清除 token 字段
+         * tokenService.clear({ onlyToken: true });
+         * ```
          * @param {?=} options
          * @return {?}
          */
@@ -223,68 +219,14 @@
             this.change$.next(data);
         };
         /**
+         * 订阅 Token 对象变更通知
          * @return {?}
          */
         TokenService.prototype.change = function () {
             return this.change$.pipe(operators.share());
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        TokenService.prototype.builderRefresh = function () {
-            var _this = this;
-            var _a = this._options, refreshTime = _a.refreshTime, refreshOffset = _a.refreshOffset;
-            this.cleanRefresh();
-            this.interval$ = rxjs.interval(refreshTime)
-                .pipe(operators.map(( /**
-         * @return {?}
-         */function () {
-                /** @type {?} */
-                var item = ( /** @type {?} */(_this.get()));
-                /** @type {?} */
-                var expired = item.expired || 0;
-                if (expired <= 0) {
-                    return null;
-                }
-                /** @type {?} */
-                var curTime = new Date().valueOf() + ( /** @type {?} */(refreshOffset));
-                return expired <= curTime ? item : null;
-            })), operators.filter(( /**
-             * @param {?} v
-             * @return {?}
-             */function (/**
-             * @param {?} v
-             * @return {?}
-             */ v) { return v != null; })))
-                .subscribe(( /**
-         * @param {?} res
-         * @return {?}
-         */function (/**
-         * @param {?} res
-         * @return {?}
-         */ res) { return _this.refresh$.next(( /** @type {?} */(res))); }));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        TokenService.prototype.cleanRefresh = function () {
-            if (this.interval$ && !this.interval$.closed) {
-                this.interval$.unsubscribe();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        TokenService.prototype.ngOnDestroy = function () {
-            this.cleanRefresh();
-        };
         return TokenService;
     }());
-    TokenService.decorators = [
-        { type: i0.Injectable }
-    ];
     /** @nocollapse */
     TokenService.ctorParameters = function () { return [
         { type: util.AlainConfigService },
@@ -295,17 +237,7 @@
          * @type {?}
          * @private
          */
-        TokenService.prototype.refresh$;
-        /**
-         * @type {?}
-         * @private
-         */
         TokenService.prototype.change$;
-        /**
-         * @type {?}
-         * @private
-         */
-        TokenService.prototype.interval$;
         /**
          * @type {?}
          * @private
@@ -340,12 +272,6 @@
     if (false) {
         /** @type {?} */
         ITokenModel.prototype.token;
-        /**
-         * 过期时间，单位：ms
-         * - 不管Simple、JWT模式都必须指定
-         * @type {?|undefined}
-         */
-        ITokenModel.prototype.expired;
         /* Skipping unhandled member: [key: string]: any;*/
     }
     /**
@@ -362,26 +288,18 @@
     function ITokenService() { }
     if (false) {
         /**
-         * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+         * 获取登录地址
          * @type {?}
          */
         ITokenService.prototype.login_url;
         /**
-         * 当前请求页面的来源页面的地址
+         * 获取授权失败前路由信息
          * @type {?|undefined}
          */
         ITokenService.prototype.referrer;
         /** @type {?} */
         ITokenService.prototype.options;
         /**
-         * 订阅刷新，订阅时会自动产生一个定时器，每隔一段时间进行一些校验
-         * - **注意** 会多次触发，请务必做好业务判断
-         * @type {?}
-         */
-        ITokenService.prototype.refresh;
-        /**
-         * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
-         * - 如果需要监听过期，需要传递 `expired` 值
          * @param {?} data
          * @return {?}
          */
@@ -404,19 +322,12 @@
          */
         ITokenService.prototype.get = function (type) { };
         /**
-         * 清除 Token 信息，当用户退出登录时调用。
-         * ```
-         * // 清除所有 Token 信息
-         * tokenService.clear();
-         * // 只清除 token 字段
-         * tokenService.clear({ onlyToken: true });
-         * ```
+         * Clean authorization data
          * @param {?=} options
          * @return {?}
          */
         ITokenService.prototype.clear = function (options) { };
         /**
-         * 订阅 Token 对象变更通知
          * @return {?}
          */
         ITokenService.prototype.change = function () { };
@@ -1406,8 +1317,6 @@
     if (false) {
         /** @type {?} */
         JWTTokenModel.prototype.token;
-        /** @type {?} */
-        JWTTokenModel.prototype.expired;
         /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
 
@@ -1576,8 +1485,6 @@
     if (false) {
         /** @type {?} */
         SimpleTokenModel.prototype.token;
-        /** @type {?} */
-        SimpleTokenModel.prototype.expired;
         /* Skipping unhandled member: [key: string]: NzSafeAny;*/
     }
 
