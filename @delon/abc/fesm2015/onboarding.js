@@ -693,5 +693,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { OnboardingModule, OnboardingService, OnboardingComponent as ɵOnboardingComponent };
+export { OnboardingComponent, OnboardingModule, OnboardingService };
 //# sourceMappingURL=onboarding.js.map

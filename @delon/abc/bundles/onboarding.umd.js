@@ -597,9 +597,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
+    exports.OnboardingComponent = OnboardingComponent;
     exports.OnboardingModule = OnboardingModule;
     exports.OnboardingService = OnboardingService;
-    exports.ɵOnboardingComponent = OnboardingComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
