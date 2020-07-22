@@ -34,10 +34,6 @@ export interface OnboardingItem {
      */
     className?: string;
     /**
-     * Light style
-     */
-    lightStyle?: string;
-    /**
      * Width of the panel
      */
     width?: number;

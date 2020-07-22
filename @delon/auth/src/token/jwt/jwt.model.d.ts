@@ -35,6 +35,7 @@ export interface JWT {
 export declare class JWTTokenModel implements ITokenModel {
     [key: string]: NzSafeAny;
     token: string | null | undefined;
+    expired?: number;
     /**
      * 获取载荷信息
      */

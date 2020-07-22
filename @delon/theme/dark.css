@@ -31843,6 +31843,7 @@ ellipsis {
   pointer-events: none;
 }
 .onboarding__light-el {
+  position: relative;
   z-index: 100000 !important;
 }
 .onboarding__light-ant {
