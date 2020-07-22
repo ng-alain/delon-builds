@@ -270,13 +270,16 @@ if (false) {
  * Generated from: onboarding.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const COMPONENTS = [OnboardingComponent];
 class OnboardingModule {
 }
 OnboardingModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonLocaleModule, DelonUtilModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule],
-                declarations: [OnboardingComponent],
-                entryComponents: [OnboardingComponent],
+                declarations: COMPONENTS,
+                entryComponents: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -277,6 +277,8 @@
      * Generated from: onboarding.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var COMPONENTS = [OnboardingComponent];
     var OnboardingModule = /** @class */ (function () {
         function OnboardingModule() {
         }
@@ -285,8 +287,9 @@
     OnboardingModule.decorators = [
         { type: i0.NgModule, args: [{
                     imports: [i3.CommonModule, i1.DelonLocaleModule, util.DelonUtilModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
-                    declarations: [OnboardingComponent],
-                    entryComponents: [OnboardingComponent],
+                    declarations: COMPONENTS,
+                    entryComponents: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 
