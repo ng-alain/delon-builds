@@ -21855,6 +21855,7 @@ a[nz-tab-link]::before {
   content: '';
 }
 nz-tabset,
+nz-tab-nav-operation,
 nz-tabs-nav {
   display: block;
 }
