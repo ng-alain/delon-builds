@@ -5,14 +5,6 @@ import { AlainConfigService } from '@delon/util';
 export interface G2TagCloudData {
     value?: number;
     name?: string;
-    /**
-     * @deprecated Use `name` instead
-     */
-    x?: string;
-    /**
-     * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
-     */
-    category?: any;
     [key: string]: any;
 }
 export interface G2TagCloudClickItem {
