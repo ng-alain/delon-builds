@@ -216,7 +216,6 @@ class G2WaterWaveComponent {
         // drawSin();
     }
     /**
-     * @private
      * @return {?}
      */
     updateRadio() {
@@ -224,12 +223,6 @@ class G2WaterWaveComponent {
         /** @type {?} */
         const radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
         this.renderer.setStyle(this.el.nativeElement, 'transform', `scale(${radio})`);
-    }
-    /**
-     * @return {?}
-     */
-    render() {
-        this.renderChart(false);
     }
     /**
      * @private
@@ -257,7 +250,7 @@ class G2WaterWaveComponent {
         () => setTimeout((/**
          * @return {?}
          */
-        () => this.render()), this.delay)));
+        () => this.renderChart(false)), this.delay)));
     }
     /**
      * @return {?}

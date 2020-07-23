@@ -319,12 +319,6 @@
     if (false) {
         /**
          * 时间值
-         * @deprecated Use `time` instead
-         * @type {?|undefined}
-         */
-        G2TimelineData.prototype.x;
-        /**
-         * 时间值
          * @type {?|undefined}
          */
         G2TimelineData.prototype.time;
@@ -545,25 +539,6 @@
             }));
             _chart.height = height;
             _chart.padding = padding;
-            // TODO: compatible
-            if (data.find(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !!w.x; })) != null) {
-                util.deprecation10('g2-timeline', 'x', 'time');
-                data.forEach(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (/**
-                 * @param {?} item
-                 * @return {?}
-                 */ item) {
-                    item.time = new Date(( /** @type {?} */(item.x)));
-                }));
-            }
             // 转换成日期类型
             data = data
                 .map(( /**

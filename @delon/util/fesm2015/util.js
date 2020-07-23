@@ -262,11 +262,6 @@ function LazyResult() { }
 if (false) {
     /** @type {?} */
     LazyResult.prototype.path;
-    /**
-     * @deprecated Used `status === 'ok'`, This is deprecated and going to be removed in 10.0.0.
-     * @type {?}
-     */
-    LazyResult.prototype.loaded;
     /** @type {?} */
     LazyResult.prototype.status;
     /** @type {?|undefined} */
@@ -377,7 +372,6 @@ class LazyService {
                         node.onreadystatechange = null;
                         onSuccess({
                             path,
-                            loaded: true,
                             status: 'ok',
                         });
                     }
@@ -389,7 +383,6 @@ class LazyService {
                  */
                 () => onSuccess({
                     path,
-                    loaded: true,
                     status: 'ok',
                 }));
             }
@@ -399,7 +392,6 @@ class LazyService {
              */
             (error) => onSuccess({
                 path,
-                loaded: false,
                 status: 'error',
                 error,
             }));
@@ -435,7 +427,6 @@ class LazyService {
             /** @type {?} */
             const item = {
                 path,
-                loaded: true,
                 status: 'ok',
             };
             this.cached[path] = item;
@@ -639,14 +630,14 @@ const warn = (/**
  */
 (...arg) => console.warn(PREFIX, ...arg)), ...args));
 /** @type {?} */
-const deprecation10 = (/**
+const deprecation11 = (/**
  * @param {?} comp
  * @param {?} from
  * @param {?=} to
  * @return {?}
  */
 (comp, from, to) => {
-    warnDeprecation(`${comp} => '${from}' is going to be removed in 10.0.0${to ? `, Please use '${to}' instead` : ``}.`);
+    warnDeprecation(`${comp} => '${from}' is going to be removed in 11.0.0${to ? `, Please use '${to}' instead` : ``}.`);
 });
 /** @type {?} */
 const warnDeprecation = (/**
@@ -2563,5 +2554,5 @@ DelonUtilModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, ArrayService, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation10, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation, AlainConfigService as ɵa };
+export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, ArrayService, DelonUtilModule, InputBoolean, InputNumber, LazyService, PREFIX, _Validators, copy, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, fixEndTimeOfRange, format, getTimeDistance, isDecimal, isEmpty, isIdCard, isInt, isMobile, isNum, isUrl, log, toBoolean, toDate, toNumber, updateHostClass, warn, warnDeprecation, AlainConfigService as ɵa };
 //# sourceMappingURL=util.js.map

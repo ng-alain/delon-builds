@@ -3,7 +3,7 @@ import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
 import DataSet from '@antv/data-set';
 import { registerShape, Util, Chart } from '@antv/g2';
-import { deprecation10, AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -22,16 +22,6 @@ if (false) {
     G2TagCloudData.prototype.value;
     /** @type {?|undefined} */
     G2TagCloudData.prototype.name;
-    /**
-     * @deprecated Use `name` instead
-     * @type {?|undefined}
-     */
-    G2TagCloudData.prototype.x;
-    /**
-     * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
-     * @type {?|undefined}
-     */
-    G2TagCloudData.prototype.category;
     /* Skipping unhandled member: [key: string]: any;*/
 }
 /**
@@ -163,28 +153,6 @@ class G2TagCloudComponent {
         const { _chart, padding, data } = this;
         if (!_chart || !data || data.length <= 0)
             return;
-        // TODO: compatible
-        if (data.find((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => !!w.x)) != null) {
-            deprecation10('g2-tag-cloud', 'x', 'name');
-            data.forEach((/**
-             * @param {?} item
-             * @return {?}
-             */
-            item => {
-                item.name = item.x;
-            }));
-        }
-        if (data.find((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => !!w.category)) != null) {
-            deprecation10('g2-tag-cloud', 'category');
-        }
         _chart.height = this.height;
         _chart.width = this.width;
         _chart.padding = padding;

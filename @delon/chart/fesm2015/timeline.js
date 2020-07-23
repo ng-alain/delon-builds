@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Chart } from '@antv/g2';
-import { deprecation10, toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -17,12 +17,6 @@ import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
  */
 function G2TimelineData() { }
 if (false) {
-    /**
-     * 时间值
-     * @deprecated Use `time` instead
-     * @type {?|undefined}
-     */
-    G2TimelineData.prototype.x;
     /**
      * 时间值
      * @type {?|undefined}
@@ -244,21 +238,6 @@ class G2TimelineComponent {
         }));
         _chart.height = height;
         _chart.padding = padding;
-        // TODO: compatible
-        if (data.find((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => !!w.x)) != null) {
-            deprecation10('g2-timeline', 'x', 'time');
-            data.forEach((/**
-             * @param {?} item
-             * @return {?}
-             */
-            item => {
-                item.time = new Date((/** @type {?} */ (item.x)));
-            }));
-        }
         // 转换成日期类型
         data = data
             .map((/**
