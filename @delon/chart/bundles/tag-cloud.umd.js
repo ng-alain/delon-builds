@@ -326,6 +326,16 @@
         G2TagCloudData.prototype.value;
         /** @type {?|undefined} */
         G2TagCloudData.prototype.name;
+        /**
+         * @deprecated Use `name` instead
+         * @type {?|undefined}
+         */
+        G2TagCloudData.prototype.x;
+        /**
+         * @deprecated 10.0.0. This is deprecated and going to be removed in 10.0.0.
+         * @type {?|undefined}
+         */
+        G2TagCloudData.prototype.category;
         /* Skipping unhandled member: [key: string]: any;*/
     }
     /**
@@ -460,6 +470,34 @@
             var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
             if (!_chart || !data || data.length <= 0)
                 return;
+            // TODO: compatible
+            if (data.find(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return !!w.x; })) != null) {
+                util.deprecation10('g2-tag-cloud', 'x', 'name');
+                data.forEach(( /**
+                 * @param {?} item
+                 * @return {?}
+                 */function (/**
+                 * @param {?} item
+                 * @return {?}
+                 */ item) {
+                    item.name = item.x;
+                }));
+            }
+            if (data.find(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return !!w.category; })) != null) {
+                util.deprecation10('g2-tag-cloud', 'category');
+            }
             _chart.height = this.height;
             _chart.width = this.width;
             _chart.padding = padding;

@@ -1,6 +1,10 @@
 import { Observable } from 'rxjs';
 export interface LazyResult {
     path: string;
+    /**
+     * @deprecated Used `status === 'ok'`, This is deprecated and going to be removed in 10.0.0.
+     */
+    loaded: boolean;
     status: 'ok' | 'error' | 'loading';
     error?: {};
 }

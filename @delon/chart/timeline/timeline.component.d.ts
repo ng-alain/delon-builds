@@ -6,6 +6,11 @@ import { AlainConfigService } from '@delon/util';
 export interface G2TimelineData {
     /**
      * 时间值
+     * @deprecated Use `time` instead
+     */
+    x?: G2Time;
+    /**
+     * 时间值
      */
     time?: G2Time;
     /** 指标1数据 */

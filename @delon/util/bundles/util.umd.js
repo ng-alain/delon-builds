@@ -576,6 +576,11 @@
     if (false) {
         /** @type {?} */
         LazyResult.prototype.path;
+        /**
+         * @deprecated Used `status === 'ok'`, This is deprecated and going to be removed in 10.0.0.
+         * @type {?}
+         */
+        LazyResult.prototype.loaded;
         /** @type {?} */
         LazyResult.prototype.status;
         /** @type {?|undefined} */
@@ -698,6 +703,7 @@
                             node.onreadystatechange = null;
                             onSuccess({
                                 path: path,
+                                loaded: true,
                                 status: 'ok',
                             });
                         }
@@ -708,6 +714,7 @@
                      * @return {?}
                      */function () { return onSuccess({
                         path: path,
+                        loaded: true,
                         status: 'ok',
                     }); });
                 }
@@ -716,6 +723,7 @@
                  * @return {?}
                  */function (error) { return onSuccess({
                     path: path,
+                    loaded: false,
                     status: 'error',
                     error: error,
                 }); });
@@ -755,6 +763,7 @@
                 /** @type {?} */
                 var item = {
                     path: path,
+                    loaded: true,
                     status: 'ok',
                 };
                 _this.cached[path] = item;
@@ -974,13 +983,13 @@
             })], args));
     });
     /** @type {?} */
-    var deprecation11 = ( /**
+    var deprecation10 = ( /**
      * @param {?} comp
      * @param {?} from
      * @param {?=} to
      * @return {?}
      */function (comp, from, to) {
-        warnDeprecation(comp + " => '" + from + "' is going to be removed in 11.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
+        warnDeprecation(comp + " => '" + from + "' is going to be removed in 10.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
     });
     /** @type {?} */
     var warnDeprecation = ( /**
@@ -1861,7 +1870,7 @@
     exports.deepGet = deepGet;
     exports.deepMerge = deepMerge;
     exports.deepMergeKey = deepMergeKey;
-    exports.deprecation11 = deprecation11;
+    exports.deprecation10 = deprecation10;
     exports.fixEndTimeOfRange = fixEndTimeOfRange;
     exports.format = format;
     exports.getTimeDistance = getTimeDistance;
