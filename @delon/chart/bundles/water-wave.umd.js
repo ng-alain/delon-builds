@@ -525,6 +525,7 @@
             // drawSin();
         };
         /**
+         * @private
          * @return {?}
          */
         G2WaterWaveComponent.prototype.updateRadio = function () {
@@ -532,6 +533,12 @@
             /** @type {?} */
             var radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
             this.renderer.setStyle(this.el.nativeElement, 'transform', "scale(" + radio + ")");
+        };
+        /**
+         * @return {?}
+         */
+        G2WaterWaveComponent.prototype.render = function () {
+            this.renderChart(false);
         };
         /**
          * @private
@@ -558,7 +565,7 @@
              * @return {?}
              */function () { return setTimeout(( /**
              * @return {?}
-             */function () { return _this.renderChart(false); }), _this.delay); }));
+             */function () { return _this.render(); }), _this.delay); }));
         };
         /**
          * @return {?}
