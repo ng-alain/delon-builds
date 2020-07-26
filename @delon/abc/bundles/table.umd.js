@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, platformBrowser, acl, theme, util, common, rxjs, operators, xlsx, router, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, table, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, i0, platformBrowser, acl, theme, util, common, http, rxjs, operators, xlsx, router, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, table, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1501,7 +1501,7 @@
             params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
             /** @type {?} */
             var reqOptions = {
-                params: params,
+                params: new http.HttpParams({ fromObject: params }),
                 body: req.body,
                 headers: req.headers,
             };
@@ -1625,44 +1625,39 @@
             var ret = {};
             /** @type {?} */
             var sortList = this.getValidSort(columns);
-            if (!multiSort && sortList.length === 0)
-                return ret;
             if (multiSort) {
                 /** @type {?} */
-                var ms_1 = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
-                ret = (_a = {},
-                    _a[ms_1.key] = sortList
-                        .sort(( /**
-                 * @param {?} a
-                 * @param {?} b
-                 * @return {?}
-                 */function (a, b) { return a.tick - b.tick; }))
-                        .map(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (/**
-                 * @param {?} item
-                 * @return {?}
-                 */ item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[( /** @type {?} */(item.default))] || item.default); }))
-                        .join(ms_1.separator),
-                    _a);
-                if (multiSort.keepEmptyKey === false && ret[ms_1.key].length === 0) {
-                    ret = {};
-                }
+                var ms_1 = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.', keepEmptyKey: true, arrayParam: false }, multiSort);
+                /** @type {?} */
+                var sortMap = sortList
+                    .sort(( /**
+             * @param {?} a
+             * @param {?} b
+             * @return {?}
+             */function (a, b) { return a.tick - b.tick; }))
+                    .map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return ( /** @type {?} */(item.key)) + ms_1.nameSeparator + ((item.reName || {})[( /** @type {?} */(item.default))] || item.default); }));
+                ret = (_a = {}, _a[( /** @type {?} */(ms_1.key))] = ms_1.arrayParam ? sortMap : sortMap.join(ms_1.separator), _a);
+                return sortMap.length === 0 && ms_1.keepEmptyKey === false ? {} : ret;
             }
-            else {
-                /** @type {?} */
-                var mapData = sortList[0];
-                /** @type {?} */
-                var sortFiled = mapData.key;
-                /** @type {?} */
-                var sortValue = (sortList[0].reName || {})[( /** @type {?} */(mapData.default))] || mapData.default;
-                if (singleSort) {
-                    sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
-                    sortFiled = singleSort.key || 'sort';
-                }
-                ret[( /** @type {?} */(sortFiled))] = ( /** @type {?} */(sortValue));
+            if (sortList.length === 0)
+                return ret;
+            /** @type {?} */
+            var mapData = sortList[0];
+            /** @type {?} */
+            var sortFiled = mapData.key;
+            /** @type {?} */
+            var sortValue = (sortList[0].reName || {})[( /** @type {?} */(mapData.default))] || mapData.default;
+            if (singleSort) {
+                sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
+                sortFiled = singleSort.key || 'sort';
             }
+            ret[( /** @type {?} */(sortFiled))] = ( /** @type {?} */(sortValue));
             return ret;
         };
         // #endregion
