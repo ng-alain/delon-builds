@@ -4,7 +4,6 @@ import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { warn, deepCopy, deepGet, deepMergeKey, toBoolean, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
-import { HttpParams } from '@angular/common/http';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
 import { __awaiter, __decorate, __metadata } from 'tslib';
@@ -1129,13 +1128,6 @@ if (false) {
      * @type {?|undefined}
      */
     STMultiSort.prototype.nameSeparator;
-    /**
-     * 是否以数组的形式传递参数，默认：`false`
-     * - `true` 表示使用 `url?sort=name.asc&sort=age.desc` 形式
-     * - `false` 表示使用 `url?sort=name.asc-age.desc` 形式
-     * @type {?|undefined}
-     */
-    STMultiSort.prototype.arrayParam;
     /**
      * 是否保持空值的键名，默认：`true`
      * - `true` 表示不管是否有排序都会发送 `key` 键名
@@ -2436,7 +2428,7 @@ class STDataSource {
         params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
         /** @type {?} */
         let reqOptions = {
-            params: new HttpParams({ fromObject: params }),
+            params,
             body: req.body,
             headers: req.headers,
         };
@@ -2546,38 +2538,43 @@ class STDataSource {
         let ret = {};
         /** @type {?} */
         const sortList = this.getValidSort(columns);
+        if (!multiSort && sortList.length === 0)
+            return ret;
         if (multiSort) {
             /** @type {?} */
-            const ms = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.', keepEmptyKey: true, arrayParam: false }, multiSort);
+            const ms = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.' }, multiSort);
+            ret = {
+                [ms.key]: sortList
+                    .sort((/**
+                 * @param {?} a
+                 * @param {?} b
+                 * @return {?}
+                 */
+                (a, b) => a.tick - b.tick))
+                    .map((/**
+                 * @param {?} item
+                 * @return {?}
+                 */
+                item => item.key + ms.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default)))
+                    .join(ms.separator),
+            };
+            if (multiSort.keepEmptyKey === false && ret[ms.key].length === 0) {
+                ret = {};
+            }
+        }
+        else {
             /** @type {?} */
-            const sortMap = sortList
-                .sort((/**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */
-            (a, b) => a.tick - b.tick))
-                .map((/**
-             * @param {?} item
-             * @return {?}
-             */
-            item => (/** @type {?} */ (item.key)) + ms.nameSeparator + ((item.reName || {})[(/** @type {?} */ (item.default))] || item.default)));
-            ret = { [(/** @type {?} */ (ms.key))]: ms.arrayParam ? sortMap : sortMap.join(ms.separator) };
-            return sortMap.length === 0 && ms.keepEmptyKey === false ? {} : ret;
+            const mapData = sortList[0];
+            /** @type {?} */
+            let sortFiled = mapData.key;
+            /** @type {?} */
+            let sortValue = (sortList[0].reName || {})[(/** @type {?} */ (mapData.default))] || mapData.default;
+            if (singleSort) {
+                sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
+                sortFiled = singleSort.key || 'sort';
+            }
+            ret[(/** @type {?} */ (sortFiled))] = (/** @type {?} */ (sortValue));
         }
-        if (sortList.length === 0)
-            return ret;
-        /** @type {?} */
-        const mapData = sortList[0];
-        /** @type {?} */
-        let sortFiled = mapData.key;
-        /** @type {?} */
-        let sortValue = (sortList[0].reName || {})[(/** @type {?} */ (mapData.default))] || mapData.default;
-        if (singleSort) {
-            sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
-            sortFiled = singleSort.key || 'sort';
-        }
-        ret[(/** @type {?} */ (sortFiled))] = (/** @type {?} */ (sortValue));
         return ret;
     }
     // #endregion
