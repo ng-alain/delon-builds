@@ -451,8 +451,8 @@
                 res.body = i1.deepCopy(res.body);
             }
             if (config.log) {
-                console.log("%c\uD83D\uDC7D" + req.method + "->" + req.urlWithParams + "->request", 'background:#000;color:#bada55', req);
-                console.log("%c\uD83D\uDC7D" + req.method + "->" + req.urlWithParams + "->response", 'background:#000;color:#bada55', res);
+                console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->request", 'background:#000;color:#bada55', req);
+                console.log("%c\uD83D\uDC7D" + req.method + "->" + req.url + "->response", 'background:#000;color:#bada55', res);
             }
             /** @type {?} */
             var res$ = res instanceof http.HttpErrorResponse ? rxjs.throwError(res) : rxjs.of(res);

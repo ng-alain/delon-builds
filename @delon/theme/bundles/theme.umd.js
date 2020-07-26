@@ -2888,6 +2888,9 @@
             var _this = this;
             /** @type {?} */
             var newParams = {};
+            if (params instanceof i1$5.HttpParams) {
+                return params;
+            }
             Object.keys(params).forEach(( /**
              * @param {?} key
              * @return {?}

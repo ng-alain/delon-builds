@@ -2980,6 +2980,9 @@ class _HttpClient {
     parseParams(params) {
         /** @type {?} */
         const newParams = {};
+        if (params instanceof HttpParams) {
+            return params;
+        }
         Object.keys(params).forEach((/**
          * @param {?} key
          * @return {?}
@@ -3866,7 +3869,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0-beta.2-8176750f');
+const VERSION = new Version('10.0.0-beta.2-ec1b14ad');
 
 /**
  * @fileoverview added by tsickle
