@@ -2378,7 +2378,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, router.RouterModule, i1.DelonLocaleModule, menu.NzMenuModule, tabs.NzTabsModule, icon.NzIconModule, overlay.OverlayModule],
                     declarations: __spread(COMPONENTS, NOEXPORTS),
-                    exports: __spread(COMPONENTS),
+                    exports: COMPONENTS,
                 },] }
     ];
 
