@@ -1971,7 +1971,7 @@ ReuseTabModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule],
                 declarations: [...COMPONENTS, ...NOEXPORTS],
-                exports: COMPONENTS,
+                exports: [...COMPONENTS],
             },] }
 ];
 
