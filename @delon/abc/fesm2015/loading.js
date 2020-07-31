@@ -192,13 +192,16 @@ if (false) {
  * Generated from: loading.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const COMPONENTS = [LoadingDefaultComponent];
 class LoadingModule {
 }
 LoadingModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, OverlayModule, PortalModule, NzIconModule, NzSpinModule],
-                declarations: [LoadingDefaultComponent],
-                exports: [LoadingDefaultComponent],
+                declarations: COMPONENTS,
+                entryComponents: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

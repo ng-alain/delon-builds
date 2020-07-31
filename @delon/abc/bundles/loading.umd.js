@@ -208,6 +208,8 @@
      * Generated from: loading.module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
+    /** @type {?} */
+    var COMPONENTS = [LoadingDefaultComponent];
     var LoadingModule = /** @class */ (function () {
         function LoadingModule() {
         }
@@ -216,8 +218,9 @@
     LoadingModule.decorators = [
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, i1.OverlayModule, portal.PortalModule, icon.NzIconModule, spin.NzSpinModule],
-                    declarations: [LoadingDefaultComponent],
-                    exports: [LoadingDefaultComponent],
+                    declarations: COMPONENTS,
+                    entryComponents: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 
