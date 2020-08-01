@@ -2116,8 +2116,9 @@
                     case 'override':
                         if (((_a = res === null || res === void 0 ? void 0 : res.list) === null || _a === void 0 ? void 0 : _a.length) === _this.list.length) {
                             _this.updatePos$.next();
+                            return;
                         }
-                        return;
+                        break;
                 }
                 _this.genList(res);
             }));

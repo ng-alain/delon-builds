@@ -1707,8 +1707,9 @@ class ReuseTabComponent {
                 case 'override':
                     if (((_a = res === null || res === void 0 ? void 0 : res.list) === null || _a === void 0 ? void 0 : _a.length) === this.list.length) {
                         this.updatePos$.next();
+                        return;
                     }
-                    return;
+                    break;
             }
             this.genList(res);
         }));

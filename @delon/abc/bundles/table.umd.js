@@ -2855,8 +2855,6 @@
          * @return {?}
          */
         STComponent.prototype.handleFilter = function (col) {
-            // 过滤表示一种数据的变化应重置页码为 `1`
-            this.pi = 1;
             this.columnSource.updateDefault(( /** @type {?} */(col.filter)));
             this.loadPageData();
             this.changeEmit('filter', col);
