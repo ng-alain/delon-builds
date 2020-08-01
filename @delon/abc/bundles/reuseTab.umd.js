@@ -908,6 +908,7 @@
             this._closableCached = {};
             this.positionBuffer = {};
             this.debug = false;
+            this.routeParamMatchMode = 'strict';
             this.mode = ReuseTabMatchMode.Menu;
             /**
              * 排除规则，限 `mode=URL`
@@ -1571,11 +1572,12 @@
             /** @type {?} */
             var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) || '')));
             if (path.length > 0 && ~path.indexOf(':')) {
-                /** @type {?} */
-                var futureUrl = this.getUrl(future);
-                /** @type {?} */
-                var currUrl = this.getUrl(curr);
-                ret = futureUrl === currUrl;
+                if (this.routeParamMatchMode === 'strict') {
+                    ret = this.getUrl(future) === this.getUrl(curr);
+                }
+                else {
+                    ret = path === ((curr.routeConfig && curr.routeConfig.path) || '');
+                }
             }
             this.di('=====================');
             this.di('#shouldReuseRoute', ret, this.getUrl(curr) + "=>" + this.getUrl(future), future, curr);
@@ -1749,6 +1751,8 @@
         /** @type {?} */
         ReuseTabService.prototype.debug;
         /** @type {?} */
+        ReuseTabService.prototype.routeParamMatchMode;
+        /** @type {?} */
         ReuseTabService.prototype.mode;
         /**
          * 排除规则，限 `mode=URL`
@@ -1802,6 +1806,7 @@
             this.keepingScroll = false;
             this.customContextMenu = [];
             this.tabType = 'line';
+            this.routeParamMatchMode = 'strict';
             // tslint:disable-next-line:no-output-native
             this.change = new i0.EventEmitter();
             // tslint:disable-next-line:no-output-native
@@ -2136,6 +2141,8 @@
                 this.srv.excludes = this.excludes;
             if (changes.mode)
                 this.srv.mode = this.mode;
+            if (changes.routeParamMatchMode)
+                this.srv.routeParamMatchMode = this.routeParamMatchMode;
             if (changes.keepingScroll) {
                 this.srv.keepingScroll = this.keepingScroll;
                 this.srv.keepingScrollContainer = this._keepingScrollContainer;
@@ -2194,6 +2201,7 @@
         tabBarGutter: [{ type: i0.Input }],
         tabBarStyle: [{ type: i0.Input }],
         tabType: [{ type: i0.Input }],
+        routeParamMatchMode: [{ type: i0.Input }],
         change: [{ type: i0.Output }],
         close: [{ type: i0.Output }]
     };
@@ -2270,6 +2278,8 @@
         ReuseTabComponent.prototype.tabBarStyle;
         /** @type {?} */
         ReuseTabComponent.prototype.tabType;
+        /** @type {?} */
+        ReuseTabComponent.prototype.routeParamMatchMode;
         /** @type {?} */
         ReuseTabComponent.prototype.change;
         /** @type {?} */
@@ -2378,7 +2388,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, router.RouterModule, i1.DelonLocaleModule, menu.NzMenuModule, tabs.NzTabsModule, icon.NzIconModule, overlay.OverlayModule],
                     declarations: __spread(COMPONENTS, NOEXPORTS),
-                    exports: __spread(COMPONENTS),
+                    exports: COMPONENTS,
                 },] }
     ];
 

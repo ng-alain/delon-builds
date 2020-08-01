@@ -31162,12 +31162,14 @@ ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.reuse-tab .ant-tabs > .ant-tabs-nav {
+  margin: 0;
+}
 .reuse-tab__line {
   padding: 8px;
   border-bottom: 1px solid #d9d9d9;
 }
-.reuse-tab__line .ant-tabs-bar {
-  margin-bottom: 0;
+.reuse-tab__line .ant-tabs-nav::before {
   border-bottom: none;
 }
 .reuse-tab__line .ant-tabs-nav .ant-tabs-tab {

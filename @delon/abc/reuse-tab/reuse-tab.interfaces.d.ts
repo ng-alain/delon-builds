@@ -31,6 +31,7 @@ export declare enum ReuseTabMatchMode {
      */
     URL = 2
 }
+export declare type ReuseTabRouteParamMatchMode = 'strict' | 'loose';
 export interface ReuseTitle {
     text?: string;
     i18n?: string;

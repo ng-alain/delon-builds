@@ -596,6 +596,7 @@ class ReuseTabService {
         this._closableCached = {};
         this.positionBuffer = {};
         this.debug = false;
+        this.routeParamMatchMode = 'strict';
         this.mode = ReuseTabMatchMode.Menu;
         /**
          * 排除规则，限 `mode=URL`
@@ -1195,11 +1196,12 @@ class ReuseTabService {
         /** @type {?} */
         const path = (/** @type {?} */ (((future.routeConfig && future.routeConfig.path) || '')));
         if (path.length > 0 && ~path.indexOf(':')) {
-            /** @type {?} */
-            const futureUrl = this.getUrl(future);
-            /** @type {?} */
-            const currUrl = this.getUrl(curr);
-            ret = futureUrl === currUrl;
+            if (this.routeParamMatchMode === 'strict') {
+                ret = this.getUrl(future) === this.getUrl(curr);
+            }
+            else {
+                ret = path === ((curr.routeConfig && curr.routeConfig.path) || '');
+            }
         }
         this.di('=====================');
         this.di('#shouldReuseRoute', ret, `${this.getUrl(curr)}=>${this.getUrl(future)}`, future, curr);
@@ -1362,6 +1364,8 @@ if (false) {
     /** @type {?} */
     ReuseTabService.prototype.debug;
     /** @type {?} */
+    ReuseTabService.prototype.routeParamMatchMode;
+    /** @type {?} */
     ReuseTabService.prototype.mode;
     /**
      * 排除规则，限 `mode=URL`
@@ -1415,6 +1419,7 @@ class ReuseTabComponent {
         this.keepingScroll = false;
         this.customContextMenu = [];
         this.tabType = 'line';
+        this.routeParamMatchMode = 'strict';
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         // tslint:disable-next-line:no-output-native
@@ -1729,6 +1734,8 @@ class ReuseTabComponent {
             this.srv.excludes = this.excludes;
         if (changes.mode)
             this.srv.mode = this.mode;
+        if (changes.routeParamMatchMode)
+            this.srv.routeParamMatchMode = this.routeParamMatchMode;
         if (changes.keepingScroll) {
             this.srv.keepingScroll = this.keepingScroll;
             this.srv.keepingScrollContainer = this._keepingScrollContainer;
@@ -1786,6 +1793,7 @@ ReuseTabComponent.propDecorators = {
     tabBarGutter: [{ type: Input }],
     tabBarStyle: [{ type: Input }],
     tabType: [{ type: Input }],
+    routeParamMatchMode: [{ type: Input }],
     change: [{ type: Output }],
     close: [{ type: Output }]
 };
@@ -1862,6 +1870,8 @@ if (false) {
     ReuseTabComponent.prototype.tabBarStyle;
     /** @type {?} */
     ReuseTabComponent.prototype.tabType;
+    /** @type {?} */
+    ReuseTabComponent.prototype.routeParamMatchMode;
     /** @type {?} */
     ReuseTabComponent.prototype.change;
     /** @type {?} */
@@ -1971,7 +1981,7 @@ ReuseTabModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule],
                 declarations: [...COMPONENTS, ...NOEXPORTS],
-                exports: [...COMPONENTS],
+                exports: COMPONENTS,
             },] }
 ];
 

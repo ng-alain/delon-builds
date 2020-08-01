@@ -2,7 +2,7 @@ import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
-import { ReuseComponentRef, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTitle } from './reuse-tab.interfaces';
+import { ReuseComponentRef, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
 /**
  * 路由复用类，提供复用所需要一些基本接口
  *
@@ -23,6 +23,7 @@ export declare class ReuseTabService implements OnDestroy {
     private positionBuffer;
     componentRef: ReuseComponentRef;
     debug: boolean;
+    routeParamMatchMode: ReuseTabRouteParamMatchMode;
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
