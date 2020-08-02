@@ -1123,7 +1123,6 @@
             this._app = value;
             this.setData(APP, value);
             this.notify$.next({ type: 'app', value: value });
-            return true;
         };
         /**
          * @param {?} value
@@ -1133,7 +1132,6 @@
             this._user = value;
             this.setData(USER, value);
             this.notify$.next({ type: 'user', value: value });
-            return true;
         };
         return SettingsService;
     }());

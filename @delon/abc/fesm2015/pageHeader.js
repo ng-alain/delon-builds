@@ -153,7 +153,6 @@ class PageHeaderComponent {
             });
         }
         this.paths = paths;
-        return this;
     }
     /**
      * @private

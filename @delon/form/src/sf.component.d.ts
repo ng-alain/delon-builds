@@ -13,6 +13,7 @@ import { SFUISchema } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
 export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
+export declare type SFMode = 'default' | 'search' | 'edit';
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private formPropertyFactory;
     private terminator;
@@ -64,8 +65,8 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     onlyVisual: boolean;
     compact: boolean;
     /** 表单模式 */
-    set mode(value: 'default' | 'search' | 'edit');
-    get mode(): 'default' | 'search' | 'edit';
+    set mode(value: SFMode);
+    get mode(): SFMode;
     private _mode;
     /**
      * Whether to load status，when `true` reset button is disabled status, submit button is loading status

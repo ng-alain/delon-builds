@@ -3237,7 +3237,7 @@
              * @return {?}
              */
             get: function () {
-                return this.title === null ? this.schema.title : this.title;
+                return this.title === null ? ( /** @type {?} */(this.schema.title)) : this.title;
             },
             enumerable: false,
             configurable: true
@@ -3630,7 +3630,7 @@
              * @return {?}
              */
             get: function () {
-                return this.disabled || (this.schema.maxItems && (( /** @type {?} */(this.formProperty.properties))).length >= this.schema.maxItems);
+                return (this.disabled || (this.schema.maxItems != null && (( /** @type {?} */(this.formProperty.properties))).length >= ( /** @type {?} */(this.schema.maxItems))));
             },
             enumerable: false,
             configurable: true
@@ -3640,7 +3640,7 @@
              * @return {?}
              */
             get: function () {
-                return !this.disabled && this.removeTitle;
+                return !this.disabled && !!this.removeTitle;
             },
             enumerable: false,
             configurable: true

@@ -18,6 +18,6 @@ export declare class SettingsService {
     get user(): User;
     get notify(): Observable<SettingsNotify>;
     setLayout(name: string | Layout, value?: any): boolean;
-    setApp(value: App): boolean;
-    setUser(value: User): boolean;
+    setApp(value: App): void;
+    setUser(value: User): void;
 }

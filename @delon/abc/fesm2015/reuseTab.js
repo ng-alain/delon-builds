@@ -1076,7 +1076,7 @@ class ReuseTabService {
      * @return {?}
      */
     hasInValidRoute(route) {
-        return !route.routeConfig || route.routeConfig.loadChildren || route.routeConfig.children;
+        return !route.routeConfig || !!route.routeConfig.loadChildren || !!route.routeConfig.children;
     }
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`

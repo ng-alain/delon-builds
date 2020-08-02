@@ -350,6 +350,7 @@
         G2GaugeComponent.prototype.install = function () {
             // 自定义Shape 部分
             g2.registerShape('point', 'pointer', {
+                // tslint:disable-next-line: typedef
                 /**
                  * @param {?} cfg
                  * @param {?} container

@@ -29,7 +29,7 @@ class FooterToolbarComponent {
      * @return {?}
      */
     get bodyCls() {
-        return this.doc.querySelector('body').classList;
+        return ((/** @type {?} */ (this.doc.querySelector('body')))).classList;
     }
     /**
      * @return {?}

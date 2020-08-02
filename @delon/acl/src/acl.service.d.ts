@@ -18,7 +18,7 @@ export declare class ACLService {
     get data(): {
         full: boolean;
         roles: string[];
-        abilities: (string | number)[];
+        abilities: Array<string | number>;
     };
     get guard_url(): string;
     constructor(configSrv: AlainConfigService);

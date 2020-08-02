@@ -335,7 +335,7 @@
              * @return {?}
              */
             get: function () {
-                return this.doc.querySelector('body').classList;
+                return (( /** @type {?} */(this.doc.querySelector('body')))).classList;
             },
             enumerable: false,
             configurable: true

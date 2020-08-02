@@ -2825,7 +2825,7 @@ class SFItemWrapComponent {
      * @return {?}
      */
     get t() {
-        return this.title === null ? this.schema.title : this.title;
+        return this.title === null ? (/** @type {?} */ (this.schema.title)) : this.title;
     }
     /**
      * @return {?}
@@ -3166,13 +3166,13 @@ class ArrayWidget extends ArrayLayoutWidget {
      * @return {?}
      */
     get addDisabled() {
-        return this.disabled || (this.schema.maxItems && ((/** @type {?} */ (this.formProperty.properties))).length >= this.schema.maxItems);
+        return (this.disabled || (this.schema.maxItems != null && ((/** @type {?} */ (this.formProperty.properties))).length >= (/** @type {?} */ (this.schema.maxItems))));
     }
     /**
      * @return {?}
      */
     get showRemove() {
-        return !this.disabled && this.removeTitle;
+        return !this.disabled && !!this.removeTitle;
     }
     /**
      * @return {?}

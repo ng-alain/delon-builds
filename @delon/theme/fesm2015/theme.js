@@ -1038,7 +1038,6 @@ class SettingsService {
         this._app = value;
         this.setData(APP, value);
         this.notify$.next({ type: 'app', value });
-        return true;
     }
     /**
      * @param {?} value
@@ -1048,7 +1047,6 @@ class SettingsService {
         this._user = value;
         this.setData(USER, value);
         this.notify$.next({ type: 'user', value });
-        return true;
     }
 }
 SettingsService.decorators = [
@@ -3869,7 +3867,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0-beta.2-98ef3ca4');
+const VERSION = new Version('10.0.0-beta.2-5d7d07b0');
 
 /**
  * @fileoverview added by tsickle

@@ -8,6 +8,6 @@ export declare class SFItemWrapComponent {
     error: string;
     showTitle: boolean;
     title: string | null;
-    get t(): string | null | undefined;
+    get t(): string;
     get oh(): SFOptionalHelp;
 }

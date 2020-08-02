@@ -1,3 +1,4 @@
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
@@ -201,7 +202,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
-    get cdkVirtualScrollViewport(): import("@angular/cdk/scrolling").CdkVirtualScrollViewport;
+    get cdkVirtualScrollViewport(): CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
     private optimizeData;

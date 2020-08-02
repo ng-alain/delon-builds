@@ -41,6 +41,7 @@ class G2GaugeComponent {
     install() {
         // 自定义Shape 部分
         registerShape('point', 'pointer', {
+            // tslint:disable-next-line: typedef
             /**
              * @param {?} cfg
              * @param {?} container

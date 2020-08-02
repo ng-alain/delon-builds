@@ -463,7 +463,6 @@
                 });
             }
             this.paths = paths;
-            return this;
         };
         /**
          * @private

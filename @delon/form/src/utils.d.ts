@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 export declare function isBlank(o: any): boolean;
-export declare function toBool(value: any, defaultValue: boolean): any;
+export declare function toBool(value: any, defaultValue: boolean): boolean;
 export declare function di(ui: SFUISchema, ...args: NzSafeAny[]): void;
 /**
  * 取回Schema，并处理 `$ref` 的关系

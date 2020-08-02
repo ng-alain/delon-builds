@@ -410,7 +410,7 @@
          */
         ImageDirective.prototype.updateError = function () {
             var _a = this, imgEl = _a.imgEl, error = _a.error;
-            // tslint:disable-next-line: only-arrow-functions
+            // tslint:disable-next-line: only-arrow-functions, typedef
             imgEl.onerror = ( /**
              * @return {?}
              */function () {

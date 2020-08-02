@@ -67,6 +67,7 @@ class G2TagCloudComponent {
      */
     initTagCloud() {
         registerShape('point', 'cloud', {
+            // tslint:disable-next-line: typedef
             /**
              * @param {?} cfg
              * @param {?} container
@@ -174,6 +175,7 @@ class G2TagCloudComponent {
             padding: 0,
             timeInterval: 5000,
             // max execute time
+            // tslint:disable-next-line: typedef
             /**
              * @return {?}
              */
@@ -185,6 +187,7 @@ class G2TagCloudComponent {
                 }
                 return random * 90; // 0, 90, 270
             },
+            // tslint:disable-next-line: typedef
             /**
              * @param {?} d
              * @return {?}

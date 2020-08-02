@@ -108,7 +108,7 @@ class ImageDirective {
      */
     updateError() {
         const { imgEl, error } = this;
-        // tslint:disable-next-line: only-arrow-functions
+        // tslint:disable-next-line: only-arrow-functions, typedef
         imgEl.onerror = (/**
          * @return {?}
          */
