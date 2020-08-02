@@ -100,9 +100,7 @@ class LoadingService {
             hasBackdrop: true,
             backdropClass: 'loading-backdrop',
         });
-        /** @type {?} */
-        const comp = new ComponentPortal(LoadingDefaultComponent);
-        this.compRef = this._overlayRef.attach(comp);
+        this.compRef = this._overlayRef.attach(new ComponentPortal(LoadingDefaultComponent));
         Object.assign(this.instance, { options: this.opt });
         this.compRef.changeDetectorRef.markForCheck();
     }

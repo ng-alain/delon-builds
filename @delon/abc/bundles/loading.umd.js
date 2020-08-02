@@ -115,9 +115,7 @@
                 hasBackdrop: true,
                 backdropClass: 'loading-backdrop',
             });
-            /** @type {?} */
-            var comp = new portal.ComponentPortal(LoadingDefaultComponent);
-            this.compRef = this._overlayRef.attach(comp);
+            this.compRef = this._overlayRef.attach(new portal.ComponentPortal(LoadingDefaultComponent));
             Object.assign(this.instance, { options: this.opt });
             this.compRef.changeDetectorRef.markForCheck();
         };
