@@ -2,7 +2,7 @@ import { Tree } from '@angular-devkit/schematics';
 export declare function getJSON(host: Tree, jsonFile: string, type?: string): any;
 export declare function overwriteJSON(host: Tree, jsonFile: string, json: any): void;
 export declare function getPackage(host: Tree, type?: string): any;
-export declare function overwritePackage(host: Tree, json: any): void;
+export declare function overwritePackage(host: Tree, json: any): any;
 /**
  * Adds a package to the package.json
  *

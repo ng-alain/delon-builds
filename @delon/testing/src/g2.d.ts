@@ -1,13 +1,14 @@
-import { Type } from '@angular/core';
+import { DebugElement, Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { Chart } from '@antv/g2';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type PageG2Type = 'geometries' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;
 export declare class PageG2<T> {
     fixture: ComponentFixture<T> | null;
     constructor(fixture?: ComponentFixture<T> | null);
-    get dl(): import("@angular/core").DebugElement;
+    get dl(): DebugElement;
     get context(): T;
     get comp(): any;
     get chart(): Chart;
@@ -23,7 +24,7 @@ export declare class PageG2<T> {
     newData(data: any): this;
     getEls(cls: string): NodeListOf<HTMLElement>;
     getEl(cls: string): HTMLElement;
-    getController(type: 'axis' | 'legend'): any;
+    getController(type: 'axis' | 'legend'): NzSafeAny;
     isCanvas(stauts?: boolean): this;
     isText(cls: string, value: string): this;
     isExists(cls: string, stauts?: boolean): this;
