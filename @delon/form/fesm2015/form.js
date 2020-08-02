@@ -3032,6 +3032,9 @@ class Widget {
         }
     }
 }
+Widget.decorators = [
+    { type: Directive }
+];
 /** @nocollapse */
 Widget.ctorParameters = () => [
     { type: ChangeDetectorRef, decorators: [{ type: Inject, args: [ChangeDetectorRef,] }] },
@@ -3097,6 +3100,9 @@ class ControlWidget extends Widget {
      */
     afterViewInit() { }
 }
+ControlWidget.decorators = [
+    { type: Directive }
+];
 /**
  * @template UIT
  */
@@ -3111,6 +3117,9 @@ class ControlUIWidget extends Widget {
      */
     afterViewInit() { }
 }
+ControlUIWidget.decorators = [
+    { type: Directive }
+];
 class ArrayLayoutWidget extends Widget {
     /**
      * @param {?} _value
@@ -3131,6 +3140,9 @@ class ArrayLayoutWidget extends Widget {
         () => this.cd.detectChanges()));
     }
 }
+ArrayLayoutWidget.decorators = [
+    { type: Directive }
+];
 class ObjectLayoutWidget extends Widget {
     /**
      * @param {?} _value
@@ -3151,6 +3163,9 @@ class ObjectLayoutWidget extends Widget {
         () => this.cd.detectChanges()));
     }
 }
+ObjectLayoutWidget.decorators = [
+    { type: Directive }
+];
 
 /**
  * @fileoverview added by tsickle

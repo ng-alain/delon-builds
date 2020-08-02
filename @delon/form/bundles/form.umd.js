@@ -3478,6 +3478,9 @@
         };
         return Widget;
     }());
+    Widget.decorators = [
+        { type: core.Directive }
+    ];
     /** @nocollapse */
     Widget.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef, decorators: [{ type: core.Inject, args: [core.ChangeDetectorRef,] }] },
@@ -3548,6 +3551,9 @@
         ControlWidget.prototype.afterViewInit = function () { };
         return ControlWidget;
     }(Widget));
+    ControlWidget.decorators = [
+        { type: core.Directive }
+    ];
     /**
      * @template UIT
      */
@@ -3567,6 +3573,9 @@
         ControlUIWidget.prototype.afterViewInit = function () { };
         return ControlUIWidget;
     }(Widget));
+    ControlUIWidget.decorators = [
+        { type: core.Directive }
+    ];
     var ArrayLayoutWidget = /** @class */ (function (_super) {
         __extends(ArrayLayoutWidget, _super);
         function ArrayLayoutWidget() {
@@ -3592,6 +3601,9 @@
         };
         return ArrayLayoutWidget;
     }(Widget));
+    ArrayLayoutWidget.decorators = [
+        { type: core.Directive }
+    ];
     var ObjectLayoutWidget = /** @class */ (function (_super) {
         __extends(ObjectLayoutWidget, _super);
         function ObjectLayoutWidget() {
@@ -3617,6 +3629,9 @@
         };
         return ObjectLayoutWidget;
     }(Widget));
+    ObjectLayoutWidget.decorators = [
+        { type: core.Directive }
+    ];
 
     var ArrayWidget = /** @class */ (function (_super) {
         __extends(ArrayWidget, _super);
