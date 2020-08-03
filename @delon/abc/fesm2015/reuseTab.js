@@ -1055,19 +1055,28 @@ class ReuseTabService {
     /**
      * @param {?} method
      * @param {?} comp
+     * @param {?=} type
      * @return {?}
      */
-    runHook(method, comp) {
+    runHook(method, comp, type = 'init') {
         if (typeof comp === 'number') {
             /** @type {?} */
             const item = this._cached[comp];
             comp = item._handle.componentRef;
         }
-        if (comp == null) {
+        if (comp == null || !comp.instance) {
             return;
         }
-        if (comp.instance && typeof comp.instance[method] === 'function') {
-            comp.instance[method]();
+        /** @type {?} */
+        const fn = comp.instance[method];
+        if (typeof fn !== 'function') {
+            return;
+        }
+        if (method === '_onReuseInit') {
+            fn(type);
+        }
+        else {
+            ((/** @type {?} */ (fn)))();
         }
     }
     /**
@@ -1552,7 +1561,7 @@ class ReuseTabComponent {
      * @return {?}
      */
     refresh(item) {
-        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index);
+        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index, 'refresh');
     }
     // #region UI
     /**

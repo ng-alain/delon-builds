@@ -1429,19 +1429,29 @@
         /**
          * @param {?} method
          * @param {?} comp
+         * @param {?=} type
          * @return {?}
          */
-        ReuseTabService.prototype.runHook = function (method, comp) {
+        ReuseTabService.prototype.runHook = function (method, comp, type) {
+            if (type === void 0) { type = 'init'; }
             if (typeof comp === 'number') {
                 /** @type {?} */
                 var item = this._cached[comp];
                 comp = item._handle.componentRef;
             }
-            if (comp == null) {
+            if (comp == null || !comp.instance) {
                 return;
             }
-            if (comp.instance && typeof comp.instance[method] === 'function') {
-                comp.instance[method]();
+            /** @type {?} */
+            var fn = comp.instance[method];
+            if (typeof fn !== 'function') {
+                return;
+            }
+            if (method === '_onReuseInit') {
+                fn(type);
+            }
+            else {
+                (( /** @type {?} */(fn)))();
             }
         };
         /**
@@ -1952,7 +1962,7 @@
          * @return {?}
          */
         ReuseTabComponent.prototype.refresh = function (item) {
-            this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index);
+            this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index, 'refresh');
         };
         // #region UI
         /**
