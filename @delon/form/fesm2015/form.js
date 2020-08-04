@@ -4501,10 +4501,18 @@ class StringWidget extends ControlUIWidget {
      * @return {?}
      */
     ngOnInit() {
-        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon } = this.ui;
+        const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon, autofocus } = this.ui;
         this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
             ? 'addon'
             : '';
+        if (autofocus === true) {
+            setTimeout((/**
+             * @return {?}
+             */
+            () => {
+                ((/** @type {?} */ (((/** @type {?} */ (this.injector.get(ElementRef).nativeElement))).querySelector(`#${this.id}`)))).focus();
+            }), 20);
+        }
     }
     /**
      * @param {?} value
