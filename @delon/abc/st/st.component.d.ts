@@ -30,8 +30,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _res;
     private _page;
     private _widthMode;
-    private customWidthConfig;
-    _widthConfig: string[];
     locale: LocaleData;
     _loading: boolean;
     _data: STData[];
@@ -71,7 +69,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     rowClassName: STRowClassName;
     set widthMode(value: STWidthMode);
     get widthMode(): STWidthMode;
-    set widthConfig(val: string[]);
     header: string | TemplateRef<void>;
     footer: string | TemplateRef<void>;
     bodyHeader: TemplateRef<STStatisticalResults>;
@@ -83,6 +80,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         column: STColumn;
     }>;
     noResult: string | TemplateRef<void>;
+    widthConfig: string[];
     rowClickTime: number;
     responsive: boolean;
     responsiveHideHeaderFooter: boolean;

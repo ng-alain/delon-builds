@@ -5028,10 +5028,18 @@
          * @return {?}
          */
         StringWidget.prototype.ngOnInit = function () {
-            var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon;
+            var _this = this;
+            var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon, autofocus = _a.autofocus;
             this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
                 ? 'addon'
                 : '';
+            if (autofocus === true) {
+                setTimeout(( /**
+                 * @return {?}
+                 */function () {
+                    (( /** @type {?} */((( /** @type {?} */(_this.injector.get(core.ElementRef).nativeElement))).querySelector("#" + _this.id)))).focus();
+                }), 20);
+            }
         };
         /**
          * @param {?} value
