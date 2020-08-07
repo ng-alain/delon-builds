@@ -9,218 +9,6 @@
     (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}), global.ng.core, global.delon.theme, global.saveAs, global.ng.common));
 }(this, (function (exports, core, theme, fileSaver, common) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: down-file.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var DownFileDirective = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} _http
-         */
-        function DownFileDirective(el, _http) {
-            this.el = el;
-            this._http = _http;
-            this.isFileSaverSupported = true;
-            /**
-             * 请求类型
-             */
-            this.httpMethod = 'get';
-            /**
-             * 成功回调
-             */
-            // tslint:disable-next-line:no-output-native
-            this.success = new core.EventEmitter();
-            /**
-             * 错误回调
-             */
-            // tslint:disable-next-line:no-output-native
-            this.error = new core.EventEmitter();
-            /** @type {?} */
-            var isFileSaverSupported = false;
-            try {
-                isFileSaverSupported = !!new Blob();
-            }
-            catch (_a) { }
-            this.isFileSaverSupported = isFileSaverSupported;
-            if (!isFileSaverSupported) {
-                el.nativeElement.classList.add("down-file__not-support");
-            }
-        }
-        /**
-         * @private
-         * @param {?} data
-         * @return {?}
-         */
-        DownFileDirective.prototype.getDisposition = function (data) {
-            /** @type {?} */
-            var arr = (data || '')
-                .split(';')
-                .filter(( /**
-         * @param {?} i
-         * @return {?}
-         */function (/**
-         * @param {?} i
-         * @return {?}
-         */ i) { return i.includes('='); }))
-                .map(( /**
-         * @param {?} v
-         * @return {?}
-         */function (/**
-         * @param {?} v
-         * @return {?}
-         */ v) {
-                var _b;
-                /** @type {?} */
-                var strArr = v.split('=');
-                /** @type {?} */
-                var utfId = "UTF-8''";
-                /** @type {?} */
-                var value = strArr[1];
-                if (value.startsWith(utfId))
-                    value = value.substr(utfId.length);
-                return _b = {}, _b[strArr[0].trim()] = value, _b;
-            }));
-            return arr.reduce(( /**
-             * @param {?} _o
-             * @param {?} item
-             * @return {?}
-             */function (_o, item) { return item; }), {});
-        };
-        /**
-         * @private
-         * @param {?} status
-         * @return {?}
-         */
-        DownFileDirective.prototype.setDisabled = function (status) {
-            /** @type {?} */
-            var el = this.el.nativeElement;
-            el.disabled = status;
-            el.classList[status ? 'add' : 'remove']("down-file__disabled");
-        };
-        /**
-         * @return {?}
-         */
-        DownFileDirective.prototype._click = function () {
-            var _this = this;
-            if (!this.isFileSaverSupported) {
-                return;
-            }
-            this.setDisabled(true);
-            this._http
-                .request(this.httpMethod, this.httpUrl, {
-                params: this.httpData || {},
-                responseType: 'blob',
-                observe: 'response',
-                body: this.httpBody,
-            })
-                .subscribe(( /**
-         * @param {?} res
-         * @return {?}
-         */function (res) {
-                if (res.status !== 200 || ( /** @type {?} */(res.body)).size <= 0) {
-                    _this.error.emit(res);
-                    return;
-                }
-                /** @type {?} */
-                var disposition = _this.getDisposition(res.headers.get('content-disposition'));
-                /** @type {?} */
-                var fileName = _this.fileName;
-                if (typeof fileName === 'function')
-                    fileName = fileName(res);
-                fileName =
-                    fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
-                fileSaver.saveAs(( /** @type {?} */(res.body)), decodeURI(( /** @type {?} */(fileName))));
-                _this.success.emit(res);
-            }), ( /**
-             * @param {?} err
-             * @return {?}
-             */function (/**
-             * @param {?} err
-             * @return {?}
-             */ err) { return _this.error.emit(err); }), ( /**
-             * @return {?}
-             */function () { return _this.setDisabled(false); }));
-        };
-        return DownFileDirective;
-    }());
-    DownFileDirective.decorators = [
-        { type: core.Directive, args: [{
-                    selector: '[down-file]',
-                    exportAs: 'downFile',
-                    host: {
-                        '(click)': '_click()',
-                    },
-                },] }
-    ];
-    /** @nocollapse */
-    DownFileDirective.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: theme._HttpClient }
-    ]; };
-    DownFileDirective.propDecorators = {
-        httpData: [{ type: core.Input, args: ['http-data',] }],
-        httpBody: [{ type: core.Input, args: ['http-body',] }],
-        httpMethod: [{ type: core.Input, args: ['http-method',] }],
-        httpUrl: [{ type: core.Input, args: ['http-url',] }],
-        fileName: [{ type: core.Input, args: ['file-name',] }],
-        success: [{ type: core.Output }],
-        error: [{ type: core.Output }]
-    };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype.isFileSaverSupported;
-        /**
-         * URL请求参数
-         * @type {?}
-         */
-        DownFileDirective.prototype.httpData;
-        /**
-         * URL请求参数
-         * @type {?}
-         */
-        DownFileDirective.prototype.httpBody;
-        /**
-         * 请求类型
-         * @type {?}
-         */
-        DownFileDirective.prototype.httpMethod;
-        /**
-         * 下载地址
-         * @type {?}
-         */
-        DownFileDirective.prototype.httpUrl;
-        /**
-         * 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename`
-         * @type {?}
-         */
-        DownFileDirective.prototype.fileName;
-        /**
-         * 成功回调
-         * @type {?}
-         */
-        DownFileDirective.prototype.success;
-        /**
-         * 错误回调
-         * @type {?}
-         */
-        DownFileDirective.prototype.error;
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype._http;
-    }
-
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -240,7 +28,7 @@
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
             function (d, b) { for (var p in b)
-                if (b.hasOwnProperty(p))
+                if (Object.prototype.hasOwnProperty.call(b, p))
                     d[p] = b[p]; };
         return extendStatics(d, b);
     };
@@ -387,10 +175,10 @@
             k2 = k;
         o[k2] = m[k];
     });
-    function __exportStar(m, exports) {
+    function __exportStar(m, o) {
         for (var p in m)
-            if (p !== "default" && !exports.hasOwnProperty(p))
-                __createBinding(exports, m, p);
+            if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p))
+                __createBinding(o, m, p);
     }
     function __values(o) {
         var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -500,7 +288,7 @@
         var result = {};
         if (mod != null)
             for (var k in mod)
-                if (Object.hasOwnProperty.call(mod, k))
+                if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
                     __createBinding(result, mod, k);
         __setModuleDefault(result, mod);
         return result;
@@ -520,6 +308,243 @@
         }
         privateMap.set(receiver, value);
         return value;
+    }
+
+    var DownFileDirective = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} _http
+         */
+        function DownFileDirective(el, _http) {
+            this.el = el;
+            this._http = _http;
+            this.isFileSaverSupported = true;
+            /**
+             * 请求类型
+             */
+            this.httpMethod = 'get';
+            /**
+             * 成功回调
+             */
+            // tslint:disable-next-line:no-output-native
+            this.success = new core.EventEmitter();
+            /**
+             * 错误回调
+             */
+            // tslint:disable-next-line:no-output-native
+            this.error = new core.EventEmitter();
+            /** @type {?} */
+            var isFileSaverSupported = false;
+            try {
+                isFileSaverSupported = !!new Blob();
+            }
+            catch (_a) { }
+            this.isFileSaverSupported = isFileSaverSupported;
+            if (!isFileSaverSupported) {
+                el.nativeElement.classList.add("down-file__not-support");
+            }
+        }
+        /**
+         * @private
+         * @param {?} data
+         * @return {?}
+         */
+        DownFileDirective.prototype.getDisposition = function (data) {
+            /** @type {?} */
+            var arr = (data || '')
+                .split(';')
+                .filter(( /**
+         * @param {?} i
+         * @return {?}
+         */function (/**
+         * @param {?} i
+         * @return {?}
+         */ i) { return i.includes('='); }))
+                .map(( /**
+         * @param {?} v
+         * @return {?}
+         */function (/**
+         * @param {?} v
+         * @return {?}
+         */ v) {
+                var _b;
+                /** @type {?} */
+                var strArr = v.split('=');
+                /** @type {?} */
+                var utfId = "UTF-8''";
+                /** @type {?} */
+                var value = strArr[1];
+                if (value.startsWith(utfId))
+                    value = value.substr(utfId.length);
+                return _b = {}, _b[strArr[0].trim()] = value, _b;
+            }));
+            return arr.reduce(( /**
+             * @param {?} _o
+             * @param {?} item
+             * @return {?}
+             */function (_o, item) { return item; }), {});
+        };
+        /**
+         * @private
+         * @param {?} status
+         * @return {?}
+         */
+        DownFileDirective.prototype.setDisabled = function (status) {
+            /** @type {?} */
+            var el = this.el.nativeElement;
+            el.disabled = status;
+            el.classList[status ? 'add' : 'remove']("down-file__disabled");
+        };
+        /**
+         * @param {?} ev
+         * @return {?}
+         */
+        DownFileDirective.prototype._click = function (ev) {
+            return __awaiter(this, void 0, void 0, function () {
+                var _b, _c;
+                var _this = this;
+                return __generator(this, function (_d) {
+                    switch (_d.label) {
+                        case 0:
+                            _b = !this.isFileSaverSupported;
+                            if (_b) return [3 /*break*/, 3];
+                            _c = typeof this.pre === 'function';
+                            if (!_c) return [3 /*break*/, 2];
+                            return [4 /*yield*/, this.pre(ev)];
+                        case 1:
+                            _c = !(_d.sent());
+                            _d.label = 2;
+                        case 2:
+                            _b = (_c);
+                            _d.label = 3;
+                        case 3:
+                            if (_b) {
+                                ev.stopPropagation();
+                                ev.preventDefault();
+                                return [2 /*return*/];
+                            }
+                            this.setDisabled(true);
+                            this._http
+                                .request(this.httpMethod, this.httpUrl, {
+                                params: this.httpData || {},
+                                responseType: 'blob',
+                                observe: 'response',
+                                body: this.httpBody,
+                            })
+                                .subscribe(( /**
+                         * @param {?} res
+                         * @return {?}
+                         */function (res) {
+                                if (res.status !== 200 || ( /** @type {?} */(res.body)).size <= 0) {
+                                    _this.error.emit(res);
+                                    return;
+                                }
+                                /** @type {?} */
+                                var disposition = _this.getDisposition(res.headers.get('content-disposition'));
+                                /** @type {?} */
+                                var fileName = _this.fileName;
+                                if (typeof fileName === 'function')
+                                    fileName = fileName(res);
+                                fileName =
+                                    fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
+                                fileSaver.saveAs(( /** @type {?} */(res.body)), decodeURI(( /** @type {?} */(fileName))));
+                                _this.success.emit(res);
+                            }), ( /**
+                             * @param {?} err
+                             * @return {?}
+                             */function (/**
+                             * @param {?} err
+                             * @return {?}
+                             */ err) { return _this.error.emit(err); }), ( /**
+                             * @return {?}
+                             */function () { return _this.setDisabled(false); }));
+                            return [2 /*return*/];
+                    }
+                });
+            });
+        };
+        return DownFileDirective;
+    }());
+    DownFileDirective.decorators = [
+        { type: core.Directive, args: [{
+                    selector: '[down-file]',
+                    exportAs: 'downFile',
+                    host: {
+                        '(click)': '_click($event)',
+                    },
+                },] }
+    ];
+    /** @nocollapse */
+    DownFileDirective.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: theme._HttpClient }
+    ]; };
+    DownFileDirective.propDecorators = {
+        httpData: [{ type: core.Input, args: ['http-data',] }],
+        httpBody: [{ type: core.Input, args: ['http-body',] }],
+        httpMethod: [{ type: core.Input, args: ['http-method',] }],
+        httpUrl: [{ type: core.Input, args: ['http-url',] }],
+        fileName: [{ type: core.Input, args: ['file-name',] }],
+        pre: [{ type: core.Input }],
+        success: [{ type: core.Output }],
+        error: [{ type: core.Output }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype.isFileSaverSupported;
+        /**
+         * URL请求参数
+         * @type {?}
+         */
+        DownFileDirective.prototype.httpData;
+        /**
+         * URL请求参数
+         * @type {?}
+         */
+        DownFileDirective.prototype.httpBody;
+        /**
+         * 请求类型
+         * @type {?}
+         */
+        DownFileDirective.prototype.httpMethod;
+        /**
+         * 下载地址
+         * @type {?}
+         */
+        DownFileDirective.prototype.httpUrl;
+        /**
+         * 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename`
+         * @type {?}
+         */
+        DownFileDirective.prototype.fileName;
+        /**
+         * 下载前回调
+         * @type {?}
+         */
+        DownFileDirective.prototype.pre;
+        /**
+         * 成功回调
+         * @type {?}
+         */
+        DownFileDirective.prototype.success;
+        /**
+         * 错误回调
+         * @type {?}
+         */
+        DownFileDirective.prototype.error;
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype._http;
     }
 
     /** @type {?} */

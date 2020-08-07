@@ -1,3 +1,4 @@
+import { __awaiter } from 'tslib';
 import { EventEmitter, Directive, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { saveAs } from 'file-saver';
@@ -90,47 +91,52 @@ class DownFileDirective {
         el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
     /**
+     * @param {?} ev
      * @return {?}
      */
-    _click() {
-        if (!this.isFileSaverSupported) {
-            return;
-        }
-        this.setDisabled(true);
-        this._http
-            .request(this.httpMethod, this.httpUrl, {
-            params: this.httpData || {},
-            responseType: 'blob',
-            observe: 'response',
-            body: this.httpBody,
-        })
-            .subscribe((/**
-         * @param {?} res
-         * @return {?}
-         */
-        (res) => {
-            if (res.status !== 200 || (/** @type {?} */ (res.body)).size <= 0) {
-                this.error.emit(res);
+    _click(ev) {
+        return __awaiter(this, void 0, void 0, function* () {
+            if (!this.isFileSaverSupported || (typeof this.pre === 'function' && !(yield this.pre(ev)))) {
+                ev.stopPropagation();
+                ev.preventDefault();
                 return;
             }
-            /** @type {?} */
-            const disposition = this.getDisposition(res.headers.get('content-disposition'));
-            /** @type {?} */
-            let fileName = this.fileName;
-            if (typeof fileName === 'function')
-                fileName = fileName(res);
-            fileName =
-                fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
-            saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
-            this.success.emit(res);
-        }), (/**
-         * @param {?} err
-         * @return {?}
-         */
-        err => this.error.emit(err)), (/**
-         * @return {?}
-         */
-        () => this.setDisabled(false)));
+            this.setDisabled(true);
+            this._http
+                .request(this.httpMethod, this.httpUrl, {
+                params: this.httpData || {},
+                responseType: 'blob',
+                observe: 'response',
+                body: this.httpBody,
+            })
+                .subscribe((/**
+             * @param {?} res
+             * @return {?}
+             */
+            (res) => {
+                if (res.status !== 200 || (/** @type {?} */ (res.body)).size <= 0) {
+                    this.error.emit(res);
+                    return;
+                }
+                /** @type {?} */
+                const disposition = this.getDisposition(res.headers.get('content-disposition'));
+                /** @type {?} */
+                let fileName = this.fileName;
+                if (typeof fileName === 'function')
+                    fileName = fileName(res);
+                fileName =
+                    fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
+                saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
+                this.success.emit(res);
+            }), (/**
+             * @param {?} err
+             * @return {?}
+             */
+            err => this.error.emit(err)), (/**
+             * @return {?}
+             */
+            () => this.setDisabled(false)));
+        });
     }
 }
 DownFileDirective.decorators = [
@@ -138,7 +144,7 @@ DownFileDirective.decorators = [
                 selector: '[down-file]',
                 exportAs: 'downFile',
                 host: {
-                    '(click)': '_click()',
+                    '(click)': '_click($event)',
                 },
             },] }
 ];
@@ -153,6 +159,7 @@ DownFileDirective.propDecorators = {
     httpMethod: [{ type: Input, args: ['http-method',] }],
     httpUrl: [{ type: Input, args: ['http-url',] }],
     fileName: [{ type: Input, args: ['file-name',] }],
+    pre: [{ type: Input }],
     success: [{ type: Output }],
     error: [{ type: Output }]
 };
@@ -187,6 +194,11 @@ if (false) {
      * @type {?}
      */
     DownFileDirective.prototype.fileName;
+    /**
+     * 下载前回调
+     * @type {?}
+     */
+    DownFileDirective.prototype.pre;
     /**
      * 成功回调
      * @type {?}
