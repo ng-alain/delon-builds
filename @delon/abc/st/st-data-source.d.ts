@@ -2,7 +2,8 @@ import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { Observable } from 'rxjs';
-import { STColumn, STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
+import { STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
+import { _STColumn } from './st.types';
 export interface STDataSourceOptions {
     pi: number;
     ps: number;
@@ -12,7 +13,7 @@ export interface STDataSourceOptions {
     req: STReq;
     res: STRes;
     page: STPage;
-    columns: STColumn[];
+    columns: _STColumn[];
     singleSort?: STSingleSort;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
@@ -44,15 +45,15 @@ export declare class STDataSource {
     private get;
     private getByHttp;
     optimizeData(options: {
-        columns: STColumn[];
+        columns: _STColumn[];
         result: STData[];
         rowClassName?: STRowClassName;
     }): STData[];
-    getNoIndex(item: STData, col: STColumn, idx: number): number;
+    getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private getValidSort;
     private getSorterFn;
     get nextSortTick(): number;
-    getReqSortMap(singleSort: STSingleSort | undefined, multiSort: STMultiSort | undefined, columns: STColumn[]): STMultiSortResultType;
+    getReqSortMap(singleSort: STSingleSort | undefined, multiSort: STMultiSort | undefined, columns: _STColumn[]): STMultiSortResultType;
     private getFilteredData;
     private getReqFilterMap;
     private genStatistical;

@@ -10,6 +10,7 @@ import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { _STColumn } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private router;
@@ -41,7 +42,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _allCheckedDisabled: boolean;
     _indeterminate: boolean;
     _headers: STColumn[][];
-    _columns: STColumn[];
+    _columns: _STColumn[];
     readonly orgTable: NzTableComponent;
     get req(): STReq;
     set req(value: STReq);
@@ -106,8 +107,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private setCog;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
-    isTruncate(column: STColumn): boolean;
-    columnClass(column: STColumn): string | null;
     private changeEmit;
     /**
      * 获取过滤后所有数据
@@ -176,12 +175,12 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         refreshSchema?: boolean;
         emitReload?: boolean;
     }): this;
-    sort(col: STColumn, idx: number, value: any): void;
+    sort(col: _STColumn, idx: number, value: any): void;
     clearSort(): this;
     private handleFilter;
-    _filterConfirm(col: STColumn): void;
-    _filterRadio(col: STColumn, item: STColumnFilterMenu, checked: boolean): void;
-    _filterClear(col: STColumn): void;
+    _filterConfirm(col: _STColumn): void;
+    _filterRadio(col: _STColumn, item: STColumnFilterMenu, checked: boolean): void;
+    _filterClear(col: _STColumn): void;
     clearFilter(): this;
     _filterClick($event: MouseEvent): void;
     /** 清除所有 `checkbox` */

@@ -4,7 +4,8 @@ import { AlainI18NService } from '@delon/theme';
 import { AlainSTConfig } from '@delon/util';
 import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
-import { STColumn, STColumnFilter } from './st.interfaces';
+import { STColumn, STColumnFilter, STWidthMode } from './st.interfaces';
+import { _STColumn } from './st.types';
 export declare class STColumnSource {
     private dom;
     private rowSource;
@@ -25,12 +26,12 @@ export declare class STColumnSource {
     private widgetCoerce;
     private genHeaders;
     private cleanCond;
-    process(list: STColumn[]): {
-        columns: STColumn[];
-        headers: STColumn[][];
+    process(list: STColumn[], widthMode: STWidthMode): {
+        columns: _STColumn[];
+        headers: _STColumn[][];
         headerWidths: string[] | null;
     };
-    restoreAllRender(columns: STColumn[]): void;
+    restoreAllRender(columns: _STColumn[]): void;
     updateDefault(filter: STColumnFilter): this;
-    cleanFilter(col: STColumn): this;
+    cleanFilter(col: _STColumn): this;
 }
