@@ -260,9 +260,11 @@ export interface STColumn {
      * - `text-center` 居中
      * - `text-right` 居右
      * - `text-success` 成功色
-     * - `text-danger` 异常色
+     * - `text-error` 异常色
      */
-    className?: string;
+    className?: string | string[] | Set<string> | {
+        [klass: string]: any;
+    };
     /**
      * 合并列
      */
@@ -601,6 +603,14 @@ export interface STColumnButton {
      */
     iifBehavior?: IifBehaviorType;
     tooltip?: string;
+    /**
+     * 按钮 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
+     * - `text-success` 成功色
+     * - `text-error` 错误色
+     */
+    className?: string | string[] | Set<string> | {
+        [klass: string]: any;
+    };
     [key: string]: any;
 }
 export interface STColumnButtonOK {
