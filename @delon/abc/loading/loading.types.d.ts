@@ -1,4 +1,5 @@
 import { SafeHtml } from '@angular/platform-browser';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type LoadingType = 'text' | 'icon' | 'spin' | 'custom';
 export interface LoadingIcon {
     type?: string;
@@ -8,6 +9,7 @@ export interface LoadingIcon {
 export interface LoadingCustom {
     html?: string | SafeHtml;
     style?: object;
+    [key: string]: NzSafeAny;
 }
 export interface LoadingShowOptions {
     /**

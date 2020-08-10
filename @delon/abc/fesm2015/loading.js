@@ -229,6 +229,7 @@ if (false) {
     LoadingCustom.prototype.html;
     /** @type {?|undefined} */
     LoadingCustom.prototype.style;
+    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
 }
 /**
  * @record
