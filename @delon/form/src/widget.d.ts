@@ -11,9 +11,9 @@ import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
 import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
 export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
-    protected readonly cd: ChangeDetectorRef;
-    protected readonly injector: Injector;
-    protected readonly sfItemComp?: SFItemComponent | undefined;
+    readonly cd: ChangeDetectorRef;
+    readonly injector: Injector;
+    readonly sfItemComp?: SFItemComponent | undefined;
     readonly sfComp?: SFComponent | undefined;
     formProperty: T;
     error: string;

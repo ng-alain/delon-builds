@@ -28,7 +28,7 @@
             'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
             time: { widget: 'time', format: 'HH:mm:ss.SSSxxx' },
             'full-time': { widget: 'time' },
-            week: { widget: 'date', mode: 'week', format: 'yyyy-WW' },
+            week: { widget: 'date', mode: 'week', format: 'yyyy-ww' },
             month: { widget: 'date', mode: 'month', format: 'yyyy-MM' },
             uri: { widget: 'upload' },
             email: { widget: 'autocomplete', type: 'email' },
@@ -3506,20 +3506,11 @@
         Widget.prototype.ui;
         /** @type {?} */
         Widget.prototype.firstVisual;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.cd;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.injector;
-        /**
-         * @type {?}
-         * @protected
-         */
+        /** @type {?} */
         Widget.prototype.sfItemComp;
         /** @type {?} */
         Widget.prototype.sfComp;

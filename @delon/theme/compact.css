@@ -25976,7 +25976,6 @@ fieldset {
 }
 .sf__fixed {
   display: flex;
-  flex-flow: row;
 }
 .sf__title {
   margin-bottom: 8px;
