@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
+const fs_1 = require("fs");
+const path_1 = require("path");
 const json_1 = require("../utils/json");
 const V = 10;
 function genRules(options) {
@@ -36,8 +38,22 @@ function genRules(options) {
     }
     return schematics_1.chain(rules);
 }
+function getFiles() {
+    const nodeModulesPath = path_1.join(process.cwd(), 'node_modules');
+    if (!fs_1.statSync(nodeModulesPath).isDirectory())
+        return [];
+    return fs_1.readdirSync(nodeModulesPath) || [];
+}
+function isUseCNPM() {
+    const names = getFiles();
+    const res = ['_@angular', '_ng-zorro-antd'].every(prefix => names.findIndex(w => w.startsWith(prefix)) !== -1);
+    return res;
+}
 function default_1(options) {
     return (host) => {
+        if (isUseCNPM()) {
+            throw new Error(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
+        }
         const pkg = json_1.getJSON(host, `package.json`);
         let ngCoreVersion = pkg.dependencies['@angular/core'];
         if (/^[\^|\~]/g.test(ngCoreVersion)) {
