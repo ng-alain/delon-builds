@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.v10Rule = void 0;
 const colors = require("ansi-colors");
 const alain_1 = require("../../../utils/alain");
-const contents_1 = require("../../../utils/contents");
 const file_1 = require("../../../utils/file");
 const json_1 = require("../../../utils/json");
 const lib_versions_1 = require("../../../utils/lib-versions");
@@ -35,7 +34,19 @@ function fixPluginTheme(tree, context) {
     json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
     json_1.overwritePackage(tree, json);
     // add ng-alain.json
-    alain_1.tryAddFile(tree, `ng-alain.json`, contents_1.NG_ALAIN_JSON);
+    alain_1.tryAddFile(tree, `ng-alain.json`, `{
+  "$schema": "./node_modules/ng-alain/schema.json",
+  "theme": {
+    "list": [
+      {
+        "theme": "dark"
+      },
+      {
+        "theme": "compact"
+      }
+    ]
+  }
+}`);
     // fix .gitignore
     const gitignorePath = `.gitignore`;
     const gitignoreContent = file_1.readContent(tree, gitignorePath).replace(`/src/assets/alain-*.less`, `/src/assets/color.less`);
