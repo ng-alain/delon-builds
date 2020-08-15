@@ -23,6 +23,7 @@ function fixPluginTheme(tree, context) {
     const json = json_1.getPackage(tree);
     const cleanCommand = `npm run color-less && `;
     ['start', 'hmr', 'build', 'ie:start', 'ie:hmr']
+        .filter(key => !!json.scripts[key])
         .filter(key => json.scripts[key].includes(cleanCommand))
         .forEach(key => {
         json.scripts[key] = json.scripts[key].replace(cleanCommand, ``);
