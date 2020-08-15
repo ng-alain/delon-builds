@@ -102,13 +102,8 @@ function addDependenciesToPackageJson(options: ApplicationOptions): (host: Tree)
       [
         `ng-alain@${VERSION}`,
         `ng-alain-codelyzer@^0.0.1`,
+        `ng-alain-plugin-theme@^10.0.1`,
         `@delon/testing@${VERSION}`,
-        // color-less
-        // TODO: https://github.com/mzohaibqc/antd-theme-generator/issues/42
-        `antd-theme-generator@1.2.2`,
-        // theme
-        `less-plugin-clean-css@^1.5.1`,
-        `less-plugin-npm-import@^2.1.0`,
       ],
       'devDependencies',
     );
@@ -127,11 +122,12 @@ function addRunScriptToPackageJson(): (host: Tree) => void {
   return (host: Tree) => {
     const json = getPackage(host, 'scripts');
     if (json == null) return host;
-    json.scripts.start = `npm run color-less && ng s -o`;
-    json.scripts.build = `npm run color-less && node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod`;
-    json.scripts.analyze = `npm run color-less && node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --stats-json`;
+    json.scripts.start = `ng s -o`;
+    json.scripts.build = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod`;
+    json.scripts.analyze = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --stats-json`;
     json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
-    json.scripts['color-less'] = `node scripts/color-less.js`;
+    json.scripts['color-less'] = `ng-alain-plugin-theme -t=colorLess`;
+    json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
     json.scripts.icon = `ng g ng-alain:plugin icon`;
     overwritePackage(host, json);
     return host;

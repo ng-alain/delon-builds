@@ -28,7 +28,6 @@ function fixThirdVersion(tree, context) {
         `stylelint-declaration-block-no-ignored-properties@^2.3.0`,
         `stylelint-order@^4.0.0`,
         `webpack-bundle-analyzer@^3.6.1`,
-        `antd-theme-generator@^1.1.9`,
         `xlsx@^0.15.6`,
     ], 'devDependencies');
     context.logger.info(`  ✓  Upgrade third libs version number`);

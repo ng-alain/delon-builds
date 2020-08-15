@@ -22408,19 +22408,47 @@ cdk-virtual-scroll-viewport.ant-table-body {
   width: 100%;
   outline: none;
 }
-a[nz-tab-link]::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: transparent;
-  content: '';
-}
 nz-tabset,
 nz-tab-nav-operation,
 nz-tabs-nav {
   display: block;
+}
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu {
+  max-height: 200px;
+  margin: 0;
+  padding: 4px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: left;
+  list-style-type: none;
+  background-color: #1f1f1f;
+  background-clip: padding-box;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+}
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item {
+  min-width: 120px;
+  margin: 0;
+  padding: 5px 12px;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled,
+.nz-tabs-dropdown.ant-dropdown .ant-dropdown-menu-item-disabled:hover {
+  color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  cursor: not-allowed;
 }
 .ant-tag {
   box-sizing: border-box;

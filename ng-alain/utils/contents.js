@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DOCKER_CONTENT = exports.HMR_CONTENT = void 0;
+exports.NG_ALAIN_JSON = exports.DOCKER_CONTENT = exports.HMR_CONTENT = void 0;
 exports.HMR_CONTENT = {
     HMR_DOT_TS: `import { NgModuleRef, ApplicationRef } from '@angular/core';
 import { createNewHosts } from '@angularclass/hmr';
@@ -110,4 +110,17 @@ services:
       - 80:80
 `,
 };
+exports.NG_ALAIN_JSON = `{
+  "$schema": "./node_modules/ng-alain/schema.json",
+  "theme": {
+    "list": [
+      {
+        "theme": "dark"
+      },
+      {
+        "theme": "compact"
+      }
+    ]
+  }
+}`;
 //# sourceMappingURL=contents.js.map
