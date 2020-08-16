@@ -1,6 +1,6 @@
 import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
-import { NumberInput, BooleanInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {

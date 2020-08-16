@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService, NumberInput, BooleanInput } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 export interface G2MiniAreaData {
     x: any;
     y: any;
