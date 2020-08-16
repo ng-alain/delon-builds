@@ -220,6 +220,12 @@ __decorate([
     __metadata("design:type", Object)
 ], G2MiniBarComponent.prototype, "borderWidth", void 0);
 if (false) {
+    /** @type {?} */
+    G2MiniBarComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2MiniBarComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2MiniBarComponent.ngAcceptInputType_borderWidth;
     /**
      * @type {?}
      * @private

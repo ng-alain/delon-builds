@@ -82,6 +82,8 @@ __decorate([
     __metadata("design:type", Object)
 ], TagSelectComponent.prototype, "expandable", void 0);
 if (false) {
+    /** @type {?} */
+    TagSelectComponent.ngAcceptInputType_expandable;
     /**
      * @type {?}
      * @private

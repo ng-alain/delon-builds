@@ -2866,6 +2866,22 @@
         __metadata("design:type", Object)
     ], SFComponent.prototype, "cleanValue", void 0);
     if (false) {
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_liveValidate;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_firstVisual;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_onlyVisual;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_compact;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_loading;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_disabled;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_noColon;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_cleanValue;
         /**
          * @type {?}
          * @private

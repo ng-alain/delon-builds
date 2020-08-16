@@ -379,6 +379,12 @@
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
     if (false) {
         /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_target;
+        /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_percent;
+        /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_strokeWidth;
+        /** @type {?} */
         G2MiniProgressComponent.prototype.color;
         /** @type {?} */
         G2MiniProgressComponent.prototype.target;

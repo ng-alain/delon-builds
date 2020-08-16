@@ -278,6 +278,12 @@ __decorate([
     __metadata("design:type", Object)
 ], G2BarComponent.prototype, "autoLabel", void 0);
 if (false) {
+    /** @type {?} */
+    G2BarComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2BarComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2BarComponent.ngAcceptInputType_autoLabel;
     /**
      * @type {?}
      * @private

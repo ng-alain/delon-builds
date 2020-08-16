@@ -634,6 +634,14 @@
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
     if (false) {
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_tooltip;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_length;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_lines;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_fullWidthRecognition;
         /**
          * @type {?}
          * @private

@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
 import { G2InteractionType } from '@delon/chart/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2PieData {
     x: any;
@@ -18,6 +18,15 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     private ngZone;
     private cdr;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_animate: BooleanInput;
+    static ngAcceptInputType_hasLegend: BooleanInput;
+    static ngAcceptInputType_percent: NumberInput;
+    static ngAcceptInputType_tooltip: BooleanInput;
+    static ngAcceptInputType_lineWidth: NumberInput;
+    static ngAcceptInputType_blockMaxWidth: NumberInput;
+    static ngAcceptInputType_select: BooleanInput;
     private node;
     private _chart;
     private percentColor;

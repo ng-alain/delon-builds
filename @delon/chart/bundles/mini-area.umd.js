@@ -574,6 +574,18 @@
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "animate", void 0);
     if (false) {
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_delay;
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_borderWidth;
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_height;
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_fit;
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_line;
+        /** @type {?} */
+        G2MiniAreaComponent.ngAcceptInputType_animate;
         /**
          * @type {?}
          * @private

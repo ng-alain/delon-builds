@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
@@ -10,6 +11,11 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route;
     private i18nSrv;
     private doc;
+    static ngAcceptInputType_debug: BooleanInput;
+    static ngAcceptInputType_max: NumberInput;
+    static ngAcceptInputType_tabMaxWidth: NumberInput;
+    static ngAcceptInputType_allowClose: BooleanInput;
+    static ngAcceptInputType_keepingScroll: BooleanInput;
     private tabset;
     private unsubscribe$;
     private updatePos$;

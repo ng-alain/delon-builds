@@ -326,6 +326,14 @@ __decorate([
     __metadata("design:type", Number)
 ], G2WaterWaveComponent.prototype, "percent", void 0);
 if (false) {
+    /** @type {?} */
+    G2WaterWaveComponent.ngAcceptInputType_animate;
+    /** @type {?} */
+    G2WaterWaveComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2WaterWaveComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2WaterWaveComponent.ngAcceptInputType_percent;
     /**
      * @type {?}
      * @private

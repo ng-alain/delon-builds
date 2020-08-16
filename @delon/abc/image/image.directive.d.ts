@@ -1,10 +1,12 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 export declare class ImageDirective implements OnChanges, OnInit {
     private http;
     private platform;
+    static ngAcceptInputType_size: NumberInput;
+    static ngAcceptInputType_useHttp: BooleanInput;
     src: string;
     size: number;
     error: string;

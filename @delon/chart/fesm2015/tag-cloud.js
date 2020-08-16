@@ -301,6 +301,12 @@ __decorate([
     __metadata("design:type", Object)
 ], G2TagCloudComponent.prototype, "height", void 0);
 if (false) {
+    /** @type {?} */
+    G2TagCloudComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2TagCloudComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2TagCloudComponent.ngAcceptInputType_width;
     /**
      * @type {?}
      * @private

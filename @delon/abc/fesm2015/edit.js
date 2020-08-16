@@ -156,6 +156,12 @@ __decorate([
     __metadata("design:type", Object)
 ], SEContainerComponent.prototype, "line", void 0);
 if (false) {
+    /** @type {?} */
+    SEContainerComponent.ngAcceptInputType_col;
+    /** @type {?} */
+    SEContainerComponent.ngAcceptInputType_colInCon;
+    /** @type {?} */
+    SEContainerComponent.ngAcceptInputType_labelWidth;
     /**
      * @type {?}
      * @private
@@ -559,6 +565,14 @@ __decorate([
     __metadata("design:type", Number)
 ], SEComponent.prototype, "labelWidth", void 0);
 if (false) {
+    /** @type {?} */
+    SEComponent.ngAcceptInputType_col;
+    /** @type {?} */
+    SEComponent.ngAcceptInputType_required;
+    /** @type {?} */
+    SEComponent.ngAcceptInputType_line;
+    /** @type {?} */
+    SEComponent.ngAcceptInputType_labelWidth;
     /**
      * @type {?}
      * @private

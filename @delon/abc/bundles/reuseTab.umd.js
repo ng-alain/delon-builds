@@ -2237,6 +2237,16 @@
         __metadata("design:type", Object)
     ], ReuseTabComponent.prototype, "keepingScroll", void 0);
     if (false) {
+        /** @type {?} */
+        ReuseTabComponent.ngAcceptInputType_debug;
+        /** @type {?} */
+        ReuseTabComponent.ngAcceptInputType_max;
+        /** @type {?} */
+        ReuseTabComponent.ngAcceptInputType_tabMaxWidth;
+        /** @type {?} */
+        ReuseTabComponent.ngAcceptInputType_allowClose;
+        /** @type {?} */
+        ReuseTabComponent.ngAcceptInputType_keepingScroll;
         /**
          * @type {?}
          * @private

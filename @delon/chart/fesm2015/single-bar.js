@@ -201,6 +201,20 @@ __decorate([
     __metadata("design:type", Object)
 ], G2SingleBarComponent.prototype, "line", void 0);
 if (false) {
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_barSize;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_min;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_max;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_value;
+    /** @type {?} */
+    G2SingleBarComponent.ngAcceptInputType_line;
     /**
      * @type {?}
      * @private

@@ -2078,7 +2078,6 @@
         },
         rowClickTime: 200,
         btnIcon: {
-            type: '',
             theme: 'outline',
             spin: false,
         },
@@ -2093,6 +2092,7 @@
         virtualMaxBufferPx: 200,
         virtualMinBufferPx: 100,
         iifBehavior: 'hide',
+        loadingDelay: 0,
     };
 
     var STComponent = /** @class */ (function () {
@@ -3453,6 +3453,34 @@
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualMinBufferPx", void 0);
     if (false) {
+        /** @type {?} */
+        STComponent.ngAcceptInputType_ps;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_pi;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_total;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_loadingDelay;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_bordered;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_expandRowByClick;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_expandAccordion;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_rowClickTime;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_responsive;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_responsiveHideHeaderFooter;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_virtualScroll;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_virtualItemSize;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_virtualMaxBufferPx;
+        /** @type {?} */
+        STComponent.ngAcceptInputType_virtualMinBufferPx;
         /**
          * @type {?}
          * @private

@@ -350,6 +350,24 @@ __decorate([
     __metadata("design:type", Object)
 ], G2PieComponent.prototype, "select", void 0);
 if (false) {
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_animate;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_hasLegend;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_percent;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_tooltip;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_lineWidth;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_blockMaxWidth;
+    /** @type {?} */
+    G2PieComponent.ngAcceptInputType_select;
     /**
      * @type {?}
      * @private

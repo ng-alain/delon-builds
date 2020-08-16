@@ -1483,10 +1483,30 @@ if (false) {
      */
     AlainSTConfig.prototype.virtualMinBufferPx;
     /**
+     * The TrackByFunction to use for tracking changes
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.virtualForTrackBy;
+    /**
      * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`, Default: `hide`
      * @type {?|undefined}
      */
     AlainSTConfig.prototype.iifBehavior;
+    /**
+     * The spinning indicator
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.loadingIndicator;
+    /**
+     * Specifies a delay in milliseconds for loading state (prevent flush)
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.loadingDelay;
+    /**
+     * Custom no result content
+     * @type {?|undefined}
+     */
+    AlainSTConfig.prototype.noResult;
 }
 
 /**

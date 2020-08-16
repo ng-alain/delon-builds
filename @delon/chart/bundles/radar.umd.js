@@ -614,6 +614,14 @@
         __metadata("design:type", Object)
     ], G2RadarComponent.prototype, "tickCount", void 0);
     if (false) {
+        /** @type {?} */
+        G2RadarComponent.ngAcceptInputType_delay;
+        /** @type {?} */
+        G2RadarComponent.ngAcceptInputType_height;
+        /** @type {?} */
+        G2RadarComponent.ngAcceptInputType_hasLegend;
+        /** @type {?} */
+        G2RadarComponent.ngAcceptInputType_tickCount;
         /**
          * @type {?}
          * @private

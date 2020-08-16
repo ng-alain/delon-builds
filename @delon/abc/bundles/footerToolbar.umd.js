@@ -381,6 +381,8 @@
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
     if (false) {
         /** @type {?} */
+        FooterToolbarComponent.ngAcceptInputType_errorCollect;
+        /** @type {?} */
         FooterToolbarComponent.prototype.errorCollect;
         /** @type {?} */
         FooterToolbarComponent.prototype.extra;

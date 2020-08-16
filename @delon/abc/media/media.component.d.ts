@@ -1,5 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
+import { NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MediaService } from './media.service';
 import { PlyrMediaSource, PlyrMediaType } from './plyr.types';
@@ -9,6 +10,7 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private srv;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
     private _p;
     private videoEl;
     private time;

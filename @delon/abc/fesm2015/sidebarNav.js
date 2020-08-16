@@ -461,6 +461,16 @@ __decorate([
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
 if (false) {
+    /** @type {?} */
+    SidebarNavComponent.ngAcceptInputType_disabledAcl;
+    /** @type {?} */
+    SidebarNavComponent.ngAcceptInputType_autoCloseUnderPad;
+    /** @type {?} */
+    SidebarNavComponent.ngAcceptInputType_recursivePath;
+    /** @type {?} */
+    SidebarNavComponent.ngAcceptInputType_openStrictly;
+    /** @type {?} */
+    SidebarNavComponent.ngAcceptInputType_maxLevelIcon;
     /**
      * @type {?}
      * @private

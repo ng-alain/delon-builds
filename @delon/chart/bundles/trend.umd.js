@@ -357,6 +357,10 @@
         __metadata("design:type", Object)
     ], TrendComponent.prototype, "reverseColor", void 0);
     if (false) {
+        /** @type {?} */
+        TrendComponent.ngAcceptInputType_colorful;
+        /** @type {?} */
+        TrendComponent.ngAcceptInputType_reverseColor;
         /**
          * 上升下降标识
          * @type {?}

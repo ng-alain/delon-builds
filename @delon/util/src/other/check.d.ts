@@ -21,3 +21,5 @@ export declare function toNumber<D>(value: any, fallback: D): number | D;
  * ```
  */
 export declare function InputNumber(defaultValue?: number | null): NzSafeAny;
+export declare type BooleanInput = boolean | string | undefined | null;
+export declare type NumberInput = number | string | undefined | null;

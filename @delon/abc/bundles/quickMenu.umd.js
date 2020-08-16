@@ -316,7 +316,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QuickMenuComponent = /** @class */ (function () {
-        // #endregion
         /**
          * @param {?} cdr
          * @param {?} el
@@ -327,7 +326,6 @@
             this.el = el;
             this.render = render;
             this.ctrlStyle = {};
-            // #region fields
             this.icon = 'question-circle';
             this.top = 120;
             this.width = 200;
@@ -413,6 +411,10 @@
         __metadata("design:type", Object)
     ], QuickMenuComponent.prototype, "width", void 0);
     if (false) {
+        /** @type {?} */
+        QuickMenuComponent.ngAcceptInputType_top;
+        /** @type {?} */
+        QuickMenuComponent.ngAcceptInputType_width;
         /** @type {?} */
         QuickMenuComponent.prototype.ctrlStyle;
         /** @type {?} */

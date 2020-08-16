@@ -148,6 +148,8 @@
         desc: [{ type: core.Input }]
     };
     if (false) {
+        /** @type {?} */
+        ExceptionComponent.ngAcceptInputType_type;
         /**
          * @type {?}
          * @private

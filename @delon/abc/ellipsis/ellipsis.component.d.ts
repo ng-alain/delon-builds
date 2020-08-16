@@ -1,11 +1,16 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { BooleanInput, NumberInput } from '@delon/util';
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     private el;
     private ngZone;
     private dom;
     private doc;
     private cdr;
+    static ngAcceptInputType_tooltip: BooleanInput;
+    static ngAcceptInputType_length: NumberInput;
+    static ngAcceptInputType_lines: NumberInput;
+    static ngAcceptInputType_fullWidthRecognition: BooleanInput;
     private isSupportLineClamp;
     private orgEl;
     private shadowOrgEl;

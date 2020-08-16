@@ -2,6 +2,7 @@ import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 }
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { Nav } from './sidebar-nav.types';
 export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private menuSrv;
@@ -13,6 +14,11 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private sanitizer;
     private doc;
     private win;
+    static ngAcceptInputType_disabledAcl: BooleanInput;
+    static ngAcceptInputType_autoCloseUnderPad: BooleanInput;
+    static ngAcceptInputType_recursivePath: BooleanInput;
+    static ngAcceptInputType_openStrictly: BooleanInput;
+    static ngAcceptInputType_maxLevelIcon: NumberInput;
     private bodyEl;
     private unsubscribe$;
     private floatingEl;

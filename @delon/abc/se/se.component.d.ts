@@ -1,5 +1,6 @@
 import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
+import { NumberInput, BooleanInput } from '@delon/util';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
@@ -7,6 +8,10 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private rep;
     private ren;
     private cdr;
+    static ngAcceptInputType_col: NumberInput;
+    static ngAcceptInputType_required: BooleanInput;
+    static ngAcceptInputType_line: BooleanInput;
+    static ngAcceptInputType_labelWidth: NumberInput;
     private el;
     private unsubscribe$;
     private readonly ngModel;

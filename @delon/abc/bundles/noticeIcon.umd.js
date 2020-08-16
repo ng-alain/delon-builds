@@ -474,6 +474,12 @@
         __metadata("design:type", Object)
     ], NoticeIconComponent.prototype, "popoverVisible", void 0);
     if (false) {
+        /** @type {?} */
+        NoticeIconComponent.ngAcceptInputType_count;
+        /** @type {?} */
+        NoticeIconComponent.ngAcceptInputType_loading;
+        /** @type {?} */
+        NoticeIconComponent.ngAcceptInputType_popoverVisible;
         /**
          * @type {?}
          * @private

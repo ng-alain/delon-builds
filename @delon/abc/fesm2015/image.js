@@ -155,6 +155,10 @@ __decorate([
 ], ImageDirective.prototype, "useHttp", void 0);
 if (false) {
     /** @type {?} */
+    ImageDirective.ngAcceptInputType_size;
+    /** @type {?} */
+    ImageDirective.ngAcceptInputType_useHttp;
+    /** @type {?} */
     ImageDirective.prototype.src;
     /** @type {?} */
     ImageDirective.prototype.size;

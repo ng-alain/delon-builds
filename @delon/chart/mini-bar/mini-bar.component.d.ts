@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, NumberInput } from '@delon/util';
 export interface G2MiniBarData {
     x: any;
     y: any;
@@ -15,6 +15,9 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     private el;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_borderWidth: NumberInput;
     private _chart;
     get chart(): Chart;
     delay: number;

@@ -1,11 +1,14 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, NumberInput } from '@delon/util';
 export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     private el;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_percent: NumberInput;
     private _chart;
     get chart(): Chart;
     delay: number;

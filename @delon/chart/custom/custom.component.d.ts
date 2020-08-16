@@ -1,10 +1,13 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, NumberInput } from '@delon/util';
 export declare class G2CustomComponent implements AfterViewInit, OnDestroy {
     private el;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_resizeTime: NumberInput;
     private resize$;
     delay: number;
     height: number;

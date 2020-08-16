@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
 import { G2Time } from '@delon/chart/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 export interface G2TimelineData {
     /**
      * 时间值
@@ -40,6 +40,11 @@ export interface G2TimelineClickItem {
 export declare class G2TimelineComponent implements OnInit, OnDestroy, OnChanges {
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_maxAxis: NumberInput;
+    static ngAcceptInputType_borderWidth: NumberInput;
+    static ngAcceptInputType_slider: BooleanInput;
     private node;
     private _chart;
     get chart(): Chart;

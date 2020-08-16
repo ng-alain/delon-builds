@@ -200,6 +200,12 @@ __decorate([
     __metadata("design:type", Number)
 ], QRComponent.prototype, "delay", void 0);
 if (false) {
+    /** @type {?} */
+    QRComponent.ngAcceptInputType_padding;
+    /** @type {?} */
+    QRComponent.ngAcceptInputType_size;
+    /** @type {?} */
+    QRComponent.ngAcceptInputType_delay;
     /**
      * @type {?}
      * @private

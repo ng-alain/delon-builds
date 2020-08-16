@@ -5,6 +5,7 @@ export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
     private dom;
+    static ngAcceptInputType_type: ExceptionType | string;
     private i18n$;
     private conTpl;
     _type: ExceptionType;

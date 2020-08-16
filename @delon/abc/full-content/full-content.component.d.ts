@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { FullContentService } from './full-content.service';
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     private el;
@@ -7,6 +8,9 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     private srv;
     private router;
     private doc;
+    static ngAcceptInputType_fullscreen: BooleanInput;
+    static ngAcceptInputType_hideTitle: BooleanInput;
+    static ngAcceptInputType_padding: NumberInput;
     private bodyEl;
     private inited;
     private srv$;

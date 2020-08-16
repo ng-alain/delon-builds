@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Rendere
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 interface PageHeaderPath {
     title?: string;
     link?: string[];
@@ -16,6 +16,14 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private titleSrv;
     private reuseSrv;
     private cdr;
+    static ngAcceptInputType_loading: BooleanInput;
+    static ngAcceptInputType_wide: BooleanInput;
+    static ngAcceptInputType_autoBreadcrumb: BooleanInput;
+    static ngAcceptInputType_autoTitle: BooleanInput;
+    static ngAcceptInputType_syncTitle: BooleanInput;
+    static ngAcceptInputType_fixed: BooleanInput;
+    static ngAcceptInputType_fixedOffsetTop: NumberInput;
+    static ngAcceptInputType_recursiveBreadcrumb: BooleanInput;
     inited: boolean;
     private unsubscribe$;
     private conTpl;

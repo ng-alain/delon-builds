@@ -19,7 +19,6 @@ class SGContainerComponent {
             col: 2,
         });
     }
-    // #endregion
     /**
      * @return {?}
      */
@@ -65,6 +64,12 @@ __decorate([
     __metadata("design:type", Number)
 ], SGContainerComponent.prototype, "col", void 0);
 if (false) {
+    /** @type {?} */
+    SGContainerComponent.ngAcceptInputType_gutter;
+    /** @type {?} */
+    SGContainerComponent.ngAcceptInputType_colInCon;
+    /** @type {?} */
+    SGContainerComponent.ngAcceptInputType_col;
     /** @type {?} */
     SGContainerComponent.prototype.gutter;
     /** @type {?} */
@@ -170,6 +175,8 @@ __decorate([
     __metadata("design:type", Number)
 ], SGComponent.prototype, "col", void 0);
 if (false) {
+    /** @type {?} */
+    SGComponent.ngAcceptInputType_col;
     /**
      * @type {?}
      * @private

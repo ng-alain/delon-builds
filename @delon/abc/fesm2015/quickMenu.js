@@ -11,7 +11,6 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class QuickMenuComponent {
-    // #endregion
     /**
      * @param {?} cdr
      * @param {?} el
@@ -22,7 +21,6 @@ class QuickMenuComponent {
         this.el = el;
         this.render = render;
         this.ctrlStyle = {};
-        // #region fields
         this.icon = 'question-circle';
         this.top = 120;
         this.width = 200;
@@ -107,6 +105,10 @@ __decorate([
     __metadata("design:type", Object)
 ], QuickMenuComponent.prototype, "width", void 0);
 if (false) {
+    /** @type {?} */
+    QuickMenuComponent.ngAcceptInputType_top;
+    /** @type {?} */
+    QuickMenuComponent.ngAcceptInputType_width;
     /** @type {?} */
     QuickMenuComponent.prototype.ctrlStyle;
     /** @type {?} */

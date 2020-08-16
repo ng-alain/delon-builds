@@ -58,7 +58,7 @@ function addDependenciesToPackageJson(options) {
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
             'screenfull@^5.0.2',
-            'ajv@^6.12.3',
+            'ajv@^6.12.4',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -68,7 +68,7 @@ function addDependenciesToPackageJson(options) {
         json_1.addPackageToPackageJson(host, [
             `ng-alain@${lib_versions_1.VERSION}`,
             `ng-alain-codelyzer@^0.0.1`,
-            `ng-alain-plugin-theme@^10.0.1`,
+            `ng-alain-plugin-theme@^10.0.2`,
             `@delon/testing@${lib_versions_1.VERSION}`,
         ], 'devDependencies');
         // i18n

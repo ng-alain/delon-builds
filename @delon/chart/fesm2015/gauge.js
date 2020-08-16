@@ -249,6 +249,12 @@ __decorate([
     __metadata("design:type", Number)
 ], G2GaugeComponent.prototype, "percent", void 0);
 if (false) {
+    /** @type {?} */
+    G2GaugeComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2GaugeComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2GaugeComponent.ngAcceptInputType_percent;
     /**
      * @type {?}
      * @private

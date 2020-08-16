@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 export interface G2RadarData {
     name: string;
     label: string;
@@ -16,6 +16,10 @@ export declare class G2RadarComponent implements OnInit, OnDestroy, OnChanges {
     private cdr;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_hasLegend: BooleanInput;
+    static ngAcceptInputType_tickCount: NumberInput;
     private node;
     private _chart;
     legendData: any[];

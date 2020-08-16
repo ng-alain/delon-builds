@@ -77,6 +77,10 @@ __decorate([
     __metadata("design:type", Object)
 ], G2CardComponent.prototype, "loading", void 0);
 if (false) {
+    /** @type {?} */
+    G2CardComponent.ngAcceptInputType_bordered;
+    /** @type {?} */
+    G2CardComponent.ngAcceptInputType_loading;
     /**
      * 是否显示边框
      * @type {?}

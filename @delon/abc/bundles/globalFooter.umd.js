@@ -341,6 +341,8 @@
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
     if (false) {
         /** @type {?} */
+        GlobalFooterItemComponent.ngAcceptInputType_blankTarget;
+        /** @type {?} */
         GlobalFooterItemComponent.prototype.host;
         /** @type {?} */
         GlobalFooterItemComponent.prototype.href;

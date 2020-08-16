@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, NumberInput, BooleanInput } from '@delon/util';
 export interface G2MiniAreaData {
     x: any;
     y: any;
@@ -15,6 +15,12 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     private el;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_borderWidth: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_fit: BooleanInput;
+    static ngAcceptInputType_line: BooleanInput;
+    static ngAcceptInputType_animate: BooleanInput;
     private _chart;
     get chart(): Chart;
     delay: number;

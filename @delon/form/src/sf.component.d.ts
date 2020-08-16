@@ -3,7 +3,7 @@ import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleCh
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
-import { AlainConfigService, AlainSFConfig } from '@delon/util';
+import { AlainConfigService, AlainSFConfig, BooleanInput } from '@delon/util';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout, SFValueChange } from './interface';
 import { FormProperty } from './model/form.property';
@@ -23,6 +23,14 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private aclSrv;
     private i18nSrv;
     private platform;
+    static ngAcceptInputType_liveValidate: BooleanInput;
+    static ngAcceptInputType_firstVisual: BooleanInput;
+    static ngAcceptInputType_onlyVisual: BooleanInput;
+    static ngAcceptInputType_compact: BooleanInput;
+    static ngAcceptInputType_loading: BooleanInput;
+    static ngAcceptInputType_disabled: BooleanInput;
+    static ngAcceptInputType_noColon: BooleanInput;
+    static ngAcceptInputType_cleanValue: BooleanInput;
     private unsubscribe$;
     private _renders;
     private _item;

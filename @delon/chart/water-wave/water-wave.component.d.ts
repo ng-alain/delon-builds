@@ -1,11 +1,16 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { BooleanInput, NumberInput } from '@delon/util';
 export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnInit {
     private el;
     private renderer;
     private ngZone;
     private cdr;
     private platform;
+    static ngAcceptInputType_animate: BooleanInput;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_percent: NumberInput;
     private resize$;
     private node;
     private timer;

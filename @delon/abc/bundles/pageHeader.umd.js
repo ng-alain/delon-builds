@@ -612,6 +612,22 @@
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
     if (false) {
         /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_loading;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_wide;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_autoBreadcrumb;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_autoTitle;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_syncTitle;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_fixed;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
+        /** @type {?} */
+        PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
+        /** @type {?} */
         PageHeaderComponent.prototype.inited;
         /**
          * @type {?}

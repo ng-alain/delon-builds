@@ -1,9 +1,12 @@
 import { TemplateRef } from '@angular/core';
 import { REP_TYPE } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, NumberInput } from '@delon/util';
 import { Observable } from 'rxjs';
 import { SEErrorRefresh, SELayout } from './se.types';
 export declare class SEContainerComponent {
+    static ngAcceptInputType_col: NumberInput;
+    static ngAcceptInputType_colInCon: NumberInput;
+    static ngAcceptInputType_labelWidth: NumberInput;
     private errorNotify$;
     colInCon: REP_TYPE;
     col: REP_TYPE;

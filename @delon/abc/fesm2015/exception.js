@@ -128,6 +128,8 @@ ExceptionComponent.propDecorators = {
     desc: [{ type: Input }]
 };
 if (false) {
+    /** @type {?} */
+    ExceptionComponent.ngAcceptInputType_type;
     /**
      * @type {?}
      * @private

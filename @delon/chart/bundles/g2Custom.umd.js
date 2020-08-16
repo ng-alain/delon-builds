@@ -421,6 +421,12 @@
         __metadata("design:type", Object)
     ], G2CustomComponent.prototype, "resizeTime", void 0);
     if (false) {
+        /** @type {?} */
+        G2CustomComponent.ngAcceptInputType_delay;
+        /** @type {?} */
+        G2CustomComponent.ngAcceptInputType_height;
+        /** @type {?} */
+        G2CustomComponent.ngAcceptInputType_resizeTime;
         /**
          * @type {?}
          * @private

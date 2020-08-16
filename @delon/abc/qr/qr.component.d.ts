@@ -1,10 +1,13 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
-import { AlainConfigService, LazyService } from '@delon/util';
+import { AlainConfigService, LazyService, NumberInput } from '@delon/util';
 export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy {
     private cdr;
     private lazySrv;
     private platform;
+    static ngAcceptInputType_padding: NumberInput;
+    static ngAcceptInputType_size: NumberInput;
+    static ngAcceptInputType_delay: NumberInput;
     private lazy$;
     private qr;
     private cog;

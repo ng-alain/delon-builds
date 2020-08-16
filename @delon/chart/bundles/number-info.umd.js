@@ -358,6 +358,8 @@
         __metadata("design:type", Object)
     ], NumberInfoComponent.prototype, "gap", void 0);
     if (false) {
+        /** @type {?} */
+        NumberInfoComponent.ngAcceptInputType_gap;
         /**
          * 标题
          * @type {?}

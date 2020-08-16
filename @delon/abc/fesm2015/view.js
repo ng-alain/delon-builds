@@ -72,6 +72,12 @@ __decorate([
 ], SVContainerComponent.prototype, "col", void 0);
 if (false) {
     /** @type {?} */
+    SVContainerComponent.ngAcceptInputType_gutter;
+    /** @type {?} */
+    SVContainerComponent.ngAcceptInputType_labelWidth;
+    /** @type {?} */
+    SVContainerComponent.ngAcceptInputType_col;
+    /** @type {?} */
     SVContainerComponent.prototype.title;
     /** @type {?} */
     SVContainerComponent.prototype.size;
@@ -302,6 +308,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], SVComponent.prototype, "default", void 0);
 if (false) {
+    /** @type {?} */
+    SVComponent.ngAcceptInputType_col;
+    /** @type {?} */
+    SVComponent.ngAcceptInputType_default;
     /**
      * @type {?}
      * @private

@@ -132,6 +132,8 @@ __decorate([
     __metadata("design:type", Object)
 ], AvatarListComponent.prototype, "maxLength", void 0);
 if (false) {
+    /** @type {?} */
+    AvatarListComponent.ngAcceptInputType_maxLength;
     /**
      * @type {?}
      * @private

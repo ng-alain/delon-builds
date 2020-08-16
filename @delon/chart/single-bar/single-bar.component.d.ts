@@ -1,11 +1,18 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Types } from '@antv/g2';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
     private el;
     private ngZone;
     private platform;
+    static ngAcceptInputType_delay: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    static ngAcceptInputType_barSize: NumberInput;
+    static ngAcceptInputType_min: NumberInput;
+    static ngAcceptInputType_max: NumberInput;
+    static ngAcceptInputType_value: NumberInput;
+    static ngAcceptInputType_line: BooleanInput;
     private _chart;
     get chart(): Chart;
     delay: number;

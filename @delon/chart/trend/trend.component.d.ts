@@ -1,4 +1,7 @@
+import { BooleanInput } from '@delon/util';
 export declare class TrendComponent {
+    static ngAcceptInputType_colorful: BooleanInput;
+    static ngAcceptInputType_reverseColor: BooleanInput;
     /** 上升下降标识 */
     flag: 'up' | 'down';
     /** 是否彩色标记 */

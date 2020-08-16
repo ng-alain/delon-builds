@@ -240,6 +240,12 @@ __decorate([
     __metadata("design:type", Object)
 ], FullContentComponent.prototype, "padding", void 0);
 if (false) {
+    /** @type {?} */
+    FullContentComponent.ngAcceptInputType_fullscreen;
+    /** @type {?} */
+    FullContentComponent.ngAcceptInputType_hideTitle;
+    /** @type {?} */
+    FullContentComponent.ngAcceptInputType_padding;
     /**
      * @type {?}
      * @private

@@ -583,6 +583,8 @@
         __metadata("design:type", Object)
     ], MediaComponent.prototype, "delay", void 0);
     if (false) {
+        /** @type {?} */
+        MediaComponent.ngAcceptInputType_delay;
         /**
          * @type {?}
          * @private

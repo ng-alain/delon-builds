@@ -376,6 +376,16 @@ __decorate([
     __metadata("design:type", Object)
 ], G2TimelineComponent.prototype, "slider", void 0);
 if (false) {
+    /** @type {?} */
+    G2TimelineComponent.ngAcceptInputType_delay;
+    /** @type {?} */
+    G2TimelineComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2TimelineComponent.ngAcceptInputType_maxAxis;
+    /** @type {?} */
+    G2TimelineComponent.ngAcceptInputType_borderWidth;
+    /** @type {?} */
+    G2TimelineComponent.ngAcceptInputType_slider;
     /**
      * @type {?}
      * @private
