@@ -1727,6 +1727,7 @@ class DelonLocaleService {
      * @param {?} locale
      */
     constructor(locale) {
+        this._locale = zhCN;
         this.change$ = new BehaviorSubject(this._locale);
         this.setLocale(locale || zhCN);
     }
@@ -3867,7 +3868,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0-beta.4-baebed7c');
+const VERSION = new Version('10.0.0-beta.4-76deeb2c');
 
 /**
  * @fileoverview added by tsickle

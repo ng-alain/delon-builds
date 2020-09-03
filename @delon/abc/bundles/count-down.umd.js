@@ -6,11 +6,13 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns/addSeconds'), require('date-fns/format'), require('@angular/common'), require('ngx-countdown')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/count-down', ['exports', '@angular/core', 'date-fns/addSeconds', 'date-fns/format', '@angular/common', 'ngx-countdown'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ng.common, global.ngxCountDown));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['count-down'] = {}), global.ng.core, global.addSeconds, global.format, global.ng.common, global.ngxCountDown));
 }(this, (function (exports, core, addSeconds, format, common, ngxCountdown) { 'use strict';
 
-    addSeconds = addSeconds && Object.prototype.hasOwnProperty.call(addSeconds, 'default') ? addSeconds['default'] : addSeconds;
-    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var addSeconds__default = /*#__PURE__*/_interopDefaultLegacy(addSeconds);
+    var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
 
     /**
      * @fileoverview added by tsickle
@@ -30,7 +32,7 @@
             set: function (value) {
                 this.config = {
                     format: "HH:mm:ss",
-                    stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 'x'),
+                    stopTime: typeof value === 'number' ? addSeconds__default['default'](new Date(), value).valueOf() : +format__default['default'](value, 'x'),
                 };
             },
             enumerable: false,

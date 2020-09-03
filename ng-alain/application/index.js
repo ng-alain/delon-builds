@@ -129,15 +129,15 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@^0.9.9`,
-            `pretty-quick@^2.0.1`,
+            `pretty-quick@^3.0.0`,
             `husky@^4.2.3`,
             `prettier@^2.0.5`,
-            `stylelint@^13.3.1`,
-            `stylelint-config-prettier@^8.0.1`,
+            `stylelint@^13.7.0`,
+            `stylelint-config-prettier@^8.0.2`,
             `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^20.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.3.0`,
-            `stylelint-order@^4.0.0`,
+            `stylelint-order@^4.1.0`,
         ], 'devDependencies');
         return host;
     };

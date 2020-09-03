@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core/testing'), require('@angular/platform-browser'), require('ng-zorro-antd/dropdown')) :
     typeof define === 'function' && define.amd ? define('@delon/testing', ['exports', '@angular/core/testing', '@angular/platform-browser', 'ng-zorro-antd/dropdown'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.testing = {}), global.ng.core.testing, global.ng.platformBrowser, global['ng-zorro-antd/dropdown']));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.testing = {}), global.ng.core.testing, global.ng.platformBrowser, global['ng-zorro-antd/dropdown']));
 }(this, (function (exports, testing, platformBrowser, dropdown) { 'use strict';
 
     /**

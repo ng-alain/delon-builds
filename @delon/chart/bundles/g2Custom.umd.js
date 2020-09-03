@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
 }(this, (function (exports, platform, core, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************

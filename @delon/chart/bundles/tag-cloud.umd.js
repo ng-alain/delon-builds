@@ -6,10 +6,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
 }(this, (function (exports, platform, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
 
-    DataSet = DataSet && Object.prototype.hasOwnProperty.call(DataSet, 'default') ? DataSet['default'] : DataSet;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var DataSet__default = /*#__PURE__*/_interopDefaultLegacy(DataSet);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -465,7 +467,7 @@
             _chart.width = this.width;
             _chart.padding = padding;
             /** @type {?} */
-            var dv = new DataSet.View().source(data);
+            var dv = new DataSet__default['default'].View().source(data);
             /** @type {?} */
             var range = dv.range('value');
             /** @type {?} */

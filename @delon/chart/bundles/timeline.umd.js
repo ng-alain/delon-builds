@@ -6,10 +6,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
 }(this, (function (exports, platform, core, g2, util, format, common, outlet) { 'use strict';
 
-    format = format && Object.prototype.hasOwnProperty.call(format, 'default') ? format['default'] : format;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -483,7 +485,7 @@
                     formatter: ( /**
                      * @param {?} val
                      * @return {?}
-                     */function (val) { return format(val, maskSlider); }),
+                     */function (val) { return format__default['default'](val, maskSlider); }),
                 });
             }
             chart.on("plot:click", ( /**
@@ -604,7 +606,6 @@
              * @param {?} val
              * @return {?}
              */ val) { return val._time >= initialRange.start && val._time <= initialRange.end; }));
-            console.log(filterData);
             _chart.changeData(filterData);
         };
         /**

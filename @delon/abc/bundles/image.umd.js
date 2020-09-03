@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
 }(this, (function (exports, platform, core, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************
@@ -383,7 +383,6 @@
         ImageDirective.prototype.getByHttp = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
-                console.log('isBrowser');
                 return;
             }
             var imgEl = this.imgEl;

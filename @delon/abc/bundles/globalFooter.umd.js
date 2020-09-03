@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
 }(this, (function (exports, core, platformBrowser, router, theme, util, common) { 'use strict';
 
     /*! *****************************************************************************

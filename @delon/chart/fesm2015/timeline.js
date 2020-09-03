@@ -297,7 +297,6 @@ class G2TimelineComponent {
          * @return {?}
          */
         val => val._time >= initialRange.start && val._time <= initialRange.end));
-        console.log(filterData);
         _chart.changeData(filterData);
     }
     /**

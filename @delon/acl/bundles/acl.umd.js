@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
 }(this, (function (exports, i0, util, rxjs, operators, i2, common) { 'use strict';
 
     /*! *****************************************************************************

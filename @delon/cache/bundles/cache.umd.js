@@ -6,10 +6,12 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('date-fns/addSeconds'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform')) :
     typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'date-fns/addSeconds', 'rxjs', 'rxjs/operators', '@angular/cdk/platform'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.delon.util, global.addSeconds, global.rxjs, global.rxjs.operators, global.ng.cdk.platform));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.delon.util, global.addSeconds, global.rxjs, global.rxjs.operators, global.ng.cdk.platform));
 }(this, (function (exports, i3, i0, i1, addSeconds, rxjs, operators, platform) { 'use strict';
 
-    addSeconds = addSeconds && Object.prototype.hasOwnProperty.call(addSeconds, 'default') ? addSeconds['default'] : addSeconds;
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var addSeconds__default = /*#__PURE__*/_interopDefaultLegacy(addSeconds);
 
     /**
      * @fileoverview added by tsickle
@@ -199,7 +201,7 @@
             options = Object.assign({ type: type,
                 expire: expire }, options);
             if (options.expire) {
-                e = addSeconds(new Date(), options.expire).valueOf();
+                e = addSeconds__default['default'](new Date(), options.expire).valueOf();
             }
             if (!(data instanceof rxjs.Observable)) {
                 this.save(( /** @type {?} */(options.type)), key, { v: data, e: e });

@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/util'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/result', ['exports', '@angular/core', '@angular/common', '@delon/util', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.result = {}), global.ng.core, global.ng.common, global.delon.util, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.result = {}), global.ng.core, global.ng.common, global.delon.util, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
 }(this, (function (exports, core, common, util, outlet, icon) { 'use strict';
 
     /**

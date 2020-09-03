@@ -3752,13 +3752,12 @@ class DateWidget extends ControlUIWidget {
     reset(value) {
         value = toDate(value, { formatString: this.startFormat, defaultValue: null });
         if (this.flatRange) {
-            this.displayValue =
-                value == null
-                    ? []
-                    : [
-                        value,
-                        toDate((/** @type {?} */ (this.endProperty.formData)), { formatString: this.endFormat || this.startFormat, defaultValue: null }),
-                    ];
+            /** @type {?} */
+            const endValue = toDate((/** @type {?} */ (this.endProperty.formData)), {
+                formatString: this.endFormat || this.startFormat,
+                defaultValue: null,
+            });
+            this.displayValue = value == null || endValue == null ? [] : [value, endValue];
         }
         else {
             this.displayValue = value;

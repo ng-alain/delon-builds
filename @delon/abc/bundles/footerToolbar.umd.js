@@ -6,7 +6,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('@delon/abc/error-collect'), require('ng-zorro-antd/core/outlet')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util', '@delon/abc/error-collect', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.delon.util, global.delon.abc['error-collect'], global['ng-zorro-antd/core/outlet']));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.delon.util, global.delon.abc['error-collect'], global['ng-zorro-antd/core/outlet']));
 }(this, (function (exports, common, core, util, errorCollect, outlet) { 'use strict';
 
     /*! *****************************************************************************
