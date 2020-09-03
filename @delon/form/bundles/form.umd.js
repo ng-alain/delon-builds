@@ -3783,7 +3783,7 @@
             var orgTime = +(this.ui.debounceTime || 0);
             /** @type {?} */
             var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-            this.list = ( /** @type {?} */(this.ngModel.valueChanges)).pipe(operators.debounceTime(time), operators.startWith(''), operators.flatMap(( /**
+            this.list = ( /** @type {?} */(this.ngModel.valueChanges)).pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(( /**
              * @param {?} input
              * @return {?}
              */function (/**
