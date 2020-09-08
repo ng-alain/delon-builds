@@ -16,7 +16,6 @@ export declare class MenuService implements OnDestroy {
     get change(): Observable<Menu[]>;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
-    private fixItem;
     /**
      * 重置菜单，可能I18N、用户权限变动时需要调用刷新
      */
