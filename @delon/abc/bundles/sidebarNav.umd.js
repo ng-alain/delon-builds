@@ -484,9 +484,9 @@
             /** @type {?} */
             var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
             /** @type {?} */
-            var offsetHeight = 0;
+            var offsetHeight = -5;
             if (docHeight < rect.top + node.clientHeight) {
-                offsetHeight = rect.top + node.clientHeight - docHeight;
+                offsetHeight = rect.top + node.clientHeight - docHeight + 5;
             }
             node.style.top = rect.top + scrollTop - offsetHeight + "px";
             node.style.left = rect.right + 5 + "px";
