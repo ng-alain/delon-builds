@@ -179,9 +179,9 @@ class SidebarNavComponent {
         /** @type {?} */
         const docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
         /** @type {?} */
-        let offsetHeight = -5;
+        let offsetHeight = 0;
         if (docHeight < rect.top + node.clientHeight) {
-            offsetHeight = rect.top + node.clientHeight - docHeight + 5;
+            offsetHeight = rect.top + node.clientHeight - docHeight;
         }
         node.style.top = `${rect.top + scrollTop - offsetHeight}px`;
         node.style.left = `${rect.right + 5}px`;

@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v10.0.0-beta.5
+ * @license ng-alain(cipchk@qq.com) v10.0.0-beta.4
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -484,9 +484,9 @@
             /** @type {?} */
             var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
             /** @type {?} */
-            var offsetHeight = -5;
+            var offsetHeight = 0;
             if (docHeight < rect.top + node.clientHeight) {
-                offsetHeight = rect.top + node.clientHeight - docHeight + 5;
+                offsetHeight = rect.top + node.clientHeight - docHeight;
             }
             node.style.top = rect.top + scrollTop - offsetHeight + "px";
             node.style.left = rect.right + 5 + "px";

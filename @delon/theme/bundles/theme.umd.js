@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v10.0.0-beta.5
+ * @license ng-alain(cipchk@qq.com) v10.0.0-beta.4
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -549,6 +549,58 @@
             this.resume();
         };
         /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
+        MenuService.prototype.fixItem = function (item) {
+            item._aclResult = true;
+            if (!item.link)
+                item.link = '';
+            if (!item.externalLink)
+                item.externalLink = '';
+            // badge
+            if (item.badge) {
+                if (item.badgeDot !== true) {
+                    item.badgeDot = false;
+                }
+                if (!item.badgeStatus) {
+                    item.badgeStatus = 'error';
+                }
+            }
+            if (!Array.isArray(item.children)) {
+                item.children = [];
+            }
+            // icon
+            if (typeof item.icon === 'string') {
+                /** @type {?} */
+                var type = 'class';
+                /** @type {?} */
+                var value = item.icon;
+                // compatible `anticon anticon-user`
+                if (~item.icon.indexOf("anticon-")) {
+                    type = 'icon';
+                    value = value.split('-').slice(1).join('-');
+                }
+                else if (/^https?:\/\//.test(item.icon)) {
+                    type = 'img';
+                }
+                item.icon = ( /** @type {?} */({ type: type, value: value }));
+            }
+            if (item.icon != null) {
+                item.icon = Object.assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
+            }
+            item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
+            // group
+            item.group = item.group !== false;
+            // hidden
+            item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+            // disabled
+            item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
+            // acl
+            item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
+        };
+        /**
          * 重置菜单，可能I18N、用户权限变动时需要调用刷新
          * @param {?=} callback
          * @return {?}
@@ -565,54 +617,10 @@
              * @param {?} depth
              * @return {?}
              */function (item, parent, depth) {
-                item._aclResult = true;
                 item._id = i++;
                 item._parent = parent;
                 item._depth = depth;
-                if (!item.link)
-                    item.link = '';
-                if (!item.externalLink)
-                    item.externalLink = '';
-                // badge
-                if (item.badge) {
-                    if (item.badgeDot !== true) {
-                        item.badgeDot = false;
-                    }
-                    if (!item.badgeStatus) {
-                        item.badgeStatus = 'error';
-                    }
-                }
-                if (!Array.isArray(item.children)) {
-                    item.children = [];
-                }
-                // icon
-                if (typeof item.icon === 'string') {
-                    /** @type {?} */
-                    var type = 'class';
-                    /** @type {?} */
-                    var value = item.icon;
-                    // compatible `anticon anticon-user`
-                    if (~item.icon.indexOf("anticon-")) {
-                        type = 'icon';
-                        value = value.split('-').slice(1).join('-');
-                    }
-                    else if (/^https?:\/\//.test(item.icon)) {
-                        type = 'img';
-                    }
-                    item.icon = ( /** @type {?} */({ type: type, value: value }));
-                }
-                if (item.icon != null) {
-                    item.icon = Object.assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
-                }
-                item.text = item.i18n && _this.i18nSrv ? _this.i18nSrv.fanyi(item.i18n) : item.text;
-                // group
-                item.group = item.group !== false;
-                // hidden
-                item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
-                // disabled
-                item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
-                // acl
-                item._aclResult = item.acl && _this.aclService ? _this.aclService.can(item.acl) : true;
+                _this.fixItem(item);
                 // shortcut
                 if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
                     shortcuts.push(item);
@@ -838,6 +846,7 @@
              */ k) {
                 item[k] = value[k];
             }));
+            this.fixItem(item);
             this._change$.next(this.data);
         };
         /**
@@ -3799,7 +3808,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new i0.Version('10.0.0-beta.5');
+    var VERSION = new i0.Version('10.0.0-beta.4');
 
     /**
      * @fileoverview added by tsickle
