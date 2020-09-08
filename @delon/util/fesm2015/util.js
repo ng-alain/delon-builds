@@ -1350,7 +1350,7 @@ if (false) {
      */
     AlainSTConfig.prototype.pi;
     /**
-     * 每页数量，默认：`10`
+     * 每页数量，当设置为 `0` 表示不分页，默认：`10`
      * @type {?|undefined}
      */
     AlainSTConfig.prototype.ps;

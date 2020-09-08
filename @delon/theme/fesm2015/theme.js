@@ -422,6 +422,58 @@ class MenuService {
         this.resume();
     }
     /**
+     * @private
+     * @param {?} item
+     * @return {?}
+     */
+    fixItem(item) {
+        item._aclResult = true;
+        if (!item.link)
+            item.link = '';
+        if (!item.externalLink)
+            item.externalLink = '';
+        // badge
+        if (item.badge) {
+            if (item.badgeDot !== true) {
+                item.badgeDot = false;
+            }
+            if (!item.badgeStatus) {
+                item.badgeStatus = 'error';
+            }
+        }
+        if (!Array.isArray(item.children)) {
+            item.children = [];
+        }
+        // icon
+        if (typeof item.icon === 'string') {
+            /** @type {?} */
+            let type = 'class';
+            /** @type {?} */
+            let value = item.icon;
+            // compatible `anticon anticon-user`
+            if (~item.icon.indexOf(`anticon-`)) {
+                type = 'icon';
+                value = value.split('-').slice(1).join('-');
+            }
+            else if (/^https?:\/\//.test(item.icon)) {
+                type = 'img';
+            }
+            item.icon = (/** @type {?} */ ({ type, value }));
+        }
+        if (item.icon != null) {
+            item.icon = Object.assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
+        }
+        item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
+        // group
+        item.group = item.group !== false;
+        // hidden
+        item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+        // disabled
+        item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
+        // acl
+        item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
+    }
+    /**
      * 重置菜单，可能I18N、用户权限变动时需要调用刷新
      * @param {?=} callback
      * @return {?}
@@ -438,54 +490,10 @@ class MenuService {
          * @return {?}
          */
         (item, parent, depth) => {
-            item._aclResult = true;
             item._id = i++;
             item._parent = parent;
             item._depth = depth;
-            if (!item.link)
-                item.link = '';
-            if (!item.externalLink)
-                item.externalLink = '';
-            // badge
-            if (item.badge) {
-                if (item.badgeDot !== true) {
-                    item.badgeDot = false;
-                }
-                if (!item.badgeStatus) {
-                    item.badgeStatus = 'error';
-                }
-            }
-            if (!Array.isArray(item.children)) {
-                item.children = [];
-            }
-            // icon
-            if (typeof item.icon === 'string') {
-                /** @type {?} */
-                let type = 'class';
-                /** @type {?} */
-                let value = item.icon;
-                // compatible `anticon anticon-user`
-                if (~item.icon.indexOf(`anticon-`)) {
-                    type = 'icon';
-                    value = value.split('-').slice(1).join('-');
-                }
-                else if (/^https?:\/\//.test(item.icon)) {
-                    type = 'img';
-                }
-                item.icon = (/** @type {?} */ ({ type, value }));
-            }
-            if (item.icon != null) {
-                item.icon = Object.assign({ theme: 'outline', spin: false }, ((/** @type {?} */ (item.icon))));
-            }
-            item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
-            // group
-            item.group = item.group !== false;
-            // hidden
-            item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
-            // disabled
-            item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
-            // acl
-            item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
+            this.fixItem(item);
             // shortcut
             if (parent && item.shortcut === true && parent.shortcutRoot !== true) {
                 shortcuts.push(item);
@@ -689,6 +697,7 @@ class MenuService {
         k => {
             item[k] = value[k];
         }));
+        this.fixItem(item);
         this._change$.next(this.data);
     }
     /**
@@ -3868,7 +3877,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0-beta.4-fd5484b5');
+const VERSION = new Version('10.0.0-beta.4-120f425b');
 
 /**
  * @fileoverview added by tsickle
