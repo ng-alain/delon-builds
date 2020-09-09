@@ -484,12 +484,14 @@
             /** @type {?} */
             var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
             /** @type {?} */
-            var offsetHeight = 0;
+            var spacing = 5;
+            /** @type {?} */
+            var offsetHeight = -spacing;
             if (docHeight < rect.top + node.clientHeight) {
-                offsetHeight = rect.top + node.clientHeight - docHeight;
+                offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
             }
             node.style.top = rect.top + scrollTop - offsetHeight + "px";
-            node.style.left = rect.right + 5 + "px";
+            node.style.left = rect.right + spacing + "px";
         };
         /**
          * @param {?} e
