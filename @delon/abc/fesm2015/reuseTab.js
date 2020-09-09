@@ -2007,6 +2007,38 @@ ReuseTabModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: lifecycle_hooks.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * Triggered when the current route is in the reusing process, The values of `type` are:
+ *
+ * - `init` when routing process
+ * - `refresh` when refresh action via tab
+ * @record
+ */
+function OnReuseInit() { }
+if (false) {
+    /**
+     * @param {?=} type
+     * @return {?}
+     */
+    OnReuseInit.prototype._onReuseInit = function (type) { };
+}
+/**
+ * Triggered when the current route allows reusing and leave route.
+ * @record
+ */
+function OnReuseDestroy() { }
+if (false) {
+    /**
+     * @return {?}
+     */
+    OnReuseDestroy.prototype._onReuseDestroy = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
