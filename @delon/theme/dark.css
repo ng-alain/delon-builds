@@ -30959,6 +30959,20 @@ body {
   color: rgba(179, 179, 179, 0.65);
   pointer-events: none;
 }
+.st .nz-resizable-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.st .nz-resizable-handle > i {
+  width: 1px;
+  height: 60%;
+  background: #303030;
+}
+.st .nz-resizable-preview {
+  border-width: 0;
+  border-right-width: 1px;
+}
 .st .ant-table ~ nz-pagination > .ant-pagination {
   margin-bottom: 0;
 }
