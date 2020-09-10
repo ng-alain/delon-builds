@@ -4,7 +4,7 @@ import { AlainI18NService } from '@delon/theme';
 import { AlainSTConfig } from '@delon/util';
 import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
-import { STColumn, STColumnFilter, STResizable, STWidthMode } from './st.interfaces';
+import { STColumn, STColumnFilter, STWidthMode } from './st.interfaces';
 import { _STColumn } from './st.types';
 export declare class STColumnSource {
     private dom;
@@ -26,8 +26,7 @@ export declare class STColumnSource {
     private widgetCoerce;
     private genHeaders;
     private cleanCond;
-    private fixResizable;
-    process(list: STColumn[], widthMode: STWidthMode, resizable: STResizable | boolean): {
+    process(list: STColumn[], widthMode: STWidthMode): {
         columns: _STColumn[];
         headers: _STColumn[][];
         headerWidths: string[] | null;

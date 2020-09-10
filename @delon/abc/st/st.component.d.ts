@@ -4,13 +4,12 @@ import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
 import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -88,7 +87,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     set widthMode(value: STWidthMode);
     get widthMode(): STWidthMode;
     set widthConfig(val: string[]);
-    resizable: STResizable | boolean;
     header: string | TemplateRef<void>;
     footer: string | TemplateRef<void>;
     bodyHeader: TemplateRef<STStatisticalResults>;
@@ -219,7 +217,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param opt 额外参数
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
-    colResize({ width }: NzResizeEvent, column: _STColumn): void;
     get cdkVirtualScrollViewport(): CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;

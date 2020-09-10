@@ -1,5 +1,4 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { ElementRef } from '@angular/core';
 import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
 import { ModalOptions } from 'ng-zorro-antd/modal';
@@ -336,12 +335,6 @@ export interface STColumn {
      */
     children?: STColumn[];
     rowSpan?: number;
-    /**
-     * 调整表头配置
-     * - 注意：**不要忘记**在 `src/styles` 下增加 `nz-resizable` Less 样式文件：`@import '~ng-zorro-antd/resizable/style/entry.less';`
-     * - **不支持多表头**
-     */
-    resizable?: STResizable | boolean;
 }
 export interface STWidgetColumn {
     type: string;
@@ -850,7 +843,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand' | 'resize';
+export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand';
 /**
  * 回调数据
  */
@@ -903,10 +896,6 @@ export interface STChange {
      * `expand` 参数
      */
     expand?: STData;
-    /**
-     * `resize` 参数
-     */
-    resize?: STColumn;
 }
 /** 行单击参数 */
 export interface STChangeSort {
@@ -934,26 +923,4 @@ export interface STColumnGroupType {
     colSpan?: number;
     rowSpan?: number;
     hasSubColumns?: boolean;
-}
-export interface STResizable {
-    /**
-     * Disable resize, Default: `true`
-     */
-    disabled?: boolean;
-    /**
-     * Specifies resize boundaries, Default: `window`
-     */
-    bounds?: 'window' | 'parent' | ElementRef<HTMLElement>;
-    /**
-     * Maximum width of resizable elemen, Default: `60`
-     */
-    maxWidth?: number;
-    /**
-     * Minimum width of resizable element, Default: `360`
-     */
-    minWidth?: number;
-    /**
-     * Enable preview when resizing, Default: `true`
-     */
-    preview?: boolean;
 }
