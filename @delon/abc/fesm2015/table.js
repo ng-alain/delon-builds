@@ -1559,6 +1559,16 @@ if (false) {
  * Generated from: st-column-source.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * @record
+ */
+function STColumnSourceProcessOptions() { }
+if (false) {
+    /** @type {?} */
+    STColumnSourceProcessOptions.prototype.widthMode;
+    /** @type {?} */
+    STColumnSourceProcessOptions.prototype.resizable;
+}
 class STColumnSource {
     /**
      * @param {?} dom
@@ -1948,11 +1958,10 @@ class STColumnSource {
     }
     /**
      * @param {?} list
-     * @param {?} widthMode
-     * @param {?} resizable
+     * @param {?} options
      * @return {?}
      */
-    process(list, widthMode, resizable) {
+    process(list, options) {
         if (!list || list.length === 0)
             throw new Error(`[st]: the columns property muse be define!`);
         const { noIndex } = this.cog;
@@ -2027,7 +2036,7 @@ class STColumnSource {
                 (item.type === 'enum' && item.enum == null)) {
                 item.type = '';
             }
-            item._isTruncate = !!item.width && widthMode.strictBehavior === 'truncate' && item.type !== 'img';
+            item._isTruncate = !!item.width && options.widthMode.strictBehavior === 'truncate' && item.type !== 'img';
             // className
             if (!item.className) {
                 item.className = ((/** @type {?} */ ({
@@ -2052,7 +2061,7 @@ class STColumnSource {
             // restore custom row
             this.restoreRender(item);
             // resizable
-            item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, resizable), (typeof item.resizable === 'boolean' ? ((/** @type {?} */ ({ disabled: !item.resizable }))) : item.resizable));
+            item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, options.resizable), (typeof item.resizable === 'boolean' ? ((/** @type {?} */ ({ disabled: !item.resizable }))) : item.resizable));
             item.__point = point++;
             return item;
         });
@@ -4185,7 +4194,7 @@ class STComponent {
      */
     refreshColumns() {
         /** @type {?} */
-        const res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ ((/** @type {?} */ (this)).columns)), (/** @type {?} */ (this)).widthMode, (/** @type {?} */ (this))._resizable);
+        const res = (/** @type {?} */ (this)).columnSource.process((/** @type {?} */ ((/** @type {?} */ (this)).columns)), { widthMode: (/** @type {?} */ (this)).widthMode, resizable: (/** @type {?} */ (this))._resizable });
         (/** @type {?} */ (this))._columns = res.columns;
         (/** @type {?} */ (this))._headers = res.headers;
         if ((/** @type {?} */ (this)).customWidthConfig === false && res.headerWidths != null) {

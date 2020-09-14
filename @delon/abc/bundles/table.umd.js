@@ -461,6 +461,16 @@
         STWidgetRegistry.prototype._widgets;
     }
 
+    /**
+     * @record
+     */
+    function STColumnSourceProcessOptions() { }
+    if (false) {
+        /** @type {?} */
+        STColumnSourceProcessOptions.prototype.widthMode;
+        /** @type {?} */
+        STColumnSourceProcessOptions.prototype.resizable;
+    }
     var STColumnSource = /** @class */ (function () {
         /**
          * @param {?} dom
@@ -890,11 +900,10 @@
         };
         /**
          * @param {?} list
-         * @param {?} widthMode
-         * @param {?} resizable
+         * @param {?} options
          * @return {?}
          */
-        STColumnSource.prototype.process = function (list, widthMode, resizable) {
+        STColumnSource.prototype.process = function (list, options) {
             var _this = this;
             if (!list || list.length === 0)
                 throw new Error("[st]: the columns property muse be define!");
@@ -971,7 +980,7 @@
                     (item.type === 'enum' && item.enum == null)) {
                     item.type = '';
                 }
-                item._isTruncate = !!item.width && widthMode.strictBehavior === 'truncate' && item.type !== 'img';
+                item._isTruncate = !!item.width && options.widthMode.strictBehavior === 'truncate' && item.type !== 'img';
                 // className
                 if (!item.className) {
                     item.className = (( /** @type {?} */({
@@ -996,7 +1005,7 @@
                 // restore custom row
                 _this.restoreRender(item);
                 // resizable
-                item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, resizable), (typeof item.resizable === 'boolean' ? (( /** @type {?} */({ disabled: !item.resizable }))) : item.resizable));
+                item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, options.resizable), (typeof item.resizable === 'boolean' ? (( /** @type {?} */({ disabled: !item.resizable }))) : item.resizable));
                 item.__point = point++;
                 return item;
             });
@@ -3300,7 +3309,7 @@
          */
         STComponent.prototype.refreshColumns = function () {
             /** @type {?} */
-            var res = ( /** @type {?} */(this)).columnSource.process(( /** @type {?} */(( /** @type {?} */(this)).columns)), ( /** @type {?} */(this)).widthMode, ( /** @type {?} */(this))._resizable);
+            var res = ( /** @type {?} */(this)).columnSource.process(( /** @type {?} */(( /** @type {?} */(this)).columns)), { widthMode: ( /** @type {?} */(this)).widthMode, resizable: ( /** @type {?} */(this))._resizable });
             ( /** @type {?} */(this))._columns = res.columns;
             ( /** @type {?} */(this))._headers = res.headers;
             if (( /** @type {?} */(this)).customWidthConfig === false && res.headerWidths != null) {

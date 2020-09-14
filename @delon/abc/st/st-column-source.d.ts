@@ -6,6 +6,10 @@ import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
 import { STColumn, STColumnFilter, STResizable, STWidthMode } from './st.interfaces';
 import { _STColumn } from './st.types';
+export interface STColumnSourceProcessOptions {
+    widthMode: STWidthMode;
+    resizable: STResizable;
+}
 export declare class STColumnSource {
     private dom;
     private rowSource;
@@ -26,7 +30,7 @@ export declare class STColumnSource {
     private widgetCoerce;
     private genHeaders;
     private cleanCond;
-    process(list: STColumn[], widthMode: STWidthMode, resizable: STResizable): {
+    process(list: STColumn[], options: STColumnSourceProcessOptions): {
         columns: _STColumn[];
         headers: _STColumn[][];
         headerWidths: string[] | null;
