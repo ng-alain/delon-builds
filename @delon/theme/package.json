@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "10.0.0-beta.4-6c20ffc1",
+  "version": "10.0.0-beta.4-08de51ce",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,10 +21,10 @@
     "component"
   ],
   "dependencies": {
-    "ng-zorro-antd": "^10.0.0-beta.4-6c20ffc1",
-    "@delon/chart": "^10.0.0-beta.4-6c20ffc1",
-    "@delon/acl": "^10.0.0-beta.4-6c20ffc1",
-    "@delon/util": "^10.0.0-beta.4-6c20ffc1",
+    "ng-zorro-antd": "^10.0.0-beta.4-08de51ce",
+    "@delon/chart": "^10.0.0-beta.4-08de51ce",
+    "@delon/acl": "^10.0.0-beta.4-08de51ce",
+    "@delon/util": "^10.0.0-beta.4-08de51ce",
     "tslib": "^2.0.0"
   },
   "main": "bundles/theme.umd.js",
