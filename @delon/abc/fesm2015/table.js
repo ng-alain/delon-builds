@@ -1834,10 +1834,11 @@ class STColumnSource {
      */
     restoreRender(item) {
         if (item.renderTitle) {
-            item.__renderTitle = this.rowSource.getTitle(item.renderTitle);
+            item.__renderTitle =
+                typeof item.renderTitle === 'string' ? this.rowSource.getTitle(item.renderTitle) : ((/** @type {?} */ (item.renderTitle)));
         }
         if (item.render) {
-            item.__render = this.rowSource.getRow(item.render);
+            item.__render = typeof item.render === 'string' ? this.rowSource.getRow(item.render) : ((/** @type {?} */ (item.render)));
         }
     }
     /**
