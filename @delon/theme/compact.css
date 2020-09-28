@@ -4072,7 +4072,7 @@ nz-breadcrumb-item:last-child .ant-breadcrumb-separator {
   padding: 1.3px 0;
   font-size: 14px;
   border-radius: 2px;
-  vertical-align: -0.5px;
+  vertical-align: -1px;
 }
 .ant-btn-icon-only > * {
   font-size: 14px;
@@ -6440,10 +6440,9 @@ tr > .ant-picker-cell-in-view.ant-picker-cell-range-hover-start:last-child::afte
   width: 100%;
   height: 24px;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 14px;
   color: rgba(0, 0, 0, 0.85);
   line-height: 24px;
-  text-align: center;
   border-radius: 0;
   cursor: pointer;
   transition: background 0.3s;
@@ -7026,6 +7025,7 @@ textarea.ant-picker-input > input {
   color: rgba(0, 0, 0, 0.85);
   font-size: 12px;
   line-height: 1.66667;
+  overflow-wrap: break-word;
 }
 .ant-descriptions-item {
   padding-bottom: 0;
@@ -14287,8 +14287,18 @@ textarea.ant-input-number {
   cursor: pointer;
   transition: background 0.3s ease;
 }
-.ant-layout-sider-zero-width-trigger:hover {
-  background: #192c3e;
+.ant-layout-sider-zero-width-trigger::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: transparent;
+  transition: all 0.3s;
+  content: '';
+}
+.ant-layout-sider-zero-width-trigger:hover::after {
+  background: rgba(255, 255, 255, 0.1);
 }
 .ant-layout-sider-zero-width-trigger-right {
   left: -36px;
@@ -15679,9 +15689,9 @@ nz-list-item-extra {
   border-right: 0;
   transform-origin: 0 0;
 }
-.ant-menu-vertical.ant-menu-sub:not(.zoom-big-enter-active):not(.zoom-big-leave-active),
-.ant-menu-vertical-left.ant-menu-sub:not(.zoom-big-enter-active):not(.zoom-big-leave-active),
-.ant-menu-vertical-right.ant-menu-sub:not(.zoom-big-enter-active):not(.zoom-big-leave-active) {
+.ant-menu-vertical.ant-menu-sub:not([class*='-active']),
+.ant-menu-vertical-left.ant-menu-sub:not([class*='-active']),
+.ant-menu-vertical-right.ant-menu-sub:not([class*='-active']) {
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -21671,12 +21681,12 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
 }
 .ant-table-sticky-header {
   position: sticky;
-  z-index: 3;
+  z-index: calc(2 + 1);
 }
 .ant-table-sticky-scroll {
   position: fixed;
   bottom: 0;
-  z-index: 3;
+  z-index: calc(2 + 1);
   display: flex;
   align-items: center;
   background: #ffffff;
@@ -25917,6 +25927,9 @@ nz-result {
 }
 .ant-space-align-baseline {
   align-items: baseline;
+}
+.ant-space-item:empty {
+  display: none;
 }
 .ant-space-rtl {
   direction: rtl;
