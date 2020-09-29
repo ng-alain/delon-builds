@@ -7127,6 +7127,7 @@ nz-descriptions {
   font-size: 16px;
   white-space: nowrap;
   text-align: center;
+  border-color: rgba(255, 255, 255, 0.12);
   border-top: 0;
 }
 .ant-divider-horizontal.ant-divider-with-text::before,
@@ -7134,7 +7135,9 @@ nz-descriptions {
   position: relative;
   top: 50%;
   width: 50%;
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid transparent;
+  border-top-color: inherit;
+  border-bottom: 0;
   transform: translateY(50%);
   content: '';
 }
@@ -15010,6 +15013,12 @@ nz-header {
   border-right-width: 0;
   border-left-width: 1px !important;
 }
+.ant-form-item-has-error .ant-radio-button-wrapper {
+  border-color: #a61d24 !important;
+}
+.ant-form-item-has-error .ant-radio-button-wrapper:not(:first-child)::before {
+  background-color: #a61d24;
+}
 .ant-form-item-has-error-leave .ant-form-item-explain {
   color: #a61d24;
 }
@@ -20984,6 +20993,7 @@ nz-spin {
 .ant-steps-vertical .ant-steps-item {
   display: block;
   flex: 1 0 auto;
+  padding-left: 0;
   overflow: visible;
 }
 .ant-steps-vertical .ant-steps-item-icon {
@@ -21049,6 +21059,7 @@ nz-spin {
   .ant-steps-horizontal.ant-steps-label-horizontal .ant-steps-item {
     display: block;
     flex: 1 0 auto;
+    padding-left: 0;
     overflow: visible;
   }
   .ant-steps-horizontal.ant-steps-label-horizontal .ant-steps-item-icon {
@@ -24175,10 +24186,10 @@ span.ant-typography-ellipsis {
 a.ant-typography,
 .ant-typography a {
   color: #177ddc;
-  text-decoration: none;
   outline: none;
   cursor: pointer;
   transition: color 0.3s;
+  text-decoration: none;
 }
 a.ant-typography:focus,
 .ant-typography a:focus,

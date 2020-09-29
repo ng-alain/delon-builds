@@ -7,7 +7,7 @@
       "factory": "./ng-update/index#updateToV9"
     },
     "migration-v10": {
-      "version": "10.0.0-beta.6",
+      "version": "10.0.0",
       "description": "Updates ng-alain to v10 [https://github.com/ng-alain/ng-alain/issues/1783]",
       "factory": "./ng-update/index#updateToV10"
     },

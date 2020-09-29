@@ -185,6 +185,18 @@ function addSchematics() {
         json_1.overwriteJSON(host, angularJsonFile, json);
     };
 }
+function addNzLintRules() {
+    return (host) => {
+        json_1.addPackageToPackageJson(host, ['nz-tslint-rules@^0.901.2'], 'devDependencies');
+        const json = json_1.getJSON(host, 'tslint.json');
+        if (json == null)
+            return host;
+        json.rulesDirectory.push(`nz-tslint-rules`);
+        json.rules['nz-secondary-entry-imports'] = true;
+        json_1.overwriteJSON(host, 'tslint.json', json);
+        return host;
+    };
+}
 function forceLess() {
     return (host) => {
         json_1.scriptsToAngularJson(host, ['src/styles.less'], 'add', ['build'], null, true);
@@ -369,6 +381,7 @@ function default_1(options) {
             // code style
             addCodeStylesToPackageJson(),
             addSchematics(),
+            addNzLintRules(),
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
