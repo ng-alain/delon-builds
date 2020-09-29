@@ -70,7 +70,7 @@ function removePackageFromPackageJson(host, pkg, type = 'dependencies') {
         return host;
     if (!Array.isArray(pkg))
         pkg = [pkg];
-    pkg.forEach(p => delete json[type][p.substr(0, p.lastIndexOf('@'))]);
+    pkg.forEach(p => delete json[type][p.indexOf('@') !== -1 ? p.substr(0, p.lastIndexOf('@')) : p]);
     overwritePackage(host, json);
     return host;
 }
