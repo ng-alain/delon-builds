@@ -3524,13 +3524,20 @@
     }
 
     /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/currency/cn-currency.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
      * @see https://ng-alain.com/theme/currency
      */
     // tslint:disable-next-line:use-pipe-transform-interface
-    var CNCurrencyPipe = /** @class */ (function (_super) {
-        __extends(CNCurrencyPipe, _super);
-        function CNCurrencyPipe() {
-            return _super !== null && _super.apply(this, arguments) || this;
+    var CNCurrencyPipe = /** @class */ (function () {
+        /**
+         * @param {?} locale
+         */
+        function CNCurrencyPipe(locale) {
+            this.ngCurrencyPipe = new i1.CurrencyPipe(locale);
         }
         /**
          * @param {?} value
@@ -3542,13 +3549,24 @@
         CNCurrencyPipe.prototype.transform = function (value, currencyCode, display, digits) {
             if (currencyCode === void 0) { currencyCode = '￥'; }
             if (display === void 0) { display = 'code'; }
-            return _super.prototype.transform.call(this, value, currencyCode, ( /** @type {?} */(display)), digits);
+            return this.ngCurrencyPipe.transform(value, currencyCode, ( /** @type {?} */(display)), digits);
         };
         return CNCurrencyPipe;
-    }(i1.CurrencyPipe));
+    }());
     CNCurrencyPipe.decorators = [
         { type: i0.Pipe, args: [{ name: '_currency' },] }
     ];
+    /** @nocollapse */
+    CNCurrencyPipe.ctorParameters = function () { return [
+        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CNCurrencyPipe.prototype.ngCurrencyPipe;
+    }
 
     /**
      * @fileoverview added by tsickle

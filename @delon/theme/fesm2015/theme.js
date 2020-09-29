@@ -1,4 +1,4 @@
-import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
 import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
@@ -3608,7 +3608,13 @@ if (false) {
  * @see https://ng-alain.com/theme/currency
  */
 // tslint:disable-next-line:use-pipe-transform-interface
-class CNCurrencyPipe extends CurrencyPipe {
+class CNCurrencyPipe {
+    /**
+     * @param {?} locale
+     */
+    constructor(locale) {
+        this.ngCurrencyPipe = new CurrencyPipe(locale);
+    }
     /**
      * @param {?} value
      * @param {?=} currencyCode
@@ -3617,12 +3623,23 @@ class CNCurrencyPipe extends CurrencyPipe {
      * @return {?}
      */
     transform(value, currencyCode = '￥', display = 'code', digits) {
-        return super.transform(value, currencyCode, (/** @type {?} */ (display)), digits);
+        return this.ngCurrencyPipe.transform(value, currencyCode, (/** @type {?} */ (display)), digits);
     }
 }
 CNCurrencyPipe.decorators = [
     { type: Pipe, args: [{ name: '_currency' },] }
 ];
+/** @nocollapse */
+CNCurrencyPipe.ctorParameters = () => [
+    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CNCurrencyPipe.prototype.ngCurrencyPipe;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -3877,7 +3894,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0');
+const VERSION = new Version('10.0.0-fe287c14');
 
 /**
  * @fileoverview added by tsickle

@@ -1,6 +1,6 @@
 {
   "name": "ng-alain",
-  "version": "10.0.0",
+  "version": "10.0.0-fe287c14",
   "description": "Schematics specific to ng-alain",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
