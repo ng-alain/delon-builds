@@ -2506,6 +2506,7 @@
         STComponent.prototype.loadPageData = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var result, error_1;
+                var _this = this;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0:
@@ -2532,6 +2533,13 @@
                             this._data = ( /** @type {?} */(result.list));
                             this._statistical = ( /** @type {?} */(result.statistical));
                             this.changeEmit('loaded', result.list);
+                            // Should be re-render in next tike when using virtual scroll
+                            // https://github.com/ng-alain/ng-alain/issues/1836
+                            if (this.cdkVirtualScrollViewport) {
+                                Promise.resolve().then(( /**
+                                 * @return {?}
+                                 */function () { return _this.cdkVirtualScrollViewport.checkViewportSize(); }));
+                            }
                             return [2 /*return*/, this._refCheck()];
                         case 3:
                             error_1 = _a.sent();
@@ -2629,7 +2637,15 @@
             /** @type {?} */
             var el = ( /** @type {?} */(this.el.nativeElement));
             if (this.scroll) {
-                ( /** @type {?} */(el.querySelector('.ant-table-body'))).scrollTo(0, 0);
+                if (this.cdkVirtualScrollViewport) {
+                    this.cdkVirtualScrollViewport.scrollTo({
+                        top: 0,
+                        left: 0,
+                    });
+                }
+                else {
+                    ( /** @type {?} */(el.querySelector('.ant-table-body'))).scrollTo(0, 0);
+                }
                 return;
             }
             el.scrollIntoView();
