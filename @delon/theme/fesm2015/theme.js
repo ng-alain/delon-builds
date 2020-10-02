@@ -2883,7 +2883,7 @@ class DrawerHelper {
             const defaultOptions = {
                 nzContent: comp,
                 nzContentParams: params,
-                nzTitle: title,
+                nzTitle: (/** @type {?} */ (title)),
             };
             if (typeof size === 'number') {
                 defaultOptions[(/** @type {?} */ (drawerOptions)).nzPlacement === 'top' || (/** @type {?} */ (drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = (/** @type {?} */ (options)).size;
@@ -3894,7 +3894,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.0-ccddfd97');
+const VERSION = new Version('10.0.1');
 
 /**
  * @fileoverview added by tsickle

@@ -102,7 +102,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions): (host: Tree)
       [
         `ng-alain@${VERSION}`,
         `ng-alain-codelyzer@^0.0.1`,
-        `ng-alain-plugin-theme@^10.0.2`,
+        `ng-alain-plugin-theme@^10.0.3`,
         `@delon/testing@${VERSION}`,
       ],
       'devDependencies',
@@ -165,9 +165,9 @@ function addCodeStylesToPackageJson(): (host: Tree) => Tree {
       [
         `tslint-config-prettier@^1.18.0`,
         `tslint-language-service@^0.9.9`,
-        `pretty-quick@^3.0.0`,
+        `pretty-quick@^3.0.2`,
         `husky@^4.2.3`,
-        `prettier@^2.0.5`,
+        `prettier@^2.1.2`,
         `stylelint@^13.7.0`,
         `stylelint-config-prettier@^8.0.2`,
         `stylelint-config-rational-order@^0.1.2`,

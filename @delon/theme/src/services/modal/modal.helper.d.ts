@@ -1,3 +1,5 @@
+import { TemplateRef, Type } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 import { Observable } from 'rxjs';
 export interface ModalHelperOptions {
@@ -32,7 +34,7 @@ export declare class ModalHelper {
      * // 关闭
      * this.NzModalRef.destroy();
      */
-    create(comp: any, params?: any, options?: ModalHelperOptions): Observable<any>;
+    create(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<NzSafeAny>;
     /**
      * 构建静态框，点击蒙层不允许关闭
      *
@@ -49,7 +51,7 @@ export declare class ModalHelper {
      * // 关闭
      * this.NzModalRef.destroy();
      */
-    createStatic(comp: any, params?: any, options?: ModalHelperOptions): Observable<any>;
+    createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<any>;
     /**
      * 打开对话框
      * @param comp 组件
@@ -65,7 +67,7 @@ export declare class ModalHelper {
      * // 关闭
      * this.NzModalRef.destroy();
      */
-    open(comp: any, params?: any, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
+    open(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
     /**
      * 静态框，点击蒙层不允许关闭
      * @param comp 组件
@@ -81,5 +83,5 @@ export declare class ModalHelper {
      * // 关闭
      * this.NzModalRef.destroy();
      */
-    static(comp: any, params?: any, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
+    static(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
 }
