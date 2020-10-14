@@ -117,6 +117,11 @@ if (false) {
      * @type {?|undefined}
      */
     MenuIcon.prototype.iconfont;
+    /**
+     * Rotate degrees
+     * @type {?|undefined}
+     */
+    MenuIcon.prototype.rotate;
 }
 /**
  * @record
@@ -3894,7 +3899,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.1-1dcdaf2c');
+const VERSION = new Version('10.0.1-e169d461');
 
 /**
  * @fileoverview added by tsickle

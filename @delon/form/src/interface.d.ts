@@ -74,3 +74,11 @@ export interface SFButtonIcon {
 }
 export interface SFRenderButton extends SFHorizontalLayoutSchema, SFRenderSchema {
 }
+export interface SFIcon {
+    type?: string;
+    theme?: 'fill' | 'outline' | 'twotone';
+    twotoneColor?: string;
+    rotate?: number;
+    spin?: boolean;
+    iconfont?: string;
+}

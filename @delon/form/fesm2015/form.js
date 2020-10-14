@@ -4634,7 +4634,7 @@ class TagWidget extends ControlUIWidget {
 TagWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-tag',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    {{i.label}}\n  </nz-tag>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #icon let-i>\n    <i nz-icon [nzType]=\"i.type\" [nzTheme]=\"i.theme\" [nzTwotoneColor]=\"i.twotoneColor\" [nzRotate]=\"i.rotate\" [nzIconfont]=\"i.iconfont\" [nzSpin]=\"i.spin\"></i>\n  </ng-template>\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    <ng-container *ngIf=\"i.prefixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.prefixIcon }\"></ng-template>\n    </ng-container>\n    <span>{{i.label}}</span>\n    <ng-container *ngIf=\"i.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.suffixIcon }\"></ng-template>\n    </ng-container>\n  </nz-tag>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
@@ -6019,6 +6019,24 @@ if (false) {
  * @record
  */
 function SFRenderButton() { }
+/**
+ * @record
+ */
+function SFIcon() { }
+if (false) {
+    /** @type {?|undefined} */
+    SFIcon.prototype.type;
+    /** @type {?|undefined} */
+    SFIcon.prototype.theme;
+    /** @type {?|undefined} */
+    SFIcon.prototype.twotoneColor;
+    /** @type {?|undefined} */
+    SFIcon.prototype.rotate;
+    /** @type {?|undefined} */
+    SFIcon.prototype.spin;
+    /** @type {?|undefined} */
+    SFIcon.prototype.iconfont;
+}
 
 /**
  * @fileoverview added by tsickle
