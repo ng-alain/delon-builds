@@ -1518,7 +1518,7 @@
             params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
             /** @type {?} */
             var reqOptions = {
-                params: new http.HttpParams({ fromObject: params }),
+                params: params,
                 body: req.body,
                 headers: req.headers,
             };
@@ -1530,6 +1530,9 @@
             }
             if (typeof req.process === 'function') {
                 reqOptions = req.process(reqOptions);
+            }
+            if (!(reqOptions.params instanceof http.HttpParams)) {
+                reqOptions.params = new http.HttpParams({ fromObject: reqOptions.params });
             }
             return this.http.request(method, url, reqOptions);
         };

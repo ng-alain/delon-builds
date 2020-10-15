@@ -2554,7 +2554,7 @@ class STDataSource {
         params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
         /** @type {?} */
         let reqOptions = {
-            params: new HttpParams({ fromObject: params }),
+            params,
             body: req.body,
             headers: req.headers,
         };
@@ -2566,6 +2566,9 @@ class STDataSource {
         }
         if (typeof req.process === 'function') {
             reqOptions = req.process(reqOptions);
+        }
+        if (!(reqOptions.params instanceof HttpParams)) {
+            reqOptions.params = new HttpParams({ fromObject: reqOptions.params });
         }
         return this.http.request(method, url, reqOptions);
     }
