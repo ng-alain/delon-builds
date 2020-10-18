@@ -745,7 +745,7 @@
                  */function (/**
                  * @param {?} w
                  * @return {?}
-                 */ w) { return _this.acl.can(w.acl); }));
+                 */ w) { return _this.acl.can(( /** @type {?} */(w.acl))); }));
             }
             if (( /** @type {?} */(res.menus)).length <= 0) {
                 res = null;
@@ -961,7 +961,7 @@
                      */function (/**
                      * @param {?} w
                      * @return {?}
-                     */ w) { return _this.acl.can(w.acl); }));
+                     */ w) { return _this.acl.can(( /** @type {?} */(w.acl))); }));
                 }
                 // radio
                 if (item.type === 'radio') {

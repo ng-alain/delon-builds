@@ -1830,7 +1830,7 @@ class STColumnSource {
              * @param {?} w
              * @return {?}
              */
-            w => this.acl.can(w.acl)));
+            w => this.acl.can((/** @type {?} */ (w.acl)))));
         }
         if ((/** @type {?} */ (res.menus)).length <= 0) {
             res = null;
@@ -2027,7 +2027,7 @@ class STColumnSource {
                  * @param {?} w
                  * @return {?}
                  */
-                w => this.acl.can(w.acl)));
+                w => this.acl.can((/** @type {?} */ (w.acl)))));
             }
             // radio
             if (item.type === 'radio') {
