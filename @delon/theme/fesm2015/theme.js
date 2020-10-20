@@ -228,42 +228,28 @@ if (false) {
      * @type {?|undefined}
      */
     Menu.prototype.children;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._id;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._parent;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._depth;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._hidden;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._selected;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._open;
-    /**
-     * \@inner Not recommended
-     * @type {?|undefined}
-     */
-    Menu.prototype._aclResult;
     /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * \@inner Just only inner type
+ * @record
+ */
+function MenuInner() { }
+if (false) {
+    /** @type {?|undefined} */
+    MenuInner.prototype._id;
+    /** @type {?|undefined} */
+    MenuInner.prototype._parent;
+    /** @type {?|undefined} */
+    MenuInner.prototype._depth;
+    /** @type {?|undefined} */
+    MenuInner.prototype._hidden;
+    /** @type {?|undefined} */
+    MenuInner.prototype._selected;
+    /** @type {?|undefined} */
+    MenuInner.prototype._open;
+    /** @type {?|undefined} */
+    MenuInner.prototype._aclResult;
 }
 
 /**
@@ -628,14 +614,14 @@ class MenuService {
         if (!url)
             return;
         /** @type {?} */
-        let findItem = this.getHit(this.data, url, recursive, (/**
+        let findItem = (/** @type {?} */ (this.getHit(this.data, url, recursive, (/**
          * @param {?} i
          * @return {?}
          */
-        i => {
+        (i) => {
             i._selected = false;
             i._open = false;
-        }));
+        }))));
         if (findItem == null)
             return;
         do {
@@ -656,7 +642,7 @@ class MenuService {
         /** @type {?} */
         const ret = [];
         /** @type {?} */
-        let item = this.getHit(this.data, url, recursive);
+        let item = (/** @type {?} */ (this.getHit(this.data, url, recursive)));
         if (!item)
             return ret;
         do {
@@ -3899,7 +3885,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.0.2-7adf38c4');
+const VERSION = new Version('10.0.2-9fc2acfb');
 
 /**
  * @fileoverview added by tsickle

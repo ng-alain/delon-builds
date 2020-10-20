@@ -393,10 +393,7 @@
             this.menuSrv.visit(this.list, ( /**
              * @param {?} i
              * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) {
+             */function (i) {
                 if (!item && i._id === id) {
                     item = i;
                 }
@@ -647,10 +644,7 @@
                 _this.list = menuSrv.menus.filter(( /**
                  * @param {?} w
                  * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w._hidden !== true; }));
+                 */function (w) { return w._hidden !== true; }));
                 cdr.detectChanges();
             }));
             router$1.events.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**

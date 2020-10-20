@@ -765,16 +765,13 @@
             if (!url)
                 return;
             /** @type {?} */
-            var findItem = this.getHit(this.data, url, recursive, ( /**
+            var findItem = ( /** @type {?} */(this.getHit(this.data, url, recursive, ( /**
              * @param {?} i
              * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) {
+             */function (i) {
                 i._selected = false;
                 i._open = false;
-            }));
+            }))));
             if (findItem == null)
                 return;
             do {
@@ -796,7 +793,7 @@
             /** @type {?} */
             var ret = [];
             /** @type {?} */
-            var item = this.getHit(this.data, url, recursive);
+            var item = ( /** @type {?} */(this.getHit(this.data, url, recursive)));
             if (!item)
                 return ret;
             do {

@@ -90,7 +90,7 @@ class SidebarNavComponent {
          * @param {?} i
          * @return {?}
          */
-        i => {
+        (i) => {
             if (!item && i._id === id) {
                 item = i;
             }
@@ -344,7 +344,7 @@ class SidebarNavComponent {
              * @param {?} w
              * @return {?}
              */
-            w => w._hidden !== true));
+            (w) => w._hidden !== true));
             cdr.detectChanges();
         }));
         router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
