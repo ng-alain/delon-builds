@@ -475,6 +475,7 @@
              * @return {?}
              */ g) { return g.color('name', colors); }));
             _chart.changeData(data);
+            _chart.render();
             this.ngZone.run(( /**
              * @return {?}
              */function () { return _this.genLegend(); }));

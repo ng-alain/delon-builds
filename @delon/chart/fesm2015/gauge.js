@@ -168,6 +168,7 @@ class G2GaugeComponent {
             offsetY: 15,
         });
         _chart.changeData(data);
+        _chart.render();
     }
     /**
      * @return {?}

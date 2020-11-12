@@ -138,6 +138,7 @@ class G2MiniBarComponent {
         _chart.height = height;
         _chart.padding = padding;
         _chart.changeData(data);
+        _chart.render();
     }
     /**
      * @return {?}

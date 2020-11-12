@@ -165,6 +165,7 @@ class G2MiniAreaComponent {
         _chart.animate(animate);
         _chart.padding = padding;
         _chart.changeData(data);
+        _chart.render();
     }
     /**
      * @return {?}

@@ -165,6 +165,7 @@ class G2RadarComponent {
          */
         g => g.color('name', colors)));
         _chart.changeData(data);
+        _chart.render();
         this.ngZone.run((/**
          * @return {?}
          */

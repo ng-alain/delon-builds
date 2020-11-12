@@ -445,6 +445,7 @@
             _chart.height = height;
             _chart.padding = padding;
             _chart.changeData(data);
+            _chart.render();
         };
         /**
          * @return {?}

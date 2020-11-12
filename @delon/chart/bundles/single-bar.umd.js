@@ -407,6 +407,7 @@
              * @return {?}
              */function (val) { return (val > 0 ? plusColor : minusColor); })).size(barSize);
             _chart.changeData([{ value: value }]);
+            _chart.render();
         };
         /**
          * @return {?}
