@@ -195,6 +195,26 @@ class G2TimelineComponent {
              */
             () => this.clickItem.emit({ item: records[0]._origin, ev })));
         }));
+        chart.on(`legend-item:click`, (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        (ev) => {
+            var _a;
+            /** @type {?} */
+            const item = (_a = ev === null || ev === void 0 ? void 0 : ev.target) === null || _a === void 0 ? void 0 : _a.get('delegateObject').item;
+            /** @type {?} */
+            const id = item === null || item === void 0 ? void 0 : item.id;
+            /** @type {?} */
+            const line = chart.geometries.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w.getAttribute('position').getFields()[1] === id));
+            if (line) {
+                line.changeVisible(!item.unchecked);
+            }
+        }));
         this.attachChart();
     }
     /**
@@ -224,7 +244,7 @@ class G2TimelineComponent {
             id => {
                 /** @type {?} */
                 const key = `y${id}`;
-                return (/** @type {?} */ ({ name: titleMap[key], value: titleMap[key], marker: { style: { fill: colorMap[key] } } }));
+                return (/** @type {?} */ ({ id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } }));
             })),
         });
         // border

@@ -448,7 +448,7 @@
          */
         G2TimelineComponent.prototype.install = function () {
             var _this = this;
-            var _a = this, node = _a.node, height = _a.height, padding = _a.padding, slider = _a.slider, maxAxis = _a.maxAxis, theme = _a.theme, maskSlider = _a.maskSlider;
+            var _b = this, node = _b.node, height = _b.height, padding = _b.padding, slider = _b.slider, maxAxis = _b.maxAxis, theme = _b.theme, maskSlider = _b.maskSlider;
             /** @type {?} */
             var chart = (this._chart = new g2.Chart({
                 container: node.nativeElement,
@@ -498,6 +498,27 @@
                  * @return {?}
                  */function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
             }));
+            chart.on("legend-item:click", ( /**
+             * @param {?} ev
+             * @return {?}
+             */function (ev) {
+                var _a;
+                /** @type {?} */
+                var item = (_a = ev === null || ev === void 0 ? void 0 : ev.target) === null || _a === void 0 ? void 0 : _a.get('delegateObject').item;
+                /** @type {?} */
+                var id = item === null || item === void 0 ? void 0 : item.id;
+                /** @type {?} */
+                var line = chart.geometries.find(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.getAttribute('position').getFields()[1] === id; }));
+                if (line) {
+                    line.changeVisible(!item.unchecked);
+                }
+            }));
             this.attachChart();
         };
         /**
@@ -505,7 +526,7 @@
          * @return {?}
          */
         G2TimelineComponent.prototype.attachChart = function () {
-            var _a = this, _chart = _a._chart, height = _a.height, padding = _a.padding, mask = _a.mask, titleMap = _a.titleMap, position = _a.position, colorMap = _a.colorMap, borderWidth = _a.borderWidth, maxAxis = _a.maxAxis;
+            var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, mask = _b.mask, titleMap = _b.titleMap, position = _b.position, colorMap = _b.colorMap, borderWidth = _b.borderWidth, maxAxis = _b.maxAxis;
             /** @type {?} */
             var data = __spread(this.data);
             if (!_chart || !data || data.length <= 0)
@@ -528,7 +549,7 @@
                  */ id) {
                     /** @type {?} */
                     var key = "y" + id;
-                    return ( /** @type {?} */({ name: titleMap[key], value: titleMap[key], marker: { style: { fill: colorMap[key] } } }));
+                    return ( /** @type {?} */({ id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } }));
                 })),
             });
             // border
