@@ -13,6 +13,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     private clsMap;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
+    optionalHelpColor: string;
     label: string | TemplateRef<void>;
     unit: string | TemplateRef<void>;
     col: number;

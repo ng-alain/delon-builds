@@ -27,6 +27,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     _error: string | TemplateRef<void>;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
+    optionalHelpColor: string;
     set error(val: SEErrorType);
     extra: string | TemplateRef<void>;
     label: string | TemplateRef<void>;
