@@ -32,7 +32,7 @@
             set: function (value) {
                 this.config = {
                     format: "HH:mm:ss",
-                    stopTime: typeof value === 'number' ? addSeconds__default['default'](new Date(), value).valueOf() : +format__default['default'](value, 'x'),
+                    stopTime: typeof value === 'number' ? addSeconds__default['default'](new Date(), value).valueOf() : +format__default['default'](value, 't'),
                 };
             },
             enumerable: false,
