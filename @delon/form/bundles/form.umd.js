@@ -2513,7 +2513,6 @@
             inFn(_schema, _schema, this.ui, this.ui, this._ui);
             // cond
             resolveIfSchema(_schema, this._ui);
-            console.log(_schema, this._ui);
             this._schema = _schema;
             di(this._ui, 'cover schema & ui', this._ui, _schema);
         };

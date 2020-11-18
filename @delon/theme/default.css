@@ -26659,6 +26659,7 @@ fieldset {
 .sf__inline .sf__item {
   display: inline-block;
   margin-bottom: 8px;
+  vertical-align: top;
 }
 .sf__inline .ant-form-inline > .sf__item {
   margin-bottom: 0;
