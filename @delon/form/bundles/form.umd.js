@@ -456,40 +456,6 @@
         return schema;
     }
     /**
-     * @param {?} _schema
-     * @param {?} _ui
-     * @return {?}
-     */
-    function resolveIfSchema(_schema, _ui) {
-        /** @type {?} */
-        var fn = ( /**
-         * @param {?} schema
-         * @param {?} ui
-         * @return {?}
-         */function (schema, ui) {
-            resolveIf(schema, ui);
-            Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                /** @type {?} */
-                var property = ( /** @type {?} */(schema.properties))[key];
-                /** @type {?} */
-                var uiKey = "$" + key;
-                if (property.items) {
-                    fn(property.items, ui[uiKey].$items);
-                }
-                if (property.properties) {
-                    fn(property, ui[uiKey]);
-                }
-            }));
-        });
-        fn(_schema, _ui);
-    }
-    /**
      * @param {?} schema
      * @param {?} ui
      * @return {?}
@@ -539,7 +505,7 @@
          * @param {?} key
          * @return {?}
          */ key) { return (ui["$" + key].visibleIf = visibleIf); }));
-        if (hasElse) {
+        if (hasElse)
             ( /** @type {?} */(( /** @type {?} */(schema.else)).required)).forEach(( /**
              * @param {?} key
              * @return {?}
@@ -547,7 +513,6 @@
              * @param {?} key
              * @return {?}
              */ key) { return (ui["$" + key].visibleIf = visibleElse); }));
-        }
         return schema;
     }
     /**
@@ -2498,6 +2463,32 @@
                     }
                 }));
             });
+            /** @type {?} */
+            var inIfFn = ( /**
+             * @param {?} schema
+             * @param {?} ui
+             * @return {?}
+             */function (schema, ui) {
+                Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
+                 * @param {?} key
+                 * @return {?}
+                 */function (/**
+                 * @param {?} key
+                 * @return {?}
+                 */ key) {
+                    /** @type {?} */
+                    var property = ( /** @type {?} */(schema.properties))[key];
+                    /** @type {?} */
+                    var uiKey = "$" + key;
+                    resolveIf(property, ui[uiKey]);
+                    if (property.items) {
+                        inIfFn(property.items, ui[uiKey].$items);
+                    }
+                    if (property.properties) {
+                        inIfFn(property, ui[uiKey]);
+                    }
+                }));
+            });
             if (this.ui == null)
                 this.ui = {};
             this._defUi = Object.assign(Object.assign(Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
@@ -2512,8 +2503,8 @@
             this._ui = Object.assign({}, this._defUi);
             inFn(_schema, _schema, this.ui, this.ui, this._ui);
             // cond
-            resolveIfSchema(_schema, this._ui);
-            console.log(_schema, this._ui);
+            resolveIf(_schema, this._ui);
+            inIfFn(_schema, this._ui);
             this._schema = _schema;
             di(this._ui, 'cover schema & ui', this._ui, _schema);
         };
@@ -3284,7 +3275,7 @@
     SFItemWrapComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-item-wrap',
-                    template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n",
+                    template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n",
                     animations: [animation.helpMotion],
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
@@ -6070,7 +6061,7 @@
     exports.isDateFns = isDateFns;
     exports.mergeConfig = mergeConfig;
     exports.orderProperties = orderProperties;
-    exports.resolveIfSchema = resolveIfSchema;
+    exports.resolveIf = resolveIf;
     exports.retrieveSchema = retrieveSchema;
     exports.toBool = toBool;
     exports.useFactory = useFactory;
