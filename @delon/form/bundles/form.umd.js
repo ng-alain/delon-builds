@@ -456,6 +456,40 @@
         return schema;
     }
     /**
+     * @param {?} _schema
+     * @param {?} _ui
+     * @return {?}
+     */
+    function resolveIfSchema(_schema, _ui) {
+        /** @type {?} */
+        var fn = ( /**
+         * @param {?} schema
+         * @param {?} ui
+         * @return {?}
+         */function (schema, ui) {
+            resolveIf(schema, ui);
+            Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                /** @type {?} */
+                var property = ( /** @type {?} */(schema.properties))[key];
+                /** @type {?} */
+                var uiKey = "$" + key;
+                if (property.items) {
+                    fn(property.items, ui[uiKey].$items);
+                }
+                if (property.properties) {
+                    fn(property, ui[uiKey]);
+                }
+            }));
+        });
+        fn(_schema, _ui);
+    }
+    /**
      * @param {?} schema
      * @param {?} ui
      * @return {?}
@@ -505,7 +539,7 @@
          * @param {?} key
          * @return {?}
          */ key) { return (ui["$" + key].visibleIf = visibleIf); }));
-        if (hasElse)
+        if (hasElse) {
             ( /** @type {?} */(( /** @type {?} */(schema.else)).required)).forEach(( /**
              * @param {?} key
              * @return {?}
@@ -513,6 +547,7 @@
              * @param {?} key
              * @return {?}
              */ key) { return (ui["$" + key].visibleIf = visibleElse); }));
+        }
         return schema;
     }
     /**
@@ -2463,32 +2498,6 @@
                     }
                 }));
             });
-            /** @type {?} */
-            var inIfFn = ( /**
-             * @param {?} schema
-             * @param {?} ui
-             * @return {?}
-             */function (schema, ui) {
-                Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (/**
-                 * @param {?} key
-                 * @return {?}
-                 */ key) {
-                    /** @type {?} */
-                    var property = ( /** @type {?} */(schema.properties))[key];
-                    /** @type {?} */
-                    var uiKey = "$" + key;
-                    resolveIf(property, ui[uiKey]);
-                    if (property.items) {
-                        inIfFn(property.items, ui[uiKey].$items);
-                    }
-                    if (property.properties) {
-                        inIfFn(property, ui[uiKey]);
-                    }
-                }));
-            });
             if (this.ui == null)
                 this.ui = {};
             this._defUi = Object.assign(Object.assign(Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
@@ -2503,8 +2512,8 @@
             this._ui = Object.assign({}, this._defUi);
             inFn(_schema, _schema, this.ui, this.ui, this._ui);
             // cond
-            resolveIf(_schema, this._ui);
-            inIfFn(_schema, this._ui);
+            resolveIfSchema(_schema, this._ui);
+            console.log(_schema, this._ui);
             this._schema = _schema;
             di(this._ui, 'cover schema & ui', this._ui, _schema);
         };
@@ -6061,7 +6070,7 @@
     exports.isDateFns = isDateFns;
     exports.mergeConfig = mergeConfig;
     exports.orderProperties = orderProperties;
-    exports.resolveIf = resolveIf;
+    exports.resolveIfSchema = resolveIfSchema;
     exports.retrieveSchema = retrieveSchema;
     exports.toBool = toBool;
     exports.useFactory = useFactory;

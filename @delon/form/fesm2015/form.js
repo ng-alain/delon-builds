@@ -167,6 +167,39 @@ function retrieveSchema(schema, definitions = {}) {
     return schema;
 }
 /**
+ * @param {?} _schema
+ * @param {?} _ui
+ * @return {?}
+ */
+function resolveIfSchema(_schema, _ui) {
+    /** @type {?} */
+    const fn = (/**
+     * @param {?} schema
+     * @param {?} ui
+     * @return {?}
+     */
+    (schema, ui) => {
+        resolveIf(schema, ui);
+        Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
+            /** @type {?} */
+            const property = (/** @type {?} */ (schema.properties))[key];
+            /** @type {?} */
+            const uiKey = `$${key}`;
+            if (property.items) {
+                fn(property.items, ui[uiKey].$items);
+            }
+            if (property.properties) {
+                fn(property, ui[uiKey]);
+            }
+        }));
+    });
+    fn(_schema, _ui);
+}
+/**
  * @param {?} schema
  * @param {?} ui
  * @return {?}
@@ -213,12 +246,13 @@ function resolveIf(schema, ui) {
      * @return {?}
      */
     key => (ui[`$${key}`].visibleIf = visibleIf)));
-    if (hasElse)
+    if (hasElse) {
         (/** @type {?} */ ((/** @type {?} */ (schema.else)).required)).forEach((/**
          * @param {?} key
          * @return {?}
          */
         key => (ui[`$${key}`].visibleIf = visibleElse)));
+    }
     return schema;
 }
 /**
@@ -2066,31 +2100,6 @@ class SFComponent {
                 }
             }));
         });
-        /** @type {?} */
-        const inIfFn = (/**
-         * @param {?} schema
-         * @param {?} ui
-         * @return {?}
-         */
-        (schema, ui) => {
-            Object.keys((/** @type {?} */ (schema.properties))).forEach((/**
-             * @param {?} key
-             * @return {?}
-             */
-            key => {
-                /** @type {?} */
-                const property = (/** @type {?} */ (schema.properties))[key];
-                /** @type {?} */
-                const uiKey = `$${key}`;
-                resolveIf(property, ui[uiKey]);
-                if (property.items) {
-                    inIfFn(property.items, ui[uiKey].$items);
-                }
-                if (property.properties) {
-                    inIfFn(property, ui[uiKey]);
-                }
-            }));
-        });
         if (this.ui == null)
             this.ui = {};
         this._defUi = Object.assign(Object.assign(Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
@@ -2105,8 +2114,8 @@ class SFComponent {
         this._ui = Object.assign({}, this._defUi);
         inFn(_schema, _schema, this.ui, this.ui, this._ui);
         // cond
-        resolveIf(_schema, this._ui);
-        inIfFn(_schema, this._ui);
+        resolveIfSchema(_schema, this._ui);
+        console.log(_schema, this._ui);
         this._schema = _schema;
         di(this._ui, 'cover schema & ui', this._ui, _schema);
     }
@@ -7687,5 +7696,5 @@ function SFCustomWidgetSchema() { }
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, resolveIf, retrieveSchema, toBool, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, resolveIfSchema, retrieveSchema, toBool, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
 //# sourceMappingURL=form.js.map
