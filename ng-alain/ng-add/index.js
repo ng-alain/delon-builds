@@ -4,7 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const json_1 = require("../utils/json");
-const V = 10;
+const V = 11;
 function genRules(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);
@@ -33,9 +33,6 @@ function genRules(options) {
             packageManager: 'yarn',
         }));
     }
-    if (options.hmr) {
-        rules.push(schematics_1.schematic('plugin', { name: 'hmr', type: 'add' }));
-    }
     return schematics_1.chain(rules);
 }
 function getFiles() {
@@ -60,7 +57,7 @@ function default_1(options) {
             ngCoreVersion = ngCoreVersion.substr(1);
         }
         if (!ngCoreVersion.startsWith(V + '.')) {
-            throw new Error(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}.x] (or via npm: [npm install -g @angular/cli@${V}.x])`);
+            throw new Error(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}] (or via npm: [npm install -g @angular/cli@${V}])`);
         }
         return genRules(options);
     };

@@ -7,7 +7,6 @@ const plugin_asdf_1 = require("./plugin.asdf");
 const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
 const plugin_docker_1 = require("./plugin.docker");
-const plugin_hmr_1 = require("./plugin.hmr");
 const plugin_icon_1 = require("./plugin.icon");
 const plugin_ie_1 = require("./plugin.ie");
 const plugin_network_env_1 = require("./plugin.network-env");
@@ -35,9 +34,6 @@ function default_1(options) {
                 break;
             case 'networkEnv':
                 rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
-                break;
-            case 'hmr':
-                rules.push(plugin_hmr_1.pluginHmr(pluginOptions), installPackages());
                 break;
             case 'docker':
                 rules.push(plugin_docker_1.pluginDocker(pluginOptions));

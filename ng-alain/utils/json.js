@@ -120,7 +120,6 @@ function addAllowedCommonJsDependencies(host) {
     [
         // 'codesandbox/lib/api/define',
         'hammerjs',
-        '@angularclass/hmr',
         'file-saver',
         '@ant-design/colors',
         '@antv/path-util',
