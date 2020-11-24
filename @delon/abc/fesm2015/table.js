@@ -2468,60 +2468,68 @@ class STDataSource {
      * @return {?}
      */
     get(item, col, idx) {
-        if (col.format) {
-            /** @type {?} */
-            const formatRes = col.format(item, col, idx) || '';
-            if (formatRes && ~formatRes.indexOf('</')) {
-                return { text: formatRes, _text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
-            }
-            return { text: formatRes, _text: formatRes, org: formatRes };
-        }
-        /** @type {?} */
-        const value = deepGet(item, (/** @type {?} */ (col.index)), col.default);
-        /** @type {?} */
-        let text = value;
-        /** @type {?} */
-        let color;
-        switch (col.type) {
-            case 'no':
-                text = this.getNoIndex(item, col, idx);
-                break;
-            case 'img':
-                text = value ? `<img src="${value}" class="img">` : '';
-                break;
-            case 'number':
-                text = this.numberPipe.transform(value, col.numberDigits);
-                break;
-            case 'currency':
-                text = this.currentyPipe.transform(value);
-                break;
-            case 'date':
-                text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
-                break;
-            case 'yn':
-                text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)), false);
-                break;
-            case 'enum':
-                text = (/** @type {?} */ (col.enum))[value];
-                break;
-            case 'tag':
-            case 'badge':
+        try {
+            if (col.format) {
                 /** @type {?} */
-                const data = col.type === 'tag' ? col.tag : col.badge;
-                if (data && data[text]) {
+                const formatRes = col.format(item, col, idx) || '';
+                if (formatRes && ~formatRes.indexOf('</')) {
+                    return { text: formatRes, _text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
+                }
+                return { text: formatRes, _text: formatRes, org: formatRes };
+            }
+            /** @type {?} */
+            const value = deepGet(item, (/** @type {?} */ (col.index)), col.default);
+            /** @type {?} */
+            let text = value;
+            /** @type {?} */
+            let color;
+            switch (col.type) {
+                case 'no':
+                    text = this.getNoIndex(item, col, idx);
+                    break;
+                case 'img':
+                    text = value ? `<img src="${value}" class="img">` : '';
+                    break;
+                case 'number':
+                    text = this.numberPipe.transform(value, col.numberDigits);
+                    break;
+                case 'currency':
+                    text = this.currentyPipe.transform(value);
+                    break;
+                case 'date':
+                    text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
+                    break;
+                case 'yn':
+                    text = this.ynPipe.transform(value === (/** @type {?} */ (col.yn)).truth, (/** @type {?} */ ((/** @type {?} */ (col.yn)).yes)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).no)), (/** @type {?} */ ((/** @type {?} */ (col.yn)).mode)), false);
+                    break;
+                case 'enum':
+                    text = (/** @type {?} */ (col.enum))[value];
+                    break;
+                case 'tag':
+                case 'badge':
                     /** @type {?} */
-                    const dataItem = data[text];
-                    text = dataItem.text;
-                    color = dataItem.color;
-                }
-                else {
-                    text = '';
-                }
-                break;
+                    const data = col.type === 'tag' ? col.tag : col.badge;
+                    if (data && data[text]) {
+                        /** @type {?} */
+                        const dataItem = data[text];
+                        text = dataItem.text;
+                        color = dataItem.color;
+                    }
+                    else {
+                        text = '';
+                    }
+                    break;
+            }
+            if (text == null)
+                text = '';
+            return { text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color };
         }
-        if (text == null)
-            text = '';
-        return { text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color };
+        catch (ex) {
+            /** @type {?} */
+            const text = `INVALID DATA`;
+            console.error(`Failed to get data`, item, col, ex);
+            return { text, _text: this.dom.bypassSecurityTrustHtml(text), org: text };
+        }
     }
     /**
      * @private
