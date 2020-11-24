@@ -64,7 +64,7 @@ export function pluginHmr(options: PluginOptions): Rule {
     // 1. add package
     (options.type === 'add' ? addPackageToPackageJson : removePackageFromPackageJson)(
       host,
-      ['@angularclass/hmr@^3.0.0'],
+      ['@angularclass/hmr@undefined'],
       'devDependencies',
     );
     // 2. add run scripts
