@@ -74,7 +74,9 @@ function fixHmr(tree, context) {
     // 3、修改 package.json 命令行 `-c=hmr` 为 `--hmr`
     const packageJson = json_1.getPackage(tree);
     delete packageJson.devDependencies['@angularclass/hmr'];
-    packageJson.scripts.hmr = packageJson.scripts.hmr.replace(`-c=hmr`, `--hmr`);
+    if (packageJson.scripts.hmr) {
+        packageJson.scripts.hmr = packageJson.scripts.hmr.replace(`-c=hmr`, `--hmr`);
+    }
     json_1.overwritePackage(tree, packageJson);
     context.logger.info(`      ${color_1.colors.green('✓')} '-c=hmr' instead of '--hmr' in package.json`);
     // 4、修改 `main.ts` 并移除 `hmr.ts` 文件
