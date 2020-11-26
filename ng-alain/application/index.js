@@ -5,8 +5,6 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const path = require("path");
 const lang_config_1 = require("../core/lang.config");
-const alain_1 = require("../utils/alain");
-const contents_1 = require("../utils/contents");
 const file_1 = require("../utils/file");
 const html_1 = require("../utils/html");
 const json_1 = require("../utils/json");
@@ -20,7 +18,6 @@ function removeOrginalFiles() {
         [
             `${project.root}/README.md`,
             `${project.root}/tslint.json`,
-            `${project.sourceRoot}/main.ts`,
             `${project.sourceRoot}/environments/environment.prod.ts`,
             `${project.sourceRoot}/environments/environment.ts`,
             `${project.sourceRoot}/styles.less`,
@@ -32,11 +29,6 @@ function removeOrginalFiles() {
         ]
             .filter(p => host.exists(p))
             .forEach(p => host.delete(p));
-    };
-}
-function fixMain() {
-    return (host) => {
-        alain_1.tryAddFile(host, `${project.sourceRoot}/main.ts`, contents_1.HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
     };
 }
 function fixAngularJson(options) {
@@ -385,7 +377,6 @@ function default_1(options) {
             removeOrginalFiles(),
             addFilesToRoot(options),
             addCliTpl(),
-            fixMain(),
             forceLess(),
             addStyle(),
             fixLang(options),
