@@ -18,6 +18,7 @@ function removeOrginalFiles() {
         [
             `${project.root}/README.md`,
             `${project.root}/tslint.json`,
+            `${project.sourceRoot}/main.ts`,
             `${project.sourceRoot}/environments/environment.prod.ts`,
             `${project.sourceRoot}/environments/environment.ts`,
             `${project.sourceRoot}/styles.less`,
@@ -78,6 +79,7 @@ function addRunScriptToPackageJson() {
         if (json == null)
             return host;
         json.scripts.start = `ng s -o`;
+        json.scripts.hmr = `ng s -o --hmr`;
         json.scripts.build = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod`;
         json.scripts.analyze = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --stats-json`;
         json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;

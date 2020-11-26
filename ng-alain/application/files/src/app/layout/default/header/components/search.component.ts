@@ -9,7 +9,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'header-search',
@@ -64,11 +64,21 @@ export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.qIpt = this.el.nativeElement.querySelector('.ant-input') as HTMLInputElement;
-    this.search$.pipe(debounceTime(500), distinctUntilChanged()).subscribe((value) => {
-      this.options = value ? [value, value + value, value + value + value] : [];
-      this.loading = false;
-      this.cdr.detectChanges();
-    });
+    this.search$
+      .pipe(
+        debounceTime(500),
+        distinctUntilChanged(),
+        tap({
+          complete: () => {
+            this.loading = true;
+          },
+        }),
+      )
+      .subscribe((value) => {
+        this.options = value ? [value, value + value, value + value + value] : [];
+        this.loading = false;
+        this.cdr.detectChanges();
+      });
   }
 
   qFocus(): void {
@@ -80,11 +90,7 @@ export class HeaderSearchComponent implements AfterViewInit, OnDestroy {
     this.searchToggled = false;
   }
 
-  search(ev: KeyboardEvent): void {
-    if (ev.key === 'Enter') {
-      return;
-    }
-    this.loading = true;
+  search(ev: Event): void {
     this.search$.next((ev.target as HTMLInputElement).value);
   }
 
