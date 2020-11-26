@@ -51,6 +51,12 @@
         ]
       }
     },
+    "hmr": {
+      "type": "boolean",
+      "description": "Generates hmr files and configuration",
+      "default": true,
+      "x-prompt": "Would you like to add hmr plugin? (default: Y)"
+    },
     "codeStyle": {
       "type": "boolean",
       "default": true,

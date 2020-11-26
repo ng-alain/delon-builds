@@ -61,6 +61,7 @@ function removeOrginalFiles(): (host: Tree) => void {
 
 function fixMain(): (host: Tree) => void {
   return (host: Tree) => {
+    // fix: main.ts using no hmr file
     tryAddFile(host, `${project.sourceRoot}/main.ts`, HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
   };
 }
@@ -476,6 +477,7 @@ export default function (options: ApplicationOptions): Rule {
       fixVsCode(),
       fixAngularJson(options),
       installPackages(),
+      // applyLintFix(),
     ])(host, context);
   };
 }

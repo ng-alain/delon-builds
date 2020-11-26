@@ -3,7 +3,6 @@ import { join } from 'path';
 import { Schema as NgAddSchema } from '../ng-add/schema';
 
 export const APPNAME = 'foo';
-export const FILE_PREFIX = `/projects/${APPNAME}`;
 
 export interface AppResult {
   runner: SchematicTestRunner;

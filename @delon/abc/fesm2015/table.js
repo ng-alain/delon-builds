@@ -1645,7 +1645,7 @@ class STColumnSource {
             }
             if (item.type === 'modal' || item.type === 'static') {
                 if (item.modal == null || item.modal.component == null) {
-                    console.warn(`[st] Should specify modal parameter`);
+                    console.warn(`[st] Should specify modal parameter when type is modal or static`);
                     item.type = 'none';
                 }
                 else {
@@ -1654,7 +1654,7 @@ class STColumnSource {
             }
             if (item.type === 'drawer') {
                 if (item.drawer == null || item.drawer.component == null) {
-                    console.warn(`[st] Should specify drawer parameter`);
+                    console.warn(`[st] Should specify drawer parameter when type is drawer`);
                     item.type = 'none';
                 }
                 else {

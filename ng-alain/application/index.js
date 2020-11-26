@@ -36,6 +36,7 @@ function removeOrginalFiles() {
 }
 function fixMain() {
     return (host) => {
+        // fix: main.ts using no hmr file
         alain_1.tryAddFile(host, `${project.sourceRoot}/main.ts`, contents_1.HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
     };
 }
