@@ -18,18 +18,6 @@ export interface ArrayServiceArrToTreeOptions {
     idMapName?: string;
     /** 父编号项名，默认：`'parent_id'` */
     parentIdMapName?: string;
-    /**
-     * 根父编号值，默认会自动计算得到最合适的根父编号值，例如：
-     * @example
-     * ```ts
-     * const res = srv.arrToTree([
-     *    { id: 2, parent_id: 'a', title: 'c1' },
-     *    { id: 4, parent_id: 2, title: 't1' },
-     *  ],
-     *  { rootParentValue: 'a' });
-     * ```
-     */
-    rootParentIdValue?: any;
     /** 子项名，默认：`'children'` */
     childrenMapName?: string;
     /** 转换成树数据时回调 */
