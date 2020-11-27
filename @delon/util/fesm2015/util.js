@@ -2254,6 +2254,19 @@ if (false) {
      */
     ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
     /**
+     * 根父编号值，默认会自动计算得到最合适的根父编号值，例如：
+     * \@example
+     * ```ts
+     * const res = srv.arrToTree([
+     *    { id: 2, parent_id: 'a', title: 'c1' },
+     *    { id: 4, parent_id: 2, title: 't1' },
+     *  ],
+     *  { rootParentValue: 'a' });
+     * ```
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.rootParentIdValue;
+    /**
      * 子项名，默认：`'children'`
      * @type {?|undefined}
      */
@@ -2402,10 +2415,30 @@ class ArrayService {
     arrToTree(arr, options) {
         /** @type {?} */
         const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+        if (arr.length === 0) {
+            return [];
+        }
         /** @type {?} */
         const tree = [];
         /** @type {?} */
         const childrenOf = {};
+        /** @type {?} */
+        let rootPid = opt.rootParentIdValue;
+        if (!rootPid) {
+            /** @type {?} */
+            const pids = arr.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i[(/** @type {?} */ (opt.parentIdMapName))]));
+            /** @type {?} */
+            const emptyPid = pids.find((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w == null));
+            rootPid = emptyPid ? emptyPid : pids.sort()[0];
+        }
         for (const item of arr) {
             /** @type {?} */
             const id = item[(/** @type {?} */ (opt.idMapName))];
@@ -2416,7 +2449,7 @@ class ArrayService {
             if (opt.cb) {
                 opt.cb(item);
             }
-            if (pid) {
+            if (pid !== rootPid) {
                 childrenOf[pid] = childrenOf[pid] || [];
                 childrenOf[pid].push(item);
             }
