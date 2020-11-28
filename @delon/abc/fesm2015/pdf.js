@@ -14,6 +14,12 @@ import { CommonModule } from '@angular/common';
 /** @type {?} */
 const PDF_DEFULAT_CONFIG = {
     lib: `https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/`,
+    showAll: true,
+    renderText: true,
+    showBorders: false,
+    originalSize: true,
+    fitToPage: false,
+    autoReSize: true,
 };
 
 /**
@@ -89,36 +95,37 @@ class PdfComponent {
         this.platform = platform;
         this.el = el;
         this.unsubscribe$ = new Subject();
-        this.lib = '';
         this.inited = false;
+        this.lib = '';
         this._pi = 1;
         this._total = 0;
-        this._showAllPages = true;
+        this._showAll = true;
         this._rotation = 0;
         this._zoom = 1;
-        this._disableTextLayer = false;
-        this.removePageBorders = true;
+        this._renderText = true;
+        this.textLayerMode = PdfTextLayerMode.ENABLE;
+        this.showBorders = false;
         this.stickToPage = false;
         this.originalSize = true;
-        this.zoomScale = 'page-width';
         this.fitToPage = false;
-        this.textLayerMode = PdfTextLayerMode.ENABLE;
+        this.zoomScale = 'page-width';
+        this.autoReSize = true;
         this.externalLinkTarget = PdfExternalLinkTarget.BLANK;
-        this.autoresize = true;
         // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
-        this.cog = (/** @type {?} */ (configSrv.merge('pdf', PDF_DEFULAT_CONFIG)));
-        Object.assign(this, this.cog);
         /** @type {?} */
-        const lib = (/** @type {?} */ (this.cog.lib));
+        const cog = (/** @type {?} */ (configSrv.merge('pdf', PDF_DEFULAT_CONFIG)));
+        Object.assign(this, cog);
+        /** @type {?} */
+        const lib = (/** @type {?} */ (cog.lib));
         this.lib = lib.endsWith('/') ? lib : `${lib}/`;
     }
     /**
-     * @param {?} data
+     * @param {?} dataOrBuffer
      * @return {?}
      */
-    set src(data) {
-        this._src = data;
+    set src(dataOrBuffer) {
+        this._src = dataOrBuffer;
         this.load();
     }
     /**
@@ -135,16 +142,16 @@ class PdfComponent {
      * @param {?} val
      * @return {?}
      */
-    set showAllPages(val) {
-        this._showAllPages = val;
+    set showAll(val) {
+        this._showAll = val;
         this.resetDoc();
     }
     /**
      * @param {?} val
      * @return {?}
      */
-    set disableTextLayer(val) {
-        this._disableTextLayer = val;
+    set renderText(val) {
+        this._renderText = val;
         if (this._pdf) {
             this.pageViewer.textLayerMode = this._textLayerMode;
             this.resetDoc();
@@ -180,26 +187,26 @@ class PdfComponent {
      * @return {?}
      */
     get findController() {
-        return this._showAllPages ? this.multiPageFindController : this.singlePageFindController;
+        return this._showAll ? this.multiPageFindController : this.singlePageFindController;
     }
     /**
      * @return {?}
      */
     get pageViewer() {
-        return this._showAllPages ? this.multiPageViewer : this.singlePageViewer;
+        return this._showAll ? this.multiPageViewer : this.singlePageViewer;
     }
     /**
      * @return {?}
      */
     get linkService() {
-        return this._showAllPages ? this.multiPageLinkService : this.singlePageLinkService;
+        return this._showAll ? this.multiPageLinkService : this.singlePageLinkService;
     }
     /**
      * @private
      * @return {?}
      */
     get _textLayerMode() {
-        return this._disableTextLayer ? PdfTextLayerMode.DISABLE : this.textLayerMode;
+        return this._renderText ? this.textLayerMode : PdfTextLayerMode.DISABLE;
     }
     /**
      * @private
@@ -385,7 +392,7 @@ class PdfComponent {
      */
     getScale(viewportWidth, viewportHeight) {
         /** @type {?} */
-        const borderSize = !this.removePageBorders ? 2 * BORDER_WIDTH : 0;
+        const borderSize = this.showBorders ? 2 * BORDER_WIDTH : 0;
         /** @type {?} */
         const el = this.el.nativeElement;
         /** @type {?} */
@@ -436,7 +443,7 @@ class PdfComponent {
      * @return {?}
      */
     setupPageViewer() {
-        win.pdfjsLib.disableTextLayer = this._disableTextLayer;
+        win.pdfjsLib.disableTextLayer = !this._renderText;
         win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
         this.setupMultiPageViewer();
         this.setupSinglePageViewer();
@@ -505,7 +512,7 @@ class PdfComponent {
         const viewer = (this.multiPageViewer = new VIEWER.PDFViewer({
             eventBus,
             container: this.el.nativeElement,
-            removePageBorders: this.removePageBorders,
+            removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
             findController,
@@ -534,7 +541,7 @@ class PdfComponent {
         const pageViewer = (this.singlePageViewer = new VIEWER.PDFSinglePageViewer({
             eventBus,
             container: this.el.nativeElement,
-            removePageBorders: this.removePageBorders,
+            removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
             findController,
@@ -578,7 +585,7 @@ class PdfComponent {
             .pipe(debounceTime(100), filter((/**
          * @return {?}
          */
-        () => this.autoresize)), takeUntil(this.unsubscribe$))
+        () => this.autoReSize)), takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}
          */
@@ -627,18 +634,18 @@ PdfComponent.ctorParameters = () => [
 PdfComponent.propDecorators = {
     src: [{ type: Input }],
     pi: [{ type: Input }],
-    showAllPages: [{ type: Input }],
-    disableTextLayer: [{ type: Input }],
-    removePageBorders: [{ type: Input }],
+    showAll: [{ type: Input }],
+    renderText: [{ type: Input }],
+    textLayerMode: [{ type: Input }],
+    showBorders: [{ type: Input }],
     stickToPage: [{ type: Input }],
     originalSize: [{ type: Input }],
+    fitToPage: [{ type: Input }],
     zoom: [{ type: Input }],
     zoomScale: [{ type: Input }],
-    fitToPage: [{ type: Input }],
-    textLayerMode: [{ type: Input }],
-    externalLinkTarget: [{ type: Input }],
     rotation: [{ type: Input }],
-    autoresize: [{ type: Input }],
+    autoReSize: [{ type: Input }],
+    externalLinkTarget: [{ type: Input }],
     delay: [{ type: Input }],
     change: [{ type: Output }]
 };
@@ -651,16 +658,16 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [Boolean])
-], PdfComponent.prototype, "showAllPages", null);
+], PdfComponent.prototype, "showAll", null);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [Boolean])
-], PdfComponent.prototype, "disableTextLayer", null);
+], PdfComponent.prototype, "renderText", null);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
-], PdfComponent.prototype, "removePageBorders", void 0);
+], PdfComponent.prototype, "showBorders", void 0);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
@@ -670,14 +677,14 @@ __decorate([
     __metadata("design:type", Object)
 ], PdfComponent.prototype, "originalSize", void 0);
 __decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], PdfComponent.prototype, "fitToPage", void 0);
+__decorate([
     InputNumber(),
     __metadata("design:type", Number),
     __metadata("design:paramtypes", [Number])
 ], PdfComponent.prototype, "zoom", null);
-__decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
-], PdfComponent.prototype, "fitToPage", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Number),
@@ -686,7 +693,7 @@ __decorate([
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
-], PdfComponent.prototype, "autoresize", void 0);
+], PdfComponent.prototype, "autoReSize", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Number)
@@ -717,6 +724,11 @@ if (false) {
      * @type {?}
      * @private
      */
+    PdfComponent.prototype.inited;
+    /**
+     * @type {?}
+     * @private
+     */
     PdfComponent.prototype.lib;
     /**
      * @type {?}
@@ -727,17 +739,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    PdfComponent.prototype.cog;
-    /**
-     * @type {?}
-     * @private
-     */
     PdfComponent.prototype.loadingTask;
-    /**
-     * @type {?}
-     * @private
-     */
-    PdfComponent.prototype.inited;
     /**
      * @type {?}
      * @private
@@ -762,7 +764,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    PdfComponent.prototype._showAllPages;
+    PdfComponent.prototype._showAll;
     /**
      * @type {?}
      * @private
@@ -777,7 +779,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    PdfComponent.prototype._disableTextLayer;
+    PdfComponent.prototype._renderText;
     /**
      * @type {?}
      * @private
@@ -809,21 +811,21 @@ if (false) {
      */
     PdfComponent.prototype.singlePageFindController;
     /** @type {?} */
-    PdfComponent.prototype.removePageBorders;
+    PdfComponent.prototype.textLayerMode;
+    /** @type {?} */
+    PdfComponent.prototype.showBorders;
     /** @type {?} */
     PdfComponent.prototype.stickToPage;
     /** @type {?} */
     PdfComponent.prototype.originalSize;
     /** @type {?} */
-    PdfComponent.prototype.zoomScale;
-    /** @type {?} */
     PdfComponent.prototype.fitToPage;
     /** @type {?} */
-    PdfComponent.prototype.textLayerMode;
+    PdfComponent.prototype.zoomScale;
+    /** @type {?} */
+    PdfComponent.prototype.autoReSize;
     /** @type {?} */
     PdfComponent.prototype.externalLinkTarget;
-    /** @type {?} */
-    PdfComponent.prototype.autoresize;
     /** @type {?} */
     PdfComponent.prototype.delay;
     /** @type {?} */

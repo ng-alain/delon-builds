@@ -1594,6 +1594,39 @@ if (false) {
      * @type {?|undefined}
      */
     AlainPdfConfig.prototype.lib;
+    /**
+     * Show single or all pages altogether, Default: `true`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.showAll;
+    /**
+     * Enable text rendering, allows to select text, Default: `true`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.renderText;
+    /**
+     * Show page borders, Default: `false`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.showBorders;
+    /**
+     * Default: `true`
+     * - if set to `true` - size will be as same as original document
+     * - if set to `false` - size will be as same as container block
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.originalSize;
+    /**
+     * You can show your document in original size, and make sure that it's not bigger then container block. Default: `false`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.fitToPage;
+    /**
+     * Turn on or off auto resize, Default: `true`
+     * **Important** To make work - make sure that `[originalSize]="false"` and pdf-viewer tag has `max-width` or `display` are set.
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.autoReSize;
 }
 
 /**
