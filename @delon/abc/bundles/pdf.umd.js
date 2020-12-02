@@ -700,32 +700,36 @@
          */
         PdfComponent.prototype.updateSize = function () {
             var _this = this;
-            /** @type {?} */
-            var currentViewer = this.pageViewer;
-            this._pdf.getPage(currentViewer.currentPageNumber).then(( /**
-             * @param {?} page
+            this.ngZone.runOutsideAngular(( /**
              * @return {?}
-             */function (page) {
-                var _a = _this, _rotation = _a._rotation, _zoom = _a._zoom;
+             */function () {
                 /** @type {?} */
-                var rotation = _rotation || page.rotate;
-                /** @type {?} */
-                var viewportWidth = page.getViewport({
-                    scale: _zoom,
-                    rotation: rotation,
-                }).width * CSS_UNITS;
-                /** @type {?} */
-                var scale = _zoom;
-                /** @type {?} */
-                var stickToPage = true;
-                // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
-                if (!_this.originalSize || (_this.fitToPage && viewportWidth > _this.el.nativeElement.clientWidth)) {
+                var currentViewer = _this.pageViewer;
+                _this._pdf.getPage(currentViewer.currentPageNumber).then(( /**
+                 * @param {?} page
+                 * @return {?}
+                 */function (page) {
+                    var _a = _this, _rotation = _a._rotation, _zoom = _a._zoom;
                     /** @type {?} */
-                    var viewPort = page.getViewport({ scale: 1, rotation: rotation });
-                    scale = _this.getScale(viewPort.width, viewPort.height);
-                    stickToPage = !_this.stickToPage;
-                }
-                currentViewer._setScale(scale, stickToPage);
+                    var rotation = _rotation || page.rotate;
+                    /** @type {?} */
+                    var viewportWidth = page.getViewport({
+                        scale: _zoom,
+                        rotation: rotation,
+                    }).width * CSS_UNITS;
+                    /** @type {?} */
+                    var scale = _zoom;
+                    /** @type {?} */
+                    var stickToPage = true;
+                    // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
+                    if (!_this.originalSize || (_this.fitToPage && viewportWidth > _this.el.nativeElement.clientWidth)) {
+                        /** @type {?} */
+                        var viewPort = page.getViewport({ scale: 1, rotation: rotation });
+                        scale = _this.getScale(viewPort.width, viewPort.height);
+                        stickToPage = !_this.stickToPage;
+                    }
+                    currentViewer._setScale(scale, stickToPage);
+                }));
             }));
         };
         /**
@@ -924,7 +928,7 @@
             rxjs.fromEvent(win, 'resize')
                 .pipe(operators.debounceTime(100), operators.filter(( /**
          * @return {?}
-         */function () { return _this.autoReSize; })), operators.takeUntil(this.unsubscribe$))
+         */function () { return _this.autoReSize && _this._pdf; })), operators.takeUntil(this.unsubscribe$))
                 .subscribe(( /**
          * @return {?}
          */function () { return _this.updateSize(); }));

@@ -4139,6 +4139,10 @@ nz-breadcrumb-item:last-child .ant-breadcrumb-separator {
 }
 .ant-btn > .ant-btn-loading-icon .anticon {
   padding-right: 8px;
+  animation: none;
+}
+.ant-btn > .ant-btn-loading-icon .anticon svg {
+  animation: loadingCircle 1s infinite linear;
 }
 .ant-btn > .ant-btn-loading-icon:only-child .anticon {
   padding-right: 0;
@@ -14554,17 +14558,6 @@ nz-header {
   visibility: visible;
   animation: zoomIn 0.3s cubic-bezier(0.12, 0.4, 0.29, 1.46);
   pointer-events: none;
-}
-.ant-form-item-has-feedback.ant-form-item-has-success .ant-form-item-children-icon svg,
-.ant-form-item-has-feedback.ant-form-item-has-warning .ant-form-item-children-icon svg,
-.ant-form-item-has-feedback.ant-form-item-has-error .ant-form-item-children-icon svg,
-.ant-form-item-has-feedback.ant-form-item-is-validating .ant-form-item-children-icon svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: auto;
 }
 .ant-form-item-has-success.ant-form-item-has-feedback .ant-form-item-children-icon {
   color: #52c41a;

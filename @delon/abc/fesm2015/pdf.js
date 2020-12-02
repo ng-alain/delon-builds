@@ -355,33 +355,38 @@ class PdfComponent {
      * @return {?}
      */
     updateSize() {
-        /** @type {?} */
-        const currentViewer = this.pageViewer;
-        this._pdf.getPage(currentViewer.currentPageNumber).then((/**
-         * @param {?} page
+        this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
-        (page) => {
-            const { _rotation, _zoom } = this;
+        () => {
             /** @type {?} */
-            const rotation = _rotation || page.rotate;
-            /** @type {?} */
-            const viewportWidth = page.getViewport({
-                scale: _zoom,
-                rotation,
-            }).width * CSS_UNITS;
-            /** @type {?} */
-            let scale = _zoom;
-            /** @type {?} */
-            let stickToPage = true;
-            // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
-            if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.nativeElement.clientWidth)) {
+            const currentViewer = this.pageViewer;
+            this._pdf.getPage(currentViewer.currentPageNumber).then((/**
+             * @param {?} page
+             * @return {?}
+             */
+            (page) => {
+                const { _rotation, _zoom } = this;
                 /** @type {?} */
-                const viewPort = page.getViewport({ scale: 1, rotation });
-                scale = this.getScale(viewPort.width, viewPort.height);
-                stickToPage = !this.stickToPage;
-            }
-            currentViewer._setScale(scale, stickToPage);
+                const rotation = _rotation || page.rotate;
+                /** @type {?} */
+                const viewportWidth = page.getViewport({
+                    scale: _zoom,
+                    rotation,
+                }).width * CSS_UNITS;
+                /** @type {?} */
+                let scale = _zoom;
+                /** @type {?} */
+                let stickToPage = true;
+                // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
+                if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.nativeElement.clientWidth)) {
+                    /** @type {?} */
+                    const viewPort = page.getViewport({ scale: 1, rotation });
+                    scale = this.getScale(viewPort.width, viewPort.height);
+                    stickToPage = !this.stickToPage;
+                }
+                currentViewer._setScale(scale, stickToPage);
+            }));
         }));
     }
     /**
@@ -585,7 +590,7 @@ class PdfComponent {
             .pipe(debounceTime(100), filter((/**
          * @return {?}
          */
-        () => this.autoReSize)), takeUntil(this.unsubscribe$))
+        () => this.autoReSize && this._pdf)), takeUntil(this.unsubscribe$))
             .subscribe((/**
          * @return {?}
          */
