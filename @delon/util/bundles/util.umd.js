@@ -1329,6 +1329,8 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.zip;
         /** @type {?|undefined} */
+        AlainConfig.prototype.pdf;
+        /** @type {?|undefined} */
         AlainConfig.prototype.media;
         /** @type {?|undefined} */
         AlainConfig.prototype.acl;
