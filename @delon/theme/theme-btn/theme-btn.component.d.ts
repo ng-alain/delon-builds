@@ -5,7 +5,7 @@ import { Platform } from '@angular/cdk/platform';
 import { OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AlainConfigService } from '@delon/util';
 declare type SiteTheme = 'default' | 'dark' | 'compact';
-export declare class LayoutThemeBtnComponent implements OnInit, OnDestroy {
+export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private renderer;
     private configSrv;
     private platform;

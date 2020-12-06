@@ -14,13 +14,13 @@
      * Generated from: theme-btn.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var LayoutThemeBtnComponent = /** @class */ (function () {
+    var ThemeBtnComponent = /** @class */ (function () {
         /**
          * @param {?} renderer
          * @param {?} configSrv
          * @param {?} platform
          */
-        function LayoutThemeBtnComponent(renderer, configSrv, platform) {
+        function ThemeBtnComponent(renderer, configSrv, platform) {
             this.renderer = renderer;
             this.configSrv = configSrv;
             this.platform = platform;
@@ -29,14 +29,14 @@
         /**
          * @return {?}
          */
-        LayoutThemeBtnComponent.prototype.ngOnInit = function () {
+        ThemeBtnComponent.prototype.ngOnInit = function () {
             this.initTheme();
         };
         /**
          * @private
          * @return {?}
          */
-        LayoutThemeBtnComponent.prototype.initTheme = function () {
+        ThemeBtnComponent.prototype.initTheme = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
@@ -48,14 +48,14 @@
          * @private
          * @return {?}
          */
-        LayoutThemeBtnComponent.prototype.updateChartTheme = function () {
+        ThemeBtnComponent.prototype.updateChartTheme = function () {
             this.configSrv.set('chart', { theme: this.theme === 'dark' ? 'dark' : '' });
         };
         /**
          * @param {?} theme
          * @return {?}
          */
-        LayoutThemeBtnComponent.prototype.onThemeChange = function (theme) {
+        ThemeBtnComponent.prototype.onThemeChange = function (theme) {
             if (!this.platform.isBrowser) {
                 return;
             }
@@ -82,49 +82,52 @@
         /**
          * @return {?}
          */
-        LayoutThemeBtnComponent.prototype.ngOnDestroy = function () {
+        ThemeBtnComponent.prototype.ngOnDestroy = function () {
             if (this.el) {
                 document.body.removeChild(this.el);
             }
         };
-        return LayoutThemeBtnComponent;
+        return ThemeBtnComponent;
     }());
-    LayoutThemeBtnComponent.decorators = [
+    ThemeBtnComponent.decorators = [
         { type: core.Component, args: [{
-                    selector: 'layout-theme-btn',
+                    selector: 'theme-btn',
                     template: "<div class=\"ant-avatar ant-avatar-circle ant-avatar-icon\" nz-dropdown nzPlacement=\"topCenter\" [nzDropdownMenu]=\"menu\">\n  <svg class=\"anticon\" role=\"img\" width=\"21\" height=\"21\" viewBox=\"0 0 21 21\" fill=\"currentColor\">\n    <g fill-rule=\"evenodd\">\n      <g fill-rule=\"nonzero\">\n        <path\n          d=\"M7.02 3.635l12.518 12.518a1.863 1.863 0 010 2.635l-1.317 1.318a1.863 1.863 0 01-2.635 0L3.068 7.588A2.795 2.795 0 117.02 3.635zm2.09 14.428a.932.932 0 110 1.864.932.932 0 010-1.864zm-.043-9.747L7.75 9.635l9.154 9.153 1.318-1.317-9.154-9.155zM3.52 12.473c.514 0 .931.417.931.931v.932h.932a.932.932 0 110 1.864h-.932v.931a.932.932 0 01-1.863 0l-.001-.931h-.93a.932.932 0 010-1.864h.93v-.932c0-.514.418-.931.933-.931zm15.374-3.727a1.398 1.398 0 110 2.795 1.398 1.398 0 010-2.795zM4.385 4.953a.932.932 0 000 1.317l2.046 2.047L7.75 7 5.703 4.953a.932.932 0 00-1.318 0zM14.701.36a.932.932 0 01.931.932v.931h.932a.932.932 0 010 1.864h-.933l.001.932a.932.932 0 11-1.863 0l-.001-.932h-.93a.932.932 0 110-1.864h.93v-.931a.932.932 0 01.933-.932z\"\n        ></path>\n      </g>\n    </g>\n  </svg>\n  <nz-dropdown-menu #menu=\"nzDropdownMenu\">\n    <ul nz-menu nzSelectable>\n      <li nz-menu-item (click)=\"onThemeChange('default')\">Default Theme</li>\n      <li nz-menu-item (click)=\"onThemeChange('dark')\">Dark Theme</li>\n      <li nz-menu-item (click)=\"onThemeChange('compact')\">Compact Theme</li>\n    </ul>\n  </nz-dropdown-menu>\n</div>\n",
+                    host: {
+                        '[class.theme-btn]': "true",
+                    },
                     changeDetection: core.ChangeDetectionStrategy.OnPush
                 }] }
     ];
     /** @nocollapse */
-    LayoutThemeBtnComponent.ctorParameters = function () { return [
+    ThemeBtnComponent.ctorParameters = function () { return [
         { type: core.Renderer2 },
         { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     if (false) {
         /** @type {?} */
-        LayoutThemeBtnComponent.prototype.theme;
+        ThemeBtnComponent.prototype.theme;
         /**
          * @type {?}
          * @private
          */
-        LayoutThemeBtnComponent.prototype.el;
+        ThemeBtnComponent.prototype.el;
         /**
          * @type {?}
          * @private
          */
-        LayoutThemeBtnComponent.prototype.renderer;
+        ThemeBtnComponent.prototype.renderer;
         /**
          * @type {?}
          * @private
          */
-        LayoutThemeBtnComponent.prototype.configSrv;
+        ThemeBtnComponent.prototype.configSrv;
         /**
          * @type {?}
          * @private
          */
-        LayoutThemeBtnComponent.prototype.platform;
+        ThemeBtnComponent.prototype.platform;
     }
 
     /*! *****************************************************************************
@@ -429,13 +432,13 @@
     }
 
     /** @type {?} */
-    var COMPONENTS = [LayoutThemeBtnComponent];
-    var LayoutThemeBtnModule = /** @class */ (function () {
-        function LayoutThemeBtnModule() {
+    var COMPONENTS = [ThemeBtnComponent];
+    var ThemeBtnModule = /** @class */ (function () {
+        function ThemeBtnModule() {
         }
-        return LayoutThemeBtnModule;
+        return ThemeBtnModule;
     }());
-    LayoutThemeBtnModule.decorators = [
+    ThemeBtnModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, dropdown.NzDropDownModule],
                     declarations: __spread(COMPONENTS),
@@ -455,8 +458,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.LayoutThemeBtnComponent = LayoutThemeBtnComponent;
-    exports.LayoutThemeBtnModule = LayoutThemeBtnModule;
+    exports.ThemeBtnComponent = ThemeBtnComponent;
+    exports.ThemeBtnModule = ThemeBtnModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
