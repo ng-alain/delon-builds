@@ -10,6 +10,8 @@ export declare class SettingDrawerComponent {
     private zone;
     private doc;
     private loadedLess;
+    isDev: boolean;
+    devTips: string;
     collapse: boolean;
     get layout(): Layout;
     data: any;
