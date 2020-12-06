@@ -4,14 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('file-saver'), require('isutf8'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'file-saver', 'isutf8', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.delon.util, global.saveAs, global.isUtf8, global.ng.common));
-}(this, (function (exports, i1, i0, i2, fileSaver, isUtf8, common) { 'use strict';
-
-    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-    var isUtf8__default = /*#__PURE__*/_interopDefaultLegacy(isUtf8);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('file-saver'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'file-saver', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.delon.util, global.saveAs, global.ng.common));
+}(this, (function (exports, i1, i0, i2, fileSaver, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -326,8 +322,8 @@
             this.lazy = lazy;
             this.ngZone = ngZone;
             this.cog = ( /** @type {?} */(configSrv.merge('xlsx', {
-                url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
-                modules: ["https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js"],
+                url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
+                modules: [],
             })));
         }
         /**
@@ -349,19 +345,6 @@
             this.ngZone.runOutsideAngular(( /**
              * @return {?}
              */function () {
-                if (options.type === 'binary') {
-                    /** @type {?} */
-                    var buf = new Uint8Array(data);
-                    if (!isUtf8__default['default'](buf)) {
-                        try {
-                            data = cptable.utils.decode(936, buf);
-                            options.type = 'string';
-                        }
-                        catch (_a) {
-                            options.type = 'array';
-                        }
-                    }
-                }
                 /** @type {?} */
                 var wb = XLSX.read(data, options);
                 wb.SheetNames.forEach(( /**
@@ -376,13 +359,14 @@
             return ret;
         };
         /**
+         * 导入Excel并输出JSON，支持 `<input type="file">`、URL 形式
          * @param {?} fileOrUrl
-         * @param {?=} _rABS
+         * @param {?=} rABS 加载数据方式 `readAsBinaryString` （默认） 或 `readAsArrayBuffer`，[更多细节](http://t.cn/R3n63A0)
          * @return {?}
          */
-        XlsxService.prototype.import = function (fileOrUrl, _rABS) {
+        XlsxService.prototype.import = function (fileOrUrl, rABS) {
             var _this = this;
-            if (_rABS === void 0) { _rABS = 'readAsBinaryString'; }
+            if (rABS === void 0) { rABS = 'readAsBinaryString'; }
             return new Promise(( /**
              * @param {?} resolve
              * @param {?} reject
@@ -420,7 +404,7 @@
                          * @return {?}
                          */function () { return resolve(_this.read(e.target.result, { type: 'binary' })); }));
                     });
-                    reader.readAsArrayBuffer(fileOrUrl);
+                    reader[rABS](fileOrUrl);
                 }))
                     .catch(( /**
              * @return {?}
@@ -434,7 +418,7 @@
         XlsxService.prototype.export = function (options) {
             return __awaiter(this, void 0, void 0, function () {
                 var _this = this;
-                return __generator(this, function (_b) {
+                return __generator(this, function (_a) {
                     return [2 /*return*/, new Promise(( /**
                          * @param {?} resolve
                          * @param {?} reject
