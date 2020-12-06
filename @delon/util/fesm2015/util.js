@@ -1579,58 +1579,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/config/abc/pdf.type.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function AlainPdfConfig() { }
-if (false) {
-    /**
-     * [pdf.js](https://github.com/mozilla/pdf.js) library root url, Default: `https://cdn.jsdelivr.net/npm/pdfjs-dist\@2.5.207/`
-     *
-     * **Note** That only the root path, muse be ending with `/`
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.lib;
-    /**
-     * Show single or all pages altogether, Default: `true`
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.showAll;
-    /**
-     * Enable text rendering, allows to select text, Default: `true`
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.renderText;
-    /**
-     * Show page borders, Default: `false`
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.showBorders;
-    /**
-     * Default: `true`
-     * - if set to `true` - size will be as same as original document
-     * - if set to `false` - size will be as same as container block
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.originalSize;
-    /**
-     * You can show your document in original size, and make sure that it's not bigger then container block. Default: `false`
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.fitToPage;
-    /**
-     * Turn on or off auto resize, Default: `true`
-     * **Important** To make work - make sure that `[originalSize]="false"` and pdf-viewer tag has `max-width` or `display` are set.
-     * @type {?|undefined}
-     */
-    AlainPdfConfig.prototype.autoReSize;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: src/config/abc/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -2139,8 +2087,6 @@ if (false) {
     AlainConfig.prototype.xlsx;
     /** @type {?|undefined} */
     AlainConfig.prototype.zip;
-    /** @type {?|undefined} */
-    AlainConfig.prototype.pdf;
     /** @type {?|undefined} */
     AlainConfig.prototype.media;
     /** @type {?|undefined} */
