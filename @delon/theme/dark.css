@@ -27353,6 +27353,31 @@ fieldset {
   right: 500px;
   z-index: 1001;
 }
+.theme-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 102px;
+  z-index: 2147483640;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.theme-btn-active {
+  width: 44px;
+  height: 44px;
+  color: #177ddc;
+  font-size: 22px;
+  line-height: 44px;
+}
+.theme-btn .ant-avatar {
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.48), 0 6px 16px 0 rgba(0, 0, 0, 0.32), 0 9px 28px 8px rgba(0, 0, 0, 0.2);
+  transition: color 0.3s;
+}
+.theme-btn .ant-avatar:hover {
+  color: #177ddc;
+}
 .yn__yes,
 .yn__no {
   display: inline-flex;

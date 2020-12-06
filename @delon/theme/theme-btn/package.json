@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/layout-theme-btn.umd.js",
+  "module": "../fesm2015/layout-theme-btn.js",
+  "es2015": "../fesm2015/layout-theme-btn.js",
+  "esm2015": "../esm2015/theme-btn/layout-theme-btn.js",
+  "fesm2015": "../fesm2015/layout-theme-btn.js",
+  "typings": "layout-theme-btn.d.ts",
+  "metadata": "layout-theme-btn.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/theme/theme-btn"
+}
