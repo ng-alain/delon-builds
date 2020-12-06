@@ -1,7 +1,8 @@
 import { Component, Input, isDevMode, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, Inject, NgModule } from '@angular/core';
+import { __awaiter, __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { SettingsService } from '@delon/theme';
-import { deepCopy, copy, LazyService, DelonUtilModule } from '@delon/util';
+import { deepCopy, copy, LazyService, InputBoolean, DelonUtilModule } from '@delon/util';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { FormsModule } from '@angular/forms';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
@@ -9,6 +10,7 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -284,9 +286,10 @@ class SettingDrawerComponent {
         this.lazy = lazy;
         this.zone = zone;
         this.doc = doc;
+        this.autoApplyColor = true;
+        this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
         this.loadedLess = false;
         this.isDev = isDevMode();
-        this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
         this.collapse = false;
         this.data = {};
         this.colors = DEFAULT_COLORS;
@@ -314,40 +317,51 @@ class SettingDrawerComponent {
         return DEFAULT_VARS['primary-color'].default;
     }
     /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (this.autoApplyColor && this.color !== this.DEFAULT_PRIMARY) {
+            this.changeColor(this.color);
+            this.runLess();
+        }
+    }
+    /**
      * @private
      * @return {?}
      */
     loadLess() {
-        if (this.loadedLess) {
-            return Promise.resolve();
-        }
-        return this.lazy
-            .loadStyle('./assets/color.less', 'stylesheet/less')
-            .then((/**
-         * @return {?}
-         */
-        () => {
-            /** @type {?} */
-            const lessConfigNode = this.doc.createElement('script');
-            lessConfigNode.innerHTML = `
+        return __awaiter(this, void 0, void 0, function* () {
+            if (this.loadedLess) {
+                return Promise.resolve();
+            }
+            return this.lazy
+                .loadStyle('./assets/color.less', 'stylesheet/less')
+                .then((/**
+             * @return {?}
+             */
+            () => {
+                /** @type {?} */
+                const lessConfigNode = this.doc.createElement('script');
+                lessConfigNode.innerHTML = `
           window.less = {
             async: true,
             env: 'production',
             javascriptEnabled: true
           };
         `;
-            this.doc.body.appendChild(lessConfigNode);
-        }))
-            .then((/**
-         * @return {?}
-         */
-        () => this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js')))
-            .then((/**
-         * @return {?}
-         */
-        () => {
-            this.loadedLess = true;
-        }));
+                this.doc.body.appendChild(lessConfigNode);
+            }))
+                .then((/**
+             * @return {?}
+             */
+            () => this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js')))
+                .then((/**
+             * @return {?}
+             */
+            () => {
+                this.loadedLess = true;
+            }));
+        });
     }
     /**
      * @private
@@ -527,9 +541,18 @@ SettingDrawerComponent.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
 SettingDrawerComponent.propDecorators = {
+    autoApplyColor: [{ type: Input }],
     devTips: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
 if (false) {
+    /** @type {?} */
+    SettingDrawerComponent.prototype.autoApplyColor;
+    /** @type {?} */
+    SettingDrawerComponent.prototype.devTips;
     /**
      * @type {?}
      * @private
@@ -537,8 +560,6 @@ if (false) {
     SettingDrawerComponent.prototype.loadedLess;
     /** @type {?} */
     SettingDrawerComponent.prototype.isDev;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.devTips;
     /** @type {?} */
     SettingDrawerComponent.prototype.collapse;
     /** @type {?} */
@@ -601,6 +622,7 @@ SettingDrawerModule.decorators = [
                     NzSwitchModule,
                     NzAlertModule,
                     NzIconModule,
+                    NzInputModule,
                     NzInputNumberModule,
                     NzButtonModule,
                 ],

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('@angular/forms'), require('ng-zorro-antd/alert'), require('ng-zorro-antd/button'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/drawer'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme/setting-drawer', ['exports', '@angular/core', '@angular/common', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', '@angular/forms', 'ng-zorro-antd/alert', 'ng-zorro-antd/button', 'ng-zorro-antd/divider', 'ng-zorro-antd/drawer', 'ng-zorro-antd/icon', 'ng-zorro-antd/input-number', 'ng-zorro-antd/switch', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.common, global.delon.theme, global.util, global.message, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.inputNumber, global._switch, global.tabs, global.tooltip));
-}(this, (function (exports, core, common, theme, util, message, forms, alert, button, divider, drawer, icon, inputNumber, _switch, tabs, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('@angular/forms'), require('ng-zorro-antd/alert'), require('ng-zorro-antd/button'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/drawer'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme/setting-drawer', ['exports', '@angular/core', '@angular/common', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', '@angular/forms', 'ng-zorro-antd/alert', 'ng-zorro-antd/button', 'ng-zorro-antd/divider', 'ng-zorro-antd/drawer', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/switch', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.common, global.delon.theme, global.util, global.message, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
+}(this, (function (exports, core, common, theme, util, message, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -65,541 +65,6 @@
         SettingDrawerItemComponent.prototype.pxVal;
         /** @type {?} */
         SettingDrawerItemComponent.prototype.format;
-    }
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: setting-drawer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
-    var ALAINDEFAULTVAR = 'alain-default-vars';
-    /** @type {?} */
-    var DEFAULT_COLORS = [
-        {
-            key: 'dust',
-            color: '#F5222D',
-        },
-        {
-            key: 'volcano',
-            color: '#FA541C',
-        },
-        {
-            key: 'sunset',
-            color: '#FAAD14',
-        },
-        {
-            key: 'cyan',
-            color: '#13C2C2',
-        },
-        {
-            key: 'green',
-            color: '#52C41A',
-        },
-        {
-            key: 'daybreak',
-            color: '#1890ff',
-        },
-        {
-            key: 'geekblue',
-            color: '#2F54EB',
-        },
-        {
-            key: 'purple',
-            color: '#722ED1',
-        },
-        {
-            key: 'black',
-            color: '#001529',
-        },
-    ];
-    /** @type {?} */
-    var DEFAULT_VARS = {
-        'primary-color': { label: '主颜色', type: 'color', default: '#1890ff' },
-        'alain-default-header-hg': {
-            label: '高',
-            type: 'px',
-            default: '64px',
-            max: 300,
-            min: 24,
-        },
-        'alain-default-header-bg': {
-            label: '背景色',
-            type: 'color',
-            default: '@primary-color',
-            tip: '默认同主色系',
-        },
-        'alain-default-header-padding': {
-            label: '顶部左右内边距',
-            type: 'px',
-            default: '16px',
-        },
-        // 侧边栏
-        'alain-default-aside-wd': { label: '宽度', type: 'px', default: '200px' },
-        'alain-default-aside-bg': {
-            label: '背景',
-            type: 'color',
-            default: '#ffffff',
-        },
-        'alain-default-aside-collapsed-wd': {
-            label: '收缩宽度',
-            type: 'px',
-            default: '64px',
-        },
-        'alain-default-aside-nav-padding-top-bottom': {
-            label: '项上下内边距',
-            type: 'px',
-            default: '8px',
-            step: 8,
-        },
-        // 主菜单
-        'alain-default-aside-nav-fs': {
-            label: '菜单字号',
-            type: 'px',
-            default: '14px',
-            min: 14,
-            max: 30,
-        },
-        'alain-default-aside-collapsed-nav-fs': {
-            label: '收缩菜单字号',
-            type: 'px',
-            default: '24px',
-            min: 24,
-            max: 32,
-        },
-        'alain-default-aside-nav-item-height': {
-            label: '菜单项高度',
-            type: 'px',
-            default: '38px',
-            min: 24,
-            max: 64,
-        },
-        'alain-default-aside-nav-text-color': {
-            label: '菜单文本颜色',
-            type: 'color',
-            default: 'rgba(0, 0, 0, 0.65)',
-            rgba: true,
-        },
-        'alain-default-aside-nav-text-hover-color': {
-            label: '菜单文本悬停颜色',
-            type: 'color',
-            default: '@primary-color',
-            tip: '默认同主色系',
-        },
-        'alain-default-aside-nav-group-text-color': {
-            label: '菜单分组文本颜色',
-            type: 'color',
-            default: 'rgba(0, 0, 0, 0.43)',
-            rgba: true,
-        },
-        'alain-default-aside-nav-selected-text-color': {
-            label: '菜单激活时文本颜色',
-            type: 'color',
-            default: '@primary-color',
-            tip: '默认同主色系',
-        },
-        'alain-default-aside-nav-selected-bg': {
-            label: '菜单激活时背景颜色',
-            type: 'color',
-            default: '#fcfcfc',
-        },
-        // 内容
-        'alain-default-content-bg': {
-            label: '背景色',
-            type: 'color',
-            default: '#f5f7fa',
-        },
-        'alain-default-content-heading-bg': {
-            label: '标题背景色',
-            type: 'color',
-            default: '#fafbfc',
-        },
-        'alain-default-content-heading-border': {
-            label: '标题底部边框色',
-            type: 'color',
-            default: '#efe3e5',
-        },
-        'alain-default-content-padding': {
-            label: '内边距',
-            type: 'px',
-            default: '24px',
-            min: 0,
-            max: 128,
-            step: 8,
-        },
-        // zorro组件修正
-        'form-state-visual-feedback-enabled': {
-            label: '开启表单元素的视觉反馈',
-            type: 'switch',
-            default: true,
-        },
-        'preserve-white-spaces-enabled': {
-            label: '开启 preserveWhitespaces',
-            type: 'switch',
-            default: true,
-        },
-        'nz-table-img-radius': {
-            label: '表格中：图片圆角',
-            type: 'px',
-            default: '4px',
-            min: 0,
-            max: 128,
-        },
-        'nz-table-img-margin-right': {
-            label: '表格中：图片右外边距',
-            type: 'px',
-            default: '4px',
-            min: 0,
-            max: 128,
-        },
-        'nz-table-img-max-width': {
-            label: '表格中：图片最大宽度',
-            type: 'px',
-            default: '32px',
-            min: 8,
-            max: 128,
-        },
-        'nz-table-img-max-height': {
-            label: '表格中：图片最大高度',
-            type: 'px',
-            default: '32px',
-            min: 8,
-            max: 128,
-        },
-    };
-    var SettingDrawerComponent = /** @class */ (function () {
-        /**
-         * @param {?} cdr
-         * @param {?} msg
-         * @param {?} settingSrv
-         * @param {?} lazy
-         * @param {?} zone
-         * @param {?} doc
-         */
-        function SettingDrawerComponent(cdr, msg, settingSrv, lazy, zone, doc) {
-            this.cdr = cdr;
-            this.msg = msg;
-            this.settingSrv = settingSrv;
-            this.lazy = lazy;
-            this.zone = zone;
-            this.doc = doc;
-            this.loadedLess = false;
-            this.isDev = core.isDevMode();
-            this.devTips = "When the color can't be switched, you need to run it once: npm run color-less";
-            this.collapse = false;
-            this.data = {};
-            this.colors = DEFAULT_COLORS;
-            this.color = this.cachedData['@primary-color'] || this.DEFAULT_PRIMARY;
-            this.resetData(this.cachedData, false);
-        }
-        Object.defineProperty(SettingDrawerComponent.prototype, "layout", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this.settingSrv.layout;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SettingDrawerComponent.prototype, "cachedData", {
-            /**
-             * @private
-             * @return {?}
-             */
-            get: function () {
-                return this.settingSrv.layout[ALAINDEFAULTVAR] || {};
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SettingDrawerComponent.prototype, "DEFAULT_PRIMARY", {
-            /**
-             * @private
-             * @return {?}
-             */
-            get: function () {
-                return DEFAULT_VARS['primary-color'].default;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.loadLess = function () {
-            var _this = this;
-            if (this.loadedLess) {
-                return Promise.resolve();
-            }
-            return this.lazy
-                .loadStyle('./assets/color.less', 'stylesheet/less')
-                .then(( /**
-         * @return {?}
-         */function () {
-                /** @type {?} */
-                var lessConfigNode = _this.doc.createElement('script');
-                lessConfigNode.innerHTML = "\n          window.less = {\n            async: true,\n            env: 'production',\n            javascriptEnabled: true\n          };\n        ";
-                _this.doc.body.appendChild(lessConfigNode);
-            }))
-                .then(( /**
-         * @return {?}
-         */function () { return _this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js'); }))
-                .then(( /**
-         * @return {?}
-         */function () {
-                _this.loadedLess = true;
-            }));
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.genVars = function () {
-            var _a;
-            var _b = this, data = _b.data, color = _b.color, validKeys = _b.validKeys;
-            /** @type {?} */
-            var vars = (_a = {},
-                _a["@primary-color"] = color,
-                _a);
-            validKeys.filter(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) { return key !== 'primary-color'; })).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) { return (vars["@" + key] = data[key].value); }));
-            this.setLayout(ALAINDEFAULTVAR, vars);
-            return vars;
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.runLess = function () {
-            var _this = this;
-            var _a = this, zone = _a.zone, msg = _a.msg, cdr = _a.cdr;
-            /** @type {?} */
-            var msgId = msg.loading("\u6B63\u5728\u7F16\u8BD1\u4E3B\u9898\uFF01", { nzDuration: 0 }).messageId;
-            setTimeout(( /**
-             * @return {?}
-             */function () {
-                zone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    _this.loadLess().then(( /**
-                     * @return {?}
-                     */function () {
-                        (( /** @type {?} */(window))).less.modifyVars(_this.genVars()).then(( /**
-                         * @return {?}
-                         */function () {
-                            msg.success('成功');
-                            msg.remove(msgId);
-                            zone.run(( /**
-                             * @return {?}
-                             */function () { return cdr.detectChanges(); }));
-                        }));
-                    }));
-                }));
-            }), 200);
-        };
-        /**
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.toggle = function () {
-            this.collapse = !this.collapse;
-        };
-        /**
-         * @param {?} color
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.changeColor = function (color) {
-            var _this = this;
-            this.color = color;
-            Object.keys(DEFAULT_VARS)
-                .filter(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return DEFAULT_VARS[key].default === '@primary-color'; }))
-                .forEach(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return delete _this.cachedData["@" + key]; }));
-            this.resetData(this.cachedData, false);
-        };
-        /**
-         * @param {?} name
-         * @param {?} value
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.setLayout = function (name, value) {
-            this.settingSrv.setLayout(name, value);
-        };
-        /**
-         * @private
-         * @param {?=} nowData
-         * @param {?=} run
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.resetData = function (nowData, run) {
-            var _this = this;
-            if (run === void 0) { run = true; }
-            nowData = nowData || {};
-            /** @type {?} */
-            var data = util.deepCopy(DEFAULT_VARS);
-            Object.keys(data).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                /** @type {?} */
-                var value = ( /** @type {?} */(nowData))["@" + key] || data[key].default || '';
-                data[key].value = value === "@primary-color" ? _this.color : value;
-            }));
-            this.data = data;
-            if (run) {
-                this.cdr.detectChanges();
-                this.runLess();
-            }
-        };
-        Object.defineProperty(SettingDrawerComponent.prototype, "validKeys", {
-            /**
-             * @private
-             * @return {?}
-             */
-            get: function () {
-                var _this = this;
-                return Object.keys(this.data).filter(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (/**
-                 * @param {?} key
-                 * @return {?}
-                 */ key) { return _this.data[key].value !== _this.data[key].default; }));
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.apply = function () {
-            this.runLess();
-        };
-        /**
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.reset = function () {
-            this.color = this.DEFAULT_PRIMARY;
-            this.settingSrv.setLayout(ALAINDEFAULTVAR, {});
-            this.resetData({});
-        };
-        /**
-         * @return {?}
-         */
-        SettingDrawerComponent.prototype.copyVar = function () {
-            /** @type {?} */
-            var vars = this.genVars();
-            /** @type {?} */
-            var copyContent = Object.keys(vars)
-                .map(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return key + ": " + vars[key] + ";"; }))
-                .join('\n');
-            util.copy(copyContent);
-            this.msg.success('Copy success');
-        };
-        return SettingDrawerComponent;
-    }());
-    SettingDrawerComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'setting-drawer',
-                    template: "<nz-drawer [nzVisible]=\"collapse\" [nzWidth]=\"500\" (nzOnClose)=\"toggle()\">\n  <div class=\"setting-drawer__content\">\n    <div class=\"setting-drawer__body setting-drawer__theme\">\n      <h3 class=\"setting-drawer__title\">\u4E3B\u9898\u8272</h3>\n      <span\n        *ngFor=\"let c of colors\"\n        [style]=\"{ 'background-color': c.color }\"\n        (click)=\"changeColor(c.color)\"\n        nz-tooltip\n        [nzTooltipTitle]=\"c.key\"\n        class=\"setting-drawer__theme-tag\"\n      >\n        <i *ngIf=\"color === c.color\" nz-icon nzType=\"check\"></i>\n      </span>\n    </div>\n    <nz-divider></nz-divider>\n    <div class=\"setting-drawer__body\">\n      <h3 class=\"setting-drawer__title\">\u8BBE\u7F6E</h3>\n      <nz-tabset>\n        <nz-tab nzTitle=\"\u9876\u90E8\">\n          <div class=\"setting-drawer__body\">\n            <setting-drawer-item [data]=\"data['alain-default-header-hg']\"></setting-drawer-item>\n            <setting-drawer-item [data]=\"data['alain-default-header-bg']\"></setting-drawer-item>\n            <setting-drawer-item [data]=\"data['alain-default-header-padding']\"></setting-drawer-item>\n          </div>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u4FA7\u8FB9\u680F\">\n          <setting-drawer-item [data]=\"data['alain-default-aside-wd']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-collapsed-wd']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-nav-padding-top-bottom']\"></setting-drawer-item>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u5185\u5BB9\">\n          <setting-drawer-item [data]=\"data['alain-default-content-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-heading-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-heading-border']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-padding']\"></setting-drawer-item>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u5176\u5B83\">\n          <setting-drawer-item [data]=\"data['form-state-visual-feedback-enabled']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['preserve-white-spaces-enabled']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-radius']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-margin-right']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-max-width']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-max-height']\"></setting-drawer-item>\n        </nz-tab>\n      </nz-tabset>\n    </div>\n    <nz-divider></nz-divider>\n    <div class=\"setting-drawer__body\">\n      <div class=\"setting-drawer__body-item\">\n        \u56FA\u5B9A\u5934\u548C\u4FA7\u8FB9\u680F\n        <nz-switch nzSize=\"small\" [(ngModel)]=\"layout.fixed\" (ngModelChange)=\"setLayout('fixed', layout.fixed)\"></nz-switch>\n      </div>\n      <div class=\"setting-drawer__body-item\">\n        \u8272\u5F31\u6A21\u5F0F\n        <nz-switch nzSize=\"small\" [(ngModel)]=\"layout.colorWeak\" (ngModelChange)=\"setLayout('colorWeak', layout.colorWeak)\"></nz-switch>\n      </div>\n    </div>\n    <nz-divider></nz-divider>\n    <button (click)=\"apply()\" type=\"button\" nz-button nzType=\"primary\">\u9884\u89C8</button>\n    <button (click)=\"reset()\" type=\"button\" nz-button>\u91CD\u7F6E</button>\n    <button (click)=\"copyVar()\" type=\"button\" nz-button>\u62F7\u8D1D</button>\n    <nz-alert\n      class=\"mt-md\"\n      nzType=\"warning\"\n      nzMessage=\"\u914D\u7F6E\u680F\u53EA\u5728\u5F00\u53D1\u73AF\u5883\u7528\u4E8E\u9884\u89C8\uFF0C\u751F\u4EA7\u73AF\u5883\u4E0D\u4F1A\u5C55\u73B0\uFF0C\u8BF7\u62F7\u8D1D\u540E\u624B\u52A8\u4FEE\u6539\u53C2\u6570\u914D\u7F6E\u6587\u4EF6 src/styles/theme.less\"\n    ></nz-alert>\n  </div>\n</nz-drawer>\n<div\n  class=\"setting-drawer__handle\"\n  [ngClass]=\"{ 'setting-drawer__handle-opened': collapse }\"\n  (click)=\"toggle()\"\n  nz-tooltip\n  [nzTooltipTitle]=\"isDev ? devTips : null\"\n>\n  <i nz-icon [nzType]=\"!collapse ? 'setting' : 'close'\" class=\"setting-drawer__handle-icon\"></i>\n</div>\n",
-                    host: {
-                        '[class.setting-drawer]': 'true',
-                    },
-                    changeDetection: core.ChangeDetectionStrategy.OnPush
-                }] }
-    ];
-    /** @nocollapse */
-    SettingDrawerComponent.ctorParameters = function () { return [
-        { type: core.ChangeDetectorRef },
-        { type: message.NzMessageService },
-        { type: theme.SettingsService },
-        { type: util.LazyService },
-        { type: core.NgZone },
-        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
-    ]; };
-    SettingDrawerComponent.propDecorators = {
-        devTips: [{ type: core.Input }]
-    };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.loadedLess;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.isDev;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.devTips;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.collapse;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.data;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.color;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.colors;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.msg;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.settingSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.lazy;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.zone;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.doc;
     }
 
     /*! *****************************************************************************
@@ -904,6 +369,557 @@
     }
 
     /** @type {?} */
+    var ALAINDEFAULTVAR = 'alain-default-vars';
+    /** @type {?} */
+    var DEFAULT_COLORS = [
+        {
+            key: 'dust',
+            color: '#F5222D',
+        },
+        {
+            key: 'volcano',
+            color: '#FA541C',
+        },
+        {
+            key: 'sunset',
+            color: '#FAAD14',
+        },
+        {
+            key: 'cyan',
+            color: '#13C2C2',
+        },
+        {
+            key: 'green',
+            color: '#52C41A',
+        },
+        {
+            key: 'daybreak',
+            color: '#1890ff',
+        },
+        {
+            key: 'geekblue',
+            color: '#2F54EB',
+        },
+        {
+            key: 'purple',
+            color: '#722ED1',
+        },
+        {
+            key: 'black',
+            color: '#001529',
+        },
+    ];
+    /** @type {?} */
+    var DEFAULT_VARS = {
+        'primary-color': { label: '主颜色', type: 'color', default: '#1890ff' },
+        'alain-default-header-hg': {
+            label: '高',
+            type: 'px',
+            default: '64px',
+            max: 300,
+            min: 24,
+        },
+        'alain-default-header-bg': {
+            label: '背景色',
+            type: 'color',
+            default: '@primary-color',
+            tip: '默认同主色系',
+        },
+        'alain-default-header-padding': {
+            label: '顶部左右内边距',
+            type: 'px',
+            default: '16px',
+        },
+        // 侧边栏
+        'alain-default-aside-wd': { label: '宽度', type: 'px', default: '200px' },
+        'alain-default-aside-bg': {
+            label: '背景',
+            type: 'color',
+            default: '#ffffff',
+        },
+        'alain-default-aside-collapsed-wd': {
+            label: '收缩宽度',
+            type: 'px',
+            default: '64px',
+        },
+        'alain-default-aside-nav-padding-top-bottom': {
+            label: '项上下内边距',
+            type: 'px',
+            default: '8px',
+            step: 8,
+        },
+        // 主菜单
+        'alain-default-aside-nav-fs': {
+            label: '菜单字号',
+            type: 'px',
+            default: '14px',
+            min: 14,
+            max: 30,
+        },
+        'alain-default-aside-collapsed-nav-fs': {
+            label: '收缩菜单字号',
+            type: 'px',
+            default: '24px',
+            min: 24,
+            max: 32,
+        },
+        'alain-default-aside-nav-item-height': {
+            label: '菜单项高度',
+            type: 'px',
+            default: '38px',
+            min: 24,
+            max: 64,
+        },
+        'alain-default-aside-nav-text-color': {
+            label: '菜单文本颜色',
+            type: 'color',
+            default: 'rgba(0, 0, 0, 0.65)',
+            rgba: true,
+        },
+        'alain-default-aside-nav-text-hover-color': {
+            label: '菜单文本悬停颜色',
+            type: 'color',
+            default: '@primary-color',
+            tip: '默认同主色系',
+        },
+        'alain-default-aside-nav-group-text-color': {
+            label: '菜单分组文本颜色',
+            type: 'color',
+            default: 'rgba(0, 0, 0, 0.43)',
+            rgba: true,
+        },
+        'alain-default-aside-nav-selected-text-color': {
+            label: '菜单激活时文本颜色',
+            type: 'color',
+            default: '@primary-color',
+            tip: '默认同主色系',
+        },
+        'alain-default-aside-nav-selected-bg': {
+            label: '菜单激活时背景颜色',
+            type: 'color',
+            default: '#fcfcfc',
+        },
+        // 内容
+        'alain-default-content-bg': {
+            label: '背景色',
+            type: 'color',
+            default: '#f5f7fa',
+        },
+        'alain-default-content-heading-bg': {
+            label: '标题背景色',
+            type: 'color',
+            default: '#fafbfc',
+        },
+        'alain-default-content-heading-border': {
+            label: '标题底部边框色',
+            type: 'color',
+            default: '#efe3e5',
+        },
+        'alain-default-content-padding': {
+            label: '内边距',
+            type: 'px',
+            default: '24px',
+            min: 0,
+            max: 128,
+            step: 8,
+        },
+        // zorro组件修正
+        'form-state-visual-feedback-enabled': {
+            label: '开启表单元素的视觉反馈',
+            type: 'switch',
+            default: true,
+        },
+        'preserve-white-spaces-enabled': {
+            label: '开启 preserveWhitespaces',
+            type: 'switch',
+            default: true,
+        },
+        'nz-table-img-radius': {
+            label: '表格中：图片圆角',
+            type: 'px',
+            default: '4px',
+            min: 0,
+            max: 128,
+        },
+        'nz-table-img-margin-right': {
+            label: '表格中：图片右外边距',
+            type: 'px',
+            default: '4px',
+            min: 0,
+            max: 128,
+        },
+        'nz-table-img-max-width': {
+            label: '表格中：图片最大宽度',
+            type: 'px',
+            default: '32px',
+            min: 8,
+            max: 128,
+        },
+        'nz-table-img-max-height': {
+            label: '表格中：图片最大高度',
+            type: 'px',
+            default: '32px',
+            min: 8,
+            max: 128,
+        },
+    };
+    var SettingDrawerComponent = /** @class */ (function () {
+        /**
+         * @param {?} cdr
+         * @param {?} msg
+         * @param {?} settingSrv
+         * @param {?} lazy
+         * @param {?} zone
+         * @param {?} doc
+         */
+        function SettingDrawerComponent(cdr, msg, settingSrv, lazy, zone, doc) {
+            this.cdr = cdr;
+            this.msg = msg;
+            this.settingSrv = settingSrv;
+            this.lazy = lazy;
+            this.zone = zone;
+            this.doc = doc;
+            this.autoApplyColor = true;
+            this.devTips = "When the color can't be switched, you need to run it once: npm run color-less";
+            this.loadedLess = false;
+            this.isDev = core.isDevMode();
+            this.collapse = false;
+            this.data = {};
+            this.colors = DEFAULT_COLORS;
+            this.color = this.cachedData['@primary-color'] || this.DEFAULT_PRIMARY;
+            this.resetData(this.cachedData, false);
+        }
+        Object.defineProperty(SettingDrawerComponent.prototype, "layout", {
+            /**
+             * @return {?}
+             */
+            get: function () {
+                return this.settingSrv.layout;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SettingDrawerComponent.prototype, "cachedData", {
+            /**
+             * @private
+             * @return {?}
+             */
+            get: function () {
+                return this.settingSrv.layout[ALAINDEFAULTVAR] || {};
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SettingDrawerComponent.prototype, "DEFAULT_PRIMARY", {
+            /**
+             * @private
+             * @return {?}
+             */
+            get: function () {
+                return DEFAULT_VARS['primary-color'].default;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.ngOnInit = function () {
+            if (this.autoApplyColor && this.color !== this.DEFAULT_PRIMARY) {
+                this.changeColor(this.color);
+                this.runLess();
+            }
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.loadLess = function () {
+            return __awaiter(this, void 0, void 0, function () {
+                var _this = this;
+                return __generator(this, function (_a) {
+                    if (this.loadedLess) {
+                        return [2 /*return*/, Promise.resolve()];
+                    }
+                    return [2 /*return*/, this.lazy
+                            .loadStyle('./assets/color.less', 'stylesheet/less')
+                            .then(( /**
+                     * @return {?}
+                     */function () {
+                            /** @type {?} */
+                            var lessConfigNode = _this.doc.createElement('script');
+                            lessConfigNode.innerHTML = "\n          window.less = {\n            async: true,\n            env: 'production',\n            javascriptEnabled: true\n          };\n        ";
+                            _this.doc.body.appendChild(lessConfigNode);
+                        }))
+                            .then(( /**
+                     * @return {?}
+                     */function () { return _this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js'); }))
+                            .then(( /**
+                     * @return {?}
+                     */function () {
+                            _this.loadedLess = true;
+                        }))];
+                });
+            });
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.genVars = function () {
+            var _a;
+            var _b = this, data = _b.data, color = _b.color, validKeys = _b.validKeys;
+            /** @type {?} */
+            var vars = (_a = {},
+                _a["@primary-color"] = color,
+                _a);
+            validKeys.filter(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) { return key !== 'primary-color'; })).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) { return (vars["@" + key] = data[key].value); }));
+            this.setLayout(ALAINDEFAULTVAR, vars);
+            return vars;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.runLess = function () {
+            var _this = this;
+            var _a = this, zone = _a.zone, msg = _a.msg, cdr = _a.cdr;
+            /** @type {?} */
+            var msgId = msg.loading("\u6B63\u5728\u7F16\u8BD1\u4E3B\u9898\uFF01", { nzDuration: 0 }).messageId;
+            setTimeout(( /**
+             * @return {?}
+             */function () {
+                zone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () {
+                    _this.loadLess().then(( /**
+                     * @return {?}
+                     */function () {
+                        (( /** @type {?} */(window))).less.modifyVars(_this.genVars()).then(( /**
+                         * @return {?}
+                         */function () {
+                            msg.success('成功');
+                            msg.remove(msgId);
+                            zone.run(( /**
+                             * @return {?}
+                             */function () { return cdr.detectChanges(); }));
+                        }));
+                    }));
+                }));
+            }), 200);
+        };
+        /**
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.toggle = function () {
+            this.collapse = !this.collapse;
+        };
+        /**
+         * @param {?} color
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.changeColor = function (color) {
+            var _this = this;
+            this.color = color;
+            Object.keys(DEFAULT_VARS)
+                .filter(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return DEFAULT_VARS[key].default === '@primary-color'; }))
+                .forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return delete _this.cachedData["@" + key]; }));
+            this.resetData(this.cachedData, false);
+        };
+        /**
+         * @param {?} name
+         * @param {?} value
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.setLayout = function (name, value) {
+            this.settingSrv.setLayout(name, value);
+        };
+        /**
+         * @private
+         * @param {?=} nowData
+         * @param {?=} run
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.resetData = function (nowData, run) {
+            var _this = this;
+            if (run === void 0) { run = true; }
+            nowData = nowData || {};
+            /** @type {?} */
+            var data = util.deepCopy(DEFAULT_VARS);
+            Object.keys(data).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                /** @type {?} */
+                var value = ( /** @type {?} */(nowData))["@" + key] || data[key].default || '';
+                data[key].value = value === "@primary-color" ? _this.color : value;
+            }));
+            this.data = data;
+            if (run) {
+                this.cdr.detectChanges();
+                this.runLess();
+            }
+        };
+        Object.defineProperty(SettingDrawerComponent.prototype, "validKeys", {
+            /**
+             * @private
+             * @return {?}
+             */
+            get: function () {
+                var _this = this;
+                return Object.keys(this.data).filter(( /**
+                 * @param {?} key
+                 * @return {?}
+                 */function (/**
+                 * @param {?} key
+                 * @return {?}
+                 */ key) { return _this.data[key].value !== _this.data[key].default; }));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.apply = function () {
+            this.runLess();
+        };
+        /**
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.reset = function () {
+            this.color = this.DEFAULT_PRIMARY;
+            this.settingSrv.setLayout(ALAINDEFAULTVAR, {});
+            this.resetData({});
+        };
+        /**
+         * @return {?}
+         */
+        SettingDrawerComponent.prototype.copyVar = function () {
+            /** @type {?} */
+            var vars = this.genVars();
+            /** @type {?} */
+            var copyContent = Object.keys(vars)
+                .map(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return key + ": " + vars[key] + ";"; }))
+                .join('\n');
+            util.copy(copyContent);
+            this.msg.success('Copy success');
+        };
+        return SettingDrawerComponent;
+    }());
+    SettingDrawerComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'setting-drawer',
+                    template: "<nz-drawer [nzVisible]=\"collapse\" [nzWidth]=\"500\" (nzOnClose)=\"toggle()\">\n  <div class=\"setting-drawer__content\">\n    <div class=\"setting-drawer__body setting-drawer__theme\">\n      <h3 class=\"setting-drawer__title\">\u4E3B\u9898\u8272</h3>\n      <span\n        *ngFor=\"let c of colors\"\n        [style]=\"{ 'background-color': c.color }\"\n        (click)=\"changeColor(c.color)\"\n        nz-tooltip\n        [nzTooltipTitle]=\"c.key\"\n        class=\"setting-drawer__theme-tag\"\n      >\n        <i *ngIf=\"color === c.color\" nz-icon nzType=\"check\"></i>\n      </span>\n    </div>\n    <nz-divider></nz-divider>\n    <div class=\"setting-drawer__body\">\n      <h3 class=\"setting-drawer__title\">\u8BBE\u7F6E</h3>\n      <nz-tabset>\n        <nz-tab nzTitle=\"\u9876\u90E8\">\n          <div class=\"setting-drawer__body\">\n            <setting-drawer-item [data]=\"data['alain-default-header-hg']\"></setting-drawer-item>\n            <setting-drawer-item [data]=\"data['alain-default-header-bg']\"></setting-drawer-item>\n            <setting-drawer-item [data]=\"data['alain-default-header-padding']\"></setting-drawer-item>\n          </div>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u4FA7\u8FB9\u680F\">\n          <setting-drawer-item [data]=\"data['alain-default-aside-wd']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-collapsed-wd']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-aside-nav-padding-top-bottom']\"></setting-drawer-item>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u5185\u5BB9\">\n          <setting-drawer-item [data]=\"data['alain-default-content-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-heading-bg']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-heading-border']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['alain-default-content-padding']\"></setting-drawer-item>\n        </nz-tab>\n        <nz-tab nzTitle=\"\u5176\u5B83\">\n          <setting-drawer-item [data]=\"data['form-state-visual-feedback-enabled']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['preserve-white-spaces-enabled']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-radius']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-margin-right']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-max-width']\"></setting-drawer-item>\n          <setting-drawer-item [data]=\"data['nz-table-img-max-height']\"></setting-drawer-item>\n        </nz-tab>\n      </nz-tabset>\n    </div>\n    <nz-divider></nz-divider>\n    <div class=\"setting-drawer__body\">\n      <div class=\"setting-drawer__body-item\">\n        \u56FA\u5B9A\u5934\u548C\u4FA7\u8FB9\u680F\n        <nz-switch nzSize=\"small\" [(ngModel)]=\"layout.fixed\" (ngModelChange)=\"setLayout('fixed', layout.fixed)\"></nz-switch>\n      </div>\n      <div class=\"setting-drawer__body-item\">\n        \u8272\u5F31\u6A21\u5F0F\n        <nz-switch nzSize=\"small\" [(ngModel)]=\"layout.colorWeak\" (ngModelChange)=\"setLayout('colorWeak', layout.colorWeak)\"></nz-switch>\n      </div>\n    </div>\n    <nz-divider></nz-divider>\n    <button (click)=\"apply()\" type=\"button\" nz-button nzType=\"primary\">\u9884\u89C8</button>\n    <button (click)=\"reset()\" type=\"button\" nz-button>\u91CD\u7F6E</button>\n    <button (click)=\"copyVar()\" type=\"button\" nz-button>\u62F7\u8D1D</button>\n    <nz-alert\n      class=\"mt-md\"\n      nzType=\"warning\"\n      nzMessage=\"\u914D\u7F6E\u680F\u53EA\u5728\u5F00\u53D1\u73AF\u5883\u7528\u4E8E\u9884\u89C8\uFF0C\u751F\u4EA7\u73AF\u5883\u4E0D\u4F1A\u5C55\u73B0\uFF0C\u8BF7\u62F7\u8D1D\u540E\u624B\u52A8\u4FEE\u6539\u53C2\u6570\u914D\u7F6E\u6587\u4EF6 src/styles/theme.less\"\n    ></nz-alert>\n  </div>\n</nz-drawer>\n<div\n  class=\"setting-drawer__handle\"\n  [ngClass]=\"{ 'setting-drawer__handle-opened': collapse }\"\n  (click)=\"toggle()\"\n  nz-tooltip\n  [nzTooltipTitle]=\"isDev ? devTips : null\"\n>\n  <i nz-icon [nzType]=\"!collapse ? 'setting' : 'close'\" class=\"setting-drawer__handle-icon\"></i>\n</div>\n",
+                    host: {
+                        '[class.setting-drawer]': 'true',
+                    },
+                    changeDetection: core.ChangeDetectionStrategy.OnPush
+                }] }
+    ];
+    /** @nocollapse */
+    SettingDrawerComponent.ctorParameters = function () { return [
+        { type: core.ChangeDetectorRef },
+        { type: message.NzMessageService },
+        { type: theme.SettingsService },
+        { type: util.LazyService },
+        { type: core.NgZone },
+        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+    ]; };
+    SettingDrawerComponent.propDecorators = {
+        autoApplyColor: [{ type: core.Input }],
+        devTips: [{ type: core.Input }]
+    };
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Object)
+    ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
+    if (false) {
+        /** @type {?} */
+        SettingDrawerComponent.prototype.autoApplyColor;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.devTips;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.loadedLess;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.isDev;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.collapse;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.data;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.color;
+        /** @type {?} */
+        SettingDrawerComponent.prototype.colors;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.msg;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.settingSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.lazy;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.zone;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingDrawerComponent.prototype.doc;
+    }
+
+    /** @type {?} */
     var COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
     var SettingDrawerModule = /** @class */ (function () {
         function SettingDrawerModule() {
@@ -923,6 +939,7 @@
                         _switch.NzSwitchModule,
                         alert.NzAlertModule,
                         icon.NzIconModule,
+                        input.NzInputModule,
                         inputNumber.NzInputNumberModule,
                         button.NzButtonModule,
                     ],
