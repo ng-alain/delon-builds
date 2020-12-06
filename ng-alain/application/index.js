@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const spinner_1 = require("@angular-devkit/build-angular/src/utils/spinner");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
@@ -12,6 +13,7 @@ const lib_versions_1 = require("../utils/lib-versions");
 const project_1 = require("../utils/project");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
+const spinner = new spinner_1.Spinner();
 /** Remove files to be overwrite */
 function removeOrginalFiles() {
     return (host) => {
@@ -298,7 +300,7 @@ function fixLang(options) {
         const langs = lang_config_1.getLangData(options.defaultLanguage);
         if (!langs)
             return;
-        console.log(`Translating, please wait...`);
+        spinner.text = `Translating template into ${options.defaultLanguage} language, please wait...`;
         host.visit(p => {
             if (~p.indexOf(`/node_modules/`))
                 return;
@@ -357,14 +359,16 @@ function fixVsCode() {
         json_1.overwriteJSON(host, filePath, json);
     };
 }
-function installPackages() {
+function finished() {
     return (_host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
+        spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
     };
 }
 function default_1(options) {
     return (host, context) => {
         project = project_1.getProject(host, options.project);
+        spinner.start(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
@@ -384,7 +388,7 @@ function default_1(options) {
             fixLang(options),
             fixVsCode(),
             fixAngularJson(options),
-            installPackages(),
+            finished(),
         ])(host, context);
     };
 }
