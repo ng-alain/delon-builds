@@ -1,0 +1,20 @@
+import { ElementRef, OnDestroy, OnInit, QueryList, Renderer2 } from '@angular/core';
+import { Router } from '@angular/router';
+import { SettingsService } from '@delon/theme';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
+import { LayoutDefaultOptions } from './types';
+export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
+    private settings;
+    private el;
+    private renderer;
+    private doc;
+    headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
+    options: LayoutDefaultOptions;
+    private unsubscribe$;
+    isFetching: boolean;
+    constructor(router: Router, msgSrv: NzMessageService, settings: SettingsService, el: ElementRef, renderer: Renderer2, doc: any);
+    private setClass;
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+}
