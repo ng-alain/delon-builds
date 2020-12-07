@@ -95,7 +95,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions): (host: Tree)
       [
         `ng-alain@${VERSION}`,
         `ng-alain-codelyzer@^0.0.1`,
-        `ng-alain-plugin-theme@^10.0.3`,
+        `ng-alain-plugin-theme@^11.0.0`,
         `@delon/testing@${VERSION}`,
       ],
       'devDependencies',

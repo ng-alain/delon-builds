@@ -23,7 +23,7 @@ function fixThirdVersion(tree, context) {
         `ngx-ueditor@^11.0.0`,
     ], 'dependencies');
     // dependencies
-    json_1.addPackageToPackageJson(tree, [`webpack-bundle-analyzer@^4.1.0`], 'devDependencies');
+    json_1.addPackageToPackageJson(tree, [`ng-alain-plugin-theme@^11.0.0`, `webpack-bundle-analyzer@^3.6.1`], 'devDependencies');
     log_1.logStart(context, `Upgrade third libs version number`);
 }
 function v11Rule() {
