@@ -52,6 +52,9 @@ function default_1(options) {
             throw new Error(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
         const pkg = json_1.getJSON(host, `package.json`);
+        if (pkg.devDependencies['ng-alain']) {
+            throw new Error(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
+        }
         let ngCoreVersion = pkg.dependencies['@angular/core'];
         if (/^[\^|\~]/g.test(ngCoreVersion)) {
             ngCoreVersion = ngCoreVersion.substr(1);

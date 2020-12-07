@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutDefaultOptions } from '@delon/theme/layout-default';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'layout-basic',
@@ -23,15 +24,6 @@ import { LayoutDefaultOptions } from '@delon/theme/layout-default';
       <layout-default-header-item direction="middle">
         <header-search class="alain-default__search" [toggleChange]="searchToggleStatus"></header-search>
       </layout-default-header-item>
-      <layout-default-header-item direction="right">
-        <header-notify></header-notify>
-      </layout-default-header-item>
-      <layout-default-header-item direction="right" hidden="mobile">
-        <header-task></header-task>
-      </layout-default-header-item>
-      <layout-default-header-item direction="right" hidden="mobile">
-        <header-icon></header-icon>
-      </layout-default-header-item>
       <layout-default-header-item direction="right" hidden="mobile">
         <div layout-default-header-item-trigger nz-dropdown [nzDropdownMenu]="settingsMenu" nzTrigger="click" nzPlacement="bottomRight">
           <i nz-icon nzType="setting"></i>
@@ -43,18 +35,22 @@ import { LayoutDefaultOptions } from '@delon/theme/layout-default';
             </div>
             <div nz-menu-item>
               <header-clear-storage></header-clear-storage>
-            </div>
+            </div><% if (i18n) { %>
             <div nz-menu-item>
               <header-i18n></header-i18n>
-            </div>
+            </div><% } %>
           </div>
         </nz-dropdown-menu>
       </layout-default-header-item>
       <layout-default-header-item direction="right">
         <header-user></header-user>
       </layout-default-header-item>
+
       <router-outlet></router-outlet>
     </layout-default>
+
+    <setting-drawer *ngIf="showSettingDrawer"></setting-drawer>
+    <theme-btn></theme-btn>
   `,
 })
 export class LayoutBasicComponent {
@@ -63,4 +59,5 @@ export class LayoutBasicComponent {
     logoCollapsed: `./assets/logo.svg`,
   };
   searchToggleStatus = false;
+  showSettingDrawer = !environment.production;
 }
