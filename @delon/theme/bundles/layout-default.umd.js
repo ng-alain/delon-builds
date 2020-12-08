@@ -136,7 +136,7 @@
   LayoutDefaultComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default',
-                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <layout-default-side></layout-default-side>\n    <section class=\"alain-default__content\">\n      <ng-content></ng-content>\n    </section>\n  "
+                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-content></ng-content>\n    </section>\n  "
               }] }
   ];
   /** @nocollapse */
@@ -150,13 +150,16 @@
   ]; };
   LayoutDefaultComponent.propDecorators = {
       headerItems: [{ type: core.ContentChildren, args: [LayoutDefaultHeaderItemComponent, { descendants: false },] }],
-      options: [{ type: core.Input }]
+      options: [{ type: core.Input }],
+      asideUser: [{ type: core.Input }]
   };
   if (false) {
       /** @type {?} */
       LayoutDefaultComponent.prototype.headerItems;
       /** @type {?} */
       LayoutDefaultComponent.prototype.options;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.asideUser;
       /**
        * @type {?}
        * @private
@@ -1225,58 +1228,10 @@
       LayoutDefaultNavComponent.prototype.win;
   }
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-side.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  var LayoutDefaultSideComponent = /** @class */ (function () {
-      /**
-       * @param {?} settings
-       */
-      function LayoutDefaultSideComponent(settings) {
-          this.settings = settings;
-      }
-      Object.defineProperty(LayoutDefaultSideComponent.prototype, "user", {
-          /**
-           * @return {?}
-           */
-          get: function () {
-              return this.settings.user;
-          },
-          enumerable: false,
-          configurable: true
-      });
-      return LayoutDefaultSideComponent;
-  }());
-  LayoutDefaultSideComponent.decorators = [
-      { type: core.Component, args: [{
-                  selector: 'layout-default-side',
-                  // templateUrl: './sidebar.component.html',
-                  template: "\n    <div class=\"alain-default__aside-inner\">\n      <div nz-dropdown nzTrigger=\"click\" [nzDropdownMenu]=\"userMenu\" class=\"alain-default__aside-user\">\n        <nz-avatar class=\"alain-default__aside-user-avatar\" [nzSrc]=\"user.avatar\"></nz-avatar>\n        <div class=\"alain-default__aside-user-info\">\n          <strong>{{ user.name }}</strong>\n          <p class=\"mb0\">{{ user.email }}</p>\n        </div>\n      </div>\n      <nz-dropdown-menu #userMenu=\"nzDropdownMenu\">\n        <ul nz-menu>\n          <li nz-menu-item routerLink=\"/pro/account/center\">{{ 'menu.account.center' }}</li>\n          <li nz-menu-item routerLink=\"/pro/account/settings\">{{ 'menu.account.settings' }}</li>\n        </ul>\n      </nz-dropdown-menu>\n      <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n    </div>\n  ",
-                  host: {
-                      '[class.alain-default__aside]': "true",
-                  },
-                  changeDetection: core.ChangeDetectionStrategy.OnPush
-              }] }
-  ];
-  /** @nocollapse */
-  LayoutDefaultSideComponent.ctorParameters = function () { return [
-      { type: theme.SettingsService }
-  ]; };
-  if (false) {
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultSideComponent.prototype.settings;
-  }
-
   /** @type {?} */
   var COMPONENTS = [
       LayoutDefaultComponent,
       LayoutDefaultNavComponent,
-      LayoutDefaultSideComponent,
       LayoutDefaultHeaderComponent,
       LayoutDefaultHeaderItemComponent,
       LayoutDefaultHeaderItemTriggerDirective,
@@ -1312,7 +1267,6 @@
   exports.LayoutDefaultHeaderItemTriggerDirective = LayoutDefaultHeaderItemTriggerDirective;
   exports.LayoutDefaultModule = LayoutDefaultModule;
   exports.LayoutDefaultNavComponent = LayoutDefaultNavComponent;
-  exports.LayoutDefaultSideComponent = LayoutDefaultSideComponent;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 

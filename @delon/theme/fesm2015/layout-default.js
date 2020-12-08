@@ -142,7 +142,12 @@ LayoutDefaultComponent.decorators = [
                 template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header></layout-default-header>
-    <layout-default-side></layout-default-side>
+    <div class="alain-default__aside">
+      <div class="alain-default__aside-inner">
+        <ng-container *ngTemplateOutlet="asideUser"></ng-container>
+        <layout-default-nav class="d-block py-lg"></layout-default-nav>
+      </div>
+    </div>
     <section class="alain-default__content">
       <ng-content></ng-content>
     </section>
@@ -160,13 +165,16 @@ LayoutDefaultComponent.ctorParameters = () => [
 ];
 LayoutDefaultComponent.propDecorators = {
     headerItems: [{ type: ContentChildren, args: [LayoutDefaultHeaderItemComponent, { descendants: false },] }],
-    options: [{ type: Input }]
+    options: [{ type: Input }],
+    asideUser: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
     LayoutDefaultComponent.prototype.headerItems;
     /** @type {?} */
     LayoutDefaultComponent.prototype.options;
+    /** @type {?} */
+    LayoutDefaultComponent.prototype.asideUser;
     /**
      * @type {?}
      * @private
@@ -939,65 +947,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: layout-side.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class LayoutDefaultSideComponent {
-    /**
-     * @param {?} settings
-     */
-    constructor(settings) {
-        this.settings = settings;
-    }
-    /**
-     * @return {?}
-     */
-    get user() {
-        return this.settings.user;
-    }
-}
-LayoutDefaultSideComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'layout-default-side',
-                // templateUrl: './sidebar.component.html',
-                template: `
-    <div class="alain-default__aside-inner">
-      <div nz-dropdown nzTrigger="click" [nzDropdownMenu]="userMenu" class="alain-default__aside-user">
-        <nz-avatar class="alain-default__aside-user-avatar" [nzSrc]="user.avatar"></nz-avatar>
-        <div class="alain-default__aside-user-info">
-          <strong>{{ user.name }}</strong>
-          <p class="mb0">{{ user.email }}</p>
-        </div>
-      </div>
-      <nz-dropdown-menu #userMenu="nzDropdownMenu">
-        <ul nz-menu>
-          <li nz-menu-item routerLink="/pro/account/center">{{ 'menu.account.center' }}</li>
-          <li nz-menu-item routerLink="/pro/account/settings">{{ 'menu.account.settings' }}</li>
-        </ul>
-      </nz-dropdown-menu>
-      <layout-default-nav class="d-block py-lg"></layout-default-nav>
-    </div>
-  `,
-                host: {
-                    '[class.alain-default__aside]': `true`,
-                },
-                changeDetection: ChangeDetectionStrategy.OnPush
-            }] }
-];
-/** @nocollapse */
-LayoutDefaultSideComponent.ctorParameters = () => [
-    { type: SettingsService }
-];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    LayoutDefaultSideComponent.prototype.settings;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: layout.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1005,7 +954,6 @@ if (false) {
 const COMPONENTS = [
     LayoutDefaultComponent,
     LayoutDefaultNavComponent,
-    LayoutDefaultSideComponent,
     LayoutDefaultHeaderComponent,
     LayoutDefaultHeaderItemComponent,
     LayoutDefaultHeaderItemTriggerDirective,
@@ -1048,5 +996,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent, LayoutDefaultSideComponent };
+export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent };
 //# sourceMappingURL=layout-default.js.map
