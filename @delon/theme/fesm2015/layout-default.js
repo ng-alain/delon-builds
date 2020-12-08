@@ -149,6 +149,7 @@ LayoutDefaultComponent.decorators = [
       </div>
     </div>
     <section class="alain-default__content">
+      <ng-container *ngTemplateOutlet="content"></ng-container>
       <ng-content></ng-content>
     </section>
   `
@@ -166,7 +167,8 @@ LayoutDefaultComponent.ctorParameters = () => [
 LayoutDefaultComponent.propDecorators = {
     headerItems: [{ type: ContentChildren, args: [LayoutDefaultHeaderItemComponent, { descendants: false },] }],
     options: [{ type: Input }],
-    asideUser: [{ type: Input }]
+    asideUser: [{ type: Input }],
+    content: [{ type: Input }]
 };
 if (false) {
     /** @type {?} */
@@ -175,6 +177,8 @@ if (false) {
     LayoutDefaultComponent.prototype.options;
     /** @type {?} */
     LayoutDefaultComponent.prototype.asideUser;
+    /** @type {?} */
+    LayoutDefaultComponent.prototype.content;
     /**
      * @type {?}
      * @private

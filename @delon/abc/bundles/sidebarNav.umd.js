@@ -319,6 +319,9 @@
     var SHOWCLS = 'sidebar-nav__floating-show';
     /** @type {?} */
     var FLOATINGCLS = 'sidebar-nav__floating';
+    /**
+     * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
+     */
     var SidebarNavComponent = /** @class */ (function () {
         /**
          * @param {?} menuSrv
