@@ -32529,6 +32529,13 @@ ellipsis {
     box-shadow: #141414 0 0 0 2px, rgba(20, 20, 20, 0.01) 0 0 0 10px;
   }
 }
+.pdf-container {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 g2-chart,
 g2-bar,
 g2-gauge,
