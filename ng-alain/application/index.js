@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const spinner_1 = require("@angular-devkit/build-angular/src/utils/spinner");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const path = require("path");
 const lang_config_1 = require("../core/lang.config");
-const alain_1 = require("../utils/alain");
-const contents_1 = require("../utils/contents");
 const file_1 = require("../utils/file");
 const html_1 = require("../utils/html");
 const json_1 = require("../utils/json");
@@ -14,6 +13,7 @@ const lib_versions_1 = require("../utils/lib-versions");
 const project_1 = require("../utils/project");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
+const spinner = new spinner_1.Spinner();
 /** Remove files to be overwrite */
 function removeOrginalFiles() {
     return (host) => {
@@ -21,31 +21,38 @@ function removeOrginalFiles() {
             `${project.root}/README.md`,
             `${project.root}/tslint.json`,
             `${project.sourceRoot}/main.ts`,
+            `${project.sourceRoot}/test.ts`,
             `${project.sourceRoot}/environments/environment.prod.ts`,
             `${project.sourceRoot}/environments/environment.ts`,
             `${project.sourceRoot}/styles.less`,
+            `${project.sourceRoot}/favicon.ico`,
             `${project.sourceRoot}/app/app.module.ts`,
             `${project.sourceRoot}/app/app.component.spec.ts`,
             `${project.sourceRoot}/app/app.component.ts`,
             `${project.sourceRoot}/app/app.component.html`,
             `${project.sourceRoot}/app/app.component.less`,
+            `${project.sourceRoot}/app/app-routing.module.ts`,
         ]
             .filter(p => host.exists(p))
             .forEach(p => host.delete(p));
-    };
-}
-function fixMain() {
-    return (host) => {
-        // fix: main.ts using no hmr file
-        alain_1.tryAddFile(host, `${project.sourceRoot}/main.ts`, contents_1.HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
     };
 }
 function fixAngularJson(options) {
     return (host) => {
         const json = json_1.getAngular(host);
         const _project = project_1.getProjectFromWorkspace(json, options.project);
+        const architect = (_project.targets || _project.architect);
         // Add proxy.conf.json
-        (_project.targets || _project.architect).serve.options.proxyConfig = 'proxy.conf.json';
+        architect.serve.options.proxyConfig = 'proxy.conf.json';
+        // 调整budgets
+        const budgets = architect.build.configurations.production.budgets;
+        if (budgets && budgets.length > 0) {
+            const initial = budgets.find(w => w.type === 'initial');
+            if (initial) {
+                initial.maximumWarning = '2mb';
+                initial.maximumError = '3mb';
+            }
+        }
         json_1.overwriteAngular(host, json);
         return host;
     };
@@ -68,7 +75,8 @@ function addDependenciesToPackageJson(options) {
         json_1.addPackageToPackageJson(host, [
             `ng-alain@${lib_versions_1.VERSION}`,
             `ng-alain-codelyzer@^0.0.1`,
-            `ng-alain-plugin-theme@^10.0.3`,
+            `ng-alain-plugin-theme@^11.0.0`,
+            `source-map-explorer@^2.5.1`,
             `@delon/testing@${lib_versions_1.VERSION}`,
         ], 'devDependencies');
         // i18n
@@ -86,9 +94,12 @@ function addRunScriptToPackageJson() {
         const json = json_1.getPackage(host, 'scripts');
         if (json == null)
             return host;
+        json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
         json.scripts.start = `ng s -o`;
-        json.scripts.build = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod`;
-        json.scripts.analyze = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --stats-json`;
+        json.scripts.hmr = `ng s -o --hmr`;
+        json.scripts.build = `npm run ng-high-memory build -- --prod`;
+        json.scripts.analyze = `npm run ng-high-memory build -- --prod --source-map`;
+        json.scripts['analyze:view'] = `source-map-explorer dist/**/*.js`;
         json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
         json.scripts['color-less'] = `ng-alain-plugin-theme -t=colorLess`;
         json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
@@ -220,67 +231,6 @@ function mergeFiles(options, from, to) {
         schematics_1.move(to),
     ]));
 }
-function addCliTpl() {
-    const TPLS = {
-        '__name@dasherize__.component.html': `<page-header></page-header>`,
-        '__name@dasherize__.component.ts': `import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
-import { _HttpClient } from '@delon/theme';
-import { NzMessageService } from 'ng-zorro-antd/message';
-
-@Component({
-  selector: '<%= selector %>',
-  templateUrl: './<%= dasherize(name) %>.component.html',<% if(!inlineStyle) { %><% } else { %>
-  styleUrls: ['./<%= dasherize(name) %>.component.<%= style %>']<% } %><% if(!!viewEncapsulation) { %>,
-  encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
-  changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
-})
-export class <%= componentName %> implements OnInit {
-
-  constructor(private http: _HttpClient, private msg: NzMessageService) { }
-
-  ngOnInit() { }
-
-}
-`,
-        '__name@dasherize__.component.spec.ts': `import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-  import { <%= componentName %> } from './<%= dasherize(name) %>.component';
-
-  describe('<%= componentName %>', () => {
-    let component: <%= componentName %>;
-    let fixture: ComponentFixture<<%= componentName %>>;
-
-    beforeEach(async(() => {
-      TestBed.configureTestingModule({
-        declarations: [ <%= componentName %> ]
-      })
-      .compileComponents();
-    }));
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(<%= componentName %>);
-      component = fixture.componentInstance;
-      fixture.detectChanges();
-    });
-
-    it('should create', () => {
-      expect(component).toBeTruthy();
-    });
-  });
-  `,
-    };
-    return (host) => {
-        const prefix = `${project.root}/_cli-tpl/test/__path__/__name@dasherize@if-flat__/`;
-        Object.keys(TPLS).forEach(name => {
-            const realPath = prefix + name;
-            if (host.exists(realPath)) {
-                host.overwrite(realPath, TPLS[name]);
-            }
-            else {
-                host.create(realPath, TPLS[name]);
-            }
-        });
-    };
-}
 function addFilesToRoot(options) {
     return schematics_1.chain([
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/src'), [
@@ -305,7 +255,7 @@ function fixLang(options) {
         const langs = lang_config_1.getLangData(options.defaultLanguage);
         if (!langs)
             return;
-        console.log(`Translating, please wait...`);
+        spinner.text = `Translating template into ${options.defaultLanguage} language, please wait...`;
         host.visit(p => {
             if (~p.indexOf(`/node_modules/`))
                 return;
@@ -364,14 +314,20 @@ function fixVsCode() {
         json_1.overwriteJSON(host, filePath, json);
     };
 }
-function installPackages() {
+function install() {
     return (_host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
+    };
+}
+function finished() {
+    return (_host, _context) => {
+        spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
     };
 }
 function default_1(options) {
     return (host, context) => {
         project = project_1.getProject(host, options.project);
+        spinner.start(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
@@ -385,14 +341,13 @@ function default_1(options) {
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
-            addCliTpl(),
-            fixMain(),
             forceLess(),
             addStyle(),
             fixLang(options),
             fixVsCode(),
             fixAngularJson(options),
-            installPackages(),
+            install(),
+            finished(),
         ])(host, context);
     };
 }

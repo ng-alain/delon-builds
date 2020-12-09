@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util';
 import { Nav } from './sidebar-nav.types';
+/**
+ * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
+ */
 export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private menuSrv;
     private settings;

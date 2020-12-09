@@ -552,19 +552,16 @@
         if (typeof options === 'string')
             options = { formatString: options };
         var _a = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options), formatString = _a.formatString, defaultValue = _a.defaultValue;
-        if (value == null) {
+        if (value == null)
             return defaultValue;
-        }
-        if (value instanceof Date) {
+        if (value instanceof Date)
             return value;
-        }
-        if (typeof value === 'number') {
+        if (typeof value === 'number')
             return new Date(value);
-        }
         /** @type {?} */
-        var tryDate = parseISO__default['default'](value);
+        var tryDate = !isNaN(+value) ? new Date(+value) : parseISO__default['default'](value);
         if (isNaN(( /** @type {?} */(tryDate)))) {
-            tryDate = parse__default['default'](value, ( /** @type {?} */(formatString)), new Date());
+            tryDate = parse__default['default'](value, ( /** @type {?} */(formatString)), defaultValue);
         }
         return isNaN(( /** @type {?} */(tryDate))) ? defaultValue : tryDate;
     }
@@ -1332,6 +1329,8 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.zip;
         /** @type {?|undefined} */
+        AlainConfig.prototype.pdf;
+        /** @type {?|undefined} */
         AlainConfig.prototype.media;
         /** @type {?|undefined} */
         AlainConfig.prototype.acl;
@@ -1494,6 +1493,19 @@
          */
         ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
         /**
+         * 根父编号值，默认会自动计算得到最合适的根父编号值，例如：
+         * \@example
+         * ```ts
+         * const res = srv.arrToTree([
+         *    { id: 2, parent_id: 'a', title: 'c1' },
+         *    { id: 4, parent_id: 2, title: 't1' },
+         *  ],
+         *  { rootParentValue: 'a' });
+         * ```
+         * @type {?|undefined}
+         */
+        ArrayServiceArrToTreeOptions.prototype.rootParentIdValue;
+        /**
          * 子项名，默认：`'children'`
          * @type {?|undefined}
          */
@@ -1654,10 +1666,34 @@
             var e_2, _a;
             /** @type {?} */
             var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+            if (arr.length === 0) {
+                return [];
+            }
             /** @type {?} */
             var tree = [];
             /** @type {?} */
             var childrenOf = {};
+            /** @type {?} */
+            var rootPid = opt.rootParentIdValue;
+            if (!rootPid) {
+                /** @type {?} */
+                var pids = arr.map(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) { return i[( /** @type {?} */(opt.parentIdMapName))]; }));
+                /** @type {?} */
+                var emptyPid = pids.findIndex(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w == null; }));
+                rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
+            }
             try {
                 for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
                     var item = arr_1_1.value;
@@ -1670,7 +1706,7 @@
                     if (opt.cb) {
                         opt.cb(item);
                     }
-                    if (pid) {
+                    if (pid !== rootPid) {
                         childrenOf[pid] = childrenOf[pid] || [];
                         childrenOf[pid].push(item);
                     }

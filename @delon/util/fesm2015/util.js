@@ -236,19 +236,16 @@ function toDate(value, options) {
     if (typeof options === 'string')
         options = { formatString: options };
     const { formatString, defaultValue } = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options);
-    if (value == null) {
+    if (value == null)
         return defaultValue;
-    }
-    if (value instanceof Date) {
+    if (value instanceof Date)
         return value;
-    }
-    if (typeof value === 'number') {
+    if (typeof value === 'number')
         return new Date(value);
-    }
     /** @type {?} */
-    let tryDate = parseISO(value);
+    let tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
     if (isNaN((/** @type {?} */ (tryDate)))) {
-        tryDate = parse(value, (/** @type {?} */ (formatString)), new Date());
+        tryDate = parse(value, (/** @type {?} */ (formatString)), defaultValue);
     }
     return isNaN((/** @type {?} */ (tryDate))) ? defaultValue : tryDate;
 }
@@ -1582,6 +1579,58 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/abc/pdf.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainPdfConfig() { }
+if (false) {
+    /**
+     * [pdf.js](https://github.com/mozilla/pdf.js) library root url, Default: `https://cdn.jsdelivr.net/npm/pdfjs-dist\@2.5.207/`
+     *
+     * **Note** That only the root path, muse be ending with `/`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.lib;
+    /**
+     * Show single or all pages altogether, Default: `true`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.showAll;
+    /**
+     * Enable text rendering, allows to select text, Default: `true`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.renderText;
+    /**
+     * Show page borders, Default: `false`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.showBorders;
+    /**
+     * Default: `true`
+     * - if set to `true` - size will be as same as original document
+     * - if set to `false` - size will be as same as container block
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.originalSize;
+    /**
+     * You can show your document in original size, and make sure that it's not bigger then container block. Default: `false`
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.fitToPage;
+    /**
+     * Turn on or off auto resize, Default: `true`
+     * **Important** To make work - make sure that `[originalSize]="false"` and pdf-viewer tag has `max-width` or `display` are set.
+     * @type {?|undefined}
+     */
+    AlainPdfConfig.prototype.autoReSize;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/config/abc/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -2091,6 +2140,8 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.zip;
     /** @type {?|undefined} */
+    AlainConfig.prototype.pdf;
+    /** @type {?|undefined} */
     AlainConfig.prototype.media;
     /** @type {?|undefined} */
     AlainConfig.prototype.acl;
@@ -2257,6 +2308,19 @@ if (false) {
      */
     ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
     /**
+     * 根父编号值，默认会自动计算得到最合适的根父编号值，例如：
+     * \@example
+     * ```ts
+     * const res = srv.arrToTree([
+     *    { id: 2, parent_id: 'a', title: 'c1' },
+     *    { id: 4, parent_id: 2, title: 't1' },
+     *  ],
+     *  { rootParentValue: 'a' });
+     * ```
+     * @type {?|undefined}
+     */
+    ArrayServiceArrToTreeOptions.prototype.rootParentIdValue;
+    /**
      * 子项名，默认：`'children'`
      * @type {?|undefined}
      */
@@ -2405,10 +2469,30 @@ class ArrayService {
     arrToTree(arr, options) {
         /** @type {?} */
         const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+        if (arr.length === 0) {
+            return [];
+        }
         /** @type {?} */
         const tree = [];
         /** @type {?} */
         const childrenOf = {};
+        /** @type {?} */
+        let rootPid = opt.rootParentIdValue;
+        if (!rootPid) {
+            /** @type {?} */
+            const pids = arr.map((/**
+             * @param {?} i
+             * @return {?}
+             */
+            i => i[(/** @type {?} */ (opt.parentIdMapName))]));
+            /** @type {?} */
+            const emptyPid = pids.findIndex((/**
+             * @param {?} w
+             * @return {?}
+             */
+            w => w == null));
+            rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
+        }
         for (const item of arr) {
             /** @type {?} */
             const id = item[(/** @type {?} */ (opt.idMapName))];
@@ -2419,7 +2503,7 @@ class ArrayService {
             if (opt.cb) {
                 opt.cb(item);
             }
-            if (pid) {
+            if (pid !== rootPid) {
                 childrenOf[pid] = childrenOf[pid] || [];
                 childrenOf[pid].push(item);
             }

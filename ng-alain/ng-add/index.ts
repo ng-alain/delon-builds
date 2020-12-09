@@ -5,7 +5,7 @@ import { Schema as ApplicationOptions } from '../application/schema';
 import { getJSON } from '../utils/json';
 import { Schema as NgAddOptions } from './schema';
 
-const V = 10;
+const V = 11;
 
 function genRules(options: NgAddOptions): Rule {
   const rules: Rule[] = [];
@@ -47,10 +47,6 @@ function genRules(options: NgAddOptions): Rule {
     );
   }
 
-  if (options.hmr) {
-    rules.push(schematic('plugin', { name: 'hmr', type: 'add' }));
-  }
-
   return chain(rules);
 }
 
@@ -73,13 +69,18 @@ export default function (options: NgAddOptions): Rule {
     }
 
     const pkg = getJSON(host, `package.json`);
+
+    if (pkg.devDependencies['ng-alain']) {
+      throw new Error(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
+    }
+
     let ngCoreVersion = pkg.dependencies['@angular/core'] as string;
     if (/^[\^|\~]/g.test(ngCoreVersion)) {
       ngCoreVersion = ngCoreVersion.substr(1);
     }
     if (!ngCoreVersion.startsWith(V + '.')) {
       throw new Error(
-        `Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}.x] (or via npm: [npm install -g @angular/cli@${V}.x])`,
+        `Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}] (or via npm: [npm install -g @angular/cli@${V}])`,
       );
     }
 

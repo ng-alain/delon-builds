@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Observable } from 'rxjs';
-import { App, Layout, SettingsNotify, User } from './interface';
+import { App, Layout, SettingsNotify, User } from './types';
 export declare const LAYOUT = "layout";
 export declare const USER = "user";
 export declare const APP = "app";

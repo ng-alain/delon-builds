@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addAllowedCommonJsDependencies = exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
+exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
 const json_1 = require("@angular-devkit/core/src/json");
 const project_1 = require("./project");
 function getJSON(host, jsonFile, type) {
@@ -108,19 +108,21 @@ function scriptsToAngularJson(host, resources, behavior, types = ['build', 'test
     return host;
 }
 exports.scriptsToAngularJson = scriptsToAngularJson;
-function addAllowedCommonJsDependencies(host) {
+function addAllowedCommonJsDependencies(host, items) {
     const json = getAngular(host);
     const project = project_1.getProjectFromWorkspace(json);
     let list = project.architect.build.options.allowedCommonJsDependencies;
     if (!Array.isArray(list)) {
         list = [];
     }
+    if (Array.isArray(items)) {
+        list = [...list, ...items];
+    }
     const result = new Set(...list);
     // in angular.json
     [
         // 'codesandbox/lib/api/define',
         'hammerjs',
-        '@angularclass/hmr',
         'file-saver',
         '@ant-design/colors',
         '@antv/path-util',
@@ -137,4 +139,19 @@ function addAllowedCommonJsDependencies(host) {
     overwriteAngular(host, json);
 }
 exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
+function removeAllowedCommonJsDependencies(host, key) {
+    const json = getAngular(host);
+    const project = project_1.getProjectFromWorkspace(json);
+    const list = project.architect.build.options.allowedCommonJsDependencies;
+    if (!Array.isArray(list)) {
+        return;
+    }
+    const pos = list.indexOf(key);
+    if (pos === -1)
+        return;
+    list.splice(pos, 1);
+    project.architect.build.options.allowedCommonJsDependencies = list.sort();
+    overwriteAngular(host, json);
+}
+exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
 //# sourceMappingURL=json.js.map

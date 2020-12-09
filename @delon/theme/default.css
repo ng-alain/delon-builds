@@ -26790,6 +26790,31 @@ fieldset {
   right: 500px;
   z-index: 1001;
 }
+.theme-btn {
+  position: fixed;
+  right: 32px;
+  bottom: 102px;
+  z-index: 2147483640;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.theme-btn-active {
+  width: 44px;
+  height: 44px;
+  color: #1890ff;
+  font-size: 22px;
+  line-height: 44px;
+}
+.theme-btn .ant-avatar {
+  color: #000;
+  background-color: #fff;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  transition: color 0.3s;
+}
+.theme-btn .ant-avatar:hover {
+  color: #1890ff;
+}
 .yn__yes,
 .yn__no {
   display: inline-flex;
@@ -30392,6 +30417,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.alain-default__nav-middle {
+  flex: 1;
+}
 .alain-default__nav-wrap {
   display: flex;
   flex: 1;
@@ -30956,12 +30984,12 @@ body {
 .alain-default__fixed .alain-default__content {
   margin-top: 64px;
 }
-.alain-fullscreen {
+.alain-blank {
   display: block;
   padding: 0 16px;
   background-color: #f5f7fa;
 }
-.alain-fullscreen .page-header {
+.alain-blank .page-header {
   margin-right: -16px;
   margin-bottom: 0;
   margin-left: -16px;
@@ -31937,6 +31965,13 @@ ellipsis {
   100% {
     box-shadow: #ffffff 0 0 0 2px, rgba(255, 255, 255, 0.01) 0 0 0 10px;
   }
+}
+.pdf-container {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 g2-chart,
 g2-bar,
