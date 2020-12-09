@@ -2567,6 +2567,94 @@ var slSI = (/** @type {?} */ ({
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/locale/languages/fr-FR.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+var frFR = (/** @type {?} */ ({
+    abbr: 'fr-FR',
+    exception: {
+        403: `Désolé, vous n'avez pas accès à cette page`,
+        404: `Désolé, la page que vous avez visitée n'existe pas`,
+        500: `Désolé, le serveur signale une erreur`,
+        backToHome: "Retour à l'accueil",
+    },
+    noticeIcon: {
+        emptyText: 'Pas de données',
+        clearText: 'Effacer',
+    },
+    reuseTab: {
+        close: "Fermer l'onglet",
+        closeOther: 'Fermer les autres onglets',
+        closeRight: 'Fermer les onglets à droite',
+        refresh: 'Rafraîchir',
+    },
+    tagSelect: {
+        expand: 'Etendre',
+        collapse: 'Effondrer',
+    },
+    miniProgress: {
+        target: 'Cible: ',
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} de {{total}}',
+        filterConfirm: 'OK',
+        filterReset: 'Réinitialiser',
+    },
+    sf: {
+        submit: 'Soumettre',
+        reset: 'Réinitialiser',
+        search: 'Rechercher',
+        edit: 'Sauvegarder',
+        addText: 'Ajouter',
+        removeText: 'Supprimer',
+        checkAllText: 'Cochez toutes',
+        error: {
+            'false schema': `Boolean schema is false`,
+            $ref: `Can't resolve reference {ref}`,
+            additionalItems: `Should not have more than {limit} item`,
+            additionalProperties: `Should not have additional properties`,
+            anyOf: `Should match some schema in "anyOf"`,
+            dependencies: `should have property {deps} when property {property} is present`,
+            enum: `Should be equal to one of predefined values`,
+            format: `Should match format "{format}"`,
+            type: `Should be {type}`,
+            required: `Required`,
+            maxLength: `Should not be longer than {limit} character`,
+            minLength: `Should not be shorter than {limit} character`,
+            minimum: `Should be {comparison} {limit}`,
+            formatMinimum: `Should be {comparison} {limit}`,
+            maximum: `Should be {comparison} {limit}`,
+            formatMaximum: `Should be {comparison} {limit}`,
+            maxItems: `Should not have more than {limit} item`,
+            minItems: `Should not have less than {limit} item`,
+            maxProperties: `Should not have more than {limit} property`,
+            minProperties: `Should not have less than {limit} property`,
+            multipleOf: `Should be a multiple of {multipleOf}`,
+            not: `Should not be valid according to schema in "not"`,
+            oneOf: `Should match exactly one schema in "oneOf"`,
+            pattern: `Should match pattern "{pattern}"`,
+            uniqueItems: `Should not have duplicate items (items ## {j} and {i} are identical)`,
+            custom: `Should match format`,
+            propertyNames: `Property name "{propertyName}" is invalid`,
+            patternRequired: `Should have property matching pattern "{missingPattern}"`,
+            switch: `Should pass "switch" keyword validation, case {caseIndex} fails`,
+            const: `Should be equal to constant`,
+            contains: `Should contain a valid item`,
+            formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
+            formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
+            if: `Should match "{failingKeyword}" schema`,
+        },
+    },
+    onboarding: {
+        skip: `Passer`,
+        prev: `Précédent`,
+        next: `Suivant`,
+        done: `Terminé`,
+    },
+}));
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/locale/public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -3885,7 +3973,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.1.2-b1b162d5');
+const VERSION = new Version('10.1.2-6b794f09');
 
 /**
  * @fileoverview added by tsickle
@@ -3899,5 +3987,5 @@ const VERSION = new Version('10.1.2-b1b162d5');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
