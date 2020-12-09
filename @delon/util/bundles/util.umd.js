@@ -552,16 +552,19 @@
         if (typeof options === 'string')
             options = { formatString: options };
         var _a = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options), formatString = _a.formatString, defaultValue = _a.defaultValue;
-        if (value == null)
+        if (value == null) {
             return defaultValue;
-        if (value instanceof Date)
+        }
+        if (value instanceof Date) {
             return value;
-        if (typeof value === 'number')
-            return new Date(value);
+        }
+        if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
+            return new Date(+value);
+        }
         /** @type {?} */
-        var tryDate = !isNaN(+value) ? new Date(+value) : parseISO__default['default'](value);
+        var tryDate = parseISO__default['default'](value);
         if (isNaN(( /** @type {?} */(tryDate)))) {
-            tryDate = parse__default['default'](value, ( /** @type {?} */(formatString)), defaultValue);
+            tryDate = parse__default['default'](value, ( /** @type {?} */(formatString)), new Date());
         }
         return isNaN(( /** @type {?} */(tryDate))) ? defaultValue : tryDate;
     }

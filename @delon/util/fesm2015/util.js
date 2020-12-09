@@ -236,16 +236,19 @@ function toDate(value, options) {
     if (typeof options === 'string')
         options = { formatString: options };
     const { formatString, defaultValue } = Object.assign({ formatString: 'yyyy-MM-dd HH:mm:ss', defaultValue: new Date(NaN) }, options);
-    if (value == null)
+    if (value == null) {
         return defaultValue;
-    if (value instanceof Date)
+    }
+    if (value instanceof Date) {
         return value;
-    if (typeof value === 'number')
-        return new Date(value);
+    }
+    if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
+        return new Date(+value);
+    }
     /** @type {?} */
-    let tryDate = !isNaN(+value) ? new Date(+value) : parseISO(value);
+    let tryDate = parseISO(value);
     if (isNaN((/** @type {?} */ (tryDate)))) {
-        tryDate = parse(value, (/** @type {?} */ (formatString)), defaultValue);
+        tryDate = parse(value, (/** @type {?} */ (formatString)), new Date());
     }
     return isNaN((/** @type {?} */ (tryDate))) ? defaultValue : tryDate;
 }
