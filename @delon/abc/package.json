@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "10.1.2-70187a23",
+  "version": "10.1.2-47ece2f5",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -24,9 +24,9 @@
     "isutf8": "^3.0.0",
     "file-saver": "^2.0.2",
     "ngx-countdown": "^10.0.0",
-    "@delon/theme": "^10.1.2-70187a23",
-    "@delon/util": "^10.1.2-70187a23",
-    "@delon/acl": "^10.1.2-70187a23",
+    "@delon/theme": "^10.1.2-47ece2f5",
+    "@delon/util": "^10.1.2-47ece2f5",
+    "@delon/acl": "^10.1.2-47ece2f5",
     "tslib": "^2.0.0"
   },
   "main": "bundles/abc.umd.js",
