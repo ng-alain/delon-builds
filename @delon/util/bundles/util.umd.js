@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v10.1.2
+ * @license ng-alain(cipchk@qq.com) v10.1.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -558,8 +558,8 @@
         if (value instanceof Date) {
             return value;
         }
-        if (typeof value === 'number') {
-            return new Date(value);
+        if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
+            return new Date(+value);
         }
         /** @type {?} */
         var tryDate = parseISO__default['default'](value);

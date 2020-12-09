@@ -242,8 +242,8 @@ function toDate(value, options) {
     if (value instanceof Date) {
         return value;
     }
-    if (typeof value === 'number') {
-        return new Date(value);
+    if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
+        return new Date(+value);
     }
     /** @type {?} */
     let tryDate = parseISO(value);
