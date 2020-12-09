@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { SimpleGuard } from '@delon/auth';
 import { environment } from '@env/environment';
 // layout
-import { LayoutBasicComponent } from '../layout/basic/basic.component';
-import { LayoutBlankComponent } from '../layout/blank/blank.component';
+import { LayoutDefaultComponent } from '../layout/default/default.component';
+import { LayoutFullScreenComponent } from '../layout/fullscreen/fullscreen.component';
 import { LayoutPassportComponent } from '../layout/passport/passport.component';
 // dashboard pages
 import { DashboardComponent } from './dashboard/dashboard.component';
-// single pages
-import { CallbackComponent } from './passport/callback.component';
-import { UserLockComponent } from './passport/lock/lock.component';
 // passport pages
 import { UserLoginComponent } from './passport/login/login.component';
-import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
 import { UserRegisterComponent } from './passport/register/register.component';
+import { UserRegisterResultComponent } from './passport/register-result/register-result.component';
+// single pages
+import { CallbackComponent } from './callback/callback.component';
+import { UserLockComponent } from './passport/lock/lock.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutBasicComponent,
+    component: LayoutDefaultComponent,
     canActivate: [SimpleGuard],
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -29,10 +29,10 @@ const routes: Routes = [
       // { path: 'widgets', loadChildren: () => import('./widgets/widgets.module').then(m => m.WidgetsModule) },
     ]
   },
-  // 空白布局
+  // 全屏布局
   // {
-  //     path: 'blank',
-  //     component: LayoutBlankComponent,
+  //     path: 'fullscreen',
+  //     component: LayoutFullScreenComponent,
   //     children: [
   //     ]
   // },
@@ -48,7 +48,7 @@ const routes: Routes = [
     ]
   },
   // 单页不包裹Layout
-  { path: 'passport/callback/:type', component: CallbackComponent },
+  { path: 'callback/:type', component: CallbackComponent },
   { path: '**', redirectTo: 'exception/404' },
 ];
 

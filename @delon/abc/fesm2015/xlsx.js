@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
 import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
 import { saveAs } from 'file-saver';
-import isUtf8 from 'isutf8';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -80,8 +79,8 @@ class XlsxService {
         this.lazy = lazy;
         this.ngZone = ngZone;
         this.cog = (/** @type {?} */ (configSrv.merge('xlsx', {
-            url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
-            modules: [`https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js`],
+            url: '//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js',
+            modules: [],
         })));
     }
     /**
@@ -104,19 +103,6 @@ class XlsxService {
          * @return {?}
          */
         () => {
-            if (options.type === 'binary') {
-                /** @type {?} */
-                const buf = new Uint8Array(data);
-                if (!isUtf8(buf)) {
-                    try {
-                        data = cptable.utils.decode(936, buf);
-                        options.type = 'string';
-                    }
-                    catch (_a) {
-                        options.type = 'array';
-                    }
-                }
-            }
             /** @type {?} */
             const wb = XLSX.read(data, options);
             wb.SheetNames.forEach((/**
@@ -132,11 +118,12 @@ class XlsxService {
         return ret;
     }
     /**
+     * 导入Excel并输出JSON，支持 `<input type="file">`、URL 形式
      * @param {?} fileOrUrl
-     * @param {?=} _rABS
+     * @param {?=} rABS 加载数据方式 `readAsBinaryString` （默认） 或 `readAsArrayBuffer`，[更多细节](http://t.cn/R3n63A0)
      * @return {?}
      */
-    import(fileOrUrl, _rABS = 'readAsBinaryString') {
+    import(fileOrUrl, rABS = 'readAsBinaryString') {
         return new Promise((/**
          * @param {?} resolve
          * @param {?} reject
@@ -181,7 +168,7 @@ class XlsxService {
                      */
                     () => resolve(this.read(e.target.result, { type: 'binary' }))));
                 });
-                reader.readAsArrayBuffer(fileOrUrl);
+                reader[rABS](fileOrUrl);
             }))
                 .catch((/**
              * @return {?}

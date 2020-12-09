@@ -1,6 +1,4 @@
-import { Rule, SchematicContext } from '@angular-devkit/schematics';
+import { Rule } from '@angular-devkit/schematics';
 export declare function updateToV9(): Rule;
 export declare function updateToV10(): Rule;
-export declare function updateToV11(): Rule;
-/** Post-update schematic to be called when update is finished. */
-export declare function postUpdate(context: SchematicContext, targetVersion: any, hasFailures: boolean): void;
+export declare function postUpdate(): Rule;

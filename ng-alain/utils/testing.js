@@ -9,21 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTestApp = exports.createAlainAndModuleApp = exports.createAlainApp = exports.createAlainRunner = exports.createNgRunner = exports.FILE_PREFIX = exports.APPNAME = exports.migrationCollection = exports.collectionPath = void 0;
+exports.createTestApp = exports.createAlainAndModuleApp = exports.createAlainApp = exports.createAlainRunner = exports.createNgRunner = exports.APPNAME = void 0;
 const testing_1 = require("@angular-devkit/schematics/testing");
 const path_1 = require("path");
-/** Path to the collection file for the Material schematics */
-exports.collectionPath = path_1.join(__dirname, '..', 'collection.json');
-/** Path to the migration file for the Material update schematics */
-exports.migrationCollection = path_1.join(__dirname, '..', 'migration.json');
 exports.APPNAME = 'foo';
-exports.FILE_PREFIX = `/projects/${exports.APPNAME}`;
 function createNgRunner() {
     return new testing_1.SchematicTestRunner('schematics', path_1.join('./node_modules/@schematics/angular/collection.json'));
 }
 exports.createNgRunner = createNgRunner;
 function createAlainRunner() {
-    return new testing_1.SchematicTestRunner('schematics', exports.collectionPath);
+    return new testing_1.SchematicTestRunner('schematics', path_1.join(__dirname, '../collection.json'));
 }
 exports.createAlainRunner = createAlainRunner;
 function createAlainApp(ngAddOptions) {

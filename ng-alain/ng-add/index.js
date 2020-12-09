@@ -4,7 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const json_1 = require("../utils/json");
-const V = 11;
+const V = 10;
 function genRules(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);
@@ -33,6 +33,9 @@ function genRules(options) {
             packageManager: 'yarn',
         }));
     }
+    if (options.hmr) {
+        rules.push(schematics_1.schematic('plugin', { name: 'hmr', type: 'add' }));
+    }
     return schematics_1.chain(rules);
 }
 function getFiles() {
@@ -52,15 +55,12 @@ function default_1(options) {
             throw new Error(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
         const pkg = json_1.getJSON(host, `package.json`);
-        if (pkg.devDependencies['ng-alain']) {
-            throw new Error(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
-        }
         let ngCoreVersion = pkg.dependencies['@angular/core'];
         if (/^[\^|\~]/g.test(ngCoreVersion)) {
             ngCoreVersion = ngCoreVersion.substr(1);
         }
         if (!ngCoreVersion.startsWith(V + '.')) {
-            throw new Error(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}] (or via npm: [npm install -g @angular/cli@${V}])`);
+            throw new Error(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}.x] (or via npm: [npm install -g @angular/cli@${V}.x])`);
         }
         return genRules(options);
     };

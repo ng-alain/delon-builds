@@ -1,10 +1,8 @@
 // tslint:disable: no-duplicate-imports
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule, Type } from '@angular/core';
+import { APP_INITIALIZER, Injector, LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NzMessageModule } from 'ng-zorro-antd/message';
-import { NzNotificationModule } from 'ng-zorro-antd/notification';
 
 // #region default language
 // Reference: https://ng-alain.com/docs/i18n
@@ -35,7 +33,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ALAIN_I18N_TOKEN } from '@delon/theme';
 import { I18NService } from '@core';
 
-export function I18nHttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+export function I18nHttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, `assets/tmp/i18n/`, '.json');
 }
 
@@ -71,13 +69,13 @@ const INTERCEPTOR_PROVIDES = [
 // #endregion
 
 // #region global third module
-const GLOBAL_THIRD_MODULES: Type<any>[] = [
+const GLOBAL_THIRD_MODULES = [
 ];
 // #endregion
 
 // #region Startup Service
 import { StartupService } from '@core';
-export function StartupServiceFactory(startupService: StartupService): () => Promise<void> {
+export function StartupServiceFactory(startupService: StartupService) {
   return () => startupService.load();
 }
 const APPINIT_PROVIDES = [
@@ -112,9 +110,7 @@ import { STWidgetModule } from './shared/st-widget/st-widget.module';
     SharedModule,
     LayoutModule,
     RoutesModule,
-    STWidgetModule,
-    NzMessageModule,
-    NzNotificationModule,<% if (i18n) { %>
+    STWidgetModule,<% if (i18n) { %>
     ...I18NSERVICE_MODULES,<% } %><% if (form) { %>
     ...FORM_MODULES,<% } %>
     ...GLOBAL_THIRD_MODULES

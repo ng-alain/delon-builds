@@ -855,7 +855,7 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: src/services/settings/types.ts
+ * Generated from: src/services/settings/interface.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
@@ -3885,7 +3885,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('10.1.2-0c94a33a');
+const VERSION = new Version('10.1.2-4e9b970d');
 
 /**
  * @fileoverview added by tsickle

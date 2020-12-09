@@ -45,7 +45,7 @@ export class UserRegisterComponent implements OnDestroy {
   visible = false;
   status = 'pool';
   progress = 0;
-  passwordProgressMap: { [key: string]: 'success' | 'normal' | 'exception' } = {
+  passwordProgressMap = {
     ok: 'success',
     pass: 'normal',
     pool: 'exception',
@@ -78,10 +78,10 @@ export class UserRegisterComponent implements OnDestroy {
   }
 
   static passwordEquar(control: FormControl): { equar: boolean } | null {
-    if (!control || !control.parent!) {
+    if (!control || !control.parent) {
       return null;
     }
-    if (control.value !== control.parent!.get('password')!.value) {
+    if (control.value !== control.parent.get('password')!.value) {
       return { equar: true };
     }
     return null;
@@ -116,7 +116,9 @@ export class UserRegisterComponent implements OnDestroy {
 
     const data = this.form.value;
     this.http.post('/register', data).subscribe(() => {
-      this.router.navigateByUrl('/passport/register-result', /* Removed unsupported properties by Angular migration: queryParams. */ {});
+      this.router.navigateByUrl('/passport/register-result', {
+        queryParams: { email: data.mail },
+      });
     });
   }
 

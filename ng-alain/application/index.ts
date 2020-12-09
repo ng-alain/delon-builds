@@ -1,4 +1,3 @@
-import { Spinner } from '@angular-devkit/build-angular/src/utils/spinner';
 import { strings } from '@angular-devkit/core';
 import {
   apply,
@@ -17,7 +16,9 @@ import {
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import * as path from 'path';
 import { getLangData } from '../core/lang.config';
-import { addFiles, overwriteFile } from '../utils/file';
+import { tryAddFile } from '../utils/alain';
+import { HMR_CONTENT } from '../utils/contents';
+import { addFiles } from '../utils/file';
 import { addHeadStyle, addHtmlToBody } from '../utils/html';
 import {
   addAllowedCommonJsDependencies,
@@ -36,7 +37,6 @@ import { Schema as ApplicationOptions } from './schema';
 
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project: Project;
-const spinner = new Spinner();
 
 /** Remove files to be overwrite */
 function removeOrginalFiles(): (host: Tree) => void {
@@ -45,20 +45,24 @@ function removeOrginalFiles(): (host: Tree) => void {
       `${project.root}/README.md`,
       `${project.root}/tslint.json`,
       `${project.sourceRoot}/main.ts`,
-      `${project.sourceRoot}/test.ts`,
       `${project.sourceRoot}/environments/environment.prod.ts`,
       `${project.sourceRoot}/environments/environment.ts`,
       `${project.sourceRoot}/styles.less`,
-      `${project.sourceRoot}/favicon.ico`,
       `${project.sourceRoot}/app/app.module.ts`,
       `${project.sourceRoot}/app/app.component.spec.ts`,
       `${project.sourceRoot}/app/app.component.ts`,
       `${project.sourceRoot}/app/app.component.html`,
       `${project.sourceRoot}/app/app.component.less`,
-      `${project.sourceRoot}/app/app-routing.module.ts`,
     ]
       .filter(p => host.exists(p))
       .forEach(p => host.delete(p));
+  };
+}
+
+function fixMain(): (host: Tree) => void {
+  return (host: Tree) => {
+    // fix: main.ts using no hmr file
+    tryAddFile(host, `${project.sourceRoot}/main.ts`, HMR_CONTENT.NO_HMR_MAIN_DOT_TS);
   };
 }
 
@@ -66,22 +70,9 @@ function fixAngularJson(options: ApplicationOptions): (host: Tree) => void {
   return (host: Tree) => {
     const json = getAngular(host);
     const _project = getProjectFromWorkspace(json, options.project);
-    const architect = (_project.targets || _project.architect)!;
+
     // Add proxy.conf.json
-    architect.serve!.options.proxyConfig = 'proxy.conf.json';
-    // 调整budgets
-    const budgets = architect.build.configurations.production.budgets as Array<{
-      type: string;
-      maximumWarning: string;
-      maximumError: string;
-    }>;
-    if (budgets && budgets.length > 0) {
-      const initial = budgets.find(w => w.type === 'initial');
-      if (initial) {
-        initial.maximumWarning = '2mb';
-        initial.maximumError = '3mb';
-      }
-    }
+    (_project.targets || _project.architect)!.serve!.options.proxyConfig = 'proxy.conf.json';
 
     overwriteAngular(host, json);
     return host;
@@ -111,8 +102,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions): (host: Tree)
       [
         `ng-alain@${VERSION}`,
         `ng-alain-codelyzer@^0.0.1`,
-        `ng-alain-plugin-theme@^11.0.0`,
-        `source-map-explorer@^2.5.1`,
+        `ng-alain-plugin-theme@^10.0.3`,
         `@delon/testing@${VERSION}`,
       ],
       'devDependencies',
@@ -132,12 +122,9 @@ function addRunScriptToPackageJson(): (host: Tree) => void {
   return (host: Tree) => {
     const json = getPackage(host, 'scripts');
     if (json == null) return host;
-    json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
     json.scripts.start = `ng s -o`;
-    json.scripts.hmr = `ng s -o --hmr`;
-    json.scripts.build = `npm run ng-high-memory build -- --prod`;
-    json.scripts.analyze = `npm run ng-high-memory build -- --prod --source-map`;
-    json.scripts['analyze:view'] = `source-map-explorer dist/**/*.js`;
+    json.scripts.build = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod`;
+    json.scripts.analyze = `node --max_old_space_size=5120 ./node_modules/@angular/cli/bin/ng build --prod --stats-json`;
     json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
     json.scripts['color-less'] = `ng-alain-plugin-theme -t=colorLess`;
     json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
@@ -295,6 +282,67 @@ function mergeFiles(options: ApplicationOptions, from: string, to: string): Rule
   );
 }
 
+function addCliTpl(): (host: Tree) => void {
+  const TPLS = {
+    '__name@dasherize__.component.html': `<page-header></page-header>`,
+    '__name@dasherize__.component.ts': `import { Component, OnInit<% if(!!viewEncapsulation) { %>, ViewEncapsulation<% }%><% if(changeDetection !== 'Default') { %>, ChangeDetectionStrategy<% }%> } from '@angular/core';
+import { _HttpClient } from '@delon/theme';
+import { NzMessageService } from 'ng-zorro-antd/message';
+
+@Component({
+  selector: '<%= selector %>',
+  templateUrl: './<%= dasherize(name) %>.component.html',<% if(!inlineStyle) { %><% } else { %>
+  styleUrls: ['./<%= dasherize(name) %>.component.<%= style %>']<% } %><% if(!!viewEncapsulation) { %>,
+  encapsulation: ViewEncapsulation.<%= viewEncapsulation %><% } if (changeDetection !== 'Default') { %>,
+  changeDetection: ChangeDetectionStrategy.<%= changeDetection %><% } %>
+})
+export class <%= componentName %> implements OnInit {
+
+  constructor(private http: _HttpClient, private msg: NzMessageService) { }
+
+  ngOnInit() { }
+
+}
+`,
+    '__name@dasherize__.component.spec.ts': `import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+  import { <%= componentName %> } from './<%= dasherize(name) %>.component';
+
+  describe('<%= componentName %>', () => {
+    let component: <%= componentName %>;
+    let fixture: ComponentFixture<<%= componentName %>>;
+
+    beforeEach(async(() => {
+      TestBed.configureTestingModule({
+        declarations: [ <%= componentName %> ]
+      })
+      .compileComponents();
+    }));
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(<%= componentName %>);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    it('should create', () => {
+      expect(component).toBeTruthy();
+    });
+  });
+  `,
+  };
+  return (host: Tree) => {
+    const prefix = `${project.root}/_cli-tpl/test/__path__/__name@dasherize@if-flat__/`;
+    Object.keys(TPLS).forEach(name => {
+      const realPath = prefix + name;
+      if (host.exists(realPath)) {
+        host.overwrite(realPath, TPLS[name]);
+      } else {
+        host.create(realPath, TPLS[name]);
+      }
+    });
+  };
+}
+
 function addFilesToRoot(options: ApplicationOptions): Rule {
   return chain([
     mergeWith(
@@ -335,7 +383,7 @@ function fixLang(options: ApplicationOptions): (host: Tree) => void {
     const langs = getLangData(options.defaultLanguage!);
     if (!langs) return;
 
-    spinner.text = `Translating template into ${options.defaultLanguage} language, please wait...`;
+    console.log(`Translating, please wait...`);
 
     host.visit(p => {
       if (~p.indexOf(`/node_modules/`)) return;
@@ -398,22 +446,16 @@ function fixVsCode(): (host: Tree) => void {
   };
 }
 
-function install(): (_host: Tree, context: SchematicContext) => void {
+function installPackages(): (_host: Tree, context: SchematicContext) => void {
   return (_host: Tree, context: SchematicContext) => {
     context.addTask(new NodePackageInstallTask());
-  };
-}
-
-function finished(): (_host: Tree, context: SchematicContext) => void {
-  return (_host: Tree, _context: SchematicContext) => {
-    spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
   };
 }
 
 export default function (options: ApplicationOptions): Rule {
   return (host: Tree, context: SchematicContext) => {
     project = getProject(host, options.project);
-    spinner.start(`Generating NG-ALAIN scaffold...`);
+
     return chain([
       // @delon/* dependencies
       addDependenciesToPackageJson(options),
@@ -427,13 +469,15 @@ export default function (options: ApplicationOptions): Rule {
       // files
       removeOrginalFiles(),
       addFilesToRoot(options),
+      addCliTpl(),
+      fixMain(),
       forceLess(),
       addStyle(),
       fixLang(options),
       fixVsCode(),
       fixAngularJson(options),
-      install(),
-      finished(),
+      installPackages(),
+      // applyLintFix(),
     ])(host, context);
   };
 }

@@ -42,7 +42,7 @@ function setPackage(host, options) {
     // libs
     (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['classlist.js@^1.1.0', 'web-animations-js@^2.3.2'], 'dependencies');
     // scripts
-    (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ie:start@ng serve -o --configuration es5', 'ie:hmr@ng serve --hmr --configuration es5'], 'scripts');
+    (options.type === 'add' ? json_1.addPackageToPackageJson : json_1.removePackageFromPackageJson)(host, ['ie:start@ng serve -o --configuration es5', 'ie:hmr@ng serve -c=hmr --configuration es5'], 'scripts');
 }
 function setPolyfills(host, options) {
     const filePath = `${project.sourceRoot}/polyfills.ts`;

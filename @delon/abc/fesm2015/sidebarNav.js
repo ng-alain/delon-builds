@@ -19,9 +19,6 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 const SHOWCLS = 'sidebar-nav__floating-show';
 /** @type {?} */
 const FLOATINGCLS = 'sidebar-nav__floating';
-/**
- * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
- */
 class SidebarNavComponent {
     /**
      * @param {?} menuSrv
