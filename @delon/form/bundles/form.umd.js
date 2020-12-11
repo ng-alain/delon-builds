@@ -5229,12 +5229,37 @@
                 this.autosize = autosize;
             }
         };
+        /**
+         * @param {?} val
+         * @return {?}
+         */
+        TextareaWidget.prototype.change = function (val) {
+            this.setValue(val);
+            if (this.ui.change)
+                this.ui.change(val);
+        };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
+        TextareaWidget.prototype.focus = function (e) {
+            if (this.ui.focus)
+                this.ui.focus(e);
+        };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
+        TextareaWidget.prototype.blur = function (e) {
+            if (this.ui.blur)
+                this.ui.blur(e);
+        };
         return TextareaWidget;
     }(ControlUIWidget));
     TextareaWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-textarea',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <textarea\n    nz-input\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    [nzAutosize]=\"autosize\"\n    [nzBorderless]=\"ui.borderless\"\n  >\n  </textarea>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <textarea\n    nz-input\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"change($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    [nzAutosize]=\"autosize\"\n    [nzBorderless]=\"ui.borderless\"\n    (focus)=\"focus($event)\"\n    (blur)=\"blur($event)\"\n  >\n  </textarea>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 }] }
