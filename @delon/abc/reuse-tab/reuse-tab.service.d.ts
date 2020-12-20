@@ -3,6 +3,11 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
+/**
+ * 路由复用类，提供复用所需要一些基本接口
+ *
+ * **注：** 所有缓存数据来源于路由离开后才会产生
+ */
 export declare class ReuseTabService implements OnDestroy {
     private injector;
     private menuService;
@@ -23,21 +28,10 @@ export declare class ReuseTabService implements OnDestroy {
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
     private get snapshot();
-    /**
-     * Get init status
-     *
-     * 是否已经初始化完成
-     */
     get inited(): boolean;
-    /**
-     * Current routing address
-     *
-     * 当前路由地址
-     */
+    /** 当前路由地址 */
     get curUrl(): string;
-    /**
-     * 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件
-     */
+    /** 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件 */
     set max(value: number);
     set keepingScroll(value: boolean);
     get keepingScroll(): boolean;

@@ -471,13 +471,13 @@
          */
         ErrorCollectComponent.prototype.formEl;
         /** @type {?} */
-        ErrorCollectComponent.prototype._hiden;
-        /** @type {?} */
-        ErrorCollectComponent.prototype.count;
-        /** @type {?} */
         ErrorCollectComponent.prototype.freq;
         /** @type {?} */
         ErrorCollectComponent.prototype.offsetTop;
+        /** @type {?} */
+        ErrorCollectComponent.prototype._hiden;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.count;
         /**
          * @type {?}
          * @private

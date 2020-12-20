@@ -26,6 +26,7 @@ class G2CustomComponent {
         this.delay = 0;
         this.resizeTime = 0;
         this.render = new EventEmitter();
+        // tslint:disable-next-line:no-output-native
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');

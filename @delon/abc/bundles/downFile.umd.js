@@ -319,8 +319,19 @@
             this.el = el;
             this._http = _http;
             this.isFileSaverSupported = true;
+            /**
+             * 请求类型
+             */
             this.httpMethod = 'get';
+            /**
+             * 成功回调
+             */
+            // tslint:disable-next-line:no-output-native
             this.success = new core.EventEmitter();
+            /**
+             * 错误回调
+             */
+            // tslint:disable-next-line:no-output-native
             this.error = new core.EventEmitter();
             /** @type {?} */
             var isFileSaverSupported = false;
@@ -484,21 +495,45 @@
          * @private
          */
         DownFileDirective.prototype.isFileSaverSupported;
-        /** @type {?} */
+        /**
+         * URL请求参数
+         * @type {?}
+         */
         DownFileDirective.prototype.httpData;
-        /** @type {?} */
+        /**
+         * URL请求参数
+         * @type {?}
+         */
         DownFileDirective.prototype.httpBody;
-        /** @type {?} */
+        /**
+         * 请求类型
+         * @type {?}
+         */
         DownFileDirective.prototype.httpMethod;
-        /** @type {?} */
+        /**
+         * 下载地址
+         * @type {?}
+         */
         DownFileDirective.prototype.httpUrl;
-        /** @type {?} */
+        /**
+         * 指定文件名，若为空从服务端返回的 `header` 中获取 `filename`、`x-filename`
+         * @type {?}
+         */
         DownFileDirective.prototype.fileName;
-        /** @type {?} */
+        /**
+         * 下载前回调
+         * @type {?}
+         */
         DownFileDirective.prototype.pre;
-        /** @type {?} */
+        /**
+         * 成功回调
+         * @type {?}
+         */
         DownFileDirective.prototype.success;
-        /** @type {?} */
+        /**
+         * 错误回调
+         * @type {?}
+         */
         DownFileDirective.prototype.error;
         /**
          * @type {?}

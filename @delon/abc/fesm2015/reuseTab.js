@@ -23,6 +23,7 @@ class ReuseTabContextMenuComponent {
      */
     constructor(i18nSrv) {
         this.i18nSrv = i18nSrv;
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     /**
@@ -264,6 +265,7 @@ class ReuseTabContextComponent {
     constructor(srv) {
         this.srv = srv;
         this.sub$ = new Subscription();
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.sub$.add(srv.show.subscribe((/**
          * @param {?} context
@@ -571,6 +573,11 @@ if (false) {
  * Generated from: reuse-tab.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/**
+ * 路由复用类，提供复用所需要一些基本接口
+ *
+ * **注：** 所有缓存数据来源于路由离开后才会产生
+ */
 class ReuseTabService {
     // #endregion
     /**
@@ -605,17 +612,12 @@ class ReuseTabService {
     }
     // #region public
     /**
-     * Get init status
-     *
-     * 是否已经初始化完成
      * @return {?}
      */
     get inited() {
         return this._inited;
     }
     /**
-     * Current routing address
-     *
      * 当前路由地址
      * @return {?}
      */
@@ -1429,7 +1431,9 @@ class ReuseTabComponent {
         this.customContextMenu = [];
         this.tabType = 'line';
         this.routeParamMatchMode = 'strict';
+        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
+        // tslint:disable-next-line:no-output-native
         this.close = new EventEmitter();
     }
     /**
@@ -2011,8 +2015,8 @@ ReuseTabModule.decorators = [
 /**
  * Triggered when the current route is in the reusing process, The values of `type` are:
  *
- * - `init` when routing process 当路由复用时
- * - `refresh` when refresh action via tab 当通过标签刷新时
+ * - `init` when routing process
+ * - `refresh` when refresh action via tab
  * @record
  */
 function OnReuseInit() { }

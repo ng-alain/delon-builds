@@ -22,7 +22,7 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     hideTitle: boolean;
     padding: number;
     readonly fullscreenChange: EventEmitter<boolean>;
-    constructor(el: ElementRef<HTMLElement>, cdr: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
     private updateCls;
     private update;
     private updateHeight;

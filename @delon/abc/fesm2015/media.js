@@ -127,6 +127,7 @@ class MediaComponent {
         this.srv = srv;
         this.ngZone = ngZone;
         this.platform = platform;
+        // #region fields
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
@@ -135,6 +136,7 @@ class MediaComponent {
          */
         () => this.initDelay()));
     }
+    // #endregion
     /**
      * @return {?}
      */

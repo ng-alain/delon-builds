@@ -299,9 +299,6 @@ class OnboardingService {
         return this.doc;
     }
     /**
-     * Get whether it is booting
-     *
-     * 获取是否正在引导中
      * @return {?}
      */
     get running() {
@@ -425,9 +422,6 @@ class OnboardingService {
         () => this.done()));
     }
     /**
-     * Start a new user guidance
-     *
-     * 开启新的用户引导流程
      * @param {?} config
      * @return {?}
      */
@@ -443,9 +437,6 @@ class OnboardingService {
         this.showItem(true);
     }
     /**
-     * Next
-     *
-     * 下一步
      * @return {?}
      */
     next() {
@@ -458,9 +449,6 @@ class OnboardingService {
         this.showItem();
     }
     /**
-     * Prev
-     *
-     * 上一步
      * @return {?}
      */
     prev() {
@@ -472,9 +460,6 @@ class OnboardingService {
         this.showItem();
     }
     /**
-     * Done
-     *
-     * 完成
      * @return {?}
      */
     done() {

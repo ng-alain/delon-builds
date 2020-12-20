@@ -2174,7 +2174,9 @@
             this.expandAccordion = false;
             this.rowClickTime = 200;
             this.responsive = true;
+            // tslint:disable-next-line:no-output-native
             this.error = new i0.EventEmitter();
+            // tslint:disable-next-line:no-output-native
             this.change = new i0.EventEmitter();
             this.virtualScroll = false;
             this.virtualItemSize = 54;

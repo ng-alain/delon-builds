@@ -415,6 +415,7 @@
             this.zoomScale = 'page-width';
             this.autoReSize = true;
             this.externalLinkTarget = PdfExternalLinkTarget.BLANK;
+            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
             /** @type {?} */
             var cog = ( /** @type {?} */(configSrv.merge('pdf', PDF_DEFULAT_CONFIG)));

@@ -14,18 +14,8 @@ export declare class LoadingService implements OnDestroy {
     get instance(): LoadingDefaultComponent | null;
     constructor(overlay: Overlay, configSrv: AlainConfigService);
     private create;
-    /**
-     * Open a new loading indicator
-     *
-     * 打开一个新加载指示符
-     */
     open(options?: LoadingShowOptions): void;
     private _close;
-    /**
-     * Turn off a loading indicator
-     *
-     * 关闭一个加载指示符
-     */
     close(): void;
     ngOnDestroy(): void;
 }

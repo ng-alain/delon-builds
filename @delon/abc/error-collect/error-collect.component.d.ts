@@ -6,10 +6,10 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private doc;
     private $time;
     private formEl;
-    _hiden: boolean;
-    count: number;
     freq: number;
     offsetTop: number;
+    _hiden: boolean;
+    count: number;
     constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: any, configSrv: AlainConfigService);
     private get errEls();
     private update;
