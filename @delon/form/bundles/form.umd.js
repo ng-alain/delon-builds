@@ -1079,7 +1079,8 @@
         // #endregion
         // #region condition
         /**
-         * @private
+         * Set the hide or display of widget
+         * 设置小部件的隐藏或显示
          * @param {?} visible
          * @return {?}
          */
@@ -4804,9 +4805,7 @@
         __extends(SelectWidget, _super);
         function SelectWidget() {
             var _this = _super.apply(this, __spread(arguments)) || this;
-            _this.search$ = new rxjs.Subject();
             _this.hasGroup = false;
-            _this.isLoading = false;
             return _this;
         }
         /**
@@ -4827,7 +4826,6 @@
          * @return {?}
          */
         SelectWidget.prototype.ngOnInit = function () {
-            var _this = this;
             var _b = this.ui, autoClearSearchValue = _b.autoClearSearchValue, borderless = _b.borderless, autoFocus = _b.autoFocus, dropdownMatchSelectWidth = _b.dropdownMatchSelectWidth, serverSearch = _b.serverSearch, maxMultipleCount = _b.maxMultipleCount, mode = _b.mode, showSearch = _b.showSearch, tokenSeparators = _b.tokenSeparators, maxTagCount = _b.maxTagCount, compareWith = _b.compareWith, optionHeightPx = _b.optionHeightPx, optionOverflowSize = _b.optionOverflowSize;
             this.i = {
                 autoClearSearchValue: toBool(autoClearSearchValue, true),
@@ -4848,30 +4846,6 @@
                  * @return {?}
                  */function (o1, o2) { return o1 === o2; })),
             };
-            if (this.ui.onSearch) {
-                this.search$
-                    .pipe(operators.takeUntil(( /** @type {?} */(this.sfItemComp)).unsubscribe$), operators.distinctUntilChanged(), operators.debounceTime(this.ui.searchDebounceTime || 300), operators.switchMap(( /**
-             * @param {?} text
-             * @return {?}
-             */function (/**
-             * @param {?} text
-             * @return {?}
-             */ text) { return ( /** @type {?} */(_this.ui.onSearch))(text); })), operators.catchError(( /**
-                 * @return {?}
-                 */function () { return []; })))
-                    .subscribe(( /**
-             * @param {?} list
-             * @return {?}
-             */function (/**
-             * @param {?} list
-             * @return {?}
-             */ list) {
-                    _this.data = list;
-                    _this.checkGroup(list);
-                    _this.isLoading = false;
-                    _this.detectChanges();
-                }));
-            }
         };
         /**
          * @param {?} value
@@ -4956,6 +4930,25 @@
             }
         };
         /**
+         * @param {?} text
+         * @return {?}
+         */
+        SelectWidget.prototype.searchChange = function (text) {
+            var _this = this;
+            if (this.ui.onSearch) {
+                this.ui.onSearch(text).then(( /**
+                 * @param {?} list
+                 * @return {?}
+                 */function (list) {
+                    _this.data = list;
+                    _this.checkGroup(list);
+                    _this.detectChanges();
+                }));
+                return;
+            }
+            this.detectChanges();
+        };
+        /**
          * @return {?}
          */
         SelectWidget.prototype.scrollToBottom = function () {
@@ -4963,30 +4956,17 @@
                 this.ui.scrollToBottom();
             }
         };
-        /**
-         * @param {?} value
-         * @return {?}
-         */
-        SelectWidget.prototype.onSearch = function (value) {
-            this.isLoading = true;
-            this.search$.next(value);
-        };
         return SelectWidget;
     }(ControlUIWidget));
     SelectWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-select',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!isLoading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!isLoading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"isLoading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"searchChange($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 }] }
     ];
     if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SelectWidget.prototype.search$;
         /** @type {?} */
         SelectWidget.prototype.i;
         /** @type {?} */
@@ -4995,8 +4975,6 @@
         SelectWidget.prototype._value;
         /** @type {?} */
         SelectWidget.prototype.hasGroup;
-        /** @type {?} */
-        SelectWidget.prototype.isLoading;
     }
 
     var SliderWidget = /** @class */ (function (_super) {

@@ -6,7 +6,7 @@ import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { toBoolean, deepCopy, AlainConfigService, InputBoolean, InputNumber, toDate, deepGet, DelonUtilModule } from '@delon/util';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
@@ -742,7 +742,8 @@ class FormProperty {
     // #endregion
     // #region condition
     /**
-     * @private
+     * Set the hide or display of widget
+     * 设置小部件的隐藏或显示
      * @param {?} visible
      * @return {?}
      */
@@ -4286,9 +4287,7 @@ if (false) {
 class SelectWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
-        this.search$ = new Subject();
         this.hasGroup = false;
-        this.isLoading = false;
     }
     /**
      * @private
@@ -4327,27 +4326,6 @@ class SelectWidget extends ControlUIWidget {
              */
             (o1, o2) => o1 === o2)),
         };
-        if (this.ui.onSearch) {
-            this.search$
-                .pipe(takeUntil((/** @type {?} */ (this.sfItemComp)).unsubscribe$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime || 300), switchMap((/**
-             * @param {?} text
-             * @return {?}
-             */
-            text => (/** @type {?} */ (this.ui.onSearch))(text))), catchError((/**
-             * @return {?}
-             */
-            () => [])))
-                .subscribe((/**
-             * @param {?} list
-             * @return {?}
-             */
-            list => {
-                this.data = list;
-                this.checkGroup(list);
-                this.isLoading = false;
-                this.detectChanges();
-            }));
-        }
     }
     /**
      * @param {?} value
@@ -4420,6 +4398,25 @@ class SelectWidget extends ControlUIWidget {
         }
     }
     /**
+     * @param {?} text
+     * @return {?}
+     */
+    searchChange(text) {
+        if (this.ui.onSearch) {
+            this.ui.onSearch(text).then((/**
+             * @param {?} list
+             * @return {?}
+             */
+            (list) => {
+                this.data = list;
+                this.checkGroup(list);
+                this.detectChanges();
+            }));
+            return;
+        }
+        this.detectChanges();
+    }
+    /**
      * @return {?}
      */
     scrollToBottom() {
@@ -4427,29 +4424,16 @@ class SelectWidget extends ControlUIWidget {
             this.ui.scrollToBottom();
         }
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
-    onSearch(value) {
-        this.isLoading = true;
-        this.search$.next(value);
-    }
 }
 SelectWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-select',
-                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!isLoading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!isLoading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"isLoading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"searchChange($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n  </nz-select>\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
 if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SelectWidget.prototype.search$;
     /** @type {?} */
     SelectWidget.prototype.i;
     /** @type {?} */
@@ -4458,8 +4442,6 @@ if (false) {
     SelectWidget.prototype._value;
     /** @type {?} */
     SelectWidget.prototype.hasGroup;
-    /** @type {?} */
-    SelectWidget.prototype.isLoading;
 }
 
 /**
@@ -7015,11 +6997,6 @@ if (false) {
      * @type {?|undefined}
      */
     SFSelectWidgetSchema.prototype.onSearch;
-    /**
-     * 搜索抖动时间，默认：`300`
-     * @type {?|undefined}
-     */
-    SFSelectWidgetSchema.prototype.searchDebounceTime;
     /**
      * 在 `tags` 和 `multiple` 模式下自动分词的分隔符
      * @type {?|undefined}
