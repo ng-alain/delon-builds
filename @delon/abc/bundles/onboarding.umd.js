@@ -307,6 +307,9 @@
         };
         Object.defineProperty(OnboardingService.prototype, "running", {
             /**
+             * Get whether it is booting
+             *
+             * 获取是否正在引导中
              * @return {?}
              */
             get: function () {
@@ -431,6 +434,9 @@
              */function () { return _this.done(); }));
         };
         /**
+         * Start a new user guidance
+         *
+         * 开启新的用户引导流程
          * @param {?} config
          * @return {?}
          */
@@ -446,6 +452,9 @@
             this.showItem(true);
         };
         /**
+         * Next
+         *
+         * 下一步
          * @return {?}
          */
         OnboardingService.prototype.next = function () {
@@ -458,6 +467,9 @@
             this.showItem();
         };
         /**
+         * Prev
+         *
+         * 上一步
          * @return {?}
          */
         OnboardingService.prototype.prev = function () {
@@ -469,6 +481,9 @@
             this.showItem();
         };
         /**
+         * Done
+         *
+         * 完成
          * @return {?}
          */
         OnboardingService.prototype.done = function () {

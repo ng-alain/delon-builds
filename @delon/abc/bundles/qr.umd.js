@@ -335,7 +335,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRComponent = /** @class */ (function () {
-        // #endregion
         /**
          * @param {?} cdr
          * @param {?} configSrv

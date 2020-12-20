@@ -30,7 +30,6 @@ const QR_DEFULAT_CONFIG = {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class QRComponent {
-    // #endregion
     /**
      * @param {?} cdr
      * @param {?} configSrv

@@ -883,11 +883,6 @@
         ReuseComponentInstance.prototype.destroy;
     }
 
-    /**
-     * 路由复用类，提供复用所需要一些基本接口
-     *
-     * **注：** 所有缓存数据来源于路由离开后才会产生
-     */
     var ReuseTabService = /** @class */ (function () {
         // #endregion
         /**
@@ -927,6 +922,9 @@
         Object.defineProperty(ReuseTabService.prototype, "inited", {
             // #region public
             /**
+             * Get init status
+             *
+             * 是否已经初始化完成
              * @return {?}
              */
             get: function () {
@@ -937,6 +935,8 @@
         });
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             /**
+             * Current routing address
+             *
              * 当前路由地址
              * @return {?}
              */
