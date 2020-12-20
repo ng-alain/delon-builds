@@ -12,6 +12,7 @@ export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
     options: LayoutDefaultOptions;
     asideUser: TemplateRef<void>;
+    nav: TemplateRef<void>;
     content: TemplateRef<void>;
     private unsubscribe$;
     isFetching: boolean;

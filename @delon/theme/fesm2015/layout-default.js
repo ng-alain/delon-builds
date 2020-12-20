@@ -145,6 +145,7 @@ LayoutDefaultComponent.decorators = [
     <div class="alain-default__aside">
       <div class="alain-default__aside-inner">
         <ng-container *ngTemplateOutlet="asideUser"></ng-container>
+        <ng-container *ngTemplateOutlet="nav"></ng-container>
         <layout-default-nav class="d-block py-lg"></layout-default-nav>
       </div>
     </div>
@@ -168,6 +169,7 @@ LayoutDefaultComponent.propDecorators = {
     headerItems: [{ type: ContentChildren, args: [LayoutDefaultHeaderItemComponent, { descendants: false },] }],
     options: [{ type: Input }],
     asideUser: [{ type: Input }],
+    nav: [{ type: Input }],
     content: [{ type: Input }]
 };
 if (false) {
@@ -177,6 +179,8 @@ if (false) {
     LayoutDefaultComponent.prototype.options;
     /** @type {?} */
     LayoutDefaultComponent.prototype.asideUser;
+    /** @type {?} */
+    LayoutDefaultComponent.prototype.nav;
     /** @type {?} */
     LayoutDefaultComponent.prototype.content;
     /**
