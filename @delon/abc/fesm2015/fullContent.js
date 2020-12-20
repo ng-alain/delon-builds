@@ -53,7 +53,6 @@ const openedCls = `full-content__opened`;
 /** @type {?} */
 const hideTitleCls = `full-content__hidden-title`;
 class FullContentComponent {
-    // #endregion
     /**
      * @param {?} el
      * @param {?} cdr
@@ -109,8 +108,7 @@ class FullContentComponent {
      * @return {?}
      */
     updateHeight() {
-        this._height =
-            this.bodyEl.getBoundingClientRect().height - ((/** @type {?} */ (this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+        this._height = this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
         this.cdr.detectChanges();
     }
     /**
@@ -127,7 +125,7 @@ class FullContentComponent {
         this.inited = true;
         this.bodyEl = this.doc.querySelector('body');
         this.bodyEl.classList.add(wrapCls);
-        ((/** @type {?} */ (this.el.nativeElement))).id = this.id;
+        this.el.nativeElement.id = this.id;
         this.updateCls();
         // when window resize
         this.scroll$ = fromEvent(window, 'resize')

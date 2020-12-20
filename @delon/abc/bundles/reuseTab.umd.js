@@ -20,7 +20,6 @@
          */
         function ReuseTabContextMenuComponent(i18nSrv) {
             this.i18nSrv = i18nSrv;
-            // tslint:disable-next-line:no-output-native
             this.close = new i0.EventEmitter();
         }
         Object.defineProperty(ReuseTabContextMenuComponent.prototype, "i18n", {
@@ -271,7 +270,6 @@
             var _this = this;
             this.srv = srv;
             this.sub$ = new rxjs.Subscription();
-            // tslint:disable-next-line:no-output-native
             this.change = new i0.EventEmitter();
             this.sub$.add(srv.show.subscribe(( /**
              * @param {?} context
@@ -885,11 +883,6 @@
         ReuseComponentInstance.prototype.destroy;
     }
 
-    /**
-     * 路由复用类，提供复用所需要一些基本接口
-     *
-     * **注：** 所有缓存数据来源于路由离开后才会产生
-     */
     var ReuseTabService = /** @class */ (function () {
         // #endregion
         /**
@@ -929,6 +922,9 @@
         Object.defineProperty(ReuseTabService.prototype, "inited", {
             // #region public
             /**
+             * Get init status
+             *
+             * 是否已经初始化完成
              * @return {?}
              */
             get: function () {
@@ -939,6 +935,8 @@
         });
         Object.defineProperty(ReuseTabService.prototype, "curUrl", {
             /**
+             * Current routing address
+             *
              * 当前路由地址
              * @return {?}
              */
@@ -1819,9 +1817,7 @@
             this.customContextMenu = [];
             this.tabType = 'line';
             this.routeParamMatchMode = 'strict';
-            // tslint:disable-next-line:no-output-native
             this.change = new i0.EventEmitter();
-            // tslint:disable-next-line:no-output-native
             this.close = new i0.EventEmitter();
         }
         Object.defineProperty(ReuseTabComponent.prototype, "keepingScrollContainer", {

@@ -30,7 +30,6 @@ const QR_DEFULAT_CONFIG = {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class QRComponent {
-    // #endregion
     /**
      * @param {?} cdr
      * @param {?} configSrv
@@ -43,7 +42,6 @@ class QRComponent {
         this.platform = platform;
         this.inited = false;
         this.value = '';
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         this.cog = (/** @type {?} */ (configSrv.merge('qr', QR_DEFULAT_CONFIG)));
         Object.assign(this, this.cog);

@@ -17,6 +17,11 @@ export declare class OnboardingService implements OnDestroy {
     private _running;
     private type;
     private _getDoc;
+    /**
+     * Get whether it is booting
+     *
+     * 获取是否正在引导中
+     */
     get running(): boolean;
     constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: any);
     private attach;
@@ -24,9 +29,29 @@ export declare class OnboardingService implements OnDestroy {
     private updateRunning;
     private destroy;
     private showItem;
+    /**
+     * Start a new user guidance
+     *
+     * 开启新的用户引导流程
+     */
     start(config: OnboardingConfig): void;
+    /**
+     * Next
+     *
+     * 下一步
+     */
     next(): void;
+    /**
+     * Prev
+     *
+     * 上一步
+     */
     prev(): void;
+    /**
+     * Done
+     *
+     * 完成
+     */
     done(): void;
     ngOnDestroy(): void;
 }

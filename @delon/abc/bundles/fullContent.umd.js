@@ -362,7 +362,6 @@
     /** @type {?} */
     var hideTitleCls = "full-content__hidden-title";
     var FullContentComponent = /** @class */ (function () {
-        // #endregion
         /**
          * @param {?} el
          * @param {?} cdr
@@ -418,8 +417,7 @@
          * @return {?}
          */
         FullContentComponent.prototype.updateHeight = function () {
-            this._height =
-                this.bodyEl.getBoundingClientRect().height - (( /** @type {?} */(this.el.nativeElement))).getBoundingClientRect().top - this.padding;
+            this._height = this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
             this.cdr.detectChanges();
         };
         /**
@@ -437,7 +435,7 @@
             this.inited = true;
             this.bodyEl = this.doc.querySelector('body');
             this.bodyEl.classList.add(wrapCls);
-            (( /** @type {?} */(this.el.nativeElement))).id = this.id;
+            this.el.nativeElement.id = this.id;
             this.updateCls();
             // when window resize
             this.scroll$ = rxjs.fromEvent(window, 'resize')

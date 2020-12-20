@@ -33,12 +33,10 @@ class EllipsisComponent {
         this.cls = {};
         this.text = '';
         this.targetCount = 0;
-        // #region fields
         this.tooltip = false;
         this.fullWidthRecognition = false;
         this.tail = '...';
     }
-    // #endregion
     /**
      * @return {?}
      */

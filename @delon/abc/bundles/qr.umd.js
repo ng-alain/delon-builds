@@ -335,7 +335,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     var QRComponent = /** @class */ (function () {
-        // #endregion
         /**
          * @param {?} cdr
          * @param {?} configSrv
@@ -348,7 +347,6 @@
             this.platform = platform;
             this.inited = false;
             this.value = '';
-            // tslint:disable-next-line:no-output-native
             this.change = new core.EventEmitter();
             this.cog = ( /** @type {?} */(configSrv.merge('qr', QR_DEFULAT_CONFIG)));
             Object.assign(this, this.cog);
