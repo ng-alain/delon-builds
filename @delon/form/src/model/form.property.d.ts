@@ -61,11 +61,7 @@ export declare abstract class FormProperty {
     private mergeErrors;
     protected setErrors(errors: ErrorData[], emitFormat?: boolean): void;
     setParentAndPlatErrors(errors: ErrorData[], path: string): void;
-    /**
-     * Set the hide or display of widget
-     * 设置小部件的隐藏或显示
-     */
-    setVisible(visible: boolean): void;
+    private setVisible;
     _bindVisibility(): void;
 }
 export declare abstract class PropertyGroup extends FormProperty {
