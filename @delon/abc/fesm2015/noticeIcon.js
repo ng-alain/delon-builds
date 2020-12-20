@@ -97,7 +97,6 @@ if (false) {
 class NoticeIconTabComponent {
     constructor() {
         this.locale = {};
-        // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
     }
@@ -160,7 +159,6 @@ class NoticeIconComponent {
         this.popoverVisible = false;
         this.btnClass = '';
         this.btnIconClass = '';
-        // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
         this.popoverVisibleChange = new EventEmitter();

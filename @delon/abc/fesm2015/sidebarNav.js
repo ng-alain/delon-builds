@@ -51,7 +51,6 @@ class SidebarNavComponent {
         this.recursivePath = true;
         this.openStrictly = false;
         this.maxLevelIcon = 3;
-        // tslint:disable-next-line:no-output-native
         this.select = new EventEmitter();
     }
     /**

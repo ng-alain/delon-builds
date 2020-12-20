@@ -330,7 +330,6 @@
             this.delay = 0;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
-            // tslint:disable-next-line:no-output-native
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');

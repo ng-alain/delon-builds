@@ -17,7 +17,6 @@
     var NoticeIconTabComponent = /** @class */ (function () {
         function NoticeIconTabComponent() {
             this.locale = {};
-            // tslint:disable-next-line:no-output-native
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
         }
@@ -382,7 +381,6 @@
             this.popoverVisible = false;
             this.btnClass = '';
             this.btnIconClass = '';
-            // tslint:disable-next-line:no-output-native
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
             this.popoverVisibleChange = new core.EventEmitter();

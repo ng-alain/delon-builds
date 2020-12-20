@@ -351,7 +351,6 @@
             this.recursivePath = true;
             this.openStrictly = false;
             this.maxLevelIcon = 3;
-            // tslint:disable-next-line:no-output-native
             this.select = new core.EventEmitter();
         }
         Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {

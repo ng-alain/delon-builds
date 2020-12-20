@@ -105,6 +105,9 @@ class LoadingService {
         this.compRef.changeDetectorRef.markForCheck();
     }
     /**
+     * Open a new loading indicator
+     *
+     * 打开一个新加载指示符
      * @param {?=} options
      * @return {?}
      */
@@ -126,6 +129,9 @@ class LoadingService {
         this.compRef = null;
     }
     /**
+     * Turn off a loading indicator
+     *
+     * 关闭一个加载指示符
      * @return {?}
      */
     close() {

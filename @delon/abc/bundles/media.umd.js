@@ -438,7 +438,6 @@
             this.srv = srv;
             this.ngZone = ngZone;
             this.platform = platform;
-            // #region fields
             this.type = 'video';
             this.delay = 0;
             this.ready = new i0.EventEmitter();
@@ -447,7 +446,6 @@
              */function () { return _this.initDelay(); }));
         }
         Object.defineProperty(MediaComponent.prototype, "player", {
-            // #endregion
             /**
              * @return {?}
              */

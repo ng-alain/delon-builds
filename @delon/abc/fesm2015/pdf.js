@@ -112,7 +112,6 @@ class PdfComponent {
         this.zoomScale = 'page-width';
         this.autoReSize = true;
         this.externalLinkTarget = PdfExternalLinkTarget.BLANK;
-        // tslint:disable-next-line:no-output-native
         this.change = new EventEmitter();
         /** @type {?} */
         const cog = (/** @type {?} */ (configSrv.merge('pdf', PDF_DEFULAT_CONFIG)));
