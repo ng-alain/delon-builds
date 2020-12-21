@@ -65,7 +65,7 @@ function addDependenciesToPackageJson(options) {
             `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
             // ng-zorro-antd need
             'screenfull@^5.0.2',
-            'ajv@^6.12.4',
+            'ajv@^7.0.2',
         ]);
         // add ajv
         json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
@@ -139,7 +139,7 @@ function addCodeStylesToPackageJson() {
         // dependencies
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
-            `tslint-language-service@^0.9.9`,
+            `tslint-language-service@undefined`,
             `pretty-quick@^3.0.2`,
             `husky@^4.2.3`,
             `prettier@^2.1.2`,
