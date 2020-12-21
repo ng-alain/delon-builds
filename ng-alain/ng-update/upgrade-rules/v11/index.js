@@ -16,14 +16,14 @@ function fixVersion(tree, context) {
 function fixThirdVersion(tree, context) {
     // dependencies
     json_1.addPackageToPackageJson(tree, [
-        `ng-zorro-antd@DEP-10.1.2`,
-        `ngx-ueditor@DEP-10.1.2`,
-        `ngx-tinymce@DEP-10.1.2`,
+        `ng-zorro-antd@^11.0.0`,
+        `ngx-ueditor@^11.0.0`,
+        `ngx-tinymce@^11.0.0`,
         `ngx-countdown@^11.0.1`,
         'ajv@^6.12.6',
     ], 'dependencies');
     // dependencies
-    json_1.addPackageToPackageJson(tree, [`ng-alain-plugin-theme@^11.0.1`], 'devDependencies');
+    json_1.addPackageToPackageJson(tree, [`ng-alain-plugin-theme@^11.0.1`, `ng-alain-sts@^0.0.1`], 'devDependencies');
     log_1.logStart(context, `Upgrade third libs version number`);
 }
 function fixAnalyze(tree, context) {
