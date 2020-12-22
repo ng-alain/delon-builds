@@ -140,10 +140,10 @@ function addCodeStylesToPackageJson() {
         json_1.addPackageToPackageJson(host, [
             `tslint-config-prettier@^1.18.0`,
             `tslint-language-service@undefined`,
-            `pretty-quick@^3.0.2`,
+            `pretty-quick@^3.1.0`,
             `husky@^4.2.3`,
-            `prettier@^2.1.2`,
-            `stylelint@^13.7.0`,
+            `prettier@^2.2.1`,
+            `stylelint@^13.8.0`,
             `stylelint-config-prettier@^8.0.2`,
             `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^20.0.0`,
