@@ -177,7 +177,6 @@ function addCodeStylesToPackageJson(): (host: Tree) => Tree {
       host,
       [
         `tslint-config-prettier@^1.18.0`,
-        `tslint-language-service@undefined`,
         `pretty-quick@^3.1.0`,
         `husky@^4.2.3`,
         `prettier@^2.2.1`,
