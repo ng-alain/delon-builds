@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, core, util, rxjs, operators, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, common, core, util, rxjs, operators, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -380,8 +380,6 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var win = window;
-    /** @type {?} */
     var CSS_UNITS = 96.0 / 72.0;
     /** @type {?} */
     var BORDER_WIDTH = 9;
@@ -392,12 +390,14 @@
          * @param {?} lazySrv
          * @param {?} platform
          * @param {?} el
+         * @param {?} doc
          */
-        function PdfComponent(ngZone, configSrv, lazySrv, platform, el) {
+        function PdfComponent(ngZone, configSrv, lazySrv, platform, el, doc) {
             this.ngZone = ngZone;
             this.lazySrv = lazySrv;
             this.platform = platform;
             this.el = el;
+            this.doc = doc;
             this.inited = false;
             this.unsubscribe$ = new rxjs.Subject();
             this.lib = '';
@@ -555,6 +555,17 @@
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(PdfComponent.prototype, "win", {
+            /**
+             * @private
+             * @return {?}
+             */
+            get: function () {
+                return this.doc.defaultView || window;
+            },
+            enumerable: false,
+            configurable: true
+        });
         /**
          * @private
          * @param {?} pi
@@ -586,7 +597,7 @@
         PdfComponent.prototype.initDelay = function () {
             var _this = this;
             this.inited = true;
-            win.pdfjsLib.GlobalWorkerOptions.workerSrc = this.lib + "build/pdf.worker.min.js";
+            this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = this.lib + "build/pdf.worker.min.js";
             setTimeout(( /**
              * @return {?}
              */function () { return _this.load(); }), this.delay);
@@ -610,7 +621,7 @@
              */function () {
                 _this.destroy();
                 /** @type {?} */
-                var loadingTask = (_this.loadingTask = win.pdfjsLib.getDocument(_src));
+                var loadingTask = (_this.loadingTask = _this.win.pdfjsLib.getDocument(_src));
                 loadingTask.onProgress = ( /**
                  * @param {?} progress
                  * @return {?}
@@ -790,8 +801,8 @@
          * @return {?}
          */
         PdfComponent.prototype.setupPageViewer = function () {
-            win.pdfjsLib.disableTextLayer = !this._renderText;
-            win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
+            this.win.pdfjsLib.disableTextLayer = !this._renderText;
+            this.win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
             this.setupMultiPageViewer();
             this.setupSinglePageViewer();
         };
@@ -802,7 +813,7 @@
         PdfComponent.prototype.createEventBus = function () {
             var _this = this;
             /** @type {?} */
-            var eventBus = new win.pdfjsViewer.EventBus();
+            var eventBus = new this.win.pdfjsViewer.EventBus();
             eventBus.on("pagesinit", ( /**
              * @param {?} ev
              * @return {?}
@@ -840,7 +851,7 @@
          */
         PdfComponent.prototype.setupMultiPageViewer = function () {
             /** @type {?} */
-            var VIEWER = win.pdfjsViewer;
+            var VIEWER = this.win.pdfjsViewer;
             /** @type {?} */
             var eventBus = this.createEventBus();
             /** @type {?} */
@@ -869,7 +880,7 @@
          */
         PdfComponent.prototype.setupSinglePageViewer = function () {
             /** @type {?} */
-            var VIEWER = win.pdfjsViewer;
+            var VIEWER = this.win.pdfjsViewer;
             /** @type {?} */
             var eventBus = this.createEventBus();
             /** @type {?} */
@@ -901,7 +912,7 @@
             if (!this.platform.isBrowser) {
                 return;
             }
-            if (win.pdfjsLib) {
+            if (this.win.pdfjsLib) {
                 this.initDelay();
                 return;
             }
@@ -924,7 +935,7 @@
          */
         PdfComponent.prototype.initResize = function () {
             var _this = this;
-            rxjs.fromEvent(win, 'resize')
+            rxjs.fromEvent(this.win, 'resize')
                 .pipe(operators.debounceTime(100), operators.filter(( /**
          * @return {?}
          */function () { return _this.autoReSize && _this._pdf; })), operators.takeUntil(this.unsubscribe$))
@@ -971,7 +982,8 @@
         { type: util.AlainConfigService },
         { type: util.LazyService },
         { type: platform.Platform },
-        { type: core.ElementRef }
+        { type: core.ElementRef },
+        { type: Document, decorators: [{ type: core.Optional }, { type: core.Inject, args: [common.DOCUMENT,] }] }
     ]; };
     PdfComponent.propDecorators = {
         src: [{ type: core.Input }],
@@ -1189,6 +1201,11 @@
          * @private
          */
         PdfComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        PdfComponent.prototype.doc;
     }
 
     /** @type {?} */

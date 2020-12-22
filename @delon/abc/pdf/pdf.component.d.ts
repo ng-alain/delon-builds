@@ -8,6 +8,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private lazySrv;
     private platform;
     private el;
+    private doc;
     static ngAcceptInputType_pi: NumberInput;
     static ngAcceptInputType_delay: NumberInput;
     static ngAcceptInputType_showAllPages: BooleanInput;
@@ -56,7 +57,8 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     get pageViewer(): NzSafeAny;
     get linkService(): NzSafeAny;
     private get _textLayerMode();
-    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, el: ElementRef<HTMLElement>);
+    private get win();
+    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, el: ElementRef<HTMLElement>, doc: Document);
     private getValidPi;
     private emit;
     private initDelay;

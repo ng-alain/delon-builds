@@ -1,10 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Input, Output, NgModule } from '@angular/core';
+import { DOCUMENT, CommonModule } from '@angular/common';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService, LazyService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
-import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
@@ -77,8 +77,6 @@ PdfExternalLinkTarget[PdfExternalLinkTarget.TOP] = 'TOP';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const win = window;
-/** @type {?} */
 const CSS_UNITS = 96.0 / 72.0;
 /** @type {?} */
 const BORDER_WIDTH = 9;
@@ -89,12 +87,14 @@ class PdfComponent {
      * @param {?} lazySrv
      * @param {?} platform
      * @param {?} el
+     * @param {?} doc
      */
-    constructor(ngZone, configSrv, lazySrv, platform, el) {
+    constructor(ngZone, configSrv, lazySrv, platform, el, doc) {
         this.ngZone = ngZone;
         this.lazySrv = lazySrv;
         this.platform = platform;
         this.el = el;
+        this.doc = doc;
         this.inited = false;
         this.unsubscribe$ = new Subject();
         this.lib = '';
@@ -210,6 +210,13 @@ class PdfComponent {
     }
     /**
      * @private
+     * @return {?}
+     */
+    get win() {
+        return this.doc.defaultView || window;
+    }
+    /**
+     * @private
      * @param {?} pi
      * @return {?}
      */
@@ -238,7 +245,7 @@ class PdfComponent {
      */
     initDelay() {
         this.inited = true;
-        win.pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.lib}build/pdf.worker.min.js`;
+        this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.lib}build/pdf.worker.min.js`;
         setTimeout((/**
          * @return {?}
          */
@@ -263,7 +270,7 @@ class PdfComponent {
         () => {
             this.destroy();
             /** @type {?} */
-            const loadingTask = (this.loadingTask = win.pdfjsLib.getDocument(_src));
+            const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
             loadingTask.onProgress = (/**
              * @param {?} progress
              * @return {?}
@@ -448,8 +455,8 @@ class PdfComponent {
      * @return {?}
      */
     setupPageViewer() {
-        win.pdfjsLib.disableTextLayer = !this._renderText;
-        win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
+        this.win.pdfjsLib.disableTextLayer = !this._renderText;
+        this.win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
         this.setupMultiPageViewer();
         this.setupSinglePageViewer();
     }
@@ -459,7 +466,7 @@ class PdfComponent {
      */
     createEventBus() {
         /** @type {?} */
-        const eventBus = new win.pdfjsViewer.EventBus();
+        const eventBus = new this.win.pdfjsViewer.EventBus();
         eventBus.on(`pagesinit`, (/**
          * @param {?} ev
          * @return {?}
@@ -501,7 +508,7 @@ class PdfComponent {
      */
     setupMultiPageViewer() {
         /** @type {?} */
-        const VIEWER = win.pdfjsViewer;
+        const VIEWER = this.win.pdfjsViewer;
         /** @type {?} */
         const eventBus = this.createEventBus();
         /** @type {?} */
@@ -530,7 +537,7 @@ class PdfComponent {
      */
     setupSinglePageViewer() {
         /** @type {?} */
-        const VIEWER = win.pdfjsViewer;
+        const VIEWER = this.win.pdfjsViewer;
         /** @type {?} */
         const eventBus = this.createEventBus();
         /** @type {?} */
@@ -561,7 +568,7 @@ class PdfComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        if (win.pdfjsLib) {
+        if (this.win.pdfjsLib) {
             this.initDelay();
             return;
         }
@@ -586,7 +593,7 @@ class PdfComponent {
      * @return {?}
      */
     initResize() {
-        fromEvent(win, 'resize')
+        fromEvent(this.win, 'resize')
             .pipe(debounceTime(100), filter((/**
          * @return {?}
          */
@@ -637,7 +644,8 @@ PdfComponent.ctorParameters = () => [
     { type: AlainConfigService },
     { type: LazyService },
     { type: Platform },
-    { type: ElementRef }
+    { type: ElementRef },
+    { type: Document, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] }
 ];
 PdfComponent.propDecorators = {
     src: [{ type: Input }],
@@ -855,6 +863,11 @@ if (false) {
      * @private
      */
     PdfComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    PdfComponent.prototype.doc;
 }
 
 /**
