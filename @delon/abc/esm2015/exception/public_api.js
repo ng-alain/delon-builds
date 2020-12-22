@@ -1,8 +1,0 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export { ExceptionComponent } from './exception.component';
-export { ExceptionModule } from './exception.module';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy9hYmMvZXhjZXB0aW9uLyIsInNvdXJjZXMiOlsicHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLG1DQUFjLHVCQUF1QixDQUFDO0FBQ3RDLE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vZXhjZXB0aW9uLmNvbXBvbmVudCc7XG5leHBvcnQgeyBFeGNlcHRpb25Nb2R1bGUgfSBmcm9tICcuL2V4Y2VwdGlvbi5tb2R1bGUnO1xuIl19

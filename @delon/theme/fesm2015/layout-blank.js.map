@@ -1,1 +1,0 @@
-{"version":3,"file":"layout-blank.js","sources":["../../../../packages/theme/layout-blank/public_api.ts"],"sourcesContent":["// https://github.com/ng-packagr/ng-packagr/issues/1655\nexport default void 0;\n"],"names":[],"mappings":";;;;;;AACA,iBAAe,KAAK,CAAC;;;;;;;;;;"}

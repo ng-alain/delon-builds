@@ -1,2 +1,0 @@
-declare const _default: "import { NgModule } from '@angular/core';\n// import { STWidgetRegistry } from '@delon/abc/st';\nimport { SharedModule } from '../shared.module';\n\nexport const STWIDGET_COMPONENTS = [];\n\n@NgModule({\n  declarations: STWIDGET_COMPONENTS,\n  imports: [SharedModule],\n  exports: [...STWIDGET_COMPONENTS],\n})\nexport class STWidgetModule {\n  // constructor(widgetRegistry: STWidgetRegistry) {\n  //   widgetRegistry.register(STImgWidget.KEY, STImgWidget);\n  // }\n}";
-export default _default;
