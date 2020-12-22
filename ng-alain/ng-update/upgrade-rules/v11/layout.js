@@ -13,18 +13,18 @@ function upgradeStylePath() {
         return;
     }
     // 更新样式引入路径
-    const content = file_1.readContent(tree, stylesLessPath)
-        .replace(`@import '~@delon/theme/layout/default/index';`, `@import '~@delon/theme/layout-default/style/index';`)
-        .replace(`@import '~@delon/theme/layout/fullscreen/index';`, `@import '~@delon/theme/layout-blank/style/index';`);
-    file_1.overwriteFile(tree, stylesLessPath, content, true);
+    const stylesLessContent = file_1.readContent(tree, stylesLessPath)
+        .replace(`~@delon/theme/layout/default/index`, `~@delon/theme/layout-default/style/index`)
+        .replace(`~@delon/theme/layout/fullscreen/index`, `~@delon/theme/layout-blank/style/index`);
+    tree.overwrite(stylesLessPath, stylesLessContent);
     log_1.logInfo(context, `Update style import path`);
     // 修改 fullscreen 的样式
     const fullscreenComponentPath = core_1.normalize(`${project.sourceRoot}/app/layout/fullscreen/fullscreen.component.ts`);
     if (!tree.exists(fullscreenComponentPath)) {
         return;
     }
-    const content1 = file_1.readContent(tree, stylesLessPath).replace(`alain-fullscreen`, `alain-blank`);
-    file_1.overwriteFile(tree, stylesLessPath, content1, true);
+    const fullscreenComponentContent = file_1.readContent(tree, fullscreenComponentPath).replace(`alain-fullscreen`, `alain-blank`);
+    tree.overwrite(fullscreenComponentPath, fullscreenComponentContent);
     log_1.logInfo(context, `Update alain-fullscreen to alain-blank`);
 }
 function fixLayout(p, t, c) {
