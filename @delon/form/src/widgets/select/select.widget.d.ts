@@ -10,7 +10,7 @@ export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> 
     data: SFSchemaEnum[];
     _value: NzSafeAny;
     hasGroup: boolean;
-    loading: boolean;
+    isLoading: boolean;
     private checkGroup;
     ngOnInit(): void;
     reset(value: SFValue): void;
