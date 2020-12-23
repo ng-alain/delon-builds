@@ -16,15 +16,36 @@ export declare class _HttpClient {
     private http;
     private cog;
     constructor(http: HttpClient, cogSrv: AlainConfigService);
-    private _loading;
-    /** 是否正在加载中 */
+    private lc;
+    /**
+     * Get whether it's loading
+     *
+     * 获取是否正在加载中
+     */
     get loading(): boolean;
+    /**
+     * Get the currently loading count
+     *
+     * 获取当前加载中的数量
+     */
+    get loadingCount(): number;
     parseParams(params: NzSafeAny): HttpParams;
     appliedUrl(url: string, params?: NzSafeAny): string;
-    begin(): void;
+    private setCount;
+    private push;
+    private pop;
+    /**
+     * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
+     */
     end(): void;
     /**
-     * GET：返回一个 `string` 类型
+     * Clean loading count
+     *
+     * 清空加载中
+     */
+    cleanLoading(): void;
+    /**
+     * **GET Request** Return a `string` type / 返回一个 `string` 类型
      */
     get(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -34,7 +55,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * GET：返回一个 `HttpEvent<T>` 类型
+     * **GET Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
      */
     get<T>(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -44,7 +65,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpEvent<T>>;
     /**
-     * GET：返回一个 `HttpResponse<any>` 类型
+     * **GET Request** Return a `HttpResponse<any>` type / 返回一个 `HttpResponse<any>` 类型
      */
     get(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -54,7 +75,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<any>>;
     /**
-     * GET：返回一个 `HttpResponse<T>` 类型
+     * **GET Request** Return a `HttpResponse<T>` type / 返回一个 `HttpResponse<T>` 类型
      */
     get<T>(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -64,7 +85,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<T>>;
     /**
-     * GET：返回一个 `any` 类型
+     * **GET Request** Return a `any` type / 返回一个 `any` 类型
      */
     get(url: string, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -74,7 +95,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * GET：返回一个泛类型
+     * **GET Request** Return a generic type / 返回一个泛类型
      */
     get<T>(url: string, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -84,7 +105,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
-     * POST：返回一个 `string` 类型
+     * **POST Request** Return a `string` type / 返回一个 `string` 类型
      */
     post(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -94,7 +115,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * POST：返回一个 `HttpEvent<T>` 类型
+     * **POST Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
      */
     post<T>(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -104,7 +125,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpEvent<T>>;
     /**
-     * POST：返回一个 `HttpResponse<JSON>` 类型
+     * **POST Request** Return a `HttpResponse<any>` type / 返回一个 `HttpResponse<any>` 类型
      */
     post(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -114,7 +135,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<any>>;
     /**
-     * POST：返回一个 `any` 类型
+     * **POST Request** Return a `any` type / 返回一个 `any` 类型
      */
     post(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -124,7 +145,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * POST：返回一个 `JSON` 类型
+     * **POST Request** Return a JSON type / 返回一个 `JSON` 类型
      */
     post<T>(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -134,7 +155,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
-     * DELETE：返回一个 `string` 类型
+     * **DELETE Request** Return a `string` type / 返回一个 `string` 类型
      */
     delete(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -144,7 +165,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * DELETE：返回一个 `JSON` 类型
+     * **DELETE Request** Return a `JSON` type / 返回一个 `JSON` 类型
      */
     delete(url: string, params: any, options: {
         headers?: _HttpHeaders;
@@ -154,7 +175,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * DELETE：返回一个 `any` 类型
+     * **DELETE Request** Return a `any` type / 返回一个 `any` 类型
      */
     delete(url: string, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -164,7 +185,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * DELETE：返回一个泛类型
+     * c返回一个泛类型
      */
     delete<T>(url: string, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -174,15 +195,13 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
-     * `jsonp` 请求
+     * **JSONP Request**
      *
-     * @param url URL地址
-     * @param params 请求参数
      * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
      */
     jsonp(url: string, params?: any, callbackParam?: string): Observable<any>;
     /**
-     * PATCH：返回一个 `string` 类型
+     * **PATCH Request** Return a `string` type / 返回一个 `string` 类型
      */
     patch(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -192,7 +211,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * PATCH：返回一个 `HttpResponse<JSON>` 类型
+     * **PATCH Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
      */
     patch(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -202,7 +221,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * PATCH：返回一个 `any` 类型
+     * **PATCH Request** Return a `any` type / 返回一个 `any` 类型
      */
     patch(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -212,7 +231,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * PATCH：返回一个 `JSON` 类型
+     * **PATCH Request** Return a `JSON` type / 返回一个 `JSON` 类型
      */
     patch<T>(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -222,7 +241,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
-     * PUT：返回一个 `string` 类型
+     * **PUT Request** Return a `string` type / 返回一个 `string` 类型
      */
     put(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -232,7 +251,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * PUT：返回一个 `HttpResponse<JSON>` 类型
+     * **PUT Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
      */
     put(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -242,7 +261,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<{}>>;
     /**
-     * PUT：返回一个 `any` 类型
+     * **PUT Request** Return a `any` type / 返回一个 `any` 类型
      */
     put(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -252,7 +271,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * PUT：返回一个 `JSON` 类型
+     * **PUT Request** Return a `JSON` type / 返回一个 `JSON` 类型
      */
     put<T>(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -262,7 +281,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<T>;
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）：返回一个 `string` 类型
+     * **Form Request** Return a `string` type / 返回一个 `string` 类型
      */
     form(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -272,7 +291,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<string>;
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）：返回一个 `HttpEvent<T>` 类型
+     * **Form Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
      */
     form<T>(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -282,7 +301,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpEvent<T>>;
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）：返回一个 `HttpResponse<JSON>` 类型
+     * **Form Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
      */
     form(url: string, body: any, params: any, options: {
         headers?: _HttpHeaders;
@@ -292,7 +311,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<HttpResponse<any>>;
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）：返回一个 `any` 类型
+     * **Form Request** Return a `any` type / 返回一个 `any` 类型
      */
     form(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -302,7 +321,7 @@ export declare class _HttpClient {
         withCredentials?: boolean;
     }): Observable<any>;
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）：返回一个 `JSON` 类型
+     * **Form Request** Return a `JSON` type / 返回一个 `JSON` 类型
      */
     form<T>(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
@@ -311,7 +330,9 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<T>;
-    /** 返回一个 `arraybuffer` 类型 */
+    /**
+     * **Request** Return a `ArrayBuffer` type / 返回一个 `ArrayBuffer` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -321,6 +342,9 @@ export declare class _HttpClient {
         responseType: 'arraybuffer';
         withCredentials?: boolean;
     }): Observable<ArrayBuffer>;
+    /**
+     * **Request** Return a `Blob` type / 返回一个 `Blob` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -330,6 +354,9 @@ export declare class _HttpClient {
         responseType: 'blob';
         withCredentials?: boolean;
     }): Observable<Blob>;
+    /**
+     * **Request** Return a `string` type / 返回一个 `string` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -339,6 +366,9 @@ export declare class _HttpClient {
         responseType: 'text';
         withCredentials?: boolean;
     }): Observable<string>;
+    /**
+     * **Request** Return a `HttpEvent<ArrayBuffer>` type / 返回一个 `HttpEvent<ArrayBuffer>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -348,6 +378,9 @@ export declare class _HttpClient {
         responseType: 'arraybuffer';
         withCredentials?: boolean;
     }): Observable<HttpEvent<ArrayBuffer>>;
+    /**
+     * **Request** Return a `HttpEvent<Blob>` type / 返回一个 `HttpEvent<Blob>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -357,6 +390,9 @@ export declare class _HttpClient {
         responseType: 'blob';
         withCredentials?: boolean;
     }): Observable<HttpEvent<Blob>>;
+    /**
+     * **Request** Return a `HttpEvent<string>` type / 返回一个 `HttpEvent<string>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -366,6 +402,9 @@ export declare class _HttpClient {
         responseType: 'text';
         withCredentials?: boolean;
     }): Observable<HttpEvent<string>>;
+    /**
+     * **Request** Return a `HttpEvent<any>` type / 返回一个 `HttpEvent<any>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -375,6 +414,9 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<HttpEvent<any>>;
+    /**
+     * **Request** Return a `HttpEvent<R>` type / 返回一个 `HttpEvent<R>` 类型
+     */
     request<R>(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -384,6 +426,9 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<HttpEvent<R>>;
+    /**
+     * **Request** Return a `HttpResponse<ArrayBuffer>` type / 返回一个 `HttpResponse<ArrayBuffer>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -393,6 +438,9 @@ export declare class _HttpClient {
         responseType: 'arraybuffer';
         withCredentials?: boolean;
     }): Observable<HttpResponse<ArrayBuffer>>;
+    /**
+     * **Request** Return a `HttpResponse<Blob>` type / 返回一个 `HttpResponse<Blob>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -402,6 +450,9 @@ export declare class _HttpClient {
         responseType: 'blob';
         withCredentials?: boolean;
     }): Observable<HttpResponse<Blob>>;
+    /**
+     * **Request** Return a `HttpResponse<string>` type / 返回一个 `HttpResponse<string>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -411,6 +462,9 @@ export declare class _HttpClient {
         responseType: 'text';
         withCredentials?: boolean;
     }): Observable<HttpResponse<string>>;
+    /**
+     * **Request** Return a `HttpResponse<Object>` type / 返回一个 `HttpResponse<Object>` 类型
+     */
     request(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -420,6 +474,9 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<HttpResponse<Object>>;
+    /**
+     * **Request** Return a `HttpResponse<R>` type / 返回一个 `HttpResponse<R>` 类型
+     */
     request<R>(method: string, url: string, options: {
         body?: any;
         headers?: _HttpHeaders;
@@ -429,6 +486,9 @@ export declare class _HttpClient {
         responseType?: 'json';
         withCredentials?: boolean;
     }): Observable<HttpResponse<R>>;
+    /**
+     * **Request** Return a `HttpResponse<Object>` type / 返回一个 `HttpResponse<Object>` 类型
+     */
     request(method: string, url: string, options?: {
         body?: any;
         headers?: _HttpHeaders;
@@ -438,6 +498,9 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         withCredentials?: boolean;
     }): Observable<Object>;
+    /**
+     * **Request** Return a `R` type / 返回一个 `R` 类型
+     */
     request<R>(method: string, url: string, options?: {
         body?: any;
         headers?: _HttpHeaders;
@@ -447,6 +510,9 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         withCredentials?: boolean;
     }): Observable<R>;
+    /**
+     * **Request** Return a `any` type / 返回一个 `any` 类型
+     */
     request(method: string, url: string, options?: {
         body?: any;
         headers?: _HttpHeaders;

@@ -2958,7 +2958,7 @@
          */
         function _HttpClient(http, cogSrv) {
             this.http = http;
-            this._loading = false;
+            this.lc = 0;
             this.cog = ( /** @type {?} */(cogSrv.merge('themeHttp', {
                 nullValueHandling: 'include',
                 dateValueHandling: 'timestamp',
@@ -2966,11 +2966,26 @@
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
             /**
-             * 是否正在加载中
+             * Get whether it's loading
+             *
+             * 获取是否正在加载中
              * @return {?}
              */
             get: function () {
-                return this._loading;
+                return this.lc > 0;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(_HttpClient.prototype, "loadingCount", {
+            /**
+             * Get the currently loading count
+             *
+             * 获取当前加载中的数量
+             * @return {?}
+             */
+            get: function () {
+                return this.lc;
             },
             enumerable: false,
             configurable: true
@@ -3024,25 +3039,47 @@
             return url + arr.join('&');
         };
         /**
+         * @private
+         * @param {?} count
          * @return {?}
          */
-        _HttpClient.prototype.begin = function () {
+        _HttpClient.prototype.setCount = function (count) {
             var _this = this;
             Promise.resolve(null).then(( /**
              * @return {?}
-             */function () { return (_this._loading = true); }));
+             */function () { return (_this.lc = count <= 0 ? 0 : count); }));
         };
         /**
+         * @private
+         * @return {?}
+         */
+        _HttpClient.prototype.push = function () {
+            this.setCount(++this.lc);
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        _HttpClient.prototype.pop = function () {
+            this.setCount(--this.lc);
+        };
+        /**
+         * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
          * @return {?}
          */
         _HttpClient.prototype.end = function () {
-            var _this = this;
-            Promise.resolve(null).then(( /**
-             * @return {?}
-             */function () { return (_this._loading = false); }));
+            this.cleanLoading();
         };
         /**
-         * GET 请求
+         * Clean loading count
+         *
+         * 清空加载中
+         * @return {?}
+         */
+        _HttpClient.prototype.cleanLoading = function () {
+            this.setCount(0);
+        };
+        /**
          * @param {?} url
          * @param {?} params
          * @param {?=} options
@@ -3053,7 +3090,6 @@
             return this.request('GET', url, Object.assign({ params: params }, options));
         };
         /**
-         * POST 请求
          * @param {?} url
          * @param {?} body
          * @param {?} params
@@ -3066,7 +3102,6 @@
                 params: params }, options));
         };
         /**
-         * DELETE 请求
          * @param {?} url
          * @param {?} params
          * @param {?=} options
@@ -3079,32 +3114,22 @@
         // #endregion
         // #region jsonp
         /**
-         * `jsonp` 请求
+         * **JSONP Request**
          *
-         * @param {?} url URL地址
-         * @param {?=} params 请求参数
+         * @param {?} url
+         * @param {?=} params
          * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
          * @return {?}
          */
         _HttpClient.prototype.jsonp = function (url, params, callbackParam) {
             var _this = this;
             if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
-            this.begin();
-            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.tap(( /**
+            this.push();
+            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.finalize(( /**
              * @return {?}
-             */function () { return _this.end(); })), operators.catchError(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) {
-                _this.end();
-                return rxjs.throwError(res);
-            })));
+             */function () { return _this.pop(); })));
         };
         /**
-         * PATCH 请求
          * @param {?} url
          * @param {?} body
          * @param {?} params
@@ -3117,7 +3142,6 @@
                 params: params }, options));
         };
         /**
-         * PUT 请求
          * @param {?} url
          * @param {?} body
          * @param {?} params
@@ -3130,7 +3154,6 @@
                 params: params }, options));
         };
         /**
-         * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
          * @param {?} url
          * @param {?} body
          * @param {?} params
@@ -3153,25 +3176,14 @@
         _HttpClient.prototype.request = function (method, url, options) {
             var _this = this;
             if (options === void 0) { options = {}; }
-            this.begin();
+            this.push();
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return rxjs.of(null).pipe(operators.tap(( /**
+            return rxjs.of(null).pipe(operators.switchMap(( /**
              * @return {?}
-             */function () { return _this.begin(); })), operators.switchMap(( /**
+             */function () { return _this.http.request(method, url, options); })), operators.finalize(( /**
              * @return {?}
-             */function () { return _this.http.request(method, url, options); })), operators.tap(( /**
-             * @return {?}
-             */function () { return _this.end(); })), operators.catchError(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) {
-                _this.end();
-                return rxjs.throwError(res);
-            })));
+             */function () { return _this.pop(); })));
         };
         return _HttpClient;
     }());
@@ -3194,7 +3206,7 @@
          * @type {?}
          * @private
          */
-        _HttpClient.prototype._loading;
+        _HttpClient.prototype.lc;
         /**
          * @type {?}
          * @private

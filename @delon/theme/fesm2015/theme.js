@@ -1,7 +1,7 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
-import { BehaviorSubject, Subject, Observable, throwError, of } from 'rxjs';
-import { filter, share, tap, catchError, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
+import { filter, share, finalize, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
@@ -3047,18 +3047,29 @@ class _HttpClient {
      */
     constructor(http, cogSrv) {
         this.http = http;
-        this._loading = false;
+        this.lc = 0;
         this.cog = (/** @type {?} */ (cogSrv.merge('themeHttp', {
             nullValueHandling: 'include',
             dateValueHandling: 'timestamp',
         })));
     }
     /**
-     * 是否正在加载中
+     * Get whether it's loading
+     *
+     * 获取是否正在加载中
      * @return {?}
      */
     get loading() {
-        return this._loading;
+        return this.lc > 0;
+    }
+    /**
+     * Get the currently loading count
+     *
+     * 获取当前加载中的数量
+     * @return {?}
+     */
+    get loadingCount() {
+        return this.lc;
     }
     /**
      * @param {?} params
@@ -3106,25 +3117,47 @@ class _HttpClient {
         return url + arr.join('&');
     }
     /**
+     * @private
+     * @param {?} count
      * @return {?}
      */
-    begin() {
+    setCount(count) {
         Promise.resolve(null).then((/**
          * @return {?}
          */
-        () => (this._loading = true)));
+        () => (this.lc = count <= 0 ? 0 : count)));
     }
     /**
+     * @private
+     * @return {?}
+     */
+    push() {
+        this.setCount(++this.lc);
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    pop() {
+        this.setCount(--this.lc);
+    }
+    /**
+     * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
      * @return {?}
      */
     end() {
-        Promise.resolve(null).then((/**
-         * @return {?}
-         */
-        () => (this._loading = false)));
+        this.cleanLoading();
     }
     /**
-     * GET 请求
+     * Clean loading count
+     *
+     * 清空加载中
+     * @return {?}
+     */
+    cleanLoading() {
+        this.setCount(0);
+    }
+    /**
      * @param {?} url
      * @param {?} params
      * @param {?=} options
@@ -3134,7 +3167,6 @@ class _HttpClient {
         return this.request('GET', url, Object.assign({ params }, options));
     }
     /**
-     * POST 请求
      * @param {?} url
      * @param {?} body
      * @param {?} params
@@ -3146,7 +3178,6 @@ class _HttpClient {
             params }, options));
     }
     /**
-     * DELETE 请求
      * @param {?} url
      * @param {?} params
      * @param {?=} options
@@ -3158,29 +3189,21 @@ class _HttpClient {
     // #endregion
     // #region jsonp
     /**
-     * `jsonp` 请求
+     * **JSONP Request**
      *
-     * @param {?} url URL地址
-     * @param {?=} params 请求参数
+     * @param {?} url
+     * @param {?=} params
      * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
      * @return {?}
      */
     jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
-        this.begin();
-        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(tap((/**
+        this.push();
+        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(finalize((/**
          * @return {?}
          */
-        () => this.end())), catchError((/**
-         * @param {?} res
-         * @return {?}
-         */
-        res => {
-            this.end();
-            return throwError(res);
-        })));
+        () => this.pop())));
     }
     /**
-     * PATCH 请求
      * @param {?} url
      * @param {?} body
      * @param {?} params
@@ -3192,7 +3215,6 @@ class _HttpClient {
             params }, options));
     }
     /**
-     * PUT 请求
      * @param {?} url
      * @param {?} body
      * @param {?} params
@@ -3204,7 +3226,6 @@ class _HttpClient {
             params }, options));
     }
     /**
-     * 发送传统表单请求（即：`application/x-www-form-urlencoded`）
      * @param {?} url
      * @param {?} body
      * @param {?} params
@@ -3224,26 +3245,16 @@ class _HttpClient {
      * @return {?}
      */
     request(method, url, options = {}) {
-        this.begin();
+        this.push();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return of(null).pipe(tap((/**
+        return of(null).pipe(switchMap((/**
          * @return {?}
          */
-        () => this.begin())), switchMap((/**
+        () => this.http.request(method, url, options))), finalize((/**
          * @return {?}
          */
-        () => this.http.request(method, url, options))), tap((/**
-         * @return {?}
-         */
-        () => this.end())), catchError((/**
-         * @param {?} res
-         * @return {?}
-         */
-        res => {
-            this.end();
-            return throwError(res);
-        })));
+        () => this.pop())));
     }
 }
 _HttpClient.decorators = [
@@ -3265,7 +3276,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    _HttpClient.prototype._loading;
+    _HttpClient.prototype.lc;
     /**
      * @type {?}
      * @private
@@ -3973,7 +3984,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.0.1');
+const VERSION = new Version('11.0.1-c4592e1e');
 
 /**
  * @fileoverview added by tsickle
