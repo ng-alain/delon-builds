@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/cdk/bidi'), require('rxjs/operators'), require('rxjs'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@delon/util', '@angular/cdk/bidi', 'rxjs/operators', 'rxjs', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.delon.util, global.ng.cdk.bidi, global.rxjs.operators, global.rxjs, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, bidi, operators, rxjs, common, avatar, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, util, rxjs, operators, common, avatar, tooltip) { 'use strict';
 
     /**
      * @fileoverview added by tsickle

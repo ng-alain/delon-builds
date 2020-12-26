@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Optional, ContentChildren, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
-import { InputNumber } from '@delon/util';
 import { Directionality } from '@angular/cdk/bidi';
-import { takeUntil } from 'rxjs/operators';
+import { InputNumber } from '@delon/util';
 import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';

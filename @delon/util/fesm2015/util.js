@@ -1055,6 +1055,11 @@ if (false) {
      * @type {?|undefined}
      */
     AlainLoadingConfig.prototype.delay;
+    /**
+     * 文字方向
+     * @type {?|undefined}
+     */
+    AlainLoadingConfig.prototype.direction;
 }
 
 /**
@@ -1634,6 +1639,23 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: src/config/abc/onboarding.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainOnboardingConfig() { }
+if (false) {
+    /**
+     * 文字方向
+     * @type {?|undefined}
+     */
+    AlainOnboardingConfig.prototype.direction;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: src/config/abc/index.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -2122,6 +2144,8 @@ if (false) {
     AlainConfig.prototype.image;
     /** @type {?|undefined} */
     AlainConfig.prototype.loading;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.onboarding;
     /** @type {?|undefined} */
     AlainConfig.prototype.lodop;
     /** @type {?|undefined} */

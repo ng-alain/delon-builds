@@ -31840,6 +31840,9 @@ ellipsis {
   height: 64px;
   fill: #ffffff;
 }
+.loading-default-rtl {
+  direction: rtl;
+}
 .onboarding + .cdk-overlay-container {
   z-index: 99999;
 }
@@ -31884,6 +31887,9 @@ ellipsis {
   100% {
     box-shadow: #141414 0 0 0 2px, rgba(20, 20, 20, 0.01) 0 0 0 10px;
   }
+}
+.onboarding-rtl {
+  direction: rtl;
 }
 .pdf-container {
   position: relative;
