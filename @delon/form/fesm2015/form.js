@@ -1892,17 +1892,13 @@ class SFComponent {
     }
     // #endregion
     /**
-     * Whether the form is valid
-     *
-     * 表单是否有效
+     * 表单校验状态
      * @return {?}
      */
     get valid() {
         return this._valid;
     }
     /**
-     * The value of the form
-     *
      * 表单值
      * @return {?}
      */
@@ -1910,33 +1906,27 @@ class SFComponent {
         return this._item;
     }
     /**
-     * Get form element property based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
-     * @param {?} path
+     * 根据路径获取表单元素属性
+     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
      * @return {?}
      */
     getProperty(path) {
         return (/** @type {?} */ (this.rootProperty)).searchProperty(path);
     }
     /**
-     * Get element value based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
-     * @param {?} path
+     * 根据路径获取表单元素当前值
+     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
      * @return {?}
      */
     getValue(path) {
         return (/** @type {?} */ (this.getProperty(path))).value;
     }
     /**
-     * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素属性值
+     * 根据路径设置某个表单元素属性值
      * @template THIS
      * @this {THIS}
-     * @param {?} path
-     * @param {?} value
+     * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+     * @param {?} value 新值
      * @return {THIS}
      */
     setValue(path, value) {
@@ -2230,17 +2220,14 @@ class SFComponent {
         }));
     }
     /**
-     * Validator the form is valid
-     *
-     * 校验表单是否有效
-     * - `emitError` 当表单无效时是否触发 `formError` 事件，默认：`true`
-     * - `onlyRoot` 只对根进行检验，不进行向下逐个递归，根已经包含整个 Json Schema，默认：`true`
+     * @template THIS
+     * @this {THIS}
      * @param {?=} options
-     * @return {?}
+     * @return {THIS}
      */
     validator(options = { emitError: true, onlyRoot: true }) {
-        if (!this.platform.isBrowser) {
-            return false;
+        if (!(/** @type {?} */ (this)).platform.isBrowser) {
+            return (/** @type {?} */ (this));
         }
         /** @type {?} */
         const fn = (/**
@@ -2267,25 +2254,23 @@ class SFComponent {
             }
         });
         if (options.onlyRoot) {
-            (/** @type {?} */ (this.rootProperty))._runValidation();
+            (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty))._runValidation();
         }
         else {
-            fn((/** @type {?} */ (this.rootProperty)));
+            fn((/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)));
         }
         /** @type {?} */
-        const errors = (/** @type {?} */ (this.rootProperty)).errors;
-        this._valid = !(errors && errors.length);
-        if (options.emitError && !this._valid)
-            this.formError.emit((/** @type {?} */ (errors)));
-        this.cdr.detectChanges();
-        return this._valid;
+        const errors = (/** @type {?} */ ((/** @type {?} */ (this)).rootProperty)).errors;
+        (/** @type {?} */ (this))._valid = !(errors && errors.length);
+        if (options.emitError && !(/** @type {?} */ (this))._valid)
+            (/** @type {?} */ (this)).formError.emit((/** @type {?} */ (errors)));
+        (/** @type {?} */ (this)).cdr.detectChanges();
+        return (/** @type {?} */ (this));
     }
     /**
-     * Refresh the form Schema, when specifying `newSchema` means to replace the current Schema
+     * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
      *
-     * 刷新 Schema，当指定 `newSchema` 表示替换当前的 Schema
-     *
-     * 可以针对某个表单元素进行刷新，例如：
+     * 若希望对某个表单元素进行刷新请使用：
      * ```
      * // 获取某个元素
      * const statusProperty = this.sf.getProperty('/status')!;
@@ -2350,8 +2335,6 @@ class SFComponent {
         return (/** @type {?} */ (this));
     }
     /**
-     * Reset form
-     *
      * 重置表单
      * @template THIS
      * @this {THIS}

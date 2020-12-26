@@ -220,7 +220,7 @@ class TokenService {
             /** @type {?} */
             const item = (/** @type {?} */ (this.get()));
             /** @type {?} */
-            const expired = item.expired || 0;
+            const expired = item.expired || item.exp || 0;
             if (expired <= 0) {
                 return null;
             }
