@@ -31262,6 +31262,9 @@ body {
   font-size: 12px;
   line-height: 18px;
 }
+.avatar-list-rtl {
+  direction: rtl;
+}
 ellipsis {
   display: inline;
 }

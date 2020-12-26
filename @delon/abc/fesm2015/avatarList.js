@@ -1,6 +1,9 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, ContentChildren, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Optional, ContentChildren, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { InputNumber } from '@delon/util';
+import { Directionality } from '@angular/cdk/bidi';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -47,12 +50,16 @@ if (false) {
 class AvatarListComponent {
     /**
      * @param {?} cdr
+     * @param {?} directionality
      */
-    constructor(cdr) {
+    constructor(cdr, directionality) {
         this.cdr = cdr;
+        this.directionality = directionality;
         this.inited = false;
+        this.destroy$ = new Subject();
         this.items = [];
         this.exceedCount = 0;
+        this.dir = 'ltr';
         this.cls = '';
         this.avatarSize = '';
         this.maxLength = 0;
@@ -94,6 +101,15 @@ class AvatarListComponent {
      * @return {?}
      */
     ngAfterViewInit() {
+        var _a;
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+        }));
         this.gen();
         this.inited = true;
     }
@@ -104,6 +120,8 @@ class AvatarListComponent {
         if (this.inited) {
             this.gen();
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 AvatarListComponent.decorators = [
@@ -111,7 +129,10 @@ AvatarListComponent.decorators = [
                 selector: 'avatar-list',
                 exportAs: 'avatarList',
                 template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
-                host: { '[class.avatar-list]': 'true' },
+                host: {
+                    '[class.avatar-list]': 'true',
+                    '[class.avatar-list-rtl]': `dir === 'rtl'`,
+                },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -119,7 +140,8 @@ AvatarListComponent.decorators = [
 ];
 /** @nocollapse */
 AvatarListComponent.ctorParameters = () => [
-    { type: ChangeDetectorRef }
+    { type: ChangeDetectorRef },
+    { type: Directionality, decorators: [{ type: Optional }] }
 ];
 AvatarListComponent.propDecorators = {
     _items: [{ type: ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
@@ -144,10 +166,17 @@ if (false) {
      * @private
      */
     AvatarListComponent.prototype._items;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.destroy$;
     /** @type {?} */
     AvatarListComponent.prototype.items;
     /** @type {?} */
     AvatarListComponent.prototype.exceedCount;
+    /** @type {?} */
+    AvatarListComponent.prototype.dir;
     /** @type {?} */
     AvatarListComponent.prototype.cls;
     /** @type {?} */
@@ -161,6 +190,11 @@ if (false) {
      * @private
      */
     AvatarListComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    AvatarListComponent.prototype.directionality;
 }
 
 /**
