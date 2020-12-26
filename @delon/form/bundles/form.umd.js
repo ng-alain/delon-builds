@@ -2276,7 +2276,9 @@
         Object.defineProperty(SFComponent.prototype, "valid", {
             // #endregion
             /**
-             * 表单校验状态
+             * Whether the form is valid
+             *
+             * 表单是否有效
              * @return {?}
              */
             get: function () {
@@ -2287,6 +2289,8 @@
         });
         Object.defineProperty(SFComponent.prototype, "value", {
             /**
+             * The value of the form
+             *
              * 表单值
              * @return {?}
              */
@@ -2297,27 +2301,33 @@
             configurable: true
         });
         /**
-         * 根据路径获取表单元素属性
-         * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+         * Get form element property based on [path](https://ng-alain.com/form/qa#path)
+         *
+         * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
+         * @param {?} path
          * @return {?}
          */
         SFComponent.prototype.getProperty = function (path) {
             return ( /** @type {?} */(this.rootProperty)).searchProperty(path);
         };
         /**
-         * 根据路径获取表单元素当前值
-         * @param {?} path [路径](https://ng-alain.com/form/qa#path)
+         * Get element value based on [path](https://ng-alain.com/form/qa#path)
+         *
+         * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
+         * @param {?} path
          * @return {?}
          */
         SFComponent.prototype.getValue = function (path) {
             return ( /** @type {?} */(this.getProperty(path))).value;
         };
         /**
-         * 根据路径设置某个表单元素属性值
+         * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
+         *
+         * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素属性值
          * @template THIS
          * @this {THIS}
-         * @param {?} path [路径](https://ng-alain.com/form/qa#path)
-         * @param {?} value 新值
+         * @param {?} path
+         * @param {?} value
          * @return {THIS}
          */
         SFComponent.prototype.setValue = function (path, value) {
@@ -2620,15 +2630,18 @@
             }));
         };
         /**
-         * @template THIS
-         * @this {THIS}
+         * Validator the form is valid
+         *
+         * 校验表单是否有效
+         * - `emitError` 当表单无效时是否触发 `formError` 事件，默认：`true`
+         * - `onlyRoot` 只对根进行检验，不进行向下逐个递归，根已经包含整个 Json Schema，默认：`true`
          * @param {?=} options
-         * @return {THIS}
+         * @return {?}
          */
         SFComponent.prototype.validator = function (options) {
             if (options === void 0) { options = { emitError: true, onlyRoot: true }; }
-            if (!( /** @type {?} */(this)).platform.isBrowser) {
-                return ( /** @type {?} */(this));
+            if (!this.platform.isBrowser) {
+                return false;
             }
             /** @type {?} */
             var fn = ( /**
@@ -2658,23 +2671,25 @@
                 }
             });
             if (options.onlyRoot) {
-                ( /** @type {?} */(( /** @type {?} */(this)).rootProperty))._runValidation();
+                ( /** @type {?} */(this.rootProperty))._runValidation();
             }
             else {
-                fn(( /** @type {?} */(( /** @type {?} */(this)).rootProperty)));
+                fn(( /** @type {?} */(this.rootProperty)));
             }
             /** @type {?} */
-            var errors = ( /** @type {?} */(( /** @type {?} */(this)).rootProperty)).errors;
-            ( /** @type {?} */(this))._valid = !(errors && errors.length);
-            if (options.emitError && !( /** @type {?} */(this))._valid)
-                ( /** @type {?} */(this)).formError.emit(( /** @type {?} */(errors)));
-            ( /** @type {?} */(this)).cdr.detectChanges();
-            return ( /** @type {?} */(this));
+            var errors = ( /** @type {?} */(this.rootProperty)).errors;
+            this._valid = !(errors && errors.length);
+            if (options.emitError && !this._valid)
+                this.formError.emit(( /** @type {?} */(errors)));
+            this.cdr.detectChanges();
+            return this._valid;
         };
         /**
-         * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
+         * Refresh the form Schema, when specifying `newSchema` means to replace the current Schema
          *
-         * 若希望对某个表单元素进行刷新请使用：
+         * 刷新 Schema，当指定 `newSchema` 表示替换当前的 Schema
+         *
+         * 可以针对某个表单元素进行刷新，例如：
          * ```
          * // 获取某个元素
          * const statusProperty = this.sf.getProperty('/status')!;
@@ -2744,6 +2759,8 @@
             return ( /** @type {?} */(this));
         };
         /**
+         * Reset form
+         *
          * 重置表单
          * @template THIS
          * @this {THIS}

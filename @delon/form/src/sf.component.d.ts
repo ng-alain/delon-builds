@@ -88,26 +88,36 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     readonly formSubmit: EventEmitter<{}>;
     readonly formReset: EventEmitter<{}>;
     readonly formError: EventEmitter<ErrorData[]>;
-    /** 表单校验状态 */
+    /**
+     * Whether the form is valid
+     *
+     * 表单是否有效
+     */
     get valid(): boolean;
-    /** 表单值 */
+    /**
+     * The value of the form
+     *
+     * 表单值
+     */
     get value(): {
         [key: string]: any;
     };
     /**
-     * 根据路径获取表单元素属性
-     * @param path [路径](https://ng-alain.com/form/qa#path)
+     * Get form element property based on [path](https://ng-alain.com/form/qa#path)
+     *
+     * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
      */
     getProperty(path: string): FormProperty | null;
     /**
-     * 根据路径获取表单元素当前值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
+     * Get element value based on [path](https://ng-alain.com/form/qa#path)
+     *
+     * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
      */
     getValue(path: string): any;
     /**
-     * 根据路径设置某个表单元素属性值
-     * @param path [路径](https://ng-alain.com/form/qa#path)
-     * @param value 新值
+     * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
+     *
+     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素属性值
      */
     setValue(path: string, value: any): this;
     onSubmit(e: Event): void;
@@ -121,14 +131,23 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     private attachCustomRender;
+    /**
+     * Validator the form is valid
+     *
+     * 校验表单是否有效
+     * - `emitError` 当表单无效时是否触发 `formError` 事件，默认：`true`
+     * - `onlyRoot` 只对根进行检验，不进行向下逐个递归，根已经包含整个 Json Schema，默认：`true`
+     */
     validator(options?: {
         emitError?: boolean;
         onlyRoot?: boolean;
-    }): this;
+    }): boolean;
     /**
-     * 刷新整个 Schema，当指定 `newSchema` 表示替换当前的 Schema
+     * Refresh the form Schema, when specifying `newSchema` means to replace the current Schema
      *
-     * 若希望对某个表单元素进行刷新请使用：
+     * 刷新 Schema，当指定 `newSchema` 表示替换当前的 Schema
+     *
+     * 可以针对某个表单元素进行刷新，例如：
      * ```
      * // 获取某个元素
      * const statusProperty = this.sf.getProperty('/status')!;
@@ -140,6 +159,8 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     refreshSchema(newSchema?: SFSchema, newUI?: SFUISchema): this;
     /**
+     * Reset form
+     *
      * 重置表单
      * @param [emit] 是否触发 `formReset` 事件，默认：`false`
      */

@@ -243,7 +243,7 @@
                 /** @type {?} */
                 var item = ( /** @type {?} */(_this.get()));
                 /** @type {?} */
-                var expired = item.expired || item.exp || 0;
+                var expired = item.expired || 0;
                 if (expired <= 0) {
                     return null;
                 }
