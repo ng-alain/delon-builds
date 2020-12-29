@@ -30092,6 +30092,12 @@ code {
 .text-xxl {
   font-size: 28px !important;
 }
+[dir='rtl'] .text-left {
+  text-align: right !important;
+}
+[dir='rtl'] .text-right {
+  text-align: left !important;
+}
 .width-xs {
   /* AUTOGENERATE: Specify the width as "80px"|SPLIT|指定宽度为 "80px"*/
   width: 80px !important;
@@ -30588,6 +30594,10 @@ body {
   .alain-default__header-logo-expanded {
     display: none;
   }
+}
+[dir='rtl'] .alain-default__header-logo {
+  margin-right: -16px;
+  margin-left: 0;
 }
 .alain-default__aside {
   position: absolute;
