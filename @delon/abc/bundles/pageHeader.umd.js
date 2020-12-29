@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, core, router, reuseTab, theme, util, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/bidi'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/bidi', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.bidi, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, core, router, reuseTab, theme, util, rxjs, operators, bidi, observers, common, affix, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -338,8 +338,9 @@
          * @param {?} cdr
          * @param {?} configSrv
          * @param {?} platform
+         * @param {?} directionality
          */
-        function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform) {
+        function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
             var _this = this;
             this.renderer = renderer;
             this.router = router$1;
@@ -348,9 +349,11 @@
             this.titleSrv = titleSrv;
             this.reuseSrv = reuseSrv;
             this.cdr = cdr;
+            this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this.inited = false;
-            this.unsubscribe$ = new rxjs.Subject();
             this.isBrowser = true;
+            this.dir = 'ltr';
             this._titleVal = '';
             this.paths = [];
             this.loading = false;
@@ -367,7 +370,7 @@
                 fixedOffsetTop: 64,
             });
             settings.notify
-                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(( /**
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
          * @param {?} w
          * @return {?}
          */function (/**
@@ -386,7 +389,7 @@
              * @param {?} ev
              * @return {?}
              */ ev) { return ev instanceof router.NavigationEnd; }))), i18nSrv.change)
-                .pipe(operators.takeUntil(this.unsubscribe$))
+                .pipe(operators.takeUntil(this.destroy$))
                 .subscribe(( /**
          * @return {?}
          */function () { return _this.refresh(); }));
@@ -506,6 +509,16 @@
          * @return {?}
          */
         PageHeaderComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            var _a;
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
+                _this.dir = direction;
+                _this.cdr.detectChanges();
+            }));
             this.refresh();
             this.inited = true;
         };
@@ -527,9 +540,8 @@
          * @return {?}
          */
         PageHeaderComponent.prototype.ngOnDestroy = function () {
-            var unsubscribe$ = this.unsubscribe$;
-            unsubscribe$.next();
-            unsubscribe$.complete();
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return PageHeaderComponent;
     }());
@@ -537,7 +549,7 @@
         { type: core.Component, args: [{
                     selector: 'page-header',
                     exportAs: 'pageHeader',
-                    template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
+                    template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\" [class.page-header-rtl]=\"dir === 'rtl'\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
@@ -554,7 +566,8 @@
         { type: reuseTab.ReuseTabService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [reuseTab.ReuseTabService,] }] },
         { type: core.ChangeDetectorRef },
         { type: util.AlainConfigService },
-        { type: platform.Platform }
+        { type: platform.Platform },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     PageHeaderComponent.propDecorators = {
         conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: false },] }],
@@ -627,13 +640,11 @@
         PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
         /** @type {?} */
         PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
-        /** @type {?} */
-        PageHeaderComponent.prototype.inited;
         /**
          * @type {?}
          * @private
          */
-        PageHeaderComponent.prototype.unsubscribe$;
+        PageHeaderComponent.prototype.destroy$;
         /**
          * @type {?}
          * @private
@@ -645,7 +656,11 @@
          */
         PageHeaderComponent.prototype.affix;
         /** @type {?} */
+        PageHeaderComponent.prototype.inited;
+        /** @type {?} */
         PageHeaderComponent.prototype.isBrowser;
+        /** @type {?} */
+        PageHeaderComponent.prototype.dir;
         /** @type {?} */
         PageHeaderComponent.prototype._titleVal;
         /** @type {?} */
@@ -723,6 +738,11 @@
          * @private
          */
         PageHeaderComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        PageHeaderComponent.prototype.directionality;
     }
 
     /** @type {?} */

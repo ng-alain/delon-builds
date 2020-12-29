@@ -8,6 +8,7 @@ import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
+import { Directionality } from '@angular/cdk/bidi';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -41,8 +42,9 @@ class PageHeaderComponent {
      * @param {?} cdr
      * @param {?} configSrv
      * @param {?} platform
+     * @param {?} directionality
      */
-    constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform) {
+    constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
         this.renderer = renderer;
         this.router = router;
         this.menuSrv = menuSrv;
@@ -50,9 +52,11 @@ class PageHeaderComponent {
         this.titleSrv = titleSrv;
         this.reuseSrv = reuseSrv;
         this.cdr = cdr;
+        this.directionality = directionality;
+        this.destroy$ = new Subject();
         this.inited = false;
-        this.unsubscribe$ = new Subject();
         this.isBrowser = true;
+        this.dir = 'ltr';
         this._titleVal = '';
         this.paths = [];
         this.loading = false;
@@ -69,7 +73,7 @@ class PageHeaderComponent {
             fixedOffsetTop: 64,
         });
         settings.notify
-            .pipe(takeUntil(this.unsubscribe$), filter((/**
+            .pipe(takeUntil(this.destroy$), filter((/**
          * @param {?} w
          * @return {?}
          */
@@ -86,7 +90,7 @@ class PageHeaderComponent {
          * @return {?}
          */
         ev => ev instanceof NavigationEnd))), i18nSrv.change)
-            .pipe(takeUntil(this.unsubscribe$))
+            .pipe(takeUntil(this.destroy$))
             .subscribe((/**
          * @return {?}
          */
@@ -196,6 +200,16 @@ class PageHeaderComponent {
      * @return {?}
      */
     ngOnInit() {
+        var _a;
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+            this.cdr.detectChanges();
+        }));
         this.refresh();
         this.inited = true;
     }
@@ -217,16 +231,15 @@ class PageHeaderComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 PageHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'page-header',
                 exportAs: 'pageHeader',
-                template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
+                template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\" [class.page-header-rtl]=\"dir === 'rtl'\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -243,7 +256,8 @@ PageHeaderComponent.ctorParameters = () => [
     { type: ReuseTabService, decorators: [{ type: Optional }, { type: Inject, args: [ReuseTabService,] }] },
     { type: ChangeDetectorRef },
     { type: AlainConfigService },
-    { type: Platform }
+    { type: Platform },
+    { type: Directionality, decorators: [{ type: Optional }] }
 ];
 PageHeaderComponent.propDecorators = {
     conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],
@@ -316,13 +330,11 @@ if (false) {
     PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
     /** @type {?} */
     PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
-    /** @type {?} */
-    PageHeaderComponent.prototype.inited;
     /**
      * @type {?}
      * @private
      */
-    PageHeaderComponent.prototype.unsubscribe$;
+    PageHeaderComponent.prototype.destroy$;
     /**
      * @type {?}
      * @private
@@ -334,7 +346,11 @@ if (false) {
      */
     PageHeaderComponent.prototype.affix;
     /** @type {?} */
+    PageHeaderComponent.prototype.inited;
+    /** @type {?} */
     PageHeaderComponent.prototype.isBrowser;
+    /** @type {?} */
+    PageHeaderComponent.prototype.dir;
     /** @type {?} */
     PageHeaderComponent.prototype._titleVal;
     /** @type {?} */
@@ -412,6 +428,11 @@ if (false) {
      * @private
      */
     PageHeaderComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.directionality;
 }
 
 /**

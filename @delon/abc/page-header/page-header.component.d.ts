@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
+import { Direction, Directionality } from '@angular/cdk/bidi';
 interface PageHeaderPath {
     title?: string;
     link?: string[];
@@ -16,6 +17,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private titleSrv;
     private reuseSrv;
     private cdr;
+    private directionality;
     static ngAcceptInputType_loading: BooleanInput;
     static ngAcceptInputType_wide: BooleanInput;
     static ngAcceptInputType_autoBreadcrumb: BooleanInput;
@@ -24,11 +26,12 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     static ngAcceptInputType_fixed: BooleanInput;
     static ngAcceptInputType_fixedOffsetTop: NumberInput;
     static ngAcceptInputType_recursiveBreadcrumb: BooleanInput;
-    inited: boolean;
-    private unsubscribe$;
+    private destroy$;
     private conTpl;
     private affix;
+    inited: boolean;
     isBrowser: boolean;
+    dir: Direction;
     private get menus();
     _titleVal: string;
     paths: PageHeaderPath[];
@@ -52,7 +55,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content: TemplateRef<void>;
     extra: TemplateRef<void>;
     tab: TemplateRef<void>;
-    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform);
+    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform, directionality: Directionality);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

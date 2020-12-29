@@ -30885,6 +30885,13 @@ ellipsis {
   color: rgba(0, 0, 0, 0.45);
   font-size: 12px;
 }
+.global-footer-rtl {
+  direction: rtl;
+}
+.global-footer-rtl .global-footer__links-item:not(:last-child) {
+  margin-right: inherit;
+  margin-left: 40px;
+}
 .notice-icon {
   width: 336px;
 }
@@ -31101,6 +31108,37 @@ ellipsis {
     margin-bottom: 0;
   }
 }
+.page-header-rtl {
+  direction: rtl;
+}
+.page-header-rtl .page-header__logo {
+  margin-right: 0;
+  margin-left: 8px;
+}
+.page-header-rtl .page-header__title small {
+  padding-right: 8px;
+  padding-left: 0;
+}
+.page-header-rtl .page-header__action {
+  margin-right: 56px;
+  margin-left: 0;
+}
+.page-header-rtl .page-header__extra {
+  margin-right: 88px;
+  margin-left: 0;
+}
+@media screen and (max-width: 1200px) {
+  .page-header-rtl .page-header__extra {
+    margin-right: 44px;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 992px) {
+  .page-header-rtl .page-header__extra {
+    margin-right: 20px;
+    margin-left: 0;
+  }
+}
 .quick-menu {
   position: fixed;
   right: -1px;
@@ -31191,6 +31229,9 @@ ellipsis {
 .result .ant-steps .ant-steps-title {
   background: #fafafa;
 }
+.result-rtl {
+  direction: rtl;
+}
 .reuse-tab {
   display: block;
   background-color: #fff;
@@ -31275,6 +31316,27 @@ ellipsis {
 .tag-select__trigger-icon {
   margin-left: 8px;
   font-size: 12px;
+}
+.tag-select-rtl {
+  margin-right: -8px;
+  margin-left: 0;
+  direction: rtl;
+}
+.tag-select-rtl__has-expand {
+  padding-right: 0 !important;
+  padding-left: 50px !important;
+}
+.tag-select-rtl .tag-select .ant-tag {
+  margin-right: 0;
+  margin-left: 24px;
+}
+.tag-select-rtl .tag-select__trigger {
+  right: initial;
+  left: 0;
+}
+.tag-select-rtl .tag-select__trigger-icon {
+  margin-right: 0;
+  margin-left: 8px;
 }
 .down-file__not-support {
   display: none;

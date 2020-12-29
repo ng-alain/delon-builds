@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.common));
-}(this, (function (exports, core, platformBrowser, router, theme, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, core, platformBrowser, router, theme, util, bidi, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -360,12 +360,16 @@
          * @param {?} router
          * @param {?} win
          * @param {?} dom
+         * @param {?} directionality
          */
-        function GlobalFooterComponent(router, win, dom) {
+        function GlobalFooterComponent(router, win, dom, directionality) {
             this.router = router;
             this.win = win;
             this.dom = dom;
+            this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this._links = [];
+            this.dir = 'ltr';
         }
         Object.defineProperty(GlobalFooterComponent.prototype, "links", {
             /**
@@ -411,6 +415,27 @@
                 this.router.navigateByUrl(item.href);
             }
         };
+        /**
+         * @return {?}
+         */
+        GlobalFooterComponent.prototype.ngOnInit = function () {
+            var _this = this;
+            var _a;
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
+                _this.dir = direction;
+            }));
+        };
+        /**
+         * @return {?}
+         */
+        GlobalFooterComponent.prototype.ngOnDestroy = function () {
+            this.destroy$.next();
+            this.destroy$.complete();
+        };
         return GlobalFooterComponent;
     }());
     GlobalFooterComponent.decorators = [
@@ -418,7 +443,10 @@
                     selector: 'global-footer',
                     exportAs: 'globalFooter',
                     template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
-                    host: { '[class.global-footer]': 'true' },
+                    host: {
+                        '[class.global-footer]': 'true',
+                        '[class.global-footer-rtl]': "dir === 'rtl'",
+                    },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
@@ -428,7 +456,8 @@
     GlobalFooterComponent.ctorParameters = function () { return [
         { type: router.Router },
         { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
-        { type: platformBrowser.DomSanitizer }
+        { type: platformBrowser.DomSanitizer },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     GlobalFooterComponent.propDecorators = {
         links: [{ type: core.Input }],
@@ -439,7 +468,14 @@
          * @type {?}
          * @private
          */
+        GlobalFooterComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
         GlobalFooterComponent.prototype._links;
+        /** @type {?} */
+        GlobalFooterComponent.prototype.dir;
         /** @type {?} */
         GlobalFooterComponent.prototype.items;
         /**
@@ -457,6 +493,11 @@
          * @private
          */
         GlobalFooterComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.directionality;
     }
 
     /** @type {?} */

@@ -1,7 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { Directionality } from '@angular/cdk/bidi';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -13,13 +16,17 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 class TagSelectComponent {
     /**
      * @param {?} i18n
+     * @param {?} directionality
      * @param {?} cdr
      */
-    constructor(i18n, cdr) {
+    constructor(i18n, directionality, cdr) {
         this.i18n = i18n;
+        this.directionality = directionality;
         this.cdr = cdr;
+        this.destroy$ = new Subject();
         this.locale = {};
         this.expand = false;
+        this.dir = 'ltr';
         /**
          * 是否启用 `展开与收进`
          */
@@ -30,7 +37,16 @@ class TagSelectComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.i18n$ = this.i18n.change.subscribe((/**
+        var _a;
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+        }));
+        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe((/**
          * @return {?}
          */
         () => {
@@ -49,7 +65,8 @@ class TagSelectComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.i18n$.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 TagSelectComponent.decorators = [
@@ -59,6 +76,8 @@ TagSelectComponent.decorators = [
                 template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                 host: {
                     '[class.tag-select]': 'true',
+                    '[class.tag-select-rtl]': `dir === 'rtl'`,
+                    '[class.tag-select-rtl__has-expand]': `dir === 'rtl' && expandable`,
                     '[class.tag-select__has-expand]': 'expandable',
                     '[class.tag-select__expanded]': 'expand',
                 },
@@ -70,6 +89,7 @@ TagSelectComponent.decorators = [
 /** @nocollapse */
 TagSelectComponent.ctorParameters = () => [
     { type: DelonLocaleService },
+    { type: Directionality, decorators: [{ type: Optional }] },
     { type: ChangeDetectorRef }
 ];
 TagSelectComponent.propDecorators = {
@@ -87,11 +107,13 @@ if (false) {
      * @type {?}
      * @private
      */
-    TagSelectComponent.prototype.i18n$;
+    TagSelectComponent.prototype.destroy$;
     /** @type {?} */
     TagSelectComponent.prototype.locale;
     /** @type {?} */
     TagSelectComponent.prototype.expand;
+    /** @type {?} */
+    TagSelectComponent.prototype.dir;
     /**
      * 是否启用 `展开与收进`
      * @type {?}
@@ -104,6 +126,11 @@ if (false) {
      * @private
      */
     TagSelectComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.directionality;
     /**
      * @type {?}
      * @private
