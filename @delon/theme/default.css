@@ -26216,6 +26216,10 @@ a:focus {
 .ant-form-item-control em {
   margin-left: 8px;
 }
+[dir='rtl'] .ant-form-item-control em {
+  margin-right: 8px;
+  margin-left: inherit;
+}
 @media (min-width: 576px) {
   .modal-sm .ant-modal {
     width: auto !important;
@@ -26332,6 +26336,11 @@ a:focus {
   margin-right: 4px;
   vertical-align: middle;
   border-radius: 4px;
+}
+[dir='rtl'] .ant-table td > img,
+[dir='rtl'] .ant-table td .img {
+  margin-right: inherit;
+  margin-left: 4px;
 }
 .ant-table-rep__title {
   display: none;
@@ -29270,6 +29279,86 @@ code {
   /* AUTOGENERATE: Set the padding vertical (top & bottom) size to "24px"|SPLIT|设置 padding 垂直（即上与下）大小为 "24px"*/
   padding-top: 24px !important;
   padding-bottom: 24px !important;
+}
+[dir="rtl"] .mr0 {
+  margin-left: 0 !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml0 {
+  margin-right: 0 !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr0 {
+  padding-left: 0 !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl0 {
+  padding-right: 0 !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-xs {
+  margin-left: 4px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-xs {
+  margin-right: 4px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-xs {
+  padding-left: 4px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-xs {
+  padding-right: 4px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-sm {
+  margin-left: 8px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-sm {
+  margin-right: 8px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-sm {
+  padding-left: 8px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-sm {
+  padding-right: 8px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-md {
+  margin-left: 16px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-md {
+  margin-right: 16px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-md {
+  padding-left: 16px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-md {
+  padding-right: 16px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-lg {
+  margin-left: 24px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-lg {
+  margin-right: 24px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-lg {
+  padding-left: 24px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-lg {
+  padding-right: 24px !important;
+  padding-left: inherit !important;
 }
 /**
  * The inline contents are aligned to the left edge of the line box
