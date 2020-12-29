@@ -1,5 +1,5 @@
-import { OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Direction, Directionality } from '@angular/cdk/bidi';
+import { OnDestroy, OnInit, TemplateRef } from '@angular/core';
 export declare class ResultComponent implements OnInit, OnDestroy {
     private directionality;
     private destroy$;

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, platformBrowser, router, theme, util, bidi, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@delon/util', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.rxjs, global.rxjs.operators, global.delon.util, global.ng.common));
+}(this, (function (exports, bidi, core, platformBrowser, router, theme, rxjs, operators, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('@angular/cdk/bidi'), require('rxjs/operators'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', 'rxjs', '@angular/cdk/bidi', 'rxjs/operators', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.rxjs, global.ng.cdk.bidi, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, core, platformBrowser, theme, util, rxjs, bidi, operators, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, bidi, core, platformBrowser, theme, util, rxjs, operators, common, router, button) { 'use strict';
 
     /**
      * @fileoverview added by tsickle

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, common, core, platformBrowser, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, bidi, common, core, platformBrowser, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -333,8 +333,9 @@
          * @param {?} sanitizer
          * @param {?} doc
          * @param {?} win
+         * @param {?} directionality
          */
-        function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win) {
+        function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
             this.menuSrv = menuSrv;
             this.settings = settings;
             this.router = router;
@@ -344,8 +345,10 @@
             this.sanitizer = sanitizer;
             this.doc = doc;
             this.win = win;
-            this.unsubscribe$ = new rxjs.Subject();
+            this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this.list = [];
+            this.dir = 'ltr';
             this.disabledAcl = false;
             this.autoCloseUnderPad = true;
             this.recursivePath = true;
@@ -584,7 +587,7 @@
          * @return {?}
          */
         SidebarNavComponent.prototype.openedByUrl = function (url) {
-            var _a = this, menuSrv = _a.menuSrv, recursivePath = _a.recursivePath, openStrictly = _a.openStrictly;
+            var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
             /** @type {?} */
             var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
              * @param {?} i
@@ -610,13 +613,14 @@
          */
         SidebarNavComponent.prototype.ngOnInit = function () {
             var _this = this;
-            var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, settings = _a.settings, cdr = _a.cdr;
+            var _a;
+            var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
             this.bodyEl = doc.querySelector('body');
             this.openedByUrl(router$1.url);
             this.ngZone.runOutsideAngular(( /**
              * @return {?}
              */function () { return _this.genFloating(); }));
-            menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
+            menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
              * @param {?} data
              * @return {?}
              */function (/**
@@ -649,7 +653,7 @@
                  */function (w) { return w._hidden !== true; }));
                 cdr.detectChanges();
             }));
-            router$1.events.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
+            router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
              * @param {?} e
              * @return {?}
              */function (/**
@@ -663,7 +667,7 @@
                 }
             }));
             settings.notify
-                .pipe(operators.takeUntil(unsubscribe$), operators.filter(( /**
+                .pipe(operators.takeUntil(destroy$), operators.filter(( /**
          * @param {?} t
          * @return {?}
          */function (/**
@@ -674,14 +678,20 @@
          * @return {?}
          */function () { return _this.clearFloating(); }));
             this.underPad();
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
+                _this.dir = direction;
+            }));
         };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype.ngOnDestroy = function () {
-            var unsubscribe$ = this.unsubscribe$;
-            unsubscribe$.next();
-            unsubscribe$.complete();
+            this.destroy$.next();
+            this.destroy$.complete();
             this.clearFloating();
         };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
@@ -722,7 +732,7 @@
         { type: core.Component, args: [{
                     selector: 'sidebar-nav',
                     exportAs: 'sidebarNav',
-                    template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n      [nzRotate]=\"i.rotate\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #tree let-ls>\n  <ng-container *ngFor=\"let i of ls\">\n    <li *ngIf=\"i._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i._open\">\n      <!-- link -->\n      <a\n        *ngIf=\"i.children.length === 0\"\n        (click)=\"to(i)\"\n        [attr.data-id]=\"i._id\"\n        class=\"sidebar-nav__item-link\"\n        [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\"\n      >\n        <ng-container *ngIf=\"i._needIcon\">\n          <ng-container *ngIf=\"!collapsed\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </ng-container>\n          <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </span>\n        </ng-container>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n      </a>\n      <!-- has children link -->\n      <a *ngIf=\"i.children.length > 0\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n        <i class=\"sidebar-nav__sub-arrow\"></i>\n      </a>\n      <!-- badge -->\n      <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n        <em>{{ i.badge }}</em>\n      </div>\n      <ul *ngIf=\"i.children.length > 0\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n        <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\"></ng-template>\n      </ul>\n    </li>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n      <span [innerHTML]=\"group._text\"></span>\n    </li>\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\"></ng-template>\n  </ng-container>\n</ul>\n",
+                    template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n      [nzRotate]=\"i.rotate\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #tree let-ls>\n  <ng-container *ngFor=\"let i of ls\">\n    <li *ngIf=\"i._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i._open\">\n      <!-- link -->\n      <a\n        *ngIf=\"i.children.length === 0\"\n        (click)=\"to(i)\"\n        [attr.data-id]=\"i._id\"\n        class=\"sidebar-nav__item-link\"\n        [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\"\n      >\n        <ng-container *ngIf=\"i._needIcon\">\n          <ng-container *ngIf=\"!collapsed\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </ng-container>\n          <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </span>\n        </ng-container>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n      </a>\n      <!-- has children link -->\n      <a *ngIf=\"i.children.length > 0\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n        <i class=\"sidebar-nav__sub-arrow\"></i>\n      </a>\n      <!-- badge -->\n      <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n        <em>{{ i.badge }}</em>\n      </div>\n      <ul *ngIf=\"i.children.length > 0\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n        <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\"></ng-template>\n      </ul>\n    </li>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\" [class.sidebar-nav-rtl]=\"dir === 'rtl'\">\n  <ng-container *ngFor=\"let group of list\">\n    <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n      <span [innerHTML]=\"group._text\"></span>\n    </li>\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\"></ng-template>\n  </ng-container>\n</ul>\n",
                     host: {
                         '(click)': '_click()',
                         '(document:click)': '_docClick()',
@@ -742,7 +752,8 @@
         { type: core.NgZone },
         { type: platformBrowser.DomSanitizer },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
+        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     SidebarNavComponent.propDecorators = {
         disabledAcl: [{ type: core.Input }],
@@ -792,7 +803,7 @@
          * @type {?}
          * @private
          */
-        SidebarNavComponent.prototype.unsubscribe$;
+        SidebarNavComponent.prototype.destroy$;
         /**
          * @type {?}
          * @private
@@ -800,6 +811,8 @@
         SidebarNavComponent.prototype.floatingEl;
         /** @type {?} */
         SidebarNavComponent.prototype.list;
+        /** @type {?} */
+        SidebarNavComponent.prototype.dir;
         /** @type {?} */
         SidebarNavComponent.prototype.disabledAcl;
         /** @type {?} */
@@ -857,6 +870,11 @@
          * @private
          */
         SidebarNavComponent.prototype.win;
+        /**
+         * @type {?}
+         * @private
+         */
+        SidebarNavComponent.prototype.directionality;
     }
 
     /**

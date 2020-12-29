@@ -1,4 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
+import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
@@ -8,7 +9,6 @@ import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { Directionality } from '@angular/cdk/bidi';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.delon.util, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
-}(this, (function (exports, common, core, util, bidi, rxjs, operators, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, util, rxjs, operators, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('@angular/cdk/bidi'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', '@angular/cdk/bidi', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.ng.cdk.bidi, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, theme, util, rxjs, bidi, operators, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, core, theme, util, rxjs, operators, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.

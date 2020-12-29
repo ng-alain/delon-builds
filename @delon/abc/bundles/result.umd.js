@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@delon/util'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/result', ['exports', '@angular/core', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', '@angular/common', '@delon/util', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.result = {}), global.ng.core, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.ng.common, global.delon.util, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, bidi, rxjs, operators, common, util, outlet, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@delon/util'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/result', ['exports', '@angular/cdk/bidi', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/common', '@delon/util', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.result = {}), global.ng.cdk.bidi, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.common, global.delon.util, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, core, rxjs, operators, common, util, outlet, icon) { 'use strict';
 
     /**
      * @fileoverview added by tsickle

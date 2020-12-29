@@ -1,12 +1,12 @@
+import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
-import { __decorate, __metadata } from 'tslib';
-import { InputBoolean, DelonUtilModule } from '@delon/util';
-import { Directionality } from '@angular/cdk/bidi';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { __decorate, __metadata } from 'tslib';
+import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
 /**

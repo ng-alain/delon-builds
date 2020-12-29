@@ -1,9 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
+import { Directionality } from '@angular/cdk/bidi';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { Subject } from 'rxjs';
-import { Directionality } from '@angular/cdk/bidi';
 import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';

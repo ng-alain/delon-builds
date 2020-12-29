@@ -1,7 +1,7 @@
+import { Direction, Directionality } from '@angular/cdk/bidi';
 import { OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
-import { Direction, Directionality } from '@angular/cdk/bidi';
 export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
