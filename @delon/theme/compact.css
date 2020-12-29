@@ -27132,6 +27132,18 @@ fieldset {
   right: 500px;
   z-index: 1001;
 }
+.setting-drawer-rtl {
+  direction: rtl;
+}
+.setting-drawer-rtl .setting-drawer__handle {
+  right: inherit;
+  left: 0;
+  border-radius: 0 4px 4px 0;
+}
+.setting-drawer-rtl .setting-drawer__handle-opened {
+  right: inherit;
+  left: 500px;
+}
 .theme-btn {
   position: fixed;
   right: 32px;
@@ -27156,6 +27168,10 @@ fieldset {
 }
 .theme-btn .ant-avatar:hover {
   color: #1890ff;
+}
+.theme-btn-rtl {
+  right: inherit;
+  left: 32px;
 }
 .yn__yes,
 .yn__no {
@@ -29836,6 +29852,12 @@ body {
     margin-left: 88px;
   }
 }
+@media (min-width: 768px) {
+  [dir='rtl'] .alain-default__content {
+    margin-right: 224px;
+    margin-left: 0;
+  }
+}
 .alain-default__header {
   z-index: 19;
   display: flex;
@@ -30428,6 +30450,10 @@ body {
   .alain-default__collapsed .alain-default__aside-user-avatar {
     margin: 0 auto;
   }
+}
+[dir='rtl'] .alain-default__aside-user-avatar {
+  margin-right: 0;
+  margin-left: 8px;
 }
 .alain-default__fixed .alain-default__header {
   position: fixed;
