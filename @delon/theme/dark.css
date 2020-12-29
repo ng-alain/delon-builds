@@ -26653,7 +26653,7 @@ app-layout router-outlet + * {
 sf + st {
   margin-top: 16px;
 }
-.ant-btn + .ant-btn:not(.ant-btn-link),
+.ant-btn + .ant-btn,
 .ant-btn + nz-popconfirm,
 nz-popconfirm + .ant-btn,
 nz-popconfirm + nz-popconfirm,
@@ -26670,6 +26670,19 @@ nz-button-group + nz-popconfirm {
 }
 .ant-transfer-operation .ant-btn + .ant-btn {
   margin-left: initial;
+}
+[dir='rtl'] .ant-btn + .ant-btn,
+[dir='rtl'] .ant-btn + nz-popconfirm,
+[dir='rtl'] nz-popconfirm + .ant-btn,
+[dir='rtl'] nz-popconfirm + nz-popconfirm,
+[dir='rtl'] .ant-btn + nz-button-group,
+[dir='rtl'] nz-button-group + .ant-btn,
+[dir='rtl'] .ant-btn + nz-dropdown,
+[dir='rtl'] nz-dropdown + .ant-btn,
+[dir='rtl'] nz-popconfirm + nz-button-group,
+[dir='rtl'] nz-button-group + nz-popconfirm {
+  margin-right: 8px;
+  margin-left: inherit;
 }
 a:focus {
   text-decoration: none;
@@ -31295,6 +31308,18 @@ ellipsis {
   color: #f5222d;
   cursor: pointer;
 }
+.error-collect__count {
+  padding-left: 8px;
+}
+.error-collect-rtl {
+  padding-right: 0;
+  padding-left: 24px;
+  direction: rtl;
+}
+.error-collect-rtl .error-collect__count {
+  padding-right: 8px;
+  padding-left: 0;
+}
 .exception {
   display: flex;
   align-items: center;
@@ -31342,7 +31367,7 @@ ellipsis {
   font-size: 20px;
   line-height: 28px;
 }
-.exception__cont-actions button:not(:last-child) {
+.exception__cont-actions .ant-btn:not(:last-child) {
   margin-right: 8px;
 }
 @media screen and (max-width: 1200px) {
@@ -31365,6 +31390,12 @@ ellipsis {
     margin-bottom: -24px;
     overflow: hidden;
   }
+}
+.exception-rtl {
+  direction: rtl;
+}
+.exception-rtl .exception__cont-actions .ant-btn:not(:last-child) {
+  margin-right: 0;
 }
 .footer-toolbar {
   position: fixed;
