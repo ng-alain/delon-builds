@@ -1,3 +1,4 @@
+import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -17,14 +18,16 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private sanitizer;
     private doc;
     private win;
+    private directionality;
     static ngAcceptInputType_disabledAcl: BooleanInput;
     static ngAcceptInputType_autoCloseUnderPad: BooleanInput;
     static ngAcceptInputType_recursivePath: BooleanInput;
     static ngAcceptInputType_openStrictly: BooleanInput;
     static ngAcceptInputType_maxLevelIcon: NumberInput;
     private bodyEl;
-    private unsubscribe$;
+    private destroy$;
     private floatingEl;
+    dir: Direction;
     list: Nav[];
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
@@ -33,7 +36,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window, directionality: Directionality);
     private getLinkNode;
     private floatingClickHandle;
     private clearFloating;
