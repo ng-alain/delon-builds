@@ -917,7 +917,10 @@ if (false) {
      * @type {?}
      */
     Layout.prototype.colorWeak;
-    /** @type {?} */
+    /**
+     * Direction of the text
+     * @type {?}
+     */
     Layout.prototype.direction;
     /* Skipping unhandled member: [key: string]: any;*/
 }
@@ -3986,7 +3989,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.0.2-05be6434');
+const VERSION = new Version('11.0.2-ef71f694');
 
 /**
  * @fileoverview added by tsickle

@@ -1,3 +1,4 @@
+import { Direction } from '@angular/cdk/bidi';
 export interface App {
     [key: string]: any;
     /** Name for app */
@@ -14,7 +15,6 @@ export interface User {
     /** Email for current user */
     email?: string;
 }
-export declare type LayoutDirection = 'ltr' | 'rtl';
 export interface Layout {
     [key: string]: any;
     /** Whether to fold menu */
@@ -23,7 +23,8 @@ export interface Layout {
     lang: string;
     /** Color weak */
     colorWeak: boolean;
-    direction: LayoutDirection;
+    /** Direction of the text */
+    direction: Direction;
 }
 export interface SettingsNotify {
     type: 'layout' | 'app' | 'user';
