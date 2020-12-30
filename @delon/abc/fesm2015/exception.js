@@ -1,7 +1,10 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
+import { Directionality } from '@angular/cdk/bidi';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -15,12 +18,16 @@ class ExceptionComponent {
     /**
      * @param {?} i18n
      * @param {?} dom
+     * @param {?} directionality
      */
-    constructor(i18n, dom) {
+    constructor(i18n, dom, directionality) {
         this.i18n = i18n;
         this.dom = dom;
+        this.directionality = directionality;
+        this.destroy$ = new Subject();
         this.locale = {};
         this.hasCon = false;
+        this.dir = 'ltr';
         this._img = '';
         this._title = '';
         this._desc = '';
@@ -91,7 +98,16 @@ class ExceptionComponent {
      * @return {?}
      */
     ngOnInit() {
-        this.i18n$ = this.i18n.change.subscribe((/**
+        var _a;
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+        }));
+        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe((/**
          * @return {?}
          */
         () => (this.locale = this.i18n.getData('exception'))));
@@ -101,7 +117,8 @@ class ExceptionComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.i18n$.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 ExceptionComponent.decorators = [
@@ -109,7 +126,10 @@ ExceptionComponent.decorators = [
                 selector: 'exception',
                 exportAs: 'exception',
                 template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
-                host: { '[class.exception]': 'true' },
+                host: {
+                    '[class.exception]': 'true',
+                    '[class.exception-rtl]': `dir === 'rtl'`,
+                },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -118,7 +138,8 @@ ExceptionComponent.decorators = [
 /** @nocollapse */
 ExceptionComponent.ctorParameters = () => [
     { type: DelonLocaleService },
-    { type: DomSanitizer }
+    { type: DomSanitizer },
+    { type: Directionality, decorators: [{ type: Optional }] }
 ];
 ExceptionComponent.propDecorators = {
     conTpl: [{ type: ViewChild, args: ['conTpl', { static: true },] }],
@@ -134,7 +155,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    ExceptionComponent.prototype.i18n$;
+    ExceptionComponent.prototype.destroy$;
     /**
      * @type {?}
      * @private
@@ -146,6 +167,8 @@ if (false) {
     ExceptionComponent.prototype.locale;
     /** @type {?} */
     ExceptionComponent.prototype.hasCon;
+    /** @type {?} */
+    ExceptionComponent.prototype.dir;
     /** @type {?} */
     ExceptionComponent.prototype._img;
     /** @type {?} */
@@ -162,6 +185,11 @@ if (false) {
      * @private
      */
     ExceptionComponent.prototype.dom;
+    /**
+     * @type {?}
+     * @private
+     */
+    ExceptionComponent.prototype.directionality;
 }
 
 /**

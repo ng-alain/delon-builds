@@ -186,10 +186,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
-     * this.st.setRow(item, { price: 100 })
      * ```
      */
-    setRow(index: number | STData, item: STData, options?: {
+    setRow(index: number, item: STData, options?: {
         refreshSchema?: boolean;
         emitReload?: boolean;
     }): this;

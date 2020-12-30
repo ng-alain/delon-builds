@@ -1,3 +1,4 @@
+import { Direction } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
@@ -14,6 +15,7 @@ export declare class OnboardingComponent implements OnDestroy {
     max: number;
     readonly op: EventEmitter<OnboardingOpType>;
     running: boolean;
+    dir: Direction;
     get first(): boolean;
     get last(): boolean;
     private _getDoc;

@@ -1,21 +1,23 @@
+import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { AlainConfigService } from '@delon/util';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;
     private doc;
-    private $time;
+    private directionality;
     private formEl;
+    private destroy$;
     _hiden: boolean;
     count: number;
+    dir: Direction;
     freq: number;
     offsetTop: number;
-    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: any, configSrv: AlainConfigService);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: any, configSrv: AlainConfigService, directionality: Directionality);
     private get errEls();
     private update;
     _click(): boolean;
     private install;
-    private uninstall;
     private findParent;
     ngOnInit(): void;
     ngOnDestroy(): void;

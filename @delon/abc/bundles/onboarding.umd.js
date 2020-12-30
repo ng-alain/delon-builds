@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@delon/util'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@delon/util', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.delon.util, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
-}(this, (function (exports, i3, i0, i2, i1, rxjs, operators, platform, util, button, noAnimation, outlet, popover) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
+}(this, (function (exports, i5, i3, i0, i2, i1, i4, rxjs, operators, platform, button, noAnimation, outlet, popover) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -50,6 +50,7 @@
             this.max = 0;
             this.op = new i0.EventEmitter();
             this.running = false;
+            this.dir = 'ltr';
         }
         Object.defineProperty(OnboardingComponent.prototype, "first", {
             /**
@@ -210,9 +211,10 @@
     OnboardingComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'onboarding',
-                    template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
+                    template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width, direction: dir }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
                     host: {
                         '[class.onboarding]': "true",
+                        '[class.onboarding-rtl]': "dir === 'rtl'",
                         '[attr.data-onboarding-active]': "active",
                     },
                     preserveWhitespaces: false,
@@ -250,6 +252,8 @@
         OnboardingComponent.prototype.op;
         /** @type {?} */
         OnboardingComponent.prototype.running;
+        /** @type {?} */
+        OnboardingComponent.prototype.dir;
         /**
          * @type {?}
          * @private
@@ -285,14 +289,18 @@
          * @param {?} router
          * @param {?} injector
          * @param {?} doc
+         * @param {?} configSrv
+         * @param {?} directionality
          */
-        function OnboardingService(i18n, appRef, resolver, router, injector, doc) {
+        function OnboardingService(i18n, appRef, resolver, router, injector, doc, configSrv, directionality) {
             this.i18n = i18n;
             this.appRef = appRef;
             this.resolver = resolver;
             this.router = router;
             this.injector = injector;
             this.doc = doc;
+            this.configSrv = configSrv;
+            this.directionality = directionality;
             this.active = 0;
             this.running$ = null;
             this._running = false;
@@ -405,7 +413,9 @@
             var items = ( /** @type {?} */(this.config.items));
             /** @type {?} */
             var item = ( /** @type {?} */(Object.assign(Object.assign({ position: 'bottomLeft', before: rxjs.of(true), after: rxjs.of(true) }, this.i18n.getData('onboarding')), items[this.active])));
-            Object.assign(this.compRef.instance, { item: item, config: this.config, active: this.active, max: items.length });
+            /** @type {?} */
+            var dir = ( /** @type {?} */(this.configSrv.get('onboarding'))).direction || this.directionality.value;
+            Object.assign(this.compRef.instance, { item: item, config: this.config, active: this.active, max: items.length, dir: dir });
             /** @type {?} */
             var pipes = [
                 operators.switchMap(( /**
@@ -508,9 +518,11 @@
         { type: i0.ComponentFactoryResolver },
         { type: i2.Router },
         { type: i0.Injector },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i3.DOCUMENT,] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i3.DOCUMENT,] }] },
+        { type: i4.AlainConfigService },
+        { type: i5.Directionality, decorators: [{ type: i0.Optional }] }
     ]; };
-    /** @nocollapse */ OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0.ɵɵinject(i1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i3.DOCUMENT)); }, token: OnboardingService, providedIn: "root" });
+    /** @nocollapse */ OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0.ɵɵinject(i1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i3.DOCUMENT), i0.ɵɵinject(i4.AlainConfigService), i0.ɵɵinject(i5.Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -577,6 +589,16 @@
          * @private
          */
         OnboardingService.prototype.doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        OnboardingService.prototype.configSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        OnboardingService.prototype.directionality;
     }
 
     /**
@@ -593,7 +615,7 @@
     }());
     OnboardingModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [i3.CommonModule, i1.DelonLocaleModule, util.DelonUtilModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
+                    imports: [i3.CommonModule, i1.DelonLocaleModule, i4.DelonUtilModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
                     declarations: COMPONENTS,
                     entryComponents: COMPONENTS,
                     exports: COMPONENTS,

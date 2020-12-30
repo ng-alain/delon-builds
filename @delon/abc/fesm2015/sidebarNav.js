@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
+import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Optional, Input, Output, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
@@ -33,8 +34,9 @@ class SidebarNavComponent {
      * @param {?} sanitizer
      * @param {?} doc
      * @param {?} win
+     * @param {?} directionality
      */
-    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win) {
+    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
@@ -44,8 +46,10 @@ class SidebarNavComponent {
         this.sanitizer = sanitizer;
         this.doc = doc;
         this.win = win;
-        this.unsubscribe$ = new Subject();
+        this.directionality = directionality;
+        this.destroy$ = new Subject();
         this.list = [];
+        this.dir = 'ltr';
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
         this.recursivePath = true;
@@ -188,7 +192,12 @@ class SidebarNavComponent {
             offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
         }
         node.style.top = `${rect.top + scrollTop - offsetHeight}px`;
-        node.style.left = `${rect.right + spacing}px`;
+        if (this.dir === 'rtl') {
+            node.style.right = `${rect.width + spacing}px`;
+        }
+        else {
+            node.style.left = `${rect.right + spacing}px`;
+        }
     }
     /**
      * @param {?} e
@@ -309,14 +318,15 @@ class SidebarNavComponent {
      * @return {?}
      */
     ngOnInit() {
-        const { doc, router, unsubscribe$, menuSrv, settings, cdr } = this;
+        var _a;
+        const { doc, router, destroy$, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
         () => this.genFloating()));
-        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
+        menuSrv.change.pipe(takeUntil(destroy$)).subscribe((/**
          * @param {?} data
          * @return {?}
          */
@@ -349,7 +359,7 @@ class SidebarNavComponent {
             (w) => w._hidden !== true));
             cdr.detectChanges();
         }));
-        router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
+        router.events.pipe(takeUntil(destroy$)).subscribe((/**
          * @param {?} e
          * @return {?}
          */
@@ -361,7 +371,7 @@ class SidebarNavComponent {
             }
         }));
         settings.notify
-            .pipe(takeUntil(unsubscribe$), filter((/**
+            .pipe(takeUntil(destroy$), filter((/**
          * @param {?} t
          * @return {?}
          */
@@ -371,14 +381,21 @@ class SidebarNavComponent {
          */
         () => this.clearFloating()));
         this.underPad();
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+        }));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
         this.clearFloating();
     }
     // #region Under pad
@@ -434,7 +451,8 @@ SidebarNavComponent.ctorParameters = () => [
     { type: NgZone },
     { type: DomSanitizer },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
+    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
+    { type: Directionality, decorators: [{ type: Optional }] }
 ];
 SidebarNavComponent.propDecorators = {
     disabledAcl: [{ type: Input }],
@@ -484,7 +502,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    SidebarNavComponent.prototype.unsubscribe$;
+    SidebarNavComponent.prototype.destroy$;
     /**
      * @type {?}
      * @private
@@ -492,6 +510,8 @@ if (false) {
     SidebarNavComponent.prototype.floatingEl;
     /** @type {?} */
     SidebarNavComponent.prototype.list;
+    /** @type {?} */
+    SidebarNavComponent.prototype.dir;
     /** @type {?} */
     SidebarNavComponent.prototype.disabledAcl;
     /** @type {?} */
@@ -549,6 +569,11 @@ if (false) {
      * @private
      */
     SidebarNavComponent.prototype.win;
+    /**
+     * @type {?}
+     * @private
+     */
+    SidebarNavComponent.prototype.directionality;
 }
 
 /**

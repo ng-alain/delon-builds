@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, core, platformBrowser, theme, util, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, bidi, core, platformBrowser, theme, util, rxjs, operators, common, router, button) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -18,12 +18,16 @@
         /**
          * @param {?} i18n
          * @param {?} dom
+         * @param {?} directionality
          */
-        function ExceptionComponent(i18n, dom) {
+        function ExceptionComponent(i18n, dom, directionality) {
             this.i18n = i18n;
             this.dom = dom;
+            this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this.locale = {};
             this.hasCon = false;
+            this.dir = 'ltr';
             this._img = '';
             this._title = '';
             this._desc = '';
@@ -111,7 +115,15 @@
          */
         ExceptionComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.i18n$ = this.i18n.change.subscribe(( /**
+            var _a;
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
+                _this.dir = direction;
+            }));
+            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
              * @return {?}
              */function () { return (_this.locale = _this.i18n.getData('exception')); }));
             this.checkContent();
@@ -120,7 +132,8 @@
          * @return {?}
          */
         ExceptionComponent.prototype.ngOnDestroy = function () {
-            this.i18n$.unsubscribe();
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return ExceptionComponent;
     }());
@@ -129,7 +142,10 @@
                     selector: 'exception',
                     exportAs: 'exception',
                     template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
-                    host: { '[class.exception]': 'true' },
+                    host: {
+                        '[class.exception]': 'true',
+                        '[class.exception-rtl]': "dir === 'rtl'",
+                    },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
@@ -138,7 +154,8 @@
     /** @nocollapse */
     ExceptionComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
-        { type: platformBrowser.DomSanitizer }
+        { type: platformBrowser.DomSanitizer },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     ExceptionComponent.propDecorators = {
         conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],
@@ -154,7 +171,7 @@
          * @type {?}
          * @private
          */
-        ExceptionComponent.prototype.i18n$;
+        ExceptionComponent.prototype.destroy$;
         /**
          * @type {?}
          * @private
@@ -166,6 +183,8 @@
         ExceptionComponent.prototype.locale;
         /** @type {?} */
         ExceptionComponent.prototype.hasCon;
+        /** @type {?} */
+        ExceptionComponent.prototype.dir;
         /** @type {?} */
         ExceptionComponent.prototype._img;
         /** @type {?} */
@@ -182,6 +201,11 @@
          * @private
          */
         ExceptionComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.directionality;
     }
 
     /*! *****************************************************************************

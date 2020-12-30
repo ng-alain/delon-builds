@@ -1,7 +1,10 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, ContentChildren, NgModule } from '@angular/core';
+import { Directionality } from '@angular/cdk/bidi';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/theme';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
@@ -72,12 +75,16 @@ class GlobalFooterComponent {
      * @param {?} router
      * @param {?} win
      * @param {?} dom
+     * @param {?} directionality
      */
-    constructor(router, win, dom) {
+    constructor(router, win, dom, directionality) {
         this.router = router;
         this.win = win;
         this.dom = dom;
+        this.directionality = directionality;
+        this.destroy$ = new Subject();
         this._links = [];
+        this.dir = 'ltr';
     }
     /**
      * @param {?} val
@@ -116,13 +123,37 @@ class GlobalFooterComponent {
             this.router.navigateByUrl(item.href);
         }
     }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        var _a;
+        this.dir = this.directionality.value;
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
+            this.dir = direction;
+        }));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
 }
 GlobalFooterComponent.decorators = [
     { type: Component, args: [{
                 selector: 'global-footer',
                 exportAs: 'globalFooter',
                 template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
-                host: { '[class.global-footer]': 'true' },
+                host: {
+                    '[class.global-footer]': 'true',
+                    '[class.global-footer-rtl]': `dir === 'rtl'`,
+                },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -132,7 +163,8 @@ GlobalFooterComponent.decorators = [
 GlobalFooterComponent.ctorParameters = () => [
     { type: Router },
     { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
-    { type: DomSanitizer }
+    { type: DomSanitizer },
+    { type: Directionality, decorators: [{ type: Optional }] }
 ];
 GlobalFooterComponent.propDecorators = {
     links: [{ type: Input }],
@@ -143,7 +175,14 @@ if (false) {
      * @type {?}
      * @private
      */
+    GlobalFooterComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
     GlobalFooterComponent.prototype._links;
+    /** @type {?} */
+    GlobalFooterComponent.prototype.dir;
     /** @type {?} */
     GlobalFooterComponent.prototype.items;
     /**
@@ -161,6 +200,11 @@ if (false) {
      * @private
      */
     GlobalFooterComponent.prototype.dom;
+    /**
+     * @type {?}
+     * @private
+     */
+    GlobalFooterComponent.prototype.directionality;
 }
 
 /**

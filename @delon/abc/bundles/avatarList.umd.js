@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, common, avatar, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, util, rxjs, operators, common, avatar, tooltip) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -355,12 +355,16 @@
     var AvatarListComponent = /** @class */ (function () {
         /**
          * @param {?} cdr
+         * @param {?} directionality
          */
-        function AvatarListComponent(cdr) {
+        function AvatarListComponent(cdr, directionality) {
             this.cdr = cdr;
+            this.directionality = directionality;
             this.inited = false;
+            this.destroy$ = new rxjs.Subject();
             this.items = [];
             this.exceedCount = 0;
+            this.dir = 'ltr';
             this.cls = '';
             this.avatarSize = '';
             this.maxLength = 0;
@@ -406,6 +410,15 @@
          * @return {?}
          */
         AvatarListComponent.prototype.ngAfterViewInit = function () {
+            var _this = this;
+            var _a;
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
+                _this.dir = direction;
+            }));
             this.gen();
             this.inited = true;
         };
@@ -416,6 +429,8 @@
             if (this.inited) {
                 this.gen();
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return AvatarListComponent;
     }());
@@ -424,7 +439,10 @@
                     selector: 'avatar-list',
                     exportAs: 'avatarList',
                     template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
-                    host: { '[class.avatar-list]': 'true' },
+                    host: {
+                        '[class.avatar-list]': 'true',
+                        '[class.avatar-list-rtl]': "dir === 'rtl'",
+                    },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
@@ -432,7 +450,8 @@
     ];
     /** @nocollapse */
     AvatarListComponent.ctorParameters = function () { return [
-        { type: core.ChangeDetectorRef }
+        { type: core.ChangeDetectorRef },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     AvatarListComponent.propDecorators = {
         _items: [{ type: core.ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
@@ -457,10 +476,17 @@
          * @private
          */
         AvatarListComponent.prototype._items;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.destroy$;
         /** @type {?} */
         AvatarListComponent.prototype.items;
         /** @type {?} */
         AvatarListComponent.prototype.exceedCount;
+        /** @type {?} */
+        AvatarListComponent.prototype.dir;
         /** @type {?} */
         AvatarListComponent.prototype.cls;
         /** @type {?} */
@@ -474,6 +500,11 @@
          * @private
          */
         AvatarListComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.directionality;
     }
 
     /** @type {?} */

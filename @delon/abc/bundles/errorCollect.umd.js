@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.delon.util, global['ng-zorro-antd/icon']));
-}(this, (function (exports, common, core, util, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, util, rxjs, operators, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -321,14 +321,17 @@
          * @param {?} cdr
          * @param {?} doc
          * @param {?} configSrv
+         * @param {?} directionality
          */
-        function ErrorCollectComponent(el, cdr, doc, configSrv) {
+        function ErrorCollectComponent(el, cdr, doc, configSrv, directionality) {
             this.el = el;
             this.cdr = cdr;
             this.doc = doc;
-            this.$time = null;
+            this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this._hiden = true;
             this.count = 0;
+            this.dir = 'ltr';
             configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
@@ -377,18 +380,20 @@
          */
         ErrorCollectComponent.prototype.install = function () {
             var _this = this;
-            this.uninstall();
-            this.$time = setInterval(( /**
+            var _a;
+            this.dir = this.directionality.value;
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
              * @return {?}
-             */function () { return _this.update(); }), this.freq);
-            this.update();
-        };
-        /**
-         * @private
+             */function (direction) {
+                _this.dir = direction;
+            }));
+            rxjs.interval(this.freq)
+                .pipe(operators.takeUntil(this.destroy$))
+                .subscribe(( /**
          * @return {?}
-         */
-        ErrorCollectComponent.prototype.uninstall = function () {
-            clearInterval(( /** @type {?} */(this.$time)));
+         */function () { return _this.update(); }));
+            this.update();
         };
         /**
          * @private
@@ -421,7 +426,8 @@
          * @return {?}
          */
         ErrorCollectComponent.prototype.ngOnDestroy = function () {
-            this.uninstall();
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return ErrorCollectComponent;
     }());
@@ -429,9 +435,10 @@
         { type: core.Component, args: [{
                     selector: 'error-collect, [error-collect]',
                     exportAs: 'errorCollect',
-                    template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"pl-sm\">{{ count }}</span>\n  ",
+                    template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"error-collect__count\">{{ count }}</span>\n  ",
                     host: {
                         '[class.error-collect]': 'true',
+                        '[class.error-collect-rtl]': "dir === 'rtl'",
                         '[class.d-none]': '_hiden',
                         '(click)': '_click()',
                     },
@@ -445,7 +452,8 @@
         { type: core.ElementRef },
         { type: core.ChangeDetectorRef },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: util.AlainConfigService }
+        { type: util.AlainConfigService },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     ErrorCollectComponent.propDecorators = {
         freq: [{ type: core.Input }],
@@ -464,16 +472,18 @@
          * @type {?}
          * @private
          */
-        ErrorCollectComponent.prototype.$time;
+        ErrorCollectComponent.prototype.formEl;
         /**
          * @type {?}
          * @private
          */
-        ErrorCollectComponent.prototype.formEl;
+        ErrorCollectComponent.prototype.destroy$;
         /** @type {?} */
         ErrorCollectComponent.prototype._hiden;
         /** @type {?} */
         ErrorCollectComponent.prototype.count;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.dir;
         /** @type {?} */
         ErrorCollectComponent.prototype.freq;
         /** @type {?} */
@@ -493,6 +503,11 @@
          * @private
          */
         ErrorCollectComponent.prototype.doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.directionality;
     }
 
     /** @type {?} */
