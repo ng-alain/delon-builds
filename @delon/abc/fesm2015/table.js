@@ -3776,6 +3776,7 @@ class STComponent {
      * ```
      * this.st.setRow(0, { price: 100 })
      * this.st.setRow(0, { price: 100, name: 'asdf' })
+     * this.st.setRow(item, { price: 100 })
      * ```
      * @template THIS
      * @this {THIS}
@@ -3786,6 +3787,9 @@ class STComponent {
      */
     setRow(index, item, options) {
         options = Object.assign({ refreshSchema: false, emitReload: false }, options);
+        if (typeof index !== 'number') {
+            index = (/** @type {?} */ (this))._data.indexOf(index);
+        }
         (/** @type {?} */ (this))._data[index] = deepMergeKey((/** @type {?} */ (this))._data[index], false, item);
         (/** @type {?} */ (this)).optimizeData();
         if (options.refreshSchema) {
