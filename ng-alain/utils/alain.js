@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tryAddFile = exports.tryDelFile = exports.buildAlain = exports.addValueToVariable = void 0;
+exports.tryAddFile = exports.tryDelFile = exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -92,6 +92,7 @@ function addImportToModule(host, filePath, symbolName, fileName) {
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     host.commitUpdate(declarationRecorder);
 }
+exports.addImportToModule = addImportToModule;
 function addValueToVariable(host, filePath, variableName, text, needWrap = true) {
     const source = ast_1.getSourceFile(host, filePath);
     const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);

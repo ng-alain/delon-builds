@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFiles = exports.overwriteFiles = exports.overwriteFile = exports.readContent = void 0;
+exports.overwriteIfExists = exports.addFiles = exports.overwriteFiles = exports.overwriteFile = exports.readContent = void 0;
+const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path_1 = require("path");
 function readContent(host, filePath) {
@@ -61,4 +62,14 @@ function addFiles(host, files, _filePath, overwrite = false) {
     return host;
 }
 exports.addFiles = addFiles;
+function overwriteIfExists(host) {
+    return schematics_1.forEach(fileEntry => {
+        if (host.exists(fileEntry.path)) {
+            host.overwrite(fileEntry.path, fileEntry.content);
+            return null;
+        }
+        return fileEntry;
+    });
+}
+exports.overwriteIfExists = overwriteIfExists;
 //# sourceMappingURL=file.js.map
