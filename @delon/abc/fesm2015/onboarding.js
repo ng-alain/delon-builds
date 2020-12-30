@@ -1,12 +1,11 @@
-import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { AlainConfigService, DelonUtilModule } from '@delon/util';
 import { of, pipe } from 'rxjs';
 import { switchMap, delay } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
+import { DelonUtilModule } from '@delon/util';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -53,7 +52,6 @@ class OnboardingComponent {
         this.max = 0;
         this.op = new EventEmitter();
         this.running = false;
-        this.dir = 'ltr';
     }
     /**
      * @return {?}
@@ -205,10 +203,9 @@ class OnboardingComponent {
 OnboardingComponent.decorators = [
     { type: Component, args: [{
                 selector: 'onboarding',
-                template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width, direction: dir }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
+                template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
                 host: {
                     '[class.onboarding]': `true`,
-                    '[class.onboarding-rtl]': `dir === 'rtl'`,
                     '[attr.data-onboarding-active]': `active`,
                 },
                 preserveWhitespaces: false,
@@ -246,8 +243,6 @@ if (false) {
     OnboardingComponent.prototype.op;
     /** @type {?} */
     OnboardingComponent.prototype.running;
-    /** @type {?} */
-    OnboardingComponent.prototype.dir;
     /**
      * @type {?}
      * @private
@@ -283,18 +278,14 @@ class OnboardingService {
      * @param {?} router
      * @param {?} injector
      * @param {?} doc
-     * @param {?} configSrv
-     * @param {?} directionality
      */
-    constructor(i18n, appRef, resolver, router, injector, doc, configSrv, directionality) {
+    constructor(i18n, appRef, resolver, router, injector, doc) {
         this.i18n = i18n;
         this.appRef = appRef;
         this.resolver = resolver;
         this.router = router;
         this.injector = injector;
         this.doc = doc;
-        this.configSrv = configSrv;
-        this.directionality = directionality;
         this.active = 0;
         this.running$ = null;
         this._running = false;
@@ -401,9 +392,7 @@ class OnboardingService {
         const items = (/** @type {?} */ (this.config.items));
         /** @type {?} */
         const item = (/** @type {?} */ (Object.assign(Object.assign({ position: 'bottomLeft', before: of(true), after: of(true) }, this.i18n.getData('onboarding')), items[this.active])));
-        /** @type {?} */
-        const dir = (/** @type {?} */ (this.configSrv.get('onboarding'))).direction || this.directionality.value;
-        Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length, dir });
+        Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length });
         /** @type {?} */
         const pipes = [
             switchMap((/**
@@ -509,11 +498,9 @@ OnboardingService.ctorParameters = () => [
     { type: ComponentFactoryResolver },
     { type: Router },
     { type: Injector },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: AlainConfigService },
-    { type: Directionality, decorators: [{ type: Optional }] }
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
+/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT)); }, token: OnboardingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -580,16 +567,6 @@ if (false) {
      * @private
      */
     OnboardingService.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.configSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.directionality;
 }
 
 /**

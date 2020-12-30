@@ -1,5 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, Optional, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { Directionality } from '@angular/cdk/bidi';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
 import { AlainConfigService } from '@delon/util';
@@ -15,9 +14,6 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 class LoadingDefaultComponent {
-    constructor() {
-        this.dir = 'ltr';
-    }
     /**
      * @return {?}
      */
@@ -37,7 +33,6 @@ LoadingDefaultComponent.decorators = [
                 template: "<div class=\"loading-default__icon\" *ngIf=\"options.type !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
                 host: {
                     '[class.loading-default]': 'true',
-                    '[class.loading-default-rtl]': `dir === 'rtl'`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -47,8 +42,6 @@ LoadingDefaultComponent.decorators = [
 if (false) {
     /** @type {?} */
     LoadingDefaultComponent.prototype.options;
-    /** @type {?} */
-    LoadingDefaultComponent.prototype.dir;
 }
 
 /**
@@ -60,12 +53,9 @@ class LoadingService {
     /**
      * @param {?} overlay
      * @param {?} configSrv
-     * @param {?} directionality
      */
-    constructor(overlay, configSrv, directionality) {
+    constructor(overlay, configSrv) {
         this.overlay = overlay;
-        this.configSrv = configSrv;
-        this.directionality = directionality;
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
@@ -111,9 +101,7 @@ class LoadingService {
             backdropClass: 'loading-backdrop',
         });
         this.compRef = this._overlayRef.attach(new ComponentPortal(LoadingDefaultComponent));
-        /** @type {?} */
-        const dir = (/** @type {?} */ (this.configSrv.get('loading'))).direction || this.directionality.value;
-        Object.assign(this.instance, { options: this.opt, dir });
+        Object.assign(this.instance, { options: this.opt });
         this.compRef.changeDetectorRef.markForCheck();
     }
     /**
@@ -162,10 +150,9 @@ LoadingService.decorators = [
 /** @nocollapse */
 LoadingService.ctorParameters = () => [
     { type: Overlay },
-    { type: AlainConfigService },
-    { type: Directionality, decorators: [{ type: Optional }] }
+    { type: AlainConfigService }
 ];
-/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(Overlay), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: LoadingService, providedIn: "root" });
+/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(Overlay), ɵɵinject(AlainConfigService)); }, token: LoadingService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
@@ -202,16 +189,6 @@ if (false) {
      * @private
      */
     LoadingService.prototype.overlay;
-    /**
-     * @type {?}
-     * @private
-     */
-    LoadingService.prototype.configSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    LoadingService.prototype.directionality;
 }
 
 /**

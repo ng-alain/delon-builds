@@ -1,10 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Optional, Input, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, NgModule } from '@angular/core';
 import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
-import { Subject, interval } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 /**
@@ -18,17 +15,14 @@ class ErrorCollectComponent {
      * @param {?} cdr
      * @param {?} doc
      * @param {?} configSrv
-     * @param {?} directionality
      */
-    constructor(el, cdr, doc, configSrv, directionality) {
+    constructor(el, cdr, doc, configSrv) {
         this.el = el;
         this.cdr = cdr;
         this.doc = doc;
-        this.directionality = directionality;
-        this.destroy$ = new Subject();
+        this.$time = null;
         this._hiden = true;
         this.count = 0;
-        this.dir = 'ltr';
         configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
     }
     /**
@@ -72,22 +66,19 @@ class ErrorCollectComponent {
      * @return {?}
      */
     install() {
-        var _a;
-        this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
+        this.uninstall();
+        this.$time = setInterval((/**
          * @return {?}
          */
-        (direction) => {
-            this.dir = direction;
-        }));
-        interval(this.freq)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.update()));
+        () => this.update()), this.freq);
         this.update();
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    uninstall() {
+        clearInterval((/** @type {?} */ (this.$time)));
     }
     /**
      * @private
@@ -120,8 +111,7 @@ class ErrorCollectComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
+        this.uninstall();
     }
 }
 ErrorCollectComponent.decorators = [
@@ -130,11 +120,10 @@ ErrorCollectComponent.decorators = [
                 exportAs: 'errorCollect',
                 template: `
     <i nz-icon nzType="exclamation-circle"></i>
-    <span class="error-collect__count">{{ count }}</span>
+    <span class="pl-sm">{{ count }}</span>
   `,
                 host: {
                     '[class.error-collect]': 'true',
-                    '[class.error-collect-rtl]': `dir === 'rtl'`,
                     '[class.d-none]': '_hiden',
                     '(click)': '_click()',
                 },
@@ -148,8 +137,7 @@ ErrorCollectComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: ChangeDetectorRef },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: AlainConfigService },
-    { type: Directionality, decorators: [{ type: Optional }] }
+    { type: AlainConfigService }
 ];
 ErrorCollectComponent.propDecorators = {
     freq: [{ type: Input }],
@@ -168,18 +156,16 @@ if (false) {
      * @type {?}
      * @private
      */
-    ErrorCollectComponent.prototype.formEl;
+    ErrorCollectComponent.prototype.$time;
     /**
      * @type {?}
      * @private
      */
-    ErrorCollectComponent.prototype.destroy$;
+    ErrorCollectComponent.prototype.formEl;
     /** @type {?} */
     ErrorCollectComponent.prototype._hiden;
     /** @type {?} */
     ErrorCollectComponent.prototype.count;
-    /** @type {?} */
-    ErrorCollectComponent.prototype.dir;
     /** @type {?} */
     ErrorCollectComponent.prototype.freq;
     /** @type {?} */
@@ -199,11 +185,6 @@ if (false) {
      * @private
      */
     ErrorCollectComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.directionality;
 }
 
 /**

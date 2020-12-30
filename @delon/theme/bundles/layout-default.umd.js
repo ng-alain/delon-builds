@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser')) :
-  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.util, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser));
-}(this, (function (exports, common, core, router, theme, util, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/platform-browser')) :
+  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/platform-browser'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.util, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.platformBrowser));
+}(this, (function (exports, common, core, router, theme, util, message, rxjs, operators, avatar, dropdown, icon, tooltip, platformBrowser) { 'use strict';
 
   /**
    * @fileoverview added by tsickle
@@ -77,7 +77,7 @@
               if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
                   _this.isFetching = false;
                   if (evt instanceof router.NavigationError) {
-                      msgSrv.error("Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
+                      msgSrv.error("\u65E0\u6CD5\u52A0\u8F7D" + evt.url + "\u8DEF\u7531", { nzDuration: 1000 * 3 });
                   }
                   return;
               }
@@ -708,9 +708,8 @@
        * @param {?} sanitizer
        * @param {?} doc
        * @param {?} win
-       * @param {?} directionality
        */
-      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win) {
           this.menuSrv = menuSrv;
           this.settings = settings;
           this.router = router;
@@ -720,9 +719,7 @@
           this.sanitizer = sanitizer;
           this.doc = doc;
           this.win = win;
-          this.directionality = directionality;
-          this.destroy$ = new rxjs.Subject();
-          this.dir = 'ltr';
+          this.unsubscribe$ = new rxjs.Subject();
           this.list = [];
           this.disabledAcl = false;
           this.autoCloseUnderPad = true;
@@ -868,12 +865,7 @@
               offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
           }
           node.style.top = rect.top + scrollTop - offsetHeight + "px";
-          if (this.dir === 'rtl') {
-              node.style.right = rect.width + spacing + "px";
-          }
-          else {
-              node.style.left = rect.right + spacing + "px";
-          }
+          node.style.left = rect.right + spacing + "px";
       };
       /**
        * @param {?} e
@@ -967,7 +959,7 @@
        * @return {?}
        */
       LayoutDefaultNavComponent.prototype.openedByUrl = function (url) {
-          var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
+          var _a = this, menuSrv = _a.menuSrv, recursivePath = _a.recursivePath, openStrictly = _a.openStrictly;
           /** @type {?} */
           var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
            * @param {?} i
@@ -993,14 +985,13 @@
        */
       LayoutDefaultNavComponent.prototype.ngOnInit = function () {
           var _this = this;
-          var _a;
-          var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
+          var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, settings = _a.settings, cdr = _a.cdr;
           this.bodyEl = doc.querySelector('body');
           this.openedByUrl(router$1.url);
           this.ngZone.runOutsideAngular(( /**
            * @return {?}
            */function () { return _this.genFloating(); }));
-          menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+          menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
            * @param {?} data
            * @return {?}
            */function (/**
@@ -1033,7 +1024,7 @@
                */function (w) { return w._hidden !== true; }));
               cdr.detectChanges();
           }));
-          router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+          router$1.events.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
            * @param {?} e
            * @return {?}
            */function (/**
@@ -1047,7 +1038,7 @@
               }
           }));
           settings.notify
-              .pipe(operators.takeUntil(destroy$), operators.filter(( /**
+              .pipe(operators.takeUntil(unsubscribe$), operators.filter(( /**
        * @param {?} t
        * @return {?}
        */function (/**
@@ -1058,20 +1049,14 @@
        * @return {?}
        */function () { return _this.clearFloating(); }));
           this.underPad();
-          this.dir = this.directionality.value;
-          (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-           * @param {?} direction
-           * @return {?}
-           */function (direction) {
-              _this.dir = direction;
-          }));
       };
       /**
        * @return {?}
        */
       LayoutDefaultNavComponent.prototype.ngOnDestroy = function () {
-          this.destroy$.next();
-          this.destroy$.complete();
+          var unsubscribe$ = this.unsubscribe$;
+          unsubscribe$.next();
+          unsubscribe$.complete();
           this.clearFloating();
       };
       Object.defineProperty(LayoutDefaultNavComponent.prototype, "isPad", {
@@ -1081,7 +1066,7 @@
            * @return {?}
            */
           get: function () {
-              return ( /** @type {?} */(this.doc.defaultView)).innerWidth < 768;
+              return window.innerWidth < 768;
           },
           enumerable: false,
           configurable: true
@@ -1131,8 +1116,7 @@
       { type: core.NgZone },
       { type: platformBrowser.DomSanitizer },
       { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-      { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
-      { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+      { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
   ]; };
   LayoutDefaultNavComponent.propDecorators = {
       disabledAcl: [{ type: core.Input }],
@@ -1182,14 +1166,12 @@
        * @type {?}
        * @private
        */
-      LayoutDefaultNavComponent.prototype.destroy$;
+      LayoutDefaultNavComponent.prototype.unsubscribe$;
       /**
        * @type {?}
        * @private
        */
       LayoutDefaultNavComponent.prototype.floatingEl;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.dir;
       /** @type {?} */
       LayoutDefaultNavComponent.prototype.list;
       /** @type {?} */
@@ -1249,11 +1231,6 @@
        * @private
        */
       LayoutDefaultNavComponent.prototype.win;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.directionality;
   }
 
   /** @type {?} */

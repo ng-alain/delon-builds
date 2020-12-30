@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, core, theme, util, rxjs, operators, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, theme, util, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,17 +318,13 @@
     var TagSelectComponent = /** @class */ (function () {
         /**
          * @param {?} i18n
-         * @param {?} directionality
          * @param {?} cdr
          */
-        function TagSelectComponent(i18n, directionality, cdr) {
+        function TagSelectComponent(i18n, cdr) {
             this.i18n = i18n;
-            this.directionality = directionality;
             this.cdr = cdr;
-            this.destroy$ = new rxjs.Subject();
             this.locale = {};
             this.expand = false;
-            this.dir = 'ltr';
             /**
              * 是否启用 `展开与收进`
              */
@@ -340,15 +336,7 @@
          */
         TagSelectComponent.prototype.ngOnInit = function () {
             var _this = this;
-            var _a;
-            this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
-                _this.dir = direction;
-            }));
-            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+            this.i18n$ = this.i18n.change.subscribe(( /**
              * @return {?}
              */function () {
                 _this.locale = _this.i18n.getData('tagSelect');
@@ -366,8 +354,7 @@
          * @return {?}
          */
         TagSelectComponent.prototype.ngOnDestroy = function () {
-            this.destroy$.next();
-            this.destroy$.complete();
+            this.i18n$.unsubscribe();
         };
         return TagSelectComponent;
     }());
@@ -378,8 +365,6 @@
                     template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                     host: {
                         '[class.tag-select]': 'true',
-                        '[class.tag-select-rtl]': "dir === 'rtl'",
-                        '[class.tag-select-rtl__has-expand]': "dir === 'rtl' && expandable",
                         '[class.tag-select__has-expand]': 'expandable',
                         '[class.tag-select__expanded]': 'expand',
                     },
@@ -391,7 +376,6 @@
     /** @nocollapse */
     TagSelectComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
-        { type: bidi.Directionality, decorators: [{ type: core.Optional }] },
         { type: core.ChangeDetectorRef }
     ]; };
     TagSelectComponent.propDecorators = {
@@ -409,13 +393,11 @@
          * @type {?}
          * @private
          */
-        TagSelectComponent.prototype.destroy$;
+        TagSelectComponent.prototype.i18n$;
         /** @type {?} */
         TagSelectComponent.prototype.locale;
         /** @type {?} */
         TagSelectComponent.prototype.expand;
-        /** @type {?} */
-        TagSelectComponent.prototype.dir;
         /**
          * 是否启用 `展开与收进`
          * @type {?}
@@ -428,11 +410,6 @@
          * @private
          */
         TagSelectComponent.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        TagSelectComponent.prototype.directionality;
         /**
          * @type {?}
          * @private

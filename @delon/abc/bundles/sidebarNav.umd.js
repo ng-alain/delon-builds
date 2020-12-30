@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, bidi, common, core, platformBrowser, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, common, core, platformBrowser, router, theme, util, rxjs, operators, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -333,9 +333,8 @@
          * @param {?} sanitizer
          * @param {?} doc
          * @param {?} win
-         * @param {?} directionality
          */
-        function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+        function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win) {
             this.menuSrv = menuSrv;
             this.settings = settings;
             this.router = router;
@@ -345,10 +344,8 @@
             this.sanitizer = sanitizer;
             this.doc = doc;
             this.win = win;
-            this.directionality = directionality;
-            this.destroy$ = new rxjs.Subject();
+            this.unsubscribe$ = new rxjs.Subject();
             this.list = [];
-            this.dir = 'ltr';
             this.disabledAcl = false;
             this.autoCloseUnderPad = true;
             this.recursivePath = true;
@@ -493,12 +490,7 @@
                 offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
             }
             node.style.top = rect.top + scrollTop - offsetHeight + "px";
-            if (this.dir === 'rtl') {
-                node.style.right = rect.width + spacing + "px";
-            }
-            else {
-                node.style.left = rect.right + spacing + "px";
-            }
+            node.style.left = rect.right + spacing + "px";
         };
         /**
          * @param {?} e
@@ -592,7 +584,7 @@
          * @return {?}
          */
         SidebarNavComponent.prototype.openedByUrl = function (url) {
-            var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
+            var _a = this, menuSrv = _a.menuSrv, recursivePath = _a.recursivePath, openStrictly = _a.openStrictly;
             /** @type {?} */
             var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
              * @param {?} i
@@ -618,14 +610,13 @@
          */
         SidebarNavComponent.prototype.ngOnInit = function () {
             var _this = this;
-            var _a;
-            var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
+            var _a = this, doc = _a.doc, router$1 = _a.router, unsubscribe$ = _a.unsubscribe$, menuSrv = _a.menuSrv, settings = _a.settings, cdr = _a.cdr;
             this.bodyEl = doc.querySelector('body');
             this.openedByUrl(router$1.url);
             this.ngZone.runOutsideAngular(( /**
              * @return {?}
              */function () { return _this.genFloating(); }));
-            menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+            menuSrv.change.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
              * @param {?} data
              * @return {?}
              */function (/**
@@ -658,7 +649,7 @@
                  */function (w) { return w._hidden !== true; }));
                 cdr.detectChanges();
             }));
-            router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+            router$1.events.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
              * @param {?} e
              * @return {?}
              */function (/**
@@ -672,7 +663,7 @@
                 }
             }));
             settings.notify
-                .pipe(operators.takeUntil(destroy$), operators.filter(( /**
+                .pipe(operators.takeUntil(unsubscribe$), operators.filter(( /**
          * @param {?} t
          * @return {?}
          */function (/**
@@ -683,20 +674,14 @@
          * @return {?}
          */function () { return _this.clearFloating(); }));
             this.underPad();
-            this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
-                _this.dir = direction;
-            }));
         };
         /**
          * @return {?}
          */
         SidebarNavComponent.prototype.ngOnDestroy = function () {
-            this.destroy$.next();
-            this.destroy$.complete();
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
             this.clearFloating();
         };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
@@ -757,8 +742,7 @@
         { type: core.NgZone },
         { type: platformBrowser.DomSanitizer },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
-        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] }
     ]; };
     SidebarNavComponent.propDecorators = {
         disabledAcl: [{ type: core.Input }],
@@ -808,7 +792,7 @@
          * @type {?}
          * @private
          */
-        SidebarNavComponent.prototype.destroy$;
+        SidebarNavComponent.prototype.unsubscribe$;
         /**
          * @type {?}
          * @private
@@ -816,8 +800,6 @@
         SidebarNavComponent.prototype.floatingEl;
         /** @type {?} */
         SidebarNavComponent.prototype.list;
-        /** @type {?} */
-        SidebarNavComponent.prototype.dir;
         /** @type {?} */
         SidebarNavComponent.prototype.disabledAcl;
         /** @type {?} */
@@ -875,11 +857,6 @@
          * @private
          */
         SidebarNavComponent.prototype.win;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.directionality;
     }
 
     /**

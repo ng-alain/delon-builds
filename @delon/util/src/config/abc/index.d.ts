@@ -13,4 +13,3 @@ export * from './xlsx.type';
 export * from './zip.type';
 export * from './media.type';
 export * from './pdf.type';
-export * from './onboarding.type';

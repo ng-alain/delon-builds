@@ -10,7 +10,6 @@ const plugin_docker_1 = require("./plugin.docker");
 const plugin_icon_1 = require("./plugin.icon");
 const plugin_ie_1 = require("./plugin.ie");
 const plugin_network_env_1 = require("./plugin.network-env");
-const plugin_rtl_1 = require("./plugin.rtl");
 const plugin_sts_1 = require("./plugin.sts");
 function installPackages() {
     return (_host, context) => {
@@ -50,9 +49,6 @@ function default_1(options) {
                 break;
             case 'ie':
                 rules.push(plugin_ie_1.pluginIE(pluginOptions));
-                break;
-            case 'rtl':
-                rules.push(plugin_rtl_1.pluginRTL(pluginOptions));
                 break;
             case 'asdf':
                 rules.push(plugin_asdf_1.pluginAsdf());

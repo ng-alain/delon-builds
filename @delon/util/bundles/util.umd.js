@@ -1312,8 +1312,6 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.loading;
         /** @type {?|undefined} */
-        AlainConfig.prototype.onboarding;
-        /** @type {?|undefined} */
         AlainConfig.prototype.lodop;
         /** @type {?|undefined} */
         AlainConfig.prototype.pageHeader;

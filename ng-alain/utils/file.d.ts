@@ -1,4 +1,4 @@
-import { Rule, Tree } from '@angular-devkit/schematics';
+import { Tree } from '@angular-devkit/schematics';
 export declare function readContent(host: Tree, filePath: string): string;
 /**
  * Overwrite files to the project
@@ -18,4 +18,3 @@ export declare function overwriteFiles(host: Tree, files: string[], _filePath: s
  * @param [overwrite=false] `true` is force, default: `false`
  */
 export declare function addFiles(host: Tree, files: string[], _filePath: string, overwrite?: boolean): Tree;
-export declare function overwriteIfExists(host: Tree): Rule;

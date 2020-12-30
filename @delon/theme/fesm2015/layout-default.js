@@ -1,5 +1,5 @@
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChildren, Directive, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter, ViewEncapsulation, NgZone, Optional, Output, NgModule } from '@angular/core';
+import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChildren, Directive, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter, ViewEncapsulation, NgZone, Output, NgModule } from '@angular/core';
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { SettingsService, MenuService, WINDOW } from '@delon/theme';
 import { updateHostClass, InputBoolean, InputNumber } from '@delon/util';
@@ -11,7 +11,6 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { __decorate, __metadata } from 'tslib';
-import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
 
 /**
@@ -82,7 +81,7 @@ class LayoutDefaultComponent {
             if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
                 this.isFetching = false;
                 if (evt instanceof NavigationError) {
-                    msgSrv.error(`Could not load ${evt.url} route`, { nzDuration: 1000 * 3 });
+                    msgSrv.error(`无法加载${evt.url}路由`, { nzDuration: 1000 * 3 });
                 }
                 return;
             }
@@ -436,9 +435,8 @@ class LayoutDefaultNavComponent {
      * @param {?} sanitizer
      * @param {?} doc
      * @param {?} win
-     * @param {?} directionality
      */
-    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
@@ -448,9 +446,7 @@ class LayoutDefaultNavComponent {
         this.sanitizer = sanitizer;
         this.doc = doc;
         this.win = win;
-        this.directionality = directionality;
-        this.destroy$ = new Subject();
-        this.dir = 'ltr';
+        this.unsubscribe$ = new Subject();
         this.list = [];
         this.disabledAcl = false;
         this.autoCloseUnderPad = true;
@@ -594,12 +590,7 @@ class LayoutDefaultNavComponent {
             offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
         }
         node.style.top = `${rect.top + scrollTop - offsetHeight}px`;
-        if (this.dir === 'rtl') {
-            node.style.right = `${rect.width + spacing}px`;
-        }
-        else {
-            node.style.left = `${rect.right + spacing}px`;
-        }
+        node.style.left = `${rect.right + spacing}px`;
     }
     /**
      * @param {?} e
@@ -720,15 +711,14 @@ class LayoutDefaultNavComponent {
      * @return {?}
      */
     ngOnInit() {
-        var _a;
-        const { doc, router, destroy$, menuSrv, settings, cdr } = this;
+        const { doc, router, unsubscribe$, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
         () => this.genFloating()));
-        menuSrv.change.pipe(takeUntil(destroy$)).subscribe((/**
+        menuSrv.change.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} data
          * @return {?}
          */
@@ -761,7 +751,7 @@ class LayoutDefaultNavComponent {
             (w) => w._hidden !== true));
             cdr.detectChanges();
         }));
-        router.events.pipe(takeUntil(destroy$)).subscribe((/**
+        router.events.pipe(takeUntil(unsubscribe$)).subscribe((/**
          * @param {?} e
          * @return {?}
          */
@@ -773,7 +763,7 @@ class LayoutDefaultNavComponent {
             }
         }));
         settings.notify
-            .pipe(takeUntil(destroy$), filter((/**
+            .pipe(takeUntil(unsubscribe$), filter((/**
          * @param {?} t
          * @return {?}
          */
@@ -783,21 +773,14 @@ class LayoutDefaultNavComponent {
          */
         () => this.clearFloating()));
         this.underPad();
-        this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
-            this.dir = direction;
-        }));
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
         this.clearFloating();
     }
     // #region Under pad
@@ -806,7 +789,7 @@ class LayoutDefaultNavComponent {
      * @return {?}
      */
     get isPad() {
-        return (/** @type {?} */ (this.doc.defaultView)).innerWidth < 768;
+        return window.innerWidth < 768;
     }
     /**
      * @private
@@ -852,8 +835,7 @@ LayoutDefaultNavComponent.ctorParameters = () => [
     { type: NgZone },
     { type: DomSanitizer },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
-    { type: Directionality, decorators: [{ type: Optional }] }
+    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] }
 ];
 LayoutDefaultNavComponent.propDecorators = {
     disabledAcl: [{ type: Input }],
@@ -903,14 +885,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    LayoutDefaultNavComponent.prototype.destroy$;
+    LayoutDefaultNavComponent.prototype.unsubscribe$;
     /**
      * @type {?}
      * @private
      */
     LayoutDefaultNavComponent.prototype.floatingEl;
-    /** @type {?} */
-    LayoutDefaultNavComponent.prototype.dir;
     /** @type {?} */
     LayoutDefaultNavComponent.prototype.list;
     /** @type {?} */
@@ -970,11 +950,6 @@ if (false) {
      * @private
      */
     LayoutDefaultNavComponent.prototype.win;
-    /**
-     * @type {?}
-     * @private
-     */
-    LayoutDefaultNavComponent.prototype.directionality;
 }
 
 /**

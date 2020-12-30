@@ -1,8 +1,6 @@
-import { Directionality } from '@angular/cdk/bidi';
 import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
 import { OnboardingConfig } from './onboarding.types';
 export declare class OnboardingService implements OnDestroy {
     private i18n;
@@ -11,8 +9,6 @@ export declare class OnboardingService implements OnDestroy {
     private router;
     private injector;
     private doc;
-    private configSrv;
-    private directionality;
     private compRef;
     private op$;
     private config;
@@ -27,7 +23,7 @@ export declare class OnboardingService implements OnDestroy {
      * 获取是否正在引导中
      */
     get running(): boolean;
-    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: any, configSrv: AlainConfigService, directionality: Directionality);
+    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: any);
     private attach;
     private cancelRunning;
     private updateRunning;

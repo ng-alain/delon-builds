@@ -1,4 +1,3 @@
-import { Direction } from '@angular/cdk/bidi';
 export interface App {
     [key: string]: any;
     /** Name for app */
@@ -23,8 +22,6 @@ export interface Layout {
     lang: string;
     /** Color weak */
     colorWeak: boolean;
-    /** Direction of the text */
-    direction: Direction;
 }
 export interface SettingsNotify {
     type: 'layout' | 'app' | 'user';
