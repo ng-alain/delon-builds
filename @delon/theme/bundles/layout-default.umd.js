@@ -77,7 +77,7 @@
               if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
                   _this.isFetching = false;
                   if (evt instanceof router.NavigationError) {
-                      msgSrv.error("\u65E0\u6CD5\u52A0\u8F7D" + evt.url + "\u8DEF\u7531", { nzDuration: 1000 * 3 });
+                      msgSrv.error("Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
                   }
                   return;
               }
