@@ -28,6 +28,14 @@ function fixImport() {
             alain_1.addImportToModule(host, appModulePath, bidiModuleName, '@angular/cdk/bidi');
             alain_1.addValueToVariable(host, appModulePath, 'GLOBAL_THIRD_MODULES', bidiModuleName);
         }
+        // src/styles/theme.less
+        const themeLessPath = core_1.normalize(`${project.sourceRoot}/styles/theme.less`);
+        if (host.exists(themeLessPath)) {
+            const content = file_1.readContent(host, themeLessPath);
+            if (!content.includes(`@rtl-enabled: true;`)) {
+                host.overwrite(themeLessPath, content + `\n@rtl-enabled: true;\n`);
+            }
+        }
         return host;
     };
 }
