@@ -4,7 +4,7 @@ import { RTLService } from '@delon/theme';
 @Component({
   selector: 'header-rtl',
   template: `
-    <i nz-icon [nzType]="nextDir === 'rtl' ? 'border-left' : 'border-right'"></i>
+    <i nz-icon [nzType]="rtl.nextDir === 'rtl' ? 'border-left' : 'border-right'"></i>
     {{ rtl.nextDir | uppercase }}
   `,
   // tslint:disable-next-line: no-host-metadata-property
