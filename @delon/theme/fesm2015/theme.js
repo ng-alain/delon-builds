@@ -1,10 +1,11 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
-import { filter, share, finalize, switchMap } from 'rxjs/operators';
+import { filter, share, map, finalize, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
+import { Directionality } from '@angular/cdk/bidi';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
@@ -1186,13 +1187,15 @@ const LTR = 'ltr';
 const RTL = 'rtl';
 class RTLService {
     /**
+     * @param {?} d
      * @param {?} srv
      * @param {?} nz
      * @param {?} delon
      * @param {?} platform
      * @param {?} doc
      */
-    constructor(srv, nz, delon, platform, doc) {
+    constructor(d, srv, nz, delon, platform, doc) {
+        this.d = d;
         this.srv = srv;
         this.nz = nz;
         this.delon = delon;
@@ -1215,10 +1218,18 @@ class RTLService {
      * @return {?}
      */
     set dir(value) {
-        this.srv.setLayout(RTL_DIRECTION, value);
         this._dir = value;
         this.updateLibConfig();
         this.updateHtml();
+        // Should be wait inited
+        Promise.resolve().then((/**
+         * @return {?}
+         */
+        () => {
+            ((/** @type {?} */ (this.d))).value = value;
+            this.d.change.emit(value);
+            this.srv.setLayout(RTL_DIRECTION, value);
+        }));
     }
     /**
      * Get the next text direction
@@ -1228,6 +1239,32 @@ class RTLService {
      */
     get nextDir() {
         return this.dir === LTR ? RTL : LTR;
+    }
+    /**
+     * Subscription change notification
+     *
+     * 订阅变更通知
+     * @return {?}
+     */
+    get change() {
+        return this.srv.notify.pipe(filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => w.name === RTL_DIRECTION)), map((/**
+         * @param {?} v
+         * @return {?}
+         */
+        v => v.value)));
+    }
+    /**
+     * Toggle text direction
+     *
+     * 切换文字方向
+     * @return {?}
+     */
+    toggle() {
+        this.dir = this.nextDir;
     }
     /**
      * @private
@@ -1240,7 +1277,12 @@ class RTLService {
         /** @type {?} */
         const htmlEl = (/** @type {?} */ (this.doc.querySelector('html')));
         if (htmlEl) {
-            htmlEl.setAttribute(HTML_DIR, this.dir);
+            /** @type {?} */
+            const dir = this.dir;
+            htmlEl.style.direction = dir;
+            htmlEl.classList.remove(RTL, LTR);
+            htmlEl.classList.add(dir);
+            htmlEl.setAttribute(HTML_DIR, dir);
         }
     }
     /**
@@ -1269,19 +1311,25 @@ RTLService.decorators = [
 ];
 /** @nocollapse */
 RTLService.ctorParameters = () => [
+    { type: Directionality },
     { type: SettingsService },
     { type: NzConfigService },
     { type: AlainConfigService },
     { type: Platform },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];
-/** @nocollapse */ RTLService.ɵprov = ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(ɵɵinject(SettingsService), ɵɵinject(NzConfigService), ɵɵinject(AlainConfigService), ɵɵinject(Platform), ɵɵinject(DOCUMENT)); }, token: RTLService, providedIn: "root" });
+/** @nocollapse */ RTLService.ɵprov = ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(ɵɵinject(Directionality), ɵɵinject(SettingsService), ɵɵinject(NzConfigService), ɵɵinject(AlainConfigService), ɵɵinject(Platform), ɵɵinject(DOCUMENT)); }, token: RTLService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
     RTLService.prototype._dir;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.d;
     /**
      * @type {?}
      * @private
@@ -4132,7 +4180,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.0.2-494b7c6b');
+const VERSION = new Version('11.0.2-10e26249');
 
 /**
  * @fileoverview added by tsickle

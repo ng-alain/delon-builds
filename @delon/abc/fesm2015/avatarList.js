@@ -120,6 +120,11 @@ class AvatarListComponent {
         if (this.inited) {
             this.gen();
         }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
     }

@@ -1,8 +1,8 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { AfterViewInit, ChangeDetectorRef, OnChanges } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular/core';
 import { NumberInput } from '@delon/util';
 import { AvatarListItemComponent } from './avatar-list-item.component';
-export declare class AvatarListComponent implements AfterViewInit, OnChanges {
+export declare class AvatarListComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private directionality;
     static ngAcceptInputType_maxLength: NumberInput;
@@ -21,4 +21,5 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges {
     private gen;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
+    ngOnDestroy(): void;
 }

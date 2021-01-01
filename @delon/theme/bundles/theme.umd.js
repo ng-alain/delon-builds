@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.i2$2, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i2$2, i1$2, router, i1$3, i1$4, i1$5, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, i1$4, i1$5, i1$6, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -1276,13 +1276,15 @@
     var RTL = 'rtl';
     var RTLService = /** @class */ (function () {
         /**
+         * @param {?} d
          * @param {?} srv
          * @param {?} nz
          * @param {?} delon
          * @param {?} platform
          * @param {?} doc
          */
-        function RTLService(srv, nz, delon, platform, doc) {
+        function RTLService(d, srv, nz, delon, platform, doc) {
+            this.d = d;
             this.srv = srv;
             this.nz = nz;
             this.delon = delon;
@@ -1306,10 +1308,18 @@
              * @return {?}
              */
             set: function (value) {
-                this.srv.setLayout(RTL_DIRECTION, value);
+                var _this = this;
                 this._dir = value;
                 this.updateLibConfig();
                 this.updateHtml();
+                // Should be wait inited
+                Promise.resolve().then(( /**
+                 * @return {?}
+                 */function () {
+                    (( /** @type {?} */(_this.d))).value = value;
+                    _this.d.change.emit(value);
+                    _this.srv.setLayout(RTL_DIRECTION, value);
+                }));
             },
             enumerable: false,
             configurable: true
@@ -1327,6 +1337,40 @@
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(RTLService.prototype, "change", {
+            /**
+             * Subscription change notification
+             *
+             * 订阅变更通知
+             * @return {?}
+             */
+            get: function () {
+                return this.srv.notify.pipe(operators.filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.name === RTL_DIRECTION; })), operators.map(( /**
+                 * @param {?} v
+                 * @return {?}
+                 */function (/**
+                 * @param {?} v
+                 * @return {?}
+                 */ v) { return v.value; })));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Toggle text direction
+         *
+         * 切换文字方向
+         * @return {?}
+         */
+        RTLService.prototype.toggle = function () {
+            this.dir = this.nextDir;
+        };
         /**
          * @private
          * @return {?}
@@ -1338,7 +1382,12 @@
             /** @type {?} */
             var htmlEl = ( /** @type {?} */(this.doc.querySelector('html')));
             if (htmlEl) {
-                htmlEl.setAttribute(HTML_DIR, this.dir);
+                /** @type {?} */
+                var dir = this.dir;
+                htmlEl.style.direction = dir;
+                htmlEl.classList.remove(RTL, LTR);
+                htmlEl.classList.add(dir);
+                htmlEl.setAttribute(HTML_DIR, dir);
             }
         };
         /**
@@ -1373,19 +1422,25 @@
     ];
     /** @nocollapse */
     RTLService.ctorParameters = function () { return [
+        { type: i1$2.Directionality },
         { type: SettingsService },
-        { type: i2$2.NzConfigService },
+        { type: i3.NzConfigService },
         { type: i1$1.AlainConfigService },
         { type: i2$1.Platform },
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(SettingsService), i0.ɵɵinject(i2$2.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
          * @private
          */
         RTLService.prototype._dir;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.d;
         /**
          * @type {?}
          * @private
@@ -1608,12 +1663,12 @@
     /** @nocollapse */
     TitleService.ctorParameters = function () { return [
         { type: i0.Injector },
-        { type: i1$2.Title },
+        { type: i1$3.Title },
         { type: MenuService },
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
     ]; };
-    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$2.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -2922,9 +2977,9 @@
     ];
     /** @nocollapse */
     ModalHelper.ctorParameters = function () { return [
-        { type: i1$3.NzModalService }
+        { type: i1$4.NzModalService }
     ]; };
-    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$3.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3084,9 +3139,9 @@
     ];
     /** @nocollapse */
     DrawerHelper.ctorParameters = function () { return [
-        { type: i1$4.NzDrawerService }
+        { type: i1$5.NzDrawerService }
     ]; };
-    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$4.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$5.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3154,7 +3209,7 @@
             var _this = this;
             /** @type {?} */
             var newParams = {};
-            if (params instanceof i1$5.HttpParams) {
+            if (params instanceof i1$6.HttpParams) {
                 return params;
             }
             Object.keys(params).forEach(( /**
@@ -3175,7 +3230,7 @@
                 }
                 newParams[key] = _data;
             }));
-            return new i1$5.HttpParams({ fromObject: newParams });
+            return new i1$6.HttpParams({ fromObject: newParams });
         };
         /**
          * @param {?} url
@@ -3348,10 +3403,10 @@
     ];
     /** @nocollapse */
     _HttpClient.ctorParameters = function () { return [
-        { type: i1$5.HttpClient },
+        { type: i1$6.HttpClient },
         { type: i1$1.AlainConfigService }
     ]; };
-    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$5.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -3907,7 +3962,7 @@
     ];
     /** @nocollapse */
     YNPipe.ctorParameters = function () { return [
-        { type: i1$2.DomSanitizer }
+        { type: i1$3.DomSanitizer }
     ]; };
     if (false) {
         /**
@@ -3943,7 +3998,7 @@
     ];
     /** @nocollapse */
     HTMLPipe.ctorParameters = function () { return [
-        { type: i1$2.DomSanitizer }
+        { type: i1$3.DomSanitizer }
     ]; };
     if (false) {
         /**
@@ -3979,7 +4034,7 @@
     ];
     /** @nocollapse */
     URLPipe.ctorParameters = function () { return [
-        { type: i1$2.DomSanitizer }
+        { type: i1$3.DomSanitizer }
     ]; };
     if (false) {
         /**

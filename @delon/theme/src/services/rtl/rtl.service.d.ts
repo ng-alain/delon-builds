@@ -1,7 +1,8 @@
-import { Direction } from '@angular/cdk/bidi';
+import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { AlainConfigService } from '@delon/util';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
+import { Observable } from 'rxjs';
 import { SettingsService } from '../settings/settings.service';
 export declare const HTML_DIR = "dir";
 export declare const RTL_DIRECTION = "direction";
@@ -10,6 +11,7 @@ export declare const RTL_DELON_COMPONENTS: string[];
 export declare const LTR = "ltr";
 export declare const RTL = "rtl";
 export declare class RTLService {
+    private d;
     private srv;
     private nz;
     private delon;
@@ -29,7 +31,19 @@ export declare class RTLService {
      * 获取下一次文字方向
      */
     get nextDir(): Direction;
-    constructor(srv: SettingsService, nz: NzConfigService, delon: AlainConfigService, platform: Platform, doc: any);
+    /**
+     * Subscription change notification
+     *
+     * 订阅变更通知
+     */
+    get change(): Observable<Direction>;
+    constructor(d: Directionality, srv: SettingsService, nz: NzConfigService, delon: AlainConfigService, platform: Platform, doc: any);
+    /**
+     * Toggle text direction
+     *
+     * 切换文字方向
+     */
+    toggle(): void;
     private updateHtml;
     private updateLibConfig;
 }

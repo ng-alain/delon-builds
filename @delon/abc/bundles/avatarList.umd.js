@@ -429,6 +429,11 @@
             if (this.inited) {
                 this.gen();
             }
+        };
+        /**
+         * @return {?}
+         */
+        AvatarListComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
         };
