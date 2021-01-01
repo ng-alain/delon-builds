@@ -26450,6 +26450,14 @@ fieldset {
 .display-3 {
   font-size: 20px;
 }
+.list-styled {
+  padding-right: 18px;
+  padding-left: 0;
+}
+.list-unstyled {
+  padding-right: 0;
+  padding-left: inherit;
+}
 .badge {
   /**
      * @deprecated Will be removed in 12.0.0, Pls used `nz-badge` instead
@@ -29296,6 +29304,126 @@ code {
   padding-top: 24px !important;
   padding-bottom: 24px !important;
 }
+.m-xl {
+  /* AUTOGENERATE: Set the margin size to "32px"|SPLIT|设置 margin 大小为 "32px"*/
+  margin: 32px !important;
+}
+.mt-xl {
+  /* AUTOGENERATE: Set the margin-top size to "32px"|SPLIT|设置 margin-top 大小为 "32px"*/
+  margin-top: 32px !important;
+}
+.mr-xl {
+  /* AUTOGENERATE: Set the margin-right size to "32px"|SPLIT|设置 margin-right 大小为 "32px"*/
+  margin-right: 32px !important;
+}
+.mb-xl {
+  /* AUTOGENERATE: Set the margin-bottom size to "32px"|SPLIT|设置 margin-bottom 大小为 "32px"*/
+  margin-bottom: 32px !important;
+}
+.ml-xl {
+  /* AUTOGENERATE: Set the margin-left size to "32px"|SPLIT|设置 margin-left 大小为 "32px"*/
+  margin-left: 32px !important;
+}
+.mx-xl {
+  /* AUTOGENERATE: Set the margin horizontal (left & right) size to "32px"|SPLIT|设置 margin 水平（即左与右）大小为 "32px"*/
+  margin-right: 32px !important;
+  margin-left: 32px !important;
+}
+.my-xl {
+  /* AUTOGENERATE: Set the margin vertical (top & bottom) size to "32px"|SPLIT|设置 margin 垂直（即上与下）大小为 "32px"*/
+  margin-top: 32px !important;
+  margin-bottom: 32px !important;
+}
+.p-xl {
+  /* AUTOGENERATE: Set the padding size to "32px"|SPLIT|设置 padding 大小为 "32px"*/
+  padding: 32px !important;
+}
+.pt-xl {
+  /* AUTOGENERATE: Set the padding-top size to "32px"|SPLIT|设置 padding-top 大小为 "32px"*/
+  padding-top: 32px !important;
+}
+.pr-xl {
+  /* AUTOGENERATE: Set the padding-right size to "32px"|SPLIT|设置 padding-right 大小为 "32px"*/
+  padding-right: 32px !important;
+}
+.pb-xl {
+  /* AUTOGENERATE: Set the padding-bottom size to "32px"|SPLIT|设置 padding-bottom 大小为 "32px"*/
+  padding-bottom: 32px !important;
+}
+.pl-xl {
+  /* AUTOGENERATE: Set the padding-left size to "32px"|SPLIT|设置 padding-left 大小为 "32px"*/
+  padding-left: 32px !important;
+}
+.px-xl {
+  /* AUTOGENERATE: Set the padding horizontal (left & right) size to "32px"|SPLIT|设置 padding 水平（即左与右）大小为 "32px"*/
+  padding-right: 32px !important;
+  padding-left: 32px !important;
+}
+.py-xl {
+  /* AUTOGENERATE: Set the padding vertical (top & bottom) size to "32px"|SPLIT|设置 padding 垂直（即上与下）大小为 "32px"*/
+  padding-top: 32px !important;
+  padding-bottom: 32px !important;
+}
+.m-xxl {
+  /* AUTOGENERATE: Set the margin size to "48px"|SPLIT|设置 margin 大小为 "48px"*/
+  margin: 48px !important;
+}
+.mt-xxl {
+  /* AUTOGENERATE: Set the margin-top size to "48px"|SPLIT|设置 margin-top 大小为 "48px"*/
+  margin-top: 48px !important;
+}
+.mr-xxl {
+  /* AUTOGENERATE: Set the margin-right size to "48px"|SPLIT|设置 margin-right 大小为 "48px"*/
+  margin-right: 48px !important;
+}
+.mb-xxl {
+  /* AUTOGENERATE: Set the margin-bottom size to "48px"|SPLIT|设置 margin-bottom 大小为 "48px"*/
+  margin-bottom: 48px !important;
+}
+.ml-xxl {
+  /* AUTOGENERATE: Set the margin-left size to "48px"|SPLIT|设置 margin-left 大小为 "48px"*/
+  margin-left: 48px !important;
+}
+.mx-xxl {
+  /* AUTOGENERATE: Set the margin horizontal (left & right) size to "48px"|SPLIT|设置 margin 水平（即左与右）大小为 "48px"*/
+  margin-right: 48px !important;
+  margin-left: 48px !important;
+}
+.my-xxl {
+  /* AUTOGENERATE: Set the margin vertical (top & bottom) size to "48px"|SPLIT|设置 margin 垂直（即上与下）大小为 "48px"*/
+  margin-top: 48px !important;
+  margin-bottom: 48px !important;
+}
+.p-xxl {
+  /* AUTOGENERATE: Set the padding size to "48px"|SPLIT|设置 padding 大小为 "48px"*/
+  padding: 48px !important;
+}
+.pt-xxl {
+  /* AUTOGENERATE: Set the padding-top size to "48px"|SPLIT|设置 padding-top 大小为 "48px"*/
+  padding-top: 48px !important;
+}
+.pr-xxl {
+  /* AUTOGENERATE: Set the padding-right size to "48px"|SPLIT|设置 padding-right 大小为 "48px"*/
+  padding-right: 48px !important;
+}
+.pb-xxl {
+  /* AUTOGENERATE: Set the padding-bottom size to "48px"|SPLIT|设置 padding-bottom 大小为 "48px"*/
+  padding-bottom: 48px !important;
+}
+.pl-xxl {
+  /* AUTOGENERATE: Set the padding-left size to "48px"|SPLIT|设置 padding-left 大小为 "48px"*/
+  padding-left: 48px !important;
+}
+.px-xxl {
+  /* AUTOGENERATE: Set the padding horizontal (left & right) size to "48px"|SPLIT|设置 padding 水平（即左与右）大小为 "48px"*/
+  padding-right: 48px !important;
+  padding-left: 48px !important;
+}
+.py-xxl {
+  /* AUTOGENERATE: Set the padding vertical (top & bottom) size to "48px"|SPLIT|设置 padding 垂直（即上与下）大小为 "48px"*/
+  padding-top: 48px !important;
+  padding-bottom: 48px !important;
+}
 [dir="rtl"] .mr0 {
   margin-left: 0 !important;
   margin-right: inherit !important;
@@ -29374,6 +29502,38 @@ code {
 }
 [dir="rtl"] .pl-lg {
   padding-right: 24px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-xl {
+  margin-left: 32px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-xl {
+  margin-right: 32px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-xl {
+  padding-left: 32px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-xl {
+  padding-right: 32px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-xxl {
+  margin-left: 48px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-xxl {
+  margin-right: 48px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-xxl {
+  padding-left: 48px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-xxl {
+  padding-right: 48px !important;
   padding-left: inherit !important;
 }
 /**
