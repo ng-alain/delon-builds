@@ -26109,6 +26109,19 @@ nz-button-group + nz-popconfirm {
 .ant-transfer-operation .ant-btn + .ant-btn {
   margin-left: initial;
 }
+[dir='rtl'] .ant-btn + .ant-btn,
+[dir='rtl'] .ant-btn + nz-popconfirm,
+[dir='rtl'] nz-popconfirm + .ant-btn,
+[dir='rtl'] nz-popconfirm + nz-popconfirm,
+[dir='rtl'] .ant-btn + nz-button-group,
+[dir='rtl'] nz-button-group + .ant-btn,
+[dir='rtl'] .ant-btn + nz-dropdown,
+[dir='rtl'] nz-dropdown + .ant-btn,
+[dir='rtl'] nz-popconfirm + nz-button-group,
+[dir='rtl'] nz-button-group + nz-popconfirm {
+  margin-right: 8px;
+  margin-left: inherit;
+}
 a:focus {
   text-decoration: none;
 }
@@ -29283,6 +29296,86 @@ code {
   padding-top: 24px !important;
   padding-bottom: 24px !important;
 }
+[dir="rtl"] .mr0 {
+  margin-left: 0 !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml0 {
+  margin-right: 0 !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr0 {
+  padding-left: 0 !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl0 {
+  padding-right: 0 !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-xs {
+  margin-left: 4px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-xs {
+  margin-right: 4px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-xs {
+  padding-left: 4px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-xs {
+  padding-right: 4px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-sm {
+  margin-left: 8px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-sm {
+  margin-right: 8px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-sm {
+  padding-left: 8px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-sm {
+  padding-right: 8px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-md {
+  margin-left: 16px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-md {
+  margin-right: 16px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-md {
+  padding-left: 16px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-md {
+  padding-right: 16px !important;
+  padding-left: inherit !important;
+}
+[dir="rtl"] .mr-lg {
+  margin-left: 24px !important;
+  margin-right: inherit !important;
+}
+[dir="rtl"] .ml-lg {
+  margin-right: 24px !important;
+  margin-left: inherit !important;
+}
+[dir="rtl"] .pr-lg {
+  padding-left: 24px !important;
+  padding-right: inherit !important;
+}
+[dir="rtl"] .pl-lg {
+  padding-right: 24px !important;
+  padding-left: inherit !important;
+}
 /**
  * The inline contents are aligned to the left edge of the line box
  *
@@ -29436,6 +29529,12 @@ code {
  */
 .text-xxl {
   font-size: 28px !important;
+}
+[dir='rtl'] .text-left {
+  text-align: right !important;
+}
+[dir='rtl'] .text-right {
+  text-align: left !important;
 }
 .width-xs {
   /* AUTOGENERATE: Specify the width as "80px"|SPLIT|指定宽度为 "80px"*/
@@ -29759,6 +29858,16 @@ body {
     margin-left: 88px;
   }
 }
+@media (min-width: 768px) {
+  [dir='rtl'] .alain-default__content {
+    margin-right: 224px;
+    margin-left: 0;
+  }
+  [dir='rtl'] .alain-default__collapsed .alain-default__content {
+    margin-right: 88px;
+    margin-left: 0;
+  }
+}
 .alain-default__header {
   z-index: 19;
   display: flex;
@@ -29924,6 +30033,10 @@ body {
     display: none;
   }
 }
+[dir='rtl'] .alain-default__header-logo {
+  margin-right: -16px;
+  margin-left: 0;
+}
 .alain-default__aside {
   position: absolute;
   top: 0;
@@ -29989,6 +30102,10 @@ body {
   .alain-default__collapsed .alain-default__content {
     transform: translateZ(0);
   }
+}
+[dir='rtl'] .alain-default__aside::after {
+  right: inherit;
+  left: 0;
 }
 .alain-default__progress-bar {
   position: fixed;
@@ -30222,6 +30339,19 @@ body {
   }
   .alain-default__collapsed .sidebar-nav__sub-arrow {
     display: none;
+  }
+}
+[dir='rtl'] .sidebar-nav__item-icon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+[dir='rtl'] .sidebar-nav .badge {
+  right: inherit;
+  left: 16px;
+}
+@media (min-width: 768px) {
+  [dir='rtl'] .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item-link .sidebar-nav__item-icon {
+    margin-left: 0;
   }
 }
 .footer-toolbar__left {
