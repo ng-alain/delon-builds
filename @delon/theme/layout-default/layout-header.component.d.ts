@@ -11,13 +11,14 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     private settings;
     private parent;
     private cdr;
-    private unsubscribe$;
+    private destroy$;
     left: LayoutDefaultHeaderItem[];
     middle: LayoutDefaultHeaderItem[];
     right: LayoutDefaultHeaderItem[];
     get options(): LayoutDefaultOptions;
     get app(): App;
     get collapsed(): boolean;
+    get collapsedIcon(): string;
     constructor(settings: SettingsService, parent: LayoutDefaultComponent, cdr: ChangeDetectorRef);
     private refresh;
     ngAfterViewInit(): void;

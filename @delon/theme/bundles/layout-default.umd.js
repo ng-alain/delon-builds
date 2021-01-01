@@ -61,10 +61,10 @@
           this.el = el;
           this.renderer = renderer;
           this.doc = doc;
-          this.unsubscribe$ = new rxjs.Subject();
+          this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
           // scroll to top in change page
-          router$1.events.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
+          router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
            * @param {?} evt
            * @return {?}
            */function (/**
@@ -117,8 +117,8 @@
           if (this.options == null) {
               throw new Error("Please specify the [options] parameter, otherwise the layout display cannot be completed");
           }
-          var _a = this, settings = _a.settings, unsubscribe$ = _a.unsubscribe$;
-          settings.notify.pipe(operators.takeUntil(unsubscribe$)).subscribe(( /**
+          var _a = this, settings = _a.settings, destroy$ = _a.destroy$;
+          settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(( /**
            * @return {?}
            */function () { return _this.setClass(); }));
           this.setClass();
@@ -127,9 +127,8 @@
        * @return {?}
        */
       LayoutDefaultComponent.prototype.ngOnDestroy = function () {
-          var unsubscribe$ = this.unsubscribe$;
-          unsubscribe$.next();
-          unsubscribe$.complete();
+          this.destroy$.next();
+          this.destroy$.complete();
       };
       return LayoutDefaultComponent;
   }());
@@ -170,7 +169,7 @@
        * @type {?}
        * @private
        */
-      LayoutDefaultComponent.prototype.unsubscribe$;
+      LayoutDefaultComponent.prototype.destroy$;
       /** @type {?} */
       LayoutDefaultComponent.prototype.isFetching;
       /**
@@ -542,7 +541,7 @@
           this.settings = settings;
           this.parent = parent;
           this.cdr = cdr;
-          this.unsubscribe$ = new rxjs.Subject();
+          this.destroy$ = new rxjs.Subject();
           this.left = [];
           this.middle = [];
           this.right = [];
@@ -573,6 +572,21 @@
            */
           get: function () {
               return this.settings.layout.collapsed;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsedIcon", {
+          /**
+           * @return {?}
+           */
+          get: function () {
+              /** @type {?} */
+              var type = this.collapsed ? 'unfold' : 'fold';
+              if (this.settings.layout.direction === 'rtl') {
+                  type = this.collapsed ? 'fold' : 'unfold';
+              }
+              return "menu-" + type;
           },
           enumerable: false,
           configurable: true
@@ -612,7 +626,7 @@
        */
       LayoutDefaultHeaderComponent.prototype.ngAfterViewInit = function () {
           var _this = this;
-          this.parent.headerItems.changes.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
+          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
            * @return {?}
            */function () { return _this.refresh(); }));
           this.refresh();
@@ -627,16 +641,15 @@
        * @return {?}
        */
       LayoutDefaultHeaderComponent.prototype.ngOnDestroy = function () {
-          var unsubscribe$ = this.unsubscribe$;
-          unsubscribe$.next();
-          unsubscribe$.complete();
+          this.destroy$.next();
+          this.destroy$.complete();
       };
       return LayoutDefaultHeaderComponent;
   }());
   LayoutDefaultHeaderComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default-header',
-                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon nzType=\"menu-{{ collapsed ? 'unfold' : 'fold' }}\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
+                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
                   host: {
                       '[class.alain-default__header]': "true",
                   },
@@ -654,7 +667,7 @@
        * @type {?}
        * @private
        */
-      LayoutDefaultHeaderComponent.prototype.unsubscribe$;
+      LayoutDefaultHeaderComponent.prototype.destroy$;
       /** @type {?} */
       LayoutDefaultHeaderComponent.prototype.left;
       /** @type {?} */

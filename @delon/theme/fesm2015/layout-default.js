@@ -68,10 +68,10 @@ class LayoutDefaultComponent {
         this.el = el;
         this.renderer = renderer;
         this.doc = doc;
-        this.unsubscribe$ = new Subject();
+        this.destroy$ = new Subject();
         this.isFetching = false;
         // scroll to top in change page
-        router.events.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+        router.events.pipe(takeUntil(this.destroy$)).subscribe((/**
          * @param {?} evt
          * @return {?}
          */
@@ -121,8 +121,8 @@ class LayoutDefaultComponent {
         if (this.options == null) {
             throw new Error(`Please specify the [options] parameter, otherwise the layout display cannot be completed`);
         }
-        const { settings, unsubscribe$ } = this;
-        settings.notify.pipe(takeUntil(unsubscribe$)).subscribe((/**
+        const { settings, destroy$ } = this;
+        settings.notify.pipe(takeUntil(destroy$)).subscribe((/**
          * @return {?}
          */
         () => this.setClass()));
@@ -132,9 +132,8 @@ class LayoutDefaultComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 LayoutDefaultComponent.decorators = [
@@ -188,7 +187,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    LayoutDefaultComponent.prototype.unsubscribe$;
+    LayoutDefaultComponent.prototype.destroy$;
     /** @type {?} */
     LayoutDefaultComponent.prototype.isFetching;
     /**
@@ -256,7 +255,7 @@ class LayoutDefaultHeaderComponent {
         this.settings = settings;
         this.parent = parent;
         this.cdr = cdr;
-        this.unsubscribe$ = new Subject();
+        this.destroy$ = new Subject();
         this.left = [];
         this.middle = [];
         this.right = [];
@@ -278,6 +277,17 @@ class LayoutDefaultHeaderComponent {
      */
     get collapsed() {
         return this.settings.layout.collapsed;
+    }
+    /**
+     * @return {?}
+     */
+    get collapsedIcon() {
+        /** @type {?} */
+        let type = this.collapsed ? 'unfold' : 'fold';
+        if (this.settings.layout.direction === 'rtl') {
+            type = this.collapsed ? 'fold' : 'unfold';
+        }
+        return `menu-${type}`;
     }
     /**
      * @private
@@ -307,7 +317,7 @@ class LayoutDefaultHeaderComponent {
      * @return {?}
      */
     ngAfterViewInit() {
-        this.parent.headerItems.changes.pipe(takeUntil(this.unsubscribe$)).subscribe((/**
+        this.parent.headerItems.changes.pipe(takeUntil(this.destroy$)).subscribe((/**
          * @return {?}
          */
         () => this.refresh()));
@@ -323,9 +333,8 @@ class LayoutDefaultHeaderComponent {
      * @return {?}
      */
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 LayoutDefaultHeaderComponent.decorators = [
@@ -352,7 +361,7 @@ LayoutDefaultHeaderComponent.decorators = [
       <ul class="alain-default__nav">
         <li>
           <div class="alain-default__nav-item" (click)="toggleCollapsed()">
-            <i nz-icon nzType="menu-{{ collapsed ? 'unfold' : 'fold' }}"></i>
+            <i nz-icon [nzType]="collapsedIcon"></i>
           </div>
         </li>
         <ng-template [ngTemplateOutlet]="render" [ngTemplateOutletContext]="{ $implicit: left }"></ng-template>
@@ -382,7 +391,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    LayoutDefaultHeaderComponent.prototype.unsubscribe$;
+    LayoutDefaultHeaderComponent.prototype.destroy$;
     /** @type {?} */
     LayoutDefaultHeaderComponent.prototype.left;
     /** @type {?} */
