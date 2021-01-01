@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, router, i1$3, i1$4, i1$5, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.i2$2, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i2$2, i1$2, router, i1$3, i1$4, i1$5, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -1255,6 +1255,162 @@
          * @private
          */
         ResponsiveService.prototype.cog;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/rtl/rtl.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
+    var HTML_DIR = 'dir';
+    /** @type {?} */
+    var RTL_DIRECTION = 'direction';
+    /** @type {?} */
+    var RTL_NZ_COMPONENTS = ['modal', 'drawer', 'message', 'notification', 'image'];
+    /** @type {?} */
+    var RTL_DELON_COMPONENTS = ['loading', 'onboarding'];
+    /** @type {?} */
+    var LTR = 'ltr';
+    /** @type {?} */
+    var RTL = 'rtl';
+    var RTLService = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         * @param {?} nz
+         * @param {?} delon
+         * @param {?} platform
+         * @param {?} doc
+         */
+        function RTLService(srv, nz, delon, platform, doc) {
+            this.srv = srv;
+            this.nz = nz;
+            this.delon = delon;
+            this.platform = platform;
+            this.doc = doc;
+            this._dir = LTR;
+            this.dir = srv.layout.direction === RTL ? RTL : LTR;
+        }
+        Object.defineProperty(RTLService.prototype, "dir", {
+            /**
+             * Get or Set the current text direction
+             *
+             * 获取或设置当前文字方向
+             * @return {?}
+             */
+            get: function () {
+                return this._dir;
+            },
+            /**
+             * @param {?} value
+             * @return {?}
+             */
+            set: function (value) {
+                this.srv.setLayout(RTL_DIRECTION, value);
+                this._dir = value;
+                this.updateLibConfig();
+                this.updateHtml();
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(RTLService.prototype, "nextDir", {
+            /**
+             * Get the next text direction
+             *
+             * 获取下一次文字方向
+             * @return {?}
+             */
+            get: function () {
+                return this.dir === LTR ? RTL : LTR;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * @private
+         * @return {?}
+         */
+        RTLService.prototype.updateHtml = function () {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            /** @type {?} */
+            var htmlEl = ( /** @type {?} */(this.doc.querySelector('html')));
+            if (htmlEl) {
+                htmlEl.setAttribute(HTML_DIR, this.dir);
+            }
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        RTLService.prototype.updateLibConfig = function () {
+            var _this = this;
+            RTL_NZ_COMPONENTS.forEach(( /**
+             * @param {?} name
+             * @return {?}
+             */function (/**
+             * @param {?} name
+             * @return {?}
+             */ name) {
+                _this.nz.set(( /** @type {?} */(name)), { nzDirection: _this.dir });
+            }));
+            RTL_DELON_COMPONENTS.forEach(( /**
+             * @param {?} name
+             * @return {?}
+             */function (/**
+             * @param {?} name
+             * @return {?}
+             */ name) {
+                _this.delon.set(( /** @type {?} */(name)), { direction: _this.dir });
+            }));
+        };
+        return RTLService;
+    }());
+    RTLService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    RTLService.ctorParameters = function () { return [
+        { type: SettingsService },
+        { type: i2$2.NzConfigService },
+        { type: i1$1.AlainConfigService },
+        { type: i2$1.Platform },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(SettingsService), i0.ɵɵinject(i2$2.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype._dir;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.nz;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.delon;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.platform;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.doc;
     }
 
     var TitleService = /** @class */ (function () {
@@ -3958,10 +4114,12 @@
     exports.GET = GET;
     exports.HEAD = HEAD;
     exports.HTMLPipe = HTMLPipe;
+    exports.HTML_DIR = HTML_DIR;
     exports.Headers = Headers;
     exports.JSONP = JSONP;
     exports.KeysPipe = KeysPipe;
     exports.LAYOUT = LAYOUT;
+    exports.LTR = LTR;
     exports.MenuService = MenuService;
     exports.ModalHelper = ModalHelper;
     exports.OPTIONS = OPTIONS;
@@ -3972,6 +4130,11 @@
     exports.Payload = Payload;
     exports.Query = Query;
     exports.REP_MAX = REP_MAX;
+    exports.RTL = RTL;
+    exports.RTLService = RTLService;
+    exports.RTL_DELON_COMPONENTS = RTL_DELON_COMPONENTS;
+    exports.RTL_DIRECTION = RTL_DIRECTION;
+    exports.RTL_NZ_COMPONENTS = RTL_NZ_COMPONENTS;
     exports.ResponsiveService = ResponsiveService;
     exports.ScrollService = ScrollService;
     exports.SettingsService = SettingsService;

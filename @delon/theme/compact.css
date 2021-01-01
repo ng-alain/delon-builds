@@ -1719,6 +1719,9 @@ html {
 .nz-animate-disabled.ant-tabs.ant-tabs-bottom .ant-tabs-ink-bar-animated {
   transition: none;
 }
+.nz-animate-disabled.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
+  transition: none;
+}
 .ant-affix {
   position: fixed;
   z-index: 10;
@@ -5260,9 +5263,6 @@ nz-carousel {
 }
 .slick-list {
   direction: ltr;
-}
-.slick-list .slick-slide {
-  float: right;
 }
 @keyframes antCheckboxEffect {
   0% {
@@ -22283,7 +22283,7 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-tabs-dropdown-menu-item a[nz-tab-link] {
   position: relative;
 }
-.ant-tabs-dropdown-menu-item a[nz-tab-link]::before {
+a[nz-tab-link]::before {
   position: absolute;
   top: 0;
   left: 0;

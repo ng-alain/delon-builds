@@ -5,6 +5,7 @@ import { filter, share, finalize, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService, deepMerge, toDate } from '@delon/util';
+import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -1164,6 +1165,148 @@ if (false) {
      * @private
      */
     ResponsiveService.prototype.cog;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/services/rtl/rtl.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
+const HTML_DIR = 'dir';
+/** @type {?} */
+const RTL_DIRECTION = 'direction';
+/** @type {?} */
+const RTL_NZ_COMPONENTS = ['modal', 'drawer', 'message', 'notification', 'image'];
+/** @type {?} */
+const RTL_DELON_COMPONENTS = ['loading', 'onboarding'];
+/** @type {?} */
+const LTR = 'ltr';
+/** @type {?} */
+const RTL = 'rtl';
+class RTLService {
+    /**
+     * @param {?} srv
+     * @param {?} nz
+     * @param {?} delon
+     * @param {?} platform
+     * @param {?} doc
+     */
+    constructor(srv, nz, delon, platform, doc) {
+        this.srv = srv;
+        this.nz = nz;
+        this.delon = delon;
+        this.platform = platform;
+        this.doc = doc;
+        this._dir = LTR;
+        this.dir = srv.layout.direction === RTL ? RTL : LTR;
+    }
+    /**
+     * Get or Set the current text direction
+     *
+     * 获取或设置当前文字方向
+     * @return {?}
+     */
+    get dir() {
+        return this._dir;
+    }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
+    set dir(value) {
+        this.srv.setLayout(RTL_DIRECTION, value);
+        this._dir = value;
+        this.updateLibConfig();
+        this.updateHtml();
+    }
+    /**
+     * Get the next text direction
+     *
+     * 获取下一次文字方向
+     * @return {?}
+     */
+    get nextDir() {
+        return this.dir === LTR ? RTL : LTR;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    updateHtml() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        /** @type {?} */
+        const htmlEl = (/** @type {?} */ (this.doc.querySelector('html')));
+        if (htmlEl) {
+            htmlEl.setAttribute(HTML_DIR, this.dir);
+        }
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    updateLibConfig() {
+        RTL_NZ_COMPONENTS.forEach((/**
+         * @param {?} name
+         * @return {?}
+         */
+        name => {
+            this.nz.set((/** @type {?} */ (name)), { nzDirection: this.dir });
+        }));
+        RTL_DELON_COMPONENTS.forEach((/**
+         * @param {?} name
+         * @return {?}
+         */
+        name => {
+            this.delon.set((/** @type {?} */ (name)), { direction: this.dir });
+        }));
+    }
+}
+RTLService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+RTLService.ctorParameters = () => [
+    { type: SettingsService },
+    { type: NzConfigService },
+    { type: AlainConfigService },
+    { type: Platform },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+];
+/** @nocollapse */ RTLService.ɵprov = ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(ɵɵinject(SettingsService), ɵɵinject(NzConfigService), ɵɵinject(AlainConfigService), ɵɵinject(Platform), ɵɵinject(DOCUMENT)); }, token: RTLService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype._dir;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.srv;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.nz;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.delon;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.platform;
+    /**
+     * @type {?}
+     * @private
+     */
+    RTLService.prototype.doc;
 }
 
 /**
@@ -3989,7 +4132,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.0.2-9ea783e3');
+const VERSION = new Version('11.0.2-494b7c6b');
 
 /**
  * @fileoverview added by tsickle
@@ -4003,5 +4146,5 @@ const VERSION = new Version('11.0.2-9ea783e3');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, Headers, JSONP, KeysPipe, LAYOUT, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
 //# sourceMappingURL=theme.js.map
