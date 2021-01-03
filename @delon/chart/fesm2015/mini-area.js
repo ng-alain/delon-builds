@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -34,15 +36,18 @@ if (false) {
 class G2MiniAreaComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(srv, el, ngZone, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.color = 'rgba(24, 144, 255, 0.2)';
@@ -57,7 +62,16 @@ class G2MiniAreaComponent {
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -69,10 +83,24 @@ class G2MiniAreaComponent {
      * @private
      * @return {?}
      */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
@@ -174,13 +202,12 @@ class G2MiniAreaComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -201,6 +228,8 @@ class G2MiniAreaComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2MiniAreaComponent.decorators = [
@@ -218,9 +247,9 @@ G2MiniAreaComponent.decorators = [
 ];
 /** @nocollapse */
 G2MiniAreaComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2MiniAreaComponent.propDecorators = {
@@ -282,7 +311,17 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2MiniAreaComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
     G2MiniAreaComponent.prototype._chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniAreaComponent.prototype._install;
     /** @type {?} */
     G2MiniAreaComponent.prototype.delay;
     /** @type {?} */
@@ -315,6 +354,11 @@ if (false) {
     G2MiniAreaComponent.prototype.theme;
     /** @type {?} */
     G2MiniAreaComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniAreaComponent.prototype.srv;
     /**
      * @type {?}
      * @private

@@ -1,7 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService, NumberInput } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { NumberInput } from '@delon/util';
 export interface G2MiniBarData {
     x: any;
     y: any;
@@ -12,13 +13,16 @@ export interface G2MiniBarClickItem {
     ev: Event;
 }
 export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy {
+    private srv;
     private el;
     private ngZone;
     private platform;
     static ngAcceptInputType_delay: NumberInput;
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_borderWidth: NumberInput;
+    private destroy$;
     private _chart;
+    private _install;
     get chart(): Chart;
     delay: number;
     color: string;
@@ -30,7 +34,8 @@ export declare class G2MiniBarComponent implements OnInit, OnChanges, OnDestroy 
     tooltipType: 'mini' | 'default';
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2MiniBarClickItem>;
-    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
+    constructor(srv: G2Service, el: ElementRef, ngZone: NgZone, platform: Platform);
+    private load;
     private install;
     private attachChart;
     ngOnInit(): void;

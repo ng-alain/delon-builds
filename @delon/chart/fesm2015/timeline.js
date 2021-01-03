@@ -1,9 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { toDate, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import format from 'date-fns/format';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -94,13 +96,16 @@ if (false) {
 class G2TimelineComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(ngZone, configSrv, platform) {
+    constructor(srv, ngZone, platform) {
+        this.srv = srv;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.maxAxis = 2;
@@ -114,7 +119,16 @@ class G2TimelineComponent {
         this.borderWidth = 2;
         this.slider = true;
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -123,12 +137,11 @@ class G2TimelineComponent {
         return this._chart;
     }
     /**
+     * @private
      * @return {?}
      */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
+    load() {
+        this._install = true;
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -138,13 +151,27 @@ class G2TimelineComponent {
         () => this.install()), this.delay)));
     }
     /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
+    }
+    /**
      * @private
      * @return {?}
      */
     install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
@@ -339,6 +366,8 @@ class G2TimelineComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2TimelineComponent.decorators = [
@@ -353,8 +382,8 @@ G2TimelineComponent.decorators = [
 ];
 /** @nocollapse */
 G2TimelineComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2TimelineComponent.propDecorators = {
@@ -416,6 +445,16 @@ if (false) {
      * @private
      */
     G2TimelineComponent.prototype._chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype._install;
     /** @type {?} */
     G2TimelineComponent.prototype.delay;
     /** @type {?} */
@@ -446,6 +485,11 @@ if (false) {
     G2TimelineComponent.prototype.theme;
     /** @type {?} */
     G2TimelineComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TimelineComponent.prototype.srv;
     /**
      * @type {?}
      * @private

@@ -1,11 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
-import DataSet from '@antv/data-set';
-import { registerShape, Util, Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
-import { fromEvent } from 'rxjs';
-import { filter, debounceTime } from 'rxjs/operators';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Subject, fromEvent } from 'rxjs';
+import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -37,15 +36,18 @@ if (false) {
 class G2TagCloudComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(srv, el, ngZone, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 100;
         this.width = 0;
@@ -53,7 +55,16 @@ class G2TagCloudComponent {
         this.padding = 0;
         this.data = [];
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -65,8 +76,22 @@ class G2TagCloudComponent {
      * @private
      * @return {?}
      */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
     initTagCloud() {
-        registerShape('point', 'cloud', {
+        ((/** @type {?} */ (window))).G2.registerShape('point', 'cloud', {
             // tslint:disable-next-line: typedef
             /**
              * @param {?} cfg
@@ -83,7 +108,7 @@ class G2TagCloudComponent {
                     attrs: (/** @type {?} */ (Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }))),
                 });
                 if (data.rotate) {
-                    Util.rotate(textShape, (data.rotate * Math.PI) / 180);
+                    ((/** @type {?} */ (window))).G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                 }
                 return textShape;
             },
@@ -102,7 +127,7 @@ class G2TagCloudComponent {
             this.width = this.el.nativeElement.clientWidth;
         }
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: false,
             padding,
@@ -158,7 +183,7 @@ class G2TagCloudComponent {
         _chart.width = this.width;
         _chart.padding = padding;
         /** @type {?} */
-        const dv = new DataSet.View().source(data);
+        const dv = new ((/** @type {?} */ (window))).DataSet.View().source(data);
         /** @type {?} */
         const range = dv.range('value');
         /** @type {?} */
@@ -233,13 +258,12 @@ class G2TagCloudComponent {
         }
         this.initTagCloud();
         this.installResizeEvent();
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -260,6 +284,8 @@ class G2TagCloudComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2TagCloudComponent.decorators = [
@@ -274,9 +300,9 @@ G2TagCloudComponent.decorators = [
 ];
 /** @nocollapse */
 G2TagCloudComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2TagCloudComponent.propDecorators = {
@@ -316,6 +342,16 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2TagCloudComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype._install;
+    /**
+     * @type {?}
+     * @private
+     */
     G2TagCloudComponent.prototype._chart;
     /** @type {?} */
     G2TagCloudComponent.prototype.delay;
@@ -331,6 +367,11 @@ if (false) {
     G2TagCloudComponent.prototype.theme;
     /** @type {?} */
     G2TagCloudComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2TagCloudComponent.prototype.srv;
     /**
      * @type {?}
      * @private

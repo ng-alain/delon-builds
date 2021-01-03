@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -34,15 +36,18 @@ if (false) {
 class G2MiniBarComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(srv, el, ngZone, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.color = '#1890FF';
@@ -53,7 +58,16 @@ class G2MiniBarComponent {
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -65,10 +79,24 @@ class G2MiniBarComponent {
      * @private
      * @return {?}
      */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -147,13 +175,12 @@ class G2MiniBarComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -174,6 +201,8 @@ class G2MiniBarComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2MiniBarComponent.decorators = [
@@ -191,9 +220,9 @@ G2MiniBarComponent.decorators = [
 ];
 /** @nocollapse */
 G2MiniBarComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2MiniBarComponent.propDecorators = {
@@ -231,7 +260,17 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2MiniBarComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
     G2MiniBarComponent.prototype._chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniBarComponent.prototype._install;
     /** @type {?} */
     G2MiniBarComponent.prototype.delay;
     /** @type {?} */
@@ -252,6 +291,11 @@ if (false) {
     G2MiniBarComponent.prototype.theme;
     /** @type {?} */
     G2MiniBarComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2MiniBarComponent.prototype.srv;
     /**
      * @type {?}
      * @private

@@ -1,8 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { G2InteractionType } from '@delon/chart/core';
-import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
+import { G2InteractionType, G2Service } from '@delon/chart/core';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2BarData {
     x: NzSafeAny;
@@ -15,13 +15,16 @@ export interface G2BarClickItem {
     ev: Event;
 }
 export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
+    private srv;
     private ngZone;
     private platform;
     static ngAcceptInputType_delay: NumberInput;
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_autoLabel: BooleanInput;
     private resize$;
+    private destroy$;
     private _chart;
+    private _install;
     private node;
     get chart(): Chart;
     delay: number;
@@ -34,12 +37,13 @@ export declare class G2BarComponent implements OnInit, OnChanges, OnDestroy {
     interaction: G2InteractionType;
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2BarClickItem>;
-    constructor(ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
+    constructor(srv: G2Service, ngZone: NgZone, platform: Platform);
     private getHeight;
     private install;
     private attachChart;
     private updatelabel;
     private installResizeEvent;
+    private load;
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;

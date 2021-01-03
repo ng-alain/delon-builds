@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -35,17 +37,20 @@ if (false) {
 }
 class G2PieComponent {
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
      * @param {?} cdr
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, cdr, configSrv, platform) {
+    constructor(srv, el, ngZone, cdr, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.cdr = cdr;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -62,7 +67,16 @@ class G2PieComponent {
         this.data = [];
         this.interaction = 'none';
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     // #endregion
     /**
@@ -76,6 +90,20 @@ class G2PieComponent {
      */
     get chart() {
         return this._chart;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @private
@@ -111,7 +139,7 @@ class G2PieComponent {
     install() {
         const { node, height, padding, tooltip, inner, hasLegend, interaction, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
@@ -237,13 +265,12 @@ class G2PieComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -265,6 +292,8 @@ class G2PieComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2PieComponent.decorators = [
@@ -285,10 +314,10 @@ G2PieComponent.decorators = [
 ];
 /** @nocollapse */
 G2PieComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
     { type: ChangeDetectorRef },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2PieComponent.propDecorators = {
@@ -378,6 +407,16 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2PieComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype._install;
+    /**
+     * @type {?}
+     * @private
+     */
     G2PieComponent.prototype._chart;
     /**
      * @type {?}
@@ -428,6 +467,11 @@ if (false) {
     G2PieComponent.prototype.theme;
     /** @type {?} */
     G2PieComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2PieComponent.prototype.srv;
     /**
      * @type {?}
      * @private

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid']));
-}(this, (function (exports, platform, core, g2, util, common, outlet, grid) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid']));
+}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common, outlet, grid) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -341,15 +341,19 @@
     var G2RadarComponent = /** @class */ (function () {
         // #endregion
         /**
+         * @param {?} srv
          * @param {?} cdr
          * @param {?} ngZone
-         * @param {?} configSrv
          * @param {?} platform
          */
-        function G2RadarComponent(cdr, ngZone, configSrv, platform) {
+        function G2RadarComponent(srv, cdr, ngZone, platform) {
+            var _this = this;
+            this.srv = srv;
             this.cdr = cdr;
             this.ngZone = ngZone;
             this.platform = platform;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             this.legendData = [];
             // #region fields
             this.delay = 0;
@@ -360,7 +364,14 @@
             this.data = [];
             this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
             this.clickItem = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2RadarComponent.prototype, "chart", {
             /**
@@ -376,6 +387,19 @@
          * @private
          * @return {?}
          */
+        G2RadarComponent.prototype.load = function () {
+            var _this = this;
+            this._install = true;
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return setTimeout(( /**
+             * @return {?}
+             */function () { return _this.install(); }), _this.delay); }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
         G2RadarComponent.prototype.getHeight = function () {
             return this.height - (this.hasLegend ? 80 : 22);
         };
@@ -387,7 +411,7 @@
             var _this = this;
             var _b = this, node = _b.node, padding = _b.padding, theme = _b.theme;
             /** @type {?} */
-            var chart = (this._chart = new g2.Chart({
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: this.getHeight(),
@@ -525,15 +549,15 @@
          * @return {?}
          */
         G2RadarComponent.prototype.ngOnInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @return {?}
@@ -561,6 +585,8 @@
                  * @return {?}
                  */function () { return _this._chart.destroy(); }));
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2RadarComponent;
     }());
@@ -580,9 +606,9 @@
     ];
     /** @nocollapse */
     G2RadarComponent.ctorParameters = function () { return [
+        { type: core$1.G2Service },
         { type: core.ChangeDetectorRef },
         { type: core.NgZone },
-        { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     G2RadarComponent.propDecorators = {
@@ -632,6 +658,16 @@
          * @type {?}
          * @private
          */
+        G2RadarComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2RadarComponent.prototype._install;
+        /**
+         * @type {?}
+         * @private
+         */
         G2RadarComponent.prototype._chart;
         /** @type {?} */
         G2RadarComponent.prototype.legendData;
@@ -655,6 +691,11 @@
         G2RadarComponent.prototype.theme;
         /** @type {?} */
         G2RadarComponent.prototype.clickItem;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2RadarComponent.prototype.srv;
         /**
          * @type {?}
          * @private

@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -13,15 +15,18 @@ import { CommonModule } from '@angular/common';
 class G2SingleBarComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(srv, el, ngZone, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.plusColor = '#40a9ff';
@@ -34,7 +39,16 @@ class G2SingleBarComponent {
         this.line = false;
         this.padding = 0;
         this.textStyle = { fontSize: 12, color: '#595959' };
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -46,10 +60,24 @@ class G2SingleBarComponent {
      * @private
      * @return {?}
      */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
     install() {
         const { el, height, padding, textStyle, line, format, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -109,13 +137,12 @@ class G2SingleBarComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -136,6 +163,8 @@ class G2SingleBarComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2SingleBarComponent.decorators = [
@@ -153,9 +182,9 @@ G2SingleBarComponent.decorators = [
 ];
 /** @nocollapse */
 G2SingleBarComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2SingleBarComponent.propDecorators = {
@@ -220,6 +249,16 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2SingleBarComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2SingleBarComponent.prototype._install;
+    /**
+     * @type {?}
+     * @private
+     */
     G2SingleBarComponent.prototype._chart;
     /** @type {?} */
     G2SingleBarComponent.prototype.delay;
@@ -247,6 +286,11 @@ if (false) {
     G2SingleBarComponent.prototype.textStyle;
     /** @type {?} */
     G2SingleBarComponent.prototype.theme;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2SingleBarComponent.prototype.srv;
     /**
      * @type {?}
      * @private

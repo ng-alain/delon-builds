@@ -1,8 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { G2InteractionType } from '@delon/chart/core';
-import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
+import { G2InteractionType, G2Service } from '@delon/chart/core';
+import { BooleanInput, NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2PieData {
     x: any;
@@ -14,6 +14,7 @@ export interface G2PieClickItem {
     ev: Event;
 }
 export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
+    private srv;
     private el;
     private ngZone;
     private cdr;
@@ -28,6 +29,8 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     static ngAcceptInputType_blockMaxWidth: NumberInput;
     static ngAcceptInputType_select: BooleanInput;
     private node;
+    private destroy$;
+    private _install;
     private _chart;
     private percentColor;
     legendData: NzSafeAny[];
@@ -54,7 +57,8 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
     get chart(): Chart;
-    constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform);
+    constructor(srv: G2Service, el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, platform: Platform);
+    private load;
     private fixData;
     private install;
     private attachChart;

@@ -4,14 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
-
-    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-    var DataSet__default = /*#__PURE__*/_interopDefaultLegacy(DataSet);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -343,15 +339,19 @@
     var G2TagCloudComponent = /** @class */ (function () {
         // #endregion
         /**
+         * @param {?} srv
          * @param {?} el
          * @param {?} ngZone
-         * @param {?} configSrv
          * @param {?} platform
          */
-        function G2TagCloudComponent(el, ngZone, configSrv, platform) {
+        function G2TagCloudComponent(srv, el, ngZone, platform) {
+            var _this = this;
+            this.srv = srv;
             this.el = el;
             this.ngZone = ngZone;
             this.platform = platform;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             // #region fields
             this.delay = 100;
             this.width = 0;
@@ -359,7 +359,14 @@
             this.padding = 0;
             this.data = [];
             this.clickItem = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2TagCloudComponent.prototype, "chart", {
             /**
@@ -375,8 +382,21 @@
          * @private
          * @return {?}
          */
+        G2TagCloudComponent.prototype.load = function () {
+            var _this = this;
+            this._install = true;
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return setTimeout(( /**
+             * @return {?}
+             */function () { return _this.install(); }), _this.delay); }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
         G2TagCloudComponent.prototype.initTagCloud = function () {
-            g2.registerShape('point', 'cloud', {
+            (( /** @type {?} */(window))).G2.registerShape('point', 'cloud', {
                 // tslint:disable-next-line: typedef
                 /**
                  * @param {?} cfg
@@ -393,7 +413,7 @@
                         attrs: ( /** @type {?} */(Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }))),
                     });
                     if (data.rotate) {
-                        g2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
+                        (( /** @type {?} */(window))).G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                     }
                     return textShape;
                 },
@@ -413,7 +433,7 @@
                 this.width = this.el.nativeElement.clientWidth;
             }
             /** @type {?} */
-            var chart = (this._chart = new g2.Chart({
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: el.nativeElement,
                 autoFit: false,
                 padding: padding,
@@ -467,7 +487,7 @@
             _chart.width = this.width;
             _chart.padding = padding;
             /** @type {?} */
-            var dv = new DataSet__default['default'].View().source(data);
+            var dv = new (( /** @type {?} */(window))).DataSet.View().source(data);
             /** @type {?} */
             var range = dv.range('value');
             /** @type {?} */
@@ -536,17 +556,17 @@
          * @return {?}
          */
         G2TagCloudComponent.prototype.ngOnInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
             this.initTagCloud();
             this.installResizeEvent();
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @return {?}
@@ -567,6 +587,8 @@
                  * @return {?}
                  */function () { return _this._chart.destroy(); }));
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2TagCloudComponent;
     }());
@@ -582,9 +604,9 @@
     ];
     /** @nocollapse */
     G2TagCloudComponent.ctorParameters = function () { return [
+        { type: core$1.G2Service },
         { type: core.ElementRef },
         { type: core.NgZone },
-        { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     G2TagCloudComponent.propDecorators = {
@@ -624,6 +646,16 @@
          * @type {?}
          * @private
          */
+        G2TagCloudComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2TagCloudComponent.prototype._install;
+        /**
+         * @type {?}
+         * @private
+         */
         G2TagCloudComponent.prototype._chart;
         /** @type {?} */
         G2TagCloudComponent.prototype.delay;
@@ -639,6 +671,11 @@
         G2TagCloudComponent.prototype.theme;
         /** @type {?} */
         G2TagCloudComponent.prototype.clickItem;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2TagCloudComponent.prototype.srv;
         /**
          * @type {?}
          * @private

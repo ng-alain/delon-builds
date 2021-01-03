@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, g2, util, format, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('date-fns/format'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'date-fns/format', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.format, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, platform, core, core$1, util, format, rxjs, operators, common, outlet) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -396,13 +396,17 @@
     var G2TimelineComponent = /** @class */ (function () {
         // #endregion
         /**
+         * @param {?} srv
          * @param {?} ngZone
-         * @param {?} configSrv
          * @param {?} platform
          */
-        function G2TimelineComponent(ngZone, configSrv, platform) {
+        function G2TimelineComponent(srv, ngZone, platform) {
+            var _this = this;
+            this.srv = srv;
             this.ngZone = ngZone;
             this.platform = platform;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             // #region fields
             this.delay = 0;
             this.maxAxis = 2;
@@ -416,7 +420,14 @@
             this.borderWidth = 2;
             this.slider = true;
             this.clickItem = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2TimelineComponent.prototype, "chart", {
             /**
@@ -429,18 +440,31 @@
             configurable: true
         });
         /**
+         * @private
          * @return {?}
          */
-        G2TimelineComponent.prototype.ngOnInit = function () {
+        G2TimelineComponent.prototype.load = function () {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return;
-            }
+            this._install = true;
             this.ngZone.runOutsideAngular(( /**
              * @return {?}
              */function () { return setTimeout(( /**
              * @return {?}
              */function () { return _this.install(); }), _this.delay); }));
+        };
+        /**
+         * @return {?}
+         */
+        G2TimelineComponent.prototype.ngOnInit = function () {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @private
@@ -450,7 +474,7 @@
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, slider = _b.slider, maxAxis = _b.maxAxis, theme = _b.theme, maskSlider = _b.maskSlider;
             /** @type {?} */
-            var chart = (this._chart = new g2.Chart({
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
@@ -649,6 +673,8 @@
                  * @return {?}
                  */function () { return _this._chart.destroy(); }));
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2TimelineComponent;
     }());
@@ -664,8 +690,8 @@
     ];
     /** @nocollapse */
     G2TimelineComponent.ctorParameters = function () { return [
+        { type: core$1.G2Service },
         { type: core.NgZone },
-        { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     G2TimelineComponent.propDecorators = {
@@ -727,6 +753,16 @@
          * @private
          */
         G2TimelineComponent.prototype._chart;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2TimelineComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2TimelineComponent.prototype._install;
         /** @type {?} */
         G2TimelineComponent.prototype.delay;
         /** @type {?} */
@@ -757,6 +793,11 @@
         G2TimelineComponent.prototype.theme;
         /** @type {?} */
         G2TimelineComponent.prototype.clickItem;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2TimelineComponent.prototype.srv;
         /**
          * @type {?}
          * @private

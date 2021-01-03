@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common));
-}(this, (function (exports, platform, core, g2, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,15 +318,19 @@
     var G2SingleBarComponent = /** @class */ (function () {
         // #endregion
         /**
+         * @param {?} srv
          * @param {?} el
          * @param {?} ngZone
-         * @param {?} configSrv
          * @param {?} platform
          */
-        function G2SingleBarComponent(el, ngZone, configSrv, platform) {
+        function G2SingleBarComponent(srv, el, ngZone, platform) {
+            var _this = this;
+            this.srv = srv;
             this.el = el;
             this.ngZone = ngZone;
             this.platform = platform;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             // #region fields
             this.delay = 0;
             this.plusColor = '#40a9ff';
@@ -339,7 +343,14 @@
             this.line = false;
             this.padding = 0;
             this.textStyle = { fontSize: 12, color: '#595959' };
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2SingleBarComponent.prototype, "chart", {
             /**
@@ -355,10 +366,23 @@
          * @private
          * @return {?}
          */
+        G2SingleBarComponent.prototype.load = function () {
+            var _this = this;
+            this._install = true;
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return setTimeout(( /**
+             * @return {?}
+             */function () { return _this.install(); }), _this.delay); }));
+        };
+        /**
+         * @private
+         * @return {?}
+         */
         G2SingleBarComponent.prototype.install = function () {
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
             /** @type {?} */
-            var chart = (this._chart = new g2.Chart({
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -413,15 +437,15 @@
          * @return {?}
          */
         G2SingleBarComponent.prototype.ngOnInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @return {?}
@@ -442,6 +466,8 @@
                  * @return {?}
                  */function () { return _this._chart.destroy(); }));
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2SingleBarComponent;
     }());
@@ -460,9 +486,9 @@
     ];
     /** @nocollapse */
     G2SingleBarComponent.ctorParameters = function () { return [
+        { type: core$1.G2Service },
         { type: core.ElementRef },
         { type: core.NgZone },
-        { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     G2SingleBarComponent.propDecorators = {
@@ -527,6 +553,16 @@
          * @type {?}
          * @private
          */
+        G2SingleBarComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2SingleBarComponent.prototype._install;
+        /**
+         * @type {?}
+         * @private
+         */
         G2SingleBarComponent.prototype._chart;
         /** @type {?} */
         G2SingleBarComponent.prototype.delay;
@@ -554,6 +590,11 @@
         G2SingleBarComponent.prototype.textStyle;
         /** @type {?} */
         G2SingleBarComponent.prototype.theme;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2SingleBarComponent.prototype.srv;
         /**
          * @type {?}
          * @private

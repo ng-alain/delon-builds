@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -319,21 +319,42 @@
         // #endregion
         /**
          * @param {?} el
-         * @param {?} configSrv
+         * @param {?} srv
          * @param {?} platform
          */
-        function G2CustomComponent(el, configSrv, platform) {
+        function G2CustomComponent(el, srv, platform) {
+            var _this = this;
             this.el = el;
+            this.srv = srv;
             this.platform = platform;
-            this.resize$ = null;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             // #region fields
             this.delay = 0;
             this.resizeTime = 0;
             this.render = new core.EventEmitter();
             this.resize = new core.EventEmitter();
             this.destroy = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
+        /**
+         * @private
+         * @return {?}
+         */
+        G2CustomComponent.prototype.load = function () {
+            var _this = this;
+            this._install = true;
+            setTimeout(( /**
+             * @return {?}
+             */function () { return _this.renderChart(); }), this.delay);
+        };
         /**
          * @private
          * @return {?}
@@ -349,10 +370,10 @@
          */
         G2CustomComponent.prototype.installResizeEvent = function () {
             var _this = this;
-            if (this.resizeTime <= 0 || this.resize$)
+            if (this.resizeTime <= 0)
                 return;
-            this.resize$ = rxjs.fromEvent(window, 'resize')
-                .pipe(operators.debounceTime(Math.min(200, this.resizeTime)))
+            rxjs.fromEvent(window, 'resize')
+                .pipe(operators.takeUntil(this.destroy$), operators.debounceTime(Math.min(200, this.resizeTime)))
                 .subscribe(( /**
          * @return {?}
          */function () { return _this.resize.emit(_this.el); }));
@@ -361,21 +382,23 @@
          * @return {?}
          */
         G2CustomComponent.prototype.ngAfterViewInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            setTimeout(( /**
-             * @return {?}
-             */function () { return _this.renderChart(); }), this.delay);
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @return {?}
          */
         G2CustomComponent.prototype.ngOnDestroy = function () {
             this.destroy.emit(this.el);
-            if (this.resize$)
-                this.resize$.unsubscribe();
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2CustomComponent;
     }());
@@ -395,7 +418,7 @@
     /** @nocollapse */
     G2CustomComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
-        { type: util.AlainConfigService },
+        { type: core$1.G2Service },
         { type: platform.Platform }
     ]; };
     G2CustomComponent.propDecorators = {
@@ -430,7 +453,12 @@
          * @type {?}
          * @private
          */
-        G2CustomComponent.prototype.resize$;
+        G2CustomComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2CustomComponent.prototype._install;
         /** @type {?} */
         G2CustomComponent.prototype.delay;
         /** @type {?} */
@@ -450,6 +478,11 @@
          * @private
          */
         G2CustomComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2CustomComponent.prototype.srv;
         /**
          * @type {?}
          * @private

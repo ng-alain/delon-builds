@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { registerShape, Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -13,20 +15,32 @@ import { CommonModule } from '@angular/common';
 class G2GaugeComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} el
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(el, ngZone, configSrv, platform) {
+    constructor(srv, el, ngZone, platform) {
+        this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.color = '#2f9cff';
         this.padding = [10, 10, 30, 10];
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
@@ -38,9 +52,23 @@ class G2GaugeComponent {
      * @private
      * @return {?}
      */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
     install() {
         // 自定义Shape 部分
-        registerShape('point', 'pointer', {
+        ((/** @type {?} */ (window))).G2.registerShape('point', 'pointer', {
             // tslint:disable-next-line: typedef
             /**
              * @param {?} cfg
@@ -80,7 +108,7 @@ class G2GaugeComponent {
         });
         const { el, height, padding, format, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -177,13 +205,12 @@ class G2GaugeComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -204,6 +231,8 @@ class G2GaugeComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2GaugeComponent.decorators = [
@@ -221,9 +250,9 @@ G2GaugeComponent.decorators = [
 ];
 /** @nocollapse */
 G2GaugeComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ElementRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2GaugeComponent.propDecorators = {
@@ -260,7 +289,17 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2GaugeComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
     G2GaugeComponent.prototype._chart;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype._install;
     /** @type {?} */
     G2GaugeComponent.prototype.delay;
     /** @type {?} */
@@ -279,6 +318,11 @@ if (false) {
     G2GaugeComponent.prototype.padding;
     /** @type {?} */
     G2GaugeComponent.prototype.theme;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2GaugeComponent.prototype.srv;
     /**
      * @type {?}
      * @private

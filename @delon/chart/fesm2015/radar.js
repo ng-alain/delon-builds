@@ -1,8 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { Chart } from '@antv/g2';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Subject } from 'rxjs';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -38,15 +40,18 @@ if (false) {
 class G2RadarComponent {
     // #endregion
     /**
+     * @param {?} srv
      * @param {?} cdr
      * @param {?} ngZone
-     * @param {?} configSrv
      * @param {?} platform
      */
-    constructor(cdr, ngZone, configSrv, platform) {
+    constructor(srv, cdr, ngZone, platform) {
+        this.srv = srv;
         this.cdr = cdr;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
+        this._install = false;
         this.legendData = [];
         // #region fields
         this.delay = 0;
@@ -57,13 +62,36 @@ class G2RadarComponent {
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
         this.clickItem = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
     }
     /**
      * @return {?}
      */
     get chart() {
         return this._chart;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    load() {
+        this._install = true;
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
     }
     /**
      * @private
@@ -79,7 +107,7 @@ class G2RadarComponent {
     install() {
         const { node, padding, theme } = this;
         /** @type {?} */
-        const chart = (this._chart = new Chart({
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
@@ -218,13 +246,12 @@ class G2RadarComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
@@ -250,6 +277,8 @@ class G2RadarComponent {
              */
             () => this._chart.destroy()));
         }
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2RadarComponent.decorators = [
@@ -268,9 +297,9 @@ G2RadarComponent.decorators = [
 ];
 /** @nocollapse */
 G2RadarComponent.ctorParameters = () => [
+    { type: G2Service },
     { type: ChangeDetectorRef },
     { type: NgZone },
-    { type: AlainConfigService },
     { type: Platform }
 ];
 G2RadarComponent.propDecorators = {
@@ -320,6 +349,16 @@ if (false) {
      * @type {?}
      * @private
      */
+    G2RadarComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype._install;
+    /**
+     * @type {?}
+     * @private
+     */
     G2RadarComponent.prototype._chart;
     /** @type {?} */
     G2RadarComponent.prototype.legendData;
@@ -343,6 +382,11 @@ if (false) {
     G2RadarComponent.prototype.theme;
     /** @type {?} */
     G2RadarComponent.prototype.clickItem;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2RadarComponent.prototype.srv;
     /**
      * @type {?}
      * @private

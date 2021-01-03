@@ -1,7 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Event, Types } from '@antv/g2';
-import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
+import { G2Service } from '@delon/chart/core';
+import { BooleanInput, NumberInput } from '@delon/util';
 export interface G2MiniAreaData {
     x: any;
     y: any;
@@ -12,6 +13,7 @@ export interface G2MiniAreaClickItem {
     ev: Event;
 }
 export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy {
+    private srv;
     private el;
     private ngZone;
     private platform;
@@ -21,7 +23,9 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     static ngAcceptInputType_fit: BooleanInput;
     static ngAcceptInputType_line: BooleanInput;
     static ngAcceptInputType_animate: BooleanInput;
+    private destroy$;
     private _chart;
+    private _install;
     get chart(): Chart;
     delay: number;
     color: string;
@@ -39,7 +43,8 @@ export declare class G2MiniAreaComponent implements OnInit, OnChanges, OnDestroy
     tooltipType: 'mini' | 'default';
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2MiniAreaClickItem>;
-    constructor(el: ElementRef, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
+    constructor(srv: G2Service, el: ElementRef, ngZone: NgZone, platform: Platform);
+    private load;
     private install;
     private attachChart;
     ngOnInit(): void;

@@ -1,9 +1,10 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { G2Service } from '@delon/chart/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
+import { Subject, fromEvent } from 'rxjs';
+import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -15,20 +16,42 @@ class G2CustomComponent {
     // #endregion
     /**
      * @param {?} el
-     * @param {?} configSrv
+     * @param {?} srv
      * @param {?} platform
      */
-    constructor(el, configSrv, platform) {
+    constructor(el, srv, platform) {
         this.el = el;
+        this.srv = srv;
         this.platform = platform;
-        this.resize$ = null;
+        this.destroy$ = new Subject();
+        this._install = false;
         // #region fields
         this.delay = 0;
         this.resizeTime = 0;
         this.render = new EventEmitter();
         this.resize = new EventEmitter();
         this.destroy = new EventEmitter();
-        configSrv.attachKey(this, 'chart', 'theme');
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this._install)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    load() {
+        this._install = true;
+        setTimeout((/**
+         * @return {?}
+         */
+        () => this.renderChart()), this.delay);
     }
     /**
      * @private
@@ -44,10 +67,10 @@ class G2CustomComponent {
      * @return {?}
      */
     installResizeEvent() {
-        if (this.resizeTime <= 0 || this.resize$)
+        if (this.resizeTime <= 0)
             return;
-        this.resize$ = fromEvent(window, 'resize')
-            .pipe(debounceTime(Math.min(200, this.resizeTime)))
+        fromEvent(window, 'resize')
+            .pipe(takeUntil(this.destroy$), debounceTime(Math.min(200, this.resizeTime)))
             .subscribe((/**
          * @return {?}
          */
@@ -60,18 +83,20 @@ class G2CustomComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this.renderChart()), this.delay);
+        if (((/** @type {?} */ (window))).G2.Chart) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
     }
     /**
      * @return {?}
      */
     ngOnDestroy() {
         this.destroy.emit(this.el);
-        if (this.resize$)
-            this.resize$.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 G2CustomComponent.decorators = [
@@ -90,7 +115,7 @@ G2CustomComponent.decorators = [
 /** @nocollapse */
 G2CustomComponent.ctorParameters = () => [
     { type: ElementRef },
-    { type: AlainConfigService },
+    { type: G2Service },
     { type: Platform }
 ];
 G2CustomComponent.propDecorators = {
@@ -125,7 +150,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2CustomComponent.prototype.resize$;
+    G2CustomComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype._install;
     /** @type {?} */
     G2CustomComponent.prototype.delay;
     /** @type {?} */
@@ -145,6 +175,11 @@ if (false) {
      * @private
      */
     G2CustomComponent.prototype.el;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2CustomComponent.prototype.srv;
     /**
      * @type {?}
      * @private

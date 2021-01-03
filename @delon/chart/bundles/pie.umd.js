@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
-}(this, (function (exports, platform, core, g2, util, common, outlet, divider) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
+}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common, outlet, divider) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -333,17 +333,21 @@
     }
     var G2PieComponent = /** @class */ (function () {
         /**
+         * @param {?} srv
          * @param {?} el
          * @param {?} ngZone
          * @param {?} cdr
-         * @param {?} configSrv
          * @param {?} platform
          */
-        function G2PieComponent(el, ngZone, cdr, configSrv, platform) {
+        function G2PieComponent(srv, el, ngZone, cdr, platform) {
+            var _this = this;
+            this.srv = srv;
             this.el = el;
             this.ngZone = ngZone;
             this.cdr = cdr;
             this.platform = platform;
+            this.destroy$ = new rxjs.Subject();
+            this._install = false;
             this.legendData = [];
             // #region fields
             this.delay = 0;
@@ -360,7 +364,14 @@
             this.data = [];
             this.interaction = 'none';
             this.clickItem = new core.EventEmitter();
-            configSrv.attachKey(this, 'chart', 'theme');
+            this.theme = ( /** @type {?} */(srv.cog.theme));
+            this.srv.notify
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this._install; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2PieComponent.prototype, "block", {
             // #endregion
@@ -383,6 +394,19 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
+        G2PieComponent.prototype.load = function () {
+            var _this = this;
+            this._install = true;
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return setTimeout(( /**
+             * @return {?}
+             */function () { return _this.install(); }), _this.delay); }));
+        };
         /**
          * @private
          * @return {?}
@@ -417,7 +441,7 @@
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, tooltip = _b.tooltip, inner = _b.inner, hasLegend = _b.hasLegend, interaction = _b.interaction, theme = _b.theme;
             /** @type {?} */
-            var chart = (this._chart = new g2.Chart({
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
@@ -545,15 +569,15 @@
          * @return {?}
          */
         G2PieComponent.prototype.ngOnInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
+            if ((( /** @type {?} */(window))).G2.Chart) {
+                this.load();
+            }
+            else {
+                this.srv.libLoad();
+            }
         };
         /**
          * @return {?}
@@ -575,6 +599,8 @@
                  * @return {?}
                  */function () { return _this._chart.destroy(); }));
             }
+            this.destroy$.next();
+            this.destroy$.complete();
         };
         return G2PieComponent;
     }());
@@ -596,10 +622,10 @@
     ];
     /** @nocollapse */
     G2PieComponent.ctorParameters = function () { return [
+        { type: core$1.G2Service },
         { type: core.ElementRef },
         { type: core.NgZone },
         { type: core.ChangeDetectorRef },
-        { type: util.AlainConfigService },
         { type: platform.Platform }
     ]; };
     G2PieComponent.propDecorators = {
@@ -689,6 +715,16 @@
          * @type {?}
          * @private
          */
+        G2PieComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2PieComponent.prototype._install;
+        /**
+         * @type {?}
+         * @private
+         */
         G2PieComponent.prototype._chart;
         /**
          * @type {?}
@@ -739,6 +775,11 @@
         G2PieComponent.prototype.theme;
         /** @type {?} */
         G2PieComponent.prototype.clickItem;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2PieComponent.prototype.srv;
         /**
          * @type {?}
          * @private
