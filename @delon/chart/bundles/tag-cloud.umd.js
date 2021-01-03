@@ -4,10 +4,14 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, g2, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@antv/data-set'), require('@antv/g2'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@antv/data-set', '@antv/g2', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.DataSet, global.g2, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, DataSet, g2, util, rxjs, operators, common) { 'use strict';
+
+    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+    var DataSet__default = /*#__PURE__*/_interopDefaultLegacy(DataSet);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -312,645 +316,9 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: tag-cloud.data.ts
+     * Generated from: tag-cloud.component.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    // tslint:disable: one-variable-per-declaration typedef no-conditional-assignment only-arrow-functions ban-comma-operator no-shadowed-variable
-    /*
-     * Synchronous version of d3-cloud
-     */
-    // Word cloud layout by Jason Davies, https://www.jasondavies.com/wordcloud/
-    // Algorithm due to Jonathan Feinberg, http://static.mrfeinberg.com/bv_ch03.pdf
-    /* eslint-disable no-return-assign, no-cond-assign */
-    /**
-     * @record
-     */
-    function Item() { }
-    if (false) {
-        /** @type {?} */
-        Item.prototype.value;
-        /** @type {?} */
-        Item.prototype.text;
-        /** @type {?} */
-        Item.prototype.sprite;
-    }
-    /** @type {?} */
-    var cloudRadians = Math.PI / 180;
-    /** @type {?} */
-    var cw = (1 << 11) >> 5;
-    /** @type {?} */
-    var ch = 1 << 11;
-    /**
-     * @param {?} d
-     * @return {?}
-     */
-    function cloudText(d) {
-        return d.text;
-    }
-    /**
-     * @return {?}
-     */
-    function cloudFont() {
-        return 'serif';
-    }
-    /**
-     * @return {?}
-     */
-    function cloudFontNormal() {
-        return 'normal';
-    }
-    /**
-     * @param {?} d
-     * @return {?}
-     */
-    function cloudFontSize(d) {
-        return d.value;
-    }
-    /**
-     * @return {?}
-     */
-    function cloudRotate() {
-        return ~~(Math.random() * 2) * 90;
-    }
-    /**
-     * @return {?}
-     */
-    function cloudPadding() {
-        return 1;
-    }
-    // Fetches a monochrome sprite bitmap for the specified text.
-    // Load in batches for speed.
-    /**
-     * @param {?} contextAndRatio
-     * @param {?} d
-     * @param {?} data
-     * @param {?} di
-     * @return {?}
-     */
-    function cloudSprite(contextAndRatio, d, data, di) {
-        if (d.sprite)
-            return;
-        /** @type {?} */
-        var c = contextAndRatio.context;
-        /** @type {?} */
-        var ratio = contextAndRatio.ratio;
-        c.clearRect(0, 0, (cw << 5) / ratio, ch / ratio);
-        /** @type {?} */
-        var x = 0;
-        /** @type {?} */
-        var y = 0;
-        /** @type {?} */
-        var maxh = 0;
-        /** @type {?} */
-        var n = data.length;
-        --di;
-        while (++di < n) {
-            d = data[di];
-            c.save();
-            c.font = d.style + ' ' + d.weight + ' ' + ~~((d.size + 1) / ratio) + 'px ' + d.font;
-            /** @type {?} */
-            var w = c.measureText(d.text + 'm').width * ratio;
-            /** @type {?} */
-            var h = d.size << 1;
-            if (d.rotate) {
-                /** @type {?} */
-                var sr = Math.sin(d.rotate * cloudRadians);
-                /** @type {?} */
-                var cr = Math.cos(d.rotate * cloudRadians);
-                /** @type {?} */
-                var wcr = w * cr;
-                /** @type {?} */
-                var wsr = w * sr;
-                /** @type {?} */
-                var hcr = h * cr;
-                /** @type {?} */
-                var hsr = h * sr;
-                w = ((Math.max(Math.abs(wcr + hsr), Math.abs(wcr - hsr)) + 0x1f) >> 5) << 5;
-                h = ~~Math.max(Math.abs(wsr + hcr), Math.abs(wsr - hcr));
-            }
-            else {
-                w = ((w + 0x1f) >> 5) << 5;
-            }
-            if (h > maxh)
-                maxh = h;
-            if (x + w >= cw << 5) {
-                x = 0;
-                y += maxh;
-                maxh = 0;
-            }
-            if (y + h >= ch)
-                break;
-            c.translate((x + (w >> 1)) / ratio, (y + (h >> 1)) / ratio);
-            if (d.rotate)
-                c.rotate(d.rotate * cloudRadians);
-            c.fillText(d.text, 0, 0);
-            if (d.padding) {
-                c.lineWidth = 2 * d.padding;
-                c.strokeText(d.text, 0, 0);
-            }
-            c.restore();
-            d.width = w;
-            d.height = h;
-            d.xoff = x;
-            d.yoff = y;
-            d.x1 = w >> 1;
-            d.y1 = h >> 1;
-            d.x0 = -d.x1;
-            d.y0 = -d.y1;
-            d.hasText = true;
-            x += w;
-        }
-        /** @type {?} */
-        var pixels = c.getImageData(0, 0, (cw << 5) / ratio, ch / ratio).data;
-        /** @type {?} */
-        var sprite = [];
-        while (--di >= 0) {
-            d = data[di];
-            if (!d.hasText)
-                continue;
-            /** @type {?} */
-            var w = d.width;
-            /** @type {?} */
-            var w32 = w >> 5;
-            /** @type {?} */
-            var h = d.y1 - d.y0;
-            // Zero the buffer
-            for (var i = 0; i < h * w32; i++)
-                sprite[i] = 0;
-            x = d.xoff;
-            if (x == null)
-                return;
-            y = d.yoff;
-            /** @type {?} */
-            var seen = 0;
-            /** @type {?} */
-            var seenRow = -1;
-            for (var j = 0; j < h; j++) {
-                for (var i = 0; i < w; i++) {
-                    /** @type {?} */
-                    var k = w32 * j + (i >> 5);
-                    /** @type {?} */
-                    var m = pixels[((y + j) * (cw << 5) + (x + i)) << 2] ? 1 << (31 - (i % 32)) : 0;
-                    sprite[k] |= m;
-                    seen |= m;
-                }
-                if (seen)
-                    seenRow = j;
-                else {
-                    d.y0++;
-                    h--;
-                    j--;
-                    y++;
-                }
-            }
-            d.y1 = d.y0 + seenRow;
-            d.sprite = sprite.slice(0, (d.y1 - d.y0) * w32);
-        }
-    }
-    // Use mask-based collision detection.
-    /**
-     * @param {?} tag
-     * @param {?} board
-     * @param {?} sw
-     * @return {?}
-     */
-    function cloudCollide(tag, board, sw) {
-        sw >>= 5;
-        /** @type {?} */
-        var sprite = tag.sprite;
-        /** @type {?} */
-        var w = tag.width >> 5;
-        /** @type {?} */
-        var lx = tag.x - (w << 4);
-        /** @type {?} */
-        var sx = lx & 0x7f;
-        /** @type {?} */
-        var msx = 32 - sx;
-        /** @type {?} */
-        var h = tag.y1 - tag.y0;
-        /** @type {?} */
-        var x = (tag.y + tag.y0) * sw + (lx >> 5);
-        /** @type {?} */
-        var last;
-        for (var j = 0; j < h; j++) {
-            last = 0;
-            for (var i = 0; i <= w; i++) {
-                if (((last << msx) | (i < w ? (last = sprite[j * w + i]) >>> sx : 0)) & board[x + i])
-                    return true;
-            }
-            x += sw;
-        }
-        return false;
-    }
-    /**
-     * @param {?} bounds
-     * @param {?} d
-     * @return {?}
-     */
-    function cloudBounds(bounds, d) {
-        /** @type {?} */
-        var b0 = bounds[0];
-        /** @type {?} */
-        var b1 = bounds[1];
-        if (d.x + d.x0 < b0.x)
-            b0.x = d.x + d.x0;
-        if (d.y + d.y0 < b0.y)
-            b0.y = d.y + d.y0;
-        if (d.x + d.x1 > b1.x)
-            b1.x = d.x + d.x1;
-        if (d.y + d.y1 > b1.y)
-            b1.y = d.y + d.y1;
-    }
-    /**
-     * @param {?} a
-     * @param {?} b
-     * @return {?}
-     */
-    function collideRects(a, b) {
-        return a.x + a.x1 > b[0].x && a.x + a.x0 < b[1].x && a.y + a.y1 > b[0].y && a.y + a.y0 < b[1].y;
-    }
-    /**
-     * @param {?} size
-     * @return {?}
-     */
-    function archimedeanSpiral(size) {
-        /** @type {?} */
-        var e = size[0] / size[1];
-        return ( /**
-         * @param {?} t
-         * @return {?}
-         */function (t) {
-            return [e * (t *= 0.1) * Math.cos(t), t * Math.sin(t)];
-        });
-    }
-    /**
-     * @param {?} size
-     * @return {?}
-     */
-    function rectangularSpiral(size) {
-        /** @type {?} */
-        var dy = 4;
-        /** @type {?} */
-        var dx = (dy * size[0]) / size[1];
-        /** @type {?} */
-        var x = 0;
-        /** @type {?} */
-        var y = 0;
-        return ( /**
-         * @param {?} t
-         * @return {?}
-         */function (t) {
-            /** @type {?} */
-            var sign = t < 0 ? -1 : 1;
-            // See triangular numbers: T_n = n * (n + 1) / 2.
-            switch ((Math.sqrt(1 + 4 * sign * t) - sign) & 3) {
-                case 0:
-                    x += dx;
-                    break;
-                case 1:
-                    y += dy;
-                    break;
-                case 2:
-                    x -= dx;
-                    break;
-                default:
-                    y -= dy;
-                    break;
-            }
-            return [x, y];
-        });
-    }
-    // TODO reuse arrays?
-    /**
-     * @param {?} n
-     * @return {?}
-     */
-    function zeroArray(n) {
-        /** @type {?} */
-        var a = [];
-        /** @type {?} */
-        var i = -1;
-        while (++i < n)
-            a[i] = 0;
-        return a;
-    }
-    /**
-     * @return {?}
-     */
-    function cloudCanvas() {
-        return document.createElement('canvas');
-    }
-    /**
-     * @param {?} d
-     * @return {?}
-     */
-    function functor(d) {
-        return typeof d === 'function'
-            ? d
-            : ( /**
-             * @return {?}
-             */function () {
-                return d;
-            });
-    }
-    /** @type {?} */
-    var spirals = {
-        archimedean: archimedeanSpiral,
-        rectangular: rectangularSpiral,
-    };
-    /**
-     * @return {?}
-     */
-    function tagCloud () {
-        /** @type {?} */
-        var size = [256, 256];
-        /** @type {?} */
-        var text = cloudText;
-        /** @type {?} */
-        var font = cloudFont;
-        /** @type {?} */
-        var fontSize = cloudFontSize;
-        /** @type {?} */
-        var fontStyle = cloudFontNormal;
-        /** @type {?} */
-        var fontWeight = cloudFontNormal;
-        /** @type {?} */
-        var rotate = cloudRotate;
-        /** @type {?} */
-        var padding = cloudPadding;
-        /** @type {?} */
-        var spiral = rectangularSpiral;
-        /** @type {?} */
-        var words = [];
-        /** @type {?} */
-        var timeInterval = Infinity;
-        /** @type {?} */
-        var random = Math.random;
-        /** @type {?} */
-        var canvas = cloudCanvas;
-        /** @type {?} */
-        var cloud = {};
-        cloud.canvas = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((canvas = functor(_)), cloud) : canvas;
-        });
-        cloud.start = ( /**
-         * @return {?}
-         */function () {
-            var _a = __read(size, 2), width = _a[0], height = _a[1];
-            /** @type {?} */
-            var contextAndRatio = getContext(canvas());
-            /** @type {?} */
-            var board = cloud.board ? cloud.board : zeroArray((size[0] >> 5) * size[1]);
-            /** @type {?} */
-            var n = words.length;
-            /** @type {?} */
-            var tags = [];
-            /** @type {?} */
-            var data = words
-                .map(( /**
-         * @param {?} d
-         * @param {?} _i
-         * @return {?}
-         */function (d, _i) {
-                d.text = text(d);
-                d.font = font();
-                d.style = fontStyle();
-                d.weight = fontWeight();
-                d.rotate = rotate();
-                d.size = ~~fontSize(d);
-                d.padding = 1;
-                // d.text = text.call(this as any, d, i);
-                // d.font = font.call(this, d, i);
-                // d.style = fontStyle.call(this, d, i);
-                // d.weight = fontWeight.call(this, d, i);
-                // d.rotate = rotate.call(this, d, i);
-                // d.size = ~~fontSize.call(this, d, i);
-                // d.padding = padding.call(this, d, i);
-                return d;
-            }))
-                .sort(( /**
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */function (a, b) {
-                return b.size - a.size;
-            }));
-            /** @type {?} */
-            var i = -1;
-            /** @type {?} */
-            var bounds = !cloud.board
-                ? null
-                : [
-                    {
-                        x: 0,
-                        y: 0,
-                    },
-                    {
-                        x: width,
-                        y: height,
-                    },
-                ];
-            step();
-            /**
-             * @return {?}
-             */
-            function step() {
-                /** @type {?} */
-                var start = Date.now();
-                while (Date.now() - start < timeInterval && ++i < n) {
-                    /** @type {?} */
-                    var d = data[i];
-                    d.x = (width * (random() + 0.5)) >> 1;
-                    d.y = (height * (random() + 0.5)) >> 1;
-                    cloudSprite(contextAndRatio, d, data, i);
-                    if (d.hasText && place(board, d, bounds)) {
-                        tags.push(d);
-                        if (bounds) {
-                            if (!cloud.hasImage) {
-                                // update bounds if image mask not set
-                                cloudBounds(bounds, d);
-                            }
-                        }
-                        else {
-                            bounds = [
-                                { x: d.x + d.x0, y: d.y + d.y0 },
-                                { x: d.x + d.x1, y: d.y + d.y1 },
-                            ];
-                        }
-                        // Temporary hack
-                        d.x -= size[0] >> 1;
-                        d.y -= size[1] >> 1;
-                    }
-                }
-                cloud._tags = tags;
-                cloud._bounds = bounds;
-            }
-            return cloud;
-        });
-        /**
-         * @param {?} canvas
-         * @return {?}
-         */
-        function getContext(canvas) {
-            canvas.width = canvas.height = 1;
-            /** @type {?} */
-            var ratio = Math.sqrt(( /** @type {?} */(canvas.getContext('2d'))).getImageData(0, 0, 1, 1).data.length >> 2);
-            canvas.width = (cw << 5) / ratio;
-            canvas.height = ch / ratio;
-            /** @type {?} */
-            var context = ( /** @type {?} */(canvas.getContext('2d')));
-            context.fillStyle = context.strokeStyle = 'red';
-            context.textAlign = 'center';
-            return { context: context, ratio: ratio };
-        }
-        /**
-         * @param {?} board
-         * @param {?} tag
-         * @param {?} bounds
-         * @return {?}
-         */
-        function place(board, tag, bounds) {
-            // const perimeter = [{ x: 0, y: 0 }, { x: size[0], y: size[1] }],
-            /** @type {?} */
-            var startX = tag.x;
-            /** @type {?} */
-            var startY = tag.y;
-            /** @type {?} */
-            var maxDelta = Math.sqrt(size[0] * size[0] + size[1] * size[1]);
-            /** @type {?} */
-            var s = spiral(size);
-            /** @type {?} */
-            var dt = random() < 0.5 ? 1 : -1;
-            /** @type {?} */
-            var dxdy;
-            /** @type {?} */
-            var t = -dt;
-            /** @type {?} */
-            var dx;
-            /** @type {?} */
-            var dy;
-            while ((dxdy = s((t += dt)))) {
-                dx = ~~dxdy[0];
-                dy = ~~dxdy[1];
-                if (Math.min(Math.abs(dx), Math.abs(dy)) >= maxDelta)
-                    break;
-                tag.x = startX + dx;
-                tag.y = startY + dy;
-                if (tag.x + tag.x0 < 0 || tag.y + tag.y0 < 0 || tag.x + tag.x1 > size[0] || tag.y + tag.y1 > size[1])
-                    continue;
-                // TODO only check for collisions within current bounds.
-                if (!bounds || !cloudCollide(tag, board, size[0])) {
-                    if (!bounds || collideRects(tag, bounds)) {
-                        /** @type {?} */
-                        var sprite = tag.sprite;
-                        /** @type {?} */
-                        var w = tag.width >> 5;
-                        /** @type {?} */
-                        var sw = size[0] >> 5;
-                        /** @type {?} */
-                        var lx = tag.x - (w << 4);
-                        /** @type {?} */
-                        var sx = lx & 0x7f;
-                        /** @type {?} */
-                        var msx = 32 - sx;
-                        /** @type {?} */
-                        var h = tag.y1 - tag.y0;
-                        /** @type {?} */
-                        var last = void 0;
-                        /** @type {?} */
-                        var x = (tag.y + tag.y0) * sw + (lx >> 5);
-                        for (var j = 0; j < h; j++) {
-                            last = 0;
-                            for (var i = 0; i <= w; i++) {
-                                board[x + i] |= (last << msx) | (i < w ? (last = sprite[j * w + i]) >>> sx : 0);
-                            }
-                            x += sw;
-                        }
-                        delete tag.sprite;
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        cloud.timeInterval = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((timeInterval = _ == null ? Infinity : _), cloud) : timeInterval;
-        });
-        cloud.words = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((words = _), cloud) : words;
-        });
-        cloud.size = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((size = [+_[0], +_[1]]), cloud) : size;
-        });
-        cloud.font = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((font = functor(_)), cloud) : font;
-        });
-        cloud.fontStyle = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((fontStyle = functor(_)), cloud) : fontStyle;
-        });
-        cloud.fontWeight = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((fontWeight = functor(_)), cloud) : fontWeight;
-        });
-        cloud.rotate = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((rotate = functor(_)), cloud) : rotate;
-        });
-        cloud.text = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((text = functor(_)), cloud) : text;
-        });
-        cloud.spiral = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((spiral = (( /** @type {?} */(spirals)))[_] || _), cloud) : spiral;
-        });
-        cloud.fontSize = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((fontSize = functor(_)), cloud) : fontSize;
-        });
-        cloud.padding = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((padding = functor(_)), cloud) : padding;
-        });
-        cloud.random = ( /**
-         * @param {?} _
-         * @return {?}
-         */function (_) {
-            return arguments.length ? ((random = _), cloud) : random;
-        });
-        return cloud;
-    }
-
     /**
      * @record
      */
@@ -984,15 +352,12 @@
             this.el = el;
             this.ngZone = ngZone;
             this.platform = platform;
-            this._h = 0;
-            this._w = 0;
             // #region fields
             this.delay = 100;
             this.width = 0;
             this.height = 200;
             this.padding = 0;
             this.data = [];
-            this.spiral = 'rectangular';
             this.clickItem = new core.EventEmitter();
             configSrv.attachKey(this, 'chart', 'theme');
         }
@@ -1006,15 +371,6 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
-        G2TagCloudComponent.prototype.fixWH = function () {
-            var _b = this, height = _b.height, width = _b.width, el = _b.el;
-            this._h = height <= 0 ? el.nativeElement.clientHeight : height;
-            this._w = width <= 0 ? el.nativeElement.clientWidth : width;
-        };
         /**
          * @private
          * @return {?}
@@ -1050,14 +406,19 @@
         G2TagCloudComponent.prototype.install = function () {
             var _this = this;
             var _b = this, el = _b.el, padding = _b.padding, theme = _b.theme;
-            this.fixWH();
+            if (this.height === 0) {
+                this.height = this.el.nativeElement.clientHeight;
+            }
+            if (this.width === 0) {
+                this.width = this.el.nativeElement.clientWidth;
+            }
             /** @type {?} */
             var chart = (this._chart = new g2.Chart({
                 container: el.nativeElement,
                 autoFit: false,
-                height: this._h,
-                width: this._w,
                 padding: padding,
+                height: this.height,
+                width: this.width,
                 theme: theme,
             }));
             chart.scale({
@@ -1098,123 +459,53 @@
          * @private
          * @return {?}
          */
-        G2TagCloudComponent.prototype.transform = function () {
+        G2TagCloudComponent.prototype.attachChart = function () {
+            var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
+            if (!_chart || !data || data.length <= 0)
+                return;
+            _chart.height = this.height;
+            _chart.width = this.width;
+            _chart.padding = padding;
             /** @type {?} */
-            var statisticData = this.data.map(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return ( /** @type {?} */(i.value)); }));
+            var dv = new DataSet__default['default'].View().source(data);
             /** @type {?} */
-            var min = Math.min.apply(Math, __spread(statisticData));
+            var range = dv.range('value');
             /** @type {?} */
-            var max = Math.max.apply(Math, __spread(statisticData));
+            var min = range[0];
             /** @type {?} */
-            var options = {
+            var max = range[1];
+            dv.transform(( /** @type {?} */({
+                type: 'tag-cloud',
                 fields: ['name', 'value'],
                 // imageMask,
                 font: 'Verdana',
-                padding: 1,
-                size: [this._w, this._h],
+                size: [this.width, this.height],
                 // 宽高设置最好根据 imageMask 做调整
-                spiral: this.spiral,
+                padding: 0,
                 timeInterval: 5000,
                 // max execute time
-                rotate: ( /**
+                // tslint:disable-next-line: typedef
+                /**
                  * @return {?}
-                 */function () {
+                 */
+                rotate: function () {
                     /** @type {?} */
                     var random = ~~(Math.random() * 4) % 4;
                     if (random === 2) {
                         random = 0;
                     }
                     return random * 90; // 0, 90, 270
-                }),
-                fontSize: ( /**
+                },
+                // tslint:disable-next-line: typedef
+                /**
                  * @param {?} d
                  * @return {?}
-                 */function (d) {
-                    return ((( /** @type {?} */(d.value)) - min) / (max - min)) * (32 - 8) + 8;
-                }),
-            };
-            /** @type {?} */
-            var layout = tagCloud();
-            ['font', 'fontSize', 'fontWeight', 'padding', 'rotate', 'size', 'spiral', 'timeInterval'].forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                // @ts-ignore
-                if (options[key]) {
-                    // @ts-ignore
-                    layout[key](options[key]);
-                }
-            }));
-            /** @type {?} */
-            var words = this.data.map(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (Object.assign(Object.assign({}, i), { text: i.name })); }));
-            layout.words(words);
-            /** @type {?} */
-            var result = layout.start();
-            /** @type {?} */
-            var tags = result._tags;
-            /** @type {?} */
-            var bounds = result._bounds || [
-                { x: 0, y: 0 },
-                { x: options.size[0], y: options.size[1] },
-            ];
-            tags.forEach(( /**
-             * @param {?} tag
-             * @return {?}
-             */function (/**
-             * @param {?} tag
-             * @return {?}
-             */ tag) {
-                tag.x += options.size[0] / 2;
-                tag.y += options.size[1] / 2;
-            }));
-            var _b = __read(options.size, 2), w = _b[0], h = _b[1];
-            /** @type {?} */
-            var hasImage = result.hasImage;
-            tags.push({
-                text: '',
-                value: 0,
-                x: hasImage ? 0 : bounds[0].x,
-                y: hasImage ? 0 : bounds[0].y,
-                opacity: 0,
-            });
-            tags.push({
-                text: '',
-                value: 0,
-                x: hasImage ? w : bounds[1].x,
-                y: hasImage ? h : bounds[1].y,
-                opacity: 0,
-            });
-            return tags;
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        G2TagCloudComponent.prototype.attachChart = function () {
-            var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
-            if (!_chart || !data || data.length <= 0)
-                return;
-            this.fixWH();
-            _chart.changeSize(this._w, this._h);
-            _chart.padding = padding;
-            /** @type {?} */
-            var rows = this.transform();
-            _chart.data(rows);
+                 */
+                fontSize: function (d) {
+                    return ((d.value - min) / (max - min)) * (32 - 8) + 8;
+                },
+            })));
+            _chart.data(dv.rows);
             _chart.render();
         };
         /**
@@ -1302,7 +593,6 @@
         height: [{ type: core.Input }],
         padding: [{ type: core.Input }],
         data: [{ type: core.Input }],
-        spiral: [{ type: core.Input }],
         theme: [{ type: core.Input }],
         clickItem: [{ type: core.Output }]
     };
@@ -1335,16 +625,6 @@
          * @private
          */
         G2TagCloudComponent.prototype._chart;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype._h;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype._w;
         /** @type {?} */
         G2TagCloudComponent.prototype.delay;
         /** @type {?} */
@@ -1355,8 +635,6 @@
         G2TagCloudComponent.prototype.padding;
         /** @type {?} */
         G2TagCloudComponent.prototype.data;
-        /** @type {?} */
-        G2TagCloudComponent.prototype.spiral;
         /** @type {?} */
         G2TagCloudComponent.prototype.theme;
         /** @type {?} */

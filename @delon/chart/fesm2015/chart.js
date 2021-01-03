@@ -29,6 +29,7 @@ export { TrendComponent, TrendModule } from '@delon/chart/trend';
 import { G2SingleBarModule } from '@delon/chart/single-bar';
 export { G2SingleBarComponent, G2SingleBarModule } from '@delon/chart/single-bar';
 import { NgModule } from '@angular/core';
+import { warnDeprecation } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -54,11 +55,19 @@ const MODULES = [
     TrendModule,
 ];
 // #endregion
+/**
+ * @deprecated Use secondary entry eg: `import { G2BarModule } from '\@delon/chart/bar';`.
+ */
 class DelonChartModule {
+    constructor() {
+        warnDeprecation("The `DelonChartModule` has been deprecated and will be removed in 12.0.0. Please use secondary entry instead.\ne.g. `import { G2BarModule } from '@delon/chart/bar';`");
+    }
 }
 DelonChartModule.decorators = [
     { type: NgModule, args: [{ exports: MODULES },] }
 ];
+/** @nocollapse */
+DelonChartModule.ctorParameters = () => [];
 
 /**
  * @fileoverview added by tsickle
