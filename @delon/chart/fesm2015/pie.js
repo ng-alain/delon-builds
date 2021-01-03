@@ -1,13 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
+import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -35,25 +33,11 @@ if (false) {
     /** @type {?} */
     G2PieClickItem.prototype.ev;
 }
-class G2PieComponent {
-    /**
-     * @param {?} srv
-     * @param {?} el
-     * @param {?} ngZone
-     * @param {?} cdr
-     * @param {?} platform
-     */
-    constructor(srv, el, ngZone, cdr, platform) {
-        this.srv = srv;
-        this.el = el;
-        this.ngZone = ngZone;
-        this.cdr = cdr;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
+class G2PieComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         this.legendData = [];
         // #region fields
-        this.delay = 0;
         this.animate = true;
         this.color = 'rgba(24, 144, 255, 0.85)';
         this.height = 0;
@@ -67,16 +51,6 @@ class G2PieComponent {
         this.data = [];
         this.interaction = 'none';
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
     // #endregion
     /**
@@ -84,26 +58,6 @@ class G2PieComponent {
      */
     get block() {
         return this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
-    }
-    /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
     }
     /**
      * @private
@@ -133,7 +87,6 @@ class G2PieComponent {
         }
     }
     /**
-     * @private
      * @return {?}
      */
     install() {
@@ -192,7 +145,6 @@ class G2PieComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -261,46 +213,15 @@ class G2PieComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
+    onChanges() {
         this.fixData();
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }
 G2PieComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-pie',
                 exportAs: 'g2Pie',
-                template: "<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *nzStringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *nzStringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n    <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
+                template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *nzStringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *nzStringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n    <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
                 host: {
                     '[class.g2-pie]': 'true',
                     '[class.g2-pie__legend-has]': 'hasLegend',
@@ -312,17 +233,7 @@ G2PieComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2PieComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: ElementRef },
-    { type: NgZone },
-    { type: ChangeDetectorRef },
-    { type: Platform }
-];
 G2PieComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container', { static: true },] }],
-    delay: [{ type: Input }],
     animate: [{ type: Input }],
     color: [{ type: Input }],
     subTitle: [{ type: Input }],
@@ -340,13 +251,8 @@ G2PieComponent.propDecorators = {
     data: [{ type: Input }],
     colors: [{ type: Input }],
     interaction: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2PieComponent.prototype, "delay", void 0);
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
@@ -381,8 +287,6 @@ __decorate([
 ], G2PieComponent.prototype, "select", void 0);
 if (false) {
     /** @type {?} */
-    G2PieComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2PieComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2PieComponent.ngAcceptInputType_animate;
@@ -402,33 +306,11 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2PieComponent.prototype.node;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype._install;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype._chart;
-    /**
-     * @type {?}
-     * @private
-     */
     G2PieComponent.prototype.percentColor;
     /** @type {?} */
     G2PieComponent.prototype.legendData;
     /** @type {?} */
     G2PieComponent.prototype.isPercent;
-    /** @type {?} */
-    G2PieComponent.prototype.delay;
     /** @type {?} */
     G2PieComponent.prototype.animate;
     /** @type {?} */
@@ -464,34 +346,7 @@ if (false) {
     /** @type {?} */
     G2PieComponent.prototype.interaction;
     /** @type {?} */
-    G2PieComponent.prototype.theme;
-    /** @type {?} */
     G2PieComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2PieComponent.prototype.platform;
 }
 
 /**
@@ -505,7 +360,7 @@ class G2PieModule {
 }
 G2PieModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzDividerModule, NzOutletModule],
+                imports: [CommonModule, DelonUtilModule, NzDividerModule, NzOutletModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

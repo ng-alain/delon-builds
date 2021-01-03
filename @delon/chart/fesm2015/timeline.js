@@ -1,13 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import format from 'date-fns/format';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -93,21 +91,9 @@ if (false) {
     /** @type {?} */
     G2TimelineClickItem.prototype.ev;
 }
-class G2TimelineComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, ngZone, platform) {
-        this.srv = srv;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
-        // #region fields
-        this.delay = 0;
+class G2TimelineComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         this.maxAxis = 2;
         this.data = [];
         this.colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
@@ -119,53 +105,9 @@ class G2TimelineComponent {
         this.borderWidth = 2;
         this.slider = true;
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
+    // #endregion
     /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @private
      * @return {?}
      */
     install() {
@@ -245,7 +187,6 @@ class G2TimelineComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -347,48 +288,24 @@ class G2TimelineComponent {
         _chart.changeData(filterData);
         _chart.render();
     }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
 }
 G2TimelineComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-timeline',
                 exportAs: 'g2Timeline',
-                template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n",
+                template: `
+    <ng-container *nzStringTemplateOutlet="title">
+      <h4>{{ title }}</h4>
+    </ng-container>
+    <nz-skeleton *ngIf="!loaded"></nz-skeleton>
+    <div #container></div>
+  `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2TimelineComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: NgZone },
-    { type: Platform }
-];
 G2TimelineComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container', { static: false },] }],
-    delay: [{ type: Input }],
     title: [{ type: Input }],
     maxAxis: [{ type: Input }],
     data: [{ type: Input }],
@@ -401,13 +318,8 @@ G2TimelineComponent.propDecorators = {
     padding: [{ type: Input }],
     borderWidth: [{ type: Input }],
     slider: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2TimelineComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -426,8 +338,6 @@ __decorate([
 ], G2TimelineComponent.prototype, "slider", void 0);
 if (false) {
     /** @type {?} */
-    G2TimelineComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2TimelineComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2TimelineComponent.ngAcceptInputType_maxAxis;
@@ -435,28 +345,6 @@ if (false) {
     G2TimelineComponent.ngAcceptInputType_borderWidth;
     /** @type {?} */
     G2TimelineComponent.ngAcceptInputType_slider;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.node;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype._chart;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype._install;
-    /** @type {?} */
-    G2TimelineComponent.prototype.delay;
     /** @type {?} */
     G2TimelineComponent.prototype.title;
     /** @type {?} */
@@ -482,24 +370,7 @@ if (false) {
     /** @type {?} */
     G2TimelineComponent.prototype.slider;
     /** @type {?} */
-    G2TimelineComponent.prototype.theme;
-    /** @type {?} */
     G2TimelineComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TimelineComponent.prototype.platform;
 }
 
 /**
@@ -513,7 +384,7 @@ class G2TimelineModule {
 }
 G2TimelineModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzOutletModule],
+                imports: [CommonModule, DelonUtilModule, NzOutletModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

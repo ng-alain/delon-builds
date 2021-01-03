@@ -1,11 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
-import { Subject, fromEvent } from 'rxjs';
-import { takeUntil, filter, debounceTime } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -33,59 +33,17 @@ if (false) {
     /** @type {?} */
     G2TagCloudClickItem.prototype.ev;
 }
-class G2TagCloudComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} el
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, el, ngZone, platform) {
-        this.srv = srv;
-        this.el = el;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
+class G2TagCloudComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         // #region fields
-        this.delay = 100;
         this.width = 0;
         this.height = 200;
         this.padding = 0;
         this.data = [];
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
-    /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
+    // #endregion
     /**
      * @private
      * @return {?}
@@ -115,10 +73,10 @@ class G2TagCloudComponent {
         });
     }
     /**
-     * @private
      * @return {?}
      */
     install() {
+        this.initTagCloud();
         const { el, padding, theme } = this;
         if (this.height === 0) {
             this.height = this.el.nativeElement.clientHeight;
@@ -172,7 +130,6 @@ class G2TagCloudComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -252,72 +209,27 @@ class G2TagCloudComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        this.initTagCloud();
+    onInit() {
         this.installResizeEvent();
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this._attachChart();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }
 G2TagCloudComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-tag-cloud',
                 exportAs: 'g2TagCloud',
-                template: ``,
+                template: `<nz-skeleton *ngIf="!loaded"></nz-skeleton>`,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2TagCloudComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: ElementRef },
-    { type: NgZone },
-    { type: Platform }
-];
 G2TagCloudComponent.propDecorators = {
-    delay: [{ type: Input }],
     width: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2TagCloudComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -328,33 +240,9 @@ __decorate([
 ], G2TagCloudComponent.prototype, "height", void 0);
 if (false) {
     /** @type {?} */
-    G2TagCloudComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2TagCloudComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2TagCloudComponent.ngAcceptInputType_width;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.resize$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype._install;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype._chart;
-    /** @type {?} */
-    G2TagCloudComponent.prototype.delay;
     /** @type {?} */
     G2TagCloudComponent.prototype.width;
     /** @type {?} */
@@ -364,29 +252,7 @@ if (false) {
     /** @type {?} */
     G2TagCloudComponent.prototype.data;
     /** @type {?} */
-    G2TagCloudComponent.prototype.theme;
-    /** @type {?} */
     G2TagCloudComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2TagCloudComponent.prototype.platform;
 }
 
 /**
@@ -400,7 +266,7 @@ class G2TagCloudModule {
 }
 G2TagCloudModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule, DelonUtilModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

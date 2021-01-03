@@ -1,21 +1,8 @@
-import { Platform } from '@angular/cdk/platform';
-import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Chart, Types } from '@antv/g2';
-import { G2Service } from '@delon/chart/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { NumberInput } from '@delon/util';
-export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
-    private srv;
-    private el;
-    private ngZone;
-    private platform;
-    static ngAcceptInputType_delay: NumberInput;
+export declare class G2GaugeComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_percent: NumberInput;
-    private destroy$;
-    private _chart;
-    private _install;
-    get chart(): Chart;
-    delay: number;
     title: string;
     height: number;
     color: string;
@@ -23,12 +10,6 @@ export declare class G2GaugeComponent implements OnInit, OnDestroy, OnChanges {
     format: (text: string, item: {}, index: number) => string;
     percent: number;
     padding: number | number[] | 'auto';
-    theme: string | Types.LooseObject;
-    constructor(srv: G2Service, el: ElementRef, ngZone: NgZone, platform: Platform);
-    private load;
-    private install;
-    private attachChart;
-    ngOnInit(): void;
-    ngOnChanges(): void;
-    ngOnDestroy(): void;
+    install(): void;
+    attachChart(): void;
 }

@@ -1,4 +1,4 @@
-import { EventEmitter, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { EventEmitter, TemplateRef } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util';
@@ -13,10 +13,9 @@ export interface G2BarClickItem {
     item: G2BarData;
     ev: Event;
 }
-export declare class G2BarComponent extends G2BaseComponent implements OnInit, OnChanges, OnDestroy {
+export declare class G2BarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_autoLabel: BooleanInput;
-    private node;
     title: string | TemplateRef<void>;
     color: string;
     height: number;

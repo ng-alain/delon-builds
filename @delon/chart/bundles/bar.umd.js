@@ -489,7 +489,6 @@
                 }] }
     ];
     G2BarComponent.propDecorators = {
-        node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
         title: [{ type: core.Input }],
         color: [{ type: core.Input }],
         height: [{ type: core.Input }],
@@ -512,11 +511,6 @@
         G2BarComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2BarComponent.ngAcceptInputType_autoLabel;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.node;
         /** @type {?} */
         G2BarComponent.prototype.title;
         /** @type {?} */

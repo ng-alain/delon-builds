@@ -1,10 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -33,23 +30,10 @@ if (false) {
     /** @type {?} */
     G2MiniBarClickItem.prototype.ev;
 }
-class G2MiniBarComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} el
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, el, ngZone, platform) {
-        this.srv = srv;
-        this.el = el;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
+class G2MiniBarComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         // #region fields
-        this.delay = 0;
         this.color = '#1890FF';
         this.height = 0;
         this.borderWidth = 5;
@@ -58,39 +42,9 @@ class G2MiniBarComponent {
         this.yTooltipSuffix = '';
         this.tooltipType = 'default';
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
+    // #endregion
     /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
-    /**
-     * @private
      * @return {?}
      */
     install() {
@@ -155,7 +109,6 @@ class G2MiniBarComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -167,42 +120,6 @@ class G2MiniBarComponent {
         _chart.padding = padding;
         _chart.changeData(data);
         _chart.render();
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }
 G2MiniBarComponent.decorators = [
@@ -218,15 +135,7 @@ G2MiniBarComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2MiniBarComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: ElementRef },
-    { type: NgZone },
-    { type: Platform }
-];
 G2MiniBarComponent.propDecorators = {
-    delay: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: Input }],
     borderWidth: [{ type: Input }],
@@ -234,13 +143,8 @@ G2MiniBarComponent.propDecorators = {
     data: [{ type: Input }],
     yTooltipSuffix: [{ type: Input }],
     tooltipType: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2MiniBarComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -251,28 +155,9 @@ __decorate([
 ], G2MiniBarComponent.prototype, "borderWidth", void 0);
 if (false) {
     /** @type {?} */
-    G2MiniBarComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2MiniBarComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2MiniBarComponent.ngAcceptInputType_borderWidth;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype._chart;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype._install;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.delay;
     /** @type {?} */
     G2MiniBarComponent.prototype.color;
     /** @type {?} */
@@ -288,29 +173,7 @@ if (false) {
     /** @type {?} */
     G2MiniBarComponent.prototype.tooltipType;
     /** @type {?} */
-    G2MiniBarComponent.prototype.theme;
-    /** @type {?} */
     G2MiniBarComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2MiniBarComponent.prototype.platform;
 }
 
 /**

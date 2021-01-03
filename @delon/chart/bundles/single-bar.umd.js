@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/single-bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['single-bar'] = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common));
+}(this, (function (exports, core$1, core, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -310,73 +310,25 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: single-bar.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var G2SingleBarComponent = /** @class */ (function () {
+    var G2SingleBarComponent = /** @class */ (function (_super) {
+        __extends(G2SingleBarComponent, _super);
+        function G2SingleBarComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            // #region fields
+            _this.plusColor = '#40a9ff';
+            _this.minusColor = '#ff4d4f';
+            _this.height = 60;
+            _this.barSize = 30;
+            _this.min = 0;
+            _this.max = 100;
+            _this.value = 0;
+            _this.line = false;
+            _this.padding = 0;
+            _this.textStyle = { fontSize: 12, color: '#595959' };
+            return _this;
+        }
         // #endregion
         /**
-         * @param {?} srv
-         * @param {?} el
-         * @param {?} ngZone
-         * @param {?} platform
-         */
-        function G2SingleBarComponent(srv, el, ngZone, platform) {
-            var _this = this;
-            this.srv = srv;
-            this.el = el;
-            this.ngZone = ngZone;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
-            // #region fields
-            this.delay = 0;
-            this.plusColor = '#40a9ff';
-            this.minusColor = '#ff4d4f';
-            this.height = 60;
-            this.barSize = 30;
-            this.min = 0;
-            this.max = 100;
-            this.value = 0;
-            this.line = false;
-            this.padding = 0;
-            this.textStyle = { fontSize: 12, color: '#595959' };
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
-        }
-        Object.defineProperty(G2SingleBarComponent.prototype, "chart", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._chart;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        G2SingleBarComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
-        };
-        /**
-         * @private
          * @return {?}
          */
         G2SingleBarComponent.prototype.install = function () {
@@ -416,7 +368,6 @@
             this.attachChart();
         };
         /**
-         * @private
          * @return {?}
          */
         G2SingleBarComponent.prototype.attachChart = function () {
@@ -433,46 +384,10 @@
             _chart.changeData([{ value: value }]);
             _chart.render();
         };
-        /**
-         * @return {?}
-         */
-        G2SingleBarComponent.prototype.ngOnInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2SingleBarComponent.prototype.ngOnChanges = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.attachChart(); }));
-        };
-        /**
-         * @return {?}
-         */
-        G2SingleBarComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this._chart.destroy(); }));
-            }
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return G2SingleBarComponent;
-    }());
+    }(core.G2BaseComponent));
     G2SingleBarComponent.decorators = [
-        { type: core.Component, args: [{
+        { type: core$1.Component, args: [{
                     selector: 'g2-single-bar',
                     exportAs: 'g2SingleBar',
                     template: "",
@@ -480,36 +395,23 @@
                         '[style.height.px]': 'height',
                     },
                     preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
+                    changeDetection: core$1.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core$1.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2SingleBarComponent.ctorParameters = function () { return [
-        { type: core$1.G2Service },
-        { type: core.ElementRef },
-        { type: core.NgZone },
-        { type: platform.Platform }
-    ]; };
     G2SingleBarComponent.propDecorators = {
-        delay: [{ type: core.Input }],
-        plusColor: [{ type: core.Input }],
-        minusColor: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        barSize: [{ type: core.Input }],
-        min: [{ type: core.Input }],
-        max: [{ type: core.Input }],
-        value: [{ type: core.Input }],
-        line: [{ type: core.Input }],
-        format: [{ type: core.Input }],
-        padding: [{ type: core.Input }],
-        textStyle: [{ type: core.Input }],
-        theme: [{ type: core.Input }]
+        plusColor: [{ type: core$1.Input }],
+        minusColor: [{ type: core$1.Input }],
+        height: [{ type: core$1.Input }],
+        barSize: [{ type: core$1.Input }],
+        min: [{ type: core$1.Input }],
+        max: [{ type: core$1.Input }],
+        value: [{ type: core$1.Input }],
+        line: [{ type: core$1.Input }],
+        format: [{ type: core$1.Input }],
+        padding: [{ type: core$1.Input }],
+        textStyle: [{ type: core$1.Input }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2SingleBarComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
@@ -536,8 +438,6 @@
     ], G2SingleBarComponent.prototype, "line", void 0);
     if (false) {
         /** @type {?} */
-        G2SingleBarComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2SingleBarComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2SingleBarComponent.ngAcceptInputType_barSize;
@@ -549,23 +449,6 @@
         G2SingleBarComponent.ngAcceptInputType_value;
         /** @type {?} */
         G2SingleBarComponent.ngAcceptInputType_line;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype._install;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype._chart;
-        /** @type {?} */
-        G2SingleBarComponent.prototype.delay;
         /** @type {?} */
         G2SingleBarComponent.prototype.plusColor;
         /** @type {?} */
@@ -588,28 +471,6 @@
         G2SingleBarComponent.prototype.padding;
         /** @type {?} */
         G2SingleBarComponent.prototype.textStyle;
-        /** @type {?} */
-        G2SingleBarComponent.prototype.theme;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2SingleBarComponent.prototype.platform;
     }
 
     /** @type {?} */
@@ -620,7 +481,7 @@
         return G2SingleBarModule;
     }());
     G2SingleBarModule.decorators = [
-        { type: core.NgModule, args: [{
+        { type: core$1.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),

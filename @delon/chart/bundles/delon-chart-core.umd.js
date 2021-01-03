@@ -444,13 +444,15 @@
     var G2BaseComponent = /** @class */ (function () {
         /**
          * @param {?} srv
+         * @param {?} el
          * @param {?} ngZone
          * @param {?} platform
          * @param {?} cdr
          */
-        function G2BaseComponent(srv, ngZone, platform, cdr) {
+        function G2BaseComponent(srv, el, ngZone, platform, cdr) {
             var _this = this;
             this.srv = srv;
+            this.el = el;
             this.ngZone = ngZone;
             this.platform = platform;
             this.cdr = cdr;
@@ -477,6 +479,14 @@
             configurable: true
         });
         /**
+         * @return {?}
+         */
+        G2BaseComponent.prototype.onInit = function () { };
+        /**
+         * @return {?}
+         */
+        G2BaseComponent.prototype.onChanges = function () { };
+        /**
          * @private
          * @return {?}
          */
@@ -501,6 +511,7 @@
             if (!this.platform.isBrowser) {
                 return;
             }
+            this.onInit();
             if ((( /** @type {?} */(window))).G2) {
                 this.load();
             }
@@ -513,6 +524,7 @@
          */
         G2BaseComponent.prototype.ngOnChanges = function () {
             var _this = this;
+            this.onChanges();
             this.ngZone.runOutsideAngular(( /**
              * @return {?}
              */function () { return _this.attachChart(); }));
@@ -541,11 +553,13 @@
     /** @nocollapse */
     G2BaseComponent.ctorParameters = function () { return [
         { type: G2Service },
+        { type: i0.ElementRef },
         { type: i0.NgZone },
         { type: platform.Platform },
         { type: i0.ChangeDetectorRef }
     ]; };
     G2BaseComponent.propDecorators = {
+        node: [{ type: i0.ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: i0.Input }],
         theme: [{ type: i0.Input }]
     };
@@ -556,6 +570,11 @@
     if (false) {
         /** @type {?} */
         G2BaseComponent.ngAcceptInputType_delay;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.node;
         /**
          * @type {?}
          * @protected
@@ -586,6 +605,11 @@
          * @type {?}
          * @protected
          */
+        G2BaseComponent.prototype.el;
+        /**
+         * @type {?}
+         * @protected
+         */
         G2BaseComponent.prototype.ngZone;
         /**
          * @type {?}
@@ -594,7 +618,7 @@
         G2BaseComponent.prototype.platform;
         /**
          * @type {?}
-         * @private
+         * @protected
          */
         G2BaseComponent.prototype.cdr;
         /**

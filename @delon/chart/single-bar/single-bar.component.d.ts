@@ -1,25 +1,12 @@
-import { Platform } from '@angular/cdk/platform';
-import { ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { Chart, Types } from '@antv/g2';
-import { G2Service } from '@delon/chart/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util';
-export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestroy {
-    private srv;
-    private el;
-    private ngZone;
-    private platform;
-    static ngAcceptInputType_delay: NumberInput;
+export declare class G2SingleBarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_barSize: NumberInput;
     static ngAcceptInputType_min: NumberInput;
     static ngAcceptInputType_max: NumberInput;
     static ngAcceptInputType_value: NumberInput;
     static ngAcceptInputType_line: BooleanInput;
-    private destroy$;
-    private _install;
-    private _chart;
-    get chart(): Chart;
-    delay: number;
     plusColor: string;
     minusColor: string;
     height: number;
@@ -31,12 +18,6 @@ export declare class G2SingleBarComponent implements OnInit, OnChanges, OnDestro
     format: (value: number, item: {}, index: number) => string;
     padding: number | number[] | 'auto';
     textStyle: any;
-    theme: string | Types.LooseObject;
-    constructor(srv: G2Service, el: ElementRef, ngZone: NgZone, platform: Platform);
-    private load;
-    private install;
-    private attachChart;
-    ngOnInit(): void;
-    ngOnChanges(): void;
-    ngOnDestroy(): void;
+    install(): void;
+    attachChart(): void;
 }

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
+}(this, (function (exports, core, core$1, util, rxjs, operators, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -311,11 +311,6 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: tag-cloud.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * @record
      */
     function G2TagCloudData() { }
@@ -336,61 +331,19 @@
         /** @type {?} */
         G2TagCloudClickItem.prototype.ev;
     }
-    var G2TagCloudComponent = /** @class */ (function () {
-        // #endregion
-        /**
-         * @param {?} srv
-         * @param {?} el
-         * @param {?} ngZone
-         * @param {?} platform
-         */
-        function G2TagCloudComponent(srv, el, ngZone, platform) {
-            var _this = this;
-            this.srv = srv;
-            this.el = el;
-            this.ngZone = ngZone;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
+    var G2TagCloudComponent = /** @class */ (function (_super) {
+        __extends(G2TagCloudComponent, _super);
+        function G2TagCloudComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
             // #region fields
-            this.delay = 100;
-            this.width = 0;
-            this.height = 200;
-            this.padding = 0;
-            this.data = [];
-            this.clickItem = new core.EventEmitter();
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
+            _this.width = 0;
+            _this.height = 200;
+            _this.padding = 0;
+            _this.data = [];
+            _this.clickItem = new core.EventEmitter();
+            return _this;
         }
-        Object.defineProperty(G2TagCloudComponent.prototype, "chart", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._chart;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        G2TagCloudComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
-        };
+        // #endregion
         /**
          * @private
          * @return {?}
@@ -420,11 +373,11 @@
             });
         };
         /**
-         * @private
          * @return {?}
          */
         G2TagCloudComponent.prototype.install = function () {
             var _this = this;
+            this.initTagCloud();
             var _b = this, el = _b.el, padding = _b.padding, theme = _b.theme;
             if (this.height === 0) {
                 this.height = this.el.nativeElement.clientHeight;
@@ -476,7 +429,6 @@
             this.attachChart();
         };
         /**
-         * @private
          * @return {?}
          */
         G2TagCloudComponent.prototype.attachChart = function () {
@@ -555,73 +507,28 @@
         /**
          * @return {?}
          */
-        G2TagCloudComponent.prototype.ngOnInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            this.initTagCloud();
+        G2TagCloudComponent.prototype.onInit = function () {
             this.installResizeEvent();
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2TagCloudComponent.prototype.ngOnChanges = function () {
-            this._attachChart();
-        };
-        /**
-         * @return {?}
-         */
-        G2TagCloudComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            if (this.resize$) {
-                this.resize$.unsubscribe();
-            }
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this._chart.destroy(); }));
-            }
-            this.destroy$.next();
-            this.destroy$.complete();
         };
         return G2TagCloudComponent;
-    }());
+    }(core$1.G2BaseComponent));
     G2TagCloudComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'g2-tag-cloud',
                     exportAs: 'g2TagCloud',
-                    template: "",
+                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>",
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2TagCloudComponent.ctorParameters = function () { return [
-        { type: core$1.G2Service },
-        { type: core.ElementRef },
-        { type: core.NgZone },
-        { type: platform.Platform }
-    ]; };
     G2TagCloudComponent.propDecorators = {
-        delay: [{ type: core.Input }],
         width: [{ type: core.Input }],
         height: [{ type: core.Input }],
         padding: [{ type: core.Input }],
         data: [{ type: core.Input }],
-        theme: [{ type: core.Input }],
         clickItem: [{ type: core.Output }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2TagCloudComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
@@ -632,33 +539,9 @@
     ], G2TagCloudComponent.prototype, "height", void 0);
     if (false) {
         /** @type {?} */
-        G2TagCloudComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2TagCloudComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2TagCloudComponent.ngAcceptInputType_width;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.resize$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype._install;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype._chart;
-        /** @type {?} */
-        G2TagCloudComponent.prototype.delay;
         /** @type {?} */
         G2TagCloudComponent.prototype.width;
         /** @type {?} */
@@ -668,29 +551,7 @@
         /** @type {?} */
         G2TagCloudComponent.prototype.data;
         /** @type {?} */
-        G2TagCloudComponent.prototype.theme;
-        /** @type {?} */
         G2TagCloudComponent.prototype.clickItem;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2TagCloudComponent.prototype.platform;
     }
 
     /** @type {?} */
@@ -702,7 +563,7 @@
     }());
     G2TagCloudModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
+                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

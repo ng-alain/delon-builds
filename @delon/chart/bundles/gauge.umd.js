@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.skeleton));
+}(this, (function (exports, core$1, core, util, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -310,65 +310,16 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: gauge.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var G2GaugeComponent = /** @class */ (function () {
+    var G2GaugeComponent = /** @class */ (function (_super) {
+        __extends(G2GaugeComponent, _super);
+        function G2GaugeComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            _this.color = '#2f9cff';
+            _this.padding = [10, 10, 30, 10];
+            return _this;
+        }
         // #endregion
         /**
-         * @param {?} srv
-         * @param {?} el
-         * @param {?} ngZone
-         * @param {?} platform
-         */
-        function G2GaugeComponent(srv, el, ngZone, platform) {
-            var _this = this;
-            this.srv = srv;
-            this.el = el;
-            this.ngZone = ngZone;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
-            // #region fields
-            this.delay = 0;
-            this.color = '#2f9cff';
-            this.padding = [10, 10, 30, 10];
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
-        }
-        Object.defineProperty(G2GaugeComponent.prototype, "chart", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._chart;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        G2GaugeComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
-        };
-        /**
-         * @private
          * @return {?}
          */
         G2GaugeComponent.prototype.install = function () {
@@ -448,7 +399,6 @@
             this.attachChart();
         };
         /**
-         * @private
          * @return {?}
          */
         G2GaugeComponent.prototype.attachChart = function () {
@@ -503,79 +453,30 @@
             _chart.changeData(data);
             _chart.render();
         };
-        /**
-         * @return {?}
-         */
-        G2GaugeComponent.prototype.ngOnInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2GaugeComponent.prototype.ngOnChanges = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.attachChart(); }));
-        };
-        /**
-         * @return {?}
-         */
-        G2GaugeComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this._chart.destroy(); }));
-            }
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return G2GaugeComponent;
-    }());
+    }(core.G2BaseComponent));
     G2GaugeComponent.decorators = [
-        { type: core.Component, args: [{
+        { type: core$1.Component, args: [{
                     selector: 'g2-gauge',
                     exportAs: 'g2Gauge',
-                    template: "",
+                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>",
                     host: {
                         '[class.g2-gauge]': 'true',
                     },
                     preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
+                    changeDetection: core$1.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core$1.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2GaugeComponent.ctorParameters = function () { return [
-        { type: core$1.G2Service },
-        { type: core.ElementRef },
-        { type: core.NgZone },
-        { type: platform.Platform }
-    ]; };
     G2GaugeComponent.propDecorators = {
-        delay: [{ type: core.Input }],
-        title: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        color: [{ type: core.Input }],
-        bgColor: [{ type: core.Input }],
-        format: [{ type: core.Input }],
-        percent: [{ type: core.Input }],
-        padding: [{ type: core.Input }],
-        theme: [{ type: core.Input }]
+        title: [{ type: core$1.Input }],
+        height: [{ type: core$1.Input }],
+        color: [{ type: core$1.Input }],
+        bgColor: [{ type: core$1.Input }],
+        format: [{ type: core$1.Input }],
+        percent: [{ type: core$1.Input }],
+        padding: [{ type: core$1.Input }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2GaugeComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Number)
@@ -586,28 +487,9 @@
     ], G2GaugeComponent.prototype, "percent", void 0);
     if (false) {
         /** @type {?} */
-        G2GaugeComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2GaugeComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2GaugeComponent.ngAcceptInputType_percent;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype._chart;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype._install;
-        /** @type {?} */
-        G2GaugeComponent.prototype.delay;
         /** @type {?} */
         G2GaugeComponent.prototype.title;
         /** @type {?} */
@@ -622,28 +504,6 @@
         G2GaugeComponent.prototype.percent;
         /** @type {?} */
         G2GaugeComponent.prototype.padding;
-        /** @type {?} */
-        G2GaugeComponent.prototype.theme;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2GaugeComponent.prototype.platform;
     }
 
     /** @type {?} */
@@ -654,8 +514,8 @@
         return G2GaugeModule;
     }());
     G2GaugeModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
+        { type: core$1.NgModule, args: [{
+                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

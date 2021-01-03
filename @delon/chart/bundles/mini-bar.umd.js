@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common));
+}(this, (function (exports, core, core$1, util, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -311,11 +311,6 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-bar.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * @record
      */
     function G2MiniBarData() { }
@@ -336,66 +331,23 @@
         /** @type {?} */
         G2MiniBarClickItem.prototype.ev;
     }
-    var G2MiniBarComponent = /** @class */ (function () {
+    var G2MiniBarComponent = /** @class */ (function (_super) {
+        __extends(G2MiniBarComponent, _super);
+        function G2MiniBarComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            // #region fields
+            _this.color = '#1890FF';
+            _this.height = 0;
+            _this.borderWidth = 5;
+            _this.padding = [8, 8, 8, 8];
+            _this.data = [];
+            _this.yTooltipSuffix = '';
+            _this.tooltipType = 'default';
+            _this.clickItem = new core.EventEmitter();
+            return _this;
+        }
         // #endregion
         /**
-         * @param {?} srv
-         * @param {?} el
-         * @param {?} ngZone
-         * @param {?} platform
-         */
-        function G2MiniBarComponent(srv, el, ngZone, platform) {
-            var _this = this;
-            this.srv = srv;
-            this.el = el;
-            this.ngZone = ngZone;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
-            // #region fields
-            this.delay = 0;
-            this.color = '#1890FF';
-            this.height = 0;
-            this.borderWidth = 5;
-            this.padding = [8, 8, 8, 8];
-            this.data = [];
-            this.yTooltipSuffix = '';
-            this.tooltipType = 'default';
-            this.clickItem = new core.EventEmitter();
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
-        }
-        Object.defineProperty(G2MiniBarComponent.prototype, "chart", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._chart;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        /**
-         * @private
-         * @return {?}
-         */
-        G2MiniBarComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
-        };
-        /**
-         * @private
          * @return {?}
          */
         G2MiniBarComponent.prototype.install = function () {
@@ -458,7 +410,6 @@
             this.attachChart();
         };
         /**
-         * @private
          * @return {?}
          */
         G2MiniBarComponent.prototype.attachChart = function () {
@@ -471,44 +422,8 @@
             _chart.changeData(data);
             _chart.render();
         };
-        /**
-         * @return {?}
-         */
-        G2MiniBarComponent.prototype.ngOnInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2MiniBarComponent.prototype.ngOnChanges = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.attachChart(); }));
-        };
-        /**
-         * @return {?}
-         */
-        G2MiniBarComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this._chart.destroy(); }));
-            }
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return G2MiniBarComponent;
-    }());
+    }(core$1.G2BaseComponent));
     G2MiniBarComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'g2-mini-bar',
@@ -522,15 +437,7 @@
                     encapsulation: core.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2MiniBarComponent.ctorParameters = function () { return [
-        { type: core$1.G2Service },
-        { type: core.ElementRef },
-        { type: core.NgZone },
-        { type: platform.Platform }
-    ]; };
     G2MiniBarComponent.propDecorators = {
-        delay: [{ type: core.Input }],
         color: [{ type: core.Input }],
         height: [{ type: core.Input }],
         borderWidth: [{ type: core.Input }],
@@ -538,13 +445,8 @@
         data: [{ type: core.Input }],
         yTooltipSuffix: [{ type: core.Input }],
         tooltipType: [{ type: core.Input }],
-        theme: [{ type: core.Input }],
         clickItem: [{ type: core.Output }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2MiniBarComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
@@ -555,28 +457,9 @@
     ], G2MiniBarComponent.prototype, "borderWidth", void 0);
     if (false) {
         /** @type {?} */
-        G2MiniBarComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2MiniBarComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2MiniBarComponent.ngAcceptInputType_borderWidth;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype._chart;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype._install;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.delay;
         /** @type {?} */
         G2MiniBarComponent.prototype.color;
         /** @type {?} */
@@ -592,29 +475,7 @@
         /** @type {?} */
         G2MiniBarComponent.prototype.tooltipType;
         /** @type {?} */
-        G2MiniBarComponent.prototype.theme;
-        /** @type {?} */
         G2MiniBarComponent.prototype.clickItem;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniBarComponent.prototype.platform;
     }
 
     /** @type {?} */

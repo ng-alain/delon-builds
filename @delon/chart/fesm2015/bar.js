@@ -1,5 +1,5 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { fromEvent } from 'rxjs';
@@ -198,7 +198,6 @@ G2BarComponent.decorators = [
             }] }
 ];
 G2BarComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container', { static: true },] }],
     title: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: Input }],
@@ -221,11 +220,6 @@ if (false) {
     G2BarComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2BarComponent.ngAcceptInputType_autoLabel;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype.node;
     /** @type {?} */
     G2BarComponent.prototype.title;
     /** @type {?} */

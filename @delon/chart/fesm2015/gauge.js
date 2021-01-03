@@ -1,69 +1,23 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Input, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
  * Generated from: gauge.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class G2GaugeComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} el
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, el, ngZone, platform) {
-        this.srv = srv;
-        this.el = el;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
-        // #region fields
-        this.delay = 0;
+class G2GaugeComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         this.color = '#2f9cff';
         this.padding = [10, 10, 30, 10];
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
+    // #endregion
     /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
-    /**
-     * @private
      * @return {?}
      */
     install() {
@@ -143,7 +97,6 @@ class G2GaugeComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -198,48 +151,12 @@ class G2GaugeComponent {
         _chart.changeData(data);
         _chart.render();
     }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
 }
 G2GaugeComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-gauge',
                 exportAs: 'g2Gauge',
-                template: ``,
+                template: `<nz-skeleton *ngIf="!loaded"></nz-skeleton>`,
                 host: {
                     '[class.g2-gauge]': 'true',
                 },
@@ -248,28 +165,15 @@ G2GaugeComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2GaugeComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: ElementRef },
-    { type: NgZone },
-    { type: Platform }
-];
 G2GaugeComponent.propDecorators = {
-    delay: [{ type: Input }],
     title: [{ type: Input }],
     height: [{ type: Input }],
     color: [{ type: Input }],
     bgColor: [{ type: Input }],
     format: [{ type: Input }],
     percent: [{ type: Input }],
-    padding: [{ type: Input }],
-    theme: [{ type: Input }]
+    padding: [{ type: Input }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2GaugeComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Number)
@@ -280,28 +184,9 @@ __decorate([
 ], G2GaugeComponent.prototype, "percent", void 0);
 if (false) {
     /** @type {?} */
-    G2GaugeComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2GaugeComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2GaugeComponent.ngAcceptInputType_percent;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype._chart;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype._install;
-    /** @type {?} */
-    G2GaugeComponent.prototype.delay;
     /** @type {?} */
     G2GaugeComponent.prototype.title;
     /** @type {?} */
@@ -316,28 +201,6 @@ if (false) {
     G2GaugeComponent.prototype.percent;
     /** @type {?} */
     G2GaugeComponent.prototype.padding;
-    /** @type {?} */
-    G2GaugeComponent.prototype.theme;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2GaugeComponent.prototype.platform;
 }
 
 /**
@@ -351,7 +214,7 @@ class G2GaugeModule {
 }
 G2GaugeModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule, DelonUtilModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

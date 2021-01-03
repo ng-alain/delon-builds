@@ -1,7 +1,6 @@
-import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
-import { Chart, Event, Types } from '@antv/g2';
-import { G2InteractionType, G2Service } from '@delon/chart/core';
+import { EventEmitter, TemplateRef } from '@angular/core';
+import { Event } from '@antv/g2';
+import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2PieData {
@@ -13,13 +12,7 @@ export interface G2PieClickItem {
     item: G2PieData;
     ev: Event;
 }
-export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
-    private srv;
-    private el;
-    private ngZone;
-    private cdr;
-    private platform;
-    static ngAcceptInputType_delay: NumberInput;
+export declare class G2PieComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_animate: BooleanInput;
     static ngAcceptInputType_hasLegend: BooleanInput;
@@ -28,14 +21,9 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     static ngAcceptInputType_lineWidth: NumberInput;
     static ngAcceptInputType_blockMaxWidth: NumberInput;
     static ngAcceptInputType_select: BooleanInput;
-    private node;
-    private destroy$;
-    private _install;
-    private _chart;
     private percentColor;
     legendData: NzSafeAny[];
     isPercent: boolean;
-    delay: number;
     animate: boolean;
     color: string;
     subTitle: string | TemplateRef<void>;
@@ -53,18 +41,12 @@ export declare class G2PieComponent implements OnInit, OnDestroy, OnChanges {
     data: G2PieData[];
     colors: any[];
     interaction: G2InteractionType;
-    theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
-    get chart(): Chart;
-    constructor(srv: G2Service, el: ElementRef<HTMLElement>, ngZone: NgZone, cdr: ChangeDetectorRef, platform: Platform);
-    private load;
     private fixData;
-    private install;
-    private attachChart;
+    install(): void;
+    attachChart(): void;
     private genLegend;
     _click(i: number): void;
-    ngOnInit(): void;
-    ngOnChanges(): void;
-    ngOnDestroy(): void;
+    onChanges(): void;
 }

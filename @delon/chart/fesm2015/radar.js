@@ -1,13 +1,11 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzGridModule } from 'ng-zorro-antd/grid';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -37,24 +35,10 @@ if (false) {
     /** @type {?} */
     G2RadarClickItem.prototype.ev;
 }
-class G2RadarComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} cdr
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, cdr, ngZone, platform) {
-        this.srv = srv;
-        this.cdr = cdr;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
+class G2RadarComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         this.legendData = [];
-        // #region fields
-        this.delay = 0;
         this.height = 0;
         this.padding = [44, 30, 16, 30];
         this.hasLegend = true;
@@ -62,37 +46,8 @@ class G2RadarComponent {
         this.data = [];
         this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
-    /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
+    // #endregion
     /**
      * @private
      * @return {?}
@@ -101,7 +56,6 @@ class G2RadarComponent {
         return this.height - (this.hasLegend ? 80 : 22);
     }
     /**
-     * @private
      * @return {?}
      */
     install() {
@@ -172,7 +126,6 @@ class G2RadarComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -242,50 +195,19 @@ class G2RadarComponent {
     /**
      * @return {?}
      */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
+    onChanges() {
         this.legendData.forEach((/**
          * @param {?} i
          * @return {?}
          */
         i => (i.checked = true)));
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
     }
 }
 G2RadarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-radar',
                 exportAs: 'g2Radar',
-                template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
+                template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
                 host: {
                     '[style.height.px]': 'height',
                     '[class.g2-radar]': 'true',
@@ -295,16 +217,7 @@ G2RadarComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2RadarComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: ChangeDetectorRef },
-    { type: NgZone },
-    { type: Platform }
-];
 G2RadarComponent.propDecorators = {
-    node: [{ type: ViewChild, args: ['container', { static: true },] }],
-    delay: [{ type: Input }],
     title: [{ type: Input }],
     height: [{ type: Input }],
     padding: [{ type: Input }],
@@ -312,13 +225,8 @@ G2RadarComponent.propDecorators = {
     tickCount: [{ type: Input }],
     data: [{ type: Input }],
     colors: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2RadarComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -333,37 +241,13 @@ __decorate([
 ], G2RadarComponent.prototype, "tickCount", void 0);
 if (false) {
     /** @type {?} */
-    G2RadarComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2RadarComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2RadarComponent.ngAcceptInputType_hasLegend;
     /** @type {?} */
     G2RadarComponent.ngAcceptInputType_tickCount;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.node;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype._install;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype._chart;
     /** @type {?} */
     G2RadarComponent.prototype.legendData;
-    /** @type {?} */
-    G2RadarComponent.prototype.delay;
     /** @type {?} */
     G2RadarComponent.prototype.title;
     /** @type {?} */
@@ -379,29 +263,7 @@ if (false) {
     /** @type {?} */
     G2RadarComponent.prototype.colors;
     /** @type {?} */
-    G2RadarComponent.prototype.theme;
-    /** @type {?} */
     G2RadarComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2RadarComponent.prototype.platform;
 }
 
 /**
@@ -415,7 +277,7 @@ class G2RadarModule {
 }
 G2RadarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzGridModule, NzOutletModule],
+                imports: [CommonModule, DelonUtilModule, NzGridModule, NzOutletModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }

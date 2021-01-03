@@ -1,4 +1,4 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, NgZone, ChangeDetectorRef, Input } from '@angular/core';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { AlainConfigService, LazyService, InputNumber } from '@delon/util';
 import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
@@ -142,12 +142,14 @@ if (false) {
 class G2BaseComponent {
     /**
      * @param {?} srv
+     * @param {?} el
      * @param {?} ngZone
      * @param {?} platform
      * @param {?} cdr
      */
-    constructor(srv, ngZone, platform, cdr) {
+    constructor(srv, el, ngZone, platform, cdr) {
         this.srv = srv;
+        this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
         this.cdr = cdr;
@@ -171,6 +173,14 @@ class G2BaseComponent {
     get chart() {
         return this._chart;
     }
+    /**
+     * @return {?}
+     */
+    onInit() { }
+    /**
+     * @return {?}
+     */
+    onChanges() { }
     /**
      * @private
      * @return {?}
@@ -198,6 +208,7 @@ class G2BaseComponent {
         if (!this.platform.isBrowser) {
             return;
         }
+        this.onInit();
         if (((/** @type {?} */ (window))).G2) {
             this.load();
         }
@@ -209,6 +220,7 @@ class G2BaseComponent {
      * @return {?}
      */
     ngOnChanges() {
+        this.onChanges();
         this.ngZone.runOutsideAngular((/**
          * @return {?}
          */
@@ -237,11 +249,13 @@ G2BaseComponent.decorators = [
 /** @nocollapse */
 G2BaseComponent.ctorParameters = () => [
     { type: G2Service },
+    { type: ElementRef },
     { type: NgZone },
     { type: Platform },
     { type: ChangeDetectorRef }
 ];
 G2BaseComponent.propDecorators = {
+    node: [{ type: ViewChild, args: ['container', { static: true },] }],
     delay: [{ type: Input }],
     theme: [{ type: Input }]
 };
@@ -252,6 +266,11 @@ __decorate([
 if (false) {
     /** @type {?} */
     G2BaseComponent.ngAcceptInputType_delay;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.node;
     /**
      * @type {?}
      * @protected
@@ -282,6 +301,11 @@ if (false) {
      * @type {?}
      * @protected
      */
+    G2BaseComponent.prototype.el;
+    /**
+     * @type {?}
+     * @protected
+     */
     G2BaseComponent.prototype.ngZone;
     /**
      * @type {?}
@@ -290,7 +314,7 @@ if (false) {
     G2BaseComponent.prototype.platform;
     /**
      * @type {?}
-     * @private
+     * @protected
      */
     G2BaseComponent.prototype.cdr;
     /**
