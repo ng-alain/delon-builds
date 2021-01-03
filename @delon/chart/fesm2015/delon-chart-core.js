@@ -1,6 +1,9 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
-import { AlainConfigService, LazyService } from '@delon/util';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, NgZone, ChangeDetectorRef, Input } from '@angular/core';
+import { AlainConfigService, LazyService, InputNumber } from '@delon/util';
 import { Subject } from 'rxjs';
+import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
+import { takeUntil, filter } from 'rxjs/operators';
 
 /**
  * @fileoverview added by tsickle
@@ -130,6 +133,180 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: g2.base.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @abstract
+ */
+class G2BaseComponent {
+    /**
+     * @param {?} srv
+     * @param {?} ngZone
+     * @param {?} platform
+     * @param {?} cdr
+     */
+    constructor(srv, ngZone, platform, cdr) {
+        this.srv = srv;
+        this.ngZone = ngZone;
+        this.platform = platform;
+        this.cdr = cdr;
+        this.destroy$ = new Subject();
+        this.loaded = false;
+        this.delay = 0;
+        this.theme = (/** @type {?} */ (srv.cog.theme));
+        this.srv.notify
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @return {?}
+         */
+        () => !this.loaded)))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.load()));
+    }
+    /**
+     * @return {?}
+     */
+    get chart() {
+        return this._chart;
+    }
+    /**
+     * @private
+     * @return {?}
+     */
+    load() {
+        this.ngZone.run((/**
+         * @return {?}
+         */
+        () => {
+            this.loaded = true;
+            this.cdr.detectChanges();
+        }));
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => setTimeout((/**
+         * @return {?}
+         */
+        () => this.install()), this.delay)));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        if (((/** @type {?} */ (window))).G2) {
+            this.load();
+        }
+        else {
+            this.srv.libLoad();
+        }
+    }
+    /**
+     * @return {?}
+     */
+    ngOnChanges() {
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
+    }
+    /**
+     * @return {?}
+     */
+    ngOnDestroy() {
+        if (this.resize$) {
+            this.resize$.unsubscribe();
+        }
+        this.destroy$.next();
+        this.destroy$.complete();
+        if (this._chart) {
+            this.ngZone.runOutsideAngular((/**
+             * @return {?}
+             */
+            () => this._chart.destroy()));
+        }
+    }
+}
+G2BaseComponent.decorators = [
+    { type: Directive }
+];
+/** @nocollapse */
+G2BaseComponent.ctorParameters = () => [
+    { type: G2Service },
+    { type: NgZone },
+    { type: Platform },
+    { type: ChangeDetectorRef }
+];
+G2BaseComponent.propDecorators = {
+    delay: [{ type: Input }],
+    theme: [{ type: Input }]
+};
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2BaseComponent.prototype, "delay", void 0);
+if (false) {
+    /** @type {?} */
+    G2BaseComponent.ngAcceptInputType_delay;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.resize$;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype._chart;
+    /** @type {?} */
+    G2BaseComponent.prototype.loaded;
+    /** @type {?} */
+    G2BaseComponent.prototype.delay;
+    /** @type {?} */
+    G2BaseComponent.prototype.theme;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.srv;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.ngZone;
+    /**
+     * @type {?}
+     * @protected
+     */
+    G2BaseComponent.prototype.platform;
+    /**
+     * @type {?}
+     * @private
+     */
+    G2BaseComponent.prototype.cdr;
+    /**
+     * @abstract
+     * @return {?}
+     */
+    G2BaseComponent.prototype.install = function () { };
+    /**
+     * @abstract
+     * @return {?}
+     */
+    G2BaseComponent.prototype.attachChart = function () { };
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: public_api.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -140,5 +317,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { G2Service };
+export { G2BaseComponent, G2Service };
 //# sourceMappingURL=delon-chart-core.js.map

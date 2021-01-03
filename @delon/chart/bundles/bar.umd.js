@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, core$1, util, rxjs, operators, common, outlet, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -310,11 +310,6 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: bar.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /** @type {?} */
     var TITLE_HEIGHT = 41;
     /**
@@ -340,48 +335,20 @@
         /** @type {?} */
         G2BarClickItem.prototype.ev;
     }
-    var G2BarComponent = /** @class */ (function () {
-        // #endregion
-        /**
-         * @param {?} srv
-         * @param {?} ngZone
-         * @param {?} platform
-         */
-        function G2BarComponent(srv, ngZone, platform) {
-            var _this = this;
-            this.srv = srv;
-            this.ngZone = ngZone;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
-            // #region fields
-            this.delay = 0;
-            this.color = 'rgba(24, 144, 255, 0.85)';
-            this.height = 0;
-            this.padding = 'auto';
-            this.data = [];
-            this.autoLabel = true;
-            this.interaction = 'none';
-            this.clickItem = new core.EventEmitter();
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
+    var G2BarComponent = /** @class */ (function (_super) {
+        __extends(G2BarComponent, _super);
+        function G2BarComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            _this.color = 'rgba(24, 144, 255, 0.85)';
+            _this.height = 0;
+            _this.padding = 'auto';
+            _this.data = [];
+            _this.autoLabel = true;
+            _this.interaction = 'none';
+            _this.clickItem = new core.EventEmitter();
+            return _this;
         }
-        Object.defineProperty(G2BarComponent.prototype, "chart", {
-            /**
-             * @return {?}
-             */
-            get: function () {
-                return this._chart;
-            },
-            enumerable: false,
-            configurable: true
-        });
+        // #endregion
         /**
          * @private
          * @return {?}
@@ -390,7 +357,6 @@
             return this.title ? this.height - TITLE_HEIGHT : this.height;
         };
         /**
-         * @private
          * @return {?}
          */
         G2BarComponent.prototype.install = function () {
@@ -461,7 +427,6 @@
             this.attachChart();
         };
         /**
-         * @private
          * @return {?}
          */
         G2BarComponent.prototype.attachChart = function () {
@@ -508,65 +473,13 @@
              * @return {?}
              */function () { return _this.updatelabel(); })); }));
         };
-        /**
-         * @private
-         * @return {?}
-         */
-        G2BarComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.install(); }), _this.delay); }));
-        };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.ngOnInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.ngOnChanges = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.attachChart(); }));
-        };
-        /**
-         * @return {?}
-         */
-        G2BarComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            if (this.resize$) {
-                this.resize$.unsubscribe();
-            }
-            this.destroy$.next();
-            this.destroy$.complete();
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () { return _this._chart.destroy(); }));
-            }
-        };
         return G2BarComponent;
-    }());
+    }(core$1.G2BaseComponent));
     G2BarComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'g2-bar',
                     exportAs: 'g2Bar',
-                    template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom: 20px;\">{{ title }}</h4>\n</ng-container>\n<div #container></div>\n",
+                    template: "\n    <ng-container *nzStringTemplateOutlet=\"title\">\n      <h4 style=\"margin-bottom: 20px;\">{{ title }}</h4>\n    </ng-container>\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <div #container></div>\n  ",
                     host: {
                         '[style.height.px]': 'height',
                     },
@@ -575,15 +488,8 @@
                     encapsulation: core.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2BarComponent.ctorParameters = function () { return [
-        { type: core$1.G2Service },
-        { type: core.NgZone },
-        { type: platform.Platform }
-    ]; };
     G2BarComponent.propDecorators = {
         node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
-        delay: [{ type: core.Input }],
         title: [{ type: core.Input }],
         color: [{ type: core.Input }],
         height: [{ type: core.Input }],
@@ -591,13 +497,8 @@
         data: [{ type: core.Input }],
         autoLabel: [{ type: core.Input }],
         interaction: [{ type: core.Input }],
-        theme: [{ type: core.Input }],
         clickItem: [{ type: core.Output }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2BarComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
@@ -608,8 +509,6 @@
     ], G2BarComponent.prototype, "autoLabel", void 0);
     if (false) {
         /** @type {?} */
-        G2BarComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2BarComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2BarComponent.ngAcceptInputType_autoLabel;
@@ -617,29 +516,7 @@
          * @type {?}
          * @private
          */
-        G2BarComponent.prototype.resize$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype._chart;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype._install;
-        /**
-         * @type {?}
-         * @private
-         */
         G2BarComponent.prototype.node;
-        /** @type {?} */
-        G2BarComponent.prototype.delay;
         /** @type {?} */
         G2BarComponent.prototype.title;
         /** @type {?} */
@@ -655,24 +532,7 @@
         /** @type {?} */
         G2BarComponent.prototype.interaction;
         /** @type {?} */
-        G2BarComponent.prototype.theme;
-        /** @type {?} */
         G2BarComponent.prototype.clickItem;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2BarComponent.prototype.platform;
     }
 
     /** @type {?} */
@@ -684,7 +544,7 @@
     }());
     G2BarModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule],
+                    imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: __spread(COMPONENTS),
                     exports: __spread(COMPONENTS),
                 },] }

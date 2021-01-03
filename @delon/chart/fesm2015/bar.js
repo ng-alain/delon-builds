@@ -1,12 +1,12 @@
 import { __decorate, __metadata } from 'tslib';
-import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { G2Service } from '@delon/chart/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
-import { Subject, fromEvent } from 'rxjs';
+import { fromEvent } from 'rxjs';
 import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 /**
  * @fileoverview added by tsickle
@@ -38,21 +38,9 @@ if (false) {
     /** @type {?} */
     G2BarClickItem.prototype.ev;
 }
-class G2BarComponent {
-    // #endregion
-    /**
-     * @param {?} srv
-     * @param {?} ngZone
-     * @param {?} platform
-     */
-    constructor(srv, ngZone, platform) {
-        this.srv = srv;
-        this.ngZone = ngZone;
-        this.platform = platform;
-        this.destroy$ = new Subject();
-        this._install = false;
-        // #region fields
-        this.delay = 0;
+class G2BarComponent extends G2BaseComponent {
+    constructor() {
+        super(...arguments);
         this.color = 'rgba(24, 144, 255, 0.85)';
         this.height = 0;
         this.padding = 'auto';
@@ -60,23 +48,8 @@ class G2BarComponent {
         this.autoLabel = true;
         this.interaction = 'none';
         this.clickItem = new EventEmitter();
-        this.theme = (/** @type {?} */ (srv.cog.theme));
-        this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !this._install)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.load()));
     }
-    /**
-     * @return {?}
-     */
-    get chart() {
-        return this._chart;
-    }
+    // #endregion
     /**
      * @private
      * @return {?}
@@ -85,7 +58,6 @@ class G2BarComponent {
         return this.title ? this.height - TITLE_HEIGHT : this.height;
     }
     /**
-     * @private
      * @return {?}
      */
     install() {
@@ -157,7 +129,6 @@ class G2BarComponent {
         this.attachChart();
     }
     /**
-     * @private
      * @return {?}
      */
     attachChart() {
@@ -206,65 +177,18 @@ class G2BarComponent {
          */
         () => this.updatelabel()))));
     }
-    /**
-     * @private
-     * @return {?}
-     */
-    load() {
-        this._install = true;
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => setTimeout((/**
-         * @return {?}
-         */
-        () => this.install()), this.delay)));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (((/** @type {?} */ (window))).G2.Chart) {
-            this.load();
-        }
-        else {
-            this.srv.libLoad();
-        }
-    }
-    /**
-     * @return {?}
-     */
-    ngOnChanges() {
-        this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.attachChart()));
-    }
-    /**
-     * @return {?}
-     */
-    ngOnDestroy() {
-        if (this.resize$) {
-            this.resize$.unsubscribe();
-        }
-        this.destroy$.next();
-        this.destroy$.complete();
-        if (this._chart) {
-            this.ngZone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => this._chart.destroy()));
-        }
-    }
 }
 G2BarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-bar',
                 exportAs: 'g2Bar',
-                template: "<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4 style=\"margin-bottom: 20px;\">{{ title }}</h4>\n</ng-container>\n<div #container></div>\n",
+                template: `
+    <ng-container *nzStringTemplateOutlet="title">
+      <h4 style="margin-bottom: 20px;">{{ title }}</h4>
+    </ng-container>
+    <nz-skeleton *ngIf="!loaded"></nz-skeleton>
+    <div #container></div>
+  `,
                 host: {
                     '[style.height.px]': 'height',
                 },
@@ -273,15 +197,8 @@ G2BarComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             }] }
 ];
-/** @nocollapse */
-G2BarComponent.ctorParameters = () => [
-    { type: G2Service },
-    { type: NgZone },
-    { type: Platform }
-];
 G2BarComponent.propDecorators = {
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
-    delay: [{ type: Input }],
     title: [{ type: Input }],
     color: [{ type: Input }],
     height: [{ type: Input }],
@@ -289,13 +206,8 @@ G2BarComponent.propDecorators = {
     data: [{ type: Input }],
     autoLabel: [{ type: Input }],
     interaction: [{ type: Input }],
-    theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2BarComponent.prototype, "delay", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -306,8 +218,6 @@ __decorate([
 ], G2BarComponent.prototype, "autoLabel", void 0);
 if (false) {
     /** @type {?} */
-    G2BarComponent.ngAcceptInputType_delay;
-    /** @type {?} */
     G2BarComponent.ngAcceptInputType_height;
     /** @type {?} */
     G2BarComponent.ngAcceptInputType_autoLabel;
@@ -315,29 +225,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    G2BarComponent.prototype.resize$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype._chart;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype._install;
-    /**
-     * @type {?}
-     * @private
-     */
     G2BarComponent.prototype.node;
-    /** @type {?} */
-    G2BarComponent.prototype.delay;
     /** @type {?} */
     G2BarComponent.prototype.title;
     /** @type {?} */
@@ -353,24 +241,7 @@ if (false) {
     /** @type {?} */
     G2BarComponent.prototype.interaction;
     /** @type {?} */
-    G2BarComponent.prototype.theme;
-    /** @type {?} */
     G2BarComponent.prototype.clickItem;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype.srv;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2BarComponent.prototype.platform;
 }
 
 /**
@@ -384,7 +255,7 @@ class G2BarModule {
 }
 G2BarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzOutletModule],
+                imports: [CommonModule, DelonUtilModule, NzOutletModule, NzSkeletonModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
             },] }
