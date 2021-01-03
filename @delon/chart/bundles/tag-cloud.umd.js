@@ -679,7 +679,7 @@
         /** @type {?} */
         var padding = cloudPadding;
         /** @type {?} */
-        var spiral = archimedeanSpiral;
+        var spiral = rectangularSpiral;
         /** @type {?} */
         var words = [];
         /** @type {?} */

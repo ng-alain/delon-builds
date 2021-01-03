@@ -379,7 +379,7 @@ function tagCloud () {
     /** @type {?} */
     let padding = cloudPadding;
     /** @type {?} */
-    let spiral = archimedeanSpiral;
+    let spiral = rectangularSpiral;
     /** @type {?} */
     let words = [];
     /** @type {?} */
