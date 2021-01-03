@@ -20,6 +20,8 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     static ngAcceptInputType_width: NumberInput;
     private resize$;
     private _chart;
+    private _h;
+    private _w;
     get chart(): Chart;
     delay: number;
     width: number;
@@ -29,8 +31,10 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2TagCloudClickItem>;
     constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);
+    private fixWH;
     private initTagCloud;
     private install;
+    private transform;
     private attachChart;
     private _attachChart;
     private installResizeEvent;

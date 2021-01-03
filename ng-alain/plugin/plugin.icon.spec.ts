@@ -27,7 +27,6 @@ const testCases = {
     <i nz-icon [nzType]="type ? 'nz-fullscreen' : 'nz-fullscreen-exit'"></i>
     <i nz-icon nzType="{{ type ? 'arrow-left' : 'arrow-right' }}"></i>
     <i nz-icon nzType="{{ type ? 'nz-arrow-left' : 'nz-arrow-right' }}"></i>
-    <i nz-icon [nzType]="d.status === 'NORMAL' ? 'close1' : 'close2'"></i>
     <i nz-icon nzType="filter" theme="outline"></i>
     <i nz-icon nzType="nz-filter" nzTheme="outline"></i>
     <i nz-icon nzType="step-backward" theme="outline"></i>
@@ -82,8 +81,5 @@ describe('NgAlainSchematic: plugin: icon', () => {
     // attributes
     expect(content).toContain(`ArrowDownOutline`);
     // expect(content).toContain(`SearchOutline`);
-    // <i nz-icon [nzType]="d.status === 'NORMAL' ? 'close1' : 'close2'"></i>
-    expect(content).toContain(`Close1Outline`);
-    expect(content).toContain(`Close2Outline`);
   });
 });

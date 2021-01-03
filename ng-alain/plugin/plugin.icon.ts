@@ -11,16 +11,16 @@ const WHITE_ICONS = [
   // - zorro: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/icon/icons.ts
   'BarsOutline',
   'CalendarOutline',
-  'CaretDownFill',
-  'CaretDownOutline',
   'CaretUpFill',
   'CaretUpOutline',
+  'CaretDownFill',
+  'CaretDownOutline',
   'CheckCircleFill',
   'CheckCircleOutline',
   'CheckOutline',
   'ClockCircleOutline',
-  'CloseCircleFill',
   'CloseCircleOutline',
+  'CloseCircleFill',
   'CloseOutline',
   'CopyOutline',
   'DoubleLeftOutline',
@@ -41,16 +41,11 @@ const WHITE_ICONS = [
   'PaperClipOutline',
   'QuestionCircleOutline',
   'RightOutline',
-  'RotateLeftOutline',
-  'RotateRightOutline',
+  'StarFill',
   'SearchOutline',
   'StarFill',
-  'SwapRightOutline',
   'UploadOutline',
   'UpOutline',
-  'VerticalAlignTopOutline',
-  'ZoomInOutline',
-  'ZoomOutOutline',
   // - @delon: https://github.com/ng-alain/delon/blob/master/packages/theme/src/theme.module.ts#L33
   'BellOutline',
   'DeleteOutline',
@@ -141,14 +136,6 @@ function getNgValue(attr: Attribute): string[] | null {
 
   const str = attr.value.trim();
   const templatVarIndex = str.indexOf('{{');
-
-  if (templatVarIndex === -1) {
-    // <i nz-icon [nzType]="d.status === 'NORMAL' ? 'close1' : 'close2'"></i>
-    const conMatch = /\? ['"]([^'"]+)['"] : ['"]([^'"]+)['"]/g.exec(str);
-    if (conMatch != null && conMatch.length === 3) {
-      return [conMatch[1], conMatch[2]];
-    }
-  }
 
   // type="icon"
   // type="{{value ? 'icon' : 'icon' }}"
