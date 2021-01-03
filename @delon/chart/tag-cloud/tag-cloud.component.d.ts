@@ -28,6 +28,7 @@ export declare class G2TagCloudComponent implements OnDestroy, OnChanges, OnInit
     height: number;
     padding: number | number[] | 'auto';
     data: G2TagCloudData[];
+    spiral: 'archimedean' | 'rectangular';
     theme: string | Types.LooseObject;
     clickItem: EventEmitter<G2TagCloudClickItem>;
     constructor(el: ElementRef<HTMLDivElement>, ngZone: NgZone, configSrv: AlainConfigService, platform: Platform);

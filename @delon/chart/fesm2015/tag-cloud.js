@@ -713,6 +713,7 @@ class G2TagCloudComponent {
         this.height = 200;
         this.padding = 0;
         this.data = [];
+        this.spiral = 'rectangular';
         this.clickItem = new EventEmitter();
         configSrv.attachKey(this, 'chart', 'theme');
     }
@@ -834,6 +835,7 @@ class G2TagCloudComponent {
             padding: 1,
             size: [this._w, this._h],
             // 宽高设置最好根据 imageMask 做调整
+            spiral: this.spiral,
             timeInterval: 5000,
             // max execute time
             rotate: (/**
@@ -1013,6 +1015,7 @@ G2TagCloudComponent.propDecorators = {
     height: [{ type: Input }],
     padding: [{ type: Input }],
     data: [{ type: Input }],
+    spiral: [{ type: Input }],
     theme: [{ type: Input }],
     clickItem: [{ type: Output }]
 };
@@ -1065,6 +1068,8 @@ if (false) {
     G2TagCloudComponent.prototype.padding;
     /** @type {?} */
     G2TagCloudComponent.prototype.data;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.spiral;
     /** @type {?} */
     G2TagCloudComponent.prototype.theme;
     /** @type {?} */
