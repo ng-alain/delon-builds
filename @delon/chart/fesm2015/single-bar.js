@@ -183,8 +183,8 @@ class G2SingleBarModule {
 G2SingleBarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -697,6 +697,11 @@
         G2WaterWaveComponent.prototype.platform;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: water-wave.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2WaterWaveComponent];
     var G2WaterWaveModule = /** @class */ (function () {
@@ -707,8 +712,8 @@
     G2WaterWaveModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

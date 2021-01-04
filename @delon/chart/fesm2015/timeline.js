@@ -385,8 +385,8 @@ class G2TimelineModule {
 G2TimelineModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule, NzOutletModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

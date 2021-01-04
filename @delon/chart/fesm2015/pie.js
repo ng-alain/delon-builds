@@ -361,8 +361,8 @@ class G2PieModule {
 G2PieModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule, NzDividerModule, NzOutletModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -572,6 +572,11 @@
         G2RadarComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: radar.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2RadarComponent];
     var G2RadarModule = /** @class */ (function () {
@@ -582,8 +587,8 @@
     G2RadarModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, grid.NzGridModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

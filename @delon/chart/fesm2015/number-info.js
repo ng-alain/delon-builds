@@ -108,8 +108,8 @@ class NumberInfoModule {
 NumberInfoModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, DelonUtilModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

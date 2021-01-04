@@ -378,6 +378,11 @@
         TrendComponent.prototype.reverseColor;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: trend.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [TrendComponent];
     var TrendModule = /** @class */ (function () {
@@ -388,8 +393,8 @@
     TrendModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

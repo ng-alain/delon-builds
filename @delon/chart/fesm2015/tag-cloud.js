@@ -267,8 +267,8 @@ class G2TagCloudModule {
 G2TagCloudModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -83,8 +83,8 @@ class TrendModule {
 TrendModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

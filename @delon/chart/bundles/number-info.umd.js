@@ -402,6 +402,11 @@
         NumberInfoComponent.prototype.gap;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: number-info.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [NumberInfoComponent];
     var NumberInfoModule = /** @class */ (function () {
@@ -412,8 +417,8 @@
     NumberInfoModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

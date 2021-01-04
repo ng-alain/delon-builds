@@ -400,8 +400,8 @@ class G2WaterWaveModule {
 G2WaterWaveModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

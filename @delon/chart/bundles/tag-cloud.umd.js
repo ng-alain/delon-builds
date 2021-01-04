@@ -554,6 +554,11 @@
         G2TagCloudComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: tag-cloud.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2TagCloudComponent];
     var G2TagCloudModule = /** @class */ (function () {
@@ -564,8 +569,8 @@
     G2TagCloudModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

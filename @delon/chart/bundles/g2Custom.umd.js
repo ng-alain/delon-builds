@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.cdk.platform, global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, core$1, util, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
+}(this, (function (exports, core, core$1, util, rxjs, operators, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -310,60 +310,29 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: custom.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var G2CustomComponent = /** @class */ (function () {
+    var G2CustomComponent = /** @class */ (function (_super) {
+        __extends(G2CustomComponent, _super);
+        function G2CustomComponent() {
+            var _this = _super.apply(this, __spread(arguments)) || this;
+            _this.resizeTime = 0;
+            _this.render = new core.EventEmitter();
+            _this.resize = new core.EventEmitter();
+            _this.destroy = new core.EventEmitter();
+            return _this;
+        }
         // #endregion
         /**
-         * @param {?} el
-         * @param {?} srv
-         * @param {?} platform
-         */
-        function G2CustomComponent(el, srv, platform) {
-            var _this = this;
-            this.el = el;
-            this.srv = srv;
-            this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
-            this._install = false;
-            // #region fields
-            this.delay = 0;
-            this.resizeTime = 0;
-            this.render = new core.EventEmitter();
-            this.resize = new core.EventEmitter();
-            this.destroy = new core.EventEmitter();
-            this.theme = ( /** @type {?} */(srv.cog.theme));
-            this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !_this._install; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.load(); }));
-        }
-        /**
-         * @private
          * @return {?}
          */
-        G2CustomComponent.prototype.load = function () {
-            var _this = this;
-            this._install = true;
-            setTimeout(( /**
-             * @return {?}
-             */function () { return _this.renderChart(); }), this.delay);
-        };
-        /**
-         * @private
-         * @return {?}
-         */
-        G2CustomComponent.prototype.renderChart = function () {
+        G2CustomComponent.prototype.install = function () {
             this.el.nativeElement.innerHTML = '';
             this.render.emit(this.el);
             this.installResizeEvent();
         };
+        /**
+         * @return {?}
+         */
+        G2CustomComponent.prototype.attachChart = function () { };
         /**
          * @private
          * @return {?}
@@ -378,35 +347,13 @@
          * @return {?}
          */function () { return _this.resize.emit(_this.el); }));
         };
-        /**
-         * @return {?}
-         */
-        G2CustomComponent.prototype.ngAfterViewInit = function () {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if ((( /** @type {?} */(window))).G2.Chart) {
-                this.load();
-            }
-            else {
-                this.srv.libLoad();
-            }
-        };
-        /**
-         * @return {?}
-         */
-        G2CustomComponent.prototype.ngOnDestroy = function () {
-            this.destroy.emit(this.el);
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return G2CustomComponent;
-    }());
+    }(core$1.G2BaseComponent));
     G2CustomComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'g2,g2-custom',
                     exportAs: 'g2Custom',
-                    template: " <ng-content></ng-content> ",
+                    template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <ng-content></ng-content>\n  ",
                     host: {
                         '[style.height.px]': 'height',
                     },
@@ -415,25 +362,13 @@
                     encapsulation: core.ViewEncapsulation.None
                 }] }
     ];
-    /** @nocollapse */
-    G2CustomComponent.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: core$1.G2Service },
-        { type: platform.Platform }
-    ]; };
     G2CustomComponent.propDecorators = {
-        delay: [{ type: core.Input }],
         height: [{ type: core.Input }],
         resizeTime: [{ type: core.Input }],
-        theme: [{ type: core.Input }],
         render: [{ type: core.Output }],
         resize: [{ type: core.Output }],
         destroy: [{ type: core.Output }]
     };
-    __decorate([
-        util.InputNumber(),
-        __metadata("design:type", Object)
-    ], G2CustomComponent.prototype, "delay", void 0);
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Number)
@@ -444,52 +379,26 @@
     ], G2CustomComponent.prototype, "resizeTime", void 0);
     if (false) {
         /** @type {?} */
-        G2CustomComponent.ngAcceptInputType_delay;
-        /** @type {?} */
         G2CustomComponent.ngAcceptInputType_height;
         /** @type {?} */
         G2CustomComponent.ngAcceptInputType_resizeTime;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CustomComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CustomComponent.prototype._install;
-        /** @type {?} */
-        G2CustomComponent.prototype.delay;
         /** @type {?} */
         G2CustomComponent.prototype.height;
         /** @type {?} */
         G2CustomComponent.prototype.resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.theme;
         /** @type {?} */
         G2CustomComponent.prototype.render;
         /** @type {?} */
         G2CustomComponent.prototype.resize;
         /** @type {?} */
         G2CustomComponent.prototype.destroy;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CustomComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CustomComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CustomComponent.prototype.platform;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: custom.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2CustomComponent];
     var G2CustomModule = /** @class */ (function () {
@@ -499,9 +408,9 @@
     }());
     G2CustomModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

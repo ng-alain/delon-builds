@@ -473,6 +473,11 @@
         G2SingleBarComponent.prototype.textStyle;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: single-bar.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2SingleBarComponent];
     var G2SingleBarModule = /** @class */ (function () {
@@ -483,8 +488,8 @@
     G2SingleBarModule.decorators = [
         { type: core$1.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

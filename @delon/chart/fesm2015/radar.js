@@ -278,8 +278,8 @@ class G2RadarModule {
 G2RadarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule, NzGridModule, NzOutletModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -659,6 +659,11 @@
         G2PieComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: pie.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2PieComponent];
     var G2PieModule = /** @class */ (function () {
@@ -669,8 +674,8 @@
     G2PieModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, divider.NzDividerModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

@@ -677,6 +677,11 @@
         G2TimelineComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: timeline.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2TimelineComponent];
     var G2TimelineModule = /** @class */ (function () {
@@ -687,8 +692,8 @@
     G2TimelineModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 
