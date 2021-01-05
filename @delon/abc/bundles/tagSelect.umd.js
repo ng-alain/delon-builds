@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v11.0.2
+ * @license ng-alain(cipchk@qq.com) v11.1.0-rc.0
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
