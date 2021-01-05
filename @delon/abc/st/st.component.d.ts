@@ -226,12 +226,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
     private optimizeData;
-    /**
-     * Return pure data, `st` internally maintains a set of data for caching, this part of data may affect the backend
-     *
-     * 返回纯净数据，`st` 内部会维护一组用于缓存的数据，这部分数据可能会影响后端
-     */
-    pureItem(itemOrIndex: STData | number): STData | null;
     ngAfterViewInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
