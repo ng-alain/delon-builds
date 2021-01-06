@@ -4,7 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path = require("path");
 const alain_1 = require("../utils/alain");
-const REFER = `, please refer to: https://ng-alain.com/cli/generate/en#Custom-template-page`;
+const REFER = `, please refer to: https://ng-alain.com/cli/generate#Customtemplatepage`;
 function genFiles(options) {
     options._tplDir = path.join(process.cwd(), './_cli-tpl');
     try {
