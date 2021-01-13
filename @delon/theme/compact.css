@@ -30002,11 +30002,6 @@ body {
 .alain-default__content nz-input-group {
   width: auto;
 }
-.alain-default__content router-outlet + * {
-  display: block;
-  animation-name: antFadeIn;
-  animation-duration: 1s;
-}
 @media (min-width: 768px) {
   .alain-default__content {
     margin-left: 224px;
@@ -30669,11 +30664,6 @@ body {
   display: block;
   padding: 0 8px;
   background-color: #f5f7fa;
-}
-.alain-blank router-outlet + * {
-  display: block;
-  animation-name: antFadeIn;
-  animation-duration: 1s;
 }
 .alain-blank .page-header {
   margin-right: -8px;
