@@ -32010,7 +32010,7 @@ g2-tag-cloud {
   transform-origin: 0 0;
 }
 .number-info {
-  display: block;
+  display: inline-block;
 }
 .number-info__title {
   margin-bottom: 16px;
@@ -32045,13 +32045,12 @@ g2-tag-cloud {
 .number-info__value-text {
   display: inline-block;
   height: 32px;
-  margin-right: 32px;
   color: rgba(0, 0, 0, 0.85);
   font-size: 24px;
   line-height: 32px;
 }
 .number-info__value-sub {
-  margin-right: 0;
+  margin-left: 32px;
   color: rgba(0, 0, 0, 0.45);
   font-size: 14px;
   vertical-align: top;
@@ -32069,6 +32068,21 @@ g2-tag-cloud {
 }
 .number-info__light .number-info__value-text {
   color: rgba(0, 0, 0, 0.85);
+}
+.number-info:not(:first-child) {
+  position: relative;
+  margin-left: 32px;
+  padding-left: 32px;
+}
+.number-info:not(:first-child)::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 1px;
+  margin: 8px 0;
+  background-color: #f0f0f0;
+  content: '';
 }
 .trend {
   display: inline-block;
