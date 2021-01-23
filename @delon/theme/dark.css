@@ -31727,7 +31727,7 @@ ellipsis {
 .full-content {
   display: block;
   height: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 .full-content__body {
   overflow: hidden;
