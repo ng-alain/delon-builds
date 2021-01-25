@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, Input, Output, NgModule } from '@angular/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, Input, NgModule } from '@angular/core';
+import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -24,8 +24,6 @@ class QuickMenuComponent {
         this.icon = 'question-circle';
         this.top = 120;
         this.width = 200;
-        this.expand = false;
-        this.expandChange = new EventEmitter();
         this.show = false;
         this.initFlag = false;
     }
@@ -34,7 +32,6 @@ class QuickMenuComponent {
      */
     _click() {
         this.show = !this.show;
-        this.expandChange.emit(this.show);
         this.setStyle();
     }
     /**
@@ -68,10 +65,8 @@ class QuickMenuComponent {
      * @return {?}
      */
     ngOnChanges() {
-        this.show = this.expand;
-        if (this.initFlag) {
+        if (this.initFlag)
             this.setStyle();
-        }
     }
 }
 QuickMenuComponent.decorators = [
@@ -99,9 +94,7 @@ QuickMenuComponent.propDecorators = {
     top: [{ type: Input }],
     width: [{ type: Input }],
     bgColor: [{ type: Input }],
-    borderColor: [{ type: Input }],
-    expand: [{ type: Input }],
-    expandChange: [{ type: Output }]
+    borderColor: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -111,17 +104,11 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], QuickMenuComponent.prototype, "width", void 0);
-__decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
-], QuickMenuComponent.prototype, "expand", void 0);
 if (false) {
     /** @type {?} */
     QuickMenuComponent.ngAcceptInputType_top;
     /** @type {?} */
     QuickMenuComponent.ngAcceptInputType_width;
-    /** @type {?} */
-    QuickMenuComponent.ngAcceptInputType_expand;
     /** @type {?} */
     QuickMenuComponent.prototype.ctrlStyle;
     /** @type {?} */
@@ -134,10 +121,6 @@ if (false) {
     QuickMenuComponent.prototype.bgColor;
     /** @type {?} */
     QuickMenuComponent.prototype.borderColor;
-    /** @type {?} */
-    QuickMenuComponent.prototype.expand;
-    /** @type {?} */
-    QuickMenuComponent.prototype.expandChange;
     /**
      * @type {?}
      * @private
