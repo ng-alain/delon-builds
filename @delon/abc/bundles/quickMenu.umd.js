@@ -337,6 +337,8 @@
             this.icon = 'question-circle';
             this.top = 120;
             this.width = 200;
+            this.expand = false;
+            this.expandChange = new core.EventEmitter();
             this.show = false;
             this.initFlag = false;
         }
@@ -345,6 +347,7 @@
          */
         QuickMenuComponent.prototype._click = function () {
             this.show = !this.show;
+            this.expandChange.emit(this.show);
             this.setStyle();
         };
         /**
@@ -378,8 +381,10 @@
          * @return {?}
          */
         QuickMenuComponent.prototype.ngOnChanges = function () {
-            if (this.initFlag)
+            this.show = this.expand;
+            if (this.initFlag) {
                 this.setStyle();
+            }
         };
         return QuickMenuComponent;
     }());
@@ -408,7 +413,9 @@
         top: [{ type: core.Input }],
         width: [{ type: core.Input }],
         bgColor: [{ type: core.Input }],
-        borderColor: [{ type: core.Input }]
+        borderColor: [{ type: core.Input }],
+        expand: [{ type: core.Input }],
+        expandChange: [{ type: core.Output }]
     };
     __decorate([
         util.InputNumber(),
@@ -418,11 +425,17 @@
         util.InputNumber(),
         __metadata("design:type", Object)
     ], QuickMenuComponent.prototype, "width", void 0);
+    __decorate([
+        util.InputBoolean(),
+        __metadata("design:type", Boolean)
+    ], QuickMenuComponent.prototype, "expand", void 0);
     if (false) {
         /** @type {?} */
         QuickMenuComponent.ngAcceptInputType_top;
         /** @type {?} */
         QuickMenuComponent.ngAcceptInputType_width;
+        /** @type {?} */
+        QuickMenuComponent.ngAcceptInputType_expand;
         /** @type {?} */
         QuickMenuComponent.prototype.ctrlStyle;
         /** @type {?} */
@@ -435,6 +448,10 @@
         QuickMenuComponent.prototype.bgColor;
         /** @type {?} */
         QuickMenuComponent.prototype.borderColor;
+        /** @type {?} */
+        QuickMenuComponent.prototype.expand;
+        /** @type {?} */
+        QuickMenuComponent.prototype.expandChange;
         /**
          * @type {?}
          * @private
