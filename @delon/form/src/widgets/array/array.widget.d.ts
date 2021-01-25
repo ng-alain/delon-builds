@@ -9,6 +9,7 @@ export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     get addDisabled(): boolean;
     get showRemove(): boolean;
     ngOnInit(): void;
+    private reValid;
     addItem(): void;
     removeItem(index: number): void;
 }

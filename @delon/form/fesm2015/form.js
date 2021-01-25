@@ -1193,7 +1193,7 @@ class ArrayProperty extends PropertyGroup {
          */
         (property) => {
             var _a;
-            if (property.visible && property._hasValue()) {
+            if (property.visible) {
                 value.push(Object.assign(Object.assign({}, (((_a = this.widget) === null || _a === void 0 ? void 0 : _a.cleanValue) ? null : property.formData)), property.value));
             }
         }));
@@ -3244,11 +3244,19 @@ class ArrayWidget extends ArrayLayoutWidget {
         this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
     }
     /**
+     * @private
+     * @return {?}
+     */
+    reValid() {
+        this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: true });
+    }
+    /**
      * @return {?}
      */
     addItem() {
         /** @type {?} */
         const property = this.formProperty.add({});
+        this.reValid();
         if (this.ui.add) {
             this.ui.add(property);
         }
@@ -3259,6 +3267,7 @@ class ArrayWidget extends ArrayLayoutWidget {
      */
     removeItem(index) {
         this.formProperty.remove(index);
+        this.reValid();
         if (this.ui.remove) {
             this.ui.remove(index);
         }
