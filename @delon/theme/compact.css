@@ -30898,6 +30898,43 @@ body {
 .sv__small .sv__detail {
   padding-bottom: 8px;
 }
+.sv__value {
+  display: inline-flex;
+  align-items: center;
+}
+.sv__value-prefix,
+.sv__value-unit {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  font-style: normal;
+}
+.sv__value-prefix {
+  padding-right: 3px;
+}
+.sv__value-text {
+  font-size: 18px;
+}
+.sv__value-unit {
+  padding-left: 3px;
+}
+.sv__value:not(:first-child) {
+  position: relative;
+  margin-left: 8px;
+  padding-left: 14px;
+}
+.sv__value:not(:first-child)::before {
+  position: absolute;
+  left: 0;
+  width: 6px;
+  color: rgba(0, 0, 0, 0.5);
+  content: '/';
+}
+.sv__value-small .sv__value-text {
+  font-size: 14px;
+}
+.sv__value-large .sv__value-text {
+  font-size: 24px;
+}
 .sv__large .sv__title {
   font-size: 16px;
 }
