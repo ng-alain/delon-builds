@@ -484,49 +484,6 @@
         SVTitleComponent.prototype.ren;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-value.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var SVValueComponent = /** @class */ (function () {
-        function SVValueComponent() {
-            this.size = 'default';
-        }
-        return SVValueComponent;
-    }());
-    SVValueComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sv-value, [sv-value]',
-                    exportAs: 'svValue',
-                    template: "\n    <em *ngIf=\"prefix\" class=\"sv__value-prefix\" [innerHTML]=\"prefix\"></em>\n    <span nz-tooltip [nzTooltipTitle]=\"tooltip\" class=\"sv__value-text\"><ng-content></ng-content></span>\n    <em *ngIf=\"unit\" class=\"sv__value-unit\" [innerHTML]=\"unit\"></em>\n  ",
-                    host: {
-                        '[class.sv__value]': 'true',
-                        '[class.sv__value-small]': "size === 'small'",
-                        '[class.sv__value-large]': "size === 'large'",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    SVValueComponent.propDecorators = {
-        prefix: [{ type: core.Input }],
-        unit: [{ type: core.Input }],
-        tooltip: [{ type: core.Input }],
-        size: [{ type: core.Input }]
-    };
-    if (false) {
-        /** @type {?} */
-        SVValueComponent.prototype.prefix;
-        /** @type {?} */
-        SVValueComponent.prototype.unit;
-        /** @type {?} */
-        SVValueComponent.prototype.tooltip;
-        /** @type {?} */
-        SVValueComponent.prototype.size;
-    }
-
     /** @type {?} */
     var prefixCls = "sv";
     var SVComponent = /** @class */ (function () {
@@ -616,9 +573,8 @@
             var conEl = this.conEl;
             /** @type {?} */
             var def = this.default;
-            if (!(def != null ? def : this.parent.default)) {
+            if (!(def != null ? def : this.parent.default))
                 return;
-            }
             /** @type {?} */
             var el = ( /** @type {?} */(conEl.nativeElement));
             /** @type {?} */
@@ -723,7 +679,7 @@
     }
 
     /** @type {?} */
-    var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
+    var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
     var SVModule = /** @class */ (function () {
         function SVModule() {
         }
@@ -753,7 +709,6 @@
     exports.SVContainerComponent = SVContainerComponent;
     exports.SVModule = SVModule;
     exports.SVTitleComponent = SVTitleComponent;
-    exports.SVValueComponent = SVValueComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

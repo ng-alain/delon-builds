@@ -16,7 +16,7 @@ function fixVersion(tree, context) {
 function fixThirdVersion(tree, context) {
     // dependencies
     json_1.addPackageToPackageJson(tree, [
-        `ng-zorro-antd@^11.0.1`,
+        `ng-zorro-antd@~11.1.0`,
         `ngx-ueditor@^11.0.0`,
         `ngx-tinymce@^11.0.0`,
         `ngx-countdown@^11.0.1`,

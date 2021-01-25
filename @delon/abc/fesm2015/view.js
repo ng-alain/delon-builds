@@ -174,52 +174,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: sv-value.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class SVValueComponent {
-    constructor() {
-        this.size = 'default';
-    }
-}
-SVValueComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'sv-value, [sv-value]',
-                exportAs: 'svValue',
-                template: `
-    <em *ngIf="prefix" class="sv__value-prefix" [innerHTML]="prefix"></em>
-    <span nz-tooltip [nzTooltipTitle]="tooltip" class="sv__value-text"><ng-content></ng-content></span>
-    <em *ngIf="unit" class="sv__value-unit" [innerHTML]="unit"></em>
-  `,
-                host: {
-                    '[class.sv__value]': 'true',
-                    '[class.sv__value-small]': `size === 'small'`,
-                    '[class.sv__value-large]': `size === 'large'`,
-                },
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-SVValueComponent.propDecorators = {
-    prefix: [{ type: Input }],
-    unit: [{ type: Input }],
-    tooltip: [{ type: Input }],
-    size: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    SVValueComponent.prototype.prefix;
-    /** @type {?} */
-    SVValueComponent.prototype.unit;
-    /** @type {?} */
-    SVValueComponent.prototype.tooltip;
-    /** @type {?} */
-    SVValueComponent.prototype.size;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: sv.component.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -300,9 +254,8 @@ class SVComponent {
         const { conEl } = this;
         /** @type {?} */
         const def = this.default;
-        if (!(def != null ? def : this.parent.default)) {
+        if (!(def != null ? def : this.parent.default))
             return;
-        }
         /** @type {?} */
         const el = (/** @type {?} */ (conEl.nativeElement));
         /** @type {?} */
@@ -411,7 +364,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
+const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent];
 class SVModule {
 }
 SVModule.decorators = [
@@ -434,5 +387,5 @@ SVModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent, SVValueComponent };
+export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent };
 //# sourceMappingURL=view.js.map

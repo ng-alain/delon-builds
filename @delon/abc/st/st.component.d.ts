@@ -56,7 +56,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _allChecked: boolean;
     _allCheckedDisabled: boolean;
     _indeterminate: boolean;
-    _headers: STColumn[][];
+    _headers: _STColumn[][];
     _columns: _STColumn[];
     readonly orgTable: NzTableComponent;
     get req(): STReq;
