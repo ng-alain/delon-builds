@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v11.2.0
+ * @license ng-alain(cipchk@qq.com) v11.3.0
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -4142,7 +4142,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var VERSION = new i0.Version('11.2.0');
+    var VERSION = new i0.Version('11.3.0');
 
     /**
      * @fileoverview added by tsickle
