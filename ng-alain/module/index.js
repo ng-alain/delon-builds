@@ -1,10 +1,19 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const change_1 = require("@schematics/angular/utility/change");
-const config_1 = require("@schematics/angular/utility/config");
+const workspace_1 = require("@schematics/angular/utility/workspace");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const ts = require("typescript");
@@ -65,8 +74,8 @@ function addRoutingModuleToTop(options) {
     };
 }
 function default_1(schema) {
-    return (host, context) => {
-        const workspace = config_1.getWorkspace(host);
+    return (host, context) => __awaiter(this, void 0, void 0, function* () {
+        const workspace = yield workspace_1.getWorkspace(host);
         if (!schema.project) {
             throw new schematics_1.SchematicsException('Option (project) is required.');
         }
@@ -88,8 +97,8 @@ function default_1(schema) {
             schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(parsedPath.path),
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
-    };
+        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))]);
+    });
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map
