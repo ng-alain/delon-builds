@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "11.3.0-031a1b6c",
+  "version": "11.3.0-ab08cd44",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "~11.1.0",
-    "@delon/acl": "^11.3.0-031a1b6c",
-    "@delon/util": "^11.3.0-031a1b6c",
+    "@delon/acl": "^11.3.0-ab08cd44",
+    "@delon/util": "^11.3.0-ab08cd44",
     "tslib": "^2.0.0"
   },
   "main": "bundles/theme.umd.js",

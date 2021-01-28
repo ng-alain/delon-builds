@@ -145,7 +145,7 @@ function buildAlain(schema) {
             schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(null, schema.path + '/'),
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
+        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))]);
     };
 }
 exports.buildAlain = buildAlain;

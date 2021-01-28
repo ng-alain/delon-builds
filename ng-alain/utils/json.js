@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.scriptsToAngularJson = exports.overwriteAngular = exports.getAngular = exports.removePackageFromPackageJson = exports.addPackageToPackageJson = exports.overwritePackage = exports.getPackage = exports.overwriteJSON = exports.getJSON = void 0;
-const json_1 = require("@angular-devkit/core/src/json");
+const jsonc_parser_1 = require("jsonc-parser");
 const project_1 = require("./project");
 function getJSON(host, jsonFile, type) {
     if (!host.exists(jsonFile))
         return null;
     const sourceText = host.read(jsonFile).toString('utf-8');
     try {
-        const json = json_1.parseJson(sourceText, json_1.JsonParseMode.Loose);
+        const json = jsonc_parser_1.parse(sourceText);
         if (type && !json[type]) {
             json[type] = {};
         }

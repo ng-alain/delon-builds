@@ -60,7 +60,7 @@ function default_1(options) {
             default:
                 throw new schematics_1.SchematicsException(`Could not find plugin name: ${options.name}`);
         }
-        return schematics_1.chain(rules)(host, context);
+        return schematics_1.chain(rules);
     };
 }
 exports.default = default_1;
