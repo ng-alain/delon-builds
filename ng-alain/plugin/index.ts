@@ -20,7 +20,7 @@ function installPackages(): (_host: Tree, context: SchematicContext) => void {
 }
 
 export default function (options: PluginSchema): Rule {
-  return (host: Tree, context: SchematicContext) => {
+  return (host: Tree) => {
     const project = getProject(host, options.project);
     const pluginOptions: PluginOptions = {
       type: options.type,
@@ -69,6 +69,6 @@ export default function (options: PluginSchema): Rule {
         throw new SchematicsException(`Could not find plugin name: ${options.name}`);
     }
 
-    return chain(rules)(host, context);
+    return chain(rules);
   };
 }

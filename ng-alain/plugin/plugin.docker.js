@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginDocker = void 0;
-const alain_1 = require("../utils/alain");
+const utils_1 = require("../utils");
 function setIgnore(host, options) {
     const filePath = `${options.root}/.dockerignore`;
     if (options.type === 'add') {
-        alain_1.tryAddFile(host, filePath, `node_modules
+        utils_1.tryAddFile(host, filePath, `node_modules
 npm-debug.log
 Dockerfile*
 docker-compose*
@@ -17,13 +17,13 @@ LICENSE
 .vscode`);
     }
     else {
-        alain_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(host, filePath);
     }
 }
 function setCompose(host, options) {
     const filePath = `${options.root}/docker-compose.yml`;
     if (options.type === 'add') {
-        alain_1.tryAddFile(host, filePath, `version: '2.1'
+        utils_1.tryAddFile(host, filePath, `version: '2.1'
 
 services:
   ${options.name}:
@@ -36,13 +36,13 @@ services:
 `);
     }
     else {
-        alain_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(host, filePath);
     }
 }
 function setDockerfile(host, options) {
     const filePath = `${options.root}/Dockerfile`;
     if (options.type === 'add') {
-        alain_1.tryAddFile(host, filePath, `# STEP 1: Build
+        utils_1.tryAddFile(host, filePath, `# STEP 1: Build
 FROM node:10 as builder
 
 LABEL authors="cipchk <cipchk@qq.com>"
@@ -72,7 +72,7 @@ CMD [ "nginx", "-g", "daemon off;"]
 `);
     }
     else {
-        alain_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(host, filePath);
     }
 }
 function setNginx(host, options) {

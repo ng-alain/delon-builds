@@ -1,16 +1,23 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const spinner_1 = require("@angular-devkit/build-angular/src/utils/spinner");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
+const schematics_2 = require("@angular/cdk/schematics");
+const workspace_1 = require("@schematics/angular/utility/workspace");
 const path = require("path");
 const lang_config_1 = require("../core/lang.config");
-const file_1 = require("../utils/file");
-const html_1 = require("../utils/html");
-const json_1 = require("../utils/json");
-const lib_versions_1 = require("../utils/lib-versions");
-const project_1 = require("../utils/project");
+const utils_1 = require("../utils");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
 const spinner = new spinner_1.Spinner();
@@ -38,14 +45,13 @@ function removeOrginalFiles() {
     };
 }
 function fixAngularJson(options) {
-    return (host) => {
-        const json = json_1.getAngular(host);
-        const _project = project_1.getProjectFromWorkspace(json, options.project);
-        const architect = (_project.targets || _project.architect);
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+        const p = schematics_2.getProjectFromWorkspace(workspace, options.project);
+        const serveTargetOptions = schematics_2.getProjectTargetOptions(p, utils_1.BUILD_TARGET_SERVE);
         // Add proxy.conf.json
-        architect.serve.options.proxyConfig = 'proxy.conf.json';
+        serveTargetOptions.proxyConfig = 'proxy.conf.json';
         // 调整budgets
-        const budgets = architect.build.configurations.production.budgets;
+        const budgets = p.targets.get(utils_1.BUILD_TARGET_BUILD).configurations.production.budgets;
         if (budgets && budgets.length > 0) {
             const initial = budgets.find(w => w.type === 'initial');
             if (initial) {
@@ -53,45 +59,43 @@ function fixAngularJson(options) {
                 initial.maximumError = '3mb';
             }
         }
-        json_1.overwriteAngular(host, json);
-        return host;
-    };
+    }));
 }
 function addDependenciesToPackageJson(options) {
     return (host) => {
         // 3rd
-        json_1.addPackageToPackageJson(host, [
+        utils_1.addPackage(host, [
             // allow ignore ng-zorro-antd becauce of @delon/theme dependency
-            `ng-zorro-antd@${lib_versions_1.ZORROVERSION}`,
+            `ng-zorro-antd@${utils_1.ZORROVERSION}`,
             // ng-zorro-antd need
             'screenfull@^5.1.0',
             'ajv@^6.12.6',
         ]);
         // add ajv
-        json_1.scriptsToAngularJson(host, ['node_modules/ajv/dist/ajv.bundle.js'], 'add', ['build', 'test']);
+        utils_1.addAssetsToTarget([{ type: 'script', value: 'node_modules/ajv/dist/ajv.bundle.js' }], 'add', ['build', 'test']);
         // @delon/*
-        json_1.addPackageToPackageJson(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${lib_versions_1.VERSION}`));
+        utils_1.addPackage(host, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${utils_1.VERSION}`));
         // ng-alain
-        json_1.addPackageToPackageJson(host, [
-            `ng-alain@${lib_versions_1.VERSION}`,
+        utils_1.addPackage(host, [
+            `ng-alain@${utils_1.VERSION}`,
             `ng-alain-codelyzer@^0.0.1`,
             `ng-alain-plugin-theme@^11.0.1`,
             `source-map-explorer@^2.5.1`,
-            `@delon/testing@${lib_versions_1.VERSION}`,
+            `@delon/testing@${utils_1.VERSION}`,
         ], 'devDependencies');
         // i18n
         if (options.i18n) {
-            json_1.addPackageToPackageJson(host, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
+            utils_1.addPackage(host, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
         }
         // Configuring CommonJS dependencies
         // https://angular.io/guide/build#configuring-commonjs-dependencies
-        json_1.addAllowedCommonJsDependencies(host);
+        utils_1.addAllowedCommonJsDependencies([]);
         return host;
     };
 }
 function addRunScriptToPackageJson() {
     return (host) => {
-        const json = json_1.getPackage(host, 'scripts');
+        const json = utils_1.readPackage(host, 'scripts');
         if (json == null)
             return host;
         json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
@@ -104,13 +108,13 @@ function addRunScriptToPackageJson() {
         json.scripts['color-less'] = `ng-alain-plugin-theme -t=colorLess`;
         json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
         json.scripts.icon = `ng g ng-alain:plugin icon`;
-        json_1.overwritePackage(host, json);
+        utils_1.writePackage(host, json);
         return host;
     };
 }
 function addPathsToTsConfig() {
     return (host) => {
-        const json = json_1.getJSON(host, 'tsconfig.json', 'compilerOptions');
+        const json = utils_1.readJSON(host, 'tsconfig.json', 'compilerOptions');
         if (json == null)
             return host;
         if (!json.compilerOptions)
@@ -121,13 +125,13 @@ function addPathsToTsConfig() {
         paths['@shared'] = ['src/app/shared/index'];
         paths['@core'] = ['src/app/core/index'];
         paths['@env/*'] = ['src/environments/*'];
-        json_1.overwriteJSON(host, 'tsconfig.json', json);
+        utils_1.writeJSON(host, 'tsconfig.json', json);
         return host;
     };
 }
 function addCodeStylesToPackageJson() {
     return (host) => {
-        const json = json_1.getPackage(host);
+        const json = utils_1.readPackage(host);
         if (json == null)
             return host;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
@@ -135,9 +139,9 @@ function addCodeStylesToPackageJson() {
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
         json.scripts['pretty-quick'] = `pretty-quick`;
         json.scripts['tslint-check'] = `tslint-config-prettier-check ./tslint.json`;
-        json_1.overwritePackage(host, json);
+        utils_1.writePackage(host, json);
         // dependencies
-        json_1.addPackageToPackageJson(host, [
+        utils_1.addPackage(host, [
             `tslint-config-prettier@^1.18.0`,
             `pretty-quick@^3.1.0`,
             `husky@^4.2.3`,
@@ -155,7 +159,7 @@ function addCodeStylesToPackageJson() {
 function addSchematics() {
     return (host) => {
         const angularJsonFile = 'angular.json';
-        const json = json_1.getJSON(host, angularJsonFile, 'schematics');
+        const json = utils_1.readJSON(host, angularJsonFile, 'schematics');
         if (json == null)
             return host;
         json.schematics['ng-alain:module'] = {
@@ -192,58 +196,51 @@ function addSchematics() {
         json.schematics['@schematics/angular:service'] = {
             spec: false,
         };
-        json_1.overwriteJSON(host, angularJsonFile, json);
+        utils_1.writeJSON(host, angularJsonFile, json);
     };
 }
 function addNzLintRules() {
     return (host) => {
-        json_1.addPackageToPackageJson(host, ['nz-tslint-rules@^0.901.2'], 'devDependencies');
-        const json = json_1.getJSON(host, 'tslint.json');
+        utils_1.addPackage(host, ['nz-tslint-rules@^0.901.2'], 'devDependencies');
+        const json = utils_1.readJSON(host, 'tslint.json');
         if (json == null)
             return host;
         json.rulesDirectory.push(`nz-tslint-rules`);
         json.rules['nz-secondary-entry-imports'] = true;
-        json_1.overwriteJSON(host, 'tslint.json', json);
+        utils_1.writeJSON(host, 'tslint.json', json);
         return host;
     };
 }
 function forceLess() {
-    return (host) => {
-        json_1.scriptsToAngularJson(host, ['src/styles.less'], 'add', ['build'], null, true);
+    return () => {
+        utils_1.addAssetsToTarget([{ type: 'style', value: 'src/styles.less' }], 'add', ['build'], null, true);
     };
 }
 function addStyle() {
-    return (host) => {
-        html_1.addHeadStyle(host, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
-        html_1.addHtmlToBody(host, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`);
+    return (tree) => {
+        utils_1.addHeadStyle(tree, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
+        utils_1.addHtmlToBody(tree, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`);
         // add styles
-        file_1.addFiles(host, [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`], overwriteDataFileRoot);
-        return host;
+        [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
+            utils_1.overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
+        });
+        return tree;
     };
-}
-function mergeFiles(options, from, to) {
-    return schematics_1.mergeWith(schematics_1.apply(schematics_1.url(from), [
-        options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
-        options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-        schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
-            ZORROVERSION: lib_versions_1.ZORROVERSION })),
-        schematics_1.move(to),
-    ]));
 }
 function addFilesToRoot(options) {
     return schematics_1.chain([
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/src'), [
             options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
             options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
-                ZORROVERSION: lib_versions_1.ZORROVERSION })),
+            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
+                ZORROVERSION: utils_1.ZORROVERSION })),
             schematics_1.move(project.sourceRoot),
         ])),
         schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/root'), [
             options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
             options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: lib_versions_1.VERSION,
-                ZORROVERSION: lib_versions_1.ZORROVERSION })),
+            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
+                ZORROVERSION: utils_1.ZORROVERSION })),
         ]), schematics_1.MergeStrategy.Overwrite),
     ]);
 }
@@ -304,13 +301,13 @@ function fixLangInHtml(host, p, langs) {
 function fixVsCode() {
     return (host) => {
         const filePath = '.vscode/extensions.json';
-        let json = json_1.getJSON(host, filePath);
+        let json = utils_1.readJSON(host, filePath);
         if (json == null) {
             host.create(filePath, '');
             json = {};
         }
         json.recommendations = ['cipchk.ng-alain-extension-pack'];
-        json_1.overwriteJSON(host, filePath, json);
+        utils_1.writeJSON(host, filePath, json);
     };
 }
 function install() {
@@ -324,8 +321,8 @@ function finished() {
     };
 }
 function default_1(options) {
-    return (host, context) => {
-        project = project_1.getProject(host, options.project);
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
+        project = (yield utils_1.getProject(tree, options.project)).project;
         spinner.start(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
             // @delon/* dependencies
@@ -347,8 +344,8 @@ function default_1(options) {
             fixAngularJson(options),
             install(),
             finished(),
-        ])(host, context);
-    };
+        ]);
+    });
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

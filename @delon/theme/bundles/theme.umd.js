@@ -3845,7 +3845,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @see https://ng-alain.com/theme/currency
+     * [Document](https://ng-alain.com/theme/currency)
      */
     // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {
@@ -3890,7 +3890,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @see https://ng-alain.com/theme/keys
+     * [Document](https://ng-alain.com/theme/keys)
      */
     var KeysPipe = /** @class */ (function () {
         function KeysPipe() {

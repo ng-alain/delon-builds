@@ -3891,7 +3891,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/theme/currency
+ * [Document](https://ng-alain.com/theme/currency)
  */
 // tslint:disable-next-line:use-pipe-transform-interface
 class CNCurrencyPipe {
@@ -3933,7 +3933,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @see https://ng-alain.com/theme/keys
+ * [Document](https://ng-alain.com/theme/keys)
  */
 class KeysPipe {
     /**
@@ -4180,7 +4180,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.3.0');
+const VERSION = new Version('11.3.0-e4aa5435');
 
 /**
  * @fileoverview added by tsickle

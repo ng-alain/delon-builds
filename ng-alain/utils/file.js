@@ -1,71 +1,60 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.overwriteIfExists = exports.addFiles = exports.overwriteFiles = exports.overwriteFile = exports.readContent = void 0;
+exports.overwriteIfExists = exports.overwriteFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
-const path_1 = require("path");
-function readContent(host, filePath) {
-    if (!host.exists(filePath))
+function tryDelFile(host, filePath) {
+    if (host.exists(filePath)) {
+        host.delete(filePath);
+    }
+}
+exports.tryDelFile = tryDelFile;
+function tryAddFile(host, filePath, content) {
+    tryDelFile(host, filePath);
+    host.create(filePath, content);
+}
+exports.tryAddFile = tryAddFile;
+function readContent(tree, filePath) {
+    if (!tree.exists(filePath))
         return '';
-    return host.read(filePath).toString('utf-8');
+    return tree.read(filePath).toString('utf-8');
 }
 exports.readContent = readContent;
 /**
  * Overwrite files to the project
- *
- * @param [overwrite=false] `true` is force, default: `false`
  */
-function overwriteFile(host, filePath, sourcePath, overwrite = false, sourcePathIsString = false) {
-    const isExists = host.exists(filePath);
-    if (overwrite || isExists) {
+function overwriteFile(options) {
+    options = Object.assign({ overwrite: false, contentIsString: false }, options);
+    const isExists = options.tree.exists(options.filePath);
+    if (options.overwrite || isExists) {
         try {
             let content = '';
-            if (sourcePathIsString) {
-                content = sourcePath;
+            if (options.contentIsString) {
+                content = options.content;
             }
             else {
-                const buffer = fs.readFileSync(sourcePath);
+                const buffer = fs.readFileSync(options.content);
                 content = buffer ? buffer.toString('utf-8') : '';
             }
-            if (overwrite) {
+            if (options.overwrite) {
                 if (isExists) {
-                    host.delete(filePath);
+                    options.tree.delete(options.filePath);
                 }
-                host.create(filePath, content);
+                options.tree.create(options.filePath, content);
             }
             else {
-                host.overwrite(filePath, content);
+                options.tree.overwrite(options.filePath, content);
             }
         }
         catch (_a) { }
     }
-    return host;
+    return options.tree;
 }
 exports.overwriteFile = overwriteFile;
-/**
- * Overwrite files to the project
- *
- * @param [overwrite=false] `true` is force, default: `false`
- */
-function overwriteFiles(host, files, _filePath, overwrite = false) {
-    files.forEach(p => overwriteFile(host, p, path_1.join(_filePath, p), overwrite));
-    return host;
-}
-exports.overwriteFiles = overwriteFiles;
-/**
- * Add files to the project
- *
- * @param [overwrite=false] `true` is force, default: `false`
- */
-function addFiles(host, files, _filePath, overwrite = false) {
-    files.filter(p => overwrite || !host.exists(p)).forEach(p => overwriteFile(host, p, path_1.join(_filePath, p), true));
-    return host;
-}
-exports.addFiles = addFiles;
-function overwriteIfExists(host) {
+function overwriteIfExists(tree) {
     return schematics_1.forEach(fileEntry => {
-        if (host.exists(fileEntry.path)) {
-            host.overwrite(fileEntry.path, fileEntry.content);
+        if (tree.exists(fileEntry.path)) {
+            tree.overwrite(fileEntry.path, fileEntry.content);
             return null;
         }
         return fileEntry;

@@ -16,10 +16,10 @@ import {
 } from '@angular-devkit/schematics';
 import { addImportToModule, findNode } from '@schematics/angular/utility/ast-utils';
 import { InsertChange } from '@schematics/angular/utility/change';
-import { getWorkspace } from '@schematics/angular/utility/config';
 import { findModuleFromOptions } from '@schematics/angular/utility/find-module';
 import { parseName } from '@schematics/angular/utility/parse-name';
 import * as ts from 'typescript';
+import { getWorkspace } from '../utils/project';
 import { Schema as ModuleSchema } from './schema';
 
 function addDeclarationToNgModule(options: ModuleSchema): Rule {
@@ -121,9 +121,6 @@ export default function (schema: ModuleSchema): Rule {
       move(parsedPath.path),
     ]);
 
-    return chain([branchAndMerge(chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), mergeWith(templateSource)]))])(
-      host,
-      context,
-    );
+    return chain([branchAndMerge(chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), mergeWith(templateSource)]))]);
   };
 }

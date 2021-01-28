@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path = require("path");
-const alain_1 = require("../utils/alain");
+const utils_1 = require("../utils");
 const REFER = `, please refer to: https://ng-alain.com/cli/generate#Customtemplatepage`;
 function genFiles(options) {
     options._tplDir = path.join(process.cwd(), './_cli-tpl');
@@ -48,7 +48,7 @@ function runFixJS(options) {
 function default_1(options) {
     genFiles(options);
     return () => {
-        return runFixJS(options).then(() => alain_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)));
+        return runFixJS(options).then(() => utils_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)));
     };
 }
 exports.default = default_1;

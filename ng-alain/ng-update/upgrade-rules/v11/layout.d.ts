@@ -1,3 +1,3 @@
-import { SchematicContext, Tree } from '@angular-devkit/schematics';
-import { Project } from '../../../utils/project';
-export declare function fixLayout(p: Project, t: Tree, c: SchematicContext): void;
+import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { Rule } from '@angular-devkit/schematics';
+export declare function fixLayout(p: ProjectDefinition): Rule;

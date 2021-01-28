@@ -4,10 +4,10 @@ const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const change_1 = require("@schematics/angular/utility/change");
-const config_1 = require("@schematics/angular/utility/config");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const ts = require("typescript");
+const project_1 = require("../utils/project");
 function addDeclarationToNgModule(options) {
     return (host) => {
         if (!options.module) {
@@ -66,7 +66,7 @@ function addRoutingModuleToTop(options) {
 }
 function default_1(schema) {
     return (host, context) => {
-        const workspace = config_1.getWorkspace(host);
+        const workspace = project_1.getWorkspace(host);
         if (!schema.project) {
             throw new schematics_1.SchematicsException('Option (project) is required.');
         }
@@ -88,7 +88,7 @@ function default_1(schema) {
             schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(parsedPath.path),
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
+        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))]);
     };
 }
 exports.default = default_1;

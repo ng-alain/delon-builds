@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
 const path_1 = require("path");
-const json_1 = require("../utils/json");
+const utils_1 = require("../utils");
 const V = 11;
 function genRules(options) {
     const rules = [];
@@ -51,7 +51,7 @@ function default_1(options) {
         if (isUseCNPM()) {
             throw new Error(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
-        const pkg = json_1.getJSON(host, `package.json`);
+        const pkg = utils_1.readPackage(host);
         if (pkg.devDependencies['ng-alain']) {
             throw new Error(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
         }

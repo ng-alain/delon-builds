@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.tryAddFile = exports.tryDelFile = exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = void 0;
+exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -145,19 +145,8 @@ function buildAlain(schema) {
             schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(null, schema.path + '/'),
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))])(host, context);
+        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))]);
     };
 }
 exports.buildAlain = buildAlain;
-function tryDelFile(host, filePath) {
-    if (host.exists(filePath)) {
-        host.delete(filePath);
-    }
-}
-exports.tryDelFile = tryDelFile;
-function tryAddFile(host, filePath, content) {
-    tryDelFile(host, filePath);
-    host.create(filePath, content);
-}
-exports.tryAddFile = tryAddFile;
 //# sourceMappingURL=alain.js.map
