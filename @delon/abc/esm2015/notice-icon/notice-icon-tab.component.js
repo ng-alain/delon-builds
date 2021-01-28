@@ -1,52 +1,39 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: notice-icon-tab.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import * as i0 from "@angular/core";
+import * as i1 from "@angular/common";
+import * as i2 from "ng-zorro-antd/list";
+import * as i3 from "ng-zorro-antd/tag";
 export class NoticeIconTabComponent {
     constructor() {
         this.locale = {};
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
     }
-    /**
-     * @param {?} item
-     * @return {?}
-     */
     onClick(item) {
         this.select.emit({ title: this.data.title, item });
     }
-    /**
-     * @return {?}
-     */
     onClear() {
         this.clear.emit(this.data.title);
     }
 }
-NoticeIconTabComponent.decorators = [
-    { type: Component, args: [{
+/** @nocollapse */ NoticeIconTabComponent.ɵfac = function NoticeIconTabComponent_Factory(t) { return new (t || NoticeIconTabComponent)(); };
+/** @nocollapse */ NoticeIconTabComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: NoticeIconTabComponent, selector: "notice-icon-tab", inputs: { locale: "locale", data: "data" }, outputs: { select: "select", clear: "clear" }, exportAs: ["noticeIconTab"], ngImport: i0, template: "<div *ngIf=\"data.list?.length === 0; else listTpl\" class=\"notice-icon__notfound\">\n  <img class=\"notice-icon__notfound-img\" *ngIf=\"data.emptyImage\" src=\"{{ data.emptyImage }}\" alt=\"not found\" />\n  <p>{{ data.emptyText || locale.emptyText }}</p>\n</div>\n<ng-template #listTpl>\n  <nz-list [nzDataSource]=\"data.list\" [nzRenderItem]=\"item\">\n    <ng-template #item let-item>\n      <nz-list-item (click)=\"onClick(item)\" [ngClass]=\"{ 'notice-icon__item-read': item.read }\">\n        <nz-list-item-meta [nzTitle]=\"nzTitle\" [nzDescription]=\"nzDescription\" [nzAvatar]=\"item.avatar\">\n          <ng-template #nzTitle>\n            {{ item.title }}\n            <div class=\"notice-icon__item-extra\" *ngIf=\"item.extra\">\n              <nz-tag [nzColor]=\"item.color\">{{ item.extra }}</nz-tag>\n            </div>\n          </ng-template>\n          <ng-template #nzDescription>\n            <div *ngIf=\"item.description\" class=\"notice-icon__item-desc\">{{ item.description }}</div>\n            <div *ngIf=\"item.datetime\" class=\"notice-icon__item-time\">{{ item.datetime }}</div>\n          </ng-template>\n        </nz-list-item-meta>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  <div class=\"notice-icon__clear\" (click)=\"onClear()\">{{ data.clearText || locale.clearText }}</div>\n</ng-template>\n", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzListComponent, selector: "nz-list, [nz-list]", inputs: ["nzBordered", "nzGrid", "nzItemLayout", "nzRenderItem", "nzLoading", "nzLoadMore", "nzSize", "nzSplit", "nzDataSource", "nzHeader", "nzFooter", "nzPagination", "nzNoResult"], exportAs: ["nzList"] }, { type: i2.NzListItemComponent, selector: "nz-list-item, [nz-list-item]", inputs: ["nzActions", "nzExtra", "nzNoFlex", "nzContent"], exportAs: ["nzListItem"] }, { type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NzListItemMetaComponent, selector: "nz-list-item-meta, [nz-list-item-meta]", inputs: ["nzAvatar", "nzTitle", "nzDescription"], exportAs: ["nzListItemMeta"] }, { type: i3.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzChecked", "nzColor"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }], encapsulation: i0.ViewEncapsulation.None });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NoticeIconTabComponent, [{
+        type: Component,
+        args: [{
                 selector: 'notice-icon-tab',
                 exportAs: 'noticeIconTab',
-                template: "<div *ngIf=\"data.list?.length === 0; else listTpl\" class=\"notice-icon__notfound\">\n  <img class=\"notice-icon__notfound-img\" *ngIf=\"data.emptyImage\" src=\"{{ data.emptyImage }}\" alt=\"not found\" />\n  <p>{{ data.emptyText || locale.emptyText }}</p>\n</div>\n<ng-template #listTpl>\n  <nz-list [nzDataSource]=\"data.list\" [nzRenderItem]=\"item\">\n    <ng-template #item let-item>\n      <nz-list-item (click)=\"onClick(item)\" [ngClass]=\"{ 'notice-icon__item-read': item.read }\">\n        <nz-list-item-meta [nzTitle]=\"nzTitle\" [nzDescription]=\"nzDescription\" [nzAvatar]=\"item.avatar\">\n          <ng-template #nzTitle>\n            {{ item.title }}\n            <div class=\"notice-icon__item-extra\" *ngIf=\"item.extra\">\n              <nz-tag [nzColor]=\"item.color\">{{ item.extra }}</nz-tag>\n            </div>\n          </ng-template>\n          <ng-template #nzDescription>\n            <div *ngIf=\"item.description\" class=\"notice-icon__item-desc\">{{ item.description }}</div>\n            <div *ngIf=\"item.datetime\" class=\"notice-icon__item-time\">{{ item.datetime }}</div>\n          </ng-template>\n        </nz-list-item-meta>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  <div class=\"notice-icon__clear\" (click)=\"onClear()\">{{ data.clearText || locale.clearText }}</div>\n</ng-template>\n",
+                templateUrl: './notice-icon-tab.component.html',
                 preserveWhitespaces: false,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-NoticeIconTabComponent.propDecorators = {
-    locale: [{ type: Input }],
-    data: [{ type: Input }],
-    select: [{ type: Output }],
-    clear: [{ type: Output }]
-};
-if (false) {
-    /** @type {?} */
-    NoticeIconTabComponent.prototype.locale;
-    /** @type {?} */
-    NoticeIconTabComponent.prototype.data;
-    /** @type {?} */
-    NoticeIconTabComponent.prototype.select;
-    /** @type {?} */
-    NoticeIconTabComponent.prototype.clear;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm90aWNlLWljb24tdGFiLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2FiYy9ub3RpY2UtaWNvbi9ub3RpY2UtaWNvbi10YWIuY29tcG9uZW50LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxZQUFZLEVBQUUsS0FBSyxFQUFFLE1BQU0sRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQVcxRixNQUFNLE9BQU8sc0JBQXNCO0lBUG5DO1FBUVcsV0FBTSxHQUFlLEVBQUUsQ0FBQztRQUVkLFdBQU0sR0FBRyxJQUFJLFlBQVksRUFBb0IsQ0FBQztRQUM5QyxVQUFLLEdBQUcsSUFBSSxZQUFZLEVBQVUsQ0FBQztJQVN4RCxDQUFDOzs7OztJQVBDLE9BQU8sQ0FBQyxJQUFnQjtRQUN0QixJQUFJLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxFQUFFLEtBQUssRUFBRSxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0lBQ3JELENBQUM7Ozs7SUFFRCxPQUFPO1FBQ0wsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUNuQyxDQUFDOzs7WUFuQkYsU0FBUyxTQUFDO2dCQUNULFFBQVEsRUFBRSxpQkFBaUI7Z0JBQzNCLFFBQVEsRUFBRSxlQUFlO2dCQUN6Qiw4MENBQStDO2dCQUMvQyxtQkFBbUIsRUFBRSxLQUFLO2dCQUMxQixhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTthQUN0Qzs7O3FCQUVFLEtBQUs7bUJBQ0wsS0FBSztxQkFDTCxNQUFNO29CQUNOLE1BQU07Ozs7SUFIUCx3Q0FBaUM7O0lBQ2pDLHNDQUEwQjs7SUFDMUIsd0NBQWlFOztJQUNqRSx1Q0FBc0QiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIEV2ZW50RW1pdHRlciwgSW5wdXQsIE91dHB1dCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IExvY2FsZURhdGEgfSBmcm9tICdAZGVsb24vdGhlbWUnO1xuaW1wb3J0IHsgTm90aWNlSWNvblNlbGVjdCwgTm90aWNlSXRlbSB9IGZyb20gJy4vbm90aWNlLWljb24udHlwZXMnO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdub3RpY2UtaWNvbi10YWInLFxuICBleHBvcnRBczogJ25vdGljZUljb25UYWInLFxuICB0ZW1wbGF0ZVVybDogJy4vbm90aWNlLWljb24tdGFiLmNvbXBvbmVudC5odG1sJyxcbiAgcHJlc2VydmVXaGl0ZXNwYWNlczogZmFsc2UsXG4gIGVuY2Fwc3VsYXRpb246IFZpZXdFbmNhcHN1bGF0aW9uLk5vbmUsXG59KVxuZXhwb3J0IGNsYXNzIE5vdGljZUljb25UYWJDb21wb25lbnQge1xuICBASW5wdXQoKSBsb2NhbGU6IExvY2FsZURhdGEgPSB7fTtcbiAgQElucHV0KCkgZGF0YTogTm90aWNlSXRlbTtcbiAgQE91dHB1dCgpIHJlYWRvbmx5IHNlbGVjdCA9IG5ldyBFdmVudEVtaXR0ZXI8Tm90aWNlSWNvblNlbGVjdD4oKTtcbiAgQE91dHB1dCgpIHJlYWRvbmx5IGNsZWFyID0gbmV3IEV2ZW50RW1pdHRlcjxzdHJpbmc+KCk7XG5cbiAgb25DbGljayhpdGVtOiBOb3RpY2VJdGVtKTogdm9pZCB7XG4gICAgdGhpcy5zZWxlY3QuZW1pdCh7IHRpdGxlOiB0aGlzLmRhdGEudGl0bGUsIGl0ZW0gfSk7XG4gIH1cblxuICBvbkNsZWFyKCk6IHZvaWQge1xuICAgIHRoaXMuY2xlYXIuZW1pdCh0aGlzLmRhdGEudGl0bGUpO1xuICB9XG59XG4iXX0=
+                encapsulation: ViewEncapsulation.None,
+            }]
+    }], null, { locale: [{
+            type: Input
+        }], data: [{
+            type: Input
+        }], select: [{
+            type: Output
+        }], clear: [{
+            type: Output
+        }] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibm90aWNlLWljb24tdGFiLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2FiYy9ub3RpY2UtaWNvbi9ub3RpY2UtaWNvbi10YWIuY29tcG9uZW50LnRzIiwiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvYWJjL25vdGljZS1pY29uL25vdGljZS1pY29uLXRhYi5jb21wb25lbnQuaHRtbCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLFlBQVksRUFBRSxLQUFLLEVBQUUsTUFBTSxFQUFFLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDOzs7OztBQVcxRixNQUFNLE9BQU8sc0JBQXNCO0lBUG5DO1FBUVcsV0FBTSxHQUFlLEVBQUUsQ0FBQztRQUVkLFdBQU0sR0FBRyxJQUFJLFlBQVksRUFBb0IsQ0FBQztRQUM5QyxVQUFLLEdBQUcsSUFBSSxZQUFZLEVBQVUsQ0FBQztLQVN2RDtJQVBDLE9BQU8sQ0FBQyxJQUFnQjtRQUN0QixJQUFJLENBQUMsTUFBTSxDQUFDLElBQUksQ0FBQyxFQUFFLEtBQUssRUFBRSxJQUFJLENBQUMsSUFBSSxDQUFDLEtBQUssRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0lBQ3JELENBQUM7SUFFRCxPQUFPO1FBQ0wsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksQ0FBQyxLQUFLLENBQUMsQ0FBQztJQUNuQyxDQUFDOzsrR0FaVSxzQkFBc0I7b0dBQXRCLHNCQUFzQiwrS0NYbkMsbzBDQXlCQTt1RkRkYSxzQkFBc0I7Y0FQbEMsU0FBUztlQUFDO2dCQUNULFFBQVEsRUFBRSxpQkFBaUI7Z0JBQzNCLFFBQVEsRUFBRSxlQUFlO2dCQUN6QixXQUFXLEVBQUUsa0NBQWtDO2dCQUMvQyxtQkFBbUIsRUFBRSxLQUFLO2dCQUMxQixhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTthQUN0QztnQkFFVSxNQUFNO2tCQUFkLEtBQUs7WUFDRyxJQUFJO2tCQUFaLEtBQUs7WUFDYSxNQUFNO2tCQUF4QixNQUFNO1lBQ1ksS0FBSztrQkFBdkIsTUFBTSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgRXZlbnRFbWl0dGVyLCBJbnB1dCwgT3V0cHV0LCBWaWV3RW5jYXBzdWxhdGlvbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgTG9jYWxlRGF0YSB9IGZyb20gJ0BkZWxvbi90aGVtZSc7XG5pbXBvcnQgeyBOb3RpY2VJY29uU2VsZWN0LCBOb3RpY2VJdGVtIH0gZnJvbSAnLi9ub3RpY2UtaWNvbi50eXBlcyc7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ25vdGljZS1pY29uLXRhYicsXG4gIGV4cG9ydEFzOiAnbm90aWNlSWNvblRhYicsXG4gIHRlbXBsYXRlVXJsOiAnLi9ub3RpY2UtaWNvbi10YWIuY29tcG9uZW50Lmh0bWwnLFxuICBwcmVzZXJ2ZVdoaXRlc3BhY2VzOiBmYWxzZSxcbiAgZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZSxcbn0pXG5leHBvcnQgY2xhc3MgTm90aWNlSWNvblRhYkNvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGxvY2FsZTogTG9jYWxlRGF0YSA9IHt9O1xuICBASW5wdXQoKSBkYXRhOiBOb3RpY2VJdGVtO1xuICBAT3V0cHV0KCkgcmVhZG9ubHkgc2VsZWN0ID0gbmV3IEV2ZW50RW1pdHRlcjxOb3RpY2VJY29uU2VsZWN0PigpO1xuICBAT3V0cHV0KCkgcmVhZG9ubHkgY2xlYXIgPSBuZXcgRXZlbnRFbWl0dGVyPHN0cmluZz4oKTtcblxuICBvbkNsaWNrKGl0ZW06IE5vdGljZUl0ZW0pOiB2b2lkIHtcbiAgICB0aGlzLnNlbGVjdC5lbWl0KHsgdGl0bGU6IHRoaXMuZGF0YS50aXRsZSwgaXRlbSB9KTtcbiAgfVxuXG4gIG9uQ2xlYXIoKTogdm9pZCB7XG4gICAgdGhpcy5jbGVhci5lbWl0KHRoaXMuZGF0YS50aXRsZSk7XG4gIH1cbn1cbiIsIjxkaXYgKm5nSWY9XCJkYXRhLmxpc3Q/Lmxlbmd0aCA9PT0gMDsgZWxzZSBsaXN0VHBsXCIgY2xhc3M9XCJub3RpY2UtaWNvbl9fbm90Zm91bmRcIj5cbiAgPGltZyBjbGFzcz1cIm5vdGljZS1pY29uX19ub3Rmb3VuZC1pbWdcIiAqbmdJZj1cImRhdGEuZW1wdHlJbWFnZVwiIHNyYz1cInt7IGRhdGEuZW1wdHlJbWFnZSB9fVwiIGFsdD1cIm5vdCBmb3VuZFwiIC8+XG4gIDxwPnt7IGRhdGEuZW1wdHlUZXh0IHx8IGxvY2FsZS5lbXB0eVRleHQgfX08L3A+XG48L2Rpdj5cbjxuZy10ZW1wbGF0ZSAjbGlzdFRwbD5cbiAgPG56LWxpc3QgW256RGF0YVNvdXJjZV09XCJkYXRhLmxpc3RcIiBbbnpSZW5kZXJJdGVtXT1cIml0ZW1cIj5cbiAgICA8bmctdGVtcGxhdGUgI2l0ZW0gbGV0LWl0ZW0+XG4gICAgICA8bnotbGlzdC1pdGVtIChjbGljayk9XCJvbkNsaWNrKGl0ZW0pXCIgW25nQ2xhc3NdPVwieyAnbm90aWNlLWljb25fX2l0ZW0tcmVhZCc6IGl0ZW0ucmVhZCB9XCI+XG4gICAgICAgIDxuei1saXN0LWl0ZW0tbWV0YSBbbnpUaXRsZV09XCJuelRpdGxlXCIgW256RGVzY3JpcHRpb25dPVwibnpEZXNjcmlwdGlvblwiIFtuekF2YXRhcl09XCJpdGVtLmF2YXRhclwiPlxuICAgICAgICAgIDxuZy10ZW1wbGF0ZSAjbnpUaXRsZT5cbiAgICAgICAgICAgIHt7IGl0ZW0udGl0bGUgfX1cbiAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJub3RpY2UtaWNvbl9faXRlbS1leHRyYVwiICpuZ0lmPVwiaXRlbS5leHRyYVwiPlxuICAgICAgICAgICAgICA8bnotdGFnIFtuekNvbG9yXT1cIml0ZW0uY29sb3JcIj57eyBpdGVtLmV4dHJhIH19PC9uei10YWc+XG4gICAgICAgICAgICA8L2Rpdj5cbiAgICAgICAgICA8L25nLXRlbXBsYXRlPlxuICAgICAgICAgIDxuZy10ZW1wbGF0ZSAjbnpEZXNjcmlwdGlvbj5cbiAgICAgICAgICAgIDxkaXYgKm5nSWY9XCJpdGVtLmRlc2NyaXB0aW9uXCIgY2xhc3M9XCJub3RpY2UtaWNvbl9faXRlbS1kZXNjXCI+e3sgaXRlbS5kZXNjcmlwdGlvbiB9fTwvZGl2PlxuICAgICAgICAgICAgPGRpdiAqbmdJZj1cIml0ZW0uZGF0ZXRpbWVcIiBjbGFzcz1cIm5vdGljZS1pY29uX19pdGVtLXRpbWVcIj57eyBpdGVtLmRhdGV0aW1lIH19PC9kaXY+XG4gICAgICAgICAgPC9uZy10ZW1wbGF0ZT5cbiAgICAgICAgPC9uei1saXN0LWl0ZW0tbWV0YT5cbiAgICAgIDwvbnotbGlzdC1pdGVtPlxuICAgIDwvbmctdGVtcGxhdGU+XG4gIDwvbnotbGlzdD5cbiAgPGRpdiBjbGFzcz1cIm5vdGljZS1pY29uX19jbGVhclwiIChjbGljayk9XCJvbkNsZWFyKClcIj57eyBkYXRhLmNsZWFyVGV4dCB8fCBsb2NhbGUuY2xlYXJUZXh0IH19PC9kaXY+XG48L25nLXRlbXBsYXRlPlxuIl19

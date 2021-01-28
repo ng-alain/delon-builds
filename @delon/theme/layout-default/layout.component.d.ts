@@ -4,6 +4,7 @@ import { SettingsService } from '@delon/theme';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
 import { LayoutDefaultOptions } from './types';
+import * as i0 from "@angular/core";
 export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     private settings;
     private el;
@@ -20,4 +21,6 @@ export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     private setClass;
     ngOnInit(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<LayoutDefaultComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<LayoutDefaultComponent, "layout-default", never, { "options": "options"; "asideUser": "asideUser"; "nav": "nav"; "content": "content"; }, {}, ["headerItems"], ["*"]>;
 }

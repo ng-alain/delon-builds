@@ -1,5 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
+/// <amd-module name="@delon/util" />
 export * from './public_api';
-export { AlainConfigService as ɵa } from './src/config';

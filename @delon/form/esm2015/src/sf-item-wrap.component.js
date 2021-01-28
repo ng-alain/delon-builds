@@ -1,59 +1,47 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: src/sf-item-wrap.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
+import * as i0 from "@angular/core";
+import * as i1 from "ng-zorro-antd/grid";
+import * as i2 from "ng-zorro-antd/form";
+import * as i3 from "@angular/common";
+import * as i4 from "ng-zorro-antd/tooltip";
+import * as i5 from "ng-zorro-antd/core/transition-patch";
+import * as i6 from "ng-zorro-antd/icon";
 export class SFItemWrapComponent {
     constructor() {
         this.title = null;
     }
-    /**
-     * @return {?}
-     */
     get t() {
-        return this.title === null ? (/** @type {?} */ (this.schema.title)) : this.title;
+        return this.title === null ? this.schema.title : this.title;
     }
-    /**
-     * @return {?}
-     */
     get oh() {
-        return (/** @type {?} */ (this.ui.optionalHelp));
+        return this.ui.optionalHelp;
     }
 }
-SFItemWrapComponent.decorators = [
-    { type: Component, args: [{
+/** @nocollapse */ SFItemWrapComponent.ɵfac = function SFItemWrapComponent_Factory(t) { return new (t || SFItemWrapComponent)(); };
+/** @nocollapse */ SFItemWrapComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: { id: "id", schema: "schema", ui: "ui", showError: "showError", error: "error", showTitle: "showTitle", title: "title" }, ngImport: i0, template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n", directives: [{ type: i1.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { type: i2.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i1.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { type: i4.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i5.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { type: i6.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], animations: [helpMotion], encapsulation: i0.ViewEncapsulation.None });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFItemWrapComponent, [{
+        type: Component,
+        args: [{
                 selector: 'sf-item-wrap',
-                template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n",
+                templateUrl: './sf-item-wrap.component.html',
                 animations: [helpMotion],
                 preserveWhitespaces: false,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-SFItemWrapComponent.propDecorators = {
-    id: [{ type: Input }],
-    schema: [{ type: Input }],
-    ui: [{ type: Input }],
-    showError: [{ type: Input }],
-    error: [{ type: Input }],
-    showTitle: [{ type: Input }],
-    title: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    SFItemWrapComponent.prototype.id;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.schema;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.ui;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.showError;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.error;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.showTitle;
-    /** @type {?} */
-    SFItemWrapComponent.prototype.title;
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2YtaXRlbS13cmFwLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2Zvcm0vc3JjL3NmLWl0ZW0td3JhcC5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLEtBQUssRUFBRSxpQkFBaUIsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUNwRSxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sOEJBQThCLENBQUM7QUFXMUQsTUFBTSxPQUFPLG1CQUFtQjtJQVBoQztRQWNXLFVBQUssR0FBa0IsSUFBSSxDQUFDO0lBU3ZDLENBQUM7Ozs7SUFQQyxJQUFJLENBQUM7UUFDSCxPQUFPLElBQUksQ0FBQyxLQUFLLEtBQUssSUFBSSxDQUFDLENBQUMsQ0FBQyxtQkFBQSxJQUFJLENBQUMsTUFBTSxDQUFDLEtBQUssRUFBQyxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDO0lBQy9ELENBQUM7Ozs7SUFFRCxJQUFJLEVBQUU7UUFDSixPQUFPLG1CQUFBLElBQUksQ0FBQyxFQUFFLENBQUMsWUFBWSxFQUFrQixDQUFDO0lBQ2hELENBQUM7OztZQXRCRixTQUFTLFNBQUM7Z0JBQ1QsUUFBUSxFQUFFLGNBQWM7Z0JBQ3hCLG1tREFBNEM7Z0JBQzVDLFVBQVUsRUFBRSxDQUFDLFVBQVUsQ0FBQztnQkFDeEIsbUJBQW1CLEVBQUUsS0FBSztnQkFDMUIsYUFBYSxFQUFFLGlCQUFpQixDQUFDLElBQUk7YUFDdEM7OztpQkFFRSxLQUFLO3FCQUNMLEtBQUs7aUJBQ0wsS0FBSzt3QkFDTCxLQUFLO29CQUNMLEtBQUs7d0JBQ0wsS0FBSztvQkFDTCxLQUFLOzs7O0lBTk4saUNBQW9COztJQUNwQixxQ0FBMEI7O0lBQzFCLGlDQUE0Qjs7SUFDNUIsd0NBQTRCOztJQUM1QixvQ0FBdUI7O0lBQ3ZCLHdDQUE0Qjs7SUFDNUIsb0NBQXFDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IGhlbHBNb3Rpb24gfSBmcm9tICduZy16b3Jyby1hbnRkL2NvcmUvYW5pbWF0aW9uJztcbmltcG9ydCB7IFNGU2NoZW1hIH0gZnJvbSAnLi9zY2hlbWEvaW5kZXgnO1xuaW1wb3J0IHsgU0ZPcHRpb25hbEhlbHAsIFNGVUlTY2hlbWFJdGVtIH0gZnJvbSAnLi9zY2hlbWEvdWknO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdzZi1pdGVtLXdyYXAnLFxuICB0ZW1wbGF0ZVVybDogJy4vc2YtaXRlbS13cmFwLmNvbXBvbmVudC5odG1sJyxcbiAgYW5pbWF0aW9uczogW2hlbHBNb3Rpb25dLFxuICBwcmVzZXJ2ZVdoaXRlc3BhY2VzOiBmYWxzZSxcbiAgZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZSxcbn0pXG5leHBvcnQgY2xhc3MgU0ZJdGVtV3JhcENvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGlkOiBzdHJpbmc7XG4gIEBJbnB1dCgpIHNjaGVtYTogU0ZTY2hlbWE7XG4gIEBJbnB1dCgpIHVpOiBTRlVJU2NoZW1hSXRlbTtcbiAgQElucHV0KCkgc2hvd0Vycm9yOiBib29sZWFuO1xuICBASW5wdXQoKSBlcnJvcjogc3RyaW5nO1xuICBASW5wdXQoKSBzaG93VGl0bGU6IGJvb2xlYW47XG4gIEBJbnB1dCgpIHRpdGxlOiBzdHJpbmcgfCBudWxsID0gbnVsbDtcblxuICBnZXQgdCgpOiBzdHJpbmcge1xuICAgIHJldHVybiB0aGlzLnRpdGxlID09PSBudWxsID8gdGhpcy5zY2hlbWEudGl0bGUhIDogdGhpcy50aXRsZTtcbiAgfVxuXG4gIGdldCBvaCgpOiBTRk9wdGlvbmFsSGVscCB7XG4gICAgcmV0dXJuIHRoaXMudWkub3B0aW9uYWxIZWxwIGFzIFNGT3B0aW9uYWxIZWxwO1xuICB9XG59XG4iXX0=
+                encapsulation: ViewEncapsulation.None,
+            }]
+    }], null, { id: [{
+            type: Input
+        }], schema: [{
+            type: Input
+        }], ui: [{
+            type: Input
+        }], showError: [{
+            type: Input
+        }], error: [{
+            type: Input
+        }], showTitle: [{
+            type: Input
+        }], title: [{
+            type: Input
+        }] }); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2YtaXRlbS13cmFwLmNvbXBvbmVudC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2Zvcm0vc3JjL3NmLWl0ZW0td3JhcC5jb21wb25lbnQudHMiLCIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy9mb3JtL3NyYy9zZi1pdGVtLXdyYXAuY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsaUJBQWlCLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFDcEUsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLDhCQUE4QixDQUFDOzs7Ozs7OztBQVcxRCxNQUFNLE9BQU8sbUJBQW1CO0lBUGhDO1FBY1csVUFBSyxHQUFrQixJQUFJLENBQUM7S0FTdEM7SUFQQyxJQUFJLENBQUM7UUFDSCxPQUFPLElBQUksQ0FBQyxLQUFLLEtBQUssSUFBSSxDQUFDLENBQUMsQ0FBQyxJQUFJLENBQUMsTUFBTSxDQUFDLEtBQU0sQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDLEtBQUssQ0FBQztJQUMvRCxDQUFDO0lBRUQsSUFBSSxFQUFFO1FBQ0osT0FBTyxJQUFJLENBQUMsRUFBRSxDQUFDLFlBQThCLENBQUM7SUFDaEQsQ0FBQzs7eUdBZlUsbUJBQW1CO2lHQUFuQixtQkFBbUIsc0xDWmhDLHlsREFtQ0EsdXhDRDNCYyxDQUFDLFVBQVUsQ0FBQzt1RkFJYixtQkFBbUI7Y0FQL0IsU0FBUztlQUFDO2dCQUNULFFBQVEsRUFBRSxjQUFjO2dCQUN4QixXQUFXLEVBQUUsK0JBQStCO2dCQUM1QyxVQUFVLEVBQUUsQ0FBQyxVQUFVLENBQUM7Z0JBQ3hCLG1CQUFtQixFQUFFLEtBQUs7Z0JBQzFCLGFBQWEsRUFBRSxpQkFBaUIsQ0FBQyxJQUFJO2FBQ3RDO2dCQUVVLEVBQUU7a0JBQVYsS0FBSztZQUNHLE1BQU07a0JBQWQsS0FBSztZQUNHLEVBQUU7a0JBQVYsS0FBSztZQUNHLFNBQVM7a0JBQWpCLEtBQUs7WUFDRyxLQUFLO2tCQUFiLEtBQUs7WUFDRyxTQUFTO2tCQUFqQixLQUFLO1lBQ0csS0FBSztrQkFBYixLQUFLIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBJbnB1dCwgVmlld0VuY2Fwc3VsYXRpb24gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IGhlbHBNb3Rpb24gfSBmcm9tICduZy16b3Jyby1hbnRkL2NvcmUvYW5pbWF0aW9uJztcbmltcG9ydCB7IFNGU2NoZW1hIH0gZnJvbSAnLi9zY2hlbWEvaW5kZXgnO1xuaW1wb3J0IHsgU0ZPcHRpb25hbEhlbHAsIFNGVUlTY2hlbWFJdGVtIH0gZnJvbSAnLi9zY2hlbWEvdWknO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICdzZi1pdGVtLXdyYXAnLFxuICB0ZW1wbGF0ZVVybDogJy4vc2YtaXRlbS13cmFwLmNvbXBvbmVudC5odG1sJyxcbiAgYW5pbWF0aW9uczogW2hlbHBNb3Rpb25dLFxuICBwcmVzZXJ2ZVdoaXRlc3BhY2VzOiBmYWxzZSxcbiAgZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZSxcbn0pXG5leHBvcnQgY2xhc3MgU0ZJdGVtV3JhcENvbXBvbmVudCB7XG4gIEBJbnB1dCgpIGlkOiBzdHJpbmc7XG4gIEBJbnB1dCgpIHNjaGVtYTogU0ZTY2hlbWE7XG4gIEBJbnB1dCgpIHVpOiBTRlVJU2NoZW1hSXRlbTtcbiAgQElucHV0KCkgc2hvd0Vycm9yOiBib29sZWFuO1xuICBASW5wdXQoKSBlcnJvcjogc3RyaW5nO1xuICBASW5wdXQoKSBzaG93VGl0bGU6IGJvb2xlYW47XG4gIEBJbnB1dCgpIHRpdGxlOiBzdHJpbmcgfCBudWxsID0gbnVsbDtcblxuICBnZXQgdCgpOiBzdHJpbmcge1xuICAgIHJldHVybiB0aGlzLnRpdGxlID09PSBudWxsID8gdGhpcy5zY2hlbWEudGl0bGUhIDogdGhpcy50aXRsZTtcbiAgfVxuXG4gIGdldCBvaCgpOiBTRk9wdGlvbmFsSGVscCB7XG4gICAgcmV0dXJuIHRoaXMudWkub3B0aW9uYWxIZWxwIGFzIFNGT3B0aW9uYWxIZWxwO1xuICB9XG59XG4iLCI8bnotZm9ybS1pdGVtIFtzdHlsZS53aWR0aC5weF09XCJ1aS53aWR0aFwiIFtjbGFzcy5hbnQtZm9ybS1pdGVtLWhhcy1lcnJvcl09XCJzaG93RXJyb3JcIiBbY2xhc3MuYW50LWZvcm0taXRlbS13aXRoLWhlbHBdPVwic2hvd0Vycm9yXCI+XG4gIDxuei1jb2wgKm5nSWY9XCJzaG93VGl0bGVcIiBbbnpTcGFuXT1cInVpLnNwYW5MYWJlbFwiIGNsYXNzPVwiYW50LWZvcm0taXRlbS1sYWJlbFwiPlxuICAgIDxsYWJlbCAqbmdJZj1cInRcIiBbYXR0ci5mb3JdPVwiaWRcIiBbY2xhc3MuYW50LWZvcm0taXRlbS1yZXF1aXJlZF09XCJ1aS5fcmVxdWlyZWRcIj5cbiAgICAgIDxzcGFuIGNsYXNzPVwic2ZfX2xhYmVsLXRleHRcIj57eyB0IH19PC9zcGFuPlxuICAgICAgPHNwYW4gKm5nSWY9XCJ1aS5vcHRpb25hbCB8fCBvaFwiIGNsYXNzPVwic2ZfX29wdGlvbmFsXCI+XG4gICAgICAgIHt7IHVpLm9wdGlvbmFsIH19XG4gICAgICAgIDxpXG4gICAgICAgICAgKm5nSWY9XCJvaFwiXG4gICAgICAgICAgbnotdG9vbHRpcFxuICAgICAgICAgIFtuelRvb2x0aXBUaXRsZV09XCJvaC50ZXh0XCJcbiAgICAgICAgICBbbnpUb29sdGlwUGxhY2VtZW50XT1cIm9oLnBsYWNlbWVudFwiXG4gICAgICAgICAgW256VG9vbHRpcFRyaWdnZXJdPVwib2gudHJpZ2dlclwiXG4gICAgICAgICAgW256VG9vbHRpcENvbG9yXT1cIm9oLmJnQ29sb3JcIlxuICAgICAgICAgIFtuelRvb2x0aXBPdmVybGF5Q2xhc3NOYW1lXT1cIm9oLm92ZXJsYXlDbGFzc05hbWVcIlxuICAgICAgICAgIFtuelRvb2x0aXBPdmVybGF5U3R5bGVdPVwib2gub3ZlcmxheVN0eWxlXCJcbiAgICAgICAgICBbbnpUb29sdGlwTW91c2VFbnRlckRlbGF5XT1cIm9oLm1vdXNlRW50ZXJEZWxheVwiXG4gICAgICAgICAgW256VG9vbHRpcE1vdXNlTGVhdmVEZWxheV09XCJvaC5tb3VzZUxlYXZlRGVsYXlcIlxuICAgICAgICAgIG56LWljb25cbiAgICAgICAgICBbbnpUeXBlXT1cIm9oLmljb25cIlxuICAgICAgICA+PC9pPlxuICAgICAgPC9zcGFuPlxuICAgIDwvbGFiZWw+XG4gIDwvbnotY29sPlxuICA8bnotY29sIGNsYXNzPVwiYW50LWZvcm0taXRlbS1jb250cm9sXCIgW256U3Bhbl09XCJ1aS5zcGFuQ29udHJvbFwiIFtuek9mZnNldF09XCJ1aS5vZmZzZXRDb250cm9sXCI+XG4gICAgPGRpdiBjbGFzcz1cImFudC1mb3JtLWl0ZW0tY29udHJvbC1pbnB1dFwiPlxuICAgICAgPGRpdiBjbGFzcz1cImFudC1mb3JtLWl0ZW0tY29udHJvbC1pbnB1dC1jb250ZW50XCI+XG4gICAgICAgIDxuZy1jb250ZW50PjwvbmctY29udGVudD5cbiAgICAgIDwvZGl2PlxuICAgIDwvZGl2PlxuICAgIDxkaXYgKm5nSWY9XCIhdWkub25seVZpc3VhbCAmJiBzaG93RXJyb3JcIiBjbGFzcz1cImFudC1mb3JtLWl0ZW0tZXhwbGFpbiBhbnQtZm9ybS1pdGVtLWV4cGxhaW4tZXJyb3JcIj5cbiAgICAgIDxkaXYgQGhlbHBNb3Rpb24+e3sgZXJyb3IgfX08L2Rpdj5cbiAgICA8L2Rpdj5cbiAgICA8ZGl2ICpuZ0lmPVwic2NoZW1hLmRlc2NyaXB0aW9uXCIgY2xhc3M9XCJhbnQtZm9ybS1pdGVtLWV4dHJhXCIgW2lubmVySFRNTF09XCJzY2hlbWEuX2Rlc2NyaXB0aW9uXCI+PC9kaXY+XG4gIDwvbnotY29sPlxuPC9uei1mb3JtLWl0ZW0+XG4iXX0=

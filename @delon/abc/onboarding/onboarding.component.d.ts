@@ -2,6 +2,7 @@ import { Direction } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
+import * as i0 from "@angular/core";
 export declare class OnboardingComponent implements OnDestroy {
     private el;
     private doc;
@@ -29,4 +30,6 @@ export declare class OnboardingComponent implements OnDestroy {
     to(type: OnboardingOpType): void;
     handleMask(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<OnboardingComponent, [null, { optional: true; }, null, null]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<OnboardingComponent, "onboarding", never, {}, {}, never, never>;
 }

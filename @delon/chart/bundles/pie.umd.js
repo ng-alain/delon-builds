@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider'], global.skeleton));
-}(this, (function (exports, core, core$1, util, common, outlet, divider, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/skeleton'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/skeleton', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.i2, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider']));
+}(this, (function (exports, i0, core, util, i1, i2, i3, i4) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,27 +340,6 @@
         return value;
     }
 
-    /**
-     * @record
-     */
-    function G2PieData() { }
-    if (false) {
-        /** @type {?} */
-        G2PieData.prototype.x;
-        /** @type {?} */
-        G2PieData.prototype.y;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function G2PieClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2PieClickItem.prototype.item;
-        /** @type {?} */
-        G2PieClickItem.prototype.ev;
-    }
     var G2PieComponent = /** @class */ (function (_super) {
         __extends(G2PieComponent, _super);
         function G2PieComponent() {
@@ -357,34 +358,24 @@
             _this.select = true;
             _this.data = [];
             _this.interaction = 'none';
-            _this.clickItem = new core.EventEmitter();
+            _this.clickItem = new i0.EventEmitter();
             return _this;
         }
         Object.defineProperty(G2PieComponent.prototype, "block", {
             // #endregion
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         G2PieComponent.prototype.fixData = function () {
             var _b = this, percent = _b.percent, color = _b.color;
             this.isPercent = percent != null;
             if (this.isPercent) {
                 this.select = false;
                 this.tooltip = false;
-                this.percentColor = ( /**
-                 * @param {?} value
-                 * @return {?}
-                 */function (value) { return (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'); });
+                this.percentColor = function (value) { return (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'); };
                 this.data = [
                     {
                         x: '占比',
@@ -397,14 +388,10 @@
                 ];
             }
         };
-        /**
-         * @return {?}
-         */
         G2PieComponent.prototype.install = function () {
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, tooltip = _b.tooltip, inner = _b.inner, hasLegend = _b.hasLegend, interaction = _b.interaction, theme = _b.theme;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
@@ -424,37 +411,21 @@
                 chart.interaction(interaction);
             }
             chart.axis(false).legend(false).coordinate('theta', { innerRadius: inner });
-            chart.filter('x', ( /**
-             * @param {?} _val
-             * @param {?} item
-             * @return {?}
-             */function (_val, item) { return item.checked !== false; }));
+            chart.filter('x', function (_val, item) { return item.checked !== false; });
             chart
                 .interval()
                 .adjust('stack')
                 .position('y')
-                .tooltip('x*percent', ( /**
-         * @param {?} name
-         * @param {?} p
-         * @return {?}
-         */function (name, p) { return ({
+                .tooltip('x*percent', function (name, p) { return ({
                 name: name,
                 value: (hasLegend ? p : (p * 100).toFixed(2)) + " %",
-            }); }))
+            }); })
                 .state({});
-            chart.on("interval:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
+            chart.on("interval:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2PieComponent.prototype.attachChart = function () {
             var e_1, _b;
             var _this = this;
@@ -472,12 +443,7 @@
                 },
             });
             // 转化 percent
-            /** @type {?} */
-            var totalSum = data.reduce(( /**
-             * @param {?} cur
-             * @param {?} item
-             * @return {?}
-             */function (cur, item) { return cur + item.y; }), 0);
+            var totalSum = data.reduce(function (cur, item) { return cur + item.y; }, 0);
             try {
                 for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                     var item = data_1_1.value;
@@ -493,84 +459,33 @@
             }
             _chart.changeData(data);
             _chart.render();
-            this.ngZone.run(( /**
-             * @return {?}
-             */function () { return _this.genLegend(); }));
+            this.ngZone.run(function () { return _this.genLegend(); });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2PieComponent.prototype.genLegend = function () {
             var _b = this, hasLegend = _b.hasLegend, isPercent = _b.isPercent, cdr = _b.cdr, _chart = _b._chart;
             if (!hasLegend || isPercent)
                 return;
-            this.legendData = _chart.geometries[0].dataArray.map(( /**
-             * @param {?} item
-             * @return {?}
-             */function (item) {
-                /** @type {?} */
+            this.legendData = _chart.geometries[0].dataArray.map(function (item) {
                 var origin = item[0]._origin;
                 origin.color = item[0].color;
                 origin.checked = true;
                 origin.percent = (origin.percent * 100).toFixed(2);
                 return origin;
-            }));
+            });
             cdr.detectChanges();
         };
-        /**
-         * @param {?} i
-         * @return {?}
-         */
         G2PieComponent.prototype._click = function (i) {
             var _b = this, legendData = _b.legendData, _chart = _b._chart;
             legendData[i].checked = !legendData[i].checked;
             _chart.render();
         };
-        /**
-         * @return {?}
-         */
         G2PieComponent.prototype.onChanges = function () {
             this.fixData();
         };
         return G2PieComponent;
-    }(core$1.G2BaseComponent));
-    G2PieComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'g2-pie',
-                    exportAs: 'g2Pie',
-                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *nzStringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *nzStringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n    <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n",
-                    host: {
-                        '[class.g2-pie]': 'true',
-                        '[class.g2-pie__legend-has]': 'hasLegend',
-                        '[class.g2-pie__legend-block]': 'block',
-                        '[class.g2-pie__mini]': 'isPercent',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    G2PieComponent.propDecorators = {
-        animate: [{ type: core.Input }],
-        color: [{ type: core.Input }],
-        subTitle: [{ type: core.Input }],
-        total: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        hasLegend: [{ type: core.Input }],
-        inner: [{ type: core.Input }],
-        padding: [{ type: core.Input }],
-        percent: [{ type: core.Input }],
-        tooltip: [{ type: core.Input }],
-        lineWidth: [{ type: core.Input }],
-        blockMaxWidth: [{ type: core.Input }],
-        select: [{ type: core.Input }],
-        valueFormat: [{ type: core.Input }],
-        data: [{ type: core.Input }],
-        colors: [{ type: core.Input }],
-        interaction: [{ type: core.Input }],
-        clickItem: [{ type: core.Output }]
-    };
+    }(core.G2BaseComponent));
+    /** @nocollapse */ G2PieComponent.ɵfac = function G2PieComponent_Factory(t) { return ɵG2PieComponent_BaseFactory(t || G2PieComponent); };
+    /** @nocollapse */ G2PieComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2PieComponent, selector: "g2-pie", inputs: { animate: "animate", color: "color", subTitle: "subTitle", total: "total", height: "height", hasLegend: "hasLegend", inner: "inner", padding: "padding", percent: "percent", tooltip: "tooltip", lineWidth: "lineWidth", blockMaxWidth: "blockMaxWidth", select: "select", valueFormat: "valueFormat", data: "data", colors: "colors", interaction: "interaction" }, outputs: { clickItem: "clickItem" }, host: { properties: { "class.g2-pie": "true", "class.g2-pie__legend-has": "hasLegend", "class.g2-pie__legend-block": "block", "class.g2-pie__mini": "isPercent" } }, exportAs: ["g2Pie"], usesInheritance: true, ngImport: i0__namespace, template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  <div *ngIf=\"subTitle || total\" class=\"g2-pie__total\">\n    <h4 *ngIf=\"subTitle\" class=\"g2-pie__total-title\">\n      <ng-container *nzStringTemplateOutlet=\"subTitle\">\n        <div [innerHTML]=\"subTitle\"></div>\n      </ng-container>\n    </h4>\n    <div *ngIf=\"total\" class=\"g2-pie__total-stat\">\n      <ng-container *nzStringTemplateOutlet=\"total\">\n        <div [innerHTML]=\"total\"></div>\n      </ng-container>\n    </div>\n  </div>\n</div>\n<ul *ngIf=\"hasLegend && legendData?.length\" class=\"g2-pie__legend\">\n  <li *ngFor=\"let item of legendData; let index = index\" (click)=\"_click(index)\" class=\"g2-pie__legend-item\">\n    <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n    <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n    <nz-divider nzType=\"vertical\"></nz-divider>\n    <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n    <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n  </li>\n</ul>\n", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { type: i3.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i4.NzDividerComponent, selector: "nz-divider", inputs: ["nzType", "nzOrientation", "nzDashed", "nzPlain", "nzText"], exportAs: ["nzDivider"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         util.InputBoolean(),
         __metadata("design:type", Object)
@@ -603,100 +518,85 @@
         util.InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "select", void 0);
-    if (false) {
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_animate;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_hasLegend;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_percent;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_tooltip;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_lineWidth;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_blockMaxWidth;
-        /** @type {?} */
-        G2PieComponent.ngAcceptInputType_select;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2PieComponent.prototype.percentColor;
-        /** @type {?} */
-        G2PieComponent.prototype.legendData;
-        /** @type {?} */
-        G2PieComponent.prototype.isPercent;
-        /** @type {?} */
-        G2PieComponent.prototype.animate;
-        /** @type {?} */
-        G2PieComponent.prototype.color;
-        /** @type {?} */
-        G2PieComponent.prototype.subTitle;
-        /** @type {?} */
-        G2PieComponent.prototype.total;
-        /** @type {?} */
-        G2PieComponent.prototype.height;
-        /** @type {?} */
-        G2PieComponent.prototype.hasLegend;
-        /** @type {?} */
-        G2PieComponent.prototype.inner;
-        /** @type {?} */
-        G2PieComponent.prototype.padding;
-        /** @type {?} */
-        G2PieComponent.prototype.percent;
-        /** @type {?} */
-        G2PieComponent.prototype.tooltip;
-        /** @type {?} */
-        G2PieComponent.prototype.lineWidth;
-        /** @type {?} */
-        G2PieComponent.prototype.blockMaxWidth;
-        /** @type {?} */
-        G2PieComponent.prototype.select;
-        /** @type {?} */
-        G2PieComponent.prototype.valueFormat;
-        /** @type {?} */
-        G2PieComponent.prototype.data;
-        /** @type {?} */
-        G2PieComponent.prototype.colors;
-        /** @type {?} */
-        G2PieComponent.prototype.interaction;
-        /** @type {?} */
-        G2PieComponent.prototype.clickItem;
-    }
+    var ɵG2PieComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2PieComponent);
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2PieComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'g2-pie',
+                        exportAs: 'g2Pie',
+                        templateUrl: './pie.component.html',
+                        host: {
+                            '[class.g2-pie]': 'true',
+                            '[class.g2-pie__legend-has]': 'hasLegend',
+                            '[class.g2-pie__legend-block]': 'block',
+                            '[class.g2-pie__mini]': 'isPercent',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { animate: [{
+                    type: i0.Input
+                }], color: [{
+                    type: i0.Input
+                }], subTitle: [{
+                    type: i0.Input
+                }], total: [{
+                    type: i0.Input
+                }], height: [{
+                    type: i0.Input
+                }], hasLegend: [{
+                    type: i0.Input
+                }], inner: [{
+                    type: i0.Input
+                }], padding: [{
+                    type: i0.Input
+                }], percent: [{
+                    type: i0.Input
+                }], tooltip: [{
+                    type: i0.Input
+                }], lineWidth: [{
+                    type: i0.Input
+                }], blockMaxWidth: [{
+                    type: i0.Input
+                }], select: [{
+                    type: i0.Input
+                }], valueFormat: [{
+                    type: i0.Input
+                }], data: [{
+                    type: i0.Input
+                }], colors: [{
+                    type: i0.Input
+                }], interaction: [{
+                    type: i0.Input
+                }], clickItem: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pie.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2PieComponent];
     var G2PieModule = /** @class */ (function () {
         function G2PieModule() {
         }
         return G2PieModule;
     }());
-    G2PieModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, divider.NzDividerModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ G2PieModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2PieModule });
+    /** @nocollapse */ G2PieModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2PieModule_Factory(t) { return new (t || G2PieModule)(); }, imports: [[i1.CommonModule, util.DelonUtilModule, i4.NzDividerModule, i3.NzOutletModule, i2.NzSkeletonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2PieModule, { declarations: [G2PieComponent], imports: [i1.CommonModule, util.DelonUtilModule, i4.NzDividerModule, i3.NzOutletModule, i2.NzSkeletonModule], exports: [G2PieComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2PieModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i1.CommonModule, util.DelonUtilModule, i4.NzDividerModule, i3.NzOutletModule, i2.NzSkeletonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pie.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2PieComponent = G2PieComponent;

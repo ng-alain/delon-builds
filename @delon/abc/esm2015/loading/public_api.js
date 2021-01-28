@@ -1,10 +1,5 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export { LoadingDefaultComponent } from './loading.component';
-export { LoadingService } from './loading.service';
-export { LoadingModule } from './loading.module';
-export {} from './loading.types';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2FiYy9sb2FkaW5nL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSx3Q0FBYyxxQkFBcUIsQ0FBQztBQUNwQywrQkFBYyxtQkFBbUIsQ0FBQztBQUNsQyw4QkFBYyxrQkFBa0IsQ0FBQztBQUNqQyxlQUFjLGlCQUFpQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9sb2FkaW5nLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xvYWRpbmcuc2VydmljZSc7XG5leHBvcnQgKiBmcm9tICcuL2xvYWRpbmcubW9kdWxlJztcbmV4cG9ydCAqIGZyb20gJy4vbG9hZGluZy50eXBlcyc7XG4iXX0=
+export * from './loading.component';
+export * from './loading.service';
+export * from './loading.module';
+export * from './loading.types';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL2FiYy9sb2FkaW5nL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYyxxQkFBcUIsQ0FBQztBQUNwQyxjQUFjLG1CQUFtQixDQUFDO0FBQ2xDLGNBQWMsa0JBQWtCLENBQUM7QUFDakMsY0FBYyxpQkFBaUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vbG9hZGluZy5jb21wb25lbnQnO1xuZXhwb3J0ICogZnJvbSAnLi9sb2FkaW5nLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9sb2FkaW5nLm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL2xvYWRpbmcudHlwZXMnO1xuIl19

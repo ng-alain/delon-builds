@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "11.3.1",
+  "version": "11.3.1-db649477",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "~11.1.0",
-    "@delon/acl": "^11.3.1",
-    "@delon/util": "^11.3.1",
+    "@delon/acl": "^11.3.1-db649477",
+    "@delon/util": "^11.3.1-db649477",
     "tslib": "^2.0.0"
   },
   "main": "bundles/theme.umd.js",
@@ -32,6 +32,8 @@
   "esm2015": "esm2015/theme.js",
   "fesm2015": "fesm2015/theme.js",
   "typings": "theme.d.ts",
-  "metadata": "theme.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
 }

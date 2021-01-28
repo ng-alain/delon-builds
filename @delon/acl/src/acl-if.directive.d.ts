@@ -1,6 +1,7 @@
 import { OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
 import { ACLService } from './acl.service';
 import { ACLCanType } from './acl.type';
+import * as i0 from "@angular/core";
 export declare class ACLIfDirective implements OnDestroy {
     private srv;
     private _viewContainer;
@@ -17,4 +18,6 @@ export declare class ACLIfDirective implements OnDestroy {
     except: boolean;
     protected _updateView(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<ACLIfDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDefWithMeta<ACLIfDirective, "[aclIf]", ["aclIf"], { "aclIf": "aclIf"; "aclIfThen": "aclIfThen"; "aclIfElse": "aclIfElse"; "except": "except"; }, {}, never>;
 }

@@ -1,25 +1,14 @@
 import { __decorate, __metadata } from 'tslib';
-import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { DOCUMENT, NgIf, NgTemplateOutlet, NgSwitch, NgSwitchCase, NgClass, NgStyle, CommonModule } from '@angular/common';
+import * as i0 from '@angular/core';
+import { ɵɵdirectiveInject, ElementRef, NgZone, ChangeDetectorRef, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵsetClassMetadata, Component, Inject, ViewChild, Input, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
 import { take } from 'rxjs/operators';
-import { ObserversModule } from '@angular/cdk/observers';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
+import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: ellipsis.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class EllipsisComponent {
-    /**
-     * @param {?} el
-     * @param {?} ngZone
-     * @param {?} dom
-     * @param {?} doc
-     * @param {?} cdr
-     */
     constructor(el, ngZone, dom, doc, cdr) {
         this.el = el;
         this.ngZone = ngZone;
@@ -37,49 +26,22 @@ class EllipsisComponent {
         this.fullWidthRecognition = false;
         this.tail = '...';
     }
-    /**
-     * @return {?}
-     */
     get linsWord() {
         const { targetCount, text, tail } = this;
         return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
     }
-    /**
-     * @private
-     * @param {?} str
-     * @return {?}
-     */
     getStrFullLength(str) {
-        return str.split('').reduce((/**
-         * @param {?} pre
-         * @param {?} cur
-         * @return {?}
-         */
-        (pre, cur) => {
-            /** @type {?} */
+        return str.split('').reduce((pre, cur) => {
             const charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
                 return pre + 1;
             }
             return pre + 2;
-        }), 0);
+        }, 0);
     }
-    /**
-     * @private
-     * @param {?} str
-     * @param {?} maxLength
-     * @return {?}
-     */
     cutStrByFullLength(str, maxLength) {
-        /** @type {?} */
         let showLength = 0;
-        return str.split('').reduce((/**
-         * @param {?} pre
-         * @param {?} cur
-         * @return {?}
-         */
-        (pre, cur) => {
-            /** @type {?} */
+        return str.split('').reduce((pre, cur) => {
             const charCode = cur.charCodeAt(0);
             if (charCode >= 0 && charCode <= 128) {
                 showLength += 1;
@@ -91,23 +53,11 @@ class EllipsisComponent {
                 return pre + cur;
             }
             return pre;
-        }), '');
+        }, '');
     }
-    /**
-     * @private
-     * @param {?} targetHeight
-     * @param {?} mid
-     * @param {?} begin
-     * @param {?} end
-     * @param {?} text
-     * @param {?} node
-     * @return {?}
-     */
     bisection(targetHeight, mid, begin, end, text, node) {
-        /** @type {?} */
         const suffix = this.tail;
         node.innerHTML = text.substring(0, mid) + suffix;
-        /** @type {?} */
         let sh = node.offsetHeight;
         if (sh <= targetHeight) {
             node.innerHTML = text.substring(0, mid + 1) + suffix;
@@ -131,10 +81,6 @@ class EllipsisComponent {
         mid = Math.floor((end - begin) / 2) + begin;
         return this.bisection(targetHeight, mid, begin, end, text, node);
     }
-    /**
-     * @private
-     * @return {?}
-     */
     genType() {
         const { lines, length, isSupportLineClamp } = this;
         this.cls = {
@@ -155,27 +101,19 @@ class EllipsisComponent {
             this.type = 'line';
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     gen() {
         const { type, lines, length, fullWidthRecognition, tail, orgEl, cdr, ngZone } = this;
         if (type === 'length') {
-            /** @type {?} */
-            const el = (/** @type {?} */ (orgEl.nativeElement));
+            const el = orgEl.nativeElement;
             if (el.children.length > 0) {
                 throw new Error('Ellipsis content must be string.');
             }
-            /** @type {?} */
-            const lengthText = (/** @type {?} */ (el.textContent));
-            /** @type {?} */
+            const lengthText = el.textContent;
             const textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
             if (textLength <= length || length < 0) {
                 this.text = lengthText;
             }
             else {
-                /** @type {?} */
                 let displayText;
                 if (length - tail.length <= 0) {
                     displayText = '';
@@ -185,20 +123,13 @@ class EllipsisComponent {
                 }
                 this.text = displayText + tail;
             }
-            ngZone.run((/**
-             * @return {?}
-             */
-            () => cdr.detectChanges()));
+            ngZone.run(() => cdr.detectChanges());
         }
         else if (type === 'line') {
             const { shadowOrgEl, shadowTextEl } = this;
-            /** @type {?} */
-            const orgNode = (/** @type {?} */ (shadowOrgEl.nativeElement));
-            /** @type {?} */
-            const lineText = orgNode.innerText || (/** @type {?} */ (orgNode.textContent));
-            /** @type {?} */
-            const lineHeight = parseInt((/** @type {?} */ (getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
-            /** @type {?} */
+            const orgNode = shadowOrgEl.nativeElement;
+            const lineText = orgNode.innerText || orgNode.textContent;
+            const lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
             const targetHeight = lines * lineHeight;
             this.getEl('.ellipsis__handle').style.height = `${targetHeight}px`;
             if (orgNode.offsetHeight <= targetHeight) {
@@ -207,34 +138,18 @@ class EllipsisComponent {
             }
             else {
                 // bisection
-                /** @type {?} */
                 const len = lineText.length;
-                /** @type {?} */
                 const mid = Math.ceil(len / 2);
-                /** @type {?} */
                 const count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                 this.text = lineText;
                 this.targetCount = count;
             }
-            ngZone.run((/**
-             * @return {?}
-             */
-            () => cdr.detectChanges()));
+            ngZone.run(() => cdr.detectChanges());
         }
     }
-    /**
-     * @private
-     * @param {?} cls
-     * @return {?}
-     */
     getEl(cls) {
         return this.el.nativeElement.querySelector(cls);
     }
-    /**
-     * @private
-     * @param {?} fn
-     * @return {?}
-     */
     executeOnStable(fn) {
         if (this.ngZone.isStable) {
             fn();
@@ -243,74 +158,34 @@ class EllipsisComponent {
             this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(fn);
         }
     }
-    /**
-     * @return {?}
-     */
     refresh() {
         this.genType();
         const { type, dom, orgEl, cdr } = this;
-        /** @type {?} */
         const html = orgEl.nativeElement.innerHTML;
         this.orgHtml = dom.bypassSecurityTrustHtml(html);
         cdr.detectChanges();
-        this.executeOnStable((/**
-         * @return {?}
-         */
-        () => {
+        this.executeOnStable(() => {
             this.gen();
             if (type !== 'line') {
-                /** @type {?} */
                 const el = this.getEl('.ellipsis');
                 if (el) {
                     el.innerHTML = html;
                 }
             }
-        }));
+        });
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         this.inited = true;
         this.refresh();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         if (this.inited) {
             this.refresh();
         }
     }
 }
-EllipsisComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'ellipsis',
-                exportAs: 'ellipsis',
-                template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none;\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span *ngIf=\"tooltip; else con\" nz-tooltip [nzTooltipTitle]=\"titleTpl\" [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n",
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-/** @nocollapse */
-EllipsisComponent.ctorParameters = () => [
-    { type: ElementRef },
-    { type: NgZone },
-    { type: DomSanitizer },
-    { type: Document, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: ChangeDetectorRef }
-];
-EllipsisComponent.propDecorators = {
-    orgEl: [{ type: ViewChild, args: ['orgEl', { static: false },] }],
-    shadowOrgEl: [{ type: ViewChild, args: ['shadowOrgEl', { static: false },] }],
-    shadowTextEl: [{ type: ViewChild, args: ['shadowTextEl', { static: false },] }],
-    tooltip: [{ type: Input }],
-    length: [{ type: Input }],
-    lines: [{ type: Input }],
-    fullWidthRecognition: [{ type: Input }],
-    tail: [{ type: Input }]
-};
+/** @nocollapse */ EllipsisComponent.ɵfac = function EllipsisComponent_Factory(t) { return new (t || EllipsisComponent)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(NgZone), ɵɵdirectiveInject(DomSanitizer), ɵɵdirectiveInject(DOCUMENT), ɵɵdirectiveInject(ChangeDetectorRef)); };
+/** @nocollapse */ EllipsisComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: EllipsisComponent, selector: "ellipsis", inputs: { tooltip: "tooltip", length: "length", lines: "lines", fullWidthRecognition: "fullWidthRecognition", tail: "tail" }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], emitDistinctChangesOnly: false, descendants: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], emitDistinctChangesOnly: false, descendants: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["ellipsis"], usesOnChanges: true, ngImport: i0, template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none;\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span *ngIf=\"tooltip; else con\" nz-tooltip [nzTooltipTitle]=\"titleTpl\" [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n", directives: [{ type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { type: NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { type: NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
@@ -327,114 +202,57 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
-if (false) {
-    /** @type {?} */
-    EllipsisComponent.ngAcceptInputType_tooltip;
-    /** @type {?} */
-    EllipsisComponent.ngAcceptInputType_length;
-    /** @type {?} */
-    EllipsisComponent.ngAcceptInputType_lines;
-    /** @type {?} */
-    EllipsisComponent.ngAcceptInputType_fullWidthRecognition;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.isSupportLineClamp;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.orgEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.shadowOrgEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.shadowTextEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.inited;
-    /** @type {?} */
-    EllipsisComponent.prototype.orgHtml;
-    /** @type {?} */
-    EllipsisComponent.prototype.type;
-    /** @type {?} */
-    EllipsisComponent.prototype.cls;
-    /** @type {?} */
-    EllipsisComponent.prototype.text;
-    /** @type {?} */
-    EllipsisComponent.prototype.targetCount;
-    /** @type {?} */
-    EllipsisComponent.prototype.tooltip;
-    /** @type {?} */
-    EllipsisComponent.prototype.length;
-    /** @type {?} */
-    EllipsisComponent.prototype.lines;
-    /** @type {?} */
-    EllipsisComponent.prototype.fullWidthRecognition;
-    /** @type {?} */
-    EllipsisComponent.prototype.tail;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.ngZone;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.dom;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    EllipsisComponent.prototype.cdr;
-}
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(EllipsisComponent, [{
+        type: Component,
+        args: [{
+                selector: 'ellipsis',
+                exportAs: 'ellipsis',
+                templateUrl: './ellipsis.component.html',
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+            }]
+    }], function () { return [{ type: ElementRef }, { type: NgZone }, { type: DomSanitizer }, { type: Document, decorators: [{
+                type: Inject,
+                args: [DOCUMENT]
+            }] }, { type: ChangeDetectorRef }]; }, { orgEl: [{
+            type: ViewChild,
+            args: ['orgEl', { static: false }]
+        }], shadowOrgEl: [{
+            type: ViewChild,
+            args: ['shadowOrgEl', { static: false }]
+        }], shadowTextEl: [{
+            type: ViewChild,
+            args: ['shadowTextEl', { static: false }]
+        }], tooltip: [{
+            type: Input
+        }], length: [{
+            type: Input
+        }], lines: [{
+            type: Input
+        }], fullWidthRecognition: [{
+            type: Input
+        }], tail: [{
+            type: Input
+        }] }); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: ellipsis.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [EllipsisComponent];
 class EllipsisModule {
 }
-EllipsisModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ EllipsisModule.ɵmod = ɵɵdefineNgModule({ type: EllipsisModule });
+/** @nocollapse */ EllipsisModule.ɵinj = ɵɵdefineInjector({ factory: function EllipsisModule_Factory(t) { return new (t || EllipsisModule)(); }, imports: [[CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(EllipsisModule, { declarations: [EllipsisComponent], imports: [CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule], exports: [EllipsisComponent] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(EllipsisModule, [{
+        type: NgModule,
+        args: [{
                 imports: [CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: ellipsis.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { EllipsisComponent, EllipsisModule };

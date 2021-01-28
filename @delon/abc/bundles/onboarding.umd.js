@@ -4,43 +4,34 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
-}(this, (function (exports, i5, i3, i0, i2, i1, i4, rxjs, operators, platform, button, noAnimation, outlet, popover) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('ng-zorro-antd/popover'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/transition-patch'), require('@delon/theme'), require('@angular/router'), require('@delon/util'), require('@angular/cdk/bidi')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', 'ng-zorro-antd/popover', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/button', 'ng-zorro-antd/core/transition-patch', '@delon/theme', '@angular/router', '@delon/util', '@angular/cdk/bidi'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/popover'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/button'], global.i7, global.delon.theme, global.ng.router, global.delon.util, global.ng.cdk.bidi));
+}(this, (function (exports, i2, i0, rxjs, operators, i1, i3, i4, i5, i6, i7, i1$1, i2$1, i3$1, i4$1) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: onboarding.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function OnboardingLightData() { }
-    if (false) {
-        /** @type {?} */
-        OnboardingLightData.prototype.el;
-        /** @type {?} */
-        OnboardingLightData.prototype.top;
-        /** @type {?} */
-        OnboardingLightData.prototype.left;
-        /** @type {?} */
-        OnboardingLightData.prototype.width;
-        /** @type {?} */
-        OnboardingLightData.prototype.height;
-        /** @type {?} */
-        OnboardingLightData.prototype.clientHeight;
-        /** @type {?} */
-        OnboardingLightData.prototype.clientWidth;
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
     }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     var OnboardingComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} doc
-         * @param {?} platform
-         * @param {?} cdr
-         */
         function OnboardingComponent(el, doc, platform, cdr) {
             this.el = el;
             this.doc = doc;
@@ -53,9 +44,6 @@
             this.dir = 'ltr';
         }
         Object.defineProperty(OnboardingComponent.prototype, "first", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.active === 0;
             },
@@ -63,60 +51,33 @@
             configurable: true
         });
         Object.defineProperty(OnboardingComponent.prototype, "last", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.active === this.max - 1;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingComponent.prototype._getDoc = function () {
             return this.doc;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingComponent.prototype._getWin = function () {
             return this._getDoc().defaultView || window;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingComponent.prototype.getLightData = function () {
-            /** @type {?} */
             var doc = this._getDoc();
-            /** @type {?} */
             var win = this._getWin();
-            /** @type {?} */
-            var el = ( /** @type {?} */(doc.querySelector(this.item.selectors)));
+            var el = doc.querySelector(this.item.selectors);
             if (!el) {
                 return null;
             }
-            /** @type {?} */
             var scrollTop = win.pageYOffset || doc.documentElement.scrollTop || doc.body.scrollTop;
-            /** @type {?} */
             var scrollLeft = win.pageXOffset || doc.documentElement.scrollLeft || doc.body.scrollLeft;
-            /** @type {?} */
             var rect = el.getBoundingClientRect();
-            /** @type {?} */
             var top = rect.top + scrollTop;
-            /** @type {?} */
             var left = rect.left + scrollLeft;
-            /** @type {?} */
             var padding = 8;
-            /** @type {?} */
             var needPadding = top > padding && left > padding;
-            /** @type {?} */
             var offsetPos = needPadding ? padding : 0;
-            /** @type {?} */
             var offsetWH = needPadding ? padding * 2 : 0;
             return {
                 top: top - offsetPos,
@@ -128,22 +89,12 @@
                 clientHeight: doc.body.clientHeight,
             };
         };
-        /**
-         * @private
-         * @param {?} pos
-         * @return {?}
-         */
         OnboardingComponent.prototype.scroll = function (pos) {
             this.prevSelectorEl = pos.el;
-            /** @type {?} */
             var scrollY = pos.top - (pos.clientHeight - pos.height) / 2;
             this._getWin().scrollTo({ top: scrollY });
             this.updatePrevElStatus(true);
         };
-        /**
-         * @param {?} status
-         * @return {?}
-         */
         OnboardingComponent.prototype.updateRunning = function (status) {
             this.running = status;
             this.cdr.detectChanges();
@@ -151,22 +102,16 @@
                 this.updatePosition();
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingComponent.prototype.updatePosition = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
-            /** @type {?} */
             var pos = this.getLightData();
             if (pos == null) {
                 console.warn("Did not matches selectors [" + this.item.selectors + "]");
                 return;
             }
-            /** @type {?} */
-            var lightStyle = (( /** @type {?} */(this.el.nativeElement.querySelector('.onboarding__light')))).style;
+            var lightStyle = this.el.nativeElement.querySelector('.onboarding__light').style;
             lightStyle.top = pos.top + "px";
             lightStyle.left = pos.left + "px";
             lightStyle.width = pos.width + "px";
@@ -174,124 +119,53 @@
             this.updatePrevElStatus(false);
             this.scroll(pos);
         };
-        /**
-         * @private
-         * @param {?} status
-         * @return {?}
-         */
         OnboardingComponent.prototype.updatePrevElStatus = function (status) {
             if (this.prevSelectorEl) {
                 this.prevSelectorEl.classList[status ? 'add' : 'remove']('onboarding__light-el');
             }
         };
-        /**
-         * @param {?} type
-         * @return {?}
-         */
         OnboardingComponent.prototype.to = function (type) {
             this.op.emit(type);
         };
-        /**
-         * @return {?}
-         */
         OnboardingComponent.prototype.handleMask = function () {
             if (this.config.maskClosable === true) {
                 this.to('done');
             }
         };
-        /**
-         * @return {?}
-         */
         OnboardingComponent.prototype.ngOnDestroy = function () {
             clearTimeout(this.time);
             this.updatePrevElStatus(false);
         };
         return OnboardingComponent;
     }());
-    OnboardingComponent.decorators = [
-        { type: i0.Component, args: [{
-                    selector: 'onboarding',
-                    template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width, direction: dir }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n",
-                    host: {
-                        '[class.onboarding]': "true",
-                        '[class.onboarding-rtl]': "dir === 'rtl'",
-                        '[attr.data-onboarding-active]': "active",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    encapsulation: i0.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    OnboardingComponent.ctorParameters = function () { return [
-        { type: i0.ElementRef },
-        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i3.DOCUMENT,] }] },
-        { type: platform.Platform },
-        { type: i0.ChangeDetectorRef }
-    ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.time;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.prevSelectorEl;
-        /** @type {?} */
-        OnboardingComponent.prototype.config;
-        /** @type {?} */
-        OnboardingComponent.prototype.item;
-        /** @type {?} */
-        OnboardingComponent.prototype.active;
-        /** @type {?} */
-        OnboardingComponent.prototype.max;
-        /** @type {?} */
-        OnboardingComponent.prototype.op;
-        /** @type {?} */
-        OnboardingComponent.prototype.running;
-        /** @type {?} */
-        OnboardingComponent.prototype.dir;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.platform;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingComponent.prototype.cdr;
-    }
+    /** @nocollapse */ OnboardingComponent.ɵfac = function OnboardingComponent_Factory(t) { return new (t || OnboardingComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i2.DOCUMENT, 8), i0.ɵɵdirectiveInject(i1.Platform), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
+    /** @nocollapse */ OnboardingComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: OnboardingComponent, selector: "onboarding", host: { properties: { "class.onboarding": "true", "class.onboarding-rtl": "dir === 'rtl'", "attr.data-onboarding-active": "active" } }, ngImport: i0__namespace, template: "<div *ngIf=\"!running && config.mask\" class=\"onboarding__mask\" (click)=\"handleMask()\"></div>\n<div\n  *ngIf=\"item\"\n  class=\"onboarding__light\"\n  [class.onboarding__light-hide]=\"running\"\n  [attr.style]=\"item.lightStyle\"\n  nz-popover\n  [nzPopoverTitle]=\"item.title\"\n  [nzPopoverContent]=\"content\"\n  [nzPopoverVisible]=\"!running\"\n  [nzPopoverTrigger]=\"null\"\n  [nzPopoverPlacement]=\"item.position\"\n  [nzPopoverOverlayClassName]=\"item.className\"\n  [nzPopoverOverlayStyle]=\"{ 'max-width.px': item.width, direction: dir }\"\n  [nzNoAnimation]=\"true\"\n></div>\n<ng-template #content>\n  <ng-container *nzStringTemplateOutlet=\"item.content\">\n    <div [innerHTML]=\"item.content\"></div>\n  </ng-container>\n  <div class=\"flex-center-between onboarding__footer\">\n    <span class=\"onboarding__total\">\n      <ng-container *ngIf=\"config.showTotal\">{{ active + 1 }}/{{ max }}</ng-container>\n    </span>\n    <div class=\"onboarding__btns\">\n      <a *ngIf=\"!last && item.skip !== null\" nz-button nzType=\"link\" (click)=\"to('skip')\" nzSize=\"small\" data-btnType=\"skip\">\n        <ng-container *nzStringTemplateOutlet=\"item.skip\">{{ item.skip }}</ng-container>\n      </a>\n      <a *ngIf=\"!first && item.prev !== null\" nz-button (click)=\"to('prev')\" nzSize=\"small\" data-btnType=\"prev\">\n        <ng-container *nzStringTemplateOutlet=\"item.prev\">{{ item.prev }}</ng-container>\n      </a>\n      <a *ngIf=\"!last && item.next !== null\" nz-button (click)=\"to('next')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"next\">\n        <ng-container *nzStringTemplateOutlet=\"item.next\">{{ item.next }}</ng-container>\n      </a>\n      <a *ngIf=\"last && item.done !== null\" nz-button (click)=\"to('done')\" nzType=\"primary\" nzSize=\"small\" data-btnType=\"done\">\n        <ng-container *nzStringTemplateOutlet=\"item.done\">{{ item.done }}</ng-container>\n      </a>\n    </div>\n  </div>\n</ng-template>\n", directives: [{ type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NzPopoverDirective, selector: "[nz-popover]", inputs: ["nzPopoverTrigger", "nzPopoverPlacement", "nzPopoverTitle", "nzPopoverContent", "nz-popover", "nzPopoverOrigin", "nzPopoverVisible", "nzPopoverMouseEnterDelay", "nzPopoverMouseLeaveDelay", "nzPopoverOverlayClassName", "nzPopoverOverlayStyle"], outputs: ["nzPopoverVisibleChange"], exportAs: ["nzPopover"] }, { type: i4.NzNoAnimationDirective, selector: "[nzNoAnimation]", inputs: ["nzNoAnimation"], exportAs: ["nzNoAnimation"] }, { type: i5.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i6.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { type: i7.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(OnboardingComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'onboarding',
+                        templateUrl: './onboarding.component.html',
+                        host: {
+                            '[class.onboarding]': "true",
+                            '[class.onboarding-rtl]': "dir === 'rtl'",
+                            '[attr.data-onboarding-active]': "active",
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () {
+            return [{ type: i0.ElementRef }, { type: undefined, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [i2.DOCUMENT]
+                        }] }, { type: i1.Platform }, { type: i0.ChangeDetectorRef }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: onboarding.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var OnboardingService = /** @class */ (function () {
-        /**
-         * @param {?} i18n
-         * @param {?} appRef
-         * @param {?} resolver
-         * @param {?} router
-         * @param {?} injector
-         * @param {?} doc
-         * @param {?} configSrv
-         * @param {?} directionality
-         */
         function OnboardingService(i18n, appRef, resolver, router, injector, doc, configSrv, directionality) {
             this.i18n = i18n;
             this.appRef = appRef;
@@ -306,10 +180,6 @@
             this._running = false;
             this.type = null;
         }
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingService.prototype._getDoc = function () {
             return this.doc;
         };
@@ -318,7 +188,6 @@
              * Get whether it is booting
              *
              * 获取是否正在引导中
-             * @return {?}
              */
             get: function () {
                 return this._running;
@@ -326,31 +195,20 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingService.prototype.attach = function () {
             var _this = this;
-            /** @type {?} */
             var compRef = (this.compRef = this.resolver.resolveComponentFactory(OnboardingComponent).create(this.injector));
             this.appRef.attachView(compRef.hostView);
-            /** @type {?} */
-            var compNode = (( /** @type {?} */(compRef.hostView))).rootNodes[0];
-            /** @type {?} */
+            var compNode = compRef.hostView.rootNodes[0];
             var doc = this._getDoc();
-            /** @type {?} */
-            var cdk = ( /** @type {?} */(doc.querySelector('.cdk-overlay-container')));
+            var cdk = doc.querySelector('.cdk-overlay-container');
             if (cdk) {
                 doc.body.insertBefore(compNode, cdk);
             }
             else {
                 doc.body.appendChild(compNode);
             }
-            this.op$ = this.compRef.instance.op.subscribe(( /**
-             * @param {?} type
-             * @return {?}
-             */function (type) {
+            this.op$ = this.compRef.instance.op.subscribe(function (type) {
                 switch (type) {
                     case 'next':
                         _this.next();
@@ -362,37 +220,20 @@
                         _this.done();
                         break;
                 }
-            }));
+            });
         };
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         OnboardingService.prototype.cancelRunning = function () {
-            if (( /** @type {?} */(this)).running$) {
-                ( /** @type {?} */(this)).running$.unsubscribe();
-                ( /** @type {?} */(this)).running$ = null;
+            if (this.running$) {
+                this.running$.unsubscribe();
+                this.running$ = null;
             }
-            return ( /** @type {?} */(this));
+            return this;
         };
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @param {?} status
-         * @return {THIS}
-         */
         OnboardingService.prototype.updateRunning = function (status) {
-            ( /** @type {?} */(this))._running = status;
-            ( /** @type {?} */(( /** @type {?} */(this)).compRef)).instance.updateRunning(status);
-            return ( /** @type {?} */(this));
+            this._running = status;
+            this.compRef.instance.updateRunning(status);
+            return this;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         OnboardingService.prototype.destroy = function () {
             this.cancelRunning();
             if (this.compRef) {
@@ -401,33 +242,19 @@
                 this.op$.unsubscribe();
             }
         };
-        /**
-         * @private
-         * @param {?=} isStart
-         * @return {?}
-         */
         OnboardingService.prototype.showItem = function (isStart) {
             var _this = this;
             if (isStart === void 0) { isStart = false; }
-            /** @type {?} */
-            var items = ( /** @type {?} */(this.config.items));
-            /** @type {?} */
-            var item = ( /** @type {?} */(Object.assign(Object.assign({ position: 'bottomLeft', before: rxjs.of(true), after: rxjs.of(true) }, this.i18n.getData('onboarding')), items[this.active])));
-            /** @type {?} */
-            var dir = ( /** @type {?} */(this.configSrv.get('onboarding'))).direction || this.directionality.value;
+            var items = this.config.items;
+            var item = Object.assign(Object.assign({ position: 'bottomLeft', before: rxjs.of(true), after: rxjs.of(true) }, this.i18n.getData('onboarding')), items[this.active]);
+            var dir = this.configSrv.get('onboarding').direction || this.directionality.value;
             Object.assign(this.compRef.instance, { item: item, config: this.config, active: this.active, max: items.length, dir: dir });
-            /** @type {?} */
             var pipes = [
-                operators.switchMap(( /**
-                 * @return {?}
-                 */function () { return (item.url ? _this.router.navigateByUrl(item.url) : rxjs.of(true)); })),
-                operators.switchMap(( /**
-                 * @return {?}
-                 */function () {
-                    /** @type {?} */
-                    var obs = _this.type === 'prev' ? ( /** @type {?} */(item.after)) : ( /** @type {?} */(item.before));
+                operators.switchMap(function () { return (item.url ? _this.router.navigateByUrl(item.url) : rxjs.of(true)); }),
+                operators.switchMap(function () {
+                    var obs = _this.type === 'prev' ? item.after : item.before;
                     return typeof obs === 'number' ? rxjs.of(true).pipe(operators.delay(obs)) : obs;
-                })),
+                }),
             ];
             if (!isStart) {
                 pipes.push(operators.delay(1));
@@ -435,20 +262,12 @@
             this.updateRunning(true);
             this.running$ = rxjs.of(true)
                 .pipe(rxjs.pipe.apply(this, pipes))
-                .subscribe(( /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */function () { return _this.cancelRunning().updateRunning(false); }), ( /**
-             * @return {?}
-             */function () { return _this.done(); }));
+                .subscribe(function () { return _this.cancelRunning().updateRunning(false); }, function () { return _this.done(); });
         };
         /**
          * Start a new user guidance
          *
          * 开启新的用户引导流程
-         * @param {?} config
-         * @return {?}
          */
         OnboardingService.prototype.start = function (config) {
             if (this.running) {
@@ -465,10 +284,9 @@
          * Next
          *
          * 下一步
-         * @return {?}
          */
         OnboardingService.prototype.next = function () {
-            if (this._running || this.active + 1 >= ( /** @type {?} */(this.config.items)).length) {
+            if (this._running || this.active + 1 >= this.config.items.length) {
                 this.done();
                 return;
             }
@@ -480,7 +298,6 @@
          * Prev
          *
          * 上一步
-         * @return {?}
          */
         OnboardingService.prototype.prev = function () {
             if (this._running || this.active - 1 < 0) {
@@ -494,144 +311,55 @@
          * Done
          *
          * 完成
-         * @return {?}
          */
         OnboardingService.prototype.done = function () {
             this.type = 'done';
             this.destroy();
         };
-        /**
-         * @return {?}
-         */
         OnboardingService.prototype.ngOnDestroy = function () {
             this.destroy();
         };
         return OnboardingService;
     }());
-    OnboardingService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    OnboardingService.ctorParameters = function () { return [
-        { type: i1.DelonLocaleService },
-        { type: i0.ApplicationRef },
-        { type: i0.ComponentFactoryResolver },
-        { type: i2.Router },
-        { type: i0.Injector },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i3.DOCUMENT,] }] },
-        { type: i4.AlainConfigService },
-        { type: i5.Directionality, decorators: [{ type: i0.Optional }] }
-    ]; };
-    /** @nocollapse */ OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0.ɵɵinject(i1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i3.DOCUMENT), i0.ɵɵinject(i4.AlainConfigService), i0.ɵɵinject(i5.Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.compRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.op$;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.config;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.active;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.running$;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype._running;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.type;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.appRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.resolver;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.injector;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.configSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        OnboardingService.prototype.directionality;
-    }
+    /** @nocollapse */ OnboardingService.ɵfac = function OnboardingService_Factory(t) { return new (t || OnboardingService)(i0.ɵɵinject(i1$1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2$1.Router), i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i2.DOCUMENT), i0.ɵɵinject(i3$1.AlainConfigService), i0.ɵɵinject(i4$1.Directionality, 8)); };
+    /** @nocollapse */ OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ token: OnboardingService, factory: OnboardingService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(OnboardingService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () {
+            return [{ type: i1$1.DelonLocaleService }, { type: i0.ApplicationRef }, { type: i0.ComponentFactoryResolver }, { type: i2$1.Router }, { type: i0.Injector }, { type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [i2.DOCUMENT]
+                        }] }, { type: i3$1.AlainConfigService }, { type: i4$1.Directionality, decorators: [{
+                            type: i0.Optional
+                        }] }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: onboarding.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [OnboardingComponent];
     var OnboardingModule = /** @class */ (function () {
         function OnboardingModule() {
         }
         return OnboardingModule;
     }());
-    OnboardingModule.decorators = [
-        { type: i0.NgModule, args: [{
-                    imports: [i3.CommonModule, i1.DelonLocaleModule, i4.DelonUtilModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
-                    declarations: COMPONENTS,
-                    entryComponents: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ OnboardingModule.ɵmod = i0.ɵɵdefineNgModule({ type: OnboardingModule });
+    /** @nocollapse */ OnboardingModule.ɵinj = i0.ɵɵdefineInjector({ factory: function OnboardingModule_Factory(t) { return new (t || OnboardingModule)(); }, imports: [[i2.CommonModule, i1$1.DelonLocaleModule, i3$1.DelonUtilModule, i3.NzPopoverModule, i5.NzOutletModule, i6.NzButtonModule, i4.NzNoAnimationModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(OnboardingModule, { declarations: [OnboardingComponent], imports: [i2.CommonModule, i1$1.DelonLocaleModule, i3$1.DelonUtilModule, i3.NzPopoverModule, i5.NzOutletModule, i6.NzButtonModule, i4.NzNoAnimationModule], exports: [OnboardingComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(OnboardingModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i2.CommonModule, i1$1.DelonLocaleModule, i3$1.DelonUtilModule, i3.NzPopoverModule, i5.NzOutletModule, i6.NzButtonModule, i4.NzNoAnimationModule],
+                        declarations: COMPONENTS,
+                        entryComponents: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: onboarding.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.OnboardingComponent = OnboardingComponent;

@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/page-header/pageHeader.js",
   "fesm2015": "../fesm2015/pageHeader.js",
   "typings": "pageHeader.d.ts",
-  "metadata": "pageHeader.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/page-header"
 }

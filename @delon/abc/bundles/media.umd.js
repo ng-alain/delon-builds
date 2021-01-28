@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.ng.common));
-}(this, (function (exports, platform, i0, i1, rxjs, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/cdk/platform'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/core', '@delon/util', 'rxjs', '@angular/cdk/platform', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.core, global.delon.util, global.rxjs, global.ng.cdk.platform, global.ng.common));
+}(this, (function (exports, i0, i1, rxjs, i2, common) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,16 +340,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var MediaService = /** @class */ (function () {
-        /**
-         * @param {?} cogSrv
-         * @param {?} lazySrv
-         */
         function MediaService(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
             this.lazySrv = lazySrv;
@@ -336,109 +349,47 @@
             this.notify$ = new rxjs.Subject();
         }
         Object.defineProperty(MediaService.prototype, "cog", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._cog;
             },
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
-                this._cog = ( /** @type {?} */(this.cogSrv.merge('media', {
+                this._cog = this.cogSrv.merge('media', {
                     urls: ['https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js', 'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'],
-                }, val)));
+                }, val);
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         MediaService.prototype.load = function () {
             var _this = this;
-            if (( /** @type {?} */(this)).loading) {
-                if (( /** @type {?} */(this)).loaded) {
-                    ( /** @type {?} */(this)).notify$.next();
+            if (this.loading) {
+                if (this.loaded) {
+                    this.notify$.next();
                 }
-                return ( /** @type {?} */(this));
+                return this;
             }
-            ( /** @type {?} */(this)).loading = true;
-            ( /** @type {?} */(this)).lazySrv.load(( /** @type {?} */(( /** @type {?} */(this)).cog.urls))).then(( /**
-             * @return {?}
-             */function () {
-                ( /** @type {?} */(_this)).loaded = true;
-                ( /** @type {?} */(_this)).notify$.next();
-            }));
-            return ( /** @type {?} */(this));
+            this.loading = true;
+            this.lazySrv.load(this.cog.urls).then(function () {
+                _this.loaded = true;
+                _this.notify$.next();
+            });
+            return this;
         };
-        /**
-         * @return {?}
-         */
         MediaService.prototype.notify = function () {
             return this.notify$.asObservable();
         };
         return MediaService;
     }());
-    MediaService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    MediaService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService },
-        { type: i1.LazyService }
-    ]; };
-    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); }, token: MediaService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype._cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.loading;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.loaded;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.notify$;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.cogSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.lazySrv;
-    }
+    /** @nocollapse */ MediaService.ɵfac = function MediaService_Factory(t) { return new (t || MediaService)(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); };
+    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ token: MediaService, factory: MediaService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(MediaService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () { return [{ type: i1.AlainConfigService }, { type: i1.LazyService }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var MediaComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} renderer
-         * @param {?} srv
-         * @param {?} ngZone
-         * @param {?} platform
-         */
         function MediaComponent(el, renderer, srv, ngZone, platform) {
             var _this = this;
             this.el = el;
@@ -449,105 +400,62 @@
             this.type = 'video';
             this.delay = 0;
             this.ready = new i0.EventEmitter();
-            this.notify$ = this.srv.notify().subscribe(( /**
-             * @return {?}
-             */function () { return _this.initDelay(); }));
+            this.notify$ = this.srv.notify().subscribe(function () { return _this.initDelay(); });
         }
         Object.defineProperty(MediaComponent.prototype, "player", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._p;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.initDelay = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
-                _this.time = setTimeout(( /**
-                 * @return {?}
-                 */function () { return _this.init(); }), _this.delay);
-            }));
+            this.ngZone.runOutsideAngular(function () {
+                _this.time = setTimeout(function () { return _this.init(); }, _this.delay);
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.init = function () {
             var _this = this;
-            if (!(( /** @type {?} */(window))).Plyr) {
+            if (!window.Plyr) {
                 throw new Error("No window.Plyr found, please make sure that cdn or local path exists, the current referenced path is: " + JSON.stringify(this.srv.cog.urls));
             }
             this.ensureElement();
-            /** @type {?} */
             var player = (this._p = new Plyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
-            player.on('ready', ( /**
-             * @return {?}
-             */function () { return _this.ready.next(player); }));
+            player.on('ready', function () { return _this.ready.next(player); });
             this.uploadSource();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.ensureElement = function () {
             var type = this.type;
-            /** @type {?} */
-            var el = ( /** @type {?} */(this.el.nativeElement.querySelector(type)));
+            var el = this.el.nativeElement.querySelector(type);
             if (!el) {
                 el = this.renderer.createElement(type);
-                (( /** @type {?} */(el))).controls = true;
+                el.controls = true;
                 this.el.nativeElement.appendChild(el);
             }
             this.videoEl = el;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.destroy = function () {
             if (this._p) {
                 this._p.destroy();
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.uploadSource = function () {
             var _a = this, source = _a.source, type = _a.type;
             this._p.source = typeof source === 'string' ? { type: type, sources: [{ src: source }] } : source;
         };
-        /**
-         * @return {?}
-         */
         MediaComponent.prototype.ngAfterViewInit = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
             this.srv.load();
         };
-        /**
-         * @param {?} changes
-         * @return {?}
-         */
         MediaComponent.prototype.ngOnChanges = function (changes) {
             this.srv.cog = { options: this.options };
             if (changes.source && this._p) {
                 this.uploadSource();
             }
         };
-        /**
-         * @return {?}
-         */
         MediaComponent.prototype.ngOnDestroy = function () {
             clearTimeout(this.time);
             this.destroy();
@@ -556,123 +464,61 @@
         };
         return MediaComponent;
     }());
-    MediaComponent.decorators = [
-        { type: i0.Component, args: [{
-                    selector: 'media',
-                    exportAs: 'mediaComponent',
-                    template: "<ng-content></ng-content>",
-                    host: {
-                        '[style.display]': "'block'",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    encapsulation: i0.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    MediaComponent.ctorParameters = function () { return [
-        { type: i0.ElementRef },
-        { type: i0.Renderer2 },
-        { type: MediaService },
-        { type: i0.NgZone },
-        { type: platform.Platform }
-    ]; };
-    MediaComponent.propDecorators = {
-        type: [{ type: i0.Input }],
-        source: [{ type: i0.Input }],
-        options: [{ type: i0.Input }],
-        delay: [{ type: i0.Input }],
-        ready: [{ type: i0.Output }]
-    };
+    /** @nocollapse */ MediaComponent.ɵfac = function MediaComponent_Factory(t) { return new (t || MediaComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(MediaService), i0.ɵɵdirectiveInject(i0.NgZone), i0.ɵɵdirectiveInject(i2.Platform)); };
+    /** @nocollapse */ MediaComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: MediaComponent, selector: "media", inputs: { type: "type", source: "source", options: "options", delay: "delay" }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0__namespace, template: "<ng-content></ng-content>", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         i1.InputNumber(),
         __metadata("design:type", Object)
     ], MediaComponent.prototype, "delay", void 0);
-    if (false) {
-        /** @type {?} */
-        MediaComponent.ngAcceptInputType_delay;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype._p;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.videoEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.time;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.notify$;
-        /** @type {?} */
-        MediaComponent.prototype.type;
-        /** @type {?} */
-        MediaComponent.prototype.source;
-        /** @type {?} */
-        MediaComponent.prototype.options;
-        /** @type {?} */
-        MediaComponent.prototype.delay;
-        /** @type {?} */
-        MediaComponent.prototype.ready;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.platform;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(MediaComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'media',
+                        exportAs: 'mediaComponent',
+                        template: "<ng-content></ng-content>",
+                        host: {
+                            '[style.display]': "'block'",
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: MediaService }, { type: i0.NgZone }, { type: i2.Platform }]; }, { type: [{
+                    type: i0.Input
+                }], source: [{
+                    type: i0.Input
+                }], options: [{
+                    type: i0.Input
+                }], delay: [{
+                    type: i0.Input
+                }], ready: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /** @type {?} */
     var COMPONENTS = [MediaComponent];
     var MediaModule = /** @class */ (function () {
         function MediaModule() {
         }
         return MediaModule;
     }());
-    MediaModule.decorators = [
-        { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule, i1.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
-                },] }
-    ];
+    /** @nocollapse */ MediaModule.ɵmod = i0.ɵɵdefineNgModule({ type: MediaModule });
+    /** @nocollapse */ MediaModule.ɵinj = i0.ɵɵdefineInjector({ factory: function MediaModule_Factory(t) { return new (t || MediaModule)(); }, imports: [[common.CommonModule, i1.DelonUtilModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(MediaModule, { declarations: [MediaComponent], imports: [common.CommonModule, i1.DelonUtilModule], exports: [MediaComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(MediaModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule, i1.DelonUtilModule],
+                        declarations: __spread(COMPONENTS),
+                        exports: __spread(COMPONENTS),
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.MediaComponent = MediaComponent;

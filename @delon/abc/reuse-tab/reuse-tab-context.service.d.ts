@@ -1,6 +1,7 @@
 import { Overlay } from '@angular/cdk/overlay';
 import { Subject } from 'rxjs';
 import { ReuseContextCloseEvent, ReuseContextEvent, ReuseContextI18n } from './reuse-tab.interfaces';
+import * as i0 from "@angular/core";
 export declare class ReuseTabContextService {
     private overlay;
     private ref;
@@ -10,4 +11,6 @@ export declare class ReuseTabContextService {
     constructor(overlay: Overlay);
     remove(): void;
     open(context: ReuseContextEvent): void;
+    static ɵfac: i0.ɵɵFactoryDef<ReuseTabContextService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ReuseTabContextService>;
 }

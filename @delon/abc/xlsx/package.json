@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/xlsx/xlsx.js",
   "fesm2015": "../fesm2015/xlsx.js",
   "typings": "xlsx.d.ts",
-  "metadata": "xlsx.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/xlsx"
 }

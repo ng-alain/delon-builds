@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/setting-drawer/setting-drawer.js",
   "fesm2015": "../fesm2015/setting-drawer.js",
   "typings": "setting-drawer.d.ts",
-  "metadata": "setting-drawer.metadata.json",
   "sideEffects": false,
   "name": "@delon/theme/setting-drawer"
 }

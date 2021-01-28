@@ -3,6 +3,7 @@ import { REP_TYPE } from '@delon/theme';
 import { AlainConfigService, NumberInput } from '@delon/util';
 import { Observable } from 'rxjs';
 import { SEErrorRefresh, SELayout } from './se.types';
+import * as i0 from "@angular/core";
 export declare class SEContainerComponent {
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_colInCon: NumberInput;
@@ -26,4 +27,6 @@ export declare class SEContainerComponent {
     get errorNotify(): Observable<SEErrorRefresh>;
     constructor(configSrv: AlainConfigService);
     setErrors(errors: SEErrorRefresh[]): void;
+    static ɵfac: i0.ɵɵFactoryDef<SEContainerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": "se-container"; "col": "col"; "labelWidth": "labelWidth"; "title": "title"; "gutter": "gutter"; "nzLayout": "nzLayout"; "size": "size"; "firstVisual": "firstVisual"; "ingoreDirty": "ingoreDirty"; "line": "line"; "errors": "errors"; }, {}, never, ["*"]>;
 }

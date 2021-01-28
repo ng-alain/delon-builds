@@ -1,125 +1,72 @@
 import { __decorate, __metadata } from 'tslib';
-import { DOCUMENT, CommonModule } from '@angular/common';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Inject, Input, NgModule } from '@angular/core';
+import { DOCUMENT, NgIf, CommonModule } from '@angular/common';
+import * as i0 from '@angular/core';
+import { ɵɵdirectiveInject, ElementRef, Renderer2, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵsetClassMetadata, Component, Inject, Input, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import { InputBoolean, DelonUtilModule } from '@delon/util';
-import { ErrorCollectModule } from '@delon/abc/error-collect';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { ErrorCollectComponent, ErrorCollectModule } from '@delon/abc/error-collect';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: footer-toolbar.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const CLSBODY = 'footer-toolbar__body';
 class FooterToolbarComponent {
-    /**
-     * @param {?} el
-     * @param {?} renderer
-     * @param {?} doc
-     */
     constructor(el, renderer, doc) {
         this.el = el;
         this.renderer = renderer;
         this.doc = doc;
         this.errorCollect = false;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get bodyCls() {
-        return ((/** @type {?} */ (this.doc.querySelector('body')))).classList;
+        return this.doc.querySelector('body').classList;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
         this.bodyCls.add(CLSBODY);
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.bodyCls.remove(CLSBODY);
     }
 }
-FooterToolbarComponent.decorators = [
-    { type: Component, args: [{
-                selector: 'footer-toolbar',
-                exportAs: 'footerToolbar',
-                template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n",
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-/** @nocollapse */
-FooterToolbarComponent.ctorParameters = () => [
-    { type: ElementRef },
-    { type: Renderer2 },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
-];
-FooterToolbarComponent.propDecorators = {
-    errorCollect: [{ type: Input }],
-    extra: [{ type: Input }]
-};
+/** @nocollapse */ FooterToolbarComponent.ɵfac = function FooterToolbarComponent_Factory(t) { return new (t || FooterToolbarComponent)(ɵɵdirectiveInject(ElementRef), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(DOCUMENT)); };
+/** @nocollapse */ FooterToolbarComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: FooterToolbarComponent, selector: "footer-toolbar", inputs: { errorCollect: "errorCollect", extra: "extra" }, exportAs: ["footerToolbar"], ngImport: i0, template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  <error-collect *ngIf=\"errorCollect\"></error-collect>\n  <ng-content></ng-content>\n</div>\n", directives: [{ type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: ["freq", "offsetTop"], exportAs: ["errorCollect"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], FooterToolbarComponent.prototype, "errorCollect", void 0);
-if (false) {
-    /** @type {?} */
-    FooterToolbarComponent.ngAcceptInputType_errorCollect;
-    /** @type {?} */
-    FooterToolbarComponent.prototype.errorCollect;
-    /** @type {?} */
-    FooterToolbarComponent.prototype.extra;
-    /**
-     * @type {?}
-     * @private
-     */
-    FooterToolbarComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    FooterToolbarComponent.prototype.renderer;
-    /**
-     * @type {?}
-     * @private
-     */
-    FooterToolbarComponent.prototype.doc;
-}
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(FooterToolbarComponent, [{
+        type: Component,
+        args: [{
+                selector: 'footer-toolbar',
+                exportAs: 'footerToolbar',
+                templateUrl: './footer-toolbar.component.html',
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None,
+            }]
+    }], function () { return [{ type: ElementRef }, { type: Renderer2 }, { type: undefined, decorators: [{
+                type: Inject,
+                args: [DOCUMENT]
+            }] }]; }, { errorCollect: [{
+            type: Input
+        }], extra: [{
+            type: Input
+        }] }); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: footer-toolbar.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [FooterToolbarComponent];
 class FooterToolbarModule {
 }
-FooterToolbarModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ FooterToolbarModule.ɵmod = ɵɵdefineNgModule({ type: FooterToolbarModule });
+/** @nocollapse */ FooterToolbarModule.ɵinj = ɵɵdefineInjector({ factory: function FooterToolbarModule_Factory(t) { return new (t || FooterToolbarModule)(); }, imports: [[CommonModule, ErrorCollectModule, DelonUtilModule, NzOutletModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(FooterToolbarModule, { declarations: [FooterToolbarComponent], imports: [CommonModule, ErrorCollectModule, DelonUtilModule, NzOutletModule], exports: [FooterToolbarComponent] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(FooterToolbarModule, [{
+        type: NgModule,
+        args: [{
                 imports: [CommonModule, ErrorCollectModule, DelonUtilModule, NzOutletModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: footerToolbar.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { FooterToolbarComponent, FooterToolbarModule };

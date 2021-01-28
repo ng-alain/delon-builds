@@ -1,2 +1,10 @@
+import * as i0 from "@angular/core";
+import * as i1 from "./tag-select.component";
+import * as i2 from "@angular/common";
+import * as i3 from "ng-zorro-antd/icon";
+import * as i4 from "@delon/theme";
+import * as i5 from "@delon/util";
 export declare class TagSelectModule {
+    static ɵmod: i0.ɵɵNgModuleDefWithMeta<TagSelectModule, [typeof i1.TagSelectComponent], [typeof i2.CommonModule, typeof i3.NzIconModule, typeof i4.DelonLocaleModule, typeof i5.DelonUtilModule], [typeof i1.TagSelectComponent]>;
+    static ɵinj: i0.ɵɵInjectorDef<TagSelectModule>;
 }

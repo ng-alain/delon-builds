@@ -1,8 +1,3 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: src/config/theme/index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-export {} from './http.type';
-export {} from './responsive.type';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy91dGlsL3NyYy9jb25maWcvdGhlbWUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFBQSxlQUFjLGFBQWEsQ0FBQztBQUM1QixlQUFjLG1CQUFtQixDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9odHRwLnR5cGUnO1xuZXhwb3J0ICogZnJvbSAnLi9yZXNwb25zaXZlLnR5cGUnO1xuIl19
+export * from './http.type';
+export * from './responsive.type';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy91dGlsL3NyYy9jb25maWcvdGhlbWUvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYyxhQUFhLENBQUM7QUFDNUIsY0FBYyxtQkFBbUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCAqIGZyb20gJy4vaHR0cC50eXBlJztcbmV4cG9ydCAqIGZyb20gJy4vcmVzcG9uc2l2ZS50eXBlJztcbiJdfQ==

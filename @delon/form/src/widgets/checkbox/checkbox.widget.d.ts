@@ -2,6 +2,7 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFCheckboxWidgetSchema } from './schema';
+import * as i0 from "@angular/core";
 export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSchema> {
     data: SFSchemaEnum[];
     allChecked: boolean;
@@ -16,4 +17,6 @@ export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSche
     onAllChecked(): void;
     updateAllChecked(): this;
     private notifyChange;
+    static ɵfac: i0.ɵɵFactoryDef<CheckboxWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never>;
 }

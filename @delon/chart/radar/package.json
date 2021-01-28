@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/radar/radar.js",
   "fesm2015": "../fesm2015/radar.js",
   "typings": "radar.d.ts",
-  "metadata": "radar.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/radar"
 }

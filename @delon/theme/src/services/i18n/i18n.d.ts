@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+import * as i0 from "@angular/core";
 export interface AlainI18NService {
     [key: string]: any;
     /**
@@ -31,4 +32,6 @@ export declare class AlainI18NServiceFake implements AlainI18NService {
     use(lang: string): void;
     getLangs(): any[];
     fanyi(key: string): string;
+    static ɵfac: i0.ɵɵFactoryDef<AlainI18NServiceFake, never>;
+    static ɵprov: i0.ɵɵInjectableDef<AlainI18NServiceFake>;
 }

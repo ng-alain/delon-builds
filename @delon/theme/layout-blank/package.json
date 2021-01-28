@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/layout-blank/layout-blank.js",
   "fesm2015": "../fesm2015/layout-blank.js",
   "typings": "layout-blank.d.ts",
-  "metadata": "layout-blank.metadata.json",
   "sideEffects": false,
   "name": "@delon/theme/layout-blank"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "11.3.1",
+  "version": "11.3.1-db649477",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,8 +27,8 @@
   "dependencies": {
     "@antv/data-set": "^0.11.7",
     "@antv/g2": "^4.1.4",
-    "@delon/util": "^11.3.1",
-    "@delon/theme": "^11.3.1",
+    "@delon/util": "^11.3.1-db649477",
+    "@delon/theme": "^11.3.1-db649477",
     "tslib": "^2.0.0"
   },
   "main": "bundles/chart.umd.js",
@@ -37,6 +37,8 @@
   "esm2015": "esm2015/chart.js",
   "fesm2015": "fesm2015/chart.js",
   "typings": "chart.d.ts",
-  "metadata": "chart.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
 }

@@ -2,6 +2,7 @@ import { TemplateRef, Type } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDrawerOptions, NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
 import { Observable } from 'rxjs';
+import * as i0 from "@angular/core";
 export interface DrawerHelperOptions {
     /**
      * 大小，若值为数值类型，则根据 `nzPlacement` 自动转化为 `nzHeight` 或 `nzWidth`；例如：lg、600，默认：`md`
@@ -61,4 +62,6 @@ export declare class DrawerHelper {
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<any>;
+    static ɵfac: i0.ɵɵFactoryDef<DrawerHelper, never>;
+    static ɵprov: i0.ɵɵInjectableDef<DrawerHelper>;
 }

@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, theme, observers, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/tooltip'), require('@delon/theme'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('@angular/cdk/observers')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/tooltip', '@delon/theme', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', '@angular/cdk/observers'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/tooltip'], global.i2$1, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global.ng.cdk.observers));
+}(this, (function (exports, i0, i1, i1$1, i2, i2$1, i3, i6, i7) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,15 +340,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-container.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVContainerComponent = /** @class */ (function () {
-        /**
-         * @param {?} configSrv
-         */
         function SVContainerComponent(configSrv) {
             configSrv.attach(this, 'sv', {
                 size: 'large',
@@ -338,89 +352,57 @@
         }
         return SVContainerComponent;
     }());
-    SVContainerComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sv-container, [sv-container]',
-                    exportAs: 'svContainer',
-                    template: "<div class=\"ant-row\" [ngStyle]=\"{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n",
-                    host: {
-                        '[class.sv__container]': 'true',
-                        '[class.sv__horizontal]': "layout === 'horizontal'",
-                        '[class.sv__vertical]': "layout === 'vertical'",
-                        '[class.sv__small]': "size === 'small'",
-                        '[class.sv__large]': "size === 'large'",
-                        '[class.clearfix]': "true",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    SVContainerComponent.ctorParameters = function () { return [
-        { type: util.AlainConfigService }
-    ]; };
-    SVContainerComponent.propDecorators = {
-        title: [{ type: core.Input }],
-        size: [{ type: core.Input }],
-        gutter: [{ type: core.Input }],
-        layout: [{ type: core.Input }],
-        labelWidth: [{ type: core.Input }],
-        col: [{ type: core.Input }],
-        default: [{ type: core.Input }]
-    };
+    /** @nocollapse */ SVContainerComponent.ɵfac = function SVContainerComponent_Factory(t) { return new (t || SVContainerComponent)(i0.ɵɵdirectiveInject(i1.AlainConfigService)); };
+    /** @nocollapse */ SVContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SVContainerComponent, selector: "sv-container, [sv-container]", inputs: { title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0__namespace, template: "<div class=\"ant-row\" [ngStyle]=\"{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }\">\n  <sv-title *ngIf=\"title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </sv-title>\n  <ng-content></ng-content>\n</div>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
-        util.InputNumber(),
+        i1.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        util.InputNumber(),
+        i1.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        util.InputNumber(),
+        i1.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_gutter;
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_labelWidth;
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SVContainerComponent.prototype.title;
-        /** @type {?} */
-        SVContainerComponent.prototype.size;
-        /**
-         * 列表项间距，单位为 `px`
-         * @type {?}
-         */
-        SVContainerComponent.prototype.gutter;
-        /** @type {?} */
-        SVContainerComponent.prototype.layout;
-        /** @type {?} */
-        SVContainerComponent.prototype.labelWidth;
-        /**
-         * 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定
-         * @type {?}
-         */
-        SVContainerComponent.prototype.col;
-        /** @type {?} */
-        SVContainerComponent.prototype.default;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SVContainerComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sv-container, [sv-container]',
+                        exportAs: 'svContainer',
+                        templateUrl: './sv-container.component.html',
+                        host: {
+                            '[class.sv__container]': 'true',
+                            '[class.sv__horizontal]': "layout === 'horizontal'",
+                            '[class.sv__vertical]': "layout === 'vertical'",
+                            '[class.sv__small]': "size === 'small'",
+                            '[class.sv__large]': "size === 'large'",
+                            '[class.clearfix]': "true",
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () { return [{ type: i1.AlainConfigService }]; }, { title: [{
+                    type: i0.Input
+                }], size: [{
+                    type: i0.Input
+                }], gutter: [{
+                    type: i0.Input
+                }], layout: [{
+                    type: i0.Input
+                }], labelWidth: [{
+                    type: i0.Input
+                }], col: [{
+                    type: i0.Input
+                }], default: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-title.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVTitleComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} parent
-         * @param {?} ren
-         */
         function SVTitleComponent(el, parent, ren) {
             this.parent = parent;
             this.ren = ren;
@@ -429,113 +411,79 @@
             }
             this.el = el.nativeElement;
         }
-        /**
-         * @private
-         * @return {?}
-         */
         SVTitleComponent.prototype.setClass = function () {
             var gutter = this.parent.gutter;
             var el = this.el;
             this.ren.setStyle(el, 'padding-left', gutter / 2 + "px");
             this.ren.setStyle(el, 'padding-right', gutter / 2 + "px");
         };
-        /**
-         * @return {?}
-         */
         SVTitleComponent.prototype.ngOnInit = function () {
             this.setClass();
         };
         return SVTitleComponent;
     }());
-    SVTitleComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sv-title, [sv-title]',
-                    exportAs: 'svTitle',
-                    template: '<ng-content></ng-content>',
-                    host: {
-                        '[class.sv__title]': 'true',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    SVTitleComponent.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
-        { type: core.Renderer2 }
-    ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.ren;
-    }
+    /** @nocollapse */ SVTitleComponent.ɵfac = function SVTitleComponent_Factory(t) { return new (t || SVTitleComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(SVContainerComponent, 9), i0.ɵɵdirectiveInject(i0.Renderer2)); };
+    /** @nocollapse */ SVTitleComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SVTitleComponent, selector: "sv-title, [sv-title]", host: { properties: { "class.sv__title": "true" } }, exportAs: ["svTitle"], ngImport: i0__namespace, template: '<ng-content></ng-content>', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SVTitleComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sv-title, [sv-title]',
+                        exportAs: 'svTitle',
+                        template: '<ng-content></ng-content>',
+                        host: {
+                            '[class.sv__title]': 'true',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () {
+            return [{ type: i0.ElementRef }, { type: SVContainerComponent, decorators: [{
+                            type: i0.Host
+                        }, {
+                            type: i0.Optional
+                        }] }, { type: i0.Renderer2 }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-value.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVValueComponent = /** @class */ (function () {
         function SVValueComponent() {
             this.size = 'default';
         }
         return SVValueComponent;
     }());
-    SVValueComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sv-value, [sv-value]',
-                    exportAs: 'svValue',
-                    template: "\n    <em *ngIf=\"prefix\" class=\"sv__value-prefix\" [innerHTML]=\"prefix\"></em>\n    <span nz-tooltip [nzTooltipTitle]=\"tooltip\" class=\"sv__value-text\"><ng-content></ng-content></span>\n    <em *ngIf=\"unit\" class=\"sv__value-unit\" [innerHTML]=\"unit\"></em>\n  ",
-                    host: {
-                        '[class.sv__value]': 'true',
-                        '[class.sv__value-small]': "size === 'small'",
-                        '[class.sv__value-large]': "size === 'large'",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    SVValueComponent.propDecorators = {
-        prefix: [{ type: core.Input }],
-        unit: [{ type: core.Input }],
-        tooltip: [{ type: core.Input }],
-        size: [{ type: core.Input }]
-    };
-    if (false) {
-        /** @type {?} */
-        SVValueComponent.prototype.prefix;
-        /** @type {?} */
-        SVValueComponent.prototype.unit;
-        /** @type {?} */
-        SVValueComponent.prototype.tooltip;
-        /** @type {?} */
-        SVValueComponent.prototype.size;
-    }
+    /** @nocollapse */ SVValueComponent.ɵfac = function SVValueComponent_Factory(t) { return new (t || SVValueComponent)(); };
+    /** @nocollapse */ SVValueComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SVValueComponent, selector: "sv-value, [sv-value]", inputs: { prefix: "prefix", unit: "unit", tooltip: "tooltip", size: "size" }, host: { properties: { "class.sv__value": "true", "class.sv__value-small": "size === 'small'", "class.sv__value-large": "size === 'large'" } }, exportAs: ["svValue"], ngImport: i0__namespace, template: "\n    <em *ngIf=\"prefix\" class=\"sv__value-prefix\" [innerHTML]=\"prefix\"></em>\n    <span nz-tooltip [nzTooltipTitle]=\"tooltip\" class=\"sv__value-text\"><ng-content></ng-content></span>\n    <em *ngIf=\"unit\" class=\"sv__value-unit\" [innerHTML]=\"unit\"></em>\n  ", isInline: true, directives: [{ type: i1$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SVValueComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sv-value, [sv-value]',
+                        exportAs: 'svValue',
+                        template: "\n    <em *ngIf=\"prefix\" class=\"sv__value-prefix\" [innerHTML]=\"prefix\"></em>\n    <span nz-tooltip [nzTooltipTitle]=\"tooltip\" class=\"sv__value-text\"><ng-content></ng-content></span>\n    <em *ngIf=\"unit\" class=\"sv__value-unit\" [innerHTML]=\"unit\"></em>\n  ",
+                        host: {
+                            '[class.sv__value]': 'true',
+                            '[class.sv__value-small]': "size === 'small'",
+                            '[class.sv__value-large]': "size === 'large'",
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { prefix: [{
+                    type: i0.Input
+                }], unit: [{
+                    type: i0.Input
+                }], tooltip: [{
+                    type: i0.Input
+                }], size: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /** @type {?} */
     var prefixCls = "sv";
     var SVComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} parent
-         * @param {?} rep
-         * @param {?} ren
-         */
         function SVComponent(el, parent, rep, ren) {
             this.parent = parent;
             this.rep = rep;
@@ -548,9 +496,6 @@
         }
         Object.defineProperty(SVComponent.prototype, "paddingValue", {
             // #endregion
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.parent && this.parent.gutter / 2;
             },
@@ -558,9 +503,6 @@
             configurable: true
         });
         Object.defineProperty(SVComponent.prototype, "labelWidth", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 var _a = this.parent, labelWidth = _a.labelWidth, layout = _a.layout;
                 return layout === 'horizontal' ? labelWidth : null;
@@ -568,19 +510,9 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         SVComponent.prototype.setClass = function () {
             var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep;
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.removeClass(el, cls); }));
+            clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
             clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
             clsMap.push(prefixCls + "__item");
@@ -588,165 +520,108 @@
                 clsMap.push(prefixCls + "__item-fixed");
             if (type)
                 clsMap.push(prefixCls + "__type-" + type);
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.addClass(el, cls); }));
+            clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.ngAfterViewInit = function () {
             this.setClass();
             this.checkContent();
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.ngOnChanges = function () {
             this.setClass();
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.checkContent = function () {
             var conEl = this.conEl;
-            /** @type {?} */
             var def = this.default;
             if (!(def != null ? def : this.parent.default)) {
                 return;
             }
-            /** @type {?} */
-            var el = ( /** @type {?} */(conEl.nativeElement));
-            /** @type {?} */
+            var el = conEl.nativeElement;
             var cls = "sv__default";
             if (el.classList.contains(cls)) {
                 el.classList.remove(cls);
             }
-            if (util.isEmpty(el)) {
+            if (i1.isEmpty(el)) {
                 el.classList.add(cls);
             }
         };
         return SVComponent;
     }());
-    SVComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sv, [sv]',
-                    exportAs: 'sv',
-                    template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
-                    host: {
-                        '[style.padding-left.px]': 'paddingValue',
-                        '[style.padding-right.px]': 'paddingValue',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    SVComponent.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
-        { type: theme.ResponsiveService },
-        { type: core.Renderer2 }
-    ]; };
-    SVComponent.propDecorators = {
-        conEl: [{ type: core.ViewChild, args: ['conEl', { static: false },] }],
-        optional: [{ type: core.Input }],
-        optionalHelp: [{ type: core.Input }],
-        optionalHelpColor: [{ type: core.Input }],
-        label: [{ type: core.Input }],
-        unit: [{ type: core.Input }],
-        col: [{ type: core.Input }],
-        default: [{ type: core.Input }],
-        type: [{ type: core.Input }]
-    };
+    /** @nocollapse */ SVComponent.ɵfac = function SVComponent_Factory(t) { return new (t || SVComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(SVContainerComponent, 9), i0.ɵɵdirectiveInject(i2$1.ResponsiveService), i0.ɵɵdirectiveInject(i0.Renderer2)); };
+    /** @nocollapse */ SVComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SVComponent, selector: "sv, [sv]", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", label: "label", unit: "unit", col: "col", default: "default", type: "type" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, viewQueries: [{ propertyName: "conEl", first: true, predicate: ["conEl"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["sv"], usesOnChanges: true, ngImport: i0__namespace, template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n", directives: [{ type: i3.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i1$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i6.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { type: i7.CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
-        util.InputNumber(null),
+        i1.InputNumber(null),
         __metadata("design:type", Number)
     ], SVComponent.prototype, "col", void 0);
     __decorate([
-        util.InputBoolean(null),
+        i1.InputBoolean(null),
         __metadata("design:type", Boolean)
     ], SVComponent.prototype, "default", void 0);
-    if (false) {
-        /** @type {?} */
-        SVComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SVComponent.ngAcceptInputType_default;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.conEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.clsMap;
-        /** @type {?} */
-        SVComponent.prototype.optional;
-        /** @type {?} */
-        SVComponent.prototype.optionalHelp;
-        /** @type {?} */
-        SVComponent.prototype.optionalHelpColor;
-        /** @type {?} */
-        SVComponent.prototype.label;
-        /** @type {?} */
-        SVComponent.prototype.unit;
-        /** @type {?} */
-        SVComponent.prototype.col;
-        /** @type {?} */
-        SVComponent.prototype.default;
-        /** @type {?} */
-        SVComponent.prototype.type;
-        /** @type {?} */
-        SVComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.rep;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.ren;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SVComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sv, [sv]',
+                        exportAs: 'sv',
+                        templateUrl: './sv.component.html',
+                        host: {
+                            '[style.padding-left.px]': 'paddingValue',
+                            '[style.padding-right.px]': 'paddingValue',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () {
+            return [{ type: i0.ElementRef }, { type: SVContainerComponent, decorators: [{
+                            type: i0.Host
+                        }, {
+                            type: i0.Optional
+                        }] }, { type: i2$1.ResponsiveService }, { type: i0.Renderer2 }];
+        }, { conEl: [{
+                    type: i0.ViewChild,
+                    args: ['conEl', { static: false }]
+                }], optional: [{
+                    type: i0.Input
+                }], optionalHelp: [{
+                    type: i0.Input
+                }], optionalHelpColor: [{
+                    type: i0.Input
+                }], label: [{
+                    type: i0.Input
+                }], unit: [{
+                    type: i0.Input
+                }], col: [{
+                    type: i0.Input
+                }], default: [{
+                    type: i0.Input
+                }], type: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
     var SVModule = /** @class */ (function () {
         function SVModule() {
         }
         return SVModule;
     }());
-    SVModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
-                },] }
-    ];
+    /** @nocollapse */ SVModule.ɵmod = i0.ɵɵdefineNgModule({ type: SVModule });
+    /** @nocollapse */ SVModule.ɵinj = i0.ɵɵdefineInjector({ factory: function SVModule_Factory(t) { return new (t || SVModule)(); }, imports: [[i1$1.CommonModule, i7.ObserversModule, i1.DelonUtilModule, i2.NzToolTipModule, i6.NzIconModule, i3.NzOutletModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(SVModule, { declarations: [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent], imports: [i1$1.CommonModule, i7.ObserversModule, i1.DelonUtilModule, i2.NzToolTipModule, i6.NzIconModule, i3.NzOutletModule], exports: [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SVModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i1$1.CommonModule, i7.ObserversModule, i1.DelonUtilModule, i2.NzToolTipModule, i6.NzIconModule, i3.NzOutletModule],
+                        declarations: __spread(COMPONENTS),
+                        exports: __spread(COMPONENTS),
+                    }]
+            }], null, null);
+    })();
+    i0.ɵɵsetComponentScope(SVContainerComponent, [i1$1.NgStyle, i1$1.NgIf, SVTitleComponent, i3.NzStringTemplateOutletDirective], []);
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: view.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SVComponent = SVComponent;

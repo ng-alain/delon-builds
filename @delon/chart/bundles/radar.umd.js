@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid'], global.skeleton));
-}(this, (function (exports, core, core$1, util, common, outlet, grid, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/skeleton'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/skeleton', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.i2, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid']));
+}(this, (function (exports, i0, core, util, i1, i2, i3, i4) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,29 +340,6 @@
         return value;
     }
 
-    /**
-     * @record
-     */
-    function G2RadarData() { }
-    if (false) {
-        /** @type {?} */
-        G2RadarData.prototype.name;
-        /** @type {?} */
-        G2RadarData.prototype.label;
-        /** @type {?} */
-        G2RadarData.prototype.value;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function G2RadarClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2RadarClickItem.prototype.item;
-        /** @type {?} */
-        G2RadarClickItem.prototype.ev;
-    }
     var G2RadarComponent = /** @class */ (function (_super) {
         __extends(G2RadarComponent, _super);
         function G2RadarComponent() {
@@ -352,25 +351,17 @@
             _this.tickCount = 4;
             _this.data = [];
             _this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
-            _this.clickItem = new core.EventEmitter();
+            _this.clickItem = new i0.EventEmitter();
             return _this;
         }
         // #endregion
-        /**
-         * @private
-         * @return {?}
-         */
         G2RadarComponent.prototype.getHeight = function () {
             return this.height - (this.hasLegend ? 80 : 22);
         };
-        /**
-         * @return {?}
-         */
         G2RadarComponent.prototype.install = function () {
             var _this = this;
             var _b = this, node = _b.node, padding = _b.padding, theme = _b.theme;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: this.getHeight(),
@@ -406,36 +397,18 @@
                     },
                 },
             });
-            chart.filter('name', ( /**
-             * @param {?} name
-             * @return {?}
-             */function (name) {
-                /** @type {?} */
-                var legendItem = _this.legendData.find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.name === name; }));
+            chart.filter('name', function (name) {
+                var legendItem = _this.legendData.find(function (w) { return w.name === name; });
                 return legendItem ? legendItem.checked !== false : true;
-            }));
+            });
             chart.line().position('label*value');
             chart.point().position('label*value').shape('circle').size(3);
             chart.render();
-            chart.on("point:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
+            chart.on("point:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2RadarComponent.prototype.attachChart = function () {
             var _this = this;
             var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data, colors = _b.colors, tickCount = _b.tickCount;
@@ -449,98 +422,39 @@
                     tickCount: tickCount,
                 },
             });
-            _chart.geometries.forEach(( /**
-             * @param {?} g
-             * @return {?}
-             */function (/**
-             * @param {?} g
-             * @return {?}
-             */ g) { return g.color('name', colors); }));
+            _chart.geometries.forEach(function (g) { return g.color('name', colors); });
             _chart.changeData(data);
             _chart.render();
-            this.ngZone.run(( /**
-             * @return {?}
-             */function () { return _this.genLegend(); }));
+            this.ngZone.run(function () { return _this.genLegend(); });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2RadarComponent.prototype.genLegend = function () {
             var _b = this, hasLegend = _b.hasLegend, cdr = _b.cdr, _chart = _b._chart;
             if (!hasLegend)
                 return;
-            this.legendData = _chart.geometries[0].dataArray.map(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) {
-                /** @type {?} */
+            this.legendData = _chart.geometries[0].dataArray.map(function (item) {
                 var origin = item[0]._origin;
-                /** @type {?} */
                 var result = {
                     name: origin.name,
                     color: item[0].color,
                     checked: true,
-                    value: item.reduce(( /**
-                     * @param {?} p
-                     * @param {?} n
-                     * @return {?}
-                     */function (p, n) { return p + n._origin.value; }), 0),
+                    value: item.reduce(function (p, n) { return p + n._origin.value; }, 0),
                 };
                 return result;
-            }));
+            });
             cdr.detectChanges();
         };
-        /**
-         * @param {?} i
-         * @return {?}
-         */
         G2RadarComponent.prototype._click = function (i) {
             var _b = this, legendData = _b.legendData, _chart = _b._chart;
             legendData[i].checked = !legendData[i].checked;
             _chart.render();
         };
-        /**
-         * @return {?}
-         */
         G2RadarComponent.prototype.onChanges = function () {
-            this.legendData.forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i.checked = true); }));
+            this.legendData.forEach(function (i) { return (i.checked = true); });
         };
         return G2RadarComponent;
-    }(core$1.G2BaseComponent));
-    G2RadarComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'g2-radar',
-                    exportAs: 'g2Radar',
-                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
-                    host: {
-                        '[style.height.px]': 'height',
-                        '[class.g2-radar]': 'true',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    G2RadarComponent.propDecorators = {
-        title: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        padding: [{ type: core.Input }],
-        hasLegend: [{ type: core.Input }],
-        tickCount: [{ type: core.Input }],
-        data: [{ type: core.Input }],
-        colors: [{ type: core.Input }],
-        clickItem: [{ type: core.Output }]
-    };
+    }(core.G2BaseComponent));
+    /** @nocollapse */ G2RadarComponent.ɵfac = function G2RadarComponent_Factory(t) { return ɵG2RadarComponent_BaseFactory(t || G2RadarComponent); };
+    /** @nocollapse */ G2RadarComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2RadarComponent, selector: "g2-radar", inputs: { title: "title", height: "height", padding: "padding", hasLegend: "hasLegend", tickCount: "tickCount", data: "data", colors: "colors" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height", "class.g2-radar": "true" } }, exportAs: ["g2Radar"], usesInheritance: true, ngImport: i0__namespace, template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { type: i3.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i4.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i4.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
@@ -553,63 +467,63 @@
         util.InputNumber(),
         __metadata("design:type", Object)
     ], G2RadarComponent.prototype, "tickCount", void 0);
-    if (false) {
-        /** @type {?} */
-        G2RadarComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2RadarComponent.ngAcceptInputType_hasLegend;
-        /** @type {?} */
-        G2RadarComponent.ngAcceptInputType_tickCount;
-        /** @type {?} */
-        G2RadarComponent.prototype.legendData;
-        /** @type {?} */
-        G2RadarComponent.prototype.title;
-        /** @type {?} */
-        G2RadarComponent.prototype.height;
-        /** @type {?} */
-        G2RadarComponent.prototype.padding;
-        /** @type {?} */
-        G2RadarComponent.prototype.hasLegend;
-        /** @type {?} */
-        G2RadarComponent.prototype.tickCount;
-        /** @type {?} */
-        G2RadarComponent.prototype.data;
-        /** @type {?} */
-        G2RadarComponent.prototype.colors;
-        /** @type {?} */
-        G2RadarComponent.prototype.clickItem;
-    }
+    var ɵG2RadarComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2RadarComponent);
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2RadarComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'g2-radar',
+                        exportAs: 'g2Radar',
+                        templateUrl: './radar.component.html',
+                        host: {
+                            '[style.height.px]': 'height',
+                            '[class.g2-radar]': 'true',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { title: [{
+                    type: i0.Input
+                }], height: [{
+                    type: i0.Input
+                }], padding: [{
+                    type: i0.Input
+                }], hasLegend: [{
+                    type: i0.Input
+                }], tickCount: [{
+                    type: i0.Input
+                }], data: [{
+                    type: i0.Input
+                }], colors: [{
+                    type: i0.Input
+                }], clickItem: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: radar.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2RadarComponent];
     var G2RadarModule = /** @class */ (function () {
         function G2RadarModule() {
         }
         return G2RadarModule;
     }());
-    G2RadarModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, grid.NzGridModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ G2RadarModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2RadarModule });
+    /** @nocollapse */ G2RadarModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2RadarModule_Factory(t) { return new (t || G2RadarModule)(); }, imports: [[i1.CommonModule, util.DelonUtilModule, i4.NzGridModule, i3.NzOutletModule, i2.NzSkeletonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2RadarModule, { declarations: [G2RadarComponent], imports: [i1.CommonModule, util.DelonUtilModule, i4.NzGridModule, i3.NzOutletModule, i2.NzSkeletonModule], exports: [G2RadarComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2RadarModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i1.CommonModule, util.DelonUtilModule, i4.NzGridModule, i3.NzOutletModule, i2.NzSkeletonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: radar.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2RadarComponent = G2RadarComponent;

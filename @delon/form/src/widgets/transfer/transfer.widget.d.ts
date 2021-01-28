@@ -5,6 +5,7 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFTransferWidgetSchema } from './schema';
+import * as i0 from "@angular/core";
 export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSchema> implements OnInit {
     list: SFSchemaEnum[];
     i: any;
@@ -16,4 +17,6 @@ export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSche
     _change(options: TransferChange): void;
     _searchChange(options: TransferSearchChange): void;
     _selectChange(options: TransferSelectChange): void;
+    static ɵfac: i0.ɵɵFactoryDef<TransferWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<TransferWidget, "sf-transfer", never, {}, {}, never, never>;
 }

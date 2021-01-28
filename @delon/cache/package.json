@@ -1,6 +1,6 @@
 {
   "name": "@delon/cache",
-  "version": "11.3.1",
+  "version": "11.3.1-db649477",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^11.3.1",
+    "@delon/util": "^11.3.1-db649477",
     "tslib": "^2.0.0"
   },
   "main": "bundles/cache.umd.js",
@@ -34,6 +34,8 @@
   "esm2015": "esm2015/cache.js",
   "fesm2015": "fesm2015/cache.js",
   "typings": "cache.d.ts",
-  "metadata": "cache.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
 }

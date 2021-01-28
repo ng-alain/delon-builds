@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "11.3.1",
+  "version": "11.3.1-db649477",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,9 +29,9 @@
   ],
   "dependencies": {
     "ajv": "^6.12.6",
-    "@delon/theme": "^11.3.1",
-    "@delon/acl": "^11.3.1",
-    "@delon/util": "^11.3.1",
+    "@delon/theme": "^11.3.1-db649477",
+    "@delon/acl": "^11.3.1-db649477",
+    "@delon/util": "^11.3.1-db649477",
     "tslib": "^2.0.0"
   },
   "main": "bundles/form.umd.js",
@@ -40,6 +40,8 @@
   "esm2015": "esm2015/form.js",
   "fesm2015": "fesm2015/form.js",
   "typings": "form.d.ts",
-  "metadata": "form.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
 }

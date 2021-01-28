@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
 import { AlainConfigService, LazyService } from '@delon/util';
 import { ZipSaveOptions } from './zip.types';
+import * as i0 from "@angular/core";
 export declare class ZipService {
     private http;
     private lazy;
@@ -28,4 +29,6 @@ export declare class ZipService {
      * @param options 额外参数，
      */
     save(zip: any, options?: ZipSaveOptions): Promise<void>;
+    static ɵfac: i0.ɵɵFactoryDef<ZipService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ZipService>;
 }

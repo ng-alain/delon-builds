@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/mini-area/mini-area.js",
   "fesm2015": "../fesm2015/mini-area.js",
   "typings": "mini-area.d.ts",
-  "metadata": "mini-area.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/mini-area"
 }

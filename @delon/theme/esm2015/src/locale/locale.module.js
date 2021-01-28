@@ -1,19 +1,16 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: src/locale/locale.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { NgModule } from '@angular/core';
 import zhCN from './languages/zh-CN';
 import { DELON_LOCALE_SERVICE_PROVIDER } from './locale.service';
 import { DELON_LOCALE } from './locale.tokens';
-const ɵ0 = zhCN;
+import * as i0 from "@angular/core";
 export class DelonLocaleModule {
 }
-DelonLocaleModule.decorators = [
-    { type: NgModule, args: [{
-                providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
-            },] }
-];
-export { ɵ0 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9jYWxlLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL3RoZW1lL3NyYy9sb2NhbGUvbG9jYWxlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxRQUFRLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFFekMsT0FBTyxJQUFJLE1BQU0sbUJBQW1CLENBQUM7QUFFckMsT0FBTyxFQUFFLDZCQUE2QixFQUFFLE1BQU0sa0JBQWtCLENBQUM7QUFDakUsT0FBTyxFQUFFLFlBQVksRUFBRSxNQUFNLGlCQUFpQixDQUFDO1dBR0UsSUFBSTtBQUVyRCxNQUFNLE9BQU8saUJBQWlCOzs7WUFIN0IsUUFBUSxTQUFDO2dCQUNSLFNBQVMsRUFBRSxDQUFDLEVBQUUsT0FBTyxFQUFFLFlBQVksRUFBRSxRQUFRLElBQU0sRUFBRSxFQUFFLDZCQUE2QixDQUFDO2FBQ3RGIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHpoQ04gZnJvbSAnLi9sYW5ndWFnZXMvemgtQ04nO1xuXG5pbXBvcnQgeyBERUxPTl9MT0NBTEVfU0VSVklDRV9QUk9WSURFUiB9IGZyb20gJy4vbG9jYWxlLnNlcnZpY2UnO1xuaW1wb3J0IHsgREVMT05fTE9DQUxFIH0gZnJvbSAnLi9sb2NhbGUudG9rZW5zJztcblxuQE5nTW9kdWxlKHtcbiAgcHJvdmlkZXJzOiBbeyBwcm92aWRlOiBERUxPTl9MT0NBTEUsIHVzZVZhbHVlOiB6aENOIH0sIERFTE9OX0xPQ0FMRV9TRVJWSUNFX1BST1ZJREVSXSxcbn0pXG5leHBvcnQgY2xhc3MgRGVsb25Mb2NhbGVNb2R1bGUge31cbiJdfQ==
+/** @nocollapse */ DelonLocaleModule.ɵmod = i0.ɵɵdefineNgModule({ type: DelonLocaleModule });
+/** @nocollapse */ DelonLocaleModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DelonLocaleModule_Factory(t) { return new (t || DelonLocaleModule)(); }, providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER] });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonLocaleModule, [{
+        type: NgModule,
+        args: [{
+                providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER],
+            }]
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibG9jYWxlLm1vZHVsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL3RoZW1lL3NyYy9sb2NhbGUvbG9jYWxlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRXpDLE9BQU8sSUFBSSxNQUFNLG1CQUFtQixDQUFDO0FBRXJDLE9BQU8sRUFBRSw2QkFBNkIsRUFBRSxNQUFNLGtCQUFrQixDQUFDO0FBQ2pFLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQzs7QUFLL0MsTUFBTSxPQUFPLGlCQUFpQjs7d0VBQWpCLGlCQUFpQjtvSUFBakIsaUJBQWlCLG1CQUZqQixDQUFDLEVBQUUsT0FBTyxFQUFFLFlBQVksRUFBRSxRQUFRLEVBQUUsSUFBSSxFQUFFLEVBQUUsNkJBQTZCLENBQUM7dUZBRTFFLGlCQUFpQjtjQUg3QixRQUFRO2VBQUM7Z0JBQ1IsU0FBUyxFQUFFLENBQUMsRUFBRSxPQUFPLEVBQUUsWUFBWSxFQUFFLFFBQVEsRUFBRSxJQUFJLEVBQUUsRUFBRSw2QkFBNkIsQ0FBQzthQUN0RiIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IE5nTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB6aENOIGZyb20gJy4vbGFuZ3VhZ2VzL3poLUNOJztcblxuaW1wb3J0IHsgREVMT05fTE9DQUxFX1NFUlZJQ0VfUFJPVklERVIgfSBmcm9tICcuL2xvY2FsZS5zZXJ2aWNlJztcbmltcG9ydCB7IERFTE9OX0xPQ0FMRSB9IGZyb20gJy4vbG9jYWxlLnRva2Vucyc7XG5cbkBOZ01vZHVsZSh7XG4gIHByb3ZpZGVyczogW3sgcHJvdmlkZTogREVMT05fTE9DQUxFLCB1c2VWYWx1ZTogemhDTiB9LCBERUxPTl9MT0NBTEVfU0VSVklDRV9QUk9WSURFUl0sXG59KVxuZXhwb3J0IGNsYXNzIERlbG9uTG9jYWxlTW9kdWxlIHt9XG4iXX0=

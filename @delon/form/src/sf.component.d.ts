@@ -12,6 +12,7 @@ import { SFSchema } from './schema/index';
 import { SFUISchema } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
+import * as i0 from "@angular/core";
 export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
 export declare type SFMode = 'default' | 'search' | 'edit';
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
@@ -167,4 +168,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     reset(emit?: boolean): this;
     private cleanRootSub;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<SFComponent, [null, null, null, null, null, { optional: true; }, { optional: true; }, null, null]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SFComponent, "sf, [sf]", ["sf"], { "layout": "layout"; "schema": "schema"; "ui": "ui"; "formData": "formData"; "button": "button"; "liveValidate": "liveValidate"; "autocomplete": "autocomplete"; "firstVisual": "firstVisual"; "onlyVisual": "onlyVisual"; "compact": "compact"; "mode": "mode"; "loading": "loading"; "disabled": "disabled"; "noColon": "noColon"; "cleanValue": "cleanValue"; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"]>;
 }

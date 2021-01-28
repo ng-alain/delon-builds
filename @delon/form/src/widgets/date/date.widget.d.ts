@@ -2,6 +2,7 @@ import { OnInit } from '@angular/core';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
 import { SFDateWidgetSchema } from './schema';
+import * as i0 from "@angular/core";
 export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements OnInit {
     private startFormat;
     private endFormat;
@@ -17,4 +18,6 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
     _ok(value: any): void;
     private get endProperty();
     private setEnd;
+    static ɵfac: i0.ɵɵFactoryDef<DateWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<DateWidget, "sf-date", never, {}, {}, never, never>;
 }

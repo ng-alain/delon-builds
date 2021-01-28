@@ -1,6 +1,7 @@
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '../config';
+import * as i0 from "@angular/core";
 export interface ArrayServiceTreeToArrOptions {
     /** 深度项名，默认：`'deep'` */
     deepMapName?: string;
@@ -89,4 +90,6 @@ export declare class ArrayService {
      * 获取所有已经选中的 `key` 值
      */
     getKeysByTreeNode(tree: NzTreeNode[], options?: ArrayServiceGetKeysByTreeNodeOptions): NzSafeAny[];
+    static ɵfac: i0.ɵɵFactoryDef<ArrayService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ArrayService>;
 }
