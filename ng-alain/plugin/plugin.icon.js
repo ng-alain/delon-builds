@@ -171,14 +171,16 @@ function fixValue(str, prefix) {
     return null;
 }
 function fixTs(tree, path) {
-    let res = [];
-    utils_1.updateComponentMetadata(tree, path, (node) => {
-        if (!ts.isStringLiteralLike(node.initializer))
-            return;
-        res = findIcons(node.initializer.getText());
+    const source = utils_1.getSourceFile(tree, path);
+    const nodes = ast_utils_1.getDecoratorMetadata(source, 'Component', '@angular/core');
+    if (nodes.length === 0) {
         return [];
-    }, `template`);
-    return res;
+    }
+    const templateNode = nodes[0].properties.find(p => p.name.getText() === `template`);
+    if (!templateNode || !ts.isStringLiteralLike(templateNode.initializer)) {
+        return [];
+    }
+    return findIcons(templateNode.initializer.getText());
 }
 function getIconNameByClassName(value) {
     let res = value.replace(/anticon anticon-/g, '').replace(/anticon-/g, '');
