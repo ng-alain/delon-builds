@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('ng-zorro-antd/core/animation'), require('@delon/theme'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/forms', 'ng-zorro-antd/core/animation', '@delon/theme', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.forms, global.animation, global.delon.theme, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i1, rxjs, operators, forms, animation, i2, i3, i4, i5, i6) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, util, rxjs, operators, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -341,8 +319,11 @@
     }
 
     var SEContainerComponent = /** @class */ (function () {
+        /**
+         * @param {?} configSrv
+         */
         function SEContainerComponent(configSrv) {
-            this.errorNotify$ = new rxjs.BehaviorSubject(null);
+            this.errorNotify$ = new rxjs.BehaviorSubject(( /** @type {?} */(null)));
             this.line = false;
             configSrv.attach(this, 'se', {
                 size: 'default',
@@ -355,19 +336,33 @@
             });
         }
         Object.defineProperty(SEContainerComponent.prototype, "gutter", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.nzLayout === 'horizontal' ? this._gutter : 0;
             },
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
-                this._gutter = i1.toNumber(value);
+                this._gutter = util.toNumber(value);
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(SEContainerComponent.prototype, "nzLayout", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._nzLayout;
             },
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._nzLayout = value;
                 if (value === 'inline') {
@@ -378,6 +373,10 @@
             configurable: true
         });
         Object.defineProperty(SEContainerComponent.prototype, "errors", {
+            /**
+             * @param {?} val
+             * @return {?}
+             */
             set: function (val) {
                 this.setErrors(val);
             },
@@ -385,12 +384,25 @@
             configurable: true
         });
         Object.defineProperty(SEContainerComponent.prototype, "errorNotify", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.errorNotify$.pipe(operators.filter(function (v) { return v != null; }));
+                return this.errorNotify$.pipe(operators.filter(( /**
+                 * @param {?} v
+                 * @return {?}
+                 */function (/**
+                 * @param {?} v
+                 * @return {?}
+                 */ v) { return v != null; })));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} errors
+         * @return {?}
+         */
         SEContainerComponent.prototype.setErrors = function (errors) {
             var e_1, _a;
             try {
@@ -409,80 +421,118 @@
         };
         return SEContainerComponent;
     }());
-    /** @nocollapse */ SEContainerComponent.ɵfac = function SEContainerComponent_Factory(t) { return new (t || SEContainerComponent)(i0.ɵɵdirectiveInject(i1.AlainConfigService)); };
-    /** @nocollapse */ SEContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SEContainerComponent, selector: "se-container, [se-container]", inputs: { colInCon: ["se-container", "colInCon"], col: "col", labelWidth: "labelWidth", title: "title", gutter: "gutter", nzLayout: "nzLayout", size: "size", firstVisual: "firstVisual", ingoreDirty: "ingoreDirty", line: "line", errors: "errors" }, host: { properties: { "class.ant-row": "true", "class.se__container": "true", "class.se__horizontal": "nzLayout === 'horizontal'", "class.se__vertical": "nzLayout === 'vertical'", "class.se__inline": "nzLayout === 'inline'", "class.se__compact": "size === 'compact'", "style.margin-left.px": "-(gutter / 2)", "style.margin-right.px": "-(gutter / 2)" } }, exportAs: ["seContainer"], ngImport: i0__namespace, template: "\n    <div se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </div>\n    <ng-content></ng-content>\n  ", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    SEContainerComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'se-container, [se-container]',
+                    exportAs: 'seContainer',
+                    template: "\n    <div se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </div>\n    <ng-content></ng-content>\n  ",
+                    host: {
+                        '[class.ant-row]': "true",
+                        '[class.se__container]': "true",
+                        '[class.se__horizontal]': "nzLayout === 'horizontal'",
+                        '[class.se__vertical]': "nzLayout === 'vertical'",
+                        '[class.se__inline]': "nzLayout === 'inline'",
+                        '[class.se__compact]': "size === 'compact'",
+                        '[style.margin-left.px]': "-(gutter / 2)",
+                        '[style.margin-right.px]': "-(gutter / 2)",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    SEContainerComponent.ctorParameters = function () { return [
+        { type: util.AlainConfigService }
+    ]; };
+    SEContainerComponent.propDecorators = {
+        colInCon: [{ type: core.Input, args: ['se-container',] }],
+        col: [{ type: core.Input }],
+        labelWidth: [{ type: core.Input }],
+        title: [{ type: core.Input }],
+        gutter: [{ type: core.Input }],
+        nzLayout: [{ type: core.Input }],
+        size: [{ type: core.Input }],
+        firstVisual: [{ type: core.Input }],
+        ingoreDirty: [{ type: core.Input }],
+        line: [{ type: core.Input }],
+        errors: [{ type: core.Input }]
+    };
     __decorate([
-        i1.InputNumber(null),
+        util.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "colInCon", void 0);
     __decorate([
-        i1.InputNumber(null),
+        util.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "col", void 0);
     __decorate([
-        i1.InputNumber(null),
+        util.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        i1.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Boolean)
     ], SEContainerComponent.prototype, "firstVisual", void 0);
     __decorate([
-        i1.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Boolean)
     ], SEContainerComponent.prototype, "ingoreDirty", void 0);
     __decorate([
-        i1.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SEContainerComponent.prototype, "line", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SEContainerComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'se-container, [se-container]',
-                        exportAs: 'seContainer',
-                        template: "\n    <div se-title *ngIf=\"title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </div>\n    <ng-content></ng-content>\n  ",
-                        host: {
-                            '[class.ant-row]': "true",
-                            '[class.se__container]': "true",
-                            '[class.se__horizontal]': "nzLayout === 'horizontal'",
-                            '[class.se__vertical]': "nzLayout === 'vertical'",
-                            '[class.se__inline]': "nzLayout === 'inline'",
-                            '[class.se__compact]': "size === 'compact'",
-                            '[style.margin-left.px]': "-(gutter / 2)",
-                            '[style.margin-right.px]': "-(gutter / 2)",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () { return [{ type: i1.AlainConfigService }]; }, { colInCon: [{
-                    type: i0.Input,
-                    args: ['se-container']
-                }], col: [{
-                    type: i0.Input
-                }], labelWidth: [{
-                    type: i0.Input
-                }], title: [{
-                    type: i0.Input
-                }], gutter: [{
-                    type: i0.Input
-                }], nzLayout: [{
-                    type: i0.Input
-                }], size: [{
-                    type: i0.Input
-                }], firstVisual: [{
-                    type: i0.Input
-                }], ingoreDirty: [{
-                    type: i0.Input
-                }], line: [{
-                    type: i0.Input
-                }], errors: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        SEContainerComponent.ngAcceptInputType_col;
+        /** @type {?} */
+        SEContainerComponent.ngAcceptInputType_colInCon;
+        /** @type {?} */
+        SEContainerComponent.ngAcceptInputType_labelWidth;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEContainerComponent.prototype.errorNotify$;
+        /** @type {?} */
+        SEContainerComponent.prototype.colInCon;
+        /** @type {?} */
+        SEContainerComponent.prototype.col;
+        /** @type {?} */
+        SEContainerComponent.prototype.labelWidth;
+        /** @type {?} */
+        SEContainerComponent.prototype.title;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEContainerComponent.prototype._gutter;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEContainerComponent.prototype._nzLayout;
+        /** @type {?} */
+        SEContainerComponent.prototype.size;
+        /** @type {?} */
+        SEContainerComponent.prototype.firstVisual;
+        /** @type {?} */
+        SEContainerComponent.prototype.ingoreDirty;
+        /** @type {?} */
+        SEContainerComponent.prototype.line;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: se-title.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var SETitleComponent = /** @class */ (function () {
+        /**
+         * @param {?} parent
+         * @param {?} el
+         * @param {?} ren
+         */
         function SETitleComponent(parent, el, ren) {
             this.parent = parent;
             this.ren = ren;
@@ -491,45 +541,73 @@
             }
             this.el = el.nativeElement;
         }
+        /**
+         * @private
+         * @return {?}
+         */
         SETitleComponent.prototype.setClass = function () {
             var gutter = this.parent.gutter;
             var el = this.el;
             this.ren.setStyle(el, 'padding-left', gutter / 2 + "px");
             this.ren.setStyle(el, 'padding-right', gutter / 2 + "px");
         };
+        /**
+         * @return {?}
+         */
         SETitleComponent.prototype.ngOnInit = function () {
             this.setClass();
         };
         return SETitleComponent;
     }());
-    /** @nocollapse */ SETitleComponent.ɵfac = function SETitleComponent_Factory(t) { return new (t || SETitleComponent)(i0.ɵɵdirectiveInject(SEContainerComponent, 9), i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2)); };
-    /** @nocollapse */ SETitleComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SETitleComponent, selector: "se-title, [se-title]", host: { properties: { "class.se__title": "true" } }, exportAs: ["seTitle"], ngImport: i0__namespace, template: '<ng-content></ng-content>', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SETitleComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'se-title, [se-title]',
-                        exportAs: 'seTitle',
-                        template: '<ng-content></ng-content>',
-                        host: {
-                            '[class.se__title]': 'true',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: SEContainerComponent, decorators: [{
-                            type: i0.Host
-                        }, {
-                            type: i0.Optional
-                        }] }, { type: i0.ElementRef }, { type: i0.Renderer2 }];
-        }, null);
-    })();
+    SETitleComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'se-title, [se-title]',
+                    exportAs: 'seTitle',
+                    template: '<ng-content></ng-content>',
+                    host: {
+                        '[class.se__title]': 'true',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    SETitleComponent.ctorParameters = function () { return [
+        { type: SEContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
+        { type: core.ElementRef },
+        { type: core.Renderer2 }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SETitleComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        SETitleComponent.prototype.parent;
+        /**
+         * @type {?}
+         * @private
+         */
+        SETitleComponent.prototype.ren;
+    }
 
+    /** @type {?} */
     var prefixCls = "se";
+    /** @type {?} */
     var nextUniqueId = 0;
     var SEComponent = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} parent
+         * @param {?} rep
+         * @param {?} ren
+         * @param {?} cdr
+         */
         function SEComponent(el, parent, rep, ren, cdr) {
             var _this = this;
             this.parent = parent;
@@ -553,20 +631,40 @@
             }
             this.el = el.nativeElement;
             parent.errorNotify
-                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; }))
-                .subscribe(function (item) {
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(( /**
+         * @param {?} w
+         * @return {?}
+         */function (/**
+         * @param {?} w
+         * @return {?}
+         */ w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; })))
+                .subscribe(( /**
+         * @param {?} item
+         * @return {?}
+         */function (/**
+         * @param {?} item
+         * @return {?}
+         */ item) {
                 _this.error = item.error;
-                _this.updateStatus(_this.ngControl.invalid);
-            });
+                _this.updateStatus(( /** @type {?} */(_this.ngControl.invalid)));
+            }));
         }
         Object.defineProperty(SEComponent.prototype, "error", {
+            /**
+             * @param {?} val
+             * @return {?}
+             */
             set: function (val) {
-                this.errorData = typeof val === 'string' || val instanceof i0.TemplateRef ? { '': val } : val;
+                this.errorData = typeof val === 'string' || val instanceof core.TemplateRef ? { '': val } : val;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(SEComponent.prototype, "id", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._id = value;
                 this._autoId = false;
@@ -576,6 +674,9 @@
         });
         Object.defineProperty(SEComponent.prototype, "paddingValue", {
             // #endregion
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.parent.gutter / 2;
             },
@@ -583,6 +684,9 @@
             configurable: true
         });
         Object.defineProperty(SEComponent.prototype, "showErr", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.invalid && !!this._error && !this.compact;
             },
@@ -590,6 +694,9 @@
             configurable: true
         });
         Object.defineProperty(SEComponent.prototype, "compact", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.parent.size === 'compact';
             },
@@ -597,36 +704,71 @@
             configurable: true
         });
         Object.defineProperty(SEComponent.prototype, "ngControl", {
+            /**
+             * @private
+             * @return {?}
+             */
             get: function () {
                 return this.ngModel || this.formControlName;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         SEComponent.prototype.setClass = function () {
-            var _c = this, el = _c.el, ren = _c.ren, clsMap = _c.clsMap, col = _c.col, parent = _c.parent, cdr = _c.cdr, line = _c.line, labelWidth = _c.labelWidth, rep = _c.rep;
-            this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
-            clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
+            var _c = ( /** @type {?} */(this)), el = _c.el, ren = _c.ren, clsMap = _c.clsMap, col = _c.col, parent = _c.parent, cdr = _c.cdr, line = _c.line, labelWidth = _c.labelWidth, rep = _c.rep;
+            ( /** @type {?} */(this))._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
+            clsMap.forEach(( /**
+             * @param {?} cls
+             * @return {?}
+             */function (/**
+             * @param {?} cls
+             * @return {?}
+             */ cls) { return ren.removeClass(el, cls); }));
             clsMap.length = 0;
+            /** @type {?} */
             var repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
             clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
             if (line || parent.line) {
                 clsMap.push(prefixCls + "__line");
             }
-            clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+            clsMap.forEach(( /**
+             * @param {?} cls
+             * @return {?}
+             */function (/**
+             * @param {?} cls
+             * @return {?}
+             */ cls) { return ren.addClass(el, cls); }));
             cdr.detectChanges();
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         SEComponent.prototype.bindModel = function () {
             var _this = this;
             var _a, _b;
             if (!this.ngControl || this.isBindModel)
                 return;
             this.isBindModel = true;
-            this.ngControl.statusChanges.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.updateStatus(res === 'INVALID'); });
+            ( /** @type {?} */(this.ngControl.statusChanges)).pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) { return _this.updateStatus(res === 'INVALID'); }));
             if (this._autoId) {
-                var controlAccessor = this.ngControl.valueAccessor;
-                var control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
+                /** @type {?} */
+                var controlAccessor = ( /** @type {?} */(this.ngControl.valueAccessor));
+                /** @type {?} */
+                var control = ( /** @type {?} */((_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement));
                 if (!!control) {
                     if (control.id) {
                         this._id = control.id;
@@ -638,54 +780,88 @@
             }
             // auto required
             if (this.required !== true) {
-                var rawValidators = (_b = this.ngControl) === null || _b === void 0 ? void 0 : _b._rawValidators;
-                this.required = rawValidators.find(function (w) { return w instanceof forms.RequiredValidator; }) != null;
+                /** @type {?} */
+                var rawValidators = ( /** @type {?} */((_b = (( /** @type {?} */(this.ngControl)))) === null || _b === void 0 ? void 0 : _b._rawValidators));
+                this.required = rawValidators.find(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w instanceof forms.RequiredValidator; })) != null;
                 this.cdr.detectChanges();
             }
         };
+        /**
+         * @private
+         * @param {?} invalid
+         * @return {?}
+         */
         SEComponent.prototype.updateStatus = function (invalid) {
             if (this.ngControl.disabled || this.ngControl.isDisabled) {
                 return;
             }
             this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
+            /** @type {?} */
             var errors = this.ngControl.errors;
             if (errors != null && Object.keys(errors).length > 0) {
+                /** @type {?} */
                 var key = Object.keys(errors)[0] || '';
+                /** @type {?} */
                 var err = this.errorData[key];
                 this._error = err != null ? err : this.errorData[''] || '';
             }
             this.cdr.detectChanges();
         };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.checkContent = function () {
+            /** @type {?} */
             var el = this.contentElement.nativeElement;
+            /** @type {?} */
             var cls = prefixCls + "__item-empty";
-            if (i1.isEmpty(el)) {
+            if (util.isEmpty(el)) {
                 this.ren.addClass(el, cls);
             }
             else {
                 this.ren.removeClass(el, cls);
             }
         };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.ngAfterContentInit = function () {
             this.checkContent();
         };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.ngOnChanges = function () {
             this.onceFlag = this.parent.firstVisual;
             if (this.inited) {
                 this.setClass().bindModel();
             }
         };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             this.setClass().bindModel();
             this.inited = true;
             if (this.onceFlag) {
-                Promise.resolve().then(function () {
-                    _this.updateStatus(_this.ngControl.invalid);
+                Promise.resolve().then(( /**
+                 * @return {?}
+                 */function () {
+                    _this.updateStatus(( /** @type {?} */(_this.ngControl.invalid)));
                     _this.onceFlag = false;
-                });
+                }));
             }
         };
+        /**
+         * @return {?}
+         */
         SEComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
@@ -693,120 +869,200 @@
         };
         return SEComponent;
     }());
-    /** @nocollapse */ SEComponent.ɵfac = function SEComponent_Factory(t) { return new (t || SEComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(SEContainerComponent, 9), i0.ɵɵdirectiveInject(i2.ResponsiveService), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-    /** @nocollapse */ SEComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SEComponent, selector: "se", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", error: "error", extra: "extra", label: "label", col: "col", required: "required", controlClass: "controlClass", line: "line", labelWidth: "labelWidth", id: "id" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue", "class.ant-form-item-has-error": "invalid", "class.ant-form-item-with-help": "showErr" } }, queries: [{ propertyName: "ngModel", first: true, predicate: forms.NgModel, emitDistinctChangesOnly: false, descendants: true, static: true }, { propertyName: "formControlName", first: true, predicate: forms.FormControlName, emitDistinctChangesOnly: false, descendants: true, static: true }], viewQueries: [{ propertyName: "contentElement", first: true, predicate: ["contentElement"], emitDistinctChangesOnly: false, descendants: true, static: true }], exportAs: ["se"], usesOnChanges: true, ngImport: i0__namespace, template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n", directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i4.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i5.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i6.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], animations: [animation.helpMotion], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    SEComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'se',
+                    exportAs: 'se',
+                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
+                    host: {
+                        '[style.padding-left.px]': 'paddingValue',
+                        '[style.padding-right.px]': 'paddingValue',
+                        '[class.ant-form-item-has-error]': 'invalid',
+                        '[class.ant-form-item-with-help]': 'showErr',
+                    },
+                    preserveWhitespaces: false,
+                    animations: [animation.helpMotion],
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    SEComponent.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: SEContainerComponent, decorators: [{ type: core.Optional }, { type: core.Host }] },
+        { type: theme.ResponsiveService },
+        { type: core.Renderer2 },
+        { type: core.ChangeDetectorRef }
+    ]; };
+    SEComponent.propDecorators = {
+        ngModel: [{ type: core.ContentChild, args: [forms.NgModel, { static: true },] }],
+        formControlName: [{ type: core.ContentChild, args: [forms.FormControlName, { static: true },] }],
+        contentElement: [{ type: core.ViewChild, args: ['contentElement', { static: true },] }],
+        optional: [{ type: core.Input }],
+        optionalHelp: [{ type: core.Input }],
+        optionalHelpColor: [{ type: core.Input }],
+        error: [{ type: core.Input }],
+        extra: [{ type: core.Input }],
+        label: [{ type: core.Input }],
+        col: [{ type: core.Input }],
+        required: [{ type: core.Input }],
+        controlClass: [{ type: core.Input }],
+        line: [{ type: core.Input }],
+        labelWidth: [{ type: core.Input }],
+        id: [{ type: core.Input }]
+    };
     __decorate([
-        i1.InputNumber(null),
+        util.InputNumber(null),
         __metadata("design:type", Number)
     ], SEComponent.prototype, "col", void 0);
     __decorate([
-        i1.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SEComponent.prototype, "required", void 0);
     __decorate([
-        i1.InputBoolean(null),
+        util.InputBoolean(null),
         __metadata("design:type", Boolean)
     ], SEComponent.prototype, "line", void 0);
     __decorate([
-        i1.InputNumber(null),
+        util.InputNumber(null),
         __metadata("design:type", Number)
     ], SEComponent.prototype, "labelWidth", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SEComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'se',
-                        exportAs: 'se',
-                        templateUrl: './se.component.html',
-                        host: {
-                            '[style.padding-left.px]': 'paddingValue',
-                            '[style.padding-right.px]': 'paddingValue',
-                            '[class.ant-form-item-has-error]': 'invalid',
-                            '[class.ant-form-item-with-help]': 'showErr',
-                        },
-                        preserveWhitespaces: false,
-                        animations: [animation.helpMotion],
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i0.ElementRef }, { type: SEContainerComponent, decorators: [{
-                            type: i0.Optional
-                        }, {
-                            type: i0.Host
-                        }] }, { type: i2.ResponsiveService }, { type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }];
-        }, { ngModel: [{
-                    type: i0.ContentChild,
-                    args: [forms.NgModel, { static: true }]
-                }], formControlName: [{
-                    type: i0.ContentChild,
-                    args: [forms.FormControlName, { static: true }]
-                }], contentElement: [{
-                    type: i0.ViewChild,
-                    args: ['contentElement', { static: true }]
-                }], optional: [{
-                    type: i0.Input
-                }], optionalHelp: [{
-                    type: i0.Input
-                }], optionalHelpColor: [{
-                    type: i0.Input
-                }], error: [{
-                    type: i0.Input
-                }], extra: [{
-                    type: i0.Input
-                }], label: [{
-                    type: i0.Input
-                }], col: [{
-                    type: i0.Input
-                }], required: [{
-                    type: i0.Input
-                }], controlClass: [{
-                    type: i0.Input
-                }], line: [{
-                    type: i0.Input
-                }], labelWidth: [{
-                    type: i0.Input
-                }], id: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        SEComponent.ngAcceptInputType_col;
+        /** @type {?} */
+        SEComponent.ngAcceptInputType_required;
+        /** @type {?} */
+        SEComponent.ngAcceptInputType_line;
+        /** @type {?} */
+        SEComponent.ngAcceptInputType_labelWidth;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.unsubscribe$;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.ngModel;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.formControlName;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.contentElement;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.clsMap;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.inited;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.onceFlag;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.errorData;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.isBindModel;
+        /** @type {?} */
+        SEComponent.prototype.invalid;
+        /** @type {?} */
+        SEComponent.prototype._labelWidth;
+        /** @type {?} */
+        SEComponent.prototype._error;
+        /** @type {?} */
+        SEComponent.prototype.optional;
+        /** @type {?} */
+        SEComponent.prototype.optionalHelp;
+        /** @type {?} */
+        SEComponent.prototype.optionalHelpColor;
+        /** @type {?} */
+        SEComponent.prototype.extra;
+        /** @type {?} */
+        SEComponent.prototype.label;
+        /** @type {?} */
+        SEComponent.prototype.col;
+        /** @type {?} */
+        SEComponent.prototype.required;
+        /** @type {?} */
+        SEComponent.prototype.controlClass;
+        /** @type {?} */
+        SEComponent.prototype.line;
+        /** @type {?} */
+        SEComponent.prototype.labelWidth;
+        /** @type {?} */
+        SEComponent.prototype._id;
+        /** @type {?} */
+        SEComponent.prototype._autoId;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.parent;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.rep;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.ren;
+        /**
+         * @type {?}
+         * @private
+         */
+        SEComponent.prototype.cdr;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
         function SEModule() {
         }
         return SEModule;
     }());
-    /** @nocollapse */ SEModule.ɵmod = i0.ɵɵdefineNgModule({ type: SEModule });
-    /** @nocollapse */ SEModule.ɵinj = i0.ɵɵdefineInjector({ factory: function SEModule_Factory(t) { return new (t || SEModule)(); }, imports: [[i3.CommonModule, i1.DelonUtilModule, i5.NzToolTipModule, i6.NzIconModule, i4.NzOutletModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(SEModule, { declarations: [SEContainerComponent, SEComponent, SETitleComponent], imports: [i3.CommonModule, i1.DelonUtilModule, i5.NzToolTipModule, i6.NzIconModule, i4.NzOutletModule], exports: [SEContainerComponent, SEComponent, SETitleComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SEModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i3.CommonModule, i1.DelonUtilModule, i5.NzToolTipModule, i6.NzIconModule, i4.NzOutletModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
-    i0.ɵɵsetComponentScope(SEContainerComponent, [i3.NgIf, SETitleComponent, i4.NzStringTemplateOutletDirective], []);
-
-    // /**
-    //  * Error collection
-    //  * - `name`: The value of` ngModel` or `formControlName`
-    //  * - `error`: Replaced error value
-    //  */
-    // errors: Array<{ name: string; error: SEErrorType }>;
-    // /**
-    //  * Whether force show error, even if the form component has not invalid, Default: `false`
-    //  * - `false`: Whether to display error by `invalid`
-    //  * - `true`: Force show display error
-    //  */
-    // force?: boolean;
+    SEModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: edit.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.SEComponent = SEComponent;

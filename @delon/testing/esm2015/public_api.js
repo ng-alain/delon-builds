@@ -1,8 +1,13 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 // from angular
-export * from './src/dispatch-events';
-export * from './src/event-objects';
-export * from './src/type-in-element';
-export * from './src/zorro';
-export * from './src/g2';
-export * from './src/suite';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3BhY2thZ2VzL3Rlc3RpbmcvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxlQUFlO0FBQ2YsY0FBYyx1QkFBdUIsQ0FBQztBQUN0QyxjQUFjLHFCQUFxQixDQUFDO0FBQ3BDLGNBQWMsdUJBQXVCLENBQUM7QUFFdEMsY0FBYyxhQUFhLENBQUM7QUFDNUIsY0FBYyxVQUFVLENBQUM7QUFDekIsY0FBYyxhQUFhLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvLyBmcm9tIGFuZ3VsYXJcbmV4cG9ydCAqIGZyb20gJy4vc3JjL2Rpc3BhdGNoLWV2ZW50cyc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9ldmVudC1vYmplY3RzJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3R5cGUtaW4tZWxlbWVudCc7XG5cbmV4cG9ydCAqIGZyb20gJy4vc3JjL3pvcnJvJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL2cyJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3N1aXRlJztcbiJdfQ==
+export { dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent } from './src/dispatch-events';
+export { createMouseEvent, createTouchEvent, createKeyboardEvent, createFakeEvent } from './src/event-objects';
+export { typeInElement } from './src/type-in-element';
+export { dispatchDropDown, DROPDOWN_MIN_TIME } from './src/zorro';
+export { checkDelay, PageG2DataCount, PageG2Height, PageG2 } from './src/g2';
+export { TestContext, createTestContext } from './src/suite';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3BhY2thZ2VzL3Rlc3RpbmcvcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7QUFDQSxnSEFBYyx1QkFBdUIsQ0FBQztBQUN0Qyx5RkFBYyxxQkFBcUIsQ0FBQztBQUNwQyw4QkFBYyx1QkFBdUIsQ0FBQztBQUV0QyxvREFBYyxhQUFhLENBQUM7QUFDNUIsa0VBQWMsVUFBVSxDQUFDO0FBQ3pCLCtDQUFjLGFBQWEsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8vIGZyb20gYW5ndWxhclxuZXhwb3J0ICogZnJvbSAnLi9zcmMvZGlzcGF0Y2gtZXZlbnRzJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL2V2ZW50LW9iamVjdHMnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvdHlwZS1pbi1lbGVtZW50JztcblxuZXhwb3J0ICogZnJvbSAnLi9zcmMvem9ycm8nO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvZzInO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvc3VpdGUnO1xuIl19

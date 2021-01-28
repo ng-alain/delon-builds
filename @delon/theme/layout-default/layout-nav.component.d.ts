@@ -4,7 +4,6 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util';
-import * as i0 from "@angular/core";
 export interface Nav extends MenuInner {
     _needIcon?: boolean;
     _text?: SafeHtml;
@@ -56,6 +55,4 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private get isPad();
     private underPad;
     private openAside;
-    static ɵfac: i0.ɵɵFactoryDef<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": "disabledAcl"; "autoCloseUnderPad": "autoCloseUnderPad"; "recursivePath": "recursivePath"; "openStrictly": "openStrictly"; "maxLevelIcon": "maxLevelIcon"; }, { "select": "select"; }, never, never>;
 }

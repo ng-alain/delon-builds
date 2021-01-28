@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/platform-browser'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/platform-browser', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.delon.util, global.rxjs.operators, global.ng.platformBrowser, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i3, i0, util, operators, i1, i2, i4) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/util'), require('rxjs/operators'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@delon/util', 'rxjs/operators', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.delon.util, global.rxjs.operators, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, common, core, platformBrowser, util, operators, observers, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,7 +318,19 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: ellipsis.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var EllipsisComponent = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} ngZone
+         * @param {?} dom
+         * @param {?} doc
+         * @param {?} cdr
+         */
         function EllipsisComponent(el, ngZone, dom, doc, cdr) {
             this.el = el;
             this.ngZone = ngZone;
@@ -359,6 +349,9 @@
             this.tail = '...';
         }
         Object.defineProperty(EllipsisComponent.prototype, "linsWord", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 var _a = this, targetCount = _a.targetCount, text = _a.text, tail = _a.tail;
                 return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
@@ -366,18 +359,40 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} str
+         * @return {?}
+         */
         EllipsisComponent.prototype.getStrFullLength = function (str) {
-            return str.split('').reduce(function (pre, cur) {
+            return str.split('').reduce(( /**
+             * @param {?} pre
+             * @param {?} cur
+             * @return {?}
+             */function (pre, cur) {
+                /** @type {?} */
                 var charCode = cur.charCodeAt(0);
                 if (charCode >= 0 && charCode <= 128) {
                     return pre + 1;
                 }
                 return pre + 2;
-            }, 0);
+            }), 0);
         };
+        /**
+         * @private
+         * @param {?} str
+         * @param {?} maxLength
+         * @return {?}
+         */
         EllipsisComponent.prototype.cutStrByFullLength = function (str, maxLength) {
+            /** @type {?} */
             var showLength = 0;
-            return str.split('').reduce(function (pre, cur) {
+            return str.split('').reduce(( /**
+             * @param {?} pre
+             * @param {?} cur
+             * @return {?}
+             */function (pre, cur) {
+                /** @type {?} */
                 var charCode = cur.charCodeAt(0);
                 if (charCode >= 0 && charCode <= 128) {
                     showLength += 1;
@@ -389,11 +404,23 @@
                     return pre + cur;
                 }
                 return pre;
-            }, '');
+            }), '');
         };
+        /**
+         * @private
+         * @param {?} targetHeight
+         * @param {?} mid
+         * @param {?} begin
+         * @param {?} end
+         * @param {?} text
+         * @param {?} node
+         * @return {?}
+         */
         EllipsisComponent.prototype.bisection = function (targetHeight, mid, begin, end, text, node) {
+            /** @type {?} */
             var suffix = this.tail;
             node.innerHTML = text.substring(0, mid) + suffix;
+            /** @type {?} */
             var sh = node.offsetHeight;
             if (sh <= targetHeight) {
                 node.innerHTML = text.substring(0, mid + 1) + suffix;
@@ -417,6 +444,10 @@
             mid = Math.floor((end - begin) / 2) + begin;
             return this.bisection(targetHeight, mid, begin, end, text, node);
         };
+        /**
+         * @private
+         * @return {?}
+         */
         EllipsisComponent.prototype.genType = function () {
             var _a = this, lines = _a.lines, length = _a.length, isSupportLineClamp = _a.isSupportLineClamp;
             this.cls = {
@@ -437,19 +468,27 @@
                 this.type = 'line';
             }
         };
+        /**
+         * @private
+         * @return {?}
+         */
         EllipsisComponent.prototype.gen = function () {
             var _a = this, type = _a.type, lines = _a.lines, length = _a.length, fullWidthRecognition = _a.fullWidthRecognition, tail = _a.tail, orgEl = _a.orgEl, cdr = _a.cdr, ngZone = _a.ngZone;
             if (type === 'length') {
-                var el = orgEl.nativeElement;
+                /** @type {?} */
+                var el = ( /** @type {?} */(orgEl.nativeElement));
                 if (el.children.length > 0) {
                     throw new Error('Ellipsis content must be string.');
                 }
-                var lengthText = el.textContent;
+                /** @type {?} */
+                var lengthText = ( /** @type {?} */(el.textContent));
+                /** @type {?} */
                 var textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
                 if (textLength <= length || length < 0) {
                     this.text = lengthText;
                 }
                 else {
+                    /** @type {?} */
                     var displayText = void 0;
                     if (length - tail.length <= 0) {
                         displayText = '';
@@ -459,13 +498,19 @@
                     }
                     this.text = displayText + tail;
                 }
-                ngZone.run(function () { return cdr.detectChanges(); });
+                ngZone.run(( /**
+                 * @return {?}
+                 */function () { return cdr.detectChanges(); }));
             }
             else if (type === 'line') {
                 var _b = this, shadowOrgEl = _b.shadowOrgEl, shadowTextEl = _b.shadowTextEl;
-                var orgNode = shadowOrgEl.nativeElement;
-                var lineText = orgNode.innerText || orgNode.textContent;
-                var lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
+                /** @type {?} */
+                var orgNode = ( /** @type {?} */(shadowOrgEl.nativeElement));
+                /** @type {?} */
+                var lineText = orgNode.innerText || ( /** @type {?} */(orgNode.textContent));
+                /** @type {?} */
+                var lineHeight = parseInt(( /** @type {?} */(getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
+                /** @type {?} */
                 var targetHeight = lines * lineHeight;
                 this.getEl('.ellipsis__handle').style.height = targetHeight + "px";
                 if (orgNode.offsetHeight <= targetHeight) {
@@ -474,18 +519,33 @@
                 }
                 else {
                     // bisection
+                    /** @type {?} */
                     var len = lineText.length;
+                    /** @type {?} */
                     var mid = Math.ceil(len / 2);
+                    /** @type {?} */
                     var count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                     this.text = lineText;
                     this.targetCount = count;
                 }
-                ngZone.run(function () { return cdr.detectChanges(); });
+                ngZone.run(( /**
+                 * @return {?}
+                 */function () { return cdr.detectChanges(); }));
             }
         };
+        /**
+         * @private
+         * @param {?} cls
+         * @return {?}
+         */
         EllipsisComponent.prototype.getEl = function (cls) {
             return this.el.nativeElement.querySelector(cls);
         };
+        /**
+         * @private
+         * @param {?} fn
+         * @return {?}
+         */
         EllipsisComponent.prototype.executeOnStable = function (fn) {
             if (this.ngZone.isStable) {
                 fn();
@@ -494,27 +554,40 @@
                 this.ngZone.onStable.asObservable().pipe(operators.take(1)).subscribe(fn);
             }
         };
+        /**
+         * @return {?}
+         */
         EllipsisComponent.prototype.refresh = function () {
             var _this = this;
             this.genType();
             var _a = this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
+            /** @type {?} */
             var html = orgEl.nativeElement.innerHTML;
             this.orgHtml = dom.bypassSecurityTrustHtml(html);
             cdr.detectChanges();
-            this.executeOnStable(function () {
+            this.executeOnStable(( /**
+             * @return {?}
+             */function () {
                 _this.gen();
                 if (type !== 'line') {
+                    /** @type {?} */
                     var el = _this.getEl('.ellipsis');
                     if (el) {
                         el.innerHTML = html;
                     }
                 }
-            });
+            }));
         };
+        /**
+         * @return {?}
+         */
         EllipsisComponent.prototype.ngAfterViewInit = function () {
             this.inited = true;
             this.refresh();
         };
+        /**
+         * @return {?}
+         */
         EllipsisComponent.prototype.ngOnChanges = function () {
             if (this.inited) {
                 this.refresh();
@@ -522,8 +595,34 @@
         };
         return EllipsisComponent;
     }());
-    /** @nocollapse */ EllipsisComponent.ɵfac = function EllipsisComponent_Factory(t) { return new (t || EllipsisComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.NgZone), i0.ɵɵdirectiveInject(i1.DomSanitizer), i0.ɵɵdirectiveInject(i3.DOCUMENT), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-    /** @nocollapse */ EllipsisComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: EllipsisComponent, selector: "ellipsis", inputs: { tooltip: "tooltip", length: "length", lines: "lines", fullWidthRecognition: "fullWidthRecognition", tail: "tail" }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], emitDistinctChangesOnly: false, descendants: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], emitDistinctChangesOnly: false, descendants: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["ellipsis"], usesOnChanges: true, ngImport: i0__namespace, template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none;\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span *ngIf=\"tooltip; else con\" nz-tooltip [nzTooltipTitle]=\"titleTpl\" [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n", directives: [{ type: i2.CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i4.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i3.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i3.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { type: i3.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { type: i3.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i3.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    EllipsisComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'ellipsis',
+                    exportAs: 'ellipsis',
+                    template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none;\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span *ngIf=\"tooltip; else con\" nz-tooltip [nzTooltipTitle]=\"titleTpl\" [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n",
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    EllipsisComponent.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: core.NgZone },
+        { type: platformBrowser.DomSanitizer },
+        { type: Document, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+        { type: core.ChangeDetectorRef }
+    ]; };
+    EllipsisComponent.propDecorators = {
+        orgEl: [{ type: core.ViewChild, args: ['orgEl', { static: false },] }],
+        shadowOrgEl: [{ type: core.ViewChild, args: ['shadowOrgEl', { static: false },] }],
+        shadowTextEl: [{ type: core.ViewChild, args: ['shadowTextEl', { static: false },] }],
+        tooltip: [{ type: core.Input }],
+        length: [{ type: core.Input }],
+        lines: [{ type: core.Input }],
+        fullWidthRecognition: [{ type: core.Input }],
+        tail: [{ type: core.Input }]
+    };
     __decorate([
         util.InputBoolean(),
         __metadata("design:type", Object)
@@ -540,66 +639,112 @@
         util.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(EllipsisComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'ellipsis',
-                        exportAs: 'ellipsis',
-                        templateUrl: './ellipsis.component.html',
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i0.ElementRef }, { type: i0.NgZone }, { type: i1.DomSanitizer }, { type: Document, decorators: [{
-                            type: i0.Inject,
-                            args: [i3.DOCUMENT]
-                        }] }, { type: i0.ChangeDetectorRef }];
-        }, { orgEl: [{
-                    type: i0.ViewChild,
-                    args: ['orgEl', { static: false }]
-                }], shadowOrgEl: [{
-                    type: i0.ViewChild,
-                    args: ['shadowOrgEl', { static: false }]
-                }], shadowTextEl: [{
-                    type: i0.ViewChild,
-                    args: ['shadowTextEl', { static: false }]
-                }], tooltip: [{
-                    type: i0.Input
-                }], length: [{
-                    type: i0.Input
-                }], lines: [{
-                    type: i0.Input
-                }], fullWidthRecognition: [{
-                    type: i0.Input
-                }], tail: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_tooltip;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_length;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_lines;
+        /** @type {?} */
+        EllipsisComponent.ngAcceptInputType_fullWidthRecognition;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.isSupportLineClamp;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.orgEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.shadowOrgEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.shadowTextEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.inited;
+        /** @type {?} */
+        EllipsisComponent.prototype.orgHtml;
+        /** @type {?} */
+        EllipsisComponent.prototype.type;
+        /** @type {?} */
+        EllipsisComponent.prototype.cls;
+        /** @type {?} */
+        EllipsisComponent.prototype.text;
+        /** @type {?} */
+        EllipsisComponent.prototype.targetCount;
+        /** @type {?} */
+        EllipsisComponent.prototype.tooltip;
+        /** @type {?} */
+        EllipsisComponent.prototype.length;
+        /** @type {?} */
+        EllipsisComponent.prototype.lines;
+        /** @type {?} */
+        EllipsisComponent.prototype.fullWidthRecognition;
+        /** @type {?} */
+        EllipsisComponent.prototype.tail;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.ngZone;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        EllipsisComponent.prototype.cdr;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [EllipsisComponent];
     var EllipsisModule = /** @class */ (function () {
         function EllipsisModule() {
         }
         return EllipsisModule;
     }());
-    /** @nocollapse */ EllipsisModule.ɵmod = i0.ɵɵdefineNgModule({ type: EllipsisModule });
-    /** @nocollapse */ EllipsisModule.ɵinj = i0.ɵɵdefineInjector({ factory: function EllipsisModule_Factory(t) { return new (t || EllipsisModule)(); }, imports: [[i3.CommonModule, i2.ObserversModule, util.DelonUtilModule, i4.NzToolTipModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(EllipsisModule, { declarations: [EllipsisComponent], imports: [i3.CommonModule, i2.ObserversModule, util.DelonUtilModule, i4.NzToolTipModule], exports: [EllipsisComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(EllipsisModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i3.CommonModule, i2.ObserversModule, util.DelonUtilModule, i4.NzToolTipModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    EllipsisModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: ellipsis.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.EllipsisComponent = EllipsisComponent;

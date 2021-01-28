@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/gauge/gauge.js",
   "fesm2015": "../fesm2015/gauge.js",
   "typings": "gauge.d.ts",
+  "metadata": "gauge.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/gauge"
 }

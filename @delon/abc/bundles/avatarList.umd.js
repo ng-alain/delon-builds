@@ -4,61 +4,47 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.bidi, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, util, rxjs, operators, i1, i2, i3, i4) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, util, rxjs, operators, common, avatar, tooltip) { 'use strict';
 
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
-
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: avatar-list-item.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var AvatarListItemComponent = /** @class */ (function () {
         function AvatarListItemComponent() {
         }
         return AvatarListItemComponent;
     }());
-    /** @nocollapse */ AvatarListItemComponent.ɵfac = function AvatarListItemComponent_Factory(t) { return new (t || AvatarListItemComponent)(); };
-    /** @nocollapse */ AvatarListItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: AvatarListItemComponent, selector: "avatar-list-item, [avatar-list-item]", inputs: { src: "src", text: "text", icon: "icon", tips: "tips" }, exportAs: ["avatarListItem"], ngImport: i0__namespace, template: "<ng-content></ng-content>", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AvatarListItemComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'avatar-list-item, [avatar-list-item]',
-                        exportAs: 'avatarListItem',
-                        template: "<ng-content></ng-content>",
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { src: [{
-                    type: i0.Input
-                }], text: [{
-                    type: i0.Input
-                }], icon: [{
-                    type: i0.Input
-                }], tips: [{
-                    type: i0.Input
-                }] });
-    })();
+    AvatarListItemComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'avatar-list-item, [avatar-list-item]',
+                    exportAs: 'avatarListItem',
+                    template: "<ng-content></ng-content>",
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    AvatarListItemComponent.propDecorators = {
+        src: [{ type: core.Input }],
+        text: [{ type: core.Input }],
+        icon: [{ type: core.Input }],
+        tips: [{ type: core.Input }]
+    };
+    if (false) {
+        /** @type {?} */
+        AvatarListItemComponent.prototype.src;
+        /** @type {?} */
+        AvatarListItemComponent.prototype.text;
+        /** @type {?} */
+        AvatarListItemComponent.prototype.icon;
+        /** @type {?} */
+        AvatarListItemComponent.prototype.tips;
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -369,7 +355,16 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: avatar-list.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var AvatarListComponent = /** @class */ (function () {
+        /**
+         * @param {?} cdr
+         * @param {?} directionality
+         */
         function AvatarListComponent(cdr, directionality) {
             this.cdr = cdr;
             this.directionality = directionality;
@@ -383,6 +378,10 @@
             this.maxLength = 0;
         }
         Object.defineProperty(AvatarListComponent.prototype, "size", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this.cls = 'avatar-list__item' + (value === 'default' ? '' : " avatar-list__" + value);
                 switch (value) {
@@ -399,95 +398,153 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         AvatarListComponent.prototype.gen = function () {
             var _items = this._items;
+            /** @type {?} */
             var maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
+            /** @type {?} */
             var numOfChildren = _items.length;
+            /** @type {?} */
             var numToShow = maxLength > 0 && maxLength >= numOfChildren ? numOfChildren : maxLength;
             this.items = _items.toArray().slice(0, numToShow);
             this.exceedCount = numToShow < numOfChildren ? numOfChildren - maxLength : 0;
             this.cdr.detectChanges();
         };
+        /**
+         * @return {?}
+         */
         AvatarListComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
                 _this.dir = direction;
-            });
+            }));
             this.gen();
             this.inited = true;
         };
+        /**
+         * @return {?}
+         */
         AvatarListComponent.prototype.ngOnChanges = function () {
             if (this.inited) {
                 this.gen();
             }
         };
+        /**
+         * @return {?}
+         */
         AvatarListComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
         };
         return AvatarListComponent;
     }());
-    /** @nocollapse */ AvatarListComponent.ɵfac = function AvatarListComponent_Factory(t) { return new (t || AvatarListComponent)(i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i1.Directionality, 8)); };
-    /** @nocollapse */ AvatarListComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: AvatarListComponent, selector: "avatar-list", inputs: { size: "size", maxLength: "maxLength", excessItemsStyle: "excessItemsStyle" }, host: { properties: { "class.avatar-list": "true", "class.avatar-list-rtl": "dir === 'rtl'" } }, queries: [{ propertyName: "_items", predicate: AvatarListItemComponent, emitDistinctChangesOnly: false }], exportAs: ["avatarList"], usesOnChanges: true, ngImport: i0__namespace, template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n", directives: [{ type: i2.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i2.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NzAvatarComponent, selector: "nz-avatar", inputs: ["nzShape", "nzSize", "nzGap", "nzText", "nzSrc", "nzSrcSet", "nzAlt", "nzIcon"], outputs: ["nzError"], exportAs: ["nzAvatar"] }, { type: i4.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    AvatarListComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'avatar-list',
+                    exportAs: 'avatarList',
+                    template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
+                    host: {
+                        '[class.avatar-list]': 'true',
+                        '[class.avatar-list-rtl]': "dir === 'rtl'",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    AvatarListComponent.ctorParameters = function () { return [
+        { type: core.ChangeDetectorRef },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+    ]; };
+    AvatarListComponent.propDecorators = {
+        _items: [{ type: core.ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
+        size: [{ type: core.Input }],
+        maxLength: [{ type: core.Input }],
+        excessItemsStyle: [{ type: core.Input }]
+    };
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Object)
     ], AvatarListComponent.prototype, "maxLength", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AvatarListComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'avatar-list',
-                        exportAs: 'avatarList',
-                        templateUrl: './avatar-list.component.html',
-                        host: {
-                            '[class.avatar-list]': 'true',
-                            '[class.avatar-list-rtl]': "dir === 'rtl'",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i0.ChangeDetectorRef }, { type: i1.Directionality, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, { _items: [{
-                    type: i0.ContentChildren,
-                    args: [AvatarListItemComponent, { descendants: false }]
-                }], size: [{
-                    type: i0.Input
-                }], maxLength: [{
-                    type: i0.Input
-                }], excessItemsStyle: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        AvatarListComponent.ngAcceptInputType_maxLength;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.inited;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype._items;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.destroy$;
+        /** @type {?} */
+        AvatarListComponent.prototype.items;
+        /** @type {?} */
+        AvatarListComponent.prototype.exceedCount;
+        /** @type {?} */
+        AvatarListComponent.prototype.dir;
+        /** @type {?} */
+        AvatarListComponent.prototype.cls;
+        /** @type {?} */
+        AvatarListComponent.prototype.avatarSize;
+        /** @type {?} */
+        AvatarListComponent.prototype.maxLength;
+        /** @type {?} */
+        AvatarListComponent.prototype.excessItemsStyle;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        AvatarListComponent.prototype.directionality;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
     var AvatarListModule = /** @class */ (function () {
         function AvatarListModule() {
         }
         return AvatarListModule;
     }());
-    /** @nocollapse */ AvatarListModule.ɵmod = i0.ɵɵdefineNgModule({ type: AvatarListModule });
-    /** @nocollapse */ AvatarListModule.ɵinj = i0.ɵɵdefineInjector({ factory: function AvatarListModule_Factory(t) { return new (t || AvatarListModule)(); }, imports: [[i2.CommonModule, i3.NzAvatarModule, i4.NzToolTipModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(AvatarListModule, { declarations: [AvatarListComponent, AvatarListItemComponent], imports: [i2.CommonModule, i3.NzAvatarModule, i4.NzToolTipModule], exports: [AvatarListComponent, AvatarListItemComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AvatarListModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i2.CommonModule, i3.NzAvatarModule, i4.NzToolTipModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    AvatarListModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, avatar.NzAvatarModule, tooltip.NzToolTipModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: avatarList.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.AvatarListComponent = AvatarListComponent;

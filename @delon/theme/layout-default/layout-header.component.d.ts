@@ -2,7 +2,6 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, OnDestroy } from '@angula
 import { App, SettingsService } from '@delon/theme';
 import { LayoutDefaultComponent } from './layout.component';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden, LayoutDefaultOptions } from './types';
-import * as i0 from "@angular/core";
 interface LayoutDefaultHeaderItem {
     host: ElementRef;
     hidden?: LayoutDefaultHeaderItemHidden;
@@ -25,7 +24,5 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     ngAfterViewInit(): void;
     toggleCollapsed(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<LayoutDefaultHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<LayoutDefaultHeaderComponent, "layout-default-header", never, {}, {}, never, never>;
 }
 export {};

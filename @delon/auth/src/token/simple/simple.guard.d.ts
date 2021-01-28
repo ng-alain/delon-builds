@@ -1,7 +1,6 @@
 import { Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, RouterStateSnapshot, UrlSegment } from '@angular/router';
 import { ITokenService } from '../interface';
-import * as i0 from "@angular/core";
 /**
  * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
@@ -29,6 +28,4 @@ export declare class SimpleGuard implements CanActivate, CanActivateChild, CanLo
     canLoad(route: Route, _segments: UrlSegment[]): boolean;
     canActivateChild(_childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean;
     canActivate(_route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean;
-    static ɵfac: i0.ɵɵFactoryDef<SimpleGuard, never>;
-    static ɵprov: i0.ɵɵInjectableDef<SimpleGuard>;
 }

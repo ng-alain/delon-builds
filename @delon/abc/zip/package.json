@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/zip/zip.js",
   "fesm2015": "../fesm2015/zip.js",
   "typings": "zip.d.ts",
+  "metadata": "zip.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/zip"
 }

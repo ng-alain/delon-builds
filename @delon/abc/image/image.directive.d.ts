@@ -2,7 +2,6 @@ import { Platform } from '@angular/cdk/platform';
 import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
-import * as i0 from "@angular/core";
 export declare class ImageDirective implements OnChanges, OnInit {
     private http;
     private platform;
@@ -23,6 +22,4 @@ export declare class ImageDirective implements OnChanges, OnInit {
     private getByHttp;
     private updateError;
     private setError;
-    static ɵfac: i0.ɵɵFactoryDef<ImageDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDefWithMeta<ImageDirective, "[_src]", ["_src"], { "src": "_src"; "size": "size"; "error": "error"; "useHttp": "useHttp"; }, {}, never>;
 }

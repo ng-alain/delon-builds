@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/avatar-list/avatarList.js",
   "fesm2015": "../fesm2015/avatarList.js",
   "typings": "avatarList.d.ts",
+  "metadata": "avatarList.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/avatar-list"
 }

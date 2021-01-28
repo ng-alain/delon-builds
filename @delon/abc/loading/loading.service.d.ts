@@ -4,7 +4,6 @@ import { OnDestroy } from '@angular/core';
 import { AlainConfigService } from '@delon/util';
 import { LoadingDefaultComponent } from './loading.component';
 import { LoadingShowOptions } from './loading.types';
-import * as i0 from "@angular/core";
 export declare class LoadingService implements OnDestroy {
     private overlay;
     private configSrv;
@@ -32,6 +31,4 @@ export declare class LoadingService implements OnDestroy {
      */
     close(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<LoadingService, [null, null, { optional: true; }]>;
-    static ɵprov: i0.ɵɵInjectableDef<LoadingService>;
 }

@@ -1,22 +1,49 @@
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import * as i0 from '@angular/core';
-import { TemplateRef, ɵɵdirectiveInject, Renderer2, ChangeDetectorRef, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵsetClassMetadata, Component, Optional, Inject, ViewChild, Input, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
-import { NavigationEnd, Router, RouterLinkWithHref, RouterModule } from '@angular/router';
+import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
 import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
-import { NzAffixComponent, NzAffixModule } from 'ng-zorro-antd/affix';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { NgIf, NgTemplateOutlet, NgClass, NgForOf, CommonModule } from '@angular/common';
-import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import { NzBreadCrumbComponent, NzBreadCrumbItemComponent, NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
-import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
+import { ObserversModule } from '@angular/cdk/observers';
+import { CommonModule } from '@angular/common';
+import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: page-header.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function PageHeaderPath() { }
+if (false) {
+    /** @type {?|undefined} */
+    PageHeaderPath.prototype.title;
+    /** @type {?|undefined} */
+    PageHeaderPath.prototype.link;
+}
 class PageHeaderComponent {
     // #endregion
+    /**
+     * @param {?} settings
+     * @param {?} renderer
+     * @param {?} router
+     * @param {?} menuSrv
+     * @param {?} i18nSrv
+     * @param {?} titleSrv
+     * @param {?} reuseSrv
+     * @param {?} cdr
+     * @param {?} configSrv
+     * @param {?} platform
+     * @param {?} directionality
+     */
     constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
         this.renderer = renderer;
         this.router = router;
@@ -46,15 +73,40 @@ class PageHeaderComponent {
             fixedOffsetTop: 64,
         });
         settings.notify
-            .pipe(takeUntil(this.destroy$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
-            .subscribe(() => this.affix.updatePosition({}));
-        merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter(ev => ev instanceof NavigationEnd)), i18nSrv.change)
+            .pipe(takeUntil(this.destroy$), filter((/**
+         * @param {?} w
+         * @return {?}
+         */
+        w => this.affix && w.type === 'layout' && w.name === 'collapsed')))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.affix.updatePosition((/** @type {?} */ ({})))));
+        merge(menuSrv.change.pipe(filter((/**
+         * @return {?}
+         */
+        () => this.inited))), router.events.pipe(filter((/**
+         * @param {?} ev
+         * @return {?}
+         */
+        ev => ev instanceof NavigationEnd))), i18nSrv.change)
             .pipe(takeUntil(this.destroy$))
-            .subscribe(() => this.refresh());
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this.refresh()));
     }
+    /**
+     * @private
+     * @return {?}
+     */
     get menus() {
         return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
     }
+    /**
+     * @param {?} value
+     * @return {?}
+     */
     set title(value) {
         if (value instanceof TemplateRef) {
             this._title = null;
@@ -66,24 +118,37 @@ class PageHeaderComponent {
             this._titleVal = this._title;
         }
     }
+    /**
+     * @return {?}
+     */
     refresh() {
         this.setTitle().genBreadcrumb();
         this.cdr.detectChanges();
     }
+    /**
+     * @private
+     * @return {?}
+     */
     genBreadcrumb() {
         if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
             this.paths = [];
             return;
         }
+        /** @type {?} */
         const paths = [];
-        this.menus.forEach(item => {
+        this.menus.forEach((/**
+         * @param {?} item
+         * @return {?}
+         */
+        item => {
             if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                 return;
+            /** @type {?} */
             let title = item.text;
             if (item.i18n && this.i18nSrv)
                 title = this.i18nSrv.fanyi(item.i18n);
-            paths.push({ title, link: (item.link && [item.link]) });
-        });
+            paths.push({ title, link: (/** @type {?} */ ((item.link && [item.link]))) });
+        }));
         // add home
         if (this.home) {
             paths.splice(0, 0, {
@@ -93,25 +158,36 @@ class PageHeaderComponent {
         }
         this.paths = paths;
     }
+    /**
+     * @private
+     * @template THIS
+     * @this {THIS}
+     * @return {THIS}
+     */
     setTitle() {
-        if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus.length > 0) {
-            const item = this.menus[this.menus.length - 1];
+        if ((/** @type {?} */ (this))._title == null && (/** @type {?} */ (this))._titleTpl == null && (/** @type {?} */ (this)).autoTitle && (/** @type {?} */ (this)).menus.length > 0) {
+            /** @type {?} */
+            const item = (/** @type {?} */ (this)).menus[(/** @type {?} */ (this)).menus.length - 1];
+            /** @type {?} */
             let title = item.text;
-            if (item.i18n && this.i18nSrv) {
-                title = this.i18nSrv.fanyi(item.i18n);
+            if (item.i18n && (/** @type {?} */ (this)).i18nSrv) {
+                title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
             }
-            this._titleVal = title;
+            (/** @type {?} */ (this))._titleVal = (/** @type {?} */ (title));
         }
-        if (this._titleVal && this.syncTitle) {
-            if (this.titleSrv) {
-                this.titleSrv.setTitle(this._titleVal);
+        if ((/** @type {?} */ (this))._titleVal && (/** @type {?} */ (this)).syncTitle) {
+            if ((/** @type {?} */ (this)).titleSrv) {
+                (/** @type {?} */ (this)).titleSrv.setTitle((/** @type {?} */ (this))._titleVal);
             }
-            if (!this.inited && this.reuseSrv) {
-                this.reuseSrv.title = this._titleVal;
+            if (!(/** @type {?} */ (this)).inited && (/** @type {?} */ (this)).reuseSrv) {
+                (/** @type {?} */ (this)).reuseSrv.title = (/** @type {?} */ (this))._titleVal;
             }
         }
-        return this;
+        return (/** @type {?} */ (this));
     }
+    /**
+     * @return {?}
+     */
     checkContent() {
         if (isEmpty(this.conTpl.nativeElement)) {
             this.renderer.setAttribute(this.conTpl.nativeElement, 'hidden', '');
@@ -120,31 +196,91 @@ class PageHeaderComponent {
             this.renderer.removeAttribute(this.conTpl.nativeElement, 'hidden');
         }
     }
+    /**
+     * @return {?}
+     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
-        });
+        }));
         this.refresh();
         this.inited = true;
     }
+    /**
+     * @return {?}
+     */
     ngAfterViewInit() {
         this.checkContent();
     }
+    /**
+     * @return {?}
+     */
     ngOnChanges() {
         if (this.inited) {
             this.refresh();
         }
     }
+    /**
+     * @return {?}
+     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
     }
 }
-/** @nocollapse */ PageHeaderComponent.ɵfac = function PageHeaderComponent_Factory(t) { return new (t || PageHeaderComponent)(ɵɵdirectiveInject(SettingsService), ɵɵdirectiveInject(Renderer2), ɵɵdirectiveInject(Router), ɵɵdirectiveInject(MenuService), ɵɵdirectiveInject(ALAIN_I18N_TOKEN, 8), ɵɵdirectiveInject(TitleService, 8), ɵɵdirectiveInject(ReuseTabService, 8), ɵɵdirectiveInject(ChangeDetectorRef), ɵɵdirectiveInject(AlainConfigService), ɵɵdirectiveInject(Platform), ɵɵdirectiveInject(Directionality, 8)); };
-/** @nocollapse */ PageHeaderComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: PageHeaderComponent, selector: "page-header", inputs: { title: "title", loading: "loading", wide: "wide", home: "home", homeLink: "homeLink", homeI18n: "homeI18n", autoBreadcrumb: "autoBreadcrumb", autoTitle: "autoTitle", syncTitle: "syncTitle", fixed: "fixed", fixedOffsetTop: "fixedOffsetTop", breadcrumb: "breadcrumb", recursiveBreadcrumb: "recursiveBreadcrumb", logo: "logo", action: "action", content: "content", extra: "extra", tab: "tab" }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], emitDistinctChangesOnly: false, descendants: true }, { propertyName: "affix", first: true, predicate: ["affix"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["pageHeader"], usesOnChanges: true, ngImport: i0, template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\" [class.page-header-rtl]=\"dir === 'rtl'\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n", directives: [{ type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: NzAffixComponent, selector: "nz-affix", inputs: ["nzTarget", "nzOffsetTop", "nzOffsetBottom"], outputs: ["nzChange"], exportAs: ["nzAffix"] }, { type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { type: NzBreadCrumbComponent, selector: "nz-breadcrumb", inputs: ["nzAutoGenerate", "nzSeparator", "nzRouteLabel", "nzRouteLabelFn"], exportAs: ["nzBreadcrumb"] }, { type: NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: NzBreadCrumbItemComponent, selector: "nz-breadcrumb-item", inputs: ["nzOverlay"], exportAs: ["nzBreadcrumbItem"] }, { type: RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
+PageHeaderComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'page-header',
+                exportAs: 'pageHeader',
+                template: "<nz-affix #affix *ngIf=\"isBrowser && fixed; else phTpl\" [nzOffsetTop]=\"fixedOffsetTop\">\n  <ng-template [ngTemplateOutlet]=\"phTpl\"></ng-template>\n</nz-affix>\n<ng-template #phTpl>\n  <div class=\"page-header\" [class.page-header-rtl]=\"dir === 'rtl'\">\n    <div [ngClass]=\"{ 'page-header__wide': wide }\">\n      <nz-skeleton [nzLoading]=\"loading\" [nzTitle]=\"false\" [nzActive]=\"true\" [nzParagraph]=\"{ rows: 3 }\" [nzAvatar]=\"{ size: 'large', shape: 'circle' }\">\n        <ng-container *ngIf=\"!breadcrumb; else breadcrumb\">\n          <nz-breadcrumb *ngIf=\"paths && paths.length > 0\">\n            <nz-breadcrumb-item *ngFor=\"let i of paths\">\n              <ng-container *ngIf=\"i.link\">\n                <a [routerLink]=\"i.link\">{{ i.title }}</a>\n              </ng-container>\n              <ng-container *ngIf=\"!i.link\">{{ i.title }}</ng-container>\n            </nz-breadcrumb-item>\n          </nz-breadcrumb>\n        </ng-container>\n        <div class=\"page-header__detail\">\n          <div *ngIf=\"logo\" class=\"page-header__logo\">\n            <ng-template [ngTemplateOutlet]=\"logo\"></ng-template>\n          </div>\n          <div class=\"page-header__main\">\n            <div class=\"page-header__row\">\n              <h1 *ngIf=\"_titleVal || _titleTpl\" class=\"page-header__title\">\n                <ng-container *ngIf=\"_titleVal; else _titleTpl\">{{ _titleVal }}</ng-container>\n              </h1>\n              <div *ngIf=\"action\" class=\"page-header__action\">\n                <ng-template [ngTemplateOutlet]=\"action\"></ng-template>\n              </div>\n            </div>\n            <div class=\"page-header__row\">\n              <div class=\"page-header__desc\" (cdkObserveContent)=\"checkContent()\" #conTpl>\n                <ng-content></ng-content>\n                <ng-template [ngTemplateOutlet]=\"content\"></ng-template>\n              </div>\n              <div *ngIf=\"extra\" class=\"page-header__extra\">\n                <ng-template [ngTemplateOutlet]=\"extra\"></ng-template>\n              </div>\n            </div>\n          </div>\n        </div>\n        <ng-template [ngTemplateOutlet]=\"tab\"></ng-template>\n      </nz-skeleton>\n    </div>\n  </div>\n</ng-template>\n",
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+/** @nocollapse */
+PageHeaderComponent.ctorParameters = () => [
+    { type: SettingsService },
+    { type: Renderer2 },
+    { type: Router },
+    { type: MenuService },
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
+    { type: TitleService, decorators: [{ type: Optional }, { type: Inject, args: [TitleService,] }] },
+    { type: ReuseTabService, decorators: [{ type: Optional }, { type: Inject, args: [ReuseTabService,] }] },
+    { type: ChangeDetectorRef },
+    { type: AlainConfigService },
+    { type: Platform },
+    { type: Directionality, decorators: [{ type: Optional }] }
+];
+PageHeaderComponent.propDecorators = {
+    conTpl: [{ type: ViewChild, args: ['conTpl', { static: false },] }],
+    affix: [{ type: ViewChild, args: ['affix', { static: false },] }],
+    title: [{ type: Input }],
+    loading: [{ type: Input }],
+    wide: [{ type: Input }],
+    home: [{ type: Input }],
+    homeLink: [{ type: Input }],
+    homeI18n: [{ type: Input }],
+    autoBreadcrumb: [{ type: Input }],
+    autoTitle: [{ type: Input }],
+    syncTitle: [{ type: Input }],
+    fixed: [{ type: Input }],
+    fixedOffsetTop: [{ type: Input }],
+    breadcrumb: [{ type: Input }],
+    recursiveBreadcrumb: [{ type: Input }],
+    logo: [{ type: Input }],
+    action: [{ type: Input }],
+    content: [{ type: Input }],
+    extra: [{ type: Input }],
+    tab: [{ type: Input }]
+};
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
@@ -177,94 +313,155 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(PageHeaderComponent, [{
-        type: Component,
-        args: [{
-                selector: 'page-header',
-                exportAs: 'pageHeader',
-                templateUrl: './page-header.component.html',
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-            }]
-    }], function () { return [{ type: SettingsService }, { type: Renderer2 }, { type: Router }, { type: MenuService }, { type: undefined, decorators: [{
-                type: Optional
-            }, {
-                type: Inject,
-                args: [ALAIN_I18N_TOKEN]
-            }] }, { type: TitleService, decorators: [{
-                type: Optional
-            }, {
-                type: Inject,
-                args: [TitleService]
-            }] }, { type: ReuseTabService, decorators: [{
-                type: Optional
-            }, {
-                type: Inject,
-                args: [ReuseTabService]
-            }] }, { type: ChangeDetectorRef }, { type: AlainConfigService }, { type: Platform }, { type: Directionality, decorators: [{
-                type: Optional
-            }] }]; }, { conTpl: [{
-            type: ViewChild,
-            args: ['conTpl', { static: false }]
-        }], affix: [{
-            type: ViewChild,
-            args: ['affix', { static: false }]
-        }], title: [{
-            type: Input
-        }], loading: [{
-            type: Input
-        }], wide: [{
-            type: Input
-        }], home: [{
-            type: Input
-        }], homeLink: [{
-            type: Input
-        }], homeI18n: [{
-            type: Input
-        }], autoBreadcrumb: [{
-            type: Input
-        }], autoTitle: [{
-            type: Input
-        }], syncTitle: [{
-            type: Input
-        }], fixed: [{
-            type: Input
-        }], fixedOffsetTop: [{
-            type: Input
-        }], breadcrumb: [{
-            type: Input
-        }], recursiveBreadcrumb: [{
-            type: Input
-        }], logo: [{
-            type: Input
-        }], action: [{
-            type: Input
-        }], content: [{
-            type: Input
-        }], extra: [{
-            type: Input
-        }], tab: [{
-            type: Input
-        }] }); })();
+if (false) {
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_loading;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_wide;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_autoBreadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_autoTitle;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_syncTitle;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_fixed;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
+    /** @type {?} */
+    PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.destroy$;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.conTpl;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.affix;
+    /** @type {?} */
+    PageHeaderComponent.prototype.inited;
+    /** @type {?} */
+    PageHeaderComponent.prototype.isBrowser;
+    /** @type {?} */
+    PageHeaderComponent.prototype.dir;
+    /** @type {?} */
+    PageHeaderComponent.prototype._titleVal;
+    /** @type {?} */
+    PageHeaderComponent.prototype.paths;
+    /** @type {?} */
+    PageHeaderComponent.prototype._title;
+    /** @type {?} */
+    PageHeaderComponent.prototype._titleTpl;
+    /** @type {?} */
+    PageHeaderComponent.prototype.loading;
+    /** @type {?} */
+    PageHeaderComponent.prototype.wide;
+    /** @type {?} */
+    PageHeaderComponent.prototype.home;
+    /** @type {?} */
+    PageHeaderComponent.prototype.homeLink;
+    /** @type {?} */
+    PageHeaderComponent.prototype.homeI18n;
+    /** @type {?} */
+    PageHeaderComponent.prototype.autoBreadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.autoTitle;
+    /** @type {?} */
+    PageHeaderComponent.prototype.syncTitle;
+    /** @type {?} */
+    PageHeaderComponent.prototype.fixed;
+    /** @type {?} */
+    PageHeaderComponent.prototype.fixedOffsetTop;
+    /** @type {?} */
+    PageHeaderComponent.prototype.breadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.recursiveBreadcrumb;
+    /** @type {?} */
+    PageHeaderComponent.prototype.logo;
+    /** @type {?} */
+    PageHeaderComponent.prototype.action;
+    /** @type {?} */
+    PageHeaderComponent.prototype.content;
+    /** @type {?} */
+    PageHeaderComponent.prototype.extra;
+    /** @type {?} */
+    PageHeaderComponent.prototype.tab;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.renderer;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.router;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.menuSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.i18nSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.titleSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.reuseSrv;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.cdr;
+    /**
+     * @type {?}
+     * @private
+     */
+    PageHeaderComponent.prototype.directionality;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: page-header.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [PageHeaderComponent];
 class PageHeaderModule {
 }
-/** @nocollapse */ PageHeaderModule.ɵmod = ɵɵdefineNgModule({ type: PageHeaderModule });
-/** @nocollapse */ PageHeaderModule.ɵinj = ɵɵdefineInjector({ factory: function PageHeaderModule_Factory(t) { return new (t || PageHeaderModule)(); }, imports: [[CommonModule, RouterModule, ObserversModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(PageHeaderModule, { declarations: [PageHeaderComponent], imports: [CommonModule, RouterModule, ObserversModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule], exports: [PageHeaderComponent] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(PageHeaderModule, [{
-        type: NgModule,
-        args: [{
+PageHeaderModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, ObserversModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: pageHeader.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { PageHeaderComponent, PageHeaderModule };

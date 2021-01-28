@@ -4,7 +4,6 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFMentionWidgetSchema } from './schema';
-import * as i0 from "@angular/core";
 export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> implements OnInit {
     private mentionChild;
     data: SFSchemaEnum[];
@@ -14,6 +13,4 @@ export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema
     reset(_value: SFValue): void;
     _select(options: any): void;
     _search(option: MentionOnSearchTypes): void;
-    static ɵfac: i0.ɵɵFactoryDef<MentionWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<MentionWidget, "sf-mention", never, {}, {}, never, never>;
 }

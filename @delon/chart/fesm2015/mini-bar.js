@@ -1,10 +1,35 @@
 import { __decorate, __metadata } from 'tslib';
-import * as i0 from '@angular/core';
-import { EventEmitter, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵɵgetInheritedFactory, ɵsetClassMetadata, Component, Input, Output, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-bar.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function G2MiniBarData() { }
+if (false) {
+    /** @type {?} */
+    G2MiniBarData.prototype.x;
+    /** @type {?} */
+    G2MiniBarData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function G2MiniBarClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.item;
+    /** @type {?} */
+    G2MiniBarClickItem.prototype.ev;
+}
 class G2MiniBarComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -19,9 +44,13 @@ class G2MiniBarComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
+    /**
+     * @return {?}
+     */
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
-        const chart = (this._chart = new window.G2.Chart({
+        /** @type {?} */
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -38,6 +67,7 @@ class G2MiniBarComponent extends G2BaseComponent {
         });
         chart.legend(false);
         chart.axis(false);
+        /** @type {?} */
         const tooltipOption = {
             showTitle: false,
             showMarkers: true,
@@ -51,7 +81,7 @@ class G2MiniBarComponent extends G2BaseComponent {
         };
         if (tooltipType === 'mini') {
             tooltipOption.position = 'top';
-            tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
             tooltipOption.itemTpl = `<li>{value}</li>`;
             tooltipOption.offset = 0;
         }
@@ -59,13 +89,28 @@ class G2MiniBarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('x*y')
-            .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }));
-        chart.on(`interval:click`, (ev) => {
-            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
-        });
+            .tooltip('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        (x, y) => ({ name: x, value: y + yTooltipSuffix })));
+        chart.on(`interval:click`, (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        (ev) => {
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
+        }));
         chart.render();
         this.attachChart();
     }
+    /**
+     * @return {?}
+     */
     attachChart() {
         const { _chart, height, padding, data, color, borderWidth } = this;
         if (!_chart || !data || data.length <= 0)
@@ -77,20 +122,8 @@ class G2MiniBarComponent extends G2BaseComponent {
         _chart.render();
     }
 }
-/** @nocollapse */ G2MiniBarComponent.ɵfac = function G2MiniBarComponent_Factory(t) { return ɵG2MiniBarComponent_BaseFactory(t || G2MiniBarComponent); };
-/** @nocollapse */ G2MiniBarComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: G2MiniBarComponent, selector: "g2-mini-bar", inputs: { color: "color", height: "height", borderWidth: "borderWidth", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2MiniBarComponent.prototype, "height", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], G2MiniBarComponent.prototype, "borderWidth", void 0);
-const ɵG2MiniBarComponent_BaseFactory = /*@__PURE__*/ ɵɵgetInheritedFactory(G2MiniBarComponent);
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2MiniBarComponent, [{
-        type: Component,
-        args: [{
+G2MiniBarComponent.decorators = [
+    { type: Component, args: [{
                 selector: 'g2-mini-bar',
                 exportAs: 'g2MiniBar',
                 template: ``,
@@ -99,43 +132,77 @@ const ɵG2MiniBarComponent_BaseFactory = /*@__PURE__*/ ɵɵgetInheritedFactory(G
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-            }]
-    }], null, { color: [{
-            type: Input
-        }], height: [{
-            type: Input
-        }], borderWidth: [{
-            type: Input
-        }], padding: [{
-            type: Input
-        }], data: [{
-            type: Input
-        }], yTooltipSuffix: [{
-            type: Input
-        }], tooltipType: [{
-            type: Input
-        }], clickItem: [{
-            type: Output
-        }] }); })();
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+G2MiniBarComponent.propDecorators = {
+    color: [{ type: Input }],
+    height: [{ type: Input }],
+    borderWidth: [{ type: Input }],
+    padding: [{ type: Input }],
+    data: [{ type: Input }],
+    yTooltipSuffix: [{ type: Input }],
+    tooltipType: [{ type: Input }],
+    clickItem: [{ type: Output }]
+};
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniBarComponent.prototype, "height", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], G2MiniBarComponent.prototype, "borderWidth", void 0);
+if (false) {
+    /** @type {?} */
+    G2MiniBarComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2MiniBarComponent.ngAcceptInputType_borderWidth;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.color;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.height;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.borderWidth;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.padding;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.data;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.yTooltipSuffix;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.tooltipType;
+    /** @type {?} */
+    G2MiniBarComponent.prototype.clickItem;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-bar.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [G2MiniBarComponent];
 class G2MiniBarModule {
 }
-/** @nocollapse */ G2MiniBarModule.ɵmod = ɵɵdefineNgModule({ type: G2MiniBarModule });
-/** @nocollapse */ G2MiniBarModule.ɵinj = ɵɵdefineInjector({ factory: function G2MiniBarModule_Factory(t) { return new (t || G2MiniBarModule)(); }, imports: [[CommonModule, DelonUtilModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(G2MiniBarModule, { declarations: [G2MiniBarComponent], imports: [CommonModule, DelonUtilModule], exports: [G2MiniBarComponent] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2MiniBarModule, [{
-        type: NgModule,
-        args: [{
+G2MiniBarModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-bar.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2MiniBarComponent, G2MiniBarModule };

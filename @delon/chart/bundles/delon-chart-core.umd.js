@@ -4,34 +4,21 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/cdk/platform')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/cdk/platform'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.rxjs, global.i1, global.rxjs.operators, global.ng.cdk.platform));
-}(this, (function (exports, i0, rxjs, i1, operators, i2) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/cdk/platform'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util', 'rxjs', '@angular/cdk/platform', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.rxjs, global.ng.cdk.platform, global.rxjs.operators));
+}(this, (function (exports, i0, i1, rxjs, platform, operators) { 'use strict';
 
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
-
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: g2.servicce.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var G2Service = /** @class */ (function () {
+        /**
+         * @param {?} cogSrv
+         * @param {?} lazySrv
+         */
         function G2Service(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
             this.lazySrv = lazySrv;
@@ -41,56 +28,109 @@
             this.cog = { theme: '' };
         }
         Object.defineProperty(G2Service.prototype, "cog", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._cog;
             },
+            /**
+             * @param {?} val
+             * @return {?}
+             */
             set: function (val) {
-                this._cog = this.cogSrv.merge('chart', {
+                this._cog = ( /** @type {?} */(this.cogSrv.merge('chart', ( /** @type {?} */({
                     theme: '',
                     libs: [
                         'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.4/dist/g2.min.js',
                         'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.7/dist/data-set.js',
                     ],
-                }, val);
+                })), val)));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         G2Service.prototype.libLoad = function () {
             var _this = this;
-            if (this.loading) {
-                if (this.loaded) {
-                    this.notify$.next();
+            if (( /** @type {?} */(this)).loading) {
+                if (( /** @type {?} */(this)).loaded) {
+                    ( /** @type {?} */(this)).notify$.next();
                 }
-                return this;
+                return ( /** @type {?} */(this));
             }
-            this.loading = true;
-            this.lazySrv.load(this.cog.libs).then(function () {
-                _this.loaded = true;
-                _this.notify$.next();
-            });
-            return this;
+            ( /** @type {?} */(this)).loading = true;
+            ( /** @type {?} */(this)).lazySrv.load(( /** @type {?} */(( /** @type {?} */(this)).cog.libs))).then(( /**
+             * @return {?}
+             */function () {
+                ( /** @type {?} */(_this)).loaded = true;
+                ( /** @type {?} */(_this)).notify$.next();
+            }));
+            return ( /** @type {?} */(this));
         };
         Object.defineProperty(G2Service.prototype, "notify", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.notify$.asObservable();
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         G2Service.prototype.ngOnDestroy = function () {
             this.notify$.unsubscribe();
         };
         return G2Service;
     }());
-    /** @nocollapse */ G2Service.ɵfac = function G2Service_Factory(t) { return new (t || G2Service)(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); };
-    /** @nocollapse */ G2Service.ɵprov = i0.ɵɵdefineInjectable({ token: G2Service, factory: G2Service.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2Service, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1.AlainConfigService }, { type: i1.LazyService }]; }, null);
-    })();
+    G2Service.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    G2Service.ctorParameters = function () { return [
+        { type: i1.AlainConfigService },
+        { type: i1.LazyService }
+    ]; };
+    /** @nocollapse */ G2Service.ɵprov = i0.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); }, token: G2Service, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype._cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype.loading;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype.loaded;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype.notify$;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype.cogSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2Service.prototype.lazySrv;
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -401,7 +441,22 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: g2.base.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @abstract
+     */
     var G2BaseComponent = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         * @param {?} el
+         * @param {?} ngZone
+         * @param {?} platform
+         * @param {?} cdr
+         */
         function G2BaseComponent(srv, el, ngZone, platform, cdr) {
             var _this = this;
             this.srv = srv;
@@ -412,45 +467,79 @@
             this.destroy$ = new rxjs.Subject();
             this.loaded = false;
             this.delay = 0;
-            this.theme = srv.cog.theme;
+            this.theme = ( /** @type {?} */(srv.cog.theme));
             this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(function () { return !_this.loaded; }))
-                .subscribe(function () { return _this.load(); });
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
+         * @return {?}
+         */function () { return !_this.loaded; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.load(); }));
         }
         Object.defineProperty(G2BaseComponent.prototype, "chart", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._chart;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         G2BaseComponent.prototype.onInit = function () { };
+        /**
+         * @return {?}
+         */
         G2BaseComponent.prototype.onChanges = function () { };
+        /**
+         * @private
+         * @return {?}
+         */
         G2BaseComponent.prototype.load = function () {
             var _this = this;
-            this.ngZone.run(function () {
+            this.ngZone.run(( /**
+             * @return {?}
+             */function () {
                 _this.loaded = true;
                 _this.cdr.detectChanges();
-            });
-            this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+            }));
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return setTimeout(( /**
+             * @return {?}
+             */function () { return _this.install(); }), _this.delay); }));
         };
+        /**
+         * @return {?}
+         */
         G2BaseComponent.prototype.ngOnInit = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
             this.onInit();
-            if (window.G2) {
+            if ((( /** @type {?} */(window))).G2) {
                 this.load();
             }
             else {
                 this.srv.libLoad();
             }
         };
+        /**
+         * @return {?}
+         */
         G2BaseComponent.prototype.ngOnChanges = function () {
             var _this = this;
             this.onChanges();
-            this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+            this.ngZone.runOutsideAngular(( /**
+             * @return {?}
+             */function () { return _this.attachChart(); }));
         };
+        /**
+         * @return {?}
+         */
         G2BaseComponent.prototype.ngOnDestroy = function () {
             var _this = this;
             if (this.resize$) {
@@ -459,32 +548,103 @@
             this.destroy$.next();
             this.destroy$.complete();
             if (this._chart) {
-                this.ngZone.runOutsideAngular(function () { return _this._chart.destroy(); });
+                this.ngZone.runOutsideAngular(( /**
+                 * @return {?}
+                 */function () { return _this._chart.destroy(); }));
             }
         };
         return G2BaseComponent;
     }());
-    /** @nocollapse */ G2BaseComponent.ɵfac = function G2BaseComponent_Factory(t) { return new (t || G2BaseComponent)(i0.ɵɵdirectiveInject(G2Service), i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.NgZone), i0.ɵɵdirectiveInject(i2.Platform), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-    /** @nocollapse */ G2BaseComponent.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: G2BaseComponent, inputs: { delay: "delay", theme: "theme" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], emitDistinctChangesOnly: false, descendants: true, static: true }], usesOnChanges: true, ngImport: i0__namespace });
+    G2BaseComponent.decorators = [
+        { type: i0.Directive }
+    ];
+    /** @nocollapse */
+    G2BaseComponent.ctorParameters = function () { return [
+        { type: G2Service },
+        { type: i0.ElementRef },
+        { type: i0.NgZone },
+        { type: platform.Platform },
+        { type: i0.ChangeDetectorRef }
+    ]; };
+    G2BaseComponent.propDecorators = {
+        node: [{ type: i0.ViewChild, args: ['container', { static: true },] }],
+        delay: [{ type: i0.Input }],
+        theme: [{ type: i0.Input }]
+    };
     __decorate([
         i1.InputNumber(),
         __metadata("design:type", Object)
     ], G2BaseComponent.prototype, "delay", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2BaseComponent, [{
-                type: i0.Directive
-            }], function () { return [{ type: G2Service }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: i2.Platform }, { type: i0.ChangeDetectorRef }]; }, { node: [{
-                    type: i0.ViewChild,
-                    args: ['container', { static: true }]
-                }], delay: [{
-                    type: i0.Input
-                }], theme: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        G2BaseComponent.ngAcceptInputType_delay;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.node;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.resize$;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype._chart;
+        /** @type {?} */
+        G2BaseComponent.prototype.loaded;
+        /** @type {?} */
+        G2BaseComponent.prototype.delay;
+        /** @type {?} */
+        G2BaseComponent.prototype.theme;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.srv;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.el;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.ngZone;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.platform;
+        /**
+         * @type {?}
+         * @protected
+         */
+        G2BaseComponent.prototype.cdr;
+        /**
+         * @abstract
+         * @return {?}
+         */
+        G2BaseComponent.prototype.install = function () { };
+        /**
+         * @abstract
+         * @return {?}
+         */
+        G2BaseComponent.prototype.attachChart = function () { };
+    }
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: delon-chart-core.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2BaseComponent = G2BaseComponent;

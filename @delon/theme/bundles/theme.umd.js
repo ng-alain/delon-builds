@@ -4,43 +4,71 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/common'), require('@angular/cdk/platform'), require('@delon/util'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/router'), require('@angular/platform-browser'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/common', '@angular/cdk/platform', '@delon/util', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/router', '@angular/platform-browser', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.common, global.ng.cdk.platform, global.delon.util, global.ng.cdk.bidi, global.i3, global.ng.router, global.ng.platformBrowser, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, rxjs, operators, i1, common, i1$1, i1$2, i1$3, i3, router, i1$4, i1$5, i1$6, i1$7, format, formatDistanceToNow, i1$8, overlay, icons, i1$9) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, i1$4, i1$5, i1$6, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
     var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
     var formatDistanceToNow__default = /*#__PURE__*/_interopDefaultLegacy(formatDistanceToNow);
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/win_tokens.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
     function WINDOW_FACTORY() {
         return typeof window === 'object' && !!window ? window : null;
     }
+    /** @type {?} */
     var WINDOW = new i0.InjectionToken('Window', {
         providedIn: 'root',
         factory: WINDOW_FACTORY,
     });
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/preloader/preloader.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
     function preloaderFinished() {
-        var body = document.querySelector('body');
-        var preloader = document.querySelector('.preloader');
+        /** @type {?} */
+        var body = ( /** @type {?} */(document.querySelector('body')));
+        /** @type {?} */
+        var preloader = ( /** @type {?} */(document.querySelector('.preloader')));
         body.style.overflow = 'hidden';
+        /**
+         * @return {?}
+         */
         function remove() {
             // preloader value null when running --hmr
             if (!preloader)
                 return;
-            preloader.addEventListener('transitionend', function () {
+            preloader.addEventListener('transitionend', ( /**
+             * @return {?}
+             */function () {
                 preloader.className = 'preloader-hidden';
-            });
+            }));
             preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
         }
-        window.appBootstrap = function () {
-            setTimeout(function () {
+        (( /** @type {?} */(window))).appBootstrap = ( /**
+         * @return {?}
+         */function () {
+            setTimeout(( /**
+             * @return {?}
+             */function () {
                 remove();
                 body.style.overflow = '';
-            }, 100);
-        };
+            }), 100);
+        });
     }
 
     /*! *****************************************************************************
@@ -352,10 +380,53 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/i18n/i18n.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function AlainI18NService() { }
+    if (false) {
+        /**
+         * 调用 `use` 触发变更通知
+         * @type {?}
+         */
+        AlainI18NService.prototype.change;
+        /* Skipping unhandled member: [key: string]: any;*/
+        /**
+         * 变更语言
+         * @param {?} lang 语言代码
+         * @param {?=} emit 是否触发 `change`，默认：true
+         * @return {?}
+         */
+        AlainI18NService.prototype.use = function (lang, emit) { };
+        /**
+         * 返回当前语言列表
+         * @return {?}
+         */
+        AlainI18NService.prototype.getLangs = function () { };
+        /**
+         * 翻译
+         * - `params` 模板所需要的参数对象
+         * - `isSafe` 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`
+         * @param {?} key
+         * @param {?=} params
+         * @param {?=} isSafe
+         * @return {?}
+         */
+        AlainI18NService.prototype.fanyi = function (key, params, isSafe) { };
+    }
+    /** @type {?} */
     var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainTranslatorToken', {
         providedIn: 'root',
         factory: ALAIN_I18N_TOKEN_FACTORY,
     });
+    /**
+     * @return {?}
+     */
     function ALAIN_I18N_TOKEN_FACTORY() {
         return new AlainI18NServiceFake();
     }
@@ -364,53 +435,96 @@
             this.change$ = new rxjs.BehaviorSubject(null);
         }
         Object.defineProperty(AlainI18NServiceFake.prototype, "change", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.change$.asObservable().pipe(operators.filter(function (w) { return w != null; }));
+                return ( /** @type {?} */(this.change$.asObservable().pipe(operators.filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w != null; })))));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} lang
+         * @return {?}
+         */
         AlainI18NServiceFake.prototype.use = function (lang) {
             this.change$.next(lang);
         };
+        /**
+         * @return {?}
+         */
         AlainI18NServiceFake.prototype.getLangs = function () {
             return [];
         };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         AlainI18NServiceFake.prototype.fanyi = function (key) {
             return key;
         };
         return AlainI18NServiceFake;
     }());
-    /** @nocollapse */ AlainI18NServiceFake.ɵfac = function AlainI18NServiceFake_Factory(t) { return new (t || AlainI18NServiceFake)(); };
-    /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ token: AlainI18NServiceFake, factory: AlainI18NServiceFake.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AlainI18NServiceFake, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], null, null);
-    })();
+    AlainI18NServiceFake.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        AlainI18NServiceFake.prototype.change$;
+    }
 
     /**
      * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
      */
     var MenuService = /** @class */ (function () {
+        /**
+         * @param {?} i18nSrv
+         * @param {?} aclService
+         */
         function MenuService(i18nSrv, aclService) {
             var _this = this;
             this.i18nSrv = i18nSrv;
             this.aclService = aclService;
             this._change$ = new rxjs.BehaviorSubject([]);
             this.data = [];
-            this.i18n$ = this.i18nSrv.change.subscribe(function () { return _this.resume(); });
+            this.i18n$ = this.i18nSrv.change.subscribe(( /**
+             * @return {?}
+             */function () { return _this.resume(); }));
         }
         Object.defineProperty(MenuService.prototype, "change", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._change$.pipe(operators.share());
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} data
+         * @param {?} callback
+         * @return {?}
+         */
         MenuService.prototype.visit = function (data, callback) {
-            var inFn = function (list, parentMenu, depth) {
+            /** @type {?} */
+            var inFn = ( /**
+             * @param {?} list
+             * @param {?} parentMenu
+             * @param {?} depth
+             * @return {?}
+             */function (list, parentMenu, depth) {
                 var e_1, _a;
                 try {
                     for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
@@ -431,13 +545,22 @@
                     }
                     finally { if (e_1) throw e_1.error; }
                 }
-            };
+            });
             inFn(data, null, 0);
         };
+        /**
+         * @param {?} items
+         * @return {?}
+         */
         MenuService.prototype.add = function (items) {
             this.data = items;
             this.resume();
         };
+        /**
+         * @private
+         * @param {?} item
+         * @return {?}
+         */
         MenuService.prototype.fixItem = function (item) {
             item._aclResult = true;
             if (!item.link)
@@ -458,7 +581,9 @@
             }
             // icon
             if (typeof item.icon === 'string') {
+                /** @type {?} */
                 var type = 'class';
+                /** @type {?} */
                 var value = item.icon;
                 // compatible `anticon anticon-user`
                 if (~item.icon.indexOf("anticon-")) {
@@ -468,10 +593,10 @@
                 else if (/^https?:\/\//.test(item.icon)) {
                     type = 'img';
                 }
-                item.icon = { type: type, value: value };
+                item.icon = ( /** @type {?} */({ type: type, value: value }));
             }
             if (item.icon != null) {
-                item.icon = Object.assign({ theme: 'outline', spin: false }, item.icon);
+                item.icon = Object.assign({ theme: 'outline', spin: false }, (( /** @type {?} */(item.icon))));
             }
             item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
             // group
@@ -485,12 +610,21 @@
         };
         /**
          * 重置菜单，可能I18N、用户权限变动时需要调用刷新
+         * @param {?=} callback
+         * @return {?}
          */
         MenuService.prototype.resume = function (callback) {
             var _this = this;
+            /** @type {?} */
             var i = 1;
+            /** @type {?} */
             var shortcuts = [];
-            this.visit(this.data, function (item, parent, depth) {
+            this.visit(this.data, ( /**
+             * @param {?} item
+             * @param {?} parent
+             * @param {?} depth
+             * @return {?}
+             */function (item, parent, depth) {
                 item._id = i++;
                 item._parent = parent;
                 item._depth = depth;
@@ -501,7 +635,7 @@
                 }
                 if (callback)
                     callback(item, parent, depth);
-            });
+            }));
             this.loadShortcut(shortcuts);
             this._change$.next(this.data);
         };
@@ -511,41 +645,69 @@
          *      1、若 children 存在 【shortcutRoot: true】则最优先【推荐】这种方式
          *      2、否则查找带有【dashboard】字样链接，若存在则在此菜单的下方创建快捷入口
          *      3、否则放在0节点位置
+         * @private
+         * @param {?} shortcuts
+         * @return {?}
          */
         MenuService.prototype.loadShortcut = function (shortcuts) {
             if (shortcuts.length === 0 || this.data.length === 0) {
                 return;
             }
-            var ls = this.data[0].children;
-            var pos = ls.findIndex(function (w) { return w.shortcutRoot === true; });
+            /** @type {?} */
+            var ls = ( /** @type {?} */(this.data[0].children));
+            /** @type {?} */
+            var pos = ls.findIndex(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.shortcutRoot === true; }));
             if (pos === -1) {
-                pos = ls.findIndex(function (w) { return w.link.includes('dashboard'); });
+                pos = ls.findIndex(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return ( /** @type {?} */(w.link)).includes('dashboard'); }));
                 pos = (pos !== -1 ? pos : -1) + 1;
-                var shortcutMenu = {
+                /** @type {?} */
+                var shortcutMenu = ( /** @type {?} */({
                     text: '快捷菜单',
                     i18n: 'shortcut',
                     icon: 'icon-rocket',
                     children: [],
-                };
-                this.data[0].children.splice(pos, 0, shortcutMenu);
+                }));
+                ( /** @type {?} */(this.data[0].children)).splice(pos, 0, shortcutMenu);
             }
-            var _data = this.data[0].children[pos];
+            /** @type {?} */
+            var _data = ( /** @type {?} */(this.data[0].children))[pos];
             if (_data.i18n && this.i18nSrv)
                 _data.text = this.i18nSrv.fanyi(_data.i18n);
             // tslint:disable-next-line:prefer-object-spread
-            _data = Object.assign(_data, {
+            _data = Object.assign(_data, ( /** @type {?} */({
                 shortcutRoot: true,
                 _id: -1,
                 _parent: null,
                 _depth: 1,
-            });
-            _data.children = shortcuts.map(function (i) {
+            })));
+            _data.children = shortcuts.map(( /**
+             * @param {?} i
+             * @return {?}
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) {
                 i._depth = 2;
                 i._parent = _data;
                 return i;
-            });
+            }));
         };
         Object.defineProperty(MenuService.prototype, "menus", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.data;
             },
@@ -554,24 +716,39 @@
         });
         /**
          * 清空菜单
+         * @return {?}
          */
         MenuService.prototype.clear = function () {
             this.data = [];
             this._change$.next(this.data);
         };
+        /**
+         * @param {?} data
+         * @param {?} url
+         * @param {?=} recursive
+         * @param {?=} cb
+         * @return {?}
+         */
         MenuService.prototype.getHit = function (data, url, recursive, cb) {
             if (recursive === void 0) { recursive = false; }
             if (cb === void 0) { cb = null; }
+            /** @type {?} */
             var item = null;
             while (!item && url) {
-                this.visit(data, function (i) {
+                this.visit(data, ( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) {
                     if (cb) {
                         cb(i);
                     }
                     if (i.link != null && i.link === url) {
                         item = i;
                     }
-                });
+                }));
                 if (!recursive)
                     break;
                 if (/[?;]/g.test(url)) {
@@ -587,112 +764,185 @@
          * 根据URL设置菜单 `_open` 属性
          * - 若 `recursive: true` 则会自动向上递归查找
          *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+         * @param {?} url
+         * @param {?=} recursive
+         * @return {?}
          */
         MenuService.prototype.openedByUrl = function (url, recursive) {
             if (recursive === void 0) { recursive = false; }
             if (!url)
                 return;
-            var findItem = this.getHit(this.data, url, recursive, function (i) {
+            /** @type {?} */
+            var findItem = ( /** @type {?} */(this.getHit(this.data, url, recursive, ( /**
+             * @param {?} i
+             * @return {?}
+             */function (i) {
                 i._selected = false;
                 i._open = false;
-            });
+            }))));
             if (findItem == null)
                 return;
             do {
                 findItem._selected = true;
                 findItem._open = true;
-                findItem = findItem._parent;
+                findItem = ( /** @type {?} */(findItem._parent));
             } while (findItem);
         };
         /**
          * 根据url获取菜单列表
          * - 若 `recursive: true` 则会自动向上递归查找
          *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+         * @param {?} url
+         * @param {?=} recursive
+         * @return {?}
          */
         MenuService.prototype.getPathByUrl = function (url, recursive) {
             if (recursive === void 0) { recursive = false; }
+            /** @type {?} */
             var ret = [];
-            var item = this.getHit(this.data, url, recursive);
+            /** @type {?} */
+            var item = ( /** @type {?} */(this.getHit(this.data, url, recursive)));
             if (!item)
                 return ret;
             do {
                 ret.splice(0, 0, item);
-                item = item._parent;
+                item = ( /** @type {?} */(item._parent));
             } while (item);
             return ret;
         };
         /**
          * Get menu based on `key`
+         * @param {?} key
+         * @return {?}
          */
         MenuService.prototype.getItem = function (key) {
+            /** @type {?} */
             var res = null;
-            this.visit(this.data, function (item) {
+            this.visit(this.data, ( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) {
                 if (res == null && item.key === key) {
                     res = item;
                 }
-            });
+            }));
             return res;
         };
         /**
          * Set menu based on `key`
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
          */
         MenuService.prototype.setItem = function (key, value) {
+            /** @type {?} */
             var item = this.getItem(key);
             if (item == null)
                 return;
-            Object.keys(value).forEach(function (k) {
+            Object.keys(value).forEach(( /**
+             * @param {?} k
+             * @return {?}
+             */function (/**
+             * @param {?} k
+             * @return {?}
+             */ k) {
                 item[k] = value[k];
-            });
+            }));
             this.fixItem(item);
             this._change$.next(this.data);
         };
+        /**
+         * @return {?}
+         */
         MenuService.prototype.ngOnDestroy = function () {
             this._change$.unsubscribe();
             this.i18n$.unsubscribe();
         };
         return MenuService;
     }());
-    /** @nocollapse */ MenuService.ɵfac = function MenuService_Factory(t) { return new (t || MenuService)(i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.ACLService, 8)); };
-    /** @nocollapse */ MenuService.ɵprov = i0.ɵɵdefineInjectable({ token: MenuService, factory: MenuService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(MenuService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Optional
-                        }, {
-                            type: i0.Inject,
-                            args: [ALAIN_I18N_TOKEN]
-                        }] }, { type: i1.ACLService, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, null);
-    })();
+    MenuService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    MenuService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+        { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
+    ]; };
+    /** @nocollapse */ MenuService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i2.ACLService, 8)); }, token: MenuService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype._change$;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.i18n$;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.data;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.i18nSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        MenuService.prototype.aclService;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/scroll/scroll.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ScrollService = /** @class */ (function () {
+        /**
+         * @param {?} _doc
+         * @param {?} platform
+         */
         function ScrollService(_doc, platform) {
             this._doc = _doc;
             this.platform = platform;
         }
+        /**
+         * @private
+         * @return {?}
+         */
         ScrollService.prototype._getDoc = function () {
             return this._doc || document;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ScrollService.prototype._getWin = function () {
+            /** @type {?} */
             var doc = this._getDoc();
             return doc.defaultView || window;
         };
         /**
          * 获取滚动条位置
-         * @param element 指定元素，默认 `window`
+         * @param {?=} element 指定元素，默认 `window`
+         * @return {?}
          */
         ScrollService.prototype.getScrollPosition = function (element) {
             if (!this.platform.isBrowser) {
                 return [0, 0];
             }
+            /** @type {?} */
             var win = this._getWin();
             if (element && element !== win) {
-                return [element.scrollLeft, element.scrollTop];
+                return [(( /** @type {?} */(element))).scrollLeft, (( /** @type {?} */(element))).scrollTop];
             }
             else {
                 return [win.pageXOffset, win.pageYOffset];
@@ -700,7 +950,9 @@
         };
         /**
          * 设置滚动条位置
-         * @param element 指定元素
+         * @param {?} element 指定元素
+         * @param {?} position
+         * @return {?}
          */
         ScrollService.prototype.scrollToPosition = function (element, position) {
             if (!this.platform.isBrowser) {
@@ -710,8 +962,9 @@
         };
         /**
          * 设置滚动条至指定元素
-         * @param element 指定元素，默认 `document.body`
-         * @param topOffset 偏移值，默认 `0`
+         * @param {?=} element 指定元素，默认 `document.body`
+         * @param {?=} topOffset 偏移值，默认 `0`
+         * @return {?}
          */
         ScrollService.prototype.scrollToElement = function (element, topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
@@ -722,9 +975,10 @@
                 element = this._getDoc().body;
             }
             element.scrollIntoView();
+            /** @type {?} */
             var win = this._getWin();
             if (win && win.scrollBy) {
-                win.scrollBy(0, element.getBoundingClientRect().top - topOffset);
+                win.scrollBy(0, ( /** @type {?} */(element)).getBoundingClientRect().top - topOffset);
                 if (win.pageYOffset < 20) {
                     win.scrollBy(0, -win.pageYOffset);
                 }
@@ -732,7 +986,8 @@
         };
         /**
          * 滚动至顶部
-         * @param topOffset 偏移值，默认 `0`
+         * @param {?=} topOffset 偏移值，默认 `0`
+         * @return {?}
          */
         ScrollService.prototype.scrollToTop = function (topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
@@ -743,24 +998,43 @@
         };
         return ScrollService;
     }());
-    /** @nocollapse */ ScrollService.ɵfac = function ScrollService_Factory(t) { return new (t || ScrollService)(i0.ɵɵinject(common.DOCUMENT), i0.ɵɵinject(i1$1.Platform)); };
-    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ token: ScrollService, factory: ScrollService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ScrollService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }, { type: i1$1.Platform }];
-        }, null);
-    })();
+    ScrollService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ScrollService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
+        { type: i2$1.Platform }
+    ]; };
+    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2$1.Platform)); }, token: ScrollService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype._doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype.platform;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/settings/settings.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var LAYOUT = 'layout';
+    /** @type {?} */
     var USER = 'user';
+    /** @type {?} */
     var APP = 'app';
     var SettingsService = /** @class */ (function () {
+        /**
+         * @param {?} platform
+         */
         function SettingsService(platform) {
             this.platform = platform;
             this.notify$ = new rxjs.Subject();
@@ -768,12 +1042,21 @@
             this._user = null;
             this._layout = null;
         }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         SettingsService.prototype.getData = function (key) {
             if (!this.platform.isBrowser) {
                 return null;
             }
             return JSON.parse(localStorage.getItem(key) || 'null') || null;
         };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
         SettingsService.prototype.setData = function (key, value) {
             if (!this.platform.isBrowser) {
                 return;
@@ -781,45 +1064,62 @@
             localStorage.setItem(key, JSON.stringify(value));
         };
         Object.defineProperty(SettingsService.prototype, "layout", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 if (!this._layout) {
                     this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
                     this.setData(LAYOUT, this._layout);
                 }
-                return this._layout;
+                return ( /** @type {?} */(this._layout));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "app", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 if (!this._app) {
                     this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(APP));
                     this.setData(APP, this._app);
                 }
-                return this._app;
+                return ( /** @type {?} */(this._app));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "user", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 if (!this._user) {
                     this._user = Object.assign({}, this.getData(USER));
                     this.setData(USER, this._user);
                 }
-                return this._user;
+                return ( /** @type {?} */(this._user));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(SettingsService.prototype, "notify", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.notify$.asObservable();
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} name
+         * @param {?=} value
+         * @return {?}
+         */
         SettingsService.prototype.setLayout = function (name, value) {
             if (typeof name === 'string') {
                 this.layout[name] = value;
@@ -828,14 +1128,22 @@
                 this._layout = name;
             }
             this.setData(LAYOUT, this._layout);
-            this.notify$.next({ type: 'layout', name: name, value: value });
+            this.notify$.next(( /** @type {?} */({ type: 'layout', name: name, value: value })));
             return true;
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         SettingsService.prototype.setApp = function (value) {
             this._app = value;
             this.setData(APP, value);
             this.notify$.next({ type: 'app', value: value });
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         SettingsService.prototype.setUser = function (value) {
             this._user = value;
             this.setData(USER, value);
@@ -843,19 +1151,55 @@
         };
         return SettingsService;
     }());
-    /** @nocollapse */ SettingsService.ɵfac = function SettingsService_Factory(t) { return new (t || SettingsService)(i0.ɵɵinject(i1$1.Platform)); };
-    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ token: SettingsService, factory: SettingsService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SettingsService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1$1.Platform }]; }, null);
-    })();
+    SettingsService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    SettingsService.ctorParameters = function () { return [
+        { type: i2$1.Platform }
+    ]; };
+    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform)); }, token: SettingsService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype.notify$;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._app;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._user;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype._layout;
+        /**
+         * @type {?}
+         * @private
+         */
+        SettingsService.prototype.platform;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/responsive/responsive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var REP_MAX = 6;
     var ResponsiveService = /** @class */ (function () {
+        /**
+         * @param {?} cogSrv
+         */
         function ResponsiveService(cogSrv) {
-            this.cog = cogSrv.merge('themeResponsive', {
+            this.cog = ( /** @type {?} */(cogSrv.merge('themeResponsive', {
                 rules: {
                     1: { xs: 24 },
                     2: { xs: 24, sm: 12 },
@@ -864,16 +1208,32 @@
                     5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
                     6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
                 },
-            });
+            })));
             if (Object.keys(this.cog.rules)
-                .map(function (i) { return +i; })
-                .some(function (i) { return i < 1 || i > REP_MAX; })) {
+                .map(( /**
+         * @param {?} i
+         * @return {?}
+         */function (/**
+         * @param {?} i
+         * @return {?}
+         */ i) { return +i; }))
+                .some(( /**
+         * @param {?} i
+         * @return {?}
+         */function (i) { return i < 1 || i > REP_MAX; }))) {
                 throw new Error("[theme] the responseive rule index value range must be 1-" + REP_MAX);
             }
         }
+        /**
+         * @param {?} count
+         * @return {?}
+         */
         ResponsiveService.prototype.genCls = function (count) {
+            /** @type {?} */
             var rule = this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)];
+            /** @type {?} */
             var antColClass = 'ant-col';
+            /** @type {?} */
             var clsMap = [antColClass + "-xs-" + rule.xs];
             if (rule.sm)
                 clsMap.push(antColClass + "-sm-" + rule.sm);
@@ -889,22 +1249,48 @@
         };
         return ResponsiveService;
     }());
-    /** @nocollapse */ ResponsiveService.ɵfac = function ResponsiveService_Factory(t) { return new (t || ResponsiveService)(i0.ɵɵinject(i1$2.AlainConfigService)); };
-    /** @nocollapse */ ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ token: ResponsiveService, factory: ResponsiveService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ResponsiveService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1$2.AlainConfigService }]; }, null);
-    })();
+    ResponsiveService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ResponsiveService.ctorParameters = function () { return [
+        { type: i1$1.AlainConfigService }
+    ]; };
+    /** @nocollapse */ ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ResponsiveService.prototype.cog;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/rtl/rtl.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var HTML_DIR = 'dir';
+    /** @type {?} */
     var RTL_DIRECTION = 'direction';
+    /** @type {?} */
     var RTL_NZ_COMPONENTS = ['modal', 'drawer', 'message', 'notification', 'image'];
+    /** @type {?} */
     var RTL_DELON_COMPONENTS = ['loading', 'onboarding'];
+    /** @type {?} */
     var LTR = 'ltr';
+    /** @type {?} */
     var RTL = 'rtl';
     var RTLService = /** @class */ (function () {
+        /**
+         * @param {?} d
+         * @param {?} srv
+         * @param {?} nz
+         * @param {?} delon
+         * @param {?} platform
+         * @param {?} doc
+         */
         function RTLService(d, srv, nz, delon, platform, doc) {
             this.d = d;
             this.srv = srv;
@@ -920,21 +1306,28 @@
              * Get or Set the current text direction
              *
              * 获取或设置当前文字方向
+             * @return {?}
              */
             get: function () {
                 return this._dir;
             },
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 var _this = this;
                 this._dir = value;
                 this.updateLibConfig();
                 this.updateHtml();
                 // Should be wait inited
-                Promise.resolve().then(function () {
-                    _this.d.value = value;
+                Promise.resolve().then(( /**
+                 * @return {?}
+                 */function () {
+                    (( /** @type {?} */(_this.d))).value = value;
                     _this.d.change.emit(value);
                     _this.srv.setLayout(RTL_DIRECTION, value);
-                });
+                }));
             },
             enumerable: false,
             configurable: true
@@ -944,6 +1337,7 @@
              * Get the next text direction
              *
              * 获取下一次文字方向
+             * @return {?}
              */
             get: function () {
                 return this.dir === LTR ? RTL : LTR;
@@ -956,9 +1350,22 @@
              * Subscription change notification
              *
              * 订阅变更通知
+             * @return {?}
              */
             get: function () {
-                return this.srv.notify.pipe(operators.filter(function (w) { return w.name === RTL_DIRECTION; }), operators.map(function (v) { return v.value; }));
+                return this.srv.notify.pipe(operators.filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.name === RTL_DIRECTION; })), operators.map(( /**
+                 * @param {?} v
+                 * @return {?}
+                 */function (/**
+                 * @param {?} v
+                 * @return {?}
+                 */ v) { return v.value; })));
             },
             enumerable: false,
             configurable: true
@@ -967,16 +1374,23 @@
          * Toggle text direction
          *
          * 切换文字方向
+         * @return {?}
          */
         RTLService.prototype.toggle = function () {
             this.dir = this.nextDir;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         RTLService.prototype.updateHtml = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
-            var htmlEl = this.doc.querySelector('html');
+            /** @type {?} */
+            var htmlEl = ( /** @type {?} */(this.doc.querySelector('html')));
             if (htmlEl) {
+                /** @type {?} */
                 var dir = this.dir;
                 htmlEl.style.direction = dir;
                 htmlEl.classList.remove(RTL, LTR);
@@ -984,32 +1398,92 @@
                 htmlEl.setAttribute(HTML_DIR, dir);
             }
         };
+        /**
+         * @private
+         * @return {?}
+         */
         RTLService.prototype.updateLibConfig = function () {
             var _this = this;
-            RTL_NZ_COMPONENTS.forEach(function (name) {
-                _this.nz.set(name, { nzDirection: _this.dir });
-            });
-            RTL_DELON_COMPONENTS.forEach(function (name) {
-                _this.delon.set(name, { direction: _this.dir });
-            });
+            RTL_NZ_COMPONENTS.forEach(( /**
+             * @param {?} name
+             * @return {?}
+             */function (/**
+             * @param {?} name
+             * @return {?}
+             */ name) {
+                _this.nz.set(( /** @type {?} */(name)), { nzDirection: _this.dir });
+            }));
+            RTL_DELON_COMPONENTS.forEach(( /**
+             * @param {?} name
+             * @return {?}
+             */function (/**
+             * @param {?} name
+             * @return {?}
+             */ name) {
+                _this.delon.set(( /** @type {?} */(name)), { direction: _this.dir });
+            }));
         };
         return RTLService;
     }());
-    /** @nocollapse */ RTLService.ɵfac = function RTLService_Factory(t) { return new (t || RTLService)(i0.ɵɵinject(i1$3.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$2.AlainConfigService), i0.ɵɵinject(i1$1.Platform), i0.ɵɵinject(common.DOCUMENT)); };
-    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ token: RTLService, factory: RTLService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RTLService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: i1$3.Directionality }, { type: SettingsService }, { type: i3.NzConfigService }, { type: i1$2.AlainConfigService }, { type: i1$1.Platform }, { type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }];
-        }, null);
-    })();
+    RTLService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    RTLService.ctorParameters = function () { return [
+        { type: i1$2.Directionality },
+        { type: SettingsService },
+        { type: i3.NzConfigService },
+        { type: i1$1.AlainConfigService },
+        { type: i2$1.Platform },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype._dir;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.d;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.nz;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.delon;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.platform;
+        /**
+         * @type {?}
+         * @private
+         */
+        RTLService.prototype.doc;
+    }
 
     var TitleService = /** @class */ (function () {
+        /**
+         * @param {?} injector
+         * @param {?} title
+         * @param {?} menuSrv
+         * @param {?} i18nSrv
+         * @param {?} doc
+         */
         function TitleService(injector, title, menuSrv, i18nSrv, doc) {
             var _this = this;
             this.injector = injector;
@@ -1022,12 +1496,22 @@
             this._separator = ' - ';
             this._reverse = false;
             this.DELAY_TIME = 25;
-            /** 设置默认标题名 */
+            /**
+             * 设置默认标题名
+             */
             this.default = "Not Page Name";
-            this.i18n$ = this.i18nSrv.change.pipe(operators.filter(function () { return !!_this.i18n$; })).subscribe(function () { return _this.setTitle(); });
+            this.i18n$ = this.i18nSrv.change.pipe(operators.filter(( /**
+             * @return {?}
+             */function () { return !!_this.i18n$; }))).subscribe(( /**
+             * @return {?}
+             */function () { return _this.setTitle(); }));
         }
         Object.defineProperty(TitleService.prototype, "separator", {
-            /** 设置分隔符 */
+            /**
+             * 设置分隔符
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._separator = value;
             },
@@ -1035,7 +1519,11 @@
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "prefix", {
-            /** 设置前缀 */
+            /**
+             * 设置前缀
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._prefix = value;
             },
@@ -1043,7 +1531,11 @@
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "suffix", {
-            /** 设置后缀 */
+            /**
+             * 设置后缀
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._suffix = value;
             },
@@ -1051,45 +1543,79 @@
             configurable: true
         });
         Object.defineProperty(TitleService.prototype, "reverse", {
-            /** 设置是否反转 */
+            /**
+             * 设置是否反转
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._reverse = value;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         TitleService.prototype.getByElement = function () {
-            var el = (this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'));
+            /** @type {?} */
+            var el = ( /** @type {?} */((this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'))));
             if (el) {
+                /** @type {?} */
                 var text_1 = '';
-                el.childNodes.forEach(function (val) {
+                el.childNodes.forEach(( /**
+                 * @param {?} val
+                 * @return {?}
+                 */function (/**
+                 * @param {?} val
+                 * @return {?}
+                 */ val) {
                     if (!text_1 && val.nodeType === 3) {
-                        text_1 = val.textContent.trim();
+                        text_1 = ( /** @type {?} */(val.textContent)).trim();
                     }
-                });
-                return text_1 || el.firstChild.textContent.trim();
+                }));
+                return text_1 || ( /** @type {?} */(( /** @type {?} */(el.firstChild)).textContent)).trim();
             }
             return '';
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TitleService.prototype.getByRoute = function () {
+            /** @type {?} */
             var next = this.injector.get(router.ActivatedRoute);
             while (next.firstChild)
                 next = next.firstChild;
+            /** @type {?} */
             var data = (next.snapshot && next.snapshot.data) || {};
             if (data.titleI18n && this.i18nSrv)
                 data.title = this.i18nSrv.fanyi(data.titleI18n);
             return data.title;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TitleService.prototype.getByMenu = function () {
+            /** @type {?} */
             var menus = this.menuSrv.getPathByUrl(this.injector.get(router.Router).url);
             if (!menus || menus.length <= 0)
                 return '';
+            /** @type {?} */
             var item = menus[menus.length - 1];
+            /** @type {?} */
             var title;
             if (item.i18n && this.i18nSrv)
                 title = this.i18nSrv.fanyi(item.i18n);
-            return title || item.text;
+            return title || ( /** @type {?} */(item.text));
         };
+        /**
+         * @private
+         * @param {?=} title
+         * @return {?}
+         */
         TitleService.prototype._setTitle = function (title) {
             if (!title) {
                 title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
@@ -1097,11 +1623,12 @@
             if (title && !Array.isArray(title)) {
                 title = [title];
             }
+            /** @type {?} */
             var newTitles = [];
             if (this._prefix) {
                 newTitles.push(this._prefix);
             }
-            newTitles.push.apply(newTitles, __spread(title));
+            newTitles.push.apply(newTitles, __spread((( /** @type {?} */(title)))));
             if (this._suffix) {
                 newTitles.push(this._suffix);
             }
@@ -1112,67 +1639,118 @@
         };
         /**
          * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
+         * @param {?=} title
+         * @return {?}
          */
         TitleService.prototype.setTitle = function (title) {
             var _this = this;
-            setTimeout(function () { return _this._setTitle(title); }, this.DELAY_TIME);
+            setTimeout(( /**
+             * @return {?}
+             */function () { return _this._setTitle(title); }), this.DELAY_TIME);
         };
         /**
          * Set i18n key of the document title
+         * @param {?} key
+         * @param {?=} params
+         * @return {?}
          */
         TitleService.prototype.setTitleByI18n = function (key, params) {
             this.setTitle(this.i18nSrv.fanyi(key, params));
         };
+        /**
+         * @return {?}
+         */
         TitleService.prototype.ngOnDestroy = function () {
             this.i18n$.unsubscribe();
         };
         return TitleService;
     }());
-    /** @nocollapse */ TitleService.ɵfac = function TitleService_Factory(t) { return new (t || TitleService)(i0.ɵɵinject(i0.Injector), i0.ɵɵinject(i1$4.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(common.DOCUMENT)); };
-    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ token: TitleService, factory: TitleService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TitleService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: i0.Injector }, { type: i1$4.Title }, { type: MenuService }, { type: undefined, decorators: [{
-                            type: i0.Optional
-                        }, {
-                            type: i0.Inject,
-                            args: [ALAIN_I18N_TOKEN]
-                        }] }, { type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }];
-        }, null);
-    })();
+    TitleService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    TitleService.ctorParameters = function () { return [
+        { type: i0.Injector },
+        { type: i1$3.Title },
+        { type: MenuService },
+        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._prefix;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._suffix;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._separator;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype._reverse;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.i18n$;
+        /** @type {?} */
+        TitleService.prototype.DELAY_TIME;
+        /**
+         * 设置默认标题名
+         * @type {?}
+         */
+        TitleService.prototype.default;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.injector;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.title;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.menuSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.i18nSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        TitleService.prototype.doc;
+    }
 
-    var I18nPipe = /** @class */ (function () {
-        function I18nPipe(i18n) {
-            this.i18n = i18n;
-        }
-        I18nPipe.prototype.transform = function (key, interpolateParams, isSafe) {
-            return this.i18n.fanyi(key, interpolateParams, isSafe);
-        };
-        return I18nPipe;
-    }());
-    /** @nocollapse */ I18nPipe.ɵfac = function I18nPipe_Factory(t) { return new (t || I18nPipe)(i0.ɵɵdirectiveInject(ALAIN_I18N_TOKEN)); };
-    /** @nocollapse */ I18nPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "i18n", type: I18nPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(I18nPipe, [{
-                type: i0.Pipe,
-                args: [{ name: 'i18n' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [ALAIN_I18N_TOKEN]
-                        }] }];
-        }, null);
-    })();
-
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/locale.tokens.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var DELON_LOCALE = new i0.InjectionToken('delon-locale');
 
-    var zhCN = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/zh-CN.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var zhCN = ( /** @type {?} */({
         abbr: 'zh-CN',
         exception: {
             403: '抱歉，你无权访问该页面',
@@ -1253,21 +1831,36 @@
             next: "\u4E0B\u4E00\u9879",
             done: "\u5B8C\u6210",
         },
-    };
+    }));
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/locale.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var DelonLocaleService = /** @class */ (function () {
+        /**
+         * @param {?} locale
+         */
         function DelonLocaleService(locale) {
             this._locale = zhCN;
             this.change$ = new rxjs.BehaviorSubject(this._locale);
             this.setLocale(locale || zhCN);
         }
         Object.defineProperty(DelonLocaleService.prototype, "change", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.change$.asObservable();
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} locale
+         * @return {?}
+         */
         DelonLocaleService.prototype.setLocale = function (locale) {
             if (this._locale && this._locale.abbr === locale.abbr) {
                 return;
@@ -1276,55 +1869,81 @@
             this.change$.next(locale);
         };
         Object.defineProperty(DelonLocaleService.prototype, "locale", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._locale;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} path
+         * @return {?}
+         */
         DelonLocaleService.prototype.getData = function (path) {
-            return (this._locale[path] || {});
+            return ( /** @type {?} */((this._locale[path] || {})));
         };
         return DelonLocaleService;
     }());
-    /** @nocollapse */ DelonLocaleService.ɵfac = function DelonLocaleService_Factory(t) { return new (t || DelonLocaleService)(i0.ɵɵinject(DELON_LOCALE)); };
-    /** @nocollapse */ DelonLocaleService.ɵprov = i0.ɵɵdefineInjectable({ token: DelonLocaleService, factory: DelonLocaleService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonLocaleService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [DELON_LOCALE]
-                        }] }];
-        }, null);
-    })();
+    DelonLocaleService.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    DelonLocaleService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DELON_LOCALE,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DelonLocaleService.prototype._locale;
+        /**
+         * @type {?}
+         * @private
+         */
+        DelonLocaleService.prototype.change$;
+    }
+    /**
+     * @param {?} exist
+     * @param {?} locale
+     * @return {?}
+     */
     function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist, locale) {
         return exist || new DelonLocaleService(locale);
     }
+    /** @type {?} */
     var DELON_LOCALE_SERVICE_PROVIDER = {
         provide: DelonLocaleService,
         useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
         deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
     };
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/locale.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ɵ0 = zhCN;
     var DelonLocaleModule = /** @class */ (function () {
         function DelonLocaleModule() {
         }
         return DelonLocaleModule;
     }());
-    /** @nocollapse */ DelonLocaleModule.ɵmod = i0.ɵɵdefineNgModule({ type: DelonLocaleModule });
-    /** @nocollapse */ DelonLocaleModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DelonLocaleModule_Factory(t) { return new (t || DelonLocaleModule)(); }, providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER] });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonLocaleModule, [{
-                type: i0.NgModule,
-                args: [{
-                        providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER],
-                    }]
-            }], null, null);
-    })();
+    DelonLocaleModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
+                },] }
+    ];
 
-    var enUS = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/en-US.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var enUS = ( /** @type {?} */({
         abbr: 'en-US',
         exception: {
             403: "Sorry, you don't have access to this page",
@@ -1405,9 +2024,14 @@
             next: "Next",
             done: "Done",
         },
-    };
+    }));
 
-    var zhTW = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/zh-TW.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var zhTW = ( /** @type {?} */({
         abbr: 'zh-TW',
         exception: {
             403: '抱歉，你無權訪問該頁麵',
@@ -1488,9 +2112,14 @@
             next: "\u4E0B\u4E00\u9805",
             done: "\u5B8C\u6210",
         },
-    };
+    }));
 
-    var trTR = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/tr-TR.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var trTR = ( /** @type {?} */({
         abbr: 'tr-TR',
         exception: {
             403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
@@ -1571,9 +2200,14 @@
             next: "Sonraki",
             done: "Bitti",
         },
-    };
+    }));
 
-    var plPL = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/pl-PL.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var plPL = ( /** @type {?} */({
         abbr: 'pl-PL',
         exception: {
             403: "Niestety, nie masz uprawnie\u0144 do tej strony",
@@ -1654,9 +2288,14 @@
             next: "Kolejny",
             done: "Gotowe",
         },
-    };
+    }));
 
-    var elGR = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/el-GR.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var elGR = ( /** @type {?} */({
         abbr: 'el-GR',
         exception: {
             403: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7 \u03C3\u03B5\u03BB\u03AF\u03B4\u03B1",
@@ -1737,9 +2376,14 @@
             next: "\u0395\u03C0\u03CC\u03BC\u03B5\u03BD\u03BF",
             done: "\u039F\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03B8\u03B7\u03BA\u03B5",
         },
-    };
+    }));
 
-    var koKR = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/ko-KR.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var koKR = ( /** @type {?} */({
         abbr: 'ko-KR',
         exception: {
             403: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4.\uC774 \uD398\uC774\uC9C0\uC5D0 \uC561\uC138\uC2A4 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.",
@@ -1820,9 +2464,14 @@
             next: "\uB2E4\uC74C",
             done: "\uB05D\uB09C",
         },
-    };
+    }));
 
-    var hrHR = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/hr-HR.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var hrHR = ( /** @type {?} */({
         abbr: 'hr-HR',
         exception: {
             403: "Na\u017Ealost, nemate pristup ovoj lokaciji",
@@ -1867,9 +2516,14 @@
             next: "Sljede\u0107i",
             done: "Sastavljeno",
         },
-    };
+    }));
 
-    var jaJP = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/ja-JP.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var jaJP = ( /** @type {?} */({
         abbr: 'ja-JP',
         exception: {
             403: 'ページへのアクセス権限がありません',
@@ -1950,9 +2604,14 @@
             next: "\u6B21",
             done: "\u3067\u304D\u305F",
         },
-    };
+    }));
 
-    var slSI = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/sl-SI.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var slSI = ( /** @type {?} */({
         abbr: 'sl-SI',
         exception: {
             403: "\u017Dal nimate dostopa do te strani",
@@ -2032,9 +2691,14 @@
             next: "Naslednji",
             done: "Kon\u010Dano",
         },
-    };
+    }));
 
-    var frFR = {
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/languages/fr-FR.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var frFR = ( /** @type {?} */({
         abbr: 'fr-FR',
         exception: {
             403: "D\u00E9sol\u00E9, vous n'avez pas acc\u00E8s \u00E0 cette page",
@@ -2115,23 +2779,65 @@
             next: "Suivant",
             done: "Termin\u00E9",
         },
-    };
+    }));
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/locale/index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/modal/modal.helper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function ModalHelperOptions() { }
+    if (false) {
+        /**
+         * 大小；例如：lg、600，默认：`lg`
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.size;
+        /**
+         * 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.modalOptions;
+        /**
+         * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.exact;
+        /**
+         * 是否包裹标签页，修复模态包含标签间距问题
+         * @type {?|undefined}
+         */
+        ModalHelperOptions.prototype.includeTabs;
+    }
     /**
      * 对话框辅助类
      */
     var ModalHelper = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
         function ModalHelper(srv) {
             this.srv = srv;
         }
         /**
          * 构建一个对话框
          *
-         * @param comp 组件
-         * @param params 组件参数
-         * @param options 额外参数
-         *
-         * @example
+         * \@example
          * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
          * // 成功
@@ -2139,17 +2845,27 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
+         * @param {?} comp 组件
+         * @param {?=} params 组件参数
+         * @param {?=} options 额外参数
+         *
+         * @return {?}
          */
         ModalHelper.prototype.create = function (comp, params, options) {
             var _this = this;
-            options = i1$2.deepMerge({
+            options = i1$1.deepMerge({
                 size: 'lg',
                 exact: true,
                 includeTabs: false,
             }, options);
-            return new rxjs.Observable(function (observer) {
-                var size = options.size, includeTabs = options.includeTabs, modalOptions = options.modalOptions;
+            return new rxjs.Observable(( /**
+             * @param {?} observer
+             * @return {?}
+             */function (observer) {
+                var _a = ( /** @type {?} */(options)), size = _a.size, includeTabs = _a.includeTabs, modalOptions = _a.modalOptions;
+                /** @type {?} */
                 var cls = '';
+                /** @type {?} */
                 var width = '';
                 if (size) {
                     if (typeof size === 'number') {
@@ -2166,6 +2882,7 @@
                     cls += " " + modalOptions.nzWrapClassName;
                     delete modalOptions.nzWrapClassName;
                 }
+                /** @type {?} */
                 var defaultOptions = {
                     nzWrapClassName: cls,
                     nzContent: comp,
@@ -2173,9 +2890,14 @@
                     nzFooter: null,
                     nzComponentParams: params,
                 };
+                /** @type {?} */
                 var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
-                var afterClose$ = subject.afterClose.subscribe(function (res) {
-                    if (options.exact === true) {
+                /** @type {?} */
+                var afterClose$ = subject.afterClose.subscribe(( /**
+                 * @param {?} res
+                 * @return {?}
+                 */function (res) {
+                    if (( /** @type {?} */(options)).exact === true) {
                         if (res != null) {
                             observer.next(res);
                         }
@@ -2185,17 +2907,13 @@
                     }
                     observer.complete();
                     afterClose$.unsubscribe();
-                });
-            });
+                }));
+            }));
         };
         /**
          * 构建静态框，点击蒙层不允许关闭
          *
-         * @param comp 组件
-         * @param params 组件参数
-         * @param options 额外参数
-         *
-         * @example
+         * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
          * // 成功
@@ -2203,18 +2921,20 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
+         * @param {?} comp 组件
+         * @param {?=} params 组件参数
+         * @param {?=} options 额外参数
+         *
+         * @return {?}
          */
         ModalHelper.prototype.createStatic = function (comp, params, options) {
+            /** @type {?} */
             var modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
             return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions: modalOptions }));
         };
         /**
          * 打开对话框
-         * @param comp 组件
-         * @param params 组件参数
-         * @param size 大小；例如：lg、600，默认：lg
-         *
-         * @example
+         * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
          * // 成功
@@ -2222,6 +2942,12 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
+         * @param {?} comp 组件
+         * @param {?=} params 组件参数
+         * @param {?=} size 大小；例如：lg、600，默认：lg
+         *
+         * @param {?=} options
+         * @return {?}
          */
         ModalHelper.prototype.open = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
@@ -2233,11 +2959,7 @@
         };
         /**
          * 静态框，点击蒙层不允许关闭
-         * @param comp 组件
-         * @param params 组件参数
-         * @param size 大小；例如：lg、600，默认：lg
-         *
-         * @example
+         * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
          * // 成功
@@ -2245,6 +2967,12 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
+         * @param {?} comp 组件
+         * @param {?=} params 组件参数
+         * @param {?=} size 大小；例如：lg、600，默认：lg
+         *
+         * @param {?=} options
+         * @return {?}
          */
         ModalHelper.prototype.static = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
@@ -2252,21 +2980,73 @@
         };
         return ModalHelper;
     }());
-    /** @nocollapse */ ModalHelper.ɵfac = function ModalHelper_Factory(t) { return new (t || ModalHelper)(i0.ɵɵinject(i1$5.NzModalService)); };
-    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ token: ModalHelper, factory: ModalHelper.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ModalHelper, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1$5.NzModalService }]; }, null);
-    })();
+    ModalHelper.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ModalHelper.ctorParameters = function () { return [
+        { type: i1$4.NzModalService }
+    ]; };
+    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ModalHelper.prototype.srv;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/drawer/drawer.helper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function DrawerHelperOptions() { }
+    if (false) {
+        /**
+         * 大小，若值为数值类型，则根据 `nzPlacement` 自动转化为 `nzHeight` 或 `nzWidth`；例如：lg、600，默认：`md`
+         *
+         * | 类型 | 默认大小 |
+         * | --- | ------ |
+         * | `sm` | `300` |
+         * | `md` | `600` |
+         * | `lg` | `900` |
+         * | `xl` | `1200` |
+         *
+         * > 以上值，可通过覆盖相应的LESS参数自行调整
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.size;
+        /**
+         * 是否包含底部工具条，默认：`true`
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.footer;
+        /**
+         * 底部工具条高度，默认：`55`
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.footerHeight;
+        /**
+         * 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.exact;
+        /**
+         * 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数
+         * @type {?|undefined}
+         */
+        DrawerHelperOptions.prototype.drawerOptions;
+    }
     /**
      * 抽屉辅助类
      *
      * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
      *
-     * @example
+     * \@example
      * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
      * // 对于组件的成功&关闭的处理说明
      * // 成功
@@ -2277,15 +3057,23 @@
      * this.NzDrawerRef.close(false);
      */
     var DrawerHelper = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
         function DrawerHelper(srv) {
             this.srv = srv;
         }
         /**
          * 构建一个抽屉
+         * @param {?} title
+         * @param {?} comp
+         * @param {?=} params
+         * @param {?=} options
+         * @return {?}
          */
         DrawerHelper.prototype.create = function (title, comp, params, options) {
             var _this = this;
-            options = i1$2.deepMerge({
+            options = i1$1.deepMerge({
                 size: 'md',
                 footer: true,
                 footerHeight: 50,
@@ -2295,29 +3083,38 @@
                     nzWrapClassName: '',
                 },
             }, options);
-            return new rxjs.Observable(function (observer) {
-                var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
+            return new rxjs.Observable(( /**
+             * @param {?} observer
+             * @return {?}
+             */function (observer) {
+                var _a = ( /** @type {?} */(options)), size = _a.size, footer = _a.footer, footerHeight = _a.footerHeight, drawerOptions = _a.drawerOptions;
+                /** @type {?} */
                 var defaultOptions = {
                     nzContent: comp,
                     nzContentParams: params,
-                    nzTitle: title,
+                    nzTitle: ( /** @type {?} */(title)),
                 };
                 if (typeof size === 'number') {
-                    defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
+                    defaultOptions[( /** @type {?} */(drawerOptions)).nzPlacement === 'top' || ( /** @type {?} */(drawerOptions)).nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = ( /** @type {?} */(options)).size;
                 }
-                else if (!drawerOptions.nzWidth) {
-                    defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
-                    delete drawerOptions.nzWrapClassName;
+                else if (!( /** @type {?} */(drawerOptions)).nzWidth) {
+                    defaultOptions.nzWrapClassName = (( /** @type {?} */(drawerOptions)).nzWrapClassName + (" drawer-" + ( /** @type {?} */(options)).size)).trim();
+                    delete ( /** @type {?} */(drawerOptions)).nzWrapClassName;
                 }
                 if (footer) {
                     // The 24 value is @drawer-body-padding
                     defaultOptions.nzBodyStyle = {
-                        'padding-bottom.px': footerHeight + 24,
+                        'padding-bottom.px': ( /** @type {?} */(footerHeight)) + 24,
                     };
                 }
+                /** @type {?} */
                 var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
-                var afterClose$ = subject.afterClose.subscribe(function (res) {
-                    if (options.exact === true) {
+                /** @type {?} */
+                var afterClose$ = subject.afterClose.subscribe(( /**
+                 * @param {?} res
+                 * @return {?}
+                 */function (res) {
+                    if (( /** @type {?} */(options)).exact === true) {
                         if (res != null) {
                             observer.next(res);
                         }
@@ -2327,27 +3124,45 @@
                     }
                     observer.complete();
                     afterClose$.unsubscribe();
-                });
-            });
+                }));
+            }));
         };
         /**
          * 构建一个抽屉，点击蒙层不允许关闭
+         * @param {?} title
+         * @param {?} comp
+         * @param {?=} params
+         * @param {?=} options
+         * @return {?}
          */
         DrawerHelper.prototype.static = function (title, comp, params, options) {
+            /** @type {?} */
             var drawerOptions = Object.assign({ nzMaskClosable: false }, (options && options.drawerOptions));
             return this.create(title, comp, params, Object.assign(Object.assign({}, options), { drawerOptions: drawerOptions }));
         };
         return DrawerHelper;
     }());
-    /** @nocollapse */ DrawerHelper.ɵfac = function DrawerHelper_Factory(t) { return new (t || DrawerHelper)(i0.ɵɵinject(i1$6.NzDrawerService)); };
-    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ token: DrawerHelper, factory: DrawerHelper.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DrawerHelper, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1$6.NzDrawerService }]; }, null);
-    })();
+    DrawerHelper.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    DrawerHelper.ctorParameters = function () { return [
+        { type: i1$5.NzDrawerService }
+    ]; };
+    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$5.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DrawerHelper.prototype.srv;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/http/http.client.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * 封装HttpClient，主要解决：
      * + 优化HttpClient在参数上便利性
@@ -2356,19 +3171,24 @@
      */
     // tslint:disable-next-line:class-name
     var _HttpClient = /** @class */ (function () {
+        /**
+         * @param {?} http
+         * @param {?} cogSrv
+         */
         function _HttpClient(http, cogSrv) {
             this.http = http;
             this.lc = 0;
-            this.cog = cogSrv.merge('themeHttp', {
+            this.cog = ( /** @type {?} */(cogSrv.merge('themeHttp', {
                 nullValueHandling: 'include',
                 dateValueHandling: 'timestamp',
-            });
+            })));
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
             /**
              * Get whether it's loading
              *
              * 获取是否正在加载中
+             * @return {?}
              */
             get: function () {
                 return this.lc > 0;
@@ -2381,6 +3201,7 @@
              * Get the currently loading count
              *
              * 获取当前加载中的数量
+             * @return {?}
              */
             get: function () {
                 return this.lc;
@@ -2388,13 +3209,25 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} params
+         * @return {?}
+         */
         _HttpClient.prototype.parseParams = function (params) {
             var _this = this;
+            /** @type {?} */
             var newParams = {};
-            if (params instanceof i1$7.HttpParams) {
+            if (params instanceof i1$6.HttpParams) {
                 return params;
             }
-            Object.keys(params).forEach(function (key) {
+            Object.keys(params).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                /** @type {?} */
                 var _data = params[key];
                 // 忽略空值
                 if (_this.cog.nullValueHandling === 'ignore' && _data == null)
@@ -2404,13 +3237,19 @@
                     _data = _data.valueOf();
                 }
                 newParams[key] = _data;
-            });
-            return new i1$7.HttpParams({ fromObject: newParams });
+            }));
+            return new i1$6.HttpParams({ fromObject: newParams });
         };
+        /**
+         * @param {?} url
+         * @param {?=} params
+         * @return {?}
+         */
         _HttpClient.prototype.appliedUrl = function (url, params) {
             if (!params)
                 return url;
             url += ~url.indexOf('?') ? '' : '?';
+            /** @type {?} */
             var arr = [];
             // tslint:disable-next-line: forin
             for (var key in params) {
@@ -2418,18 +3257,34 @@
             }
             return url + arr.join('&');
         };
+        /**
+         * @private
+         * @param {?} count
+         * @return {?}
+         */
         _HttpClient.prototype.setCount = function (count) {
             var _this = this;
-            Promise.resolve(null).then(function () { return (_this.lc = count <= 0 ? 0 : count); });
+            Promise.resolve(null).then(( /**
+             * @return {?}
+             */function () { return (_this.lc = count <= 0 ? 0 : count); }));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         _HttpClient.prototype.push = function () {
             this.setCount(++this.lc);
         };
+        /**
+         * @private
+         * @return {?}
+         */
         _HttpClient.prototype.pop = function () {
             this.setCount(--this.lc);
         };
         /**
          * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
+         * @return {?}
          */
         _HttpClient.prototype.end = function () {
             this.cleanLoading();
@@ -2438,19 +3293,39 @@
          * Clean loading count
          *
          * 清空加载中
+         * @return {?}
          */
         _HttpClient.prototype.cleanLoading = function () {
             this.setCount(0);
         };
+        /**
+         * @param {?} url
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.get = function (url, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('GET', url, Object.assign({ params: params }, options));
         };
+        /**
+         * @param {?} url
+         * @param {?} body
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.post = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('POST', url, Object.assign({ body: body,
                 params: params }, options));
         };
+        /**
+         * @param {?} url
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.delete = function (url, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('DELETE', url, Object.assign({ params: params }, options));
@@ -2460,24 +3335,50 @@
         /**
          * **JSONP Request**
          *
-         * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
+         * @param {?} url
+         * @param {?=} params
+         * @param {?=} callbackParam CALLBACK值，默认：JSONP_CALLBACK
+         * @return {?}
          */
         _HttpClient.prototype.jsonp = function (url, params, callbackParam) {
             var _this = this;
             if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
             this.push();
-            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.finalize(function () { return _this.pop(); }));
+            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.finalize(( /**
+             * @return {?}
+             */function () { return _this.pop(); })));
         };
+        /**
+         * @param {?} url
+         * @param {?} body
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.patch = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('PATCH', url, Object.assign({ body: body,
                 params: params }, options));
         };
+        /**
+         * @param {?} url
+         * @param {?} body
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.put = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('PUT', url, Object.assign({ body: body,
                 params: params }, options));
         };
+        /**
+         * @param {?} url
+         * @param {?} body
+         * @param {?} params
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.form = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('POST', url, Object.assign(Object.assign({ body: body,
@@ -2485,53 +3386,130 @@
                     'content-type': "application/x-www-form-urlencoded",
                 } }));
         };
+        /**
+         * @param {?} method
+         * @param {?} url
+         * @param {?=} options
+         * @return {?}
+         */
         _HttpClient.prototype.request = function (method, url, options) {
             var _this = this;
             if (options === void 0) { options = {}; }
             this.push();
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return rxjs.of(null).pipe(operators.switchMap(function () { return _this.http.request(method, url, options); }), operators.finalize(function () { return _this.pop(); }));
+            return rxjs.of(null).pipe(operators.switchMap(( /**
+             * @return {?}
+             */function () { return _this.http.request(method, url, options); })), operators.finalize(( /**
+             * @return {?}
+             */function () { return _this.pop(); })));
         };
         return _HttpClient;
     }());
-    /** @nocollapse */ _HttpClient.ɵfac = function _HttpClient_Factory(t) { return new (t || _HttpClient)(i0.ɵɵinject(i1$7.HttpClient), i0.ɵɵinject(i1$2.AlainConfigService)); };
-    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ token: _HttpClient, factory: _HttpClient.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(_HttpClient, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: i1$7.HttpClient }, { type: i1$2.AlainConfigService }]; }, null);
-    })();
+    _HttpClient.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    _HttpClient.ctorParameters = function () { return [
+        { type: i1$6.HttpClient },
+        { type: i1$1.AlainConfigService }
+    ]; };
+    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype.cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype.lc;
+        /**
+         * @type {?}
+         * @private
+         */
+        _HttpClient.prototype.http;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/http/http.decorator.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * Every http decorator must be based on `BaseAPI`, Like this:
      * ```ts
-     * \@Injectable()
+     * \\@Injectable()
      * class DataService extends BaseApi {}
      * ```
+     * @abstract
      */
     var BaseApi = /** @class */ (function () {
+        /**
+         * @param {?} injector
+         */
         function BaseApi(injector) {
             this.injector = injector;
         }
         return BaseApi;
     }());
-    /** @nocollapse */ BaseApi.ɵfac = function BaseApi_Factory(t) { return new (t || BaseApi)(i0.ɵɵinject(i0.Injector)); };
-    /** @nocollapse */ BaseApi.ɵprov = i0.ɵɵdefineInjectable({ token: BaseApi, factory: BaseApi.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BaseApi, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: i0.Injector, decorators: [{
-                            type: i0.Inject,
-                            args: [i0.Injector]
-                        }] }];
-        }, null);
-    })();
+    BaseApi.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    BaseApi.ctorParameters = function () { return [
+        { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        BaseApi.prototype.injector;
+    }
+    /**
+     * @record
+     */
+    function HttpOptions() { }
+    if (false) {
+        /**
+         * ACL配置，若导入 `\@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值
+         * @type {?|undefined}
+         */
+        HttpOptions.prototype.acl;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.observe;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.responseType;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.reportProgress;
+        /** @type {?|undefined} */
+        HttpOptions.prototype.withCredentials;
+    }
+    /**
+     * @record
+     */
+    function ParamType() { }
+    if (false) {
+        /** @type {?} */
+        ParamType.prototype.key;
+        /** @type {?} */
+        ParamType.prototype.index;
+        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: number]: any;*/
+    }
+    /** @type {?} */
     var paramKey = "__api_params";
+    /**
+     * @param {?} target
+     * @param {?=} key
+     * @return {?}
+     */
     function setParam(target, key) {
         if (key === void 0) { key = paramKey; }
+        /** @type {?} */
         var params = target[key];
         if (typeof params === 'undefined') {
             params = target[key] = {};
@@ -2541,29 +3519,57 @@
     /**
      * 默认基准URL
      * - 有效范围：类
+     * @param {?} url
+     * @return {?}
      */
     function BaseUrl(url) {
-        return function (target) {
+        return ( /**
+         * @template TClass
+         * @param {?} target
+         * @return {?}
+         */function (target) {
+            /** @type {?} */
             var params = setParam(target.prototype);
             params.baseUrl = url;
             return target;
-        };
+        });
     }
     /**
      * 默认 `headers`
      * - 有效范围：类
+     * @param {?} headers
+     * @return {?}
      */
     function BaseHeaders(headers) {
-        return function (target) {
+        return ( /**
+         * @template TClass
+         * @param {?} target
+         * @return {?}
+         */function (target) {
+            /** @type {?} */
             var params = setParam(target.prototype);
             params.baseHeaders = headers;
             return target;
-        };
+        });
     }
+    /**
+     * @param {?} paramName
+     * @return {?}
+     */
     function makeParam(paramName) {
-        return function (key) {
-            return function (target, propertyKey, index) {
+        return ( /**
+         * @param {?=} key
+         * @return {?}
+         */function (key) {
+            return ( /**
+             * @param {?} target
+             * @param {?} propertyKey
+             * @param {?} index
+             * @return {?}
+             */function (target, propertyKey, index) {
+                /** @type {?} */
                 var params = setParam(setParam(target), propertyKey);
+                /** @type {?} */
                 var tParams = params[paramName];
                 if (typeof tParams === 'undefined') {
                     tParams = params[paramName] = [];
@@ -2572,42 +3578,58 @@
                     key: key,
                     index: index,
                 });
-            };
-        };
+            });
+        });
     }
     /**
      * URL路由参数
      * - 有效范围：方法参数
+     * @type {?}
      */
     var Path = makeParam('path');
     /**
      * URL 参数 `QueryString`
      * - 有效范围：方法参数
+     * @type {?}
      */
     var Query = makeParam('query');
     /**
      * 参数 `Body`
      * - 有效范围：方法参数
+     * @type {?}
      */
     var Body = makeParam('body')();
     /**
      * 参数 `headers`
      * - 有效范围：方法参数
      * - 合并 `BaseHeaders`
+     * @type {?}
      */
     var Headers = makeParam('headers');
     /**
      * Request Payload
-     * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `@Body`
+     * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `\@Body`
      * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
+     * @type {?}
      */
     var Payload = makeParam('payload')();
+    /**
+     * @param {?} data
+     * @param {?} key
+     * @param {?} args
+     * @return {?}
+     */
     function getValidArgs(data, key, args) {
         if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
             return undefined;
         }
         return args[data[key][0].index];
     }
+    /**
+     * @param {?=} data
+     * @param {?=} payload
+     * @return {?}
+     */
     function genBody(data, payload) {
         if (Array.isArray(data) || Array.isArray(payload)) {
             // tslint:disable-next-line:prefer-object-spread
@@ -2616,23 +3638,44 @@
         // tslint:disable-next-line:prefer-object-spread
         return Object.assign({}, data, payload);
     }
+    /**
+     * @param {?} method
+     * @return {?}
+     */
     function makeMethod(method) {
-        return function (url, options) {
+        return ( /**
+         * @param {?=} url
+         * @param {?=} options
+         * @return {?}
+         */function (url, options) {
             if (url === void 0) { url = ''; }
-            return function (_target, targetKey, descriptor) {
-                descriptor.value = function () {
+            return ( /**
+             * @param {?} _target
+             * @param {?=} targetKey
+             * @param {?=} descriptor
+             * @return {?}
+             */function (_target, targetKey, descriptor) {
+                ( /** @type {?} */(descriptor)).value = ( /**
+                 * @param {...?} args
+                 * @return {?}
+                 */function () {
                     var args = [];
                     for (var _i = 0; _i < arguments.length; _i++) {
                         args[_i] = arguments[_i];
                     }
                     options = options || {};
-                    var injector = this.injector;
-                    var http = injector.get(_HttpClient, null);
+                    /** @type {?} */
+                    var injector = ( /** @type {?} */((( /** @type {?} */(this))).injector));
+                    /** @type {?} */
+                    var http = ( /** @type {?} */(injector.get(_HttpClient, null)));
                     if (http == null) {
                         throw new TypeError("Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.");
                     }
+                    /** @type {?} */
                     var baseData = setParam(this);
+                    /** @type {?} */
                     var data = setParam(baseData, targetKey);
+                    /** @type {?} */
                     var requestUrl = url || '';
                     requestUrl = [baseData.baseUrl || '', requestUrl.startsWith('/') ? requestUrl.substr(1) : requestUrl].join('/');
                     // fix last split
@@ -2640,7 +3683,8 @@
                         requestUrl = requestUrl.substr(0, requestUrl.length - 1);
                     }
                     if (options.acl) {
-                        var aclSrv = injector.get(i1.ACLService, null);
+                        /** @type {?} */
+                        var aclSrv = injector.get(i2.ACLService, null);
                         if (aclSrv && !aclSrv.can(options.acl)) {
                             return rxjs.throwError({
                                 url: requestUrl,
@@ -2651,137 +3695,214 @@
                         delete options.acl;
                     }
                     requestUrl = requestUrl.replace(/::/g, '^^');
-                    (data.path || [])
-                        .filter(function (w) { return typeof args[w.index] !== 'undefined'; })
-                        .forEach(function (i) {
+                    ((( /** @type {?} */(data.path))) || [])
+                        .filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return typeof args[w.index] !== 'undefined'; }))
+                        .forEach(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (i) {
                         requestUrl = requestUrl.replace(new RegExp(":" + i.key, 'g'), encodeURIComponent(args[i.index]));
-                    });
+                    }));
                     requestUrl = requestUrl.replace(/\^\^/g, ":");
-                    var params = (data.query || []).reduce(function (p, i) {
+                    /** @type {?} */
+                    var params = (data.query || []).reduce(( /**
+                     * @param {?} p
+                     * @param {?} i
+                     * @return {?}
+                     */function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
-                    }, {});
-                    var headers = (data.headers || []).reduce(function (p, i) {
+                    }), {});
+                    /** @type {?} */
+                    var headers = (data.headers || []).reduce(( /**
+                     * @param {?} p
+                     * @param {?} i
+                     * @return {?}
+                     */function (p, i) {
                         p[i.key] = args[i.index];
                         return p;
-                    }, {});
+                    }), {});
                     if (method === 'FORM') {
                         headers['content-type'] = 'application/x-www-form-urlencoded';
                     }
+                    /** @type {?} */
                     var payload = getValidArgs(data, 'payload', args);
+                    /** @type {?} */
                     var supportedBody = method === 'POST' || method === 'PUT';
                     return http.request(method, requestUrl, Object.assign({ body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null, params: !supportedBody ? Object.assign(Object.assign({}, params), payload) : params, headers: Object.assign(Object.assign({}, baseData.baseHeaders), headers) }, options));
-                };
+                });
                 return descriptor;
-            };
-        };
+            });
+        });
     }
     /**
      * `OPTIONS` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var OPTIONS = makeMethod('OPTIONS');
     /**
      * `GET` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var GET = makeMethod('GET');
     /**
      * `POST` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var POST = makeMethod('POST');
     /**
      * `DELETE` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var DELETE = makeMethod('DELETE');
     /**
      * `PUT` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var PUT = makeMethod('PUT');
     /**
      * `HEAD` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var HEAD = makeMethod('HEAD');
     /**
      * `PATCH` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var PATCH = makeMethod('PATCH');
     /**
      * `JSONP` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var JSONP = makeMethod('JSONP');
     /**
      * `FORM` 请求
      * - 有效范围：方法
+     * @type {?}
      */
     var FORM = makeMethod('FORM');
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/date/date.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var DatePipe = /** @class */ (function () {
+        /**
+         * @param {?} nzI18n
+         */
         function DatePipe(nzI18n) {
             this.nzI18n = nzI18n;
         }
+        /**
+         * @param {?} value
+         * @param {?=} formatString
+         * @return {?}
+         */
         DatePipe.prototype.transform = function (value, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-            value = i1$2.toDate(value);
-            if (isNaN(value))
+            value = i1$1.toDate(value);
+            if (isNaN(( /** @type {?} */(value))))
                 return '';
+            /** @type {?} */
             var langOpt = { locale: this.nzI18n.getDateLocale() };
             return formatString === 'fn' ? formatDistanceToNow__default['default'](value, langOpt) : format__default['default'](value, formatString, langOpt);
         };
         return DatePipe;
     }());
-    /** @nocollapse */ DatePipe.ɵfac = function DatePipe_Factory(t) { return new (t || DatePipe)(i0.ɵɵdirectiveInject(i1$8.NzI18nService)); };
-    /** @nocollapse */ DatePipe.ɵpipe = i0.ɵɵdefinePipe({ name: "_date", type: DatePipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DatePipe, [{
-                type: i0.Pipe,
-                args: [{ name: '_date' }]
-            }], function () { return [{ type: i1$8.NzI18nService }]; }, null);
-    })();
+    DatePipe.decorators = [
+        { type: i0.Pipe, args: [{ name: '_date' },] }
+    ];
+    /** @nocollapse */
+    DatePipe.ctorParameters = function () { return [
+        { type: i18n.NzI18nService }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DatePipe.prototype.nzI18n;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/currency/cn-currency.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * [Document](https://ng-alain.com/theme/currency)
      */
     // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {
+        /**
+         * @param {?} locale
+         */
         function CNCurrencyPipe(locale) {
-            this.ngCurrencyPipe = new common.CurrencyPipe(locale);
+            this.ngCurrencyPipe = new i1.CurrencyPipe(locale);
         }
+        /**
+         * @param {?} value
+         * @param {?=} currencyCode
+         * @param {?=} display
+         * @param {?=} digits
+         * @return {?}
+         */
         CNCurrencyPipe.prototype.transform = function (value, currencyCode, display, digits) {
             if (currencyCode === void 0) { currencyCode = '￥'; }
             if (display === void 0) { display = 'code'; }
-            return this.ngCurrencyPipe.transform(value, currencyCode, display, digits);
+            return this.ngCurrencyPipe.transform(value, currencyCode, ( /** @type {?} */(display)), digits);
         };
         return CNCurrencyPipe;
     }());
-    /** @nocollapse */ CNCurrencyPipe.ɵfac = function CNCurrencyPipe_Factory(t) { return new (t || CNCurrencyPipe)(i0.ɵɵdirectiveInject(i0.LOCALE_ID)); };
-    /** @nocollapse */ CNCurrencyPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "_currency", type: CNCurrencyPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CNCurrencyPipe, [{
-                type: i0.Pipe,
-                args: [{ name: '_currency' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [i0.LOCALE_ID]
-                        }] }];
-        }, null);
-    })();
+    CNCurrencyPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: '_currency' },] }
+    ];
+    /** @nocollapse */
+    CNCurrencyPipe.ctorParameters = function () { return [
+        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CNCurrencyPipe.prototype.ngCurrencyPipe;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/keys/keys.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * [Document](https://ng-alain.com/theme/keys)
      */
     var KeysPipe = /** @class */ (function () {
         function KeysPipe() {
         }
+        /**
+         * @param {?} value
+         * @param {?=} keyIsNumber
+         * @return {?}
+         */
         KeysPipe.prototype.transform = function (value, keyIsNumber) {
             if (keyIsNumber === void 0) { keyIsNumber = false; }
+            /** @type {?} */
             var ret = [];
             // tslint:disable-next-line: forin
             for (var key in value) {
@@ -2791,25 +3912,41 @@
         };
         return KeysPipe;
     }());
-    /** @nocollapse */ KeysPipe.ɵfac = function KeysPipe_Factory(t) { return new (t || KeysPipe)(); };
-    /** @nocollapse */ KeysPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "keys", type: KeysPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(KeysPipe, [{
-                type: i0.Pipe,
-                args: [{ name: 'keys' }]
-            }], null, null);
-    })();
+    KeysPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'keys' },] }
+    ];
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/yn/yn.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var ICON_YES = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z\"></path></svg>";
+    /** @type {?} */
     var ICON_NO = "<svg viewBox=\"64 64 896 896\" fill=\"currentColor\" width=\"1em\" height=\"1em\" aria-hidden=\"true\"><path d=\"M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z\"></path></svg>";
+    /** @type {?} */
     var CLS_YES = "class=\"yn__yes\"";
+    /** @type {?} */
     var CLS_NO = "class=\"yn__no\"";
     var YNPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function YNPipe(dom) {
             this.dom = dom;
         }
+        /**
+         * @param {?} value
+         * @param {?=} yes
+         * @param {?=} no
+         * @param {?=} mode
+         * @param {?=} isSafeHtml
+         * @return {?}
+         */
         YNPipe.prototype.transform = function (value, yes, no, mode, isSafeHtml) {
             if (isSafeHtml === void 0) { isSafeHtml = true; }
+            /** @type {?} */
             var html = '';
             yes = yes || '是';
             no = no || '否';
@@ -2828,65 +3965,157 @@
         };
         return YNPipe;
     }());
-    /** @nocollapse */ YNPipe.ɵfac = function YNPipe_Factory(t) { return new (t || YNPipe)(i0.ɵɵdirectiveInject(i1$4.DomSanitizer)); };
-    /** @nocollapse */ YNPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "yn", type: YNPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(YNPipe, [{
-                type: i0.Pipe,
-                args: [{ name: 'yn' }]
-            }], function () { return [{ type: i1$4.DomSanitizer }]; }, null);
-    })();
+    YNPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'yn' },] }
+    ];
+    /** @nocollapse */
+    YNPipe.ctorParameters = function () { return [
+        { type: i1$3.DomSanitizer }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        YNPipe.prototype.dom;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/safe/html.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var HTMLPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function HTMLPipe(dom) {
             this.dom = dom;
         }
+        /**
+         * @param {?} html
+         * @return {?}
+         */
         HTMLPipe.prototype.transform = function (html) {
             return html ? this.dom.bypassSecurityTrustHtml(html) : '';
         };
         return HTMLPipe;
     }());
-    /** @nocollapse */ HTMLPipe.ɵfac = function HTMLPipe_Factory(t) { return new (t || HTMLPipe)(i0.ɵɵdirectiveInject(i1$4.DomSanitizer)); };
-    /** @nocollapse */ HTMLPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "html", type: HTMLPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HTMLPipe, [{
-                type: i0.Pipe,
-                args: [{ name: 'html' }]
-            }], function () { return [{ type: i1$4.DomSanitizer }]; }, null);
-    })();
+    HTMLPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'html' },] }
+    ];
+    /** @nocollapse */
+    HTMLPipe.ctorParameters = function () { return [
+        { type: i1$3.DomSanitizer }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HTMLPipe.prototype.dom;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/pipes/safe/url.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var URLPipe = /** @class */ (function () {
+        /**
+         * @param {?} dom
+         */
         function URLPipe(dom) {
             this.dom = dom;
         }
+        /**
+         * @param {?} url
+         * @return {?}
+         */
         URLPipe.prototype.transform = function (url) {
             return url ? this.dom.bypassSecurityTrustUrl(url) : '';
         };
         return URLPipe;
     }());
-    /** @nocollapse */ URLPipe.ɵfac = function URLPipe_Factory(t) { return new (t || URLPipe)(i0.ɵɵdirectiveInject(i1$4.DomSanitizer)); };
-    /** @nocollapse */ URLPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "url", type: URLPipe, pure: true });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(URLPipe, [{
-                type: i0.Pipe,
-                args: [{ name: 'url' }]
-            }], function () { return [{ type: i1$4.DomSanitizer }]; }, null);
-    })();
+    URLPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'url' },] }
+    ];
+    /** @nocollapse */
+    URLPipe.ctorParameters = function () { return [
+        { type: i1$3.DomSanitizer }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        URLPipe.prototype.dom;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/services/i18n/i18n.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var I18nPipe = /** @class */ (function () {
+        /**
+         * @param {?} i18n
+         */
+        function I18nPipe(i18n) {
+            this.i18n = i18n;
+        }
+        /**
+         * @param {?} key
+         * @param {?=} interpolateParams
+         * @param {?=} isSafe
+         * @return {?}
+         */
+        I18nPipe.prototype.transform = function (key, interpolateParams, isSafe) {
+            return this.i18n.fanyi(key, interpolateParams, isSafe);
+        };
+        return I18nPipe;
+    }());
+    I18nPipe.decorators = [
+        { type: i0.Pipe, args: [{ name: 'i18n' },] }
+    ];
+    /** @nocollapse */
+    I18nPipe.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        I18nPipe.prototype.i18n;
+    }
+
+    /** @type {?} */
     var HELPERS = [ModalHelper, DrawerHelper];
+    /** @type {?} */
     var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
+    /** @type {?} */
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
+        /**
+         * @param {?} iconSrv
+         */
         function AlainThemeModule(iconSrv) {
             iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
         }
+        /**
+         * @return {?}
+         */
         AlainThemeModule.forRoot = function () {
             return {
                 ngModule: AlainThemeModule,
                 providers: __spread(HELPERS),
             };
         };
+        /**
+         * @return {?}
+         */
         AlainThemeModule.forChild = function () {
             return {
                 ngModule: AlainThemeModule,
@@ -2895,28 +4124,39 @@
         };
         return AlainThemeModule;
     }());
-    /** @nocollapse */ AlainThemeModule.ɵmod = i0.ɵɵdefineNgModule({ type: AlainThemeModule });
-    /** @nocollapse */ AlainThemeModule.ɵinj = i0.ɵɵdefineInjector({ factory: function AlainThemeModule_Factory(t) { return new (t || AlainThemeModule)(i0.ɵɵinject(i1$9.NzIconService)); }, imports: [[common.CommonModule, router.RouterModule, overlay.OverlayModule, i1$8.NzI18nModule], DelonLocaleModule] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(AlainThemeModule, { declarations: [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule, i1$8.NzI18nModule], exports: [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AlainThemeModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule, router.RouterModule, overlay.OverlayModule, i1$8.NzI18nModule],
-                        declarations: __spread(PIPES),
-                        exports: __spread(PIPES, [DelonLocaleModule]),
-                    }]
-            }], function () { return [{ type: i1$9.NzIconService }]; }, null);
-    })();
+    AlainThemeModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    imports: [i1.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
+                    declarations: __spread(PIPES),
+                    exports: __spread(PIPES, [DelonLocaleModule]),
+                },] }
+    ];
+    /** @nocollapse */
+    AlainThemeModule.ctorParameters = function () { return [
+        { type: icon.NzIconService }
+    ]; };
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/version.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var VERSION = new i0.Version('11.3.1');
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: theme.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
-    exports.ALAIN_I18N_TOKEN_FACTORY = ALAIN_I18N_TOKEN_FACTORY;
     exports.APP = APP;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
     exports.AlainThemeModule = AlainThemeModule;
@@ -2939,7 +4179,6 @@
     exports.HTMLPipe = HTMLPipe;
     exports.HTML_DIR = HTML_DIR;
     exports.Headers = Headers;
-    exports.I18nPipe = I18nPipe;
     exports.JSONP = JSONP;
     exports.KeysPipe = KeysPipe;
     exports.LAYOUT = LAYOUT;
@@ -2981,6 +4220,8 @@
     exports.tr_TR = trTR;
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;
+    exports.ɵa = ALAIN_I18N_TOKEN_FACTORY;
+    exports.ɵb = I18nPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

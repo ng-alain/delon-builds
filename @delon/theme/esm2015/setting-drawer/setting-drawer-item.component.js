@@ -1,39 +1,55 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: setting-drawer-item.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 import { Component, Input } from '@angular/core';
-import * as i0 from "@angular/core";
-import * as i1 from "@angular/common";
-import * as i2 from "ng-zorro-antd/input";
-import * as i3 from "@angular/forms";
-import * as i4 from "ng-zorro-antd/input-number";
-import * as i5 from "ng-zorro-antd/switch";
-import * as i6 from "ng-zorro-antd/drawer";
 export class SettingDrawerItemComponent {
     constructor() {
         this.i = {};
         this.pxVal = 0;
-        this.format = (value) => `${value} px`;
+        this.format = (/**
+         * @param {?} value
+         * @return {?}
+         */
+        (value) => `${value} px`);
     }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
     set data(val) {
         this.i = val;
         if (val.type === 'px') {
             this.pxVal = +val.value.replace('px', '');
         }
     }
+    /**
+     * @param {?} val
+     * @return {?}
+     */
     pxChange(val) {
         this.i.value = `${val}px`;
     }
 }
-/** @nocollapse */ SettingDrawerItemComponent.ɵfac = function SettingDrawerItemComponent_Factory(t) { return new (t || SettingDrawerItemComponent)(); };
-/** @nocollapse */ SettingDrawerItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SettingDrawerItemComponent, selector: "setting-drawer-item", inputs: { data: "data" }, host: { properties: { "class.setting-drawer__body-item": "true" } }, ngImport: i0, template: "<span>\n  {{ i.label }}\n  <span class=\"pl-sm text-grey\">{{ i.tip }}</span>\n</span>\n<div [ngSwitch]=\"i.type\">\n  <ng-container *ngSwitchCase=\"'color'\">\n    <input nz-input type=\"color\" style=\"min-width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'input'\">\n    <input nz-input style=\"min-width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'px'\">\n    <nz-input-number\n      [(ngModel)]=\"pxVal\"\n      (ngModelChange)=\"pxChange($event)\"\n      [nzMin]=\"i.min\"\n      [nzMax]=\"i.max\"\n      [nzStep]=\"i.step || 2\"\n      [nzFormatter]=\"format\"\n    ></nz-input-number>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'switch'\">\n    <nz-switch nzSize=\"small\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\"></nz-switch>\n  </ng-container>\n  <ng-container *ngSwitchDefault>\n    <ng-template nzDrawerContent></ng-template>\n  </ng-container>\n</div>\n", directives: [{ type: i1.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { type: i1.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { type: i2.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "disabled"], exportAs: ["nzInput"] }, { type: i3.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { type: i3.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i3.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i4.NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzSize", "nzMin", "nzMax", "nzParser", "nzPrecisionMode", "nzPlaceHolder", "nzStep", "nzInputMode", "nzId", "nzDisabled", "nzAutoFocus", "nzFormatter", "nzPrecision"], outputs: ["nzBlur", "nzFocus"], exportAs: ["nzInputNumber"] }, { type: i5.NzSwitchComponent, selector: "nz-switch", inputs: ["nzLoading", "nzDisabled", "nzControl", "nzCheckedChildren", "nzUnCheckedChildren", "nzSize"], exportAs: ["nzSwitch"] }, { type: i1.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { type: i6.NzDrawerContentDirective, selector: "[nzDrawerContent]", exportAs: ["nzDrawerContent"] }] });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SettingDrawerItemComponent, [{
-        type: Component,
-        args: [{
+SettingDrawerItemComponent.decorators = [
+    { type: Component, args: [{
                 selector: 'setting-drawer-item',
-                templateUrl: './setting-drawer-item.component.html',
+                template: "<span>\n  {{ i.label }}\n  <span class=\"pl-sm text-grey\">{{ i.tip }}</span>\n</span>\n<div [ngSwitch]=\"i.type\">\n  <ng-container *ngSwitchCase=\"'color'\">\n    <input nz-input type=\"color\" style=\"min-width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'input'\">\n    <input nz-input style=\"min-width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'px'\">\n    <nz-input-number\n      [(ngModel)]=\"pxVal\"\n      (ngModelChange)=\"pxChange($event)\"\n      [nzMin]=\"i.min\"\n      [nzMax]=\"i.max\"\n      [nzStep]=\"i.step || 2\"\n      [nzFormatter]=\"format\"\n    ></nz-input-number>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'switch'\">\n    <nz-switch nzSize=\"small\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\"></nz-switch>\n  </ng-container>\n  <ng-container *ngSwitchDefault>\n    <ng-template nzDrawerContent></ng-template>\n  </ng-container>\n</div>\n",
                 host: {
                     '[class.setting-drawer__body-item]': 'true',
-                },
-            }]
-    }], null, { data: [{
-            type: Input
-        }] }); })();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0dGluZy1kcmF3ZXItaXRlbS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy90aGVtZS9zZXR0aW5nLWRyYXdlci9zZXR0aW5nLWRyYXdlci1pdGVtLmNvbXBvbmVudC50cyIsIi4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL3RoZW1lL3NldHRpbmctZHJhd2VyL3NldHRpbmctZHJhd2VyLWl0ZW0uY29tcG9uZW50Lmh0bWwiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsT0FBTyxFQUFFLFNBQVMsRUFBRSxLQUFLLEVBQUUsTUFBTSxlQUFlLENBQUM7Ozs7Ozs7O0FBU2pELE1BQU0sT0FBTywwQkFBMEI7SUFQdkM7UUFRRSxNQUFDLEdBQVEsRUFBRSxDQUFDO1FBVVosVUFBSyxHQUFHLENBQUMsQ0FBQztRQU1WLFdBQU0sR0FBRyxDQUFDLEtBQWEsRUFBRSxFQUFFLENBQUMsR0FBRyxLQUFLLEtBQUssQ0FBQztLQUMzQztJQWZDLElBQ0ksSUFBSSxDQUFDLEdBQVE7UUFDZixJQUFJLENBQUMsQ0FBQyxHQUFHLEdBQUcsQ0FBQztRQUNiLElBQUksR0FBRyxDQUFDLElBQUksS0FBSyxJQUFJLEVBQUU7WUFDckIsSUFBSSxDQUFDLEtBQUssR0FBRyxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxFQUFFLENBQUMsQ0FBQztTQUMzQztJQUNILENBQUM7SUFJRCxRQUFRLENBQUMsR0FBVztRQUNsQixJQUFJLENBQUMsQ0FBQyxDQUFDLEtBQUssR0FBRyxHQUFHLEdBQUcsSUFBSSxDQUFDO0lBQzVCLENBQUM7O3VIQWZVLDBCQUEwQjt3R0FBMUIsMEJBQTBCLDBKQ1R2QyxpakNBNEJBO3VGRG5CYSwwQkFBMEI7Y0FQdEMsU0FBUztlQUFDO2dCQUNULFFBQVEsRUFBRSxxQkFBcUI7Z0JBQy9CLFdBQVcsRUFBRSxzQ0FBc0M7Z0JBQ25ELElBQUksRUFBRTtvQkFDSixtQ0FBbUMsRUFBRSxNQUFNO2lCQUM1QzthQUNGO2dCQUtLLElBQUk7a0JBRFAsS0FBSyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnc2V0dGluZy1kcmF3ZXItaXRlbScsXG4gIHRlbXBsYXRlVXJsOiAnLi9zZXR0aW5nLWRyYXdlci1pdGVtLmNvbXBvbmVudC5odG1sJyxcbiAgaG9zdDoge1xuICAgICdbY2xhc3Muc2V0dGluZy1kcmF3ZXJfX2JvZHktaXRlbV0nOiAndHJ1ZScsXG4gIH0sXG59KVxuZXhwb3J0IGNsYXNzIFNldHRpbmdEcmF3ZXJJdGVtQ29tcG9uZW50IHtcbiAgaTogYW55ID0ge307XG5cbiAgQElucHV0KClcbiAgc2V0IGRhdGEodmFsOiBhbnkpIHtcbiAgICB0aGlzLmkgPSB2YWw7XG4gICAgaWYgKHZhbC50eXBlID09PSAncHgnKSB7XG4gICAgICB0aGlzLnB4VmFsID0gK3ZhbC52YWx1ZS5yZXBsYWNlKCdweCcsICcnKTtcbiAgICB9XG4gIH1cblxuICBweFZhbCA9IDA7XG5cbiAgcHhDaGFuZ2UodmFsOiBudW1iZXIpOiB2b2lkIHtcbiAgICB0aGlzLmkudmFsdWUgPSBgJHt2YWx9cHhgO1xuICB9XG5cbiAgZm9ybWF0ID0gKHZhbHVlOiBudW1iZXIpID0+IGAke3ZhbHVlfSBweGA7XG59XG4iLCI8c3Bhbj5cbiAge3sgaS5sYWJlbCB9fVxuICA8c3BhbiBjbGFzcz1cInBsLXNtIHRleHQtZ3JleVwiPnt7IGkudGlwIH19PC9zcGFuPlxuPC9zcGFuPlxuPGRpdiBbbmdTd2l0Y2hdPVwiaS50eXBlXCI+XG4gIDxuZy1jb250YWluZXIgKm5nU3dpdGNoQ2FzZT1cIidjb2xvcidcIj5cbiAgICA8aW5wdXQgbnotaW5wdXQgdHlwZT1cImNvbG9yXCIgc3R5bGU9XCJtaW4td2lkdGg6IDg4cHhcIiBbKG5nTW9kZWwpXT1cImkudmFsdWVcIiBbbmdNb2RlbE9wdGlvbnNdPVwieyBzdGFuZGFsb25lOiB0cnVlIH1cIiAvPlxuICA8L25nLWNvbnRhaW5lcj5cbiAgPG5nLWNvbnRhaW5lciAqbmdTd2l0Y2hDYXNlPVwiJ2lucHV0J1wiPlxuICAgIDxpbnB1dCBuei1pbnB1dCBzdHlsZT1cIm1pbi13aWR0aDogODhweFwiIFsobmdNb2RlbCldPVwiaS52YWx1ZVwiIFtuZ01vZGVsT3B0aW9uc109XCJ7IHN0YW5kYWxvbmU6IHRydWUgfVwiIC8+XG4gIDwvbmctY29udGFpbmVyPlxuICA8bmctY29udGFpbmVyICpuZ1N3aXRjaENhc2U9XCIncHgnXCI+XG4gICAgPG56LWlucHV0LW51bWJlclxuICAgICAgWyhuZ01vZGVsKV09XCJweFZhbFwiXG4gICAgICAobmdNb2RlbENoYW5nZSk9XCJweENoYW5nZSgkZXZlbnQpXCJcbiAgICAgIFtuek1pbl09XCJpLm1pblwiXG4gICAgICBbbnpNYXhdPVwiaS5tYXhcIlxuICAgICAgW256U3RlcF09XCJpLnN0ZXAgfHwgMlwiXG4gICAgICBbbnpGb3JtYXR0ZXJdPVwiZm9ybWF0XCJcbiAgICA+PC9uei1pbnB1dC1udW1iZXI+XG4gIDwvbmctY29udGFpbmVyPlxuICA8bmctY29udGFpbmVyICpuZ1N3aXRjaENhc2U9XCInc3dpdGNoJ1wiPlxuICAgIDxuei1zd2l0Y2ggbnpTaXplPVwic21hbGxcIiBbKG5nTW9kZWwpXT1cImkudmFsdWVcIiBbbmdNb2RlbE9wdGlvbnNdPVwieyBzdGFuZGFsb25lOiB0cnVlIH1cIj48L256LXN3aXRjaD5cbiAgPC9uZy1jb250YWluZXI+XG4gIDxuZy1jb250YWluZXIgKm5nU3dpdGNoRGVmYXVsdD5cbiAgICA8bmctdGVtcGxhdGUgbnpEcmF3ZXJDb250ZW50PjwvbmctdGVtcGxhdGU+XG4gIDwvbmctY29udGFpbmVyPlxuPC9kaXY+XG4iXX0=
+                }
+            }] }
+];
+SettingDrawerItemComponent.propDecorators = {
+    data: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    SettingDrawerItemComponent.prototype.i;
+    /** @type {?} */
+    SettingDrawerItemComponent.prototype.pxVal;
+    /** @type {?} */
+    SettingDrawerItemComponent.prototype.format;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2V0dGluZy1kcmF3ZXItaXRlbS5jb21wb25lbnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy90aGVtZS9zZXR0aW5nLWRyYXdlci9zZXR0aW5nLWRyYXdlci1pdGVtLmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxTQUFTLEVBQUUsS0FBSyxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBU2pELE1BQU0sT0FBTywwQkFBMEI7SUFQdkM7UUFRRSxNQUFDLEdBQVEsRUFBRSxDQUFDO1FBVVosVUFBSyxHQUFHLENBQUMsQ0FBQztRQU1WLFdBQU07Ozs7UUFBRyxDQUFDLEtBQWEsRUFBRSxFQUFFLENBQUMsR0FBRyxLQUFLLEtBQUssRUFBQztJQUM1QyxDQUFDOzs7OztJQWZDLElBQ0ksSUFBSSxDQUFDLEdBQVE7UUFDZixJQUFJLENBQUMsQ0FBQyxHQUFHLEdBQUcsQ0FBQztRQUNiLElBQUksR0FBRyxDQUFDLElBQUksS0FBSyxJQUFJLEVBQUU7WUFDckIsSUFBSSxDQUFDLEtBQUssR0FBRyxDQUFDLEdBQUcsQ0FBQyxLQUFLLENBQUMsT0FBTyxDQUFDLElBQUksRUFBRSxFQUFFLENBQUMsQ0FBQztTQUMzQztJQUNILENBQUM7Ozs7O0lBSUQsUUFBUSxDQUFDLEdBQVc7UUFDbEIsSUFBSSxDQUFDLENBQUMsQ0FBQyxLQUFLLEdBQUcsR0FBRyxHQUFHLElBQUksQ0FBQztJQUM1QixDQUFDOzs7WUF0QkYsU0FBUyxTQUFDO2dCQUNULFFBQVEsRUFBRSxxQkFBcUI7Z0JBQy9CLDJqQ0FBbUQ7Z0JBQ25ELElBQUksRUFBRTtvQkFDSixtQ0FBbUMsRUFBRSxNQUFNO2lCQUM1QzthQUNGOzs7bUJBSUUsS0FBSzs7OztJQUZOLHVDQUFZOztJQVVaLDJDQUFVOztJQU1WLDRDQUEwQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IENvbXBvbmVudCwgSW5wdXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnc2V0dGluZy1kcmF3ZXItaXRlbScsXG4gIHRlbXBsYXRlVXJsOiAnLi9zZXR0aW5nLWRyYXdlci1pdGVtLmNvbXBvbmVudC5odG1sJyxcbiAgaG9zdDoge1xuICAgICdbY2xhc3Muc2V0dGluZy1kcmF3ZXJfX2JvZHktaXRlbV0nOiAndHJ1ZScsXG4gIH0sXG59KVxuZXhwb3J0IGNsYXNzIFNldHRpbmdEcmF3ZXJJdGVtQ29tcG9uZW50IHtcbiAgaTogYW55ID0ge307XG5cbiAgQElucHV0KClcbiAgc2V0IGRhdGEodmFsOiBhbnkpIHtcbiAgICB0aGlzLmkgPSB2YWw7XG4gICAgaWYgKHZhbC50eXBlID09PSAncHgnKSB7XG4gICAgICB0aGlzLnB4VmFsID0gK3ZhbC52YWx1ZS5yZXBsYWNlKCdweCcsICcnKTtcbiAgICB9XG4gIH1cblxuICBweFZhbCA9IDA7XG5cbiAgcHhDaGFuZ2UodmFsOiBudW1iZXIpOiB2b2lkIHtcbiAgICB0aGlzLmkudmFsdWUgPSBgJHt2YWx9cHhgO1xuICB9XG5cbiAgZm9ybWF0ID0gKHZhbHVlOiBudW1iZXIpID0+IGAke3ZhbHVlfSBweGA7XG59XG4iXX0=

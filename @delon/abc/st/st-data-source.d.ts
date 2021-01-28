@@ -4,7 +4,6 @@ import { CNCurrencyPipe, DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { Observable } from 'rxjs';
 import { STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
 import { _STColumn } from './st.types';
-import * as i0 from "@angular/core";
 export interface STDataSourceOptions {
     pi: number;
     ps: number;
@@ -62,6 +61,4 @@ export declare class STDataSource {
     private toFixed;
     private getValues;
     private getSum;
-    static ɵfac: i0.ɵɵFactoryDef<STDataSource, [null, { host: true; }, { host: true; }, { host: true; }, { host: true; }, null]>;
-    static ɵprov: i0.ɵɵInjectableDef<STDataSource>;
 }

@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('ng-zorro-antd/tooltip'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/core', '@delon/util', '@delon/theme', 'ng-zorro-antd/tooltip', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}), global.ng.core, global.delon.util, global.delon.theme, global['ng-zorro-antd/tooltip'], global.ng.common));
-}(this, (function (exports, i0, util, i1, i2, i3) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/core', '@delon/theme', '@delon/util', '@angular/common', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}), global.ng.core, global.delon.theme, global.delon.util, global.ng.common, global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, theme, util, common, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,15 +318,32 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: mini-progress.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var G2MiniProgressComponent = /** @class */ (function () {
+        /**
+         * @param {?} i18n
+         * @param {?} cdr
+         */
         function G2MiniProgressComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
             this.color = '#1890FF';
         }
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
         G2MiniProgressComponent.prototype.fixNum = function (value) {
             return Math.min(Math.max(util.toNumber(value), 0), 100);
         };
+        /**
+         * @return {?}
+         */
         G2MiniProgressComponent.prototype.ngOnChanges = function () {
             this.target = this.fixNum(this.target);
             this.percent = this.fixNum(this.percent);
@@ -356,8 +351,28 @@
         };
         return G2MiniProgressComponent;
     }());
-    /** @nocollapse */ G2MiniProgressComponent.ɵfac = function G2MiniProgressComponent_Factory(t) { return new (t || G2MiniProgressComponent)(i0.ɵɵdirectiveInject(i1.DelonLocaleService), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-    /** @nocollapse */ G2MiniProgressComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2MiniProgressComponent, selector: "g2-mini-progress", inputs: { color: "color", target: "target", percent: "percent", strokeWidth: "strokeWidth" }, host: { properties: { "class.g2-mini-progress": "true" } }, exportAs: ["g2MiniProgress"], usesOnChanges: true, ngImport: i0__namespace, template: "<div nz-tooltip [nzTooltipTitle]=\"i18n.getData('miniProgress').target + target + '%'\" class=\"g2-mini-progress__target\" [ngStyle]=\"{ 'left.%': target }\">\n  <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{ 'background-color': color }\"></span>\n  <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{ 'background-color': color }\"></span>\n</div>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{ 'background-color': color, 'width.%': percent, 'height.px': strokeWidth }\"></div>\n</div>\n", directives: [{ type: i2.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i3.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    G2MiniProgressComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'g2-mini-progress',
+                    exportAs: 'g2MiniProgress',
+                    template: "<div nz-tooltip [nzTooltipTitle]=\"i18n.getData('miniProgress').target + target + '%'\" class=\"g2-mini-progress__target\" [ngStyle]=\"{ 'left.%': target }\">\n  <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{ 'background-color': color }\"></span>\n  <span class=\"g2-mini-progress__target-item\" [ngStyle]=\"{ 'background-color': color }\"></span>\n</div>\n<div class=\"g2-mini-progress__wrap\">\n  <div class=\"g2-mini-progress__value\" [ngStyle]=\"{ 'background-color': color, 'width.%': percent, 'height.px': strokeWidth }\"></div>\n</div>\n",
+                    host: { '[class.g2-mini-progress]': 'true' },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    G2MiniProgressComponent.ctorParameters = function () { return [
+        { type: theme.DelonLocaleService },
+        { type: core.ChangeDetectorRef }
+    ]; };
+    G2MiniProgressComponent.propDecorators = {
+        color: [{ type: core.Input }],
+        target: [{ type: core.Input }],
+        percent: [{ type: core.Input }],
+        strokeWidth: [{ type: core.Input }]
+    };
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Number)
@@ -370,51 +385,55 @@
         util.InputNumber(),
         __metadata("design:type", Number)
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniProgressComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'g2-mini-progress',
-                        exportAs: 'g2MiniProgress',
-                        templateUrl: './mini-progress.component.html',
-                        host: { '[class.g2-mini-progress]': 'true' },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () { return [{ type: i1.DelonLocaleService }, { type: i0.ChangeDetectorRef }]; }, { color: [{
-                    type: i0.Input
-                }], target: [{
-                    type: i0.Input
-                }], percent: [{
-                    type: i0.Input
-                }], strokeWidth: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_target;
+        /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_percent;
+        /** @type {?} */
+        G2MiniProgressComponent.ngAcceptInputType_strokeWidth;
+        /** @type {?} */
+        G2MiniProgressComponent.prototype.color;
+        /** @type {?} */
+        G2MiniProgressComponent.prototype.target;
+        /** @type {?} */
+        G2MiniProgressComponent.prototype.percent;
+        /** @type {?} */
+        G2MiniProgressComponent.prototype.strokeWidth;
+        /** @type {?} */
+        G2MiniProgressComponent.prototype.i18n;
+        /**
+         * @type {?}
+         * @private
+         */
+        G2MiniProgressComponent.prototype.cdr;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [G2MiniProgressComponent];
     var G2MiniProgressModule = /** @class */ (function () {
         function G2MiniProgressModule() {
         }
         return G2MiniProgressModule;
     }());
-    /** @nocollapse */ G2MiniProgressModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2MiniProgressModule });
-    /** @nocollapse */ G2MiniProgressModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2MiniProgressModule_Factory(t) { return new (t || G2MiniProgressModule)(); }, imports: [[i3.CommonModule, util.DelonUtilModule, i1.DelonLocaleModule, i2.NzToolTipModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2MiniProgressModule, { declarations: [G2MiniProgressComponent], imports: [i3.CommonModule, util.DelonUtilModule, i1.DelonLocaleModule, i2.NzToolTipModule], exports: [G2MiniProgressComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniProgressModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i3.CommonModule, util.DelonUtilModule, i1.DelonLocaleModule, i2.NzToolTipModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    G2MiniProgressModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, util.DelonUtilModule, theme.DelonLocaleModule, tooltip.NzToolTipModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: mini-progress.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2MiniProgressComponent = G2MiniProgressComponent;

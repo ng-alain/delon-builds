@@ -6,30 +6,8 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.i2));
-}(this, (function (exports, i0, core, util, i1, i2) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.skeleton));
+}(this, (function (exports, core$1, core, util, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -349,14 +327,24 @@
             return _this;
         }
         // #endregion
+        /**
+         * @return {?}
+         */
         G2GaugeComponent.prototype.install = function () {
             // 自定义Shape 部分
-            window.G2.registerShape('point', 'pointer', {
+            (( /** @type {?} */(window))).G2.registerShape('point', 'pointer', {
                 // tslint:disable-next-line: typedef
+                /**
+                 * @param {?} cfg
+                 * @param {?} container
+                 * @return {?}
+                 */
                 draw: function (cfg, container) {
+                    /** @type {?} */
                     var group = container.addGroup({});
                     // 获取极坐标系下画布中心点
-                    var center = this.parsePoint({ x: 0, y: 0 });
+                    /** @type {?} */
+                    var center = (( /** @type {?} */(this))).parsePoint({ x: 0, y: 0 });
                     // 绘制指针
                     group.addShape('line', {
                         attrs: {
@@ -383,7 +371,8 @@
                 },
             });
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
-            var chart = (this._chart = new window.G2.Chart({
+            /** @type {?} */
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -417,11 +406,16 @@
             chart.point().position('value*1').shape('pointer');
             this.attachChart();
         };
+        /**
+         * @return {?}
+         */
         G2GaugeComponent.prototype.attachChart = function () {
             var _a = this, _chart = _a._chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
             if (!_chart)
                 return;
+            /** @type {?} */
             var data = [{ name: title, value: percent }];
+            /** @type {?} */
             var val = data[0].value;
             _chart.annotation().clear(true);
             _chart.geometries[0].color(color);
@@ -469,8 +463,28 @@
         };
         return G2GaugeComponent;
     }(core.G2BaseComponent));
-    /** @nocollapse */ G2GaugeComponent.ɵfac = function G2GaugeComponent_Factory(t) { return ɵG2GaugeComponent_BaseFactory(t || G2GaugeComponent); };
-    /** @nocollapse */ G2GaugeComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2GaugeComponent, selector: "g2-gauge", inputs: { title: "title", height: "height", color: "color", bgColor: "bgColor", format: "format", percent: "percent", padding: "padding" }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0__namespace, template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>", isInline: true, directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    G2GaugeComponent.decorators = [
+        { type: core$1.Component, args: [{
+                    selector: 'g2-gauge',
+                    exportAs: 'g2Gauge',
+                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>",
+                    host: {
+                        '[class.g2-gauge]': 'true',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core$1.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core$1.ViewEncapsulation.None
+                }] }
+    ];
+    G2GaugeComponent.propDecorators = {
+        title: [{ type: core$1.Input }],
+        height: [{ type: core$1.Input }],
+        color: [{ type: core$1.Input }],
+        bgColor: [{ type: core$1.Input }],
+        format: [{ type: core$1.Input }],
+        percent: [{ type: core$1.Input }],
+        padding: [{ type: core$1.Input }]
+    };
     __decorate([
         util.InputNumber(),
         __metadata("design:type", Number)
@@ -479,60 +493,52 @@
         util.InputNumber(),
         __metadata("design:type", Number)
     ], G2GaugeComponent.prototype, "percent", void 0);
-    var ɵG2GaugeComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2GaugeComponent);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2GaugeComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'g2-gauge',
-                        exportAs: 'g2Gauge',
-                        template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>",
-                        host: {
-                            '[class.g2-gauge]': 'true',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { title: [{
-                    type: i0.Input
-                }], height: [{
-                    type: i0.Input
-                }], color: [{
-                    type: i0.Input
-                }], bgColor: [{
-                    type: i0.Input
-                }], format: [{
-                    type: i0.Input
-                }], percent: [{
-                    type: i0.Input
-                }], padding: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        G2GaugeComponent.ngAcceptInputType_height;
+        /** @type {?} */
+        G2GaugeComponent.ngAcceptInputType_percent;
+        /** @type {?} */
+        G2GaugeComponent.prototype.title;
+        /** @type {?} */
+        G2GaugeComponent.prototype.height;
+        /** @type {?} */
+        G2GaugeComponent.prototype.color;
+        /** @type {?} */
+        G2GaugeComponent.prototype.bgColor;
+        /** @type {?} */
+        G2GaugeComponent.prototype.format;
+        /** @type {?} */
+        G2GaugeComponent.prototype.percent;
+        /** @type {?} */
+        G2GaugeComponent.prototype.padding;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [G2GaugeComponent];
     var G2GaugeModule = /** @class */ (function () {
         function G2GaugeModule() {
         }
         return G2GaugeModule;
     }());
-    /** @nocollapse */ G2GaugeModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2GaugeModule });
-    /** @nocollapse */ G2GaugeModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2GaugeModule_Factory(t) { return new (t || G2GaugeModule)(); }, imports: [[i1.CommonModule, util.DelonUtilModule, i2.NzSkeletonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2GaugeModule, { declarations: [G2GaugeComponent], imports: [i1.CommonModule, util.DelonUtilModule, i2.NzSkeletonModule], exports: [G2GaugeComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2GaugeModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i1.CommonModule, util.DelonUtilModule, i2.NzSkeletonModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    G2GaugeModule.decorators = [
+        { type: core$1.NgModule, args: [{
+                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: gauge.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2GaugeComponent = G2GaugeComponent;

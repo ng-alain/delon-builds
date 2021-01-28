@@ -10,29 +10,49 @@
 }(this, (function (exports, testing, platformBrowser, dropdown) { 'use strict';
 
     /**
+     * @fileoverview added by tsickle
+     * Generated from: src/event-objects.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
      * @license
      * Copyright Google LLC All Rights Reserved.
      *
      * Use of this source code is governed by an MIT-style license that can be
      * found in the LICENSE file at https://angular.io/license
      */
-    /** Creates a browser MouseEvent with the specified options. */
+    /**
+     * Creates a browser MouseEvent with the specified options.
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @return {?}
+     */
     function createMouseEvent(type, x, y) {
         if (x === void 0) { x = 0; }
         if (y === void 0) { y = 0; }
+        /** @type {?} */
         var event = document.createEvent('MouseEvent');
         event.initMouseEvent(type, false /* canBubble */, false /* cancelable */, window /* view */, 0 /* detail */, x /* screenX */, y /* screenY */, x /* clientX */, y /* clientY */, false /* ctrlKey */, false /* altKey */, false /* shiftKey */, false /* metaKey */, 0 /* button */, null /* relatedTarget */);
         return event;
     }
-    /** Creates a browser TouchEvent with the specified pointer coordinates. */
+    /**
+     * Creates a browser TouchEvent with the specified pointer coordinates.
+     * @param {?} type
+     * @param {?=} pageX
+     * @param {?=} pageY
+     * @return {?}
+     */
     function createTouchEvent(type, pageX, pageY) {
         if (pageX === void 0) { pageX = 0; }
         if (pageY === void 0) { pageY = 0; }
         // In favor of creating events that work for most of the browsers, the event is created
         // as a basic UI Event. The necessary details for the event will be set manually.
+        /** @type {?} */
         var event = document.createEvent('UIEvent');
+        /** @type {?} */
         var touchDetails = { pageX: pageX, pageY: pageY };
-        event.initUIEvent(type, true, true, window, 0);
+        (( /** @type {?} */(event))).initUIEvent(type, true, true, window, 0);
         // Most of the browsers don't have a "initTouchEvent" method that can be used to define
         // the touch details.
         Object.defineProperties(event, {
@@ -40,65 +60,123 @@
         });
         return event;
     }
-    /** Dispatches a keydown event from an element. */
+    /**
+     * Dispatches a keydown event from an element.
+     * @param {?} type
+     * @param {?} keyCode
+     * @param {?=} target
+     * @param {?=} key
+     * @return {?}
+     */
     function createKeyboardEvent(type, keyCode, target, key) {
-        var event = document.createEvent('KeyboardEvent');
+        /** @type {?} */
+        var event = ( /** @type {?} */(document.createEvent('KeyboardEvent')));
         // Firefox does not support `initKeyboardEvent`, but supports `initKeyEvent`.
+        /** @type {?} */
         var initEventFn = (event.initKeyEvent || event.initKeyboardEvent).bind(event);
+        /** @type {?} */
         var originalPreventDefault = event.preventDefault;
         initEventFn(type, true, true, window, 0, 0, 0, 0, 0, keyCode);
         // Webkit Browsers don't set the keyCode when calling the init function.
         // See related bug https://bugs.webkit.org/show_bug.cgi?id=16735
         Object.defineProperties(event, {
-            keyCode: { get: function () { return keyCode; } },
-            key: { get: function () { return key; } },
-            target: { get: function () { return target; } },
+            keyCode: { get: ( /**
+                     * @return {?}
+                     */function () { return keyCode; }) },
+            key: { get: ( /**
+                     * @return {?}
+                     */function () { return key; }) },
+            target: { get: ( /**
+                     * @return {?}
+                     */function () { return target; }) },
         });
         // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
-        event.preventDefault = function () {
-            Object.defineProperty(event, 'defaultPrevented', { get: function () { return true; } });
+        event.preventDefault = ( /**
+         * @return {?}
+         */function () {
+            Object.defineProperty(event, 'defaultPrevented', { get: ( /**
+                     * @return {?}
+                     */function () { return true; }) });
             // tslint:disable-next-line:no-invalid-this
             return originalPreventDefault.apply(this, arguments);
-        };
+        });
         return event;
     }
-    /** Creates a fake event object with any desired event type. */
+    /**
+     * Creates a fake event object with any desired event type.
+     * @param {?} type
+     * @param {?=} canBubble
+     * @param {?=} cancelable
+     * @return {?}
+     */
     function createFakeEvent(type, canBubble, cancelable) {
         if (canBubble === void 0) { canBubble = true; }
         if (cancelable === void 0) { cancelable = true; }
+        /** @type {?} */
         var event = document.createEvent('Event');
         event.initEvent(type, canBubble, cancelable);
         return event;
     }
 
     /**
-     * @license
-     * Copyright Google LLC All Rights Reserved.
-     *
-     * Use of this source code is governed by an MIT-style license that can be
-     * found in the LICENSE file at https://angular.io/license
+     * @fileoverview added by tsickle
+     * Generated from: src/dispatch-events.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    /** Utility to dispatch any event on a Node. */
+    /**
+     * Utility to dispatch any event on a Node.
+     * @param {?} node
+     * @param {?} event
+     * @return {?}
+     */
     function dispatchEvent(node, event) {
         node.dispatchEvent(event);
         return event;
     }
-    /** Shorthand to dispatch a fake event on a specified node. */
+    /**
+     * Shorthand to dispatch a fake event on a specified node.
+     * @param {?} node
+     * @param {?} type
+     * @param {?=} canBubble
+     * @return {?}
+     */
     function dispatchFakeEvent(node, type, canBubble) {
         return dispatchEvent(node, typeof type === 'string' ? createFakeEvent(type, canBubble) : type);
     }
-    /** Shorthand to dispatch a keyboard event with a specified key code. */
+    /**
+     * Shorthand to dispatch a keyboard event with a specified key code.
+     * @param {?} node
+     * @param {?} type
+     * @param {?} keyCode
+     * @param {?=} target
+     * @return {?}
+     */
     function dispatchKeyboardEvent(node, type, keyCode, target) {
-        return dispatchEvent(node, createKeyboardEvent(type, keyCode, target));
+        return ( /** @type {?} */(dispatchEvent(node, createKeyboardEvent(type, keyCode, target))));
     }
-    /** Shorthand to dispatch a mouse event on the specified coordinates. */
+    /**
+     * Shorthand to dispatch a mouse event on the specified coordinates.
+     * @param {?} node
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @param {?=} event
+     * @return {?}
+     */
     function dispatchMouseEvent(node, type, x, y, event) {
         if (x === void 0) { x = 0; }
         if (y === void 0) { y = 0; }
         if (event === void 0) { event = createMouseEvent(type, x, y); }
-        return dispatchEvent(node, event);
+        return ( /** @type {?} */(dispatchEvent(node, event)));
     }
-    /** Shorthand to dispatch a touch event on the specified coordinates. */
+    /**
+     * Shorthand to dispatch a touch event on the specified coordinates.
+     * @param {?} node
+     * @param {?} type
+     * @param {?=} x
+     * @param {?=} y
+     * @return {?}
+     */
     function dispatchTouchEvent(node, type, x, y) {
         if (x === void 0) { x = 0; }
         if (y === void 0) { y = 0; }
@@ -106,17 +184,16 @@
     }
 
     /**
-     * @license
-     * Copyright Google LLC All Rights Reserved.
-     *
-     * Use of this source code is governed by an MIT-style license that can be
-     * found in the LICENSE file at https://angular.io/license
+     * @fileoverview added by tsickle
+     * Generated from: src/type-in-element.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
      * Focuses an input, sets its value and dispatches
      * the `input` event, simulating the user typing.
-     * @param value Value to be set on the input.
-     * @param element Element onto which to set the value.
+     * @param {?} value Value to be set on the input.
+     * @param {?} element Element onto which to set the value.
+     * @return {?}
      */
     function typeInElement(value, element) {
         element.focus();
@@ -124,17 +201,29 @@
         dispatchFakeEvent(element, 'input');
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/zorro.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var DROPDOWN_MIN_TIME = 1000;
     /**
      * 触发 dropdown
+     * @param {?} dl
+     * @param {?} trigger
+     * @param {?=} allowNull
+     * @return {?}
      */
     function dispatchDropDown(dl, trigger, allowNull) {
         if (allowNull === void 0) { allowNull = true; }
+        /** @type {?} */
         var directive = dl.query(platformBrowser.By.directive(dropdown.NzDropDownDirective));
         if (allowNull && directive == null) {
             return false;
         }
-        var el = directive.injector.get(dropdown.NzDropDownDirective).elementRef.nativeElement;
+        /** @type {?} */
+        var el = ( /** @type {?} */(directive.injector.get(dropdown.NzDropDownDirective).elementRef.nativeElement));
         if (trigger === 'click') {
             dispatchFakeEvent(el, 'click');
         }
@@ -145,177 +234,348 @@
         return true;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/g2.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var PageG2DataCount = 2;
+    /** @type {?} */
     var PageG2Height = 100;
+    /**
+     * @template T
+     */
     var PageG2 = /** @class */ (function () {
+        /**
+         * @param {?=} fixture
+         */
         function PageG2(fixture) {
             if (fixture === void 0) { fixture = null; }
             this.fixture = fixture;
         }
         Object.defineProperty(PageG2.prototype, "dl", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.fixture.debugElement;
+                return ( /** @type {?} */(this.fixture)).debugElement;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(PageG2.prototype, "context", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.fixture.componentInstance;
+                return ( /** @type {?} */(this.fixture)).componentInstance;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(PageG2.prototype, "comp", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 // tslint:disable-next-line:no-string-literal
-                return this.context['comp'];
+                return (( /** @type {?} */(this.context)))['comp'];
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(PageG2.prototype, "chart", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.comp.chart;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @template THIS,M
+         * @this {THIS}
+         * @param {?} module
+         * @param {?} comp
+         * @return {THIS}
+         */
         PageG2.prototype.genModule = function (module, comp) {
             testing.TestBed.configureTestingModule({
                 imports: [module],
                 declarations: [comp],
             });
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} comp
+         * @param {?=} dc
+         * @return {THIS}
+         */
         PageG2.prototype.genComp = function (comp, dc) {
             if (dc === void 0) { dc = false; }
-            this.fixture = testing.TestBed.createComponent(comp);
+            ( /** @type {?} */(this)).fixture = testing.TestBed.createComponent(comp);
             if (dc) {
-                this.dcFirst();
+                ( /** @type {?} */(this)).dcFirst();
             }
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template M
+         * @param {?} module
+         * @param {?} comp
+         * @param {?=} options
+         * @return {?}
+         */
         PageG2.prototype.makeModule = function (module, comp, options) {
             if (options === void 0) { options = { dc: true }; }
             this.genModule(module, comp).genComp(comp, options.dc);
             return this;
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         PageG2.prototype.dcFirst = function () {
-            this.dc();
+            ( /** @type {?} */(this)).dc();
             testing.flush();
             testing.discardPeriodicTasks();
             // FIX: `Error during cleanup of component`
-            if (this.comp && typeof this.comp.chart !== 'undefined') {
-                spyOn(this.comp.chart, 'destroy');
+            if (( /** @type {?} */(this)).comp && typeof ( /** @type {?} */(this)).comp.chart !== 'undefined') {
+                spyOn(( /** @type {?} */(this)).comp.chart, 'destroy');
             }
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         PageG2.prototype.dc = function () {
-            this.fixture.changeDetectorRef.markForCheck();
-            this.fixture.detectChanges();
-            return this;
+            ( /** @type {?} */(( /** @type {?} */(this)).fixture)).changeDetectorRef.markForCheck();
+            ( /** @type {?} */(( /** @type {?} */(this)).fixture)).detectChanges();
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         PageG2.prototype.end = function () {
             // The 201 value is delay value
             testing.tick(201);
             testing.flush();
             testing.discardPeriodicTasks();
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @return {?}
+         */
         PageG2.prototype.destroy = function () {
             this.comp.ngOnDestroy();
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} data
+         * @return {THIS}
+         */
         PageG2.prototype.newData = function (data) {
             // tslint:disable-next-line:no-string-literal
-            this.context['data'] = data;
-            this.dc();
-            return this;
+            (( /** @type {?} */(( /** @type {?} */(this)).context)))['data'] = data;
+            ( /** @type {?} */(this)).dc();
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @param {?} cls
+         * @return {?}
+         */
         PageG2.prototype.getEls = function (cls) {
-            return this.dl.nativeElement.querySelectorAll(cls);
+            return (( /** @type {?} */(this.dl.nativeElement))).querySelectorAll(cls);
         };
+        /**
+         * @param {?} cls
+         * @return {?}
+         */
         PageG2.prototype.getEl = function (cls) {
-            return this.dl.nativeElement.querySelector(cls);
+            return ( /** @type {?} */((( /** @type {?} */(this.dl.nativeElement))).querySelector(cls)));
         };
+        /**
+         * @param {?} type
+         * @return {?}
+         */
         PageG2.prototype.getController = function (type) {
-            return this.chart.getController(type);
+            return ( /** @type {?} */(this.chart.getController(type)));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?=} stauts
+         * @return {THIS}
+         */
         PageG2.prototype.isCanvas = function (stauts) {
             if (stauts === void 0) { stauts = true; }
-            this.isExists('canvas', stauts);
-            return this;
+            ( /** @type {?} */(this)).isExists('canvas', stauts);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} cls
+         * @param {?} value
+         * @return {THIS}
+         */
         PageG2.prototype.isText = function (cls, value) {
-            var el = this.getEl(cls);
-            expect(el ? el.textContent.trim() : '').toBe(value);
-            return this;
+            /** @type {?} */
+            var el = ( /** @type {?} */(this)).getEl(cls);
+            expect(el ? ( /** @type {?} */(el.textContent)).trim() : '').toBe(value);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} cls
+         * @param {?=} stauts
+         * @return {THIS}
+         */
         PageG2.prototype.isExists = function (cls, stauts) {
             if (stauts === void 0) { stauts = true; }
-            expect(this.getEl(cls) != null).toBe(stauts);
-            return this;
+            expect(( /** @type {?} */(this)).getEl(cls) != null).toBe(stauts);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} key
+         * @param {?} value
+         * @return {THIS}
+         */
         PageG2.prototype.checkOptions = function (key, value) {
-            expect(this.chart[key]).toBe(value);
-            return this;
+            expect((( /** @type {?} */(( /** @type {?} */(this)).chart)))[key]).toBe(value);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} type
+         * @param {?} key
+         * @param {?} value
+         * @return {THIS}
+         */
         PageG2.prototype.checkAttrOptions = function (type, key, value) {
-            var x = this.chart[type][0].attributeOption[key];
+            /** @type {?} */
+            var x = (( /** @type {?} */(( /** @type {?} */(this)).chart[type][0]))).attributeOption[key];
             expect(x.field).toBe(value);
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} num
+         * @return {THIS}
+         */
         PageG2.prototype.isXScalesCount = function (num) {
-            var x = this.chart.getXScale();
-            expect(x.values.length).toBe(num);
-            return this;
+            /** @type {?} */
+            var x = ( /** @type {?} */(this)).chart.getXScale();
+            expect(( /** @type {?} */(x.values)).length).toBe(num);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} num
+         * @return {THIS}
+         */
         PageG2.prototype.isYScalesCount = function (num) {
-            var y = this.chart.getYScales();
+            /** @type {?} */
+            var y = ( /** @type {?} */(this)).chart.getYScales();
             expect(y.length).toBe(1);
-            expect(y[0].values.length).toBe(num);
-            return this;
+            expect(( /** @type {?} */(y[0].values)).length).toBe(num);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} type
+         * @param {?} num
+         * @return {THIS}
+         */
         PageG2.prototype.isDataCount = function (type, num) {
-            var results = this.chart[type];
+            /** @type {?} */
+            var results = ( /** @type {?} */(this)).chart[type];
             expect(results.length).toBeGreaterThan(0);
             expect(results[0].data.length).toBe(num);
-            return this;
+            return ( /** @type {?} */(this));
         };
         Object.defineProperty(PageG2.prototype, "firstDataPoint", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 // tslint:disable-next-line: no-string-literal
-                return this.chart.getXY(this.context['data'][0]);
+                return this.chart.getXY((( /** @type {?} */(this.context)))['data'][0]);
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @param {?} _includeText
+         * @param {?=} point
+         * @return {THIS}
+         */
         PageG2.prototype.checkTooltip = function (_includeText, point) {
             if (!point) {
-                point = this.firstDataPoint;
+                point = ( /** @type {?} */(this)).firstDataPoint;
             }
-            this.chart.showTooltip(point);
-            expect(this.chart.getController('tooltip') != null).toBe(true);
-            return this;
+            ( /** @type {?} */(this)).chart.showTooltip(point);
+            expect(( /** @type {?} */(this)).chart.getController('tooltip') != null).toBe(true);
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         PageG2.prototype.checkClickItem = function () {
-            var point = this.firstDataPoint;
-            var clientPoint = this.chart.canvas.getClientByPoint(point.x, point.y);
+            /** @type {?} */
+            var point = ( /** @type {?} */(this)).firstDataPoint;
+            /** @type {?} */
+            var clientPoint = ( /** @type {?} */(this)).chart.canvas.getClientByPoint(point.x, point.y);
+            /** @type {?} */
             var event = new MouseEvent('click', {
                 clientX: clientPoint.x,
                 clientY: clientPoint.y,
             });
-            this.chart.canvas.get('el').dispatchEvent(event);
-            return this;
+            (( /** @type {?} */(( /** @type {?} */(this)).chart.canvas.get('el')))).dispatchEvent(event);
+            return ( /** @type {?} */(this));
         };
         return PageG2;
     }());
+    if (false) {
+        /** @type {?} */
+        PageG2.prototype.fixture;
+    }
+    /**
+     * @template M, T
+     * @param {?} module
+     * @param {?} comp
+     * @param {?=} page
+     * @return {?}
+     */
     function checkDelay(module, comp, page) {
         if (page === void 0) { page = null; }
         if (page == null) {
             page = new PageG2().makeModule(module, comp, { dc: false });
         }
-        var context = page.context;
+        /** @type {?} */
+        var context = ( /** @type {?} */(page.context));
         if (typeof context.delay === 'undefined') {
             console.warn("You muse be dinfed \"delay\" property in test component");
             return;
@@ -328,11 +588,25 @@
         testing.discardPeriodicTasks();
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/suite.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @template T
+     */
     var TestContext = /** @class */ (function () {
+        /**
+         * @param {?} fixture
+         */
         function TestContext(fixture) {
             this.fixture = fixture;
         }
         Object.defineProperty(TestContext.prototype, "component", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.fixture.componentInstance;
             },
@@ -340,6 +614,9 @@
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "el", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.fixture.debugElement.nativeElement;
             },
@@ -347,6 +624,9 @@
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "dl", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.fixture.debugElement;
             },
@@ -354,28 +634,54 @@
             configurable: true
         });
         Object.defineProperty(TestContext.prototype, "context", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.fixture.componentInstance;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         TestContext.prototype.detectChanges = function () {
             this.fixture.detectChanges();
         };
+        /**
+         * @template T1
+         * @param {?} component
+         * @return {?}
+         */
         TestContext.prototype.resolve = function (component) {
-            return this.fixture.debugElement.injector.get(component);
+            return ( /** @type {?} */(this.fixture.debugElement.injector.get(component)));
         };
         return TestContext;
     }());
-    var createTestContext = function (component) {
+    if (false) {
+        /** @type {?} */
+        TestContext.prototype.fixture;
+    }
+    /** @type {?} */
+    var createTestContext = ( /**
+     * @template T
+     * @param {?} component
+     * @return {?}
+     */function (component) {
         return new TestContext(testing.TestBed.createComponent(component));
-    };
-
-    // from angular
+    });
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: testing.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.DROPDOWN_MIN_TIME = DROPDOWN_MIN_TIME;

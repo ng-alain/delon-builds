@@ -1,6 +1,5 @@
 import { TemplateRef } from '@angular/core';
 import { AlainConfigService, NumberInput } from '@delon/util';
-import * as i0 from "@angular/core";
 export declare class SVContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;
@@ -15,6 +14,4 @@ export declare class SVContainerComponent {
     col: number;
     default: boolean;
     constructor(configSrv: AlainConfigService);
-    static ɵfac: i0.ɵɵFactoryDef<SVContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "title": "title"; "size": "size"; "gutter": "gutter"; "layout": "layout"; "labelWidth": "labelWidth"; "col": "col"; "default": "default"; }, {}, never, ["*"]>;
 }

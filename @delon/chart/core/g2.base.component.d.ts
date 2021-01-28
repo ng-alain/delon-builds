@@ -4,7 +4,6 @@ import { Chart, Types } from '@antv/g2';
 import { NumberInput } from '@delon/util';
 import { Subject, Subscription } from 'rxjs';
 import { G2Service } from './g2.servicce';
-import * as i0 from "@angular/core";
 export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDestroy {
     protected srv: G2Service;
     protected el: ElementRef<HTMLElement>;
@@ -29,6 +28,4 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<G2BaseComponent, never>;
-    static ɵdir: i0.ɵɵDirectiveDefWithMeta<G2BaseComponent, never, never, { "delay": "delay"; "theme": "theme"; }, {}, never>;
 }

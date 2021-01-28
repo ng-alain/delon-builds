@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/cdk/platform', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.core, global.delon.util, global.rxjs.operators, global.ng.cdk.platform, global.ng.common));
-}(this, (function (exports, i0, i1, operators, i2, i3) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, util, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,6 +318,12 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: qr.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var QR_DEFULAT_CONFIG = {
         lib: "https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js",
         background: 'white',
@@ -353,50 +337,87 @@
         delay: 0,
     };
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: qr.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var QRComponent = /** @class */ (function () {
+        /**
+         * @param {?} cdr
+         * @param {?} configSrv
+         * @param {?} lazySrv
+         * @param {?} platform
+         */
         function QRComponent(cdr, configSrv, lazySrv, platform) {
             this.cdr = cdr;
             this.lazySrv = lazySrv;
             this.platform = platform;
             this.inited = false;
             this.value = '';
-            this.change = new i0.EventEmitter();
-            this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
+            this.change = new core.EventEmitter();
+            this.cog = ( /** @type {?} */(configSrv.merge('qr', QR_DEFULAT_CONFIG)));
             Object.assign(this, this.cog);
         }
+        /**
+         * @private
+         * @return {?}
+         */
         QRComponent.prototype.init = function () {
             if (!this.inited) {
                 return;
             }
             if (this.qr == null) {
-                this.qr = new window.QRious();
+                this.qr = new (( /** @type {?} */(window))).QRious();
             }
             this.qr.set(this.option);
             this.dataURL = this.qr.toDataURL();
             this.change.emit(this.dataURL);
             this.cdr.detectChanges();
         };
+        /**
+         * @private
+         * @return {?}
+         */
         QRComponent.prototype.initDelay = function () {
             var _this = this;
             this.inited = true;
-            setTimeout(function () { return _this.init(); }, this.delay);
+            setTimeout(( /**
+             * @return {?}
+             */function () { return _this.init(); }), this.delay);
         };
+        /**
+         * @return {?}
+         */
         QRComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            if (window.QRious) {
+            if ((( /** @type {?} */(window))).QRious) {
                 this.initDelay();
                 return;
             }
-            var url = this.cog.lib;
+            /** @type {?} */
+            var url = ( /** @type {?} */(this.cog.lib));
             this.lazy$ = this.lazySrv.change
-                .pipe(operators.filter(function (ls) { return ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'; }))
-                .subscribe(function () { return _this.initDelay(); });
+                .pipe(operators.filter(( /**
+         * @param {?} ls
+         * @return {?}
+         */function (/**
+         * @param {?} ls
+         * @return {?}
+         */ ls) { return ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'; })))
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.initDelay(); }));
             this.lazySrv.load(url);
         };
+        /**
+         * @return {?}
+         */
         QRComponent.prototype.ngOnChanges = function () {
+            /** @type {?} */
             var option = {
                 background: this.background,
                 backgroundAlpha: this.backgroundAlpha,
@@ -411,8 +432,14 @@
             this.option = option;
             this.init();
         };
+        /**
+         * @private
+         * @param {?} str
+         * @return {?}
+         */
         QRComponent.prototype.toUtf8ByteArray = function (str) {
             str = encodeURI(str);
+            /** @type {?} */
             var result = [];
             for (var i = 0; i < str.length; i++) {
                 if (str.charAt(i) !== '%') {
@@ -423,8 +450,17 @@
                     i += 2;
                 }
             }
-            return result.map(function (v) { return String.fromCharCode(v); }).join('');
+            return result.map(( /**
+             * @param {?} v
+             * @return {?}
+             */function (/**
+             * @param {?} v
+             * @return {?}
+             */ v) { return String.fromCharCode(v); })).join('');
         };
+        /**
+         * @return {?}
+         */
         QRComponent.prototype.ngOnDestroy = function () {
             if (this.lazy$) {
                 this.lazy$.unsubscribe();
@@ -432,83 +468,151 @@
         };
         return QRComponent;
     }());
-    /** @nocollapse */ QRComponent.ɵfac = function QRComponent_Factory(t) { return new (t || QRComponent)(i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i1.AlainConfigService), i0.ɵɵdirectiveInject(i1.LazyService), i0.ɵɵdirectiveInject(i2.Platform)); };
-    /** @nocollapse */ QRComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: QRComponent, selector: "qr", inputs: { background: "background", backgroundAlpha: "backgroundAlpha", foreground: "foreground", foregroundAlpha: "foregroundAlpha", level: "level", mime: "mime", padding: "padding", size: "size", value: "value", delay: "delay" }, outputs: { change: "change" }, host: { properties: { "style.display": "'inline-block'", "style.height.px": "size", "style.width.px": "size" } }, exportAs: ["qr"], usesOnChanges: true, ngImport: i0__namespace, template: " <img *ngIf=\"dataURL\" style=\"max-width: 100%; max-height: 100%;\" [src]=\"dataURL\" /> ", isInline: true, directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    QRComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'qr',
+                    exportAs: 'qr',
+                    template: " <img *ngIf=\"dataURL\" style=\"max-width: 100%; max-height: 100%;\" [src]=\"dataURL\" /> ",
+                    host: {
+                        '[style.display]': "'inline-block'",
+                        '[style.height.px]': 'size',
+                        '[style.width.px]': 'size',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    QRComponent.ctorParameters = function () { return [
+        { type: core.ChangeDetectorRef },
+        { type: util.AlainConfigService },
+        { type: util.LazyService },
+        { type: platform.Platform }
+    ]; };
+    QRComponent.propDecorators = {
+        background: [{ type: core.Input }],
+        backgroundAlpha: [{ type: core.Input }],
+        foreground: [{ type: core.Input }],
+        foregroundAlpha: [{ type: core.Input }],
+        level: [{ type: core.Input }],
+        mime: [{ type: core.Input }],
+        padding: [{ type: core.Input }],
+        size: [{ type: core.Input }],
+        value: [{ type: core.Input }],
+        delay: [{ type: core.Input }],
+        change: [{ type: core.Output }]
+    };
     __decorate([
-        i1.InputNumber(),
+        util.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "padding", void 0);
     __decorate([
-        i1.InputNumber(),
+        util.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "size", void 0);
     __decorate([
-        i1.InputNumber(),
+        util.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "delay", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(QRComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'qr',
-                        exportAs: 'qr',
-                        template: " <img *ngIf=\"dataURL\" style=\"max-width: 100%; max-height: 100%;\" [src]=\"dataURL\" /> ",
-                        host: {
-                            '[style.display]': "'inline-block'",
-                            '[style.height.px]': 'size',
-                            '[style.width.px]': 'size',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () { return [{ type: i0.ChangeDetectorRef }, { type: i1.AlainConfigService }, { type: i1.LazyService }, { type: i2.Platform }]; }, { background: [{
-                    type: i0.Input
-                }], backgroundAlpha: [{
-                    type: i0.Input
-                }], foreground: [{
-                    type: i0.Input
-                }], foregroundAlpha: [{
-                    type: i0.Input
-                }], level: [{
-                    type: i0.Input
-                }], mime: [{
-                    type: i0.Input
-                }], padding: [{
-                    type: i0.Input
-                }], size: [{
-                    type: i0.Input
-                }], value: [{
-                    type: i0.Input
-                }], delay: [{
-                    type: i0.Input
-                }], change: [{
-                    type: i0.Output
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        QRComponent.ngAcceptInputType_padding;
+        /** @type {?} */
+        QRComponent.ngAcceptInputType_size;
+        /** @type {?} */
+        QRComponent.ngAcceptInputType_delay;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.lazy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.qr;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.cog;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.option;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.inited;
+        /** @type {?} */
+        QRComponent.prototype.dataURL;
+        /** @type {?} */
+        QRComponent.prototype.background;
+        /** @type {?} */
+        QRComponent.prototype.backgroundAlpha;
+        /** @type {?} */
+        QRComponent.prototype.foreground;
+        /** @type {?} */
+        QRComponent.prototype.foregroundAlpha;
+        /** @type {?} */
+        QRComponent.prototype.level;
+        /** @type {?} */
+        QRComponent.prototype.mime;
+        /** @type {?} */
+        QRComponent.prototype.padding;
+        /** @type {?} */
+        QRComponent.prototype.size;
+        /** @type {?} */
+        QRComponent.prototype.value;
+        /** @type {?} */
+        QRComponent.prototype.delay;
+        /** @type {?} */
+        QRComponent.prototype.change;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.lazySrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        QRComponent.prototype.platform;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [QRComponent];
     var QRModule = /** @class */ (function () {
         function QRModule() {
         }
         return QRModule;
     }());
-    /** @nocollapse */ QRModule.ɵmod = i0.ɵɵdefineNgModule({ type: QRModule });
-    /** @nocollapse */ QRModule.ɵinj = i0.ɵɵdefineInjector({ factory: function QRModule_Factory(t) { return new (t || QRModule)(); }, imports: [[i3.CommonModule, i1.DelonUtilModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(QRModule, { declarations: [QRComponent], imports: [i3.CommonModule, i1.DelonUtilModule], exports: [QRComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(QRModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i3.CommonModule, i1.DelonUtilModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    QRModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, util.DelonUtilModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: qr.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.QRComponent = QRComponent;

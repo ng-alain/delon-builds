@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util';
 import { OnboardingConfig } from './onboarding.types';
-import * as i0 from "@angular/core";
 export declare class OnboardingService implements OnDestroy {
     private i18n;
     private appRef;
@@ -59,6 +58,4 @@ export declare class OnboardingService implements OnDestroy {
      */
     done(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<OnboardingService, [null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵprov: i0.ɵɵInjectableDef<OnboardingService>;
 }

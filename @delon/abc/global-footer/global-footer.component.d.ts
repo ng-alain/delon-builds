@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
-import * as i0 from "@angular/core";
 export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     private router;
     private win;
@@ -20,6 +19,4 @@ export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     to(item: GlobalFooterLink): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<GlobalFooterComponent, [null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": "links"; }, {}, ["items"], ["*"]>;
 }

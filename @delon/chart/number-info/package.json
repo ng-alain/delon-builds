@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/number-info/number-info.js",
   "fesm2015": "../fesm2015/number-info.js",
   "typings": "number-info.d.ts",
+  "metadata": "number-info.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/number-info"
 }

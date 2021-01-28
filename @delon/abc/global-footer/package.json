@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/global-footer/globalFooter.js",
   "fesm2015": "../fesm2015/globalFooter.js",
   "typings": "globalFooter.d.ts",
+  "metadata": "globalFooter.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/global-footer"
 }

@@ -2,7 +2,6 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
-import * as i0 from "@angular/core";
 export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
@@ -27,6 +26,4 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality);
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<ExceptionComponent, [null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<ExceptionComponent, "exception", ["exception"], { "type": "type"; "img": "img"; "title": "title"; "desc": "desc"; }, {}, never, ["*"]>;
 }

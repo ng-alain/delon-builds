@@ -4,34 +4,22 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@angular/platform-browser'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/wave'), require('ng-zorro-antd/core/transition-patch'), require('@angular/router')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@delon/theme', '@angular/platform-browser', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/button', 'ng-zorro-antd/core/wave', 'ng-zorro-antd/core/transition-patch', '@angular/router'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.delon.theme, global.ng.platformBrowser, global.ng.cdk.bidi, global.ng.common, global['ng-zorro-antd/button'], global.i6, global.i7, global.ng.router));
-}(this, (function (exports, i0, util, rxjs, operators, i1, i2, i3, i4, i5, i6, i7, i8) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, bidi, core, platformBrowser, theme, util, rxjs, operators, common, router, button) { 'use strict';
 
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
-
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: exception.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ExceptionComponent = /** @class */ (function () {
+        /**
+         * @param {?} i18n
+         * @param {?} dom
+         * @param {?} directionality
+         */
         function ExceptionComponent(i18n, dom, directionality) {
             this.i18n = i18n;
             this.dom = dom;
@@ -45,7 +33,12 @@
             this._desc = '';
         }
         Object.defineProperty(ExceptionComponent.prototype, "type", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
+                /** @type {?} */
                 var item = {
                     403: {
                         img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
@@ -70,10 +63,19 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} src
+         * @return {?}
+         */
         ExceptionComponent.prototype.fixImg = function (src) {
             this._img = this.dom.bypassSecurityTrustStyle("url('" + src + "')");
         };
         Object.defineProperty(ExceptionComponent.prototype, "img", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this.fixImg(value);
             },
@@ -81,6 +83,10 @@
             configurable: true
         });
         Object.defineProperty(ExceptionComponent.prototype, "title", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._title = this.dom.bypassSecurityTrustHtml(value);
             },
@@ -88,65 +94,119 @@
             configurable: true
         });
         Object.defineProperty(ExceptionComponent.prototype, "desc", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._desc = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         ExceptionComponent.prototype.checkContent = function () {
             this.hasCon = !util.isEmpty(this.conTpl.nativeElement);
         };
+        /**
+         * @return {?}
+         */
         ExceptionComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
                 _this.dir = direction;
-            });
-            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(function () { return (_this.locale = _this.i18n.getData('exception')); });
+            }));
+            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @return {?}
+             */function () { return (_this.locale = _this.i18n.getData('exception')); }));
             this.checkContent();
         };
+        /**
+         * @return {?}
+         */
         ExceptionComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
         };
         return ExceptionComponent;
     }());
-    /** @nocollapse */ ExceptionComponent.ɵfac = function ExceptionComponent_Factory(t) { return new (t || ExceptionComponent)(i0.ɵɵdirectiveInject(i1.DelonLocaleService), i0.ɵɵdirectiveInject(i2.DomSanitizer), i0.ɵɵdirectiveInject(i3.Directionality, 8)); };
-    /** @nocollapse */ ExceptionComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: ExceptionComponent, selector: "exception", inputs: { type: "type", img: "img", title: "title", desc: "desc" }, host: { properties: { "class.exception": "true", "class.exception-rtl": "dir === 'rtl'" } }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], emitDistinctChangesOnly: false, descendants: true, static: true }], exportAs: ["exception"], ngImport: i0__namespace, template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n", directives: [{ type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i5.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { type: i7.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { type: i8.RouterLink, selector: ":not(a):not(area)[routerLink]", inputs: ["routerLink", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ExceptionComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'exception',
-                        exportAs: 'exception',
-                        templateUrl: './exception.component.html',
-                        host: {
-                            '[class.exception]': 'true',
-                            '[class.exception-rtl]': "dir === 'rtl'",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i1.DelonLocaleService }, { type: i2.DomSanitizer }, { type: i3.Directionality, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, { conTpl: [{
-                    type: i0.ViewChild,
-                    args: ['conTpl', { static: true }]
-                }], type: [{
-                    type: i0.Input
-                }], img: [{
-                    type: i0.Input
-                }], title: [{
-                    type: i0.Input
-                }], desc: [{
-                    type: i0.Input
-                }] });
-    })();
+    ExceptionComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'exception',
+                    exportAs: 'exception',
+                    template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
+                    host: {
+                        '[class.exception]': 'true',
+                        '[class.exception-rtl]': "dir === 'rtl'",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    ExceptionComponent.ctorParameters = function () { return [
+        { type: theme.DelonLocaleService },
+        { type: platformBrowser.DomSanitizer },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+    ]; };
+    ExceptionComponent.propDecorators = {
+        conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],
+        type: [{ type: core.Input }],
+        img: [{ type: core.Input }],
+        title: [{ type: core.Input }],
+        desc: [{ type: core.Input }]
+    };
+    if (false) {
+        /** @type {?} */
+        ExceptionComponent.ngAcceptInputType_type;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.conTpl;
+        /** @type {?} */
+        ExceptionComponent.prototype._type;
+        /** @type {?} */
+        ExceptionComponent.prototype.locale;
+        /** @type {?} */
+        ExceptionComponent.prototype.hasCon;
+        /** @type {?} */
+        ExceptionComponent.prototype.dir;
+        /** @type {?} */
+        ExceptionComponent.prototype._img;
+        /** @type {?} */
+        ExceptionComponent.prototype._title;
+        /** @type {?} */
+        ExceptionComponent.prototype._desc;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.i18n;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        ExceptionComponent.prototype.directionality;
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -457,28 +517,31 @@
         return value;
     }
 
+    /** @type {?} */
     var COMPONENTS = [ExceptionComponent];
     var ExceptionModule = /** @class */ (function () {
         function ExceptionModule() {
         }
         return ExceptionModule;
     }());
-    /** @nocollapse */ ExceptionModule.ɵmod = i0.ɵɵdefineNgModule({ type: ExceptionModule });
-    /** @nocollapse */ ExceptionModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ExceptionModule_Factory(t) { return new (t || ExceptionModule)(); }, imports: [[i4.CommonModule, i8.RouterModule, util.DelonUtilModule, i1.DelonLocaleModule, i5.NzButtonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ExceptionModule, { declarations: [ExceptionComponent], imports: [i4.CommonModule, i8.RouterModule, util.DelonUtilModule, i1.DelonLocaleModule, i5.NzButtonModule], exports: [ExceptionComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ExceptionModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i4.CommonModule, i8.RouterModule, util.DelonUtilModule, i1.DelonLocaleModule, i5.NzButtonModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    ExceptionModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, router.RouterModule, util.DelonUtilModule, theme.DelonLocaleModule, button.NzButtonModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: exception.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ExceptionComponent = ExceptionComponent;

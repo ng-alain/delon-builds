@@ -4,36 +4,21 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/platform-browser'), require('@delon/acl'), require('@angular/cdk/platform'), require('ng-zorro-antd/core/animation'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/form'), require('@angular/common'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/core/transition-patch'), require('ng-zorro-antd/icon'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('date-fns/format'), require('ng-zorro-antd/core/wave')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/platform-browser', '@delon/acl', '@angular/cdk/platform', 'ng-zorro-antd/core/animation', 'ng-zorro-antd/grid', 'ng-zorro-antd/form', '@angular/common', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/core/transition-patch', 'ng-zorro-antd/icon', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'date-fns/format', 'ng-zorro-antd/core/wave'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.platformBrowser, global.delon.acl, global.ng.cdk.platform, global['ng-zorro-antd/core/animation'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/form'], global.ng.common, global['ng-zorro-antd/tooltip'], global.i7$1, global['ng-zorro-antd/icon'], global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.format, global.i6$1));
-}(this, (function (exports, i0, i4, i6, rxjs, operators, i3, i5, i7, animation, i4$1, i2, i3$1, i10, i7$1, i8, i1, i25, i5$1, i9, i26, i16, i13, i11, i12, i27, modal, i15, i24, i18, i23, i17, i20, i14, i22, i19, i21, format, i6$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('ng-zorro-antd/core/animation'), require('date-fns/format')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'ng-zorro-antd/core/animation', 'date-fns/format'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global['ng-zorro-antd/core/animation'], global.format));
+}(this, (function (exports, platform, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, animation, format) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
     var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var SF_DEFAULT_CONFIG = {
         formatMap: {
             'date-time': {
@@ -58,16 +43,20 @@
         firstVisual: false,
         onlyVisual: false,
         errors: {},
-        ui: {},
-        button: { submit_type: 'primary', reset_type: 'default' },
+        ui: ( /** @type {?} */({})),
+        button: ( /** @type {?} */({ submit_type: 'primary', reset_type: 'default' })),
         uiDateStringFormat: 'yyyy-MM-dd HH:mm:ss',
         uiDateNumberFormat: 'T',
         uiTimeStringFormat: 'HH:mm:ss',
         uiTimeNumberFormat: 'T',
         uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
     };
+    /**
+     * @param {?} srv
+     * @return {?}
+     */
     function mergeConfig(srv) {
-        return srv.merge('sf', SF_DEFAULT_CONFIG);
+        return ( /** @type {?} */(srv.merge('sf', SF_DEFAULT_CONFIG)));
     }
 
     /*! *****************************************************************************
@@ -379,15 +368,35 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/const.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var SF_SEQ = '/';
 
+    /**
+     * @param {?} o
+     * @return {?}
+     */
     function isBlank(o) {
         return o == null;
     }
+    /**
+     * @param {?} value
+     * @param {?} defaultValue
+     * @return {?}
+     */
     function toBool(value, defaultValue) {
-        value = i6.toBoolean(value, true);
+        value = util.toBoolean(value, true);
         return value == null ? defaultValue : value;
     }
+    /**
+     * @param {?} ui
+     * @param {...?} args
+     * @return {?}
+     */
     function di(ui) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -398,13 +407,21 @@
             console.warn.apply(console, __spread(args));
         }
     }
-    /** 根据 `$ref` 查找 `definitions` */
+    /**
+     * 根据 `$ref` 查找 `definitions`
+     * @param {?} $ref
+     * @param {?} definitions
+     * @return {?}
+     */
     function findSchemaDefinition($ref, definitions) {
         var e_1, _a;
+        /** @type {?} */
         var match = /^#\/definitions\/(.*)$/.exec($ref);
         if (match && match[1]) {
             // parser JSON Pointer
+            /** @type {?} */
             var parts = match[1].split(SF_SEQ);
+            /** @type {?} */
             var current = definitions;
             try {
                 for (var parts_1 = __values(parts), parts_1_1 = parts_1.next(); !parts_1_1.done; parts_1_1 = parts_1.next()) {
@@ -431,22 +448,44 @@
     }
     /**
      * 取回Schema，并处理 `$ref` 的关系
+     * @param {?} schema
+     * @param {?=} definitions
+     * @return {?}
      */
     function retrieveSchema(schema, definitions) {
         if (definitions === void 0) { definitions = {}; }
         if (schema.hasOwnProperty('$ref')) {
-            var $refSchema = findSchemaDefinition(schema.$ref, definitions);
+            /** @type {?} */
+            var $refSchema = findSchemaDefinition(( /** @type {?} */(schema.$ref)), definitions);
             // remove $ref property
             var $ref = schema.$ref, localSchema = __rest(schema, ["$ref"]);
             return retrieveSchema(Object.assign(Object.assign({}, $refSchema), localSchema), definitions);
         }
         return schema;
     }
+    /**
+     * @param {?} _schema
+     * @param {?} _ui
+     * @return {?}
+     */
     function resolveIfSchema(_schema, _ui) {
-        var fn = function (schema, ui) {
+        /** @type {?} */
+        var fn = ( /**
+         * @param {?} schema
+         * @param {?} ui
+         * @return {?}
+         */function (schema, ui) {
             resolveIf(schema, ui);
-            Object.keys(schema.properties).forEach(function (key) {
-                var property = schema.properties[key];
+            Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                /** @type {?} */
+                var property = ( /** @type {?} */(schema.properties))[key];
+                /** @type {?} */
                 var uiKey = "$" + key;
                 if (property.items) {
                     fn(property.items, ui[uiKey].$items);
@@ -454,61 +493,138 @@
                 if (property.properties) {
                     fn(property, ui[uiKey]);
                 }
-            });
-        };
+            }));
+        });
         fn(_schema, _ui);
     }
+    /**
+     * @param {?} schema
+     * @param {?} ui
+     * @return {?}
+     */
     function resolveIf(schema, ui) {
         if (!(schema.hasOwnProperty('if') && schema.hasOwnProperty('then')))
             return null;
-        if (!schema.if.properties)
+        if (!( /** @type {?} */(schema.if)).properties)
             throw new Error("if: does not contain 'properties'");
-        var allKeys = Object.keys(schema.properties);
-        var ifKeys = Object.keys(schema.if.properties);
+        /** @type {?} */
+        var allKeys = Object.keys(( /** @type {?} */(schema.properties)));
+        /** @type {?} */
+        var ifKeys = Object.keys(( /** @type {?} */(( /** @type {?} */(schema.if)).properties)));
         detectKey(allKeys, ifKeys);
-        detectKey(allKeys, schema.then.required);
-        schema.required = schema.required.concat(schema.then.required);
+        detectKey(allKeys, ( /** @type {?} */(( /** @type {?} */(schema.then)).required)));
+        schema.required = ( /** @type {?} */(schema.required)).concat(( /** @type {?} */(( /** @type {?} */(schema.then)).required)));
+        /** @type {?} */
         var hasElse = schema.hasOwnProperty('else');
         if (hasElse) {
-            detectKey(allKeys, schema.else.required);
-            schema.required = schema.required.concat(schema.else.required);
+            detectKey(allKeys, ( /** @type {?} */(( /** @type {?} */(schema.else)).required)));
+            schema.required = schema.required.concat(( /** @type {?} */(( /** @type {?} */(schema.else)).required)));
         }
+        /** @type {?} */
         var visibleIf = {};
+        /** @type {?} */
         var visibleElse = {};
-        ifKeys.forEach(function (key) {
-            var cond = schema.if.properties[key].enum;
+        ifKeys.forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) {
+            /** @type {?} */
+            var cond = ( /** @type {?} */(( /** @type {?} */(schema.if)).properties))[key].enum;
             visibleIf[key] = cond;
             if (hasElse)
-                visibleElse[key] = function (value) { return !cond.includes(value); };
-        });
-        schema.then.required.forEach(function (key) { return (ui["$" + key].visibleIf = visibleIf); });
+                visibleElse[key] = ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (value) { return !( /** @type {?} */(cond)).includes(value); });
+        }));
+        ( /** @type {?} */(( /** @type {?} */(schema.then)).required)).forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return (ui["$" + key].visibleIf = visibleIf); }));
         if (hasElse) {
-            schema.else.required.forEach(function (key) { return (ui["$" + key].visibleIf = visibleElse); });
+            ( /** @type {?} */(( /** @type {?} */(schema.else)).required)).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) { return (ui["$" + key].visibleIf = visibleElse); }));
         }
         return schema;
     }
+    /**
+     * @param {?} keys
+     * @param {?} detectKeys
+     * @return {?}
+     */
     function detectKey(keys, detectKeys) {
-        detectKeys.forEach(function (key) {
+        detectKeys.forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) {
             if (!keys.includes(key)) {
                 throw new Error("if: properties does not contain '" + key + "'");
             }
-        });
+        }));
     }
+    /**
+     * @param {?} properties
+     * @param {?} order
+     * @return {?}
+     */
     function orderProperties(properties, order) {
         if (!Array.isArray(order))
             return properties;
-        var arrayToHash = function (arr) { return arr.reduce(function (prev, curr) {
+        /** @type {?} */
+        var arrayToHash = ( /**
+         * @param {?} arr
+         * @return {?}
+         */function (arr) { return arr.reduce(( /**
+         * @param {?} prev
+         * @param {?} curr
+         * @return {?}
+         */function (prev, curr) {
             prev[curr] = true;
             return prev;
-        }, {}); };
-        var errorPropList = function (arr) { return "property [" + arr.join("', '") + "]"; };
+        }), {}); });
+        /** @type {?} */
+        var errorPropList = ( /**
+         * @param {?} arr
+         * @return {?}
+         */function (arr) { return "property [" + arr.join("', '") + "]"; });
+        /** @type {?} */
         var propertyHash = arrayToHash(properties);
+        /** @type {?} */
         var orderHash = arrayToHash(order);
-        var extraneous = order.filter(function (prop) { return prop !== '*' && !propertyHash[prop]; });
+        /** @type {?} */
+        var extraneous = order.filter(( /**
+         * @param {?} prop
+         * @return {?}
+         */function (/**
+         * @param {?} prop
+         * @return {?}
+         */ prop) { return prop !== '*' && !propertyHash[prop]; }));
         if (extraneous.length) {
             throw new Error("ui schema order list contains extraneous " + errorPropList(extraneous));
         }
-        var rest = properties.filter(function (prop) { return !orderHash[prop]; });
+        /** @type {?} */
+        var rest = properties.filter(( /**
+         * @param {?} prop
+         * @return {?}
+         */function (/**
+         * @param {?} prop
+         * @return {?}
+         */ prop) { return !orderHash[prop]; }));
+        /** @type {?} */
         var restIndex = order.indexOf('*');
         if (restIndex === -1) {
             if (rest.length) {
@@ -519,53 +635,100 @@
         if (restIndex !== order.lastIndexOf('*')) {
             throw new Error('ui schema order list contains more than one wildcard item');
         }
+        /** @type {?} */
         var complete = __spread(order);
         complete.splice.apply(complete, __spread([restIndex, 1], rest));
         return complete;
     }
+    /**
+     * @param {?} list
+     * @param {?} formData
+     * @param {?} readOnly
+     * @return {?}
+     */
     function getEnum(list, formData, readOnly) {
         if (isBlank(list) || !Array.isArray(list) || list.length === 0)
             return [];
         if (typeof list[0] !== 'object') {
-            list = list.map(function (item) {
-                return { label: item, value: item };
-            });
+            list = list.map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (item) {
+                return ( /** @type {?} */({ label: item, value: item }));
+            }));
         }
         if (formData) {
             if (!Array.isArray(formData))
                 formData = [formData];
-            list.forEach(function (item) {
+            list.forEach(( /**
+             * @param {?} item
+             * @return {?}
+             */function (item) {
                 if (~formData.indexOf(item.value))
                     item.checked = true;
-            });
+            }));
         }
         // fix disabled status
         if (readOnly) {
-            list.forEach(function (item) { return (item.disabled = true); });
+            list.forEach(( /**
+             * @param {?} item
+             * @return {?}
+             */function (item) { return (item.disabled = true); }));
         }
         return list;
     }
+    /**
+     * @param {?} list
+     * @param {?} formData
+     * @param {?} readOnly
+     * @return {?}
+     */
     function getCopyEnum(list, formData, readOnly) {
-        return getEnum(i6.deepCopy(list || []), formData, readOnly);
+        return getEnum(util.deepCopy(list || []), formData, readOnly);
     }
+    /**
+     * @param {?} schema
+     * @param {?} ui
+     * @param {?} formData
+     * @param {?=} asyncArgs
+     * @return {?}
+     */
     function getData(schema, ui, formData, asyncArgs) {
         if (typeof ui.asyncData === 'function') {
-            return ui.asyncData(asyncArgs).pipe(operators.map(function (list) { return getEnum(list, formData, schema.readOnly); }));
+            return ui.asyncData(asyncArgs).pipe(operators.map(( /**
+             * @param {?} list
+             * @return {?}
+             */function (list) { return getEnum(list, formData, ( /** @type {?} */(schema.readOnly))); })));
         }
-        return rxjs.of(getCopyEnum(schema.enum, formData, schema.readOnly));
+        return rxjs.of(getCopyEnum(( /** @type {?} */(schema.enum)), formData, ( /** @type {?} */(schema.readOnly))));
     }
     /**
      * Whether to using date-fns to format a date
+     * @param {?} srv
+     * @return {?}
      */
     function isDateFns(srv) {
         if (!srv)
             return false;
+        /** @type {?} */
         var data = srv.getDateLocale();
         // Compatible date-fns v1.x & v2.x
         return data != null && !!data.formatDistance; // (!!data.distanceInWords || !!data.formatDistance);
     }
 
+    /**
+     * @abstract
+     */
     var FormProperty = /** @class */ (function () {
+        /**
+         * @param {?} schemaValidatorFactory
+         * @param {?} schema
+         * @param {?} ui
+         * @param {?} formData
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} _options
+         */
         function FormProperty(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
             this._options = _options;
             this._errors = null;
@@ -578,8 +741,8 @@
             this.schema = schema;
             this.ui = ui;
             this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
-                ingoreKeywords: this.ui.ingoreKeywords,
-                debug: ui.debug,
+                ingoreKeywords: ( /** @type {?} */(this.ui.ingoreKeywords)),
+                debug: ( /** @type {?} */(( /** @type {?} */((( /** @type {?} */(ui))))).debug)),
             });
             this.formData = formData || schema.default;
             this._parent = parent;
@@ -587,11 +750,14 @@
                 this._root = parent.root;
             }
             else {
-                this._root = this;
+                this._root = ( /** @type {?} */(this));
             }
             this.path = path;
         }
         Object.defineProperty(FormProperty.prototype, "valueChanges", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._valueChanges;
             },
@@ -599,6 +765,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "errorsChanges", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._errorsChanges;
             },
@@ -606,13 +775,19 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "type", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.schema.type;
+                return ( /** @type {?} */(this.schema.type));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "parent", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._parent;
             },
@@ -620,6 +795,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "root", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._root;
             },
@@ -627,6 +805,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "value", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._value;
             },
@@ -634,6 +815,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "errors", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._errors;
             },
@@ -641,6 +825,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "visible", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._visible;
             },
@@ -648,6 +835,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "valid", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._errors === null || this._errors.length === 0;
             },
@@ -655,6 +845,9 @@
             configurable: true
         });
         Object.defineProperty(FormProperty.prototype, "options", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._options;
             },
@@ -663,6 +856,8 @@
         });
         /**
          * 更新值且校验数据
+         * @param {?=} options
+         * @return {?}
          */
         FormProperty.prototype.updateValueAndValidity = function (options) {
             options = Object.assign({ onlySelf: false, emitValidator: true, emitValueEvent: true, updatePath: '', updateValue: null }, options);
@@ -680,10 +875,17 @@
                 this.parent.updateValueAndValidity(Object.assign(Object.assign({}, options), { emitValidator: false }));
             }
         };
-        /** 根据路径搜索表单属性 */
+        /**
+         * 根据路径搜索表单属性
+         * @param {?} path
+         * @return {?}
+         */
         FormProperty.prototype.searchProperty = function (path) {
+            /** @type {?} */
             var prop = this;
+            /** @type {?} */
             var base = null;
+            /** @type {?} */
             var result = null;
             if (path[0] === SF_SEQ) {
                 base = this.findRoot();
@@ -695,17 +897,26 @@
                     result = base.getProperty(path);
                 }
             }
-            return result;
+            return ( /** @type {?} */(result));
         };
-        /** 查找根表单属性 */
+        /**
+         * 查找根表单属性
+         * @return {?}
+         */
         FormProperty.prototype.findRoot = function () {
+            /** @type {?} */
             var property = this;
             while (property.parent !== null) {
                 property = property.parent;
             }
-            return property;
+            return ( /** @type {?} */(property));
         };
         // #region process errors
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
         FormProperty.prototype.isEmptyData = function (value) {
             if (isBlank(value))
                 return true;
@@ -716,14 +927,17 @@
             return false;
         };
         /**
-         * @internal
+         * \@internal
+         * @return {?}
          */
         FormProperty.prototype._runValidation = function () {
             var _this = this;
+            /** @type {?} */
             var errors;
             // The definition of some rules:
             // 1. Should not ajv validator when is empty data and required fields
             // 2. Should not ajv validator when is empty data
+            /** @type {?} */
             var isEmpty = this.isEmptyData(this._value);
             if (isEmpty && this.ui._required) {
                 errors = [{ keyword: 'required' }];
@@ -734,14 +948,22 @@
             else {
                 errors = this.schemaValidator(this._value) || [];
             }
-            var customValidator = this.ui.validator;
+            /** @type {?} */
+            var customValidator = (( /** @type {?} */(this.ui))).validator;
             if (typeof customValidator === 'function') {
+                /** @type {?} */
                 var customErrors = customValidator(this.value, this, this.findRoot());
                 if (customErrors instanceof rxjs.Observable) {
-                    customErrors.subscribe(function (res) {
+                    customErrors.subscribe(( /**
+                     * @param {?} res
+                     * @return {?}
+                     */function (/**
+                     * @param {?} res
+                     * @return {?}
+                     */ res) {
                         _this.setCustomErrors(errors, res);
                         _this.widget.detectChanges();
-                    });
+                    }));
                     return;
                 }
                 this.setCustomErrors(errors, customErrors);
@@ -750,20 +972,39 @@
             this._errors = errors;
             this.setErrors(this._errors);
         };
+        /**
+         * @private
+         * @param {?} errors
+         * @param {?} list
+         * @return {?}
+         */
         FormProperty.prototype.setCustomErrors = function (errors, list) {
             // fix error format
+            /** @type {?} */
             var hasCustomError = list != null && list.length > 0;
             if (hasCustomError) {
-                list.forEach(function (err) {
+                list.forEach(( /**
+                 * @param {?} err
+                 * @return {?}
+                 */function (/**
+                 * @param {?} err
+                 * @return {?}
+                 */ err) {
                     if (!err.message) {
                         throw new Error("The custom validator must contain a 'message' attribute to viewed error text");
                     }
                     err._custom = true;
-                });
+                }));
             }
             this._errors = this.mergeErrors(errors, list);
             this.setErrors(this._errors);
         };
+        /**
+         * @private
+         * @param {?} errors
+         * @param {?} newErrors
+         * @return {?}
+         */
         FormProperty.prototype.mergeErrors = function (errors, newErrors) {
             if (newErrors) {
                 if (Array.isArray(newErrors)) {
@@ -775,26 +1016,41 @@
             }
             return errors;
         };
+        /**
+         * @protected
+         * @param {?} errors
+         * @param {?=} emitFormat
+         * @return {?}
+         */
         FormProperty.prototype.setErrors = function (errors, emitFormat) {
             var _this = this;
             if (emitFormat === void 0) { emitFormat = true; }
             if (emitFormat && errors && !this.ui.onlyVisual) {
+                /** @type {?} */
                 var l_1 = (this.widget && this.widget.l.error) || {};
-                errors = errors.map(function (err) {
+                errors = errors.map(( /**
+                 * @param {?} err
+                 * @return {?}
+                 */function (err) {
+                    /** @type {?} */
                     var message = err._custom === true && err.message
                         ? err.message
-                        : (_this.ui.errors || {})[err.keyword] || _this._options.errors[err.keyword] || l_1[err.keyword] || "";
+                        : (_this.ui.errors || {})[err.keyword] || ( /** @type {?} */(_this._options.errors))[err.keyword] || l_1[err.keyword] || "";
                     if (message && typeof message === 'function') {
-                        message = message(err);
+                        message = ( /** @type {?} */(message(err)));
                     }
                     if (message) {
-                        if (~message.indexOf('{')) {
-                            message = message.replace(/{([\.a-z0-9]+)}/g, function (_v, key) { return err.params[key] || ''; });
+                        if (~(( /** @type {?} */(message))).indexOf('{')) {
+                            message = (( /** @type {?} */(message))).replace(/{([\.a-z0-9]+)}/g, ( /**
+                             * @param {?} _v
+                             * @param {?} key
+                             * @return {?}
+                             */function (_v, key) { return ( /** @type {?} */(err.params))[key] || ''; }));
                         }
-                        err.message = message;
+                        err.message = ( /** @type {?} */(message));
                     }
                     return err;
-                });
+                }));
             }
             this._errors = errors;
             this._errorsChanges.next(errors);
@@ -803,16 +1059,29 @@
                 this._parent.setParentAndPlatErrors(errors, this.path);
             }
         };
+        /**
+         * @param {?} errors
+         * @param {?} path
+         * @return {?}
+         */
         FormProperty.prototype.setParentAndPlatErrors = function (errors, path) {
             var _this = this;
             this._objErrors[path] = errors;
+            /** @type {?} */
             var platErrors = [];
-            Object.keys(this._objErrors).forEach(function (p) {
+            Object.keys(this._objErrors).forEach(( /**
+             * @param {?} p
+             * @return {?}
+             */function (/**
+             * @param {?} p
+             * @return {?}
+             */ p) {
+                /** @type {?} */
                 var property = _this.searchProperty(p);
                 if (property && !property.visible)
                     return;
                 platErrors.push.apply(platErrors, __spread(_this._objErrors[p]));
-            });
+            }));
             this.setErrors(platErrors, false);
         };
         // #endregion
@@ -820,6 +1089,8 @@
         /**
          * Set the hide or display of widget
          * 设置小部件的隐藏或显示
+         * @param {?} visible
+         * @return {?}
          */
         FormProperty.prototype.setVisible = function (visible) {
             var _a, _b;
@@ -831,19 +1102,33 @@
             }
         };
         // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
+        /**
+         * @return {?}
+         */
         FormProperty.prototype._bindVisibility = function () {
             var _this = this;
-            var visibleIf = this.ui.visibleIf;
+            /** @type {?} */
+            var visibleIf = (( /** @type {?} */(this.ui))).visibleIf;
             if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
                 this.setVisible(false);
             }
             else if (visibleIf !== undefined) {
+                /** @type {?} */
                 var propertiesBinding = [];
                 var _loop_1 = function (dependencyPath) {
                     if (visibleIf.hasOwnProperty(dependencyPath)) {
+                        /** @type {?} */
                         var property = this_1.searchProperty(dependencyPath);
                         if (property) {
-                            var valueCheck = property.valueChanges.pipe(operators.map(function (res) {
+                            /** @type {?} */
+                            var valueCheck = property.valueChanges.pipe(operators.map(( /**
+                             * @param {?} res
+                             * @return {?}
+                             */function (/**
+                             * @param {?} res
+                             * @return {?}
+                             */ res) {
+                                /** @type {?} */
                                 var vi = visibleIf[dependencyPath];
                                 if (typeof vi === 'function') {
                                     return vi(res.value);
@@ -854,9 +1139,17 @@
                                 else {
                                     return vi.indexOf(res.value) !== -1;
                                 }
-                            }));
+                            })));
+                            /** @type {?} */
                             var visibilityCheck = property._visibilityChanges;
-                            var and = rxjs.combineLatest([valueCheck, visibilityCheck]).pipe(operators.map(function (results) { return results[0] && results[1]; }));
+                            /** @type {?} */
+                            var and = rxjs.combineLatest([valueCheck, visibilityCheck]).pipe(operators.map(( /**
+                             * @param {?} results
+                             * @return {?}
+                             */function (/**
+                             * @param {?} results
+                             * @return {?}
+                             */ results) { return results[0] && results[1]; })));
                             propertiesBinding.push(and);
                         }
                         else {
@@ -869,12 +1162,115 @@
                     _loop_1(dependencyPath);
                 }
                 rxjs.combineLatest(propertiesBinding)
-                    .pipe(operators.map(function (values) { return values.indexOf(true) !== -1; }), operators.distinctUntilChanged())
-                    .subscribe(function (visible) { return _this.setVisible(visible); });
+                    .pipe(operators.map(( /**
+             * @param {?} values
+             * @return {?}
+             */function (/**
+             * @param {?} values
+             * @return {?}
+             */ values) { return values.indexOf(true) !== -1; })), operators.distinctUntilChanged())
+                    .subscribe(( /**
+             * @param {?} visible
+             * @return {?}
+             */function (/**
+             * @param {?} visible
+             * @return {?}
+             */ visible) { return _this.setVisible(visible); }));
             }
         };
         return FormProperty;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._errors;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._valueChanges;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._errorsChanges;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._visible;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._visibilityChanges;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._root;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._parent;
+        /** @type {?} */
+        FormProperty.prototype._objErrors;
+        /** @type {?} */
+        FormProperty.prototype.schemaValidator;
+        /** @type {?} */
+        FormProperty.prototype.schema;
+        /** @type {?} */
+        FormProperty.prototype.ui;
+        /** @type {?} */
+        FormProperty.prototype.formData;
+        /** @type {?} */
+        FormProperty.prototype._value;
+        /** @type {?} */
+        FormProperty.prototype.widget;
+        /** @type {?} */
+        FormProperty.prototype.path;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormProperty.prototype._options;
+        /**
+         * 设置值
+         *
+         * @abstract
+         * @param {?} value
+         * @param {?} onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
+         * @return {?}
+         */
+        FormProperty.prototype.setValue = function (value, onlySelf) { };
+        /**
+         * 重置值，默认值为 `schema.default`
+         *
+         * @abstract
+         * @param {?} value
+         * @param {?} onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
+         * @return {?}
+         */
+        FormProperty.prototype.resetValue = function (value, onlySelf) { };
+        /**
+         * \@internal
+         * @abstract
+         * @return {?}
+         */
+        FormProperty.prototype._hasValue = function () { };
+        /**
+         * \@internal
+         * @abstract
+         * @return {?}
+         */
+        FormProperty.prototype._updateValue = function () { };
+    }
+    /**
+     * @abstract
+     */
     var PropertyGroup = /** @class */ (function (_super) {
         __extends(PropertyGroup, _super);
         function PropertyGroup() {
@@ -882,49 +1278,102 @@
             _this.properties = null;
             return _this;
         }
+        /**
+         * @param {?} path
+         * @return {?}
+         */
         PropertyGroup.prototype.getProperty = function (path) {
+            /** @type {?} */
             var subPathIdx = path.indexOf(SF_SEQ);
+            /** @type {?} */
             var propertyId = subPathIdx !== -1 ? path.substr(0, subPathIdx) : path;
-            var property = this.properties[propertyId];
+            /** @type {?} */
+            var property = (( /** @type {?} */(this.properties)))[propertyId];
             if (property !== null && subPathIdx !== -1 && property instanceof PropertyGroup) {
+                /** @type {?} */
                 var subPath = path.substr(subPathIdx + 1);
-                property = property.getProperty(subPath);
+                property = ( /** @type {?} */((( /** @type {?} */(property))).getProperty(subPath)));
             }
             return property;
         };
+        /**
+         * @param {?} fn
+         * @return {?}
+         */
         PropertyGroup.prototype.forEachChild = function (fn) {
             for (var propertyId in this.properties) {
                 if (this.properties.hasOwnProperty(propertyId)) {
-                    var property = this.properties[propertyId];
+                    /** @type {?} */
+                    var property = (( /** @type {?} */(this.properties)))[propertyId];
                     fn(property, propertyId);
                 }
             }
         };
+        /**
+         * @param {?} fn
+         * @return {?}
+         */
         PropertyGroup.prototype.forEachChildRecursive = function (fn) {
-            this.forEachChild(function (child) {
+            this.forEachChild(( /**
+             * @param {?} child
+             * @return {?}
+             */function (/**
+             * @param {?} child
+             * @return {?}
+             */ child) {
                 fn(child);
                 if (child instanceof PropertyGroup) {
-                    child.forEachChildRecursive(fn);
+                    (( /** @type {?} */(child))).forEachChildRecursive(fn);
                 }
-            });
+            }));
         };
+        /**
+         * @return {?}
+         */
         PropertyGroup.prototype._bindVisibility = function () {
             _super.prototype._bindVisibility.call(this);
             this._bindVisibilityRecursive();
         };
+        /**
+         * @private
+         * @return {?}
+         */
         PropertyGroup.prototype._bindVisibilityRecursive = function () {
-            this.forEachChildRecursive(function (property) {
+            this.forEachChildRecursive(( /**
+             * @param {?} property
+             * @return {?}
+             */function (/**
+             * @param {?} property
+             * @return {?}
+             */ property) {
                 property._bindVisibility();
-            });
+            }));
         };
+        /**
+         * @return {?}
+         */
         PropertyGroup.prototype.isRoot = function () {
             return this === this.root;
         };
         return PropertyGroup;
     }(FormProperty));
+    if (false) {
+        /** @type {?} */
+        PropertyGroup.prototype.properties;
+    }
 
     var ObjectProperty = /** @class */ (function (_super) {
         __extends(ObjectProperty, _super);
+        /**
+         * @param {?} formPropertyFactory
+         * @param {?} schemaValidatorFactory
+         * @param {?} schema
+         * @param {?} ui
+         * @param {?} formData
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} options
+         */
         function ObjectProperty(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
             var _this = _super.call(this, schemaValidatorFactory, schema, ui, formData, parent, path, options) || this;
             _this.formPropertyFactory = formPropertyFactory;
@@ -933,113 +1382,212 @@
             return _this;
         }
         Object.defineProperty(ObjectProperty.prototype, "propertiesId", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._propertiesId;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         ObjectProperty.prototype.createProperties = function () {
             var _this = this;
             this.properties = {};
             this._propertiesId = [];
+            /** @type {?} */
             var orderedProperties;
             try {
-                orderedProperties = orderProperties(Object.keys(this.schema.properties), this.ui.order);
+                orderedProperties = orderProperties(Object.keys(( /** @type {?} */(this.schema.properties))), ( /** @type {?} */(this.ui.order)));
             }
             catch (e) {
                 console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
             }
-            orderedProperties.forEach(function (propertyId) {
-                _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+            ( /** @type {?} */(orderedProperties)).forEach(( /**
+             * @param {?} propertyId
+             * @return {?}
+             */function (/**
+             * @param {?} propertyId
+             * @return {?}
+             */ propertyId) {
+                (( /** @type {?} */(_this.properties)))[propertyId] = _this.formPropertyFactory.createProperty(( /** @type {?} */(_this.schema.properties))[propertyId], _this.ui['$' + propertyId], (( /** @type {?} */((_this.formData || {}))))[propertyId], _this, propertyId);
                 _this._propertiesId.push(propertyId);
-            });
+            }));
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         ObjectProperty.prototype.setValue = function (value, onlySelf) {
-            var properties = this.properties;
+            /** @type {?} */
+            var properties = ( /** @type {?} */(this.properties));
             for (var propertyId in value) {
                 if (value.hasOwnProperty(propertyId) && properties[propertyId]) {
-                    properties[propertyId].setValue(value[propertyId], true);
+                    (( /** @type {?} */(properties[propertyId]))).setValue(value[propertyId], true);
                 }
             }
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         ObjectProperty.prototype.resetValue = function (value, onlySelf) {
             value = value || this.schema.default || {};
-            var properties = this.properties;
+            /** @type {?} */
+            var properties = ( /** @type {?} */(this.properties));
             // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         };
+        /**
+         * @return {?}
+         */
         ObjectProperty.prototype._hasValue = function () {
             return this.value != null && !!Object.keys(this.value).length;
         };
+        /**
+         * @return {?}
+         */
         ObjectProperty.prototype._updateValue = function () {
+            /** @type {?} */
             var value = {};
-            this.forEachChild(function (property, propertyId) {
+            this.forEachChild(( /**
+             * @param {?} property
+             * @param {?} propertyId
+             * @return {?}
+             */function (property, propertyId) {
                 if (property.visible && property._hasValue()) {
                     value[propertyId] = property.value;
                 }
-            });
+            }));
             this._value = value;
         };
         return ObjectProperty;
     }(PropertyGroup));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ObjectProperty.prototype._propertiesId;
+        /**
+         * @type {?}
+         * @private
+         */
+        ObjectProperty.prototype.formPropertyFactory;
+    }
 
     var ArrayProperty = /** @class */ (function (_super) {
         __extends(ArrayProperty, _super);
+        /**
+         * @param {?} formPropertyFactory
+         * @param {?} schemaValidatorFactory
+         * @param {?} schema
+         * @param {?} ui
+         * @param {?} formData
+         * @param {?} parent
+         * @param {?} path
+         * @param {?} options
+         */
         function ArrayProperty(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
             var _this = _super.call(this, schemaValidatorFactory, schema, ui, formData, parent, path, options) || this;
             _this.formPropertyFactory = formPropertyFactory;
             _this.properties = [];
             return _this;
         }
+        /**
+         * @param {?} path
+         * @return {?}
+         */
         ArrayProperty.prototype.getProperty = function (path) {
+            /** @type {?} */
             var subPathIdx = path.indexOf(SF_SEQ);
+            /** @type {?} */
             var pos = +(subPathIdx !== -1 ? path.substr(0, subPathIdx) : path);
-            var list = this.properties;
+            /** @type {?} */
+            var list = ( /** @type {?} */(this.properties));
             if (isNaN(pos) || pos >= list.length) {
                 return undefined;
             }
+            /** @type {?} */
             var subPath = path.substr(subPathIdx + 1);
             return list[pos].getProperty(subPath);
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         ArrayProperty.prototype.setValue = function (value, onlySelf) {
             this.properties = [];
             this.clearErrors();
             this.resetProperties(value);
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         ArrayProperty.prototype.resetValue = function (value, onlySelf) {
             this._value = value || this.schema.default || [];
             this.setValue(this._value, onlySelf);
         };
+        /**
+         * @return {?}
+         */
         ArrayProperty.prototype._hasValue = function () {
             return true;
         };
+        /**
+         * @return {?}
+         */
         ArrayProperty.prototype._updateValue = function () {
             var _this = this;
+            /** @type {?} */
             var value = [];
-            this.forEachChild(function (property) {
+            this.forEachChild(( /**
+             * @param {?} property
+             * @return {?}
+             */function (property) {
                 var _a;
                 if (property.visible) {
                     value.push(Object.assign(Object.assign({}, (((_a = _this.widget) === null || _a === void 0 ? void 0 : _a.cleanValue) ? null : property.formData)), property.value));
                 }
-            });
+            }));
             this._value = value;
         };
+        /**
+         * @private
+         * @param {?} formData
+         * @return {?}
+         */
         ArrayProperty.prototype.addProperty = function (formData) {
-            var newProperty = this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this);
-            this.properties.push(newProperty);
+            /** @type {?} */
+            var newProperty = ( /** @type {?} */(this.formPropertyFactory.createProperty(( /** @type {?} */(this.schema.items)), this.ui.$items, formData, ( /** @type {?} */(this)))));
+            (( /** @type {?} */(this.properties))).push(newProperty);
             return newProperty;
         };
+        /**
+         * @private
+         * @param {?} formDatas
+         * @return {?}
+         */
         ArrayProperty.prototype.resetProperties = function (formDatas) {
             var e_1, _b;
             try {
                 for (var formDatas_1 = __values(formDatas), formDatas_1_1 = formDatas_1.next(); !formDatas_1_1.done; formDatas_1_1 = formDatas_1.next()) {
                     var item = formDatas_1_1.value;
+                    /** @type {?} */
                     var property = this.addProperty(item);
                     property.resetValue(item, true);
                 }
@@ -1052,46 +1600,91 @@
                 finally { if (e_1) throw e_1.error; }
             }
         };
+        /**
+         * @private
+         * @param {?=} property
+         * @return {?}
+         */
         ArrayProperty.prototype.clearErrors = function (property) {
             (property || this)._objErrors = {};
         };
         // #region actions
+        /**
+         * @param {?} formData
+         * @return {?}
+         */
         ArrayProperty.prototype.add = function (formData) {
+            /** @type {?} */
             var newProperty = this.addProperty(formData);
             newProperty.resetValue(formData, false);
             return newProperty;
         };
+        /**
+         * @param {?} index
+         * @return {?}
+         */
         ArrayProperty.prototype.remove = function (index) {
             var _this = this;
-            var list = this.properties;
+            /** @type {?} */
+            var list = ( /** @type {?} */(this.properties));
             this.clearErrors();
             list.splice(index, 1);
-            list.forEach(function (property, idx) {
-                property.path = [property.parent.path, idx].join(SF_SEQ);
+            list.forEach(( /**
+             * @param {?} property
+             * @param {?} idx
+             * @return {?}
+             */function (property, idx) {
+                property.path = [( /** @type {?} */(property.parent)).path, idx].join(SF_SEQ);
                 _this.clearErrors(property);
                 // TODO: 受限于 sf 的设计思路，对于移除数组项需要重新对每个子项进行校验，防止错误被父级合并后引起始终是错误的现象
                 if (property instanceof ObjectProperty) {
-                    property.forEachChild(function (p) {
+                    property.forEachChild(( /**
+                     * @param {?} p
+                     * @return {?}
+                     */function (/**
+                     * @param {?} p
+                     * @return {?}
+                     */ p) {
                         p.updateValueAndValidity();
-                    });
+                    }));
                 }
-            });
+            }));
             if (list.length === 0) {
                 this.updateValueAndValidity();
             }
         };
         return ArrayProperty;
     }(PropertyGroup));
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ArrayProperty.prototype.formPropertyFactory;
+    }
 
+    /**
+     * @abstract
+     */
     var AtomicProperty = /** @class */ (function (_super) {
         __extends(AtomicProperty, _super);
         function AtomicProperty() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         AtomicProperty.prototype.setValue = function (value, onlySelf) {
             this._value = value;
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         AtomicProperty.prototype.resetValue = function (value, onlySelf) {
             if (value == null) {
                 value = this.schema.default !== undefined ? this.schema.default : this.fallbackValue();
@@ -1101,18 +1694,34 @@
             if (this.widget)
                 this.widget.reset(value);
         };
+        /**
+         * @return {?}
+         */
         AtomicProperty.prototype._hasValue = function () {
             return this.fallbackValue() !== this.value;
         };
+        /**
+         * @return {?}
+         */
         AtomicProperty.prototype._updateValue = function () { };
         return AtomicProperty;
     }(FormProperty));
+    if (false) {
+        /**
+         * @abstract
+         * @return {?}
+         */
+        AtomicProperty.prototype.fallbackValue = function () { };
+    }
 
     var BooleanProperty = /** @class */ (function (_super) {
         __extends(BooleanProperty, _super);
         function BooleanProperty() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
         BooleanProperty.prototype.fallbackValue = function () {
             return null;
         };
@@ -1124,9 +1733,17 @@
         function NumberProperty() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
         NumberProperty.prototype.fallbackValue = function () {
             return null;
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         NumberProperty.prototype.setValue = function (value, onlySelf) {
             if (typeof value === 'string') {
                 if (value.length) {
@@ -1147,9 +1764,17 @@
         function StringProperty() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
         StringProperty.prototype.fallbackValue = function () {
             return null;
         };
+        /**
+         * @param {?} value
+         * @param {?} onlySelf
+         * @return {?}
+         */
         StringProperty.prototype.setValue = function (value, onlySelf) {
             this._value = value == null ? '' : value;
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
@@ -1157,14 +1782,33 @@
         return StringProperty;
     }(AtomicProperty));
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/model/form.property.factory.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var FormPropertyFactory = /** @class */ (function () {
+        /**
+         * @param {?} schemaValidatorFactory
+         * @param {?} cogSrv
+         */
         function FormPropertyFactory(schemaValidatorFactory, cogSrv) {
             this.schemaValidatorFactory = schemaValidatorFactory;
             this.options = mergeConfig(cogSrv);
         }
+        /**
+         * @param {?} schema
+         * @param {?} ui
+         * @param {?} formData
+         * @param {?=} parent
+         * @param {?=} propertyId
+         * @return {?}
+         */
         FormPropertyFactory.prototype.createProperty = function (schema, ui, formData, parent, propertyId) {
             if (parent === void 0) { parent = null; }
+            /** @type {?} */
             var newProperty = null;
+            /** @type {?} */
             var path = '';
             if (parent) {
                 path += parent.path;
@@ -1176,7 +1820,7 @@
                         path += propertyId;
                         break;
                     case 'array':
-                        path += parent.properties.length;
+                        path += (( /** @type {?} */((( /** @type {?} */(parent))).properties))).length;
                         break;
                     default:
                         throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
@@ -1186,12 +1830,13 @@
                 path = SF_SEQ;
             }
             if (schema.$ref) {
-                var refSchema = retrieveSchema(schema, parent.root.schema.definitions);
+                /** @type {?} */
+                var refSchema = retrieveSchema(schema, ( /** @type {?} */(parent)).root.schema.definitions);
                 newProperty = this.createProperty(refSchema, ui, formData, parent, path);
             }
             else {
                 // fix required
-                if ((propertyId && parent.schema.required.indexOf(propertyId.split(SF_SEQ).pop()) !== -1) || ui.showRequired === true) {
+                if ((propertyId && ( /** @type {?} */(( /** @type {?} */(parent)).schema.required)).indexOf(( /** @type {?} */(propertyId.split(SF_SEQ).pop()))) !== -1) || ui.showRequired === true) {
                     ui._required = true;
                 }
                 // fix title
@@ -1199,10 +1844,10 @@
                     schema.title = propertyId;
                 }
                 // fix date
-                if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !ui.format) {
-                    if (ui.widget === 'date')
+                if ((schema.type === 'string' || schema.type === 'number') && !schema.format && !(( /** @type {?} */(ui))).format) {
+                    if ((( /** @type {?} */(ui))).widget === 'date')
                         ui._format = schema.type === 'string' ? this.options.uiDateStringFormat : this.options.uiDateNumberFormat;
-                    else if (ui.widget === 'time')
+                    else if ((( /** @type {?} */(ui))).widget === 'time')
                         ui._format = schema.type === 'string' ? this.options.uiTimeStringFormat : this.options.uiTimeNumberFormat;
                 }
                 else {
@@ -1234,37 +1879,77 @@
             }
             return newProperty;
         };
+        /**
+         * @private
+         * @param {?} rootProperty
+         * @return {?}
+         */
         FormPropertyFactory.prototype.initializeRoot = function (rootProperty) {
             // rootProperty.init();
             rootProperty._bindVisibility();
         };
         return FormPropertyFactory;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FormPropertyFactory.prototype.options;
+        /**
+         * @type {?}
+         * @private
+         */
+        FormPropertyFactory.prototype.schemaValidatorFactory;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/terminator.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var TerminatorService = /** @class */ (function () {
         function TerminatorService() {
             this.onDestroy = new rxjs.Subject();
         }
+        /**
+         * @return {?}
+         */
         TerminatorService.prototype.destroy = function () {
             this.onDestroy.next(true);
         };
         return TerminatorService;
     }());
+    if (false) {
+        /** @type {?} */
+        TerminatorService.prototype.onDestroy;
+    }
 
+    /**
+     * @abstract
+     */
     var SchemaValidatorFactory = /** @class */ (function () {
         function SchemaValidatorFactory() {
         }
         return SchemaValidatorFactory;
     }());
-    /** @nocollapse */ SchemaValidatorFactory.ɵfac = function SchemaValidatorFactory_Factory(t) { return new (t || SchemaValidatorFactory)(); };
-    /** @nocollapse */ SchemaValidatorFactory.ɵprov = i0.ɵɵdefineInjectable({ token: SchemaValidatorFactory, factory: SchemaValidatorFactory.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SchemaValidatorFactory, [{
-                type: i0.Injectable
-            }], null, null);
-    })();
+    SchemaValidatorFactory.decorators = [
+        { type: core.Injectable }
+    ];
+    if (false) {
+        /**
+         * @abstract
+         * @param {?} schema
+         * @param {?} extraOptions
+         * @return {?}
+         */
+        SchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) { };
+    }
     var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
         __extends(AjvSchemaValidatorFactory, _super);
+        /**
+         * @param {?} cogSrv
+         */
         function AjvSchemaValidatorFactory(cogSrv) {
             var _this = _super.call(this) || this;
             if (!(typeof document === 'object' && !!document)) {
@@ -1278,10 +1963,19 @@
             _this.ajv.addFormat('id-card', /(^\d{15}$)|(^\d{17}([0-9]|X)$)/);
             return _this;
         }
+        /**
+         * @param {?} schema
+         * @param {?} extraOptions
+         * @return {?}
+         */
         AjvSchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) {
             var _this = this;
-            var ingoreKeywords = __spread(this.options.ingoreKeywords, (extraOptions.ingoreKeywords || []));
-            return function (value) {
+            /** @type {?} */
+            var ingoreKeywords = __spread((( /** @type {?} */(this.options.ingoreKeywords))), ((( /** @type {?} */(extraOptions.ingoreKeywords))) || []));
+            return ( /**
+             * @param {?} value
+             * @return {?}
+             */function (value) {
                 try {
                     _this.ajv.validate(schema, value);
                 }
@@ -1292,48 +1986,87 @@
                         console.warn(e);
                     }
                 }
+                /** @type {?} */
                 var errors = _this.ajv.errors;
                 if (_this.options && ingoreKeywords && errors) {
-                    errors = errors.filter(function (w) { return ingoreKeywords.indexOf(w.keyword) === -1; });
+                    errors = errors.filter(( /**
+                     * @param {?} w
+                     * @return {?}
+                     */function (/**
+                     * @param {?} w
+                     * @return {?}
+                     */ w) { return ingoreKeywords.indexOf(w.keyword) === -1; }));
                 }
                 return errors;
-            };
+            });
         };
         return AjvSchemaValidatorFactory;
     }(SchemaValidatorFactory));
-    /** @nocollapse */ AjvSchemaValidatorFactory.ɵfac = function AjvSchemaValidatorFactory_Factory(t) { return new (t || AjvSchemaValidatorFactory)(i0.ɵɵinject(i6.AlainConfigService)); };
-    /** @nocollapse */ AjvSchemaValidatorFactory.ɵprov = i0.ɵɵdefineInjectable({ token: AjvSchemaValidatorFactory, factory: AjvSchemaValidatorFactory.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AjvSchemaValidatorFactory, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: i6.AlainConfigService, decorators: [{
-                            type: i0.Inject,
-                            args: [i6.AlainConfigService]
-                        }] }];
-        }, null);
-    })();
+    AjvSchemaValidatorFactory.decorators = [
+        { type: core.Injectable }
+    ];
+    /** @nocollapse */
+    AjvSchemaValidatorFactory.ctorParameters = function () { return [
+        { type: util.AlainConfigService, decorators: [{ type: core.Inject, args: [util.AlainConfigService,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        AjvSchemaValidatorFactory.prototype.ajv;
+        /**
+         * @type {?}
+         * @protected
+         */
+        AjvSchemaValidatorFactory.prototype.options;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/widget.factory.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var WidgetRegistry = /** @class */ (function () {
         function WidgetRegistry() {
             this._widgets = {};
         }
         Object.defineProperty(WidgetRegistry.prototype, "widgets", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._widgets;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} widget
+         * @return {?}
+         */
         WidgetRegistry.prototype.setDefault = function (widget) {
             this.defaultWidget = widget;
         };
+        /**
+         * @param {?} type
+         * @param {?} widget
+         * @return {?}
+         */
         WidgetRegistry.prototype.register = function (type, widget) {
             this._widgets[type] = widget;
         };
+        /**
+         * @param {?} type
+         * @return {?}
+         */
         WidgetRegistry.prototype.has = function (type) {
             return this._widgets.hasOwnProperty(type);
         };
+        /**
+         * @param {?} type
+         * @return {?}
+         */
         WidgetRegistry.prototype.getType = function (type) {
             if (this.has(type)) {
                 return this._widgets[type];
@@ -1342,33 +2075,85 @@
         };
         return WidgetRegistry;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        WidgetRegistry.prototype._widgets;
+        /**
+         * @type {?}
+         * @private
+         */
+        WidgetRegistry.prototype.defaultWidget;
+    }
     var WidgetFactory = /** @class */ (function () {
+        /**
+         * @param {?} registry
+         * @param {?} resolver
+         */
         function WidgetFactory(registry, resolver) {
             this.registry = registry;
             this.resolver = resolver;
         }
+        /**
+         * @param {?} container
+         * @param {?} type
+         * @return {?}
+         */
         WidgetFactory.prototype.createWidget = function (container, type) {
             if (!this.registry.has(type)) {
                 console.warn("No widget for type \"" + type + "\"");
             }
-            var componentClass = this.registry.getType(type);
+            /** @type {?} */
+            var componentClass = ( /** @type {?} */(this.registry.getType(type)));
+            /** @type {?} */
             var componentFactory = this.resolver.resolveComponentFactory(componentClass);
             return container.createComponent(componentFactory);
         };
         return WidgetFactory;
     }());
-    /** @nocollapse */ WidgetFactory.ɵfac = function WidgetFactory_Factory(t) { return new (t || WidgetFactory)(i0.ɵɵinject(WidgetRegistry), i0.ɵɵinject(i0.ComponentFactoryResolver)); };
-    /** @nocollapse */ WidgetFactory.ɵprov = i0.ɵɵdefineInjectable({ token: WidgetFactory, factory: WidgetFactory.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(WidgetFactory, [{
-                type: i0.Injectable
-            }], function () { return [{ type: WidgetRegistry }, { type: i0.ComponentFactoryResolver }]; }, null);
-    })();
+    WidgetFactory.decorators = [
+        { type: core.Injectable }
+    ];
+    /** @nocollapse */
+    WidgetFactory.ctorParameters = function () { return [
+        { type: WidgetRegistry },
+        { type: core.ComponentFactoryResolver }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        WidgetFactory.prototype.registry;
+        /**
+         * @type {?}
+         * @private
+         */
+        WidgetFactory.prototype.resolver;
+    }
 
+    /**
+     * @param {?} schemaValidatorFactory
+     * @param {?} cogSrv
+     * @return {?}
+     */
     function useFactory(schemaValidatorFactory, cogSrv) {
         return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
     }
     var SFComponent = /** @class */ (function () {
+        /**
+         * @param {?} formPropertyFactory
+         * @param {?} terminator
+         * @param {?} dom
+         * @param {?} cdr
+         * @param {?} localeSrv
+         * @param {?} aclSrv
+         * @param {?} i18nSrv
+         * @param {?} cogSrv
+         * @param {?} platform
+         */
         function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv, platform) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
@@ -1386,7 +2171,9 @@
             this.locale = {};
             this.rootProperty = null;
             // #region fields
-            /** 表单布局，等同 `nzLayout`，默认：horizontal */
+            /**
+             * 表单布局，等同 `nzLayout`，默认：horizontal
+             */
             this.layout = 'horizontal';
             /**
              * 按钮
@@ -1401,9 +2188,13 @@
              * - `false` 提交时校验
              */
             this.liveValidate = true;
-            /** 立即显示错误视觉 */
+            /**
+             * 立即显示错误视觉
+             */
             this.firstVisual = true;
-            /** 是否只展示错误视觉不显示错误文本 */
+            /**
+             * 是否只展示错误视觉不显示错误文本
+             */
             this.onlyVisual = false;
             this.compact = false;
             /**
@@ -1413,37 +2204,59 @@
             this.disabled = false;
             this.noColon = false;
             this.cleanValue = false;
-            this.formValueChange = new i0.EventEmitter();
-            this.formChange = new i0.EventEmitter();
-            this.formSubmit = new i0.EventEmitter();
-            this.formReset = new i0.EventEmitter();
-            this.formError = new i0.EventEmitter();
+            this.formValueChange = new core.EventEmitter();
+            this.formChange = new core.EventEmitter();
+            this.formSubmit = new core.EventEmitter();
+            this.formReset = new core.EventEmitter();
+            this.formError = new core.EventEmitter();
             this.options = mergeConfig(cogSrv);
-            this.liveValidate = this.options.liveValidate;
-            this.firstVisual = this.options.firstVisual;
-            this.autocomplete = this.options.autocomplete;
-            this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
+            this.liveValidate = ( /** @type {?} */(this.options.liveValidate));
+            this.firstVisual = ( /** @type {?} */(this.options.firstVisual));
+            this.autocomplete = ( /** @type {?} */(this.options.autocomplete));
+            this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
+             * @return {?}
+             */function () {
                 _this.locale = _this.localeSrv.getData('sf');
                 if (_this._inited) {
                     _this.validator({ emitError: false, onlyRoot: false });
                     _this.coverButtonProperty();
                     _this.cdr.markForCheck();
                 }
-            });
+            }));
+            /** @type {?} */
             var refSchemas = [
                 this.aclSrv ? this.aclSrv.change : null,
                 this.i18nSrv ? this.i18nSrv.change : null,
-            ].filter(function (o) { return o != null; });
+            ].filter(( /**
+             * @param {?} o
+             * @return {?}
+             */function (/**
+             * @param {?} o
+             * @return {?}
+             */ o) { return o != null; }));
             if (refSchemas.length > 0) {
-                rxjs.merge.apply(void 0, __spread(refSchemas)).pipe(operators.filter(function () { return _this._inited; }), operators.takeUntil(this.unsubscribe$))
-                    .subscribe(function () { return _this.refreshSchema(); });
+                rxjs.merge.apply(void 0, __spread((( /** @type {?} */(refSchemas))))).pipe(operators.filter(( /**
+             * @return {?}
+             */function () { return _this._inited; })), operators.takeUntil(this.unsubscribe$))
+                    .subscribe(( /**
+             * @template THIS
+             * @this {THIS}
+             * @return {THIS}
+             */function () { return _this.refreshSchema(); }));
             }
         }
         Object.defineProperty(SFComponent.prototype, "mode", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._mode;
             },
-            /** 表单模式 */
+            /**
+             * 表单模式
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 switch (value) {
                     case 'search':
@@ -1474,6 +2287,7 @@
              * Whether the form is valid
              *
              * 表单是否有效
+             * @return {?}
              */
             get: function () {
                 return this._valid;
@@ -1486,6 +2300,7 @@
              * The value of the form
              *
              * 表单值
+             * @return {?}
              */
             get: function () {
                 return this._item;
@@ -1497,31 +2312,45 @@
          * Get form element property based on [path](https://ng-alain.com/form/qa#path)
          *
          * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
+         * @param {?} path
+         * @return {?}
          */
         SFComponent.prototype.getProperty = function (path) {
-            return this.rootProperty.searchProperty(path);
+            return ( /** @type {?} */(this.rootProperty)).searchProperty(path);
         };
         /**
          * Get element value based on [path](https://ng-alain.com/form/qa#path)
          *
          * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
+         * @param {?} path
+         * @return {?}
          */
         SFComponent.prototype.getValue = function (path) {
-            return this.getProperty(path).value;
+            return ( /** @type {?} */(this.getProperty(path))).value;
         };
         /**
          * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
          *
          * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素属性值
+         * @template THIS
+         * @this {THIS}
+         * @param {?} path
+         * @param {?} value
+         * @return {THIS}
          */
         SFComponent.prototype.setValue = function (path, value) {
-            var item = this.getProperty(path);
+            /** @type {?} */
+            var item = ( /** @type {?} */(this)).getProperty(path);
             if (!item) {
                 throw new Error("Invalid path: " + path);
             }
             item.resetValue(value, false);
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         SFComponent.prototype.onSubmit = function (e) {
             e.preventDefault();
             e.stopPropagation();
@@ -1531,25 +2360,70 @@
                 return;
             this.formSubmit.emit(this.value);
         };
+        /**
+         * @protected
+         * @param {?} key
+         * @return {?}
+         */
         SFComponent.prototype.fanyi = function (key) {
             return (this.i18nSrv ? this.i18nSrv.fanyi(key) : '') || key;
         };
+        /**
+         * @private
+         * @param {?} ui
+         * @return {?}
+         */
         SFComponent.prototype.inheritUI = function (ui) {
             var _this = this;
-            ['optionalHelp'].filter(function (key) { return !!_this._defUi[key]; }).forEach(function (key) { return (ui[key] = Object.assign(Object.assign({}, _this._defUi[key]), ui[key])); });
+            ['optionalHelp'].filter(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) { return !!_this._defUi[key]; })).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) { return (ui[key] = Object.assign(Object.assign({}, _this._defUi[key]), ui[key])); }));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         SFComponent.prototype.coverProperty = function () {
             var _this = this;
+            /** @type {?} */
             var isHorizontal = this.layout === 'horizontal';
-            var _schema = i6.deepCopy(this.schema);
+            /** @type {?} */
+            var _schema = util.deepCopy(this.schema);
             var definitions = _schema.definitions;
-            var inFn = function (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) {
+            /** @type {?} */
+            var inFn = ( /**
+             * @param {?} schema
+             * @param {?} _parentSchema
+             * @param {?} uiSchema
+             * @param {?} parentUiSchema
+             * @param {?} uiRes
+             * @return {?}
+             */function (schema, _parentSchema, uiSchema, parentUiSchema, uiRes) {
                 if (!Array.isArray(schema.required))
                     schema.required = [];
-                Object.keys(schema.properties).forEach(function (key) {
+                Object.keys(( /** @type {?} */(schema.properties))).forEach(( /**
+                 * @param {?} key
+                 * @return {?}
+                 */function (/**
+                 * @param {?} key
+                 * @return {?}
+                 */ key) {
+                    /** @type {?} */
                     var uiKey = "$" + key;
-                    var property = retrieveSchema(schema.properties[key], definitions);
-                    var ui = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && _this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), property.ui), uiSchema[uiKey]);
+                    /** @type {?} */
+                    var property = retrieveSchema(( /** @type {?} */(( /** @type {?} */(schema.properties))[key])), definitions);
+                    /** @type {?} */
+                    var ui = ( /** @type {?} */(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && (( /** @type {?} */(_this.options.formatMap)))[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), (( /** @type {?} */(property.ui)))), uiSchema[uiKey])));
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -1585,9 +2459,10 @@
                         ui.spanControl = null;
                     }
                     if (ui.widget === 'date' && ui.end != null) {
-                        var dateEndProperty = schema.properties[ui.end];
+                        /** @type {?} */
+                        var dateEndProperty = ( /** @type {?} */(schema.properties))[ui.end];
                         if (dateEndProperty) {
-                            dateEndProperty.ui = Object.assign(Object.assign({}, dateEndProperty.ui), { widget: ui.widget, hidden: true });
+                            dateEndProperty.ui = Object.assign(Object.assign({}, (( /** @type {?} */(dateEndProperty.ui)))), { widget: ui.widget, hidden: true });
                         }
                         else {
                             ui.end = null;
@@ -1596,10 +2471,11 @@
                     _this.inheritUI(ui);
                     if (ui.optionalHelp) {
                         if (typeof ui.optionalHelp === 'string') {
-                            ui.optionalHelp = {
+                            ui.optionalHelp = ( /** @type {?} */({
                                 text: ui.optionalHelp,
-                            };
+                            }));
                         }
+                        /** @type {?} */
                         var oh = (ui.optionalHelp = Object.assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp));
                         if (oh.i18n) {
                             oh.text = _this.fanyi(oh.i18n);
@@ -1624,21 +2500,23 @@
                     uiRes[uiKey] = ui;
                     delete property.ui;
                     if (ui.hidden === true) {
-                        var idx = schema.required.indexOf(key);
+                        /** @type {?} */
+                        var idx = ( /** @type {?} */(schema.required)).indexOf(key);
                         if (idx !== -1) {
-                            schema.required.splice(idx, 1);
+                            ( /** @type {?} */(schema.required)).splice(idx, 1);
                         }
                     }
                     if (property.items) {
+                        /** @type {?} */
                         var uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
-                        ui.$items = Object.assign(Object.assign(Object.assign({}, property.items.ui), uiSchemaInArr[uiKey]), ui.$items);
+                        ui.$items = Object.assign(Object.assign(Object.assign({}, (( /** @type {?} */(property.items.ui)))), uiSchemaInArr[uiKey]), ui.$items);
                         inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                     }
                     if (property.properties && Object.keys(property.properties).length) {
                         inFn(property, schema, uiSchema[uiKey] || {}, ui, ui);
                     }
-                });
-            };
+                }));
+            });
             if (this.ui == null)
                 this.ui = {};
             this._defUi = Object.assign(Object.assign(Object.assign({ onlyVisual: this.options.onlyVisual, size: this.options.size, liveValidate: this.liveValidate, firstVisual: this.firstVisual }, this.options.ui), _schema.ui), this.ui['*']);
@@ -1657,11 +2535,24 @@
             this._schema = _schema;
             di(this._ui, 'cover schema & ui', this._ui, _schema);
         };
+        /**
+         * @private
+         * @return {?}
+         */
         SFComponent.prototype.coverButtonProperty = function () {
-            this._btn = Object.assign(Object.assign(Object.assign({ render: { size: 'default' } }, this.locale), this.options.button), this.button);
-            var firstKey = Object.keys(this._ui).find(function (w) { return w.startsWith('$'); });
-            var btnRender = this._btn.render;
+            this._btn = Object.assign(Object.assign(Object.assign({ render: { size: 'default' } }, this.locale), this.options.button), (( /** @type {?} */(this.button))));
+            /** @type {?} */
+            var firstKey = Object.keys(this._ui).find(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.startsWith('$'); }));
+            /** @type {?} */
+            var btnRender = ( /** @type {?} */(this._btn.render));
             if (this.layout === 'horizontal') {
+                /** @type {?} */
                 var btnUi = firstKey ? this._ui[firstKey] : this._defUi;
                 if (!btnRender.grid) {
                     btnRender.grid = {
@@ -1686,6 +2577,9 @@
             }
             di(this._ui, 'button property', this._btn);
         };
+        /**
+         * @return {?}
+         */
         SFComponent.prototype.ngOnInit = function () {
             if (!this.platform.isBrowser) {
                 return;
@@ -1693,6 +2587,10 @@
             this.validator();
             this._inited = true;
         };
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
         SFComponent.prototype.ngOnChanges = function (changes) {
             if (!this.platform.isBrowser) {
                 return;
@@ -1703,7 +2601,12 @@
             }
             this.refreshSchema();
         };
-        /** @internal */
+        /**
+         * \@internal
+         * @param {?} path
+         * @param {?} templateRef
+         * @return {?}
+         */
         SFComponent.prototype._addTpl = function (path, templateRef) {
             if (!this._inited) {
                 return;
@@ -1715,15 +2618,24 @@
             this._renders.set(path, templateRef);
             this.attachCustomRender();
         };
+        /**
+         * @private
+         * @return {?}
+         */
         SFComponent.prototype.attachCustomRender = function () {
             var _this = this;
-            this._renders.forEach(function (tpl, path) {
-                var property = _this.rootProperty.searchProperty(path);
+            this._renders.forEach(( /**
+             * @param {?} tpl
+             * @param {?} path
+             * @return {?}
+             */function (tpl, path) {
+                /** @type {?} */
+                var property = ( /** @type {?} */(_this.rootProperty)).searchProperty(path);
                 if (property == null) {
                     return;
                 }
                 property.ui._render = tpl;
-            });
+            }));
         };
         /**
          * Validator the form is valid
@@ -1731,33 +2643,52 @@
          * 校验表单是否有效
          * - `emitError` 当表单无效时是否触发 `formError` 事件，默认：`true`
          * - `onlyRoot` 只对根进行检验，不进行向下逐个递归，根已经包含整个 Json Schema，默认：`true`
+         * @param {?=} options
+         * @return {?}
          */
         SFComponent.prototype.validator = function (options) {
             if (options === void 0) { options = { emitError: true, onlyRoot: true }; }
             if (!this.platform.isBrowser) {
                 return false;
             }
-            var fn = function (property) {
+            /** @type {?} */
+            var fn = ( /**
+             * @param {?} property
+             * @return {?}
+             */function (property) {
                 property._runValidation();
                 if (!(property instanceof PropertyGroup) || !property.properties)
                     return;
                 if (Array.isArray(property.properties)) {
-                    property.properties.forEach(function (p) { return fn(p); });
+                    property.properties.forEach(( /**
+                     * @param {?} p
+                     * @return {?}
+                     */function (/**
+                     * @param {?} p
+                     * @return {?}
+                     */ p) { return fn(p); }));
                 }
                 else {
-                    Object.keys(property.properties).forEach(function (key) { return fn(property.properties[key]); });
+                    Object.keys(property.properties).forEach(( /**
+                     * @param {?} key
+                     * @return {?}
+                     */function (/**
+                     * @param {?} key
+                     * @return {?}
+                     */ key) { return fn((( /** @type {?} */(property.properties)))[key]); }));
                 }
-            };
+            });
             if (options.onlyRoot) {
-                this.rootProperty._runValidation();
+                ( /** @type {?} */(this.rootProperty))._runValidation();
             }
             else {
-                fn(this.rootProperty);
+                fn(( /** @type {?} */(this.rootProperty)));
             }
-            var errors = this.rootProperty.errors;
+            /** @type {?} */
+            var errors = ( /** @type {?} */(this.rootProperty)).errors;
             this._valid = !(errors && errors.length);
             if (options.emitError && !this._valid)
-                this.formError.emit(errors);
+                this.formError.emit(( /** @type {?} */(errors)));
             this.cdr.detectChanges();
             return this._valid;
         };
@@ -1775,73 +2706,103 @@
          * // 调用 `reset` 重置初始值
          * statusProperty.widget.reset('2');
          * ```
+         * @template THIS
+         * @this {THIS}
+         * @param {?=} newSchema
+         * @param {?=} newUI
+         * @return {THIS}
          */
         SFComponent.prototype.refreshSchema = function (newSchema, newUI) {
             var _this = this;
-            if (!this.platform.isBrowser) {
-                return this;
+            if (!( /** @type {?} */(this)).platform.isBrowser) {
+                return ( /** @type {?} */(this));
             }
             if (newSchema)
-                this.schema = newSchema;
+                ( /** @type {?} */(this)).schema = newSchema;
             if (newUI)
-                this.ui = newUI;
-            if (!this.schema || typeof this.schema.properties === 'undefined')
+                ( /** @type {?} */(this)).ui = newUI;
+            if (!( /** @type {?} */(this)).schema || typeof ( /** @type {?} */(this)).schema.properties === 'undefined')
                 throw new Error("Invalid Schema");
-            if (this.schema.ui && typeof this.schema.ui === 'string')
+            if (( /** @type {?} */(this)).schema.ui && typeof ( /** @type {?} */(this)).schema.ui === 'string')
                 throw new Error("Don't support string with root ui property");
-            this.schema.type = 'object';
-            this._formData = Object.assign({}, this.formData);
-            if (this._inited)
-                this.terminator.destroy();
-            this.cleanRootSub();
-            this.coverProperty();
-            this.coverButtonProperty();
-            this.rootProperty = this.formPropertyFactory.createProperty(this._schema, this._ui, this.formData);
-            this.attachCustomRender();
-            this.cdr.detectChanges();
-            this.reset();
+            ( /** @type {?} */(this)).schema.type = 'object';
+            ( /** @type {?} */(this))._formData = Object.assign({}, ( /** @type {?} */(this)).formData);
+            if (( /** @type {?} */(this))._inited)
+                ( /** @type {?} */(this)).terminator.destroy();
+            ( /** @type {?} */(this)).cleanRootSub();
+            ( /** @type {?} */(this)).coverProperty();
+            ( /** @type {?} */(this)).coverButtonProperty();
+            ( /** @type {?} */(this)).rootProperty = ( /** @type {?} */(this)).formPropertyFactory.createProperty(( /** @type {?} */(this))._schema, ( /** @type {?} */(this))._ui, ( /** @type {?} */(this)).formData);
+            ( /** @type {?} */(this)).attachCustomRender();
+            ( /** @type {?} */(this)).cdr.detectChanges();
+            ( /** @type {?} */(this)).reset();
+            /** @type {?} */
             var isFirst = true;
-            this.rootProperty.valueChanges.subscribe(function (res) {
-                _this._item = Object.assign(Object.assign({}, (_this.cleanValue ? null : _this.formData)), res.value);
+            ( /** @type {?} */(this)).rootProperty.valueChanges.subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
+                ( /** @type {?} */(_this))._item = Object.assign(Object.assign({}, (( /** @type {?} */(_this)).cleanValue ? null : ( /** @type {?} */(_this)).formData)), res.value);
                 if (isFirst) {
                     isFirst = false;
                     return;
                 }
-                _this.formChange.emit(_this._item);
-                _this.formValueChange.emit({ value: _this._item, path: res.path, pathValue: res.pathValue });
-            });
-            this.rootProperty.errorsChanges.subscribe(function (errors) {
-                _this._valid = !(errors && errors.length);
-                _this.formError.emit(errors);
-                _this.cdr.detectChanges();
-            });
-            return this;
+                ( /** @type {?} */(_this)).formChange.emit(( /** @type {?} */(_this))._item);
+                ( /** @type {?} */(_this)).formValueChange.emit({ value: ( /** @type {?} */(_this))._item, path: res.path, pathValue: res.pathValue });
+            }));
+            ( /** @type {?} */(this)).rootProperty.errorsChanges.subscribe(( /**
+             * @param {?} errors
+             * @return {?}
+             */function (/**
+             * @param {?} errors
+             * @return {?}
+             */ errors) {
+                ( /** @type {?} */(_this))._valid = !(errors && errors.length);
+                ( /** @type {?} */(_this)).formError.emit(( /** @type {?} */(errors)));
+                ( /** @type {?} */(_this)).cdr.detectChanges();
+            }));
+            return ( /** @type {?} */(this));
         };
         /**
          * Reset form
          *
          * 重置表单
-         * @param [emit] 是否触发 `formReset` 事件，默认：`false`
+         * @template THIS
+         * @this {THIS}
+         * @param {?=} emit
+         * @return {THIS}
          */
         SFComponent.prototype.reset = function (emit) {
             var _this = this;
             if (emit === void 0) { emit = false; }
-            if (!this.platform.isBrowser) {
-                return this;
+            if (!( /** @type {?} */(this)).platform.isBrowser) {
+                return ( /** @type {?} */(this));
             }
-            this.rootProperty.resetValue(this.formData, false);
-            Promise.resolve().then(function () { return _this.cdr.detectChanges(); });
+            ( /** @type {?} */(( /** @type {?} */(this)).rootProperty)).resetValue(( /** @type {?} */(this)).formData, false);
+            Promise.resolve().then(( /**
+             * @return {?}
+             */function () { return ( /** @type {?} */(_this)).cdr.detectChanges(); }));
             if (emit) {
-                this.formReset.emit(this.value);
+                ( /** @type {?} */(this)).formReset.emit(( /** @type {?} */(this)).value);
             }
-            return this;
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         SFComponent.prototype.cleanRootSub = function () {
             if (!this.rootProperty)
                 return;
             this.rootProperty.errorsChanges.unsubscribe();
             this.rootProperty.valueChanges.unsubscribe();
         };
+        /**
+         * @return {?}
+         */
         SFComponent.prototype.ngOnDestroy = function () {
             this.cleanRootSub();
             this.terminator.destroy();
@@ -1851,158 +2812,335 @@
         };
         return SFComponent;
     }());
-    /** @nocollapse */ SFComponent.ɵfac = function SFComponent_Factory(t) { return new (t || SFComponent)(i0.ɵɵdirectiveInject(FormPropertyFactory), i0.ɵɵdirectiveInject(TerminatorService), i0.ɵɵdirectiveInject(i3.DomSanitizer), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i4.DelonLocaleService), i0.ɵɵdirectiveInject(i5.ACLService, 8), i0.ɵɵdirectiveInject(i4.ALAIN_I18N_TOKEN, 8), i0.ɵɵdirectiveInject(i6.AlainConfigService), i0.ɵɵdirectiveInject(i7.Platform)); };
-    /** @nocollapse */ SFComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: "liveValidate", autocomplete: "autocomplete", firstVisual: "firstVisual", onlyVisual: "onlyVisual", compact: "compact", mode: "mode", loading: "loading", disabled: "disabled", noColon: "noColon", cleanValue: "cleanValue" }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
-            WidgetFactory,
-            {
-                provide: FormPropertyFactory,
-                useFactory: useFactory,
-                deps: [SchemaValidatorFactory, i6.AlainConfigService],
-            },
-            TerminatorService,
-        ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0__namespace, template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item *ngIf=\"rootProperty\" [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item *ngIf=\"_btn.render\" [ngClass]=\"_btn.render!.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"_btn.render!.grid!.span\"\n        [nzOffset]=\"_btn.render!.grid!.offset\"\n        [nzXs]=\"_btn.render!.grid!.xs\"\n        [nzSm]=\"_btn.render!.grid!.sm\"\n        [nzMd]=\"_btn.render!.grid!.md\"\n        [nzLg]=\"_btn.render!.grid!.lg\"\n        [nzXl]=\"_btn.render!.grid!.xl\"\n        [nzXXl]=\"_btn.render!.grid!.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n", changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    SFComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf, [sf]',
+                    exportAs: 'sf',
+                    template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item *ngIf=\"rootProperty\" [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item *ngIf=\"_btn.render\" [ngClass]=\"_btn.render!.class\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed\">\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"_btn.render!.grid!.span\"\n        [nzOffset]=\"_btn.render!.grid!.offset\"\n        [nzXs]=\"_btn.render!.grid!.xs\"\n        [nzSm]=\"_btn.render!.grid!.sm\"\n        [nzMd]=\"_btn.render!.grid!.md\"\n        [nzLg]=\"_btn.render!.grid!.lg\"\n        [nzXl]=\"_btn.render!.grid!.xl\"\n        [nzXXl]=\"_btn.render!.grid!.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type\"\n                  [nzTheme]=\"_btn.submit_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type\"\n                [nzSize]=\"_btn.render!.size\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type\"\n                  [nzTheme]=\"_btn.reset_icon.theme\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                    providers: [
+                        WidgetFactory,
+                        {
+                            provide: FormPropertyFactory,
+                            useFactory: useFactory,
+                            deps: [SchemaValidatorFactory, util.AlainConfigService],
+                        },
+                        TerminatorService,
+                    ],
+                    host: {
+                        '[class.sf]': 'true',
+                        '[class.sf__inline]': "layout === 'inline'",
+                        '[class.sf__horizontal]': "layout === 'horizontal'",
+                        '[class.sf__search]': "mode === 'search'",
+                        '[class.sf__edit]': "mode === 'edit'",
+                        '[class.sf__no-error]': "onlyVisual",
+                        '[class.sf__no-colon]': "noColon",
+                        '[class.sf__compact]': "compact",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    SFComponent.ctorParameters = function () { return [
+        { type: FormPropertyFactory },
+        { type: TerminatorService },
+        { type: platformBrowser.DomSanitizer },
+        { type: core.ChangeDetectorRef },
+        { type: theme.DelonLocaleService },
+        { type: acl.ACLService, decorators: [{ type: core.Optional }] },
+        { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
+        { type: util.AlainConfigService },
+        { type: platform.Platform }
+    ]; };
+    SFComponent.propDecorators = {
+        layout: [{ type: core.Input }],
+        schema: [{ type: core.Input }],
+        ui: [{ type: core.Input }],
+        formData: [{ type: core.Input }],
+        button: [{ type: core.Input }],
+        liveValidate: [{ type: core.Input }],
+        autocomplete: [{ type: core.Input }],
+        firstVisual: [{ type: core.Input }],
+        onlyVisual: [{ type: core.Input }],
+        compact: [{ type: core.Input }],
+        mode: [{ type: core.Input }],
+        loading: [{ type: core.Input }],
+        disabled: [{ type: core.Input }],
+        noColon: [{ type: core.Input }],
+        cleanValue: [{ type: core.Input }],
+        formValueChange: [{ type: core.Output }],
+        formChange: [{ type: core.Output }],
+        formSubmit: [{ type: core.Output }],
+        formReset: [{ type: core.Output }],
+        formError: [{ type: core.Output }]
+    };
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "liveValidate", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "firstVisual", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "onlyVisual", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "compact", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "loading", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "disabled", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "noColon", void 0);
     __decorate([
-        i6.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "cleanValue", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf, [sf]',
-                        exportAs: 'sf',
-                        templateUrl: './sf.component.html',
-                        providers: [
-                            WidgetFactory,
-                            {
-                                provide: FormPropertyFactory,
-                                useFactory: useFactory,
-                                deps: [SchemaValidatorFactory, i6.AlainConfigService],
-                            },
-                            TerminatorService,
-                        ],
-                        host: {
-                            '[class.sf]': 'true',
-                            '[class.sf__inline]': "layout === 'inline'",
-                            '[class.sf__horizontal]': "layout === 'horizontal'",
-                            '[class.sf__search]': "mode === 'search'",
-                            '[class.sf__edit]': "mode === 'edit'",
-                            '[class.sf__no-error]': "onlyVisual",
-                            '[class.sf__no-colon]': "noColon",
-                            '[class.sf__compact]': "compact",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: FormPropertyFactory }, { type: TerminatorService }, { type: i3.DomSanitizer }, { type: i0.ChangeDetectorRef }, { type: i4.DelonLocaleService }, { type: i5.ACLService, decorators: [{
-                            type: i0.Optional
-                        }] }, { type: undefined, decorators: [{
-                            type: i0.Optional
-                        }, {
-                            type: i0.Inject,
-                            args: [i4.ALAIN_I18N_TOKEN]
-                        }] }, { type: i6.AlainConfigService }, { type: i7.Platform }];
-        }, { layout: [{
-                    type: i0.Input
-                }], schema: [{
-                    type: i0.Input
-                }], ui: [{
-                    type: i0.Input
-                }], formData: [{
-                    type: i0.Input
-                }], button: [{
-                    type: i0.Input
-                }], liveValidate: [{
-                    type: i0.Input
-                }], autocomplete: [{
-                    type: i0.Input
-                }], firstVisual: [{
-                    type: i0.Input
-                }], onlyVisual: [{
-                    type: i0.Input
-                }], compact: [{
-                    type: i0.Input
-                }], mode: [{
-                    type: i0.Input
-                }], loading: [{
-                    type: i0.Input
-                }], disabled: [{
-                    type: i0.Input
-                }], noColon: [{
-                    type: i0.Input
-                }], cleanValue: [{
-                    type: i0.Input
-                }], formValueChange: [{
-                    type: i0.Output
-                }], formChange: [{
-                    type: i0.Output
-                }], formSubmit: [{
-                    type: i0.Output
-                }], formReset: [{
-                    type: i0.Output
-                }], formError: [{
-                    type: i0.Output
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_liveValidate;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_firstVisual;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_onlyVisual;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_compact;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_loading;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_disabled;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_noColon;
+        /** @type {?} */
+        SFComponent.ngAcceptInputType_cleanValue;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.unsubscribe$;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._renders;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._item;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._valid;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._defUi;
+        /** @type {?} */
+        SFComponent.prototype.options;
+        /** @type {?} */
+        SFComponent.prototype._inited;
+        /** @type {?} */
+        SFComponent.prototype.locale;
+        /** @type {?} */
+        SFComponent.prototype.rootProperty;
+        /** @type {?} */
+        SFComponent.prototype._formData;
+        /** @type {?} */
+        SFComponent.prototype._btn;
+        /** @type {?} */
+        SFComponent.prototype._schema;
+        /** @type {?} */
+        SFComponent.prototype._ui;
+        /**
+         * 表单布局，等同 `nzLayout`，默认：horizontal
+         * @type {?}
+         */
+        SFComponent.prototype.layout;
+        /**
+         * JSON Schema
+         * @type {?}
+         */
+        SFComponent.prototype.schema;
+        /**
+         * UI Schema
+         * @type {?}
+         */
+        SFComponent.prototype.ui;
+        /**
+         * 表单默认值
+         * @type {?}
+         */
+        SFComponent.prototype.formData;
+        /**
+         * 按钮
+         * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
+         * - 值为 `none` 表示手动添加按钮，且不保留容器
+         * - 使用 `spanLabelFixed` 固定标签宽度时，若无 `render.class` 则默认为居中状态
+         * @type {?}
+         */
+        SFComponent.prototype.button;
+        /**
+         * 是否实时校验，默认：`true`
+         * - `true` 每一次都校验
+         * - `false` 提交时校验
+         * @type {?}
+         */
+        SFComponent.prototype.liveValidate;
+        /**
+         * 指定表单 `autocomplete` 值
+         * @type {?}
+         */
+        SFComponent.prototype.autocomplete;
+        /**
+         * 立即显示错误视觉
+         * @type {?}
+         */
+        SFComponent.prototype.firstVisual;
+        /**
+         * 是否只展示错误视觉不显示错误文本
+         * @type {?}
+         */
+        SFComponent.prototype.onlyVisual;
+        /** @type {?} */
+        SFComponent.prototype.compact;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype._mode;
+        /**
+         * Whether to load status，when `true` reset button is disabled status, submit button is loading status
+         * @type {?}
+         */
+        SFComponent.prototype.loading;
+        /** @type {?} */
+        SFComponent.prototype.disabled;
+        /** @type {?} */
+        SFComponent.prototype.noColon;
+        /** @type {?} */
+        SFComponent.prototype.cleanValue;
+        /** @type {?} */
+        SFComponent.prototype.formValueChange;
+        /** @type {?} */
+        SFComponent.prototype.formChange;
+        /** @type {?} */
+        SFComponent.prototype.formSubmit;
+        /** @type {?} */
+        SFComponent.prototype.formReset;
+        /** @type {?} */
+        SFComponent.prototype.formError;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.formPropertyFactory;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.terminator;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.localeSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.aclSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.i18nSrv;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFComponent.prototype.platform;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/sf-item.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var nextUniqueId = 0;
     var SFItemComponent = /** @class */ (function () {
+        /**
+         * @param {?} widgetFactory
+         * @param {?} terminator
+         */
         function SFItemComponent(widgetFactory, terminator) {
             this.widgetFactory = widgetFactory;
             this.terminator = terminator;
             this.unsubscribe$ = new rxjs.Subject();
             this.widget = null;
         }
+        /**
+         * @param {?} widget
+         * @return {?}
+         */
         SFItemComponent.prototype.onWidgetInstanciated = function (widget) {
             this.widget = widget;
+            /** @type {?} */
             var id = "_sf-" + nextUniqueId++;
-            var ui = this.formProperty.ui;
+            /** @type {?} */
+            var ui = ( /** @type {?} */(this.formProperty.ui));
             this.widget.formProperty = this.formProperty;
             this.widget.schema = this.formProperty.schema;
             this.widget.ui = ui;
             this.widget.id = id;
-            this.widget.firstVisual = ui.firstVisual;
+            this.widget.firstVisual = ( /** @type {?} */(ui.firstVisual));
             this.formProperty.widget = widget;
         };
+        /**
+         * @return {?}
+         */
         SFItemComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.terminator.onDestroy.subscribe(function () { return _this.ngOnDestroy(); });
+            this.terminator.onDestroy.subscribe(( /**
+             * @return {?}
+             */function () { return _this.ngOnDestroy(); }));
         };
+        /**
+         * @return {?}
+         */
         SFItemComponent.prototype.ngOnChanges = function () {
+            /** @type {?} */
             var p = this.formProperty;
-            this.ref = this.widgetFactory.createWidget(this.container, (p.ui.widget || p.schema.type));
+            this.ref = this.widgetFactory.createWidget(this.container, ( /** @type {?} */((p.ui.widget || p.schema.type))));
             this.onWidgetInstanciated(this.ref.instance);
         };
+        /**
+         * @return {?}
+         */
         SFItemComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
@@ -2011,89 +3149,81 @@
         };
         return SFItemComponent;
     }());
-    /** @nocollapse */ SFItemComponent.ɵfac = function SFItemComponent_Factory(t) { return new (t || SFItemComponent)(i0.ɵɵdirectiveInject(WidgetFactory), i0.ɵɵdirectiveInject(TerminatorService)); };
-    /** @nocollapse */ SFItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SFItemComponent, selector: "sf-item", inputs: { formProperty: "formProperty" }, host: { properties: { "class.sf__item": "true" } }, viewQueries: [{ propertyName: "container", first: true, predicate: ["target"], emitDistinctChangesOnly: false, descendants: true, read: i0.ViewContainerRef, static: true }], exportAs: ["sfItem"], usesOnChanges: true, ngImport: i0__namespace, template: " <ng-template #target></ng-template> ", isInline: true, encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFItemComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-item',
-                        exportAs: 'sfItem',
-                        host: { '[class.sf__item]': 'true' },
-                        template: " <ng-template #target></ng-template> ",
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () { return [{ type: WidgetFactory }, { type: TerminatorService }]; }, { formProperty: [{
-                    type: i0.Input
-                }], container: [{
-                    type: i0.ViewChild,
-                    args: ['target', { read: i0.ViewContainerRef, static: true }]
-                }] });
-    })();
+    SFItemComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-item',
+                    exportAs: 'sfItem',
+                    host: { '[class.sf__item]': 'true' },
+                    template: " <ng-template #target></ng-template> ",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    SFItemComponent.ctorParameters = function () { return [
+        { type: WidgetFactory },
+        { type: TerminatorService }
+    ]; };
+    SFItemComponent.propDecorators = {
+        formProperty: [{ type: core.Input }],
+        container: [{ type: core.ViewChild, args: ['target', { read: core.ViewContainerRef, static: true },] }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SFItemComponent.prototype.ref;
+        /** @type {?} */
+        SFItemComponent.prototype.unsubscribe$;
+        /** @type {?} */
+        SFItemComponent.prototype.widget;
+        /** @type {?} */
+        SFItemComponent.prototype.formProperty;
+        /** @type {?} */
+        SFItemComponent.prototype.container;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFItemComponent.prototype.widgetFactory;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFItemComponent.prototype.terminator;
+    }
 
-    var SFItemWrapComponent = /** @class */ (function () {
-        function SFItemWrapComponent() {
-            this.title = null;
-        }
-        Object.defineProperty(SFItemWrapComponent.prototype, "t", {
-            get: function () {
-                return this.title === null ? this.schema.title : this.title;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SFItemWrapComponent.prototype, "oh", {
-            get: function () {
-                return this.ui.optionalHelp;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        return SFItemWrapComponent;
-    }());
-    /** @nocollapse */ SFItemWrapComponent.ɵfac = function SFItemWrapComponent_Factory(t) { return new (t || SFItemWrapComponent)(); };
-    /** @nocollapse */ SFItemWrapComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: { id: "id", schema: "schema", ui: "ui", showError: "showError", error: "error", showTitle: "showTitle", title: "title" }, ngImport: i0__namespace, template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n", directives: [{ type: i4$1.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { type: i2.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { type: i3$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i4$1.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { type: i10.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { type: i7$1.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { type: i8.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], animations: [animation.helpMotion], encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFItemWrapComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-item-wrap',
-                        templateUrl: './sf-item-wrap.component.html',
-                        animations: [animation.helpMotion],
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { id: [{
-                    type: i0.Input
-                }], schema: [{
-                    type: i0.Input
-                }], ui: [{
-                    type: i0.Input
-                }], showError: [{
-                    type: i0.Input
-                }], error: [{
-                    type: i0.Input
-                }], showTitle: [{
-                    type: i0.Input
-                }], title: [{
-                    type: i0.Input
-                }] });
-    })();
-
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/sf-fixed.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var SFFixedDirective = /** @class */ (function () {
+        /**
+         * @param {?} er
+         * @param {?} render
+         */
         function SFFixedDirective(er, render) {
             this.render = render;
             this._inited = false;
-            this.el = er.nativeElement;
+            this.el = ( /** @type {?} */(er.nativeElement));
         }
+        /**
+         * @private
+         * @return {?}
+         */
         SFFixedDirective.prototype.init = function () {
             if (!this._inited || this.num == null || this.num <= 0)
                 return;
+            /** @type {?} */
             var widgetEl = this.el.querySelector('.ant-row') || this.el;
             this.render.addClass(widgetEl, 'sf__fixed');
+            /** @type {?} */
             var labelEl = widgetEl.querySelector('.ant-form-item-label');
+            /** @type {?} */
             var controlEl = widgetEl.querySelector('.ant-form-item-control');
+            /** @type {?} */
             var unit = this.num + 'px';
             if (labelEl) {
                 this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
@@ -2103,57 +3233,184 @@
                 this.render.setStyle(controlEl, 'margin-left', unit);
             }
         };
+        /**
+         * @return {?}
+         */
         SFFixedDirective.prototype.ngAfterViewInit = function () {
             this._inited = true;
             this.init();
         };
+        /**
+         * @return {?}
+         */
         SFFixedDirective.prototype.ngOnChanges = function () {
             if (this._inited)
                 this.init();
         };
         return SFFixedDirective;
     }());
-    /** @nocollapse */ SFFixedDirective.ɵfac = function SFFixedDirective_Factory(t) { return new (t || SFFixedDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2)); };
-    /** @nocollapse */ SFFixedDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: SFFixedDirective, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num"] }, usesOnChanges: true, ngImport: i0__namespace });
+    SFFixedDirective.decorators = [
+        { type: core.Directive, args: [{ selector: '[fixed-label]' },] }
+    ];
+    /** @nocollapse */
+    SFFixedDirective.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: core.Renderer2 }
+    ]; };
+    SFFixedDirective.propDecorators = {
+        num: [{ type: core.Input, args: ['fixed-label',] }]
+    };
     __decorate([
-        i6.InputNumber(),
+        util.InputNumber(),
         __metadata("design:type", Number)
     ], SFFixedDirective.prototype, "num", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFFixedDirective, [{
-                type: i0.Directive,
-                args: [{ selector: '[fixed-label]' }]
-            }], function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }]; }, { num: [{
-                    type: i0.Input,
-                    args: ['fixed-label']
-                }] });
-    })();
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SFFixedDirective.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFFixedDirective.prototype._inited;
+        /** @type {?} */
+        SFFixedDirective.prototype.num;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFFixedDirective.prototype.render;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/sf-item-wrap.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var SFItemWrapComponent = /** @class */ (function () {
+        function SFItemWrapComponent() {
+            this.title = null;
+        }
+        Object.defineProperty(SFItemWrapComponent.prototype, "t", {
+            /**
+             * @return {?}
+             */
+            get: function () {
+                return this.title === null ? ( /** @type {?} */(this.schema.title)) : this.title;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SFItemWrapComponent.prototype, "oh", {
+            /**
+             * @return {?}
+             */
+            get: function () {
+                return ( /** @type {?} */(this.ui.optionalHelp));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return SFItemWrapComponent;
+    }());
+    SFItemWrapComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-item-wrap',
+                    template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"showTitle\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </nz-col>\n</nz-form-item>\n",
+                    animations: [animation.helpMotion],
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    SFItemWrapComponent.propDecorators = {
+        id: [{ type: core.Input }],
+        schema: [{ type: core.Input }],
+        ui: [{ type: core.Input }],
+        showError: [{ type: core.Input }],
+        error: [{ type: core.Input }],
+        showTitle: [{ type: core.Input }],
+        title: [{ type: core.Input }]
+    };
+    if (false) {
+        /** @type {?} */
+        SFItemWrapComponent.prototype.id;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.schema;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.ui;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.showError;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.error;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.showTitle;
+        /** @type {?} */
+        SFItemWrapComponent.prototype.title;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/widgets/custom/sf-template.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var SFTemplateDirective = /** @class */ (function () {
+        /**
+         * @param {?} templateRef
+         * @param {?} table
+         */
         function SFTemplateDirective(templateRef, table) {
             this.templateRef = templateRef;
             this.table = table;
         }
+        /**
+         * @return {?}
+         */
         SFTemplateDirective.prototype.ngOnInit = function () {
             this.table._addTpl(this.path.startsWith(SF_SEQ) ? this.path : SF_SEQ + this.path, this.templateRef);
         };
         return SFTemplateDirective;
     }());
-    /** @nocollapse */ SFTemplateDirective.ɵfac = function SFTemplateDirective_Factory(t) { return new (t || SFTemplateDirective)(i0.ɵɵdirectiveInject(i0.TemplateRef), i0.ɵɵdirectiveInject(SFComponent)); };
-    /** @nocollapse */ SFTemplateDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: SFTemplateDirective, selector: "[sf-template]", inputs: { path: ["sf-template", "path"] }, ngImport: i0__namespace });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SFTemplateDirective, [{
-                type: i0.Directive,
-                args: [{
-                        selector: '[sf-template]',
-                    }]
-            }], function () { return [{ type: i0.TemplateRef }, { type: SFComponent }]; }, { path: [{
-                    type: i0.Input,
-                    args: ['sf-template']
-                }] });
-    })();
+    SFTemplateDirective.decorators = [
+        { type: core.Directive, args: [{
+                    selector: '[sf-template]',
+                },] }
+    ];
+    /** @nocollapse */
+    SFTemplateDirective.ctorParameters = function () { return [
+        { type: core.TemplateRef },
+        { type: SFComponent }
+    ]; };
+    SFTemplateDirective.propDecorators = {
+        path: [{ type: core.Input, args: ['sf-template',] }]
+    };
+    if (false) {
+        /** @type {?} */
+        SFTemplateDirective.prototype.path;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFTemplateDirective.prototype.templateRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        SFTemplateDirective.prototype.table;
+    }
 
+    /**
+     * @abstract
+     * @template T, UIT
+     */
     var Widget = /** @class */ (function () {
+        /**
+         * @param {?} cd
+         * @param {?} injector
+         * @param {?=} sfItemComp
+         * @param {?=} sfComp
+         */
         function Widget(cd, injector, sfItemComp, sfComp) {
             this.cd = cd;
             this.injector = injector;
@@ -2164,6 +3421,9 @@
             this.firstVisual = false;
         }
         Object.defineProperty(Widget.prototype, "cls", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.ui.class || '';
             },
@@ -2171,8 +3431,11 @@
             configurable: true
         });
         Object.defineProperty(Widget.prototype, "disabled", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                if (this.schema.readOnly === true || this.sfComp.disabled) {
+                if (this.schema.readOnly === true || ( /** @type {?} */(this.sfComp)).disabled) {
                     return true;
                 }
                 return null;
@@ -2181,61 +3444,90 @@
             configurable: true
         });
         Object.defineProperty(Widget.prototype, "l", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.formProperty.root.widget.sfComp.locale;
+                return ( /** @type {?} */(this.formProperty.root.widget.sfComp)).locale;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(Widget.prototype, "oh", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.ui.optionalHelp;
+                return ( /** @type {?} */(this.ui.optionalHelp));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(Widget.prototype, "dom", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.injector.get(i3.DomSanitizer);
+                return this.injector.get(platformBrowser.DomSanitizer);
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(Widget.prototype, "cleanValue", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 var _a;
-                return (_a = this.sfComp) === null || _a === void 0 ? void 0 : _a.cleanValue;
+                return ( /** @type {?} */((_a = this.sfComp) === null || _a === void 0 ? void 0 : _a.cleanValue));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         Widget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function (errors) {
+            this.formProperty.errorsChanges.pipe(operators.takeUntil(( /** @type {?} */(this.sfItemComp)).unsubscribe$)).subscribe(( /**
+             * @param {?} errors
+             * @return {?}
+             */function (errors) {
                 if (errors == null)
                     return;
                 di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
                 // 不显示首次校验视觉
                 if (_this.firstVisual) {
                     _this.showError = errors.length > 0;
-                    _this.error = _this.showError ? errors[0].message : '';
+                    _this.error = _this.showError ? (( /** @type {?} */(errors[0].message))) : '';
                     _this.cd.detectChanges();
                 }
                 _this.firstVisual = true;
-            });
+            }));
             this.afterViewInit();
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         Widget.prototype.setValue = function (value) {
             this.formProperty.setValue(value, false);
             di(this.ui, 'valueChanges', this.formProperty.path, this.formProperty);
         };
         Object.defineProperty(Widget.prototype, "value", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this.formProperty.value;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?=} onlySelf
+         * @return {?}
+         */
         Widget.prototype.detectChanges = function (onlySelf) {
             if (onlySelf === void 0) { onlySelf = false; }
             if (onlySelf) {
@@ -2247,106 +3539,151 @@
         };
         return Widget;
     }());
-    /** @nocollapse */ Widget.ɵfac = function Widget_Factory(t) { return new (t || Widget)(i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i0.Injector), i0.ɵɵdirectiveInject(SFItemComponent), i0.ɵɵdirectiveInject(SFComponent)); };
-    /** @nocollapse */ Widget.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: Widget, host: { properties: { "class": "this.cls" } }, ngImport: i0__namespace });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(Widget, [{
-                type: i0.Directive
-            }], function () {
-            return [{ type: i0.ChangeDetectorRef, decorators: [{
-                            type: i0.Inject,
-                            args: [i0.ChangeDetectorRef]
-                        }] }, { type: i0.Injector, decorators: [{
-                            type: i0.Inject,
-                            args: [i0.Injector]
-                        }] }, { type: SFItemComponent, decorators: [{
-                            type: i0.Inject,
-                            args: [SFItemComponent]
-                        }] }, { type: SFComponent, decorators: [{
-                            type: i0.Inject,
-                            args: [SFComponent]
-                        }] }];
-        }, { cls: [{
-                    type: i0.HostBinding,
-                    args: ['class']
-                }] });
-    })();
+    Widget.decorators = [
+        { type: core.Directive }
+    ];
+    /** @nocollapse */
+    Widget.ctorParameters = function () { return [
+        { type: core.ChangeDetectorRef, decorators: [{ type: core.Inject, args: [core.ChangeDetectorRef,] }] },
+        { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] },
+        { type: SFItemComponent, decorators: [{ type: core.Inject, args: [SFItemComponent,] }] },
+        { type: SFComponent, decorators: [{ type: core.Inject, args: [SFComponent,] }] }
+    ]; };
+    Widget.propDecorators = {
+        cls: [{ type: core.HostBinding, args: ['class',] }]
+    };
+    if (false) {
+        /** @type {?} */
+        Widget.prototype.formProperty;
+        /** @type {?} */
+        Widget.prototype.error;
+        /** @type {?} */
+        Widget.prototype.showError;
+        /** @type {?} */
+        Widget.prototype.id;
+        /** @type {?} */
+        Widget.prototype.schema;
+        /** @type {?} */
+        Widget.prototype.ui;
+        /** @type {?} */
+        Widget.prototype.firstVisual;
+        /** @type {?} */
+        Widget.prototype.cd;
+        /** @type {?} */
+        Widget.prototype.injector;
+        /** @type {?} */
+        Widget.prototype.sfItemComp;
+        /** @type {?} */
+        Widget.prototype.sfComp;
+        /**
+         * @abstract
+         * @param {?} value
+         * @return {?}
+         */
+        Widget.prototype.reset = function (value) { };
+        /**
+         * @abstract
+         * @return {?}
+         */
+        Widget.prototype.afterViewInit = function () { };
+    }
     var ControlWidget = /** @class */ (function (_super) {
         __extends(ControlWidget, _super);
         function ControlWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
         ControlWidget.prototype.reset = function (_value) { };
+        /**
+         * @return {?}
+         */
         ControlWidget.prototype.afterViewInit = function () { };
         return ControlWidget;
     }(Widget));
-    /** @nocollapse */ ControlWidget.ɵfac = function ControlWidget_Factory(t) { return ɵControlWidget_BaseFactory(t || ControlWidget); };
-    /** @nocollapse */ ControlWidget.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ControlWidget, usesInheritance: true, ngImport: i0__namespace });
-    var ɵControlWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ControlWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ControlWidget, [{
-                type: i0.Directive
-            }], null, null);
-    })();
+    ControlWidget.decorators = [
+        { type: core.Directive }
+    ];
+    /**
+     * @template UIT
+     */
     var ControlUIWidget = /** @class */ (function (_super) {
         __extends(ControlUIWidget, _super);
         function ControlUIWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
         ControlUIWidget.prototype.reset = function (_value) { };
+        /**
+         * @return {?}
+         */
         ControlUIWidget.prototype.afterViewInit = function () { };
         return ControlUIWidget;
     }(Widget));
-    /** @nocollapse */ ControlUIWidget.ɵfac = function ControlUIWidget_Factory(t) { return ɵControlUIWidget_BaseFactory(t || ControlUIWidget); };
-    /** @nocollapse */ ControlUIWidget.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ControlUIWidget, usesInheritance: true, ngImport: i0__namespace });
-    var ɵControlUIWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ControlUIWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ControlUIWidget, [{
-                type: i0.Directive
-            }], null, null);
-    })();
+    ControlUIWidget.decorators = [
+        { type: core.Directive }
+    ];
     var ArrayLayoutWidget = /** @class */ (function (_super) {
         __extends(ArrayLayoutWidget, _super);
         function ArrayLayoutWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
         ArrayLayoutWidget.prototype.reset = function (_value) { };
+        /**
+         * @return {?}
+         */
         ArrayLayoutWidget.prototype.afterViewInit = function () { };
+        /**
+         * @return {?}
+         */
         ArrayLayoutWidget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function () { return _this.cd.detectChanges(); });
+            this.formProperty.errorsChanges.pipe(operators.takeUntil(( /** @type {?} */(this.sfItemComp)).unsubscribe$)).subscribe(( /**
+             * @return {?}
+             */function () { return _this.cd.detectChanges(); }));
         };
         return ArrayLayoutWidget;
     }(Widget));
-    /** @nocollapse */ ArrayLayoutWidget.ɵfac = function ArrayLayoutWidget_Factory(t) { return ɵArrayLayoutWidget_BaseFactory(t || ArrayLayoutWidget); };
-    /** @nocollapse */ ArrayLayoutWidget.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ArrayLayoutWidget, usesInheritance: true, ngImport: i0__namespace });
-    var ɵArrayLayoutWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ArrayLayoutWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ArrayLayoutWidget, [{
-                type: i0.Directive
-            }], null, null);
-    })();
+    ArrayLayoutWidget.decorators = [
+        { type: core.Directive }
+    ];
     var ObjectLayoutWidget = /** @class */ (function (_super) {
         __extends(ObjectLayoutWidget, _super);
         function ObjectLayoutWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
         ObjectLayoutWidget.prototype.reset = function (_value) { };
+        /**
+         * @return {?}
+         */
         ObjectLayoutWidget.prototype.afterViewInit = function () { };
+        /**
+         * @return {?}
+         */
         ObjectLayoutWidget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function () { return _this.cd.detectChanges(); });
+            this.formProperty.errorsChanges.pipe(operators.takeUntil(( /** @type {?} */(this.sfItemComp)).unsubscribe$)).subscribe(( /**
+             * @return {?}
+             */function () { return _this.cd.detectChanges(); }));
         };
         return ObjectLayoutWidget;
     }(Widget));
-    /** @nocollapse */ ObjectLayoutWidget.ɵfac = function ObjectLayoutWidget_Factory(t) { return ɵObjectLayoutWidget_BaseFactory(t || ObjectLayoutWidget); };
-    /** @nocollapse */ ObjectLayoutWidget.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ObjectLayoutWidget, usesInheritance: true, ngImport: i0__namespace });
-    var ɵObjectLayoutWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ObjectLayoutWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ObjectLayoutWidget, [{
-                type: i0.Directive
-            }], null, null);
-    })();
+    ObjectLayoutWidget.decorators = [
+        { type: core.Directive }
+    ];
 
     var ArrayWidget = /** @class */ (function (_super) {
         __extends(ArrayWidget, _super);
@@ -2356,19 +3693,28 @@
             return _this;
         }
         Object.defineProperty(ArrayWidget.prototype, "addDisabled", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return (this.disabled || (this.schema.maxItems != null && this.formProperty.properties.length >= this.schema.maxItems));
+                return (this.disabled || (this.schema.maxItems != null && (( /** @type {?} */(this.formProperty.properties))).length >= ( /** @type {?} */(this.schema.maxItems))));
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ArrayWidget.prototype, "showRemove", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return !this.disabled && !!this.removeTitle;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         ArrayWidget.prototype.ngOnInit = function () {
             var _a = this.ui, grid = _a.grid, addTitle = _a.addTitle, addType = _a.addType, removable = _a.removable, removeTitle = _a.removeTitle;
             if (grid && grid.arraySpan) {
@@ -2378,16 +3724,28 @@
             this.addType = addType || 'dashed';
             this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ArrayWidget.prototype.reValid = function () {
             this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: true });
         };
+        /**
+         * @return {?}
+         */
         ArrayWidget.prototype.addItem = function () {
+            /** @type {?} */
             var property = this.formProperty.add({});
             this.reValid();
             if (this.ui.add) {
                 this.ui.add(property);
             }
         };
+        /**
+         * @param {?} index
+         * @return {?}
+         */
         ArrayWidget.prototype.removeItem = function (index) {
             this.formProperty.remove(index);
             this.reValid();
@@ -2397,21 +3755,25 @@
         };
         return ArrayWidget;
     }(ArrayLayoutWidget));
-    /** @nocollapse */ ArrayWidget.ɵfac = function ArrayWidget_Factory(t) { return ɵArrayWidget_BaseFactory(t || ArrayWidget); };
-    /** @nocollapse */ ArrayWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: ArrayWidget, selector: "sf-array", host: { properties: { "class.sf__array": "true" } }, usesInheritance: true, ngImport: i0__namespace, template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\" nz-button [nzType]=\"addType\" [disabled]=\"addDisabled\" (click)=\"addItem()\" [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <div nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <div nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf__array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </div>\n        </ng-container>\n      </div>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </nz-col>\n</nz-form-item>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵArrayWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ArrayWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ArrayWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-array',
-                        templateUrl: './array.widget.html',
-                        host: { '[class.sf__array]': 'true' },
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    ArrayWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-array',
+                    template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\" nz-button [nzType]=\"addType\" [disabled]=\"addDisabled\" (click)=\"addItem()\" [innerHTML]=\"addTitle\"></button>\n    </div>\n  </nz-col>\n  <nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl\" [nzOffset]=\"ui.offsetControl\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <div nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of formProperty.properties; let idx=index\">\n          <div nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf__array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </div>\n        </ng-container>\n      </div>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </nz-col>\n</nz-form-item>\n",
+                    host: { '[class.sf__array]': 'true' },
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        ArrayWidget.prototype.addTitle;
+        /** @type {?} */
+        ArrayWidget.prototype.addType;
+        /** @type {?} */
+        ArrayWidget.prototype.removeTitle;
+        /** @type {?} */
+        ArrayWidget.prototype.arraySpan;
+    }
 
     var AutoCompleteWidget = /** @class */ (function (_super) {
         __extends(AutoCompleteWidget, _super);
@@ -2423,21 +3785,34 @@
             _this.fixData = [];
             return _this;
         }
+        /**
+         * @param {?} item
+         * @return {?}
+         */
         AutoCompleteWidget.prototype.updateValue = function (item) {
-            this.typing = item.nzLabel;
+            this.typing = ( /** @type {?} */(item.nzLabel));
+            /** @type {?} */
             var data = item.nzValue;
             this.setValue(data.value);
             if (this.ui.change) {
                 this.ui.change(item, data);
             }
         };
+        /**
+         * @param {?} item
+         * @return {?}
+         */
         AutoCompleteWidget.prototype._setValue = function (item) {
+            /** @type {?} */
             var val = item.toString();
             if (typeof item !== 'string') {
                 val = item.value;
             }
             this.setValue(val);
         };
+        /**
+         * @return {?}
+         */
         AutoCompleteWidget.prototype.afterViewInit = function () {
             var _this = this;
             var _a = this.ui, backfill = _a.backfill, defaultActiveFirstOption = _a.defaultActiveFirstOption, nzWidth = _a.nzWidth, filterOption = _a.filterOption, asyncData = _a.asyncData;
@@ -2446,60 +3821,127 @@
                 defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
                 width: nzWidth || undefined,
             };
+            /** @type {?} */
             var filterOptionValue = filterOption == null ? true : filterOption;
             if (typeof filterOptionValue === 'boolean') {
-                filterOptionValue = function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; };
+                filterOptionValue = ( /**
+                 * @param {?} input
+                 * @param {?} option
+                 * @return {?}
+                 */function (input, option) { return option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1; });
             }
             this.filterOption = filterOptionValue;
             this.isAsync = !!asyncData;
+            /** @type {?} */
             var orgTime = +(this.ui.debounceTime || 0);
+            /** @type {?} */
             var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
+            this.list = ( /** @type {?} */(this.ngModel.valueChanges)).pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(( /**
+             * @param {?} input
+             * @return {?}
+             */function (/**
+             * @param {?} input
+             * @return {?}
+             */ input) { return (_this.isAsync ? ( /** @type {?} */(asyncData))(input) : _this.filterData(input)); })), operators.map(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) { return getEnum(res, null, ( /** @type {?} */(_this.schema.readOnly))); })));
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         AutoCompleteWidget.prototype.reset = function (value) {
             this.typing = this.value;
             if (this.isAsync)
                 return;
             switch (this.ui.type) {
                 case 'email':
-                    this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
+                    this.fixData = getCopyEnum(( /** @type {?} */(this.schema.enum)) || this.formProperty.options.uiEmailSuffixes, null, ( /** @type {?} */(this.schema.readOnly)));
                     break;
                 default:
-                    this.fixData = getCopyEnum(this.schema.enum, value, this.schema.readOnly);
+                    this.fixData = getCopyEnum(( /** @type {?} */(this.schema.enum)), value, ( /** @type {?} */(this.schema.readOnly)));
                     break;
             }
         };
+        /**
+         * @private
+         * @param {?} input
+         * @return {?}
+         */
         AutoCompleteWidget.prototype.filterData = function (input) {
             var _this = this;
             switch (this.ui.type) {
                 case 'email':
                     return this.addEmailSuffix(input);
                 default:
-                    return rxjs.of(this.fixData.filter(function (option) { return _this.filterOption(input, option); }));
+                    return rxjs.of(this.fixData.filter(( /**
+                     * @param {?} option
+                     * @return {?}
+                     */function (/**
+                     * @param {?} option
+                     * @return {?}
+                     */ option) { return _this.filterOption(input, option); })));
             }
         };
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
         AutoCompleteWidget.prototype.addEmailSuffix = function (value) {
-            return rxjs.of(!value || ~value.indexOf('@') ? [] : this.fixData.map(function (domain) { return value + "@" + domain.label; }));
+            return rxjs.of(!value || ~value.indexOf('@') ? [] : this.fixData.map(( /**
+             * @param {?} domain
+             * @return {?}
+             */function (/**
+             * @param {?} domain
+             * @return {?}
+             */ domain) { return value + "@" + domain.label; })));
         };
         return AutoCompleteWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ AutoCompleteWidget.ɵfac = function AutoCompleteWidget_Factory(t) { return ɵAutoCompleteWidget_BaseFactory(t || AutoCompleteWidget); };
-    /** @nocollapse */ AutoCompleteWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: AutoCompleteWidget, selector: "sf-autocomplete", viewQueries: [{ propertyName: "ngModel", first: true, predicate: i1.NgModel, emitDistinctChangesOnly: false, descendants: true }], usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <input\n    nz-input\n    [nzAutocomplete]=\"auto\"\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [(ngModel)]=\"typing\"\n    (ngModelChange)=\"_setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    autocomplete=\"off\"\n  />\n  <nz-autocomplete\n    #auto\n    [nzBackfill]=\"i.backfill\"\n    [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n    [nzWidth]=\"i.width\"\n    (selectionChange)=\"updateValue($event)\"\n  >\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵAutoCompleteWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(AutoCompleteWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AutoCompleteWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-autocomplete',
-                        templateUrl: './autocomplete.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { ngModel: [{
-                    type: i0.ViewChild,
-                    args: [i1.NgModel, { static: false }]
-                }] });
-    })();
+    AutoCompleteWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-autocomplete',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <input\n    nz-input\n    [nzAutocomplete]=\"auto\"\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [(ngModel)]=\"typing\"\n    (ngModelChange)=\"_setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    autocomplete=\"off\"\n  />\n  <nz-autocomplete\n    #auto\n    [nzBackfill]=\"i.backfill\"\n    [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n    [nzWidth]=\"i.width\"\n    (selectionChange)=\"updateValue($event)\"\n  >\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i\" [nzLabel]=\"i.label\">\n      {{i.label}}\n    </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    AutoCompleteWidget.propDecorators = {
+        ngModel: [{ type: core.ViewChild, args: [forms.NgModel, { static: false },] }]
+    };
+    if (false) {
+        /** @type {?} */
+        AutoCompleteWidget.prototype.i;
+        /** @type {?} */
+        AutoCompleteWidget.prototype.list;
+        /** @type {?} */
+        AutoCompleteWidget.prototype.typing;
+        /**
+         * @type {?}
+         * @private
+         */
+        AutoCompleteWidget.prototype.ngModel;
+        /**
+         * @type {?}
+         * @private
+         */
+        AutoCompleteWidget.prototype.filterOption;
+        /**
+         * @type {?}
+         * @private
+         */
+        AutoCompleteWidget.prototype.isAsync;
+        /**
+         * @type {?}
+         * @private
+         */
+        AutoCompleteWidget.prototype.fixData;
+    }
 
     var BooleanWidget = /** @class */ (function (_super) {
         __extends(BooleanWidget, _super);
@@ -2508,20 +3950,14 @@
         }
         return BooleanWidget;
     }(ControlWidget));
-    /** @nocollapse */ BooleanWidget.ɵfac = function BooleanWidget_Factory(t) { return ɵBooleanWidget_BaseFactory(t || BooleanWidget); };
-    /** @nocollapse */ BooleanWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: BooleanWidget, selector: "sf-boolean", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-switch\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzCheckedChildren]=\"ui.checkedChildren\"\n    [nzUnCheckedChildren]=\"ui.unCheckedChildren\"\n  >\n  </nz-switch>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵBooleanWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(BooleanWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BooleanWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-boolean',
-                        templateUrl: './boolean.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    BooleanWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-boolean',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-switch\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzCheckedChildren]=\"ui.checkedChildren\"\n    [nzUnCheckedChildren]=\"ui.unCheckedChildren\"\n  >\n  </nz-switch>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
 
     var CascaderWidget = /** @class */ (function (_super) {
         __extends(CascaderWidget, _super);
@@ -2530,6 +3966,9 @@
             _this.data = [];
             return _this;
         }
+        /**
+         * @return {?}
+         */
         CascaderWidget.prototype.ngOnInit = function () {
             var _this = this;
             var _a = this.ui, clearText = _a.clearText, showArrow = _a.showArrow, showInput = _a.showInput, triggerAction = _a.triggerAction, asyncData = _a.asyncData;
@@ -2538,51 +3977,90 @@
             this.showInput = toBool(showInput, true);
             this.triggerAction = triggerAction || ['click'];
             if (!!asyncData) {
-                this.loadData = function (node, index) { return asyncData(node, index, _this).then(function () { return _this.detectChanges(); }); };
+                this.loadData = ( /**
+                 * @param {?} node
+                 * @param {?} index
+                 * @return {?}
+                 */function (node, index) { return asyncData(node, index, _this).then(( /**
+                 * @return {?}
+                 */function () { return _this.detectChanges(); })); });
             }
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         CascaderWidget.prototype.reset = function (value) {
             var _this = this;
-            getData(this.schema, {}, value).subscribe(function (list) {
+            getData(this.schema, {}, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this.data = list;
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
         CascaderWidget.prototype._visibleChange = function (status) {
             if (this.ui.visibleChange)
                 this.ui.visibleChange(status);
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         CascaderWidget.prototype._change = function (value) {
             this.setValue(value);
             if (this.ui.change) {
                 this.ui.change(value);
             }
         };
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         CascaderWidget.prototype._selectionChange = function (options) {
             if (this.ui.selectionChange) {
                 this.ui.selectionChange(options);
             }
         };
+        /**
+         * @return {?}
+         */
         CascaderWidget.prototype._clear = function () {
             if (this.ui.clear)
                 this.ui.clear();
         };
         return CascaderWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ CascaderWidget.ɵfac = function CascaderWidget_Factory(t) { return ɵCascaderWidget_BaseFactory(t || CascaderWidget); };
-    /** @nocollapse */ CascaderWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: CascaderWidget, selector: "sf-cascader", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-cascader\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_change($event)\"\n    [nzOptions]=\"data\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzAutoFocus]=\"ui.autoFocus\"\n    [nzChangeOn]=\"ui.changeOn\"\n    [nzChangeOnSelect]=\"ui.changeOnSelect\"\n    [nzColumnClassName]=\"ui.columnClassName\"\n    [nzExpandTrigger]=\"ui.expandTrigger\"\n    [nzMenuClassName]=\"ui.menuClassName\"\n    [nzMenuStyle]=\"ui.menuStyle\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n    [nzValueProperty]=\"ui.valueProperty || 'value'\"\n    [nzLoadData]=\"loadData\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzShowArrow]=\"showArrow\"\n    [nzShowInput]=\"showInput\"\n    [nzShowSearch]=\"ui.showSearch\"\n    (nzClear)=\"_clear()\"\n    (nzVisibleChange)=\"_visibleChange($event)\"\n    (nzSelectionChange)=\"_selectionChange($event)\"\n  >\n  </nz-cascader>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵCascaderWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(CascaderWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CascaderWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-cascader',
-                        templateUrl: './cascader.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    CascaderWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-cascader',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-cascader\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_change($event)\"\n    [nzOptions]=\"data\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzAutoFocus]=\"ui.autoFocus\"\n    [nzChangeOn]=\"ui.changeOn\"\n    [nzChangeOnSelect]=\"ui.changeOnSelect\"\n    [nzColumnClassName]=\"ui.columnClassName\"\n    [nzExpandTrigger]=\"ui.expandTrigger\"\n    [nzMenuClassName]=\"ui.menuClassName\"\n    [nzMenuStyle]=\"ui.menuStyle\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzLabelProperty]=\"ui.labelProperty || 'label'\"\n    [nzValueProperty]=\"ui.valueProperty || 'value'\"\n    [nzLoadData]=\"loadData\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzShowArrow]=\"showArrow\"\n    [nzShowInput]=\"showInput\"\n    [nzShowSearch]=\"ui.showSearch\"\n    (nzClear)=\"_clear()\"\n    (nzVisibleChange)=\"_visibleChange($event)\"\n    (nzSelectionChange)=\"_selectionChange($event)\"\n  >\n  </nz-cascader>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        CascaderWidget.prototype.clearText;
+        /** @type {?} */
+        CascaderWidget.prototype.showArrow;
+        /** @type {?} */
+        CascaderWidget.prototype.showInput;
+        /** @type {?} */
+        CascaderWidget.prototype.triggerAction;
+        /** @type {?} */
+        CascaderWidget.prototype.data;
+        /** @type {?} */
+        CascaderWidget.prototype.loadData;
+    }
 
     var CheckboxWidget = /** @class */ (function (_super) {
         __extends(CheckboxWidget, _super);
@@ -2595,75 +4073,154 @@
             _this.inited = false;
             return _this;
         }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         CheckboxWidget.prototype.reset = function (value) {
             var _this = this;
             this.inited = false;
-            getData(this.schema, this.ui, value).subscribe(function (list) {
+            getData(this.schema, this.ui, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this.data = list;
                 _this.allChecked = false;
                 _this.indeterminate = false;
-                _this.labelTitle = list.length === 0 ? '' : _this.schema.title;
+                _this.labelTitle = list.length === 0 ? '' : (( /** @type {?} */(_this.schema.title)));
                 var span = _this.ui.span;
                 _this.grid_span = span && span > 0 ? span : 0;
                 _this.updateAllChecked();
                 _this.inited = true;
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         CheckboxWidget.prototype._setValue = function (value) {
             this.setValue(value);
             this.detectChanges();
             this.notifyChange(value);
         };
+        /**
+         * @return {?}
+         */
         CheckboxWidget.prototype.notifySet = function () {
-            var checkList = this.data.filter(function (w) { return w.checked; });
-            this.updateAllChecked().setValue(checkList.map(function (item) { return item.value; }));
+            /** @type {?} */
+            var checkList = this.data.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.checked; }));
+            this.updateAllChecked().setValue(checkList.map(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return item.value; })));
             this.notifyChange(checkList);
         };
+        /**
+         * @param {?} values
+         * @return {?}
+         */
         CheckboxWidget.prototype.groupInGridChange = function (values) {
-            this.data.forEach(function (item) { return (item.checked = values.indexOf(item.value) !== -1); });
+            this.data.forEach(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return (item.checked = values.indexOf(item.value) !== -1); }));
             this.notifySet();
         };
+        /**
+         * @return {?}
+         */
         CheckboxWidget.prototype.onAllChecked = function () {
             var _this = this;
-            this.data.forEach(function (item) { return (item.checked = _this.allChecked); });
+            this.data.forEach(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return (item.checked = _this.allChecked); }));
             this.notifySet();
         };
+        /**
+         * @template THIS
+         * @this {THIS}
+         * @return {THIS}
+         */
         CheckboxWidget.prototype.updateAllChecked = function () {
-            if (this.data.every(function (item) { return item.checked !== true; })) {
-                this.allChecked = false;
-                this.indeterminate = false;
+            if (( /** @type {?} */(this)).data.every(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return item.checked !== true; }))) {
+                ( /** @type {?} */(this)).allChecked = false;
+                ( /** @type {?} */(this)).indeterminate = false;
             }
-            else if (this.data.every(function (item) { return item.checked === true; })) {
-                this.allChecked = true;
-                this.indeterminate = false;
+            else if (( /** @type {?} */(this)).data.every(( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) { return item.checked === true; }))) {
+                ( /** @type {?} */(this)).allChecked = true;
+                ( /** @type {?} */(this)).indeterminate = false;
             }
             else {
-                this.indeterminate = true;
+                ( /** @type {?} */(this)).indeterminate = true;
             }
-            this.detectChanges();
-            return this;
+            ( /** @type {?} */(this)).detectChanges();
+            return ( /** @type {?} */(this));
         };
+        /**
+         * @private
+         * @param {?} res
+         * @return {?}
+         */
         CheckboxWidget.prototype.notifyChange = function (res) {
             if (this.ui.change)
                 this.ui.change(res);
         };
         return CheckboxWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ CheckboxWidget.ɵfac = function CheckboxWidget_Factory(t) { return ɵCheckboxWidget_BaseFactory(t || CheckboxWidget); };
-    /** @nocollapse */ CheckboxWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: CheckboxWidget, selector: "sf-checkbox", usesInheritance: true, ngImport: i0__namespace, template: "<ng-template #all>\n  <label\n    *ngIf=\"ui.checkAll\"\n    nz-checkbox\n    class=\"sf__checkbox-all mr-sm\"\n    [(ngModel)]=\"allChecked\"\n    (ngModelChange)=\"onAllChecked()\"\n    [nzIndeterminate]=\"indeterminate\"\n    >{{ ui.checkAllText || l.checkAllText }}</label\n  >\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <div nz-row>\n          <div nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </div>\n          <div nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </div>\n        </div>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵCheckboxWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(CheckboxWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CheckboxWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-checkbox',
-                        templateUrl: './checkbox.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    CheckboxWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-checkbox',
+                    template: "<ng-template #all>\n  <label\n    *ngIf=\"ui.checkAll\"\n    nz-checkbox\n    class=\"sf__checkbox-all mr-sm\"\n    [(ngModel)]=\"allChecked\"\n    (ngModelChange)=\"onAllChecked()\"\n    [nzIndeterminate]=\"indeterminate\"\n    >{{ ui.checkAllText || l.checkAllText }}</label\n  >\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon\"\n        ></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <div nz-row>\n          <div nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </div>\n          <div nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </div>\n        </div>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        CheckboxWidget.prototype.data;
+        /** @type {?} */
+        CheckboxWidget.prototype.allChecked;
+        /** @type {?} */
+        CheckboxWidget.prototype.indeterminate;
+        /** @type {?} */
+        CheckboxWidget.prototype.grid_span;
+        /** @type {?} */
+        CheckboxWidget.prototype.labelTitle;
+        /** @type {?} */
+        CheckboxWidget.prototype.inited;
+    }
 
     var CustomWidget = /** @class */ (function (_super) {
         __extends(CustomWidget, _super);
@@ -2672,20 +4229,14 @@
         }
         return CustomWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ CustomWidget.ɵfac = function CustomWidget_Factory(t) { return ɵCustomWidget_BaseFactory(t || CustomWidget); };
-    /** @nocollapse */ CustomWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: CustomWidget, selector: "sf-custom", usesInheritance: true, ngImport: i0__namespace, template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ", isInline: true, encapsulation: i0.ViewEncapsulation.None });
-    var ɵCustomWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(CustomWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CustomWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-custom',
-                        template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    CustomWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-custom',
+                    template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
 
     var DateWidget = /** @class */ (function (_super) {
         __extends(DateWidget, _super);
@@ -2695,15 +4246,19 @@
             _this.displayValue = null;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         DateWidget.prototype.ngOnInit = function () {
             var _a = this.ui, mode = _a.mode, end = _a.end, displayFormat = _a.displayFormat, allowClear = _a.allowClear, showToday = _a.showToday;
             this.mode = mode || 'date';
             this.flatRange = end != null;
             // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
-            this.startFormat = this.ui._format;
+            this.startFormat = ( /** @type {?} */(this.ui._format));
             if (this.flatRange) {
                 this.mode = 'range';
-                var endUi = this.endProperty.ui;
+                /** @type {?} */
+                var endUi = ( /** @type {?} */(this.endProperty.ui));
                 this.endFormat = endUi.format ? endUi._format : this.startFormat;
             }
             if (!displayFormat) {
@@ -2728,11 +4283,16 @@
                 showToday: toBool(showToday, true),
             };
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         DateWidget.prototype.reset = function (value) {
             var _this = this;
-            value = i6.toDate(value, { formatString: this.startFormat, defaultValue: null });
+            value = util.toDate(value, { formatString: this.startFormat, defaultValue: null });
             if (this.flatRange) {
-                var endValue = i6.toDate(this.endProperty.formData, {
+                /** @type {?} */
+                var endValue = util.toDate(( /** @type {?} */(this.endProperty.formData)), {
                     formatString: this.endFormat || this.startFormat,
                     defaultValue: null,
                 });
@@ -2744,9 +4304,16 @@
             this.detectChanges();
             // TODO: Need to wait for the rendering to complete, otherwise it will be overwritten of end widget
             if (this.displayValue) {
-                setTimeout(function () { return _this._change(_this.displayValue, false); });
+                setTimeout(( /**
+                 * @return {?}
+                 */function () { return _this._change(_this.displayValue, false); }));
             }
         };
+        /**
+         * @param {?} value
+         * @param {?=} emitModelChange
+         * @return {?}
+         */
         DateWidget.prototype._change = function (value, emitModelChange) {
             if (emitModelChange === void 0) { emitModelChange = true; }
             if (emitModelChange && this.ui.change) {
@@ -2757,6 +4324,7 @@
                 this.setEnd(null);
                 return;
             }
+            /** @type {?} */
             var res = Array.isArray(value)
                 ? [format__default['default'](value[0], this.startFormat), format__default['default'](value[1], this.endFormat || this.startFormat)]
                 : format__default['default'](value, this.startFormat);
@@ -2768,21 +4336,38 @@
                 this.setValue(res);
             }
         };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
         DateWidget.prototype._openChange = function (status) {
             if (this.ui.onOpenChange)
                 this.ui.onOpenChange(status);
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         DateWidget.prototype._ok = function (value) {
             if (this.ui.onOk)
                 this.ui.onOk(value);
         };
         Object.defineProperty(DateWidget.prototype, "endProperty", {
+            /**
+             * @private
+             * @return {?}
+             */
             get: function () {
-                return this.formProperty.parent.properties[this.ui.end];
+                return (( /** @type {?} */(( /** @type {?} */(this.formProperty.parent)).properties)))[( /** @type {?} */(this.ui.end))];
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
         DateWidget.prototype.setEnd = function (value) {
             if (!this.flatRange)
                 return;
@@ -2791,20 +4376,39 @@
         };
         return DateWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ DateWidget.ɵfac = function DateWidget_Factory(t) { return ɵDateWidget_BaseFactory(t || DateWidget); };
-    /** @nocollapse */ DateWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: DateWidget, selector: "sf-date", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n    <nz-year-picker\n      *ngSwitchCase=\"'year'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n    ></nz-year-picker>\n\n    <nz-month-picker\n      *ngSwitchCase=\"'month'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n    ></nz-month-picker>\n\n    <nz-week-picker\n      *ngSwitchCase=\"'week'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n    ></nz-week-picker>\n\n    <nz-range-picker\n      *ngSwitchCase=\"'range'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzRanges]=\"ui.ranges\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzMode]=\"ui.rangeMode\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-range-picker>\n\n    <nz-date-picker\n      *ngSwitchDefault\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzShowToday]=\"i.showToday\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-date-picker>\n  </ng-container>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵDateWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(DateWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DateWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-date',
-                        templateUrl: './date.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    DateWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-date',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-container [ngSwitch]=\"mode\">\n    <nz-year-picker\n      *ngSwitchCase=\"'year'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n    ></nz-year-picker>\n\n    <nz-month-picker\n      *ngSwitchCase=\"'month'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n    ></nz-month-picker>\n\n    <nz-week-picker\n      *ngSwitchCase=\"'week'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n    ></nz-week-picker>\n\n    <nz-range-picker\n      *ngSwitchCase=\"'range'\"\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzRanges]=\"ui.ranges\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzMode]=\"ui.rangeMode\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-range-picker>\n\n    <nz-date-picker\n      *ngSwitchDefault\n      [nzId]=\"id\"\n      [nzDisabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzFormat]=\"displayFormat\"\n      [(ngModel)]=\"displayValue\"\n      (ngModelChange)=\"_change($event)\"\n      [nzAllowClear]=\"i.allowClear\"\n      [ngClass]=\"ui.className\"\n      [nzDisabledDate]=\"ui.disabledDate\"\n      [nzLocale]=\"ui.locale\"\n      [nzPlaceHolder]=\"ui.placeholder\"\n      [nzPopupStyle]=\"ui.popupStyle\"\n      [nzDropdownClassName]=\"ui.dropdownClassName\"\n      (nzOnOpenChange)=\"_openChange($event)\"\n      [nzDisabledTime]=\"ui.disabledTime\"\n      [nzRenderExtraFooter]=\"ui.renderExtraFooter\"\n      [nzShowTime]=\"ui.showTime\"\n      [nzShowToday]=\"i.showToday\"\n      [nzInputReadOnly]=\"ui.inputReadOnly\"\n      (nzOnOk)=\"_ok($event)\"\n    ></nz-date-picker>\n  </ng-container>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DateWidget.prototype.startFormat;
+        /**
+         * @type {?}
+         * @private
+         */
+        DateWidget.prototype.endFormat;
+        /**
+         * @type {?}
+         * @private
+         */
+        DateWidget.prototype.flatRange;
+        /** @type {?} */
+        DateWidget.prototype.mode;
+        /** @type {?} */
+        DateWidget.prototype.displayValue;
+        /** @type {?} */
+        DateWidget.prototype.displayFormat;
+        /** @type {?} */
+        DateWidget.prototype.i;
+    }
 
     var MentionWidget = /** @class */ (function (_super) {
         __extends(MentionWidget, _super);
@@ -2814,21 +4418,35 @@
             _this.loading = false;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         MentionWidget.prototype.ngOnInit = function () {
             var _this = this;
             var _a = this.ui, valueWith = _a.valueWith, notFoundContent = _a.notFoundContent, placement = _a.placement, prefix = _a.prefix, autosize = _a.autosize;
             this.i = {
-                valueWith: valueWith || (function (item) { return item.label; }),
+                valueWith: valueWith || (( /**
+                 * @param {?} item
+                 * @return {?}
+                 */function (/**
+                 * @param {?} item
+                 * @return {?}
+                 */ item) { return item.label; })),
                 notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
                 placement: placement || 'bottom',
                 prefix: prefix || '@',
                 autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
             };
             var _b = this.schema, minimum = _b.minimum, maximum = _b.maximum;
+            /** @type {?} */
             var min = typeof minimum !== 'undefined' ? minimum : -1;
+            /** @type {?} */
             var max = typeof maximum !== 'undefined' ? maximum : -1;
             if (!this.ui.validator && (min !== -1 || max !== -1)) {
-                this.ui.validator = (function () {
+                this.ui.validator = ( /** @type {?} */((( /**
+                 * @return {?}
+                 */function () {
+                    /** @type {?} */
                     var count = _this.mentionChild.getMentions().length;
                     if (min !== -1 && count < min) {
                         return [{ keyword: 'mention', message: "\u6700\u5C11\u63D0\u53CA " + min + " \u6B21" }];
@@ -2837,20 +4455,38 @@
                         return [{ keyword: 'mention', message: "\u6700\u591A\u63D0\u53CA " + max + " \u6B21" }];
                     }
                     return null;
-                });
+                }))));
             }
         };
+        /**
+         * @param {?} _value
+         * @return {?}
+         */
         MentionWidget.prototype.reset = function (_value) {
             var _this = this;
-            getData(this.schema, this.ui, null).subscribe(function (list) {
+            getData(this.schema, this.ui, null).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this.data = list;
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         MentionWidget.prototype._select = function (options) {
             if (this.ui.select)
                 this.ui.select(options);
         };
+        /**
+         * @param {?} option
+         * @return {?}
+         */
         MentionWidget.prototype._search = function (option) {
             var _this = this;
             if (typeof this.ui.loadData !== 'function')
@@ -2858,40 +4494,76 @@
             this.loading = true;
             this.ui
                 .loadData(option)
-                .pipe(operators.tap(function () { return (_this.loading = false); }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }))
-                .subscribe(function (res) {
+                .pipe(operators.tap(( /**
+         * @return {?}
+         */function () { return (_this.loading = false); })), operators.map(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) { return getEnum(res, null, ( /** @type {?} */(_this.schema.readOnly))); })))
+                .subscribe(( /**
+         * @param {?} res
+         * @return {?}
+         */function (/**
+         * @param {?} res
+         * @return {?}
+         */ res) {
                 _this.data = res;
                 _this.detectChanges(true);
-            });
+            }));
         };
         return MentionWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ MentionWidget.ɵfac = function MentionWidget_Factory(t) { return ɵMentionWidget_BaseFactory(t || MentionWidget); };
-    /** @nocollapse */ MentionWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: MentionWidget, selector: "sf-mention", viewQueries: [{ propertyName: "mentionChild", first: true, predicate: ["mentions"], emitDistinctChangesOnly: false, descendants: true, static: true }], usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-mention\n    #mentions\n    [nzSuggestions]=\"data\"\n    [nzValueWith]=\"i.valueWith\"\n    [nzLoading]=\"loading\"\n    [nzNotFoundContent]=\"i.notFoundContent\"\n    [nzPlacement]=\"i.placement\"\n    [nzPrefix]=\"i.prefix\"\n    (nzOnSelect)=\"_select($event)\"\n    (nzOnSearchChange)=\"_search($event)\"\n  >\n    <input\n      *ngIf=\"ui.inputStyle !== 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      autocomplete=\"off\"\n    />\n    <textarea\n      *ngIf=\"ui.inputStyle === 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [nzAutosize]=\"i.autosize\"\n    >\n    </textarea>\n  </nz-mention>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵMentionWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(MentionWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(MentionWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-mention',
-                        templateUrl: './mention.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { mentionChild: [{
-                    type: i0.ViewChild,
-                    args: ['mentions', { static: true }]
-                }] });
-    })();
+    MentionWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-mention',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-mention\n    #mentions\n    [nzSuggestions]=\"data\"\n    [nzValueWith]=\"i.valueWith\"\n    [nzLoading]=\"loading\"\n    [nzNotFoundContent]=\"i.notFoundContent\"\n    [nzPlacement]=\"i.placement\"\n    [nzPrefix]=\"i.prefix\"\n    (nzOnSelect)=\"_select($event)\"\n    (nzOnSearchChange)=\"_search($event)\"\n  >\n    <input\n      *ngIf=\"ui.inputStyle !== 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      autocomplete=\"off\"\n    />\n    <textarea\n      *ngIf=\"ui.inputStyle === 'textarea'\"\n      nzMentionTrigger\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"setValue($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [nzAutosize]=\"i.autosize\"\n    >\n    </textarea>\n  </nz-mention>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    MentionWidget.propDecorators = {
+        mentionChild: [{ type: core.ViewChild, args: ['mentions', { static: true },] }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        MentionWidget.prototype.mentionChild;
+        /** @type {?} */
+        MentionWidget.prototype.data;
+        /** @type {?} */
+        MentionWidget.prototype.i;
+        /** @type {?} */
+        MentionWidget.prototype.loading;
+    }
 
     var NumberWidget = /** @class */ (function (_super) {
         __extends(NumberWidget, _super);
         function NumberWidget() {
             var _this = _super.apply(this, __spread(arguments)) || this;
-            _this.formatter = function (value) { return value; };
-            _this.parser = function (value) { return value; };
+            _this.formatter = ( /**
+             * @param {?} value
+             * @return {?}
+             */function (/**
+             * @param {?} value
+             * @return {?}
+             */ value) { return value; });
+            _this.parser = ( /**
+             * @param {?} value
+             * @return {?}
+             */function (/**
+             * @param {?} value
+             * @return {?}
+             */ value) { return value; });
             return _this;
         }
+        /**
+         * @return {?}
+         */
         NumberWidget.prototype.ngOnInit = function () {
             var _a = this.schema, minimum = _a.minimum, exclusiveMinimum = _a.exclusiveMinimum, maximum = _a.maximum, exclusiveMaximum = _a.exclusiveMaximum, multipleOf = _a.multipleOf, type = _a.type;
             if (typeof minimum !== 'undefined') {
@@ -2906,39 +4578,74 @@
                 this.max = Math.trunc(this.max);
                 this.step = Math.trunc(this.step);
             }
+            /** @type {?} */
             var ui = this.ui;
             if (ui.prefix != null) {
-                ui.formatter = function (value) { return (value == null ? '' : ui.prefix + " " + value); };
-                ui.parser = function (value) { return value.replace(ui.prefix + " ", ''); };
+                ui.formatter = ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (/**
+                 * @param {?} value
+                 * @return {?}
+                 */ value) { return (value == null ? '' : ui.prefix + " " + value); });
+                ui.parser = ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (/**
+                 * @param {?} value
+                 * @return {?}
+                 */ value) { return value.replace(ui.prefix + " ", ''); });
             }
             if (ui.unit != null) {
-                ui.formatter = function (value) { return (value == null ? '' : value + " " + ui.unit); };
-                ui.parser = function (value) { return value.replace(" " + ui.unit, ''); };
+                ui.formatter = ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (/**
+                 * @param {?} value
+                 * @return {?}
+                 */ value) { return (value == null ? '' : value + " " + ui.unit); });
+                ui.parser = ( /**
+                 * @param {?} value
+                 * @return {?}
+                 */function (/**
+                 * @param {?} value
+                 * @return {?}
+                 */ value) { return value.replace(" " + ui.unit, ''); });
             }
             if (ui.formatter)
                 this.formatter = ui.formatter;
             if (ui.parser)
                 this.parser = ui.parser;
         };
+        /**
+         * @param {?} val
+         * @return {?}
+         */
         NumberWidget.prototype._setValue = function (val) {
             this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
         };
         return NumberWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ NumberWidget.ɵfac = function NumberWidget_Factory(t) { return ɵNumberWidget_BaseFactory(t || NumberWidget); };
-    /** @nocollapse */ NumberWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: NumberWidget, selector: "sf-number", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-input-number\n    [nzId]=\"id\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzFormatter]=\"formatter\"\n    [nzParser]=\"parser\"\n    [nzPrecision]=\"ui.precision\"\n    [nzPlaceHolder]=\"ui.placeholder || ''\"\n    [style.width.px]=\"ui.widgetWidth || 90\"\n  >\n  </nz-input-number>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵNumberWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(NumberWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumberWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-number',
-                        templateUrl: './number.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    NumberWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-number',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-input-number\n    [nzId]=\"id\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzFormatter]=\"formatter\"\n    [nzParser]=\"parser\"\n    [nzPrecision]=\"ui.precision\"\n    [nzPlaceHolder]=\"ui.placeholder || ''\"\n    [style.width.px]=\"ui.widgetWidth || 90\"\n  >\n  </nz-input-number>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        NumberWidget.prototype.min;
+        /** @type {?} */
+        NumberWidget.prototype.max;
+        /** @type {?} */
+        NumberWidget.prototype.step;
+        /** @type {?} */
+        NumberWidget.prototype.formatter;
+        /** @type {?} */
+        NumberWidget.prototype.parser;
+    }
 
     var ObjectWidget = /** @class */ (function (_super) {
         __extends(ObjectWidget, _super);
@@ -2950,6 +4657,9 @@
             _this.expand = true;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         ObjectWidget.prototype.ngOnInit = function () {
             var e_1, _a;
             var _b = this, formProperty = _b.formProperty, ui = _b.ui;
@@ -2958,14 +4668,17 @@
             this.expand = toBool(ui.expand, true);
             this.type = type !== null && type !== void 0 ? type : 'default';
             if (this.type === 'card' || (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
-                this.title = this.schema.title;
+                this.title = ( /** @type {?} */(this.schema.title));
             }
-            this.grid = grid;
+            this.grid = ( /** @type {?} */(grid));
+            /** @type {?} */
             var list = [];
             try {
                 for (var _c = __values(formProperty.propertiesId), _d = _c.next(); !_d.done; _d = _c.next()) {
                     var key = _d.value;
-                    var property = formProperty.properties[key];
+                    /** @type {?} */
+                    var property = ( /** @type {?} */((( /** @type {?} */(formProperty.properties)))[key]));
+                    /** @type {?} */
                     var item = {
                         property: property,
                         grid: property.ui.grid || grid || {},
@@ -2984,6 +4697,9 @@
             }
             this.list = list;
         };
+        /**
+         * @return {?}
+         */
         ObjectWidget.prototype.changeExpand = function () {
             if (!this.showExpand) {
                 return;
@@ -2993,20 +4709,28 @@
         };
         return ObjectWidget;
     }(ObjectLayoutWidget));
-    /** @nocollapse */ ObjectWidget.ɵfac = function ObjectWidget_Factory(t) { return ɵObjectWidget_BaseFactory(t || ObjectWidget); };
-    /** @nocollapse */ ObjectWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: ObjectWidget, selector: "sf-object", usesInheritance: true, ngImport: i0__namespace, template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"cardTitleTpl\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"ui.cardBodyStyle\"\n  [nzBordered]=\"ui.cardBordered || true\"\n  [nzBorderless]=\"ui.cardBorderless || false\"\n  class=\"sf__object-card\"\n  [class.sf__object-card-fold]=\"!expand\"\n>\n  <ng-template #cardTitleTpl>\n    <div [class.point]=\"showExpand\" (click)=\"changeExpand()\">\n      <i *ngIf=\"showExpand\" nz-icon [nzType]=\"expand ? 'down' : 'up'\" class=\"mr-xs text-xs\"></i>\n      {{title}}\n    </div>\n  </ng-template>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵObjectWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(ObjectWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ObjectWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-object',
-                        templateUrl: './object.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    ObjectWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-object',
+                    template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"cardTitleTpl\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"ui.cardBodyStyle\"\n  [nzBordered]=\"ui.cardBordered || true\"\n  [nzBorderless]=\"ui.cardBorderless || false\"\n  class=\"sf__object-card\"\n  [class.sf__object-card-fold]=\"!expand\"\n>\n  <ng-template #cardTitleTpl>\n    <div [class.point]=\"showExpand\" (click)=\"changeExpand()\">\n      <i *ngIf=\"showExpand\" nz-icon [nzType]=\"expand ? 'down' : 'up'\" class=\"mr-xs text-xs\"></i>\n      {{title}}\n    </div>\n  </ng-template>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        ObjectWidget.prototype.grid;
+        /** @type {?} */
+        ObjectWidget.prototype.type;
+        /** @type {?} */
+        ObjectWidget.prototype.list;
+        /** @type {?} */
+        ObjectWidget.prototype.title;
+        /** @type {?} */
+        ObjectWidget.prototype.showExpand;
+        /** @type {?} */
+        ObjectWidget.prototype.expand;
+    }
 
     var RadioWidget = /** @class */ (function (_super) {
         __extends(RadioWidget, _super);
@@ -3015,17 +4739,37 @@
             _this.data = [];
             return _this;
         }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         RadioWidget.prototype.reset = function (value) {
             var _this = this;
             this.styleType = (this.ui.styleType || 'default') === 'default';
-            getData(this.schema, this.ui, value).subscribe(function (list) {
-                _this.data = list.map(function (i) {
+            getData(this.schema, this.ui, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
+                _this.data = list.map(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) {
                     i.label = _this.dom.bypassSecurityTrustHtml(i.label);
                     return i;
-                });
+                }));
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         RadioWidget.prototype._setValue = function (value) {
             this.setValue(value);
             if (this.ui.change)
@@ -3033,20 +4777,20 @@
         };
         return RadioWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ RadioWidget.ɵfac = function RadioWidget_Factory(t) { return ɵRadioWidget_BaseFactory(t || RadioWidget); };
-    /** @nocollapse */ RadioWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: RadioWidget, selector: "sf-radio", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-radio-group [nzSize]=\"ui.size\" [nzName]=\"id\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\" [nzButtonStyle]=\"ui.buttonStyle || 'outline'\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\" nz-radio [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\" nz-radio-button [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵRadioWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(RadioWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RadioWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-radio',
-                        templateUrl: './radio.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    RadioWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-radio',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-radio-group [nzSize]=\"ui.size\" [nzName]=\"id\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\" [nzButtonStyle]=\"ui.buttonStyle || 'outline'\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\" nz-radio [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\" nz-radio-button [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        RadioWidget.prototype.data;
+        /** @type {?} */
+        RadioWidget.prototype.styleType;
+    }
 
     var RateWidget = /** @class */ (function (_super) {
         __extends(RateWidget, _super);
@@ -3056,12 +4800,18 @@
             return _this;
         }
         Object.defineProperty(RateWidget.prototype, "text", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.ui.text.replace('{{value}}', this.formProperty.value);
+                return (( /** @type {?} */(this.ui.text))).replace('{{value}}', this.formProperty.value);
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         RateWidget.prototype.ngOnInit = function () {
             var _a = this, schema = _a.schema, ui = _a.ui;
             this.count = schema.maximum || 5;
@@ -3072,20 +4822,26 @@
         };
         return RateWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ RateWidget.ɵfac = function RateWidget_Factory(t) { return ɵRateWidget_BaseFactory(t || RateWidget); };
-    /** @nocollapse */ RateWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: RateWidget, selector: "sf-rate", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-rate\n    [nzDisabled]=\"disabled\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzAllowClear]=\"allowClear\"\n    [nzAllowHalf]=\"allowHalf\"\n    [nzTooltips]=\"ui.tooltips || []\"\n    [nzAutoFocus]=\"autoFocus\"\n    [nzCount]=\"count\"\n  ></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵRateWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(RateWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RateWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-rate',
-                        templateUrl: './rate.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    RateWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-rate',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-rate\n    [nzDisabled]=\"disabled\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzAllowClear]=\"allowClear\"\n    [nzAllowHalf]=\"allowHalf\"\n    [nzTooltips]=\"ui.tooltips || []\"\n    [nzAutoFocus]=\"autoFocus\"\n    [nzCount]=\"count\"\n  ></nz-rate>\n  <span *ngIf=\"hasText && formProperty.value\" class=\"ant-rate-text\">{{ text }}</span>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        RateWidget.prototype.count;
+        /** @type {?} */
+        RateWidget.prototype.allowHalf;
+        /** @type {?} */
+        RateWidget.prototype.allowClear;
+        /** @type {?} */
+        RateWidget.prototype.autoFocus;
+        /** @type {?} */
+        RateWidget.prototype.hasText;
+    }
 
     var SelectWidget = /** @class */ (function (_super) {
         __extends(SelectWidget, _super);
@@ -3096,9 +4852,23 @@
             _this.loading = false;
             return _this;
         }
+        /**
+         * @private
+         * @param {?} list
+         * @return {?}
+         */
         SelectWidget.prototype.checkGroup = function (list) {
-            this.hasGroup = (list || []).filter(function (w) { return w.group === true; }).length > 0;
+            this.hasGroup = (list || []).filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.group === true; })).length > 0;
         };
+        /**
+         * @return {?}
+         */
         SelectWidget.prototype.ngOnInit = function () {
             var _this = this;
             var _b = this.ui, autoClearSearchValue = _b.autoClearSearchValue, borderless = _b.borderless, autoFocus = _b.autoFocus, dropdownMatchSelectWidth = _b.dropdownMatchSelectWidth, serverSearch = _b.serverSearch, maxMultipleCount = _b.maxMultipleCount, mode = _b.mode, showSearch = _b.showSearch, tokenSeparators = _b.tokenSeparators, maxTagCount = _b.maxTagCount, compareWith = _b.compareWith, optionHeightPx = _b.optionHeightPx, optionOverflowSize = _b.optionOverflowSize, showArrow = _b.showArrow;
@@ -3116,59 +4886,133 @@
                 optionHeightPx: optionHeightPx || 32,
                 optionOverflowSize: optionOverflowSize || 8,
                 showArrow: typeof showArrow !== 'boolean' ? undefined : showArrow,
-                compareWith: compareWith || (function (o1, o2) { return o1 === o2; }),
+                compareWith: compareWith || (( /**
+                 * @param {?} o1
+                 * @param {?} o2
+                 * @return {?}
+                 */function (o1, o2) { return o1 === o2; })),
             };
-            var onSearch = this.ui.onSearch;
+            /** @type {?} */
+            var onSearch = ( /** @type {?} */(this.ui.onSearch));
             if (onSearch) {
                 this.search$
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.distinctUntilChanged(), operators.debounceTime(this.ui.searchDebounceTime || 300), operators.switchMap(function (text) { return onSearch(text); }), operators.catchError(function () { return []; }))
-                    .subscribe(function (list) {
+                    .pipe(operators.takeUntil(( /** @type {?} */(this.sfItemComp)).unsubscribe$), operators.distinctUntilChanged(), operators.debounceTime(this.ui.searchDebounceTime || 300), operators.switchMap(( /**
+             * @param {?} text
+             * @return {?}
+             */function (/**
+             * @param {?} text
+             * @return {?}
+             */ text) { return onSearch(text); })), operators.catchError(( /**
+                 * @return {?}
+                 */function () { return []; })))
+                    .subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                     _this.data = list;
                     _this.checkGroup(list);
                     _this.loading = false;
                     _this.detectChanges();
-                });
+                }));
             }
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         SelectWidget.prototype.reset = function (value) {
             var _this = this;
-            getData(this.schema, this.ui, value).subscribe(function (list) {
+            getData(this.schema, this.ui, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this._value = value;
                 _this.data = list;
                 _this.checkGroup(list);
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} values
+         * @return {?}
+         */
         SelectWidget.prototype.change = function (values) {
             if (this.ui.change) {
                 this.ui.change(values, this.getOrgData(values));
             }
             this.setValue(values == null ? undefined : values);
         };
+        /**
+         * @private
+         * @param {?} values
+         * @return {?}
+         */
         SelectWidget.prototype.getOrgData = function (values) {
             var _this = this;
             if (!Array.isArray(values)) {
-                return this.data.find(function (w) { return w.value === values; });
+                return ( /** @type {?} */(this.data.find(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.value === values; }))));
             }
-            return values.map(function (value) {
+            return values.map(( /**
+             * @param {?} value
+             * @return {?}
+             */function (/**
+             * @param {?} value
+             * @return {?}
+             */ value) {
+                /** @type {?} */
                 var item = null;
-                _this.data.forEach(function (list) {
+                _this.data.forEach(( /**
+                 * @param {?} list
+                 * @return {?}
+                 */function (/**
+                 * @param {?} list
+                 * @return {?}
+                 */ list) {
                     var _a;
-                    item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(function (w) { return w.value === value; });
-                });
+                    item = ( /** @type {?} */((_a = list.children) === null || _a === void 0 ? void 0 : _a.find(( /**
+                     * @param {?} w
+                     * @return {?}
+                     */function (/**
+                     * @param {?} w
+                     * @return {?}
+                     */ w) { return w.value === value; }))));
+                }));
                 return item;
-            });
+            }));
         };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
         SelectWidget.prototype.openChange = function (status) {
             if (this.ui.openChange) {
                 this.ui.openChange(status);
             }
         };
+        /**
+         * @return {?}
+         */
         SelectWidget.prototype.scrollToBottom = function () {
             if (this.ui.scrollToBottom) {
                 this.ui.scrollToBottom();
             }
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         SelectWidget.prototype.onSearch = function (value) {
             if (this.ui.onSearch) {
                 this.loading = true;
@@ -3177,33 +5021,50 @@
         };
         return SelectWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ SelectWidget.ɵfac = function SelectWidget_Factory(t) { return ɵSelectWidget_BaseFactory(t || SelectWidget); };
-    /** @nocollapse */ SelectWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SelectWidget, selector: "sf-select", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowArrow]=\"i.showArrow\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!loading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!loading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"loading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n      {{ ui.searchLoadingText }}\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵSelectWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(SelectWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SelectWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-select',
-                        templateUrl: './select.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    SelectWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-select',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzCustomTemplate]=\"ui.customTemplate\"\n    [nzSuffixIcon]=\"ui.suffixIcon\"\n    [nzRemoveIcon]=\"ui.removeIcon\"\n    [nzClearIcon]=\"ui.clearIcon\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder\"\n    [nzDropdownRender]=\"ui.dropdownRender\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount\"\n    [nzMode]=\"i.mode\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowArrow]=\"i.showArrow\"\n    [nzTokenSeparators]=\"i.tokenSeparators\"\n    [nzMaxTagCount]=\"i.maxTagCount\"\n    [compareWith]=\"i.compareWith\"\n    [nzOptionHeightPx]=\"i.optionHeightPx\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!loading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!loading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"loading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n      {{ ui.searchLoadingText }}\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SelectWidget.prototype.search$;
+        /** @type {?} */
+        SelectWidget.prototype.i;
+        /** @type {?} */
+        SelectWidget.prototype.data;
+        /** @type {?} */
+        SelectWidget.prototype._value;
+        /** @type {?} */
+        SelectWidget.prototype.hasGroup;
+        /** @type {?} */
+        SelectWidget.prototype.loading;
+    }
 
     var SliderWidget = /** @class */ (function (_super) {
         __extends(SliderWidget, _super);
         function SliderWidget() {
             var _this = _super.apply(this, __spread(arguments)) || this;
-            _this._formatter = function (value) {
+            _this._formatter = ( /**
+             * @param {?} value
+             * @return {?}
+             */function (value) {
                 var formatter = _this.ui.formatter;
                 if (formatter)
                     return formatter(value);
                 return value;
-            };
+            });
             return _this;
         }
+        /**
+         * @return {?}
+         */
         SliderWidget.prototype.ngOnInit = function () {
             var _a = this.schema, minimum = _a.minimum, maximum = _a.maximum, multipleOf = _a.multipleOf;
             this.min = minimum || 0;
@@ -3213,6 +5074,10 @@
             this.marks = marks || null;
             this.included = typeof included === 'undefined' ? true : included;
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         SliderWidget.prototype._afterChange = function (value) {
             var afterChange = this.ui.afterChange;
             if (afterChange)
@@ -3220,26 +5085,37 @@
         };
         return SliderWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ SliderWidget.ɵfac = function SliderWidget_Factory(t) { return ɵSliderWidget_BaseFactory(t || SliderWidget); };
-    /** @nocollapse */ SliderWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SliderWidget, selector: "sf-slider", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-slider\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzRange]=\"ui.range\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzMarks]=\"marks\"\n    [nzDots]=\"ui.dots\"\n    [nzIncluded]=\"included\"\n    [nzVertical]=\"ui.vertical\"\n    [nzTipFormatter]=\"_formatter\"\n    (nzOnAfterChange)=\"_afterChange($event)\"\n  >\n  </nz-slider>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵSliderWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(SliderWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SliderWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-slider',
-                        templateUrl: './slider.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    SliderWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-slider',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-slider\n    [ngModel]=\"value\"\n    (ngModelChange)=\"setValue($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzRange]=\"ui.range\"\n    [nzMin]=\"min\"\n    [nzMax]=\"max\"\n    [nzStep]=\"step\"\n    [nzMarks]=\"marks\"\n    [nzDots]=\"ui.dots\"\n    [nzIncluded]=\"included\"\n    [nzVertical]=\"ui.vertical\"\n    [nzTipFormatter]=\"_formatter\"\n    (nzOnAfterChange)=\"_afterChange($event)\"\n  >\n  </nz-slider>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        SliderWidget.prototype.min;
+        /** @type {?} */
+        SliderWidget.prototype.max;
+        /** @type {?} */
+        SliderWidget.prototype.step;
+        /** @type {?} */
+        SliderWidget.prototype.marks;
+        /** @type {?} */
+        SliderWidget.prototype.included;
+        /** @type {?} */
+        SliderWidget.prototype._formatter;
+    }
 
     var StringWidget = /** @class */ (function (_super) {
         __extends(StringWidget, _super);
         function StringWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
         StringWidget.prototype.ngOnInit = function () {
             var _this = this;
             var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon, autofocus = _a.autofocus;
@@ -3247,62 +5123,96 @@
                 ? 'addon'
                 : '';
             if (autofocus === true) {
-                setTimeout(function () {
-                    _this.injector.get(i0.ElementRef).nativeElement.querySelector("#" + _this.id).focus();
-                }, 20);
+                setTimeout(( /**
+                 * @return {?}
+                 */function () {
+                    (( /** @type {?} */((( /** @type {?} */(_this.injector.get(core.ElementRef).nativeElement))).querySelector("#" + _this.id)))).focus();
+                }), 20);
             }
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         StringWidget.prototype.reset = function (value) {
             if (!value && this.schema.format === 'color') {
                 this.setValue('#000000');
             }
         };
+        /**
+         * @param {?} val
+         * @return {?}
+         */
         StringWidget.prototype.change = function (val) {
             this.setValue(val);
             if (this.ui.change)
                 this.ui.change(val);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         StringWidget.prototype.focus = function (e) {
             if (this.ui.focus)
                 this.ui.focus(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         StringWidget.prototype.blur = function (e) {
             if (this.ui.blur)
                 this.ui.blur(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         StringWidget.prototype.enter = function (e) {
             if (this.ui.enter)
                 this.ui.enter(e);
         };
         return StringWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ StringWidget.ɵfac = function StringWidget_Factory(t) { return ɵStringWidget_BaseFactory(t || StringWidget); };
-    /** @nocollapse */ StringWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: StringWidget, selector: "sf-string", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #ipt>\n    <input\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzBorderless]=\"ui.borderless\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"change($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.type]=\"ui.type || 'text'\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [attr.autocomplete]=\"ui.autocomplete\"\n      [attr.autoFocus]=\"ui.autofocus\"\n      (keyup.enter)=\"enter($event)\"\n      (focus)=\"focus($event)\"\n      (blur)=\"blur($event)\"\n    />\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group\n      [nzAddOnBefore]=\"ui.addOnBefore\"\n      [nzAddOnAfter]=\"ui.addOnAfter\"\n      [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n      [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n      [nzPrefix]=\"ui.prefix\"\n      [nzPrefixIcon]=\"ui.prefixIcon\"\n      [nzSuffix]=\"ui.suffix\"\n      [nzSuffixIcon]=\"ui.suffixIcon\"\n    >\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵStringWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(StringWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(StringWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-string',
-                        templateUrl: './string.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    StringWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-string',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #ipt>\n    <input\n      nz-input\n      [attr.id]=\"id\"\n      [disabled]=\"disabled\"\n      [attr.disabled]=\"disabled\"\n      [nzSize]=\"ui.size\"\n      [nzBorderless]=\"ui.borderless\"\n      [ngModel]=\"value\"\n      (ngModelChange)=\"change($event)\"\n      [attr.maxLength]=\"schema.maxLength || null\"\n      [attr.type]=\"ui.type || 'text'\"\n      [attr.placeholder]=\"ui.placeholder\"\n      [attr.autocomplete]=\"ui.autocomplete\"\n      [attr.autoFocus]=\"ui.autofocus\"\n      (keyup.enter)=\"enter($event)\"\n      (focus)=\"focus($event)\"\n      (blur)=\"blur($event)\"\n    />\n  </ng-template>\n\n  <ng-container *ngIf=\"type === 'addon'; else ipt\">\n    <nz-input-group\n      [nzAddOnBefore]=\"ui.addOnBefore\"\n      [nzAddOnAfter]=\"ui.addOnAfter\"\n      [nzAddOnBeforeIcon]=\"ui.addOnBeforeIcon\"\n      [nzAddOnAfterIcon]=\"ui.addOnAfterIcon\"\n      [nzPrefix]=\"ui.prefix\"\n      [nzPrefixIcon]=\"ui.prefixIcon\"\n      [nzSuffix]=\"ui.suffix\"\n      [nzSuffixIcon]=\"ui.suffixIcon\"\n    >\n      <ng-template [ngTemplateOutlet]=\"ipt\"></ng-template>\n    </nz-input-group>\n  </ng-container>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        StringWidget.prototype.type;
+    }
 
     var TagWidget = /** @class */ (function (_super) {
         __extends(TagWidget, _super);
         function TagWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TagWidget.prototype.reset = function (value) {
             var _this = this;
-            getData(this.schema, this.ui, value).subscribe(function (list) {
+            getData(this.schema, this.ui, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this.data = list;
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} item
+         * @return {?}
+         */
         TagWidget.prototype.onChange = function (item) {
             item.checked = !item.checked;
             this.updateValue();
@@ -3310,54 +5220,69 @@
                 this.ui.checkedChange(item.checked);
             }
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         TagWidget.prototype._close = function (e) {
             if (this.ui.onClose)
                 this.ui.onClose(e);
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TagWidget.prototype.updateValue = function () {
-            this.formProperty.setValue(this.data.filter(function (w) { return w.checked; }).map(function (i) { return i.value; }), false);
+            this.formProperty.setValue(this.data.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.checked; })).map(( /**
+             * @param {?} i
+             * @return {?}
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return i.value; })), false);
         };
         return TagWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TagWidget.ɵfac = function TagWidget_Factory(t) { return ɵTagWidget_BaseFactory(t || TagWidget); };
-    /** @nocollapse */ TagWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TagWidget, selector: "sf-tag", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #icon let-i>\n    <i nz-icon [nzType]=\"i.type\" [nzTheme]=\"i.theme\" [nzTwotoneColor]=\"i.twotoneColor\" [nzRotate]=\"i.rotate\" [nzIconfont]=\"i.iconfont\" [nzSpin]=\"i.spin\"></i>\n  </ng-template>\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    <ng-container *ngIf=\"i.prefixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.prefixIcon }\"></ng-template>\n    </ng-container>\n    <span>{{i.label}}</span>\n    <ng-container *ngIf=\"i.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.suffixIcon }\"></ng-template>\n    </ng-container>\n  </nz-tag>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTagWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TagWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TagWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-tag',
-                        templateUrl: './tag.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TagWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-tag',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #icon let-i>\n    <i nz-icon [nzType]=\"i.type\" [nzTheme]=\"i.theme\" [nzTwotoneColor]=\"i.twotoneColor\" [nzRotate]=\"i.rotate\" [nzIconfont]=\"i.iconfont\" [nzSpin]=\"i.spin\"></i>\n  </ng-template>\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    <ng-container *ngIf=\"i.prefixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.prefixIcon }\"></ng-template>\n    </ng-container>\n    <span>{{i.label}}</span>\n    <ng-container *ngIf=\"i.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.suffixIcon }\"></ng-template>\n    </ng-container>\n  </nz-tag>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        TagWidget.prototype.data;
+    }
 
     var TextWidget = /** @class */ (function (_super) {
         __extends(TextWidget, _super);
         function TextWidget() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @return {?}
+         */
         TextWidget.prototype.ngOnInit = function () {
             this.ui._required = false;
         };
         return TextWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TextWidget.ɵfac = function TextWidget_Factory(t) { return ɵTextWidget_BaseFactory(t || TextWidget); };
-    /** @nocollapse */ TextWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TextWidget, selector: "sf-text", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTextWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TextWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TextWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-text',
-                        templateUrl: './text.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TextWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-text',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
 
     var TextareaWidget = /** @class */ (function (_super) {
         __extends(TextareaWidget, _super);
@@ -3366,41 +5291,54 @@
             _this.autosize = true;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         TextareaWidget.prototype.ngOnInit = function () {
             var autosize = this.ui.autosize;
             if (autosize != null) {
                 this.autosize = autosize;
             }
         };
+        /**
+         * @param {?} val
+         * @return {?}
+         */
         TextareaWidget.prototype.change = function (val) {
             this.setValue(val);
             if (this.ui.change)
                 this.ui.change(val);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         TextareaWidget.prototype.focus = function (e) {
             if (this.ui.focus)
                 this.ui.focus(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         TextareaWidget.prototype.blur = function (e) {
             if (this.ui.blur)
                 this.ui.blur(e);
         };
         return TextareaWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TextareaWidget.ɵfac = function TextareaWidget_Factory(t) { return ɵTextareaWidget_BaseFactory(t || TextareaWidget); };
-    /** @nocollapse */ TextareaWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TextareaWidget, selector: "sf-textarea", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <textarea\n    nz-input\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"change($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    [nzAutosize]=\"autosize\"\n    [nzBorderless]=\"ui.borderless\"\n    (focus)=\"focus($event)\"\n    (blur)=\"blur($event)\"\n  >\n  </textarea>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTextareaWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TextareaWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TextareaWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-textarea',
-                        templateUrl: './textarea.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TextareaWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-textarea',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <textarea\n    nz-input\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"change($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    [nzAutosize]=\"autosize\"\n    [nzBorderless]=\"ui.borderless\"\n    (focus)=\"focus($event)\"\n    (blur)=\"blur($event)\"\n  >\n  </textarea>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        TextareaWidget.prototype.autosize;
+    }
 
     var TimeWidget = /** @class */ (function (_super) {
         __extends(TimeWidget, _super);
@@ -3409,9 +5347,14 @@
             _this.displayValue = null;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         TimeWidget.prototype.ngOnInit = function () {
+            /** @type {?} */
             var ui = this.ui;
             this.valueFormat = ui._format;
+            /** @type {?} */
             var opt = {
                 displayFormat: ui.displayFormat || 'HH:mm:ss',
                 allowEmpty: toBool(ui.allowEmpty, true),
@@ -3428,12 +5371,17 @@
             }
             this.i = opt;
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TimeWidget.prototype.reset = function (value) {
             if (value instanceof Date) {
                 this.displayValue = value;
                 this.detectChanges();
                 return;
             }
+            /** @type {?} */
             var v = value != null && value.toString().length ? new Date(value) : null;
             // trying restore full Date format
             if (v != null && v.toString() === 'Invalid Date') {
@@ -3445,6 +5393,10 @@
             this.displayValue = v;
             this.detectChanges();
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TimeWidget.prototype._change = function (value) {
             if (this.ui.change) {
                 this.ui.change(value);
@@ -3457,8 +5409,12 @@
                 this.setValue(Date.UTC(1970, 0, 1, value.getHours(), value.getMinutes(), value.getSeconds()));
                 return;
             }
-            this.setValue(format__default['default'](value, this.valueFormat));
+            this.setValue(format__default['default'](value, ( /** @type {?} */(this.valueFormat))));
         };
+        /**
+         * @param {?} status
+         * @return {?}
+         */
         TimeWidget.prototype._openChange = function (status) {
             if (this.ui.openChange) {
                 this.ui.openChange(status);
@@ -3466,20 +5422,25 @@
         };
         return TimeWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TimeWidget.ɵfac = function TimeWidget_Factory(t) { return ɵTimeWidget_BaseFactory(t || TimeWidget); };
-    /** @nocollapse */ TimeWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TimeWidget, selector: "sf-time", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    (nzOpenChange)=\"_openChange($event)\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTimeWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TimeWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TimeWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-time',
-                        templateUrl: './time.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TimeWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-time',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-time-picker\n    [(ngModel)]=\"displayValue\"\n    (ngModelChange)=\"_change($event)\"\n    [nzDisabled]=\"disabled\"\n    [nzSize]=\"ui.size\"\n    [nzFormat]=\"i.displayFormat\"\n    [nzAllowEmpty]=\"i.allowEmpty\"\n    [nzClearText]=\"i.clearText\"\n    [nzDefaultOpenValue]=\"i.defaultOpenValue\"\n    [nzDisabledHours]=\"ui.disabledHours\"\n    [nzDisabledMinutes]=\"ui.disabledMinutes\"\n    [nzDisabledSeconds]=\"ui.disabledSeconds\"\n    [nzHideDisabledOptions]=\"i.hideDisabledOptions\"\n    [nzUse12Hours]=\"i.use12Hours\"\n    [nzHourStep]=\"i.hourStep\"\n    [nzMinuteStep]=\"i.minuteStep\"\n    [nzSecondStep]=\"i.secondStep\"\n    [nzPopupClassName]=\"ui.popupClassName\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    (nzOpenChange)=\"_openChange($event)\"\n  >\n  </nz-time-picker>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        TimeWidget.prototype.valueFormat;
+        /** @type {?} */
+        TimeWidget.prototype.displayValue;
+        /** @type {?} */
+        TimeWidget.prototype.i;
+    }
 
     var TransferWidget = /** @class */ (function (_super) {
         __extends(TransferWidget, _super);
@@ -3487,11 +5448,17 @@
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this.list = [];
             _this._data = [];
-            _this._canMove = function (arg) {
+            _this._canMove = ( /**
+             * @param {?} arg
+             * @return {?}
+             */function (arg) {
                 return _this.ui.canMove ? _this.ui.canMove(arg) : rxjs.of(arg.list);
-            };
+            });
             return _this;
         }
+        /**
+         * @return {?}
+         */
         TransferWidget.prototype.ngOnInit = function () {
             var _a = this.ui, titles = _a.titles, operations = _a.operations, itemUnit = _a.itemUnit, itemsUnit = _a.itemsUnit;
             this.i = {
@@ -3501,44 +5468,89 @@
                 itemsUnit: itemsUnit || '项',
             };
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TransferWidget.prototype.reset = function (value) {
             var _this = this;
-            getData(this.schema, this.ui, null).subscribe(function (list) {
+            getData(this.schema, this.ui, null).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
+                /** @type {?} */
                 var formData = value;
                 if (!Array.isArray(formData)) {
                     formData = [formData];
                 }
-                list.forEach(function (item) {
-                    if (~formData.indexOf(item.value)) {
+                list.forEach(( /**
+                 * @param {?} item
+                 * @return {?}
+                 */function (item) {
+                    if (~(( /** @type {?} */(formData))).indexOf(item.value)) {
                         item.direction = 'right';
                     }
-                });
+                }));
                 _this.list = list;
-                _this._data = list.filter(function (w) { return w.direction === 'right'; });
+                _this._data = list.filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (/**
+                 * @param {?} w
+                 * @return {?}
+                 */ w) { return w.direction === 'right'; }));
                 _this.notify();
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TransferWidget.prototype.notify = function () {
-            this.formProperty.setValue(this._data.map(function (i) { return i.value; }), false);
+            this.formProperty.setValue(this._data.map(( /**
+             * @param {?} i
+             * @return {?}
+             */function (/**
+             * @param {?} i
+             * @return {?}
+             */ i) { return i.value; })), false);
         };
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         TransferWidget.prototype._change = function (options) {
             var _a;
             if (options.to === 'right') {
                 this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
             }
             else {
-                this._data = this._data.filter(function (w) { return options.list.indexOf(w) === -1; });
+                this._data = this._data.filter(( /**
+                 * @param {?} w
+                 * @return {?}
+                 */function (w) { return options.list.indexOf(w) === -1; }));
             }
             if (this.ui.change)
                 this.ui.change(options);
             this.notify();
         };
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         TransferWidget.prototype._searchChange = function (options) {
             if (this.ui.searchChange)
                 this.ui.searchChange(options);
             this.detectChanges();
         };
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         TransferWidget.prototype._selectChange = function (options) {
             if (this.ui.selectChange)
                 this.ui.selectChange(options);
@@ -3546,20 +5558,27 @@
         };
         return TransferWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TransferWidget.ɵfac = function TransferWidget_Factory(t) { return ɵTransferWidget_BaseFactory(t || TransferWidget); };
-    /** @nocollapse */ TransferWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TransferWidget, selector: "sf-transfer", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-transfer\n    [nzDataSource]=\"list\"\n    [nzTitles]=\"i.titles\"\n    [nzOperations]=\"i.operations\"\n    [nzListStyle]=\"ui.listStyle\"\n    [nzItemUnit]=\"i.itemUnit\"\n    [nzItemsUnit]=\"i.itemsUnit\"\n    [nzShowSearch]=\"ui.showSearch\"\n    [nzFilterOption]=\"ui.filterOption\"\n    [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzCanMove]=\"_canMove\"\n    (nzChange)=\"_change($event)\"\n    (nzSearchChange)=\"_searchChange($event)\"\n    (nzSelectChange)=\"_selectChange($event)\"\n  >\n  </nz-transfer>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTransferWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TransferWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TransferWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-transfer',
-                        templateUrl: './transfer.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TransferWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-transfer',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-transfer\n    [nzDataSource]=\"list\"\n    [nzTitles]=\"i.titles\"\n    [nzOperations]=\"i.operations\"\n    [nzListStyle]=\"ui.listStyle\"\n    [nzItemUnit]=\"i.itemUnit\"\n    [nzItemsUnit]=\"i.itemsUnit\"\n    [nzShowSearch]=\"ui.showSearch\"\n    [nzFilterOption]=\"ui.filterOption\"\n    [nzSearchPlaceholder]=\"ui.searchPlaceholder\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzCanMove]=\"_canMove\"\n    (nzChange)=\"_change($event)\"\n    (nzSearchChange)=\"_searchChange($event)\"\n    (nzSelectChange)=\"_selectChange($event)\"\n  >\n  </nz-transfer>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        TransferWidget.prototype.list;
+        /** @type {?} */
+        TransferWidget.prototype.i;
+        /**
+         * @type {?}
+         * @private
+         */
+        TransferWidget.prototype._data;
+        /** @type {?} */
+        TransferWidget.prototype._canMove;
+    }
 
     var TreeSelectWidget = /** @class */ (function (_super) {
         __extends(TreeSelectWidget, _super);
@@ -3569,6 +5588,9 @@
             _this.asyncData = false;
             return _this;
         }
+        /**
+         * @return {?}
+         */
         TreeSelectWidget.prototype.ngOnInit = function () {
             var ui = this.ui;
             this.i = {
@@ -3583,49 +5605,78 @@
                 checkStrictly: toBool(ui.checkStrictly, false),
                 hideUnMatched: toBool(ui.hideUnMatched, false),
                 defaultExpandAll: toBool(ui.defaultExpandAll, false),
-                displayWith: ui.displayWith || (function (node) { return node.title; }),
+                displayWith: ui.displayWith || (( /**
+                 * @param {?} node
+                 * @return {?}
+                 */function (node) { return node.title; })),
             };
             this.asyncData = typeof ui.expandChange === 'function';
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TreeSelectWidget.prototype.reset = function (value) {
             var _this = this;
-            getData(this.schema, this.ui, value).subscribe(function (list) {
+            getData(this.schema, this.ui, value).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
                 _this.data = list;
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         TreeSelectWidget.prototype.change = function (value) {
             if (this.ui.change)
                 this.ui.change(value);
             this.setValue(value);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         TreeSelectWidget.prototype.expandChange = function (e) {
             var _this = this;
             var ui = this.ui;
             if (typeof ui.expandChange !== 'function')
                 return;
-            ui.expandChange(e).subscribe(function (res) {
-                e.node.clearChildren();
-                e.node.addChildren(res);
+            ui.expandChange(e).subscribe(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
+                ( /** @type {?} */(e.node)).clearChildren();
+                ( /** @type {?} */(e.node)).addChildren(res);
                 _this.detectChanges();
-            });
+            }));
         };
         return TreeSelectWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ TreeSelectWidget.ɵfac = function TreeSelectWidget_Factory(t) { return ɵTreeSelectWidget_BaseFactory(t || TreeSelectWidget); };
-    /** @nocollapse */ TreeSelectWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TreeSelectWidget, selector: "sf-tree-select", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tree-select\n    [nzAllowClear]=\"i.allowClear\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzSize]=\"ui.size\"\n    [nzExpandedKeys]=\"ui.expandedKeys\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzMaxTagCount]=\"ui.maxTagCount\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder || null\"\n    [nzTreeTemplate]=\"ui.treeTemplate || null\"\n    [nzDisabled]=\"disabled\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowIcon]=\"i.showIcon\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzMultiple]=\"i.multiple\"\n    [nzHideUnMatched]=\"i.hideUnMatched\"\n    [nzCheckable]=\"i.checkable\"\n    [nzShowExpand]=\"i.showExpand\"\n    [nzShowLine]=\"i.showLine\"\n    [nzCheckStrictly]=\"i.checkStrictly\"\n    [nzAsyncData]=\"asyncData\"\n    [nzNodes]=\"data\"\n    [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n    [nzDisplayWith]=\"i.displayWith\"\n    [ngModel]=\"value\"\n    [nzVirtualHeight]=\"ui.virtualHeight\"\n    [nzVirtualItemSize]=\"ui.virtualItemSize || 28\"\n    [nzVirtualMaxBufferPx]=\"ui.virtualMaxBufferPx || 500\"\n    [nzVirtualMinBufferPx]=\"ui.virtualMinBufferPx || 28\"\n    (ngModelChange)=\"change($event)\"\n    (nzExpandChange)=\"expandChange($event)\"\n  >\n  </nz-tree-select>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵTreeSelectWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(TreeSelectWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TreeSelectWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-tree-select',
-                        templateUrl: './tree-select.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    TreeSelectWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-tree-select',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-tree-select\n    [nzAllowClear]=\"i.allowClear\"\n    [nzPlaceHolder]=\"ui.placeholder\"\n    [nzDropdownStyle]=\"ui.dropdownStyle\"\n    [nzDropdownClassName]=\"ui.dropdownClassName\"\n    [nzSize]=\"ui.size\"\n    [nzExpandedKeys]=\"ui.expandedKeys\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzMaxTagCount]=\"ui.maxTagCount\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder || null\"\n    [nzTreeTemplate]=\"ui.treeTemplate || null\"\n    [nzDisabled]=\"disabled\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowIcon]=\"i.showIcon\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth\"\n    [nzMultiple]=\"i.multiple\"\n    [nzHideUnMatched]=\"i.hideUnMatched\"\n    [nzCheckable]=\"i.checkable\"\n    [nzShowExpand]=\"i.showExpand\"\n    [nzShowLine]=\"i.showLine\"\n    [nzCheckStrictly]=\"i.checkStrictly\"\n    [nzAsyncData]=\"asyncData\"\n    [nzNodes]=\"data\"\n    [nzDefaultExpandAll]=\"i.defaultExpandAll\"\n    [nzDisplayWith]=\"i.displayWith\"\n    [ngModel]=\"value\"\n    [nzVirtualHeight]=\"ui.virtualHeight\"\n    [nzVirtualItemSize]=\"ui.virtualItemSize || 28\"\n    [nzVirtualMaxBufferPx]=\"ui.virtualMaxBufferPx || 500\"\n    [nzVirtualMinBufferPx]=\"ui.virtualMinBufferPx || 28\"\n    (ngModelChange)=\"change($event)\"\n    (nzExpandChange)=\"expandChange($event)\"\n  >\n  </nz-tree-select>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        TreeSelectWidget.prototype.i;
+        /** @type {?} */
+        TreeSelectWidget.prototype.data;
+        /** @type {?} */
+        TreeSelectWidget.prototype.asyncData;
+    }
 
     var UploadWidget = /** @class */ (function (_super) {
         __extends(UploadWidget, _super);
@@ -3633,15 +5684,21 @@
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this.fileList = [];
             _this.btnType = '';
-            _this.handleRemove = function () {
+            _this.handleRemove = ( /**
+             * @return {?}
+             */function () {
                 _this._setValue(_this.fileList);
                 return true;
-            };
-            _this.handlePreview = function (file) {
+            });
+            _this.handlePreview = ( /**
+             * @param {?} file
+             * @return {?}
+             */function (file) {
                 if (_this.ui.preview) {
                     _this.ui.preview(file);
                     return;
                 }
+                /** @type {?} */
                 var _url = file.thumbUrl || file.url;
                 if (!_url) {
                     return;
@@ -3650,11 +5707,15 @@
                     nzContent: "<img src=\"" + _url + "\" class=\"img-fluid\" />",
                     nzFooter: null,
                 });
-            };
+            });
             return _this;
         }
+        /**
+         * @return {?}
+         */
         UploadWidget.prototype.ngOnInit = function () {
             var _a = this.ui, type = _a.type, text = _a.text, hint = _a.hint, action = _a.action, accept = _a.accept, limit = _a.limit, filter = _a.filter, fileSize = _a.fileSize, fileType = _a.fileType, listType = _a.listType, multiple = _a.multiple, name = _a.name, showUploadList = _a.showUploadList, withCredentials = _a.withCredentials, resReName = _a.resReName, urlReName = _a.urlReName, beforeUpload = _a.beforeUpload, customRequest = _a.customRequest, directory = _a.directory, openFileDialogOnClick = _a.openFileDialogOnClick, limitFileCount = _a.limitFileCount;
+            /** @type {?} */
             var res = {
                 type: type || 'select',
                 text: text || '点击上传',
@@ -3688,6 +5749,10 @@
             }
             this.i = res;
         };
+        /**
+         * @param {?} args
+         * @return {?}
+         */
         UploadWidget.prototype.change = function (args) {
             if (this.ui.change)
                 this.ui.change(args);
@@ -3695,48 +5760,104 @@
                 return;
             this._setValue(args.fileList);
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         UploadWidget.prototype.reset = function (value) {
             var _this = this;
             var fileList = this.ui.fileList;
-            (fileList ? rxjs.of(fileList) : Array.isArray(value) ? rxjs.of(value) : getData(this.schema, this.ui, null)).subscribe(function (list) {
-                _this.fileList = list;
+            (fileList ? rxjs.of(fileList) : Array.isArray(value) ? rxjs.of(value) : getData(this.schema, this.ui, null)).subscribe(( /**
+             * @param {?} list
+             * @return {?}
+             */function (/**
+             * @param {?} list
+             * @return {?}
+             */ list) {
+                _this.fileList = ( /** @type {?} */(list));
                 _this.formProperty._value = _this.pureValue(list);
                 _this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: false });
                 _this.detectChanges();
-            });
+            }));
         };
+        /**
+         * @private
+         * @param {?} file
+         * @return {?}
+         */
         UploadWidget.prototype._getValue = function (file) {
-            return i6.deepGet(file.response, this.i.resReName, file.response);
+            return util.deepGet(file.response, this.i.resReName, file.response);
         };
+        /**
+         * @private
+         * @param {?} fileList
+         * @return {?}
+         */
         UploadWidget.prototype.pureValue = function (fileList) {
             var _this = this;
             fileList
-                .filter(function (file) { return !file.url; })
-                .forEach(function (file) {
-                file.url = i6.deepGet(file.response, _this.i.urlReName);
-            });
-            var res = fileList.filter(function (w) { return w.status === 'done'; }).map(function (file) { return _this._getValue(file); });
+                .filter(( /**
+         * @param {?} file
+         * @return {?}
+         */function (/**
+         * @param {?} file
+         * @return {?}
+         */ file) { return !file.url; }))
+                .forEach(( /**
+         * @param {?} file
+         * @return {?}
+         */function (/**
+         * @param {?} file
+         * @return {?}
+         */ file) {
+                file.url = util.deepGet(file.response, _this.i.urlReName);
+            }));
+            /** @type {?} */
+            var res = fileList.filter(( /**
+             * @param {?} w
+             * @return {?}
+             */function (/**
+             * @param {?} w
+             * @return {?}
+             */ w) { return w.status === 'done'; })).map(( /**
+             * @param {?} file
+             * @return {?}
+             */function (/**
+             * @param {?} file
+             * @return {?}
+             */ file) { return _this._getValue(file); }));
             return this.i.multiple === true ? res : res.pop();
         };
+        /**
+         * @private
+         * @param {?} fileList
+         * @return {?}
+         */
         UploadWidget.prototype._setValue = function (fileList) {
             this.setValue(this.pureValue(fileList));
         };
         return UploadWidget;
     }(ControlUIWidget));
-    /** @nocollapse */ UploadWidget.ɵfac = function UploadWidget_Factory(t) { return ɵUploadWidget_BaseFactory(t || UploadWidget); };
-    /** @nocollapse */ UploadWidget.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: UploadWidget, selector: "sf-upload", usesInheritance: true, ngImport: i0__namespace, template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-upload\n    [nzType]=\"i.type\"\n    [(nzFileList)]=\"fileList\"\n    [nzDisabled]=\"disabled\"\n    [nzAction]=\"i.action\"\n    [nzDirectory]=\"i.directory\"\n    [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n    [nzAccept]=\"i.accept\"\n    [nzLimit]=\"i.limit\"\n    [nzFilter]=\"i.filter\"\n    [nzSize]=\"i.size\"\n    [nzFileType]=\"i.fileType\"\n    [nzHeaders]=\"ui.headers\"\n    [nzData]=\"ui.data\"\n    [nzListType]=\"i.listType\"\n    [nzMultiple]=\"i.multiple\"\n    [nzName]=\"i.name\"\n    [nzShowUploadList]=\"i.showUploadList\"\n    [nzWithCredentials]=\"i.withCredentials\"\n    [nzBeforeUpload]=\"i.beforeUpload\"\n    [nzCustomRequest]=\"i.customRequest\"\n    [nzRemove]=\"ui.remove || handleRemove\"\n    [nzPreview]=\"handlePreview\"\n    [nzPreviewFile]=\"ui.previewFile\"\n    [nzDownload]=\"ui.download\"\n    [nzTransformFile]=\"ui.transformFile\"\n    (nzChange)=\"change($event)\"\n    [nzShowButton]=\"fileList.length < i.limitFileCount\"\n  >\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button><i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span></button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n", encapsulation: i0.ViewEncapsulation.None });
-    var ɵUploadWidget_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(UploadWidget);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UploadWidget, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'sf-upload',
-                        templateUrl: './upload.widget.html',
-                        preserveWhitespaces: false,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, null);
-    })();
+    UploadWidget.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'sf-upload',
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-upload\n    [nzType]=\"i.type\"\n    [(nzFileList)]=\"fileList\"\n    [nzDisabled]=\"disabled\"\n    [nzAction]=\"i.action\"\n    [nzDirectory]=\"i.directory\"\n    [nzOpenFileDialogOnClick]=\"i.openFileDialogOnClick\"\n    [nzAccept]=\"i.accept\"\n    [nzLimit]=\"i.limit\"\n    [nzFilter]=\"i.filter\"\n    [nzSize]=\"i.size\"\n    [nzFileType]=\"i.fileType\"\n    [nzHeaders]=\"ui.headers\"\n    [nzData]=\"ui.data\"\n    [nzListType]=\"i.listType\"\n    [nzMultiple]=\"i.multiple\"\n    [nzName]=\"i.name\"\n    [nzShowUploadList]=\"i.showUploadList\"\n    [nzWithCredentials]=\"i.withCredentials\"\n    [nzBeforeUpload]=\"i.beforeUpload\"\n    [nzCustomRequest]=\"i.customRequest\"\n    [nzRemove]=\"ui.remove || handleRemove\"\n    [nzPreview]=\"handlePreview\"\n    [nzPreviewFile]=\"ui.previewFile\"\n    [nzDownload]=\"ui.download\"\n    [nzTransformFile]=\"ui.transformFile\"\n    (nzChange)=\"change($event)\"\n    [nzShowButton]=\"fileList.length < i.limitFileCount\"\n  >\n    <ng-container [ngSwitch]=\"btnType\">\n      <ng-container *ngSwitchCase=\"'plus'\">\n        <i nz-icon nzType=\"plus\"></i>\n        <div class=\"ant-upload-text\" [innerHTML]=\"i.text\"></div>\n      </ng-container>\n      <ng-container *ngSwitchCase=\"'drag'\">\n        <p class=\"ant-upload-drag-icon\"><i nz-icon nzType=\"inbox\"></i></p>\n        <p class=\"ant-upload-text\" [innerHTML]=\"i.text\"></p>\n        <p class=\"ant-upload-hint\" [innerHTML]=\"i.hint\"></p>\n      </ng-container>\n      <ng-container *ngSwitchDefault>\n        <button type=\"button\" nz-button><i nz-icon nzType=\"upload\"></i><span [innerHTML]=\"i.text\"></span></button>\n      </ng-container>\n    </ng-container>\n  </nz-upload>\n</sf-item-wrap>\n",
+                    preserveWhitespaces: false,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    if (false) {
+        /** @type {?} */
+        UploadWidget.prototype.i;
+        /** @type {?} */
+        UploadWidget.prototype.fileList;
+        /** @type {?} */
+        UploadWidget.prototype.btnType;
+        /** @type {?} */
+        UploadWidget.prototype.handleRemove;
+        /** @type {?} */
+        UploadWidget.prototype.handlePreview;
+    }
 
     var NzWidgetRegistry = /** @class */ (function (_super) {
         __extends(NzWidgetRegistry, _super);
@@ -3771,33 +5892,36 @@
         return NzWidgetRegistry;
     }(WidgetRegistry));
 
+    /** @type {?} */
     var ZORROS = [
-        i25.NzAutocompleteModule,
-        i5$1.NzButtonModule,
-        i9.NzCardModule,
-        i26.NzCascaderModule,
-        i16.NzCheckboxModule,
-        i13.NzDatePickerModule,
-        i2.NzFormModule,
-        i4$1.NzGridModule,
-        i8.NzIconModule,
-        i11.NzInputModule,
-        i12.NzInputNumberModule,
-        i27.NzMentionModule,
+        autoComplete.NzAutocompleteModule,
+        button.NzButtonModule,
+        card.NzCardModule,
+        cascader.NzCascaderModule,
+        checkbox.NzCheckboxModule,
+        datePicker.NzDatePickerModule,
+        form.NzFormModule,
+        grid.NzGridModule,
+        icon.NzIconModule,
+        input.NzInputModule,
+        inputNumber.NzInputNumberModule,
+        mention.NzMentionModule,
         modal.NzModalModule,
-        i15.NzRadioModule,
-        i24.NzRateModule,
-        i18.NzSelectModule,
-        i23.NzSliderModule,
-        i17.NzSwitchModule,
-        i20.NzTagModule,
-        i14.NzTimePickerModule,
-        i10.NzToolTipModule,
-        i22.NzTransferModule,
-        i19.NzTreeSelectModule,
-        i21.NzUploadModule,
+        radio.NzRadioModule,
+        rate.NzRateModule,
+        select.NzSelectModule,
+        slider.NzSliderModule,
+        _switch.NzSwitchModule,
+        tag.NzTagModule,
+        timePicker.NzTimePickerModule,
+        tooltip.NzToolTipModule,
+        transfer.NzTransferModule,
+        treeSelect.NzTreeSelectModule,
+        upload.NzUploadModule,
     ];
+    /** @type {?} */
     var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
+    /** @type {?} */
     var WIDGETS = [
         ObjectWidget,
         ArrayWidget,
@@ -3826,6 +5950,9 @@
     var DelonFormModule = /** @class */ (function () {
         function DelonFormModule() {
         }
+        /**
+         * @return {?}
+         */
         DelonFormModule.forRoot = function () {
             return {
                 ngModule: DelonFormModule,
@@ -3833,7 +5960,7 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
-                        deps: [i6.AlainConfigService],
+                        deps: [util.AlainConfigService],
                     },
                     { provide: WidgetRegistry, useClass: NzWidgetRegistry },
                 ],
@@ -3841,90 +5968,21 @@
         };
         return DelonFormModule;
     }());
-    /** @nocollapse */ DelonFormModule.ɵmod = i0.ɵɵdefineNgModule({ type: DelonFormModule });
-    /** @nocollapse */ DelonFormModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DelonFormModule_Factory(t) { return new (t || DelonFormModule)(); }, imports: [__spread([i3$1.CommonModule, i1.FormsModule, i6.DelonUtilModule, i4.DelonLocaleModule], ZORROS)] });
-    (function () {
-        (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(DelonFormModule, { declarations: [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective, ObjectWidget,
-                ArrayWidget,
-                StringWidget,
-                NumberWidget,
-                DateWidget,
-                TimeWidget,
-                RadioWidget,
-                CheckboxWidget,
-                BooleanWidget,
-                TextareaWidget,
-                SelectWidget,
-                TreeSelectWidget,
-                TagWidget,
-                UploadWidget,
-                TransferWidget,
-                SliderWidget,
-                RateWidget,
-                AutoCompleteWidget,
-                CascaderWidget,
-                MentionWidget,
-                CustomWidget,
-                TextWidget], imports: [i3$1.CommonModule, i1.FormsModule, i6.DelonUtilModule, i4.DelonLocaleModule, i25.NzAutocompleteModule,
-                i5$1.NzButtonModule,
-                i9.NzCardModule,
-                i26.NzCascaderModule,
-                i16.NzCheckboxModule,
-                i13.NzDatePickerModule,
-                i2.NzFormModule,
-                i4$1.NzGridModule,
-                i8.NzIconModule,
-                i11.NzInputModule,
-                i12.NzInputNumberModule,
-                i27.NzMentionModule,
-                modal.NzModalModule,
-                i15.NzRadioModule,
-                i24.NzRateModule,
-                i18.NzSelectModule,
-                i23.NzSliderModule,
-                i17.NzSwitchModule,
-                i20.NzTagModule,
-                i14.NzTimePickerModule,
-                i10.NzToolTipModule,
-                i22.NzTransferModule,
-                i19.NzTreeSelectModule,
-                i21.NzUploadModule], exports: [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective] });
-    })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonFormModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: __spread([i3$1.CommonModule, i1.FormsModule, i6.DelonUtilModule, i4.DelonLocaleModule], ZORROS),
-                        declarations: __spread(COMPONENTS, WIDGETS),
-                        entryComponents: __spread(WIDGETS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
-    i0.ɵɵsetComponentScope(SFComponent, [i1.ɵangular_packages_forms_forms_y, i1.NgControlStatusGroup, i1.NgForm, i2.NzFormDirective, i3$1.NgIf, SFItemComponent, i4$1.NzRowDirective, i2.NzFormItemComponent, i3$1.NgClass, SFFixedDirective, i4$1.NzColDirective, i5$1.NzButtonComponent, i6$1.NzWaveDirective, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective], []);
-    i0.ɵɵsetComponentScope(ObjectWidget, [i3$1.NgIf, i4$1.NzRowDirective, i3$1.NgForOf, i4$1.NzColDirective, SFItemComponent, SFFixedDirective, i9.NzCardComponent, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective, i3$1.NgTemplateOutlet], []);
-    i0.ɵɵsetComponentScope(ArrayWidget, [i4$1.NzRowDirective, i2.NzFormItemComponent, i3$1.NgIf, i4$1.NzColDirective, i10.NzTooltipDirective, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective, i5$1.NzButtonComponent, i6$1.NzWaveDirective, i3$1.NgForOf, i9.NzCardComponent, SFItemComponent], []);
-    i0.ɵɵsetComponentScope(StringWidget, [SFItemWrapComponent, i11.NzInputDirective, i1.DefaultValueAccessor, i1.NgControlStatus, i1.NgModel, i3$1.NgIf, i7$1.ɵNzTransitionPatchDirective, i11.NzInputGroupComponent, i11.NzInputGroupWhitSuffixOrPrefixDirective, i3$1.NgTemplateOutlet], []);
-    i0.ɵɵsetComponentScope(NumberWidget, [SFItemWrapComponent, i12.NzInputNumberComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(DateWidget, [SFItemWrapComponent, i3$1.NgSwitch, i3$1.NgSwitchCase, i13.NzDatePickerComponent, i13.NzYearPickerComponent, i1.NgControlStatus, i1.NgModel, i3$1.NgClass, i13.NzMonthPickerComponent, i13.NzWeekPickerComponent, i13.NzRangePickerComponent, i3$1.NgSwitchDefault], []);
-    i0.ɵɵsetComponentScope(TimeWidget, [SFItemWrapComponent, i14.NzTimePickerComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(RadioWidget, [SFItemWrapComponent, i15.NzRadioGroupComponent, i1.NgControlStatus, i1.NgModel, i3$1.NgIf, i3$1.NgForOf, i15.NzRadioComponent, i15.NzRadioButtonDirective], []);
-    i0.ɵɵsetComponentScope(CheckboxWidget, [i3$1.NgIf, i16.NzCheckboxComponent, i1.NgControlStatus, i1.NgModel, SFItemWrapComponent, i10.NzTooltipDirective, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective, i3$1.NgTemplateOutlet, i16.NzCheckboxGroupComponent, i16.NzCheckboxWrapperComponent, i4$1.NzRowDirective, i4$1.NzColDirective, i3$1.NgForOf], []);
-    i0.ɵɵsetComponentScope(BooleanWidget, [SFItemWrapComponent, i17.NzSwitchComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(TextareaWidget, [SFItemWrapComponent, i11.NzInputDirective, i1.DefaultValueAccessor, i11.NzAutosizeDirective, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(SelectWidget, [SFItemWrapComponent, i18.NzSelectComponent, i1.NgControlStatus, i1.NgModel, i3$1.NgIf, i3$1.NgForOf, i18.NzOptionComponent, i18.NzOptionGroupComponent, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective], []);
-    i0.ɵɵsetComponentScope(TreeSelectWidget, [SFItemWrapComponent, i19.NzTreeSelectComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(TagWidget, [SFItemWrapComponent, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective, i3$1.NgForOf, i20.NzTagComponent, i3$1.NgIf, i3$1.NgTemplateOutlet], []);
-    i0.ɵɵsetComponentScope(UploadWidget, [SFItemWrapComponent, i21.NzUploadComponent, i3$1.NgSwitch, i3$1.NgSwitchCase, i7$1.ɵNzTransitionPatchDirective, i8.NzIconDirective, i3$1.NgSwitchDefault, i5$1.NzButtonComponent, i6$1.NzWaveDirective], []);
-    i0.ɵɵsetComponentScope(TransferWidget, [SFItemWrapComponent, i22.NzTransferComponent], []);
-    i0.ɵɵsetComponentScope(SliderWidget, [SFItemWrapComponent, i23.NzSliderComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(RateWidget, [SFItemWrapComponent, i24.NzRateComponent, i1.NgControlStatus, i1.NgModel, i3$1.NgIf], []);
-    i0.ɵɵsetComponentScope(AutoCompleteWidget, [SFItemWrapComponent, i11.NzInputDirective, i25.NzAutocompleteTriggerDirective, i1.DefaultValueAccessor, i1.NgControlStatus, i1.NgModel, i25.NzAutocompleteComponent, i3$1.NgForOf, i25.NzAutocompleteOptionComponent], [i3$1.AsyncPipe]);
-    i0.ɵɵsetComponentScope(CascaderWidget, [SFItemWrapComponent, i26.NzCascaderComponent, i1.NgControlStatus, i1.NgModel], []);
-    i0.ɵɵsetComponentScope(MentionWidget, [SFItemWrapComponent, i27.NzMentionComponent, i3$1.NgIf, i27.NzMentionTriggerDirective, i11.NzInputDirective, i1.DefaultValueAccessor, i1.NgControlStatus, i1.NgModel, i11.NzAutosizeDirective], []);
-    i0.ɵɵsetComponentScope(CustomWidget, [SFItemWrapComponent, i3$1.NgTemplateOutlet], []);
-    i0.ɵɵsetComponentScope(TextWidget, [SFItemWrapComponent], []);
+    DelonFormModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: __spread([common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule], ZORROS),
+                    declarations: __spread(COMPONENTS, WIDGETS),
+                    entryComponents: __spread(WIDGETS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/errors.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var ERRORSDEFAULT = {
         'false schema': "\u5E03\u5C14\u6A21\u5F0F\u51FA\u9519",
         $ref: "\u65E0\u6CD5\u627E\u5230\u5F15\u7528{ref}",
@@ -3934,6 +5992,7 @@
         dependencies: "\u5E94\u5F53\u62E5\u6709\u5C5E\u6027{property}\u7684\u4F9D\u8D56\u5C5E\u6027{deps}",
         enum: "\u5E94\u5F53\u662F\u9884\u8BBE\u5B9A\u7684\u679A\u4E3E\u503C\u4E4B\u4E00",
         format: "\u683C\u5F0F\u4E0D\u6B63\u786E",
+        // `应当匹配格式 "{format}"`,
         type: "\u7C7B\u578B\u5E94\u5F53\u662F {type}",
         required: "\u5FC5\u586B\u9879",
         maxLength: "\u81F3\u591A {limit} \u4E2A\u5B57\u7B26",
@@ -3961,9 +6020,96 @@
         formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
         if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
     };
+    /**
+     * @record
+     */
+    function ErrorData() { }
+    if (false) {
+        /** @type {?} */
+        ErrorData.prototype.keyword;
+        /** @type {?|undefined} */
+        ErrorData.prototype.dataPath;
+        /** @type {?|undefined} */
+        ErrorData.prototype.schemaPath;
+        /** @type {?|undefined} */
+        ErrorData.prototype.params;
+        /** @type {?|undefined} */
+        ErrorData.prototype.message;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function ErrorSchema() { }
+    if (false) {
+        /**
+         * 是否实时校验，默认：`true`
+         * - `true` 每一次都校验
+         * - `false` 提交时校验
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.liveValidate;
+        /**
+         * 自定义错误信息文本，键名赞同 `ErrorData.keyword` 值
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.errors;
+        /**
+         * 是否立即呈现错误视觉，默认：`false`
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.firstVisual;
+        /**
+         * 是否只展示错误视觉不显示错误文本，默认：`false`
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.onlyVisual;
+        /**
+         * 是否忽略某些数据类型校验 `ERRORSDEFAULT`
+         * - 值始终包含 `DelonSchemaFormConfig.ingoreKeywords`
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.ingoreKeywords;
+        /**
+         * 是否强制在标签上显示 `*` 来表示必填，一般在当使用自定义校验 `validator` 可能需要必填项处理
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.showRequired;
+        /**
+         * 自定义校验
+         * @type {?|undefined}
+         */
+        ErrorSchema.prototype.validator;
+    }
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: src/model/index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/widgets/index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/form.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: form.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.AjvSchemaValidatorFactory = AjvSchemaValidatorFactory;
@@ -3997,8 +6143,6 @@
     exports.SFComponent = SFComponent;
     exports.SFFixedDirective = SFFixedDirective;
     exports.SFItemComponent = SFItemComponent;
-    exports.SFItemWrapComponent = SFItemWrapComponent;
-    exports.SFTemplateDirective = SFTemplateDirective;
     exports.SF_DEFAULT_CONFIG = SF_DEFAULT_CONFIG;
     exports.SchemaValidatorFactory = SchemaValidatorFactory;
     exports.SelectWidget = SelectWidget;
@@ -4027,6 +6171,9 @@
     exports.retrieveSchema = retrieveSchema;
     exports.toBool = toBool;
     exports.useFactory = useFactory;
+    exports.ɵa = TerminatorService;
+    exports.ɵb = SFItemWrapComponent;
+    exports.ɵc = SFTemplateDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

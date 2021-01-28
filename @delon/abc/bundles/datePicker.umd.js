@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@delon/util'), require('@angular/platform-browser'), require('ng-zorro-antd/date-picker'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@delon/util', '@angular/platform-browser', 'ng-zorro-antd/date-picker', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.delon.util, global.ng.platformBrowser, global['ng-zorro-antd/date-picker'], global.ng.common));
-}(this, (function (exports, i0, i4, i2, i1, i3, i5) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/date-picker')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util', '@angular/common', 'ng-zorro-antd/date-picker'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.delon.util, global.ng.common, global['ng-zorro-antd/date-picker']));
+}(this, (function (exports, core, forms, platformBrowser, util, common, datePicker) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,20 +318,30 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: range.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var RangePickerComponent = /** @class */ (function () {
         // #endregion
+        /**
+         * @param {?} dom
+         * @param {?} configSrv
+         */
         function RangePickerComponent(dom, configSrv) {
             this.dom = dom;
             this.value = [];
-            this.ngModelEndChange = new i0.EventEmitter();
+            this.ngModelEndChange = new core.EventEmitter();
             // #region Native properties
             this.nzAllowClear = true;
             this.nzAutoFocus = false;
-            this.nzOnOpenChange = new i0.EventEmitter();
+            this.nzOnOpenChange = new core.EventEmitter();
             this.nzShowToday = true;
-            this.nzOnPanelChange = new i0.EventEmitter();
-            this.nzOnOk = new i0.EventEmitter();
-            var cog = configSrv.merge('dataRange', {
+            this.nzOnPanelChange = new core.EventEmitter();
+            this.nzOnOk = new core.EventEmitter();
+            /** @type {?} */
+            var cog = ( /** @type {?} */(configSrv.merge('dataRange', {
                 nzFormat: 'yyyy-MM-dd',
                 nzAllowClear: true,
                 nzAutoFocus: false,
@@ -365,198 +353,313 @@
                     list: [
                         {
                             text: '今天',
-                            fn: function () { return i2.getTimeDistance('today'); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance('today'); }),
                         },
                         {
                             text: '昨天',
-                            fn: function () { return i2.getTimeDistance('yesterday'); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance('yesterday'); }),
                         },
                         {
                             text: '近3天',
-                            fn: function () { return i2.getTimeDistance(-2); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance(-2); }),
                         },
                         {
                             text: '近7天',
-                            fn: function () { return i2.getTimeDistance(-6); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance(-6); }),
                         },
                         {
                             text: '本周',
-                            fn: function () { return i2.getTimeDistance('week'); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance('week'); }),
                         },
                         {
                             text: '本月',
-                            fn: function () { return i2.getTimeDistance('month'); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance('month'); }),
                         },
                         {
                             text: '全年',
-                            fn: function () { return i2.getTimeDistance('year'); },
+                            fn: ( /**
+                             * @return {?}
+                             */function () { return util.getTimeDistance('year'); }),
                         },
                     ],
                 },
-            });
-            this.defaultShortcuts = Object.assign({}, cog.shortcuts);
+            })));
+            this.defaultShortcuts = ( /** @type {?} */(Object.assign({}, cog.shortcuts)));
             Object.assign(this, cog);
         }
         Object.defineProperty(RangePickerComponent.prototype, "shortcut", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._shortcut;
             },
+            /**
+             * @param {?} val
+             * @return {?}
+             */
             set: function (val) {
                 var _this = this;
-                var item = i2.deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val);
+                /** @type {?} */
+                var item = ( /** @type {?} */(util.deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
                 if (typeof val === 'boolean') {
                     item.enabled = val;
                 }
-                (item.list || []).forEach(function (i) {
+                (item.list || []).forEach(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) {
                     i._text = _this.dom.bypassSecurityTrustHtml(i.text);
-                });
+                }));
                 this._shortcut = item;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         RangePickerComponent.prototype._nzOnOpenChange = function (e) {
             this.nzOnOpenChange.emit(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         RangePickerComponent.prototype._nzOnPanelChange = function (e) {
             this.nzOnPanelChange.emit(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         RangePickerComponent.prototype._nzOnOk = function (e) {
             this.nzOnOk.emit(e);
         };
+        /**
+         * @param {?} e
+         * @return {?}
+         */
         RangePickerComponent.prototype.valueChange = function (e) {
-            e = i2.fixEndTimeOfRange(e);
+            e = util.fixEndTimeOfRange(e);
             this.onChangeFn(e[0]);
             this.ngModelEnd = e[1];
             this.ngModelEndChange.emit(e[1]);
         };
+        /**
+         * @param {?} value
+         * @return {?}
+         */
         RangePickerComponent.prototype.writeValue = function (value) {
             this.value = value && this.ngModelEnd ? [value, this.ngModelEnd] : [];
         };
+        /**
+         * @param {?} fn
+         * @return {?}
+         */
         RangePickerComponent.prototype.registerOnChange = function (fn) {
             this.onChangeFn = fn;
         };
+        /**
+         * @param {?} _fn
+         * @return {?}
+         */
         RangePickerComponent.prototype.registerOnTouched = function (_fn) {
             // this.onTouchedFn = fn;
         };
+        /**
+         * @param {?} disabled
+         * @return {?}
+         */
         RangePickerComponent.prototype.setDisabledState = function (disabled) {
             this.nzDisabled = disabled;
         };
+        /**
+         * @param {?} item
+         * @return {?}
+         */
         RangePickerComponent.prototype.clickShortcut = function (item) {
-            this.value = item.fn(this.value);
-            this.valueChange(this.value);
+            this.value = item.fn(( /** @type {?} */(this.value)));
+            this.valueChange(( /** @type {?} */(this.value)));
             if (this._shortcut.closed) {
                 // tslint:disable-next-line:no-string-literal
-                this.comp['picker'].hideOverlay();
+                (( /** @type {?} */(this.comp)))['picker'].hideOverlay();
             }
         };
         return RangePickerComponent;
     }());
-    /** @nocollapse */ RangePickerComponent.ɵfac = function RangePickerComponent_Factory(t) { return new (t || RangePickerComponent)(i0.ɵɵdirectiveInject(i1.DomSanitizer), i0.ɵɵdirectiveInject(i2.AlainConfigService)); };
-    /** @nocollapse */ RangePickerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: RangePickerComponent, selector: "range-picker", inputs: { ngModelEnd: "ngModelEnd", shortcut: "shortcut", nzAllowClear: "nzAllowClear", nzAutoFocus: "nzAutoFocus", nzClassName: "nzClassName", nzDisabled: "nzDisabled", nzSize: "nzSize", nzStyle: "nzStyle", nzDisabledDate: "nzDisabledDate", nzLocale: "nzLocale", nzPopupStyle: "nzPopupStyle", nzDropdownClassName: "nzDropdownClassName", nzPlaceHolder: "nzPlaceHolder", nzDateRender: "nzDateRender", nzFormat: "nzFormat", nzDisabledTime: "nzDisabledTime", nzRenderExtraFooter: "nzRenderExtraFooter", nzShowTime: "nzShowTime", nzShowToday: "nzShowToday", nzMode: "nzMode", nzRanges: "nzRanges" }, outputs: { ngModelEndChange: "ngModelEndChange", nzOnOpenChange: "nzOnOpenChange", nzOnPanelChange: "nzOnPanelChange", nzOnOk: "nzOnOk" }, providers: [
-            {
-                provide: i4.NG_VALUE_ACCESSOR,
-                multi: true,
-                useExisting: i0.forwardRef((function () { return RangePickerComponent; })),
-            },
-        ], viewQueries: [{ propertyName: "comp", first: true, predicate: ["comp"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["rangePicker"], ngImport: i0__namespace, template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list; let first = first\" (click)=\"clickShortcut(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n</ng-template>\n", directives: [{ type: i3.NzDatePickerComponent, selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-year-picker,nz-range-picker", inputs: ["nzAllowClear", "nzAutoFocus", "nzDisabled", "nzBorderless", "nzInputReadOnly", "nzPlaceHolder", "nzPopupStyle", "nzSize", "nzShowToday", "nzMode", "nzShowNow", "nzDefaultPickerValue", "nzSeparator", "nzSuffixIcon", "nzId", "nzShowTime", "nzFormat", "nzLocale", "nzOpen", "nzDisabledDate", "nzDropdownClassName", "nzDateRender", "nzDisabledTime", "nzRenderExtraFooter", "nzRanges"], outputs: ["nzOnPanelChange", "nzOnCalendarChange", "nzOnOk", "nzOnOpenChange"], exportAs: ["nzDatePicker"] }, { type: i3.NzRangePickerComponent, selector: "nz-range-picker", exportAs: ["nzRangePicker"] }, { type: i4.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { type: i4.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i5.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] });
+    RangePickerComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'range-picker',
+                    exportAs: 'rangePicker',
+                    template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list; let first = first\" (click)=\"clickShortcut(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n</ng-template>\n",
+                    providers: [
+                        {
+                            provide: forms.NG_VALUE_ACCESSOR,
+                            multi: true,
+                            useExisting: core.forwardRef(( /**
+                             * @return {?}
+                             */function () { return RangePickerComponent; })),
+                        },
+                    ]
+                }] }
+    ];
+    /** @nocollapse */
+    RangePickerComponent.ctorParameters = function () { return [
+        { type: platformBrowser.DomSanitizer },
+        { type: util.AlainConfigService }
+    ]; };
+    RangePickerComponent.propDecorators = {
+        comp: [{ type: core.ViewChild, args: ['comp', { static: false },] }],
+        ngModelEnd: [{ type: core.Input }],
+        shortcut: [{ type: core.Input }],
+        ngModelEndChange: [{ type: core.Output }],
+        nzAllowClear: [{ type: core.Input }],
+        nzAutoFocus: [{ type: core.Input }],
+        nzClassName: [{ type: core.Input }],
+        nzDisabled: [{ type: core.Input }],
+        nzSize: [{ type: core.Input }],
+        nzStyle: [{ type: core.Input }],
+        nzDisabledDate: [{ type: core.Input }],
+        nzLocale: [{ type: core.Input }],
+        nzPopupStyle: [{ type: core.Input }],
+        nzDropdownClassName: [{ type: core.Input }],
+        nzPlaceHolder: [{ type: core.Input }],
+        nzOnOpenChange: [{ type: core.Output }],
+        nzDateRender: [{ type: core.Input }],
+        nzFormat: [{ type: core.Input }],
+        nzDisabledTime: [{ type: core.Input }],
+        nzRenderExtraFooter: [{ type: core.Input }],
+        nzShowTime: [{ type: core.Input }],
+        nzShowToday: [{ type: core.Input }],
+        nzMode: [{ type: core.Input }],
+        nzRanges: [{ type: core.Input }],
+        nzOnPanelChange: [{ type: core.Output }],
+        nzOnOk: [{ type: core.Output }]
+    };
     __decorate([
-        i2.InputBoolean(),
+        util.InputBoolean(),
         __metadata("design:type", Boolean)
     ], RangePickerComponent.prototype, "nzShowToday", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RangePickerComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'range-picker',
-                        exportAs: 'rangePicker',
-                        templateUrl: './range.component.html',
-                        providers: [
-                            {
-                                provide: i4.NG_VALUE_ACCESSOR,
-                                multi: true,
-                                useExisting: i0.forwardRef((function () { return RangePickerComponent; })),
-                            },
-                        ],
-                    }]
-            }], function () { return [{ type: i1.DomSanitizer }, { type: i2.AlainConfigService }]; }, { comp: [{
-                    type: i0.ViewChild,
-                    args: ['comp', { static: false }]
-                }], ngModelEnd: [{
-                    type: i0.Input
-                }], shortcut: [{
-                    type: i0.Input
-                }], ngModelEndChange: [{
-                    type: i0.Output
-                }], nzAllowClear: [{
-                    type: i0.Input
-                }], nzAutoFocus: [{
-                    type: i0.Input
-                }], nzClassName: [{
-                    type: i0.Input
-                }], nzDisabled: [{
-                    type: i0.Input
-                }], nzSize: [{
-                    type: i0.Input
-                }], nzStyle: [{
-                    type: i0.Input
-                }], nzDisabledDate: [{
-                    type: i0.Input
-                }], nzLocale: [{
-                    type: i0.Input
-                }], nzPopupStyle: [{
-                    type: i0.Input
-                }], nzDropdownClassName: [{
-                    type: i0.Input
-                }], nzPlaceHolder: [{
-                    type: i0.Input
-                }], nzOnOpenChange: [{
-                    type: i0.Output
-                }], nzDateRender: [{
-                    type: i0.Input
-                }], nzFormat: [{
-                    type: i0.Input
-                }], nzDisabledTime: [{
-                    type: i0.Input
-                }], nzRenderExtraFooter: [{
-                    type: i0.Input
-                }], nzShowTime: [{
-                    type: i0.Input
-                }], nzShowToday: [{
-                    type: i0.Input
-                }], nzMode: [{
-                    type: i0.Input
-                }], nzRanges: [{
-                    type: i0.Input
-                }], nzOnPanelChange: [{
-                    type: i0.Output
-                }], nzOnOk: [{
-                    type: i0.Output
-                }] });
-    })();
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        RangePickerComponent.prototype.onChangeFn;
+        /**
+         * @type {?}
+         * @private
+         */
+        RangePickerComponent.prototype._shortcut;
+        /**
+         * @type {?}
+         * @private
+         */
+        RangePickerComponent.prototype.defaultShortcuts;
+        /**
+         * @type {?}
+         * @private
+         */
+        RangePickerComponent.prototype.comp;
+        /** @type {?} */
+        RangePickerComponent.prototype.value;
+        /** @type {?} */
+        RangePickerComponent.prototype.ngModelEnd;
+        /** @type {?} */
+        RangePickerComponent.prototype.ngModelEndChange;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzAllowClear;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzAutoFocus;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzClassName;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzDisabled;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzSize;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzStyle;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzDisabledDate;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzLocale;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzPopupStyle;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzDropdownClassName;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzPlaceHolder;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzOnOpenChange;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzDateRender;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzFormat;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzDisabledTime;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzRenderExtraFooter;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzShowTime;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzShowToday;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzMode;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzRanges;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzOnPanelChange;
+        /** @type {?} */
+        RangePickerComponent.prototype.nzOnOk;
+        /**
+         * @type {?}
+         * @private
+         */
+        RangePickerComponent.prototype.dom;
+    }
 
+    /** @type {?} */
     var COMPONENTS = [RangePickerComponent];
     var DatePickerModule = /** @class */ (function () {
         function DatePickerModule() {
         }
         return DatePickerModule;
     }());
-    /** @nocollapse */ DatePickerModule.ɵmod = i0.ɵɵdefineNgModule({ type: DatePickerModule });
-    /** @nocollapse */ DatePickerModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DatePickerModule_Factory(t) { return new (t || DatePickerModule)(); }, imports: [[i5.CommonModule, i4.FormsModule, i3.NzDatePickerModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(DatePickerModule, { declarations: [RangePickerComponent], imports: [i5.CommonModule, i4.FormsModule, i3.NzDatePickerModule], exports: [RangePickerComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DatePickerModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i5.CommonModule, i4.FormsModule, i3.NzDatePickerModule],
-                        declarations: __spread(COMPONENTS),
-                        exports: __spread(COMPONENTS),
-                    }]
-            }], null, null);
-    })();
+    DatePickerModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, forms.FormsModule, datePicker.NzDatePickerModule],
+                    declarations: __spread(COMPONENTS),
+                    exports: __spread(COMPONENTS),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: datePicker.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.DatePickerModule = DatePickerModule;

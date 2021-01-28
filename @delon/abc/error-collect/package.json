@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/error-collect/errorCollect.js",
   "fesm2015": "../fesm2015/errorCollect.js",
   "typings": "errorCollect.d.ts",
+  "metadata": "errorCollect.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/error-collect"
 }

@@ -1,2 +1,58 @@
-export {};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS9zcmMvd2lkZ2V0cy9hdXRvY29tcGxldGUvc2NoZW1hLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiIiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBOekF1dG9jb21wbGV0ZU9wdGlvbkNvbXBvbmVudCB9IGZyb20gJ25nLXpvcnJvLWFudGQvYXV0by1jb21wbGV0ZSc7XG5pbXBvcnQgeyBPYnNlcnZhYmxlIH0gZnJvbSAncnhqcyc7XG5pbXBvcnQgeyBTRlNjaGVtYUVudW0sIFNGU2NoZW1hRW51bVR5cGUgfSBmcm9tICcuLi8uLi9zY2hlbWEnO1xuaW1wb3J0IHsgU0ZVSVNjaGVtYUl0ZW0gfSBmcm9tICcuLi8uLi9zY2hlbWEvdWknO1xuXG5leHBvcnQgaW50ZXJmYWNlIFNGQXV0b0NvbXBsZXRlV2lkZ2V0U2NoZW1hIGV4dGVuZHMgU0ZVSVNjaGVtYUl0ZW0ge1xuICAvKipcbiAgICog5byC5q2l6Z2Z5oCB5pWw5o2u5rqQXG4gICAqL1xuICBhc3luY0RhdGE/OiAoaW5wdXQ6IHN0cmluZykgPT4gT2JzZXJ2YWJsZTxTRlNjaGVtYUVudW1UeXBlW10+O1xuXG4gIC8qKlxuICAgKiDlnKjmloflrZfmoYbkuK3mmL7npLrmj5DnpLrorq/mga9cbiAgICovXG4gIHBsYWNlaG9sZGVyPzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiDmmK/lkKbmoLnmja7ovpPlhaXpobnov5vooYznrZvpgInvvIzpu5jorqTlj6rlr7kgYGxhYmVsYCDlsZ7mgKfmiafooYzkuI3ljLrliIblpKflsI/lrpogYGluZGV4T2ZgIOi/h+a7pFxuICAgKiDlvZPlhbbkuLrkuIDkuKrlh73mlbDml7bvvIzkvJrmjqXmlLYgYGlucHV0VmFsdWVgIGBvcHRpb25gIOS4pOS4quWPguaVsO+8jOW9kyBgb3B0aW9uYCDnrKblkIjnrZvpgInmnaHku7bml7bvvIzlupTov5Tlm54gYHRydWVg77yM5Y+N5LmL5YiZ6L+U5ZueIGBmYWxzZWDjgIJcbiAgICovXG4gIGZpbHRlck9wdGlvbj86IGJvb2xlYW4gfCAoKGlucHV0OiBzdHJpbmcsIG9wdGlvbjogU0ZTY2hlbWFFbnVtKSA9PiBib29sZWFuKTtcblxuICAvKipcbiAgICog5qih5byP77yM6Ieq5Yqo5a6M5oiQ5bi46KeB6YKu566x5ZCO57yA77yM5Y+v5Lul6YeN5paw5L2/55SoIGBlbnVtYCDmnaXmjIflrprmlrDlkI7nvIBcbiAgICovXG4gIHR5cGU/OiAnZW1haWwnO1xuXG4gIC8qKlxuICAgKiDljrvmipbml7bpl7TvvIzlvZPlrp7ml7bmlbDmja7mupDml7bpu5jorqTmnIDlsJEgYDUwYO+8jOWNleS9je+8muavq+enklxuICAgKi9cbiAgZGVib3VuY2VUaW1lPzogbnVtYmVyO1xuXG4gIC8qKlxuICAgKiDmmK/lkKbpu5jorqTpq5jkuq7nrKzkuIDkuKrpgInpobnvvIzpu5jorqTvvJpgdHJ1ZWBcbiAgICovXG4gIGRlZmF1bHRBY3RpdmVGaXJzdE9wdGlvbj86IGJvb2xlYW47XG5cbiAgLyoqXG4gICAqIOS9v+eUqOmUruebmOmAieaLqemAiemhueeahOaXtuWAmeaKiumAieS4remhueWbnuWhq+WIsOi+k+WFpeahhuS4re+8jOm7mOiupO+8mmBmYWxzZWBcbiAgICovXG4gIGJhY2tmaWxsPzogYm9vbGVhbjtcblxuICAvKipcbiAgICog6Ieq5a6a5LmJ5a695bqm5Y2V5L2NIGBweGDvvIzpu5jorqTvvJrop6blj5HlhYPntKDlrr3luqZcbiAgICovXG4gIG56V2lkdGg/OiBudW1iZXI7XG5cbiAgLyoqXG4gICAqIOWPmOabtOWbnuiwg1xuICAgKi9cbiAgY2hhbmdlPzogKGl0ZW06IE56QXV0b2NvbXBsZXRlT3B0aW9uQ29tcG9uZW50LCBvcmdEYXRhOiBTRlNjaGVtYUVudW0pID0+IHZvaWQ7XG59XG4iXX0=
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/widgets/autocomplete/schema.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function SFAutoCompleteWidgetSchema() { }
+if (false) {
+    /**
+     * 异步静态数据源
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.asyncData;
+    /**
+     * 在文字框中显示提示讯息
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.placeholder;
+    /**
+     * 是否根据输入项进行筛选，默认只对 `label` 属性执行不区分大小定 `indexOf` 过滤
+     * 当其为一个函数时，会接收 `inputValue` `option` 两个参数，当 `option` 符合筛选条件时，应返回 `true`，反之则返回 `false`。
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.filterOption;
+    /**
+     * 模式，自动完成常见邮箱后缀，可以重新使用 `enum` 来指定新后缀
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.type;
+    /**
+     * 去抖时间，当实时数据源时默认最少 `50`，单位：毫秒
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.debounceTime;
+    /**
+     * 是否默认高亮第一个选项，默认：`true`
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.defaultActiveFirstOption;
+    /**
+     * 使用键盘选择选项的时候把选中项回填到输入框中，默认：`false`
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.backfill;
+    /**
+     * 自定义宽度单位 `px`，默认：触发元素宽度
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.nzWidth;
+    /**
+     * 变更回调
+     * @type {?|undefined}
+     */
+    SFAutoCompleteWidgetSchema.prototype.change;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS9zcmMvd2lkZ2V0cy9hdXRvY29tcGxldGUvc2NoZW1hLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBS0EsZ0RBOENDOzs7Ozs7SUExQ0MsK0NBQThEOzs7OztJQUs5RCxpREFBcUI7Ozs7OztJQU1yQixrREFBNEU7Ozs7O0lBSzVFLDBDQUFlOzs7OztJQUtmLGtEQUFzQjs7Ozs7SUFLdEIsOERBQW1DOzs7OztJQUtuQyw4Q0FBbUI7Ozs7O0lBS25CLDZDQUFpQjs7Ozs7SUFLakIsNENBQThFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgTnpBdXRvY29tcGxldGVPcHRpb25Db21wb25lbnQgfSBmcm9tICduZy16b3Jyby1hbnRkL2F1dG8tY29tcGxldGUnO1xuaW1wb3J0IHsgT2JzZXJ2YWJsZSB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgU0ZTY2hlbWFFbnVtLCBTRlNjaGVtYUVudW1UeXBlIH0gZnJvbSAnLi4vLi4vc2NoZW1hJztcbmltcG9ydCB7IFNGVUlTY2hlbWFJdGVtIH0gZnJvbSAnLi4vLi4vc2NoZW1hL3VpJztcblxuZXhwb3J0IGludGVyZmFjZSBTRkF1dG9Db21wbGV0ZVdpZGdldFNjaGVtYSBleHRlbmRzIFNGVUlTY2hlbWFJdGVtIHtcbiAgLyoqXG4gICAqIOW8guatpemdmeaAgeaVsOaNrua6kFxuICAgKi9cbiAgYXN5bmNEYXRhPzogKGlucHV0OiBzdHJpbmcpID0+IE9ic2VydmFibGU8U0ZTY2hlbWFFbnVtVHlwZVtdPjtcblxuICAvKipcbiAgICog5Zyo5paH5a2X5qGG5Lit5pi+56S65o+Q56S66K6v5oGvXG4gICAqL1xuICBwbGFjZWhvbGRlcj86IHN0cmluZztcblxuICAvKipcbiAgICog5piv5ZCm5qC55o2u6L6T5YWl6aG56L+b6KGM562b6YCJ77yM6buY6K6k5Y+q5a+5IGBsYWJlbGAg5bGe5oCn5omn6KGM5LiN5Yy65YiG5aSn5bCP5a6aIGBpbmRleE9mYCDov4fmu6RcbiAgICog5b2T5YW25Li65LiA5Liq5Ye95pWw5pe277yM5Lya5o6l5pS2IGBpbnB1dFZhbHVlYCBgb3B0aW9uYCDkuKTkuKrlj4LmlbDvvIzlvZMgYG9wdGlvbmAg56ym5ZCI562b6YCJ5p2h5Lu25pe277yM5bqU6L+U5ZueIGB0cnVlYO+8jOWPjeS5i+WImei/lOWbniBgZmFsc2Vg44CCXG4gICAqL1xuICBmaWx0ZXJPcHRpb24/OiBib29sZWFuIHwgKChpbnB1dDogc3RyaW5nLCBvcHRpb246IFNGU2NoZW1hRW51bSkgPT4gYm9vbGVhbik7XG5cbiAgLyoqXG4gICAqIOaooeW8j++8jOiHquWKqOWujOaIkOW4uOingemCrueuseWQjue8gO+8jOWPr+S7pemHjeaWsOS9v+eUqCBgZW51bWAg5p2l5oyH5a6a5paw5ZCO57yAXG4gICAqL1xuICB0eXBlPzogJ2VtYWlsJztcblxuICAvKipcbiAgICog5Y675oqW5pe26Ze077yM5b2T5a6e5pe25pWw5o2u5rqQ5pe26buY6K6k5pyA5bCRIGA1MGDvvIzljZXkvY3vvJrmr6vnp5JcbiAgICovXG4gIGRlYm91bmNlVGltZT86IG51bWJlcjtcblxuICAvKipcbiAgICog5piv5ZCm6buY6K6k6auY5Lqu56ys5LiA5Liq6YCJ6aG577yM6buY6K6k77yaYHRydWVgXG4gICAqL1xuICBkZWZhdWx0QWN0aXZlRmlyc3RPcHRpb24/OiBib29sZWFuO1xuXG4gIC8qKlxuICAgKiDkvb/nlKjplK7nm5jpgInmi6npgInpobnnmoTml7blgJnmiorpgInkuK3pobnlm57loavliLDovpPlhaXmoYbkuK3vvIzpu5jorqTvvJpgZmFsc2VgXG4gICAqL1xuICBiYWNrZmlsbD86IGJvb2xlYW47XG5cbiAgLyoqXG4gICAqIOiHquWumuS5ieWuveW6puWNleS9jSBgcHhg77yM6buY6K6k77ya6Kem5Y+R5YWD57Sg5a695bqmXG4gICAqL1xuICBueldpZHRoPzogbnVtYmVyO1xuXG4gIC8qKlxuICAgKiDlj5jmm7Tlm57osINcbiAgICovXG4gIGNoYW5nZT86IChpdGVtOiBOekF1dG9jb21wbGV0ZU9wdGlvbkNvbXBvbmVudCwgb3JnRGF0YTogU0ZTY2hlbWFFbnVtKSA9PiB2b2lkO1xufVxuIl19

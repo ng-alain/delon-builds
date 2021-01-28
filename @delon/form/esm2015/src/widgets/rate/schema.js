@@ -1,2 +1,32 @@
-export {};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS9zcmMvd2lkZ2V0cy9yYXRlL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgU0ZVSVNjaGVtYUl0ZW0gfSBmcm9tICcuLi8uLi9zY2hlbWEvdWknO1xuXG5leHBvcnQgaW50ZXJmYWNlIFNGUmF0ZVdpZGdldFNjaGVtYSBleHRlbmRzIFNGVUlTY2hlbWFJdGVtIHtcbiAgLyoqXG4gICAqIOaYr+WQpuWFgeiuuOWGjeasoeeCueWHu+WQjua4hemZpO+8jOm7mOiupO+8mmB0cnVlYFxuICAgKi9cbiAgYWxsb3dDbGVhcj86IGJvb2xlYW47XG5cbiAgLyoqXG4gICAqIOiHquWKqOiOt+WPlueEpueCue+8jOm7mOiupO+8mmBmYWxzZWBcbiAgICovXG4gIGF1dG9Gb2N1cz86IGJvb2xlYW47XG5cbiAgLyoqXG4gICAqIOaPkOmGkuaWh+acrOaooeadv++8jGB7e3ZhbHVlfX1gIOihqOekuuW9k+WJjeWAvO+8iOazqOaEj+aXoOS7u+S9leepuuagvO+8iVxuICAgKi9cbiAgdGV4dD86IHN0cmluZztcblxuICAvKipcbiAgICog6Ieq5a6a5LmJ5q+P6aG555qE5o+Q56S65L+h5oGvXG4gICAqL1xuICB0b29sdGlwcz86IHN0cmluZ1tdO1xufVxuIl19
+/**
+ * @fileoverview added by tsickle
+ * Generated from: src/widgets/rate/schema.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function SFRateWidgetSchema() { }
+if (false) {
+    /**
+     * 是否允许再次点击后清除，默认：`true`
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.allowClear;
+    /**
+     * 自动获取焦点，默认：`false`
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.autoFocus;
+    /**
+     * 提醒文本模板，`{{value}}` 表示当前值（注意无任何空格）
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.text;
+    /**
+     * 自定义每项的提示信息
+     * @type {?|undefined}
+     */
+    SFRateWidgetSchema.prototype.tooltips;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic2NoZW1hLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS9zcmMvd2lkZ2V0cy9yYXRlL3NjaGVtYS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUVBLHdDQW9CQzs7Ozs7O0lBaEJDLHdDQUFxQjs7Ozs7SUFLckIsdUNBQW9COzs7OztJQUtwQixrQ0FBYzs7Ozs7SUFLZCxzQ0FBb0IiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBTRlVJU2NoZW1hSXRlbSB9IGZyb20gJy4uLy4uL3NjaGVtYS91aSc7XG5cbmV4cG9ydCBpbnRlcmZhY2UgU0ZSYXRlV2lkZ2V0U2NoZW1hIGV4dGVuZHMgU0ZVSVNjaGVtYUl0ZW0ge1xuICAvKipcbiAgICog5piv5ZCm5YWB6K645YaN5qyh54K55Ye75ZCO5riF6Zmk77yM6buY6K6k77yaYHRydWVgXG4gICAqL1xuICBhbGxvd0NsZWFyPzogYm9vbGVhbjtcblxuICAvKipcbiAgICog6Ieq5Yqo6I635Y+W54Sm54K577yM6buY6K6k77yaYGZhbHNlYFxuICAgKi9cbiAgYXV0b0ZvY3VzPzogYm9vbGVhbjtcblxuICAvKipcbiAgICog5o+Q6YaS5paH5pys5qih5p2/77yMYHt7dmFsdWV9fWAg6KGo56S65b2T5YmN5YC877yI5rOo5oSP5peg5Lu75L2V56m65qC877yJXG4gICAqL1xuICB0ZXh0Pzogc3RyaW5nO1xuXG4gIC8qKlxuICAgKiDoh6rlrprkuYnmr4/pobnnmoTmj5DnpLrkv6Hmga9cbiAgICovXG4gIHRvb2x0aXBzPzogc3RyaW5nW107XG59XG4iXX0=

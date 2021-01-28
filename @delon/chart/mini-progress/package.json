@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/mini-progress/mini-progress.js",
   "fesm2015": "../fesm2015/mini-progress.js",
   "typings": "mini-progress.d.ts",
+  "metadata": "mini-progress.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/mini-progress"
 }

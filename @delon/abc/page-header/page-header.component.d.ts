@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { AlainConfigService, BooleanInput, NumberInput } from '@delon/util';
-import * as i0 from "@angular/core";
 interface PageHeaderPath {
     title?: string;
     link?: string[];
@@ -65,7 +64,5 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<PageHeaderComponent, [null, null, null, null, { optional: true; }, { optional: true; }, { optional: true; }, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<PageHeaderComponent, "page-header", ["pageHeader"], { "title": "title"; "loading": "loading"; "wide": "wide"; "home": "home"; "homeLink": "homeLink"; "homeI18n": "homeI18n"; "autoBreadcrumb": "autoBreadcrumb"; "autoTitle": "autoTitle"; "syncTitle": "syncTitle"; "fixed": "fixed"; "fixedOffsetTop": "fixedOffsetTop"; "breadcrumb": "breadcrumb"; "recursiveBreadcrumb": "recursiveBreadcrumb"; "logo": "logo"; "action": "action"; "content": "content"; "extra": "extra"; "tab": "tab"; }, {}, never, ["*"]>;
 }
 export {};

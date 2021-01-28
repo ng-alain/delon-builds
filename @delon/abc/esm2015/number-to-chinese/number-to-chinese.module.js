@@ -1,19 +1,20 @@
+/**
+ * @fileoverview added by tsickle
+ * Generated from: number-to-chinese.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NaNumberToChinesePipe } from './number-to-chinese.pipe';
-import * as i0 from "@angular/core";
+/** @type {?} */
 const PIPES = [NaNumberToChinesePipe];
 export class NumberToChineseModule {
 }
-/** @nocollapse */ NumberToChineseModule.ɵmod = i0.ɵɵdefineNgModule({ type: NumberToChineseModule });
-/** @nocollapse */ NumberToChineseModule.ɵinj = i0.ɵɵdefineInjector({ factory: function NumberToChineseModule_Factory(t) { return new (t || NumberToChineseModule)(); }, imports: [[CommonModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(NumberToChineseModule, { declarations: [NaNumberToChinesePipe], imports: [CommonModule], exports: [NaNumberToChinesePipe] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumberToChineseModule, [{
-        type: NgModule,
-        args: [{
+NumberToChineseModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: PIPES,
                 exports: PIPES,
-            }]
-    }], null, null); })();
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibnVtYmVyLXRvLWNoaW5lc2UubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvYWJjL251bWJlci10by1jaGluZXNlL251bWJlci10by1jaGluZXNlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsWUFBWSxFQUFFLE1BQU0saUJBQWlCLENBQUM7QUFDL0MsT0FBTyxFQUFFLFFBQVEsRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUN6QyxPQUFPLEVBQUUscUJBQXFCLEVBQUUsTUFBTSwwQkFBMEIsQ0FBQzs7QUFFakUsTUFBTSxLQUFLLEdBQUcsQ0FBQyxxQkFBcUIsQ0FBQyxDQUFDO0FBT3RDLE1BQU0sT0FBTyxxQkFBcUI7OzRFQUFyQixxQkFBcUI7NElBQXJCLHFCQUFxQixrQkFKdkIsQ0FBQyxZQUFZLENBQUM7d0ZBSVoscUJBQXFCLG1CQVBuQixxQkFBcUIsYUFHeEIsWUFBWSxhQUhULHFCQUFxQjt1RkFPdkIscUJBQXFCO2NBTGpDLFFBQVE7ZUFBQztnQkFDUixPQUFPLEVBQUUsQ0FBQyxZQUFZLENBQUM7Z0JBQ3ZCLFlBQVksRUFBRSxLQUFLO2dCQUNuQixPQUFPLEVBQUUsS0FBSzthQUNmIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tbW9uTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29tbW9uJztcbmltcG9ydCB7IE5nTW9kdWxlIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5pbXBvcnQgeyBOYU51bWJlclRvQ2hpbmVzZVBpcGUgfSBmcm9tICcuL251bWJlci10by1jaGluZXNlLnBpcGUnO1xuXG5jb25zdCBQSVBFUyA9IFtOYU51bWJlclRvQ2hpbmVzZVBpcGVdO1xuXG5ATmdNb2R1bGUoe1xuICBpbXBvcnRzOiBbQ29tbW9uTW9kdWxlXSxcbiAgZGVjbGFyYXRpb25zOiBQSVBFUyxcbiAgZXhwb3J0czogUElQRVMsXG59KVxuZXhwb3J0IGNsYXNzIE51bWJlclRvQ2hpbmVzZU1vZHVsZSB7fVxuIl19
+            },] }
+];
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibnVtYmVyLXRvLWNoaW5lc2UubW9kdWxlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvYWJjL251bWJlci10by1jaGluZXNlL251bWJlci10by1jaGluZXNlLm1vZHVsZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7OztBQUFBLE9BQU8sRUFBRSxZQUFZLEVBQUUsTUFBTSxpQkFBaUIsQ0FBQztBQUMvQyxPQUFPLEVBQUUsUUFBUSxFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQ3pDLE9BQU8sRUFBRSxxQkFBcUIsRUFBRSxNQUFNLDBCQUEwQixDQUFDOztNQUUzRCxLQUFLLEdBQUcsQ0FBQyxxQkFBcUIsQ0FBQztBQU9yQyxNQUFNLE9BQU8scUJBQXFCOzs7WUFMakMsUUFBUSxTQUFDO2dCQUNSLE9BQU8sRUFBRSxDQUFDLFlBQVksQ0FBQztnQkFDdkIsWUFBWSxFQUFFLEtBQUs7Z0JBQ25CLE9BQU8sRUFBRSxLQUFLO2FBQ2YiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21tb25Nb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb21tb24nO1xuaW1wb3J0IHsgTmdNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IE5hTnVtYmVyVG9DaGluZXNlUGlwZSB9IGZyb20gJy4vbnVtYmVyLXRvLWNoaW5lc2UucGlwZSc7XG5cbmNvbnN0IFBJUEVTID0gW05hTnVtYmVyVG9DaGluZXNlUGlwZV07XG5cbkBOZ01vZHVsZSh7XG4gIGltcG9ydHM6IFtDb21tb25Nb2R1bGVdLFxuICBkZWNsYXJhdGlvbnM6IFBJUEVTLFxuICBleHBvcnRzOiBQSVBFUyxcbn0pXG5leHBvcnQgY2xhc3MgTnVtYmVyVG9DaGluZXNlTW9kdWxlIHt9XG4iXX0=

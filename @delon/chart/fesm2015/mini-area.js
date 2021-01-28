@@ -1,10 +1,35 @@
 import { __decorate, __metadata } from 'tslib';
-import * as i0 from '@angular/core';
-import { EventEmitter, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵɵgetInheritedFactory, ɵsetClassMetadata, Component, Input, Output, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
 import { CommonModule } from '@angular/common';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-area.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function G2MiniAreaData() { }
+if (false) {
+    /** @type {?} */
+    G2MiniAreaData.prototype.x;
+    /** @type {?} */
+    G2MiniAreaData.prototype.y;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function G2MiniAreaClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2MiniAreaClickItem.prototype.item;
+    /** @type {?} */
+    G2MiniAreaClickItem.prototype.ev;
+}
 class G2MiniAreaComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -23,9 +48,13 @@ class G2MiniAreaComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
+    /**
+     * @return {?}
+     */
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
-        const chart = (this._chart = new window.G2.Chart({
+        /** @type {?} */
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
@@ -48,6 +77,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
             chart.axis('y', false);
         }
         chart.legend(false);
+        /** @type {?} */
         const tooltipOption = {
             showTitle: false,
             showMarkers: true,
@@ -60,7 +90,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
         };
         if (tooltipType === 'mini') {
             tooltipOption.position = 'top';
-            tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
             tooltipOption.itemTpl = `<li>{value}</li>`;
             tooltipOption.offset = 0;
         }
@@ -68,25 +98,46 @@ class G2MiniAreaComponent extends G2BaseComponent {
         chart
             .area()
             .position('x*y')
-            .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }))
+            .tooltip('x*y', (/**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */
+        (x, y) => ({ name: x, value: y + yTooltipSuffix })))
             .shape('smooth');
         if (line) {
             chart.line().position('x*y').shape('smooth').tooltip(false);
         }
-        chart.on(`plot:click`, (ev) => {
+        chart.on(`plot:click`, (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        (ev) => {
+            /** @type {?} */
             const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
-            this.ngZone.run(() => this.clickItem.emit({ item: records[0]._origin, ev }));
-        });
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            () => this.clickItem.emit({ item: records[0]._origin, ev })));
+        }));
         chart.render();
         this.attachChart();
     }
+    /**
+     * @return {?}
+     */
     attachChart() {
         const { _chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
         if (!_chart || !data || data.length <= 0) {
             return;
         }
+        /** @type {?} */
         const geoms = _chart.geometries;
-        geoms.forEach(g => g.color(color));
+        geoms.forEach((/**
+         * @param {?} g
+         * @return {?}
+         */
+        g => g.color(color)));
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }
@@ -98,8 +149,35 @@ class G2MiniAreaComponent extends G2BaseComponent {
         _chart.render();
     }
 }
-/** @nocollapse */ G2MiniAreaComponent.ɵfac = function G2MiniAreaComponent_Factory(t) { return ɵG2MiniAreaComponent_BaseFactory(t || G2MiniAreaComponent); };
-/** @nocollapse */ G2MiniAreaComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: G2MiniAreaComponent, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: "borderWidth", height: "height", fit: "fit", line: "line", animate: "animate", xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
+G2MiniAreaComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'g2-mini-area',
+                exportAs: 'g2MiniArea',
+                template: ``,
+                host: {
+                    '[style.height.px]': 'height',
+                },
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+G2MiniAreaComponent.propDecorators = {
+    color: [{ type: Input }],
+    borderColor: [{ type: Input }],
+    borderWidth: [{ type: Input }],
+    height: [{ type: Input }],
+    fit: [{ type: Input }],
+    line: [{ type: Input }],
+    animate: [{ type: Input }],
+    xAxis: [{ type: Input }],
+    yAxis: [{ type: Input }],
+    padding: [{ type: Input }],
+    data: [{ type: Input }],
+    yTooltipSuffix: [{ type: Input }],
+    tooltipType: [{ type: Input }],
+    clickItem: [{ type: Output }]
+};
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -120,67 +198,74 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2MiniAreaComponent.prototype, "animate", void 0);
-const ɵG2MiniAreaComponent_BaseFactory = /*@__PURE__*/ ɵɵgetInheritedFactory(G2MiniAreaComponent);
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2MiniAreaComponent, [{
-        type: Component,
-        args: [{
-                selector: 'g2-mini-area',
-                exportAs: 'g2MiniArea',
-                template: ``,
-                host: {
-                    '[style.height.px]': 'height',
-                },
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-            }]
-    }], null, { color: [{
-            type: Input
-        }], borderColor: [{
-            type: Input
-        }], borderWidth: [{
-            type: Input
-        }], height: [{
-            type: Input
-        }], fit: [{
-            type: Input
-        }], line: [{
-            type: Input
-        }], animate: [{
-            type: Input
-        }], xAxis: [{
-            type: Input
-        }], yAxis: [{
-            type: Input
-        }], padding: [{
-            type: Input
-        }], data: [{
-            type: Input
-        }], yTooltipSuffix: [{
-            type: Input
-        }], tooltipType: [{
-            type: Input
-        }], clickItem: [{
-            type: Output
-        }] }); })();
+if (false) {
+    /** @type {?} */
+    G2MiniAreaComponent.ngAcceptInputType_borderWidth;
+    /** @type {?} */
+    G2MiniAreaComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2MiniAreaComponent.ngAcceptInputType_fit;
+    /** @type {?} */
+    G2MiniAreaComponent.ngAcceptInputType_line;
+    /** @type {?} */
+    G2MiniAreaComponent.ngAcceptInputType_animate;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.color;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.borderColor;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.borderWidth;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.height;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.fit;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.line;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.animate;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.xAxis;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.yAxis;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.padding;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.data;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.yTooltipSuffix;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.tooltipType;
+    /** @type {?} */
+    G2MiniAreaComponent.prototype.clickItem;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-area.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [G2MiniAreaComponent];
 class G2MiniAreaModule {
 }
-/** @nocollapse */ G2MiniAreaModule.ɵmod = ɵɵdefineNgModule({ type: G2MiniAreaModule });
-/** @nocollapse */ G2MiniAreaModule.ɵinj = ɵɵdefineInjector({ factory: function G2MiniAreaModule_Factory(t) { return new (t || G2MiniAreaModule)(); }, imports: [[CommonModule, DelonUtilModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(G2MiniAreaModule, { declarations: [G2MiniAreaComponent], imports: [CommonModule, DelonUtilModule], exports: [G2MiniAreaComponent] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2MiniAreaModule, [{
-        type: NgModule,
-        args: [{
+G2MiniAreaModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule, DelonUtilModule],
                 declarations: [...COMPONENTS],
                 exports: [...COMPONENTS],
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mini-area.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };
