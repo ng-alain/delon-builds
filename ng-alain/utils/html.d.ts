@@ -1,7 +1,7 @@
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import { Tree } from '@angular-devkit/schematics';
+import { Project } from './project';
 /** Gets the app index.html file */
-export declare function getIndexHtmlPath(_host: Tree, project: ProjectDefinition): string;
+export declare function getIndexHtmlPath(_host: Tree, project: Project): string;
 /**
  * Parses the index.html file to get the HEAD tag position.
  */
@@ -16,19 +16,19 @@ export declare function getTagInV4(_host: Tree, src: string, tagName: string): {
 /**
  * Get index.html content
  */
-export declare function getIndexHtmlContent(host: Tree, project: ProjectDefinition): {
+export declare function getIndexHtmlContent(host: Tree, project: Project): {
     indexPath: string;
     src: string;
 };
 /**
  * Adds a link to the index.html head tag
  */
-export declare function addHeadLink(host: Tree, project: ProjectDefinition, link: string): void;
+export declare function addHeadLink(host: Tree, project: Project, link: string): void;
 /**
  * Adds a style to the index.html head end tag
  */
-export declare function addHeadStyle(host: Tree, project: ProjectDefinition, style: string): void;
+export declare function addHeadStyle(host: Tree, project: Project, style: string): void;
 /**
  * Adds a html to the index.html body end tag
  */
-export declare function addHtmlToBody(host: Tree, project: ProjectDefinition, html: string): void;
+export declare function addHtmlToBody(host: Tree, project: Project, html: string): void;

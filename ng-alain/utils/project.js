@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProject = exports.getProjectFromWorkspace = exports.getWorkspace = exports.ANGULAR_CLI_WORKSPACE_PATH = void 0;
+const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
-const jsonc_parser_1 = require("jsonc-parser");
 exports.ANGULAR_CLI_WORKSPACE_PATH = '/angular.json';
 /** Gets the Angular CLI workspace config (angular.json) */
 function getWorkspace(host) {
@@ -10,7 +10,7 @@ function getWorkspace(host) {
     if (configBuffer === null) {
         throw new schematics_1.SchematicsException('Could not find angular.json');
     }
-    return jsonc_parser_1.parse(configBuffer.toString());
+    return core_1.parseJson(configBuffer.toString(), core_1.JsonParseMode.Json5);
 }
 exports.getWorkspace = getWorkspace;
 /**

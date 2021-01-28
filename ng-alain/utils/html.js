@@ -2,14 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addHtmlToBody = exports.addHeadStyle = exports.addHeadLink = exports.getIndexHtmlContent = exports.getTagInV4 = exports.getTag = exports.getIndexHtmlPath = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
-const schematics_2 = require("@angular/cdk/schematics");
 const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
 /** Gets the app index.html file */
 function getIndexHtmlPath(_host, project) {
-    const targetOptions = schematics_2.getProjectTargetOptions(project, 'build');
-    if (typeof targetOptions.index === 'string' && targetOptions.index.endsWith('index.html')) {
-        return targetOptions.index;
+    const buildTarget = (project.targets || project.architect).build.options;
+    if (buildTarget.index && buildTarget.index.endsWith('index.html')) {
+        return buildTarget.index;
     }
     throw new schematics_1.SchematicsException('No index.html file was found.');
 }

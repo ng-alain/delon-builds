@@ -1,5 +1,5 @@
 /**
- * [Document](https://ng-alain.com/theme/currency)
+ * @see https://ng-alain.com/theme/currency
  */
 export declare class CNCurrencyPipe {
     private readonly ngCurrencyPipe;
