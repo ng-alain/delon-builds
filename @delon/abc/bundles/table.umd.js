@@ -983,7 +983,7 @@
                 if (item.type === 'yn') {
                     item.yn = Object.assign({ truth: true }, item.yn);
                 }
-                if ((item.type === 'link' && (typeof item.click !== 'function' || typeof item.event !== 'function')) ||
+                if ((item.type === 'link' && typeof (item.click || item.event) !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
                     (item.type === 'tag' && item.tag == null) ||
                     (item.type === 'enum' && item.enum == null)) {
