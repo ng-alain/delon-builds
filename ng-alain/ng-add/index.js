@@ -47,11 +47,11 @@ function isUseCNPM() {
     return res;
 }
 function default_1(options) {
-    return (host) => {
+    return (tree) => {
         if (isUseCNPM()) {
             throw new Error(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
-        const pkg = utils_1.readPackage(host);
+        const pkg = utils_1.readPackage(tree);
         if (pkg.devDependencies['ng-alain']) {
             throw new Error(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
         }

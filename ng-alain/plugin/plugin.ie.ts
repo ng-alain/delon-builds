@@ -2,7 +2,6 @@ import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 import * as colors from 'ansi-colors';
-import { debug } from 'console';
 import {
   addPackage,
   BUILD_TARGET_BUILD,
@@ -10,6 +9,7 @@ import {
   BUILD_TARGET_SERVE,
   BUILD_TARGET_TEST,
   getProject,
+  getProjectFromWorkspace,
   overwriteFile,
   readContent,
   removePackage,
@@ -22,14 +22,14 @@ let project: ProjectDefinition;
 
 function setAngularJson(options: PluginOptions): Rule {
   return updateWorkspace(async workspace => {
-    const p = workspace.projects.get(options.project);
+    const p = getProjectFromWorkspace(workspace, options.project);
     if (options.type === 'add') {
       p.targets.get(BUILD_TARGET_BUILD).configurations.es5 = { tsConfig: './tsconfig-es5.app.json' };
-      p.targets.get(BUILD_TARGET_SERVE).configurations.es5 = { browserTarget: `${options.project}:build:es5` };
+      p.targets.get(BUILD_TARGET_SERVE).configurations.es5 = { browserTarget: `${options.project}:${BUILD_TARGET_BUILD}:es5` };
       p.targets.get(BUILD_TARGET_TEST).configurations = {
         es5: { tsConfig: './tsconfig-es5.app.json' },
       };
-      p.targets.get(BUILD_TARGET_E2E).configurations.es5 = { browserTarget: `${options.project}:build:es5` };
+      p.targets.get(BUILD_TARGET_E2E).configurations.es5 = { browserTarget: `${options.project}:${BUILD_TARGET_BUILD}:es5` };
     } else {
       [BUILD_TARGET_BUILD, BUILD_TARGET_SERVE, BUILD_TARGET_TEST, BUILD_TARGET_E2E]
         .map(key => p.targets.get(key))
@@ -85,9 +85,10 @@ import 'zone.js/dist/zone';`;
 
 function setTsConfig(options: PluginOptions): Rule {
   return (tree: Tree) => {
-    // build
     const buildFilePath = `${options.root}/tsconfig-es5.app.json`;
-    if (tree.exists(buildFilePath)) tree.delete(buildFilePath);
+    if (tree.exists(buildFilePath)) {
+      tree.delete(buildFilePath);
+    }
     if (options.type === 'add') {
       overwriteFile({
         tree,

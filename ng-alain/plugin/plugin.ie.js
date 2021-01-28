@@ -19,14 +19,14 @@ const tsconfig_es5_spec_1 = require("./files/ie/tsconfig-es5.spec");
 let project;
 function setAngularJson(options) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const p = workspace.projects.get(options.project);
+        const p = utils_1.getProjectFromWorkspace(workspace, options.project);
         if (options.type === 'add') {
             p.targets.get(utils_1.BUILD_TARGET_BUILD).configurations.es5 = { tsConfig: './tsconfig-es5.app.json' };
-            p.targets.get(utils_1.BUILD_TARGET_SERVE).configurations.es5 = { browserTarget: `${options.project}:build:es5` };
+            p.targets.get(utils_1.BUILD_TARGET_SERVE).configurations.es5 = { browserTarget: `${options.project}:${utils_1.BUILD_TARGET_BUILD}:es5` };
             p.targets.get(utils_1.BUILD_TARGET_TEST).configurations = {
                 es5: { tsConfig: './tsconfig-es5.app.json' },
             };
-            p.targets.get(utils_1.BUILD_TARGET_E2E).configurations.es5 = { browserTarget: `${options.project}:build:es5` };
+            p.targets.get(utils_1.BUILD_TARGET_E2E).configurations.es5 = { browserTarget: `${options.project}:${utils_1.BUILD_TARGET_BUILD}:es5` };
         }
         else {
             [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_SERVE, utils_1.BUILD_TARGET_TEST, utils_1.BUILD_TARGET_E2E]
@@ -77,10 +77,10 @@ import 'zone.js/dist/zone';`;
 }
 function setTsConfig(options) {
     return (tree) => {
-        // build
         const buildFilePath = `${options.root}/tsconfig-es5.app.json`;
-        if (tree.exists(buildFilePath))
+        if (tree.exists(buildFilePath)) {
             tree.delete(buildFilePath);
+        }
         if (options.type === 'add') {
             utils_1.overwriteFile({
                 tree,

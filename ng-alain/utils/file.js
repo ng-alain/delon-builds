@@ -3,15 +3,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.overwriteIfExists = exports.overwriteFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
-function tryDelFile(host, filePath) {
-    if (host.exists(filePath)) {
-        host.delete(filePath);
+function tryDelFile(tree, filePath) {
+    if (tree.exists(filePath)) {
+        tree.delete(filePath);
     }
 }
 exports.tryDelFile = tryDelFile;
-function tryAddFile(host, filePath, content) {
-    tryDelFile(host, filePath);
-    host.create(filePath, content);
+function tryAddFile(tree, filePath, content) {
+    tryDelFile(tree, filePath);
+    tree.create(filePath, content);
 }
 exports.tryAddFile = tryAddFile;
 function readContent(tree, filePath) {

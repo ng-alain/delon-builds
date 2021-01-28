@@ -9,9 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.BUILD_TARGET_E2E = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.BUILD_TARGET_E2E = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
-const schematics_2 = require("@angular/cdk/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 exports.BUILD_TARGET_BUILD = 'build';
 exports.BUILD_TARGET_TEST = 'test';
@@ -37,16 +36,16 @@ function getProject(tree, projectName) {
         if (!projectName || !workspace.projects.has(projectName)) {
             throw new schematics_1.SchematicsException(`No project named "${projectName}" exists.`);
         }
-        const project = schematics_2.getProjectFromWorkspace(workspace, projectName);
+        const project = getProjectFromWorkspace(workspace, projectName);
         return { project, name: projectName };
     });
 }
 exports.getProject = getProject;
 function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BUILD, exports.BUILD_TARGET_TEST], projectName, clean = false) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const project = schematics_2.getProjectFromWorkspace(workspace, projectName);
+        const project = getProjectFromWorkspace(workspace, projectName);
         types.forEach(buildTarget => {
-            const targetOptions = schematics_2.getProjectTargetOptions(project, buildTarget);
+            const targetOptions = getProjectTarget(project, buildTarget);
             const styles = targetOptions.styles;
             const scripts = targetOptions.scripts;
             for (const item of resources) {
@@ -70,8 +69,8 @@ function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BU
 exports.addAssetsToTarget = addAssetsToTarget;
 function addAllowedCommonJsDependencies(items, projectName) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const project = schematics_2.getProjectFromWorkspace(workspace, projectName);
-        const targetOptions = schematics_2.getProjectTargetOptions(project, exports.BUILD_TARGET_BUILD);
+        const project = getProjectFromWorkspace(workspace, projectName);
+        const targetOptions = getProjectTarget(project, exports.BUILD_TARGET_BUILD);
         let list = targetOptions.allowedCommonJsDependencies;
         if (!Array.isArray(list)) {
             list = [];
@@ -80,7 +79,6 @@ function addAllowedCommonJsDependencies(items, projectName) {
             list = [...list, ...items];
         }
         const result = new Set(...list);
-        // in angular.json
         [
             // 'codesandbox/lib/api/define',
             'hammerjs',
@@ -102,8 +100,8 @@ function addAllowedCommonJsDependencies(items, projectName) {
 exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
 function removeAllowedCommonJsDependencies(key, projectName) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const project = schematics_2.getProjectFromWorkspace(workspace, projectName);
-        const targetOptions = schematics_2.getProjectTargetOptions(project, exports.BUILD_TARGET_BUILD);
+        const project = getProjectFromWorkspace(workspace, projectName);
+        const targetOptions = getProjectTarget(project, exports.BUILD_TARGET_BUILD);
         const list = targetOptions.allowedCommonJsDependencies;
         if (!Array.isArray(list)) {
             return;
@@ -116,4 +114,21 @@ function removeAllowedCommonJsDependencies(key, projectName) {
     }));
 }
 exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
+function getProjectFromWorkspace(workspace, projectName = workspace.extensions.defaultProject) {
+    const project = workspace.projects.get(projectName);
+    if (!project) {
+        throw new schematics_1.SchematicsException(`Could not find project in workspace: ${projectName}`);
+    }
+    return project;
+}
+exports.getProjectFromWorkspace = getProjectFromWorkspace;
+function getProjectTarget(project, buildTarget, type = 'options') {
+    var _a, _b;
+    const options = (_b = (_a = project.targets) === null || _a === void 0 ? void 0 : _a.get(buildTarget)) === null || _b === void 0 ? void 0 : _b[type];
+    if (!options) {
+        throw new schematics_1.SchematicsException(`Cannot determine project target configuration for: ${buildTarget}.${type}.`);
+    }
+    return options;
+}
+exports.getProjectTarget = getProjectTarget;
 //# sourceMappingURL=workspace.js.map

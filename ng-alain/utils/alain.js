@@ -53,7 +53,7 @@ function buildComponentName(schema, _projectPrefix) {
     ret.push(`Component`);
     return core_1.strings.classify(ret.join('-'));
 }
-function resolveSchema(host, project, schema) {
+function resolveSchema(tree, project, schema) {
     // module name
     if (!schema.module) {
         throw new schematics_1.SchematicsException(`Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`);
@@ -70,13 +70,13 @@ function resolveSchema(host, project, schema) {
     if (fs.existsSync(fullPath)) {
         throw new schematics_1.SchematicsException(`The directory (${fullPath}) already exists`);
     }
-    schema.importModulePath = find_module_1.findModuleFromOptions(host, schema);
+    schema.importModulePath = find_module_1.findModuleFromOptions(tree, schema);
     if (!schema._filesPath) {
         // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
         if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName)) {
             const overrideDir = '/' + [project.root, `_cli-tpl/_${schema.schematicName}`].filter(i => !!i).join('/');
             const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts.template`;
-            if (host.exists(overridePath)) {
+            if (tree.exists(overridePath)) {
                 // 所在目录与命令目录同属一个目录结构，因此无须特殊处理
                 schema._filesPath = path.relative(__dirname, process.cwd()) + overrideDir;
             }
@@ -93,25 +93,25 @@ function resolveSchema(host, project, schema) {
     validation_1.validateName(schema.name);
     validation_1.validateHtmlSelector(schema.selector);
 }
-function addImportToModule(host, filePath, symbolName, fileName) {
-    const source = ast_1.getSourceFile(host, filePath);
+function addImportToModule(tree, filePath, symbolName, fileName) {
+    const source = ast_1.getSourceFile(tree, filePath);
     const change = ast_utils_1.insertImport(source, filePath, symbolName, fileName);
-    const declarationRecorder = host.beginUpdate(filePath);
+    const declarationRecorder = tree.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
-    host.commitUpdate(declarationRecorder);
+    tree.commitUpdate(declarationRecorder);
 }
 exports.addImportToModule = addImportToModule;
-function addValueToVariable(host, filePath, variableName, text, needWrap = true) {
-    const source = ast_1.getSourceFile(host, filePath);
+function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
+    const source = ast_1.getSourceFile(tree, filePath);
     const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path '${filePath}'.`);
     }
     const arr = node.parent.initializer;
     const change = new change_1.InsertChange(filePath, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}${needWrap ? '\n  ' : ''}${text}`);
-    const declarationRecorder = host.beginUpdate(filePath);
+    const declarationRecorder = tree.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
-    host.commitUpdate(declarationRecorder);
+    tree.commitUpdate(declarationRecorder);
 }
 exports.addValueToVariable = addValueToVariable;
 function getRelativePath(filePath, schema) {
@@ -119,20 +119,20 @@ function getRelativePath(filePath, schema) {
     return find_module_1.buildRelativePath(filePath, importPath);
 }
 function addDeclaration(schema) {
-    return (host) => {
+    return (tree) => {
         if (schema.skipImport || !schema.module) {
-            return host;
+            return tree;
         }
         // imports
-        addImportToModule(host, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema));
-        addValueToVariable(host, schema.importModulePath, 'COMPONENTS', schema.componentName);
+        addImportToModule(tree, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema));
+        addValueToVariable(tree, schema.importModulePath, 'COMPONENTS', schema.componentName);
         // component
         if (schema.modal !== true) {
             // routing
-            addImportToModule(host, schema.routerModulePath, schema.componentName, getRelativePath(schema.routerModulePath, schema));
-            addValueToVariable(host, schema.routerModulePath, 'routes', `{ path: '${schema.name}', component: ${schema.componentName} }`);
+            addImportToModule(tree, schema.routerModulePath, schema.componentName, getRelativePath(schema.routerModulePath, schema));
+            addValueToVariable(tree, schema.routerModulePath, 'routes', `{ path: '${schema.name}', component: ${schema.componentName} }`);
         }
-        return host;
+        return tree;
     };
 }
 function buildAlain(schema) {

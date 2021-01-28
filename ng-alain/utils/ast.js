@@ -6,8 +6,8 @@ const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const change_1 = require("@schematics/angular/utility/change");
 const ts = require("typescript");
 /** Reads file given path and returns TypeScript source file. */
-function getSourceFile(host, path) {
-    const buffer = host.read(path);
+function getSourceFile(tree, path) {
+    const buffer = tree.read(path);
     if (!buffer) {
         throw new schematics_1.SchematicsException(`Could not find file for path: ${path}`);
     }
@@ -15,10 +15,10 @@ function getSourceFile(host, path) {
     return ts.createSourceFile(path, content, ts.ScriptTarget.Latest, true);
 }
 exports.getSourceFile = getSourceFile;
-function commitChanges(host, src, changes) {
+function commitChanges(tree, src, changes) {
     if (!changes || changes.length <= 0)
         return;
-    const recorder = host.beginUpdate(src);
+    const recorder = tree.beginUpdate(src);
     changes.forEach(change => {
         if (change instanceof change_1.InsertChange) {
             recorder.insertLeft(change.pos, change.toAdd);
@@ -40,11 +40,11 @@ function commitChanges(host, src, changes) {
             recorder.insertLeft(pos, newText);
         }
     });
-    host.commitUpdate(recorder);
+    tree.commitUpdate(recorder);
 }
 exports.commitChanges = commitChanges;
-function updateComponentMetadata(host, src, callback, propertyName) {
-    const source = getSourceFile(host, src);
+function updateComponentMetadata(tree, src, callback, propertyName) {
+    const source = getSourceFile(tree, src);
     const nodes = ast_utils_1.getDecoratorMetadata(source, 'Component', '@angular/core');
     if (nodes.length === 0)
         return;
@@ -59,7 +59,7 @@ function updateComponentMetadata(host, src, callback, propertyName) {
         changes = callback(directiveMetadata);
     }
     if (changes && changes.length > 0) {
-        commitChanges(host, src, changes);
+        commitChanges(tree, src, changes);
     }
 }
 exports.updateComponentMetadata = updateComponentMetadata;

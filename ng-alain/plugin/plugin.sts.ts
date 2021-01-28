@@ -3,7 +3,7 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { addPackage, removePackage } from '../utils';
 import { PluginOptions } from './interface';
 
-function fixPackage(options: PluginOptions): (host: Tree) => void {
+function fixPackage(options: PluginOptions): Rule {
   return (tree: Tree) => {
     (options.type === 'add' ? addPackage : removePackage)(tree, ['ng-alain-sts@^0.0.1'], 'devDependencies');
   };

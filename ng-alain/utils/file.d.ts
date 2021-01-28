@@ -1,6 +1,6 @@
 import { Rule, Tree } from '@angular-devkit/schematics';
-export declare function tryDelFile(host: Tree, filePath: string): void;
-export declare function tryAddFile(host: Tree, filePath: string, content: string): void;
+export declare function tryDelFile(tree: Tree, filePath: string): void;
+export declare function tryAddFile(tree: Tree, filePath: string, content: string): void;
 export declare function readContent(tree: Tree, filePath: string): string;
 export interface OverWriteFileOptions {
     tree: Tree;

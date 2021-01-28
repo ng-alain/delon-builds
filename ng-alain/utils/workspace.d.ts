@@ -1,4 +1,5 @@
-import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
+import { JsonValue } from '@angular-devkit/core';
+import { ProjectDefinition, WorkspaceDefinition } from '@angular-devkit/core/src/workspace';
 import { Rule, Tree } from '@angular-devkit/schematics';
 export declare const BUILD_TARGET_BUILD = "build";
 export declare const BUILD_TARGET_TEST = "test";
@@ -14,3 +15,5 @@ export declare function addAssetsToTarget(resources: Array<{
 }>, behavior: 'add' | 'delete', types?: string[], projectName?: string, clean?: boolean): Rule;
 export declare function addAllowedCommonJsDependencies(items: string[], projectName?: string): Rule;
 export declare function removeAllowedCommonJsDependencies(key: string, projectName?: string): Rule;
+export declare function getProjectFromWorkspace(workspace: WorkspaceDefinition, projectName?: string): ProjectDefinition;
+export declare function getProjectTarget(project: ProjectDefinition, buildTarget: string, type?: 'options' | 'configurations'): Record<string, JsonValue | undefined>;

@@ -5,7 +5,7 @@ export declare function getIndexHtmlPath(_host: Tree, project: ProjectDefinition
 /**
  * Parses the index.html file to get the HEAD tag position.
  */
-export declare function getTag(host: Tree, src: string, tagName: string): {
+export declare function getTag(tree: Tree, src: string, tagName: string): {
     startOffset: any;
     endOffset: any;
 };
@@ -16,19 +16,19 @@ export declare function getTagInV4(_host: Tree, src: string, tagName: string): {
 /**
  * Get index.html content
  */
-export declare function getIndexHtmlContent(host: Tree, project: ProjectDefinition): {
+export declare function getIndexHtmlContent(tree: Tree, project: ProjectDefinition): {
     indexPath: string;
     src: string;
 };
 /**
  * Adds a link to the index.html head tag
  */
-export declare function addHeadLink(host: Tree, project: ProjectDefinition, link: string): void;
+export declare function addHeadLink(tree: Tree, project: ProjectDefinition, link: string): void;
 /**
  * Adds a style to the index.html head end tag
  */
-export declare function addHeadStyle(host: Tree, project: ProjectDefinition, style: string): void;
+export declare function addHeadStyle(tree: Tree, project: ProjectDefinition, style: string): void;
 /**
  * Adds a html to the index.html body end tag
  */
-export declare function addHtmlToBody(host: Tree, project: ProjectDefinition, html: string): void;
+export declare function addHtmlToBody(tree: Tree, project: ProjectDefinition, html: string): void;

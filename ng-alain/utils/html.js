@@ -2,12 +2,12 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addHtmlToBody = exports.addHeadStyle = exports.addHeadLink = exports.getIndexHtmlContent = exports.getTagInV4 = exports.getTag = exports.getIndexHtmlPath = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
-const schematics_2 = require("@angular/cdk/schematics");
 const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
+const workspace_1 = require("./workspace");
 /** Gets the app index.html file */
 function getIndexHtmlPath(_host, project) {
-    const targetOptions = schematics_2.getProjectTargetOptions(project, 'build');
+    const targetOptions = workspace_1.getProjectTarget(project, workspace_1.BUILD_TARGET_BUILD);
     if (typeof targetOptions.index === 'string' && targetOptions.index.endsWith('index.html')) {
         return targetOptions.index;
     }
@@ -17,9 +17,9 @@ exports.getIndexHtmlPath = getIndexHtmlPath;
 /**
  * Parses the index.html file to get the HEAD tag position.
  */
-function getTag(host, src, tagName) {
+function getTag(tree, src, tagName) {
     if (parse5.treeAdapters) {
-        return getTagInV4(host, src, tagName);
+        return getTagInV4(tree, src, tagName);
     }
     const document = parse5.parse(src, {
         sourceCodeLocationInfo: true,
@@ -79,9 +79,9 @@ exports.getTagInV4 = getTagInV4;
 /**
  * Get index.html content
  */
-function getIndexHtmlContent(host, project) {
-    const indexPath = getIndexHtmlPath(host, project);
-    const buffer = host.read(indexPath);
+function getIndexHtmlContent(tree, project) {
+    const indexPath = getIndexHtmlPath(tree, project);
+    const buffer = tree.read(indexPath);
     if (!buffer) {
         throw new schematics_1.SchematicsException(`Could not find file for path '${indexPath}'`);
     }
@@ -94,42 +94,42 @@ exports.getIndexHtmlContent = getIndexHtmlContent;
 /**
  * Adds a link to the index.html head tag
  */
-function addHeadLink(host, project, link) {
-    const { indexPath, src } = getIndexHtmlContent(host, project);
+function addHeadLink(tree, project, link) {
+    const { indexPath, src } = getIndexHtmlContent(tree, project);
     if (src.indexOf(link) === -1) {
-        const node = getTag(host, src, 'head');
+        const node = getTag(tree, src, 'head');
         const insertion = new change_1.InsertChange(indexPath, node.startOffset, link);
-        const recorder = host.beginUpdate(indexPath);
+        const recorder = tree.beginUpdate(indexPath);
         recorder.insertLeft(insertion.pos, insertion.toAdd);
-        host.commitUpdate(recorder);
+        tree.commitUpdate(recorder);
     }
 }
 exports.addHeadLink = addHeadLink;
 /**
  * Adds a style to the index.html head end tag
  */
-function addHeadStyle(host, project, style) {
-    const { indexPath, src } = getIndexHtmlContent(host, project);
+function addHeadStyle(tree, project, style) {
+    const { indexPath, src } = getIndexHtmlContent(tree, project);
     if (src.indexOf(style) === -1) {
-        const node = getTag(host, src, 'head');
+        const node = getTag(tree, src, 'head');
         const insertion = new change_1.InsertChange(indexPath, node.endOffset, style);
-        const recorder = host.beginUpdate(indexPath);
+        const recorder = tree.beginUpdate(indexPath);
         recorder.insertLeft(insertion.pos, insertion.toAdd);
-        host.commitUpdate(recorder);
+        tree.commitUpdate(recorder);
     }
 }
 exports.addHeadStyle = addHeadStyle;
 /**
  * Adds a html to the index.html body end tag
  */
-function addHtmlToBody(host, project, html) {
-    const { indexPath, src } = getIndexHtmlContent(host, project);
+function addHtmlToBody(tree, project, html) {
+    const { indexPath, src } = getIndexHtmlContent(tree, project);
     if (src.indexOf(html) === -1) {
-        const node = getTag(host, src, 'body');
+        const node = getTag(tree, src, 'body');
         const insertion = new change_1.InsertChange(indexPath, node.endOffset, html);
-        const recorder = host.beginUpdate(indexPath);
+        const recorder = tree.beginUpdate(indexPath);
         recorder.insertLeft(insertion.pos, insertion.toAdd);
-        host.commitUpdate(recorder);
+        tree.commitUpdate(recorder);
     }
 }
 exports.addHtmlToBody = addHtmlToBody;

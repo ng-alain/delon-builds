@@ -14,19 +14,19 @@ const schematics_1 = require("@angular-devkit/schematics");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
 function pluginDefaultLanguage(options) {
-    return (host) => __awaiter(this, void 0, void 0, function* () {
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
         if (options.type !== 'add') {
             throw new schematics_1.SchematicsException(`Can't be specified the "type" parameter`);
         }
         if (options.defaultLanguage == null) {
             throw new schematics_1.SchematicsException(`Must be specified the "defaultLanguage" parameter`);
         }
-        const project = (yield utils_1.getProject(host, options.project)).project;
+        const project = (yield utils_1.getProject(tree, options.project)).project;
         const modulePath = `${project.sourceRoot}/app/app.module.ts`;
-        if (!host.exists(modulePath)) {
+        if (!tree.exists(modulePath)) {
             throw new schematics_1.SchematicsException(`AppModule file (${modulePath}) not found`);
         }
-        let content = host.get(modulePath).content.toString('UTF-8');
+        let content = tree.get(modulePath).content.toString('UTF-8');
         const start = content.indexOf(`#region default language`);
         if (start === -1) {
             console.warn(`[#region default language] area not found`);
@@ -51,7 +51,7 @@ function pluginDefaultLanguage(options) {
         content = content.replace(/NZ_I18N, ([^ ]+)/, `NZ_I18N, ${targetLang.zorro}`);
         // delon
         content = content.replace(/DELON_LOCALE, ([^ ]+)/, `DELON_LOCALE, ${targetLang.zorro}`);
-        host.overwrite(modulePath, content);
+        tree.overwrite(modulePath, content);
     });
 }
 exports.pluginDefaultLanguage = pluginDefaultLanguage;

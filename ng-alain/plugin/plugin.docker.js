@@ -2,10 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginDocker = void 0;
 const utils_1 = require("../utils");
-function setIgnore(host, options) {
+function setIgnore(tree, options) {
     const filePath = `${options.root}/.dockerignore`;
     if (options.type === 'add') {
-        utils_1.tryAddFile(host, filePath, `node_modules
+        utils_1.tryAddFile(tree, filePath, `node_modules
 npm-debug.log
 Dockerfile*
 docker-compose*
@@ -17,13 +17,13 @@ LICENSE
 .vscode`);
     }
     else {
-        utils_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
-function setCompose(host, options) {
+function setCompose(tree, options) {
     const filePath = `${options.root}/docker-compose.yml`;
     if (options.type === 'add') {
-        utils_1.tryAddFile(host, filePath, `version: '2.1'
+        utils_1.tryAddFile(tree, filePath, `version: '2.1'
 
 services:
   ${options.name}:
@@ -36,13 +36,13 @@ services:
 `);
     }
     else {
-        utils_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
-function setDockerfile(host, options) {
+function setDockerfile(tree, options) {
     const filePath = `${options.root}/Dockerfile`;
     if (options.type === 'add') {
-        utils_1.tryAddFile(host, filePath, `# STEP 1: Build
+        utils_1.tryAddFile(tree, filePath, `# STEP 1: Build
 FROM node:10 as builder
 
 LABEL authors="cipchk <cipchk@qq.com>"
@@ -72,13 +72,13 @@ CMD [ "nginx", "-g", "daemon off;"]
 `);
     }
     else {
-        utils_1.tryDelFile(host, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
-function setNginx(host, options) {
+function setNginx(tree, options) {
     const filePath = `${options.root}/_nginx/default.conf`;
-    if (options.type === 'add' && !host.exists(filePath)) {
-        host.create(filePath, `server {
+    if (options.type === 'add' && !tree.exists(filePath)) {
+        tree.create(filePath, `server {
   listen       80;
   # listen 443;
   # ssl on;
@@ -109,15 +109,15 @@ function setNginx(host, options) {
     }
 }
 function pluginDocker(options) {
-    return (host) => {
+    return (tree) => {
         // 1. ignore file
-        setIgnore(host, options);
+        setIgnore(tree, options);
         // 2. docker-compose
-        setCompose(host, options);
+        setCompose(tree, options);
         // 3. Dockerfile
-        setDockerfile(host, options);
+        setDockerfile(tree, options);
         // 4. nginx config
-        setNginx(host, options);
+        setNginx(tree, options);
     };
 }
 exports.pluginDocker = pluginDocker;

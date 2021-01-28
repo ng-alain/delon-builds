@@ -27,8 +27,8 @@ function installPackages() {
     };
 }
 function default_1(options) {
-    return (host) => __awaiter(this, void 0, void 0, function* () {
-        const res = yield utils_1.getProject(host, options.project);
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
+        const res = yield utils_1.getProject(tree, options.project);
         const project = res.project;
         const pluginOptions = {
             type: options.type,

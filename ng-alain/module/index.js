@@ -18,12 +18,12 @@ const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const ts = require("typescript");
 const utils_1 = require("../utils");
 function addDeclarationToNgModule(options) {
-    return (host) => {
+    return (tree) => {
         if (!options.module) {
-            return host;
+            return tree;
         }
         const modulePath = core_1.normalize('/' + options.module);
-        const text = host.read(modulePath);
+        const text = tree.read(modulePath);
         if (text === null) {
             throw new schematics_1.SchematicsException(`File ${modulePath} does not exist.`);
         }
@@ -33,54 +33,54 @@ function addDeclarationToNgModule(options) {
         const relativeDir = core_1.relative(core_1.dirname(modulePath), core_1.dirname(importModulePath));
         const relativePath = `${relativeDir.startsWith('.') ? relativeDir : './' + relativeDir}/${core_1.basename(importModulePath)}`;
         const changes = ast_utils_1.addImportToModule(source, modulePath, core_1.strings.classify(`${options.name}Module`), relativePath);
-        const recorder = host.beginUpdate(modulePath);
+        const recorder = tree.beginUpdate(modulePath);
         for (const change of changes) {
             if (change instanceof change_1.InsertChange) {
                 recorder.insertLeft(change.pos, change.toAdd);
             }
         }
-        host.commitUpdate(recorder);
-        return host;
+        tree.commitUpdate(recorder);
+        return tree;
     };
 }
 function addRoutingModuleToTop(options) {
-    return (host) => {
+    return (tree) => {
         const modulePath = core_1.normalize(`${options.path}/routes-routing.module.ts`);
-        if (!host.exists(modulePath)) {
-            return host;
+        if (!tree.exists(modulePath)) {
+            return tree;
         }
-        const sourceText = host.read(modulePath).toString('utf-8');
+        const sourceText = tree.read(modulePath).toString('utf-8');
         const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
         const routesNode = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, 'routes');
         if (routesNode == null || routesNode.parent == null) {
-            return host;
+            return tree;
         }
         const parentNode = routesNode.parent;
         if (parentNode.initializer.kind !== ts.SyntaxKind.ArrayLiteralExpression || parentNode.initializer.getChildCount() === 0) {
-            return host;
+            return tree;
         }
         const childrenNode = ast_utils_1.findNode(parentNode.initializer, ts.SyntaxKind.Identifier, 'children');
         if (childrenNode == null || childrenNode.parent == null) {
-            return host;
+            return tree;
         }
-        const recorder = host.beginUpdate(modulePath);
+        const recorder = tree.beginUpdate(modulePath);
         const moduleName = core_1.strings.classify(`${options.name}Module`);
         const code = `{ path: '${options.name}', loadChildren: () => import('./${options.name}/${options.name}.module').then((m) => m.${moduleName}) },`;
         let pos = childrenNode.parent.end;
         // Insert it just before the `]`.
         recorder.insertRight(--pos, code);
-        host.commitUpdate(recorder);
-        return host;
+        tree.commitUpdate(recorder);
+        return tree;
     };
 }
 function default_1(schema) {
-    return (host) => __awaiter(this, void 0, void 0, function* () {
-        const project = (yield utils_1.getProject(host, schema.project)).project;
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
+        const project = (yield utils_1.getProject(tree, schema.project)).project;
         if (schema.path === undefined) {
             schema.path = `/${project.sourceRoot}/app/routes`;
         }
         if (schema.module) {
-            schema.module = find_module_1.findModuleFromOptions(host, schema);
+            schema.module = find_module_1.findModuleFromOptions(tree, schema);
         }
         const parsedPath = parse_name_1.parseName(schema.path, schema.name);
         schema.name = parsedPath.name;
