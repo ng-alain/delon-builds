@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
@@ -7,7 +16,7 @@ const change_1 = require("@schematics/angular/utility/change");
 const find_module_1 = require("@schematics/angular/utility/find-module");
 const parse_name_1 = require("@schematics/angular/utility/parse-name");
 const ts = require("typescript");
-const project_1 = require("../utils/project");
+const utils_1 = require("../utils");
 function addDeclarationToNgModule(options) {
     return (host) => {
         if (!options.module) {
@@ -65,15 +74,10 @@ function addRoutingModuleToTop(options) {
     };
 }
 function default_1(schema) {
-    return (host, context) => {
-        const workspace = project_1.getWorkspace(host);
-        if (!schema.project) {
-            throw new schematics_1.SchematicsException('Option (project) is required.');
-        }
-        const project = workspace.projects[schema.project];
+    return (host) => __awaiter(this, void 0, void 0, function* () {
+        const project = (yield utils_1.getProject(host, schema.project)).project;
         if (schema.path === undefined) {
-            const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-            schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
+            schema.path = `/${project.sourceRoot}/app/routes`;
         }
         if (schema.module) {
             schema.module = find_module_1.findModuleFromOptions(host, schema);
@@ -89,7 +93,7 @@ function default_1(schema) {
             schematics_1.move(parsedPath.path),
         ]);
         return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))]);
-    };
+    });
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

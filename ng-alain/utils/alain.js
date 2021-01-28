@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = void 0;
 const core_1 = require("@angular-devkit/core");
@@ -12,7 +21,7 @@ const fs = require("fs");
 const path = require("path");
 const ts = require("typescript");
 const ast_1 = require("./ast");
-const project_1 = require("./project");
+const workspace_1 = require("./workspace");
 function buildSelector(schema, projectPrefix) {
     const ret = [];
     if (!schema.withoutPrefix) {
@@ -51,8 +60,7 @@ function resolveSchema(host, project, schema) {
     }
     // path
     if (schema.path === undefined) {
-        const projectDirName = project.projectType === 'application' ? 'app' : 'lib';
-        schema.path = `/${project.sourceRoot}/${projectDirName}/routes`;
+        schema.path = `/${project.sourceRoot}/app/routes`;
     }
     schema.path += `/${schema.module}`;
     const parsedPath = parse_name_1.parseName(schema.path, schema.name);
@@ -117,12 +125,9 @@ function addDeclaration(schema) {
         }
         // imports
         addImportToModule(host, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema));
+        addValueToVariable(host, schema.importModulePath, 'COMPONENTS', schema.componentName);
         // component
-        if (schema.modal === true) {
-            addValueToVariable(host, schema.importModulePath, 'COMPONENTS_NOROUNT', schema.componentName);
-        }
-        else {
-            addValueToVariable(host, schema.importModulePath, 'COMPONENTS', schema.componentName);
+        if (schema.modal !== true) {
             // routing
             addImportToModule(host, schema.routerModulePath, schema.componentName, getRelativePath(schema.routerModulePath, schema));
             addValueToVariable(host, schema.routerModulePath, 'routes', `{ path: '${schema.name}', component: ${schema.componentName} }`);
@@ -131,9 +136,13 @@ function addDeclaration(schema) {
     };
 }
 function buildAlain(schema) {
-    return (host, context) => {
-        const project = project_1.getProject(host, schema.project);
-        resolveSchema(host, project, schema);
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
+        const res = yield workspace_1.getProject(tree, schema.project);
+        if (schema.project && res.name !== schema.project) {
+            throw new Error(`The specified project does not match '${schema.project}', current: ${res.name}`);
+        }
+        const project = res.project;
+        resolveSchema(tree, project, schema);
         schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;
@@ -146,7 +155,7 @@ function buildAlain(schema) {
             schematics_1.move(null, schema.path + '/'),
         ]);
         return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))]);
-    };
+    });
 }
 exports.buildAlain = buildAlain;
 //# sourceMappingURL=alain.js.map

@@ -1,8 +1,17 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
-const project_1 = require("../utils/project");
+const utils_1 = require("../utils");
 const plugin_asdf_1 = require("./plugin.asdf");
 const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
@@ -18,11 +27,12 @@ function installPackages() {
     };
 }
 function default_1(options) {
-    return (host) => {
-        const project = project_1.getProject(host, options.project);
+    return (host) => __awaiter(this, void 0, void 0, function* () {
+        const res = yield utils_1.getProject(host, options.project);
+        const project = res.project;
         const pluginOptions = {
             type: options.type,
-            name: project.name,
+            name: res.name,
             projectPrefix: project.prefix,
             root: project.root,
             sourceRoot: project.sourceRoot,
@@ -61,7 +71,7 @@ function default_1(options) {
                 throw new schematics_1.SchematicsException(`Could not find plugin name: ${options.name}`);
         }
         return schematics_1.chain(rules);
-    };
+    });
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

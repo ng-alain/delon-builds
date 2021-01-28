@@ -1,10 +1,18 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginRTL = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const utils_1 = require("../utils");
-const project_1 = require("../utils/project");
 let project;
 function fixImport() {
     return (host) => {
@@ -31,13 +39,13 @@ function fixImport() {
     };
 }
 function pluginRTL(options) {
-    return (host) => {
+    return (host) => __awaiter(this, void 0, void 0, function* () {
         if (options.type !== 'add') {
             throw new schematics_1.SchematicsException(`Sorry, the plug-in does not support hot swap, if you need to remove it, please handle it manually`);
         }
-        project = project_1.getProject(host, options.project);
+        project = (yield utils_1.getProject(host, options.project)).project;
         return schematics_1.chain([schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/rtl'), [schematics_1.move(`${project.sourceRoot}/app`), utils_1.overwriteIfExists(host)])), fixImport()]);
-    };
+    });
 }
 exports.pluginRTL = pluginRTL;
 //# sourceMappingURL=plugin.rtl.js.map

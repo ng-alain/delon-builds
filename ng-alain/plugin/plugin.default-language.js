@@ -1,18 +1,27 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginDefaultLanguage = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const lang_config_1 = require("../core/lang.config");
-const project_1 = require("../utils/project");
+const utils_1 = require("../utils");
 function pluginDefaultLanguage(options) {
-    return (host, context) => {
+    return (host) => __awaiter(this, void 0, void 0, function* () {
         if (options.type !== 'add') {
             throw new schematics_1.SchematicsException(`Can't be specified the "type" parameter`);
         }
         if (options.defaultLanguage == null) {
             throw new schematics_1.SchematicsException(`Must be specified the "defaultLanguage" parameter`);
         }
-        const project = project_1.getProject(host, options.project);
+        const project = (yield utils_1.getProject(host, options.project)).project;
         const modulePath = `${project.sourceRoot}/app/app.module.ts`;
         if (!host.exists(modulePath)) {
             throw new schematics_1.SchematicsException(`AppModule file (${modulePath}) not found`);
@@ -43,7 +52,7 @@ function pluginDefaultLanguage(options) {
         // delon
         content = content.replace(/DELON_LOCALE, ([^ ]+)/, `DELON_LOCALE, ${targetLang.zorro}`);
         host.overwrite(modulePath, content);
-    };
+    });
 }
 exports.pluginDefaultLanguage = pluginDefaultLanguage;
 //# sourceMappingURL=plugin.default-language.js.map
