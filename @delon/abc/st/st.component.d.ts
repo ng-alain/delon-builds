@@ -91,7 +91,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _resizable;
     set resizable(val: STResizable | boolean);
     header: string | TemplateRef<void>;
-    showHeader: boolean;
     footer: string | TemplateRef<void>;
     bodyHeader: TemplateRef<STStatisticalResults>;
     body: TemplateRef<STStatisticalResults>;
@@ -165,7 +164,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     reset(extraParams?: {}, options?: STLoadOptions): this;
     private _toTop;
     _change(type: 'pi' | 'ps', options?: STLoadOptions): void;
-    _click(e: Event, item: STData, col: STColumn): boolean;
+    _click(e: Event, item: STData, column: STColumn, index: number): boolean;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     _expandChange(item: STData, expand: boolean): void;
