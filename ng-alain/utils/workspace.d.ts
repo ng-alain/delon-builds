@@ -3,6 +3,7 @@ import { Rule, Tree } from '@angular-devkit/schematics';
 export declare const BUILD_TARGET_BUILD = "build";
 export declare const BUILD_TARGET_TEST = "test";
 export declare const BUILD_TARGET_SERVE = "serve";
+export declare const BUILD_TARGET_E2E = "e2e";
 export declare function getProject(tree: Tree, projectName?: string): Promise<{
     project: ProjectDefinition;
     name: string;

@@ -9,13 +9,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.BUILD_TARGET_E2E = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const schematics_2 = require("@angular/cdk/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 exports.BUILD_TARGET_BUILD = 'build';
 exports.BUILD_TARGET_TEST = 'test';
 exports.BUILD_TARGET_SERVE = 'serve';
+exports.BUILD_TARGET_E2E = 'e2e';
 function getProjectName(workspace, name) {
     if (name && workspace.projects.has(name)) {
         return name;

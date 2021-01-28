@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.removePackage = exports.addPackage = exports.writePackage = exports.readPackage = exports.PACCKAGE_PATH = void 0;
-const _json_1 = require("./_json");
+const json_1 = require("./json");
 exports.PACCKAGE_PATH = 'package.json';
 function readPackage(tree, type) {
-    return _json_1.readJSON(tree, exports.PACCKAGE_PATH, type);
+    return json_1.readJSON(tree, exports.PACCKAGE_PATH, type);
 }
 exports.readPackage = readPackage;
 function writePackage(tree, json) {
-    return _json_1.writeJSON(tree, exports.PACCKAGE_PATH, json);
+    return json_1.writeJSON(tree, exports.PACCKAGE_PATH, json);
 }
 exports.writePackage = writePackage;
 /**
