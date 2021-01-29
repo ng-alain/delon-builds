@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Injectable, ɵɵdefineInjectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import { ActivationStart, ActivationEnd, Router } from '@angular/router';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
 
@@ -362,9 +362,9 @@ class FullContentModule {
 }
 FullContentModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

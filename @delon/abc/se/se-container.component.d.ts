@@ -1,6 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { REP_TYPE } from '@delon/theme';
-import { AlainConfigService, NumberInput } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { NumberInput } from '@delon/util/other';
 import { Observable } from 'rxjs';
 import { SEErrorRefresh, SELayout } from './se.types';
 export declare class SEContainerComponent {

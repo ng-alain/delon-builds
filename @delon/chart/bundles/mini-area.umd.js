@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common));
-}(this, (function (exports, core, core$1, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.delon.chart.core, global.other, global.ng.common));
+}(this, (function (exports, core, core$1, other, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -491,23 +491,23 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "borderWidth", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "height", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "fit", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "line", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "animate", void 0);
     if (false) {
@@ -551,6 +551,11 @@
         G2MiniAreaComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: mini-area.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2MiniAreaComponent];
     var G2MiniAreaModule = /** @class */ (function () {
@@ -560,9 +565,9 @@
     }());
     G2MiniAreaModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

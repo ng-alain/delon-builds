@@ -1,4 +1,4 @@
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
 import { ACLCanType, ACLType } from './acl.type';
 /**

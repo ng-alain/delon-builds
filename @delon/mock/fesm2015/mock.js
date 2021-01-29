@@ -1,6 +1,7 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, Injector, NgModule } from '@angular/core';
-import { AlainConfigService, deepCopy } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { deepCopy } from '@delon/util/other';
 import { throwError, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 

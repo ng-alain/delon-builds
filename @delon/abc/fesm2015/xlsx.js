@@ -1,7 +1,8 @@
 import { __awaiter } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
 import { CommonModule } from '@angular/common';
@@ -357,9 +358,9 @@ class XlsxModule {
 }
 XlsxModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

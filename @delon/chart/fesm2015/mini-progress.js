@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { toNumber, InputNumber, DelonUtilModule } from '@delon/util';
+import { toNumber, InputNumber } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
@@ -106,9 +106,9 @@ class G2MiniProgressModule {
 }
 G2MiniProgressModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, DelonLocaleModule, NzToolTipModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, DelonLocaleModule, NzToolTipModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

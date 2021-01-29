@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, platformBrowser, acl, theme, util, common, http, rxjs, operators, xlsx, router, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.config, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, xlsx, router, config, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -785,7 +785,7 @@
                 return;
             if (item.widget == null || !this.stWidgetRegistry.has(item.widget.type)) {
                 delete item.type;
-                util.warn("st: No widget for type \"" + ((_a = item.widget) === null || _a === void 0 ? void 0 : _a.type) + "\"");
+                other.warn("st: No widget for type \"" + ((_a = item.widget) === null || _a === void 0 ? void 0 : _a.type) + "\"");
             }
         };
         /**
@@ -885,7 +885,7 @@
             /** @type {?} */
             var res = [];
             /** @type {?} */
-            var copyList = util.deepCopy(list);
+            var copyList = other.deepCopy(list);
             try {
                 for (var copyList_1 = __values(copyList), copyList_1_1 = copyList_1.next(); !copyList_1_1.done; copyList_1_1 = copyList_1.next()) {
                     var item = copyList_1_1.value;
@@ -1291,16 +1291,16 @@
                     }
                     else {
                         // list
-                        ret = util.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).list)), []);
+                        ret = other.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).list)), []);
                         if (ret == null || !Array.isArray(ret)) {
                             ret = [];
                         }
                         // total
                         /** @type {?} */
-                        var resultTotal = ( /** @type {?} */(res.reName)).total && util.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).total)), null);
+                        var resultTotal = ( /** @type {?} */(res.reName)).total && other.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).total)), null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
-                    return util.deepCopy(ret);
+                    return other.deepCopy(ret);
                 })));
             }
             else if (Array.isArray(data)) {
@@ -1319,7 +1319,7 @@
                  */function (result) {
                     rawData = result;
                     /** @type {?} */
-                    var copyResult = util.deepCopy(result);
+                    var copyResult = other.deepCopy(result);
                     /** @type {?} */
                     var sorterFn = _this.getSorterFn(( /** @type {?} */(columns)));
                     if (sorterFn) {
@@ -1449,7 +1449,7 @@
                     return { text: formatRes, _text: formatRes, org: formatRes };
                 }
                 /** @type {?} */
-                var value = util.deepGet(item, ( /** @type {?} */(col.index)), col.default);
+                var value = other.deepGet(item, ( /** @type {?} */(col.index)), col.default);
                 /** @type {?} */
                 var text = value;
                 /** @type {?} */
@@ -1960,7 +1960,7 @@
             }
             else {
                 /** @type {?} */
-                var val = util.deepGet(item, ( /** @type {?} */(col.index)), '');
+                var val = other.deepGet(item, ( /** @type {?} */(col.index)), '');
                 ret.v = val;
                 if (val != null) {
                     switch (col.type) {
@@ -2055,6 +2055,85 @@
          * @private
          */
         STExport.prototype.xlsxSrv;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: st-widget-host.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var STWidgetHostDirective = /** @class */ (function () {
+        /**
+         * @param {?} stWidgetRegistry
+         * @param {?} viewContainerRef
+         * @param {?} componentFactoryResolver
+         */
+        function STWidgetHostDirective(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
+            this.stWidgetRegistry = stWidgetRegistry;
+            this.viewContainerRef = viewContainerRef;
+            this.componentFactoryResolver = componentFactoryResolver;
+        }
+        /**
+         * @return {?}
+         */
+        STWidgetHostDirective.prototype.ngOnInit = function () {
+            /** @type {?} */
+            var widget = ( /** @type {?} */(this.column.widget));
+            /** @type {?} */
+            var componentType = this.stWidgetRegistry.get(widget.type);
+            /** @type {?} */
+            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(( /** @type {?} */(componentType)));
+            this.viewContainerRef.clear();
+            /** @type {?} */
+            var componentRef = this.viewContainerRef.createComponent(componentFactory);
+            var _a = this, record = _a.record, column = _a.column;
+            /** @type {?} */
+            var data = widget.params ? widget.params({ record: record, column: column }) : { record: record };
+            Object.keys(data).forEach(( /**
+             * @param {?} key
+             * @return {?}
+             */function (/**
+             * @param {?} key
+             * @return {?}
+             */ key) {
+                (( /** @type {?} */(componentRef.instance)))[key] = data[key];
+            }));
+        };
+        return STWidgetHostDirective;
+    }());
+    STWidgetHostDirective.decorators = [
+        { type: i0.Directive, args: [{ selector: '[st-widget-host]' },] }
+    ];
+    /** @nocollapse */
+    STWidgetHostDirective.ctorParameters = function () { return [
+        { type: STWidgetRegistry },
+        { type: i0.ViewContainerRef },
+        { type: i0.ComponentFactoryResolver }
+    ]; };
+    STWidgetHostDirective.propDecorators = {
+        record: [{ type: i0.Input }],
+        column: [{ type: i0.Input }]
+    };
+    if (false) {
+        /** @type {?} */
+        STWidgetHostDirective.prototype.record;
+        /** @type {?} */
+        STWidgetHostDirective.prototype.column;
+        /**
+         * @type {?}
+         * @private
+         */
+        STWidgetHostDirective.prototype.stWidgetRegistry;
+        /**
+         * @type {?}
+         * @private
+         */
+        STWidgetHostDirective.prototype.viewContainerRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        STWidgetHostDirective.prototype.componentFactoryResolver;
     }
 
     /**
@@ -2228,7 +2307,7 @@
              * @return {?}
              */
             set: function (value) {
-                this._req = util.deepMergeKey({}, true, this.cog.req, value);
+                this._req = other.deepMergeKey({}, true, this.cog.req, value);
             },
             enumerable: false,
             configurable: true
@@ -2247,7 +2326,7 @@
              */
             set: function (value) {
                 /** @type {?} */
-                var item = (this._res = util.deepMergeKey({}, true, this.cog.res, value));
+                var item = (this._res = other.deepMergeKey({}, true, this.cog.res, value));
                 /** @type {?} */
                 var reName = ( /** @type {?} */(item.reName));
                 if (!Array.isArray(reName.list))
@@ -2289,7 +2368,7 @@
              * @return {?}
              */
             set: function (value) {
-                if ((typeof value === 'boolean' && !util.toBoolean(value)) || (typeof value === 'object' && Object.keys(value).length === 0)) {
+                if ((typeof value === 'boolean' && !other.toBoolean(value)) || (typeof value === 'object' && Object.keys(value).length === 0)) {
                     this._multiSort = undefined;
                     return;
                 }
@@ -2333,7 +2412,7 @@
              * @return {?}
              */
             set: function (val) {
-                this._resizable = typeof val === 'object' ? val : { disabled: !util.toBoolean(val) };
+                this._resizable = typeof val === 'object' ? val : { disabled: !other.toBoolean(val) };
             },
             enumerable: false,
             configurable: true
@@ -2456,7 +2535,7 @@
             if (typeof total === 'string' && total.length) {
                 this.totalTpl = total;
             }
-            else if (util.toBoolean(total)) {
+            else if (other.toBoolean(total)) {
                 this.totalTpl = this.locale.total;
             }
             else {
@@ -2861,7 +2940,7 @@
             if (typeof index !== 'number') {
                 index = ( /** @type {?} */(this))._data.indexOf(index);
             }
-            ( /** @type {?} */(this))._data[index] = util.deepMergeKey(( /** @type {?} */(this))._data[index], false, item);
+            ( /** @type {?} */(this))._data[index] = other.deepMergeKey(( /** @type {?} */(this))._data[index], false, item);
             ( /** @type {?} */(this)).optimizeData();
             if (options.refreshSchema) {
                 ( /** @type {?} */(this)).resetColumns({ emitReload: options.emitReload });
@@ -3173,7 +3252,7 @@
                 var modal = btn.modal;
                 /** @type {?} */
                 var obj = (_b = {}, _b[( /** @type {?} */(( /** @type {?} */(modal)).paramsName))] = record, _b);
-                (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(( /** @type {?} */(modal)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(modal)).params && ( /** @type {?} */(( /** @type {?} */(modal)).params))(record))), util.deepMergeKey({}, true, this.cog.modal, modal))
+                (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(( /** @type {?} */(modal)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(modal)).params && ( /** @type {?} */(( /** @type {?} */(modal)).params))(record))), other.deepMergeKey({}, true, this.cog.modal, modal))
                     .pipe(operators.filter(( /**
              * @param {?} w
              * @return {?}
@@ -3192,7 +3271,7 @@
                 /** @type {?} */
                 var obj = (_c = {}, _c[( /** @type {?} */(( /** @type {?} */(drawer)).paramsName))] = record, _c);
                 this.drawerHelper
-                    .create(( /** @type {?} */(( /** @type {?} */(drawer)).title)), ( /** @type {?} */(drawer)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(drawer)).params && ( /** @type {?} */(( /** @type {?} */(drawer)).params))(record))), util.deepMergeKey({}, true, this.cog.drawer, drawer))
+                    .create(( /** @type {?} */(( /** @type {?} */(drawer)).title)), ( /** @type {?} */(drawer)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(drawer)).params && ( /** @type {?} */(( /** @type {?} */(drawer)).params))(record))), other.deepMergeKey({}, true, this.cog.drawer, drawer))
                     .pipe(operators.filter(( /**
              * @param {?} w
              * @return {?}
@@ -3381,7 +3460,7 @@
                 return null;
             }
             /** @type {?} */
-            var copyItem = util.deepCopy(itemOrIndex);
+            var copyItem = other.deepCopy(itemOrIndex);
             delete copyItem._values;
             return copyItem;
         };
@@ -3450,7 +3529,7 @@
         { type: STColumnSource },
         { type: STDataSource },
         { type: theme.DelonLocaleService },
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     STComponent.propDecorators = {
         orgTable: [{ type: i0.ViewChild, args: ['table', { static: false },] }],
@@ -3495,63 +3574,63 @@
         virtualForTrackBy: [{ type: i0.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "ps", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "pi", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "total", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "loadingDelay", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "bordered", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "showHeader", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "expandRowByClick", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "expandAccordion", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "rowClickTime", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], STComponent.prototype, "responsive", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualScroll", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualItemSize", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualMaxBufferPx", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualMinBufferPx", void 0);
     if (false) {
@@ -3783,85 +3862,6 @@
         STComponent.prototype.delonI18n;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-widget-host.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    var STWidgetHostDirective = /** @class */ (function () {
-        /**
-         * @param {?} stWidgetRegistry
-         * @param {?} viewContainerRef
-         * @param {?} componentFactoryResolver
-         */
-        function STWidgetHostDirective(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
-            this.stWidgetRegistry = stWidgetRegistry;
-            this.viewContainerRef = viewContainerRef;
-            this.componentFactoryResolver = componentFactoryResolver;
-        }
-        /**
-         * @return {?}
-         */
-        STWidgetHostDirective.prototype.ngOnInit = function () {
-            /** @type {?} */
-            var widget = ( /** @type {?} */(this.column.widget));
-            /** @type {?} */
-            var componentType = this.stWidgetRegistry.get(widget.type);
-            /** @type {?} */
-            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(( /** @type {?} */(componentType)));
-            this.viewContainerRef.clear();
-            /** @type {?} */
-            var componentRef = this.viewContainerRef.createComponent(componentFactory);
-            var _a = this, record = _a.record, column = _a.column;
-            /** @type {?} */
-            var data = widget.params ? widget.params({ record: record, column: column }) : { record: record };
-            Object.keys(data).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                (( /** @type {?} */(componentRef.instance)))[key] = data[key];
-            }));
-        };
-        return STWidgetHostDirective;
-    }());
-    STWidgetHostDirective.decorators = [
-        { type: i0.Directive, args: [{ selector: '[st-widget-host]' },] }
-    ];
-    /** @nocollapse */
-    STWidgetHostDirective.ctorParameters = function () { return [
-        { type: STWidgetRegistry },
-        { type: i0.ViewContainerRef },
-        { type: i0.ComponentFactoryResolver }
-    ]; };
-    STWidgetHostDirective.propDecorators = {
-        record: [{ type: i0.Input }],
-        column: [{ type: i0.Input }]
-    };
-    if (false) {
-        /** @type {?} */
-        STWidgetHostDirective.prototype.record;
-        /** @type {?} */
-        STWidgetHostDirective.prototype.column;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.stWidgetRegistry;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.viewContainerRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.componentFactoryResolver;
-    }
-
     /** @type {?} */
     var COMPONENTS = [STComponent];
     /** @type {?} */
@@ -3876,7 +3876,6 @@
                     imports: [
                         common.CommonModule,
                         forms.FormsModule,
-                        util.DelonUtilModule,
                         acl.DelonACLModule,
                         popconfirm.NzPopconfirmModule,
                         table.NzTableModule,
@@ -3909,10 +3908,10 @@
     exports.STExport = STExport;
     exports.STModule = STModule;
     exports.STRowDirective = STRowDirective;
+    exports.STWidgetHostDirective = STWidgetHostDirective;
     exports.STWidgetRegistry = STWidgetRegistry;
     exports.ST_DEFULAT_CONFIG = ST_DEFULAT_CONFIG;
     exports.ɵa = STRowSource;
-    exports.ɵb = STWidgetHostDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

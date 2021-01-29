@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.delon.util, global.ng.common));
-}(this, (function (exports, platform, core, theme, util, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util/config', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.config, global.other, global.ng.common));
+}(this, (function (exports, platform, core, theme, config, other, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -444,7 +444,7 @@
     /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
-        { type: util.AlainConfigService },
+        { type: config.AlainConfigService },
         { type: theme._HttpClient },
         { type: platform.Platform }
     ]; };
@@ -455,11 +455,11 @@
         useHttp: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], ImageDirective.prototype, "size", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], ImageDirective.prototype, "useHttp", void 0);
     if (false) {
@@ -506,7 +506,7 @@
     }());
     ImageModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
+                    imports: [common.CommonModule],
                     declarations: __spread(DIRECTIVES),
                     exports: __spread(DIRECTIVES),
                 },] }

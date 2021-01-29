@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular/core';
-import { NumberInput } from '@delon/util';
+import { NumberInput } from '@delon/util/other';
 import { AvatarListItemComponent } from './avatar-list-item.component';
 export declare class AvatarListComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;

@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
-import { NumberInput } from '@delon/util';
+import { NumberInput } from '@delon/util/other';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MediaService } from './media.service';
 import { PlyrMediaSource, PlyrMediaType } from './plyr.types';

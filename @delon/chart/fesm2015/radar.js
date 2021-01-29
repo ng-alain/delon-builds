@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -277,7 +277,7 @@ class G2RadarModule {
 }
 G2RadarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzGridModule, NzOutletModule, NzSkeletonModule],
+                imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

@@ -1,5 +1,5 @@
 import { G2BaseComponent } from '@delon/chart/core';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 export declare class G2SingleBarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_barSize: NumberInput;

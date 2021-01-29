@@ -3,7 +3,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { of, pipe } from 'rxjs';
 import { switchMap, delay } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
@@ -717,7 +717,7 @@ class OnboardingModule {
 }
 OnboardingModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonLocaleModule, DelonUtilModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule],
+                imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule],
                 declarations: COMPONENTS,
                 entryComponents: COMPONENTS,
                 exports: COMPONENTS,

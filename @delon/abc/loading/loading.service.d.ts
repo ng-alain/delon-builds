@@ -1,7 +1,7 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Overlay } from '@angular/cdk/overlay';
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { LoadingDefaultComponent } from './loading.component';
 import { LoadingShowOptions } from './loading.types';
 export declare class LoadingService implements OnDestroy {

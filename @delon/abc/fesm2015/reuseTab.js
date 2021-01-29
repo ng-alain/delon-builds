@@ -6,7 +6,7 @@ import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
-import { InputBoolean, InputNumber } from '@delon/util';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { takeUntil, debounceTime, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, util, rxjs, operators, common, outlet, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.chart.core, global.other, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, core$1, other, rxjs, operators, common, outlet, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -507,11 +507,11 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2BarComponent.prototype, "height", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2BarComponent.prototype, "autoLabel", void 0);
     if (false) {
@@ -537,6 +537,11 @@
         G2BarComponent.prototype.clickItem;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: bar.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2BarComponent];
     var G2BarModule = /** @class */ (function () {
@@ -546,9 +551,9 @@
     }());
     G2BarModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

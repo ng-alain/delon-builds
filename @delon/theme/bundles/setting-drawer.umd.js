@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@angular/common'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('ng-zorro-antd/alert'), require('ng-zorro-antd/button'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/drawer'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme/setting-drawer', ['exports', '@angular/core', '@angular/cdk/bidi', '@angular/common', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', '@angular/forms', 'ng-zorro-antd/alert', 'ng-zorro-antd/button', 'ng-zorro-antd/divider', 'ng-zorro-antd/drawer', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/switch', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.cdk.bidi, global.ng.common, global.delon.theme, global.util, global.message, global.rxjs, global.rxjs.operators, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
-}(this, (function (exports, core, bidi, common, theme, util, message, rxjs, operators, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@angular/common'), require('@delon/theme'), require('@delon/util/other'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('ng-zorro-antd/alert'), require('ng-zorro-antd/button'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/drawer'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme/setting-drawer', ['exports', '@angular/core', '@angular/cdk/bidi', '@angular/common', '@delon/theme', '@delon/util/other', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', '@angular/forms', 'ng-zorro-antd/alert', 'ng-zorro-antd/button', 'ng-zorro-antd/divider', 'ng-zorro-antd/drawer', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/switch', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.cdk.bidi, global.ng.common, global.delon.theme, global.other, global.message, global.rxjs, global.rxjs.operators, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
+}(this, (function (exports, core, bidi, common, theme, other, message, rxjs, operators, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -796,7 +796,7 @@
             if (run === void 0) { run = true; }
             nowData = nowData || {};
             /** @type {?} */
-            var data = util.deepCopy(DEFAULT_VARS);
+            var data = other.deepCopy(DEFAULT_VARS);
             Object.keys(data).forEach(( /**
              * @param {?} key
              * @return {?}
@@ -862,7 +862,7 @@
          * @return {?}
          */ key) { return key + ": " + vars[key] + ";"; }))
                 .join('\n');
-            util.copy(copyContent);
+            other.copy(copyContent);
             this.msg.success('Copy success');
         };
         /**
@@ -890,7 +890,7 @@
         { type: core.ChangeDetectorRef },
         { type: message.NzMessageService },
         { type: theme.SettingsService },
-        { type: util.LazyService },
+        { type: other.LazyService },
         { type: core.NgZone },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
@@ -900,7 +900,7 @@
         devTips: [{ type: core.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
     if (false) {
@@ -967,6 +967,11 @@
         SettingDrawerComponent.prototype.directionality;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: setting-drawer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
     var SettingDrawerModule = /** @class */ (function () {
@@ -979,7 +984,6 @@
                     imports: [
                         common.CommonModule,
                         forms.FormsModule,
-                        util.DelonUtilModule,
                         drawer.NzDrawerModule,
                         tooltip.NzToolTipModule,
                         divider.NzDividerModule,
@@ -991,8 +995,8 @@
                         inputNumber.NzInputNumberModule,
                         button.NzButtonModule,
                     ],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, NgModule } from '@angular/core';
-import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -123,9 +123,9 @@ class G2CardModule {
 }
 G2CardModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzCardModule, NzSpinModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

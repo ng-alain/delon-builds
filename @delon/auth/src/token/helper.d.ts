@@ -1,5 +1,5 @@
 import { Injector } from '@angular/core';
-import { AlainAuthConfig } from '@delon/util';
+import { AlainAuthConfig } from '@delon/util/config';
 import { JWTTokenModel } from './jwt/jwt.model';
 import { SimpleTokenModel } from './simple/simple.model';
 export declare function CheckSimple(model: SimpleTokenModel | null): boolean;

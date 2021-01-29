@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { isDevMode, Component, ChangeDetectionStrategy, Renderer2, Inject, Optional, Input, NgModule } from '@angular/core';
-import { AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -208,9 +208,9 @@ class ThemeBtnModule {
 }
 ThemeBtnModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzDropDownModule, NzToolTipModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzDropDownModule, NzToolTipModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

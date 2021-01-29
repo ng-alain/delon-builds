@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, i1$4, i1$5, i1$6, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('@delon/util/date-time'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', '@delon/util/date-time', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.delon.util['date-time'], global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateTime, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -904,6 +904,9 @@
      * @fileoverview added by tsickle
      * Generated from: src/services/scroll/scroll.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
      */
     var ScrollService = /** @class */ (function () {
         /**
@@ -2853,7 +2856,7 @@
          */
         ModalHelper.prototype.create = function (comp, params, options) {
             var _this = this;
-            options = i1$1.deepMerge({
+            options = other.deepMerge({
                 size: 'lg',
                 exact: true,
                 includeTabs: false,
@@ -3073,7 +3076,7 @@
          */
         DrawerHelper.prototype.create = function (title, comp, params, options) {
             var _this = this;
-            options = i1$1.deepMerge({
+            options = other.deepMerge({
                 size: 'md',
                 footer: true,
                 footerHeight: 50,
@@ -3815,7 +3818,7 @@
          */
         DatePipe.prototype.transform = function (value, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm'; }
-            value = i1$1.toDate(value);
+            value = dateTime.toDate(value);
             if (isNaN(( /** @type {?} */(value))))
                 return '';
             /** @type {?} */
@@ -4157,6 +4160,7 @@
      */
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
+    exports.ALAIN_I18N_TOKEN_FACTORY = ALAIN_I18N_TOKEN_FACTORY;
     exports.APP = APP;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
     exports.AlainThemeModule = AlainThemeModule;
@@ -4220,8 +4224,7 @@
     exports.tr_TR = trTR;
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;
-    exports.ɵa = ALAIN_I18N_TOKEN_FACTORY;
-    exports.ɵb = I18nPipe;
+    exports.ɵa = I18nPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

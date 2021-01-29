@@ -1,5 +1,5 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 export declare type _HttpHeaders = HttpHeaders | {

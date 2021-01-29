@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
 export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy {
     private i18n;

@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { AlainConfigService, NumberInput } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { NumberInput } from '@delon/util/other';
 export declare class SVContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;

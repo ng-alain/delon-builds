@@ -1,6 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { InputNumber } from '@delon/util/other';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
@@ -222,9 +223,9 @@ class SGModule {
 }
 SGModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

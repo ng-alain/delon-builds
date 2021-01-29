@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -214,9 +214,9 @@ class G2GaugeModule {
 }
 G2GaugeModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzSkeletonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

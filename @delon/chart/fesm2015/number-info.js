@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
-import { InputNumber, DelonUtilModule } from '@delon/util';
+import { InputNumber } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -107,7 +107,7 @@ class NumberInfoModule {
 }
 NumberInfoModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonUtilModule, NzOutletModule],
+                imports: [CommonModule, NzIconModule, NzOutletModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

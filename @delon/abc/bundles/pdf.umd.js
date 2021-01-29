@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, common, core, util, rxjs, operators, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, common, core, config, other, rxjs, operators, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -987,8 +987,8 @@
     /** @nocollapse */
     PdfComponent.ctorParameters = function () { return [
         { type: core.NgZone },
-        { type: util.AlainConfigService },
-        { type: util.LazyService },
+        { type: config.AlainConfigService },
+        { type: other.LazyService },
         { type: platform.Platform },
         { type: core.ElementRef },
         { type: Document, decorators: [{ type: core.Optional }, { type: core.Inject, args: [common.DOCUMENT,] }] }
@@ -1012,52 +1012,52 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "pi", null);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
     ], PdfComponent.prototype, "showAll", null);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
     ], PdfComponent.prototype, "renderText", null);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "showBorders", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "stickToPage", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "originalSize", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "fitToPage", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "zoom", null);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "rotation", null);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "autoReSize", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], PdfComponent.prototype, "delay", void 0);
     if (false) {
@@ -1216,6 +1216,11 @@
         PdfComponent.prototype.doc;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: pdf.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [PdfComponent];
     var PdfModule = /** @class */ (function () {
@@ -1225,9 +1230,9 @@
     }());
     PdfModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, skeleton.NzSkeletonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

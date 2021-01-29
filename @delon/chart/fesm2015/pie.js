@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -360,7 +360,7 @@ class G2PieModule {
 }
 G2PieModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzDividerModule, NzOutletModule, NzSkeletonModule],
+                imports: [CommonModule, NzDividerModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

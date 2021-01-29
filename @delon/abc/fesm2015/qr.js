@@ -1,7 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService, InputNumber } from '@delon/util/other';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
@@ -295,9 +296,9 @@ class QRModule {
 }
 QRModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

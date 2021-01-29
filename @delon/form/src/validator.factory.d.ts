@@ -1,4 +1,4 @@
-import { AlainConfigService, AlainSFConfig } from '@delon/util';
+import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ErrorData } from './errors';
 import { SFValue } from './interface';

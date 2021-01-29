@@ -2,7 +2,9 @@ import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { getTimeDistance, deepMergeKey, fixEndTimeOfRange, AlainConfigService, InputBoolean } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
+import { deepMergeKey, InputBoolean } from '@delon/util/other';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 
@@ -335,8 +337,8 @@ class DatePickerModule {
 DatePickerModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, FormsModule, NzDatePickerModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

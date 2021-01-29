@@ -1,5 +1,5 @@
 import { G2BaseComponent } from '@delon/chart/core';
-import { NumberInput } from '@delon/util';
+import { NumberInput } from '@delon/util/other';
 export declare class G2GaugeComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_percent: NumberInput;

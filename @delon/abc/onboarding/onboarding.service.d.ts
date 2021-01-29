@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { OnboardingConfig } from './onboarding.types';
 export declare class OnboardingService implements OnDestroy {
     private i18n;

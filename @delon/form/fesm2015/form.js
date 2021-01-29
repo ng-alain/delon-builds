@@ -4,9 +4,11 @@ import { Injectable, Inject, ComponentFactoryResolver, EventEmitter, Component, 
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { toBoolean, deepCopy, AlainConfigService, InputBoolean, InputNumber, toDate, deepGet, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { toBoolean, deepCopy, InputBoolean, InputNumber, deepGet } from '@delon/util/other';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
 import { NzAutocompleteModule } from 'ng-zorro-antd/auto-complete';
@@ -33,7 +35,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
-import { helpMotion } from 'ng-zorro-antd/core/animation';
+import { toDate } from '@delon/util/date-time';
 import format from 'date-fns/format';
 
 /**
@@ -5415,10 +5417,9 @@ class DelonFormModule {
 }
 DelonFormModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, FormsModule, DelonUtilModule, DelonLocaleModule, ...ZORROS],
+                imports: [CommonModule, FormsModule, DelonLocaleModule, ...ZORROS],
                 declarations: [...COMPONENTS, ...WIDGETS],
-                entryComponents: [...WIDGETS],
-                exports: [...COMPONENTS],
+                exports: COMPONENTS,
             },] }
 ];
 
@@ -7811,5 +7812,5 @@ function SFCustomWidgetSchema() { }
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, resolveIfSchema, retrieveSchema, toBool, useFactory, TerminatorService as ɵa, SFItemWrapComponent as ɵb, SFTemplateDirective as ɵc };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, AutoCompleteWidget, BooleanProperty, BooleanWidget, CascaderWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, MentionWidget, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, RateWidget, SFComponent, SFFixedDirective, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, SliderWidget, StringProperty, StringWidget, TagWidget, TextWidget, TextareaWidget, TimeWidget, TransferWidget, TreeSelectWidget, UploadWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, resolveIfSchema, retrieveSchema, toBool, useFactory, TerminatorService as ɵa };
 //# sourceMappingURL=form.js.map

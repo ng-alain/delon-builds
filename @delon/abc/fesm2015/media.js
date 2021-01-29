@@ -1,7 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, LazyService, InputNumber, DelonUtilModule } from '@delon/util';
+import { LazyService, InputNumber } from '@delon/util/other';
+import { AlainConfigService } from '@delon/util/config';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
@@ -337,9 +338,9 @@ class MediaModule {
 }
 MediaModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

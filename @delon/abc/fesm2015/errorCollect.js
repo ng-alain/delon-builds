@@ -2,7 +2,8 @@ import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Optional, Input, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { InputNumber } from '@delon/util/other';
 import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -217,9 +218,9 @@ class ErrorCollectModule {
 }
 ErrorCollectModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzIconModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzIconModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

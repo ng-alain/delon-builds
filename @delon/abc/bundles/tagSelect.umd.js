@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, core, theme, util, rxjs, operators, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.other, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, core, theme, other, rxjs, operators, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -407,7 +407,7 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], TagSelectComponent.prototype, "expandable", void 0);
     if (false) {
@@ -448,6 +448,11 @@
         TagSelectComponent.prototype.cdr;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: tag-select.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [TagSelectComponent];
     var TagSelectModule = /** @class */ (function () {
@@ -457,9 +462,9 @@
     }());
     TagSelectModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, icon.NzIconModule, theme.DelonLocaleModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, icon.NzIconModule, theme.DelonLocaleModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

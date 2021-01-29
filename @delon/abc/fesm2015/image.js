@@ -2,7 +2,8 @@ import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
-import { AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -198,7 +199,7 @@ class ImageModule {
 }
 ImageModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule],
                 declarations: [...DIRECTIVES],
                 exports: [...DIRECTIVES],
             },] }

@@ -1,7 +1,8 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { toDate, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { toDate } from '@delon/util/date-time';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import format from 'date-fns/format';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -384,7 +385,7 @@ class G2TimelineModule {
 }
 G2TimelineModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzOutletModule, NzSkeletonModule],
+                imports: [CommonModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

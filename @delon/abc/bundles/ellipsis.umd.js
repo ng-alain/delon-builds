@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/util'), require('rxjs/operators'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@delon/util', 'rxjs/operators', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.delon.util, global.rxjs.operators, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, common, core, platformBrowser, util, operators, observers, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@delon/util/other', 'rxjs/operators', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.other, global.rxjs.operators, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, common, core, platformBrowser, other, operators, observers, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -624,19 +624,19 @@
         tail: [{ type: core.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "tooltip", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], EllipsisComponent.prototype, "length", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], EllipsisComponent.prototype, "lines", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
     if (false) {
@@ -720,6 +720,11 @@
         EllipsisComponent.prototype.cdr;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: ellipsis.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [EllipsisComponent];
     var EllipsisModule = /** @class */ (function () {
@@ -729,9 +734,9 @@
     }());
     EllipsisModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, observers.ObserversModule, tooltip.NzToolTipModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

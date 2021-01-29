@@ -5,7 +5,9 @@ import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Ren
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@delon/theme';
-import { isEmpty, AlainConfigService, InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { isEmpty } from '@delon/util/browser';
+import { AlainConfigService } from '@delon/util/config';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -446,9 +448,9 @@ class PageHeaderModule {
 }
 PageHeaderModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, ObserversModule, DelonUtilModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, RouterModule, ObserversModule, NzAffixModule, NzSkeletonModule, NzBreadCrumbModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

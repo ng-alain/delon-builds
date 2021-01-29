@@ -1,4 +1,4 @@
-import { AlainSFConfig } from '@delon/util';
+import { AlainSFConfig } from '@delon/util/config';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';

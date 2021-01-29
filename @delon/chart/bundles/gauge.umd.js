@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global.skeleton));
-}(this, (function (exports, core$1, core, util, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/gauge', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/other', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.gauge = {}), global.ng.core, global.delon.chart.core, global.other, global.ng.common, global.skeleton));
+}(this, (function (exports, core$1, core, other, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -486,11 +486,11 @@
         padding: [{ type: core$1.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], G2GaugeComponent.prototype, "height", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], G2GaugeComponent.prototype, "percent", void 0);
     if (false) {
@@ -514,6 +514,11 @@
         G2GaugeComponent.prototype.padding;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: gauge.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [G2GaugeComponent];
     var G2GaugeModule = /** @class */ (function () {
@@ -523,9 +528,9 @@
     }());
     G2GaugeModule.decorators = [
         { type: core$1.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, skeleton.NzSkeletonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

@@ -1,10 +1,12 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { toNumber, AlainConfigService, InputNumber, InputBoolean, isEmpty, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { toNumber, InputNumber, InputBoolean } from '@delon/util/other';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
+import { isEmpty } from '@delon/util/browser';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -687,9 +689,9 @@ class SEModule {
 }
 SEModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzToolTipModule, NzIconModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzToolTipModule, NzIconModule, NzOutletModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

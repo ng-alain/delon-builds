@@ -1,5 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { AlainChartConfig, AlainConfigService, LazyService } from '@delon/util';
+import { AlainChartConfig, AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { Observable } from 'rxjs';
 export declare class G2Service implements OnDestroy {
     private cogSrv;

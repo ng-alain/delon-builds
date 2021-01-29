@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {

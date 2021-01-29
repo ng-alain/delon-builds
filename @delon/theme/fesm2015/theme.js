@@ -4,14 +4,16 @@ import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, finalize, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
-import { AlainConfigService, deepMerge, toDate } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { Directionality } from '@angular/cdk/bidi';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util/other';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
+import { toDate } from '@delon/util/date-time';
 import format from 'date-fns/format';
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
@@ -742,6 +744,9 @@ if (false) {
  * @fileoverview added by tsickle
  * Generated from: src/services/scroll/scroll.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
  */
 class ScrollService {
     /**
@@ -4180,7 +4185,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.3.1-47f04476');
+const VERSION = new Version('11.3.1-dbd3afc6');
 
 /**
  * @fileoverview added by tsickle
@@ -4194,5 +4199,5 @@ const VERSION = new Version('11.3.1-47f04476');
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { ALAIN_I18N_TOKEN, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ALAIN_I18N_TOKEN_FACTORY as ɵa, I18nPipe as ɵb };
+export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

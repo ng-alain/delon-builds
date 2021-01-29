@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('ng-zorro-antd/core/animation'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'ng-zorro-antd/core/animation', 'date-fns/format'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global['ng-zorro-antd/core/animation'], global.format));
-}(this, (function (exports, platform, core, platformBrowser, acl, theme, util, rxjs, operators, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, animation, format) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('@delon/util/date-time'), require('date-fns/format')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/core/animation', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', '@delon/util/date-time', 'date-fns/format'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.config, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/core/animation'], global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.dateTime, global.format));
+}(this, (function (exports, platform, core, platformBrowser, acl, theme, config, other, rxjs, operators, animation, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, dateTime, format) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -389,7 +389,7 @@
      * @return {?}
      */
     function toBool(value, defaultValue) {
-        value = util.toBoolean(value, true);
+        value = other.toBoolean(value, true);
         return value == null ? defaultValue : value;
     }
     /**
@@ -684,7 +684,7 @@
      * @return {?}
      */
     function getCopyEnum(list, formData, readOnly) {
-        return getEnum(util.deepCopy(list || []), formData, readOnly);
+        return getEnum(other.deepCopy(list || []), formData, readOnly);
     }
     /**
      * @param {?} schema
@@ -2007,7 +2007,7 @@
     ];
     /** @nocollapse */
     AjvSchemaValidatorFactory.ctorParameters = function () { return [
-        { type: util.AlainConfigService, decorators: [{ type: core.Inject, args: [util.AlainConfigService,] }] }
+        { type: config.AlainConfigService, decorators: [{ type: core.Inject, args: [config.AlainConfigService,] }] }
     ]; };
     if (false) {
         /**
@@ -2398,7 +2398,7 @@
             /** @type {?} */
             var isHorizontal = this.layout === 'horizontal';
             /** @type {?} */
-            var _schema = util.deepCopy(this.schema);
+            var _schema = other.deepCopy(this.schema);
             var definitions = _schema.definitions;
             /** @type {?} */
             var inFn = ( /**
@@ -2822,7 +2822,7 @@
                         {
                             provide: FormPropertyFactory,
                             useFactory: useFactory,
-                            deps: [SchemaValidatorFactory, util.AlainConfigService],
+                            deps: [SchemaValidatorFactory, config.AlainConfigService],
                         },
                         TerminatorService,
                     ],
@@ -2850,7 +2850,7 @@
         { type: theme.DelonLocaleService },
         { type: acl.ACLService, decorators: [{ type: core.Optional }] },
         { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
-        { type: util.AlainConfigService },
+        { type: config.AlainConfigService },
         { type: platform.Platform }
     ]; };
     SFComponent.propDecorators = {
@@ -2876,35 +2876,35 @@
         formError: [{ type: core.Output }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "liveValidate", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "firstVisual", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "onlyVisual", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "compact", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "loading", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "disabled", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "noColon", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SFComponent.prototype, "cleanValue", void 0);
     if (false) {
@@ -3261,7 +3261,7 @@
         num: [{ type: core.Input, args: ['fixed-label',] }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], SFFixedDirective.prototype, "num", void 0);
     if (false) {
@@ -4289,10 +4289,10 @@
          */
         DateWidget.prototype.reset = function (value) {
             var _this = this;
-            value = util.toDate(value, { formatString: this.startFormat, defaultValue: null });
+            value = dateTime.toDate(value, { formatString: this.startFormat, defaultValue: null });
             if (this.flatRange) {
                 /** @type {?} */
-                var endValue = util.toDate(( /** @type {?} */(this.endProperty.formData)), {
+                var endValue = dateTime.toDate(( /** @type {?} */(this.endProperty.formData)), {
                     formatString: this.endFormat || this.startFormat,
                     defaultValue: null,
                 });
@@ -5786,7 +5786,7 @@
          * @return {?}
          */
         UploadWidget.prototype._getValue = function (file) {
-            return util.deepGet(file.response, this.i.resReName, file.response);
+            return other.deepGet(file.response, this.i.resReName, file.response);
         };
         /**
          * @private
@@ -5810,7 +5810,7 @@
          * @param {?} file
          * @return {?}
          */ file) {
-                file.url = util.deepGet(file.response, _this.i.urlReName);
+                file.url = other.deepGet(file.response, _this.i.urlReName);
             }));
             /** @type {?} */
             var res = fileList.filter(( /**
@@ -5960,7 +5960,7 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
-                        deps: [util.AlainConfigService],
+                        deps: [config.AlainConfigService],
                     },
                     { provide: WidgetRegistry, useClass: NzWidgetRegistry },
                 ],
@@ -5970,10 +5970,9 @@
     }());
     DelonFormModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: __spread([common.CommonModule, forms.FormsModule, util.DelonUtilModule, theme.DelonLocaleModule], ZORROS),
+                    imports: __spread([common.CommonModule, forms.FormsModule, theme.DelonLocaleModule], ZORROS),
                     declarations: __spread(COMPONENTS, WIDGETS),
-                    entryComponents: __spread(WIDGETS),
-                    exports: __spread(COMPONENTS),
+                    exports: COMPONENTS,
                 },] }
     ];
 
@@ -6143,6 +6142,8 @@
     exports.SFComponent = SFComponent;
     exports.SFFixedDirective = SFFixedDirective;
     exports.SFItemComponent = SFItemComponent;
+    exports.SFItemWrapComponent = SFItemWrapComponent;
+    exports.SFTemplateDirective = SFTemplateDirective;
     exports.SF_DEFAULT_CONFIG = SF_DEFAULT_CONFIG;
     exports.SchemaValidatorFactory = SchemaValidatorFactory;
     exports.SelectWidget = SelectWidget;
@@ -6172,8 +6173,6 @@
     exports.toBool = toBool;
     exports.useFactory = useFactory;
     exports.ɵa = TerminatorService;
-    exports.ɵb = SFItemWrapComponent;
-    exports.ɵc = SFTemplateDirective;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

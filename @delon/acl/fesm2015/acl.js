@@ -1,7 +1,8 @@
 import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { AlainConfigService, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
+import { InputBoolean } from '@delon/util/other';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -722,9 +723,9 @@ class DelonACLModule {
 }
 DelonACLModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

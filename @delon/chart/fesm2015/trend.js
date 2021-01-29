@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
-import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -82,7 +82,7 @@ class TrendModule {
 }
 TrendModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonUtilModule],
+                imports: [CommonModule, NzIconModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

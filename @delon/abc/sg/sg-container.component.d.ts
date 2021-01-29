@@ -1,5 +1,6 @@
 import { REP_TYPE } from '@delon/theme';
-import { AlainConfigService, NumberInput } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { NumberInput } from '@delon/util/other';
 export declare class SGContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_colInCon: NumberInput;

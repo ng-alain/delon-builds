@@ -1,7 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
-import { AlainConfigService, InputNumber, isEmpty, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { ResponsiveService } from '@delon/theme';
+import { isEmpty } from '@delon/util/browser';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -416,9 +418,9 @@ class SVModule {
 }
 SVModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, ObserversModule, DelonUtilModule, NzToolTipModule, NzIconModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -1,5 +1,5 @@
 import { OnDestroy } from '@angular/core';
-import { AlainAuthConfig, AlainConfigService } from '@delon/util';
+import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';

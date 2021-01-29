@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('file-saver'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'file-saver', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}), global.ng.common.http, global.ng.core, global.delon.util, global.saveAs, global.ng.common));
-}(this, (function (exports, i1, i0, i2, fileSaver, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('file-saver'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/zip', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', '@delon/util/other', 'file-saver', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}), global.ng.common.http, global.ng.core, global.i3, global.i2, global.saveAs, global.ng.common));
+}(this, (function (exports, i1, i0, i3, i2, fileSaver, common) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -201,10 +201,10 @@
     ZipService.ctorParameters = function () { return [
         { type: i1.HttpClient },
         { type: i2.LazyService },
-        { type: i2.AlainConfigService },
+        { type: i3.AlainConfigService },
         { type: i0.NgZone }
     ]; };
-    /** @nocollapse */ ZipService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: ZipService, providedIn: "root" });
+    /** @nocollapse */ ZipService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: ZipService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -240,7 +240,7 @@
     }());
     ZipModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule, i2.DelonUtilModule],
+                    imports: [common.CommonModule],
                 },] }
     ];
 

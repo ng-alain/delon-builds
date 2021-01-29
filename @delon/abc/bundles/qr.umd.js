@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, util, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.config, global.other, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, config, other, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -486,8 +486,8 @@
     /** @nocollapse */
     QRComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
-        { type: util.AlainConfigService },
-        { type: util.LazyService },
+        { type: config.AlainConfigService },
+        { type: other.LazyService },
         { type: platform.Platform }
     ]; };
     QRComponent.propDecorators = {
@@ -504,15 +504,15 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "padding", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "size", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "delay", void 0);
     if (false) {
@@ -588,6 +588,11 @@
         QRComponent.prototype.platform;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: qr.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [QRComponent];
     var QRModule = /** @class */ (function () {
@@ -597,9 +602,9 @@
     }());
     QRModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

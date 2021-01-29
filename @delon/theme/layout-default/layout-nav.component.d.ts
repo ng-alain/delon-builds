@@ -3,7 +3,7 @@ import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 }
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 export interface Nav extends MenuInner {
     _needIcon?: boolean;
     _text?: SafeHtml;

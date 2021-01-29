@@ -1,8 +1,8 @@
-import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, Output, ViewContainerRef, ComponentFactoryResolver, NgModule } from '@angular/core';
+import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, ViewContainerRef, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, Output, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService, DelonACLModule } from '@delon/acl';
 import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
-import { warn, deepCopy, deepGet, deepMergeKey, toBoolean, AlainConfigService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { warn, deepCopy, deepGet, deepMergeKey, toBoolean, InputNumber, InputBoolean } from '@delon/util/other';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { of, Subject, from } from 'rxjs';
@@ -10,6 +10,7 @@ import { map, takeUntil, filter } from 'rxjs/operators';
 import { __awaiter, __decorate, __metadata } from 'tslib';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
+import { AlainConfigService } from '@delon/util/config';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { FormsModule } from '@angular/forms';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
@@ -3067,6 +3068,82 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: st-widget-host.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class STWidgetHostDirective {
+    /**
+     * @param {?} stWidgetRegistry
+     * @param {?} viewContainerRef
+     * @param {?} componentFactoryResolver
+     */
+    constructor(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
+        this.stWidgetRegistry = stWidgetRegistry;
+        this.viewContainerRef = viewContainerRef;
+        this.componentFactoryResolver = componentFactoryResolver;
+    }
+    /**
+     * @return {?}
+     */
+    ngOnInit() {
+        /** @type {?} */
+        const widget = (/** @type {?} */ (this.column.widget));
+        /** @type {?} */
+        const componentType = this.stWidgetRegistry.get(widget.type);
+        /** @type {?} */
+        const componentFactory = this.componentFactoryResolver.resolveComponentFactory((/** @type {?} */ (componentType)));
+        this.viewContainerRef.clear();
+        /** @type {?} */
+        const componentRef = this.viewContainerRef.createComponent(componentFactory);
+        const { record, column } = this;
+        /** @type {?} */
+        const data = widget.params ? widget.params({ record, column }) : { record };
+        Object.keys(data).forEach((/**
+         * @param {?} key
+         * @return {?}
+         */
+        key => {
+            ((/** @type {?} */ (componentRef.instance)))[key] = data[key];
+        }));
+    }
+}
+STWidgetHostDirective.decorators = [
+    { type: Directive, args: [{ selector: '[st-widget-host]' },] }
+];
+/** @nocollapse */
+STWidgetHostDirective.ctorParameters = () => [
+    { type: STWidgetRegistry },
+    { type: ViewContainerRef },
+    { type: ComponentFactoryResolver }
+];
+STWidgetHostDirective.propDecorators = {
+    record: [{ type: Input }],
+    column: [{ type: Input }]
+};
+if (false) {
+    /** @type {?} */
+    STWidgetHostDirective.prototype.record;
+    /** @type {?} */
+    STWidgetHostDirective.prototype.column;
+    /**
+     * @type {?}
+     * @private
+     */
+    STWidgetHostDirective.prototype.stWidgetRegistry;
+    /**
+     * @type {?}
+     * @private
+     */
+    STWidgetHostDirective.prototype.viewContainerRef;
+    /**
+     * @type {?}
+     * @private
+     */
+    STWidgetHostDirective.prototype.componentFactoryResolver;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: st.config.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -4678,82 +4755,6 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: st-widget-host.directive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-class STWidgetHostDirective {
-    /**
-     * @param {?} stWidgetRegistry
-     * @param {?} viewContainerRef
-     * @param {?} componentFactoryResolver
-     */
-    constructor(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
-        this.stWidgetRegistry = stWidgetRegistry;
-        this.viewContainerRef = viewContainerRef;
-        this.componentFactoryResolver = componentFactoryResolver;
-    }
-    /**
-     * @return {?}
-     */
-    ngOnInit() {
-        /** @type {?} */
-        const widget = (/** @type {?} */ (this.column.widget));
-        /** @type {?} */
-        const componentType = this.stWidgetRegistry.get(widget.type);
-        /** @type {?} */
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory((/** @type {?} */ (componentType)));
-        this.viewContainerRef.clear();
-        /** @type {?} */
-        const componentRef = this.viewContainerRef.createComponent(componentFactory);
-        const { record, column } = this;
-        /** @type {?} */
-        const data = widget.params ? widget.params({ record, column }) : { record };
-        Object.keys(data).forEach((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => {
-            ((/** @type {?} */ (componentRef.instance)))[key] = data[key];
-        }));
-    }
-}
-STWidgetHostDirective.decorators = [
-    { type: Directive, args: [{ selector: '[st-widget-host]' },] }
-];
-/** @nocollapse */
-STWidgetHostDirective.ctorParameters = () => [
-    { type: STWidgetRegistry },
-    { type: ViewContainerRef },
-    { type: ComponentFactoryResolver }
-];
-STWidgetHostDirective.propDecorators = {
-    record: [{ type: Input }],
-    column: [{ type: Input }]
-};
-if (false) {
-    /** @type {?} */
-    STWidgetHostDirective.prototype.record;
-    /** @type {?} */
-    STWidgetHostDirective.prototype.column;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.stWidgetRegistry;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.viewContainerRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    STWidgetHostDirective.prototype.componentFactoryResolver;
-}
-
-/**
- * @fileoverview added by tsickle
  * Generated from: st.module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -4768,7 +4769,6 @@ STModule.decorators = [
                 imports: [
                     CommonModule,
                     FormsModule,
-                    DelonUtilModule,
                     DelonACLModule,
                     NzPopconfirmModule,
                     NzTableModule,
@@ -4801,5 +4801,5 @@ STModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetRegistry, ST_DEFULAT_CONFIG, STRowSource as ɵa, STWidgetHostDirective as ɵb };
+export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetHostDirective, STWidgetRegistry, ST_DEFULAT_CONFIG, STRowSource as ɵa };
 //# sourceMappingURL=table.js.map

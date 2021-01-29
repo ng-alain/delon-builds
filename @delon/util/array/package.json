@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/array.umd.js",
+  "module": "../fesm2015/array.js",
+  "es2015": "../fesm2015/array.js",
+  "esm2015": "../esm2015/array/array.js",
+  "fesm2015": "../fesm2015/array.js",
+  "typings": "array.d.ts",
+  "metadata": "array.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/array"
+}

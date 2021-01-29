@@ -2,9 +2,10 @@ import { DOCUMENT } from '@angular/common';
 import { InjectionToken, inject, Injectable, Inject, Injector, Optional, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, BehaviorSubject, interval, Observable } from 'rxjs';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { share, map, filter } from 'rxjs/operators';
 import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AlainConfigService as AlainConfigService$1 } from '@delon/util';
 
 /**
  * @fileoverview added by tsickle
@@ -768,7 +769,7 @@ class BaseInterceptor {
      */
     intercept(req, next) {
         /** @type {?} */
-        const options = mergeConfig(this.injector.get(AlainConfigService));
+        const options = mergeConfig(this.injector.get(AlainConfigService$1));
         if (Array.isArray(options.ignores)) {
             for (const item of options.ignores) {
                 if (item.test(req.url))

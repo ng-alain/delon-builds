@@ -1,4 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
+/**
+ * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
+ */
 export declare class ScrollService {
     private _doc;
     private platform;

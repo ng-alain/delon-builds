@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -182,7 +182,7 @@ class G2SingleBarModule {
 }
 G2SingleBarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

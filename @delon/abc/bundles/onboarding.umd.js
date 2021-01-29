@@ -4,9 +4,9 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util/config'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util/config', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.i4, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
 }(this, (function (exports, i5, i3, i0, i2, i1, i4, rxjs, operators, platform, button, noAnimation, outlet, popover) { 'use strict';
 
     /**
@@ -615,7 +615,7 @@
     }());
     OnboardingModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [i3.CommonModule, i1.DelonLocaleModule, i4.DelonUtilModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
+                    imports: [i3.CommonModule, i1.DelonLocaleModule, popover.NzPopoverModule, outlet.NzOutletModule, button.NzButtonModule, noAnimation.NzNoAnimationModule],
                     declarations: COMPONENTS,
                     entryComponents: COMPONENTS,
                     exports: COMPONENTS,

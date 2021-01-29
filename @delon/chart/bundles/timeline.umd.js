@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.format, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, util, format, common, outlet, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/other'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/other', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.other, global.format, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, core$1, dateTime, other, format, common, outlet, skeleton) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -546,7 +546,7 @@
          * @param {?} item
          * @return {?}
          */ item) {
-                item.time = util.toDate(( /** @type {?} */(item.time)));
+                item.time = dateTime.toDate(( /** @type {?} */(item.time)));
                 item._time = +item.time;
                 return item;
             }))
@@ -633,19 +633,19 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "maxAxis", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "height", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "borderWidth", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "slider", void 0);
     if (false) {
@@ -699,7 +699,7 @@
     }());
     G2TimelineModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
+                    imports: [common.CommonModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }

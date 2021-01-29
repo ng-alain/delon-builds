@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Observable } from 'rxjs';
 import { SettingsService } from '../settings/settings.service';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.delon.util, global.theme, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, theme, observers, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('@delon/theme'), require('@delon/util/browser'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', '@delon/theme', '@delon/util/browser', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.config, global.other, global.theme, global.browser, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, config, other, theme, browser, observers, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -358,7 +358,7 @@
     ];
     /** @nocollapse */
     SVContainerComponent.ctorParameters = function () { return [
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     SVContainerComponent.propDecorators = {
         title: [{ type: core.Input }],
@@ -370,15 +370,15 @@
         default: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "col", void 0);
     if (false) {
@@ -626,7 +626,7 @@
             if (el.classList.contains(cls)) {
                 el.classList.remove(cls);
             }
-            if (util.isEmpty(el)) {
+            if (browser.isEmpty(el)) {
                 el.classList.add(cls);
             }
         };
@@ -665,11 +665,11 @@
         type: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SVComponent.prototype, "col", void 0);
     __decorate([
-        util.InputBoolean(null),
+        other.InputBoolean(null),
         __metadata("design:type", Boolean)
     ], SVComponent.prototype, "default", void 0);
     if (false) {
@@ -722,6 +722,11 @@
         SVComponent.prototype.ren;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: sv.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
     var SVModule = /** @class */ (function () {
@@ -731,9 +736,9 @@
     }());
     SVModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, observers.ObserversModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, observers.ObserversModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/date-time.umd.js",
+  "module": "../fesm2015/date-time.js",
+  "es2015": "../fesm2015/date-time.js",
+  "esm2015": "../esm2015/date-time/date-time.js",
+  "fesm2015": "../fesm2015/date-time.js",
+  "typings": "date-time.d.ts",
+  "metadata": "date-time.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/date-time"
+}

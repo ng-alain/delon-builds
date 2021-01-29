@@ -3,7 +3,7 @@ import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 }
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 import { Nav } from './sidebar-nav.types';
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead

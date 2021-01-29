@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/util', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.delon.util, global.rxjs));
-}(this, (function (exports, i0, i1, rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.i2, global.i1, global.rxjs));
+}(this, (function (exports, i0, i2, i1, rxjs) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -642,9 +642,9 @@
     /** @nocollapse */
     LodopService.ctorParameters = function () { return [
         { type: i1.LazyService },
-        { type: i1.AlainConfigService }
+        { type: i2.AlainConfigService }
     ]; };
-    /** @nocollapse */ LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i1.AlainConfigService)); }, token: LodopService, providedIn: "root" });
+    /** @nocollapse */ LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i2.AlainConfigService)); }, token: LodopService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -699,9 +699,7 @@
         return LodopModule;
     }());
     LodopModule.decorators = [
-        { type: i0.NgModule, args: [{
-                    imports: [i1.DelonUtilModule],
-                },] }
+        { type: i0.NgModule, args: [{},] }
     ];
 
     /**

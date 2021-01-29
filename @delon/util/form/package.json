@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/forms.umd.js",
+  "module": "../fesm2015/forms.js",
+  "es2015": "../fesm2015/forms.js",
+  "esm2015": "../esm2015/form/forms.js",
+  "fesm2015": "../fesm2015/forms.js",
+  "typings": "forms.d.ts",
+  "metadata": "forms.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/form"
+}

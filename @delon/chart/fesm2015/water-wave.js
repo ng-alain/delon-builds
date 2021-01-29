@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -399,7 +399,7 @@ class G2WaterWaveModule {
 }
 G2WaterWaveModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzOutletModule],
+                imports: [CommonModule, NzOutletModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

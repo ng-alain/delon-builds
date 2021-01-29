@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util'), require('@delon/abc/error-collect'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util', '@delon/abc/error-collect', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.delon.util, global.delon.abc['error-collect'], global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, common, core, util, errorCollect, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util/other'), require('@delon/abc/error-collect'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util/other', '@delon/abc/error-collect', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.other, global.delon.abc['error-collect'], global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, common, core, other, errorCollect, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -384,7 +384,7 @@
         extra: [{ type: core.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
     if (false) {
@@ -411,6 +411,11 @@
         FooterToolbarComponent.prototype.doc;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: footer-toolbar.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [FooterToolbarComponent];
     var FooterToolbarModule = /** @class */ (function () {
@@ -420,9 +425,9 @@
     }());
     FooterToolbarModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, errorCollect.ErrorCollectModule, util.DelonUtilModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, errorCollect.ErrorCollectModule, outlet.NzOutletModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

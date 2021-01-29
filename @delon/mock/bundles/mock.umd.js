@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@delon/util', '@angular/common/http', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.delon.util, global.ng.common.http, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, i0, i1, http, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@angular/common/http'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@delon/util/config', '@angular/common/http', '@delon/util/other', 'rxjs', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.i1, global.ng.common.http, global.other, global.rxjs, global.rxjs.operators));
+}(this, (function (exports, i0, i1, http, other, rxjs, operators) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -448,7 +448,7 @@
                 });
             }
             if (res.body) {
-                res.body = i1.deepCopy(res.body);
+                res.body = other.deepCopy(res.body);
             }
             if (config.log) {
                 console.log("%c\uD83D\uDC7D" + req.method + "->" + req.urlWithParams + "->request", 'background:#000;color:#bada55', req);

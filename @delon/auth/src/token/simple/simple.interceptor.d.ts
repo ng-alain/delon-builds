@@ -1,5 +1,5 @@
 import { HttpRequest } from '@angular/common/http';
-import { AlainAuthConfig } from '@delon/util';
+import { AlainAuthConfig } from '@delon/util/config';
 import { BaseInterceptor } from '../base.interceptor';
 /**
  * Simple 拦截器

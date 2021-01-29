@@ -4,9 +4,9 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/bidi', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.bidi, global.ng.cdk.overlay, global.ng.cdk.portal, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@delon/util/config'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/spin')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/loading', ['exports', '@angular/core', '@angular/cdk/bidi', '@angular/cdk/overlay', '@angular/cdk/portal', '@delon/util/config', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon', 'ng-zorro-antd/spin'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.bidi, global.ng.cdk.overlay, global.ng.cdk.portal, global.i2, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
 }(this, (function (exports, i0, i3, i1, portal, i2, rxjs, operators, common, icon, spin) { 'use strict';
 
     /**

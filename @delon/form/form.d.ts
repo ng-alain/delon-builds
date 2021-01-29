@@ -2,7 +2,5 @@
  * Generated bundle index. Do not edit.
  */
 export * from './public_api';
-export { SFSchema as ɵd } from './src/schema';
-export { SFItemWrapComponent as ɵb } from './src/sf-item-wrap.component';
+export { SFSchema as ɵb } from './src/schema';
 export { TerminatorService as ɵa } from './src/terminator.service';
-export { SFTemplateDirective as ɵc } from './src/widgets/custom/sf-template.directive';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/number-info', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['number-info'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, util, common, outlet, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/number-info', ['exports', '@angular/core', '@delon/util/other', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['number-info'] = {}), global.ng.core, global.other, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, other, common, outlet, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -362,7 +362,7 @@
         gap: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], NumberInfoComponent.prototype, "gap", void 0);
     if (false) {
@@ -424,7 +424,7 @@
     }());
     NumberInfoModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule, outlet.NzOutletModule],
+                    imports: [common.CommonModule, icon.NzIconModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }

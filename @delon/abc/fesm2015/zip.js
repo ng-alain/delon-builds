@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
@@ -298,7 +299,7 @@ class ZipModule {
 }
 ZipModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
+                imports: [CommonModule],
             },] }
 ];
 

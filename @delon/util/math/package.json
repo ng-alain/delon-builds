@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/browser.umd.js",
+  "module": "../fesm2015/browser.js",
+  "es2015": "../fesm2015/browser.js",
+  "esm2015": "../esm2015/math/browser.js",
+  "fesm2015": "../fesm2015/browser.js",
+  "typings": "browser.d.ts",
+  "metadata": "browser.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/math"
+}

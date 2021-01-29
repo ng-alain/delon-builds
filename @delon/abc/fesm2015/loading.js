@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, Opti
 import { Directionality } from '@angular/cdk/bidi';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';

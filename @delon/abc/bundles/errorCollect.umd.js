@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, common, core, util, rxjs, operators, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.config, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, config, other, rxjs, operators, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -460,7 +460,7 @@
         { type: core.ElementRef },
         { type: core.ChangeDetectorRef },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: util.AlainConfigService },
+        { type: config.AlainConfigService },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     ErrorCollectComponent.propDecorators = {
@@ -468,11 +468,11 @@
         offsetTop: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], ErrorCollectComponent.prototype, "freq", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], ErrorCollectComponent.prototype, "offsetTop", void 0);
     if (false) {
@@ -518,6 +518,11 @@
         ErrorCollectComponent.prototype.directionality;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: error-collect.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [ErrorCollectComponent];
     var ErrorCollectModule = /** @class */ (function () {
@@ -527,9 +532,9 @@
     }());
     ErrorCollectModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, icon.NzIconModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, icon.NzIconModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { fromEvent } from 'rxjs';
 import { takeUntil, filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -249,9 +249,9 @@ class G2BarModule {
 }
 G2BarModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzOutletModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzOutletModule, NzSkeletonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

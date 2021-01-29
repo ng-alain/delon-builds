@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { BooleanInput, NumberInput } from '@delon/util';
+import { BooleanInput, NumberInput } from '@delon/util/other';
 export declare class QuickMenuComponent implements OnInit, OnChanges {
     private cdr;
     private el;

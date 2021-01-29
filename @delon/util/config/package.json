@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/config.umd.js",
+  "module": "../fesm2015/config.js",
+  "es2015": "../fesm2015/config.js",
+  "esm2015": "../esm2015/config/config.js",
+  "fesm2015": "../fesm2015/config.js",
+  "typings": "config.d.ts",
+  "metadata": "config.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/config"
+}

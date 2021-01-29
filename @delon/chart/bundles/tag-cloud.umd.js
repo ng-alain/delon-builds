@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
-}(this, (function (exports, core, core$1, util, rxjs, operators, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.chart.core, global.other, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
+}(this, (function (exports, core, core$1, other, rxjs, operators, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -538,11 +538,11 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2TagCloudComponent.prototype, "width", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2TagCloudComponent.prototype, "height", void 0);
     if (false) {
@@ -576,7 +576,7 @@
     }());
     G2TagCloudModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, skeleton.NzSkeletonModule],
+                    imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }

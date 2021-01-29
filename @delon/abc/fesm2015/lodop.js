@@ -1,5 +1,6 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
-import { LazyService, AlainConfigService, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { Subject, of } from 'rxjs';
 
 /**
@@ -931,9 +932,7 @@ if (false) {
 class LodopModule {
 }
 LodopModule.decorators = [
-    { type: NgModule, args: [{
-                imports: [DelonUtilModule],
-            },] }
+    { type: NgModule, args: [{},] }
 ];
 
 /**

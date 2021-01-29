@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { isEmpty, DelonUtilModule } from '@delon/util';
+import { isEmpty } from '@delon/util/browser';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -203,9 +203,9 @@ class ExceptionModule {
 }
 ExceptionModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, DelonUtilModule, DelonLocaleModule, NzButtonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, RouterModule, DelonLocaleModule, NzButtonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

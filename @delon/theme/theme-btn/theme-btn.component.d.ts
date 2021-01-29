@@ -1,7 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 export declare const ThemeBtnStorageKey = "site-theme";
 export interface ThemeBtnType {
     key: string;

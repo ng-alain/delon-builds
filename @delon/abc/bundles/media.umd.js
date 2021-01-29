@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.ng.common));
-}(this, (function (exports, platform, i0, i1, rxjs, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/other'), require('@delon/util/config'), require('rxjs'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/other', '@delon/util/config', 'rxjs', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.i2, global.i1, global.rxjs, global.ng.common));
+}(this, (function (exports, platform, i0, i2, i1, rxjs, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -390,9 +390,9 @@
     /** @nocollapse */
     MediaService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
-        { type: i1.LazyService }
+        { type: i2.LazyService }
     ]; };
-    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); }, token: MediaService, providedIn: "root" });
+    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: MediaService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -585,7 +585,7 @@
         ready: [{ type: i0.Output }]
     };
     __decorate([
-        i1.InputNumber(),
+        i2.InputNumber(),
         __metadata("design:type", Object)
     ], MediaComponent.prototype, "delay", void 0);
     if (false) {
@@ -648,6 +648,11 @@
         MediaComponent.prototype.platform;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: media.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [MediaComponent];
     var MediaModule = /** @class */ (function () {
@@ -657,9 +662,9 @@
     }());
     MediaModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule, i1.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

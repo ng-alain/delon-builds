@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputBoolean } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -149,9 +149,9 @@ class TagSelectModule {
 }
 TagSelectModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonLocaleModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzIconModule, DelonLocaleModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

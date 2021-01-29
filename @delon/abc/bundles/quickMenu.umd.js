@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/quick-menu', ['exports', '@angular/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['quick-menu'] = {}), global.ng.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, util, common, outlet, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/quick-menu', ['exports', '@angular/core', '@delon/util/other', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['quick-menu'] = {}), global.ng.core, global.other, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
+}(this, (function (exports, core, other, common, outlet, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -418,15 +418,15 @@
         expandChange: [{ type: core.Output }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], QuickMenuComponent.prototype, "top", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], QuickMenuComponent.prototype, "width", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], QuickMenuComponent.prototype, "expand", void 0);
     if (false) {
@@ -479,6 +479,11 @@
         QuickMenuComponent.prototype.render;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: quick-menu.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [QuickMenuComponent];
     var QuickMenuModule = /** @class */ (function () {
@@ -488,9 +493,9 @@
     }());
     QuickMenuModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, icon.NzIconModule, util.DelonUtilModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, icon.NzIconModule, outlet.NzOutletModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

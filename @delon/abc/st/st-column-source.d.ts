@@ -1,7 +1,7 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService } from '@delon/theme';
-import { AlainSTConfig } from '@delon/util';
+import { AlainSTConfig } from '@delon/util/config';
 import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
 import { STColumn, STColumnFilter, STResizable, STWidthMode } from './st.interfaces';

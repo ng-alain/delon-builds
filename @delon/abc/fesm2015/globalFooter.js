@@ -6,7 +6,7 @@ import { WINDOW } from '@delon/theme';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
-import { InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -218,9 +218,9 @@ class GlobalFooterModule {
 }
 GlobalFooterModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, RouterModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

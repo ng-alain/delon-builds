@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('@delon/util'), require('rxjs/operators'), require('@angular/common/http')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', '@delon/util', 'rxjs/operators', '@angular/common/http'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.delon.util, global.rxjs.operators, global.ng.common.http));
-}(this, (function (exports, common, i0, router, rxjs, util, operators, http) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('@delon/util/config'), require('rxjs/operators'), require('@angular/common/http'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', '@delon/util/config', 'rxjs/operators', '@angular/common/http', '@delon/util'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.config, global.rxjs.operators, global.ng.common.http, global.delon.util));
+}(this, (function (exports, common, i0, router, rxjs, config, operators, http, util) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -128,7 +128,7 @@
      * @return {?}
      */
     function DA_SERVICE_TOKEN_FACTORY() {
-        return new TokenService(i0.inject(util.AlainConfigService), i0.inject(DA_STORE_TOKEN));
+        return new TokenService(i0.inject(config.AlainConfigService), i0.inject(DA_STORE_TOKEN));
     }
     /**
      * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
@@ -287,7 +287,7 @@
     ];
     /** @nocollapse */
     TokenService.ctorParameters = function () { return [
-        { type: util.AlainConfigService },
+        { type: config.AlainConfigService },
         { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] }
     ]; };
     if (false) {

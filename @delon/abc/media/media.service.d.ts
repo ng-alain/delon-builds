@@ -1,4 +1,5 @@
-import { AlainConfigService, AlainMediaConfig, LazyService } from '@delon/util';
+import { AlainConfigService, AlainMediaConfig } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { Observable } from 'rxjs';
 export declare class MediaService {
     private cogSrv;

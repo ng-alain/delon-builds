@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/date-picker')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util', '@angular/common', 'ng-zorro-antd/date-picker'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.delon.util, global.ng.common, global['ng-zorro-antd/date-picker']));
-}(this, (function (exports, core, forms, platformBrowser, util, common, datePicker) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/date-picker')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/other', '@angular/common', 'ng-zorro-antd/date-picker'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.config, global.dateTime, global.other, global.ng.common, global['ng-zorro-antd/date-picker']));
+}(this, (function (exports, core, forms, platformBrowser, config, dateTime, other, common, datePicker) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -355,43 +355,43 @@
                             text: '今天',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance('today'); }),
+                             */function () { return dateTime.getTimeDistance('today'); }),
                         },
                         {
                             text: '昨天',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance('yesterday'); }),
+                             */function () { return dateTime.getTimeDistance('yesterday'); }),
                         },
                         {
                             text: '近3天',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance(-2); }),
+                             */function () { return dateTime.getTimeDistance(-2); }),
                         },
                         {
                             text: '近7天',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance(-6); }),
+                             */function () { return dateTime.getTimeDistance(-6); }),
                         },
                         {
                             text: '本周',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance('week'); }),
+                             */function () { return dateTime.getTimeDistance('week'); }),
                         },
                         {
                             text: '本月',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance('month'); }),
+                             */function () { return dateTime.getTimeDistance('month'); }),
                         },
                         {
                             text: '全年',
                             fn: ( /**
                              * @return {?}
-                             */function () { return util.getTimeDistance('year'); }),
+                             */function () { return dateTime.getTimeDistance('year'); }),
                         },
                     ],
                 },
@@ -413,7 +413,7 @@
             set: function (val) {
                 var _this = this;
                 /** @type {?} */
-                var item = ( /** @type {?} */(util.deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
+                var item = ( /** @type {?} */(other.deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
                 if (typeof val === 'boolean') {
                     item.enabled = val;
                 }
@@ -457,7 +457,7 @@
          * @return {?}
          */
         RangePickerComponent.prototype.valueChange = function (e) {
-            e = util.fixEndTimeOfRange(e);
+            e = dateTime.fixEndTimeOfRange(e);
             this.onChangeFn(e[0]);
             this.ngModelEnd = e[1];
             this.ngModelEndChange.emit(e[1]);
@@ -523,7 +523,7 @@
     /** @nocollapse */
     RangePickerComponent.ctorParameters = function () { return [
         { type: platformBrowser.DomSanitizer },
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     RangePickerComponent.propDecorators = {
         comp: [{ type: core.ViewChild, args: ['comp', { static: false },] }],
@@ -554,7 +554,7 @@
         nzOnOk: [{ type: core.Output }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], RangePickerComponent.prototype, "nzShowToday", void 0);
     if (false) {
@@ -635,6 +635,11 @@
         RangePickerComponent.prototype.dom;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: date-picker.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [RangePickerComponent];
     var DatePickerModule = /** @class */ (function () {
@@ -645,8 +650,8 @@
     DatePickerModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, forms.FormsModule, datePicker.NzDatePickerModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

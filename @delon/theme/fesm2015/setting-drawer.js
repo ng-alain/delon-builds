@@ -3,7 +3,7 @@ import { __awaiter, __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { SettingsService } from '@delon/theme';
-import { deepCopy, copy, LazyService, InputBoolean, DelonUtilModule } from '@delon/util';
+import { deepCopy, copy, LazyService, InputBoolean } from '@delon/util/other';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -657,7 +657,6 @@ SettingDrawerModule.decorators = [
                 imports: [
                     CommonModule,
                     FormsModule,
-                    DelonUtilModule,
                     NzDrawerModule,
                     NzToolTipModule,
                     NzDividerModule,
@@ -669,8 +668,8 @@ SettingDrawerModule.decorators = [
                     NzInputNumberModule,
                     NzButtonModule,
                 ],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

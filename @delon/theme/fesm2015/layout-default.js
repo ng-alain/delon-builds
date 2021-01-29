@@ -2,7 +2,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChildren, Directive, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter, ViewEncapsulation, NgZone, Optional, Output, NgModule } from '@angular/core';
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { SettingsService, MenuService, WINDOW } from '@delon/theme';
-import { updateHostClass, InputBoolean, InputNumber } from '@delon/util';
+import { updateHostClass } from '@delon/util/browser';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -13,6 +13,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 
 /**
  * @fileoverview added by tsickle
@@ -1004,8 +1005,8 @@ class LayoutDefaultModule {
 LayoutDefaultModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, NzToolTipModule, NzIconModule, NzAvatarModule, NzDropDownModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

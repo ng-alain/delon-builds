@@ -1,4 +1,4 @@
-import { AlainSFConfig } from '@delon/util';
+import { AlainSFConfig } from '@delon/util/config';
 import { BehaviorSubject } from 'rxjs';
 import { ErrorData } from '../errors';
 import { SFFormValueChange, SFUpdateValueAndValidity, SFValue } from '../interface';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('@delon/theme'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util', '@delon/theme', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.delon.util, global.delon.theme, global.ng.common));
-}(this, (function (exports, core, util, theme, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('@delon/theme'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', '@delon/theme', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.config, global.other, global.delon.theme, global.ng.common));
+}(this, (function (exports, core, config, other, theme, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -363,7 +363,7 @@
     ];
     /** @nocollapse */
     SGContainerComponent.ctorParameters = function () { return [
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     SGContainerComponent.propDecorators = {
         gutter: [{ type: core.Input }],
@@ -371,15 +371,15 @@
         col: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "colInCon", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "col", void 0);
     if (false) {
@@ -494,7 +494,7 @@
         col: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SGComponent.prototype, "col", void 0);
     if (false) {
@@ -534,6 +534,11 @@
         SGComponent.prototype.rep;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: sg.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [SGContainerComponent, SGComponent];
     var SGModule = /** @class */ (function () {
@@ -543,9 +548,9 @@
     }());
     SGModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

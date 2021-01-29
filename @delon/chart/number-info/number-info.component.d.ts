@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { NumberInput } from '@delon/util';
+import { NumberInput } from '@delon/util/other';
 export declare class NumberInfoComponent {
     static ngAcceptInputType_gap: NumberInput;
     /** 标题 */

@@ -69,8 +69,8 @@ class CountDownModule {
 CountDownModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, CountdownModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -5,7 +5,7 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Re
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
-import { InputBoolean, InputNumber, DelonUtilModule } from '@delon/util';
+import { InputBoolean, InputNumber } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -585,7 +585,7 @@ class SidebarNavModule {
 }
 SidebarNavModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, NzIconModule, NzToolTipModule, DelonUtilModule],
+                imports: [CommonModule, RouterModule, NzIconModule, NzToolTipModule],
                 declarations: [SidebarNavComponent],
                 exports: [SidebarNavComponent],
             },] }

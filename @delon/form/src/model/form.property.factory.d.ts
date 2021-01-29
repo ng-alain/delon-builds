@@ -1,4 +1,4 @@
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';

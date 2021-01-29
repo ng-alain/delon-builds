@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
-import { AlainConfigService, LazyService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { XlsxExportOptions, XlsxExportResult } from './xlsx.types';
 export declare class XlsxService {
     private http;

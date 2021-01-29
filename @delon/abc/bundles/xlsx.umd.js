@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util'), require('file-saver'), require('isutf8'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util', 'file-saver', 'isutf8', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.delon.util, global.saveAs, global.isUtf8, global.ng.common));
-}(this, (function (exports, i1, i0, i2, fileSaver, isUtf8, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('file-saver'), require('isutf8'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', '@delon/util/other', 'file-saver', 'isutf8', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.i3, global.i2, global.saveAs, global.isUtf8, global.ng.common));
+}(this, (function (exports, i1, i0, i3, i2, fileSaver, isUtf8, common) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -522,10 +522,10 @@
     XlsxService.ctorParameters = function () { return [
         { type: i1.HttpClient },
         { type: i2.LazyService },
-        { type: i2.AlainConfigService },
+        { type: i3.AlainConfigService },
         { type: i0.NgZone }
     ]; };
-    /** @nocollapse */ XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
+    /** @nocollapse */ XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -595,6 +595,11 @@
         XlsxDirective.prototype.srv;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: xlsx.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [XlsxDirective];
     var XlsxModule = /** @class */ (function () {
@@ -604,9 +609,9 @@
     }());
     XlsxModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule, i2.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

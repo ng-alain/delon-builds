@@ -29,7 +29,7 @@ export { TrendComponent, TrendModule } from '@delon/chart/trend';
 import { G2SingleBarModule } from '@delon/chart/single-bar';
 export { G2SingleBarComponent, G2SingleBarModule } from '@delon/chart/single-bar';
 import { NgModule } from '@angular/core';
-import { warnDeprecation } from '@delon/util';
+import { warnDeprecation } from '@delon/util/other';
 
 /**
  * @fileoverview added by tsickle

@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -250,9 +250,9 @@ class G2MiniAreaModule {
 }
 G2MiniAreaModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

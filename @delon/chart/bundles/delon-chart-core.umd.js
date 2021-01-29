@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('@angular/cdk/platform'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util', 'rxjs', '@angular/cdk/platform', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.rxjs, global.ng.cdk.platform, global.rxjs.operators));
-}(this, (function (exports, i0, i1, rxjs, platform, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.rxjs.operators));
+}(this, (function (exports, i0, i1, i2, rxjs, platform, operators) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -96,9 +96,9 @@
     /** @nocollapse */
     G2Service.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
-        { type: i1.LazyService }
+        { type: i2.LazyService }
     ]; };
-    /** @nocollapse */ G2Service.ɵprov = i0.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1.LazyService)); }, token: G2Service, providedIn: "root" });
+    /** @nocollapse */ G2Service.ɵprov = i0.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: G2Service, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
@@ -572,7 +572,7 @@
         theme: [{ type: i0.Input }]
     };
     __decorate([
-        i1.InputNumber(),
+        i2.InputNumber(),
         __metadata("design:type", Object)
     ], G2BaseComponent.prototype, "delay", void 0);
     if (false) {

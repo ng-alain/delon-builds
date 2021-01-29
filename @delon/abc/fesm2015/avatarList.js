@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Optional, ContentChildren, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
-import { InputNumber } from '@delon/util';
+import { InputNumber } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
@@ -214,8 +214,8 @@ class AvatarListModule {
 AvatarListModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzAvatarModule, NzToolTipModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

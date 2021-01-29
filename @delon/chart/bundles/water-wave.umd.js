@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, util, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.other, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, platform, core, other, rxjs, operators, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -627,19 +627,19 @@
         percent: [{ type: core.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2WaterWaveComponent.prototype, "animate", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2WaterWaveComponent.prototype, "delay", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2WaterWaveComponent.prototype, "height", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], G2WaterWaveComponent.prototype, "percent", void 0);
     if (false) {
@@ -719,7 +719,7 @@
     }());
     G2WaterWaveModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, outlet.NzOutletModule],
+                    imports: [common.CommonModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }

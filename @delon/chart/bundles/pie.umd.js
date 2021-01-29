@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@delon/chart/core', '@delon/util', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.delon.chart.core, global.delon.util, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider'], global.skeleton));
-}(this, (function (exports, core, core$1, util, common, outlet, divider, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/pie', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/other', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/divider', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.pie = {}), global.ng.core, global.delon.chart.core, global.other, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/divider'], global.skeleton));
+}(this, (function (exports, core, core$1, other, common, outlet, divider, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -572,35 +572,35 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "animate", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "height", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "hasLegend", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], G2PieComponent.prototype, "percent", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "tooltip", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "lineWidth", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "blockMaxWidth", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], G2PieComponent.prototype, "select", void 0);
     if (false) {
@@ -681,7 +681,7 @@
     }());
     G2PieModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, divider.NzDividerModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
+                    imports: [common.CommonModule, divider.NzDividerModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }

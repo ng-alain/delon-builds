@@ -3,7 +3,6 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input,
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
-import { DelonUtilModule } from '@delon/util';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -123,9 +122,9 @@ class ResultModule {
 }
 ResultModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzIconModule, DelonUtilModule, NzOutletModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzIconModule, NzOutletModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

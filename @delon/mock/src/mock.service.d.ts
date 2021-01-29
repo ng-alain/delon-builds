@@ -1,5 +1,5 @@
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService, AlainMockConfig } from '@delon/util';
+import { AlainConfigService, AlainMockConfig } from '@delon/util/config';
 import { MockCachedRule, MockRule } from './interface';
 export declare class MockService implements OnDestroy {
     private cached;

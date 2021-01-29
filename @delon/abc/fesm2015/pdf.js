@@ -2,7 +2,8 @@ import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, Input, Output, NgModule } from '@angular/core';
-import { AlainConfigService, LazyService, InputNumber, InputBoolean, DelonUtilModule } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService, InputNumber, InputBoolean } from '@delon/util/other';
 import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -881,9 +882,9 @@ class PdfModule {
 }
 PdfModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, DelonUtilModule, NzSkeletonModule],
-                declarations: [...COMPONENTS],
-                exports: [...COMPONENTS],
+                imports: [CommonModule, NzSkeletonModule],
+                declarations: COMPONENTS,
+                exports: COMPONENTS,
             },] }
 ];
 

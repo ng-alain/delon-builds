@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { AlainConfigService } from '@delon/util';
+import { AlainConfigService } from '@delon/util/config';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;

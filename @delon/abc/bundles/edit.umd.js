@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, util, rxjs, operators, forms, theme, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.config, global.other, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.browser, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, config, other, rxjs, operators, forms, theme, browser, animation, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -347,7 +347,7 @@
              * @return {?}
              */
             set: function (value) {
-                this._gutter = util.toNumber(value);
+                this._gutter = other.toNumber(value);
             },
             enumerable: false,
             configurable: true
@@ -443,7 +443,7 @@
     ];
     /** @nocollapse */
     SEContainerComponent.ctorParameters = function () { return [
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     SEContainerComponent.propDecorators = {
         colInCon: [{ type: core.Input, args: ['se-container',] }],
@@ -459,27 +459,27 @@
         errors: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "colInCon", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "col", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SEContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], SEContainerComponent.prototype, "firstVisual", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], SEContainerComponent.prototype, "ingoreDirty", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SEContainerComponent.prototype, "line", void 0);
     if (false) {
@@ -821,7 +821,7 @@
             var el = this.contentElement.nativeElement;
             /** @type {?} */
             var cls = prefixCls + "__item-empty";
-            if (util.isEmpty(el)) {
+            if (browser.isEmpty(el)) {
                 this.ren.addClass(el, cls);
             }
             else {
@@ -912,19 +912,19 @@
         id: [{ type: core.Input }]
     };
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SEComponent.prototype, "col", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], SEComponent.prototype, "required", void 0);
     __decorate([
-        util.InputBoolean(null),
+        other.InputBoolean(null),
         __metadata("design:type", Boolean)
     ], SEComponent.prototype, "line", void 0);
     __decorate([
-        util.InputNumber(null),
+        other.InputNumber(null),
         __metadata("design:type", Number)
     ], SEComponent.prototype, "labelWidth", void 0);
     if (false) {
@@ -1038,6 +1038,11 @@
         SEComponent.prototype.cdr;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: se.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
@@ -1047,9 +1052,9 @@
     }());
     SEModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

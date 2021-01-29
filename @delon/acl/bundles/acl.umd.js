@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, i0, util, rxjs, operators, i2, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', '@delon/util/other', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.other, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, i0, config, rxjs, other, operators, i2, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -647,7 +647,7 @@
     ];
     /** @nocollapse */
     ACLService.ctorParameters = function () { return [
-        { type: util.AlainConfigService }
+        { type: config.AlainConfigService }
     ]; };
     if (false) {
         /**
@@ -799,7 +799,7 @@
         except: [{ type: i0.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], ACLIfDirective.prototype, "except", void 0);
     if (false) {
@@ -1068,6 +1068,11 @@
         ACLGuard.prototype.router;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [ACLDirective, ACLIfDirective];
     var DelonACLModule = /** @class */ (function () {
@@ -1086,9 +1091,9 @@
     }());
     DelonACLModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule, util.DelonUtilModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

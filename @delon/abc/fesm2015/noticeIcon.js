@@ -1,7 +1,7 @@
 import { EventEmitter, Component, ViewEncapsulation, Input, Output, ChangeDetectionStrategy, ChangeDetectorRef, NgModule } from '@angular/core';
 import { __decorate, __metadata } from 'tslib';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { InputNumber, InputBoolean } from '@delon/util';
+import { InputNumber, InputBoolean } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -315,7 +315,7 @@ NoticeIconModule.decorators = [
                     NzTagModule,
                 ],
                 declarations: [...COMPONENTS, NoticeIconTabComponent],
-                exports: [...COMPONENTS],
+                exports: COMPONENTS,
             },] }
 ];
 

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.delon.util, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, util, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util/browser', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.browser, global.config, global.other, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, browser, config, other, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -506,7 +506,7 @@
          * @return {?}
          */
         PageHeaderComponent.prototype.checkContent = function () {
-            if (util.isEmpty(this.conTpl.nativeElement)) {
+            if (browser.isEmpty(this.conTpl.nativeElement)) {
                 this.renderer.setAttribute(this.conTpl.nativeElement, 'hidden', '');
             }
             else {
@@ -573,7 +573,7 @@
         { type: theme.TitleService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [theme.TitleService,] }] },
         { type: reuseTab.ReuseTabService, decorators: [{ type: core.Optional }, { type: core.Inject, args: [reuseTab.ReuseTabService,] }] },
         { type: core.ChangeDetectorRef },
-        { type: util.AlainConfigService },
+        { type: config.AlainConfigService },
         { type: platform.Platform },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
@@ -600,35 +600,35 @@
         tab: [{ type: core.Input }]
     };
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PageHeaderComponent.prototype, "loading", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Object)
     ], PageHeaderComponent.prototype, "wide", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "autoTitle", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "syncTitle", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "fixed", void 0);
     __decorate([
-        util.InputNumber(),
+        other.InputNumber(),
         __metadata("design:type", Number)
     ], PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
     __decorate([
-        util.InputBoolean(),
+        other.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
     if (false) {
@@ -753,6 +753,11 @@
         PageHeaderComponent.prototype.directionality;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: page-header.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /** @type {?} */
     var COMPONENTS = [PageHeaderComponent];
     var PageHeaderModule = /** @class */ (function () {
@@ -762,9 +767,9 @@
     }());
     PageHeaderModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, router.RouterModule, observers.ObserversModule, util.DelonUtilModule, affix.NzAffixModule, skeleton.NzSkeletonModule, breadcrumb.NzBreadCrumbModule],
-                    declarations: __spread(COMPONENTS),
-                    exports: __spread(COMPONENTS),
+                    imports: [common.CommonModule, router.RouterModule, observers.ObserversModule, affix.NzAffixModule, skeleton.NzSkeletonModule, breadcrumb.NzBreadCrumbModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
                 },] }
     ];
 

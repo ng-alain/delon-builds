@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser')) :
-  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.util, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser));
-}(this, (function (exports, common, core, router, theme, util, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser'), require('@delon/util/other')) :
+  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser', '@delon/util/other'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.browser, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.other));
+}(this, (function (exports, common, core, router, theme, browser, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser, other) { 'use strict';
 
   /**
    * @fileoverview added by tsickle
@@ -102,7 +102,7 @@
           var _b = this, el = _b.el, doc = _b.doc, renderer = _b.renderer, settings = _b.settings;
           /** @type {?} */
           var layout = settings.layout;
-          util.updateHostClass(el.nativeElement, renderer, (_a = {},
+          browser.updateHostClass(el.nativeElement, renderer, (_a = {},
               _a['alain-default'] = true,
               _a["alain-default__fixed"] = layout.fixed,
               _a["alain-default__collapsed"] = layout.collapsed,
@@ -192,6 +192,202 @@
        * @private
        */
       LayoutDefaultComponent.prototype.doc;
+  }
+
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-header-item-trigger.directive.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+  var LayoutDefaultHeaderItemTriggerDirective = /** @class */ (function () {
+      function LayoutDefaultHeaderItemTriggerDirective() {
+      }
+      return LayoutDefaultHeaderItemTriggerDirective;
+  }());
+  LayoutDefaultHeaderItemTriggerDirective.decorators = [
+      { type: core.Directive, args: [{
+                  selector: '[layout-default-header-item-trigger]',
+                  host: {
+                      '[class.alain-default__nav-item]': "true",
+                  },
+              },] }
+  ];
+
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-header.component.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+  /**
+   * @record
+   */
+  function LayoutDefaultHeaderItem() { }
+  if (false) {
+      /** @type {?} */
+      LayoutDefaultHeaderItem.prototype.host;
+      /** @type {?|undefined} */
+      LayoutDefaultHeaderItem.prototype.hidden;
+      /** @type {?|undefined} */
+      LayoutDefaultHeaderItem.prototype.direction;
+  }
+  var LayoutDefaultHeaderComponent = /** @class */ (function () {
+      /**
+       * @param {?} settings
+       * @param {?} parent
+       * @param {?} cdr
+       */
+      function LayoutDefaultHeaderComponent(settings, parent, cdr) {
+          this.settings = settings;
+          this.parent = parent;
+          this.cdr = cdr;
+          this.destroy$ = new rxjs.Subject();
+          this.left = [];
+          this.middle = [];
+          this.right = [];
+      }
+      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "options", {
+          /**
+           * @return {?}
+           */
+          get: function () {
+              return this.parent.options;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "app", {
+          /**
+           * @return {?}
+           */
+          get: function () {
+              return this.settings.app;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsed", {
+          /**
+           * @return {?}
+           */
+          get: function () {
+              return this.settings.layout.collapsed;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsedIcon", {
+          /**
+           * @return {?}
+           */
+          get: function () {
+              /** @type {?} */
+              var type = this.collapsed ? 'unfold' : 'fold';
+              if (this.settings.layout.direction === 'rtl') {
+                  type = this.collapsed ? 'fold' : 'unfold';
+              }
+              return "menu-" + type;
+          },
+          enumerable: false,
+          configurable: true
+      });
+      /**
+       * @private
+       * @return {?}
+       */
+      LayoutDefaultHeaderComponent.prototype.refresh = function () {
+          /** @type {?} */
+          var arr = this.parent.headerItems.toArray();
+          this.left = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'left'; }));
+          this.middle = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'middle'; }));
+          this.right = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'right'; }));
+          this.cdr.detectChanges();
+      };
+      /**
+       * @return {?}
+       */
+      LayoutDefaultHeaderComponent.prototype.ngAfterViewInit = function () {
+          var _this = this;
+          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+           * @return {?}
+           */function () { return _this.refresh(); }));
+          this.refresh();
+      };
+      /**
+       * @return {?}
+       */
+      LayoutDefaultHeaderComponent.prototype.toggleCollapsed = function () {
+          this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
+      };
+      /**
+       * @return {?}
+       */
+      LayoutDefaultHeaderComponent.prototype.ngOnDestroy = function () {
+          this.destroy$.next();
+          this.destroy$.complete();
+      };
+      return LayoutDefaultHeaderComponent;
+  }());
+  LayoutDefaultHeaderComponent.decorators = [
+      { type: core.Component, args: [{
+                  selector: 'layout-default-header',
+                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
+                  host: {
+                      '[class.alain-default__header]': "true",
+                  },
+                  changeDetection: core.ChangeDetectionStrategy.OnPush
+              }] }
+  ];
+  /** @nocollapse */
+  LayoutDefaultHeaderComponent.ctorParameters = function () { return [
+      { type: theme.SettingsService },
+      { type: LayoutDefaultComponent },
+      { type: core.ChangeDetectorRef }
+  ]; };
+  if (false) {
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.destroy$;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.left;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.middle;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.right;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.settings;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.parent;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.cdr;
   }
 
   /*! *****************************************************************************
@@ -501,202 +697,6 @@
       }
       privateMap.set(receiver, value);
       return value;
-  }
-
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-header-item-trigger.directive.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  var LayoutDefaultHeaderItemTriggerDirective = /** @class */ (function () {
-      function LayoutDefaultHeaderItemTriggerDirective() {
-      }
-      return LayoutDefaultHeaderItemTriggerDirective;
-  }());
-  LayoutDefaultHeaderItemTriggerDirective.decorators = [
-      { type: core.Directive, args: [{
-                  selector: '[layout-default-header-item-trigger]',
-                  host: {
-                      '[class.alain-default__nav-item]': "true",
-                  },
-              },] }
-  ];
-
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-header.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  /**
-   * @record
-   */
-  function LayoutDefaultHeaderItem() { }
-  if (false) {
-      /** @type {?} */
-      LayoutDefaultHeaderItem.prototype.host;
-      /** @type {?|undefined} */
-      LayoutDefaultHeaderItem.prototype.hidden;
-      /** @type {?|undefined} */
-      LayoutDefaultHeaderItem.prototype.direction;
-  }
-  var LayoutDefaultHeaderComponent = /** @class */ (function () {
-      /**
-       * @param {?} settings
-       * @param {?} parent
-       * @param {?} cdr
-       */
-      function LayoutDefaultHeaderComponent(settings, parent, cdr) {
-          this.settings = settings;
-          this.parent = parent;
-          this.cdr = cdr;
-          this.destroy$ = new rxjs.Subject();
-          this.left = [];
-          this.middle = [];
-          this.right = [];
-      }
-      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "options", {
-          /**
-           * @return {?}
-           */
-          get: function () {
-              return this.parent.options;
-          },
-          enumerable: false,
-          configurable: true
-      });
-      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "app", {
-          /**
-           * @return {?}
-           */
-          get: function () {
-              return this.settings.app;
-          },
-          enumerable: false,
-          configurable: true
-      });
-      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsed", {
-          /**
-           * @return {?}
-           */
-          get: function () {
-              return this.settings.layout.collapsed;
-          },
-          enumerable: false,
-          configurable: true
-      });
-      Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsedIcon", {
-          /**
-           * @return {?}
-           */
-          get: function () {
-              /** @type {?} */
-              var type = this.collapsed ? 'unfold' : 'fold';
-              if (this.settings.layout.direction === 'rtl') {
-                  type = this.collapsed ? 'fold' : 'unfold';
-              }
-              return "menu-" + type;
-          },
-          enumerable: false,
-          configurable: true
-      });
-      /**
-       * @private
-       * @return {?}
-       */
-      LayoutDefaultHeaderComponent.prototype.refresh = function () {
-          /** @type {?} */
-          var arr = this.parent.headerItems.toArray();
-          this.left = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'left'; }));
-          this.middle = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'middle'; }));
-          this.right = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'right'; }));
-          this.cdr.detectChanges();
-      };
-      /**
-       * @return {?}
-       */
-      LayoutDefaultHeaderComponent.prototype.ngAfterViewInit = function () {
-          var _this = this;
-          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-           * @return {?}
-           */function () { return _this.refresh(); }));
-          this.refresh();
-      };
-      /**
-       * @return {?}
-       */
-      LayoutDefaultHeaderComponent.prototype.toggleCollapsed = function () {
-          this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
-      };
-      /**
-       * @return {?}
-       */
-      LayoutDefaultHeaderComponent.prototype.ngOnDestroy = function () {
-          this.destroy$.next();
-          this.destroy$.complete();
-      };
-      return LayoutDefaultHeaderComponent;
-  }());
-  LayoutDefaultHeaderComponent.decorators = [
-      { type: core.Component, args: [{
-                  selector: 'layout-default-header',
-                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
-                  host: {
-                      '[class.alain-default__header]': "true",
-                  },
-                  changeDetection: core.ChangeDetectionStrategy.OnPush
-              }] }
-  ];
-  /** @nocollapse */
-  LayoutDefaultHeaderComponent.ctorParameters = function () { return [
-      { type: theme.SettingsService },
-      { type: LayoutDefaultComponent },
-      { type: core.ChangeDetectorRef }
-  ]; };
-  if (false) {
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.destroy$;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.left;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.middle;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.right;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.settings;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.parent;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.cdr;
   }
 
   /**
@@ -1164,23 +1164,23 @@
       select: [{ type: core.Output }]
   };
   __decorate([
-      util.InputBoolean(),
+      other.InputBoolean(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "disabledAcl", void 0);
   __decorate([
-      util.InputBoolean(),
+      other.InputBoolean(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "autoCloseUnderPad", void 0);
   __decorate([
-      util.InputBoolean(),
+      other.InputBoolean(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "recursivePath", void 0);
   __decorate([
-      util.InputBoolean(),
+      other.InputBoolean(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "openStrictly", void 0);
   __decorate([
-      util.InputNumber(),
+      other.InputNumber(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
   if (false) {
@@ -1277,6 +1277,11 @@
       LayoutDefaultNavComponent.prototype.directionality;
   }
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout.module.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
   /** @type {?} */
   var COMPONENTS = [
       LayoutDefaultComponent,
@@ -1293,8 +1298,8 @@
   LayoutDefaultModule.decorators = [
       { type: core.NgModule, args: [{
                   imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule],
-                  declarations: __spread(COMPONENTS),
-                  exports: __spread(COMPONENTS),
+                  declarations: COMPONENTS,
+                  exports: COMPONENTS,
               },] }
   ];
 
