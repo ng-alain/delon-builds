@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/pipes.umd.js",
+  "module": "../fesm2015/pipes.js",
+  "es2015": "../fesm2015/pipes.js",
+  "esm2015": "../esm2015/pipes/pipes.js",
+  "fesm2015": "../fesm2015/pipes.js",
+  "typings": "pipes.d.ts",
+  "metadata": "pipes.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/pipes"
+}
