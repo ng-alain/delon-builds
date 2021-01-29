@@ -91,6 +91,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _resizable;
     set resizable(val: STResizable | boolean);
     header: string | TemplateRef<void>;
+    showHeader: boolean;
     footer: string | TemplateRef<void>;
     bodyHeader: TemplateRef<STStatisticalResults>;
     body: TemplateRef<STStatisticalResults>;
