@@ -571,44 +571,6 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: copy.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * Copy text to clipboard
-     *
-     * 复制字符串文档至剪贴板
-     * @param {?} value
-     * @return {?}
-     */
-    function copy(value) {
-        return new Promise(( /**
-         * @param {?} resolve
-         * @return {?}
-         */function (resolve) {
-            /** @type {?} */
-            var copyTextArea = null;
-            try {
-                copyTextArea = document.createElement('textarea');
-                copyTextArea.style.height = '0px';
-                copyTextArea.style.opacity = '0';
-                copyTextArea.style.width = '0px';
-                document.body.appendChild(copyTextArea);
-                copyTextArea.value = value;
-                copyTextArea.select();
-                document.execCommand('copy');
-                resolve(value);
-            }
-            finally {
-                if (copyTextArea && copyTextArea.parentNode) {
-                    copyTextArea.parentNode.removeChild(copyTextArea);
-                }
-            }
-        }));
-    }
-
-    /**
-     * @fileoverview added by tsickle
      * Generated from: lazy.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
@@ -902,7 +864,6 @@
     exports.assert = assert;
     exports.assertNumber = assertNumber;
     exports.assertString = assertString;
-    exports.copy = copy;
     exports.deepCopy = deepCopy;
     exports.deepGet = deepGet;
     exports.deepMerge = deepMerge;

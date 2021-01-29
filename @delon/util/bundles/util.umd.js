@@ -33,6 +33,12 @@
 			return browser.ScrollService;
 		}
 	});
+	Object.defineProperty(exports, 'copy', {
+		enumerable: true,
+		get: function () {
+			return browser.copy;
+		}
+	});
 	Object.defineProperty(exports, 'isEmpty', {
 		enumerable: true,
 		get: function () {
@@ -217,12 +223,6 @@
 		enumerable: true,
 		get: function () {
 			return other.assertString;
-		}
-	});
-	Object.defineProperty(exports, 'copy', {
-		enumerable: true,
-		get: function () {
-			return other.copy;
 		}
 	});
 	Object.defineProperty(exports, 'deepCopy', {
