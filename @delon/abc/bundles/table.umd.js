@@ -2365,7 +2365,7 @@
              * @return {?}
              */
             get: function () {
-                var _a = this, pi = _a.pi, ps = _a.ps, total = _a.total;
+                var _b = this, pi = _b.pi, ps = _b.ps, total = _b.total;
                 return { pi: pi, ps: ps, total: total };
             },
             enumerable: false,
@@ -2480,7 +2480,7 @@
          */
         STComponent.prototype.loadData = function (options) {
             var _this = this;
-            var _a = this, pi = _a.pi, ps = _a.ps, data = _a.data, req = _a.req, res = _a.res, page = _a.page, total = _a.total, singleSort = _a.singleSort, multiSort = _a.multiSort, rowClassName = _a.rowClassName;
+            var _b = this, pi = _b.pi, ps = _b.ps, data = _b.data, req = _b.req, res = _b.res, page = _b.page, total = _b.total, singleSort = _b.singleSort, multiSort = _b.multiSort, rowClassName = _b.rowClassName;
             return new Promise(( /**
              * @param {?} resolvePromise
              * @param {?} rejectPromise
@@ -2526,16 +2526,16 @@
             return __awaiter(this, void 0, void 0, function () {
                 var result, error_1;
                 var _this = this;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
+                return __generator(this, function (_b) {
+                    switch (_b.label) {
                         case 0:
                             this.setLoading(true);
-                            _a.label = 1;
+                            _b.label = 1;
                         case 1:
-                            _a.trys.push([1, 3, , 4]);
+                            _b.trys.push([1, 3, , 4]);
                             return [4 /*yield*/, this.loadData()];
                         case 2:
-                            result = _a.sent();
+                            result = _b.sent();
                             this.setLoading(false);
                             if (typeof result.pi !== 'undefined') {
                                 this.pi = result.pi;
@@ -2561,7 +2561,7 @@
                             }
                             return [2 /*return*/, this._refCheck()];
                         case 3:
-                            error_1 = _a.sent();
+                            error_1 = _b.sent();
                             this.setLoading(false);
                             if (!this.unsubscribe$.isStopped) {
                                 this.cdr.detectChanges();
@@ -2651,6 +2651,7 @@
          * @return {?}
          */
         STComponent.prototype._toTop = function (enforce) {
+            var _a;
             if (!(enforce == null ? this.page.toTop : enforce))
                 return;
             /** @type {?} */
@@ -2663,7 +2664,7 @@
                     });
                 }
                 else {
-                    ( /** @type {?} */(el.querySelector('.ant-table-content'))).scrollTo(0, 0);
+                    (_a = el.querySelector('.ant-table-body, .ant-table-content')) === null || _a === void 0 ? void 0 : _a.scrollTo(0, 0);
                 }
                 return;
             }
@@ -2733,7 +2734,7 @@
             var _this = this;
             if ((( /** @type {?} */(e.target))).nodeName === 'INPUT')
                 return;
-            var _a = this, expand = _a.expand, expandRowByClick = _a.expandRowByClick, rowClickTime = _a.rowClickTime;
+            var _b = this, expand = _b.expand, expandRowByClick = _b.expandRowByClick, rowClickTime = _b.rowClickTime;
             if (!!expand && item.showExpand !== false && expandRowByClick) {
                 item.expand = !item.expand;
                 this.closeOtherExpand(item);
@@ -3161,7 +3162,7 @@
          * @return {?}
          */
         STComponent.prototype._btnClick = function (record, btn, e) {
-            var _a, _b;
+            var _b, _c;
             var _this = this;
             // should be stop propagation when expandRowByClick is true
             if (e && this.expandRowByClick === true) {
@@ -3170,7 +3171,7 @@
             if (btn.type === 'modal' || btn.type === 'static') {
                 var modal = btn.modal;
                 /** @type {?} */
-                var obj = (_a = {}, _a[( /** @type {?} */(( /** @type {?} */(modal)).paramsName))] = record, _a);
+                var obj = (_b = {}, _b[( /** @type {?} */(( /** @type {?} */(modal)).paramsName))] = record, _b);
                 (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(( /** @type {?} */(modal)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(modal)).params && ( /** @type {?} */(( /** @type {?} */(modal)).params))(record))), util.deepMergeKey({}, true, this.cog.modal, modal))
                     .pipe(operators.filter(( /**
              * @param {?} w
@@ -3188,7 +3189,7 @@
             else if (btn.type === 'drawer') {
                 var drawer = btn.drawer;
                 /** @type {?} */
-                var obj = (_b = {}, _b[( /** @type {?} */(( /** @type {?} */(drawer)).paramsName))] = record, _b);
+                var obj = (_c = {}, _c[( /** @type {?} */(( /** @type {?} */(drawer)).paramsName))] = record, _c);
                 this.drawerHelper
                     .create(( /** @type {?} */(( /** @type {?} */(drawer)).title)), ( /** @type {?} */(drawer)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(drawer)).params && ( /** @type {?} */(( /** @type {?} */(drawer)).params))(record))), util.deepMergeKey({}, true, this.cog.drawer, drawer))
                     .pipe(operators.filter(( /**
@@ -3294,8 +3295,8 @@
          * @param {?} column
          * @return {?}
          */
-        STComponent.prototype.colResize = function (_a, column) {
-            var width = _a.width;
+        STComponent.prototype.colResize = function (_b, column) {
+            var width = _b.width;
             column.width = width + "px";
             this.changeEmit('resize', column);
         };

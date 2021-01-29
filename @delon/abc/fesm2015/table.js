@@ -3603,6 +3603,7 @@ class STComponent {
      * @return {?}
      */
     _toTop(enforce) {
+        var _a;
         if (!(enforce == null ? this.page.toTop : enforce))
             return;
         /** @type {?} */
@@ -3615,7 +3616,7 @@ class STComponent {
                 });
             }
             else {
-                (/** @type {?} */ (el.querySelector('.ant-table-content'))).scrollTo(0, 0);
+                (_a = el.querySelector('.ant-table-body, .ant-table-content')) === null || _a === void 0 ? void 0 : _a.scrollTo(0, 0);
             }
             return;
         }
