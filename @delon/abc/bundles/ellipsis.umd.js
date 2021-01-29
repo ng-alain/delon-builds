@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@delon/util/other', 'rxjs/operators', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.other, global.rxjs.operators, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, common, core, platformBrowser, other, operators, observers, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', '@delon/util/decorator', 'rxjs/operators', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.decorator, global.rxjs.operators, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, common, core, platformBrowser, decorator, operators, observers, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -624,19 +624,19 @@
         tail: [{ type: core.Input }]
     };
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "tooltip", void 0);
     __decorate([
-        other.InputNumber(null),
+        decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], EllipsisComponent.prototype, "length", void 0);
     __decorate([
-        other.InputNumber(null),
+        decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], EllipsisComponent.prototype, "lines", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
     if (false) {

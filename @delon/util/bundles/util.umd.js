@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/array'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/form'), require('@delon/util/format'), require('@delon/util/math'), require('@delon/util/other')) :
-	typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@delon/util/array', '@delon/util/browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/form', '@delon/util/format', '@delon/util/math', '@delon/util/other'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.delon.util.array, global.delon.util.browser, global.delon.util.config, global.delon.util['date-time'], global.delon.util.form, global.delon.util.format, global.delon.util.math, global.delon.util.other));
-}(this, (function (exports, array, browser, config, dateTime, form, format, math, other) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/array'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/form'), require('@delon/util/format'), require('@delon/util/math'), require('@delon/util/decorator'), require('@delon/util/other')) :
+	typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@delon/util/array', '@delon/util/browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/form', '@delon/util/format', '@delon/util/math', '@delon/util/decorator', '@delon/util/other'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.delon.util.array, global.delon.util.browser, global.delon.util.config, global.delon.util['date-time'], global.delon.util.form, global.delon.util.format, global.delon.util.math, global.delon.util.decorator, global.delon.util.other));
+}(this, (function (exports, array, browser, config, dateTime, form, format, math, decorator, other) { 'use strict';
 
 	/**
 	 * @fileoverview added by tsickle
@@ -162,13 +162,31 @@
 	Object.defineProperty(exports, 'InputBoolean', {
 		enumerable: true,
 		get: function () {
-			return other.InputBoolean;
+			return decorator.InputBoolean;
 		}
 	});
 	Object.defineProperty(exports, 'InputNumber', {
 		enumerable: true,
 		get: function () {
-			return other.InputNumber;
+			return decorator.InputNumber;
+		}
+	});
+	Object.defineProperty(exports, 'propDecoratorFactory', {
+		enumerable: true,
+		get: function () {
+			return decorator.propDecoratorFactory;
+		}
+	});
+	Object.defineProperty(exports, 'toBoolean', {
+		enumerable: true,
+		get: function () {
+			return decorator.toBoolean;
+		}
+	});
+	Object.defineProperty(exports, 'toNumber', {
+		enumerable: true,
+		get: function () {
+			return decorator.toNumber;
 		}
 	});
 	Object.defineProperty(exports, 'LazyService', {
@@ -241,18 +259,6 @@
 		enumerable: true,
 		get: function () {
 			return other.log;
-		}
-	});
-	Object.defineProperty(exports, 'toBoolean', {
-		enumerable: true,
-		get: function () {
-			return other.toBoolean;
-		}
-	});
-	Object.defineProperty(exports, 'toNumber', {
-		enumerable: true,
-		get: function () {
-			return other.toNumber;
 		}
 	});
 	Object.defineProperty(exports, 'warn', {

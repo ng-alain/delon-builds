@@ -2,7 +2,8 @@ import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { LazyService, InputNumber } from '@delon/util/other';
+import { InputNumber } from '@delon/util/decorator';
+import { LazyService } from '@delon/util/other';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 

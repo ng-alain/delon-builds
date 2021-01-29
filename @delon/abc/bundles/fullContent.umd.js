@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/util/other', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.other, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, common, i0, router, other, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/util/decorator', 'rxjs', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.decorator, global.rxjs, global.rxjs.operators));
+}(this, (function (exports, common, i0, router, decorator, rxjs, operators) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -543,15 +543,15 @@
         fullscreenChange: [{ type: i0.Output }]
     };
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], FullContentComponent.prototype, "fullscreen", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], FullContentComponent.prototype, "hideTitle", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], FullContentComponent.prototype, "padding", void 0);
     if (false) {

@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnInit {
     private el;
     private renderer;

@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
-import { NumberInput } from '@delon/util/other';
+import { NumberInput } from '@delon/util/decorator';
 export interface G2TagCloudData {
     value?: number;
     name?: string;

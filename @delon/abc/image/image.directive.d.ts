@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class ImageDirective implements OnChanges, OnInit {
     private http;
     private platform;

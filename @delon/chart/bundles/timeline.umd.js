@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/other'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/other', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.other, global.format, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, dateTime, other, format, common, outlet, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/decorator', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.decorator, global.format, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, core$1, dateTime, decorator, format, common, outlet, skeleton) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -633,19 +633,19 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "maxAxis", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "height", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "borderWidth", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "slider", void 0);
     if (false) {

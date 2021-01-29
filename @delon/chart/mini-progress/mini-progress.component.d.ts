@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, OnChanges } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
-import { NumberInput } from '@delon/util/other';
+import { NumberInput } from '@delon/util/decorator';
 export declare class G2MiniProgressComponent implements OnChanges {
     i18n: DelonLocaleService;
     private cdr;

@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
-import { BooleanInput } from '@delon/util/other';
+import { BooleanInput } from '@delon/util/decorator';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout, SFValueChange } from './interface';
 import { FormProperty } from './model/form.property';

@@ -13,7 +13,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InputBoolean, InputNumber } from '@delon/util/other';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 /**
  * @fileoverview added by tsickle

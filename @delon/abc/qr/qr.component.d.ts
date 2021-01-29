@@ -1,7 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { LazyService, NumberInput } from '@delon/util/other';
+import { NumberInput } from '@delon/util/decorator';
+import { LazyService } from '@delon/util/other';
 export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy {
     private cdr;
     private lazySrv;

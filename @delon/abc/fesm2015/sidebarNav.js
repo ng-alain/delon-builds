@@ -5,7 +5,7 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Re
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService, WINDOW } from '@delon/theme';
-import { InputBoolean, InputNumber } from '@delon/util/other';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';

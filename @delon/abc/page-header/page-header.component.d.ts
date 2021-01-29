@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 interface PageHeaderPath {
     title?: string;
     link?: string[];

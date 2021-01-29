@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util/browser', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.browser, global.config, global.other, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, browser, config, other, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util/browser', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.browser, global.config, global.decorator, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, browser, config, decorator, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -600,35 +600,35 @@
         tab: [{ type: core.Input }]
     };
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PageHeaderComponent.prototype, "loading", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PageHeaderComponent.prototype, "wide", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "autoTitle", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "syncTitle", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "fixed", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number)
     ], PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
     if (false) {

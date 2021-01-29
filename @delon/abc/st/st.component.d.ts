@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, 
 import { Router } from '@angular/router';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';

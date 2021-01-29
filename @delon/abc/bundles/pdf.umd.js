@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, common, core, config, other, rxjs, operators, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.decorator, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, common, core, config, decorator, other, rxjs, operators, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1012,52 +1012,52 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "pi", null);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
     ], PdfComponent.prototype, "showAll", null);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
     ], PdfComponent.prototype, "renderText", null);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "showBorders", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "stickToPage", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "originalSize", void 0);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "fitToPage", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "zoom", null);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
     ], PdfComponent.prototype, "rotation", null);
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], PdfComponent.prototype, "autoReSize", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number)
     ], PdfComponent.prototype, "delay", void 0);
     if (false) {

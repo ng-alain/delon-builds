@@ -1,4 +1,4 @@
-import { BooleanInput } from '@delon/util/other';
+import { BooleanInput } from '@delon/util/decorator';
 export declare class TrendComponent {
     static ngAcceptInputType_colorful: BooleanInput;
     static ngAcceptInputType_reverseColor: BooleanInput;

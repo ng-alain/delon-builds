@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber } from '@delon/util/other';
+import { InputNumber } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';

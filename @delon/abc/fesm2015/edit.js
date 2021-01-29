@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { toNumber, InputNumber, InputBoolean } from '@delon/util/other';
+import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';

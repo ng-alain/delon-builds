@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, OnChanges, TemplateRef } from '@angular/core';
-import { BooleanInput } from '@delon/util/other';
+import { BooleanInput } from '@delon/util/decorator';
 export declare class G2CardComponent implements OnChanges {
     private cdr;
     static ngAcceptInputType_bordered: BooleanInput;

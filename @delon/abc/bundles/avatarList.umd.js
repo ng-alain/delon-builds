@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util/other', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.other, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, bidi, other, rxjs, operators, common, avatar, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, decorator, rxjs, operators, common, avatar, tooltip) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -473,7 +473,7 @@
         excessItemsStyle: [{ type: core.Input }]
     };
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], AvatarListComponent.prototype, "maxLength", void 0);
     if (false) {

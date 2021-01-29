@@ -2,7 +2,7 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InputBoolean, InputNumber } from '@delon/util/other';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { take } from 'rxjs/operators';
 import { ObserversModule } from '@angular/cdk/observers';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';

@@ -2,7 +2,7 @@ import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef
 import { AlainConfigService } from '@delon/util/config';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
-import { InputBoolean } from '@delon/util/other';
+import { InputBoolean } from '@delon/util/decorator';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';

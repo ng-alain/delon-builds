@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { InputNumber } from '@delon/util/other';
+import { InputNumber } from '@delon/util/decorator';
 import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 

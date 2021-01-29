@@ -1,7 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
-import { BooleanInput } from '@delon/util/other';
+import { BooleanInput } from '@delon/util/decorator';
 export declare class TagSelectComponent implements OnInit, OnDestroy {
     private i18n;
     private directionality;

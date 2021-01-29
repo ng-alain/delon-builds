@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { InputNumber, InputBoolean } from '@delon/util/other';
+import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { ResponsiveService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
 import { ObserversModule } from '@angular/cdk/observers';

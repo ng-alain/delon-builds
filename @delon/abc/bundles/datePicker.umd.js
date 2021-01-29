@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/date-picker')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/other', '@angular/common', 'ng-zorro-antd/date-picker'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.config, global.dateTime, global.other, global.ng.common, global['ng-zorro-antd/date-picker']));
-}(this, (function (exports, core, forms, platformBrowser, config, dateTime, other, common, datePicker) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/platform-browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/date-picker')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/core', '@angular/forms', '@angular/platform-browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/decorator', '@delon/util/other', '@angular/common', 'ng-zorro-antd/date-picker'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.core, global.ng.forms, global.ng.platformBrowser, global.config, global.dateTime, global.decorator, global.other, global.ng.common, global['ng-zorro-antd/date-picker']));
+}(this, (function (exports, core, forms, platformBrowser, config, dateTime, decorator, other, common, datePicker) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -554,7 +554,7 @@
         nzOnOk: [{ type: core.Output }]
     };
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], RangePickerComponent.prototype, "nzShowToday", void 0);
     if (false) {

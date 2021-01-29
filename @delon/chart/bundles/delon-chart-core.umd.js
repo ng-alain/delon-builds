@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.rxjs.operators));
-}(this, (function (exports, i0, i1, i2, rxjs, platform, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('@delon/util/decorator'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', '@delon/util/decorator', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators));
+}(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -572,7 +572,7 @@
         theme: [{ type: i0.Input }]
     };
     __decorate([
-        i2.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2BaseComponent.prototype, "delay", void 0);
     if (false) {

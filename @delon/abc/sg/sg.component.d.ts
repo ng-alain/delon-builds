@@ -1,6 +1,6 @@
 import { AfterViewInit, ElementRef, OnChanges, Renderer2 } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
-import { NumberInput } from '@delon/util/other';
+import { NumberInput } from '@delon/util/decorator';
 import { SGContainerComponent } from './sg-container.component';
 export declare class SGComponent implements OnChanges, AfterViewInit {
     private ren;

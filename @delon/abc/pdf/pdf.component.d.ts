@@ -1,7 +1,8 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, LazyService, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import { LazyService } from '@delon/util/other';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { PdfChangeEvent, PdfExternalLinkTarget, PdfTextLayerMode, PdfZoomScale } from './pdf.types';
 export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy {

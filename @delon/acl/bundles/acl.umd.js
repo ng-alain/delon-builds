@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', '@delon/util/other', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.other, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, i0, config, rxjs, other, operators, i2, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', '@delon/util/decorator', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.decorator, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, i0, config, rxjs, decorator, operators, i2, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -799,7 +799,7 @@
         except: [{ type: i0.Input }]
     };
     __decorate([
-        other.InputBoolean(),
+        decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], ACLIfDirective.prototype, "except", void 0);
     if (false) {

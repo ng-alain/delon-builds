@@ -1,8 +1,9 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
-import { LazyService, InputNumber } from '@delon/util/other';
+import { InputNumber } from '@delon/util/decorator';
 import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 

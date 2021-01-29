@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/decorator.umd.js",
+  "module": "../fesm2015/decorator.js",
+  "es2015": "../fesm2015/decorator.js",
+  "esm2015": "../esm2015/decorator/decorator.js",
+  "fesm2015": "../fesm2015/decorator.js",
+  "typings": "decorator.d.ts",
+  "metadata": "decorator.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/decorator"
+}

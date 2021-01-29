@@ -1,5 +1,5 @@
 import { ElementRef, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { BooleanInput } from '@delon/util/other';
+import { BooleanInput } from '@delon/util/decorator';
 export declare class FooterToolbarComponent implements OnInit, OnDestroy {
     private el;
     private renderer;

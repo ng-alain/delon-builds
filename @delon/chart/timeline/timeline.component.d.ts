@@ -1,7 +1,7 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent, G2Time } from '@delon/chart/core';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export interface G2TimelineData {
     /**
      * 时间值

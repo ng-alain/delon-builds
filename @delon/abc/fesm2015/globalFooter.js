@@ -6,7 +6,7 @@ import { WINDOW } from '@delon/theme';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { __decorate, __metadata } from 'tslib';
-import { InputBoolean } from '@delon/util/other';
+import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
 /**

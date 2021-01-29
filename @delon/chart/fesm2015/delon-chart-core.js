@@ -1,9 +1,10 @@
 import { Injectable, ɵɵdefineInjectable, ɵɵinject, Directive, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { LazyService, InputNumber } from '@delon/util/other';
+import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
+import { InputNumber } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
 
 /**

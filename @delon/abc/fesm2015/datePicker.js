@@ -4,7 +4,8 @@ import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService } from '@delon/util/config';
 import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
-import { deepMergeKey, InputBoolean } from '@delon/util/other';
+import { InputBoolean } from '@delon/util/decorator';
+import { deepMergeKey } from '@delon/util/other';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
 

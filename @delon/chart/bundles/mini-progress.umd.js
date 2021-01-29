@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/core', '@delon/theme', '@delon/util/other', '@angular/common', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}), global.ng.core, global.delon.theme, global.other, global.ng.common, global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, theme, other, common, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/mini-progress', ['exports', '@angular/core', '@delon/theme', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-progress'] = {}), global.ng.core, global.delon.theme, global.decorator, global.ng.common, global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, theme, decorator, common, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -339,7 +339,7 @@
          * @return {?}
          */
         G2MiniProgressComponent.prototype.fixNum = function (value) {
-            return Math.min(Math.max(other.toNumber(value), 0), 100);
+            return Math.min(Math.max(decorator.toNumber(value), 0), 100);
         };
         /**
          * @return {?}
@@ -374,15 +374,15 @@
         strokeWidth: [{ type: core.Input }]
     };
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2MiniProgressComponent.prototype, "target", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2MiniProgressComponent.prototype, "percent", void 0);
     __decorate([
-        other.InputNumber(),
+        decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
     if (false) {

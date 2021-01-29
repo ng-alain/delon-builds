@@ -1,6 +1,6 @@
 import { AfterViewInit, ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util/other';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SVContainerComponent } from './sv-container.component';
 export declare class SVComponent implements AfterViewInit, OnChanges {
     parent: SVContainerComponent;
