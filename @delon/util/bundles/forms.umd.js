@@ -103,6 +103,16 @@
         _Validators.color = function (control) {
             return format.isColor(control.value) ? null : { color: true };
         };
+        /**
+         * Wheter is chinese
+         *
+         * 是否中文
+         * @param {?} control
+         * @return {?}
+         */
+        _Validators.chinese = function (control) {
+            return format.isChinese(control.value) ? null : { chinese: true };
+        };
         return _Validators;
     }());
 

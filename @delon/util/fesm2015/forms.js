@@ -1,4 +1,4 @@
-import { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isIp, isColor } from '@delon/util/format';
+import { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isIp, isColor, isChinese } from '@delon/util/format';
 
 /**
  * @fileoverview added by tsickle
@@ -91,6 +91,16 @@ class _Validators {
      */
     static color(control) {
         return isColor(control.value) ? null : { color: true };
+    }
+    /**
+     * Wheter is chinese
+     *
+     * 是否中文
+     * @param {?} control
+     * @return {?}
+     */
+    static chinese(control) {
+        return isChinese(control.value) ? null : { chinese: true };
     }
 }
 

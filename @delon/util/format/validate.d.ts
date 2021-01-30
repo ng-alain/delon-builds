@@ -1,3 +1,12 @@
+export declare const REGEX_STR: {
+    num: string;
+    idCard: string;
+    mobile: string;
+    url: string;
+    ip: string;
+    color: string;
+    chinese: string;
+};
 export declare const REGEX: {
     num: RegExp;
     idCard: RegExp;
@@ -5,6 +14,7 @@ export declare const REGEX: {
     url: RegExp;
     ip: RegExp;
     color: RegExp;
+    chinese: RegExp;
 };
 /**
  * Wheter is number
@@ -54,3 +64,9 @@ export declare function isIp(ip: string): boolean;
  * 是否颜色代码值
  */
 export declare function isColor(color: string): boolean;
+/**
+ * Wheter is chinese
+ *
+ * 是否中文
+ */
+export declare function isChinese(value: string): boolean;

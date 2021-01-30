@@ -111,6 +111,12 @@
 			return format.REGEX;
 		}
 	});
+	Object.defineProperty(exports, 'REGEX_STR', {
+		enumerable: true,
+		get: function () {
+			return format.REGEX_STR;
+		}
+	});
 	Object.defineProperty(exports, 'commasNumber', {
 		enumerable: true,
 		get: function () {
@@ -121,6 +127,12 @@
 		enumerable: true,
 		get: function () {
 			return format.format;
+		}
+	});
+	Object.defineProperty(exports, 'isChinese', {
+		enumerable: true,
+		get: function () {
+			return format.isChinese;
 		}
 	});
 	Object.defineProperty(exports, 'isColor', {

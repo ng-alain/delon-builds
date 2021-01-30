@@ -53,4 +53,10 @@ export declare class _Validators {
      * 是否颜色代码值
      */
     static color(control: AbstractControl): ValidationErrors | null;
+    /**
+     * Wheter is chinese
+     *
+     * 是否中文
+     */
+    static chinese(control: AbstractControl): ValidationErrors | null;
 }
