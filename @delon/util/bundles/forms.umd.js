@@ -83,6 +83,16 @@
         _Validators.url = function (control) {
             return format.isUrl(control.value) ? null : { url: true };
         };
+        /**
+         * Wheter is IPv4 address
+         *
+         * 是否IP4地址
+         * @param {?} control
+         * @return {?}
+         */
+        _Validators.ip4 = function (control) {
+            return format.isIp4(control.value) ? null : { ip4: true };
+        };
         return _Validators;
     }());
 

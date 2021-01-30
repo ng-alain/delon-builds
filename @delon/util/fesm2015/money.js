@@ -32,6 +32,14 @@ function format(str, obj, needDeepGet = false) {
  * Generated from: validate.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
+/** @type {?} */
+const REGEX = {
+    num: /^((-?\d+\.\d+)|(-?\d+)|(-?\.\d+))$/,
+    idCard: /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i,
+    mobile: /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/,
+    url: /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/,
+    ip4: /(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}/,
+};
 /**
  * Wheter is number
  *
@@ -40,7 +48,7 @@ function format(str, obj, needDeepGet = false) {
  * @return {?}
  */
 function isNum(value) {
-    return /^((-?\d+\.\d+)|(-?\d+)|(-?\.\d+))$/.test(value.toString());
+    return REGEX.num.test(value.toString());
 }
 /**
  * Wheter is integer
@@ -70,7 +78,7 @@ function isDecimal(value) {
  * @return {?}
  */
 function isIdCard(value) {
-    return typeof value === 'string' && /(^\d{15}$)|(^\d{17}([0-9]|X)$)/i.test(value);
+    return typeof value === 'string' && REGEX.idCard.test(value);
 }
 /**
  * Wheter is china mobile (China)
@@ -80,7 +88,7 @@ function isIdCard(value) {
  * @return {?}
  */
 function isMobile(value) {
-    return typeof value === 'string' && /^(0|\+?86|17951)?(13[0-9]|15[0-9]|17[0678]|18[0-9]|14[57])[0-9]{8}$/.test(value);
+    return typeof value === 'string' && REGEX.mobile.test(value);
 }
 /**
  * Wheter is url address
@@ -90,7 +98,17 @@ function isMobile(value) {
  * @return {?}
  */
 function isUrl(url) {
-    return /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/.test(url);
+    return REGEX.url.test(url);
+}
+/**
+ * Wheter is IPv4 address
+ *
+ * 是否IP4地址
+ * @param {?} ip
+ * @return {?}
+ */
+function isIp4(ip) {
+    return REGEX.ip4.test(ip);
 }
 
 /**
@@ -205,5 +223,5 @@ function megaNumber(value, precision = 2, unitI18n = { Q: '京', T: '兆', B: '�
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MEGA_POWERS, commasNumber, format, isDecimal, isIdCard, isInt, isMobile, isNum, isUrl, megaNumber };
+export { MEGA_POWERS, REGEX, commasNumber, format, isDecimal, isIdCard, isInt, isIp4, isMobile, isNum, isUrl, megaNumber };
 //# sourceMappingURL=money.js.map

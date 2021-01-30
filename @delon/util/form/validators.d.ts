@@ -41,4 +41,10 @@ export declare class _Validators {
      * 是否URL地址
      */
     static url(control: AbstractControl): ValidationErrors | null;
+    /**
+     * Wheter is IPv4 address
+     *
+     * 是否IP4地址
+     */
+    static ip4(control: AbstractControl): ValidationErrors | null;
 }

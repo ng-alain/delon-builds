@@ -105,6 +105,12 @@
 			return format.MEGA_POWERS;
 		}
 	});
+	Object.defineProperty(exports, 'REGEX', {
+		enumerable: true,
+		get: function () {
+			return format.REGEX;
+		}
+	});
 	Object.defineProperty(exports, 'commasNumber', {
 		enumerable: true,
 		get: function () {
@@ -133,6 +139,12 @@
 		enumerable: true,
 		get: function () {
 			return format.isInt;
+		}
+	});
+	Object.defineProperty(exports, 'isIp4', {
+		enumerable: true,
+		get: function () {
+			return format.isIp4;
 		}
 	});
 	Object.defineProperty(exports, 'isMobile', {

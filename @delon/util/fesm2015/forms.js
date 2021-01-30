@@ -1,4 +1,4 @@
-import { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl } from '@delon/util/format';
+import { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isIp4 } from '@delon/util/format';
 
 /**
  * @fileoverview added by tsickle
@@ -71,6 +71,16 @@ class _Validators {
      */
     static url(control) {
         return isUrl(control.value) ? null : { url: true };
+    }
+    /**
+     * Wheter is IPv4 address
+     *
+     * 是否IP4地址
+     * @param {?} control
+     * @return {?}
+     */
+    static ip4(control) {
+        return isIp4(control.value) ? null : { ip4: true };
     }
 }
 

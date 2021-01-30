@@ -1,3 +1,10 @@
+export declare const REGEX: {
+    num: RegExp;
+    idCard: RegExp;
+    mobile: RegExp;
+    url: RegExp;
+    ip4: RegExp;
+};
 /**
  * Wheter is number
  *
@@ -34,3 +41,9 @@ export declare function isMobile(value: string): boolean;
  * 是否URL地址
  */
 export declare function isUrl(url: string): boolean;
+/**
+ * Wheter is IPv4 address
+ *
+ * 是否IP4地址
+ */
+export declare function isIp4(ip: string): boolean;
