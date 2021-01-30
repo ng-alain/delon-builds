@@ -75,6 +75,18 @@
 			return config.AlainSVConfig;
 		}
 	});
+	Object.defineProperty(exports, 'DateTimePickerUtil', {
+		enumerable: true,
+		get: function () {
+			return dateTime.DateTimePickerUtil;
+		}
+	});
+	Object.defineProperty(exports, 'dateTimePickerUtil', {
+		enumerable: true,
+		get: function () {
+			return dateTime.dateTimePickerUtil;
+		}
+	});
 	Object.defineProperty(exports, 'fixEndTimeOfRange', {
 		enumerable: true,
 		get: function () {

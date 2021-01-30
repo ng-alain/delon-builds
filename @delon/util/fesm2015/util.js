@@ -1,7 +1,7 @@
 export { ArrayService } from '@delon/util/array';
 export { ScrollService, copy, isEmpty, updateHostClass } from '@delon/util/browser';
 export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig } from '@delon/util/config';
-export { fixEndTimeOfRange, getTimeDistance, toDate } from '@delon/util/date-time';
+export { DateTimePickerUtil, dateTimePickerUtil, fixEndTimeOfRange, getTimeDistance, toDate } from '@delon/util/date-time';
 export { _Validators } from '@delon/util/form';
 export { MEGA_POWERS, REGEX, REGEX_STR, commasNumber, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl, megaNumber } from '@delon/util/format';
 export { ceil, floor, inRange, round } from '@delon/util/math';

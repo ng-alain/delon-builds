@@ -15,6 +15,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
+     * String formatting
+     *
      * 字符串格式化
      * ```
      * format('this is ${name}', { name: 'asdf' })

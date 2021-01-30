@@ -1,5 +1,7 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
+ * String formatting
+ *
  * 字符串格式化
  * ```
  * format('this is ${name}', { name: 'asdf' })

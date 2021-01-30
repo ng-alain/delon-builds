@@ -1,5 +1,7 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
+ * Get the time range, return `[ Date, Date]` for the start and end dates
+ *
  * 获取时间范围
  * @param type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
  * @param time 开始时间
