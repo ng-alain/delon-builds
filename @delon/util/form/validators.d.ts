@@ -42,9 +42,15 @@ export declare class _Validators {
      */
     static url(control: AbstractControl): ValidationErrors | null;
     /**
-     * Wheter is IPv4 address
+     * Wheter is IPv4 address (Support v4, v6)
      *
-     * 是否IP4地址
+     * 是否IP4地址（支持v4、v6）
      */
-    static ip4(control: AbstractControl): ValidationErrors | null;
+    static ip(control: AbstractControl): ValidationErrors | null;
+    /**
+     * Wheter is color
+     *
+     * 是否颜色代码值
+     */
+    static color(control: AbstractControl): ValidationErrors | null;
 }

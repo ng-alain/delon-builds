@@ -9,6 +9,7 @@ import { toBoolean, InputBoolean, InputNumber } from '@delon/util/decorator';
 import { deepCopy, deepGet } from '@delon/util/other';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { REGEX } from '@delon/util/format';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -1578,9 +1579,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         this.options = mergeConfig(cogSrv);
         this.ajv = new Ajv(Object.assign(Object.assign({}, this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
         this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
-        this.ajv.addFormat('color', /^(#?([0-9A-Fa-f]{3}){1,2}\b|aqua|black|blue|fuchsia|gray|green|lime|maroon|navy|olive|orange|purple|red|silver|teal|white|yellow|(rgb\(\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*,\s*\b([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\b\s*\))|(rgb\(\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*,\s*(\d?\d%|100%)+\s*\)))$/);
-        this.ajv.addFormat('mobile', /^(0|\+?86|17951)?1[0-9]{10}$/);
-        this.ajv.addFormat('id-card', /(^\d{15}$)|(^\d{17}([0-9]|X)$)/);
+        this.ajv.addFormat('color', REGEX.color);
+        this.ajv.addFormat('mobile', REGEX.mobile);
+        this.ajv.addFormat('id-card', REGEX.idCard);
     }
     /**
      * @param {?} schema

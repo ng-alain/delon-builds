@@ -3,7 +3,8 @@ export declare const REGEX: {
     idCard: RegExp;
     mobile: RegExp;
     url: RegExp;
-    ip4: RegExp;
+    ip: RegExp;
+    color: RegExp;
 };
 /**
  * Wheter is number
@@ -42,8 +43,14 @@ export declare function isMobile(value: string): boolean;
  */
 export declare function isUrl(url: string): boolean;
 /**
- * Wheter is IPv4 address
+ * Wheter is IPv4 address (Support v4, v6)
  *
- * 是否IP4地址
+ * 是否IP4地址（支持v4、v6）
  */
-export declare function isIp4(ip: string): boolean;
+export declare function isIp(ip: string): boolean;
+/**
+ * Wheter is color
+ *
+ * 是否颜色代码值
+ */
+export declare function isColor(color: string): boolean;

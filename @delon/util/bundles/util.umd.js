@@ -123,6 +123,12 @@
 			return format.format;
 		}
 	});
+	Object.defineProperty(exports, 'isColor', {
+		enumerable: true,
+		get: function () {
+			return format.isColor;
+		}
+	});
 	Object.defineProperty(exports, 'isDecimal', {
 		enumerable: true,
 		get: function () {
@@ -141,10 +147,10 @@
 			return format.isInt;
 		}
 	});
-	Object.defineProperty(exports, 'isIp4', {
+	Object.defineProperty(exports, 'isIp', {
 		enumerable: true,
 		get: function () {
-			return format.isIp4;
+			return format.isIp;
 		}
 	});
 	Object.defineProperty(exports, 'isMobile', {

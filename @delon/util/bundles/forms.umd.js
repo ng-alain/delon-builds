@@ -84,14 +84,24 @@
             return format.isUrl(control.value) ? null : { url: true };
         };
         /**
-         * Wheter is IPv4 address
+         * Wheter is IPv4 address (Support v4, v6)
          *
-         * 是否IP4地址
+         * 是否IP4地址（支持v4、v6）
          * @param {?} control
          * @return {?}
          */
-        _Validators.ip4 = function (control) {
-            return format.isIp4(control.value) ? null : { ip4: true };
+        _Validators.ip = function (control) {
+            return format.isIp(control.value) ? null : { ip: true };
+        };
+        /**
+         * Wheter is color
+         *
+         * 是否颜色代码值
+         * @param {?} control
+         * @return {?}
+         */
+        _Validators.color = function (control) {
+            return format.isColor(control.value) ? null : { color: true };
         };
         return _Validators;
     }());
