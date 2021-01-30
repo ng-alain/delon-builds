@@ -2936,7 +2936,10 @@
             return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions: modalOptions }));
         };
         /**
+         * @deprecated Will be removed in 13.0.0, Pls used `create` instead
+         *
          * 打开对话框
+         *
          * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -2945,10 +2948,9 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} size 大小；例如：lg、600，默认：lg
-         *
+         * @param {?} comp
+         * @param {?=} params
+         * @param {?=} size
          * @param {?=} options
          * @return {?}
          */
@@ -2961,7 +2963,10 @@
             });
         };
         /**
+         * @deprecated Will be removed in 13.0.0, Pls used `createStatic` instead
+         *
          * 静态框，点击蒙层不允许关闭
+         *
          * \@example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
@@ -2970,10 +2975,9 @@
          * this.NzModalRef.close();
          * // 关闭
          * this.NzModalRef.destroy();
-         * @param {?} comp 组件
-         * @param {?=} params 组件参数
-         * @param {?=} size 大小；例如：lg、600，默认：lg
-         *
+         * @param {?} comp
+         * @param {?=} params
+         * @param {?=} size
          * @param {?=} options
          * @return {?}
          */

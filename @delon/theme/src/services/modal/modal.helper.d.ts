@@ -53,10 +53,9 @@ export declare class ModalHelper {
      */
     createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<any>;
     /**
+     * @deprecated Will be removed in 13.0.0, Pls used `create` instead
+     *
      * 打开对话框
-     * @param comp 组件
-     * @param params 组件参数
-     * @param size 大小；例如：lg、600，默认：lg
      *
      * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
@@ -69,10 +68,9 @@ export declare class ModalHelper {
      */
     open(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
     /**
+     * @deprecated Will be removed in 13.0.0, Pls used `createStatic` instead
+     *
      * 静态框，点击蒙层不允许关闭
-     * @param comp 组件
-     * @param params 组件参数
-     * @param size 大小；例如：lg、600，默认：lg
      *
      * @example
      * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
