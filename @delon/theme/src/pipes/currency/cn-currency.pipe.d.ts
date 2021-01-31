@@ -1,6 +1,6 @@
 /**
  * [Document](https://ng-alain.com/theme/currency)
- * @deprecated Will be removed in 13.0.0, Pls used `currencyCNY` instead
+ * @deprecated Will be removed in 12.0.0, Pls used `currencyCNY` instead
  */
 export declare class CNCurrencyPipe {
     private readonly ngCurrencyPipe;

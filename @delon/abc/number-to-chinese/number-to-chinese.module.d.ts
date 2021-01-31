@@ -1,5 +1,5 @@
 /**
- * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
+ * @deprecated Will be removed in 12.0.0, Pls used `CurrencyService.cny` instead
  */
 export declare class NumberToChineseModule {
 }

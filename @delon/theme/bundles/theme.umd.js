@@ -2936,7 +2936,7 @@
             return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions: modalOptions }));
         };
         /**
-         * @deprecated Will be removed in 13.0.0, Pls used `create` instead
+         * @deprecated Will be removed in 12.0.0, Pls used `create` instead
          *
          * 打开对话框
          *
@@ -2963,7 +2963,7 @@
             });
         };
         /**
-         * @deprecated Will be removed in 13.0.0, Pls used `createStatic` instead
+         * @deprecated Will be removed in 12.0.0, Pls used `createStatic` instead
          *
          * 静态框，点击蒙层不允许关闭
          *
@@ -3853,7 +3853,7 @@
      */
     /**
      * [Document](https://ng-alain.com/theme/currency)
-     * @deprecated Will be removed in 13.0.0, Pls used `currencyCNY` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `currencyCNY` instead
      */
     // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {

@@ -324,7 +324,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `CurrencyService.cny` instead
      * @param {?} value
      * @param {?=} rmb
      * @param {?=} options
@@ -441,7 +441,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * @deprecated Will be removed in 13.0.0, Pls used `currencyCNY` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `currencyCNY` instead
      */
     var NaNumberToChinesePipe = /** @class */ (function () {
         function NaNumberToChinesePipe() {
@@ -471,7 +471,7 @@
     /** @type {?} */
     var PIPES = [NaNumberToChinesePipe];
     /**
-     * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `CurrencyService.cny` instead
      */
     var NumberToChineseModule = /** @class */ (function () {
         function NumberToChineseModule() {

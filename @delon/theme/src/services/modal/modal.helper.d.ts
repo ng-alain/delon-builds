@@ -53,7 +53,7 @@ export declare class ModalHelper {
      */
     createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<any>;
     /**
-     * @deprecated Will be removed in 13.0.0, Pls used `create` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `create` instead
      *
      * 打开对话框
      *
@@ -68,7 +68,7 @@ export declare class ModalHelper {
      */
     open(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
     /**
-     * @deprecated Will be removed in 13.0.0, Pls used `createStatic` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `createStatic` instead
      *
      * 静态框，点击蒙层不允许关闭
      *
