@@ -111,10 +111,10 @@
 			return form._Validators;
 		}
 	});
-	Object.defineProperty(exports, 'MEGA_POWERS', {
+	Object.defineProperty(exports, 'FormatCurrencyService', {
 		enumerable: true,
 		get: function () {
-			return format.MEGA_POWERS;
+			return format.FormatCurrencyService;
 		}
 	});
 	Object.defineProperty(exports, 'REGEX', {
@@ -127,12 +127,6 @@
 		enumerable: true,
 		get: function () {
 			return format.REGEX_STR;
-		}
-	});
-	Object.defineProperty(exports, 'commasNumber', {
-		enumerable: true,
-		get: function () {
-			return format.commasNumber;
 		}
 	});
 	Object.defineProperty(exports, 'format', {
@@ -193,12 +187,6 @@
 		enumerable: true,
 		get: function () {
 			return format.isUrl;
-		}
-	});
-	Object.defineProperty(exports, 'megaNumber', {
-		enumerable: true,
-		get: function () {
-			return format.megaNumber;
 		}
 	});
 	Object.defineProperty(exports, 'ceil', {
@@ -333,22 +321,22 @@
 			return other.warnDeprecation;
 		}
 	});
-	Object.defineProperty(exports, 'CommasNumberPipe', {
+	Object.defineProperty(exports, 'CurrencyCommasPipe', {
 		enumerable: true,
 		get: function () {
-			return pipes.CommasNumberPipe;
+			return pipes.CurrencyCommasPipe;
 		}
 	});
-	Object.defineProperty(exports, 'FormatNumberPipeModule', {
+	Object.defineProperty(exports, 'CurrencyMegaPipe', {
 		enumerable: true,
 		get: function () {
-			return pipes.FormatNumberPipeModule;
+			return pipes.CurrencyMegaPipe;
 		}
 	});
-	Object.defineProperty(exports, 'MegaNumberPipe', {
+	Object.defineProperty(exports, 'CurrencyPipeModule', {
 		enumerable: true,
 		get: function () {
-			return pipes.MegaNumberPipe;
+			return pipes.CurrencyPipeModule;
 		}
 	});
 

@@ -1,1 +1,1 @@
-{"__symbolic":"module","version":4,"exports":[{"from":"@delon/util/pipes/format-number"}],"metadata":{},"origins":{},"importAs":"@delon/util/pipes"}
+{"__symbolic":"module","version":4,"exports":[{"from":"@delon/util/pipes/currency"}],"metadata":{},"origins":{},"importAs":"@delon/util/pipes"}

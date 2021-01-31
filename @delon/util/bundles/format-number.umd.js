@@ -5,8 +5,8 @@
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/pipes/format-number', ['exports', '@angular/core', '@delon/util/format'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.pipes = global.delon.util.pipes || {}, global.delon.util.pipes['format-number'] = {}), global.ng.core, global.delon.util.format));
+    typeof define === 'function' && define.amd ? define('@delon/util/pipes/currency', ['exports', '@angular/core', '@delon/util/format'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.pipes = global.delon.util.pipes || {}, global.delon.util.pipes.currency = {}), global.ng.core, global.delon.util.format));
 }(this, (function (exports, core, format) { 'use strict';
 
     /**
@@ -14,11 +14,13 @@
      * Generated from: mega.pipe.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var MegaNumberPipe = /** @class */ (function () {
+    var CurrencyMegaPipe = /** @class */ (function () {
         /**
+         * @param {?} srv
          * @param {?} locale
          */
-        function MegaNumberPipe(locale) {
+        function CurrencyMegaPipe(srv, locale) {
+            this.srv = srv;
             this.isCN = false;
             this.isCN = locale.startsWith('zh');
         }
@@ -30,19 +32,20 @@
          * @param {?=} precision
          * @return {?}
          */
-        MegaNumberPipe.prototype.transform = function (value, precision) {
+        CurrencyMegaPipe.prototype.transform = function (value, precision) {
             if (precision === void 0) { precision = 2; }
             /** @type {?} */
-            var res = format.megaNumber(value, precision);
+            var res = this.srv.mega(value, { precision: precision });
             return res.value + (this.isCN ? res.unitI18n : res.unit);
         };
-        return MegaNumberPipe;
+        return CurrencyMegaPipe;
     }());
-    MegaNumberPipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'megaNumber' },] }
+    CurrencyMegaPipe.decorators = [
+        { type: core.Pipe, args: [{ name: 'currencyMega' },] }
     ];
     /** @nocollapse */
-    MegaNumberPipe.ctorParameters = function () { return [
+    CurrencyMegaPipe.ctorParameters = function () { return [
+        { type: format.FormatCurrencyService },
         { type: String, decorators: [{ type: core.Inject, args: [core.LOCALE_ID,] }] }
     ]; };
     if (false) {
@@ -50,7 +53,12 @@
          * @type {?}
          * @private
          */
-        MegaNumberPipe.prototype.isCN;
+        CurrencyMegaPipe.prototype.isCN;
+        /**
+         * @type {?}
+         * @private
+         */
+        CurrencyMegaPipe.prototype.srv;
     }
 
     /**
@@ -58,8 +66,12 @@
      * Generated from: commas.pipe.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CommasNumberPipe = /** @class */ (function () {
-        function CommasNumberPipe() {
+    var CurrencyCommasPipe = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
+        function CurrencyCommasPipe(srv) {
+            this.srv = srv;
         }
         /**
          * Format a number with commas as thousands separators
@@ -69,15 +81,26 @@
          * @param {?=} separator
          * @return {?}
          */
-        CommasNumberPipe.prototype.transform = function (value, separator) {
+        CurrencyCommasPipe.prototype.transform = function (value, separator) {
             if (separator === void 0) { separator = ','; }
-            return format.commasNumber(value, separator);
+            return this.srv.commas(value, { separator: separator });
         };
-        return CommasNumberPipe;
+        return CurrencyCommasPipe;
     }());
-    CommasNumberPipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'commasNumber' },] }
+    CurrencyCommasPipe.decorators = [
+        { type: core.Pipe, args: [{ name: 'currencyCommas' },] }
     ];
+    /** @nocollapse */
+    CurrencyCommasPipe.ctorParameters = function () { return [
+        { type: format.FormatCurrencyService }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CurrencyCommasPipe.prototype.srv;
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -85,13 +108,13 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var PIPES = [MegaNumberPipe, CommasNumberPipe];
-    var FormatNumberPipeModule = /** @class */ (function () {
-        function FormatNumberPipeModule() {
+    var PIPES = [CurrencyMegaPipe, CurrencyCommasPipe];
+    var CurrencyPipeModule = /** @class */ (function () {
+        function CurrencyPipeModule() {
         }
-        return FormatNumberPipeModule;
+        return CurrencyPipeModule;
     }());
-    FormatNumberPipeModule.decorators = [
+    CurrencyPipeModule.decorators = [
         { type: core.NgModule, args: [{
                     declarations: PIPES,
                     exports: PIPES,
@@ -110,9 +133,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.CommasNumberPipe = CommasNumberPipe;
-    exports.FormatNumberPipeModule = FormatNumberPipeModule;
-    exports.MegaNumberPipe = MegaNumberPipe;
+    exports.CurrencyCommasPipe = CurrencyCommasPipe;
+    exports.CurrencyMegaPipe = CurrencyMegaPipe;
+    exports.CurrencyPipeModule = CurrencyPipeModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

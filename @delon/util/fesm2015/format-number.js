@@ -1,16 +1,18 @@
 import { Pipe, Inject, LOCALE_ID, NgModule } from '@angular/core';
-import { megaNumber, commasNumber } from '@delon/util/format';
+import { FormatCurrencyService } from '@delon/util/format';
 
 /**
  * @fileoverview added by tsickle
  * Generated from: mega.pipe.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class MegaNumberPipe {
+class CurrencyMegaPipe {
     /**
+     * @param {?} srv
      * @param {?} locale
      */
-    constructor(locale) {
+    constructor(srv, locale) {
+        this.srv = srv;
         this.isCN = false;
         this.isCN = locale.startsWith('zh');
     }
@@ -24,15 +26,16 @@ class MegaNumberPipe {
      */
     transform(value, precision = 2) {
         /** @type {?} */
-        const res = megaNumber(value, precision);
+        const res = this.srv.mega(value, { precision });
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
 }
-MegaNumberPipe.decorators = [
-    { type: Pipe, args: [{ name: 'megaNumber' },] }
+CurrencyMegaPipe.decorators = [
+    { type: Pipe, args: [{ name: 'currencyMega' },] }
 ];
 /** @nocollapse */
-MegaNumberPipe.ctorParameters = () => [
+CurrencyMegaPipe.ctorParameters = () => [
+    { type: FormatCurrencyService },
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
 ];
 if (false) {
@@ -40,7 +43,12 @@ if (false) {
      * @type {?}
      * @private
      */
-    MegaNumberPipe.prototype.isCN;
+    CurrencyMegaPipe.prototype.isCN;
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyMegaPipe.prototype.srv;
 }
 
 /**
@@ -48,7 +56,13 @@ if (false) {
  * Generated from: commas.pipe.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CommasNumberPipe {
+class CurrencyCommasPipe {
+    /**
+     * @param {?} srv
+     */
+    constructor(srv) {
+        this.srv = srv;
+    }
     /**
      * Format a number with commas as thousands separators
      *
@@ -58,12 +72,23 @@ class CommasNumberPipe {
      * @return {?}
      */
     transform(value, separator = ',') {
-        return commasNumber(value, separator);
+        return this.srv.commas(value, { separator });
     }
 }
-CommasNumberPipe.decorators = [
-    { type: Pipe, args: [{ name: 'commasNumber' },] }
+CurrencyCommasPipe.decorators = [
+    { type: Pipe, args: [{ name: 'currencyCommas' },] }
 ];
+/** @nocollapse */
+CurrencyCommasPipe.ctorParameters = () => [
+    { type: FormatCurrencyService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyCommasPipe.prototype.srv;
+}
 
 /**
  * @fileoverview added by tsickle
@@ -71,10 +96,10 @@ CommasNumberPipe.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const PIPES = [MegaNumberPipe, CommasNumberPipe];
-class FormatNumberPipeModule {
+const PIPES = [CurrencyMegaPipe, CurrencyCommasPipe];
+class CurrencyPipeModule {
 }
-FormatNumberPipeModule.decorators = [
+CurrencyPipeModule.decorators = [
     { type: NgModule, args: [{
                 declarations: PIPES,
                 exports: PIPES,
@@ -93,5 +118,5 @@ FormatNumberPipeModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CommasNumberPipe, FormatNumberPipeModule, MegaNumberPipe };
+export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule };
 //# sourceMappingURL=format-number.js.map

@@ -1,4 +1,4 @@
-export { CommasNumberPipe, FormatNumberPipeModule, MegaNumberPipe } from '@delon/util/pipes/format-number';
+export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule } from '@delon/util/pipes/currency';
 
 /**
  * @fileoverview added by tsickle

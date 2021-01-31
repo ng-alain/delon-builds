@@ -1034,6 +1034,20 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: util/format.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function AlainUtilFormatConfig() { }
+if (false) {
+    /** @type {?|undefined} */
+    AlainUtilFormatConfig.prototype.currencyMegaUnit;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: theme/http.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
@@ -1301,6 +1315,8 @@ if (false) {
     AlainConfig.prototype.mock;
     /** @type {?|undefined} */
     AlainConfig.prototype.utilArray;
+    /** @type {?|undefined} */
+    AlainConfig.prototype.utilFormat;
     /** @type {?|undefined} */
     AlainConfig.prototype.themeHttp;
     /** @type {?|undefined} */

@@ -109,6 +109,8 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.utilArray;
         /** @type {?|undefined} */
+        AlainConfig.prototype.utilFormat;
+        /** @type {?|undefined} */
         AlainConfig.prototype.themeHttp;
         /** @type {?|undefined} */
         AlainConfig.prototype.themeResponsive;

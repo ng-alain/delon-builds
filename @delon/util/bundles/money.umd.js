@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/format', ['exports', '@delon/util/other'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other));
-}(this, (function (exports, other) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other'), require('@angular/core'), require('@delon/util/config')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/format', ['exports', '@delon/util/other', '@angular/core', '@delon/util/config'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other, global.ng.core, global.delon.util.config));
+}(this, (function (exports, other, i0, i1) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -473,26 +473,41 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: number.ts
+     * Generated from: currency.types.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * Format a number with commas as thousands separators
-     *
-     * 用逗号将数字格式化为千位分隔符
-     * ```ts
-     * 10000 => `10,000`
-     * ```
-     * @param {?} value
-     * @param {?=} separator
-     * @return {?}
+     * @record
      */
-    function commasNumber(value, separator) {
-        if (separator === void 0) { separator = ','; }
-        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+    function FormatCurrencyMegaOptions() { }
+    if (false) {
+        /**
+         * 精度，默认：`2`
+         * @type {?|undefined}
+         */
+        FormatCurrencyMegaOptions.prototype.precision;
+        /**
+         * 单位国际化，默认：`{Q: '京', T: '兆', B: '亿', M: '万', K: '千',}`
+         * @type {?|undefined}
+         */
+        FormatCurrencyMegaOptions.prototype.unitI18n;
+    }
+    /**
+     * @record
+     */
+    function FormatCurrencyMegaResult() { }
+    if (false) {
+        /** @type {?} */
+        FormatCurrencyMegaResult.prototype.raw;
+        /** @type {?} */
+        FormatCurrencyMegaResult.prototype.value;
+        /** @type {?} */
+        FormatCurrencyMegaResult.prototype.unit;
+        /** @type {?} */
+        FormatCurrencyMegaResult.prototype.unitI18n;
     }
     /** @type {?} */
-    var MEGA_POWERS = [
+    var FormatCurrencyMega_Powers = [
         { unit: 'Q', value: Math.pow(10, 15) },
         { unit: 'T', value: Math.pow(10, 12) },
         { unit: 'B', value: Math.pow(10, 9) },
@@ -502,87 +517,111 @@
     /**
      * @record
      */
-    function MegaNumberUnitI18n() { }
+    function FormatCurrencyMegaUnitI18n() { }
     if (false) {
         /** @type {?} */
-        MegaNumberUnitI18n.prototype.Q;
+        FormatCurrencyMegaUnitI18n.prototype.Q;
         /** @type {?} */
-        MegaNumberUnitI18n.prototype.T;
+        FormatCurrencyMegaUnitI18n.prototype.T;
         /** @type {?} */
-        MegaNumberUnitI18n.prototype.B;
+        FormatCurrencyMegaUnitI18n.prototype.B;
         /** @type {?} */
-        MegaNumberUnitI18n.prototype.M;
+        FormatCurrencyMegaUnitI18n.prototype.M;
         /** @type {?} */
-        MegaNumberUnitI18n.prototype.K;
+        FormatCurrencyMegaUnitI18n.prototype.K;
     }
-    /**
-     * @record
-     */
-    function MegaNumberResult() { }
-    if (false) {
-        /** @type {?} */
-        MegaNumberResult.prototype.raw;
-        /** @type {?} */
-        MegaNumberResult.prototype.value;
-        /** @type {?} */
-        MegaNumberResult.prototype.unit;
-        /** @type {?} */
-        MegaNumberResult.prototype.unitI18n;
-    }
-    /**
-     * Large number format filter
-     *
-     * 大数据格式化
-     * ```ts
-     * 1000 => { value: '1', unit: 'K', unitI18n: '千' }
-     * 12456 => { value: '12.46', unit: 'K', unitI18n: '千' }
-     * ```
-     * @param {?} value
-     * @param {?=} precision
-     * @param {?=} unitI18n
-     * @return {?}
-     */
-    function megaNumber(value, precision, unitI18n) {
-        var e_1, _a;
-        if (precision === void 0) { precision = 2; }
-        if (unitI18n === void 0) { unitI18n = { Q: '京', T: '兆', B: '亿', M: '万', K: '千' }; }
-        /** @type {?} */
-        var num = parseFloat(value.toString());
-        /** @type {?} */
-        var res = { raw: value, value: '', unit: '', unitI18n: '' };
-        if (isNaN(num) || num === 0) {
-            res.value = value.toString();
-            return res;
+
+    var FormatCurrencyService = /** @class */ (function () {
+        /**
+         * @param {?} cog
+         */
+        function FormatCurrencyService(cog) {
+            this.c = ( /** @type {?} */(cog.merge('utilFormat', {})));
         }
-        /** @type {?} */
-        var abs = Math.abs(+value);
-        /** @type {?} */
-        var rounder = Math.pow(10, ( /** @type {?} */(precision)));
-        /** @type {?} */
-        var isNegative = num < 0;
-        try {
-            for (var MEGA_POWERS_1 = __values(MEGA_POWERS), MEGA_POWERS_1_1 = MEGA_POWERS_1.next(); !MEGA_POWERS_1_1.done; MEGA_POWERS_1_1 = MEGA_POWERS_1.next()) {
-                var p = MEGA_POWERS_1_1.value;
-                /** @type {?} */
-                var reduced = abs / p.value;
-                reduced = Math.round(reduced * rounder) / rounder;
-                if (reduced >= 1) {
-                    abs = reduced;
-                    res.unit = p.unit;
-                    break;
+        /**
+         * Format a number with commas as thousands separators
+         *
+         * 用逗号将数字格式化为千位分隔符
+         * ```ts
+         * 10000 => `10,000`
+         * ```
+         * @param {?} value
+         * @param {?=} options
+         * @return {?}
+         */
+        FormatCurrencyService.prototype.commas = function (value, options) {
+            var _a;
+            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
+        };
+        /**
+         * Large number format filter
+         *
+         * 大数据格式化
+         * ```ts
+         * 1000 => { value: '1', unit: 'K', unitI18n: '千' }
+         * 12456 => { value: '12.46', unit: 'K', unitI18n: '千' }
+         * ```
+         * @param {?} value
+         * @param {?=} options
+         * @return {?}
+         */
+        FormatCurrencyService.prototype.mega = function (value, options) {
+            var e_1, _b;
+            options = Object.assign(Object.assign({ precision: 2, unitI18n: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } }, this.c.currencyMegaUnit), options);
+            /** @type {?} */
+            var num = parseFloat(value.toString());
+            /** @type {?} */
+            var res = { raw: value, value: '', unit: '', unitI18n: '' };
+            if (isNaN(num) || num === 0) {
+                res.value = value.toString();
+                return res;
+            }
+            /** @type {?} */
+            var abs = Math.abs(+value);
+            /** @type {?} */
+            var rounder = Math.pow(10, ( /** @type {?} */(options.precision)));
+            /** @type {?} */
+            var isNegative = num < 0;
+            try {
+                for (var FormatCurrencyMega_Powers_1 = __values(FormatCurrencyMega_Powers), FormatCurrencyMega_Powers_1_1 = FormatCurrencyMega_Powers_1.next(); !FormatCurrencyMega_Powers_1_1.done; FormatCurrencyMega_Powers_1_1 = FormatCurrencyMega_Powers_1.next()) {
+                    var p = FormatCurrencyMega_Powers_1_1.value;
+                    /** @type {?} */
+                    var reduced = abs / p.value;
+                    reduced = Math.round(reduced * rounder) / rounder;
+                    if (reduced >= 1) {
+                        abs = reduced;
+                        res.unit = p.unit;
+                        break;
+                    }
                 }
             }
-        }
-        catch (e_1_1) { e_1 = { error: e_1_1 }; }
-        finally {
-            try {
-                if (MEGA_POWERS_1_1 && !MEGA_POWERS_1_1.done && (_a = MEGA_POWERS_1.return)) _a.call(MEGA_POWERS_1);
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (FormatCurrencyMega_Powers_1_1 && !FormatCurrencyMega_Powers_1_1.done && (_b = FormatCurrencyMega_Powers_1.return)) _b.call(FormatCurrencyMega_Powers_1);
+                }
+                finally { if (e_1) throw e_1.error; }
             }
-            finally { if (e_1) throw e_1.error; }
-        }
-        res.value = (isNegative ? '-' : '') + abs;
-        res.unitI18n = (( /** @type {?} */(unitI18n)))[res.unit];
-        return res;
+            res.value = (isNegative ? '-' : '') + abs;
+            res.unitI18n = (( /** @type {?} */(options.unitI18n)))[res.unit];
+            return res;
+        };
+        return FormatCurrencyService;
+    }());
+    FormatCurrencyService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    FormatCurrencyService.ctorParameters = function () { return [
+        { type: i1.AlainConfigService }
+    ]; };
+    /** @nocollapse */ FormatCurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FormatCurrencyService_Factory() { return new FormatCurrencyService(i0.ɵɵinject(i1.AlainConfigService)); }, token: FormatCurrencyService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        FormatCurrencyService.prototype.c;
     }
 
     /**
@@ -597,10 +636,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.MEGA_POWERS = MEGA_POWERS;
+    exports.FormatCurrencyService = FormatCurrencyService;
     exports.REGEX = REGEX;
     exports.REGEX_STR = REGEX_STR;
-    exports.commasNumber = commasNumber;
     exports.format = format;
     exports.isChinese = isChinese;
     exports.isColor = isColor;
@@ -611,7 +649,6 @@
     exports.isMobile = isMobile;
     exports.isNum = isNum;
     exports.isUrl = isUrl;
-    exports.megaNumber = megaNumber;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

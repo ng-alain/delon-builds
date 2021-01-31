@@ -1,4 +1,6 @@
 import { deepGet } from '@delon/util/other';
+import { Injectable, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 
 /**
  * @fileoverview added by tsickle
@@ -155,25 +157,41 @@ function isChinese(value) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: number.ts
+ * Generated from: currency.types.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * Format a number with commas as thousands separators
- *
- * 用逗号将数字格式化为千位分隔符
- * ```ts
- * 10000 => `10,000`
- * ```
- * @param {?} value
- * @param {?=} separator
- * @return {?}
+ * @record
  */
-function commasNumber(value, separator = ',') {
-    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, separator);
+function FormatCurrencyMegaOptions() { }
+if (false) {
+    /**
+     * 精度，默认：`2`
+     * @type {?|undefined}
+     */
+    FormatCurrencyMegaOptions.prototype.precision;
+    /**
+     * 单位国际化，默认：`{Q: '京', T: '兆', B: '亿', M: '万', K: '千',}`
+     * @type {?|undefined}
+     */
+    FormatCurrencyMegaOptions.prototype.unitI18n;
+}
+/**
+ * @record
+ */
+function FormatCurrencyMegaResult() { }
+if (false) {
+    /** @type {?} */
+    FormatCurrencyMegaResult.prototype.raw;
+    /** @type {?} */
+    FormatCurrencyMegaResult.prototype.value;
+    /** @type {?} */
+    FormatCurrencyMegaResult.prototype.unit;
+    /** @type {?} */
+    FormatCurrencyMegaResult.prototype.unitI18n;
 }
 /** @type {?} */
-const MEGA_POWERS = [
+const FormatCurrencyMega_Powers = [
     { unit: 'Q', value: Math.pow(10, 15) },
     { unit: 'T', value: Math.pow(10, 12) },
     { unit: 'B', value: Math.pow(10, 9) },
@@ -183,74 +201,104 @@ const MEGA_POWERS = [
 /**
  * @record
  */
-function MegaNumberUnitI18n() { }
+function FormatCurrencyMegaUnitI18n() { }
 if (false) {
     /** @type {?} */
-    MegaNumberUnitI18n.prototype.Q;
+    FormatCurrencyMegaUnitI18n.prototype.Q;
     /** @type {?} */
-    MegaNumberUnitI18n.prototype.T;
+    FormatCurrencyMegaUnitI18n.prototype.T;
     /** @type {?} */
-    MegaNumberUnitI18n.prototype.B;
+    FormatCurrencyMegaUnitI18n.prototype.B;
     /** @type {?} */
-    MegaNumberUnitI18n.prototype.M;
+    FormatCurrencyMegaUnitI18n.prototype.M;
     /** @type {?} */
-    MegaNumberUnitI18n.prototype.K;
+    FormatCurrencyMegaUnitI18n.prototype.K;
 }
+
 /**
- * @record
+ * @fileoverview added by tsickle
+ * Generated from: currency.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-function MegaNumberResult() { }
-if (false) {
-    /** @type {?} */
-    MegaNumberResult.prototype.raw;
-    /** @type {?} */
-    MegaNumberResult.prototype.value;
-    /** @type {?} */
-    MegaNumberResult.prototype.unit;
-    /** @type {?} */
-    MegaNumberResult.prototype.unitI18n;
-}
-/**
- * Large number format filter
- *
- * 大数据格式化
- * ```ts
- * 1000 => { value: '1', unit: 'K', unitI18n: '千' }
- * 12456 => { value: '12.46', unit: 'K', unitI18n: '千' }
- * ```
- * @param {?} value
- * @param {?=} precision
- * @param {?=} unitI18n
- * @return {?}
- */
-function megaNumber(value, precision = 2, unitI18n = { Q: '京', T: '兆', B: '亿', M: '万', K: '千' }) {
-    /** @type {?} */
-    const num = parseFloat(value.toString());
-    /** @type {?} */
-    const res = { raw: value, value: '', unit: '', unitI18n: '' };
-    if (isNaN(num) || num === 0) {
-        res.value = value.toString();
+class FormatCurrencyService {
+    /**
+     * @param {?} cog
+     */
+    constructor(cog) {
+        this.c = (/** @type {?} */ (cog.merge('utilFormat', {})));
+    }
+    /**
+     * Format a number with commas as thousands separators
+     *
+     * 用逗号将数字格式化为千位分隔符
+     * ```ts
+     * 10000 => `10,000`
+     * ```
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
+     */
+    commas(value, options) {
+        var _a;
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
+    }
+    /**
+     * Large number format filter
+     *
+     * 大数据格式化
+     * ```ts
+     * 1000 => { value: '1', unit: 'K', unitI18n: '千' }
+     * 12456 => { value: '12.46', unit: 'K', unitI18n: '千' }
+     * ```
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
+     */
+    mega(value, options) {
+        options = Object.assign(Object.assign({ precision: 2, unitI18n: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } }, this.c.currencyMegaUnit), options);
+        /** @type {?} */
+        const num = parseFloat(value.toString());
+        /** @type {?} */
+        const res = { raw: value, value: '', unit: '', unitI18n: '' };
+        if (isNaN(num) || num === 0) {
+            res.value = value.toString();
+            return res;
+        }
+        /** @type {?} */
+        let abs = Math.abs(+value);
+        /** @type {?} */
+        const rounder = Math.pow(10, (/** @type {?} */ (options.precision)));
+        /** @type {?} */
+        const isNegative = num < 0;
+        for (const p of FormatCurrencyMega_Powers) {
+            /** @type {?} */
+            let reduced = abs / p.value;
+            reduced = Math.round(reduced * rounder) / rounder;
+            if (reduced >= 1) {
+                abs = reduced;
+                res.unit = p.unit;
+                break;
+            }
+        }
+        res.value = (isNegative ? '-' : '') + abs;
+        res.unitI18n = ((/** @type {?} */ (options.unitI18n)))[res.unit];
         return res;
     }
-    /** @type {?} */
-    let abs = Math.abs(+value);
-    /** @type {?} */
-    const rounder = Math.pow(10, (/** @type {?} */ (precision)));
-    /** @type {?} */
-    const isNegative = num < 0;
-    for (const p of MEGA_POWERS) {
-        /** @type {?} */
-        let reduced = abs / p.value;
-        reduced = Math.round(reduced * rounder) / rounder;
-        if (reduced >= 1) {
-            abs = reduced;
-            res.unit = p.unit;
-            break;
-        }
-    }
-    res.value = (isNegative ? '-' : '') + abs;
-    res.unitI18n = ((/** @type {?} */ (unitI18n)))[res.unit];
-    return res;
+}
+FormatCurrencyService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+FormatCurrencyService.ctorParameters = () => [
+    { type: AlainConfigService }
+];
+/** @nocollapse */ FormatCurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function FormatCurrencyService_Factory() { return new FormatCurrencyService(ɵɵinject(AlainConfigService)); }, token: FormatCurrencyService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    FormatCurrencyService.prototype.c;
 }
 
 /**
@@ -265,5 +313,5 @@ function megaNumber(value, precision = 2, unitI18n = { Q: '京', T: '兆', B: '�
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { MEGA_POWERS, REGEX, REGEX_STR, commasNumber, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl, megaNumber };
+export { FormatCurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
 //# sourceMappingURL=money.js.map
