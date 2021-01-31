@@ -470,6 +470,9 @@
      */
     /** @type {?} */
     var PIPES = [NaNumberToChinesePipe];
+    /**
+     * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
+     */
     var NumberToChineseModule = /** @class */ (function () {
         function NumberToChineseModule() {
         }

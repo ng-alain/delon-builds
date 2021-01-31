@@ -169,6 +169,9 @@ NaNumberToChinesePipe.decorators = [
  */
 /** @type {?} */
 const PIPES = [NaNumberToChinesePipe];
+/**
+ * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
+ */
 class NumberToChineseModule {
 }
 NumberToChineseModule.decorators = [
