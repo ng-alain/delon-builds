@@ -1,9 +1,9 @@
 import { PipeTransform } from '@angular/core';
-import { FormatCurrencyService } from '@delon/util/format';
+import { CurrencyService } from '@delon/util/format';
 export declare class CurrencyMegaPipe implements PipeTransform {
     private srv;
     private isCN;
-    constructor(srv: FormatCurrencyService, locale: string);
+    constructor(srv: CurrencyService, locale: string);
     /**
      * Large number format filter
      *

@@ -1,5 +1,5 @@
 import { Pipe, Inject, LOCALE_ID, NgModule } from '@angular/core';
-import { FormatCurrencyService } from '@delon/util/format';
+import { CurrencyService } from '@delon/util/format';
 
 /**
  * @fileoverview added by tsickle
@@ -35,7 +35,7 @@ CurrencyMegaPipe.decorators = [
 ];
 /** @nocollapse */
 CurrencyMegaPipe.ctorParameters = () => [
-    { type: FormatCurrencyService },
+    { type: CurrencyService },
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
 ];
 if (false) {
@@ -80,7 +80,7 @@ CurrencyCommasPipe.decorators = [
 ];
 /** @nocollapse */
 CurrencyCommasPipe.ctorParameters = () => [
-    { type: FormatCurrencyService }
+    { type: CurrencyService }
 ];
 if (false) {
     /**
@@ -92,11 +92,50 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
+ * Generated from: cny.pipe.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+class CurrencyCNYPipe {
+    /**
+     * @param {?} srv
+     */
+    constructor(srv) {
+        this.srv = srv;
+    }
+    /**
+     * Converted into RMB notation.
+     *
+     * 转化成人民币表示法
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
+     */
+    transform(value, options) {
+        return this.srv.cny(value, options);
+    }
+}
+CurrencyCNYPipe.decorators = [
+    { type: Pipe, args: [{ name: 'currencyCNY' },] }
+];
+/** @nocollapse */
+CurrencyCNYPipe.ctorParameters = () => [
+    { type: CurrencyService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyCNYPipe.prototype.srv;
+}
+
+/**
+ * @fileoverview added by tsickle
  * Generated from: module.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const PIPES = [CurrencyMegaPipe, CurrencyCommasPipe];
+const PIPES = [CurrencyMegaPipe, CurrencyCommasPipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
 CurrencyPipeModule.decorators = [
@@ -118,5 +157,5 @@ CurrencyPipeModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule };
+export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule, CurrencyCNYPipe as ɵa };
 //# sourceMappingURL=format-number.js.map

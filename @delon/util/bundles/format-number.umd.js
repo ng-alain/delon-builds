@@ -45,7 +45,7 @@
     ];
     /** @nocollapse */
     CurrencyMegaPipe.ctorParameters = function () { return [
-        { type: format.FormatCurrencyService },
+        { type: format.CurrencyService },
         { type: String, decorators: [{ type: core.Inject, args: [core.LOCALE_ID,] }] }
     ]; };
     if (false) {
@@ -92,7 +92,7 @@
     ];
     /** @nocollapse */
     CurrencyCommasPipe.ctorParameters = function () { return [
-        { type: format.FormatCurrencyService }
+        { type: format.CurrencyService }
     ]; };
     if (false) {
         /**
@@ -104,11 +104,51 @@
 
     /**
      * @fileoverview added by tsickle
+     * Generated from: cny.pipe.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var CurrencyCNYPipe = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
+        function CurrencyCNYPipe(srv) {
+            this.srv = srv;
+        }
+        /**
+         * Converted into RMB notation.
+         *
+         * 转化成人民币表示法
+         * @param {?} value
+         * @param {?=} options
+         * @return {?}
+         */
+        CurrencyCNYPipe.prototype.transform = function (value, options) {
+            return this.srv.cny(value, options);
+        };
+        return CurrencyCNYPipe;
+    }());
+    CurrencyCNYPipe.decorators = [
+        { type: core.Pipe, args: [{ name: 'currencyCNY' },] }
+    ];
+    /** @nocollapse */
+    CurrencyCNYPipe.ctorParameters = function () { return [
+        { type: format.CurrencyService }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CurrencyCNYPipe.prototype.srv;
+    }
+
+    /**
+     * @fileoverview added by tsickle
      * Generated from: module.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var PIPES = [CurrencyMegaPipe, CurrencyCommasPipe];
+    var PIPES = [CurrencyMegaPipe, CurrencyCommasPipe, CurrencyCNYPipe];
     var CurrencyPipeModule = /** @class */ (function () {
         function CurrencyPipeModule() {
         }
@@ -136,6 +176,7 @@
     exports.CurrencyCommasPipe = CurrencyCommasPipe;
     exports.CurrencyMegaPipe = CurrencyMegaPipe;
     exports.CurrencyPipeModule = CurrencyPipeModule;
+    exports.ɵa = CurrencyCNYPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

@@ -3901,6 +3901,7 @@ if (false) {
  */
 /**
  * [Document](https://ng-alain.com/theme/currency)
+ * @deprecated Will be removed in 13.0.0, Pls used `currencyCNY` instead
  */
 // tslint:disable-next-line:use-pipe-transform-interface
 class CNCurrencyPipe {
@@ -4189,7 +4190,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.3.1-48ab9943');
+const VERSION = new Version('11.3.1-539671f5');
 
 /**
  * @fileoverview added by tsickle

@@ -111,10 +111,16 @@
 			return form._Validators;
 		}
 	});
-	Object.defineProperty(exports, 'FormatCurrencyService', {
+	Object.defineProperty(exports, 'CurrencyMega_Powers', {
 		enumerable: true,
 		get: function () {
-			return format.FormatCurrencyService;
+			return format.CurrencyMega_Powers;
+		}
+	});
+	Object.defineProperty(exports, 'CurrencyService', {
+		enumerable: true,
+		get: function () {
+			return format.CurrencyService;
 		}
 	});
 	Object.defineProperty(exports, 'REGEX', {
@@ -337,6 +343,12 @@
 		enumerable: true,
 		get: function () {
 			return pipes.CurrencyPipeModule;
+		}
+	});
+	Object.defineProperty(exports, 'ɵa', {
+		enumerable: true,
+		get: function () {
+			return pipes.ɵa;
 		}
 	});
 

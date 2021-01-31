@@ -479,35 +479,35 @@
     /**
      * @record
      */
-    function FormatCurrencyMegaOptions() { }
+    function CurrencyMegaOptions() { }
     if (false) {
         /**
          * 精度，默认：`2`
          * @type {?|undefined}
          */
-        FormatCurrencyMegaOptions.prototype.precision;
+        CurrencyMegaOptions.prototype.precision;
         /**
          * 单位国际化，默认：`{Q: '京', T: '兆', B: '亿', M: '万', K: '千',}`
          * @type {?|undefined}
          */
-        FormatCurrencyMegaOptions.prototype.unitI18n;
+        CurrencyMegaOptions.prototype.unitI18n;
     }
     /**
      * @record
      */
-    function FormatCurrencyMegaResult() { }
+    function CurrencyMegaResult() { }
     if (false) {
         /** @type {?} */
-        FormatCurrencyMegaResult.prototype.raw;
+        CurrencyMegaResult.prototype.raw;
         /** @type {?} */
-        FormatCurrencyMegaResult.prototype.value;
+        CurrencyMegaResult.prototype.value;
         /** @type {?} */
-        FormatCurrencyMegaResult.prototype.unit;
+        CurrencyMegaResult.prototype.unit;
         /** @type {?} */
-        FormatCurrencyMegaResult.prototype.unitI18n;
+        CurrencyMegaResult.prototype.unitI18n;
     }
     /** @type {?} */
-    var FormatCurrencyMega_Powers = [
+    var CurrencyMega_Powers = [
         { unit: 'Q', value: Math.pow(10, 15) },
         { unit: 'T', value: Math.pow(10, 12) },
         { unit: 'B', value: Math.pow(10, 9) },
@@ -517,25 +517,52 @@
     /**
      * @record
      */
-    function FormatCurrencyMegaUnitI18n() { }
+    function CurrencyMegaUnitI18n() { }
     if (false) {
         /** @type {?} */
-        FormatCurrencyMegaUnitI18n.prototype.Q;
+        CurrencyMegaUnitI18n.prototype.Q;
         /** @type {?} */
-        FormatCurrencyMegaUnitI18n.prototype.T;
+        CurrencyMegaUnitI18n.prototype.T;
         /** @type {?} */
-        FormatCurrencyMegaUnitI18n.prototype.B;
+        CurrencyMegaUnitI18n.prototype.B;
         /** @type {?} */
-        FormatCurrencyMegaUnitI18n.prototype.M;
+        CurrencyMegaUnitI18n.prototype.M;
         /** @type {?} */
-        FormatCurrencyMegaUnitI18n.prototype.K;
+        CurrencyMegaUnitI18n.prototype.K;
+    }
+    /**
+     * @record
+     */
+    function CurrencyCNYOptions() { }
+    if (false) {
+        /**
+         * Whether to return to uppercase notation, default: `true`
+         *
+         * 是否返回大写表示法，默认：`true`
+         * @type {?|undefined}
+         */
+        CurrencyCNYOptions.prototype.inWords;
+        /**
+         * Specify negative sign, default: `negative`
+         *
+         * 指定负数符号，默认：`负`
+         * @type {?|undefined}
+         */
+        CurrencyCNYOptions.prototype.minusSymbol;
+        /**
+         * Throws an exception when the passed value is invalid. Default: `false`
+         *
+         * 当传递值无效数值时抛出异常，默认：`false`
+         * @type {?|undefined}
+         */
+        CurrencyCNYOptions.prototype.validThrow;
     }
 
-    var FormatCurrencyService = /** @class */ (function () {
+    var CurrencyService = /** @class */ (function () {
         /**
          * @param {?} cog
          */
-        function FormatCurrencyService(cog) {
+        function CurrencyService(cog) {
             this.c = ( /** @type {?} */(cog.merge('utilFormat', {})));
         }
         /**
@@ -549,7 +576,7 @@
          * @param {?=} options
          * @return {?}
          */
-        FormatCurrencyService.prototype.commas = function (value, options) {
+        CurrencyService.prototype.commas = function (value, options) {
             var _a;
             return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
         };
@@ -565,7 +592,7 @@
          * @param {?=} options
          * @return {?}
          */
-        FormatCurrencyService.prototype.mega = function (value, options) {
+        CurrencyService.prototype.mega = function (value, options) {
             var e_1, _b;
             options = Object.assign(Object.assign({ precision: 2, unitI18n: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } }, this.c.currencyMegaUnit), options);
             /** @type {?} */
@@ -583,8 +610,8 @@
             /** @type {?} */
             var isNegative = num < 0;
             try {
-                for (var FormatCurrencyMega_Powers_1 = __values(FormatCurrencyMega_Powers), FormatCurrencyMega_Powers_1_1 = FormatCurrencyMega_Powers_1.next(); !FormatCurrencyMega_Powers_1_1.done; FormatCurrencyMega_Powers_1_1 = FormatCurrencyMega_Powers_1.next()) {
-                    var p = FormatCurrencyMega_Powers_1_1.value;
+                for (var CurrencyMega_Powers_1 = __values(CurrencyMega_Powers), CurrencyMega_Powers_1_1 = CurrencyMega_Powers_1.next(); !CurrencyMega_Powers_1_1.done; CurrencyMega_Powers_1_1 = CurrencyMega_Powers_1.next()) {
+                    var p = CurrencyMega_Powers_1_1.value;
                     /** @type {?} */
                     var reduced = abs / p.value;
                     reduced = Math.round(reduced * rounder) / rounder;
@@ -598,7 +625,7 @@
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
-                    if (FormatCurrencyMega_Powers_1_1 && !FormatCurrencyMega_Powers_1_1.done && (_b = FormatCurrencyMega_Powers_1.return)) _b.call(FormatCurrencyMega_Powers_1);
+                    if (CurrencyMega_Powers_1_1 && !CurrencyMega_Powers_1_1.done && (_b = CurrencyMega_Powers_1.return)) _b.call(CurrencyMega_Powers_1);
                 }
                 finally { if (e_1) throw e_1.error; }
             }
@@ -606,22 +633,141 @@
             res.unitI18n = (( /** @type {?} */(options.unitI18n)))[res.unit];
             return res;
         };
-        return FormatCurrencyService;
+        /**
+         * Converted into RMB notation.
+         *
+         * 转化成人民币表示法
+         * @param {?} value
+         * @param {?=} options
+         * @return {?}
+         */
+        CurrencyService.prototype.cny = function (value, options) {
+            var _b;
+            options = Object.assign({ inWords: true, minusSymbol: '负', validThrow: false }, options);
+            if (typeof value === 'number') {
+                value = value.toString();
+            }
+            if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow) {
+                throw new Error(value + " is invalid number type");
+            }
+            /** @type {?} */
+            var integer;
+            /** @type {?} */
+            var decimal;
+            _b = __read(value.split('.'), 2), integer = _b[0], decimal = _b[1];
+            /** @type {?} */
+            var symbol = '';
+            if (integer.startsWith('-')) {
+                symbol = ( /** @type {?} */(options.minusSymbol));
+                integer = integer.substr(1);
+            }
+            if (/^-?\d+$/.test(value)) {
+                decimal = null;
+            }
+            integer = (+integer).toString();
+            /** @type {?} */
+            var inWords = options.inWords;
+            /** @type {?} */
+            var unit = {
+                num: inWords
+                    ? ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '点']
+                    : ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '点'],
+                radice: inWords
+                    ? ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟', '万亿', '拾', '佰', '仟', '兆', '拾', '佰', '仟']
+                    : ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万亿', '十', '百', '千', '兆', '十', '百', '千'],
+                dec: ['角', '分', '厘', '毫'],
+            };
+            if (inWords) {
+                value = (+value).toFixed(5).toString();
+            }
+            /** @type {?} */
+            var integerRes = '';
+            /** @type {?} */
+            var integerCount = integer.length;
+            if (integer === '0' || integerCount === 0) {
+                integerRes = '零';
+            }
+            else {
+                /** @type {?} */
+                var cnDesc = '';
+                for (var i = 0; i < integerCount; i++) {
+                    /** @type {?} */
+                    var n = +integer[i];
+                    /** @type {?} */
+                    var j = integerCount - i - 1;
+                    /** @type {?} */
+                    var isZero = i > 1 && n !== 0 && integer[i - 1] === '0';
+                    /** @type {?} */
+                    var cnZero = isZero ? '零' : '';
+                    /** @type {?} */
+                    var isEmpptyUnit = (n === 0 && j % 4 !== 0) || integer.substr(i - 3, 4) === '0000';
+                    /** @type {?} */
+                    var descMark = cnDesc;
+                    /** @type {?} */
+                    var cnNum = unit.num[n];
+                    cnDesc = isEmpptyUnit ? '' : unit.radice[j];
+                    // 第一位是一十
+                    if (i === 0 && cnNum === '一' && cnDesc === '十')
+                        cnNum = '';
+                    /** @type {?} */
+                    var isChangeEr = n > 1 &&
+                        cnNum === '二' && // 去除首位
+                        ['', '十', '百'].indexOf(cnDesc) === -1 && // 不读两\两十\两百
+                        descMark !== '十';
+                    if (isChangeEr)
+                        cnNum = '两';
+                    integerRes += cnZero + cnNum + cnDesc;
+                }
+            }
+            // 小数部分拼接
+            /** @type {?} */
+            var decimalRes = '';
+            /** @type {?} */
+            var decimalCount = decimal ? decimal.toString().length : 0;
+            if (decimal === null) {
+                decimalRes = inWords ? '整' : '';
+            }
+            else if (decimal === '0') {
+                decimalRes = '零';
+            }
+            else {
+                for (var i = 0; i < decimalCount; i++) {
+                    if (inWords && i > unit.dec.length - 1)
+                        break;
+                    /** @type {?} */
+                    var n = decimal[i];
+                    /** @type {?} */
+                    var cnZero = n === '0' ? '零' : '';
+                    /** @type {?} */
+                    var cnNum = unit.num[+n];
+                    /** @type {?} */
+                    var cnDesc = inWords ? unit.dec[i] : '';
+                    decimalRes += cnZero + cnNum + cnDesc;
+                }
+            }
+            /** @type {?} */
+            var ret = symbol +
+                (inWords
+                    ? integerRes + (decimalRes === '零' ? '元整' : "\u5143" + decimalRes)
+                    : integerRes + (decimalRes === '' ? '' : "\u70B9" + decimalRes));
+            return ret;
+        };
+        return CurrencyService;
     }());
-    FormatCurrencyService.decorators = [
+    CurrencyService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
-    FormatCurrencyService.ctorParameters = function () { return [
+    CurrencyService.ctorParameters = function () { return [
         { type: i1.AlainConfigService }
     ]; };
-    /** @nocollapse */ FormatCurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FormatCurrencyService_Factory() { return new FormatCurrencyService(i0.ɵɵinject(i1.AlainConfigService)); }, token: FormatCurrencyService, providedIn: "root" });
+    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService)); }, token: CurrencyService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
          * @private
          */
-        FormatCurrencyService.prototype.c;
+        CurrencyService.prototype.c;
     }
 
     /**
@@ -636,7 +782,8 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.FormatCurrencyService = FormatCurrencyService;
+    exports.CurrencyMega_Powers = CurrencyMega_Powers;
+    exports.CurrencyService = CurrencyService;
     exports.REGEX = REGEX;
     exports.REGEX_STR = REGEX_STR;
     exports.format = format;

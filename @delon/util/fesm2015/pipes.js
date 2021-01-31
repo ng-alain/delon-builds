@@ -1,4 +1,4 @@
-export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule } from '@delon/util/pipes/currency';
+export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule, ɵa } from '@delon/util/pipes/currency';
 
 /**
  * @fileoverview added by tsickle

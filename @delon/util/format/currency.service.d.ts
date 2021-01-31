@@ -1,6 +1,6 @@
 import { AlainConfigService } from '@delon/util/config';
-import { FormatCurrencyMegaOptions, FormatCurrencyMegaResult } from './currency.types';
-export declare class FormatCurrencyService {
+import { CurrencyCNYOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
+export declare class CurrencyService {
     private c;
     constructor(cog: AlainConfigService);
     /**
@@ -23,5 +23,11 @@ export declare class FormatCurrencyService {
      * 12456 => { value: '12.46', unit: 'K', unitI18n: '千' }
      * ```
      */
-    mega(value: number | string, options?: FormatCurrencyMegaOptions): FormatCurrencyMegaResult;
+    mega(value: number | string, options?: CurrencyMegaOptions): CurrencyMegaResult;
+    /**
+     * Converted into RMB notation.
+     *
+     * 转化成人民币表示法
+     */
+    cny(value: number | string, options?: CurrencyCNYOptions): string;
 }

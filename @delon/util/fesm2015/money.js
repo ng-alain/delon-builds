@@ -163,35 +163,35 @@ function isChinese(value) {
 /**
  * @record
  */
-function FormatCurrencyMegaOptions() { }
+function CurrencyMegaOptions() { }
 if (false) {
     /**
      * 精度，默认：`2`
      * @type {?|undefined}
      */
-    FormatCurrencyMegaOptions.prototype.precision;
+    CurrencyMegaOptions.prototype.precision;
     /**
      * 单位国际化，默认：`{Q: '京', T: '兆', B: '亿', M: '万', K: '千',}`
      * @type {?|undefined}
      */
-    FormatCurrencyMegaOptions.prototype.unitI18n;
+    CurrencyMegaOptions.prototype.unitI18n;
 }
 /**
  * @record
  */
-function FormatCurrencyMegaResult() { }
+function CurrencyMegaResult() { }
 if (false) {
     /** @type {?} */
-    FormatCurrencyMegaResult.prototype.raw;
+    CurrencyMegaResult.prototype.raw;
     /** @type {?} */
-    FormatCurrencyMegaResult.prototype.value;
+    CurrencyMegaResult.prototype.value;
     /** @type {?} */
-    FormatCurrencyMegaResult.prototype.unit;
+    CurrencyMegaResult.prototype.unit;
     /** @type {?} */
-    FormatCurrencyMegaResult.prototype.unitI18n;
+    CurrencyMegaResult.prototype.unitI18n;
 }
 /** @type {?} */
-const FormatCurrencyMega_Powers = [
+const CurrencyMega_Powers = [
     { unit: 'Q', value: Math.pow(10, 15) },
     { unit: 'T', value: Math.pow(10, 12) },
     { unit: 'B', value: Math.pow(10, 9) },
@@ -201,18 +201,45 @@ const FormatCurrencyMega_Powers = [
 /**
  * @record
  */
-function FormatCurrencyMegaUnitI18n() { }
+function CurrencyMegaUnitI18n() { }
 if (false) {
     /** @type {?} */
-    FormatCurrencyMegaUnitI18n.prototype.Q;
+    CurrencyMegaUnitI18n.prototype.Q;
     /** @type {?} */
-    FormatCurrencyMegaUnitI18n.prototype.T;
+    CurrencyMegaUnitI18n.prototype.T;
     /** @type {?} */
-    FormatCurrencyMegaUnitI18n.prototype.B;
+    CurrencyMegaUnitI18n.prototype.B;
     /** @type {?} */
-    FormatCurrencyMegaUnitI18n.prototype.M;
+    CurrencyMegaUnitI18n.prototype.M;
     /** @type {?} */
-    FormatCurrencyMegaUnitI18n.prototype.K;
+    CurrencyMegaUnitI18n.prototype.K;
+}
+/**
+ * @record
+ */
+function CurrencyCNYOptions() { }
+if (false) {
+    /**
+     * Whether to return to uppercase notation, default: `true`
+     *
+     * 是否返回大写表示法，默认：`true`
+     * @type {?|undefined}
+     */
+    CurrencyCNYOptions.prototype.inWords;
+    /**
+     * Specify negative sign, default: `negative`
+     *
+     * 指定负数符号，默认：`负`
+     * @type {?|undefined}
+     */
+    CurrencyCNYOptions.prototype.minusSymbol;
+    /**
+     * Throws an exception when the passed value is invalid. Default: `false`
+     *
+     * 当传递值无效数值时抛出异常，默认：`false`
+     * @type {?|undefined}
+     */
+    CurrencyCNYOptions.prototype.validThrow;
 }
 
 /**
@@ -220,7 +247,7 @@ if (false) {
  * Generated from: currency.service.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class FormatCurrencyService {
+class CurrencyService {
     /**
      * @param {?} cog
      */
@@ -270,7 +297,7 @@ class FormatCurrencyService {
         const rounder = Math.pow(10, (/** @type {?} */ (options.precision)));
         /** @type {?} */
         const isNegative = num < 0;
-        for (const p of FormatCurrencyMega_Powers) {
+        for (const p of CurrencyMega_Powers) {
             /** @type {?} */
             let reduced = abs / p.value;
             reduced = Math.round(reduced * rounder) / rounder;
@@ -284,21 +311,139 @@ class FormatCurrencyService {
         res.unitI18n = ((/** @type {?} */ (options.unitI18n)))[res.unit];
         return res;
     }
+    /**
+     * Converted into RMB notation.
+     *
+     * 转化成人民币表示法
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
+     */
+    cny(value, options) {
+        options = Object.assign({ inWords: true, minusSymbol: '负', validThrow: false }, options);
+        if (typeof value === 'number') {
+            value = value.toString();
+        }
+        if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow) {
+            throw new Error(`${value} is invalid number type`);
+        }
+        /** @type {?} */
+        let integer;
+        /** @type {?} */
+        let decimal;
+        [integer, decimal] = value.split('.');
+        /** @type {?} */
+        let symbol = '';
+        if (integer.startsWith('-')) {
+            symbol = (/** @type {?} */ (options.minusSymbol));
+            integer = integer.substr(1);
+        }
+        if (/^-?\d+$/.test(value)) {
+            decimal = null;
+        }
+        integer = (+integer).toString();
+        /** @type {?} */
+        const inWords = options.inWords;
+        /** @type {?} */
+        const unit = {
+            num: inWords
+                ? ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '点']
+                : ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '点'],
+            radice: inWords
+                ? ['', '拾', '佰', '仟', '万', '拾', '佰', '仟', '亿', '拾', '佰', '仟', '万亿', '拾', '佰', '仟', '兆', '拾', '佰', '仟']
+                : ['', '十', '百', '千', '万', '十', '百', '千', '亿', '十', '百', '千', '万亿', '十', '百', '千', '兆', '十', '百', '千'],
+            dec: ['角', '分', '厘', '毫'],
+        };
+        if (inWords) {
+            value = (+value).toFixed(5).toString();
+        }
+        /** @type {?} */
+        let integerRes = '';
+        /** @type {?} */
+        const integerCount = integer.length;
+        if (integer === '0' || integerCount === 0) {
+            integerRes = '零';
+        }
+        else {
+            /** @type {?} */
+            let cnDesc = '';
+            for (let i = 0; i < integerCount; i++) {
+                /** @type {?} */
+                const n = +integer[i];
+                /** @type {?} */
+                const j = integerCount - i - 1;
+                /** @type {?} */
+                const isZero = i > 1 && n !== 0 && integer[i - 1] === '0';
+                /** @type {?} */
+                const cnZero = isZero ? '零' : '';
+                /** @type {?} */
+                const isEmpptyUnit = (n === 0 && j % 4 !== 0) || integer.substr(i - 3, 4) === '0000';
+                /** @type {?} */
+                const descMark = cnDesc;
+                /** @type {?} */
+                let cnNum = unit.num[n];
+                cnDesc = isEmpptyUnit ? '' : unit.radice[j];
+                // 第一位是一十
+                if (i === 0 && cnNum === '一' && cnDesc === '十')
+                    cnNum = '';
+                /** @type {?} */
+                const isChangeEr = n > 1 &&
+                    cnNum === '二' && // 去除首位
+                    ['', '十', '百'].indexOf(cnDesc) === -1 && // 不读两\两十\两百
+                    descMark !== '十';
+                if (isChangeEr)
+                    cnNum = '两';
+                integerRes += cnZero + cnNum + cnDesc;
+            }
+        }
+        // 小数部分拼接
+        /** @type {?} */
+        let decimalRes = '';
+        /** @type {?} */
+        const decimalCount = decimal ? decimal.toString().length : 0;
+        if (decimal === null) {
+            decimalRes = inWords ? '整' : '';
+        }
+        else if (decimal === '0') {
+            decimalRes = '零';
+        }
+        else {
+            for (let i = 0; i < decimalCount; i++) {
+                if (inWords && i > unit.dec.length - 1)
+                    break;
+                /** @type {?} */
+                const n = decimal[i];
+                /** @type {?} */
+                const cnZero = n === '0' ? '零' : '';
+                /** @type {?} */
+                const cnNum = unit.num[+n];
+                /** @type {?} */
+                const cnDesc = inWords ? unit.dec[i] : '';
+                decimalRes += cnZero + cnNum + cnDesc;
+            }
+        }
+        /** @type {?} */
+        const ret = symbol +
+            (inWords
+                ? integerRes + (decimalRes === '零' ? '元整' : `元${decimalRes}`)
+                : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
+        return ret;
+    }
 }
-FormatCurrencyService.decorators = [
+CurrencyService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
-FormatCurrencyService.ctorParameters = () => [
+CurrencyService.ctorParameters = () => [
     { type: AlainConfigService }
 ];
-/** @nocollapse */ FormatCurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function FormatCurrencyService_Factory() { return new FormatCurrencyService(ɵɵinject(AlainConfigService)); }, token: FormatCurrencyService, providedIn: "root" });
+/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService)); }, token: CurrencyService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
-    FormatCurrencyService.prototype.c;
+    CurrencyService.prototype.c;
 }
 
 /**
@@ -313,5 +458,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { FormatCurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
+export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
 //# sourceMappingURL=money.js.map

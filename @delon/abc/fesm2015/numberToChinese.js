@@ -30,6 +30,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
+ * @deprecated Will be removed in 13.0.0, Pls used `CurrencyService.cny` instead
  * @param {?} value
  * @param {?=} rmb
  * @param {?=} options
@@ -142,6 +143,9 @@ function numberToChinese(value, rmb = true, options) {
  * @fileoverview added by tsickle
  * Generated from: number-to-chinese.pipe.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @deprecated Will be removed in 13.0.0, Pls used `currencyCNY` instead
  */
 class NaNumberToChinesePipe {
     /**

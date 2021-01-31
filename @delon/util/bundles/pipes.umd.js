@@ -39,6 +39,12 @@
 			return currency.CurrencyPipeModule;
 		}
 	});
+	Object.defineProperty(exports, 'ɵa', {
+		enumerable: true,
+		get: function () {
+			return currency.ɵa;
+		}
+	});
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
