@@ -1,12 +1,13 @@
 import { Injectable, Directive, TemplateRef, Host, Input, ɵɵdefineInjectable, Optional, Inject, ViewContainerRef, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, ViewChild, Output, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService, DelonACLModule } from '@delon/acl';
-import { ALAIN_I18N_TOKEN, _HttpClient, CNCurrencyPipe, DatePipe, YNPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
+import { ALAIN_I18N_TOKEN, _HttpClient, DatePipe, YNPipe, CNCurrencyPipe, ModalHelper, DrawerHelper, DelonLocaleService } from '@delon/theme';
 import { warn, deepCopy, deepGet, deepMergeKey } from '@delon/util/other';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { of, Subject, from } from 'rxjs';
 import { map, takeUntil, filter } from 'rxjs/operators';
+import { CurrencyService } from '@delon/util/format';
 import { __awaiter, __decorate, __metadata } from 'tslib';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
@@ -416,6 +417,13 @@ if (false) {
      * @type {?|undefined}
      */
     STColumn.prototype.dateFormat;
+    /**
+     * Currency format option, `type=currency` is valid, pls refer of [CurrencyService.commas](https://ng-alain.com/util/format/#commas).
+     *
+     * 货币格式选项，`type=currency` 有效。
+     * @type {?|undefined}
+     */
+    STColumn.prototype.currency;
     /**
      * 当 `type=yn` 有效
      * @type {?|undefined}
@@ -2285,18 +2293,18 @@ if (false) {
 class STDataSource {
     /**
      * @param {?} http
-     * @param {?} currentyPipe
      * @param {?} datePipe
      * @param {?} ynPipe
      * @param {?} numberPipe
+     * @param {?} currencySrv
      * @param {?} dom
      */
-    constructor(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
+    constructor(http, datePipe, ynPipe, numberPipe, currencySrv, dom) {
         this.http = http;
-        this.currentyPipe = currentyPipe;
         this.datePipe = datePipe;
         this.ynPipe = ynPipe;
         this.numberPipe = numberPipe;
+        this.currencySrv = currencySrv;
         this.dom = dom;
         this.sortTick = 0;
     }
@@ -2503,7 +2511,7 @@ class STDataSource {
                     text = this.numberPipe.transform(value, col.numberDigits);
                     break;
                 case 'currency':
-                    text = this.currentyPipe.transform(value);
+                    text = this.currencySrv.commas(value, col.currency);
                     break;
                 case 'date':
                     text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
@@ -2847,7 +2855,7 @@ class STDataSource {
             }
         }
         if (item.currency === true || (item.currency == null && currency === true)) {
-            res.text = (/** @type {?} */ (this.currentyPipe.transform(res.value)));
+            res.text = (/** @type {?} */ (this.currencySrv.commas(res.value, col.currency)));
         }
         else {
             res.text = String(res.value);
@@ -2904,10 +2912,10 @@ STDataSource.decorators = [
 /** @nocollapse */
 STDataSource.ctorParameters = () => [
     { type: _HttpClient },
-    { type: CNCurrencyPipe, decorators: [{ type: Host }] },
     { type: DatePipe, decorators: [{ type: Host }] },
     { type: YNPipe, decorators: [{ type: Host }] },
     { type: DecimalPipe, decorators: [{ type: Host }] },
+    { type: CurrencyService },
     { type: DomSanitizer }
 ];
 if (false) {
@@ -2925,11 +2933,6 @@ if (false) {
      * @type {?}
      * @private
      */
-    STDataSource.prototype.currentyPipe;
-    /**
-     * @type {?}
-     * @private
-     */
     STDataSource.prototype.datePipe;
     /**
      * @type {?}
@@ -2941,6 +2944,11 @@ if (false) {
      * @private
      */
     STDataSource.prototype.numberPipe;
+    /**
+     * @type {?}
+     * @private
+     */
+    STDataSource.prototype.currencySrv;
     /**
      * @type {?}
      * @private

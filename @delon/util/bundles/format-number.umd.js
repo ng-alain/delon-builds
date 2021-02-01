@@ -29,13 +29,12 @@
          *
          * 大数据格式化
          * @param {?} value
-         * @param {?=} precision
+         * @param {?=} options
          * @return {?}
          */
-        CurrencyMegaPipe.prototype.transform = function (value, precision) {
-            if (precision === void 0) { precision = 2; }
+        CurrencyMegaPipe.prototype.transform = function (value, options) {
             /** @type {?} */
-            var res = this.srv.mega(value, { precision: precision });
+            var res = this.srv.mega(value, options);
             return res.value + (this.isCN ? res.unitI18n : res.unit);
         };
         return CurrencyMegaPipe;
@@ -78,12 +77,11 @@
          *
          * 用逗号将数字格式化为千位分隔符
          * @param {?} value
-         * @param {?=} separator
+         * @param {?=} options
          * @return {?}
          */
-        CurrencyCommasPipe.prototype.transform = function (value, separator) {
-            if (separator === void 0) { separator = ','; }
-            return this.srv.commas(value, { separator: separator });
+        CurrencyCommasPipe.prototype.transform = function (value, options) {
+            return this.srv.commas(value, options);
         };
         return CurrencyCommasPipe;
     }());

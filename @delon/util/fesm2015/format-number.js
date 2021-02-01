@@ -21,12 +21,12 @@ class CurrencyMegaPipe {
      *
      * 大数据格式化
      * @param {?} value
-     * @param {?=} precision
+     * @param {?=} options
      * @return {?}
      */
-    transform(value, precision = 2) {
+    transform(value, options) {
         /** @type {?} */
-        const res = this.srv.mega(value, { precision });
+        const res = this.srv.mega(value, options);
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
 }
@@ -68,11 +68,11 @@ class CurrencyCommasPipe {
      *
      * 用逗号将数字格式化为千位分隔符
      * @param {?} value
-     * @param {?=} separator
+     * @param {?=} options
      * @return {?}
      */
-    transform(value, separator = ',') {
-        return this.srv.commas(value, { separator });
+    transform(value, options) {
+        return this.srv.commas(value, options);
     }
 }
 CurrencyCommasPipe.decorators = [

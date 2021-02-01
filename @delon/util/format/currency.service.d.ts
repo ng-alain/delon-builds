@@ -1,5 +1,5 @@
 import { AlainConfigService } from '@delon/util/config';
-import { CurrencyCNYOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
+import { CurrencyCNYOptions, CurrencyCommasOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
 export declare class CurrencyService {
     private c;
     constructor(cog: AlainConfigService);
@@ -11,9 +11,7 @@ export declare class CurrencyService {
      * 10000 => `10,000`
      * ```
      */
-    commas(value: number | string, options?: {
-        separator?: string;
-    }): string;
+    commas(value: number | string, options?: CurrencyCommasOptions): string;
     /**
      * Large number format filter
      *

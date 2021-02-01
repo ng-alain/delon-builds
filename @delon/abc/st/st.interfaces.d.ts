@@ -2,6 +2,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { ElementRef, TemplateRef } from '@angular/core';
 import { ACLCanType } from '@delon/acl';
 import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
+import { CurrencyCommasOptions } from '@delon/util/format';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
 import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
@@ -299,6 +300,12 @@ export interface STColumn {
      * 日期格式，`type=date` 有效，（默认：`yyyy-MM-dd HH:mm`）
      */
     dateFormat?: string;
+    /**
+     * Currency format option, `type=currency` is valid, pls refer of [CurrencyService.commas](https://ng-alain.com/util/format/#commas).
+     *
+     * 货币格式选项，`type=currency` 有效。
+     */
+    currency?: CurrencyCommasOptions;
     /**
      * 当 `type=yn` 有效
      */

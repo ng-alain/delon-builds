@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, xlsx, router, config, decorator, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('@angular/forms'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', '@angular/forms', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global.ng.forms, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, router, config, decorator, forms, badge, checkbox, divider, dropdown, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1233,18 +1233,18 @@
     var STDataSource = /** @class */ (function () {
         /**
          * @param {?} http
-         * @param {?} currentyPipe
          * @param {?} datePipe
          * @param {?} ynPipe
          * @param {?} numberPipe
+         * @param {?} currencySrv
          * @param {?} dom
          */
-        function STDataSource(http, currentyPipe, datePipe, ynPipe, numberPipe, dom) {
+        function STDataSource(http, datePipe, ynPipe, numberPipe, currencySrv, dom) {
             this.http = http;
-            this.currentyPipe = currentyPipe;
             this.datePipe = datePipe;
             this.ynPipe = ynPipe;
             this.numberPipe = numberPipe;
+            this.currencySrv = currencySrv;
             this.dom = dom;
             this.sortTick = 0;
         }
@@ -1465,7 +1465,7 @@
                         text = this.numberPipe.transform(value, col.numberDigits);
                         break;
                     case 'currency':
-                        text = this.currentyPipe.transform(value);
+                        text = this.currencySrv.commas(value, col.currency);
                         break;
                     case 'date':
                         text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
@@ -1833,7 +1833,7 @@
                 }
             }
             if (item.currency === true || (item.currency == null && currency === true)) {
-                res.text = ( /** @type {?} */(this.currentyPipe.transform(res.value)));
+                res.text = ( /** @type {?} */(this.currencySrv.commas(res.value, col.currency)));
             }
             else {
                 res.text = String(res.value);
@@ -1894,10 +1894,10 @@
     /** @nocollapse */
     STDataSource.ctorParameters = function () { return [
         { type: theme._HttpClient },
-        { type: theme.CNCurrencyPipe, decorators: [{ type: i0.Host }] },
         { type: theme.DatePipe, decorators: [{ type: i0.Host }] },
         { type: theme.YNPipe, decorators: [{ type: i0.Host }] },
         { type: common.DecimalPipe, decorators: [{ type: i0.Host }] },
+        { type: format.CurrencyService },
         { type: platformBrowser.DomSanitizer }
     ]; };
     if (false) {
@@ -1915,11 +1915,6 @@
          * @type {?}
          * @private
          */
-        STDataSource.prototype.currentyPipe;
-        /**
-         * @type {?}
-         * @private
-         */
         STDataSource.prototype.datePipe;
         /**
          * @type {?}
@@ -1931,6 +1926,11 @@
          * @private
          */
         STDataSource.prototype.numberPipe;
+        /**
+         * @type {?}
+         * @private
+         */
+        STDataSource.prototype.currencySrv;
         /**
          * @type {?}
          * @private

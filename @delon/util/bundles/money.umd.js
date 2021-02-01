@@ -479,6 +479,26 @@
     /**
      * @record
      */
+    function CurrencyCommasOptions() { }
+    if (false) {
+        /**
+         * Thousands separator, default: `,`
+         *
+         * 千位分隔符，默认：`,`
+         * @type {?|undefined}
+         */
+        CurrencyCommasOptions.prototype.separator;
+        /**
+         * Starting unit, default: `yuan`
+         *
+         * 起始单位，默认：`yuan`
+         * @type {?|undefined}
+         */
+        CurrencyCommasOptions.prototype.startingUnit;
+    }
+    /**
+     * @record
+     */
     function CurrencyMegaOptions() { }
     if (false) {
         /**
@@ -491,6 +511,13 @@
          * @type {?|undefined}
          */
         CurrencyMegaOptions.prototype.unitI18n;
+        /**
+         * Starting unit, default: `yuan`
+         *
+         * 起始单位，默认：`yuan`
+         * @type {?|undefined}
+         */
+        CurrencyMegaOptions.prototype.startingUnit;
     }
     /**
      * @record
@@ -550,12 +577,12 @@
          */
         CurrencyCNYOptions.prototype.minusSymbol;
         /**
-         * Throws an exception when the passed value is invalid. Default: `false`
+         * Starting unit, default: `yuan`
          *
-         * 当传递值无效数值时抛出异常，默认：`false`
+         * 起始单位，默认：`yuan`
          * @type {?|undefined}
          */
-        CurrencyCNYOptions.prototype.validThrow;
+        CurrencyCNYOptions.prototype.startingUnit;
     }
 
     var CurrencyService = /** @class */ (function () {
@@ -563,7 +590,7 @@
          * @param {?} cog
          */
         function CurrencyService(cog) {
-            this.c = ( /** @type {?} */(cog.merge('utilFormat', {})));
+            this.c = ( /** @type {?} */(cog.merge('utilCurrency', { startingUnit: 'yuan', megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } })));
         }
         /**
          * Format a number with commas as thousands separators
@@ -578,7 +605,16 @@
          */
         CurrencyService.prototype.commas = function (value, options) {
             var _a;
-            return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
+            options = Object.assign({ startingUnit: this.c.startingUnit }, options);
+            /** @type {?} */
+            var truthValue = Number(value);
+            if (value == null || isNaN(truthValue)) {
+                return '';
+            }
+            if (options.startingUnit === 'cent') {
+                truthValue = truthValue / 100;
+            }
+            return truthValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
         };
         /**
          * Large number format filter
@@ -594,17 +630,20 @@
          */
         CurrencyService.prototype.mega = function (value, options) {
             var e_1, _b;
-            options = Object.assign(Object.assign({ precision: 2, unitI18n: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } }, this.c.currencyMegaUnit), options);
+            options = Object.assign({ precision: 2, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
             /** @type {?} */
-            var num = parseFloat(value.toString());
+            var num = Number(value);
             /** @type {?} */
             var res = { raw: value, value: '', unit: '', unitI18n: '' };
             if (isNaN(num) || num === 0) {
                 res.value = value.toString();
                 return res;
             }
+            if (options.startingUnit === 'cent') {
+                num = num / 100;
+            }
             /** @type {?} */
-            var abs = Math.abs(+value);
+            var abs = Math.abs(+num);
             /** @type {?} */
             var rounder = Math.pow(10, ( /** @type {?} */(options.precision)));
             /** @type {?} */
@@ -643,13 +682,15 @@
          */
         CurrencyService.prototype.cny = function (value, options) {
             var _b;
-            options = Object.assign({ inWords: true, minusSymbol: '负', validThrow: false }, options);
-            if (typeof value === 'number') {
-                value = value.toString();
+            options = Object.assign({ inWords: true, minusSymbol: '负', startingUnit: this.c.startingUnit }, options);
+            value = Number(value);
+            if (isNaN(value)) {
+                return '';
             }
-            if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow) {
-                throw new Error(value + " is invalid number type");
+            if (options.startingUnit === 'cent') {
+                value = value / 100;
             }
+            value = value.toString();
             /** @type {?} */
             var integer;
             /** @type {?} */

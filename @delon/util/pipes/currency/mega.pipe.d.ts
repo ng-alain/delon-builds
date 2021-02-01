@@ -1,5 +1,5 @@
 import { PipeTransform } from '@angular/core';
-import { CurrencyService } from '@delon/util/format';
+import { CurrencyMegaOptions, CurrencyService } from '@delon/util/format';
 export declare class CurrencyMegaPipe implements PipeTransform {
     private srv;
     private isCN;
@@ -9,5 +9,5 @@ export declare class CurrencyMegaPipe implements PipeTransform {
      *
      * 大数据格式化
      */
-    transform(value: number | string, precision?: number): string;
+    transform(value: number | string, options?: CurrencyMegaOptions): string;
 }

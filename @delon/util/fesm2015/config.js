@@ -1034,16 +1034,28 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: util/format.type.ts
+ * Generated from: util/currency.type.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
  * @record
  */
-function AlainUtilFormatConfig() { }
+function AlainUtilCurrencyConfig() { }
 if (false) {
-    /** @type {?|undefined} */
-    AlainUtilFormatConfig.prototype.currencyMegaUnit;
+    /**
+     * Starting unit, default: `yuan`
+     *
+     * 起始单位，默认：`yuan`
+     * - `yuan` 人民币：元
+     * - `cent` 人民币：分
+     * @type {?|undefined}
+     */
+    AlainUtilCurrencyConfig.prototype.startingUnit;
+    /**
+     * 单位国际化，默认：`{Q: '京', T: '兆', B: '亿', M: '万', K: '千',}`
+     * @type {?|undefined}
+     */
+    AlainUtilCurrencyConfig.prototype.megaUnit;
 }
 
 /**
@@ -1316,7 +1328,7 @@ if (false) {
     /** @type {?|undefined} */
     AlainConfig.prototype.utilArray;
     /** @type {?|undefined} */
-    AlainConfig.prototype.utilFormat;
+    AlainConfig.prototype.utilCurrency;
     /** @type {?|undefined} */
     AlainConfig.prototype.themeHttp;
     /** @type {?|undefined} */

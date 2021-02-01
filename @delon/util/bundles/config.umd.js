@@ -109,7 +109,7 @@
         /** @type {?|undefined} */
         AlainConfig.prototype.utilArray;
         /** @type {?|undefined} */
-        AlainConfig.prototype.utilFormat;
+        AlainConfig.prototype.utilCurrency;
         /** @type {?|undefined} */
         AlainConfig.prototype.themeHttp;
         /** @type {?|undefined} */
