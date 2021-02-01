@@ -27,6 +27,12 @@
 			return array.ArrayService;
 		}
 	});
+	Object.defineProperty(exports, 'CookieService', {
+		enumerable: true,
+		get: function () {
+			return browser.CookieService;
+		}
+	});
 	Object.defineProperty(exports, 'ScrollService', {
 		enumerable: true,
 		get: function () {

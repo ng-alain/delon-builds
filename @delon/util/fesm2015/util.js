@@ -1,5 +1,5 @@
 export { ArrayService } from '@delon/util/array';
-export { ScrollService, copy, isEmpty, updateHostClass } from '@delon/util/browser';
+export { CookieService, ScrollService, copy, isEmpty, updateHostClass } from '@delon/util/browser';
 export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig } from '@delon/util/config';
 export { DateTimePickerUtil, dateTimePickerUtil, fixEndTimeOfRange, getTimeDistance, toDate } from '@delon/util/date-time';
 export { _Validators } from '@delon/util/form';

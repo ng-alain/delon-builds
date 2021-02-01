@@ -640,7 +640,7 @@ class SessionStorageStore {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * `cookie` storage, muse be install [js-cookie](https://github.com/js-cookie/js-cookie) libary and import `"node_modules/js-cookie/dist/js.cookie.js"` in `angular.json`
+ * `cookie` storage
  *
  * ```ts
  * // global-config.module.ts
@@ -649,11 +649,17 @@ class SessionStorageStore {
  */
 class CookieStorageStore {
     /**
+     * @param {?} srv
+     */
+    constructor(srv) {
+        this.srv = srv;
+    }
+    /**
      * @param {?} key
      * @return {?}
      */
     get(key) {
-        return JSON.parse(Cookies.get(key) || '{}') || {};
+        return JSON.parse(this.srv.get(key) || '{}') || {};
     }
     /**
      * @param {?} key
@@ -661,7 +667,7 @@ class CookieStorageStore {
      * @return {?}
      */
     set(key, value) {
-        Cookies.set(key, JSON.stringify(value));
+        this.srv.put(key, JSON.stringify(value));
         return true;
     }
     /**
@@ -669,8 +675,15 @@ class CookieStorageStore {
      * @return {?}
      */
     remove(key) {
-        Cookies.remove(key);
+        this.srv.remove(key);
     }
+}
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CookieStorageStore.prototype.srv;
 }
 
 /**
