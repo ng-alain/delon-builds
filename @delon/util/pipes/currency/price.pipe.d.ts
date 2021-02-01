@@ -1,6 +1,6 @@
 import { PipeTransform } from '@angular/core';
 import { CurrencyFormatOptions, CurrencyService } from '@delon/util/format';
-export declare class CurrencyFormatPipe implements PipeTransform {
+export declare class CurrencyPricePipe implements PipeTransform {
     private srv;
     constructor(srv: CurrencyService);
     /**

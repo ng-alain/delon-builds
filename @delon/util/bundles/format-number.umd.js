@@ -62,14 +62,14 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: format.pipe.ts
+     * Generated from: price.pipe.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CurrencyFormatPipe = /** @class */ (function () {
+    var CurrencyPricePipe = /** @class */ (function () {
         /**
          * @param {?} srv
          */
-        function CurrencyFormatPipe(srv) {
+        function CurrencyPricePipe(srv) {
             this.srv = srv;
         }
         /**
@@ -84,16 +84,16 @@
          * @param {?=} options
          * @return {?}
          */
-        CurrencyFormatPipe.prototype.transform = function (value, options) {
+        CurrencyPricePipe.prototype.transform = function (value, options) {
             return this.srv.format(value, options);
         };
-        return CurrencyFormatPipe;
+        return CurrencyPricePipe;
     }());
-    CurrencyFormatPipe.decorators = [
-        { type: core.Pipe, args: [{ name: '_currency2' },] }
+    CurrencyPricePipe.decorators = [
+        { type: core.Pipe, args: [{ name: 'price' },] }
     ];
     /** @nocollapse */
-    CurrencyFormatPipe.ctorParameters = function () { return [
+    CurrencyPricePipe.ctorParameters = function () { return [
         { type: format.CurrencyService }
     ]; };
     if (false) {
@@ -101,7 +101,7 @@
          * @type {?}
          * @private
          */
-        CurrencyFormatPipe.prototype.srv;
+        CurrencyPricePipe.prototype.srv;
     }
 
     /**
@@ -150,7 +150,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var PIPES = [CurrencyMegaPipe, CurrencyFormatPipe, CurrencyCNYPipe];
+    var PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
     var CurrencyPipeModule = /** @class */ (function () {
         function CurrencyPipeModule() {
         }
@@ -175,9 +175,9 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.CurrencyFormatPipe = CurrencyFormatPipe;
     exports.CurrencyMegaPipe = CurrencyMegaPipe;
     exports.CurrencyPipeModule = CurrencyPipeModule;
+    exports.CurrencyPricePipe = CurrencyPricePipe;
     exports.ɵa = CurrencyCNYPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });

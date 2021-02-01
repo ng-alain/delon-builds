@@ -7,7 +7,7 @@ export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, isChine
 export { ceil, floor, inRange, round } from '@delon/util/math';
 export { InputBoolean, InputNumber, propDecoratorFactory, toBoolean, toNumber } from '@delon/util/decorator';
 export { LazyService, PREFIX, assert, assertNumber, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation } from '@delon/util/other';
-export { CurrencyFormatPipe, CurrencyMegaPipe, CurrencyPipeModule, ɵa } from '@delon/util/pipes';
+export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, ɵa } from '@delon/util/pipes';
 
 /**
  * @fileoverview added by tsickle

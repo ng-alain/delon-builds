@@ -3852,8 +3852,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * [Document](https://ng-alain.com/theme/currency)
-     * @deprecated Will be removed in 12.0.0, Pls used `_currency2` instead
+     * @deprecated Will be removed in 12.0.0, Pls used [price](https://ng-alain.com/util/pipes-currency/en?#price) pipe instead
      */
     // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {

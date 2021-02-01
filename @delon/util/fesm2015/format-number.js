@@ -53,10 +53,10 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: format.pipe.ts
+ * Generated from: price.pipe.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CurrencyFormatPipe {
+class CurrencyPricePipe {
     /**
      * @param {?} srv
      */
@@ -79,11 +79,11 @@ class CurrencyFormatPipe {
         return this.srv.format(value, options);
     }
 }
-CurrencyFormatPipe.decorators = [
-    { type: Pipe, args: [{ name: '_currency2' },] }
+CurrencyPricePipe.decorators = [
+    { type: Pipe, args: [{ name: 'price' },] }
 ];
 /** @nocollapse */
-CurrencyFormatPipe.ctorParameters = () => [
+CurrencyPricePipe.ctorParameters = () => [
     { type: CurrencyService }
 ];
 if (false) {
@@ -91,7 +91,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    CurrencyFormatPipe.prototype.srv;
+    CurrencyPricePipe.prototype.srv;
 }
 
 /**
@@ -139,7 +139,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const PIPES = [CurrencyMegaPipe, CurrencyFormatPipe, CurrencyCNYPipe];
+const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
 CurrencyPipeModule.decorators = [
@@ -161,5 +161,5 @@ CurrencyPipeModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CurrencyFormatPipe, CurrencyMegaPipe, CurrencyPipeModule, CurrencyCNYPipe as ɵa };
+export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, CurrencyCNYPipe as ɵa };
 //# sourceMappingURL=format-number.js.map

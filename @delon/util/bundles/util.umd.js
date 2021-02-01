@@ -327,12 +327,6 @@
 			return other.warnDeprecation;
 		}
 	});
-	Object.defineProperty(exports, 'CurrencyFormatPipe', {
-		enumerable: true,
-		get: function () {
-			return pipes.CurrencyFormatPipe;
-		}
-	});
 	Object.defineProperty(exports, 'CurrencyMegaPipe', {
 		enumerable: true,
 		get: function () {
@@ -343,6 +337,12 @@
 		enumerable: true,
 		get: function () {
 			return pipes.CurrencyPipeModule;
+		}
+	});
+	Object.defineProperty(exports, 'CurrencyPricePipe', {
+		enumerable: true,
+		get: function () {
+			return pipes.CurrencyPricePipe;
 		}
 	});
 	Object.defineProperty(exports, 'ɵa', {

@@ -21,12 +21,6 @@
 	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
 	 */
 
-	Object.defineProperty(exports, 'CurrencyFormatPipe', {
-		enumerable: true,
-		get: function () {
-			return currency.CurrencyFormatPipe;
-		}
-	});
 	Object.defineProperty(exports, 'CurrencyMegaPipe', {
 		enumerable: true,
 		get: function () {
@@ -37,6 +31,12 @@
 		enumerable: true,
 		get: function () {
 			return currency.CurrencyPipeModule;
+		}
+	});
+	Object.defineProperty(exports, 'CurrencyPricePipe', {
+		enumerable: true,
+		get: function () {
+			return currency.CurrencyPricePipe;
 		}
 	});
 	Object.defineProperty(exports, 'ɵa', {
