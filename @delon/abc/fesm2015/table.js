@@ -731,6 +731,17 @@ if (false) {
     STColumnSelection.prototype.acl;
 }
 /**
+ * @record
+ */
+function STcolumnCurrency() { }
+if (false) {
+    /**
+     * See [CurrencyService.commas](https://ng-alain.com/util/format/en#format)
+     * @type {?|undefined}
+     */
+    STcolumnCurrency.prototype.format;
+}
+/**
  * 当 `type=yn` 有效
  * @record
  */
@@ -2485,6 +2496,7 @@ class STDataSource {
      * @return {?}
      */
     get(item, col, idx) {
+        var _a;
         try {
             if (col.format) {
                 /** @type {?} */
@@ -2511,7 +2523,7 @@ class STDataSource {
                     text = this.numberPipe.transform(value, col.numberDigits);
                     break;
                 case 'currency':
-                    text = this.currencySrv.commas(value, col.currency);
+                    text = this.currencySrv.format(value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format);
                     break;
                 case 'date':
                     text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
@@ -2810,6 +2822,7 @@ class STDataSource {
      * @return {?}
      */
     getStatistical(col, index, list, rawData) {
+        var _a;
         /** @type {?} */
         const val = col.statistical;
         /** @type {?} */
@@ -2855,7 +2868,7 @@ class STDataSource {
             }
         }
         if (item.currency === true || (item.currency == null && currency === true)) {
-            res.text = (/** @type {?} */ (this.currencySrv.commas(res.value, col.currency)));
+            res.text = (/** @type {?} */ (this.currencySrv.format(res.value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format)));
         }
         else {
             res.text = String(res.value);

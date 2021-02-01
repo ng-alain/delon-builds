@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other'), require('@angular/core'), require('@delon/util/config')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/format', ['exports', '@delon/util/other', '@angular/core', '@delon/util/config'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other, global.ng.core, global.delon.util.config));
-}(this, (function (exports, other, i0, i1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other'), require('@angular/common'), require('@angular/core'), require('@delon/util/config')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/format', ['exports', '@delon/util/other', '@angular/common', '@angular/core', '@delon/util/config'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other, global.ng.common, global.ng.core, global.delon.util.config));
+}(this, (function (exports, other, common, i0, i1) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -479,22 +479,26 @@
     /**
      * @record
      */
-    function CurrencyCommasOptions() { }
+    function CurrencyStartingUnitOptions() { }
     if (false) {
-        /**
-         * Thousands separator, default: `,`
-         *
-         * 千位分隔符，默认：`,`
-         * @type {?|undefined}
-         */
-        CurrencyCommasOptions.prototype.separator;
         /**
          * Starting unit, default: `yuan`
          *
          * 起始单位，默认：`yuan`
          * @type {?|undefined}
          */
-        CurrencyCommasOptions.prototype.startingUnit;
+        CurrencyStartingUnitOptions.prototype.startingUnit;
+    }
+    /**
+     * @record
+     */
+    function CurrencyFormatOptions() { }
+    if (false) {
+        /**
+         * 精度，默认：`2`
+         * @type {?|undefined}
+         */
+        CurrencyFormatOptions.prototype.precision;
     }
     /**
      * @record
@@ -511,13 +515,6 @@
          * @type {?|undefined}
          */
         CurrencyMegaOptions.prototype.unitI18n;
-        /**
-         * Starting unit, default: `yuan`
-         *
-         * 起始单位，默认：`yuan`
-         * @type {?|undefined}
-         */
-        CurrencyMegaOptions.prototype.startingUnit;
     }
     /**
      * @record
@@ -576,36 +573,31 @@
          * @type {?|undefined}
          */
         CurrencyCNYOptions.prototype.minusSymbol;
-        /**
-         * Starting unit, default: `yuan`
-         *
-         * 起始单位，默认：`yuan`
-         * @type {?|undefined}
-         */
-        CurrencyCNYOptions.prototype.startingUnit;
     }
 
     var CurrencyService = /** @class */ (function () {
         /**
          * @param {?} cog
+         * @param {?} locale
          */
-        function CurrencyService(cog) {
+        function CurrencyService(cog, locale) {
+            this.locale = locale;
             this.c = ( /** @type {?} */(cog.merge('utilCurrency', { startingUnit: 'yuan', megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } })));
         }
         /**
          * Format a number with commas as thousands separators
          *
-         * 用逗号将数字格式化为千位分隔符
+         * 格式化货币，用逗号将数字格式化为千位分隔符
          * ```ts
          * 10000 => `10,000`
+         * 10000.567 => `10,000.57`
          * ```
          * @param {?} value
          * @param {?=} options
          * @return {?}
          */
-        CurrencyService.prototype.commas = function (value, options) {
-            var _a;
-            options = Object.assign({ startingUnit: this.c.startingUnit }, options);
+        CurrencyService.prototype.format = function (value, options) {
+            options = Object.assign({ startingUnit: this.c.startingUnit, precision: 2 }, options);
             /** @type {?} */
             var truthValue = Number(value);
             if (value == null || isNaN(truthValue)) {
@@ -614,7 +606,7 @@
             if (options.startingUnit === 'cent') {
                 truthValue = truthValue / 100;
             }
-            return truthValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
+            return common.formatNumber(truthValue, this.locale, ".1-" + options.precision).replace(/(?:\.[0]+)$/g, '');
         };
         /**
          * Large number format filter
@@ -629,7 +621,7 @@
          * @return {?}
          */
         CurrencyService.prototype.mega = function (value, options) {
-            var e_1, _b;
+            var e_1, _a;
             options = Object.assign({ precision: 2, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
             /** @type {?} */
             var num = Number(value);
@@ -664,7 +656,7 @@
             catch (e_1_1) { e_1 = { error: e_1_1 }; }
             finally {
                 try {
-                    if (CurrencyMega_Powers_1_1 && !CurrencyMega_Powers_1_1.done && (_b = CurrencyMega_Powers_1.return)) _b.call(CurrencyMega_Powers_1);
+                    if (CurrencyMega_Powers_1_1 && !CurrencyMega_Powers_1_1.done && (_a = CurrencyMega_Powers_1.return)) _a.call(CurrencyMega_Powers_1);
                 }
                 finally { if (e_1) throw e_1.error; }
             }
@@ -681,7 +673,7 @@
          * @return {?}
          */
         CurrencyService.prototype.cny = function (value, options) {
-            var _b;
+            var _a;
             options = Object.assign({ inWords: true, minusSymbol: '负', startingUnit: this.c.startingUnit }, options);
             value = Number(value);
             if (isNaN(value)) {
@@ -695,7 +687,7 @@
             var integer;
             /** @type {?} */
             var decimal;
-            _b = __read(value.split('.'), 2), integer = _b[0], decimal = _b[1];
+            _a = __read(value.split('.'), 2), integer = _a[0], decimal = _a[1];
             /** @type {?} */
             var symbol = '';
             if (integer.startsWith('-')) {
@@ -800,15 +792,21 @@
     ];
     /** @nocollapse */
     CurrencyService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService }
+        { type: i1.AlainConfigService },
+        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
     ]; };
-    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService)); }, token: CurrencyService, providedIn: "root" });
+    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i0.LOCALE_ID)); }, token: CurrencyService, providedIn: "root" });
     if (false) {
         /**
          * @type {?}
          * @private
          */
         CurrencyService.prototype.c;
+        /**
+         * @type {?}
+         * @private
+         */
+        CurrencyService.prototype.locale;
     }
 
     /**

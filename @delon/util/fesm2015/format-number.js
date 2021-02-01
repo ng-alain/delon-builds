@@ -31,7 +31,7 @@ class CurrencyMegaPipe {
     }
 }
 CurrencyMegaPipe.decorators = [
-    { type: Pipe, args: [{ name: 'currencyMega' },] }
+    { type: Pipe, args: [{ name: 'mega' },] }
 ];
 /** @nocollapse */
 CurrencyMegaPipe.ctorParameters = () => [
@@ -53,10 +53,10 @@ if (false) {
 
 /**
  * @fileoverview added by tsickle
- * Generated from: commas.pipe.ts
+ * Generated from: format.pipe.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
-class CurrencyCommasPipe {
+class CurrencyFormatPipe {
     /**
      * @param {?} srv
      */
@@ -66,20 +66,24 @@ class CurrencyCommasPipe {
     /**
      * Format a number with commas as thousands separators
      *
-     * 用逗号将数字格式化为千位分隔符
+     * 格式化货币，用逗号将数字格式化为千位分隔符
+     * ```ts
+     * 10000 => `10,000`
+     * 10000.567 => `10,000.57`
+     * ```
      * @param {?} value
      * @param {?=} options
      * @return {?}
      */
     transform(value, options) {
-        return this.srv.commas(value, options);
+        return this.srv.format(value, options);
     }
 }
-CurrencyCommasPipe.decorators = [
-    { type: Pipe, args: [{ name: 'currencyCommas' },] }
+CurrencyFormatPipe.decorators = [
+    { type: Pipe, args: [{ name: '_currency2' },] }
 ];
 /** @nocollapse */
-CurrencyCommasPipe.ctorParameters = () => [
+CurrencyFormatPipe.ctorParameters = () => [
     { type: CurrencyService }
 ];
 if (false) {
@@ -87,7 +91,7 @@ if (false) {
      * @type {?}
      * @private
      */
-    CurrencyCommasPipe.prototype.srv;
+    CurrencyFormatPipe.prototype.srv;
 }
 
 /**
@@ -115,7 +119,7 @@ class CurrencyCNYPipe {
     }
 }
 CurrencyCNYPipe.decorators = [
-    { type: Pipe, args: [{ name: 'currencyCNY' },] }
+    { type: Pipe, args: [{ name: 'cny' },] }
 ];
 /** @nocollapse */
 CurrencyCNYPipe.ctorParameters = () => [
@@ -135,7 +139,7 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const PIPES = [CurrencyMegaPipe, CurrencyCommasPipe, CurrencyCNYPipe];
+const PIPES = [CurrencyMegaPipe, CurrencyFormatPipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
 CurrencyPipeModule.decorators = [
@@ -157,5 +161,5 @@ CurrencyPipeModule.decorators = [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CurrencyCommasPipe, CurrencyMegaPipe, CurrencyPipeModule, CurrencyCNYPipe as ɵa };
+export { CurrencyFormatPipe, CurrencyMegaPipe, CurrencyPipeModule, CurrencyCNYPipe as ɵa };
 //# sourceMappingURL=format-number.js.map

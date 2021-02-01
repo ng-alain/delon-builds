@@ -1439,6 +1439,7 @@
          * @return {?}
          */
         STDataSource.prototype.get = function (item, col, idx) {
+            var _a;
             try {
                 if (col.format) {
                     /** @type {?} */
@@ -1465,7 +1466,7 @@
                         text = this.numberPipe.transform(value, col.numberDigits);
                         break;
                     case 'currency':
-                        text = this.currencySrv.commas(value, col.currency);
+                        text = this.currencySrv.format(value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format);
                         break;
                     case 'date':
                         text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
@@ -1509,7 +1510,7 @@
          * @return {?}
          */
         STDataSource.prototype.getByHttp = function (url, options) {
-            var _a, _b;
+            var _b, _c;
             var req = options.req, page = options.page, paginator = options.paginator, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
             /** @type {?} */
             var method = (req.method || 'GET').toUpperCase();
@@ -1519,16 +1520,16 @@
             var reName = ( /** @type {?} */(req.reName));
             if (paginator) {
                 if (req.type === 'page') {
-                    params = (_a = {},
-                        _a[( /** @type {?} */(reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
-                        _a[( /** @type {?} */(reName.ps))] = ps,
-                        _a);
+                    params = (_b = {},
+                        _b[( /** @type {?} */(reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
+                        _b[( /** @type {?} */(reName.ps))] = ps,
+                        _b);
                 }
                 else {
-                    params = (_b = {},
-                        _b[( /** @type {?} */(reName.skip))] = (pi - 1) * ps,
-                        _b[( /** @type {?} */(reName.limit))] = ps,
-                        _b);
+                    params = (_c = {},
+                        _c[( /** @type {?} */(reName.skip))] = (pi - 1) * ps,
+                        _c[( /** @type {?} */(reName.limit))] = ps,
+                        _c);
                 }
             }
             params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
@@ -1656,7 +1657,7 @@
          * @return {?}
          */
         STDataSource.prototype.getReqSortMap = function (singleSort, multiSort, columns) {
-            var _a;
+            var _b;
             /** @type {?} */
             var ret = {};
             /** @type {?} */
@@ -1678,7 +1679,7 @@
              * @param {?} item
              * @return {?}
              */ item) { return ( /** @type {?} */(item.key)) + ms_1.nameSeparator + ((item.reName || {})[( /** @type {?} */(item.default))] || item.default); }));
-                ret = (_a = {}, _a[( /** @type {?} */(ms_1.key))] = ms_1.arrayParam ? sortMap : sortMap.join(ms_1.separator), _a);
+                ret = (_b = {}, _b[( /** @type {?} */(ms_1.key))] = ms_1.arrayParam ? sortMap : sortMap.join(ms_1.separator), _b);
                 return sortMap.length === 0 && ms_1.keepEmptyKey === false ? {} : ret;
             }
             if (sortList.length === 0)
@@ -1789,6 +1790,7 @@
          * @return {?}
          */
         STDataSource.prototype.getStatistical = function (col, index, list, rawData) {
+            var _a;
             /** @type {?} */
             var val = col.statistical;
             /** @type {?} */
@@ -1833,7 +1835,7 @@
                 }
             }
             if (item.currency === true || (item.currency == null && currency === true)) {
-                res.text = ( /** @type {?} */(this.currencySrv.commas(res.value, col.currency)));
+                res.text = ( /** @type {?} */(this.currencySrv.format(res.value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format)));
             }
             else {
                 res.text = String(res.value);

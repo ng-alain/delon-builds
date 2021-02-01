@@ -40,7 +40,7 @@
         return CurrencyMegaPipe;
     }());
     CurrencyMegaPipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'currencyMega' },] }
+        { type: core.Pipe, args: [{ name: 'mega' },] }
     ];
     /** @nocollapse */
     CurrencyMegaPipe.ctorParameters = function () { return [
@@ -62,34 +62,38 @@
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: commas.pipe.ts
+     * Generated from: format.pipe.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
-    var CurrencyCommasPipe = /** @class */ (function () {
+    var CurrencyFormatPipe = /** @class */ (function () {
         /**
          * @param {?} srv
          */
-        function CurrencyCommasPipe(srv) {
+        function CurrencyFormatPipe(srv) {
             this.srv = srv;
         }
         /**
          * Format a number with commas as thousands separators
          *
-         * 用逗号将数字格式化为千位分隔符
+         * 格式化货币，用逗号将数字格式化为千位分隔符
+         * ```ts
+         * 10000 => `10,000`
+         * 10000.567 => `10,000.57`
+         * ```
          * @param {?} value
          * @param {?=} options
          * @return {?}
          */
-        CurrencyCommasPipe.prototype.transform = function (value, options) {
-            return this.srv.commas(value, options);
+        CurrencyFormatPipe.prototype.transform = function (value, options) {
+            return this.srv.format(value, options);
         };
-        return CurrencyCommasPipe;
+        return CurrencyFormatPipe;
     }());
-    CurrencyCommasPipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'currencyCommas' },] }
+    CurrencyFormatPipe.decorators = [
+        { type: core.Pipe, args: [{ name: '_currency2' },] }
     ];
     /** @nocollapse */
-    CurrencyCommasPipe.ctorParameters = function () { return [
+    CurrencyFormatPipe.ctorParameters = function () { return [
         { type: format.CurrencyService }
     ]; };
     if (false) {
@@ -97,7 +101,7 @@
          * @type {?}
          * @private
          */
-        CurrencyCommasPipe.prototype.srv;
+        CurrencyFormatPipe.prototype.srv;
     }
 
     /**
@@ -126,7 +130,7 @@
         return CurrencyCNYPipe;
     }());
     CurrencyCNYPipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'currencyCNY' },] }
+        { type: core.Pipe, args: [{ name: 'cny' },] }
     ];
     /** @nocollapse */
     CurrencyCNYPipe.ctorParameters = function () { return [
@@ -146,7 +150,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /** @type {?} */
-    var PIPES = [CurrencyMegaPipe, CurrencyCommasPipe, CurrencyCNYPipe];
+    var PIPES = [CurrencyMegaPipe, CurrencyFormatPipe, CurrencyCNYPipe];
     var CurrencyPipeModule = /** @class */ (function () {
         function CurrencyPipeModule() {
         }
@@ -171,7 +175,7 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.CurrencyCommasPipe = CurrencyCommasPipe;
+    exports.CurrencyFormatPipe = CurrencyFormatPipe;
     exports.CurrencyMegaPipe = CurrencyMegaPipe;
     exports.CurrencyPipeModule = CurrencyPipeModule;
     exports.ɵa = CurrencyCNYPipe;

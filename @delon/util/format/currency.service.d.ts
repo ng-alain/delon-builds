@@ -1,17 +1,19 @@
 import { AlainConfigService } from '@delon/util/config';
-import { CurrencyCNYOptions, CurrencyCommasOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
+import { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
 export declare class CurrencyService {
+    private locale;
     private c;
-    constructor(cog: AlainConfigService);
+    constructor(cog: AlainConfigService, locale: string);
     /**
      * Format a number with commas as thousands separators
      *
-     * 用逗号将数字格式化为千位分隔符
+     * 格式化货币，用逗号将数字格式化为千位分隔符
      * ```ts
      * 10000 => `10,000`
+     * 10000.567 => `10,000.57`
      * ```
      */
-    commas(value: number | string, options?: CurrencyCommasOptions): string;
+    format(value: number | string, options?: CurrencyFormatOptions): string;
     /**
      * Large number format filter
      *

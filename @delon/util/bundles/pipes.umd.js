@@ -21,10 +21,10 @@
 	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
 	 */
 
-	Object.defineProperty(exports, 'CurrencyCommasPipe', {
+	Object.defineProperty(exports, 'CurrencyFormatPipe', {
 		enumerable: true,
 		get: function () {
-			return currency.CurrencyCommasPipe;
+			return currency.CurrencyFormatPipe;
 		}
 	});
 	Object.defineProperty(exports, 'CurrencyMegaPipe', {

@@ -327,10 +327,10 @@
 			return other.warnDeprecation;
 		}
 	});
-	Object.defineProperty(exports, 'CurrencyCommasPipe', {
+	Object.defineProperty(exports, 'CurrencyFormatPipe', {
 		enumerable: true,
 		get: function () {
-			return pipes.CurrencyCommasPipe;
+			return pipes.CurrencyFormatPipe;
 		}
 	});
 	Object.defineProperty(exports, 'CurrencyMegaPipe', {

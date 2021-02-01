@@ -3853,7 +3853,7 @@
      */
     /**
      * [Document](https://ng-alain.com/theme/currency)
-     * @deprecated Will be removed in 12.0.0, Pls used `currencyCNY` instead
+     * @deprecated Will be removed in 12.0.0, Pls used `_currency2` instead
      */
     // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {

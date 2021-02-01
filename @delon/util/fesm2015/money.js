@@ -1,5 +1,6 @@
 import { deepGet } from '@delon/util/other';
-import { Injectable, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
+import { formatNumber } from '@angular/common';
+import { Injectable, Inject, LOCALE_ID, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 
 /**
@@ -163,22 +164,26 @@ function isChinese(value) {
 /**
  * @record
  */
-function CurrencyCommasOptions() { }
+function CurrencyStartingUnitOptions() { }
 if (false) {
-    /**
-     * Thousands separator, default: `,`
-     *
-     * 千位分隔符，默认：`,`
-     * @type {?|undefined}
-     */
-    CurrencyCommasOptions.prototype.separator;
     /**
      * Starting unit, default: `yuan`
      *
      * 起始单位，默认：`yuan`
      * @type {?|undefined}
      */
-    CurrencyCommasOptions.prototype.startingUnit;
+    CurrencyStartingUnitOptions.prototype.startingUnit;
+}
+/**
+ * @record
+ */
+function CurrencyFormatOptions() { }
+if (false) {
+    /**
+     * 精度，默认：`2`
+     * @type {?|undefined}
+     */
+    CurrencyFormatOptions.prototype.precision;
 }
 /**
  * @record
@@ -195,13 +200,6 @@ if (false) {
      * @type {?|undefined}
      */
     CurrencyMegaOptions.prototype.unitI18n;
-    /**
-     * Starting unit, default: `yuan`
-     *
-     * 起始单位，默认：`yuan`
-     * @type {?|undefined}
-     */
-    CurrencyMegaOptions.prototype.startingUnit;
 }
 /**
  * @record
@@ -260,13 +258,6 @@ if (false) {
      * @type {?|undefined}
      */
     CurrencyCNYOptions.prototype.minusSymbol;
-    /**
-     * Starting unit, default: `yuan`
-     *
-     * 起始单位，默认：`yuan`
-     * @type {?|undefined}
-     */
-    CurrencyCNYOptions.prototype.startingUnit;
 }
 
 /**
@@ -277,24 +268,26 @@ if (false) {
 class CurrencyService {
     /**
      * @param {?} cog
+     * @param {?} locale
      */
-    constructor(cog) {
+    constructor(cog, locale) {
+        this.locale = locale;
         this.c = (/** @type {?} */ (cog.merge('utilCurrency', { startingUnit: 'yuan', megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } })));
     }
     /**
      * Format a number with commas as thousands separators
      *
-     * 用逗号将数字格式化为千位分隔符
+     * 格式化货币，用逗号将数字格式化为千位分隔符
      * ```ts
      * 10000 => `10,000`
+     * 10000.567 => `10,000.57`
      * ```
      * @param {?} value
      * @param {?=} options
      * @return {?}
      */
-    commas(value, options) {
-        var _a;
-        options = Object.assign({ startingUnit: this.c.startingUnit }, options);
+    format(value, options) {
+        options = Object.assign({ startingUnit: this.c.startingUnit, precision: 2 }, options);
         /** @type {?} */
         let truthValue = Number(value);
         if (value == null || isNaN(truthValue)) {
@@ -303,7 +296,7 @@ class CurrencyService {
         if (options.startingUnit === 'cent') {
             truthValue = truthValue / 100;
         }
-        return truthValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, (_a = options === null || options === void 0 ? void 0 : options.separator) !== null && _a !== void 0 ? _a : ',');
+        return formatNumber(truthValue, this.locale, `.1-${options.precision}`).replace(/(?:\.[0]+)$/g, '');
     }
     /**
      * Large number format filter
@@ -476,15 +469,21 @@ CurrencyService.decorators = [
 ];
 /** @nocollapse */
 CurrencyService.ctorParameters = () => [
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
 ];
-/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService)); }, token: CurrencyService, providedIn: "root" });
+/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService), ɵɵinject(LOCALE_ID)); }, token: CurrencyService, providedIn: "root" });
 if (false) {
     /**
      * @type {?}
      * @private
      */
     CurrencyService.prototype.c;
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyService.prototype.locale;
 }
 
 /**

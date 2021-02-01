@@ -145,7 +145,7 @@ function numberToChinese(value, rmb = true, options) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /**
- * @deprecated Will be removed in 12.0.0, Pls used `currencyCNY` instead
+ * @deprecated Will be removed in 12.0.0, Pls used [cny](/util/pipes-currency/zh#cny) pipe instead
  */
 class NaNumberToChinesePipe {
     /**
