@@ -817,16 +817,35 @@
         }
     }
     /**
-     * @param {?} assertion
+     * Assert whether the expression and throw an error into console in dev mode
+     *
+     * 断言表达式是否符合预期，并在开发模式下会在控制台抛出一个错误
+     * @param {?} expression
      * @param {?=} msg
      * @return {?}
      */
-    function assert(assertion, msg) {
-        if (!assertion) {
+    function assert(expression, msg) {
+        if (!expression) {
             throwError(msg);
         }
     }
     /**
+     * Assert whether empty (`null` or `undefined`)
+     *
+     * 断言是否空值（`null` 或 `undefined`）
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
+     */
+    function assertEmpty(actual, msg) {
+        if (actual == null) {
+            throwError(msg, typeof actual, 'NULL', '==');
+        }
+    }
+    /**
+     * Assert whether `number` type
+     *
+     * 断言是否 `number` 类型
      * @param {?} actual
      * @param {?=} msg
      * @return {?}
@@ -837,6 +856,9 @@
         }
     }
     /**
+     * Assert whether `string` type
+     *
+     * 断言是否 `string` 类型
      * @param {?} actual
      * @param {?=} msg
      * @return {?}
@@ -844,6 +866,32 @@
     function assertString(actual, msg) {
         if (!(typeof actual === 'string')) {
             throwError(msg, actual === null ? 'null' : typeof actual, 'string', '===');
+        }
+    }
+    /**
+     * Assert whether `array` type
+     *
+     * 断言是否 `array` 类型
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
+     */
+    function assertArray(actual, msg) {
+        if (!Array.isArray(actual)) {
+            throwError(msg, actual === null ? 'null' : typeof actual, 'array', '===');
+        }
+    }
+    /**
+     * Assert whether `Observable` type
+     *
+     * 断言是否 `Observable` 类型
+     * @param {?} obj
+     * @param {?=} msg
+     * @return {?}
+     */
+    function assertObservable(obj, msg) {
+        if (!rxjs.isObservable(obj)) {
+            throwError(msg, obj === null ? 'null' : typeof obj, 'Observable', '===');
         }
     }
 
@@ -862,7 +910,10 @@
     exports.LazyService = LazyService;
     exports.PREFIX = PREFIX;
     exports.assert = assert;
+    exports.assertArray = assertArray;
+    exports.assertEmpty = assertEmpty;
     exports.assertNumber = assertNumber;
+    exports.assertObservable = assertObservable;
     exports.assertString = assertString;
     exports.deepCopy = deepCopy;
     exports.deepGet = deepGet;

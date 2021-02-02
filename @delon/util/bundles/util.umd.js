@@ -273,10 +273,28 @@
 			return other.assert;
 		}
 	});
+	Object.defineProperty(exports, 'assertArray', {
+		enumerable: true,
+		get: function () {
+			return other.assertArray;
+		}
+	});
+	Object.defineProperty(exports, 'assertEmpty', {
+		enumerable: true,
+		get: function () {
+			return other.assertEmpty;
+		}
+	});
 	Object.defineProperty(exports, 'assertNumber', {
 		enumerable: true,
 		get: function () {
 			return other.assertNumber;
+		}
+	});
+	Object.defineProperty(exports, 'assertObservable', {
+		enumerable: true,
+		get: function () {
+			return other.assertObservable;
 		}
 	});
 	Object.defineProperty(exports, 'assertString', {

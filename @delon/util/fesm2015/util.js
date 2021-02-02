@@ -6,7 +6,7 @@ export { _Validators } from '@delon/util/form';
 export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl } from '@delon/util/format';
 export { ceil, floor, inRange, round } from '@delon/util/math';
 export { InputBoolean, InputNumber, propDecoratorFactory, toBoolean, toNumber } from '@delon/util/decorator';
-export { LazyService, PREFIX, assert, assertNumber, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation } from '@delon/util/other';
+export { LazyService, PREFIX, assert, assertArray, assertEmpty, assertNumber, assertObservable, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation } from '@delon/util/other';
 export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, ɵa } from '@delon/util/pipes';
 
 /**
