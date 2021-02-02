@@ -166,7 +166,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     reset(extraParams?: {}, options?: STLoadOptions): this;
     private _toTop;
     _change(type: 'pi' | 'ps', options?: STLoadOptions): void;
-    _click(e: Event, item: STData, column: STColumn, index: number): boolean;
+    _click(e: Event, item: STData, col: STColumn): boolean;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     _expandChange(item: STData, expand: boolean): void;

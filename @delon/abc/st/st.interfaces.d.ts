@@ -188,13 +188,6 @@ export interface STData {
     showExpand?: boolean;
     [key: string]: any;
 }
-export interface STColumnEventOptions {
-    record: STData;
-    column: STColumn;
-    index: number;
-    instance: STComponent;
-    event?: Event;
-}
 /**
  * 列描述
  */
@@ -219,7 +212,7 @@ export interface STColumn {
      * - `no` 行号，计算规则：`index + noIndex`
      * - `checkbox` 多选
      * - `radio` 单选
-     * - `link` 链接，务必指定 `event`
+     * - `link` 链接，务必指定 `click`
      * - `badge` [徽标](https://ng.ant.design/components/badge/zh)，务必指定 `badge` 参数配置徽标对应值
      * - `tag` [标签](https://ng.ant.design/components/tag/zh)，务必指定 `tag` 参数配置标签对应值
      * - `enum` 枚举转换，务必指定 `enum` 参数配置标签对应值
@@ -233,13 +226,8 @@ export interface STColumn {
     type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'widget';
     /**
      * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
-     * @deprecated Will be removed in 13.0.0, Pls used `event` instead
      */
     click?: (record: STData, instance?: STComponent) => any;
-    /**
-     * 事件回调（例如：`type: 'link'` 时有效），若函数返回值为字符串表示导航URL会自动触发 `router.navigateByUrl`
-     */
-    event?: (options: STColumnEventOptions) => any;
     /**
      * 按钮组
      */
@@ -585,16 +573,6 @@ export interface STIcon {
     /** 指定来自 IconFont 的图标类型 */
     iconfont?: string;
 }
-export interface STColumnButtonEventOptions {
-    record: STData;
-    instance: STComponent;
-    btn: STColumnButton;
-    event?: Event;
-    /**
-     * 当 `type=modal` 或 `type=drawer` 的返回值
-     */
-    modal?: any;
-}
 /**
  * 按钮配置
  */
@@ -629,19 +607,9 @@ export interface STColumnButton {
      * - reload：重新刷新当前页
      * - load：重新加载数据，并重置页码为：`1`
      *
-     * @deprecated Will be removed in 13.0.0, Pls used `event` instead
+     * @todo Bad parameter design
      */
     click?: 'reload' | 'load' | ((record: STData, modal?: any, instance?: STComponent) => any);
-    /**
-     * 事件回调，以下情况都会触发一次：
-     *  - 当 `type` 为 `modal`、`static`、`drawer`、`link` 时
-     *  - 当 `pop` 指定值 `nzOnConfirm` 的确认事件
-     *
-     * 或直接返回 `reload` 或 `load` 表示刷新当前表格数据方式：
-     *  - reload：重新刷新当前页
-     *  - load：重新加载数据，并重置页码为：`1`
-     */
-    event?: 'reload' | 'load' | ((options: STColumnButtonEventOptions) => any);
     /**
      * 气泡确认框参数，若 `string` 类型表示标题
      */
