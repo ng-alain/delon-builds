@@ -167,9 +167,9 @@ function isChinese(value) {
 function CurrencyStartingUnitOptions() { }
 if (false) {
     /**
-     * Starting unit, default: `yuan`
+     * The starting unit of the value, `yuan` means 元, `cent` means 分, default: `yuan`
      *
-     * 起始单位，默认：`yuan`
+     * 值的起始单位，`yuan` 元，`cent` 分，默认：`yuan`
      * @type {?|undefined}
      */
     CurrencyStartingUnitOptions.prototype.startingUnit;
