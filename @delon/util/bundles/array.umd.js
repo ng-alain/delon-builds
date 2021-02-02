@@ -602,13 +602,14 @@
          * srv.flat([1, [2, 3, [4, 5, [6]]]]) => [1,2,3,4,5,6]
          * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
          * ```
+         * @template T
          * @param {?} array
          * @param {?=} depth
          * @return {?}
          */
         ArrayService.prototype.flat = function (array, depth) {
             if (depth === void 0) { depth = 1 / 0; }
-            return Array.isArray(array) ? this.baseFlat(array, depth) : array;
+            return Array.isArray(array) ? this.baseFlat(( /** @type {?} */(array)), depth) : array;
         };
         /**
          * Group the array
@@ -618,6 +619,7 @@
          * srv.groupBy([6.1, 4.2, 6.3], Math.floor) => {"4":[4.2],"6":[6.1,6.3]}
          * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
          * ```
+         * @template T
          * @param {?} array
          * @param {?} iteratee
          * @return {?}
@@ -640,7 +642,37 @@
                     result[key] = [value];
                 }
                 return result;
-            }), {});
+            }), ( /** @type {?} */({})));
+        };
+        /**
+         * Creates a duplicate-free version of an array
+         *
+         * 创建去重后的数组
+         * ```ts
+         * uniq([1, 2, 2, 3, 1]) => [1,2,3]
+         * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], 'a') => [{"a":1},{"a":2}]
+         * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
+         * ```
+         * @template T
+         * @param {?} array
+         * @param {?=} predicate
+         * @return {?}
+         */
+        ArrayService.prototype.uniq = function (array, predicate) {
+            return Array.from(array
+                .reduce(( /**
+         * @param {?} map
+         * @param {?} value
+         * @return {?}
+         */function (map, value) {
+                /** @type {?} */
+                var key = predicate ? (typeof predicate === 'string' ? (( /** @type {?} */(value)))[predicate] : ( /** @type {?} */(predicate))(value)) : value;
+                if (!map.has(key)) {
+                    map.set(key, value);
+                }
+                return map;
+            }), new Map())
+                .values());
         };
         return ArrayService;
     }());

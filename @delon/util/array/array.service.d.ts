@@ -37,7 +37,7 @@ export declare class ArrayService {
      * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
      * ```
      */
-    flat(array: any[], depth?: number): any[];
+    flat<T>(array: ReadonlyArray<T>, depth?: number): ReadonlyArray<T>;
     /**
      * Group the array
      *
@@ -47,5 +47,16 @@ export declare class ArrayService {
      * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
      * ```
      */
-    groupBy(array: any[], iteratee: (value: any) => any): ArrayServiceGroupByResult;
+    groupBy<T>(array: ReadonlyArray<T>, iteratee: (value: T) => string | number): ArrayServiceGroupByResult;
+    /**
+     * Creates a duplicate-free version of an array
+     *
+     * 创建去重后的数组
+     * ```ts
+     * uniq([1, 2, 2, 3, 1]) => [1,2,3]
+     * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], 'a') => [{"a":1},{"a":2}]
+     * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
+     * ```
+     */
+    uniq<T>(array: ReadonlyArray<T>, predicate?: string | ((value: T) => string | number | boolean)): ReadonlyArray<T>;
 }
