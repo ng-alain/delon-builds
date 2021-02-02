@@ -560,6 +560,52 @@
             }));
             return keys;
         };
+        /**
+         * @private
+         * @param {?} array
+         * @param {?} depth
+         * @param {?=} result
+         * @return {?}
+         */
+        ArrayService.prototype.baseFlat = function (array, depth, result) {
+            if (result === void 0) { result = []; }
+            /** @type {?} */
+            var index = -1;
+            while (++index < array.length) {
+                /** @type {?} */
+                var value = array[index];
+                if (depth > 0 && Array.isArray(value)) {
+                    if (depth > 1) {
+                        this.baseFlat(value, depth - 1, result);
+                    }
+                    else {
+                        /** @type {?} */
+                        var pushIndex = -1;
+                        /** @type {?} */
+                        var offset = result.length;
+                        while (++pushIndex < value.length) {
+                            result[offset + pushIndex] = value[pushIndex];
+                        }
+                    }
+                }
+                else {
+                    result[result.length] = value;
+                }
+            }
+            return result;
+        };
+        /**
+         * Recursively flattens array
+         *
+         * 递归扁平数组
+         * @param {?} array
+         * @param {?=} depth
+         * @return {?}
+         */
+        ArrayService.prototype.flat = function (array, depth) {
+            if (depth === void 0) { depth = 1 / 0; }
+            return this.baseFlat(array, depth);
+        };
         return ArrayService;
     }());
     ArrayService.decorators = [

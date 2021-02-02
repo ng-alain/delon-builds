@@ -27,4 +27,11 @@ export declare class ArrayService {
      * 获取所有已经选中的 `key` 值
      */
     getKeysByTreeNode(tree: NzTreeNode[], options?: ArrayServiceGetKeysByTreeNodeOptions): any[];
+    private baseFlat;
+    /**
+     * Recursively flattens array
+     *
+     * 递归扁平数组
+     */
+    flat(array: any[], depth?: number): any[];
 }

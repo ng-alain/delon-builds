@@ -213,6 +213,50 @@ class ArrayService {
         }));
         return keys;
     }
+    /**
+     * @private
+     * @param {?} array
+     * @param {?} depth
+     * @param {?=} result
+     * @return {?}
+     */
+    baseFlat(array, depth, result = []) {
+        /** @type {?} */
+        let index = -1;
+        while (++index < array.length) {
+            /** @type {?} */
+            const value = array[index];
+            if (depth > 0 && Array.isArray(value)) {
+                if (depth > 1) {
+                    this.baseFlat(value, depth - 1, result);
+                }
+                else {
+                    /** @type {?} */
+                    let pushIndex = -1;
+                    /** @type {?} */
+                    const offset = result.length;
+                    while (++pushIndex < value.length) {
+                        result[offset + pushIndex] = value[pushIndex];
+                    }
+                }
+            }
+            else {
+                result[result.length] = value;
+            }
+        }
+        return result;
+    }
+    /**
+     * Recursively flattens array
+     *
+     * 递归扁平数组
+     * @param {?} array
+     * @param {?=} depth
+     * @return {?}
+     */
+    flat(array, depth = 1 / 0) {
+        return this.baseFlat(array, depth);
+    }
 }
 ArrayService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
