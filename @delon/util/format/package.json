@@ -1,11 +1,11 @@
 {
-  "main": "../bundles/money.umd.js",
-  "module": "../fesm2015/money.js",
-  "es2015": "../fesm2015/money.js",
-  "esm2015": "../esm2015/format/money.js",
-  "fesm2015": "../fesm2015/money.js",
-  "typings": "money.d.ts",
-  "metadata": "money.metadata.json",
+  "main": "../bundles/delon-util-format.umd.js",
+  "module": "../fesm2015/delon-util-format.js",
+  "es2015": "../fesm2015/delon-util-format.js",
+  "esm2015": "../esm2015/format/delon-util-format.js",
+  "fesm2015": "../fesm2015/delon-util-format.js",
+  "typings": "delon-util-format.d.ts",
+  "metadata": "delon-util-format.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/format"
 }

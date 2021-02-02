@@ -4,126 +4,453 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/math', ['exports', '@delon/util/other'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.math = {}), global.delon.util.other));
-}(this, (function (exports, other) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/browser', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.browser = {}), global.ng.cdk.platform, global.ng.common, global.ng.core));
+}(this, (function (exports, i2, i1, i0) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: in-range.ts
+     * Generated from: cookie.service.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * Checks if `value` is between `start` and `end` to, but not including `end`. If `end` is not specified, it's set to start with `start` then set to `0`. If `start` is greater than `end` the params are swapped to support negative ranges.
+     * @record
+     */
+    function CookieOptions() { }
+    if (false) {
+        /** @type {?|undefined} */
+        CookieOptions.prototype.path;
+        /** @type {?|undefined} */
+        CookieOptions.prototype.domain;
+        /**
+         * Expiration time, `number` is seconds
+         *
+         * 过期时间，`number` 类型表示秒数
+         * @type {?|undefined}
+         */
+        CookieOptions.prototype.expires;
+        /** @type {?|undefined} */
+        CookieOptions.prototype.secure;
+        /** @type {?|undefined} */
+        CookieOptions.prototype.HttpOnly;
+        /** @type {?|undefined} */
+        CookieOptions.prototype.SameSite;
+    }
+    /**
+     * A set of simple Cookie manipulation classes.
      *
-     * 检查 `value` 是否在 `start` 与 `end` 之间，但不包括 `end`。 如果 `end` 没有指定，那么 `start` 设置为 `0`。 如果 `start` 大于 `end`，那么参数会交换以便支持负范围。
-     * ```ts
-     * inRange(3, 2, 4); // true
-     * inRange(4, 8); // true
-     * inRange(4, 2); // false
-     * inRange(2, 2); // false
-     * inRange(1.2, 2); // true
-     * inRange(-3, -2, -6); // true
-     * ```
+     * 一组简单的 Cookie 操作类。
+     */
+    var CookieService = /** @class */ (function () {
+        /**
+         * @param {?} _doc
+         * @param {?} platform
+         */
+        function CookieService(_doc, platform) {
+            this._doc = _doc;
+            this.platform = platform;
+        }
+        Object.defineProperty(CookieService.prototype, "doc", {
+            /**
+             * @private
+             * @return {?}
+             */
+            get: function () {
+                return this._doc || document;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(CookieService.prototype, "cookie", {
+            /**
+             * Original cookie value
+             *
+             * 原始Cookie值
+             * @return {?}
+             */
+            get: function () {
+                return this.platform.isBrowser ? this.doc.cookie : '';
+            },
+            enumerable: false,
+            configurable: true
+        });
+        /**
+         * Get all cookie key-value pairs
+         *
+         * 获取所有Cookie键值对
+         * @return {?}
+         */
+        CookieService.prototype.getAll = function () {
+            /** @type {?} */
+            var ret = {};
+            /** @type {?} */
+            var arr = this.cookie.split('; ');
+            // tslint:disable-next-line: prefer-for-of
+            for (var i = 0; i < arr.length; i++) {
+                /** @type {?} */
+                var cookie = arr[i];
+                /** @type {?} */
+                var index = cookie.indexOf('=');
+                if (index > 0) {
+                    /** @type {?} */
+                    var name = decodeURIComponent(cookie.substring(0, index));
+                    if (ret[name] == null) {
+                        ret[name] = decodeURIComponent(cookie.substring(index + 1));
+                    }
+                }
+            }
+            return ret;
+        };
+        /**
+         * Get the value of given cookie `key`
+         *
+         * 获取指定 `key` 的值
+         * @param {?} key
+         * @return {?}
+         */
+        CookieService.prototype.get = function (key) {
+            return this.getAll()[key];
+        };
+        /**
+         * Sets a value for given cookie key
+         *
+         * 设置指定 Cookie 键的值
+         * @param {?} key
+         * @param {?} value
+         * @param {?=} options
+         * @return {?}
+         */
+        CookieService.prototype.put = function (key, value, options) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            /** @type {?} */
+            var opt = Object.assign({ path: '/' }, options);
+            if (typeof opt.expires === 'number') {
+                opt.expires = new Date(+new Date() + opt.expires * 1e3);
+            }
+            if (typeof opt.expires !== 'string') {
+                opt.expires = opt.expires ? opt.expires.toUTCString() : '';
+            }
+            /** @type {?} */
+            var optStr = ( /** @type {?} */(opt));
+            /** @type {?} */
+            var attributes = Object.keys(optStr)
+                .filter(( /**
+         * @param {?} k
+         * @return {?}
+         */function (/**
+         * @param {?} k
+         * @return {?}
+         */ k) { return optStr[k] && optStr[k] !== true; }))
+                .map(( /**
+         * @param {?} k
+         * @return {?}
+         */function (/**
+         * @param {?} k
+         * @return {?}
+         */ k) { return k + "=" + (( /** @type {?} */(optStr[k]))).split(';')[0]; }))
+                .join(';');
+            this.doc.cookie = encodeURIComponent(String(key)) + '=' + encodeURIComponent(String(value)) + (attributes ? '; ' + attributes : '');
+        };
+        /**
+         * Remove given cookie
+         *
+         * 移除指定 Cookie
+         * @param {?} key
+         * @param {?=} options
+         * @return {?}
+         */
+        CookieService.prototype.remove = function (key, options) {
+            this.put(key, undefined, options);
+        };
+        /**
+         * Remove all cookies
+         *
+         * 移除所有 Cookies
+         * @return {?}
+         */
+        CookieService.prototype.removeAll = function () {
+            this.doc.cookie = '';
+        };
+        return CookieService;
+    }());
+    CookieService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    CookieService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
+        { type: i2.Platform }
+    ]; };
+    /** @nocollapse */ CookieService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: CookieService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CookieService.prototype._doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        CookieService.prototype.platform;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: copy.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * Copy text to clipboard
+     *
+     * 复制字符串文档至剪贴板
      * @param {?} value
-     * @param {?} start
-     * @param {?=} end
      * @return {?}
      */
-    function inRange(value, start, end) {
-        if (end === undefined) {
-            end = start;
-            start = 0;
-        }
-        other.assertNumber(value);
-        other.assertNumber(start);
-        other.assertNumber(end);
-        return value >= Math.min(start, end) && value < Math.max(start, end);
+    function copy(value) {
+        return new Promise(( /**
+         * @param {?} resolve
+         * @return {?}
+         */function (resolve) {
+            /** @type {?} */
+            var copyTextArea = null;
+            try {
+                copyTextArea = document.createElement('textarea');
+                copyTextArea.style.height = '0px';
+                copyTextArea.style.opacity = '0';
+                copyTextArea.style.width = '0px';
+                document.body.appendChild(copyTextArea);
+                copyTextArea.value = value;
+                copyTextArea.select();
+                document.execCommand('copy');
+                resolve(value);
+            }
+            finally {
+                if (copyTextArea && copyTextArea.parentNode) {
+                    copyTextArea.parentNode.removeChild(copyTextArea);
+                }
+            }
+        }));
     }
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: round.ts
+     * Generated from: is-empty.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
     /**
-     * Computes `number` rounded up to `precision`.
+     * Used to verify `<ng-content></ng-content>` is empty, useful for custom components.
      *
-     * 根据 `precision`（精度） 向上舍入 `number`。
-     * ```ts
-     * ceil(4.006); // 5
-     * ceil(6.004, 2); // 6.01
-     * ceil(6040, -2); // 6100
-     * ```
-     * @param {?} number
-     * @param {?=} precision
+     * 用于校验 `<ng-content></ng-content>` 是否为空，自定义组件时蛮有用。
+     * @param {?} element
      * @return {?}
      */
-    function ceil(number, precision) {
-        if (precision === void 0) { precision = 0; }
-        return createRound(number, precision, 'ceil');
-    }
-    /**
-     * Computes `number` rounded down to `precision`.
-     *
-     * 根据 `precision`（精度） 向下舍入 `number`。
-     * ```ts
-     * floor(4.006); // 4
-     * floor(0.046, 2); // 0.04
-     * floor(4060, -2); // 4000
-     * ```
-     * @param {?} number
-     * @param {?=} precision
-     * @return {?}
-     */
-    function floor(number, precision) {
-        if (precision === void 0) { precision = 0; }
-        return createRound(number, precision, 'floor');
-    }
-    /**
-     * Computes `number` rounded to `precision`.
-     *
-     * 根据 `precision`（精度） 四舍五入 `number`。
-     * ```ts
-     * round(4.006); // 4
-     * round(4.006, 2); // 4.01
-     * round(4060, -2); // 4100
-     * ```
-     * @param {?} number
-     * @param {?=} precision
-     * @return {?}
-     */
-    function round(number, precision) {
-        if (precision === void 0) { precision = 0; }
-        return createRound(number, precision, 'round');
-    }
-    /**
-     * @param {?} number
-     * @param {?} precision
-     * @param {?} methodName
-     * @return {?}
-     */
-    function createRound(number, precision, methodName) {
+    function isEmpty(element) {
         /** @type {?} */
-        var func = ( /** @type {?} */(Math[methodName]));
-        precision = precision == null ? 0 : Math.min(precision, 292);
-        if (!precision) {
-            return func(number);
+        var nodes = element.childNodes;
+        for (var i = 0; i < nodes.length; i++) {
+            /** @type {?} */
+            var node = nodes.item(i);
+            if (node.nodeType === 1 && (( /** @type {?} */(node))).outerHTML.toString().trim().length !== 0) {
+                return false;
+            }
+            else if (node.nodeType === 3 && ( /** @type {?} */(node.textContent)).toString().trim().length !== 0) {
+                return false;
+            }
         }
-        // Shift with exponential notation to avoid floating-point issues.
-        // See [MDN](https://mdn.io/round#Examples) for more details.
-        /** @type {?} */
-        var pair = (number + "e").split('e');
-        /** @type {?} */
-        var value = func(Number(pair[0] + "e" + (Number(pair[1]) + precision)));
-        pair = (value + "e").split('e');
-        return Number(pair[0] + "e" + (Number(pair[1]) - precision));
+        return true;
     }
 
     /**
      * @fileoverview added by tsickle
-     * Generated from: public_api.ts
+     * Generated from: scroll.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    var ScrollService = /** @class */ (function () {
+        /**
+         * @param {?} _doc
+         * @param {?} platform
+         */
+        function ScrollService(_doc, platform) {
+            this._doc = _doc;
+            this.platform = platform;
+        }
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollService.prototype._getDoc = function () {
+            return this._doc || document;
+        };
+        /**
+         * @private
+         * @return {?}
+         */
+        ScrollService.prototype._getWin = function () {
+            /** @type {?} */
+            var doc = this._getDoc();
+            return doc.defaultView || window;
+        };
+        /**
+         * 获取滚动条位置
+         * @param {?=} element 指定元素，默认 `window`
+         * @return {?}
+         */
+        ScrollService.prototype.getScrollPosition = function (element) {
+            if (!this.platform.isBrowser) {
+                return [0, 0];
+            }
+            /** @type {?} */
+            var win = this._getWin();
+            if (element && element !== win) {
+                return [(( /** @type {?} */(element))).scrollLeft, (( /** @type {?} */(element))).scrollTop];
+            }
+            else {
+                return [win.pageXOffset, win.pageYOffset];
+            }
+        };
+        /**
+         * 设置滚动条位置
+         * @param {?} element 指定元素
+         * @param {?} position
+         * @return {?}
+         */
+        ScrollService.prototype.scrollToPosition = function (element, position) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            (element || this._getWin()).scrollTo(position[0], position[1]);
+        };
+        /**
+         * 设置滚动条至指定元素
+         * @param {?=} element 指定元素，默认 `document.body`
+         * @param {?=} topOffset 偏移值，默认 `0`
+         * @return {?}
+         */
+        ScrollService.prototype.scrollToElement = function (element, topOffset) {
+            if (topOffset === void 0) { topOffset = 0; }
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            if (!element) {
+                element = this._getDoc().body;
+            }
+            element.scrollIntoView();
+            /** @type {?} */
+            var win = this._getWin();
+            if (win && win.scrollBy) {
+                win.scrollBy(0, ( /** @type {?} */(element)).getBoundingClientRect().top - topOffset);
+                if (win.pageYOffset < 20) {
+                    win.scrollBy(0, -win.pageYOffset);
+                }
+            }
+        };
+        /**
+         * 滚动至顶部
+         * @param {?=} topOffset 偏移值，默认 `0`
+         * @return {?}
+         */
+        ScrollService.prototype.scrollToTop = function (topOffset) {
+            if (topOffset === void 0) { topOffset = 0; }
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            this.scrollToElement(this._getDoc().body, topOffset);
+        };
+        return ScrollService;
+    }());
+    ScrollService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ScrollService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
+        { type: i2.Platform }
+    ]; };
+    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: ScrollService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype._doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        ScrollService.prototype.platform;
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: style.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} el
+     * @param {?} classMap
+     * @param {?} renderer
+     * @return {?}
+     */
+    function removeClass(el, classMap, renderer) {
+        // tslint:disable-next-line: forin
+        for (var i in classMap) {
+            renderer.removeClass(el, i);
+        }
+    }
+    /**
+     * @param {?} el
+     * @param {?} classMap
+     * @param {?} renderer
+     * @return {?}
+     */
+    function addClass(el, classMap, renderer) {
+        for (var i in classMap) {
+            if (classMap[i]) {
+                renderer.addClass(el, i);
+            }
+        }
+    }
+    /**
+     * Update host component style `class`
+     *
+     * 更新宿主组件样式 `class`
+     *
+     * ```ts
+     * updateHostClass(
+     *  this.el.nativeElement,
+     *  this.renderer,
+     *  {
+     *    [ 'classname' ]: true,
+     *    [ 'classname' ]: this.type === '1',
+     *    [ this.cls ]: true,
+     *    [ `a-${this.cls}` ]: true
+     *  })
+     * ```
+     * @param {?} el
+     * @param {?} renderer
+     * @param {?} classMap
+     * @param {?=} preClean
+     * @return {?}
+     */
+    function updateHostClass(el, renderer, classMap, preClean) {
+        if (preClean === void 0) { preClean = false; }
+        if (preClean === true) {
+            renderer.removeAttribute(el, 'class');
+        }
+        else {
+            removeClass(el, classMap, renderer);
+        }
+        classMap = Object.assign({}, classMap);
+        addClass(el, classMap, renderer);
+    }
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: index.ts
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
@@ -133,10 +460,11 @@
      * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
-    exports.ceil = ceil;
-    exports.floor = floor;
-    exports.inRange = inRange;
-    exports.round = round;
+    exports.CookieService = CookieService;
+    exports.ScrollService = ScrollService;
+    exports.copy = copy;
+    exports.isEmpty = isEmpty;
+    exports.updateHostClass = updateHostClass;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

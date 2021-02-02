@@ -1,11 +1,11 @@
 {
-  "main": "../bundles/browser.umd.js",
-  "module": "../fesm2015/browser.js",
-  "es2015": "../fesm2015/browser.js",
-  "esm2015": "../esm2015/math/browser.js",
-  "fesm2015": "../fesm2015/browser.js",
-  "typings": "browser.d.ts",
-  "metadata": "browser.metadata.json",
+  "main": "../bundles/delon-util-math.umd.js",
+  "module": "../fesm2015/delon-util-math.js",
+  "es2015": "../fesm2015/delon-util-math.js",
+  "esm2015": "../esm2015/math/delon-util-math.js",
+  "fesm2015": "../fesm2015/delon-util-math.js",
+  "typings": "delon-util-math.d.ts",
+  "metadata": "delon-util-math.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/math"
 }

@@ -1,11 +1,11 @@
 {
-  "main": "../bundles/forms.umd.js",
-  "module": "../fesm2015/forms.js",
-  "es2015": "../fesm2015/forms.js",
-  "esm2015": "../esm2015/form/forms.js",
-  "fesm2015": "../fesm2015/forms.js",
-  "typings": "forms.d.ts",
-  "metadata": "forms.metadata.json",
+  "main": "../bundles/delon-util-form.umd.js",
+  "module": "../fesm2015/delon-util-form.js",
+  "es2015": "../fesm2015/delon-util-form.js",
+  "esm2015": "../esm2015/form/delon-util-form.js",
+  "fesm2015": "../fesm2015/delon-util-form.js",
+  "typings": "delon-util-form.d.ts",
+  "metadata": "delon-util-form.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/form"
 }

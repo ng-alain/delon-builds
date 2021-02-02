@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "11.3.1-f6272ba2",
+  "version": "11.3.1-24aec2e0",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -23,12 +23,12 @@
     "extend": "^3.0.2",
     "tslib": "^2.0.0"
   },
-  "main": "bundles/util.umd.js",
-  "module": "fesm2015/util.js",
-  "es2015": "fesm2015/util.js",
-  "esm2015": "esm2015/util.js",
-  "fesm2015": "fesm2015/util.js",
-  "typings": "util.d.ts",
-  "metadata": "util.metadata.json",
+  "main": "bundles/delon-util.umd.js",
+  "module": "fesm2015/delon-util.js",
+  "es2015": "fesm2015/delon-util.js",
+  "esm2015": "esm2015/delon-util.js",
+  "fesm2015": "fesm2015/delon-util.js",
+  "typings": "delon-util.d.ts",
+  "metadata": "delon-util.metadata.json",
   "sideEffects": false
 }

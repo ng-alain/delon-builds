@@ -1,11 +1,11 @@
 {
-  "main": "../bundles/other.umd.js",
-  "module": "../fesm2015/other.js",
-  "es2015": "../fesm2015/other.js",
-  "esm2015": "../esm2015/other/other.js",
-  "fesm2015": "../fesm2015/other.js",
-  "typings": "other.d.ts",
-  "metadata": "other.metadata.json",
+  "main": "../bundles/delon-util-other.umd.js",
+  "module": "../fesm2015/delon-util-other.js",
+  "es2015": "../fesm2015/delon-util-other.js",
+  "esm2015": "../esm2015/other/delon-util-other.js",
+  "fesm2015": "../fesm2015/delon-util-other.js",
+  "typings": "delon-util-other.d.ts",
+  "metadata": "delon-util-other.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/other"
 }
