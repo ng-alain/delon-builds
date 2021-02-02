@@ -20,9 +20,7 @@ const main_1 = require("./files-tpl/main");
 function removeHmrOfAngularJson(context) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         workspace.projects.forEach(project => {
-            [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_SERVE]
-                .filter(targetName => !!project.targets.get(targetName).configurations)
-                .forEach(targetName => {
+            [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_SERVE].forEach(targetName => {
                 delete project.targets.get(targetName).configurations.hmr;
             });
         });
