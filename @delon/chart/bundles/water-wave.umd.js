@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, decorator, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, i0, decorator, rxjs, operators, i1, i2, i3) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -320,13 +342,6 @@
 
     var G2WaterWaveComponent = /** @class */ (function () {
         // #endregion
-        /**
-         * @param {?} el
-         * @param {?} renderer
-         * @param {?} ngZone
-         * @param {?} cdr
-         * @param {?} platform
-         */
         function G2WaterWaveComponent(el, renderer, ngZone, cdr, platform) {
             this.el = el;
             this.renderer = renderer;
@@ -340,99 +355,59 @@
             this.color = '#1890FF';
             this.height = 160;
         }
-        /**
-         * @private
-         * @param {?} isUpdate
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.renderChart = function (isUpdate) {
             if (!this.resize$)
                 return;
             this.updateRadio();
             var _a = this, percent = _a.percent, color = _a.color, node = _a.node, animate = _a.animate;
-            /** @type {?} */
             var data = Math.min(Math.max(percent / 100, 0), 100);
-            /** @type {?} */
             var self = this;
             cancelAnimationFrame(this.timer);
-            /** @type {?} */
-            var canvas = ( /** @type {?} */(node.nativeElement));
-            /** @type {?} */
-            var ctx = ( /** @type {?} */(canvas.getContext('2d')));
-            /** @type {?} */
+            var canvas = node.nativeElement;
+            var ctx = canvas.getContext('2d');
             var canvasWidth = canvas.width;
-            /** @type {?} */
             var canvasHeight = canvas.height;
-            /** @type {?} */
             var radius = canvasWidth / 2;
-            /** @type {?} */
             var lineWidth = 2;
-            /** @type {?} */
             var cR = radius - lineWidth;
             ctx.beginPath();
             ctx.lineWidth = lineWidth * 2;
-            /** @type {?} */
             var axisLength = canvasWidth - lineWidth;
-            /** @type {?} */
             var unit = axisLength / 8;
-            /** @type {?} */
             var xOffset = lineWidth;
-            /** @type {?} */
-            var sp = 0;
-            // 周期偏移量
-            /** @type {?} */
-            var range = 0.2;
-            // 振幅
-            /** @type {?} */
+            var sp = 0; // 周期偏移量
+            var range = 0.2; // 振幅
             var currRange = range;
-            /** @type {?} */
             var currData = 0;
-            /** @type {?} */
-            var waveupsp = animate ? 0.005 : 0.015;
-            // 水波上涨速度
-            /** @type {?} */
+            var waveupsp = animate ? 0.005 : 0.015; // 水波上涨速度
             var arcStack = [];
-            /** @type {?} */
             var bR = radius - lineWidth;
-            /** @type {?} */
             var circleOffset = -(Math.PI / 2);
-            /** @type {?} */
             var circleLock = true;
             // tslint:disable-next-line:binary-expression-operand-order
             for (var i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
                 arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
             }
-            /** @type {?} */
-            var cStartPoint = ( /** @type {?} */(arcStack.shift()));
+            var cStartPoint = arcStack.shift();
             ctx.strokeStyle = color;
             ctx.moveTo(cStartPoint[0], cStartPoint[1]);
-            /**
-             * @return {?}
-             */
             function drawSin() {
                 ctx.beginPath();
                 ctx.save();
-                /** @type {?} */
                 var sinStack = [];
                 for (var i = xOffset; i <= xOffset + axisLength; i += 20 / axisLength) {
-                    /** @type {?} */
                     var x = sp + (xOffset + i) / unit;
-                    /** @type {?} */
                     var y = Math.sin(x) * currRange;
-                    /** @type {?} */
                     var dx = i;
                     // tslint:disable-next-line:binary-expression-operand-order
-                    /** @type {?} */
                     var dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
                     ctx.lineTo(dx, dy);
                     sinStack.push([dx, dy]);
                 }
-                /** @type {?} */
-                var startPoint = ( /** @type {?} */(sinStack.shift()));
+                var startPoint = sinStack.shift();
                 ctx.lineTo(xOffset + axisLength, canvasHeight);
                 ctx.lineTo(xOffset, canvasHeight);
                 ctx.lineTo(startPoint[0], startPoint[1]);
-                /** @type {?} */
                 var gradient = ctx.createLinearGradient(0, 0, 0, canvasHeight);
                 gradient.addColorStop(0, '#ffffff');
                 gradient.addColorStop(1, color);
@@ -440,32 +415,28 @@
                 ctx.fill();
                 ctx.restore();
             }
-            /**
-             * @return {?}
-             */
             function render() {
                 var e_1, _a;
                 ctx.clearRect(0, 0, canvasWidth, canvasHeight);
                 if (circleLock && !isUpdate) {
-                    if (( /** @type {?} */(arcStack)).length) {
+                    if (arcStack.length) {
                         if (animate) {
-                            /** @type {?} */
-                            var temp = ( /** @type {?} */(( /** @type {?} */(arcStack)).shift()));
+                            var temp = arcStack.shift();
                             ctx.lineTo(temp[0], temp[1]);
                             ctx.stroke();
                         }
                         else {
                             try {
-                                for (var _b = __values(( /** @type {?} */(arcStack))), _c = _b.next(); !_c.done; _c = _b.next()) {
-                                    var temp = _c.value;
-                                    ctx.lineTo(( /** @type {?} */(temp))[0], ( /** @type {?} */(temp))[1]);
+                                for (var arcStack_1 = __values(arcStack), arcStack_1_1 = arcStack_1.next(); !arcStack_1_1.done; arcStack_1_1 = arcStack_1.next()) {
+                                    var temp = arcStack_1_1.value;
+                                    ctx.lineTo(temp[0], temp[1]);
                                     ctx.stroke();
                                 }
                             }
                             catch (e_1_1) { e_1 = { error: e_1_1 }; }
                             finally {
                                 try {
-                                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                                    if (arcStack_1_1 && !arcStack_1_1.done && (_a = arcStack_1.return)) _a.call(arcStack_1);
                                 }
                                 finally { if (e_1) throw e_1.error; }
                             }
@@ -494,26 +465,22 @@
                 else {
                     if (data >= 0.85) {
                         if (currRange > range / 4) {
-                            /** @type {?} */
                             var t = range * 0.01;
                             currRange -= t;
                         }
                     }
                     else if (data <= 0.1) {
                         if (currRange < range * 1.5) {
-                            /** @type {?} */
                             var t = range * 0.01;
                             currRange += t;
                         }
                     }
                     else {
                         if (currRange <= range) {
-                            /** @type {?} */
                             var t = range * 0.01;
                             currRange += t;
                         }
                         if (currRange >= range) {
-                            /** @type {?} */
                             var t = range * 0.01;
                             currRange -= t;
                         }
@@ -532,62 +499,33 @@
             render();
             // drawSin();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.updateRadio = function () {
             var offsetWidth = this.el.nativeElement.parentNode.offsetWidth;
-            /** @type {?} */
             var radio = offsetWidth < this.height ? offsetWidth / this.height : 1;
             this.renderer.setStyle(this.el.nativeElement, 'transform', "scale(" + radio + ")");
         };
-        /**
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.render = function () {
             this.renderChart(false);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.installResizeEvent = function () {
             var _this = this;
             this.resize$ = rxjs.fromEvent(window, 'resize')
                 .pipe(operators.debounceTime(200))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.updateRadio(); }));
+                .subscribe(function () { return _this.updateRadio(); });
         };
-        /**
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.ngOnInit = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
             this.installResizeEvent();
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return setTimeout(( /**
-             * @return {?}
-             */function () { return _this.render(); }), _this.delay); }));
+            this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.render(); }, _this.delay); });
         };
-        /**
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.ngOnChanges = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.renderChart(true); }));
+            this.ngZone.runOutsideAngular(function () { return _this.renderChart(true); });
             this.cdr.detectChanges();
         };
-        /**
-         * @return {?}
-         */
         G2WaterWaveComponent.prototype.ngOnDestroy = function () {
             if (this.timer) {
                 cancelAnimationFrame(this.timer);
@@ -598,34 +536,8 @@
         };
         return G2WaterWaveComponent;
     }());
-    G2WaterWaveComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'g2-water-wave',
-                    exportAs: 'g2WaterWave',
-                    template: "<div [ngStyle]=\"{ 'height.px': height, 'width.px': height, overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" width=\"{{ height * 2 }}\" height=\"{{ height * 2 }}\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [ngStyle]=\"{ 'width.px': height }\">\n  <span *ngIf=\"title\" class=\"g2-water-wave__desc-title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </span>\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n",
-                    host: { '[class.g2-water-wave]': 'true' },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    G2WaterWaveComponent.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: core.Renderer2 },
-        { type: core.NgZone },
-        { type: core.ChangeDetectorRef },
-        { type: platform.Platform }
-    ]; };
-    G2WaterWaveComponent.propDecorators = {
-        node: [{ type: core.ViewChild, args: ['container', { static: true },] }],
-        animate: [{ type: core.Input }],
-        delay: [{ type: core.Input }],
-        title: [{ type: core.Input }],
-        color: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        percent: [{ type: core.Input }]
-    };
+    /** @nocollapse */ G2WaterWaveComponent.ɵfac = function G2WaterWaveComponent_Factory(t) { return new (t || G2WaterWaveComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i0.NgZone), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i1.Platform)); };
+    /** @nocollapse */ G2WaterWaveComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2WaterWaveComponent, selector: "g2-water-wave", inputs: { animate: "animate", delay: "delay", title: "title", color: "color", height: "height", percent: "percent" }, host: { properties: { "class.g2-water-wave": "true" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], emitDistinctChangesOnly: false, descendants: true, static: true }], exportAs: ["g2WaterWave"], usesOnChanges: true, ngImport: i0__namespace, template: "<div [ngStyle]=\"{ 'height.px': height, 'width.px': height, overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" width=\"{{ height * 2 }}\" height=\"{{ height * 2 }}\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [ngStyle]=\"{ 'width.px': height }\">\n  <span *ngIf=\"title\" class=\"g2-water-wave__desc-title\">\n    <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n  </span>\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n", directives: [{ type: i2.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
@@ -642,99 +554,58 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2WaterWaveComponent.prototype, "percent", void 0);
-    if (false) {
-        /** @type {?} */
-        G2WaterWaveComponent.ngAcceptInputType_animate;
-        /** @type {?} */
-        G2WaterWaveComponent.ngAcceptInputType_delay;
-        /** @type {?} */
-        G2WaterWaveComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2WaterWaveComponent.ngAcceptInputType_percent;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.resize$;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.node;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.timer;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.animate;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.delay;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.title;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.color;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.height;
-        /** @type {?} */
-        G2WaterWaveComponent.prototype.percent;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2WaterWaveComponent.prototype.platform;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2WaterWaveComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'g2-water-wave',
+                        exportAs: 'g2WaterWave',
+                        templateUrl: './water-wave.component.html',
+                        host: { '[class.g2-water-wave]': 'true' },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: i0.NgZone }, { type: i0.ChangeDetectorRef }, { type: i1.Platform }]; }, { node: [{
+                    type: i0.ViewChild,
+                    args: ['container', { static: true }]
+                }], animate: [{
+                    type: i0.Input
+                }], delay: [{
+                    type: i0.Input
+                }], title: [{
+                    type: i0.Input
+                }], color: [{
+                    type: i0.Input
+                }], height: [{
+                    type: i0.Input
+                }], percent: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: water-wave.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2WaterWaveComponent];
     var G2WaterWaveModule = /** @class */ (function () {
         function G2WaterWaveModule() {
         }
         return G2WaterWaveModule;
     }());
-    G2WaterWaveModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, outlet.NzOutletModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ G2WaterWaveModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2WaterWaveModule });
+    /** @nocollapse */ G2WaterWaveModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2WaterWaveModule_Factory(t) { return new (t || G2WaterWaveModule)(); }, imports: [[i2.CommonModule, i3.NzOutletModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2WaterWaveModule, { declarations: [G2WaterWaveComponent], imports: [i2.CommonModule, i3.NzOutletModule], exports: [G2WaterWaveComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2WaterWaveModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i2.CommonModule, i3.NzOutletModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: water-wave.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2WaterWaveComponent = G2WaterWaveComponent;

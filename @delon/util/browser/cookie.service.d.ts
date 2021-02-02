@@ -1,4 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
+import * as i0 from "@angular/core";
 export interface CookieOptions {
     path?: string;
     domain?: string;
@@ -60,4 +61,6 @@ export declare class CookieService {
      * 移除所有 Cookies
      */
     removeAll(): void;
+    static ɵfac: i0.ɵɵFactoryDef<CookieService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<CookieService>;
 }

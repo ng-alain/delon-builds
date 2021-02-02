@@ -4,58 +4,22 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/browser', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.browser = {}), global.ng.cdk.platform, global.ng.common, global.ng.core));
-}(this, (function (exports, i2, i1, i0) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/cdk/platform')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/browser', ['exports', '@angular/common', '@angular/core', '@angular/cdk/platform'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.browser = {}), global.ng.common, global.ng.core, global.ng.cdk.platform));
+}(this, (function (exports, common, i0, i1) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: cookie.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function CookieOptions() { }
-    if (false) {
-        /** @type {?|undefined} */
-        CookieOptions.prototype.path;
-        /** @type {?|undefined} */
-        CookieOptions.prototype.domain;
-        /**
-         * Expiration time, `number` is seconds
-         *
-         * 过期时间，`number` 类型表示秒数
-         * @type {?|undefined}
-         */
-        CookieOptions.prototype.expires;
-        /** @type {?|undefined} */
-        CookieOptions.prototype.secure;
-        /** @type {?|undefined} */
-        CookieOptions.prototype.HttpOnly;
-        /** @type {?|undefined} */
-        CookieOptions.prototype.SameSite;
-    }
     /**
      * A set of simple Cookie manipulation classes.
      *
      * 一组简单的 Cookie 操作类。
      */
     var CookieService = /** @class */ (function () {
-        /**
-         * @param {?} _doc
-         * @param {?} platform
-         */
         function CookieService(_doc, platform) {
             this._doc = _doc;
             this.platform = platform;
         }
         Object.defineProperty(CookieService.prototype, "doc", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this._doc || document;
             },
@@ -67,7 +31,6 @@
              * Original cookie value
              *
              * 原始Cookie值
-             * @return {?}
              */
             get: function () {
                 return this.platform.isBrowser ? this.doc.cookie : '';
@@ -79,21 +42,15 @@
          * Get all cookie key-value pairs
          *
          * 获取所有Cookie键值对
-         * @return {?}
          */
         CookieService.prototype.getAll = function () {
-            /** @type {?} */
             var ret = {};
-            /** @type {?} */
             var arr = this.cookie.split('; ');
             // tslint:disable-next-line: prefer-for-of
             for (var i = 0; i < arr.length; i++) {
-                /** @type {?} */
                 var cookie = arr[i];
-                /** @type {?} */
                 var index = cookie.indexOf('=');
                 if (index > 0) {
-                    /** @type {?} */
                     var name = decodeURIComponent(cookie.substring(0, index));
                     if (ret[name] == null) {
                         ret[name] = decodeURIComponent(cookie.substring(index + 1));
@@ -106,8 +63,6 @@
          * Get the value of given cookie `key`
          *
          * 获取指定 `key` 的值
-         * @param {?} key
-         * @return {?}
          */
         CookieService.prototype.get = function (key) {
             return this.getAll()[key];
@@ -116,16 +71,11 @@
          * Sets a value for given cookie key
          *
          * 设置指定 Cookie 键的值
-         * @param {?} key
-         * @param {?} value
-         * @param {?=} options
-         * @return {?}
          */
         CookieService.prototype.put = function (key, value, options) {
             if (!this.platform.isBrowser) {
                 return;
             }
-            /** @type {?} */
             var opt = Object.assign({ path: '/' }, options);
             if (typeof opt.expires === 'number') {
                 opt.expires = new Date(+new Date() + opt.expires * 1e3);
@@ -133,24 +83,10 @@
             if (typeof opt.expires !== 'string') {
                 opt.expires = opt.expires ? opt.expires.toUTCString() : '';
             }
-            /** @type {?} */
-            var optStr = ( /** @type {?} */(opt));
-            /** @type {?} */
+            var optStr = opt;
             var attributes = Object.keys(optStr)
-                .filter(( /**
-         * @param {?} k
-         * @return {?}
-         */function (/**
-         * @param {?} k
-         * @return {?}
-         */ k) { return optStr[k] && optStr[k] !== true; }))
-                .map(( /**
-         * @param {?} k
-         * @return {?}
-         */function (/**
-         * @param {?} k
-         * @return {?}
-         */ k) { return k + "=" + (( /** @type {?} */(optStr[k]))).split(';')[0]; }))
+                .filter(function (k) { return optStr[k] && optStr[k] !== true; })
+                .map(function (k) { return k + "=" + optStr[k].split(';')[0]; })
                 .join(';');
             this.doc.cookie = encodeURIComponent(String(key)) + '=' + encodeURIComponent(String(value)) + (attributes ? '; ' + attributes : '');
         };
@@ -158,9 +94,6 @@
          * Remove given cookie
          *
          * 移除指定 Cookie
-         * @param {?} key
-         * @param {?=} options
-         * @return {?}
          */
         CookieService.prototype.remove = function (key, options) {
             this.put(key, undefined, options);
@@ -169,53 +102,33 @@
          * Remove all cookies
          *
          * 移除所有 Cookies
-         * @return {?}
          */
         CookieService.prototype.removeAll = function () {
             this.doc.cookie = '';
         };
         return CookieService;
     }());
-    CookieService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    CookieService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
-        { type: i2.Platform }
-    ]; };
-    /** @nocollapse */ CookieService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: CookieService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        CookieService.prototype._doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        CookieService.prototype.platform;
-    }
+    /** @nocollapse */ CookieService.ɵfac = function CookieService_Factory(t) { return new (t || CookieService)(i0.ɵɵinject(common.DOCUMENT), i0.ɵɵinject(i1.Platform)); };
+    /** @nocollapse */ CookieService.ɵprov = i0.ɵɵdefineInjectable({ token: CookieService, factory: CookieService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CookieService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () {
+            return [{ type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [common.DOCUMENT]
+                        }] }, { type: i1.Platform }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: copy.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * Copy text to clipboard
      *
      * 复制字符串文档至剪贴板
-     * @param {?} value
-     * @return {?}
      */
     function copy(value) {
-        return new Promise(( /**
-         * @param {?} resolve
-         * @return {?}
-         */function (resolve) {
-            /** @type {?} */
+        return new Promise(function (resolve) {
             var copyTextArea = null;
             try {
                 copyTextArea = document.createElement('textarea');
@@ -233,80 +146,51 @@
                     copyTextArea.parentNode.removeChild(copyTextArea);
                 }
             }
-        }));
+        });
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: is-empty.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * Used to verify `<ng-content></ng-content>` is empty, useful for custom components.
      *
      * 用于校验 `<ng-content></ng-content>` 是否为空，自定义组件时蛮有用。
-     * @param {?} element
-     * @return {?}
      */
     function isEmpty(element) {
-        /** @type {?} */
         var nodes = element.childNodes;
         for (var i = 0; i < nodes.length; i++) {
-            /** @type {?} */
             var node = nodes.item(i);
-            if (node.nodeType === 1 && (( /** @type {?} */(node))).outerHTML.toString().trim().length !== 0) {
+            if (node.nodeType === 1 && node.outerHTML.toString().trim().length !== 0) {
                 return false;
             }
-            else if (node.nodeType === 3 && ( /** @type {?} */(node.textContent)).toString().trim().length !== 0) {
+            else if (node.nodeType === 3 && node.textContent.toString().trim().length !== 0) {
                 return false;
             }
         }
         return true;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: scroll.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ScrollService = /** @class */ (function () {
-        /**
-         * @param {?} _doc
-         * @param {?} platform
-         */
         function ScrollService(_doc, platform) {
             this._doc = _doc;
             this.platform = platform;
         }
-        /**
-         * @private
-         * @return {?}
-         */
         ScrollService.prototype._getDoc = function () {
             return this._doc || document;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         ScrollService.prototype._getWin = function () {
-            /** @type {?} */
             var doc = this._getDoc();
             return doc.defaultView || window;
         };
         /**
          * 获取滚动条位置
-         * @param {?=} element 指定元素，默认 `window`
-         * @return {?}
+         * @param element 指定元素，默认 `window`
          */
         ScrollService.prototype.getScrollPosition = function (element) {
             if (!this.platform.isBrowser) {
                 return [0, 0];
             }
-            /** @type {?} */
             var win = this._getWin();
             if (element && element !== win) {
-                return [(( /** @type {?} */(element))).scrollLeft, (( /** @type {?} */(element))).scrollTop];
+                return [element.scrollLeft, element.scrollTop];
             }
             else {
                 return [win.pageXOffset, win.pageYOffset];
@@ -314,9 +198,7 @@
         };
         /**
          * 设置滚动条位置
-         * @param {?} element 指定元素
-         * @param {?} position
-         * @return {?}
+         * @param element 指定元素
          */
         ScrollService.prototype.scrollToPosition = function (element, position) {
             if (!this.platform.isBrowser) {
@@ -326,9 +208,8 @@
         };
         /**
          * 设置滚动条至指定元素
-         * @param {?=} element 指定元素，默认 `document.body`
-         * @param {?=} topOffset 偏移值，默认 `0`
-         * @return {?}
+         * @param element 指定元素，默认 `document.body`
+         * @param topOffset 偏移值，默认 `0`
          */
         ScrollService.prototype.scrollToElement = function (element, topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
@@ -339,10 +220,9 @@
                 element = this._getDoc().body;
             }
             element.scrollIntoView();
-            /** @type {?} */
             var win = this._getWin();
             if (win && win.scrollBy) {
-                win.scrollBy(0, ( /** @type {?} */(element)).getBoundingClientRect().top - topOffset);
+                win.scrollBy(0, element.getBoundingClientRect().top - topOffset);
                 if (win.pageYOffset < 20) {
                     win.scrollBy(0, -win.pageYOffset);
                 }
@@ -350,8 +230,7 @@
         };
         /**
          * 滚动至顶部
-         * @param {?=} topOffset 偏移值，默认 `0`
-         * @return {?}
+         * @param topOffset 偏移值，默认 `0`
          */
         ScrollService.prototype.scrollToTop = function (topOffset) {
             if (topOffset === void 0) { topOffset = 0; }
@@ -362,51 +241,26 @@
         };
         return ScrollService;
     }());
-    ScrollService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    ScrollService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
-        { type: i2.Platform }
-    ]; };
-    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: ScrollService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ScrollService.prototype._doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        ScrollService.prototype.platform;
-    }
+    /** @nocollapse */ ScrollService.ɵfac = function ScrollService_Factory(t) { return new (t || ScrollService)(i0.ɵɵinject(common.DOCUMENT), i0.ɵɵinject(i1.Platform)); };
+    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ token: ScrollService, factory: ScrollService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ScrollService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () {
+            return [{ type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [common.DOCUMENT]
+                        }] }, { type: i1.Platform }];
+        }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: style.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @param {?} el
-     * @param {?} classMap
-     * @param {?} renderer
-     * @return {?}
-     */
     function removeClass(el, classMap, renderer) {
         // tslint:disable-next-line: forin
         for (var i in classMap) {
             renderer.removeClass(el, i);
         }
     }
-    /**
-     * @param {?} el
-     * @param {?} classMap
-     * @param {?} renderer
-     * @return {?}
-     */
     function addClass(el, classMap, renderer) {
         for (var i in classMap) {
             if (classMap[i]) {
@@ -430,11 +284,6 @@
      *    [ `a-${this.cls}` ]: true
      *  })
      * ```
-     * @param {?} el
-     * @param {?} renderer
-     * @param {?} classMap
-     * @param {?=} preClean
-     * @return {?}
      */
     function updateHostClass(el, renderer, classMap, preClean) {
         if (preClean === void 0) { preClean = false; }
@@ -449,15 +298,7 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: browser.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.CookieService = CookieService;

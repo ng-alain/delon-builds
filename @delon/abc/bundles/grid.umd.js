@@ -4,10 +4,32 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/theme'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/theme', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.config, global.decorator, global.delon.theme, global.ng.common));
-}(this, (function (exports, core, config, decorator, theme, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@delon/util/config'), require('@delon/theme'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util/decorator', '@delon/util/config', '@delon/theme', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.decorator, global.i1, global.delon.theme, global.ng.common));
+}(this, (function (exports, i0, decorator, i1, i2, common) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,15 +340,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sg-container.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SGContainerComponent = /** @class */ (function () {
-        /**
-         * @param {?} configSrv
-         */
         function SGContainerComponent(configSrv) {
             configSrv.attach(this, 'sg', {
                 gutter: 32,
@@ -334,9 +348,6 @@
             });
         }
         Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return -(this.gutter / 2);
             },
@@ -345,31 +356,8 @@
         });
         return SGContainerComponent;
     }());
-    SGContainerComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sg-container, [sg-container]',
-                    exportAs: 'sgContainer',
-                    template: " <ng-content></ng-content> ",
-                    host: {
-                        '[style.margin-left.px]': 'marginValue',
-                        '[style.margin-right.px]': 'marginValue',
-                        '[class.ant-row]': 'true',
-                        '[class.sg__wrap]': 'true',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    SGContainerComponent.ctorParameters = function () { return [
-        { type: config.AlainConfigService }
-    ]; };
-    SGContainerComponent.propDecorators = {
-        gutter: [{ type: core.Input }],
-        colInCon: [{ type: core.Input, args: ['sg-container',] }],
-        col: [{ type: core.Input }]
-    };
+    /** @nocollapse */ SGContainerComponent.ɵfac = function SGContainerComponent_Factory(t) { return new (t || SGContainerComponent)(i0.ɵɵdirectiveInject(i1.AlainConfigService)); };
+    /** @nocollapse */ SGContainerComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SGContainerComponent, selector: "sg-container, [sg-container]", inputs: { gutter: "gutter", colInCon: ["sg-container", "colInCon"], col: "col" }, host: { properties: { "style.margin-left.px": "marginValue", "style.margin-right.px": "marginValue", "class.ant-row": "true", "class.sg__wrap": "true" } }, exportAs: ["sgContainer"], ngImport: i0__namespace, template: " <ng-content></ng-content> ", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
@@ -382,30 +370,35 @@
         decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_gutter;
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_colInCon;
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SGContainerComponent.prototype.gutter;
-        /** @type {?} */
-        SGContainerComponent.prototype.colInCon;
-        /** @type {?} */
-        SGContainerComponent.prototype.col;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SGContainerComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sg-container, [sg-container]',
+                        exportAs: 'sgContainer',
+                        template: " <ng-content></ng-content> ",
+                        host: {
+                            '[style.margin-left.px]': 'marginValue',
+                            '[style.margin-right.px]': 'marginValue',
+                            '[class.ant-row]': 'true',
+                            '[class.sg__wrap]': 'true',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () { return [{ type: i1.AlainConfigService }]; }, { gutter: [{
+                    type: i0.Input
+                }], colInCon: [{
+                    type: i0.Input,
+                    args: ['sg-container']
+                }], col: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /** @type {?} */
     var prefixCls = "sg";
     var SGComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} ren
-         * @param {?} parent
-         * @param {?} rep
-         */
         function SGComponent(el, ren, parent, rep) {
             this.ren = ren;
             this.parent = parent;
@@ -418,152 +411,84 @@
             this.el = el.nativeElement;
         }
         Object.defineProperty(SGComponent.prototype, "paddingValue", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.parent.gutter / 2;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         SGComponent.prototype.setClass = function () {
-            var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.removeClass(el, cls); }));
+            var _a = this, el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
+            clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
-            clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.addClass(el, cls); }));
-            return ( /** @type {?} */(this));
+            clsMap.push.apply(clsMap, __spread(this.rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
+            clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+            return this;
         };
-        /**
-         * @return {?}
-         */
         SGComponent.prototype.ngOnChanges = function () {
             if (this.inited)
                 this.setClass();
         };
-        /**
-         * @return {?}
-         */
         SGComponent.prototype.ngAfterViewInit = function () {
             this.setClass();
             this.inited = true;
         };
         return SGComponent;
     }());
-    SGComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'sg',
-                    exportAs: 'sg',
-                    template: " <ng-content></ng-content> ",
-                    host: {
-                        '[style.padding-left.px]': 'paddingValue',
-                        '[style.padding-right.px]': 'paddingValue',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    SGComponent.ctorParameters = function () { return [
-        { type: core.ElementRef },
-        { type: core.Renderer2 },
-        { type: SGContainerComponent, decorators: [{ type: core.Optional }, { type: core.Host }] },
-        { type: theme.ResponsiveService }
-    ]; };
-    SGComponent.propDecorators = {
-        col: [{ type: core.Input }]
-    };
+    /** @nocollapse */ SGComponent.ɵfac = function SGComponent_Factory(t) { return new (t || SGComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(SGContainerComponent, 9), i0.ɵɵdirectiveInject(i2.ResponsiveService)); };
+    /** @nocollapse */ SGComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: SGComponent, selector: "sg", inputs: { col: "col" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, exportAs: ["sg"], usesOnChanges: true, ngImport: i0__namespace, template: " <ng-content></ng-content> ", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], SGComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SGComponent.ngAcceptInputType_col;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.clsMap;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.inited;
-        /** @type {?} */
-        SGComponent.prototype.col;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.ren;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.rep;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SGComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'sg',
+                        exportAs: 'sg',
+                        template: " <ng-content></ng-content> ",
+                        host: {
+                            '[style.padding-left.px]': 'paddingValue',
+                            '[style.padding-right.px]': 'paddingValue',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () {
+            return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: SGContainerComponent, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Host
+                        }] }, { type: i2.ResponsiveService }];
+        }, { col: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sg.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [SGContainerComponent, SGComponent];
     var SGModule = /** @class */ (function () {
         function SGModule() {
         }
         return SGModule;
     }());
-    SGModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ SGModule.ɵmod = i0.ɵɵdefineNgModule({ type: SGModule });
+    /** @nocollapse */ SGModule.ɵinj = i0.ɵɵdefineInjector({ factory: function SGModule_Factory(t) { return new (t || SGModule)(); }, imports: [[common.CommonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(SGModule, { declarations: [SGContainerComponent, SGComponent], imports: [common.CommonModule], exports: [SGContainerComponent, SGComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SGModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: grid.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SGComponent = SGComponent;

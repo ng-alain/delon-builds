@@ -1,4 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
+import * as i0 from "@angular/core";
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
  */
@@ -29,4 +30,6 @@ export declare class ScrollService {
      * @param topOffset 偏移值，默认 `0`
      */
     scrollToTop(topOffset?: number): void;
+    static ɵfac: i0.ɵɵFactoryDef<ScrollService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ScrollService>;
 }

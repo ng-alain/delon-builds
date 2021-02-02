@@ -2,6 +2,7 @@ import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@a
 import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
@@ -522,4 +523,6 @@ export declare class _HttpClient {
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
     }): Observable<any>;
+    static ɵfac: i0.ɵɵFactoryDef<_HttpClient, never>;
+    static ɵprov: i0.ɵɵInjectableDef<_HttpClient>;
 }

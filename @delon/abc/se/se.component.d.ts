@@ -3,6 +3,7 @@ import { ResponsiveService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
+import * as i0 from "@angular/core";
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
     private parent;
     private rep;
@@ -52,4 +53,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngOnChanges(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<SEComponent, [null, { optional: true; host: true; }, null, null, null]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SEComponent, "se", ["se"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "error": "error"; "extra": "extra"; "label": "label"; "col": "col"; "required": "required"; "controlClass": "controlClass"; "line": "line"; "labelWidth": "labelWidth"; "id": "id"; }, {}, ["ngModel", "formControlName"], ["*"]>;
 }

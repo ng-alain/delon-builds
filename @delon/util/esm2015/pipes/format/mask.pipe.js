@@ -1,10 +1,6 @@
-/**
- * @fileoverview added by tsickle
- * Generated from: mask.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 import { Pipe } from '@angular/core';
 import { formatMask } from '@delon/util/format';
+import * as i0 from "@angular/core";
 export class FormatMaskPipe {
     /**
      * Format mask
@@ -13,15 +9,15 @@ export class FormatMaskPipe {
      * ```ts
      * formatMask('123', '(###)') => (123)
      * ```
-     * @param {?} value
-     * @param {?} mask
-     * @return {?}
      */
     transform(value, mask) {
         return formatMask(value, mask);
     }
 }
-FormatMaskPipe.decorators = [
-    { type: Pipe, args: [{ name: 'mask' },] }
-];
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFzay5waXBlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvdXRpbC9waXBlcy9mb3JtYXQvbWFzay5waXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7O0FBQUEsT0FBTyxFQUFFLElBQUksRUFBaUIsTUFBTSxlQUFlLENBQUM7QUFDcEQsT0FBTyxFQUFFLFVBQVUsRUFBRSxNQUFNLG9CQUFvQixDQUFDO0FBR2hELE1BQU0sT0FBTyxjQUFjOzs7Ozs7Ozs7Ozs7SUFTekIsU0FBUyxDQUFDLEtBQWEsRUFBRSxJQUFZO1FBQ25DLE9BQU8sVUFBVSxDQUFDLEtBQUssRUFBRSxJQUFJLENBQUMsQ0FBQztJQUNqQyxDQUFDOzs7WUFaRixJQUFJLFNBQUMsRUFBRSxJQUFJLEVBQUUsTUFBTSxFQUFFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUGlwZSwgUGlwZVRyYW5zZm9ybSB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgZm9ybWF0TWFzayB9IGZyb20gJ0BkZWxvbi91dGlsL2Zvcm1hdCc7XG5cbkBQaXBlKHsgbmFtZTogJ21hc2snIH0pXG5leHBvcnQgY2xhc3MgRm9ybWF0TWFza1BpcGUgaW1wbGVtZW50cyBQaXBlVHJhbnNmb3JtIHtcbiAgLyoqXG4gICAqIEZvcm1hdCBtYXNrXG4gICAqXG4gICAqIOagvOW8j+WMluaOqeeggVxuICAgKiBgYGB0c1xuICAgKiBmb3JtYXRNYXNrKCcxMjMnLCAnKCMjIyknKSA9PiAoMTIzKVxuICAgKiBgYGBcbiAgICovXG4gIHRyYW5zZm9ybSh2YWx1ZTogc3RyaW5nLCBtYXNrOiBzdHJpbmcpOiBzdHJpbmcge1xuICAgIHJldHVybiBmb3JtYXRNYXNrKHZhbHVlLCBtYXNrKTtcbiAgfVxufVxuIl19
+/** @nocollapse */ FormatMaskPipe.ɵfac = function FormatMaskPipe_Factory(t) { return new (t || FormatMaskPipe)(); };
+/** @nocollapse */ FormatMaskPipe.ɵpipe = i0.ɵɵdefinePipe({ name: "mask", type: FormatMaskPipe, pure: true });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FormatMaskPipe, [{
+        type: Pipe,
+        args: [{ name: 'mask' }]
+    }], null, null); })();
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWFzay5waXBlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvdXRpbC9waXBlcy9mb3JtYXQvbWFzay5waXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxJQUFJLEVBQWlCLE1BQU0sZUFBZSxDQUFDO0FBQ3BELE9BQU8sRUFBRSxVQUFVLEVBQUUsTUFBTSxvQkFBb0IsQ0FBQzs7QUFHaEQsTUFBTSxPQUFPLGNBQWM7SUFDekI7Ozs7Ozs7T0FPRztJQUNILFNBQVMsQ0FBQyxLQUFhLEVBQUUsSUFBWTtRQUNuQyxPQUFPLFVBQVUsQ0FBQyxLQUFLLEVBQUUsSUFBSSxDQUFDLENBQUM7SUFDakMsQ0FBQzs7K0ZBWFUsY0FBYztnRkFBZCxjQUFjO3VGQUFkLGNBQWM7Y0FEMUIsSUFBSTtlQUFDLEVBQUUsSUFBSSxFQUFFLE1BQU0sRUFBRSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFBpcGUsIFBpcGVUcmFuc2Zvcm0gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcbmltcG9ydCB7IGZvcm1hdE1hc2sgfSBmcm9tICdAZGVsb24vdXRpbC9mb3JtYXQnO1xuXG5AUGlwZSh7IG5hbWU6ICdtYXNrJyB9KVxuZXhwb3J0IGNsYXNzIEZvcm1hdE1hc2tQaXBlIGltcGxlbWVudHMgUGlwZVRyYW5zZm9ybSB7XG4gIC8qKlxuICAgKiBGb3JtYXQgbWFza1xuICAgKlxuICAgKiDmoLzlvI/ljJbmjqnnoIFcbiAgICogYGBgdHNcbiAgICogZm9ybWF0TWFzaygnMTIzJywgJygjIyMpJykgPT4gKDEyMylcbiAgICogYGBgXG4gICAqL1xuICB0cmFuc2Zvcm0odmFsdWU6IHN0cmluZywgbWFzazogc3RyaW5nKTogc3RyaW5nIHtcbiAgICByZXR1cm4gZm9ybWF0TWFzayh2YWx1ZSwgbWFzayk7XG4gIH1cbn1cbiJdfQ==

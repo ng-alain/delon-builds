@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/pdf/pdf.js",
   "fesm2015": "../fesm2015/pdf.js",
   "typings": "pdf.d.ts",
-  "metadata": "pdf.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/pdf"
 }

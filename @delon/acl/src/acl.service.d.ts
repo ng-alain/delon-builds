@@ -1,6 +1,7 @@
 import { AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
 import { ACLCanType, ACLType } from './acl.type';
+import * as i0 from "@angular/core";
 /**
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
  *
@@ -72,4 +73,6 @@ export declare class ACLService {
      * 当前用户是否有对应权限点
      */
     canAbility(value: ACLCanType): boolean;
+    static ɵfac: i0.ɵɵFactoryDef<ACLService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<ACLService>;
 }

@@ -4,6 +4,7 @@ import { AlainConfigService } from '@delon/util/config';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Observable } from 'rxjs';
 import { SettingsService } from '../settings/settings.service';
+import * as i0 from "@angular/core";
 export declare const HTML_DIR = "dir";
 export declare const RTL_DIRECTION = "direction";
 export declare const RTL_NZ_COMPONENTS: string[];
@@ -46,4 +47,6 @@ export declare class RTLService {
     toggle(): void;
     private updateHtml;
     private updateLibConfig;
+    static ɵfac: i0.ɵɵFactoryDef<RTLService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<RTLService>;
 }

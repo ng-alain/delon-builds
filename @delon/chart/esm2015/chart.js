@@ -1,10 +1,5 @@
 /**
- * @fileoverview added by tsickle
- * Generated from: chart.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
  * Generated bundle index. Do not edit.
  */
-export { G2BarComponent, G2BarModule, G2CardComponent, G2CardModule, G2CustomComponent, G2CustomModule, G2GaugeComponent, G2GaugeModule, G2MiniAreaComponent, G2MiniAreaModule, G2MiniBarComponent, G2MiniBarModule, G2MiniProgressComponent, G2MiniProgressModule, G2PieComponent, G2PieModule, G2RadarComponent, G2RadarModule, G2TagCloudComponent, G2TagCloudModule, G2TimelineComponent, G2TimelineModule, G2WaterWaveComponent, G2WaterWaveModule, NumberInfoComponent, NumberInfoModule, TrendComponent, TrendModule, G2SingleBarComponent, G2SingleBarModule, DelonChartModule } from './public_api';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hhcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9wYWNrYWdlcy9jaGFydC9jaGFydC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUlBLDhqQkFBYyxjQUFjLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEdlbmVyYXRlZCBidW5kbGUgaW5kZXguIERvIG5vdCBlZGl0LlxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vcHVibGljX2FwaSc7XG4iXX0=
+export * from './public_api';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hhcnQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9wYWNrYWdlcy9jaGFydC9jaGFydC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsY0FBYyxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBHZW5lcmF0ZWQgYnVuZGxlIGluZGV4LiBEbyBub3QgZWRpdC5cbiAqL1xuXG5leHBvcnQgKiBmcm9tICcuL3B1YmxpY19hcGknO1xuIl19

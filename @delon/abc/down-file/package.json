@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/down-file/downFile.js",
   "fesm2015": "../fesm2015/downFile.js",
   "typings": "downFile.d.ts",
-  "metadata": "downFile.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/down-file"
 }

@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/timeline/timeline.js",
   "fesm2015": "../fesm2015/timeline.js",
   "typings": "timeline.d.ts",
-  "metadata": "timeline.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/timeline"
 }

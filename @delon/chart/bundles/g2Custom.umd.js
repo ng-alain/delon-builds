@@ -6,8 +6,30 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.chart.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
-}(this, (function (exports, core, core$1, decorator, rxjs, operators, common, skeleton) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.chart.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global.i2));
+}(this, (function (exports, i0, core, decorator, rxjs, operators, i1, i2) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -323,60 +345,30 @@
         function G2CustomComponent() {
             var _this = _super.apply(this, __spread(arguments)) || this;
             _this.resizeTime = 0;
-            _this.render = new core.EventEmitter();
-            _this.resize = new core.EventEmitter();
-            _this.destroy = new core.EventEmitter();
+            _this.render = new i0.EventEmitter();
+            _this.resize = new i0.EventEmitter();
+            _this.destroy = new i0.EventEmitter();
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2CustomComponent.prototype.install = function () {
             this.el.nativeElement.innerHTML = '';
             this.render.emit(this.el);
             this.installResizeEvent();
         };
-        /**
-         * @return {?}
-         */
         G2CustomComponent.prototype.attachChart = function () { };
-        /**
-         * @private
-         * @return {?}
-         */
         G2CustomComponent.prototype.installResizeEvent = function () {
             var _this = this;
             if (this.resizeTime <= 0)
                 return;
             rxjs.fromEvent(window, 'resize')
                 .pipe(operators.takeUntil(this.destroy$), operators.debounceTime(Math.min(200, this.resizeTime)))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.resize.emit(_this.el); }));
+                .subscribe(function () { return _this.resize.emit(_this.el); });
         };
         return G2CustomComponent;
-    }(core$1.G2BaseComponent));
-    G2CustomComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'g2,g2-custom',
-                    exportAs: 'g2Custom',
-                    template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <ng-content></ng-content>\n  ",
-                    host: {
-                        '[style.height.px]': 'height',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    G2CustomComponent.propDecorators = {
-        height: [{ type: core.Input }],
-        resizeTime: [{ type: core.Input }],
-        render: [{ type: core.Output }],
-        resize: [{ type: core.Output }],
-        destroy: [{ type: core.Output }]
-    };
+    }(core.G2BaseComponent));
+    /** @nocollapse */ G2CustomComponent.ɵfac = function G2CustomComponent_Factory(t) { return ɵG2CustomComponent_BaseFactory(t || G2CustomComponent); };
+    /** @nocollapse */ G2CustomComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2CustomComponent, selector: "g2,g2-custom", inputs: { height: "height", resizeTime: "resizeTime" }, outputs: { render: "render", resize: "resize", destroy: "destroy" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Custom"], usesInheritance: true, ngImport: i0__namespace, template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <ng-content></ng-content>\n  ", isInline: true, directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
@@ -385,53 +377,56 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2CustomComponent.prototype, "resizeTime", void 0);
-    if (false) {
-        /** @type {?} */
-        G2CustomComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2CustomComponent.ngAcceptInputType_resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.height;
-        /** @type {?} */
-        G2CustomComponent.prototype.resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.render;
-        /** @type {?} */
-        G2CustomComponent.prototype.resize;
-        /** @type {?} */
-        G2CustomComponent.prototype.destroy;
-    }
+    var ɵG2CustomComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2CustomComponent);
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2CustomComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'g2,g2-custom',
+                        exportAs: 'g2Custom',
+                        template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <ng-content></ng-content>\n  ",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { height: [{
+                    type: i0.Input
+                }], resizeTime: [{
+                    type: i0.Input
+                }], render: [{
+                    type: i0.Output
+                }], resize: [{
+                    type: i0.Output
+                }], destroy: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: custom.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2CustomComponent];
     var G2CustomModule = /** @class */ (function () {
         function G2CustomModule() {
         }
         return G2CustomModule;
     }());
-    G2CustomModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, skeleton.NzSkeletonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ G2CustomModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2CustomModule });
+    /** @nocollapse */ G2CustomModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2CustomModule_Factory(t) { return new (t || G2CustomModule)(); }, imports: [[i1.CommonModule, i2.NzSkeletonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2CustomModule, { declarations: [G2CustomComponent], imports: [i1.CommonModule, i2.NzSkeletonModule], exports: [G2CustomComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2CustomModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i1.CommonModule, i2.NzSkeletonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: g2Custom.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2CustomComponent = G2CustomComponent;

@@ -1,11 +1,6 @@
-import { Pipe, NgModule } from '@angular/core';
+import { ɵɵdefinePipe, ɵsetClassMetadata, Pipe, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import { formatMask } from '@delon/util/format';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mask.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class FormatMaskPipe {
     /**
      * Format mask
@@ -14,44 +9,34 @@ class FormatMaskPipe {
      * ```ts
      * formatMask('123', '(###)') => (123)
      * ```
-     * @param {?} value
-     * @param {?} mask
-     * @return {?}
      */
     transform(value, mask) {
         return formatMask(value, mask);
     }
 }
-FormatMaskPipe.decorators = [
-    { type: Pipe, args: [{ name: 'mask' },] }
-];
+/** @nocollapse */ FormatMaskPipe.ɵfac = function FormatMaskPipe_Factory(t) { return new (t || FormatMaskPipe)(); };
+/** @nocollapse */ FormatMaskPipe.ɵpipe = ɵɵdefinePipe({ name: "mask", type: FormatMaskPipe, pure: true });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(FormatMaskPipe, [{
+        type: Pipe,
+        args: [{ name: 'mask' }]
+    }], null, null); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const PIPES = [FormatMaskPipe];
 class FormatPipeModule {
 }
-FormatPipeModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ FormatPipeModule.ɵmod = ɵɵdefineNgModule({ type: FormatPipeModule });
+/** @nocollapse */ FormatPipeModule.ɵinj = ɵɵdefineInjector({ factory: function FormatPipeModule_Factory(t) { return new (t || FormatPipeModule)(); } });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(FormatPipeModule, { declarations: [FormatMaskPipe], exports: [FormatMaskPipe] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(FormatPipeModule, [{
+        type: NgModule,
+        args: [{
                 declarations: PIPES,
                 exports: PIPES,
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: delon-util-pipes-format.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { FormatMaskPipe, FormatPipeModule };

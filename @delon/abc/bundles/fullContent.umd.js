@@ -7,7 +7,29 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/util/decorator', 'rxjs', 'rxjs/operators'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.decorator, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, common, i0, router, decorator, rxjs, operators) { 'use strict';
+}(this, (function (exports, common, i0, i2, decorator, rxjs, operators) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,26 +340,15 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: full-content.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var FullContentService = /** @class */ (function () {
         function FullContentService() {
             this._change = new rxjs.BehaviorSubject(null);
         }
-        /**
-         * 切换全屏工作区状态
-         * @return {?}
-         */
+        /** 切换全屏工作区状态 */
         FullContentService.prototype.toggle = function () {
             this._change.next(true);
         };
         Object.defineProperty(FullContentService.prototype, "change", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._change.pipe(operators.share());
             },
@@ -346,37 +357,19 @@
         });
         return FullContentService;
     }());
-    FullContentService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */ FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentService.prototype._change;
-    }
+    /** @nocollapse */ FullContentService.ɵfac = function FullContentService_Factory(t) { return new (t || FullContentService)(); };
+    /** @nocollapse */ FullContentService.ɵprov = i0.ɵɵdefineInjectable({ token: FullContentService, factory: FullContentService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FullContentService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: full-content.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var wrapCls = "full-content__body";
-    /** @type {?} */
     var openedCls = "full-content__opened";
-    /** @type {?} */
     var hideTitleCls = "full-content__hidden-title";
     var FullContentComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} cdr
-         * @param {?} srv
-         * @param {?} router
-         * @param {?} doc
-         */
         function FullContentComponent(el, cdr, srv, router, doc) {
             this.el = el;
             this.cdr = cdr;
@@ -391,12 +384,7 @@
             this.padding = 24;
             this.fullscreenChange = new i0.EventEmitter();
         }
-        /**
-         * @private
-         * @return {?}
-         */
         FullContentComponent.prototype.updateCls = function () {
-            /** @type {?} */
             var clss = this.bodyEl.classList;
             if (this.fullscreen) {
                 clss.add(openedCls);
@@ -411,33 +399,18 @@
                 }
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         FullContentComponent.prototype.update = function () {
             this.updateCls();
             this.updateHeight();
             this.fullscreenChange.emit(this.fullscreen);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         FullContentComponent.prototype.updateHeight = function () {
             this._height = this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
             this.cdr.detectChanges();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         FullContentComponent.prototype.removeInBody = function () {
             this.bodyEl.classList.remove(wrapCls, openedCls, hideTitleCls);
         };
-        /**
-         * @return {?}
-         */
         FullContentComponent.prototype.ngOnInit = function () {
             var _this = this;
             this.inited = true;
@@ -448,28 +421,13 @@
             // when window resize
             this.scroll$ = rxjs.fromEvent(window, 'resize')
                 .pipe(operators.debounceTime(200))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.updateHeight(); }));
+                .subscribe(function () { return _this.updateHeight(); });
             // when servier changed
-            this.srv$ = this.srv.change.pipe(operators.filter(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) { return res !== null; }))).subscribe(( /**
-             * @return {?}
-             */function () { return _this.toggle(); }));
+            this.srv$ = this.srv.change.pipe(operators.filter(function (res) { return res !== null; })).subscribe(function () { return _this.toggle(); });
             // when router changed
             this.route$ = this.router.events
-                .pipe(operators.filter(( /**
-         * @param {?} e
-         * @return {?}
-         */function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; })), operators.debounceTime(200))
-                .subscribe(( /**
-         * @return {?}
-         */function () {
+                .pipe(operators.filter(function (e) { return e instanceof i2.ActivationStart || e instanceof i2.ActivationEnd; }), operators.debounceTime(200))
+                .subscribe(function () {
                 if (!!_this.doc.querySelector('#' + _this.id)) {
                     _this.bodyEl.classList.add(wrapCls);
                     _this.updateCls();
@@ -477,71 +435,31 @@
                 else {
                     _this.removeInBody();
                 }
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         FullContentComponent.prototype.toggle = function () {
             this.fullscreen = !this.fullscreen;
             this.update();
             this.updateHeight();
         };
-        /**
-         * @return {?}
-         */
         FullContentComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
-            setTimeout(( /**
-             * @return {?}
-             */function () { return _this.updateHeight(); }));
+            setTimeout(function () { return _this.updateHeight(); });
         };
-        /**
-         * @return {?}
-         */
         FullContentComponent.prototype.ngOnChanges = function () {
             if (this.inited)
                 this.update();
         };
-        /**
-         * @return {?}
-         */
         FullContentComponent.prototype.ngOnDestroy = function () {
             this.removeInBody();
-            ( /** @type {?} */(this.scroll$)).unsubscribe();
+            this.scroll$.unsubscribe();
             this.srv$.unsubscribe();
             this.route$.unsubscribe();
         };
         return FullContentComponent;
     }());
-    FullContentComponent.decorators = [
-        { type: i0.Component, args: [{
-                    selector: 'full-content',
-                    exportAs: 'fullContent',
-                    template: " <ng-content></ng-content> ",
-                    host: {
-                        '[class.full-content]': 'true',
-                        '[style.height.px]': '_height',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                    encapsulation: i0.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    FullContentComponent.ctorParameters = function () { return [
-        { type: i0.ElementRef },
-        { type: i0.ChangeDetectorRef },
-        { type: FullContentService },
-        { type: router.Router },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] }
-    ]; };
-    FullContentComponent.propDecorators = {
-        fullscreen: [{ type: i0.Input }],
-        hideTitle: [{ type: i0.Input }],
-        padding: [{ type: i0.Input }],
-        fullscreenChange: [{ type: i0.Output }]
-    };
+    /** @nocollapse */ FullContentComponent.ɵfac = function FullContentComponent_Factory(t) { return new (t || FullContentComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(FullContentService), i0.ɵɵdirectiveInject(i2.Router), i0.ɵɵdirectiveInject(common.DOCUMENT)); };
+    /** @nocollapse */ FullContentComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: FullContentComponent, selector: "full-content", inputs: { fullscreen: "fullscreen", hideTitle: "hideTitle", padding: "padding" }, outputs: { fullscreenChange: "fullscreenChange" }, host: { properties: { "class.full-content": "true", "style.height.px": "_height" } }, exportAs: ["fullContent"], usesOnChanges: true, ngImport: i0__namespace, template: " <ng-content></ng-content> ", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
@@ -554,151 +472,83 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], FullContentComponent.prototype, "padding", void 0);
-    if (false) {
-        /** @type {?} */
-        FullContentComponent.ngAcceptInputType_fullscreen;
-        /** @type {?} */
-        FullContentComponent.ngAcceptInputType_hideTitle;
-        /** @type {?} */
-        FullContentComponent.ngAcceptInputType_padding;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.bodyEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.inited;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.srv$;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.route$;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.id;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.scroll$;
-        /** @type {?} */
-        FullContentComponent.prototype._height;
-        /** @type {?} */
-        FullContentComponent.prototype.fullscreen;
-        /** @type {?} */
-        FullContentComponent.prototype.hideTitle;
-        /** @type {?} */
-        FullContentComponent.prototype.padding;
-        /** @type {?} */
-        FullContentComponent.prototype.fullscreenChange;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentComponent.prototype.doc;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FullContentComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'full-content',
+                        exportAs: 'fullContent',
+                        template: " <ng-content></ng-content> ",
+                        host: {
+                            '[class.full-content]': 'true',
+                            '[style.height.px]': '_height',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () {
+            return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: FullContentService }, { type: i2.Router }, { type: undefined, decorators: [{
+                            type: i0.Inject,
+                            args: [common.DOCUMENT]
+                        }] }];
+        }, { fullscreen: [{
+                    type: i0.Input
+                }], hideTitle: [{
+                    type: i0.Input
+                }], padding: [{
+                    type: i0.Input
+                }], fullscreenChange: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: full-content-toggle.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var FullContentToggleDirective = /** @class */ (function () {
-        /**
-         * @param {?} parent
-         */
         function FullContentToggleDirective(parent) {
             this.parent = parent;
         }
-        /**
-         * @return {?}
-         */
         FullContentToggleDirective.prototype._click = function () {
             this.parent.toggle();
         };
         return FullContentToggleDirective;
     }());
-    FullContentToggleDirective.decorators = [
-        { type: i0.Directive, args: [{
-                    selector: '[full-toggle]',
-                    exportAs: 'fullToggle',
-                    host: {
-                        '(click)': '_click()',
-                    },
-                },] }
-    ];
-    /** @nocollapse */
-    FullContentToggleDirective.ctorParameters = function () { return [
-        { type: FullContentComponent }
-    ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        FullContentToggleDirective.prototype.parent;
-    }
+    /** @nocollapse */ FullContentToggleDirective.ɵfac = function FullContentToggleDirective_Factory(t) { return new (t || FullContentToggleDirective)(i0.ɵɵdirectiveInject(FullContentComponent)); };
+    /** @nocollapse */ FullContentToggleDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: FullContentToggleDirective, selector: "[full-toggle]", host: { listeners: { "click": "_click()" } }, exportAs: ["fullToggle"], ngImport: i0__namespace });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FullContentToggleDirective, [{
+                type: i0.Directive,
+                args: [{
+                        selector: '[full-toggle]',
+                        exportAs: 'fullToggle',
+                        host: {
+                            '(click)': '_click()',
+                        },
+                    }]
+            }], function () { return [{ type: FullContentComponent }]; }, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: full-content.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [FullContentComponent, FullContentToggleDirective];
     var FullContentModule = /** @class */ (function () {
         function FullContentModule() {
         }
         return FullContentModule;
     }());
-    FullContentModule.decorators = [
-        { type: i0.NgModule, args: [{
-                    imports: [common.CommonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ FullContentModule.ɵmod = i0.ɵɵdefineNgModule({ type: FullContentModule });
+    /** @nocollapse */ FullContentModule.ɵinj = i0.ɵɵdefineInjector({ factory: function FullContentModule_Factory(t) { return new (t || FullContentModule)(); }, imports: [[common.CommonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(FullContentModule, { declarations: [FullContentComponent, FullContentToggleDirective], imports: [common.CommonModule], exports: [FullContentComponent, FullContentToggleDirective] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(FullContentModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: fullContent.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.FullContentComponent = FullContentComponent;

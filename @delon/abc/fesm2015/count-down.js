@@ -1,22 +1,16 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { EventEmitter, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵsetClassMetadata, Component, ViewChild, Input, Output, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import addSeconds from 'date-fns/addSeconds';
 import format from 'date-fns/format';
-import { CountdownModule } from 'ngx-countdown';
-import { CommonModule } from '@angular/common';
+import { CountdownComponent, CountdownModule } from 'ngx-countdown';
+import { NgIf, CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class CountDownComponent {
     constructor() {
         this.event = new EventEmitter();
     }
     /**
      * 目标时间
-     * @param {?} value
-     * @return {?}
      */
     set target(value) {
         this.config = {
@@ -24,66 +18,50 @@ class CountDownComponent {
             stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 't'),
         };
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     handleEvent(e) {
         this.event.emit(e);
     }
 }
-CountDownComponent.decorators = [
-    { type: Component, args: [{
+/** @nocollapse */ CountDownComponent.ɵfac = function CountDownComponent_Factory(t) { return new (t || CountDownComponent)(); };
+/** @nocollapse */ CountDownComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: CountDownComponent, selector: "count-down", inputs: { config: "config", target: "target" }, outputs: { event: "event" }, viewQueries: [{ propertyName: "instance", first: true, predicate: ["cd"], emitDistinctChangesOnly: false, descendants: true }], exportAs: ["countDown"], ngImport: i0, template: ` <countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)"></countdown> `, isInline: true, directives: [{ type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: CountdownComponent, selector: "countdown", inputs: ["config", "render"], outputs: ["event"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CountDownComponent, [{
+        type: Component,
+        args: [{
                 selector: 'count-down',
                 exportAs: 'countDown',
                 template: ` <countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)"></countdown> `,
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None
-            }] }
-];
-CountDownComponent.propDecorators = {
-    instance: [{ type: ViewChild, args: ['cd', { static: false },] }],
-    config: [{ type: Input }],
-    target: [{ type: Input }],
-    event: [{ type: Output }]
-};
-if (false) {
-    /** @type {?} */
-    CountDownComponent.prototype.instance;
-    /** @type {?} */
-    CountDownComponent.prototype.config;
-    /** @type {?} */
-    CountDownComponent.prototype.event;
-}
+                encapsulation: ViewEncapsulation.None,
+            }]
+    }], null, { instance: [{
+            type: ViewChild,
+            args: ['cd', { static: false }]
+        }], config: [{
+            type: Input
+        }], target: [{
+            type: Input
+        }], event: [{
+            type: Output
+        }] }); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [CountDownComponent];
 class CountDownModule {
 }
-CountDownModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ CountDownModule.ɵmod = ɵɵdefineNgModule({ type: CountDownModule });
+/** @nocollapse */ CountDownModule.ɵinj = ɵɵdefineInjector({ factory: function CountDownModule_Factory(t) { return new (t || CountDownModule)(); }, imports: [[CommonModule, CountdownModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(CountDownModule, { declarations: [CountDownComponent], imports: [CommonModule, CountdownModule], exports: [CountDownComponent] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CountDownModule, [{
+        type: NgModule,
+        args: [{
                 imports: [CommonModule, CountdownModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { CountDownComponent, CountDownModule };

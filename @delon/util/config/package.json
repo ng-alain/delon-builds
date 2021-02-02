@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/config/delon-util-config.js",
   "fesm2015": "../fesm2015/delon-util-config.js",
   "typings": "delon-util-config.d.ts",
-  "metadata": "delon-util-config.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/config"
 }

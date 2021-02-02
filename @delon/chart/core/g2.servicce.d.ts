@@ -2,6 +2,7 @@ import { OnDestroy } from '@angular/core';
 import { AlainChartConfig, AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { Observable } from 'rxjs';
+import * as i0 from "@angular/core";
 export declare class G2Service implements OnDestroy {
     private cogSrv;
     private lazySrv;
@@ -15,4 +16,6 @@ export declare class G2Service implements OnDestroy {
     libLoad(): this;
     get notify(): Observable<void>;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<G2Service, never>;
+    static ɵprov: i0.ɵɵInjectableDef<G2Service>;
 }

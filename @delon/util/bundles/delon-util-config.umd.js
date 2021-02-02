@@ -9,120 +9,16 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.config = {}), global.ng.core, global.delon.util.other));
 }(this, (function (exports, i0, other) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: abc/sv.type.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var AlainSVConfig = /** @class */ (function () {
         function AlainSVConfig() {
         }
         return AlainSVConfig;
     }());
-    if (false) {
-        /**
-         * 大小，默认：`large`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.size;
-        /**
-         * 间距，默认：`32`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.gutter;
-        /**
-         * 布局，默认：`horizontal`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.layout;
-        /**
-         * 列数，默认：`3`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.col;
-        /**
-         * 是否显示默认值，当内容为空值时显示 `-`，默认：`true`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.default;
-        /**
-         * `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null`
-         * @type {?}
-         */
-        AlainSVConfig.prototype.labelWidth;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: config.types.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function AlainConfig() { }
-    if (false) {
-        /** @type {?|undefined} */
-        AlainConfig.prototype.dataRange;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.errorCollect;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.image;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.loading;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.onboarding;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.lodop;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.pageHeader;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.qr;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.se;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.sg;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.sv;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.st;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.sf;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.xlsx;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.zip;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.pdf;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.media;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.acl;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.auth;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.cache;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.chart;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.mock;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.utilArray;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.utilCurrency;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.themeHttp;
-        /** @type {?|undefined} */
-        AlainConfig.prototype.themeResponsive;
-    }
-    /** @type {?} */
     var ALAIN_CONFIG = new i0.InjectionToken('alain-config', {
         providedIn: 'root',
         factory: ALAIN_CONFIG_FACTORY,
     });
-    /**
-     * @return {?}
-     */
     function ALAIN_CONFIG_FACTORY() {
         return {};
     }
@@ -437,30 +333,14 @@
     }
 
     var AlainConfigService = /** @class */ (function () {
-        /**
-         * @param {?=} defaultConfig
-         */
         function AlainConfigService(defaultConfig) {
             this.config = Object.assign({}, defaultConfig);
         }
-        /**
-         * @template T
-         * @param {?} componentName
-         * @param {?=} key
-         * @return {?}
-         */
         AlainConfigService.prototype.get = function (componentName, key) {
             var _a;
-            /** @type {?} */
-            var res = ( /** @type {?} */(((( /** @type {?} */(this.config[componentName]))) || {})));
+            var res = (this.config[componentName] || {});
             return key ? (_a = {}, _a[key] = res[key], _a) : res;
         };
-        /**
-         * @template T
-         * @param {?} componentName
-         * @param {...?} defaultValues
-         * @return {?}
-         */
         AlainConfigService.prototype.merge = function (componentName) {
             var defaultValues = [];
             for (var _i = 1; _i < arguments.length; _i++) {
@@ -468,63 +348,35 @@
             }
             return other.deepMergeKey.apply(void 0, __spread([{}, true], defaultValues, [this.get(componentName)]));
         };
-        /**
-         * @template T
-         * @param {?} componentThis
-         * @param {?} componentName
-         * @param {?} defaultValues
-         * @return {?}
-         */
         AlainConfigService.prototype.attach = function (componentThis, componentName, defaultValues) {
             Object.assign(componentThis, this.merge(componentName, defaultValues));
         };
-        /**
-         * @template T
-         * @param {?} componentThis
-         * @param {?} componentName
-         * @param {?} key
-         * @return {?}
-         */
         AlainConfigService.prototype.attachKey = function (componentThis, componentName, key) {
             Object.assign(componentThis, this.get(componentName, key));
         };
-        /**
-         * @template T
-         * @param {?} componentName
-         * @param {?} value
-         * @return {?}
-         */
         AlainConfigService.prototype.set = function (componentName, value) {
             this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), value);
         };
         return AlainConfigService;
     }());
-    AlainConfigService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    AlainConfigService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_CONFIG,] }] }
-    ]; };
-    /** @nocollapse */ AlainConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(i0.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        AlainConfigService.prototype.config;
-    }
+    /** @nocollapse */ AlainConfigService.ɵfac = function AlainConfigService_Factory(t) { return new (t || AlainConfigService)(i0.ɵɵinject(ALAIN_CONFIG, 8)); };
+    /** @nocollapse */ AlainConfigService.ɵprov = i0.ɵɵdefineInjectable({ token: AlainConfigService, factory: AlainConfigService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AlainConfigService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () {
+            return [{ type: undefined, decorators: [{
+                            type: i0.Optional
+                        }, {
+                            type: i0.Inject,
+                            args: [ALAIN_CONFIG]
+                        }] }];
+        }, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: delon-util-config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ALAIN_CONFIG = ALAIN_CONFIG;

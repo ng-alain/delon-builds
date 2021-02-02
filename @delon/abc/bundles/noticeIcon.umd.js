@@ -4,62 +4,69 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/list'), require('ng-zorro-antd/spin'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tag')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@delon/theme', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/badge', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/list', 'ng-zorro-antd/spin', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tag'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.delon.theme, global.decorator, global.ng.common, global['ng-zorro-antd/badge'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/list'], global['ng-zorro-antd/spin'], global['ng-zorro-antd/tabs'], global['ng-zorro-antd/tag']));
-}(this, (function (exports, core, theme, decorator, common, badge, dropdown, icon, list, spin, tabs, tag) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('ng-zorro-antd/list'), require('ng-zorro-antd/tag'), require('@delon/util/decorator'), require('@delon/theme'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/spin'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/notice-icon', ['exports', '@angular/core', '@angular/common', 'ng-zorro-antd/list', 'ng-zorro-antd/tag', '@delon/util/decorator', '@delon/theme', 'ng-zorro-antd/badge', 'ng-zorro-antd/icon', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/spin', 'ng-zorro-antd/tabs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['notice-icon'] = {}), global.ng.core, global.ng.common, global['ng-zorro-antd/list'], global['ng-zorro-antd/tag'], global.decorator, global.delon.theme, global['ng-zorro-antd/badge'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/dropdown'], global['ng-zorro-antd/spin'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, i0, i3, i2, i3$1, decorator, i1, i2$1, i4, i5, i6, i7) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: notice-icon-tab.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     var NoticeIconTabComponent = /** @class */ (function () {
         function NoticeIconTabComponent() {
             this.locale = {};
-            this.select = new core.EventEmitter();
-            this.clear = new core.EventEmitter();
+            this.select = new i0.EventEmitter();
+            this.clear = new i0.EventEmitter();
         }
-        /**
-         * @param {?} item
-         * @return {?}
-         */
         NoticeIconTabComponent.prototype.onClick = function (item) {
             this.select.emit({ title: this.data.title, item: item });
         };
-        /**
-         * @return {?}
-         */
         NoticeIconTabComponent.prototype.onClear = function () {
             this.clear.emit(this.data.title);
         };
         return NoticeIconTabComponent;
     }());
-    NoticeIconTabComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'notice-icon-tab',
-                    exportAs: 'noticeIconTab',
-                    template: "<div *ngIf=\"data.list?.length === 0; else listTpl\" class=\"notice-icon__notfound\">\n  <img class=\"notice-icon__notfound-img\" *ngIf=\"data.emptyImage\" src=\"{{ data.emptyImage }}\" alt=\"not found\" />\n  <p>{{ data.emptyText || locale.emptyText }}</p>\n</div>\n<ng-template #listTpl>\n  <nz-list [nzDataSource]=\"data.list\" [nzRenderItem]=\"item\">\n    <ng-template #item let-item>\n      <nz-list-item (click)=\"onClick(item)\" [ngClass]=\"{ 'notice-icon__item-read': item.read }\">\n        <nz-list-item-meta [nzTitle]=\"nzTitle\" [nzDescription]=\"nzDescription\" [nzAvatar]=\"item.avatar\">\n          <ng-template #nzTitle>\n            {{ item.title }}\n            <div class=\"notice-icon__item-extra\" *ngIf=\"item.extra\">\n              <nz-tag [nzColor]=\"item.color\">{{ item.extra }}</nz-tag>\n            </div>\n          </ng-template>\n          <ng-template #nzDescription>\n            <div *ngIf=\"item.description\" class=\"notice-icon__item-desc\">{{ item.description }}</div>\n            <div *ngIf=\"item.datetime\" class=\"notice-icon__item-time\">{{ item.datetime }}</div>\n          </ng-template>\n        </nz-list-item-meta>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  <div class=\"notice-icon__clear\" (click)=\"onClear()\">{{ data.clearText || locale.clearText }}</div>\n</ng-template>\n",
-                    preserveWhitespaces: false,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    NoticeIconTabComponent.propDecorators = {
-        locale: [{ type: core.Input }],
-        data: [{ type: core.Input }],
-        select: [{ type: core.Output }],
-        clear: [{ type: core.Output }]
-    };
-    if (false) {
-        /** @type {?} */
-        NoticeIconTabComponent.prototype.locale;
-        /** @type {?} */
-        NoticeIconTabComponent.prototype.data;
-        /** @type {?} */
-        NoticeIconTabComponent.prototype.select;
-        /** @type {?} */
-        NoticeIconTabComponent.prototype.clear;
-    }
+    /** @nocollapse */ NoticeIconTabComponent.ɵfac = function NoticeIconTabComponent_Factory(t) { return new (t || NoticeIconTabComponent)(); };
+    /** @nocollapse */ NoticeIconTabComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: NoticeIconTabComponent, selector: "notice-icon-tab", inputs: { locale: "locale", data: "data" }, outputs: { select: "select", clear: "clear" }, exportAs: ["noticeIconTab"], ngImport: i0__namespace, template: "<div *ngIf=\"data.list?.length === 0; else listTpl\" class=\"notice-icon__notfound\">\n  <img class=\"notice-icon__notfound-img\" *ngIf=\"data.emptyImage\" src=\"{{ data.emptyImage }}\" alt=\"not found\" />\n  <p>{{ data.emptyText || locale.emptyText }}</p>\n</div>\n<ng-template #listTpl>\n  <nz-list [nzDataSource]=\"data.list\" [nzRenderItem]=\"item\">\n    <ng-template #item let-item>\n      <nz-list-item (click)=\"onClick(item)\" [ngClass]=\"{ 'notice-icon__item-read': item.read }\">\n        <nz-list-item-meta [nzTitle]=\"nzTitle\" [nzDescription]=\"nzDescription\" [nzAvatar]=\"item.avatar\">\n          <ng-template #nzTitle>\n            {{ item.title }}\n            <div class=\"notice-icon__item-extra\" *ngIf=\"item.extra\">\n              <nz-tag [nzColor]=\"item.color\">{{ item.extra }}</nz-tag>\n            </div>\n          </ng-template>\n          <ng-template #nzDescription>\n            <div *ngIf=\"item.description\" class=\"notice-icon__item-desc\">{{ item.description }}</div>\n            <div *ngIf=\"item.datetime\" class=\"notice-icon__item-time\">{{ item.datetime }}</div>\n          </ng-template>\n        </nz-list-item-meta>\n      </nz-list-item>\n    </ng-template>\n  </nz-list>\n  <div class=\"notice-icon__clear\" (click)=\"onClear()\">{{ data.clearText || locale.clearText }}</div>\n</ng-template>\n", directives: [{ type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzListComponent, selector: "nz-list, [nz-list]", inputs: ["nzBordered", "nzGrid", "nzItemLayout", "nzRenderItem", "nzLoading", "nzLoadMore", "nzSize", "nzSplit", "nzDataSource", "nzHeader", "nzFooter", "nzPagination", "nzNoResult"], exportAs: ["nzList"] }, { type: i2.NzListItemComponent, selector: "nz-list-item, [nz-list-item]", inputs: ["nzActions", "nzExtra", "nzNoFlex", "nzContent"], exportAs: ["nzListItem"] }, { type: i3.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i2.NzListItemMetaComponent, selector: "nz-list-item-meta, [nz-list-item-meta]", inputs: ["nzAvatar", "nzTitle", "nzDescription"], exportAs: ["nzListItemMeta"] }, { type: i3$1.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzChecked", "nzColor"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }], encapsulation: i0.ViewEncapsulation.None });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NoticeIconTabComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'notice-icon-tab',
+                        exportAs: 'noticeIconTab',
+                        templateUrl: './notice-icon-tab.component.html',
+                        preserveWhitespaces: false,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { locale: [{
+                    type: i0.Input
+                }], data: [{
+                    type: i0.Input
+                }], select: [{
+                    type: i0.Output
+                }], clear: [{
+                    type: i0.Output
+                }] });
+    })();
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -370,16 +377,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: notice-icon.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var NoticeIconComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18n
-         * @param {?} cdr
-         */
         function NoticeIconComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
@@ -389,84 +387,36 @@
             this.popoverVisible = false;
             this.btnClass = '';
             this.btnIconClass = '';
-            this.select = new core.EventEmitter();
-            this.clear = new core.EventEmitter();
-            this.popoverVisibleChange = new core.EventEmitter();
+            this.select = new i0.EventEmitter();
+            this.clear = new i0.EventEmitter();
+            this.popoverVisibleChange = new i0.EventEmitter();
         }
-        /**
-         * @param {?} result
-         * @return {?}
-         */
         NoticeIconComponent.prototype.onVisibleChange = function (result) {
             this.popoverVisibleChange.emit(result);
         };
-        /**
-         * @param {?} i
-         * @return {?}
-         */
         NoticeIconComponent.prototype.onSelect = function (i) {
             this.select.emit(i);
         };
-        /**
-         * @param {?} title
-         * @return {?}
-         */
         NoticeIconComponent.prototype.onClear = function (title) {
             this.clear.emit(title);
         };
-        /**
-         * @return {?}
-         */
         NoticeIconComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.i18n$ = this.i18n.change.subscribe(( /**
-             * @return {?}
-             */function () {
+            this.i18n$ = this.i18n.change.subscribe(function () {
                 _this.locale = _this.i18n.getData('noticeIcon');
                 _this.cdr.markForCheck();
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         NoticeIconComponent.prototype.ngOnChanges = function () {
             this.cdr.markForCheck();
         };
-        /**
-         * @return {?}
-         */
         NoticeIconComponent.prototype.ngOnDestroy = function () {
             this.i18n$.unsubscribe();
         };
         return NoticeIconComponent;
     }());
-    NoticeIconComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'notice-icon',
-                    exportAs: 'noticeIcon',
-                    template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" [ngClass]=\"btnClass\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon nzType=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<div\n  *ngIf=\"data?.length > 0\"\n  nz-dropdown\n  [nzVisible]=\"popoverVisible\"\n  (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\"\n  nzPlacement=\"bottomRight\"\n  [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\"\n  [nzDropdownMenu]=\"noticeMenu\"\n>\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown-menu #noticeMenu=\"nzDropdownMenu\">\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown-menu>\n",
-                    host: { '[class.notice-icon__btn]': 'true' },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    /** @nocollapse */
-    NoticeIconComponent.ctorParameters = function () { return [
-        { type: theme.DelonLocaleService },
-        { type: core.ChangeDetectorRef }
-    ]; };
-    NoticeIconComponent.propDecorators = {
-        data: [{ type: core.Input }],
-        count: [{ type: core.Input }],
-        loading: [{ type: core.Input }],
-        popoverVisible: [{ type: core.Input }],
-        btnClass: [{ type: core.Input }],
-        btnIconClass: [{ type: core.Input }],
-        select: [{ type: core.Output }],
-        clear: [{ type: core.Output }],
-        popoverVisibleChange: [{ type: core.Output }]
-    };
+    /** @nocollapse */ NoticeIconComponent.ɵfac = function NoticeIconComponent_Factory(t) { return new (t || NoticeIconComponent)(i0.ɵɵdirectiveInject(i1.DelonLocaleService), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
+    /** @nocollapse */ NoticeIconComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: NoticeIconComponent, selector: "notice-icon", inputs: { data: "data", count: "count", loading: "loading", popoverVisible: "popoverVisible", btnClass: "btnClass", btnIconClass: "btnIconClass" }, outputs: { select: "select", clear: "clear", popoverVisibleChange: "popoverVisibleChange" }, host: { properties: { "class.notice-icon__btn": "true" } }, exportAs: ["noticeIcon"], usesOnChanges: true, ngImport: i0__namespace, template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count\" [ngClass]=\"btnClass\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <i nz-icon nzType=\"bell\" [ngClass]=\"btnIconClass\"></i>\n  </nz-badge>\n</ng-template>\n<div *ngIf=\"data?.length === 0\">\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<div\n  *ngIf=\"data?.length > 0\"\n  nz-dropdown\n  [nzVisible]=\"popoverVisible\"\n  (nzVisibleChange)=\"onVisibleChange($event)\"\n  nzTrigger=\"click\"\n  nzPlacement=\"bottomRight\"\n  [nzOverlayClassName]=\"['header-dropdown', 'notice-icon']\"\n  [nzDropdownMenu]=\"noticeMenu\"\n>\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\"></ng-template>\n</div>\n<nz-dropdown-menu #noticeMenu=\"nzDropdownMenu\">\n  <nz-spin [nzSpinning]=\"loading\" [nzDelay]=\"0\">\n    <nz-tabset nzSelectedIndex=\"0\">\n      <nz-tab *ngFor=\"let i of data\" [nzTitle]=\"i.title\">\n        <notice-icon-tab [locale]=\"locale\" [data]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\"></notice-icon-tab>\n      </nz-tab>\n    </nz-tabset>\n  </nz-spin>\n</nz-dropdown-menu>\n", directives: [{ type: i2$1.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset"], exportAs: ["nzBadge"] }, { type: i3.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i4.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i3.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i5.NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzHasBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { type: i5.NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { type: i6.NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { type: i7.NzTabSetComponent, selector: "nz-tabset", inputs: ["nzTabPosition", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzSelectedIndex", "nzTabBarExtraContent"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabset"] }, { type: i3.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i7.NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { type: NoticeIconTabComponent, selector: "notice-icon-tab", inputs: ["locale", "data"], outputs: ["select", "clear"], exportAs: ["noticeIconTab"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
@@ -479,79 +429,91 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], NoticeIconComponent.prototype, "popoverVisible", void 0);
-    if (false) {
-        /** @type {?} */
-        NoticeIconComponent.ngAcceptInputType_count;
-        /** @type {?} */
-        NoticeIconComponent.ngAcceptInputType_loading;
-        /** @type {?} */
-        NoticeIconComponent.ngAcceptInputType_popoverVisible;
-        /**
-         * @type {?}
-         * @private
-         */
-        NoticeIconComponent.prototype.i18n$;
-        /** @type {?} */
-        NoticeIconComponent.prototype.locale;
-        /** @type {?} */
-        NoticeIconComponent.prototype.data;
-        /** @type {?} */
-        NoticeIconComponent.prototype.count;
-        /** @type {?} */
-        NoticeIconComponent.prototype.loading;
-        /** @type {?} */
-        NoticeIconComponent.prototype.popoverVisible;
-        /** @type {?} */
-        NoticeIconComponent.prototype.btnClass;
-        /** @type {?} */
-        NoticeIconComponent.prototype.btnIconClass;
-        /** @type {?} */
-        NoticeIconComponent.prototype.select;
-        /** @type {?} */
-        NoticeIconComponent.prototype.clear;
-        /** @type {?} */
-        NoticeIconComponent.prototype.popoverVisibleChange;
-        /**
-         * @type {?}
-         * @private
-         */
-        NoticeIconComponent.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        NoticeIconComponent.prototype.cdr;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NoticeIconComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'notice-icon',
+                        exportAs: 'noticeIcon',
+                        templateUrl: './notice-icon.component.html',
+                        host: { '[class.notice-icon__btn]': 'true' },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], function () { return [{ type: i1.DelonLocaleService }, { type: i0.ChangeDetectorRef }]; }, { data: [{
+                    type: i0.Input
+                }], count: [{
+                    type: i0.Input
+                }], loading: [{
+                    type: i0.Input
+                }], popoverVisible: [{
+                    type: i0.Input
+                }], btnClass: [{
+                    type: i0.Input
+                }], btnIconClass: [{
+                    type: i0.Input
+                }], select: [{
+                    type: i0.Output
+                }], clear: [{
+                    type: i0.Output
+                }], popoverVisibleChange: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /** @type {?} */
     var COMPONENTS = [NoticeIconComponent];
     var NoticeIconModule = /** @class */ (function () {
         function NoticeIconModule() {
         }
         return NoticeIconModule;
     }());
-    NoticeIconModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [
-                        common.CommonModule,
-                        theme.DelonLocaleModule,
-                        badge.NzBadgeModule,
-                        dropdown.NzDropDownModule,
-                        icon.NzIconModule,
-                        list.NzListModule,
-                        spin.NzSpinModule,
-                        tabs.NzTabsModule,
-                        tag.NzTagModule,
-                    ],
-                    declarations: __spread(COMPONENTS, [NoticeIconTabComponent]),
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ NoticeIconModule.ɵmod = i0.ɵɵdefineNgModule({ type: NoticeIconModule });
+    /** @nocollapse */ NoticeIconModule.ɵinj = i0.ɵɵdefineInjector({ factory: function NoticeIconModule_Factory(t) { return new (t || NoticeIconModule)(); }, imports: [[
+                i3.CommonModule,
+                i1.DelonLocaleModule,
+                i2$1.NzBadgeModule,
+                i5.NzDropDownModule,
+                i4.NzIconModule,
+                i2.NzListModule,
+                i6.NzSpinModule,
+                i7.NzTabsModule,
+                i3$1.NzTagModule,
+            ]] });
+    (function () {
+        (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(NoticeIconModule, { declarations: [NoticeIconComponent, NoticeIconTabComponent], imports: [i3.CommonModule,
+                i1.DelonLocaleModule,
+                i2$1.NzBadgeModule,
+                i5.NzDropDownModule,
+                i4.NzIconModule,
+                i2.NzListModule,
+                i6.NzSpinModule,
+                i7.NzTabsModule,
+                i3$1.NzTagModule], exports: [NoticeIconComponent] });
+    })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NoticeIconModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [
+                            i3.CommonModule,
+                            i1.DelonLocaleModule,
+                            i2$1.NzBadgeModule,
+                            i5.NzDropDownModule,
+                            i4.NzIconModule,
+                            i2.NzListModule,
+                            i6.NzSpinModule,
+                            i7.NzTabsModule,
+                            i3$1.NzTagModule,
+                        ],
+                        declarations: __spread(COMPONENTS, [NoticeIconTabComponent]),
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: noticeIcon.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.NoticeIconComponent = NoticeIconComponent;

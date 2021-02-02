@@ -4,6 +4,7 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFCascaderWidgetSchema } from './schema';
+import * as i0 from "@angular/core";
 export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> implements OnInit {
     clearText: string;
     showArrow: boolean;
@@ -17,4 +18,6 @@ export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSche
     _change(value: any[] | null): void;
     _selectionChange(options: NzCascaderOption[]): void;
     _clear(): void;
+    static ɵfac: i0.ɵɵFactoryDef<CascaderWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<CascaderWidget, "sf-cascader", never, {}, {}, never, never>;
 }

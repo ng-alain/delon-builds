@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/core/delon-chart-core.js",
   "fesm2015": "../fesm2015/delon-chart-core.js",
   "typings": "delon-chart-core.d.ts",
-  "metadata": "delon-chart-core.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/core"
 }

@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "11.3.1-0283d8d1",
+  "version": "11.3.1-96bcfbef",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,6 +29,8 @@
   "esm2015": "esm2015/delon-util.js",
   "fesm2015": "fesm2015/delon-util.js",
   "typings": "delon-util.d.ts",
-  "metadata": "delon-util.metadata.json",
-  "sideEffects": false
+  "sideEffects": false,
+  "scripts": {
+    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
+  }
 }

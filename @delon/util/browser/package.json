@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/browser/browser.js",
   "fesm2015": "../fesm2015/browser.js",
   "typings": "browser.d.ts",
-  "metadata": "browser.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/browser"
 }

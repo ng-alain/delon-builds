@@ -3,6 +3,7 @@ import { NgZone } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { XlsxExportOptions, XlsxExportResult } from './xlsx.types';
+import * as i0 from "@angular/core";
 export declare class XlsxService {
     private http;
     private lazy;
@@ -34,4 +35,6 @@ export declare class XlsxService {
      * - `703` => `AAA`
      */
     numberToSchema(val: number): string;
+    static ɵfac: i0.ɵɵFactoryDef<XlsxService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<XlsxService>;
 }

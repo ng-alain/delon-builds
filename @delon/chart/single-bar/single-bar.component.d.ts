@@ -1,5 +1,6 @@
 import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import * as i0 from "@angular/core";
 export declare class G2SingleBarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_barSize: NumberInput;
@@ -20,4 +21,6 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     textStyle: any;
     install(): void;
     attachChart(): void;
+    static ɵfac: i0.ɵɵFactoryDef<G2SingleBarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<G2SingleBarComponent, "g2-single-bar", ["g2SingleBar"], { "plusColor": "plusColor"; "minusColor": "minusColor"; "height": "height"; "barSize": "barSize"; "min": "min"; "max": "max"; "value": "value"; "line": "line"; "format": "format"; "padding": "padding"; "textStyle": "textStyle"; }, {}, never, never>;
 }

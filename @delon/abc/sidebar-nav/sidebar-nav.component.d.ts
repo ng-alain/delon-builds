@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Menu, MenuService, SettingsService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { Nav } from './sidebar-nav.types';
+import * as i0 from "@angular/core";
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
  */
@@ -55,4 +56,6 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     private get isPad();
     private underPad;
     private openAside;
+    static ɵfac: i0.ɵɵFactoryDef<SidebarNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<SidebarNavComponent, "sidebar-nav", ["sidebarNav"], { "disabledAcl": "disabledAcl"; "autoCloseUnderPad": "autoCloseUnderPad"; "recursivePath": "recursivePath"; "openStrictly": "openStrictly"; "maxLevelIcon": "maxLevelIcon"; }, { "select": "select"; }, never, never>;
 }

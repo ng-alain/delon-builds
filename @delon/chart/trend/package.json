@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/trend/trend.js",
   "fesm2015": "../fesm2015/trend.js",
   "typings": "trend.d.ts",
-  "metadata": "trend.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/trend"
 }

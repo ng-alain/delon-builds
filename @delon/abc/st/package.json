@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/st/table.js",
   "fesm2015": "../fesm2015/table.js",
   "typings": "table.d.ts",
-  "metadata": "table.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/st"
 }

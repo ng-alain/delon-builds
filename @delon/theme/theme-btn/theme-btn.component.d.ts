@@ -2,6 +2,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
+import * as i0 from "@angular/core";
 export declare const ThemeBtnStorageKey = "site-theme";
 export interface ThemeBtnType {
     key: string;
@@ -26,4 +27,6 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private updateChartTheme;
     onThemeChange(theme: string): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<ThemeBtnComponent, [null, null, null, null, { optional: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<ThemeBtnComponent, "theme-btn", never, { "types": "types"; "devTips": "devTips"; }, {}, never, never>;
 }

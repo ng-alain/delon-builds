@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/custom/g2Custom.js",
   "fesm2015": "../fesm2015/g2Custom.js",
   "typings": "g2Custom.d.ts",
-  "metadata": "g2Custom.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/custom"
 }

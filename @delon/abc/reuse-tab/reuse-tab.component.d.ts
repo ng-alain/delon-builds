@@ -4,6 +4,7 @@ import { AlainI18NService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
+import * as i0 from "@angular/core";
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
     private cdr;
@@ -58,4 +59,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<ReuseTabComponent, [null, null, null, null, { optional: true; }, null]>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": "mode"; "i18n": "i18n"; "debug": "debug"; "max": "max"; "tabMaxWidth": "tabMaxWidth"; "excludes": "excludes"; "allowClose": "allowClose"; "keepingScroll": "keepingScroll"; "keepingScrollContainer": "keepingScrollContainer"; "customContextMenu": "customContextMenu"; "tabBarExtraContent": "tabBarExtraContent"; "tabBarGutter": "tabBarGutter"; "tabBarStyle": "tabBarStyle"; "tabType": "tabType"; "routeParamMatchMode": "routeParamMatchMode"; }, { "change": "change"; "close": "close"; }, never, never>;
 }

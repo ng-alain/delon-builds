@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/ellipsis/ellipsis.js",
   "fesm2015": "../fesm2015/ellipsis.js",
   "typings": "ellipsis.d.ts",
-  "metadata": "ellipsis.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/ellipsis"
 }

@@ -3,6 +3,7 @@ import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';
+import * as i0 from "@angular/core";
 export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
 /**
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
@@ -28,4 +29,6 @@ export declare class TokenService implements ITokenService, OnDestroy {
     private builderRefresh;
     private cleanRefresh;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<TokenService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<TokenService>;
 }

@@ -5,7 +5,6 @@
   "esm2015": "../esm2015/mini-bar/mini-bar.js",
   "fesm2015": "../fesm2015/mini-bar.js",
   "typings": "mini-bar.d.ts",
-  "metadata": "mini-bar.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/mini-bar"
 }

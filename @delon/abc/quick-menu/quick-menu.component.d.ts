@@ -1,5 +1,6 @@
 import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import * as i0 from "@angular/core";
 export declare class QuickMenuComponent implements OnInit, OnChanges {
     private cdr;
     private el;
@@ -24,4 +25,6 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     private setStyle;
     ngOnInit(): void;
     ngOnChanges(): void;
+    static ɵfac: i0.ɵɵFactoryDef<QuickMenuComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<QuickMenuComponent, "quick-menu", ["quickMenu"], { "icon": "icon"; "top": "top"; "width": "width"; "bgColor": "bgColor"; "borderColor": "borderColor"; "expand": "expand"; }, { "expandChange": "expandChange"; }, never, ["*"]>;
 }

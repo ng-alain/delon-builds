@@ -1,318 +1,122 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
+import { ɵɵinject, NgZone, ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: zip.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function ZipWriteOptions() { }
-if (false) {
-    /**
-     * save file name, default: `download.zip`
-     * @type {?|undefined}
-     */
-    ZipWriteOptions.prototype.filename;
-    /** @type {?|undefined} */
-    ZipWriteOptions.prototype.options;
-    /**
-     * The optional function called on each internal update with the metadata.
-     * @type {?|undefined}
-     */
-    ZipWriteOptions.prototype.update;
-    /**
-     * triggers when saveas
-     * @type {?|undefined}
-     */
-    ZipWriteOptions.prototype.callback;
-}
-/**
- * @record
- */
-function ZipSaveOptions() { }
-if (false) {
-    /**
-     * 指定保存文件名，默认 `download.zip`
-     * @type {?|undefined}
-     */
-    ZipSaveOptions.prototype.filename;
-    /**
-     * JSZip [generateAsync](https://stuk.github.io/jszip/documentation/api_jszip/generate_async.html) 方法的 `options` 选项
-     * @type {?|undefined}
-     */
-    ZipSaveOptions.prototype.options;
-    /**
-     * JSZip [generateAsync](https://stuk.github.io/jszip/documentation/api_jszip/generate_async.html) 方法的 `onUpdate` 回调
-     * @type {?|undefined}
-     */
-    ZipSaveOptions.prototype.update;
-    /**
-     * 保存前回调方法
-     * @type {?|undefined}
-     */
-    ZipSaveOptions.prototype.callback;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: zip.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ZipService {
-    /**
-     * @param {?} http
-     * @param {?} lazy
-     * @param {?} configSrv
-     * @param {?} ngZone
-     */
     constructor(http, lazy, configSrv, ngZone) {
         this.http = http;
         this.lazy = lazy;
         this.ngZone = ngZone;
-        this.cog = (/** @type {?} */ (configSrv.merge('zip', {
+        this.cog = configSrv.merge('zip', {
             url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
             utils: [],
-        })));
+        });
     }
-    /**
-     * @private
-     * @return {?}
-     */
     init() {
-        return this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.utils))));
+        return this.lazy.load([this.cog.url].concat(this.cog.utils));
     }
-    /**
-     * @private
-     * @param {?} zip
-     * @return {?}
-     */
     check(zip) {
         if (!zip)
             throw new Error('get instance via `ZipService.create()`');
     }
-    /**
-     * 解压
-     * @param {?} fileOrUrl
-     * @param {?=} options
-     * @return {?}
-     */
+    /** 解压 */
     read(fileOrUrl, options) {
-        return new Promise((/**
-         * @param {?} resolve
-         * @param {?} reject
-         * @return {?}
-         */
-        (resolve, reject) => {
-            /** @type {?} */
-            const resolveCallback = (/**
-             * @param {?} data
-             * @return {?}
-             */
-            (data) => {
-                this.ngZone.run((/**
-                 * @return {?}
-                 */
-                () => resolve(data)));
-            });
-            this.init().then((/**
-             * @return {?}
-             */
-            () => {
-                this.ngZone.runOutsideAngular((/**
-                 * @return {?}
-                 */
-                () => {
+        return new Promise((resolve, reject) => {
+            const resolveCallback = (data) => {
+                this.ngZone.run(() => resolve(data));
+            };
+            this.init().then(() => {
+                this.ngZone.runOutsideAngular(() => {
                     // from url
                     if (typeof fileOrUrl === 'string') {
-                        this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
-                         * @param {?} res
-                         * @return {?}
-                         */
-                        (res) => {
-                            JSZip.loadAsync(res, options).then((/**
-                             * @param {?} ret
-                             * @return {?}
-                             */
-                            (ret) => resolveCallback(ret)));
-                        }), (/**
-                         * @param {?} err
-                         * @return {?}
-                         */
-                        (err) => {
+                        this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
+                            JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
+                        }, (err) => {
                             reject(err);
-                        }));
+                        });
                         return;
                     }
                     // from file
-                    /** @type {?} */
                     const reader = new FileReader();
-                    reader.onload = (/**
-                     * @param {?} e
-                     * @return {?}
-                     */
-                    (e) => {
-                        JSZip.loadAsync(e.target.result, options).then((/**
-                         * @param {?} ret
-                         * @return {?}
-                         */
-                        (ret) => resolveCallback(ret)));
-                    });
-                    reader.readAsBinaryString((/** @type {?} */ (fileOrUrl)));
-                }));
-            }));
-        }));
+                    reader.onload = (e) => {
+                        JSZip.loadAsync(e.target.result, options).then((ret) => resolveCallback(ret));
+                    };
+                    reader.readAsBinaryString(fileOrUrl);
+                });
+            });
+        });
     }
-    /**
-     * 创建 Zip 实例，用于创建压缩文件
-     * @return {?}
-     */
+    /** 创建 Zip 实例，用于创建压缩文件 */
     create() {
-        return new Promise((/**
-         * @param {?} resolve
-         * @return {?}
-         */
-        resolve => {
-            this.init().then((/**
-             * @return {?}
-             */
-            () => {
-                /** @type {?} */
+        return new Promise(resolve => {
+            this.init().then(() => {
                 const zipFile = new JSZip();
                 resolve(zipFile);
-            }));
-        }));
+            });
+        });
     }
     /**
      * 下载URL资源并写入 zip
-     * @param {?} zip Zip 实例
-     * @param {?} path Zip 路径，例如： `text.txt`、`txt/hi.txt`
-     * @param {?} url URL 地址
-     * @return {?}
+     * @param zip Zip 实例
+     * @param path Zip 路径，例如： `text.txt`、`txt/hi.txt`
+     * @param url URL 地址
      */
     pushUrl(zip, path, url) {
         this.check(zip);
-        return new Promise((/**
-         * @param {?} resolve
-         * @param {?} reject
-         * @return {?}
-         */
-        (resolve, reject) => {
-            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe((/**
-             * @param {?} res
-             * @return {?}
-             */
-            (res) => {
+        return new Promise((resolve, reject) => {
+            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe((res) => {
                 zip.file(path, res);
                 resolve();
-            }), (/**
-             * @param {?} error
-             * @return {?}
-             */
-            (error) => {
+            }, (error) => {
                 reject({ url, error });
-            }));
-        }));
+            });
+        });
     }
     /**
      * 保存Zip并执行打开保存对话框
      *
-     * @param {?} zip zip 对象，务必通过 `create()` 构建
-     * @param {?=} options 额外参数，
-     * @return {?}
+     * @param zip zip 对象，务必通过 `create()` 构建
+     * @param options 额外参数，
      */
     save(zip, options) {
         this.check(zip);
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({}, options)));
-        return new Promise((/**
-         * @param {?} resolve
-         * @param {?} reject
-         * @return {?}
-         */
-        (resolve, reject) => {
-            zip.generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update).then((/**
-             * @param {?} data
-             * @return {?}
-             */
-            (data) => {
+        const opt = Object.assign({}, options);
+        return new Promise((resolve, reject) => {
+            zip.generateAsync(Object.assign({ type: 'blob' }, opt.options), opt.update).then((data) => {
                 if (opt.callback)
                     opt.callback(data);
                 saveAs(data, opt.filename || 'download.zip');
                 resolve();
-            }), (/**
-             * @param {?} err
-             * @return {?}
-             */
-            (err) => {
+            }, (err) => {
                 reject(err);
-            }));
-        }));
+            });
+        });
     }
 }
-ZipService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-/** @nocollapse */
-ZipService.ctorParameters = () => [
-    { type: HttpClient },
-    { type: LazyService },
-    { type: AlainConfigService },
-    { type: NgZone }
-];
-/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: ZipService, providedIn: "root" });
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ZipService.prototype.cog;
-    /**
-     * @type {?}
-     * @private
-     */
-    ZipService.prototype.http;
-    /**
-     * @type {?}
-     * @private
-     */
-    ZipService.prototype.lazy;
-    /**
-     * @type {?}
-     * @private
-     */
-    ZipService.prototype.ngZone;
-}
+/** @nocollapse */ ZipService.ɵfac = function ZipService_Factory(t) { return new (t || ZipService)(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); };
+/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ token: ZipService, factory: ZipService.ɵfac, providedIn: 'root' });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(ZipService, [{
+        type: Injectable,
+        args: [{ providedIn: 'root' }]
+    }], function () { return [{ type: HttpClient }, { type: LazyService }, { type: AlainConfigService }, { type: NgZone }]; }, null); })();
 
-/**
- * @fileoverview added by tsickle
- * Generated from: zip.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ZipModule {
 }
-ZipModule.decorators = [
-    { type: NgModule, args: [{
+/** @nocollapse */ ZipModule.ɵmod = ɵɵdefineNgModule({ type: ZipModule });
+/** @nocollapse */ ZipModule.ɵinj = ɵɵdefineInjector({ factory: function ZipModule_Factory(t) { return new (t || ZipModule)(); }, imports: [[CommonModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(ZipModule, { imports: [CommonModule] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(ZipModule, [{
+        type: NgModule,
+        args: [{
                 imports: [CommonModule],
-            },] }
-];
+            }]
+    }], null, null); })();
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: zip.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { ZipModule, ZipService };

@@ -7,7 +7,29 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/number-info', ['exports', '@angular/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['number-info'] = {}), global.ng.core, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, decorator, common, outlet, icon) { 'use strict';
+}(this, (function (exports, i0, decorator, i1, i2, i3) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,128 +340,78 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: number-info.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var NumberInfoComponent = /** @class */ (function () {
         function NumberInfoComponent() {
-            /**
-             * 状态样式
-             */
+            /** 状态样式 */
             this.theme = 'light';
-            /**
-             * 设置数字和描述直接的间距（像素）
-             */
+            /** 设置数字和描述直接的间距（像素） */
             this.gap = 8;
         }
         return NumberInfoComponent;
     }());
-    NumberInfoComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'number-info',
-                    exportAs: 'numberInfo',
-                    template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *nzStringTemplateOutlet=\"subTitle\">{{ subTitle }}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{ 'margin-top.px': gap }\">\n  <span class=\"number-info__value-text\">\n    <ng-container *nzStringTemplateOutlet=\"total\">{{ total }}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{ suffix }}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *nzStringTemplateOutlet=\"subTotal\">{{ subTotal }}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{ status }}\"></i>\n  </span>\n</div>\n",
-                    host: {
-                        '[class.number-info]': "true",
-                        '[class.number-info__light]': "theme === 'light'",
-                        '[class.number-info__default]': "theme === 'default'",
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    NumberInfoComponent.propDecorators = {
-        title: [{ type: core.Input }],
-        subTitle: [{ type: core.Input }],
-        total: [{ type: core.Input }],
-        subTotal: [{ type: core.Input }],
-        suffix: [{ type: core.Input }],
-        status: [{ type: core.Input }],
-        theme: [{ type: core.Input }],
-        gap: [{ type: core.Input }]
-    };
+    /** @nocollapse */ NumberInfoComponent.ɵfac = function NumberInfoComponent_Factory(t) { return new (t || NumberInfoComponent)(); };
+    /** @nocollapse */ NumberInfoComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: NumberInfoComponent, selector: "number-info", inputs: { title: "title", subTitle: "subTitle", total: "total", subTotal: "subTotal", suffix: "suffix", status: "status", theme: "theme", gap: "gap" }, host: { properties: { "class.number-info": "true", "class.number-info__light": "theme === 'light'", "class.number-info__default": "theme === 'default'" } }, exportAs: ["numberInfo"], ngImport: i0__namespace, template: "<div *ngIf=\"title\" class=\"number-info__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n<div *ngIf=\"subTitle\" class=\"number-info__title-sub\">\n  <ng-container *nzStringTemplateOutlet=\"subTitle\">{{ subTitle }}</ng-container>\n</div>\n<div class=\"number-info__value\" [ngStyle]=\"{ 'margin-top.px': gap }\">\n  <span class=\"number-info__value-text\">\n    <ng-container *nzStringTemplateOutlet=\"total\">{{ total }}</ng-container>\n    <em class=\"number-info__value-suffix\" *ngIf=\"suffix\">{{ suffix }}</em>\n  </span>\n  <span *ngIf=\"status || subTotal\" class=\"number-info__value-text number-info__value-sub\">\n    <ng-container *nzStringTemplateOutlet=\"subTotal\">{{ subTotal }}</ng-container>\n    <i *ngIf=\"status\" nz-icon nzType=\"caret-{{ status }}\"></i>\n  </span>\n</div>\n", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { type: i1.NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { type: i3.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], NumberInfoComponent.prototype, "gap", void 0);
-    if (false) {
-        /** @type {?} */
-        NumberInfoComponent.ngAcceptInputType_gap;
-        /**
-         * 标题
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.title;
-        /**
-         * 子标题
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.subTitle;
-        /**
-         * 总量
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.total;
-        /**
-         * 总量后缀
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.subTotal;
-        /**
-         * 子总量
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.suffix;
-        /**
-         * 增加状态
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.status;
-        /**
-         * 状态样式
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.theme;
-        /**
-         * 设置数字和描述直接的间距（像素）
-         * @type {?}
-         */
-        NumberInfoComponent.prototype.gap;
-    }
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumberInfoComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'number-info',
+                        exportAs: 'numberInfo',
+                        templateUrl: './number-info.component.html',
+                        host: {
+                            '[class.number-info]': "true",
+                            '[class.number-info__light]': "theme === 'light'",
+                            '[class.number-info__default]': "theme === 'default'",
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { title: [{
+                    type: i0.Input
+                }], subTitle: [{
+                    type: i0.Input
+                }], total: [{
+                    type: i0.Input
+                }], subTotal: [{
+                    type: i0.Input
+                }], suffix: [{
+                    type: i0.Input
+                }], status: [{
+                    type: i0.Input
+                }], theme: [{
+                    type: i0.Input
+                }], gap: [{
+                    type: i0.Input
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: number-info.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [NumberInfoComponent];
     var NumberInfoModule = /** @class */ (function () {
         function NumberInfoModule() {
         }
         return NumberInfoModule;
     }());
-    NumberInfoModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule, icon.NzIconModule, outlet.NzOutletModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ NumberInfoModule.ɵmod = i0.ɵɵdefineNgModule({ type: NumberInfoModule });
+    /** @nocollapse */ NumberInfoModule.ɵinj = i0.ɵɵdefineInjector({ factory: function NumberInfoModule_Factory(t) { return new (t || NumberInfoModule)(); }, imports: [[i1.CommonModule, i3.NzIconModule, i2.NzOutletModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(NumberInfoModule, { declarations: [NumberInfoComponent], imports: [i1.CommonModule, i3.NzIconModule, i2.NzOutletModule], exports: [NumberInfoComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumberInfoModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [i1.CommonModule, i3.NzIconModule, i2.NzOutletModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: number-info.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.NumberInfoComponent = NumberInfoComponent;

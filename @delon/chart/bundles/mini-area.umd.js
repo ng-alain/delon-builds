@@ -7,7 +7,29 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/mini-area', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-area'] = {}), global.ng.core, global.delon.chart.core, global.decorator, global.ng.common));
-}(this, (function (exports, core, core$1, decorator, common) { 'use strict';
+}(this, (function (exports, i0, core, decorator, common) { 'use strict';
+
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,27 +340,6 @@
         return value;
     }
 
-    /**
-     * @record
-     */
-    function G2MiniAreaData() { }
-    if (false) {
-        /** @type {?} */
-        G2MiniAreaData.prototype.x;
-        /** @type {?} */
-        G2MiniAreaData.prototype.y;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function G2MiniAreaClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2MiniAreaClickItem.prototype.item;
-        /** @type {?} */
-        G2MiniAreaClickItem.prototype.ev;
-    }
     var G2MiniAreaComponent = /** @class */ (function (_super) {
         __extends(G2MiniAreaComponent, _super);
         function G2MiniAreaComponent() {
@@ -355,18 +356,14 @@
             _this.data = [];
             _this.yTooltipSuffix = '';
             _this.tooltipType = 'default';
-            _this.clickItem = new core.EventEmitter();
+            _this.clickItem = new i0.EventEmitter();
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2MiniAreaComponent.prototype.install = function () {
             var _this = this;
             var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: fit,
                 height: height,
@@ -389,7 +386,6 @@
                 chart.axis('y', false);
             }
             chart.legend(false);
-            /** @type {?} */
             var tooltipOption = {
                 showTitle: false,
                 showMarkers: true,
@@ -402,7 +398,7 @@
             };
             if (tooltipType === 'mini') {
                 tooltipOption.position = 'top';
-                ( /** @type {?} */(tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+                tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
                 tooltipOption.itemTpl = "<li>{value}</li>";
                 tooltipOption.offset = 0;
             }
@@ -410,45 +406,25 @@
             chart
                 .area()
                 .position('x*y')
-                .tooltip('x*y', ( /**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }))
+                .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); })
                 .shape('smooth');
             if (line) {
                 chart.line().position('x*y').shape('smooth').tooltip(false);
             }
-            chart.on("plot:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                /** @type {?} */
+            chart.on("plot:click", function (ev) {
                 var records = _this._chart.getSnapRecords({ x: ev.x, y: ev.y });
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
-            }));
+                _this.ngZone.run(function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); });
+            });
             chart.render();
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2MiniAreaComponent.prototype.attachChart = function () {
             var _a = this, _chart = _a._chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
             if (!_chart || !data || data.length <= 0) {
                 return;
             }
-            /** @type {?} */
             var geoms = _chart.geometries;
-            geoms.forEach(( /**
-             * @param {?} g
-             * @return {?}
-             */function (/**
-             * @param {?} g
-             * @return {?}
-             */ g) { return g.color(color); }));
+            geoms.forEach(function (g) { return g.color(color); });
             if (line) {
                 geoms[1].color(borderColor).size(borderWidth);
             }
@@ -460,36 +436,9 @@
             _chart.render();
         };
         return G2MiniAreaComponent;
-    }(core$1.G2BaseComponent));
-    G2MiniAreaComponent.decorators = [
-        { type: core.Component, args: [{
-                    selector: 'g2-mini-area',
-                    exportAs: 'g2MiniArea',
-                    template: "",
-                    host: {
-                        '[style.height.px]': 'height',
-                    },
-                    preserveWhitespaces: false,
-                    changeDetection: core.ChangeDetectionStrategy.OnPush,
-                    encapsulation: core.ViewEncapsulation.None
-                }] }
-    ];
-    G2MiniAreaComponent.propDecorators = {
-        color: [{ type: core.Input }],
-        borderColor: [{ type: core.Input }],
-        borderWidth: [{ type: core.Input }],
-        height: [{ type: core.Input }],
-        fit: [{ type: core.Input }],
-        line: [{ type: core.Input }],
-        animate: [{ type: core.Input }],
-        xAxis: [{ type: core.Input }],
-        yAxis: [{ type: core.Input }],
-        padding: [{ type: core.Input }],
-        data: [{ type: core.Input }],
-        yTooltipSuffix: [{ type: core.Input }],
-        tooltipType: [{ type: core.Input }],
-        clickItem: [{ type: core.Output }]
-    };
+    }(core.G2BaseComponent));
+    /** @nocollapse */ G2MiniAreaComponent.ɵfac = function G2MiniAreaComponent_Factory(t) { return ɵG2MiniAreaComponent_BaseFactory(t || G2MiniAreaComponent); };
+    /** @nocollapse */ G2MiniAreaComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2MiniAreaComponent, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: "borderWidth", height: "height", fit: "fit", line: "line", animate: "animate", xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0__namespace, template: "", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
@@ -510,77 +459,74 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], G2MiniAreaComponent.prototype, "animate", void 0);
-    if (false) {
-        /** @type {?} */
-        G2MiniAreaComponent.ngAcceptInputType_borderWidth;
-        /** @type {?} */
-        G2MiniAreaComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2MiniAreaComponent.ngAcceptInputType_fit;
-        /** @type {?} */
-        G2MiniAreaComponent.ngAcceptInputType_line;
-        /** @type {?} */
-        G2MiniAreaComponent.ngAcceptInputType_animate;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.color;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.borderColor;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.borderWidth;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.height;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.fit;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.line;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.animate;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.xAxis;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.yAxis;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.padding;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.data;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.yTooltipSuffix;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.tooltipType;
-        /** @type {?} */
-        G2MiniAreaComponent.prototype.clickItem;
-    }
+    var ɵG2MiniAreaComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2MiniAreaComponent);
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniAreaComponent, [{
+                type: i0.Component,
+                args: [{
+                        selector: 'g2-mini-area',
+                        exportAs: 'g2MiniArea',
+                        template: "",
+                        host: {
+                            '[style.height.px]': 'height',
+                        },
+                        preserveWhitespaces: false,
+                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                        encapsulation: i0.ViewEncapsulation.None,
+                    }]
+            }], null, { color: [{
+                    type: i0.Input
+                }], borderColor: [{
+                    type: i0.Input
+                }], borderWidth: [{
+                    type: i0.Input
+                }], height: [{
+                    type: i0.Input
+                }], fit: [{
+                    type: i0.Input
+                }], line: [{
+                    type: i0.Input
+                }], animate: [{
+                    type: i0.Input
+                }], xAxis: [{
+                    type: i0.Input
+                }], yAxis: [{
+                    type: i0.Input
+                }], padding: [{
+                    type: i0.Input
+                }], data: [{
+                    type: i0.Input
+                }], yTooltipSuffix: [{
+                    type: i0.Input
+                }], tooltipType: [{
+                    type: i0.Input
+                }], clickItem: [{
+                    type: i0.Output
+                }] });
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-area.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2MiniAreaComponent];
     var G2MiniAreaModule = /** @class */ (function () {
         function G2MiniAreaModule() {
         }
         return G2MiniAreaModule;
     }());
-    G2MiniAreaModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule],
-                    declarations: COMPONENTS,
-                    exports: COMPONENTS,
-                },] }
-    ];
+    /** @nocollapse */ G2MiniAreaModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2MiniAreaModule });
+    /** @nocollapse */ G2MiniAreaModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2MiniAreaModule_Factory(t) { return new (t || G2MiniAreaModule)(); }, imports: [[common.CommonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2MiniAreaModule, { declarations: [G2MiniAreaComponent], imports: [common.CommonModule], exports: [G2MiniAreaComponent] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniAreaModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule],
+                        declarations: COMPONENTS,
+                        exports: COMPONENTS,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-area.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2MiniAreaComponent = G2MiniAreaComponent;

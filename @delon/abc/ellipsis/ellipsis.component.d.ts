@@ -1,6 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import * as i0 from "@angular/core";
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     private el;
     private ngZone;
@@ -38,4 +39,6 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     refresh(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
+    static ɵfac: i0.ɵɵFactoryDef<EllipsisComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<EllipsisComponent, "ellipsis", ["ellipsis"], { "tooltip": "tooltip"; "length": "length"; "lines": "lines"; "fullWidthRecognition": "fullWidthRecognition"; "tail": "tail"; }, {}, never, ["*"]>;
 }

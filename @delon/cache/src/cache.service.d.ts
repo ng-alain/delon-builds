@@ -4,6 +4,7 @@ import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { CacheNotifyResult, ICacheStore } from './interface';
+import * as i0 from "@angular/core";
 export declare class CacheService implements OnDestroy {
     private store;
     private http;
@@ -137,4 +138,6 @@ export declare class CacheService implements OnDestroy {
     /** 清空所有 `key` 的监听 */
     clearNotify(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDef<CacheService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<CacheService>;
 }

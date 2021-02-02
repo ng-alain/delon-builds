@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/array', ['exports', '@angular/core', '@delon/util/config', 'ng-zorro-antd/core/tree'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.array = {}), global.ng.core, global.delon.util.config, global.tree));
-}(this, (function (exports, i0, i1, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('ng-zorro-antd/core/tree'), require('@delon/util/config')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/array', ['exports', '@angular/core', 'ng-zorro-antd/core/tree', '@delon/util/config'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.array = {}), global.ng.core, global.tree, global.delon.util.config));
+}(this, (function (exports, i0, tree, i1) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -319,11 +319,8 @@
     }
 
     var ArrayService = /** @class */ (function () {
-        /**
-         * @param {?} cog
-         */
         function ArrayService(cog) {
-            this.c = ( /** @type {?} */(cog.merge('utilArray', {
+            this.c = cog.merge('utilArray', {
                 deepMapName: 'deep',
                 parentMapName: 'parent',
                 idMapName: 'id',
@@ -334,44 +331,32 @@
                 selectedMapname: 'selected',
                 expandedMapname: 'expanded',
                 disabledMapname: 'disabled',
-            })));
+            });
         }
         /**
          * 将树结构转换成数组结构
-         * @param {?} tree
-         * @param {?=} options
-         * @return {?}
          */
         ArrayService.prototype.treeToArr = function (tree, options) {
-            /** @type {?} */
-            var opt = ( /** @type {?} */(Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options)));
-            /** @type {?} */
+            var opt = Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
             var result = [];
-            /** @type {?} */
-            var inFn = ( /**
-             * @param {?} list
-             * @param {?} parent
-             * @param {?=} deep
-             * @return {?}
-             */function (list, parent, deep) {
+            var inFn = function (list, parent, deep) {
                 var e_1, _a;
                 if (deep === void 0) { deep = 0; }
                 try {
                     for (var list_1 = __values(list), list_1_1 = list_1.next(); !list_1_1.done; list_1_1 = list_1.next()) {
                         var i = list_1_1.value;
-                        i[( /** @type {?} */(opt.deepMapName))] = deep;
-                        i[( /** @type {?} */(opt.parentMapName))] = parent;
+                        i[opt.deepMapName] = deep;
+                        i[opt.parentMapName] = parent;
                         if (opt.cb) {
                             opt.cb(i, parent, deep);
                         }
                         result.push(i);
-                        /** @type {?} */
-                        var children = i[( /** @type {?} */(opt.childrenMapName))];
+                        var children = i[opt.childrenMapName];
                         if (children != null && Array.isArray(children) && children.length > 0) {
                             inFn(children, i, deep + 1);
                         }
                         if (opt.clearChildren) {
-                            delete i[( /** @type {?} */(opt.childrenMapName))];
+                            delete i[opt.childrenMapName];
                         }
                     }
                 }
@@ -382,57 +367,34 @@
                     }
                     finally { if (e_1) throw e_1.error; }
                 }
-            });
+            };
             inFn(tree, 1);
             return result;
         };
         /**
          * 数组转换成树数据
-         * @param {?} arr
-         * @param {?=} options
-         * @return {?}
          */
         ArrayService.prototype.arrToTree = function (arr, options) {
             var e_2, _a;
-            /** @type {?} */
-            var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+            var opt = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
             if (arr.length === 0) {
                 return [];
             }
-            /** @type {?} */
             var tree = [];
-            /** @type {?} */
             var childrenOf = {};
-            /** @type {?} */
             var rootPid = opt.rootParentIdValue;
             if (!rootPid) {
-                /** @type {?} */
-                var pids = arr.map(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (/**
-                 * @param {?} i
-                 * @return {?}
-                 */ i) { return i[( /** @type {?} */(opt.parentIdMapName))]; }));
-                /** @type {?} */
-                var emptyPid = pids.findIndex(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w == null; }));
+                var pids = arr.map(function (i) { return i[opt.parentIdMapName]; });
+                var emptyPid = pids.findIndex(function (w) { return w == null; });
                 rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
             }
             try {
                 for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
                     var item = arr_1_1.value;
-                    /** @type {?} */
-                    var id = item[( /** @type {?} */(opt.idMapName))];
-                    /** @type {?} */
-                    var pid = item[( /** @type {?} */(opt.parentIdMapName))];
+                    var id = item[opt.idMapName];
+                    var pid = item[opt.parentIdMapName];
                     childrenOf[id] = childrenOf[id] || [];
-                    item[( /** @type {?} */(opt.childrenMapName))] = childrenOf[id];
+                    item[opt.childrenMapName] = childrenOf[id];
                     if (opt.cb) {
                         opt.cb(item);
                     }
@@ -456,72 +418,45 @@
         };
         /**
          * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
-         * @param {?} arr
-         * @param {?=} options
-         * @return {?}
          */
         ArrayService.prototype.arrToTreeNode = function (arr, options) {
-            /** @type {?} */
-            var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
-            /** @type {?} */
+            var opt = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
             var tree$1 = this.arrToTree(arr, {
                 idMapName: opt.idMapName,
                 parentIdMapName: opt.parentIdMapName,
                 childrenMapName: 'children',
             });
-            this.visitTree(tree$1, ( /**
-             * @param {?} item
-             * @param {?} parent
-             * @param {?} deep
-             * @return {?}
-             */function (item, parent, deep) {
-                item.key = item[( /** @type {?} */(opt.idMapName))];
-                item.title = item[( /** @type {?} */(opt.titleMapName))];
-                item.checked = item[( /** @type {?} */(opt.checkedMapname))];
-                item.selected = item[( /** @type {?} */(opt.selectedMapname))];
-                item.expanded = item[( /** @type {?} */(opt.expandedMapname))];
-                item.disabled = item[( /** @type {?} */(opt.disabledMapname))];
-                if (item[( /** @type {?} */(opt.isLeafMapName))] == null) {
+            this.visitTree(tree$1, function (item, parent, deep) {
+                item.key = item[opt.idMapName];
+                item.title = item[opt.titleMapName];
+                item.checked = item[opt.checkedMapname];
+                item.selected = item[opt.selectedMapname];
+                item.expanded = item[opt.expandedMapname];
+                item.disabled = item[opt.disabledMapname];
+                if (item[opt.isLeafMapName] == null) {
                     item.isLeaf = item.children.length === 0;
                 }
                 else {
-                    item.isLeaf = item[( /** @type {?} */(opt.isLeafMapName))];
+                    item.isLeaf = item[opt.isLeafMapName];
                 }
                 if (opt.cb) {
                     opt.cb(item, parent, deep);
                 }
-            }));
-            return tree$1.map(( /**
-             * @param {?} node
-             * @return {?}
-             */function (/**
-             * @param {?} node
-             * @return {?}
-             */ node) { return new tree.NzTreeNode(node); }));
+            });
+            return tree$1.map(function (node) { return new tree.NzTreeNode(node); });
         };
         /**
          * 递归访问整个树
-         * @param {?} tree
-         * @param {?} cb
-         * @param {?=} options
-         * @return {?}
          */
         ArrayService.prototype.visitTree = function (tree, cb, options) {
             options = Object.assign({ childrenMapName: this.c.childrenMapName }, options);
-            /** @type {?} */
-            var inFn = ( /**
-             * @param {?} data
-             * @param {?} parent
-             * @param {?} deep
-             * @return {?}
-             */function (data, parent, deep) {
+            var inFn = function (data, parent, deep) {
                 var e_3, _a;
                 try {
                     for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
                         var item = data_1_1.value;
                         cb(item, parent, deep);
-                        /** @type {?} */
-                        var childrenVal = item[( /** @type {?} */(( /** @type {?} */(options)).childrenMapName))];
+                        var childrenVal = item[options.childrenMapName];
                         if (childrenVal && childrenVal.length > 0) {
                             inFn(childrenVal, item, deep + 1);
                         }
@@ -534,54 +469,33 @@
                     }
                     finally { if (e_3) throw e_3.error; }
                 }
-            });
+            };
             inFn(tree, null, 1);
         };
         /**
          * 获取所有已经选中的 `key` 值
-         * @param {?} tree
-         * @param {?=} options
-         * @return {?}
          */
         ArrayService.prototype.getKeysByTreeNode = function (tree, options) {
-            /** @type {?} */
-            var opt = ( /** @type {?} */(Object.assign({ includeHalfChecked: true }, options)));
-            /** @type {?} */
+            var opt = Object.assign({ includeHalfChecked: true }, options);
             var keys = [];
-            this.visitTree(tree, ( /**
-             * @param {?} item
-             * @param {?} parent
-             * @param {?} deep
-             * @return {?}
-             */function (item, parent, deep) {
+            this.visitTree(tree, function (item, parent, deep) {
                 if (item.isChecked || (opt.includeHalfChecked && item.isHalfChecked)) {
                     keys.push(opt.cb ? opt.cb(item, parent, deep) : opt.keyMapName ? item.origin[opt.keyMapName] : item.key);
                 }
-            }));
+            });
             return keys;
         };
-        /**
-         * @private
-         * @param {?} array
-         * @param {?} depth
-         * @param {?=} result
-         * @return {?}
-         */
         ArrayService.prototype.baseFlat = function (array, depth, result) {
             if (result === void 0) { result = []; }
-            /** @type {?} */
             var index = -1;
             while (++index < array.length) {
-                /** @type {?} */
                 var value = array[index];
                 if (depth > 0 && Array.isArray(value)) {
                     if (depth > 1) {
                         this.baseFlat(value, depth - 1, result);
                     }
                     else {
-                        /** @type {?} */
                         var pushIndex = -1;
-                        /** @type {?} */
                         var offset = result.length;
                         while (++pushIndex < value.length) {
                             result[offset + pushIndex] = value[pushIndex];
@@ -602,14 +516,10 @@
          * srv.flat([1, [2, 3, [4, 5, [6]]]]) => [1,2,3,4,5,6]
          * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
          * ```
-         * @template T
-         * @param {?} array
-         * @param {?=} depth
-         * @return {?}
          */
         ArrayService.prototype.flat = function (array, depth) {
             if (depth === void 0) { depth = 1 / 0; }
-            return Array.isArray(array) ? this.baseFlat(( /** @type {?} */(array)), depth) : array;
+            return Array.isArray(array) ? this.baseFlat(array, depth) : array;
         };
         /**
          * Group the array
@@ -619,21 +529,12 @@
          * srv.groupBy([6.1, 4.2, 6.3], Math.floor) => {"4":[4.2],"6":[6.1,6.3]}
          * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
          * ```
-         * @template T
-         * @param {?} array
-         * @param {?} iteratee
-         * @return {?}
          */
         ArrayService.prototype.groupBy = function (array, iteratee) {
             if (!Array.isArray(array)) {
                 return {};
             }
-            return array.reduce(( /**
-             * @param {?} result
-             * @param {?} value
-             * @return {?}
-             */function (result, value) {
-                /** @type {?} */
+            return array.reduce(function (result, value) {
                 var key = iteratee(value);
                 if (Object.prototype.hasOwnProperty.call(result, key)) {
                     result[key].push(value);
@@ -642,7 +543,7 @@
                     result[key] = [value];
                 }
                 return result;
-            }), ( /** @type {?} */({})));
+            }, {});
         };
         /**
          * Creates a duplicate-free version of an array
@@ -653,55 +554,31 @@
          * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], 'a') => [{"a":1},{"a":2}]
          * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
          * ```
-         * @template T
-         * @param {?} array
-         * @param {?=} predicate
-         * @return {?}
          */
         ArrayService.prototype.uniq = function (array, predicate) {
             return Array.from(array
-                .reduce(( /**
-         * @param {?} map
-         * @param {?} value
-         * @return {?}
-         */function (map, value) {
-                /** @type {?} */
-                var key = predicate ? (typeof predicate === 'string' ? (( /** @type {?} */(value)))[predicate] : ( /** @type {?} */(predicate))(value)) : value;
+                .reduce(function (map, value) {
+                var key = predicate ? (typeof predicate === 'string' ? value[predicate] : predicate(value)) : value;
                 if (!map.has(key)) {
                     map.set(key, value);
                 }
                 return map;
-            }), new Map())
+            }, new Map())
                 .values());
         };
         return ArrayService;
     }());
-    ArrayService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    /** @nocollapse */
-    ArrayService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService }
-    ]; };
-    /** @nocollapse */ ArrayService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.ɵɵinject(i1.AlainConfigService)); }, token: ArrayService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ArrayService.prototype.c;
-    }
+    /** @nocollapse */ ArrayService.ɵfac = function ArrayService_Factory(t) { return new (t || ArrayService)(i0.ɵɵinject(i1.AlainConfigService)); };
+    /** @nocollapse */ ArrayService.ɵprov = i0.ɵɵdefineInjectable({ token: ArrayService, factory: ArrayService.ɵfac, providedIn: 'root' });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ArrayService, [{
+                type: i0.Injectable,
+                args: [{ providedIn: 'root' }]
+            }], function () { return [{ type: i1.AlainConfigService }]; }, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: delon-util-array.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ArrayService = ArrayService;

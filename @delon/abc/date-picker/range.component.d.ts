@@ -3,6 +3,7 @@ import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
 import { FunctionProp } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;
     private onChangeFn;
@@ -46,4 +47,6 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     registerOnTouched(_fn: () => void): void;
     setDisabledState(disabled: boolean): void;
     clickShortcut(item: AlainDateRangePickerShortcutItem): void;
+    static ɵfac: i0.ɵɵFactoryDef<RangePickerComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDefWithMeta<RangePickerComponent, "range-picker", ["rangePicker"], { "ngModelEnd": "ngModelEnd"; "shortcut": "shortcut"; "nzAllowClear": "nzAllowClear"; "nzAutoFocus": "nzAutoFocus"; "nzClassName": "nzClassName"; "nzDisabled": "nzDisabled"; "nzSize": "nzSize"; "nzStyle": "nzStyle"; "nzDisabledDate": "nzDisabledDate"; "nzLocale": "nzLocale"; "nzPopupStyle": "nzPopupStyle"; "nzDropdownClassName": "nzDropdownClassName"; "nzPlaceHolder": "nzPlaceHolder"; "nzDateRender": "nzDateRender"; "nzFormat": "nzFormat"; "nzDisabledTime": "nzDisabledTime"; "nzRenderExtraFooter": "nzRenderExtraFooter"; "nzShowTime": "nzShowTime"; "nzShowToday": "nzShowToday"; "nzMode": "nzMode"; "nzRanges": "nzRanges"; }, { "ngModelEndChange": "ngModelEndChange"; "nzOnOpenChange": "nzOnOpenChange"; "nzOnPanelChange": "nzOnPanelChange"; "nzOnOk": "nzOnOk"; }, never, never>;
 }

@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/number-to-chinese', ['exports', '@angular/core', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['number-to-chinese'] = {}), global.ng.core, global.ng.common));
-}(this, (function (exports, core, common) { 'use strict';
+}(this, (function (exports, i0, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -319,16 +319,7 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: number-to-chinese.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * @deprecated Will be removed in 12.0.0, Pls used `CurrencyService.cny` instead
-     * @param {?} value
-     * @param {?=} rmb
-     * @param {?=} options
-     * @return {?}
      */
     function numberToChinese(value, rmb, options) {
         var _a;
@@ -338,21 +329,17 @@
             value = value.toString();
         if (!/^-?\d+(\.\d+)?$/.test(value) && options.validThrow)
             throw new Error(value + " is invalid number type");
-        /** @type {?} */
         var integer;
-        /** @type {?} */
         var decimal;
         _a = __read(value.split('.'), 2), integer = _a[0], decimal = _a[1];
-        /** @type {?} */
         var symbol = '';
         if (integer.startsWith('-')) {
-            symbol = ( /** @type {?} */(options.minusSymbol));
+            symbol = options.minusSymbol;
             integer = integer.substr(1);
         }
         if (/^-?\d+$/.test(value))
             decimal = null;
         integer = (+integer).toString();
-        /** @type {?} */
         var unit = {
             num: rmb
                 ? ['', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖', '点']
@@ -364,49 +351,36 @@
         };
         if (rmb)
             value = (+value).toFixed(5).toString();
-        /** @type {?} */
         var integerRes = '';
-        /** @type {?} */
         var integerCount = integer.length;
         if (integer === '0' || integerCount === 0) {
             integerRes = '零';
         }
         else {
-            /** @type {?} */
             var cnDesc = '';
             for (var i = 0; i < integerCount; i++) {
-                /** @type {?} */
                 var n = +integer[i];
-                /** @type {?} */
                 var j = integerCount - i - 1;
-                /** @type {?} */
                 var isZero = i > 1 && n !== 0 && integer[i - 1] === '0';
-                /** @type {?} */
                 var cnZero = isZero ? '零' : '';
-                /** @type {?} */
                 var isEmpptyUnit = (n === 0 && j % 4 !== 0) || integer.substr(i - 3, 4) === '0000';
-                /** @type {?} */
                 var descMark = cnDesc;
-                /** @type {?} */
                 var cnNum = unit.num[n];
                 cnDesc = isEmpptyUnit ? '' : unit.radice[j];
                 // 第一位是一十
                 if (i === 0 && cnNum === '一' && cnDesc === '十')
                     cnNum = '';
-                /** @type {?} */
                 var isChangeEr = n > 1 &&
                     cnNum === '二' && // 去除首位
                     ['', '十', '百'].indexOf(cnDesc) === -1 && // 不读两\两十\两百
-                    descMark !== '十';
+                    descMark !== '十'; // 不读十两
                 if (isChangeEr)
                     cnNum = '两';
                 integerRes += cnZero + cnNum + cnDesc;
             }
         }
         // 小数部分拼接
-        /** @type {?} */
         var decimalRes = '';
-        /** @type {?} */
         var decimalCount = decimal ? decimal.toString().length : 0;
         if (decimal === null) {
             decimalRes = rmb ? '整' : '';
@@ -418,40 +392,24 @@
             for (var i = 0; i < decimalCount; i++) {
                 if (rmb && i > unit.dec.length - 1)
                     break;
-                /** @type {?} */
                 var n = decimal[i];
-                /** @type {?} */
                 var cnZero = n === '0' ? '零' : '';
-                /** @type {?} */
-                var cnNum = (( /** @type {?} */(unit.num)))[n];
-                /** @type {?} */
+                var cnNum = unit.num[n];
                 var cnDesc = rmb ? unit.dec[i] : '';
                 decimalRes += cnZero + cnNum + cnDesc;
             }
         }
-        /** @type {?} */
         var ret = symbol +
             (rmb ? integerRes + (decimalRes === '零' ? '元整' : "\u5143" + decimalRes) : integerRes + (decimalRes === '' ? '' : "\u70B9" + decimalRes));
         return ret;
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: number-to-chinese.pipe.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used [cny](/util/pipes-currency/zh#cny) pipe instead
+     *  @deprecated Will be removed in 12.0.0, Pls used [cny](/util/pipes-currency/zh#cny) pipe instead
      */
     var NaNumberToChinesePipe = /** @class */ (function () {
         function NaNumberToChinesePipe() {
         }
-        /**
-         * @param {?} value
-         * @param {?=} rmb
-         * @param {?=} minusSymbol
-         * @return {?}
-         */
         NaNumberToChinesePipe.prototype.transform = function (value, rmb, minusSymbol) {
             if (rmb === void 0) { rmb = true; }
             if (minusSymbol === void 0) { minusSymbol = '负'; }
@@ -459,16 +417,15 @@
         };
         return NaNumberToChinesePipe;
     }());
-    NaNumberToChinesePipe.decorators = [
-        { type: core.Pipe, args: [{ name: 'n2c' },] }
-    ];
+    /** @nocollapse */ NaNumberToChinesePipe.ɵfac = function NaNumberToChinesePipe_Factory(t) { return new (t || NaNumberToChinesePipe)(); };
+    /** @nocollapse */ NaNumberToChinesePipe.ɵpipe = i0.ɵɵdefinePipe({ name: "n2c", type: NaNumberToChinesePipe, pure: true });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NaNumberToChinesePipe, [{
+                type: i0.Pipe,
+                args: [{ name: 'n2c' }]
+            }], null, null);
+    })();
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: number-to-chinese.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var PIPES = [NaNumberToChinesePipe];
     /**
      * @deprecated Will be removed in 12.0.0, Pls used `CurrencyService.cny` instead
@@ -478,18 +435,22 @@
         }
         return NumberToChineseModule;
     }());
-    NumberToChineseModule.decorators = [
-        { type: core.NgModule, args: [{
-                    imports: [common.CommonModule],
-                    declarations: PIPES,
-                    exports: PIPES,
-                },] }
-    ];
+    /** @nocollapse */ NumberToChineseModule.ɵmod = i0.ɵɵdefineNgModule({ type: NumberToChineseModule });
+    /** @nocollapse */ NumberToChineseModule.ɵinj = i0.ɵɵdefineInjector({ factory: function NumberToChineseModule_Factory(t) { return new (t || NumberToChineseModule)(); }, imports: [[common.CommonModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(NumberToChineseModule, { declarations: [NaNumberToChinesePipe], imports: [common.CommonModule], exports: [NaNumberToChinesePipe] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(NumberToChineseModule, [{
+                type: i0.NgModule,
+                args: [{
+                        imports: [common.CommonModule],
+                        declarations: PIPES,
+                        exports: PIPES,
+                    }]
+            }], null, null);
+    })();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: numberToChinese.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.NaNumberToChinesePipe = NaNumberToChinesePipe;
