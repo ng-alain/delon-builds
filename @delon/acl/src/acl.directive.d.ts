@@ -1,7 +1,6 @@
 import { ElementRef, OnDestroy, Renderer2 } from '@angular/core';
 import { ACLService } from './acl.service';
 import { ACLCanType } from './acl.type';
-import * as i0 from "@angular/core";
 export declare class ACLDirective implements OnDestroy {
     private el;
     private renderer;
@@ -13,6 +12,4 @@ export declare class ACLDirective implements OnDestroy {
     private set;
     constructor(el: ElementRef, renderer: Renderer2, srv: ACLService);
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<ACLDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDefWithMeta<ACLDirective, "[acl]", ["acl"], { "acl": "acl"; "ability": "acl-ability"; }, {}, never>;
 }

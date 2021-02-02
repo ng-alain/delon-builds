@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "11.3.1-96bcfbef",
+  "version": "11.3.1-0c913f7e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,9 +26,9 @@
     "@types/jszip": "^3.4.1",
     "xlsx": "^0.16.9",
     "ngx-countdown": "^11.0.1",
-    "@delon/theme": "^11.3.1-96bcfbef",
-    "@delon/util": "^11.3.1-96bcfbef",
-    "@delon/acl": "^11.3.1-96bcfbef",
+    "@delon/theme": "^11.3.1-0c913f7e",
+    "@delon/util": "^11.3.1-0c913f7e",
+    "@delon/acl": "^11.3.1-0c913f7e",
     "tslib": "^2.0.0"
   },
   "main": "bundles/abc.umd.js",
@@ -37,8 +37,6 @@
   "esm2015": "esm2015/abc.js",
   "fesm2015": "fesm2015/abc.js",
   "typings": "abc.d.ts",
-  "sideEffects": false,
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"
-  }
+  "metadata": "abc.metadata.json",
+  "sideEffects": false
 }

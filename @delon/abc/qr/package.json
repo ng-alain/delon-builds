@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/qr/qr.js",
   "fesm2015": "../fesm2015/qr.js",
   "typings": "qr.d.ts",
+  "metadata": "qr.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/qr"
 }

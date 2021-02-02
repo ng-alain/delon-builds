@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@delon/util/config', '@delon/util/decorator', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.i1, global.decorator, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, i0, rxjs, i1, decorator, operators, i2, common) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', '@delon/util/decorator', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.decorator, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, i0, config, rxjs, decorator, operators, i2, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,6 +318,12 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var ACL_DEFAULT_CONFIG = {
         guard_url: "/403",
     };
@@ -350,15 +334,21 @@
      * 务必在根目录注册 `DelonACLModule.forRoot()` 才能使用服务
      */
     var ACLService = /** @class */ (function () {
+        /**
+         * @param {?} configSrv
+         */
         function ACLService(configSrv) {
             this.roles = [];
             this.abilities = [];
             this.full = false;
             this.aclChange = new rxjs.BehaviorSubject(null);
-            this.options = configSrv.merge('acl', ACL_DEFAULT_CONFIG);
+            this.options = ( /** @type {?} */(configSrv.merge('acl', ACL_DEFAULT_CONFIG)));
         }
         Object.defineProperty(ACLService.prototype, "change", {
-            /** ACL变更通知 */
+            /**
+             * ACL变更通知
+             * @return {?}
+             */
             get: function () {
                 return this.aclChange.asObservable();
             },
@@ -366,7 +356,10 @@
             configurable: true
         });
         Object.defineProperty(ACLService.prototype, "data", {
-            /** 获取所有数据 */
+            /**
+             * 获取所有数据
+             * @return {?}
+             */
             get: function () {
                 return {
                     full: this.full,
@@ -378,13 +371,22 @@
             configurable: true
         });
         Object.defineProperty(ACLService.prototype, "guard_url", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this.options.guard_url;
+                return ( /** @type {?} */(this.options.guard_url));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} val
+         * @return {?}
+         */
         ACLService.prototype.parseACLType = function (val) {
+            /** @type {?} */
             var t;
             if (typeof val === 'number') {
                 t = { ability: [val] };
@@ -396,7 +398,7 @@
                 t = Object.assign({}, val);
             }
             else if (Array.isArray(val)) {
-                t = { role: val };
+                t = { role: ( /** @type {?} */(val)) };
             }
             else {
                 t = { role: val == null ? [] : [val] };
@@ -405,6 +407,8 @@
         };
         /**
          * 设置当前用户角色或权限能力（会先清除所有）
+         * @param {?} value
+         * @return {?}
          */
         ACLService.prototype.set = function (value) {
             this.abilities = [];
@@ -414,6 +418,8 @@
         };
         /**
          * 标识当前用户为全量，即不受限
+         * @param {?} val
+         * @return {?}
          */
         ACLService.prototype.setFull = function (val) {
             this.full = val;
@@ -421,18 +427,24 @@
         };
         /**
          * 设置当前用户权限能力（会先清除所有）
+         * @param {?} abilities
+         * @return {?}
          */
         ACLService.prototype.setAbility = function (abilities) {
-            this.set({ ability: abilities });
+            this.set(( /** @type {?} */({ ability: abilities })));
         };
         /**
          * 设置当前用户角色（会先清除所有）
+         * @param {?} roles
+         * @return {?}
          */
         ACLService.prototype.setRole = function (roles) {
-            this.set({ role: roles });
+            this.set(( /** @type {?} */({ role: roles })));
         };
         /**
          * 为当前用户增加角色或权限能力
+         * @param {?} value
+         * @return {?}
          */
         ACLService.prototype.add = function (value) {
             var _a, _b;
@@ -445,6 +457,8 @@
         };
         /**
          * 为当前用户附加角色
+         * @param {?} roles
+         * @return {?}
          */
         ACLService.prototype.attachRole = function (roles) {
             var e_1, _a;
@@ -467,6 +481,8 @@
         };
         /**
          * 为当前用户附加权限
+         * @param {?} abilities
+         * @return {?}
          */
         ACLService.prototype.attachAbility = function (abilities) {
             var e_2, _a;
@@ -489,12 +505,15 @@
         };
         /**
          * 为当前用户移除角色
+         * @param {?} roles
+         * @return {?}
          */
         ACLService.prototype.removeRole = function (roles) {
             var e_3, _a;
             try {
                 for (var roles_2 = __values(roles), roles_2_1 = roles_2.next(); !roles_2_1.done; roles_2_1 = roles_2.next()) {
                     var val = roles_2_1.value;
+                    /** @type {?} */
                     var idx = this.roles.indexOf(val);
                     if (idx !== -1) {
                         this.roles.splice(idx, 1);
@@ -512,12 +531,15 @@
         };
         /**
          * 为当前用户移除权限
+         * @param {?} abilities
+         * @return {?}
          */
         ACLService.prototype.removeAbility = function (abilities) {
             var e_4, _a;
             try {
                 for (var abilities_2 = __values(abilities), abilities_2_1 = abilities_2.next(); !abilities_2_1.done; abilities_2_1 = abilities_2.next()) {
                     var val = abilities_2_1.value;
+                    /** @type {?} */
                     var idx = this.abilities.indexOf(val);
                     if (idx !== -1) {
                         this.abilities.splice(idx, 1);
@@ -538,14 +560,18 @@
          *
          * - 当 `full: true` 或参数 `null` 时返回 `true`
          * - 若使用 `ACLType` 参数，可以指定 `mode` 校验模式
+         * @param {?} roleOrAbility
+         * @return {?}
          */
         ACLService.prototype.can = function (roleOrAbility) {
             var _this = this;
             var preCan = this.options.preCan;
             if (preCan) {
-                roleOrAbility = preCan(roleOrAbility);
+                roleOrAbility = preCan(( /** @type {?} */(roleOrAbility)));
             }
+            /** @type {?} */
             var t = this.parseACLType(roleOrAbility);
+            /** @type {?} */
             var result = false;
             if (this.full === true || !roleOrAbility) {
                 result = true;
@@ -553,48 +579,115 @@
             else {
                 if (t.role && t.role.length > 0) {
                     if (t.mode === 'allOf') {
-                        result = t.role.every(function (v) { return _this.roles.includes(v); });
+                        result = t.role.every(( /**
+                         * @param {?} v
+                         * @return {?}
+                         */function (/**
+                         * @param {?} v
+                         * @return {?}
+                         */ v) { return _this.roles.includes(v); }));
                     }
                     else {
-                        result = t.role.some(function (v) { return _this.roles.includes(v); });
+                        result = t.role.some(( /**
+                         * @param {?} v
+                         * @return {?}
+                         */function (/**
+                         * @param {?} v
+                         * @return {?}
+                         */ v) { return _this.roles.includes(v); }));
                     }
                 }
                 if (t.ability && t.ability.length > 0) {
                     if (t.mode === 'allOf') {
-                        result = t.ability.every(function (v) { return _this.abilities.includes(v); });
+                        result = (( /** @type {?} */(t.ability))).every(( /**
+                         * @param {?} v
+                         * @return {?}
+                         */function (/**
+                         * @param {?} v
+                         * @return {?}
+                         */ v) { return _this.abilities.includes(v); }));
                     }
                     else {
-                        result = t.ability.some(function (v) { return _this.abilities.includes(v); });
+                        result = (( /** @type {?} */(t.ability))).some(( /**
+                         * @param {?} v
+                         * @return {?}
+                         */function (/**
+                         * @param {?} v
+                         * @return {?}
+                         */ v) { return _this.abilities.includes(v); }));
                     }
                 }
             }
             return t.except === true ? !result : result;
         };
-        /** @inner */
+        /**
+         * \@inner
+         * @param {?} value
+         * @return {?}
+         */
         ACLService.prototype.parseAbility = function (value) {
             if (typeof value === 'number' || typeof value === 'string' || Array.isArray(value)) {
-                value = { ability: Array.isArray(value) ? value : [value] };
+                value = ( /** @type {?} */({ ability: Array.isArray(value) ? value : [value] }));
             }
             delete value.role;
             return value;
         };
         /**
          * 当前用户是否有对应权限点
+         * @param {?} value
+         * @return {?}
          */
         ACLService.prototype.canAbility = function (value) {
             return this.can(this.parseAbility(value));
         };
         return ACLService;
     }());
-    /** @nocollapse */ ACLService.ɵfac = function ACLService_Factory(t) { return new (t || ACLService)(i0.ɵɵinject(i1.AlainConfigService)); };
-    /** @nocollapse */ ACLService.ɵprov = i0.ɵɵdefineInjectable({ token: ACLService, factory: ACLService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ACLService, [{
-                type: i0.Injectable
-            }], function () { return [{ type: i1.AlainConfigService }]; }, null);
-    })();
+    ACLService.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    ACLService.ctorParameters = function () { return [
+        { type: config.AlainConfigService }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.options;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.roles;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.abilities;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.full;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLService.prototype.aclChange;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl-if.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ACLIfDirective = /** @class */ (function () {
+        /**
+         * @param {?} templateRef
+         * @param {?} srv
+         * @param {?} _viewContainer
+         */
         function ACLIfDirective(templateRef, srv, _viewContainer) {
             var _this = this;
             this.srv = srv;
@@ -604,10 +697,22 @@
             this._thenViewRef = null;
             this._elseViewRef = null;
             this.except = false;
-            this._change$ = this.srv.change.pipe(operators.filter(function (r) { return r != null; })).subscribe(function () { return _this._updateView(); });
+            this._change$ = this.srv.change.pipe(operators.filter(( /**
+             * @param {?} r
+             * @return {?}
+             */function (/**
+             * @param {?} r
+             * @return {?}
+             */ r) { return r != null; }))).subscribe(( /**
+             * @return {?}
+             */function () { return _this._updateView(); }));
             this._thenTemplateRef = templateRef;
         }
         Object.defineProperty(ACLIfDirective.prototype, "aclIf", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this._value = value;
                 this._updateView();
@@ -616,6 +721,10 @@
             configurable: true
         });
         Object.defineProperty(ACLIfDirective.prototype, "aclIfThen", {
+            /**
+             * @param {?} templateRef
+             * @return {?}
+             */
             set: function (templateRef) {
                 this._thenTemplateRef = templateRef;
                 this._thenViewRef = null;
@@ -625,6 +734,10 @@
             configurable: true
         });
         Object.defineProperty(ACLIfDirective.prototype, "aclIfElse", {
+            /**
+             * @param {?} templateRef
+             * @return {?}
+             */
             set: function (templateRef) {
                 this._elseTemplateRef = templateRef;
                 this._elseViewRef = null;
@@ -633,7 +746,12 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * @protected
+         * @return {?}
+         */
         ACLIfDirective.prototype._updateView = function () {
+            /** @type {?} */
             var res = this.srv.can(this._value);
             if ((res && !this.except) || (!res && this.except)) {
                 if (!this._thenViewRef) {
@@ -654,44 +772,112 @@
                 }
             }
         };
+        /**
+         * @return {?}
+         */
         ACLIfDirective.prototype.ngOnDestroy = function () {
             this._change$.unsubscribe();
         };
         return ACLIfDirective;
     }());
-    /** @nocollapse */ ACLIfDirective.ɵfac = function ACLIfDirective_Factory(t) { return new (t || ACLIfDirective)(i0.ɵɵdirectiveInject(i0.TemplateRef), i0.ɵɵdirectiveInject(ACLService), i0.ɵɵdirectiveInject(i0.ViewContainerRef)); };
-    /** @nocollapse */ ACLIfDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ACLIfDirective, selector: "[aclIf]", inputs: { aclIf: "aclIf", aclIfThen: "aclIfThen", aclIfElse: "aclIfElse", except: "except" }, exportAs: ["aclIf"], ngImport: i0__namespace });
+    ACLIfDirective.decorators = [
+        { type: i0.Directive, args: [{
+                    selector: '[aclIf]',
+                    exportAs: 'aclIf',
+                },] }
+    ];
+    /** @nocollapse */
+    ACLIfDirective.ctorParameters = function () { return [
+        { type: i0.TemplateRef },
+        { type: ACLService },
+        { type: i0.ViewContainerRef }
+    ]; };
+    ACLIfDirective.propDecorators = {
+        aclIf: [{ type: i0.Input }],
+        aclIfThen: [{ type: i0.Input }],
+        aclIfElse: [{ type: i0.Input }],
+        except: [{ type: i0.Input }]
+    };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], ACLIfDirective.prototype, "except", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ACLIfDirective, [{
-                type: i0.Directive,
-                args: [{
-                        selector: '[aclIf]',
-                        exportAs: 'aclIf',
-                    }]
-            }], function () { return [{ type: i0.TemplateRef }, { type: ACLService }, { type: i0.ViewContainerRef }]; }, { aclIf: [{
-                    type: i0.Input
-                }], aclIfThen: [{
-                    type: i0.Input
-                }], aclIfElse: [{
-                    type: i0.Input
-                }], except: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._value;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._change$;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._thenTemplateRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._elseTemplateRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._thenViewRef;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._elseViewRef;
+        /** @type {?} */
+        ACLIfDirective.prototype.except;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLIfDirective.prototype._viewContainer;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ACLDirective = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} renderer
+         * @param {?} srv
+         */
         function ACLDirective(el, renderer, srv) {
             var _this = this;
             this.el = el;
             this.renderer = renderer;
             this.srv = srv;
-            this.change$ = this.srv.change.pipe(operators.filter(function (r) { return r != null; })).subscribe(function () { return _this.set(_this._value); });
+            this.change$ = this.srv.change.pipe(operators.filter(( /**
+             * @param {?} r
+             * @return {?}
+             */function (/**
+             * @param {?} r
+             * @return {?}
+             */ r) { return r != null; }))).subscribe(( /**
+             * @return {?}
+             */function () { return _this.set(_this._value); }));
         }
         Object.defineProperty(ACLDirective.prototype, "acl", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this.set(value);
             },
@@ -699,15 +885,26 @@
             configurable: true
         });
         Object.defineProperty(ACLDirective.prototype, "ability", {
+            /**
+             * @param {?} value
+             * @return {?}
+             */
             set: function (value) {
                 this.set(this.srv.parseAbility(value));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @param {?} value
+         * @return {?}
+         */
         ACLDirective.prototype.set = function (value) {
             this._value = value;
+            /** @type {?} */
             var CLS = 'acl__hide';
+            /** @type {?} */
             var el = this.el.nativeElement;
             if (this.srv.can(this._value)) {
                 this.renderer.removeClass(el, CLS);
@@ -716,29 +913,63 @@
                 this.renderer.addClass(el, CLS);
             }
         };
+        /**
+         * @return {?}
+         */
         ACLDirective.prototype.ngOnDestroy = function () {
             this.change$.unsubscribe();
         };
         return ACLDirective;
     }());
-    /** @nocollapse */ ACLDirective.ɵfac = function ACLDirective_Factory(t) { return new (t || ACLDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(ACLService)); };
-    /** @nocollapse */ ACLDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ACLDirective, selector: "[acl]", inputs: { acl: "acl", ability: ["acl-ability", "ability"] }, exportAs: ["acl"], ngImport: i0__namespace });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ACLDirective, [{
-                type: i0.Directive,
-                args: [{
-                        selector: '[acl]',
-                        exportAs: 'acl',
-                    }]
-            }], function () { return [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: ACLService }]; }, { acl: [{
-                    type: i0.Input,
-                    args: ['acl']
-                }], ability: [{
-                    type: i0.Input,
-                    args: ['acl-ability']
-                }] });
-    })();
+    ACLDirective.decorators = [
+        { type: i0.Directive, args: [{
+                    selector: '[acl]',
+                    exportAs: 'acl',
+                },] }
+    ];
+    /** @nocollapse */
+    ACLDirective.ctorParameters = function () { return [
+        { type: i0.ElementRef },
+        { type: i0.Renderer2 },
+        { type: ACLService }
+    ]; };
+    ACLDirective.propDecorators = {
+        acl: [{ type: i0.Input, args: ['acl',] }],
+        ability: [{ type: i0.Input, args: ['acl-ability',] }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLDirective.prototype._value;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLDirective.prototype.change$;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLDirective.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLDirective.prototype.renderer;
+        /**
+         * @type {?}
+         * @protected
+         */
+        ACLDirective.prototype.srv;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl-guard.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
      *
@@ -751,47 +982,105 @@
      * ```
      */
     var ACLGuard = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         * @param {?} router
+         */
         function ACLGuard(srv, router) {
             this.srv = srv;
             this.router = router;
         }
+        /**
+         * @private
+         * @param {?} data
+         * @return {?}
+         */
         ACLGuard.prototype.process = function (data) {
             var _this = this;
             data = Object.assign({ guard: null, guard_url: this.srv.guard_url }, data);
+            /** @type {?} */
             var guard = data.guard;
-            return (guard && guard instanceof rxjs.Observable ? guard : rxjs.of(guard != null ? guard : null)).pipe(operators.map(function (v) { return _this.srv.can(v); }), operators.tap(function (v) {
+            return (guard && guard instanceof rxjs.Observable ? guard : rxjs.of(guard != null ? (( /** @type {?} */(guard))) : null)).pipe(operators.map(( /**
+             * @param {?} v
+             * @return {?}
+             */function (/**
+             * @param {?} v
+             * @return {?}
+             */ v) { return _this.srv.can(v); })), operators.tap(( /**
+             * @param {?} v
+             * @return {?}
+             */function (/**
+             * @param {?} v
+             * @return {?}
+             */ v) {
                 if (v)
                     return;
                 _this.router.navigateByUrl(data.guard_url);
-            }));
+            })));
         };
         // lazy loading
+        /**
+         * @param {?} route
+         * @return {?}
+         */
         ACLGuard.prototype.canLoad = function (route) {
-            return this.process(route.data);
+            return this.process(( /** @type {?} */(route.data)));
         };
         // all children route
+        /**
+         * @param {?} childRoute
+         * @param {?} state
+         * @return {?}
+         */
         ACLGuard.prototype.canActivateChild = function (childRoute, state) {
             return this.canActivate(childRoute, state);
         };
         // route
+        /**
+         * @param {?} route
+         * @param {?} _state
+         * @return {?}
+         */
         ACLGuard.prototype.canActivate = function (route, _state) {
             return this.process(route.data);
         };
         return ACLGuard;
     }());
-    /** @nocollapse */ ACLGuard.ɵfac = function ACLGuard_Factory(t) { return new (t || ACLGuard)(i0.ɵɵinject(ACLService), i0.ɵɵinject(i2.Router)); };
-    /** @nocollapse */ ACLGuard.ɵprov = i0.ɵɵdefineInjectable({ token: ACLGuard, factory: ACLGuard.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ACLGuard, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () { return [{ type: ACLService }, { type: i2.Router }]; }, null);
-    })();
+    ACLGuard.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    ACLGuard.ctorParameters = function () { return [
+        { type: ACLService },
+        { type: i2.Router }
+    ]; };
+    /** @nocollapse */ ACLGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.ɵɵinject(ACLService), i0.ɵɵinject(i2.Router)); }, token: ACLGuard, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLGuard.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        ACLGuard.prototype.router;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/acl.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var COMPONENTS = [ACLDirective, ACLIfDirective];
     var DelonACLModule = /** @class */ (function () {
         function DelonACLModule() {
         }
+        /**
+         * @return {?}
+         */
         DelonACLModule.forRoot = function () {
             return {
                 ngModule: DelonACLModule,
@@ -800,22 +1089,24 @@
         };
         return DelonACLModule;
     }());
-    /** @nocollapse */ DelonACLModule.ɵmod = i0.ɵɵdefineNgModule({ type: DelonACLModule });
-    /** @nocollapse */ DelonACLModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DelonACLModule_Factory(t) { return new (t || DelonACLModule)(); }, imports: [[common.CommonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(DelonACLModule, { declarations: [ACLDirective, ACLIfDirective], imports: [common.CommonModule], exports: [ACLDirective, ACLIfDirective] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonACLModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule],
-                        declarations: COMPONENTS,
-                        exports: COMPONENTS,
-                    }]
-            }], null, null);
-    })();
+    DelonACLModule.decorators = [
+        { type: i0.NgModule, args: [{
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: acl.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ACLDirective = ACLDirective;

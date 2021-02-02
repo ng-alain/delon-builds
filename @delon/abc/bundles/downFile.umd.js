@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('file-saver'), require('@delon/theme'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/core', 'file-saver', '@delon/theme', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}), global.ng.core, global.saveAs, global.delon.theme, global.ng.common));
-}(this, (function (exports, i0, fileSaver, i1, common) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('file-saver'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/core', '@delon/theme', 'file-saver', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}), global.ng.core, global.delon.theme, global.saveAs, global.ng.common));
+}(this, (function (exports, core, theme, fileSaver, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -341,13 +319,18 @@
     }
 
     var DownFileDirective = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} _http
+         */
         function DownFileDirective(el, _http) {
             this.el = el;
             this._http = _http;
             this.isFileSaverSupported = true;
             this.httpMethod = 'get';
-            this.success = new i0.EventEmitter();
-            this.error = new i0.EventEmitter();
+            this.success = new core.EventEmitter();
+            this.error = new core.EventEmitter();
+            /** @type {?} */
             var isFileSaverSupported = false;
             try {
                 isFileSaverSupported = !!new Blob();
@@ -358,26 +341,61 @@
                 el.nativeElement.classList.add("down-file__not-support");
             }
         }
+        /**
+         * @private
+         * @param {?} data
+         * @return {?}
+         */
         DownFileDirective.prototype.getDisposition = function (data) {
+            /** @type {?} */
             var arr = (data || '')
                 .split(';')
-                .filter(function (i) { return i.includes('='); })
-                .map(function (v) {
+                .filter(( /**
+         * @param {?} i
+         * @return {?}
+         */function (/**
+         * @param {?} i
+         * @return {?}
+         */ i) { return i.includes('='); }))
+                .map(( /**
+         * @param {?} v
+         * @return {?}
+         */function (/**
+         * @param {?} v
+         * @return {?}
+         */ v) {
                 var _b;
+                /** @type {?} */
                 var strArr = v.split('=');
+                /** @type {?} */
                 var utfId = "UTF-8''";
+                /** @type {?} */
                 var value = strArr[1];
                 if (value.startsWith(utfId))
                     value = value.substr(utfId.length);
                 return _b = {}, _b[strArr[0].trim()] = value, _b;
-            });
-            return arr.reduce(function (_o, item) { return item; }, {});
+            }));
+            return arr.reduce(( /**
+             * @param {?} _o
+             * @param {?} item
+             * @return {?}
+             */function (_o, item) { return item; }), {});
         };
+        /**
+         * @private
+         * @param {?} status
+         * @return {?}
+         */
         DownFileDirective.prototype.setDisabled = function (status) {
+            /** @type {?} */
             var el = this.el.nativeElement;
             el.disabled = status;
             el.classList[status ? 'add' : 'remove']("down-file__disabled");
         };
+        /**
+         * @param {?} ev
+         * @return {?}
+         */
         DownFileDirective.prototype._click = function (ev) {
             return __awaiter(this, void 0, void 0, function () {
                 var _b, _c;
@@ -410,20 +428,33 @@
                                 observe: 'response',
                                 body: this.httpBody,
                             })
-                                .subscribe(function (res) {
-                                if (res.status !== 200 || res.body.size <= 0) {
+                                .subscribe(( /**
+                         * @param {?} res
+                         * @return {?}
+                         */function (res) {
+                                if (res.status !== 200 || ( /** @type {?} */(res.body)).size <= 0) {
                                     _this.error.emit(res);
                                     return;
                                 }
+                                /** @type {?} */
                                 var disposition = _this.getDisposition(res.headers.get('content-disposition'));
+                                /** @type {?} */
                                 var fileName = _this.fileName;
                                 if (typeof fileName === 'function')
                                     fileName = fileName(res);
                                 fileName =
                                     fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
-                                fileSaver.saveAs(res.body, decodeURI(fileName));
+                                fileSaver.saveAs(( /** @type {?} */(res.body)), decodeURI(( /** @type {?} */(fileName))));
                                 _this.success.emit(res);
-                            }, function (err) { return _this.error.emit(err); }, function () { return _this.setDisabled(false); });
+                            }), ( /**
+                             * @param {?} err
+                             * @return {?}
+                             */function (/**
+                             * @param {?} err
+                             * @return {?}
+                             */ err) { return _this.error.emit(err); }), ( /**
+                             * @return {?}
+                             */function () { return _this.setDisabled(false); }));
                             return [2 /*return*/];
                     }
                 });
@@ -431,64 +462,89 @@
         };
         return DownFileDirective;
     }());
-    /** @nocollapse */ DownFileDirective.ɵfac = function DownFileDirective_Factory(t) { return new (t || DownFileDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1._HttpClient)); };
-    /** @nocollapse */ DownFileDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: DownFileDirective, selector: "[down-file]", inputs: { httpData: ["http-data", "httpData"], httpBody: ["http-body", "httpBody"], httpMethod: ["http-method", "httpMethod"], httpUrl: ["http-url", "httpUrl"], fileName: ["file-name", "fileName"], pre: "pre" }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0__namespace });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DownFileDirective, [{
-                type: i0.Directive,
-                args: [{
-                        selector: '[down-file]',
-                        exportAs: 'downFile',
-                        host: {
-                            '(click)': '_click($event)',
-                        },
-                    }]
-            }], function () { return [{ type: i0.ElementRef }, { type: i1._HttpClient }]; }, { httpData: [{
-                    type: i0.Input,
-                    args: ['http-data']
-                }], httpBody: [{
-                    type: i0.Input,
-                    args: ['http-body']
-                }], httpMethod: [{
-                    type: i0.Input,
-                    args: ['http-method']
-                }], httpUrl: [{
-                    type: i0.Input,
-                    args: ['http-url']
-                }], fileName: [{
-                    type: i0.Input,
-                    args: ['file-name']
-                }], pre: [{
-                    type: i0.Input
-                }], success: [{
-                    type: i0.Output
-                }], error: [{
-                    type: i0.Output
-                }] });
-    })();
+    DownFileDirective.decorators = [
+        { type: core.Directive, args: [{
+                    selector: '[down-file]',
+                    exportAs: 'downFile',
+                    host: {
+                        '(click)': '_click($event)',
+                    },
+                },] }
+    ];
+    /** @nocollapse */
+    DownFileDirective.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: theme._HttpClient }
+    ]; };
+    DownFileDirective.propDecorators = {
+        httpData: [{ type: core.Input, args: ['http-data',] }],
+        httpBody: [{ type: core.Input, args: ['http-body',] }],
+        httpMethod: [{ type: core.Input, args: ['http-method',] }],
+        httpUrl: [{ type: core.Input, args: ['http-url',] }],
+        fileName: [{ type: core.Input, args: ['file-name',] }],
+        pre: [{ type: core.Input }],
+        success: [{ type: core.Output }],
+        error: [{ type: core.Output }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype.isFileSaverSupported;
+        /** @type {?} */
+        DownFileDirective.prototype.httpData;
+        /** @type {?} */
+        DownFileDirective.prototype.httpBody;
+        /** @type {?} */
+        DownFileDirective.prototype.httpMethod;
+        /** @type {?} */
+        DownFileDirective.prototype.httpUrl;
+        /** @type {?} */
+        DownFileDirective.prototype.fileName;
+        /** @type {?} */
+        DownFileDirective.prototype.pre;
+        /** @type {?} */
+        DownFileDirective.prototype.success;
+        /** @type {?} */
+        DownFileDirective.prototype.error;
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        DownFileDirective.prototype._http;
+    }
 
+    /** @type {?} */
     var DIRECTIVES = [DownFileDirective];
     var DownFileModule = /** @class */ (function () {
         function DownFileModule() {
         }
         return DownFileModule;
     }());
-    /** @nocollapse */ DownFileModule.ɵmod = i0.ɵɵdefineNgModule({ type: DownFileModule });
-    /** @nocollapse */ DownFileModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DownFileModule_Factory(t) { return new (t || DownFileModule)(); }, imports: [[common.CommonModule, i1.AlainThemeModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(DownFileModule, { declarations: [DownFileDirective], imports: [common.CommonModule, i1.AlainThemeModule], exports: [DownFileDirective] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DownFileModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule, i1.AlainThemeModule],
-                        declarations: __spread(DIRECTIVES),
-                        exports: __spread(DIRECTIVES),
-                    }]
-            }], null, null);
-    })();
+    DownFileModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, theme.AlainThemeModule],
+                    declarations: __spread(DIRECTIVES),
+                    exports: __spread(DIRECTIVES),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: downFile.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.DownFileDirective = DownFileDirective;

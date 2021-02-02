@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@delon/util/config'), require('@delon/theme'), require('@angular/cdk/platform'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/core', '@delon/util/decorator', '@delon/util/config', '@delon/theme', '@angular/cdk/platform', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.core, global.decorator, global.i1, global.delon.theme, global.ng.cdk.platform, global.ng.common));
-}(this, (function (exports, i0, decorator, i1, i2, i3, common) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.config, global.decorator, global.ng.common));
+}(this, (function (exports, platform, core, theme, config, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,7 +318,18 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: image.directive.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ImageDirective = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} configSrv
+         * @param {?} http
+         * @param {?} platform
+         */
         function ImageDirective(el, configSrv, http, platform) {
             this.http = http;
             this.platform = platform;
@@ -349,11 +338,18 @@
             configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
             this.imgEl = el.nativeElement;
         }
+        /**
+         * @return {?}
+         */
         ImageDirective.prototype.ngOnInit = function () {
             this.update();
             this.updateError();
             this.inited = true;
         };
+        /**
+         * @param {?} changes
+         * @return {?}
+         */
         ImageDirective.prototype.ngOnChanges = function (changes) {
             var _a = this, size = _a.size, imgEl = _a.imgEl;
             imgEl.height = size;
@@ -365,15 +361,22 @@
                 this.update();
             }
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ImageDirective.prototype.update = function () {
             var _a = this, size = _a.size, imgEl = _a.imgEl, useHttp = _a.useHttp;
             if (useHttp) {
                 this.getByHttp();
                 return;
             }
+            /** @type {?} */
             var newSrc = this.src;
             if (newSrc.includes('qlogo.cn')) {
+                /** @type {?} */
                 var arr = newSrc.split('/');
+                /** @type {?} */
                 var imgSize = arr[arr.length - 1];
                 arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
                 newSrc = arr.join('/');
@@ -381,35 +384,76 @@
             newSrc = newSrc.replace(/^(?:https?:)/i, '');
             imgEl.src = newSrc;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ImageDirective.prototype.getByHttp = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
             var imgEl = this.imgEl;
-            this.http.get(this.src, null, { responseType: 'blob' }).subscribe(function (blob) {
+            this.http.get(this.src, null, { responseType: 'blob' }).subscribe(( /**
+             * @param {?} blob
+             * @return {?}
+             */function (blob) {
+                /** @type {?} */
                 var reader = new FileReader();
-                reader.onloadend = function () { return (imgEl.src = reader.result); };
-                reader.onerror = function () { return _this.setError(); };
+                reader.onloadend = ( /**
+                 * @return {?}
+                 */function () { return (imgEl.src = ( /** @type {?} */(reader.result))); });
+                reader.onerror = ( /**
+                 * @return {?}
+                 */function () { return _this.setError(); });
                 reader.readAsDataURL(blob);
-            }, function () { return _this.setError(); });
+            }), ( /**
+             * @return {?}
+             */function () { return _this.setError(); }));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ImageDirective.prototype.updateError = function () {
             var _a = this, imgEl = _a.imgEl, error = _a.error;
             // tslint:disable-next-line: only-arrow-functions, typedef
-            imgEl.onerror = function () {
+            imgEl.onerror = ( /**
+             * @return {?}
+             */function () {
                 this.onerror = null;
                 this.src = error;
-            };
+            });
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ImageDirective.prototype.setError = function () {
             var _a = this, imgEl = _a.imgEl, error = _a.error;
             imgEl.src = error;
         };
         return ImageDirective;
     }());
-    /** @nocollapse */ ImageDirective.ɵfac = function ImageDirective_Factory(t) { return new (t || ImageDirective)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i1.AlainConfigService), i0.ɵɵdirectiveInject(i2._HttpClient), i0.ɵɵdirectiveInject(i3.Platform)); };
-    /** @nocollapse */ ImageDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: ImageDirective, selector: "[_src]", inputs: { src: ["_src", "src"], size: "size", error: "error", useHttp: "useHttp" }, exportAs: ["_src"], usesOnChanges: true, ngImport: i0__namespace });
+    ImageDirective.decorators = [
+        { type: core.Directive, args: [{
+                    selector: '[_src]',
+                    exportAs: '_src',
+                },] }
+    ];
+    /** @nocollapse */
+    ImageDirective.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: config.AlainConfigService },
+        { type: theme._HttpClient },
+        { type: platform.Platform }
+    ]; };
+    ImageDirective.propDecorators = {
+        src: [{ type: core.Input, args: ['_src',] }],
+        size: [{ type: core.Input }],
+        error: [{ type: core.Input }],
+        useHttp: [{ type: core.Input }]
+    };
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
@@ -418,47 +462,66 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], ImageDirective.prototype, "useHttp", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ImageDirective, [{
-                type: i0.Directive,
-                args: [{
-                        selector: '[_src]',
-                        exportAs: '_src',
-                    }]
-            }], function () { return [{ type: i0.ElementRef }, { type: i1.AlainConfigService }, { type: i2._HttpClient }, { type: i3.Platform }]; }, { src: [{
-                    type: i0.Input,
-                    args: ['_src']
-                }], size: [{
-                    type: i0.Input
-                }], error: [{
-                    type: i0.Input
-                }], useHttp: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        ImageDirective.ngAcceptInputType_size;
+        /** @type {?} */
+        ImageDirective.ngAcceptInputType_useHttp;
+        /** @type {?} */
+        ImageDirective.prototype.src;
+        /** @type {?} */
+        ImageDirective.prototype.size;
+        /** @type {?} */
+        ImageDirective.prototype.error;
+        /** @type {?} */
+        ImageDirective.prototype.useHttp;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.inited;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.imgEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.http;
+        /**
+         * @type {?}
+         * @private
+         */
+        ImageDirective.prototype.platform;
+    }
 
+    /** @type {?} */
     var DIRECTIVES = [ImageDirective];
     var ImageModule = /** @class */ (function () {
         function ImageModule() {
         }
         return ImageModule;
     }());
-    /** @nocollapse */ ImageModule.ɵmod = i0.ɵɵdefineNgModule({ type: ImageModule });
-    /** @nocollapse */ ImageModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ImageModule_Factory(t) { return new (t || ImageModule)(); }, imports: [[common.CommonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ImageModule, { declarations: [ImageDirective], imports: [common.CommonModule], exports: [ImageDirective] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ImageModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule],
-                        declarations: __spread(DIRECTIVES),
-                        exports: __spread(DIRECTIVES),
-                    }]
-            }], null, null);
-    })();
+    ImageModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule],
+                    declarations: __spread(DIRECTIVES),
+                    exports: __spread(DIRECTIVES),
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: image.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ImageDirective = ImageDirective;

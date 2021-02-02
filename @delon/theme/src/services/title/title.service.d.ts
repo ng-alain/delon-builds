@@ -2,7 +2,6 @@ import { Injector, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AlainI18NService } from '../i18n/i18n';
 import { MenuService } from '../menu/menu.service';
-import * as i0 from "@angular/core";
 export declare class TitleService implements OnDestroy {
     private injector;
     private title;
@@ -39,6 +38,4 @@ export declare class TitleService implements OnDestroy {
      */
     setTitleByI18n(key: string, params?: {}): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<TitleService, [null, null, null, { optional: true; }, null]>;
-    static ɵprov: i0.ɵɵInjectableDef<TitleService>;
 }

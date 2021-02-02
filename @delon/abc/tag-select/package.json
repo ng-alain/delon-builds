@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/tag-select/tagSelect.js",
   "fesm2015": "../fesm2015/tagSelect.js",
   "typings": "tagSelect.d.ts",
+  "metadata": "tagSelect.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/tag-select"
 }

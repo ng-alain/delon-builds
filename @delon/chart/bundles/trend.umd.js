@@ -7,29 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/trend', ['exports', '@angular/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/icon'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.trend = {}), global.ng.core, global.decorator, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, decorator, i1, i2) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+}(this, (function (exports, core, decorator, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,17 +318,44 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: trend.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var TrendComponent = /** @class */ (function () {
         function TrendComponent() {
-            /** 是否彩色标记 */
+            /**
+             * 是否彩色标记
+             */
             this.colorful = true;
-            /** 颜色反转 */
+            /**
+             * 颜色反转
+             */
             this.reverseColor = false;
         }
         return TrendComponent;
     }());
-    /** @nocollapse */ TrendComponent.ɵfac = function TrendComponent_Factory(t) { return new (t || TrendComponent)(); };
-    /** @nocollapse */ TrendComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: TrendComponent, selector: "trend", inputs: { flag: "flag", colorful: "colorful", reverseColor: "reverseColor" }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor" } }, exportAs: ["trend"], ngImport: i0__namespace, template: "<ng-content></ng-content>\n<span *ngIf=\"flag\" class=\"trend__{{ flag }}\"><i nz-icon nzType=\"caret-{{ flag }}\"></i></span>\n", directives: [{ type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i2.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    TrendComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'trend',
+                    exportAs: 'trend',
+                    template: "<ng-content></ng-content>\n<span *ngIf=\"flag\" class=\"trend__{{ flag }}\"><i nz-icon nzType=\"caret-{{ flag }}\"></i></span>\n",
+                    host: {
+                        '[class.trend]': 'true',
+                        '[class.trend__grey]': '!colorful',
+                        '[class.trend__reverse]': 'colorful && reverseColor',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    TrendComponent.propDecorators = {
+        flag: [{ type: core.Input }],
+        colorful: [{ type: core.Input }],
+        reverseColor: [{ type: core.Input }]
+    };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
@@ -359,53 +364,58 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], TrendComponent.prototype, "reverseColor", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TrendComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'trend',
-                        exportAs: 'trend',
-                        templateUrl: './trend.component.html',
-                        host: {
-                            '[class.trend]': 'true',
-                            '[class.trend__grey]': '!colorful',
-                            '[class.trend__reverse]': 'colorful && reverseColor',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { flag: [{
-                    type: i0.Input
-                }], colorful: [{
-                    type: i0.Input
-                }], reverseColor: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        TrendComponent.ngAcceptInputType_colorful;
+        /** @type {?} */
+        TrendComponent.ngAcceptInputType_reverseColor;
+        /**
+         * 上升下降标识
+         * @type {?}
+         */
+        TrendComponent.prototype.flag;
+        /**
+         * 是否彩色标记
+         * @type {?}
+         */
+        TrendComponent.prototype.colorful;
+        /**
+         * 颜色反转
+         * @type {?}
+         */
+        TrendComponent.prototype.reverseColor;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: trend.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var COMPONENTS = [TrendComponent];
     var TrendModule = /** @class */ (function () {
         function TrendModule() {
         }
         return TrendModule;
     }());
-    /** @nocollapse */ TrendModule.ɵmod = i0.ɵɵdefineNgModule({ type: TrendModule });
-    /** @nocollapse */ TrendModule.ɵinj = i0.ɵɵdefineInjector({ factory: function TrendModule_Factory(t) { return new (t || TrendModule)(); }, imports: [[i1.CommonModule, i2.NzIconModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(TrendModule, { declarations: [TrendComponent], imports: [i1.CommonModule, i2.NzIconModule], exports: [TrendComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TrendModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i1.CommonModule, i2.NzIconModule],
-                        declarations: COMPONENTS,
-                        exports: COMPONENTS,
-                    }]
-            }], null, null);
-    })();
+    TrendModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, icon.NzIconModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: trend.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.TrendComponent = TrendComponent;

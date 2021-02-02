@@ -2,7 +2,6 @@ import { AfterViewInit, ElementRef, OnChanges, Renderer2, TemplateRef } from '@a
 import { ResponsiveService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SVContainerComponent } from './sv-container.component';
-import * as i0 from "@angular/core";
 export declare class SVComponent implements AfterViewInit, OnChanges {
     parent: SVContainerComponent;
     private rep;
@@ -27,6 +26,4 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     checkContent(): void;
-    static ɵfac: i0.ɵɵFactoryDef<SVComponent, [null, { optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; }, {}, never, ["*"]>;
 }

@@ -1,7 +1,16 @@
-import { ɵɵdirectiveInject, LOCALE_ID, ɵɵdefinePipe, ɵsetClassMetadata, Pipe, Inject, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { Pipe, Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { CurrencyService } from '@delon/util/format';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: mega.pipe.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class CurrencyMegaPipe {
+    /**
+     * @param {?} srv
+     * @param {?} locale
+     */
     constructor(srv, locale) {
         this.srv = srv;
         this.isCN = false;
@@ -11,23 +20,46 @@ class CurrencyMegaPipe {
      * Large number format filter
      *
      * 大数据格式化
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
      */
     transform(value, options) {
+        /** @type {?} */
         const res = this.srv.mega(value, options);
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
 }
-/** @nocollapse */ CurrencyMegaPipe.ɵfac = function CurrencyMegaPipe_Factory(t) { return new (t || CurrencyMegaPipe)(ɵɵdirectiveInject(CurrencyService), ɵɵdirectiveInject(LOCALE_ID)); };
-/** @nocollapse */ CurrencyMegaPipe.ɵpipe = ɵɵdefinePipe({ name: "mega", type: CurrencyMegaPipe, pure: true });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CurrencyMegaPipe, [{
-        type: Pipe,
-        args: [{ name: 'mega' }]
-    }], function () { return [{ type: CurrencyService }, { type: undefined, decorators: [{
-                type: Inject,
-                args: [LOCALE_ID]
-            }] }]; }, null); })();
+CurrencyMegaPipe.decorators = [
+    { type: Pipe, args: [{ name: 'mega' },] }
+];
+/** @nocollapse */
+CurrencyMegaPipe.ctorParameters = () => [
+    { type: CurrencyService },
+    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyMegaPipe.prototype.isCN;
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyMegaPipe.prototype.srv;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: price.pipe.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class CurrencyPricePipe {
+    /**
+     * @param {?} srv
+     */
     constructor(srv) {
         this.srv = srv;
     }
@@ -39,19 +71,38 @@ class CurrencyPricePipe {
      * 10000 => `10,000`
      * 10000.567 => `10,000.57`
      * ```
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
      */
     transform(value, options) {
         return this.srv.format(value, options);
     }
 }
-/** @nocollapse */ CurrencyPricePipe.ɵfac = function CurrencyPricePipe_Factory(t) { return new (t || CurrencyPricePipe)(ɵɵdirectiveInject(CurrencyService)); };
-/** @nocollapse */ CurrencyPricePipe.ɵpipe = ɵɵdefinePipe({ name: "price", type: CurrencyPricePipe, pure: true });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CurrencyPricePipe, [{
-        type: Pipe,
-        args: [{ name: 'price' }]
-    }], function () { return [{ type: CurrencyService }]; }, null); })();
+CurrencyPricePipe.decorators = [
+    { type: Pipe, args: [{ name: 'price' },] }
+];
+/** @nocollapse */
+CurrencyPricePipe.ctorParameters = () => [
+    { type: CurrencyService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyPricePipe.prototype.srv;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: cny.pipe.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class CurrencyCNYPipe {
+    /**
+     * @param {?} srv
+     */
     constructor(srv) {
         this.srv = srv;
     }
@@ -59,35 +110,56 @@ class CurrencyCNYPipe {
      * Converted into RMB notation.
      *
      * 转化成人民币表示法
+     * @param {?} value
+     * @param {?=} options
+     * @return {?}
      */
     transform(value, options) {
         return this.srv.cny(value, options);
     }
 }
-/** @nocollapse */ CurrencyCNYPipe.ɵfac = function CurrencyCNYPipe_Factory(t) { return new (t || CurrencyCNYPipe)(ɵɵdirectiveInject(CurrencyService)); };
-/** @nocollapse */ CurrencyCNYPipe.ɵpipe = ɵɵdefinePipe({ name: "cny", type: CurrencyCNYPipe, pure: true });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CurrencyCNYPipe, [{
-        type: Pipe,
-        args: [{ name: 'cny' }]
-    }], function () { return [{ type: CurrencyService }]; }, null); })();
+CurrencyCNYPipe.decorators = [
+    { type: Pipe, args: [{ name: 'cny' },] }
+];
+/** @nocollapse */
+CurrencyCNYPipe.ctorParameters = () => [
+    { type: CurrencyService }
+];
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    CurrencyCNYPipe.prototype.srv;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
-/** @nocollapse */ CurrencyPipeModule.ɵmod = ɵɵdefineNgModule({ type: CurrencyPipeModule });
-/** @nocollapse */ CurrencyPipeModule.ɵinj = ɵɵdefineInjector({ factory: function CurrencyPipeModule_Factory(t) { return new (t || CurrencyPipeModule)(); } });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(CurrencyPipeModule, { declarations: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe], exports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(CurrencyPipeModule, [{
-        type: NgModule,
-        args: [{
+CurrencyPipeModule.decorators = [
+    { type: NgModule, args: [{
                 declarations: PIPES,
                 exports: PIPES,
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CurrencyCNYPipe, CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe };
+/**
+ * @fileoverview added by tsickle
+ * Generated from: delon-util-pipes-currency.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, CurrencyCNYPipe as ɵa };
 //# sourceMappingURL=delon-util-pipes-currency.js.map

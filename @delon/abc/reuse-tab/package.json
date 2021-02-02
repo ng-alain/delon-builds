@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/reuse-tab/reuseTab.js",
   "fesm2015": "../fesm2015/reuseTab.js",
   "typings": "reuseTab.d.ts",
+  "metadata": "reuseTab.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/reuse-tab"
 }

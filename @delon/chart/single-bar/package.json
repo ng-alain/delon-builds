@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/single-bar/single-bar.js",
   "fesm2015": "../fesm2015/single-bar.js",
   "typings": "single-bar.d.ts",
+  "metadata": "single-bar.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/single-bar"
 }

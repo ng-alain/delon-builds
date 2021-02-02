@@ -3,7 +3,6 @@ import { ChangeDetectorRef, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Layout, SettingsService } from '@delon/theme';
 import { LazyService } from '@delon/util/other';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import * as i0 from "@angular/core";
 export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     private cdr;
     private msg;
@@ -42,6 +41,4 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     reset(): void;
     copyVar(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<SettingDrawerComponent, [null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": "autoApplyColor"; "devTips": "devTips"; }, {}, never, never>;
 }

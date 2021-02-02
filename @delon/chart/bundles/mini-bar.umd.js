@@ -7,29 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/mini-bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['mini-bar'] = {}), global.ng.core, global.delon.chart.core, global.decorator, global.ng.common));
-}(this, (function (exports, i0, core, decorator, common) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+}(this, (function (exports, core, core$1, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,6 +318,27 @@
         return value;
     }
 
+    /**
+     * @record
+     */
+    function G2MiniBarData() { }
+    if (false) {
+        /** @type {?} */
+        G2MiniBarData.prototype.x;
+        /** @type {?} */
+        G2MiniBarData.prototype.y;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function G2MiniBarClickItem() { }
+    if (false) {
+        /** @type {?} */
+        G2MiniBarClickItem.prototype.item;
+        /** @type {?} */
+        G2MiniBarClickItem.prototype.ev;
+    }
     var G2MiniBarComponent = /** @class */ (function (_super) {
         __extends(G2MiniBarComponent, _super);
         function G2MiniBarComponent() {
@@ -352,14 +351,18 @@
             _this.data = [];
             _this.yTooltipSuffix = '';
             _this.tooltipType = 'default';
-            _this.clickItem = new i0.EventEmitter();
+            _this.clickItem = new core.EventEmitter();
             return _this;
         }
         // #endregion
+        /**
+         * @return {?}
+         */
         G2MiniBarComponent.prototype.install = function () {
             var _this = this;
             var _b = this, el = _b.el, height = _b.height, padding = _b.padding, yTooltipSuffix = _b.yTooltipSuffix, tooltipType = _b.tooltipType, theme = _b.theme;
-            var chart = (this._chart = new window.G2.Chart({
+            /** @type {?} */
+            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -376,6 +379,7 @@
             });
             chart.legend(false);
             chart.axis(false);
+            /** @type {?} */
             var tooltipOption = {
                 showTitle: false,
                 showMarkers: true,
@@ -389,7 +393,7 @@
             };
             if (tooltipType === 'mini') {
                 tooltipOption.position = 'top';
-                tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+                ( /** @type {?} */(tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
                 tooltipOption.itemTpl = "<li>{value}</li>";
                 tooltipOption.offset = 0;
             }
@@ -397,13 +401,25 @@
             chart
                 .interval()
                 .position('x*y')
-                .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
-            chart.on("interval:click", function (ev) {
-                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
-            });
+                .tooltip('x*y', ( /**
+         * @param {?} x
+         * @param {?} y
+         * @return {?}
+         */function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }));
+            chart.on("interval:click", ( /**
+             * @param {?} ev
+             * @return {?}
+             */function (ev) {
+                _this.ngZone.run(( /**
+                 * @return {?}
+                 */function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
+            }));
             chart.render();
             this.attachChart();
         };
+        /**
+         * @return {?}
+         */
         G2MiniBarComponent.prototype.attachChart = function () {
             var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, data = _b.data, color = _b.color, borderWidth = _b.borderWidth;
             if (!_chart || !data || data.length <= 0)
@@ -415,9 +431,30 @@
             _chart.render();
         };
         return G2MiniBarComponent;
-    }(core.G2BaseComponent));
-    /** @nocollapse */ G2MiniBarComponent.ɵfac = function G2MiniBarComponent_Factory(t) { return ɵG2MiniBarComponent_BaseFactory(t || G2MiniBarComponent); };
-    /** @nocollapse */ G2MiniBarComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: G2MiniBarComponent, selector: "g2-mini-bar", inputs: { color: "color", height: "height", borderWidth: "borderWidth", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniBar"], usesInheritance: true, ngImport: i0__namespace, template: "", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    }(core$1.G2BaseComponent));
+    G2MiniBarComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'g2-mini-bar',
+                    exportAs: 'g2MiniBar',
+                    template: "",
+                    host: {
+                        '[style.height.px]': 'height',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    G2MiniBarComponent.propDecorators = {
+        color: [{ type: core.Input }],
+        height: [{ type: core.Input }],
+        borderWidth: [{ type: core.Input }],
+        padding: [{ type: core.Input }],
+        data: [{ type: core.Input }],
+        yTooltipSuffix: [{ type: core.Input }],
+        tooltipType: [{ type: core.Input }],
+        clickItem: [{ type: core.Output }]
+    };
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
@@ -426,62 +463,59 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2MiniBarComponent.prototype, "borderWidth", void 0);
-    var ɵG2MiniBarComponent_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(G2MiniBarComponent);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniBarComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'g2-mini-bar',
-                        exportAs: 'g2MiniBar',
-                        template: "",
-                        host: {
-                            '[style.height.px]': 'height',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { color: [{
-                    type: i0.Input
-                }], height: [{
-                    type: i0.Input
-                }], borderWidth: [{
-                    type: i0.Input
-                }], padding: [{
-                    type: i0.Input
-                }], data: [{
-                    type: i0.Input
-                }], yTooltipSuffix: [{
-                    type: i0.Input
-                }], tooltipType: [{
-                    type: i0.Input
-                }], clickItem: [{
-                    type: i0.Output
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        G2MiniBarComponent.ngAcceptInputType_height;
+        /** @type {?} */
+        G2MiniBarComponent.ngAcceptInputType_borderWidth;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.color;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.height;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.borderWidth;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.padding;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.data;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.yTooltipSuffix;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.tooltipType;
+        /** @type {?} */
+        G2MiniBarComponent.prototype.clickItem;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: mini-bar.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var COMPONENTS = [G2MiniBarComponent];
     var G2MiniBarModule = /** @class */ (function () {
         function G2MiniBarModule() {
         }
         return G2MiniBarModule;
     }());
-    /** @nocollapse */ G2MiniBarModule.ɵmod = i0.ɵɵdefineNgModule({ type: G2MiniBarModule });
-    /** @nocollapse */ G2MiniBarModule.ɵinj = i0.ɵɵdefineInjector({ factory: function G2MiniBarModule_Factory(t) { return new (t || G2MiniBarModule)(); }, imports: [[common.CommonModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(G2MiniBarModule, { declarations: [G2MiniBarComponent], imports: [common.CommonModule], exports: [G2MiniBarComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(G2MiniBarModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule],
-                        declarations: COMPONENTS,
-                        exports: COMPONENTS,
-                    }]
-            }], null, null);
-    })();
+    G2MiniBarModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: mini-bar.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.G2MiniBarComponent = G2MiniBarComponent;

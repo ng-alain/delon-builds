@@ -1,13 +1,38 @@
 import { __decorate, __metadata } from 'tslib';
-import * as i0 from '@angular/core';
-import { EventEmitter, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵɵgetInheritedFactory, ɵsetClassMetadata, Component, Input, Output, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
-import { NgIf, CommonModule } from '@angular/common';
-import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CommonModule } from '@angular/common';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tag-cloud.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function G2TagCloudData() { }
+if (false) {
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.value;
+    /** @type {?|undefined} */
+    G2TagCloudData.prototype.name;
+    /* Skipping unhandled member: [key: string]: any;*/
+}
+/**
+ * @record
+ */
+function G2TagCloudClickItem() { }
+if (false) {
+    /** @type {?} */
+    G2TagCloudClickItem.prototype.item;
+    /** @type {?} */
+    G2TagCloudClickItem.prototype.ev;
+}
 class G2TagCloudComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -19,23 +44,37 @@ class G2TagCloudComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
+    /**
+     * @private
+     * @return {?}
+     */
     initTagCloud() {
-        window.G2.registerShape('point', 'cloud', {
+        ((/** @type {?} */ (window))).G2.registerShape('point', 'cloud', {
             // tslint:disable-next-line: typedef
+            /**
+             * @param {?} cfg
+             * @param {?} container
+             * @return {?}
+             */
             draw(cfg, container) {
-                const data = cfg.data;
+                /** @type {?} */
+                const data = (/** @type {?} */ (cfg.data));
+                /** @type {?} */
                 const textShape = container.addShape({
                     type: 'text',
                     name: 'tag-cloud-text',
-                    attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                    attrs: (/** @type {?} */ (Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }))),
                 });
                 if (data.rotate) {
-                    window.G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
+                    ((/** @type {?} */ (window))).G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                 }
                 return textShape;
             },
         });
     }
+    /**
+     * @return {?}
+     */
     install() {
         this.initTagCloud();
         const { el, padding, theme } = this;
@@ -45,7 +84,8 @@ class G2TagCloudComponent extends G2BaseComponent {
         if (this.width === 0) {
             this.width = this.el.nativeElement.clientWidth;
         }
-        const chart = (this._chart = new window.G2.Chart({
+        /** @type {?} */
+        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
             container: el.nativeElement,
             autoFit: false,
             padding,
@@ -63,7 +103,7 @@ class G2TagCloudComponent extends G2BaseComponent {
             showTitle: false,
             showMarkers: false,
         });
-        chart.coordinate().reflect();
+        ((/** @type {?} */ (chart.coordinate()))).reflect();
         chart
             .point()
             .position('x*y')
@@ -77,11 +117,21 @@ class G2TagCloudComponent extends G2BaseComponent {
             },
         });
         chart.interaction('element-active');
-        chart.on('tag-cloud-text:click', (ev) => {
-            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
-        });
+        chart.on('tag-cloud-text:click', (/**
+         * @param {?} ev
+         * @return {?}
+         */
+        (ev) => {
+            this.ngZone.run((/**
+             * @return {?}
+             */
+            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
+        }));
         this.attachChart();
     }
+    /**
+     * @return {?}
+     */
     attachChart() {
         const { _chart, padding, data } = this;
         if (!_chart || !data || data.length <= 0)
@@ -89,20 +139,30 @@ class G2TagCloudComponent extends G2BaseComponent {
         _chart.height = this.height;
         _chart.width = this.width;
         _chart.padding = padding;
-        const dv = new window.DataSet.View().source(data);
+        /** @type {?} */
+        const dv = new ((/** @type {?} */ (window))).DataSet.View().source(data);
+        /** @type {?} */
         const range = dv.range('value');
+        /** @type {?} */
         const min = range[0];
+        /** @type {?} */
         const max = range[1];
-        dv.transform({
+        dv.transform((/** @type {?} */ ({
             type: 'tag-cloud',
             fields: ['name', 'value'],
             // imageMask,
             font: 'Verdana',
             size: [this.width, this.height],
+            // 宽高设置最好根据 imageMask 做调整
             padding: 0,
             timeInterval: 5000,
+            // max execute time
             // tslint:disable-next-line: typedef
+            /**
+             * @return {?}
+             */
             rotate() {
+                /** @type {?} */
                 let random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
                     random = 0;
@@ -110,27 +170,66 @@ class G2TagCloudComponent extends G2BaseComponent {
                 return random * 90; // 0, 90, 270
             },
             // tslint:disable-next-line: typedef
+            /**
+             * @param {?} d
+             * @return {?}
+             */
             fontSize(d) {
                 return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
-        });
+        })));
         _chart.data(dv.rows);
         _chart.render();
     }
+    /**
+     * @private
+     * @return {?}
+     */
     _attachChart() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => this.attachChart()));
     }
+    /**
+     * @private
+     * @return {?}
+     */
     installResizeEvent() {
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(filter(() => !!this._chart), debounceTime(200))
-            .subscribe(() => this._attachChart());
+            .pipe(filter((/**
+         * @return {?}
+         */
+        () => !!this._chart)), debounceTime(200))
+            .subscribe((/**
+         * @return {?}
+         */
+        () => this._attachChart()));
     }
+    /**
+     * @return {?}
+     */
     onInit() {
         this.installResizeEvent();
     }
 }
-/** @nocollapse */ G2TagCloudComponent.ɵfac = function G2TagCloudComponent_Factory(t) { return ɵG2TagCloudComponent_BaseFactory(t || G2TagCloudComponent); };
-/** @nocollapse */ G2TagCloudComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: G2TagCloudComponent, selector: "g2-tag-cloud", inputs: { width: "width", height: "height", padding: "padding", data: "data" }, outputs: { clickItem: "clickItem" }, exportAs: ["g2TagCloud"], usesInheritance: true, ngImport: i0, template: `<nz-skeleton *ngIf="!loaded"></nz-skeleton>`, isInline: true, directives: [{ type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
+G2TagCloudComponent.decorators = [
+    { type: Component, args: [{
+                selector: 'g2-tag-cloud',
+                exportAs: 'g2TagCloud',
+                template: `<nz-skeleton *ngIf="!loaded"></nz-skeleton>`,
+                preserveWhitespaces: false,
+                changeDetection: ChangeDetectionStrategy.OnPush,
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+G2TagCloudComponent.propDecorators = {
+    width: [{ type: Input }],
+    height: [{ type: Input }],
+    padding: [{ type: Input }],
+    data: [{ type: Input }],
+    clickItem: [{ type: Output }]
+};
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -139,46 +238,50 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2TagCloudComponent.prototype, "height", void 0);
-const ɵG2TagCloudComponent_BaseFactory = /*@__PURE__*/ ɵɵgetInheritedFactory(G2TagCloudComponent);
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2TagCloudComponent, [{
-        type: Component,
-        args: [{
-                selector: 'g2-tag-cloud',
-                exportAs: 'g2TagCloud',
-                template: `<nz-skeleton *ngIf="!loaded"></nz-skeleton>`,
-                preserveWhitespaces: false,
-                changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-            }]
-    }], null, { width: [{
-            type: Input
-        }], height: [{
-            type: Input
-        }], padding: [{
-            type: Input
-        }], data: [{
-            type: Input
-        }], clickItem: [{
-            type: Output
-        }] }); })();
+if (false) {
+    /** @type {?} */
+    G2TagCloudComponent.ngAcceptInputType_height;
+    /** @type {?} */
+    G2TagCloudComponent.ngAcceptInputType_width;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.width;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.height;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.padding;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.data;
+    /** @type {?} */
+    G2TagCloudComponent.prototype.clickItem;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tag-cloud.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [G2TagCloudComponent];
 class G2TagCloudModule {
 }
-/** @nocollapse */ G2TagCloudModule.ɵmod = ɵɵdefineNgModule({ type: G2TagCloudModule });
-/** @nocollapse */ G2TagCloudModule.ɵinj = ɵɵdefineInjector({ factory: function G2TagCloudModule_Factory(t) { return new (t || G2TagCloudModule)(); }, imports: [[CommonModule, NzSkeletonModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(G2TagCloudModule, { declarations: [G2TagCloudComponent], imports: [CommonModule, NzSkeletonModule], exports: [G2TagCloudComponent] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(G2TagCloudModule, [{
-        type: NgModule,
-        args: [{
+G2TagCloudModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule, NzSkeletonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tag-cloud.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { G2TagCloudComponent, G2TagCloudModule };

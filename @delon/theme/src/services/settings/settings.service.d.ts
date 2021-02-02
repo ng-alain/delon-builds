@@ -1,7 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { Observable } from 'rxjs';
 import { App, Layout, SettingsNotify, User } from './types';
-import * as i0 from "@angular/core";
 export declare const LAYOUT = "layout";
 export declare const USER = "user";
 export declare const APP = "app";
@@ -21,6 +20,4 @@ export declare class SettingsService {
     setLayout(name: string | Layout, value?: any): boolean;
     setApp(value: App): void;
     setUser(value: User): void;
-    static ɵfac: i0.ɵɵFactoryDef<SettingsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<SettingsService>;
 }

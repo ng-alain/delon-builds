@@ -41,7 +41,6 @@ export * from './mention/schema';
 export * from './text/text.widget';
 export * from './text/schema';
 export * from './custom/custom.widget';
-export * from './custom/sf-template.directive';
 export * from './custom/schema';
 export * from './custom/sf-template.directive';
 export * from './nz-widget.registry';

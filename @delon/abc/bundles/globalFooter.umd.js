@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/router'), require('@angular/platform-browser'), require('@angular/cdk/bidi'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/core', '@delon/theme', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/router', '@angular/platform-browser', '@angular/cdk/bidi', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.rxjs.operators, global.decorator, global.ng.router, global.ng.platformBrowser, global.ng.cdk.bidi, global.ng.common));
-}(this, (function (exports, i0, theme, rxjs, operators, decorator, i1, i2, i3, i4) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common));
+}(this, (function (exports, bidi, core, platformBrowser, router, theme, rxjs, operators, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,39 +318,58 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: global-footer-item.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var GlobalFooterItemComponent = /** @class */ (function () {
         function GlobalFooterItemComponent() {
         }
         return GlobalFooterItemComponent;
     }());
-    /** @nocollapse */ GlobalFooterItemComponent.ɵfac = function GlobalFooterItemComponent_Factory(t) { return new (t || GlobalFooterItemComponent)(); };
-    /** @nocollapse */ GlobalFooterItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: GlobalFooterItemComponent, selector: "global-footer-item", inputs: { href: "href", blankTarget: "blankTarget" }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], emitDistinctChangesOnly: false, descendants: true, static: true }], exportAs: ["globalFooterItem"], ngImport: i0__namespace, template: " <ng-template #host><ng-content></ng-content></ng-template> ", isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    GlobalFooterItemComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'global-footer-item',
+                    exportAs: 'globalFooterItem',
+                    template: " <ng-template #host><ng-content></ng-content></ng-template> ",
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    GlobalFooterItemComponent.propDecorators = {
+        host: [{ type: core.ViewChild, args: ['host', { static: true },] }],
+        href: [{ type: core.Input }],
+        blankTarget: [{ type: core.Input }]
+    };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GlobalFooterItemComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'global-footer-item',
-                        exportAs: 'globalFooterItem',
-                        template: " <ng-template #host><ng-content></ng-content></ng-template> ",
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], null, { host: [{
-                    type: i0.ViewChild,
-                    args: ['host', { static: true }]
-                }], href: [{
-                    type: i0.Input
-                }], blankTarget: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /** @type {?} */
+        GlobalFooterItemComponent.ngAcceptInputType_blankTarget;
+        /** @type {?} */
+        GlobalFooterItemComponent.prototype.host;
+        /** @type {?} */
+        GlobalFooterItemComponent.prototype.href;
+        /** @type {?} */
+        GlobalFooterItemComponent.prototype.blankTarget;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: global-footer.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var GlobalFooterComponent = /** @class */ (function () {
+        /**
+         * @param {?} router
+         * @param {?} win
+         * @param {?} dom
+         * @param {?} directionality
+         */
         function GlobalFooterComponent(router, win, dom, directionality) {
             this.router = router;
             this.win = win;
@@ -383,17 +380,34 @@
             this.dir = 'ltr';
         }
         Object.defineProperty(GlobalFooterComponent.prototype, "links", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._links;
             },
+            /**
+             * @param {?} val
+             * @return {?}
+             */
             set: function (val) {
                 var _this = this;
-                val.forEach(function (i) { return (i._title = _this.dom.bypassSecurityTrustHtml(i.title)); });
+                val.forEach(( /**
+                 * @param {?} i
+                 * @return {?}
+                 */function (/**
+                 * @param {?} i
+                 * @return {?}
+                 */ i) { return (i._title = _this.dom.bypassSecurityTrustHtml(i.title)); }));
                 this._links = val;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} item
+         * @return {?}
+         */
         GlobalFooterComponent.prototype.to = function (item) {
             if (!item.href) {
                 return;
@@ -409,74 +423,115 @@
                 this.router.navigateByUrl(item.href);
             }
         };
+        /**
+         * @return {?}
+         */
         GlobalFooterComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
                 _this.dir = direction;
-            });
+            }));
         };
+        /**
+         * @return {?}
+         */
         GlobalFooterComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
         };
         return GlobalFooterComponent;
     }());
-    /** @nocollapse */ GlobalFooterComponent.ɵfac = function GlobalFooterComponent_Factory(t) { return new (t || GlobalFooterComponent)(i0.ɵɵdirectiveInject(i1.Router), i0.ɵɵdirectiveInject(theme.WINDOW), i0.ɵɵdirectiveInject(i2.DomSanitizer), i0.ɵɵdirectiveInject(i3.Directionality, 8)); };
-    /** @nocollapse */ GlobalFooterComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: GlobalFooterComponent, selector: "global-footer", inputs: { links: "links" }, host: { properties: { "class.global-footer": "true", "class.global-footer-rtl": "dir === 'rtl'" } }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent, emitDistinctChangesOnly: false }], exportAs: ["globalFooter"], ngImport: i0__namespace, template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n", directives: [{ type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i4.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i4.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GlobalFooterComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'global-footer',
-                        exportAs: 'globalFooter',
-                        templateUrl: './global-footer.component.html',
-                        host: {
-                            '[class.global-footer]': 'true',
-                            '[class.global-footer-rtl]': "dir === 'rtl'",
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i1.Router }, { type: Window, decorators: [{
-                            type: i0.Inject,
-                            args: [theme.WINDOW]
-                        }] }, { type: i2.DomSanitizer }, { type: i3.Directionality, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, { links: [{
-                    type: i0.Input
-                }], items: [{
-                    type: i0.ContentChildren,
-                    args: [GlobalFooterItemComponent]
-                }] });
-    })();
+    GlobalFooterComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'global-footer',
+                    exportAs: 'globalFooter',
+                    template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
+                    host: {
+                        '[class.global-footer]': 'true',
+                        '[class.global-footer-rtl]': "dir === 'rtl'",
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    GlobalFooterComponent.ctorParameters = function () { return [
+        { type: router.Router },
+        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+        { type: platformBrowser.DomSanitizer },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+    ]; };
+    GlobalFooterComponent.propDecorators = {
+        links: [{ type: core.Input }],
+        items: [{ type: core.ContentChildren, args: [GlobalFooterItemComponent,] }]
+    };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.destroy$;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype._links;
+        /** @type {?} */
+        GlobalFooterComponent.prototype.dir;
+        /** @type {?} */
+        GlobalFooterComponent.prototype.items;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.router;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.win;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.dom;
+        /**
+         * @type {?}
+         * @private
+         */
+        GlobalFooterComponent.prototype.directionality;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: global-footer.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
     var GlobalFooterModule = /** @class */ (function () {
         function GlobalFooterModule() {
         }
         return GlobalFooterModule;
     }());
-    /** @nocollapse */ GlobalFooterModule.ɵmod = i0.ɵɵdefineNgModule({ type: GlobalFooterModule });
-    /** @nocollapse */ GlobalFooterModule.ɵinj = i0.ɵɵdefineInjector({ factory: function GlobalFooterModule_Factory(t) { return new (t || GlobalFooterModule)(); }, imports: [[i4.CommonModule, i1.RouterModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(GlobalFooterModule, { declarations: [GlobalFooterComponent, GlobalFooterItemComponent], imports: [i4.CommonModule, i1.RouterModule], exports: [GlobalFooterComponent, GlobalFooterItemComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(GlobalFooterModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [i4.CommonModule, i1.RouterModule],
-                        declarations: COMPONENTS,
-                        exports: COMPONENTS,
-                    }]
-            }], null, null);
-    })();
+    GlobalFooterModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, router.RouterModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: globalFooter.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.GlobalFooterComponent = GlobalFooterComponent;

@@ -10,24 +10,52 @@
 }(this, (function (exports, currency, format) { 'use strict';
 
 	/**
-	 * Generated bundle index. Do not edit.
+	 * @fileoverview added by tsickle
+	 * Generated from: index.ts
+	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
 	 */
 
-	Object.keys(currency).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
-			enumerable: true,
-			get: function () {
-				return currency[k];
-			}
-		});
+	/**
+	 * @fileoverview added by tsickle
+	 * Generated from: delon-util-pipes.ts
+	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+	 */
+
+	Object.defineProperty(exports, 'CurrencyMegaPipe', {
+		enumerable: true,
+		get: function () {
+			return currency.CurrencyMegaPipe;
+		}
 	});
-	Object.keys(format).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
-			enumerable: true,
-			get: function () {
-				return format[k];
-			}
-		});
+	Object.defineProperty(exports, 'CurrencyPipeModule', {
+		enumerable: true,
+		get: function () {
+			return currency.CurrencyPipeModule;
+		}
+	});
+	Object.defineProperty(exports, 'CurrencyPricePipe', {
+		enumerable: true,
+		get: function () {
+			return currency.CurrencyPricePipe;
+		}
+	});
+	Object.defineProperty(exports, 'ɵa', {
+		enumerable: true,
+		get: function () {
+			return currency.ɵa;
+		}
+	});
+	Object.defineProperty(exports, 'FormatMaskPipe', {
+		enumerable: true,
+		get: function () {
+			return format.FormatMaskPipe;
+		}
+	});
+	Object.defineProperty(exports, 'FormatPipeModule', {
+		enumerable: true,
+		get: function () {
+			return format.FormatPipeModule;
+		}
 	});
 
 	Object.defineProperty(exports, '__esModule', { value: true });

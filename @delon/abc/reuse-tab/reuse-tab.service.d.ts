@@ -3,7 +3,6 @@ import { ActivatedRouteSnapshot } from '@angular/router';
 import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
-import * as i0 from "@angular/core";
 export declare class ReuseTabService implements OnDestroy {
     private injector;
     private menuService;
@@ -183,6 +182,4 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<ReuseTabService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<ReuseTabService>;
 }

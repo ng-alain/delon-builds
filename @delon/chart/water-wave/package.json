@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/water-wave/water-wave.js",
   "fesm2015": "../fesm2015/water-wave.js",
   "typings": "water-wave.d.ts",
+  "metadata": "water-wave.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/water-wave"
 }

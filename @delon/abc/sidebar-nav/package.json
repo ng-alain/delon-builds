@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/sidebar-nav/sidebarNav.js",
   "fesm2015": "../fesm2015/sidebarNav.js",
   "typings": "sidebarNav.d.ts",
+  "metadata": "sidebarNav.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/sidebar-nav"
 }

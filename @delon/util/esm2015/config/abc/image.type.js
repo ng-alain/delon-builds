@@ -1,2 +1,22 @@
-export {};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW1hZ2UudHlwZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL3V0aWwvY29uZmlnL2FiYy9pbWFnZS50eXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgaW50ZXJmYWNlIEFsYWluSW1hZ2VDb25maWcge1xuICAvKipcbiAgICog6buY6K6k5aSn5bCP77yM6buY6K6k5YC877yaYDY0YO+8jOWNleS9je+8mnB4XG4gICAqL1xuICBzaXplPzogbnVtYmVyO1xuXG4gIC8qKlxuICAgKiDplJnor6/lm77niYfvvIzpu5jorqTvvJpgLi9hc3NldHMvaW1nL2xvZ28uc3ZnYFxuICAgKi9cbiAgZXJyb3I/OiBzdHJpbmc7XG59XG4iXX0=
+/**
+ * @fileoverview added by tsickle
+ * Generated from: abc/image.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function AlainImageConfig() { }
+if (false) {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.size;
+    /**
+     * 错误图片，默认：`./assets/img/logo.svg`
+     * @type {?|undefined}
+     */
+    AlainImageConfig.prototype.error;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW1hZ2UudHlwZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uL3BhY2thZ2VzL3V0aWwvY29uZmlnL2FiYy9pbWFnZS50eXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7O0FBQUEsc0NBVUM7Ozs7OztJQU5DLGdDQUFjOzs7OztJQUtkLGlDQUFlIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBBbGFpbkltYWdlQ29uZmlnIHtcbiAgLyoqXG4gICAqIOm7mOiupOWkp+Wwj++8jOm7mOiupOWAvO+8mmA2NGDvvIzljZXkvY3vvJpweFxuICAgKi9cbiAgc2l6ZT86IG51bWJlcjtcblxuICAvKipcbiAgICog6ZSZ6K+v5Zu+54mH77yM6buY6K6k77yaYC4vYXNzZXRzL2ltZy9sb2dvLnN2Z2BcbiAgICovXG4gIGVycm9yPzogc3RyaW5nO1xufVxuIl19

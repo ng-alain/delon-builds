@@ -4,11 +4,17 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('rxjs/operators'), require('@angular/router'), require('@angular/common/http'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', 'rxjs', '@delon/util/config', 'rxjs/operators', '@angular/router', '@angular/common/http', '@delon/util'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.rxjs, global.i1, global.rxjs.operators, global.ng.router, global.ng.common.http, global.delon.util));
-}(this, (function (exports, common, i0, rxjs, i1, operators, i1$1, http, util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('@delon/util/config'), require('rxjs/operators'), require('@angular/common/http'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', '@delon/util/config', 'rxjs/operators', '@angular/common/http', '@delon/util'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.config, global.rxjs.operators, global.ng.common.http, global.delon.util));
+}(this, (function (exports, common, i0, router, rxjs, config, operators, http, util) { 'use strict';
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/auth.config.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var AUTH_DEFAULT_CONFIG = {
         store_key: "_token",
         token_invalid_redirect: true,
@@ -24,10 +30,22 @@
         refreshTime: 3000,
         refreshOffset: 6000,
     };
+    /**
+     * @param {?} srv
+     * @return {?}
+     */
     function mergeConfig(srv) {
-        return srv.merge('auth', AUTH_DEFAULT_CONFIG);
+        return ( /** @type {?} */(srv.merge('auth', AUTH_DEFAULT_CONFIG)));
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/store/local-storage.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
     function DA_STORE_TOKEN_LOCAL_FACTORY() {
         return new LocalStorageStore();
     }
@@ -42,31 +60,84 @@
     var LocalStorageStore = /** @class */ (function () {
         function LocalStorageStore() {
         }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         LocalStorageStore.prototype.get = function (key) {
             return JSON.parse(localStorage.getItem(key) || '{}') || {};
         };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
         LocalStorageStore.prototype.set = function (key, value) {
             localStorage.setItem(key, JSON.stringify(value));
             return true;
         };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         LocalStorageStore.prototype.remove = function (key) {
             localStorage.removeItem(key);
         };
         return LocalStorageStore;
     }());
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/store/interface.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var DA_STORE_TOKEN = new i0.InjectionToken('AUTH_STORE_TOKEN', {
         providedIn: 'root',
         factory: DA_STORE_TOKEN_LOCAL_FACTORY,
     });
+    /**
+     * @record
+     */
+    function IStore() { }
+    if (false) {
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        IStore.prototype.get = function (key) { };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
+        IStore.prototype.set = function (key, value) { };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
+        IStore.prototype.remove = function (key) { };
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/token.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @return {?}
+     */
     function DA_SERVICE_TOKEN_FACTORY() {
-        return new TokenService(i0.inject(i1.AlainConfigService), i0.inject(DA_STORE_TOKEN));
+        return new TokenService(i0.inject(config.AlainConfigService), i0.inject(DA_STORE_TOKEN));
     }
     /**
      * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
      */
     var TokenService = /** @class */ (function () {
+        /**
+         * @param {?} configSrv
+         * @param {?} store
+         */
         function TokenService(configSrv, store) {
             this.store = store;
             this.refresh$ = new rxjs.Subject();
@@ -75,6 +146,9 @@
             this._options = mergeConfig(configSrv);
         }
         Object.defineProperty(TokenService.prototype, "refresh", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 this.builderRefresh();
                 return this.refresh$.pipe(operators.share());
@@ -83,6 +157,9 @@
             configurable: true
         });
         Object.defineProperty(TokenService.prototype, "login_url", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._options.login_url;
             },
@@ -90,6 +167,9 @@
             configurable: true
         });
         Object.defineProperty(TokenService.prototype, "referrer", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._referrer;
             },
@@ -97,83 +177,266 @@
             configurable: true
         });
         Object.defineProperty(TokenService.prototype, "options", {
+            /**
+             * @return {?}
+             */
             get: function () {
                 return this._options;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @param {?} data
+         * @return {?}
+         */
         TokenService.prototype.set = function (data) {
             this.change$.next(data);
-            return this.store.set(this._options.store_key, data);
+            return this.store.set(( /** @type {?} */(this._options.store_key)), data);
         };
+        /**
+         * @template T
+         * @param {?=} type
+         * @return {?}
+         */
         TokenService.prototype.get = function (type) {
-            var data = this.store.get(this._options.store_key);
-            return type ? Object.assign(new type(), data) : data;
+            /** @type {?} */
+            var data = this.store.get(( /** @type {?} */(this._options.store_key)));
+            return type ? (( /** @type {?} */(Object.assign(new type(), data)))) : (( /** @type {?} */(data)));
         };
+        /**
+         * @param {?=} options
+         * @return {?}
+         */
         TokenService.prototype.clear = function (options) {
             if (options === void 0) { options = { onlyToken: false }; }
+            /** @type {?} */
             var data = null;
             if (options.onlyToken === true) {
-                data = this.get();
+                data = ( /** @type {?} */(this.get()));
                 data.token = "";
                 this.set(data);
             }
             else {
-                this.store.remove(this._options.store_key);
+                this.store.remove(( /** @type {?} */(this._options.store_key)));
             }
             this.change$.next(data);
         };
+        /**
+         * @return {?}
+         */
         TokenService.prototype.change = function () {
             return this.change$.pipe(operators.share());
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TokenService.prototype.builderRefresh = function () {
             var _this = this;
             var _a = this._options, refreshTime = _a.refreshTime, refreshOffset = _a.refreshOffset;
             this.cleanRefresh();
             this.interval$ = rxjs.interval(refreshTime)
-                .pipe(operators.map(function () {
-                var item = _this.get();
+                .pipe(operators.map(( /**
+         * @return {?}
+         */function () {
+                /** @type {?} */
+                var item = ( /** @type {?} */(_this.get()));
+                /** @type {?} */
                 var expired = item.expired || item.exp || 0;
                 if (expired <= 0) {
                     return null;
                 }
-                var curTime = new Date().valueOf() + refreshOffset;
+                /** @type {?} */
+                var curTime = new Date().valueOf() + ( /** @type {?} */(refreshOffset));
                 return expired <= curTime ? item : null;
-            }), operators.filter(function (v) { return v != null; }))
-                .subscribe(function (res) { return _this.refresh$.next(res); });
+            })), operators.filter(( /**
+             * @param {?} v
+             * @return {?}
+             */function (/**
+             * @param {?} v
+             * @return {?}
+             */ v) { return v != null; })))
+                .subscribe(( /**
+         * @param {?} res
+         * @return {?}
+         */function (/**
+         * @param {?} res
+         * @return {?}
+         */ res) { return _this.refresh$.next(( /** @type {?} */(res))); }));
         };
+        /**
+         * @private
+         * @return {?}
+         */
         TokenService.prototype.cleanRefresh = function () {
             if (this.interval$ && !this.interval$.closed) {
                 this.interval$.unsubscribe();
             }
         };
+        /**
+         * @return {?}
+         */
         TokenService.prototype.ngOnDestroy = function () {
             this.cleanRefresh();
         };
         return TokenService;
     }());
-    /** @nocollapse */ TokenService.ɵfac = function TokenService_Factory(t) { return new (t || TokenService)(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(DA_STORE_TOKEN)); };
-    /** @nocollapse */ TokenService.ɵprov = i0.ɵɵdefineInjectable({ token: TokenService, factory: TokenService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(TokenService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [DA_STORE_TOKEN]
-                        }] }];
-        }, null);
-    })();
+    TokenService.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    TokenService.ctorParameters = function () { return [
+        { type: config.AlainConfigService },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype.refresh$;
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype.change$;
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype.interval$;
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype._referrer;
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype._options;
+        /**
+         * @type {?}
+         * @private
+         */
+        TokenService.prototype.store;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/interface.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var DA_SERVICE_TOKEN = new i0.InjectionToken('DA_SERVICE_TOKEN', {
         providedIn: 'root',
         factory: DA_SERVICE_TOKEN_FACTORY,
     });
+    /**
+     * @record
+     */
+    function ITokenModel() { }
+    if (false) {
+        /** @type {?} */
+        ITokenModel.prototype.token;
+        /**
+         * 过期时间，单位：ms
+         * - 不管Simple、JWT模式都必须指定
+         * @type {?|undefined}
+         */
+        ITokenModel.prototype.expired;
+        /* Skipping unhandled member: [key: string]: any;*/
+    }
+    /**
+     * @record
+     */
+    function AuthReferrer() { }
+    if (false) {
+        /** @type {?|undefined} */
+        AuthReferrer.prototype.url;
+    }
+    /**
+     * @record
+     */
+    function ITokenService() { }
+    if (false) {
+        /**
+         * 授权失败后跳转路由路径（支持外部链接地址），通过设置[全局配置](https://ng-alain.com/docs/global-config)来改变
+         * @type {?}
+         */
+        ITokenService.prototype.login_url;
+        /**
+         * 当前请求页面的来源页面的地址
+         * @type {?|undefined}
+         */
+        ITokenService.prototype.referrer;
+        /** @type {?} */
+        ITokenService.prototype.options;
+        /**
+         * 订阅刷新，订阅时会自动产生一个定时器，每隔一段时间进行一些校验
+         * - **注意** 会多次触发，请务必做好业务判断
+         * @type {?}
+         */
+        ITokenService.prototype.refresh;
+        /**
+         * 设置 Token 信息，当用户 Token 发生变动时都需要调用此方法重新刷新
+         * - 如果需要监听过期，需要传递 `expired` 值
+         * @param {?} data
+         * @return {?}
+         */
+        ITokenService.prototype.set = function (data) { };
+        /**
+         * 获取Token，形式包括：
+         * - `get()` 获取 Simple Token
+         * - `get<JWTTokenModel>(JWTTokenModel)` 获取 JWT Token
+         * @param {?=} type
+         * @return {?}
+         */
+        ITokenService.prototype.get = function (type) { };
+        /**
+         * 获取Token，形式包括：
+         * - `get()` 获取 Simple Token
+         * - `get<JWTTokenModel>(JWTTokenModel)` 获取 JWT Token
+         * @template T
+         * @param {?=} type
+         * @return {?}
+         */
+        ITokenService.prototype.get = function (type) { };
+        /**
+         * 清除 Token 信息，当用户退出登录时调用。
+         * ```
+         * // 清除所有 Token 信息
+         * tokenService.clear();
+         * // 只清除 token 字段
+         * tokenService.clear({ onlyToken: true });
+         * ```
+         * @param {?=} options
+         * @return {?}
+         */
+        ITokenService.prototype.clear = function (options) { };
+        /**
+         * 订阅 Token 对象变更通知
+         * @return {?}
+         */
+        ITokenService.prototype.change = function () { };
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/social/social.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var OPENTYPE = '_delonAuthSocialType';
+    /** @type {?} */
     var HREFCALLBACK = '_delonAuthSocialCallbackByHref';
     var SocialService = /** @class */ (function () {
+        /**
+         * @param {?} tokenService
+         * @param {?} doc
+         * @param {?} router
+         */
         function SocialService(tokenService, doc, router) {
             this.tokenService = tokenService;
             this.doc = doc;
@@ -181,26 +444,29 @@
         }
         /**
          * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`
-         * @param url 获取授权地址
-         * @param callback 当 `type=href` 成功时的回调路由地址
-         * @param options.type 打开方式，默认 `window`
-         * @param options.windowFeatures 等同 `window.open` 的 `features` 参数值
+         * @param {?} url 获取授权地址
+         * @param {?=} callback 当 `type=href` 成功时的回调路由地址
+         * @param {?=} options
+         * @return {?}
          */
         SocialService.prototype.login = function (url, callback, options) {
             var _this = this;
             if (callback === void 0) { callback = '/'; }
             if (options === void 0) { options = {}; }
             options = Object.assign({ type: 'window', windowFeatures: 'location=yes,height=570,width=520,scrollbars=yes,status=yes' }, options);
-            localStorage.setItem(OPENTYPE, options.type);
+            localStorage.setItem(OPENTYPE, ( /** @type {?} */(options.type)));
             localStorage.setItem(HREFCALLBACK, callback);
             if (options.type === 'href') {
                 this.doc.location.href = url;
                 return;
             }
             this._win = window.open(url, '_blank', options.windowFeatures);
-            this._winTime = setInterval(function () {
+            this._winTime = setInterval(( /**
+             * @return {?}
+             */function () {
                 if (_this._win && _this._win.closed) {
                     _this.ngOnDestroy();
+                    /** @type {?} */
                     var model = _this.tokenService.get();
                     if (model && !model.token)
                         model = null;
@@ -211,15 +477,19 @@
                     _this.observer.next(model);
                     _this.observer.complete();
                 }
-            }, 100);
-            return new rxjs.Observable(function (observer) {
+            }), 100);
+            return new rxjs.Observable(( /**
+             * @param {?} observer
+             * @return {?}
+             */function (observer) {
                 _this.observer = observer;
-            });
+            }));
         };
         /**
          * 授权成功后的回调处理
          *
-         * @param rawData 指定回调认证信息，为空时从根据当前URL解析
+         * @param {?=} rawData 指定回调认证信息，为空时从根据当前URL解析
+         * @return {?}
          */
         SocialService.prototype.callback = function (rawData) {
             // from uri
@@ -227,19 +497,23 @@
                 throw new Error("url muse contain a ?");
             }
             // parse
+            /** @type {?} */
             var data = { token: "" };
             if (typeof rawData === 'string') {
+                /** @type {?} */
                 var rightUrl = rawData.split('?')[1].split('#')[0];
-                data = this.router.parseUrl('./?' + rightUrl).queryParams;
+                data = ( /** @type {?} */(this.router.parseUrl('./?' + rightUrl).queryParams));
             }
             else {
-                data = rawData;
+                data = ( /** @type {?} */(rawData));
             }
             if (!data || !data.token)
                 throw new Error("invalide token data");
             this.tokenService.set(data);
+            /** @type {?} */
             var url = localStorage.getItem(HREFCALLBACK) || '/';
             localStorage.removeItem(HREFCALLBACK);
+            /** @type {?} */
             var type = localStorage.getItem(OPENTYPE);
             localStorage.removeItem(OPENTYPE);
             if (type === 'window') {
@@ -250,28 +524,62 @@
             }
             return data;
         };
+        /**
+         * @return {?}
+         */
         SocialService.prototype.ngOnDestroy = function () {
             clearInterval(this._winTime);
             this._winTime = null;
         };
         return SocialService;
     }());
-    /** @nocollapse */ SocialService.ɵfac = function SocialService_Factory(t) { return new (t || SocialService)(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(common.DOCUMENT), i0.ɵɵinject(i1$1.Router)); };
-    /** @nocollapse */ SocialService.ɵprov = i0.ɵɵdefineInjectable({ token: SocialService, factory: SocialService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SocialService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [DA_SERVICE_TOKEN]
-                        }] }, { type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }, { type: i1$1.Router }];
-        }, null);
-    })();
+    SocialService.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    SocialService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
+        { type: router.Router }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype._win;
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype._winTime;
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype.observer;
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype.tokenService;
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype.doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        SocialService.prototype.router;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/store/memory.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * 内存存储，关掉浏览器标签后**丢失**。
      *
@@ -284,19 +592,44 @@
         function MemoryStore() {
             this.cache = {};
         }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         MemoryStore.prototype.get = function (key) {
-            return this.cache[key] || {};
+            return this.cache[key] || (( /** @type {?} */({})));
         };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
         MemoryStore.prototype.set = function (key, value) {
             this.cache[key] = value;
             return true;
         };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         MemoryStore.prototype.remove = function (key) {
             this.cache[key] = null;
         };
         return MemoryStore;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        MemoryStore.prototype.cache;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/store/session-storage.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * `sessionStorage` storage, **lost after closing the browser**.
      *
@@ -308,19 +641,37 @@
     var SessionStorageStore = /** @class */ (function () {
         function SessionStorageStore() {
         }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         SessionStorageStore.prototype.get = function (key) {
             return JSON.parse(sessionStorage.getItem(key) || '{}') || {};
         };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
         SessionStorageStore.prototype.set = function (key, value) {
             sessionStorage.setItem(key, JSON.stringify(value));
             return true;
         };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         SessionStorageStore.prototype.remove = function (key) {
             sessionStorage.removeItem(key);
         };
         return SessionStorageStore;
     }());
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/store/cookie-storage.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * `cookie` storage
      *
@@ -330,21 +681,44 @@
      * ```
      */
     var CookieStorageStore = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         */
         function CookieStorageStore(srv) {
             this.srv = srv;
         }
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         CookieStorageStore.prototype.get = function (key) {
             return JSON.parse(this.srv.get(key) || '{}') || {};
         };
+        /**
+         * @param {?} key
+         * @param {?} value
+         * @return {?}
+         */
         CookieStorageStore.prototype.set = function (key, value) {
             this.srv.put(key, JSON.stringify(value));
             return true;
         };
+        /**
+         * @param {?} key
+         * @return {?}
+         */
         CookieStorageStore.prototype.remove = function (key) {
             this.srv.remove(key);
         };
         return CookieStorageStore;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        CookieStorageStore.prototype.srv;
+    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -655,43 +1029,98 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/helper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} model
+     * @return {?}
+     */
     function CheckSimple(model) {
         return model != null && typeof model.token === 'string' && model.token.length > 0;
     }
+    /**
+     * @param {?} model
+     * @param {?} offset
+     * @return {?}
+     */
     function CheckJwt(model, offset) {
         return model != null && !!model.token && !model.isExpired(offset);
     }
+    /**
+     * @param {?} options
+     * @param {?} injector
+     * @param {?=} url
+     * @return {?}
+     */
     function ToLogin(options, injector, url) {
-        var router = injector.get(i1$1.Router);
-        injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
+        /** @type {?} */
+        var router$1 = injector.get(router.Router);
+        ( /** @type {?} */((( /** @type {?} */(injector.get(DA_SERVICE_TOKEN)))).referrer)).url = url || router$1.url;
         if (options.token_invalid_redirect === true) {
-            setTimeout(function () {
-                if (/^https?:\/\//g.test(options.login_url)) {
-                    injector.get(common.DOCUMENT).location.href = options.login_url;
+            setTimeout(( /**
+             * @return {?}
+             */function () {
+                if (/^https?:\/\//g.test(( /** @type {?} */(options.login_url)))) {
+                    injector.get(common.DOCUMENT).location.href = ( /** @type {?} */(options.login_url));
                 }
                 else {
-                    router.navigate([options.login_url]);
+                    router$1.navigate([options.login_url]);
                 }
-            });
+            }));
         }
     }
 
     var HttpAuthInterceptorHandler = /** @class */ (function () {
+        /**
+         * @param {?} next
+         * @param {?} interceptor
+         */
         function HttpAuthInterceptorHandler(next, interceptor) {
             this.next = next;
             this.interceptor = interceptor;
         }
+        /**
+         * @param {?} req
+         * @return {?}
+         */
         HttpAuthInterceptorHandler.prototype.handle = function (req) {
             return this.interceptor.intercept(req, this.next);
         };
         return HttpAuthInterceptorHandler;
     }());
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        HttpAuthInterceptorHandler.prototype.next;
+        /**
+         * @type {?}
+         * @private
+         */
+        HttpAuthInterceptorHandler.prototype.interceptor;
+    }
+    /**
+     * @abstract
+     */
     var BaseInterceptor = /** @class */ (function () {
+        /**
+         * @param {?} injector
+         */
         function BaseInterceptor(injector) {
             this.injector = injector;
         }
+        /**
+         * @param {?} req
+         * @param {?} next
+         * @return {?}
+         */
         BaseInterceptor.prototype.intercept = function (req, next) {
             var e_1, _a;
+            /** @type {?} */
             var options = mergeConfig(this.injector.get(util.AlainConfigService));
             if (Array.isArray(options.ignores)) {
                 try {
@@ -709,18 +1138,25 @@
                     finally { if (e_1) throw e_1.error; }
                 }
             }
-            var ingoreKey = options.allow_anonymous_key;
+            /** @type {?} */
+            var ingoreKey = ( /** @type {?} */(options.allow_anonymous_key));
+            /** @type {?} */
             var ingored = false;
+            /** @type {?} */
             var params = req.params;
+            /** @type {?} */
             var url = req.url;
             if (req.params.has(ingoreKey)) {
                 params = req.params.delete(ingoreKey);
                 ingored = true;
             }
+            /** @type {?} */
             var urlArr = req.url.split('?');
             if (urlArr.length > 1) {
+                /** @type {?} */
                 var queryStringParams = new http.HttpParams({ fromString: urlArr[1] });
                 if (queryStringParams.has(ingoreKey)) {
+                    /** @type {?} */
                     var queryString = queryStringParams.delete(ingoreKey).toString();
                     url = queryString.length > 0 ? urlArr[0] + "?" + queryString : urlArr[0];
                     ingored = true;
@@ -735,7 +1171,12 @@
             else {
                 ToLogin(options, this.injector);
                 // Interrupt Http request, so need to generate a new Observable
-                var err$_1 = new rxjs.Observable(function (observer) {
+                /** @type {?} */
+                var err$_1 = new rxjs.Observable(( /**
+                 * @param {?} observer
+                 * @return {?}
+                 */function (observer) {
+                    /** @type {?} */
                     var res = new http.HttpErrorResponse({
                         url: req.url,
                         headers: req.headers,
@@ -743,13 +1184,23 @@
                         statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig",
                     });
                     observer.error(res);
-                });
+                }));
                 if (options.executeOtherInterceptors) {
+                    /** @type {?} */
                     var interceptors = this.injector.get(http.HTTP_INTERCEPTORS, []);
+                    /** @type {?} */
                     var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                     if (lastInterceptors.length > 0) {
-                        var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }, {
-                            handle: function (_) { return err$_1; },
+                        /** @type {?} */
+                        var chain = lastInterceptors.reduceRight(( /**
+                         * @param {?} _next
+                         * @param {?} _interceptor
+                         * @return {?}
+                         */function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }), {
+                            handle: ( /**
+                             * @param {?} _
+                             * @return {?}
+                             */function (_) { return err$_1; }),
                         });
                         return chain.handle(req);
                     }
@@ -760,19 +1211,50 @@
         };
         return BaseInterceptor;
     }());
-    /** @nocollapse */ BaseInterceptor.ɵfac = function BaseInterceptor_Factory(t) { return new (t || BaseInterceptor)(i0.ɵɵinject(i0.Injector, 8)); };
-    /** @nocollapse */ BaseInterceptor.ɵprov = i0.ɵɵdefineInjectable({ token: BaseInterceptor, factory: BaseInterceptor.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(BaseInterceptor, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: i0.Injector, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, null);
-    })();
+    BaseInterceptor.decorators = [
+        { type: i0.Injectable }
+    ];
+    /** @nocollapse */
+    BaseInterceptor.ctorParameters = function () { return [
+        { type: i0.Injector, decorators: [{ type: i0.Optional }] }
+    ]; };
+    if (false) {
+        /**
+         * @type {?}
+         * @protected
+         */
+        BaseInterceptor.prototype.model;
+        /**
+         * @type {?}
+         * @protected
+         */
+        BaseInterceptor.prototype.injector;
+        /**
+         * @abstract
+         * @param {?} options
+         * @return {?}
+         */
+        BaseInterceptor.prototype.isAuth = function (options) { };
+        /**
+         * @abstract
+         * @param {?} req
+         * @param {?} options
+         * @return {?}
+         */
+        BaseInterceptor.prototype.setReq = function (req, options) { };
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.helper.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} str
+     * @return {?}
+     */
     function urlBase64Decode(str) {
+        /** @type {?} */
         var output = str.replace(/-/g, '+').replace(/_/g, '/');
         switch (output.length % 4) {
             case 0: {
@@ -792,8 +1274,14 @@
         }
         return b64DecodeUnicode(output);
     }
+    /**
+     * @param {?} str
+     * @return {?}
+     */
     function b64decode(str) {
+        /** @type {?} */
         var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+        /** @type {?} */
         var output = '';
         str = String(str).replace(/=+$/, '');
         for (
@@ -817,25 +1305,83 @@
         return output;
     }
     // https://developer.mozilla.org/en/docs/Web/API/WindowBase64/Base64_encoding_and_decoding#The_Unicode_Problem
+    /**
+     * @param {?} str
+     * @return {?}
+     */
     function b64DecodeUnicode(str) {
         return decodeURIComponent(Array.prototype.map
-            .call(b64decode(str), function (c) {
+            .call(b64decode(str), ( /**
+     * @param {?} c
+     * @return {?}
+     */function (c) {
             return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-        })
+        }))
             .join(''));
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.model.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function JWT() { }
+    if (false) {
+        /**
+         * Issuerd
+         * @type {?}
+         */
+        JWT.prototype.iss;
+        /**
+         * Issued At
+         * @type {?}
+         */
+        JWT.prototype.iat;
+        /**
+         * Subject
+         * @type {?}
+         */
+        JWT.prototype.sub;
+        /**
+         * Expiration Time
+         * @type {?}
+         */
+        JWT.prototype.exp;
+        /**
+         * Audience
+         * @type {?}
+         */
+        JWT.prototype.aud;
+        /**
+         * Not Before
+         * @type {?}
+         */
+        JWT.prototype.nbf;
+        /**
+         * JWT ID
+         * @type {?}
+         */
+        JWT.prototype.jti;
+        /* Skipping unhandled member: [key: string]: any;*/
+        /* Skipping unhandled member: [key: number]: any;*/
+    }
     var JWTTokenModel = /** @class */ (function () {
         function JWTTokenModel() {
         }
         Object.defineProperty(JWTTokenModel.prototype, "payload", {
             /**
              * 获取载荷信息
+             * @return {?}
              */
             get: function () {
+                /** @type {?} */
                 var parts = (this.token || '').split('.');
                 if (parts.length !== 3)
                     throw new Error('JWT must have 3 parts');
+                /** @type {?} */
                 var decoded = urlBase64Decode(parts[1]);
                 return JSON.parse(decoded);
             },
@@ -845,11 +1391,14 @@
         Object.defineProperty(JWTTokenModel.prototype, "exp", {
             /**
              * 获取过期时间戳（单位：ms）
+             * @return {?}
              */
             get: function () {
+                /** @type {?} */
                 var decoded = this.payload;
                 if (!decoded.hasOwnProperty('exp'))
                     return null;
+                /** @type {?} */
                 var date = new Date(0);
                 date.setUTCSeconds(decoded.exp);
                 return date.valueOf();
@@ -860,10 +1409,12 @@
         /**
          * 检查Token是否过期，当`payload` 包含 `exp` 字段时有效，若无 `exp` 字段直接返回 `null`
          *
-         * @param offsetSeconds 偏移量
+         * @param {?=} offsetSeconds 偏移量
+         * @return {?}
          */
         JWTTokenModel.prototype.isExpired = function (offsetSeconds) {
             if (offsetSeconds === void 0) { offsetSeconds = 0; }
+            /** @type {?} */
             var exp = this.exp;
             if (exp == null)
                 return null;
@@ -871,6 +1422,13 @@
         };
         return JWTTokenModel;
     }());
+    if (false) {
+        /** @type {?} */
+        JWTTokenModel.prototype.token;
+        /** @type {?} */
+        JWTTokenModel.prototype.expired;
+        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+    }
 
     /**
      * JWT 拦截器
@@ -885,10 +1443,19 @@
         function JWTInterceptor() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} options
+         * @return {?}
+         */
         JWTInterceptor.prototype.isAuth = function (options) {
             this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-            return CheckJwt(this.model, options.token_exp_offset);
+            return CheckJwt(( /** @type {?} */(this.model)), ( /** @type {?} */(options.token_exp_offset)));
         };
+        /**
+         * @param {?} req
+         * @param {?} _options
+         * @return {?}
+         */
         JWTInterceptor.prototype.setReq = function (req, _options) {
             return req.clone({
                 setHeaders: {
@@ -898,15 +1465,15 @@
         };
         return JWTInterceptor;
     }(BaseInterceptor));
-    /** @nocollapse */ JWTInterceptor.ɵfac = function JWTInterceptor_Factory(t) { return ɵJWTInterceptor_BaseFactory(t || JWTInterceptor); };
-    /** @nocollapse */ JWTInterceptor.ɵprov = i0.ɵɵdefineInjectable({ token: JWTInterceptor, factory: JWTInterceptor.ɵfac });
-    var ɵJWTInterceptor_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(JWTInterceptor);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(JWTInterceptor, [{
-                type: i0.Injectable
-            }], null, null);
-    })();
+    JWTInterceptor.decorators = [
+        { type: i0.Injectable }
+    ];
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/jwt/jwt.guard.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
      *
@@ -925,60 +1492,113 @@
      * ```
      */
     var JWTGuard = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         * @param {?} injector
+         */
         function JWTGuard(srv, injector) {
             this.srv = srv;
             this.injector = injector;
         }
         Object.defineProperty(JWTGuard.prototype, "cog", {
+            /**
+             * @private
+             * @return {?}
+             */
             get: function () {
                 return this.srv.options;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         JWTGuard.prototype.process = function () {
-            var res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
+            /** @type {?} */
+            var res = CheckJwt(this.srv.get(JWTTokenModel), ( /** @type {?} */(this.cog.token_exp_offset)));
             if (!res) {
                 ToLogin(this.cog, this.injector, this.url);
             }
             return res;
         };
         // lazy loading
+        /**
+         * @param {?} route
+         * @param {?} _segments
+         * @return {?}
+         */
         JWTGuard.prototype.canLoad = function (route, _segments) {
             this.url = route.path;
             return this.process();
         };
         // all children route
+        /**
+         * @param {?} _childRoute
+         * @param {?} state
+         * @return {?}
+         */
         JWTGuard.prototype.canActivateChild = function (_childRoute, state) {
             this.url = state.url;
             return this.process();
         };
         // route
+        /**
+         * @param {?} _route
+         * @param {?} state
+         * @return {?}
+         */
         JWTGuard.prototype.canActivate = function (_route, state) {
             this.url = state.url;
             return this.process();
         };
         return JWTGuard;
     }());
-    /** @nocollapse */ JWTGuard.ɵfac = function JWTGuard_Factory(t) { return new (t || JWTGuard)(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.Injector)); };
-    /** @nocollapse */ JWTGuard.ɵprov = i0.ɵɵdefineInjectable({ token: JWTGuard, factory: JWTGuard.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(JWTGuard, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [DA_SERVICE_TOKEN]
-                        }] }, { type: i0.Injector }];
-        }, null);
-    })();
+    JWTGuard.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    JWTGuard.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
+        { type: i0.Injector }
+    ]; };
+    /** @nocollapse */ JWTGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: JWTGuard, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        JWTGuard.prototype.url;
+        /**
+         * @type {?}
+         * @private
+         */
+        JWTGuard.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        JWTGuard.prototype.injector;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/simple/simple.model.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var SimpleTokenModel = /** @class */ (function () {
         function SimpleTokenModel() {
         }
         return SimpleTokenModel;
     }());
+    if (false) {
+        /** @type {?} */
+        SimpleTokenModel.prototype.token;
+        /** @type {?} */
+        SimpleTokenModel.prototype.expired;
+        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
+    }
 
     /**
      * Simple 拦截器
@@ -993,32 +1613,48 @@
         function SimpleInterceptor() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        /**
+         * @param {?} _options
+         * @return {?}
+         */
         SimpleInterceptor.prototype.isAuth = function (_options) {
-            this.model = this.injector.get(DA_SERVICE_TOKEN).get();
-            return CheckSimple(this.model);
+            this.model = ( /** @type {?} */(this.injector.get(DA_SERVICE_TOKEN).get()));
+            return CheckSimple(( /** @type {?} */(this.model)));
         };
+        /**
+         * @param {?} req
+         * @param {?} options
+         * @return {?}
+         */
         SimpleInterceptor.prototype.setReq = function (req, options) {
             var _this = this;
             var token_send_template = options.token_send_template, token_send_key = options.token_send_key;
-            var token = token_send_template.replace(/\$\{([\w]+)\}/g, function (_, g) { return _this.model[g]; });
+            /** @type {?} */
+            var token = ( /** @type {?} */(token_send_template)).replace(/\$\{([\w]+)\}/g, ( /**
+             * @param {?} _
+             * @param {?} g
+             * @return {?}
+             */function (_, g) { return _this.model[g]; }));
             switch (options.token_send_place) {
                 case 'header':
+                    /** @type {?} */
                     var obj = {};
-                    obj[token_send_key] = token;
+                    obj[( /** @type {?} */(token_send_key))] = token;
                     req = req.clone({
                         setHeaders: obj,
                     });
                     break;
                 case 'body':
+                    /** @type {?} */
                     var body = req.body || {};
-                    body[token_send_key] = token;
+                    body[( /** @type {?} */(token_send_key))] = token;
                     req = req.clone({
                         body: body,
                     });
                     break;
                 case 'url':
                     req = req.clone({
-                        params: req.params.append(token_send_key, token),
+                        params: req.params.append(( /** @type {?} */(token_send_key)), token),
                     });
                     break;
             }
@@ -1026,15 +1662,15 @@
         };
         return SimpleInterceptor;
     }(BaseInterceptor));
-    /** @nocollapse */ SimpleInterceptor.ɵfac = function SimpleInterceptor_Factory(t) { return ɵSimpleInterceptor_BaseFactory(t || SimpleInterceptor); };
-    /** @nocollapse */ SimpleInterceptor.ɵprov = i0.ɵɵdefineInjectable({ token: SimpleInterceptor, factory: SimpleInterceptor.ɵfac });
-    var ɵSimpleInterceptor_BaseFactory = /*@__PURE__*/ i0.ɵɵgetInheritedFactory(SimpleInterceptor);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SimpleInterceptor, [{
-                type: i0.Injectable
-            }], null, null);
-    })();
+    SimpleInterceptor.decorators = [
+        { type: i0.Injectable }
+    ];
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/token/simple/simple.guard.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     /**
      * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
      *
@@ -1053,71 +1689,120 @@
      * ```
      */
     var SimpleGuard = /** @class */ (function () {
+        /**
+         * @param {?} srv
+         * @param {?} injector
+         */
         function SimpleGuard(srv, injector) {
             this.srv = srv;
             this.injector = injector;
         }
         Object.defineProperty(SimpleGuard.prototype, "cog", {
+            /**
+             * @private
+             * @return {?}
+             */
             get: function () {
                 return this.srv.options;
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         SimpleGuard.prototype.process = function () {
-            var res = CheckSimple(this.srv.get());
+            /** @type {?} */
+            var res = CheckSimple(( /** @type {?} */(this.srv.get())));
             if (!res) {
                 ToLogin(this.cog, this.injector, this.url);
             }
             return res;
         };
         // lazy loading
+        /**
+         * @param {?} route
+         * @param {?} _segments
+         * @return {?}
+         */
         SimpleGuard.prototype.canLoad = function (route, _segments) {
             this.url = route.path;
             return this.process();
         };
         // all children route
+        /**
+         * @param {?} _childRoute
+         * @param {?} state
+         * @return {?}
+         */
         SimpleGuard.prototype.canActivateChild = function (_childRoute, state) {
             this.url = state.url;
             return this.process();
         };
         // route
+        /**
+         * @param {?} _route
+         * @param {?} state
+         * @return {?}
+         */
         SimpleGuard.prototype.canActivate = function (_route, state) {
             this.url = state.url;
             return this.process();
         };
         return SimpleGuard;
     }());
-    /** @nocollapse */ SimpleGuard.ɵfac = function SimpleGuard_Factory(t) { return new (t || SimpleGuard)(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.Injector)); };
-    /** @nocollapse */ SimpleGuard.ɵprov = i0.ɵɵdefineInjectable({ token: SimpleGuard, factory: SimpleGuard.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SimpleGuard, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [DA_SERVICE_TOKEN]
-                        }] }, { type: i0.Injector }];
-        }, null);
-    })();
+    SimpleGuard.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    SimpleGuard.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
+        { type: i0.Injector }
+    ]; };
+    /** @nocollapse */ SimpleGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        SimpleGuard.prototype.url;
+        /**
+         * @type {?}
+         * @private
+         */
+        SimpleGuard.prototype.srv;
+        /**
+         * @type {?}
+         * @private
+         */
+        SimpleGuard.prototype.injector;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: src/auth.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var DelonAuthModule = /** @class */ (function () {
         function DelonAuthModule() {
         }
         return DelonAuthModule;
     }());
-    /** @nocollapse */ DelonAuthModule.ɵmod = i0.ɵɵdefineNgModule({ type: DelonAuthModule });
-    /** @nocollapse */ DelonAuthModule.ɵinj = i0.ɵɵdefineInjector({ factory: function DelonAuthModule_Factory(t) { return new (t || DelonAuthModule)(); } });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(DelonAuthModule, [{
-                type: i0.NgModule,
-                args: [{}]
-            }], null, null);
-    })();
+    DelonAuthModule.decorators = [
+        { type: i0.NgModule, args: [{},] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: auth.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.AUTH_DEFAULT_CONFIG = AUTH_DEFAULT_CONFIG;

@@ -1,15 +1,24 @@
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
-import * as i0 from '@angular/core';
-import { EventEmitter, ɵɵdirectiveInject, ChangeDetectorRef, ɵɵngDeclareComponent, ChangeDetectionStrategy, ViewEncapsulation, ɵsetClassMetadata, Component, Optional, Input, Output, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean } from '@delon/util/decorator';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { NgIf, CommonModule } from '@angular/common';
-import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
+import { CommonModule } from '@angular/common';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tag-select.component.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class TagSelectComponent {
+    /**
+     * @param {?} i18n
+     * @param {?} directionality
+     * @param {?} cdr
+     */
     constructor(i18n, directionality, cdr) {
         this.i18n = i18n;
         this.directionality = directionality;
@@ -18,42 +27,53 @@ class TagSelectComponent {
         this.locale = {};
         this.expand = false;
         this.dir = 'ltr';
-        /** 是否启用 `展开与收进` */
+        /**
+         * 是否启用 `展开与收进`
+         */
         this.expandable = true;
         this.change = new EventEmitter();
     }
+    /**
+     * @return {?}
+     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @param {?} direction
+         * @return {?}
+         */
+        (direction) => {
             this.dir = direction;
-        });
-        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        }));
+        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe((/**
+         * @return {?}
+         */
+        () => {
             this.locale = this.i18n.getData('tagSelect');
             this.cdr.detectChanges();
-        });
+        }));
     }
+    /**
+     * @return {?}
+     */
     trigger() {
         this.expand = !this.expand;
         this.change.emit(this.expand);
     }
+    /**
+     * @return {?}
+     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
     }
 }
-/** @nocollapse */ TagSelectComponent.ɵfac = function TagSelectComponent_Factory(t) { return new (t || TagSelectComponent)(ɵɵdirectiveInject(DelonLocaleService), ɵɵdirectiveInject(Directionality, 8), ɵɵdirectiveInject(ChangeDetectorRef)); };
-/** @nocollapse */ TagSelectComponent.ɵcmp = ɵɵngDeclareComponent({ version: "11.1.1", type: TagSelectComponent, selector: "tag-select", inputs: { expandable: "expandable" }, outputs: { change: "change" }, host: { properties: { "class.tag-select": "true", "class.tag-select-rtl": "dir === 'rtl'", "class.tag-select-rtl__has-expand": "dir === 'rtl' && expandable", "class.tag-select__has-expand": "expandable", "class.tag-select__expanded": "expand" } }, exportAs: ["tagSelect"], ngImport: i0, template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n", directives: [{ type: NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None });
-__decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
-], TagSelectComponent.prototype, "expandable", void 0);
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(TagSelectComponent, [{
-        type: Component,
-        args: [{
+TagSelectComponent.decorators = [
+    { type: Component, args: [{
                 selector: 'tag-select',
                 exportAs: 'tagSelect',
-                templateUrl: './tag-select.component.html',
+                template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                 host: {
                     '[class.tag-select]': 'true',
                     '[class.tag-select-rtl]': `dir === 'rtl'`,
@@ -63,33 +83,88 @@ __decorate([
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
-                encapsulation: ViewEncapsulation.None,
-            }]
-    }], function () { return [{ type: DelonLocaleService }, { type: Directionality, decorators: [{
-                type: Optional
-            }] }, { type: ChangeDetectorRef }]; }, { expandable: [{
-            type: Input
-        }], change: [{
-            type: Output
-        }] }); })();
+                encapsulation: ViewEncapsulation.None
+            }] }
+];
+/** @nocollapse */
+TagSelectComponent.ctorParameters = () => [
+    { type: DelonLocaleService },
+    { type: Directionality, decorators: [{ type: Optional }] },
+    { type: ChangeDetectorRef }
+];
+TagSelectComponent.propDecorators = {
+    expandable: [{ type: Input }],
+    change: [{ type: Output }]
+};
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], TagSelectComponent.prototype, "expandable", void 0);
+if (false) {
+    /** @type {?} */
+    TagSelectComponent.ngAcceptInputType_expandable;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.destroy$;
+    /** @type {?} */
+    TagSelectComponent.prototype.locale;
+    /** @type {?} */
+    TagSelectComponent.prototype.expand;
+    /** @type {?} */
+    TagSelectComponent.prototype.dir;
+    /**
+     * 是否启用 `展开与收进`
+     * @type {?}
+     */
+    TagSelectComponent.prototype.expandable;
+    /** @type {?} */
+    TagSelectComponent.prototype.change;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.i18n;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.directionality;
+    /**
+     * @type {?}
+     * @private
+     */
+    TagSelectComponent.prototype.cdr;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tag-select.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [TagSelectComponent];
 class TagSelectModule {
 }
-/** @nocollapse */ TagSelectModule.ɵmod = ɵɵdefineNgModule({ type: TagSelectModule });
-/** @nocollapse */ TagSelectModule.ɵinj = ɵɵdefineInjector({ factory: function TagSelectModule_Factory(t) { return new (t || TagSelectModule)(); }, imports: [[CommonModule, NzIconModule, DelonLocaleModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(TagSelectModule, { declarations: [TagSelectComponent], imports: [CommonModule, NzIconModule, DelonLocaleModule], exports: [TagSelectComponent] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(TagSelectModule, [{
-        type: NgModule,
-        args: [{
+TagSelectModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, DelonLocaleModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: tagSelect.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { TagSelectComponent, TagSelectModule };

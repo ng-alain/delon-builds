@@ -4,33 +4,16 @@
  * License: MIT
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util/browser'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/message'), require('@delon/theme'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@delon/util/decorator'), require('@angular/platform-browser'), require('@angular/cdk/bidi')) :
-  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/util/browser', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/message', '@delon/theme', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@delon/util/decorator', '@angular/platform-browser', '@angular/cdk/bidi'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.browser, global.rxjs, global.rxjs.operators, global.i2, global.delon.theme, global.avatar, global.dropdown, global.i5$1, global.i7, global.decorator, global.ng.platformBrowser, global.ng.cdk.bidi));
-}(this, (function (exports, i5, i0, i1, browser, rxjs, operators, i2, i1$1, avatar, dropdown, i5$1, i7, decorator, i3, i4) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser'), require('@delon/util/decorator')) :
+  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser', '@delon/util/decorator'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.browser, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator));
+}(this, (function (exports, common, core, router, theme, browser, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator) { 'use strict';
 
-  function _interopNamespace(e) {
-    if (e && e.__esModule) return e;
-    var n = Object.create(null);
-    if (e) {
-      Object.keys(e).forEach(function (k) {
-        if (k !== 'default') {
-          var d = Object.getOwnPropertyDescriptor(e, k);
-          Object.defineProperty(n, k, d.get ? d : {
-            enumerable: true,
-            get: function () {
-              return e[k];
-            }
-          });
-        }
-      });
-    }
-    n['default'] = e;
-    return Object.freeze(n);
-  }
-
-  var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
-
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-header-item.component.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
   var LayoutDefaultHeaderItemComponent = /** @class */ (function () {
       function LayoutDefaultHeaderItemComponent() {
           this.hidden = 'none';
@@ -38,27 +21,41 @@
       }
       return LayoutDefaultHeaderItemComponent;
   }());
-  /** @nocollapse */ LayoutDefaultHeaderItemComponent.ɵfac = function LayoutDefaultHeaderItemComponent_Factory(t) { return new (t || LayoutDefaultHeaderItemComponent)(); };
-  /** @nocollapse */ LayoutDefaultHeaderItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: LayoutDefaultHeaderItemComponent, selector: "layout-default-header-item", inputs: { hidden: "hidden", direction: "direction" }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], emitDistinctChangesOnly: false, descendants: true, static: true }], ngImport: i0__namespace, template: "\n    <ng-template #host>\n      <ng-content></ng-content>\n    </ng-template>\n  ", isInline: true });
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultHeaderItemComponent, [{
-              type: i0.Component,
-              args: [{
-                      selector: 'layout-default-header-item',
-                      template: "\n    <ng-template #host>\n      <ng-content></ng-content>\n    </ng-template>\n  ",
-                  }]
-          }], null, { host: [{
-                  type: i0.ViewChild,
-                  args: ['host', { static: true }]
-              }], hidden: [{
-                  type: i0.Input
-              }], direction: [{
-                  type: i0.Input
-              }] });
-  })();
+  LayoutDefaultHeaderItemComponent.decorators = [
+      { type: core.Component, args: [{
+                  selector: 'layout-default-header-item',
+                  template: "\n    <ng-template #host>\n      <ng-content></ng-content>\n    </ng-template>\n  "
+              }] }
+  ];
+  LayoutDefaultHeaderItemComponent.propDecorators = {
+      host: [{ type: core.ViewChild, args: ['host', { static: true },] }],
+      hidden: [{ type: core.Input }],
+      direction: [{ type: core.Input }]
+  };
+  if (false) {
+      /** @type {?} */
+      LayoutDefaultHeaderItemComponent.prototype.host;
+      /** @type {?} */
+      LayoutDefaultHeaderItemComponent.prototype.hidden;
+      /** @type {?} */
+      LayoutDefaultHeaderItemComponent.prototype.direction;
+  }
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout.component.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
   var LayoutDefaultComponent = /** @class */ (function () {
-      function LayoutDefaultComponent(router, msgSrv, settings, el, renderer, doc) {
+      /**
+       * @param {?} router
+       * @param {?} msgSrv
+       * @param {?} settings
+       * @param {?} el
+       * @param {?} renderer
+       * @param {?} doc
+       */
+      function LayoutDefaultComponent(router$1, msgSrv, settings, el, renderer, doc) {
           var _this = this;
           this.settings = settings;
           this.el = el;
@@ -67,30 +64,43 @@
           this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
           // scroll to top in change page
-          router.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (evt) {
-              if (!_this.isFetching && evt instanceof i1.RouteConfigLoadStart) {
+          router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+           * @param {?} evt
+           * @return {?}
+           */function (/**
+           * @param {?} evt
+           * @return {?}
+           */ evt) {
+              if (!_this.isFetching && evt instanceof router.RouteConfigLoadStart) {
                   _this.isFetching = true;
               }
-              if (evt instanceof i1.NavigationError || evt instanceof i1.NavigationCancel) {
+              if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
                   _this.isFetching = false;
-                  if (evt instanceof i1.NavigationError) {
+                  if (evt instanceof router.NavigationError) {
                       msgSrv.error("Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
                   }
                   return;
               }
-              if (!(evt instanceof i1.NavigationEnd || evt instanceof i1.RouteConfigLoadEnd)) {
+              if (!(evt instanceof router.NavigationEnd || evt instanceof router.RouteConfigLoadEnd)) {
                   return;
               }
               if (_this.isFetching) {
-                  setTimeout(function () {
+                  setTimeout(( /**
+                   * @return {?}
+                   */function () {
                       _this.isFetching = false;
-                  }, 100);
+                  }), 100);
               }
-          });
+          }));
       }
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultComponent.prototype.setClass = function () {
           var _a;
           var _b = this, el = _b.el, doc = _b.doc, renderer = _b.renderer, settings = _b.settings;
+          /** @type {?} */
           var layout = settings.layout;
           browser.updateHostClass(el.nativeElement, renderer, (_a = {},
               _a['alain-default'] = true,
@@ -99,69 +109,133 @@
               _a));
           doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultComponent.prototype.ngOnInit = function () {
           var _this = this;
           if (this.options == null) {
               throw new Error("Please specify the [options] parameter, otherwise the layout display cannot be completed");
           }
           var _a = this, settings = _a.settings, destroy$ = _a.destroy$;
-          settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(function () { return _this.setClass(); });
+          settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+           * @return {?}
+           */function () { return _this.setClass(); }));
           this.setClass();
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
       };
       return LayoutDefaultComponent;
   }());
-  /** @nocollapse */ LayoutDefaultComponent.ɵfac = function LayoutDefaultComponent_Factory(t) { return new (t || LayoutDefaultComponent)(i0.ɵɵdirectiveInject(i1.Router), i0.ɵɵdirectiveInject(i2.NzMessageService), i0.ɵɵdirectiveInject(i1$1.SettingsService), i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i5.DOCUMENT)); };
-  /** @nocollapse */ LayoutDefaultComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: LayoutDefaultComponent, selector: "layout-default", inputs: { options: "options", asideUser: "asideUser", nav: "nav", content: "content" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent, emitDistinctChangesOnly: false }], ngImport: i0__namespace, template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  ", isInline: true });
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultComponent, [{
-              type: i0.Component,
-              args: [{
-                      selector: 'layout-default',
-                      template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  ",
-                  }]
-          }], function () {
-          return [{ type: i1.Router }, { type: i2.NzMessageService }, { type: i1$1.SettingsService }, { type: i0.ElementRef }, { type: i0.Renderer2 }, { type: undefined, decorators: [{
-                          type: i0.Inject,
-                          args: [i5.DOCUMENT]
-                      }] }];
-      }, { headerItems: [{
-                  type: i0.ContentChildren,
-                  args: [LayoutDefaultHeaderItemComponent, { descendants: false }]
-              }], options: [{
-                  type: i0.Input
-              }], asideUser: [{
-                  type: i0.Input
-              }], nav: [{
-                  type: i0.Input
-              }], content: [{
-                  type: i0.Input
-              }] });
-  })();
+  LayoutDefaultComponent.decorators = [
+      { type: core.Component, args: [{
+                  selector: 'layout-default',
+                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
+              }] }
+  ];
+  /** @nocollapse */
+  LayoutDefaultComponent.ctorParameters = function () { return [
+      { type: router.Router },
+      { type: message.NzMessageService },
+      { type: theme.SettingsService },
+      { type: core.ElementRef },
+      { type: core.Renderer2 },
+      { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] }
+  ]; };
+  LayoutDefaultComponent.propDecorators = {
+      headerItems: [{ type: core.ContentChildren, args: [LayoutDefaultHeaderItemComponent, { descendants: false },] }],
+      options: [{ type: core.Input }],
+      asideUser: [{ type: core.Input }],
+      nav: [{ type: core.Input }],
+      content: [{ type: core.Input }]
+  };
+  if (false) {
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.headerItems;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.options;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.asideUser;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.nav;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.content;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultComponent.prototype.destroy$;
+      /** @type {?} */
+      LayoutDefaultComponent.prototype.isFetching;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultComponent.prototype.settings;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultComponent.prototype.el;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultComponent.prototype.renderer;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultComponent.prototype.doc;
+  }
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-header-item-trigger.directive.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
   var LayoutDefaultHeaderItemTriggerDirective = /** @class */ (function () {
       function LayoutDefaultHeaderItemTriggerDirective() {
       }
       return LayoutDefaultHeaderItemTriggerDirective;
   }());
-  /** @nocollapse */ LayoutDefaultHeaderItemTriggerDirective.ɵfac = function LayoutDefaultHeaderItemTriggerDirective_Factory(t) { return new (t || LayoutDefaultHeaderItemTriggerDirective)(); };
-  /** @nocollapse */ LayoutDefaultHeaderItemTriggerDirective.ɵdir = i0.ɵɵngDeclareDirective({ version: "11.1.1", type: LayoutDefaultHeaderItemTriggerDirective, selector: "[layout-default-header-item-trigger]", host: { properties: { "class.alain-default__nav-item": "true" } }, ngImport: i0__namespace });
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultHeaderItemTriggerDirective, [{
-              type: i0.Directive,
-              args: [{
-                      selector: '[layout-default-header-item-trigger]',
-                      host: {
-                          '[class.alain-default__nav-item]': "true",
-                      },
-                  }]
-          }], null, null);
-  })();
+  LayoutDefaultHeaderItemTriggerDirective.decorators = [
+      { type: core.Directive, args: [{
+                  selector: '[layout-default-header-item-trigger]',
+                  host: {
+                      '[class.alain-default__nav-item]': "true",
+                  },
+              },] }
+  ];
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-header.component.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+  /**
+   * @record
+   */
+  function LayoutDefaultHeaderItem() { }
+  if (false) {
+      /** @type {?} */
+      LayoutDefaultHeaderItem.prototype.host;
+      /** @type {?|undefined} */
+      LayoutDefaultHeaderItem.prototype.hidden;
+      /** @type {?|undefined} */
+      LayoutDefaultHeaderItem.prototype.direction;
+  }
   var LayoutDefaultHeaderComponent = /** @class */ (function () {
+      /**
+       * @param {?} settings
+       * @param {?} parent
+       * @param {?} cdr
+       */
       function LayoutDefaultHeaderComponent(settings, parent, cdr) {
           this.settings = settings;
           this.parent = parent;
@@ -172,6 +246,9 @@
           this.right = [];
       }
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "options", {
+          /**
+           * @return {?}
+           */
           get: function () {
               return this.parent.options;
           },
@@ -179,6 +256,9 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "app", {
+          /**
+           * @return {?}
+           */
           get: function () {
               return this.settings.app;
           },
@@ -186,6 +266,9 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsed", {
+          /**
+           * @return {?}
+           */
           get: function () {
               return this.settings.layout.collapsed;
           },
@@ -193,7 +276,11 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsedIcon", {
+          /**
+           * @return {?}
+           */
           get: function () {
+              /** @type {?} */
               var type = this.collapsed ? 'unfold' : 'fold';
               if (this.settings.layout.direction === 'rtl') {
                   type = this.collapsed ? 'fold' : 'unfold';
@@ -203,42 +290,105 @@
           enumerable: false,
           configurable: true
       });
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultHeaderComponent.prototype.refresh = function () {
+          /** @type {?} */
           var arr = this.parent.headerItems.toArray();
-          this.left = arr.filter(function (i) { return i.direction === 'left'; });
-          this.middle = arr.filter(function (i) { return i.direction === 'middle'; });
-          this.right = arr.filter(function (i) { return i.direction === 'right'; });
+          this.left = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'left'; }));
+          this.middle = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'middle'; }));
+          this.right = arr.filter(( /**
+           * @param {?} i
+           * @return {?}
+           */function (/**
+           * @param {?} i
+           * @return {?}
+           */ i) { return i.direction === 'right'; }));
           this.cdr.detectChanges();
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultHeaderComponent.prototype.ngAfterViewInit = function () {
           var _this = this;
-          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(function () { return _this.refresh(); });
+          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+           * @return {?}
+           */function () { return _this.refresh(); }));
           this.refresh();
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultHeaderComponent.prototype.toggleCollapsed = function () {
           this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultHeaderComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
       };
       return LayoutDefaultHeaderComponent;
   }());
-  /** @nocollapse */ LayoutDefaultHeaderComponent.ɵfac = function LayoutDefaultHeaderComponent_Factory(t) { return new (t || LayoutDefaultHeaderComponent)(i0.ɵɵdirectiveInject(i1$1.SettingsService), i0.ɵɵdirectiveInject(LayoutDefaultComponent), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef)); };
-  /** @nocollapse */ LayoutDefaultHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", host: { properties: { "class.alain-default__header": "true" } }, ngImport: i0__namespace, template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ", isInline: true, directives: [{ type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i1.RouterLinkWithHref, selector: "a[routerLink],area[routerLink]", inputs: ["routerLink", "target", "queryParams", "fragment", "queryParamsHandling", "preserveFragment", "skipLocationChange", "replaceUrl", "state", "relativeTo"] }, { type: i5$1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultHeaderComponent, [{
-              type: i0.Component,
-              args: [{
-                      selector: 'layout-default-header',
-                      template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
-                      host: {
-                          '[class.alain-default__header]': "true",
-                      },
-                      changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                  }]
-          }], function () { return [{ type: i1$1.SettingsService }, { type: LayoutDefaultComponent }, { type: i0.ChangeDetectorRef }]; }, null);
-  })();
+  LayoutDefaultHeaderComponent.decorators = [
+      { type: core.Component, args: [{
+                  selector: 'layout-default-header',
+                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
+                  host: {
+                      '[class.alain-default__header]': "true",
+                  },
+                  changeDetection: core.ChangeDetectionStrategy.OnPush
+              }] }
+  ];
+  /** @nocollapse */
+  LayoutDefaultHeaderComponent.ctorParameters = function () { return [
+      { type: theme.SettingsService },
+      { type: LayoutDefaultComponent },
+      { type: core.ChangeDetectorRef }
+  ]; };
+  if (false) {
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.destroy$;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.left;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.middle;
+      /** @type {?} */
+      LayoutDefaultHeaderComponent.prototype.right;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.settings;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.parent;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultHeaderComponent.prototype.cdr;
+  }
 
   /*! *****************************************************************************
   Copyright (c) Microsoft Corporation.
@@ -549,9 +699,38 @@
       return value;
   }
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-nav.component.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+  /**
+   * @record
+   */
+  function Nav() { }
+  if (false) {
+      /** @type {?|undefined} */
+      Nav.prototype._needIcon;
+      /** @type {?|undefined} */
+      Nav.prototype._text;
+  }
+  /** @type {?} */
   var SHOWCLS = 'sidebar-nav__floating-show';
+  /** @type {?} */
   var FLOATINGCLS = 'sidebar-nav__floating';
   var LayoutDefaultNavComponent = /** @class */ (function () {
+      /**
+       * @param {?} menuSrv
+       * @param {?} settings
+       * @param {?} router
+       * @param {?} render
+       * @param {?} cdr
+       * @param {?} ngZone
+       * @param {?} sanitizer
+       * @param {?} doc
+       * @param {?} win
+       * @param {?} directionality
+       */
       function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
           this.menuSrv = menuSrv;
           this.settings = settings;
@@ -571,41 +750,64 @@
           this.recursivePath = true;
           this.openStrictly = false;
           this.maxLevelIcon = 3;
-          this.select = new i0.EventEmitter();
+          this.select = new core.EventEmitter();
       }
       Object.defineProperty(LayoutDefaultNavComponent.prototype, "collapsed", {
+          /**
+           * @return {?}
+           */
           get: function () {
               return this.settings.layout.collapsed;
           },
           enumerable: false,
           configurable: true
       });
+      /**
+       * @private
+       * @param {?} node
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.getLinkNode = function (node) {
-          node = node.nodeName === 'A' ? node : node.parentNode;
+          node = node.nodeName === 'A' ? node : (( /** @type {?} */(node.parentNode)));
           return node.nodeName !== 'A' ? null : node;
       };
+      /**
+       * @private
+       * @param {?} e
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.floatingClickHandle = function (e) {
           e.stopPropagation();
-          var linkNode = this.getLinkNode(e.target);
+          /** @type {?} */
+          var linkNode = this.getLinkNode(( /** @type {?} */(e.target)));
           if (linkNode == null) {
               return false;
           }
-          var id = +linkNode.dataset.id;
+          /** @type {?} */
+          var id = +( /** @type {?} */(( /** @type {?} */(linkNode.dataset)).id));
           // Should be ingore children title trigger event
           if (isNaN(id)) {
               return false;
           }
+          /** @type {?} */
           var item;
-          this.menuSrv.visit(this.list, function (i) {
+          this.menuSrv.visit(this.list, ( /**
+           * @param {?} i
+           * @return {?}
+           */function (i) {
               if (!item && i._id === id) {
                   item = i;
               }
-          });
-          this.to(item);
+          }));
+          this.to(( /** @type {?} */(item)));
           this.hideAll();
           e.preventDefault();
           return false;
       };
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.clearFloating = function () {
           if (!this.floatingEl)
               return;
@@ -618,6 +820,10 @@
               this.floatingEl.parentNode.removeChild(this.floatingEl);
           }
       };
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.genFloating = function () {
           this.clearFloating();
           this.floatingEl = this.render.createElement('div');
@@ -625,19 +831,35 @@
           this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
           this.bodyEl.appendChild(this.floatingEl);
       };
+      /**
+       * @private
+       * @param {?} linkNode
+       * @param {?} item
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.genSubNode = function (linkNode, item) {
+          /** @type {?} */
           var id = "_sidebar-nav-" + item._id;
-          var childNode = item.badge ? linkNode.nextElementSibling.nextElementSibling : linkNode.nextElementSibling;
-          var node = childNode.cloneNode(true);
+          /** @type {?} */
+          var childNode = item.badge ? ( /** @type {?} */(( /** @type {?} */(linkNode.nextElementSibling)).nextElementSibling)) : ( /** @type {?} */(linkNode.nextElementSibling));
+          /** @type {?} */
+          var node = ( /** @type {?} */(childNode.cloneNode(true)));
           node.id = id;
           node.classList.add(FLOATINGCLS);
-          node.addEventListener('mouseleave', function () {
+          node.addEventListener('mouseleave', ( /**
+           * @return {?}
+           */function () {
               node.classList.remove(SHOWCLS);
-          }, false);
+          }), false);
           this.floatingEl.appendChild(node);
           return node;
       };
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.hideAll = function () {
+          /** @type {?} */
           var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
           // tslint:disable-next-line:prefer-for-of
           for (var i = 0; i < allNode.length; i++) {
@@ -645,12 +867,23 @@
           }
       };
       // calculate the node position values.
+      /**
+       * @private
+       * @param {?} linkNode
+       * @param {?} node
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.calPos = function (linkNode, node) {
+          /** @type {?} */
           var rect = linkNode.getBoundingClientRect();
           // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
+          /** @type {?} */
           var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
+          /** @type {?} */
           var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
+          /** @type {?} */
           var spacing = 5;
+          /** @type {?} */
           var offsetHeight = -spacing;
           if (docHeight < rect.top + node.clientHeight) {
               offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
@@ -663,21 +896,34 @@
               node.style.left = rect.right + spacing + "px";
           }
       };
+      /**
+       * @param {?} e
+       * @param {?} item
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.showSubMenu = function (e, item) {
           var _this = this;
           if (this.collapsed !== true) {
               return;
           }
-          this.ngZone.runOutsideAngular(function () {
+          this.ngZone.runOutsideAngular(( /**
+           * @return {?}
+           */function () {
               e.preventDefault();
-              var linkNode = e.target;
+              /** @type {?} */
+              var linkNode = ( /** @type {?} */(e.target));
               _this.genFloating();
-              var subNode = _this.genSubNode(linkNode, item);
+              /** @type {?} */
+              var subNode = _this.genSubNode(( /** @type {?} */(linkNode)), item);
               _this.hideAll();
               subNode.classList.add(SHOWCLS);
-              _this.calPos(linkNode, subNode);
-          });
+              _this.calPos(( /** @type {?} */(linkNode)), subNode);
+          }));
       };
+      /**
+       * @param {?} item
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.to = function (item) {
           var _this = this;
           this.select.emit(item);
@@ -692,42 +938,67 @@
               }
               return;
           }
-          this.ngZone.run(function () { return _this.router.navigateByUrl(item.link); });
+          this.ngZone.run(( /**
+           * @return {?}
+           */function () { return _this.router.navigateByUrl(( /** @type {?} */(item.link))); }));
       };
+      /**
+       * @param {?} item
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.toggleOpen = function (item) {
           if (!this.openStrictly) {
-              this.menuSrv.visit(this.list, function (i) {
+              this.menuSrv.visit(this.list, ( /**
+               * @param {?} i
+               * @return {?}
+               */function (i) {
                   if (i !== item)
                       i._open = false;
-              });
-              var pItem = item._parent;
+              }));
+              /** @type {?} */
+              var pItem = ( /** @type {?} */(item._parent));
               while (pItem) {
                   pItem._open = true;
-                  pItem = pItem._parent;
+                  pItem = ( /** @type {?} */(pItem._parent));
               }
           }
           item._open = !item._open;
           this.cdr.markForCheck();
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype._click = function () {
           if (this.isPad && this.collapsed) {
               this.openAside(false);
               this.hideAll();
           }
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype._docClick = function () {
           if (this.collapsed) {
               this.hideAll();
           }
       };
+      /**
+       * @private
+       * @param {?} url
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.openedByUrl = function (url) {
           var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
-          var findItem = menuSrv.getHit(this.menuSrv.menus, url, recursivePath, function (i) {
+          /** @type {?} */
+          var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
+           * @param {?} i
+           * @return {?}
+           */function (i) {
               i._selected = false;
               if (!openStrictly) {
                   i._open = false;
               }
-          });
+          }));
           if (findItem == null)
               return;
           do {
@@ -735,20 +1006,36 @@
               if (!openStrictly) {
                   findItem._open = true;
               }
-              findItem = findItem._parent;
+              findItem = ( /** @type {?} */(findItem._parent));
           } while (findItem);
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.ngOnInit = function () {
           var _this = this;
           var _a;
-          var _b = this, doc = _b.doc, router = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
+          var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
           this.bodyEl = doc.querySelector('body');
-          this.openedByUrl(router.url);
-          this.ngZone.runOutsideAngular(function () { return _this.genFloating(); });
-          menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(function (data) {
-              menuSrv.visit(data, function (i, _p, depth) {
-                  i._text = _this.sanitizer.bypassSecurityTrustHtml(i.text);
-                  i._needIcon = depth <= _this.maxLevelIcon && !!i.icon;
+          this.openedByUrl(router$1.url);
+          this.ngZone.runOutsideAngular(( /**
+           * @return {?}
+           */function () { return _this.genFloating(); }));
+          menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+           * @param {?} data
+           * @return {?}
+           */function (/**
+           * @param {?} data
+           * @return {?}
+           */ data) {
+              menuSrv.visit(data, ( /**
+               * @param {?} i
+               * @param {?} _p
+               * @param {?} depth
+               * @return {?}
+               */function (i, _p, depth) {
+                  i._text = _this.sanitizer.bypassSecurityTrustHtml(( /** @type {?} */(i.text)));
+                  i._needIcon = ( /** @type {?} */(depth)) <= _this.maxLevelIcon && !!i.icon;
                   if (!i._aclResult) {
                       if (_this.disabledAcl) {
                           i.disabled = true;
@@ -760,26 +1047,49 @@
                   if (_this.openStrictly) {
                       i._open = i.open != null ? i.open : false;
                   }
-              });
-              _this.list = menuSrv.menus.filter(function (w) { return w._hidden !== true; });
+              }));
+              _this.list = menuSrv.menus.filter(( /**
+               * @param {?} w
+               * @return {?}
+               */function (w) { return w._hidden !== true; }));
               cdr.detectChanges();
-          });
-          router.events.pipe(operators.takeUntil(destroy$)).subscribe(function (e) {
-              if (e instanceof i1.NavigationEnd) {
+          }));
+          router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+           * @param {?} e
+           * @return {?}
+           */function (/**
+           * @param {?} e
+           * @return {?}
+           */ e) {
+              if (e instanceof router.NavigationEnd) {
                   _this.openedByUrl(e.urlAfterRedirects);
                   _this.underPad();
                   _this.cdr.detectChanges();
               }
-          });
+          }));
           settings.notify
-              .pipe(operators.takeUntil(destroy$), operators.filter(function (t) { return t.type === 'layout' && t.name === 'collapsed'; }))
-              .subscribe(function () { return _this.clearFloating(); });
+              .pipe(operators.takeUntil(destroy$), operators.filter(( /**
+       * @param {?} t
+       * @return {?}
+       */function (/**
+       * @param {?} t
+       * @return {?}
+       */ t) { return t.type === 'layout' && t.name === 'collapsed'; })))
+              .subscribe(( /**
+       * @return {?}
+       */function () { return _this.clearFloating(); }));
           this.underPad();
           this.dir = this.directionality.value;
-          (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(function (direction) {
+          (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
+           * @param {?} direction
+           * @return {?}
+           */function (direction) {
               _this.dir = direction;
-          });
+          }));
       };
+      /**
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
@@ -787,25 +1097,72 @@
       };
       Object.defineProperty(LayoutDefaultNavComponent.prototype, "isPad", {
           // #region Under pad
+          /**
+           * @private
+           * @return {?}
+           */
           get: function () {
-              return this.doc.defaultView.innerWidth < 768;
+              return ( /** @type {?} */(this.doc.defaultView)).innerWidth < 768;
           },
           enumerable: false,
           configurable: true
       });
+      /**
+       * @private
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.underPad = function () {
           var _this = this;
           if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
-              setTimeout(function () { return _this.openAside(true); });
+              setTimeout(( /**
+               * @return {?}
+               */function () { return _this.openAside(true); }));
           }
       };
+      /**
+       * @private
+       * @param {?} status
+       * @return {?}
+       */
       LayoutDefaultNavComponent.prototype.openAside = function (status) {
           this.settings.setLayout('collapsed', status);
       };
       return LayoutDefaultNavComponent;
   }());
-  /** @nocollapse */ LayoutDefaultNavComponent.ɵfac = function LayoutDefaultNavComponent_Factory(t) { return new (t || LayoutDefaultNavComponent)(i0.ɵɵdirectiveInject(i1$1.MenuService), i0.ɵɵdirectiveInject(i1$1.SettingsService), i0.ɵɵdirectiveInject(i1.Router), i0.ɵɵdirectiveInject(i0.Renderer2), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(i0.NgZone), i0.ɵɵdirectiveInject(i3.DomSanitizer), i0.ɵɵdirectiveInject(i5.DOCUMENT), i0.ɵɵdirectiveInject(i1$1.WINDOW), i0.ɵɵdirectiveInject(i4.Directionality, 8)); };
-  /** @nocollapse */ LayoutDefaultNavComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: { disabledAcl: "disabledAcl", autoCloseUnderPad: "autoCloseUnderPad", recursivePath: "recursivePath", openStrictly: "openStrictly", maxLevelIcon: "maxLevelIcon" }, outputs: { select: "select" }, host: { listeners: { "click": "_click()", "document:click": "_docClick()" } }, ngImport: i0__namespace, template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n      [nzRotate]=\"i.rotate\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #tree let-ls>\n  <ng-container *ngFor=\"let i of ls\">\n    <li *ngIf=\"i._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i._open\">\n      <!-- link -->\n      <a\n        *ngIf=\"i.children.length === 0\"\n        (click)=\"to(i)\"\n        [attr.data-id]=\"i._id\"\n        class=\"sidebar-nav__item-link\"\n        [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\"\n      >\n        <ng-container *ngIf=\"i._needIcon\">\n          <ng-container *ngIf=\"!collapsed\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </ng-container>\n          <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </span>\n        </ng-container>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n      </a>\n      <!-- has children link -->\n      <a *ngIf=\"i.children.length > 0\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n        <i class=\"sidebar-nav__sub-arrow\"></i>\n      </a>\n      <!-- badge -->\n      <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n        <em>{{ i.badge }}</em>\n      </div>\n      <ul *ngIf=\"i.children.length > 0\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n        <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\"></ng-template>\n      </ul>\n    </li>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n      <span [innerHTML]=\"group._text\"></span>\n    </li>\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\"></ng-template>\n  </ng-container>\n</ul>\n", directives: [{ type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { type: i5.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { type: i5.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { type: i5$1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { type: i5.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { type: i5.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { type: i5.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }, { type: i7.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipTitle", "nz-tooltip", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  LayoutDefaultNavComponent.decorators = [
+      { type: core.Component, args: [{
+                  selector: 'layout-default-nav',
+                  template: "<ng-template #icon let-i>\n  <ng-container *ngIf=\"i\" [ngSwitch]=\"i.type\">\n    <i\n      *ngSwitchCase=\"'icon'\"\n      class=\"sidebar-nav__item-icon\"\n      nz-icon\n      [nzType]=\"i.value\"\n      [nzTheme]=\"i.theme\"\n      [nzSpin]=\"i.spin\"\n      [nzTwotoneColor]=\"i.twoToneColor\"\n      [nzIconfont]=\"i.iconfont\"\n      [nzRotate]=\"i.rotate\"\n    ></i>\n    <i *ngSwitchCase=\"'iconfont'\" class=\"sidebar-nav__item-icon\" nz-icon [nzIconfont]=\"i.iconfont\"></i>\n    <img *ngSwitchCase=\"'img'\" [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n    <i *ngSwitchDefault class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n  </ng-container>\n</ng-template>\n<ng-template #tree let-ls>\n  <ng-container *ngFor=\"let i of ls\">\n    <li *ngIf=\"i._hidden !== true\" class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i._open\">\n      <!-- link -->\n      <a\n        *ngIf=\"i.children.length === 0\"\n        (click)=\"to(i)\"\n        [attr.data-id]=\"i._id\"\n        class=\"sidebar-nav__item-link\"\n        [ngClass]=\"{ 'sidebar-nav__item-disabled': i.disabled }\"\n      >\n        <ng-container *ngIf=\"i._needIcon\">\n          <ng-container *ngIf=\"!collapsed\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </ng-container>\n          <span *ngIf=\"collapsed\" nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n            <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n          </span>\n        </ng-container>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n      </a>\n      <!-- has children link -->\n      <a *ngIf=\"i.children.length > 0\" (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n        <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\"></ng-template>\n        <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n        <i class=\"sidebar-nav__sub-arrow\"></i>\n      </a>\n      <!-- badge -->\n      <div *ngIf=\"i.badge\" [attr.title]=\"i.badge\" class=\"badge badge-{{ i.badgeStatus }}\" [class.badge-dot]=\"i.badgeDot\">\n        <em>{{ i.badge }}</em>\n      </div>\n      <ul *ngIf=\"i.children.length > 0\" class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n        <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\"></ng-template>\n      </ul>\n    </li>\n  </ng-container>\n</ng-template>\n<ul class=\"sidebar-nav\">\n  <ng-container *ngFor=\"let group of list\">\n    <li class=\"sidebar-nav__item sidebar-nav__group-title\" *ngIf=\"group.group\">\n      <span [innerHTML]=\"group._text\"></span>\n    </li>\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\"></ng-template>\n  </ng-container>\n</ul>\n",
+                  host: {
+                      '(click)': '_click()',
+                      '(document:click)': '_docClick()',
+                  },
+                  preserveWhitespaces: false,
+                  changeDetection: core.ChangeDetectionStrategy.OnPush,
+                  encapsulation: core.ViewEncapsulation.None
+              }] }
+  ];
+  /** @nocollapse */
+  LayoutDefaultNavComponent.ctorParameters = function () { return [
+      { type: theme.MenuService },
+      { type: theme.SettingsService },
+      { type: router.Router },
+      { type: core.Renderer2 },
+      { type: core.ChangeDetectorRef },
+      { type: core.NgZone },
+      { type: platformBrowser.DomSanitizer },
+      { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+      { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+      { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+  ]; };
+  LayoutDefaultNavComponent.propDecorators = {
+      disabledAcl: [{ type: core.Input }],
+      autoCloseUnderPad: [{ type: core.Input }],
+      recursivePath: [{ type: core.Input }],
+      openStrictly: [{ type: core.Input }],
+      maxLevelIcon: [{ type: core.Input }],
+      select: [{ type: core.Output }]
+  };
   __decorate([
       decorator.InputBoolean(),
       __metadata("design:type", Object)
@@ -826,45 +1183,106 @@
       decorator.InputNumber(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultNavComponent, [{
-              type: i0.Component,
-              args: [{
-                      selector: 'layout-default-nav',
-                      templateUrl: './layout-nav.component.html',
-                      host: {
-                          '(click)': '_click()',
-                          '(document:click)': '_docClick()',
-                      },
-                      preserveWhitespaces: false,
-                      changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                      encapsulation: i0.ViewEncapsulation.None,
-                  }]
-          }], function () {
-          return [{ type: i1$1.MenuService }, { type: i1$1.SettingsService }, { type: i1.Router }, { type: i0.Renderer2 }, { type: i0.ChangeDetectorRef }, { type: i0.NgZone }, { type: i3.DomSanitizer }, { type: undefined, decorators: [{
-                          type: i0.Inject,
-                          args: [i5.DOCUMENT]
-                      }] }, { type: Window, decorators: [{
-                          type: i0.Inject,
-                          args: [i1$1.WINDOW]
-                      }] }, { type: i4.Directionality, decorators: [{
-                          type: i0.Optional
-                      }] }];
-      }, { disabledAcl: [{
-                  type: i0.Input
-              }], autoCloseUnderPad: [{
-                  type: i0.Input
-              }], recursivePath: [{
-                  type: i0.Input
-              }], openStrictly: [{
-                  type: i0.Input
-              }], maxLevelIcon: [{
-                  type: i0.Input
-              }], select: [{
-                  type: i0.Output
-              }] });
-  })();
+  if (false) {
+      /** @type {?} */
+      LayoutDefaultNavComponent.ngAcceptInputType_disabledAcl;
+      /** @type {?} */
+      LayoutDefaultNavComponent.ngAcceptInputType_autoCloseUnderPad;
+      /** @type {?} */
+      LayoutDefaultNavComponent.ngAcceptInputType_recursivePath;
+      /** @type {?} */
+      LayoutDefaultNavComponent.ngAcceptInputType_openStrictly;
+      /** @type {?} */
+      LayoutDefaultNavComponent.ngAcceptInputType_maxLevelIcon;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.bodyEl;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.destroy$;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.floatingEl;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.dir;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.list;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.disabledAcl;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.autoCloseUnderPad;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.recursivePath;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.openStrictly;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.maxLevelIcon;
+      /** @type {?} */
+      LayoutDefaultNavComponent.prototype.select;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.menuSrv;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.settings;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.router;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.render;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.cdr;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.ngZone;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.sanitizer;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.doc;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.win;
+      /**
+       * @type {?}
+       * @private
+       */
+      LayoutDefaultNavComponent.prototype.directionality;
+  }
 
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout.module.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+  /** @type {?} */
   var COMPONENTS = [
       LayoutDefaultComponent,
       LayoutDefaultNavComponent,
@@ -877,33 +1295,24 @@
       }
       return LayoutDefaultModule;
   }());
-  /** @nocollapse */ LayoutDefaultModule.ɵmod = i0.ɵɵdefineNgModule({ type: LayoutDefaultModule });
-  /** @nocollapse */ LayoutDefaultModule.ɵinj = i0.ɵɵdefineInjector({ factory: function LayoutDefaultModule_Factory(t) { return new (t || LayoutDefaultModule)(); }, imports: [[i5.CommonModule, i1.RouterModule, i7.NzToolTipModule, i5$1.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule]] });
-  (function () {
-      (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(LayoutDefaultModule, { declarations: [LayoutDefaultComponent,
-              LayoutDefaultNavComponent,
-              LayoutDefaultHeaderComponent,
-              LayoutDefaultHeaderItemComponent,
-              LayoutDefaultHeaderItemTriggerDirective], imports: [i5.CommonModule, i1.RouterModule, i7.NzToolTipModule, i5$1.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule], exports: [LayoutDefaultComponent,
-              LayoutDefaultNavComponent,
-              LayoutDefaultHeaderComponent,
-              LayoutDefaultHeaderItemComponent,
-              LayoutDefaultHeaderItemTriggerDirective] });
-  })();
-  (function () {
-      (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LayoutDefaultModule, [{
-              type: i0.NgModule,
-              args: [{
-                      imports: [i5.CommonModule, i1.RouterModule, i7.NzToolTipModule, i5$1.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule],
-                      declarations: COMPONENTS,
-                      exports: COMPONENTS,
-                  }]
-          }], null, null);
-  })();
-  i0.ɵɵsetComponentScope(LayoutDefaultComponent, [i5.NgIf, LayoutDefaultHeaderComponent, i5.NgTemplateOutlet, LayoutDefaultNavComponent], []);
+  LayoutDefaultModule.decorators = [
+      { type: core.NgModule, args: [{
+                  imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule],
+                  declarations: COMPONENTS,
+                  exports: COMPONENTS,
+              },] }
+  ];
 
   /**
-   * Generated bundle index. Do not edit.
+   * @fileoverview added by tsickle
+   * Generated from: public_api.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   */
+
+  /**
+   * @fileoverview added by tsickle
+   * Generated from: layout-default.ts
+   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
    */
 
   exports.LayoutDefaultComponent = LayoutDefaultComponent;

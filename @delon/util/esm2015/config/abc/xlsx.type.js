@@ -1,2 +1,24 @@
-export {};
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC50eXBlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvdXRpbC9jb25maWcvYWJjL3hsc3gudHlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGludGVyZmFjZSBBbGFpblhsc3hDb25maWcge1xuICAvKipcbiAgICogWGxzeCBsaWJyYXJ5IHBhdGgsIGRlZmF1bHQ6IGAvL2Nkbi5ib290Y3NzLmNvbS94bHN4LzAuMTUuNi94bHN4LmZ1bGwubWluLmpzYFxuICAgKi9cbiAgdXJsPzogc3RyaW5nO1xuICAvKipcbiAgICogRGVmaW5lcyB3aGljaCBYbHN4IG9wdGlvbmFsIG1vZHVsZXMgc2hvdWxkIGdldCBsb2FkZWQsIGUuZzpcbiAgICpcbiAgICogYFsgJy8vY2RuLmJvb3Rjc3MuY29tL3hsc3gvMC4xNS42L2NwZXhjZWwuanMnIF1gXG4gICAqL1xuICBtb2R1bGVzPzogc3RyaW5nW107XG59XG4iXX0=
+/**
+ * @fileoverview added by tsickle
+ * Generated from: abc/xlsx.type.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+export function AlainXlsxConfig() { }
+if (false) {
+    /**
+     * Xlsx library path, default: `//cdn.bootcss.com/xlsx/0.15.6/xlsx.full.min.js`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.url;
+    /**
+     * Defines which Xlsx optional modules should get loaded, e.g:
+     *
+     * `[ '//cdn.bootcss.com/xlsx/0.15.6/cpexcel.js' ]`
+     * @type {?|undefined}
+     */
+    AlainXlsxConfig.prototype.modules;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoieGxzeC50eXBlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvdXRpbC9jb25maWcvYWJjL3hsc3gudHlwZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7OztBQUFBLHFDQVdDOzs7Ozs7SUFQQyw4QkFBYTs7Ozs7OztJQU1iLGtDQUFtQiIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgQWxhaW5YbHN4Q29uZmlnIHtcbiAgLyoqXG4gICAqIFhsc3ggbGlicmFyeSBwYXRoLCBkZWZhdWx0OiBgLy9jZG4uYm9vdGNzcy5jb20veGxzeC8wLjE1LjYveGxzeC5mdWxsLm1pbi5qc2BcbiAgICovXG4gIHVybD86IHN0cmluZztcbiAgLyoqXG4gICAqIERlZmluZXMgd2hpY2ggWGxzeCBvcHRpb25hbCBtb2R1bGVzIHNob3VsZCBnZXQgbG9hZGVkLCBlLmc6XG4gICAqXG4gICAqIGBbICcvL2Nkbi5ib290Y3NzLmNvbS94bHN4LzAuMTUuNi9jcGV4Y2VsLmpzJyBdYFxuICAgKi9cbiAgbW9kdWxlcz86IHN0cmluZ1tdO1xufVxuIl19

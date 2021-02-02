@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/pipes/delon-util-pipes.js",
   "fesm2015": "../fesm2015/delon-util-pipes.js",
   "typings": "delon-util-pipes.d.ts",
+  "metadata": "delon-util-pipes.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/pipes"
 }

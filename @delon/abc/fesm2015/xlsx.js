@@ -1,30 +1,112 @@
 import { __awaiter } from 'tslib';
 import { HttpClient } from '@angular/common/http';
-import * as i0 from '@angular/core';
-import { ɵɵinject, NgZone, ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, ɵɵdirectiveInject, ɵɵngDeclareDirective, Directive, Input, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
+import { Injectable, NgZone, ɵɵdefineInjectable, ɵɵinject, Directive, Input, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
 import { CommonModule } from '@angular/common';
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: xlsx.types.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/**
+ * @record
+ */
+function XlsxExportOptions() { }
+if (false) {
+    /**
+     * worksheets in the workbook, e.g:
+     * - `{ Sheet1: { A1: { t:"n", v:10000 } } }`
+     * - `[['1'], [1]]`
+     * @type {?}
+     */
+    XlsxExportOptions.prototype.sheets;
+    /**
+     * save file name, default: `export.xlsx`
+     * @type {?|undefined}
+     */
+    XlsxExportOptions.prototype.filename;
+    /** @type {?|undefined} */
+    XlsxExportOptions.prototype.opts;
+    /**
+     * triggers when saveas
+     * @type {?|undefined}
+     */
+    XlsxExportOptions.prototype.callback;
+}
+/**
+ * @record
+ */
+function XlsxExportSheet() { }
+if (false) {
+    /**
+     * arrays to a worksheet
+     * @type {?}
+     */
+    XlsxExportSheet.prototype.data;
+    /**
+     * sheet name
+     * @type {?|undefined}
+     */
+    XlsxExportSheet.prototype.name;
+}
+/**
+ * @record
+ */
+function XlsxExportResult() { }
+if (false) {
+    /** @type {?} */
+    XlsxExportResult.prototype.filename;
+    /** @type {?} */
+    XlsxExportResult.prototype.wb;
+}
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: xlsx.service.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class XlsxService {
+    /**
+     * @param {?} http
+     * @param {?} lazy
+     * @param {?} configSrv
+     * @param {?} ngZone
+     */
     constructor(http, lazy, configSrv, ngZone) {
         this.http = http;
         this.lazy = lazy;
         this.ngZone = ngZone;
-        this.cog = configSrv.merge('xlsx', {
+        this.cog = (/** @type {?} */ (configSrv.merge('xlsx', {
             url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
             modules: [`https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js`],
-        });
+        })));
     }
+    /**
+     * @private
+     * @return {?}
+     */
     init() {
-        return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([this.cog.url].concat(this.cog.modules));
+        return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([(/** @type {?} */ (this.cog.url))].concat((/** @type {?} */ (this.cog.modules))));
     }
+    /**
+     * @private
+     * @param {?} data
+     * @param {?} options
+     * @return {?}
+     */
     read(data, options) {
+        /** @type {?} */
         const ret = {};
-        this.ngZone.runOutsideAngular(() => {
+        this.ngZone.runOutsideAngular((/**
+         * @return {?}
+         */
+        () => {
             if (options.type === 'binary') {
+                /** @type {?} */
                 const buf = new Uint8Array(data);
                 if (!isUtf8(buf)) {
                     try {
@@ -36,49 +118,112 @@ class XlsxService {
                     }
                 }
             }
+            /** @type {?} */
             const wb = XLSX.read(data, options);
-            wb.SheetNames.forEach((name) => {
+            wb.SheetNames.forEach((/**
+             * @param {?} name
+             * @return {?}
+             */
+            (name) => {
+                /** @type {?} */
                 const sheet = wb.Sheets[name];
                 ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-            });
-        });
+            }));
+        }));
         return ret;
     }
+    /**
+     * @param {?} fileOrUrl
+     * @param {?=} _rABS
+     * @return {?}
+     */
     import(fileOrUrl, _rABS = 'readAsBinaryString') {
-        return new Promise((resolve, reject) => {
+        return new Promise((/**
+         * @param {?} resolve
+         * @param {?} reject
+         * @return {?}
+         */
+        (resolve, reject) => {
             this.init()
-                .then(() => {
+                .then((/**
+             * @return {?}
+             */
+            () => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                        this.ngZone.run(() => resolve(this.read(new Uint8Array(res), { type: 'array' })));
-                    }, (err) => {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((/**
+                     * @param {?} res
+                     * @return {?}
+                     */
+                    (res) => {
+                        this.ngZone.run((/**
+                         * @return {?}
+                         */
+                        () => resolve(this.read(new Uint8Array(res), { type: 'array' }))));
+                    }), (/**
+                     * @param {?} err
+                     * @return {?}
+                     */
+                    (err) => {
                         reject(err);
-                    });
+                    }));
                     return;
                 }
                 // from file
+                /** @type {?} */
                 const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.ngZone.run(() => resolve(this.read(e.target.result, { type: 'binary' })));
-                };
+                reader.onload = (/**
+                 * @param {?} e
+                 * @return {?}
+                 */
+                (e) => {
+                    this.ngZone.run((/**
+                     * @return {?}
+                     */
+                    () => resolve(this.read(e.target.result, { type: 'binary' }))));
+                });
                 reader.readAsArrayBuffer(fileOrUrl);
-            })
-                .catch(() => reject(`Unable to load xlsx.js`));
-        });
+            }))
+                .catch((/**
+             * @return {?}
+             */
+            () => reject(`Unable to load xlsx.js`)));
+        }));
     }
+    /**
+     * @param {?} options
+     * @return {?}
+     */
     export(options) {
         return __awaiter(this, void 0, void 0, function* () {
-            return new Promise((resolve, reject) => {
+            return new Promise((/**
+             * @param {?} resolve
+             * @param {?} reject
+             * @return {?}
+             */
+            (resolve, reject) => {
                 this.init()
-                    .then(() => {
-                    this.ngZone.runOutsideAngular(() => {
+                    .then((/**
+                 * @return {?}
+                 */
+                () => {
+                    this.ngZone.runOutsideAngular((/**
+                     * @return {?}
+                     */
+                    () => {
+                        /** @type {?} */
                         const wb = XLSX.utils.book_new();
                         if (Array.isArray(options.sheets)) {
-                            options.sheets.forEach((value, index) => {
+                            ((/** @type {?} */ (options.sheets))).forEach((/**
+                             * @param {?} value
+                             * @param {?} index
+                             * @return {?}
+                             */
+                            (value, index) => {
+                                /** @type {?} */
                                 const ws = XLSX.utils.aoa_to_sheet(value.data);
                                 XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
-                            });
+                            }));
                         }
                         else {
                             wb.SheetNames = Object.keys(options.sheets);
@@ -86,14 +231,20 @@ class XlsxService {
                         }
                         if (options.callback)
                             options.callback(wb);
+                        /** @type {?} */
                         const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                        /** @type {?} */
                         const filename = options.filename || 'export.xlsx';
                         saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
                         resolve({ filename, wb });
-                    });
-                })
-                    .catch(err => reject(err));
-            });
+                    }));
+                }))
+                    .catch((/**
+                 * @param {?} err
+                 * @return {?}
+                 */
+                err => reject(err)));
+            }));
         });
     }
     /**
@@ -101,9 +252,13 @@ class XlsxService {
      * - `1` => `A`
      * - `27` => `AA`
      * - `703` => `AAA`
+     * @param {?} val
+     * @return {?}
      */
     numberToSchema(val) {
+        /** @type {?} */
         const startCode = 'A'.charCodeAt(0);
+        /** @type {?} */
         let res = '';
         do {
             --val;
@@ -113,54 +268,112 @@ class XlsxService {
         return res;
     }
 }
-/** @nocollapse */ XlsxService.ɵfac = function XlsxService_Factory(t) { return new (t || XlsxService)(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); };
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ token: XlsxService, factory: XlsxService.ɵfac, providedIn: 'root' });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(XlsxService, [{
-        type: Injectable,
-        args: [{ providedIn: 'root' }]
-    }], function () { return [{ type: HttpClient }, { type: LazyService }, { type: AlainConfigService }, { type: NgZone }]; }, null); })();
+XlsxService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+/** @nocollapse */
+XlsxService.ctorParameters = () => [
+    { type: HttpClient },
+    { type: LazyService },
+    { type: AlainConfigService },
+    { type: NgZone }
+];
+/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: XlsxService, providedIn: "root" });
+if (false) {
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxService.prototype.cog;
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxService.prototype.http;
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxService.prototype.lazy;
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxService.prototype.ngZone;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: xlsx.directive.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
 class XlsxDirective {
+    /**
+     * @param {?} srv
+     */
     constructor(srv) {
         this.srv = srv;
     }
+    /**
+     * @return {?}
+     */
     _click() {
         this.srv.export(this.data);
     }
 }
-/** @nocollapse */ XlsxDirective.ɵfac = function XlsxDirective_Factory(t) { return new (t || XlsxDirective)(ɵɵdirectiveInject(XlsxService)); };
-/** @nocollapse */ XlsxDirective.ɵdir = ɵɵngDeclareDirective({ version: "11.1.1", type: XlsxDirective, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 });
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(XlsxDirective, [{
-        type: Directive,
-        args: [{
+XlsxDirective.decorators = [
+    { type: Directive, args: [{
                 selector: '[xlsx]',
                 exportAs: 'xlsx',
                 host: {
                     '(click)': '_click()',
                 },
-            }]
-    }], function () { return [{ type: XlsxService }]; }, { data: [{
-            type: Input,
-            args: ['xlsx']
-        }] }); })();
+            },] }
+];
+/** @nocollapse */
+XlsxDirective.ctorParameters = () => [
+    { type: XlsxService }
+];
+XlsxDirective.propDecorators = {
+    data: [{ type: Input, args: ['xlsx',] }]
+};
+if (false) {
+    /** @type {?} */
+    XlsxDirective.prototype.data;
+    /**
+     * @type {?}
+     * @private
+     */
+    XlsxDirective.prototype.srv;
+}
 
+/**
+ * @fileoverview added by tsickle
+ * Generated from: xlsx.module.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+/** @type {?} */
 const COMPONENTS = [XlsxDirective];
 class XlsxModule {
 }
-/** @nocollapse */ XlsxModule.ɵmod = ɵɵdefineNgModule({ type: XlsxModule });
-/** @nocollapse */ XlsxModule.ɵinj = ɵɵdefineInjector({ factory: function XlsxModule_Factory(t) { return new (t || XlsxModule)(); }, imports: [[CommonModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(XlsxModule, { declarations: [XlsxDirective], imports: [CommonModule], exports: [XlsxDirective] }); })();
-(function () { (typeof ngDevMode === "undefined" || ngDevMode) && ɵsetClassMetadata(XlsxModule, [{
-        type: NgModule,
-        args: [{
+XlsxModule.decorators = [
+    { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
-            }]
-    }], null, null); })();
+            },] }
+];
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: public_api.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: xlsx.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { XlsxDirective, XlsxModule, XlsxService };

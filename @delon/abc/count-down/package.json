@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/count-down/count-down.js",
   "fesm2015": "../fesm2015/count-down.js",
   "typings": "count-down.d.ts",
+  "metadata": "count-down.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/count-down"
 }

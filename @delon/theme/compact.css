@@ -30458,14 +30458,14 @@ body {
   right: 16px;
 }
 .sidebar-nav .badge:not(.badge-dot) {
-  top: 22px / 2;
+  top: 11px;
   height: 16px;
   padding: 0 4px;
   overflow: hidden;
   line-height: 16px;
 }
 .sidebar-nav .badge-dot {
-  top: 30px / 2;
+  top: 15px;
 }
 .sidebar-nav__depth1 .sidebar-nav__item-link {
   padding-left: 38px;

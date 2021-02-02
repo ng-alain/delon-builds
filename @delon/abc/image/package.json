@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/image/image.js",
   "fesm2015": "../fesm2015/image.js",
   "typings": "image.d.ts",
+  "metadata": "image.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/image"
 }

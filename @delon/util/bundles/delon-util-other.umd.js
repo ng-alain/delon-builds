@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('@angular/core'), require('ng-zorro-antd/core/environments'), require('@angular/common'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/util/other', ['exports', 'extend', '@angular/core', 'ng-zorro-antd/core/environments', '@angular/common', 'rxjs', 'rxjs/operators'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.other = {}), global.extend, global.ng.core, global.environments, global.ng.common, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, extend, i0, environments, common, rxjs, operators) { 'use strict';
+}(this, (function (exports, extend, i0, environments, i1, rxjs, operators) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -326,6 +326,10 @@
      * Gets the value at `path` of `object`, like `_.get` in lodash.
      *
      * 类似 `_.get`，根据 `path` 获取安全值
+     * @param {?} obj
+     * @param {?} path
+     * @param {?=} defaultValue
+     * @return {?}
      */
     function deepGet(obj, path, defaultValue) {
         if (!obj || path == null || path.length === 0)
@@ -334,18 +338,27 @@
             path = ~path.indexOf('.') ? path.split('.') : [path];
         }
         if (path.length === 1) {
+            /** @type {?} */
             var checkObj = obj[path[0]];
             return typeof checkObj === 'undefined' ? defaultValue : checkObj;
         }
-        var res = path.reduce(function (o, k) { return (o || {})[k]; }, obj);
+        /** @type {?} */
+        var res = path.reduce(( /**
+         * @param {?} o
+         * @param {?} k
+         * @return {?}
+         */function (o, k) { return (o || {})[k]; }), obj);
         return typeof res === 'undefined' ? defaultValue : res;
     }
     /**
      * Base on [extend](https://github.com/justmoon/node-extend) deep copy.
      *
      * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
+     * @param {?} obj
+     * @return {?}
      */
     function deepCopy(obj) {
+        /** @type {?} */
         var result = extend__default['default'](true, {}, { _: obj });
         return result._;
     }
@@ -354,11 +367,12 @@
      *
      * 深度合并对象
      *
-     * @param original 原始对象
-     * @param arrayProcessMethod 数组处理方式
+     * @param {?} original 原始对象
+     * @param {?} arrayProcessMethod 数组处理方式
      *  - `true` 表示替换新值，不管新值为哪种类型
      *  - `false` 表示会合并整个数组（将旧数据与新数据合并成新数组）
-     * @param objects 要合并的对象
+     * @param {...?} objects 要合并的对象
+     * @return {?}
      */
     function deepMergeKey(original, arrayProcessMethod) {
         var objects = [];
@@ -367,12 +381,35 @@
         }
         if (Array.isArray(original) || typeof original !== 'object')
             return original;
-        var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
-        var merge = function (target, obj) {
+        /** @type {?} */
+        var isObject = ( /**
+         * @param {?} v
+         * @return {?}
+         */function (v) { return typeof v === 'object' || typeof v === 'function'; });
+        /** @type {?} */
+        var merge = ( /**
+         * @param {?} target
+         * @param {?} obj
+         * @return {?}
+         */function (target, obj) {
             Object.keys(obj)
-                .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
-                .forEach(function (key) {
+                .filter(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); }))
+                .forEach(( /**
+         * @param {?} key
+         * @return {?}
+         */function (/**
+         * @param {?} key
+         * @return {?}
+         */ key) {
+                /** @type {?} */
                 var fromValue = obj[key];
+                /** @type {?} */
                 var toValue = target[key];
                 if (Array.isArray(toValue)) {
                     target[key] = arrayProcessMethod ? fromValue : __spread(toValue, fromValue);
@@ -383,16 +420,31 @@
                 else {
                     target[key] = deepCopy(fromValue);
                 }
-            });
+            }));
             return target;
-        };
-        objects.filter(function (v) { return v != null && isObject(v); }).forEach(function (v) { return merge(original, v); });
+        });
+        objects.filter(( /**
+         * @param {?} v
+         * @return {?}
+         */function (/**
+         * @param {?} v
+         * @return {?}
+         */ v) { return v != null && isObject(v); })).forEach(( /**
+         * @param {?} v
+         * @return {?}
+         */function (/**
+         * @param {?} v
+         * @return {?}
+         */ v) { return merge(original, v); }));
         return original;
     }
     /**
      * Deep merge object.
      *
      * 深度合并对象
+     * @param {?} original
+     * @param {...?} objects
+     * @return {?}
      */
     function deepMerge(original) {
         var objects = [];
@@ -402,14 +454,25 @@
         return deepMergeKey.apply(void 0, __spread([original, false], objects));
     }
 
+    /** @type {?} */
     var record = {};
+    /** @type {?} */
     var PREFIX = '[@DELON]:';
+    /**
+     * @param {...?} args
+     * @return {?}
+     */
     function notRecorded() {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        var asRecord = args.reduce(function (acc, c) { return acc + c.toString(); }, '');
+        /** @type {?} */
+        var asRecord = args.reduce(( /**
+         * @param {?} acc
+         * @param {?} c
+         * @return {?}
+         */function (acc, c) { return acc + c.toString(); }), '');
         if (record[asRecord]) {
             return false;
         }
@@ -418,6 +481,11 @@
             return true;
         }
     }
+    /**
+     * @param {?} consoleFunc
+     * @param {...?} args
+     * @return {?}
+     */
     function consoleCommonBehavior(consoleFunc) {
         var args = [];
         for (var _i = 1; _i < arguments.length; _i++) {
@@ -428,43 +496,70 @@
         }
     }
     // Warning should only be printed in dev mode and only once.
-    var warn = function () {
+    /** @type {?} */
+    var warn = ( /**
+     * @param {...?} args
+     * @return {?}
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return consoleCommonBehavior.apply(void 0, __spread([function () {
+        return consoleCommonBehavior.apply(void 0, __spread([( /**
+             * @param {...?} arg
+             * @return {?}
+             */function () {
                 var arg = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
                     arg[_i] = arguments[_i];
                 }
                 return console.warn.apply(console, __spread([PREFIX], arg));
-            }], args));
-    };
-    var deprecation11 = function (comp, from, to) {
+            })], args));
+    });
+    /** @type {?} */
+    var deprecation11 = ( /**
+     * @param {?} comp
+     * @param {?} from
+     * @param {?=} to
+     * @return {?}
+     */function (comp, from, to) {
         warnDeprecation(comp + " => '" + from + "' is going to be removed in 11.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
-    };
-    var warnDeprecation = function () {
+    });
+    /** @type {?} */
+    var warnDeprecation = ( /**
+     * @param {...?} args
+     * @return {?}
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
         if (!environments.environment.isTestMode) {
+            /** @type {?} */
             var stack_1 = new Error().stack;
-            return consoleCommonBehavior.apply(void 0, __spread([function () {
+            return consoleCommonBehavior.apply(void 0, __spread([( /**
+                 * @param {...?} arg
+                 * @return {?}
+                 */function () {
                     var arg = [];
                     for (var _i = 0; _i < arguments.length; _i++) {
                         arg[_i] = arguments[_i];
                     }
                     return console.warn.apply(console, __spread([PREFIX, 'deprecated:'], arg, [stack_1]));
-                }], args));
+                })], args));
         }
         else {
-            return function () { };
+            return ( /**
+             * @return {?}
+             */function () { });
         }
-    };
+    });
     // Log should only be printed in dev mode.
-    var log = function () {
+    /** @type {?} */
+    var log = ( /**
+     * @param {...?} args
+     * @return {?}
+     */function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
@@ -472,12 +567,32 @@
         if (i0.isDevMode()) {
             console.log.apply(console, __spread([PREFIX], args));
         }
-    };
+    });
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: lazy.service.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @record
+     */
+    function LazyResult() { }
+    if (false) {
+        /** @type {?} */
+        LazyResult.prototype.path;
+        /** @type {?} */
+        LazyResult.prototype.status;
+        /** @type {?|undefined} */
+        LazyResult.prototype.error;
+    }
     /**
      * 延迟加载资源（js 或 css）服务
      */
     var LazyService = /** @class */ (function () {
+        /**
+         * @param {?} doc
+         */
         function LazyService(doc) {
             this.doc = doc;
             this.list = {};
@@ -485,49 +600,94 @@
             this._notify = new rxjs.BehaviorSubject([]);
         }
         Object.defineProperty(LazyService.prototype, "change", {
+            /**
+             * @return {?}
+             */
             get: function () {
-                return this._notify.asObservable().pipe(operators.share(), operators.filter(function (ls) { return ls.length !== 0; }));
+                return this._notify.asObservable().pipe(operators.share(), operators.filter(( /**
+                 * @param {?} ls
+                 * @return {?}
+                 */function (/**
+                 * @param {?} ls
+                 * @return {?}
+                 */ ls) { return ls.length !== 0; })));
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @return {?}
+         */
         LazyService.prototype.clear = function () {
             this.list = {};
             this.cached = {};
         };
+        /**
+         * @param {?} paths
+         * @return {?}
+         */
         LazyService.prototype.load = function (paths) {
             var _this = this;
             if (!Array.isArray(paths)) {
                 paths = [paths];
             }
+            /** @type {?} */
             var promises = [];
-            paths.forEach(function (path) {
+            paths.forEach(( /**
+             * @param {?} path
+             * @return {?}
+             */function (/**
+             * @param {?} path
+             * @return {?}
+             */ path) {
                 if (path.endsWith('.js')) {
                     promises.push(_this.loadScript(path));
                 }
                 else {
                     promises.push(_this.loadStyle(path));
                 }
-            });
-            return Promise.all(promises).then(function (res) {
+            }));
+            return Promise.all(promises).then(( /**
+             * @param {?} res
+             * @return {?}
+             */function (/**
+             * @param {?} res
+             * @return {?}
+             */ res) {
                 _this._notify.next(res);
                 return Promise.resolve(res);
-            });
+            }));
         };
+        /**
+         * @param {?} path
+         * @param {?=} innerContent
+         * @return {?}
+         */
         LazyService.prototype.loadScript = function (path, innerContent) {
             var _this = this;
-            return new Promise(function (resolve) {
+            return new Promise(( /**
+             * @param {?} resolve
+             * @return {?}
+             */function (/**
+             * @param {?} resolve
+             * @return {?}
+             */ resolve) {
                 if (_this.list[path] === true) {
                     resolve(Object.assign(Object.assign({}, _this.cached[path]), { status: 'loading' }));
                     return;
                 }
                 _this.list[path] = true;
-                var onSuccess = function (item) {
+                /** @type {?} */
+                var onSuccess = ( /**
+                 * @param {?} item
+                 * @return {?}
+                 */function (item) {
                     _this.cached[path] = item;
                     resolve(item);
                     _this._notify.next([item]);
-                };
-                var node = _this.doc.createElement('script');
+                });
+                /** @type {?} */
+                var node = ( /** @type {?} */(_this.doc.createElement('script')));
                 node.type = 'text/javascript';
                 node.src = path;
                 node.charset = 'utf-8';
@@ -536,7 +696,9 @@
                 }
                 if (node.readyState) {
                     // IE
-                    node.onreadystatechange = function () {
+                    node.onreadystatechange = ( /**
+                     * @return {?}
+                     */function () {
                         if (node.readyState === 'loaded' || node.readyState === 'complete') {
                             node.onreadystatechange = null;
                             onSuccess({
@@ -544,32 +706,50 @@
                                 status: 'ok',
                             });
                         }
-                    };
+                    });
                 }
                 else {
-                    node.onload = function () { return onSuccess({
+                    node.onload = ( /**
+                     * @return {?}
+                     */function () { return onSuccess({
                         path: path,
                         status: 'ok',
-                    }); };
+                    }); });
                 }
-                node.onerror = function (error) { return onSuccess({
+                node.onerror = ( /**
+                 * @param {?} error
+                 * @return {?}
+                 */function (error) { return onSuccess({
                     path: path,
                     status: 'error',
                     error: error,
-                }); };
+                }); });
                 _this.doc.getElementsByTagName('head')[0].appendChild(node);
-            });
+            }));
         };
+        /**
+         * @param {?} path
+         * @param {?=} rel
+         * @param {?=} innerContent
+         * @return {?}
+         */
         LazyService.prototype.loadStyle = function (path, rel, innerContent) {
             var _this = this;
             if (rel === void 0) { rel = 'stylesheet'; }
-            return new Promise(function (resolve) {
+            return new Promise(( /**
+             * @param {?} resolve
+             * @return {?}
+             */function (/**
+             * @param {?} resolve
+             * @return {?}
+             */ resolve) {
                 if (_this.list[path] === true) {
                     resolve(_this.cached[path]);
                     return;
                 }
                 _this.list[path] = true;
-                var node = _this.doc.createElement('link');
+                /** @type {?} */
+                var node = ( /** @type {?} */(_this.doc.createElement('link')));
                 node.rel = rel;
                 node.type = 'text/css';
                 node.href = path;
@@ -577,30 +757,60 @@
                     node.innerHTML = innerContent;
                 }
                 _this.doc.getElementsByTagName('head')[0].appendChild(node);
+                /** @type {?} */
                 var item = {
                     path: path,
                     status: 'ok',
                 };
                 _this.cached[path] = item;
                 resolve(item);
-            });
+            }));
         };
         return LazyService;
     }());
-    /** @nocollapse */ LazyService.ɵfac = function LazyService_Factory(t) { return new (t || LazyService)(i0.ɵɵinject(common.DOCUMENT)); };
-    /** @nocollapse */ LazyService.ɵprov = i0.ɵɵdefineInjectable({ token: LazyService, factory: LazyService.ɵfac, providedIn: 'root' });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(LazyService, [{
-                type: i0.Injectable,
-                args: [{ providedIn: 'root' }]
-            }], function () {
-            return [{ type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }];
-        }, null);
-    })();
+    LazyService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    /** @nocollapse */
+    LazyService.ctorParameters = function () { return [
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+    ]; };
+    /** @nocollapse */ LazyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(i0.ɵɵinject(i1.DOCUMENT)); }, token: LazyService, providedIn: "root" });
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.list;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.cached;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype._notify;
+        /**
+         * @type {?}
+         * @private
+         */
+        LazyService.prototype.doc;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: assert.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /**
+     * @param {?} msg
+     * @param {?=} actual
+     * @param {?=} expected
+     * @param {?=} comparison
+     * @return {?}
+     */
     function throwError(msg, actual, expected, comparison) {
         if (i0.isDevMode()) {
             throw new Error("ASSERTION ERROR: " + msg + (comparison == null ? '' : " [Expected=> " + expected + " " + comparison + " " + actual + " <=Actual]"));
@@ -610,6 +820,9 @@
      * Assert whether the expression and throw an error into console in dev mode
      *
      * 断言表达式是否符合预期，并在开发模式下会在控制台抛出一个错误
+     * @param {?} expression
+     * @param {?=} msg
+     * @return {?}
      */
     function assert(expression, msg) {
         if (!expression) {
@@ -620,6 +833,9 @@
      * Assert whether empty (`null` or `undefined`)
      *
      * 断言是否空值（`null` 或 `undefined`）
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
      */
     function assertEmpty(actual, msg) {
         if (actual == null) {
@@ -630,6 +846,9 @@
      * Assert whether `number` type
      *
      * 断言是否 `number` 类型
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
      */
     function assertNumber(actual, msg) {
         if (!(typeof actual === 'number')) {
@@ -640,6 +859,9 @@
      * Assert whether `string` type
      *
      * 断言是否 `string` 类型
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
      */
     function assertString(actual, msg) {
         if (!(typeof actual === 'string')) {
@@ -650,6 +872,9 @@
      * Assert whether `array` type
      *
      * 断言是否 `array` 类型
+     * @param {?} actual
+     * @param {?=} msg
+     * @return {?}
      */
     function assertArray(actual, msg) {
         if (!Array.isArray(actual)) {
@@ -660,6 +885,9 @@
      * Assert whether `Observable` type
      *
      * 断言是否 `Observable` 类型
+     * @param {?} obj
+     * @param {?=} msg
+     * @return {?}
      */
     function assertObservable(obj, msg) {
         if (!rxjs.isObservable(obj)) {
@@ -668,7 +896,15 @@
     }
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: index.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: delon-util-other.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.LazyService = LazyService;

@@ -13,7 +13,6 @@ import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn } from './st.types';
-import * as i0 from "@angular/core";
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private router;
@@ -240,6 +239,4 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<STComponent, [{ optional: true; }, null, null, null, null, null, null, null, null, null, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<STComponent, "st", ["st"], { "req": "req"; "res": "res"; "page": "page"; "data": "data"; "columns": "columns"; "ps": "ps"; "pi": "pi"; "total": "total"; "loading": "loading"; "loadingDelay": "loadingDelay"; "loadingIndicator": "loadingIndicator"; "bordered": "bordered"; "size": "size"; "scroll": "scroll"; "singleSort": "singleSort"; "multiSort": "multiSort"; "rowClassName": "rowClassName"; "widthMode": "widthMode"; "widthConfig": "widthConfig"; "resizable": "resizable"; "header": "header"; "showHeader": "showHeader"; "footer": "footer"; "bodyHeader": "bodyHeader"; "body": "body"; "expandRowByClick": "expandRowByClick"; "expandAccordion": "expandAccordion"; "expand": "expand"; "noResult": "noResult"; "rowClickTime": "rowClickTime"; "responsive": "responsive"; "responsiveHideHeaderFooter": "responsiveHideHeaderFooter"; "virtualScroll": "virtualScroll"; "virtualItemSize": "virtualItemSize"; "virtualMaxBufferPx": "virtualMaxBufferPx"; "virtualMinBufferPx": "virtualMinBufferPx"; "virtualForTrackBy": "virtualForTrackBy"; }, { "error": "error"; "change": "change"; }, never, never>;
 }

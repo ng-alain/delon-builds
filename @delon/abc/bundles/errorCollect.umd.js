@@ -4,32 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/common', '@angular/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.common, global.ng.core, global.decorator, global.rxjs, global.rxjs.operators, global.i1, global.ng.cdk.bidi, global['ng-zorro-antd/icon']));
-}(this, (function (exports, common, i0, decorator, rxjs, operators, i1, i2, i3) { 'use strict';
-
-    function _interopNamespace(e) {
-        if (e && e.__esModule) return e;
-        var n = Object.create(null);
-        if (e) {
-            Object.keys(e).forEach(function (k) {
-                if (k !== 'default') {
-                    var d = Object.getOwnPropertyDescriptor(e, k);
-                    Object.defineProperty(n, k, d.get ? d : {
-                        enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
-                    });
-                }
-            });
-        }
-        n['default'] = e;
-        return Object.freeze(n);
-    }
-
-    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, config, decorator, rxjs, operators, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -340,7 +318,19 @@
         return value;
     }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: error-collect.component.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
     var ErrorCollectComponent = /** @class */ (function () {
+        /**
+         * @param {?} el
+         * @param {?} cdr
+         * @param {?} doc
+         * @param {?} configSrv
+         * @param {?} directionality
+         */
         function ErrorCollectComponent(el, cdr, doc, configSrv, directionality) {
             this.el = el;
             this.cdr = cdr;
@@ -353,13 +343,22 @@
             configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
         }
         Object.defineProperty(ErrorCollectComponent.prototype, "errEls", {
+            /**
+             * @private
+             * @return {?}
+             */
             get: function () {
-                return this.formEl.querySelectorAll('.ant-form-item-has-error');
+                return ( /** @type {?} */(this.formEl)).querySelectorAll('.ant-form-item-has-error');
             },
             enumerable: false,
             configurable: true
         });
+        /**
+         * @private
+         * @return {?}
+         */
         ErrorCollectComponent.prototype.update = function () {
+            /** @type {?} */
             var count = this.errEls.length;
             if (count === this.count)
                 return;
@@ -367,54 +366,107 @@
             this._hiden = count === 0;
             this.cdr.markForCheck();
         };
+        /**
+         * @return {?}
+         */
         ErrorCollectComponent.prototype._click = function () {
             if (this.count === 0)
                 return false;
             // nz-form-control
+            /** @type {?} */
             var els = this.errEls;
+            /** @type {?} */
             var formItemEl = this.findParent(els[0], '[nz-form-control]') || els[0];
             formItemEl.scrollIntoView(true);
             // fix header height
             this.doc.documentElement.scrollTop -= this.offsetTop;
             return true;
         };
+        /**
+         * @private
+         * @return {?}
+         */
         ErrorCollectComponent.prototype.install = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
+             * @param {?} direction
+             * @return {?}
+             */function (direction) {
                 _this.dir = direction;
-            });
+            }));
             rxjs.interval(this.freq)
                 .pipe(operators.takeUntil(this.destroy$))
-                .subscribe(function () { return _this.update(); });
+                .subscribe(( /**
+         * @return {?}
+         */function () { return _this.update(); }));
             this.update();
         };
+        /**
+         * @private
+         * @param {?} el
+         * @param {?} selector
+         * @return {?}
+         */
         ErrorCollectComponent.prototype.findParent = function (el, selector) {
+            /** @type {?} */
             var retEl = null;
             while (el) {
                 if (el.querySelector(selector)) {
-                    retEl = el;
+                    retEl = ( /** @type {?} */(el));
                     break;
                 }
-                el = el.parentElement;
+                el = ( /** @type {?} */(el.parentElement));
             }
             return retEl;
         };
+        /**
+         * @return {?}
+         */
         ErrorCollectComponent.prototype.ngOnInit = function () {
             this.formEl = this.findParent(this.el.nativeElement, 'form');
             if (this.formEl === null)
                 throw new Error('No found form element');
             this.install();
         };
+        /**
+         * @return {?}
+         */
         ErrorCollectComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
         };
         return ErrorCollectComponent;
     }());
-    /** @nocollapse */ ErrorCollectComponent.ɵfac = function ErrorCollectComponent_Factory(t) { return new (t || ErrorCollectComponent)(i0.ɵɵdirectiveInject(i0.ElementRef), i0.ɵɵdirectiveInject(i0.ChangeDetectorRef), i0.ɵɵdirectiveInject(common.DOCUMENT), i0.ɵɵdirectiveInject(i1.AlainConfigService), i0.ɵɵdirectiveInject(i2.Directionality, 8)); };
-    /** @nocollapse */ ErrorCollectComponent.ɵcmp = i0.ɵɵngDeclareComponent({ version: "11.1.1", type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: { freq: "freq", offsetTop: "offsetTop" }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir === 'rtl'", "class.d-none": "_hiden" } }, exportAs: ["errorCollect"], ngImport: i0__namespace, template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"error-collect__count\">{{ count }}</span>\n  ", isInline: true, directives: [{ type: i3.NzIconDirective, selector: "[nz-icon]", inputs: ["nzRotate", "nzSpin", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    ErrorCollectComponent.decorators = [
+        { type: core.Component, args: [{
+                    selector: 'error-collect, [error-collect]',
+                    exportAs: 'errorCollect',
+                    template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"error-collect__count\">{{ count }}</span>\n  ",
+                    host: {
+                        '[class.error-collect]': 'true',
+                        '[class.error-collect-rtl]': "dir === 'rtl'",
+                        '[class.d-none]': '_hiden',
+                        '(click)': '_click()',
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: core.ChangeDetectionStrategy.OnPush,
+                    encapsulation: core.ViewEncapsulation.None
+                }] }
+    ];
+    /** @nocollapse */
+    ErrorCollectComponent.ctorParameters = function () { return [
+        { type: core.ElementRef },
+        { type: core.ChangeDetectorRef },
+        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+        { type: config.AlainConfigService },
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+    ]; };
+    ErrorCollectComponent.propDecorators = {
+        freq: [{ type: core.Input }],
+        offsetTop: [{ type: core.Input }]
+    };
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
@@ -423,59 +475,79 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], ErrorCollectComponent.prototype, "offsetTop", void 0);
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ErrorCollectComponent, [{
-                type: i0.Component,
-                args: [{
-                        selector: 'error-collect, [error-collect]',
-                        exportAs: 'errorCollect',
-                        template: "\n    <i nz-icon nzType=\"exclamation-circle\"></i>\n    <span class=\"error-collect__count\">{{ count }}</span>\n  ",
-                        host: {
-                            '[class.error-collect]': 'true',
-                            '[class.error-collect-rtl]': "dir === 'rtl'",
-                            '[class.d-none]': '_hiden',
-                            '(click)': '_click()',
-                        },
-                        preserveWhitespaces: false,
-                        changeDetection: i0.ChangeDetectionStrategy.OnPush,
-                        encapsulation: i0.ViewEncapsulation.None,
-                    }]
-            }], function () {
-            return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: undefined, decorators: [{
-                            type: i0.Inject,
-                            args: [common.DOCUMENT]
-                        }] }, { type: i1.AlainConfigService }, { type: i2.Directionality, decorators: [{
-                            type: i0.Optional
-                        }] }];
-        }, { freq: [{
-                    type: i0.Input
-                }], offsetTop: [{
-                    type: i0.Input
-                }] });
-    })();
+    if (false) {
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.formEl;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.destroy$;
+        /** @type {?} */
+        ErrorCollectComponent.prototype._hiden;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.count;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.dir;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.freq;
+        /** @type {?} */
+        ErrorCollectComponent.prototype.offsetTop;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.el;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.cdr;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.doc;
+        /**
+         * @type {?}
+         * @private
+         */
+        ErrorCollectComponent.prototype.directionality;
+    }
 
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: error-collect.module.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+    /** @type {?} */
     var COMPONENTS = [ErrorCollectComponent];
     var ErrorCollectModule = /** @class */ (function () {
         function ErrorCollectModule() {
         }
         return ErrorCollectModule;
     }());
-    /** @nocollapse */ ErrorCollectModule.ɵmod = i0.ɵɵdefineNgModule({ type: ErrorCollectModule });
-    /** @nocollapse */ ErrorCollectModule.ɵinj = i0.ɵɵdefineInjector({ factory: function ErrorCollectModule_Factory(t) { return new (t || ErrorCollectModule)(); }, imports: [[common.CommonModule, i3.NzIconModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(ErrorCollectModule, { declarations: [ErrorCollectComponent], imports: [common.CommonModule, i3.NzIconModule], exports: [ErrorCollectComponent] }); })();
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(ErrorCollectModule, [{
-                type: i0.NgModule,
-                args: [{
-                        imports: [common.CommonModule, i3.NzIconModule],
-                        declarations: COMPONENTS,
-                        exports: COMPONENTS,
-                    }]
-            }], null, null);
-    })();
+    ErrorCollectModule.decorators = [
+        { type: core.NgModule, args: [{
+                    imports: [common.CommonModule, icon.NzIconModule],
+                    declarations: COMPONENTS,
+                    exports: COMPONENTS,
+                },] }
+    ];
 
     /**
-     * Generated bundle index. Do not edit.
+     * @fileoverview added by tsickle
+     * Generated from: public_api.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     */
+
+    /**
+     * @fileoverview added by tsickle
+     * Generated from: errorCollect.ts
+     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
      */
 
     exports.ErrorCollectComponent = ErrorCollectComponent;

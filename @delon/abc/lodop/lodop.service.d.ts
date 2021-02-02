@@ -4,7 +4,6 @@ import { LazyService } from '@delon/util/other';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { LodopPrintResult, LodopResult } from './lodop.types';
-import * as i0 from "@angular/core";
 export declare class LodopService implements OnDestroy {
     private scriptSrv;
     private defaultConfig;
@@ -70,6 +69,4 @@ export declare class LodopService implements OnDestroy {
      */
     print(code: string, contextObj: {} | Array<{}>, parser?: RegExp): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<LodopService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<LodopService>;
 }

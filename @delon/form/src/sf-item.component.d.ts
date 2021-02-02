@@ -5,7 +5,6 @@ import { SFUISchemaItem } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { Widget } from './widget';
 import { WidgetFactory } from './widget.factory';
-import * as i0 from "@angular/core";
 export declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     private widgetFactory;
     private terminator;
@@ -19,6 +18,4 @@ export declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<SFItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<SFItemComponent, "sf-item", ["sfItem"], { "formProperty": "formProperty"; }, {}, never, never>;
 }

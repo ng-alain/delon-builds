@@ -4,7 +4,6 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFAutoCompleteWidgetSchema } from './schema';
-import * as i0 from "@angular/core";
 export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWidgetSchema> {
     i: any;
     list: Observable<SFSchemaEnum[]>;
@@ -19,6 +18,4 @@ export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWi
     reset(value: SFValue): void;
     private filterData;
     private addEmailSuffix;
-    static ɵfac: i0.ɵɵFactoryDef<AutoCompleteWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<AutoCompleteWidget, "sf-autocomplete", never, {}, {}, never, never>;
 }

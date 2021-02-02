@@ -1,7 +1,6 @@
 import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import { ArrayServiceArrToTreeNodeOptions, ArrayServiceArrToTreeOptions, ArrayServiceGetKeysByTreeNodeOptions, ArrayServiceGroupByResult, ArrayServiceTreeToArrOptions } from './array-type.service';
-import * as i0 from "@angular/core";
 export declare class ArrayService {
     private c;
     constructor(cog: AlainConfigService);
@@ -60,6 +59,4 @@ export declare class ArrayService {
      * ```
      */
     uniq<T>(array: ReadonlyArray<T>, predicate?: string | ((value: T) => string | number | boolean)): ReadonlyArray<T>;
-    static ɵfac: i0.ɵɵFactoryDef<ArrayService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<ArrayService>;
 }

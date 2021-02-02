@@ -1,7 +1,15 @@
-export * from '@delon/util/pipes/currency';
-export * from '@delon/util/pipes/format';
+export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, ɵa } from '@delon/util/pipes/currency';
+export { FormatMaskPipe, FormatPipeModule } from '@delon/util/pipes/format';
 
 /**
- * Generated bundle index. Do not edit.
+ * @fileoverview added by tsickle
+ * Generated from: index.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ */
+
+/**
+ * @fileoverview added by tsickle
+ * Generated from: delon-util-pipes.ts
+ * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 //# sourceMappingURL=delon-util-pipes.js.map

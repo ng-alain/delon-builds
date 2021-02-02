@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/pie/pie.js",
   "fesm2015": "../fesm2015/pie.js",
   "typings": "pie.d.ts",
+  "metadata": "pie.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/pie"
 }

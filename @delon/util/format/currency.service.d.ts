@@ -1,6 +1,5 @@
 import { AlainConfigService } from '@delon/util/config';
 import { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
-import * as i0 from "@angular/core";
 export declare class CurrencyService {
     private locale;
     private c;
@@ -31,6 +30,4 @@ export declare class CurrencyService {
      * 转化成人民币表示法
      */
     cny(value: number | string, options?: CurrencyCNYOptions): string;
-    static ɵfac: i0.ɵɵFactoryDef<CurrencyService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<CurrencyService>;
 }

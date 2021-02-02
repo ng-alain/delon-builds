@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/footer-toolbar/footerToolbar.js",
   "fesm2015": "../fesm2015/footerToolbar.js",
   "typings": "footerToolbar.d.ts",
+  "metadata": "footerToolbar.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/footer-toolbar"
 }

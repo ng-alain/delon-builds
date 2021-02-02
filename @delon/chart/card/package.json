@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/card/card.js",
   "fesm2015": "../fesm2015/card.js",
   "typings": "card.d.ts",
+  "metadata": "card.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/card"
 }

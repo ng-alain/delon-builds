@@ -5,6 +5,7 @@
   "esm2015": "../esm2015/other/delon-util-other.js",
   "fesm2015": "../fesm2015/delon-util-other.js",
   "typings": "delon-util-other.d.ts",
+  "metadata": "delon-util-other.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/other"
 }

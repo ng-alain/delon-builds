@@ -2,7 +2,6 @@ import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
-import * as i0 from "@angular/core";
 export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy {
     private i18n;
     private cdr;
@@ -27,6 +26,4 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     ngOnInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDef<NoticeIconComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDefWithMeta<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": "data"; "count": "count"; "loading": "loading"; "popoverVisible": "popoverVisible"; "btnClass": "btnClass"; "btnIconClass": "btnIconClass"; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never>;
 }
