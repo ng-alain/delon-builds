@@ -598,13 +598,49 @@
          * Recursively flattens array
          *
          * 递归扁平数组
+         * ```ts
+         * srv.flat([1, [2, 3, [4, 5, [6]]]]) => [1,2,3,4,5,6]
+         * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
+         * ```
          * @param {?} array
          * @param {?=} depth
          * @return {?}
          */
         ArrayService.prototype.flat = function (array, depth) {
             if (depth === void 0) { depth = 1 / 0; }
-            return this.baseFlat(array, depth);
+            return Array.isArray(array) ? this.baseFlat(array, depth) : array;
+        };
+        /**
+         * Group the array
+         *
+         * 对数组进行分组
+         * ```ts
+         * srv.groupBy([6.1, 4.2, 6.3], Math.floor) => {"4":[4.2],"6":[6.1,6.3]}
+         * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
+         * ```
+         * @param {?} array
+         * @param {?} iteratee
+         * @return {?}
+         */
+        ArrayService.prototype.groupBy = function (array, iteratee) {
+            if (!Array.isArray(array)) {
+                return {};
+            }
+            return array.reduce(( /**
+             * @param {?} result
+             * @param {?} value
+             * @return {?}
+             */function (result, value) {
+                /** @type {?} */
+                var key = iteratee(value);
+                if (Object.prototype.hasOwnProperty.call(result, key)) {
+                    result[key].push(value);
+                }
+                else {
+                    result[key] = [value];
+                }
+                return result;
+            }), {});
         };
         return ArrayService;
     }());
