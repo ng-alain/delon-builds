@@ -1,0 +1,11 @@
+{
+  "main": "../../bundles/pipe-format.umd.js",
+  "module": "../../fesm2015/pipe-format.js",
+  "es2015": "../../fesm2015/pipe-format.js",
+  "esm2015": "../../esm2015/pipes/format/pipe-format.js",
+  "fesm2015": "../../fesm2015/pipe-format.js",
+  "typings": "pipe-format.d.ts",
+  "metadata": "pipe-format.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/pipes/format"
+}

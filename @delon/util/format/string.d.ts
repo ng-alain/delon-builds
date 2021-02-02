@@ -11,3 +11,12 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
  * ```
  */
 export declare function format(str: string | null | undefined, obj: NzSafeAny | null | undefined, needDeepGet?: boolean): string;
+/**
+ * Format mask
+ *
+ * 格式化掩码
+ * ```ts
+ * formatMask('123', '(###)') => (123)
+ * ```
+ */
+export declare function formatMask(value: string, mask: string): string;

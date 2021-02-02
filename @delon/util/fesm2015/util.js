@@ -3,7 +3,7 @@ export { CookieService, ScrollService, copy, isEmpty, updateHostClass } from '@d
 export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig } from '@delon/util/config';
 export { DateTimePickerUtil, dateTimePickerUtil, fixEndTimeOfRange, getTimeDistance, toDate } from '@delon/util/date-time';
 export { _Validators } from '@delon/util/form';
-export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl } from '@delon/util/format';
+export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, formatMask, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl } from '@delon/util/format';
 export { ceil, floor, inRange, round } from '@delon/util/math';
 export { InputBoolean, InputNumber, propDecoratorFactory, toBoolean, toNumber } from '@delon/util/decorator';
 export { LazyService, PREFIX, assert, assertArray, assertEmpty, assertNumber, assertObservable, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation } from '@delon/util/other';

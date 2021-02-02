@@ -147,6 +147,12 @@
 			return format.format;
 		}
 	});
+	Object.defineProperty(exports, 'formatMask', {
+		enumerable: true,
+		get: function () {
+			return format.formatMask;
+		}
+	});
 	Object.defineProperty(exports, 'isChinese', {
 		enumerable: true,
 		get: function () {

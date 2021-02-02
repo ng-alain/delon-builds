@@ -31,6 +31,43 @@ function format(str, obj, needDeepGet = false) {
      */
     (_work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''));
 }
+/**
+ * Format mask
+ *
+ * 格式化掩码
+ * ```ts
+ * formatMask('123', '(###)') => (123)
+ * ```
+ * @param {?} value
+ * @param {?} mask
+ * @return {?}
+ */
+function formatMask(value, mask) {
+    if (!value) {
+        return '';
+    }
+    /** @type {?} */
+    const splitValue = value.split('');
+    return mask
+        .split('')
+        .reduce((/**
+     * @param {?} res
+     * @param {?} cur
+     * @return {?}
+     */
+    (res, cur) => {
+        if (cur === '#') {
+            if (splitValue.length > 0) {
+                res.push((/** @type {?} */ (splitValue.shift())));
+            }
+        }
+        else {
+            res.push(cur);
+        }
+        return res;
+    }), (/** @type {?} */ ([])))
+        .join('');
+}
 
 /**
  * @fileoverview added by tsickle
@@ -498,5 +535,5 @@ if (false) {
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
-export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
+export { CurrencyMega_Powers, CurrencyService, REGEX, REGEX_STR, format, formatMask, isChinese, isColor, isDecimal, isIdCard, isInt, isIp, isMobile, isNum, isUrl };
 //# sourceMappingURL=money.js.map

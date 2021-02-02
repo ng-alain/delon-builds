@@ -37,6 +37,42 @@
          * @return {?}
          */function (_work, key) { return needDeepGet ? other.deepGet(obj, key.split('.'), '') : (obj || {})[key] || ''; }));
     }
+    /**
+     * Format mask
+     *
+     * 格式化掩码
+     * ```ts
+     * formatMask('123', '(###)') => (123)
+     * ```
+     * @param {?} value
+     * @param {?} mask
+     * @return {?}
+     */
+    function formatMask(value, mask) {
+        if (!value) {
+            return '';
+        }
+        /** @type {?} */
+        var splitValue = value.split('');
+        return mask
+            .split('')
+            .reduce(( /**
+     * @param {?} res
+     * @param {?} cur
+     * @return {?}
+     */function (res, cur) {
+            if (cur === '#') {
+                if (splitValue.length > 0) {
+                    res.push(( /** @type {?} */(splitValue.shift())));
+                }
+            }
+            else {
+                res.push(cur);
+            }
+            return res;
+        }), ( /** @type {?} */([])))
+            .join('');
+    }
 
     /**
      * @fileoverview added by tsickle
@@ -826,6 +862,7 @@
     exports.REGEX = REGEX;
     exports.REGEX_STR = REGEX_STR;
     exports.format = format;
+    exports.formatMask = formatMask;
     exports.isChinese = isChinese;
     exports.isColor = isColor;
     exports.isDecimal = isDecimal;

@@ -157,9 +157,9 @@ CurrencyPipeModule.decorators = [
 
 /**
  * @fileoverview added by tsickle
- * Generated from: format-number.ts
+ * Generated from: pipe-currency.ts
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 
 export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, CurrencyCNYPipe as ɵa };
-//# sourceMappingURL=format-number.js.map
+//# sourceMappingURL=pipe-currency.js.map
