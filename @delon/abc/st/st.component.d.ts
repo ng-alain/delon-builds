@@ -107,7 +107,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     responsive: boolean;
     responsiveHideHeaderFooter: boolean;
     readonly error: EventEmitter<STError>;
-    readonly change: EventEmitter<STChange<any>>;
+    readonly change: EventEmitter<STChange>;
     virtualScroll: boolean;
     virtualItemSize: number;
     virtualMaxBufferPx: number;
