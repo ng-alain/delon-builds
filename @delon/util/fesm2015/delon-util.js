@@ -8,6 +8,7 @@ export { ceil, floor, inRange, round } from '@delon/util/math';
 export { InputBoolean, InputNumber, propDecoratorFactory, toBoolean, toNumber } from '@delon/util/decorator';
 export { LazyService, PREFIX, assert, assertArray, assertEmpty, assertNumber, assertObservable, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation } from '@delon/util/other';
 export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, FilterPipe, FilterPipeModule, FormatMaskPipe, FormatPipeModule, ɵa } from '@delon/util/pipes';
+export { PAGE_VISIBILITY, WINDOW } from '@delon/util/token';
 
 /**
  * @fileoverview added by tsickle

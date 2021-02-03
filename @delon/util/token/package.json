@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/delon-util-token.umd.js",
+  "module": "../fesm2015/delon-util-token.js",
+  "es2015": "../fesm2015/delon-util-token.js",
+  "esm2015": "../esm2015/token/delon-util-token.js",
+  "fesm2015": "../fesm2015/delon-util-token.js",
+  "typings": "delon-util-token.d.ts",
+  "metadata": "delon-util-token.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/util/token"
+}
