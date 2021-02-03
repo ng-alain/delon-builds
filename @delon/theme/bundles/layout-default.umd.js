@@ -728,10 +728,9 @@
        * @param {?} ngZone
        * @param {?} sanitizer
        * @param {?} doc
-       * @param {?} win
        * @param {?} directionality
        */
-      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
           this.menuSrv = menuSrv;
           this.settings = settings;
           this.router = router;
@@ -740,7 +739,6 @@
           this.ngZone = ngZone;
           this.sanitizer = sanitizer;
           this.doc = doc;
-          this.win = win;
           this.directionality = directionality;
           this.destroy$ = new rxjs.Subject();
           this.dir = 'ltr';
@@ -930,11 +928,12 @@
           if (item.disabled)
               return;
           if (item.externalLink) {
+              var defaultView = this.doc.defaultView;
               if (item.target === '_blank') {
-                  this.win.open(item.externalLink);
+                  defaultView.open(item.externalLink);
               }
               else {
-                  this.win.location.href = item.externalLink;
+                  defaultView.location.href = item.externalLink;
               }
               return;
           }
@@ -1152,7 +1151,6 @@
       { type: core.NgZone },
       { type: platformBrowser.DomSanitizer },
       { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-      { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
       { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
   ]; };
   LayoutDefaultNavComponent.propDecorators = {
@@ -1265,11 +1263,6 @@
        * @private
        */
       LayoutDefaultNavComponent.prototype.doc;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.win;
       /**
        * @type {?}
        * @private

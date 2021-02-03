@@ -25,7 +25,10 @@
     function WINDOW_FACTORY() {
         return typeof window === 'object' && !!window ? window : null;
     }
-    /** @type {?} */
+    /**
+     * @deprecated Will be removed in 12.0.0, Pls used `import { WINDOW } from '{AT}delon/util/token';` instead
+     * @type {?}
+     */
     var WINDOW = new i0.InjectionToken('Window', {
         providedIn: 'root',
         factory: WINDOW_FACTORY,

@@ -1,7 +1,7 @@
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChildren, Directive, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter, ViewEncapsulation, NgZone, Optional, Output, NgModule } from '@angular/core';
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
-import { SettingsService, MenuService, WINDOW } from '@delon/theme';
+import { SettingsService, MenuService } from '@delon/theme';
 import { updateHostClass } from '@delon/util/browser';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
@@ -445,10 +445,9 @@ class LayoutDefaultNavComponent {
      * @param {?} ngZone
      * @param {?} sanitizer
      * @param {?} doc
-     * @param {?} win
      * @param {?} directionality
      */
-    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
@@ -457,7 +456,6 @@ class LayoutDefaultNavComponent {
         this.ngZone = ngZone;
         this.sanitizer = sanitizer;
         this.doc = doc;
-        this.win = win;
         this.directionality = directionality;
         this.destroy$ = new Subject();
         this.dir = 'ltr';
@@ -644,11 +642,12 @@ class LayoutDefaultNavComponent {
         if (item.disabled)
             return;
         if (item.externalLink) {
+            const { defaultView } = this.doc;
             if (item.target === '_blank') {
-                this.win.open(item.externalLink);
+                defaultView.open(item.externalLink);
             }
             else {
-                this.win.location.href = item.externalLink;
+                defaultView.location.href = item.externalLink;
             }
             return;
         }
@@ -862,7 +861,6 @@ LayoutDefaultNavComponent.ctorParameters = () => [
     { type: NgZone },
     { type: DomSanitizer },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: Directionality, decorators: [{ type: Optional }] }
 ];
 LayoutDefaultNavComponent.propDecorators = {
@@ -975,11 +973,6 @@ if (false) {
      * @private
      */
     LayoutDefaultNavComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    LayoutDefaultNavComponent.prototype.win;
     /**
      * @type {?}
      * @private

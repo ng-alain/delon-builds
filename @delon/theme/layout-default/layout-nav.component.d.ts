@@ -17,7 +17,6 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private ngZone;
     private sanitizer;
     private doc;
-    private win;
     private directionality;
     static ngAcceptInputType_disabledAcl: BooleanInput;
     static ngAcceptInputType_autoCloseUnderPad: BooleanInput;
@@ -36,7 +35,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window, directionality: Directionality);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, directionality: Directionality);
     private getLinkNode;
     private floatingClickHandle;
     private clearFloating;

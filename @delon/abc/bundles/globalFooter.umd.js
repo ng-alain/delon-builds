@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common));
-}(this, (function (exports, bidi, core, platformBrowser, router, theme, rxjs, operators, decorator, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/token'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/util/token', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.token, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common));
+}(this, (function (exports, bidi, core, platformBrowser, router, token, rxjs, operators, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -463,7 +463,7 @@
     /** @nocollapse */
     GlobalFooterComponent.ctorParameters = function () { return [
         { type: router.Router },
-        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+        { type: Window, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
         { type: platformBrowser.DomSanitizer },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };

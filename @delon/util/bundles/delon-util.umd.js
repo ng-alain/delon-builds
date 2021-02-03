@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/array'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/form'), require('@delon/util/format'), require('@delon/util/math'), require('@delon/util/decorator'), require('@delon/util/other'), require('@delon/util/pipes')) :
-	typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@delon/util/array', '@delon/util/browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/form', '@delon/util/format', '@delon/util/math', '@delon/util/decorator', '@delon/util/other', '@delon/util/pipes'], factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.delon.util.array, global.delon.util.browser, global.delon.util.config, global.delon.util['date-time'], global.delon.util.form, global.delon.util.format, global.delon.util.math, global.delon.util.decorator, global.delon.util.other, global.delon.util.pipes));
-}(this, (function (exports, array, browser, config, dateTime, form, format, math, decorator, other, pipes) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/array'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/form'), require('@delon/util/format'), require('@delon/util/math'), require('@delon/util/decorator'), require('@delon/util/other'), require('@delon/util/pipes'), require('@delon/util/token')) :
+	typeof define === 'function' && define.amd ? define('@delon/util', ['exports', '@delon/util/array', '@delon/util/browser', '@delon/util/config', '@delon/util/date-time', '@delon/util/form', '@delon/util/format', '@delon/util/math', '@delon/util/decorator', '@delon/util/other', '@delon/util/pipes', '@delon/util/token'], factory) :
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = {}), global.delon.util.array, global.delon.util.browser, global.delon.util.config, global.delon.util['date-time'], global.delon.util.form, global.delon.util.format, global.delon.util.math, global.delon.util.decorator, global.delon.util.other, global.delon.util.pipes, global.delon.util.token));
+}(this, (function (exports, array, browser, config, dateTime, form, format, math, decorator, other, pipes, token) { 'use strict';
 
 	/**
 	 * @fileoverview added by tsickle
@@ -403,6 +403,18 @@
 		enumerable: true,
 		get: function () {
 			return pipes.ɵa;
+		}
+	});
+	Object.defineProperty(exports, 'PAGE_VISIBILITY', {
+		enumerable: true,
+		get: function () {
+			return token.PAGE_VISIBILITY;
+		}
+	});
+	Object.defineProperty(exports, 'WINDOW', {
+		enumerable: true,
+		get: function () {
+			return token.WINDOW;
 		}
 	});
 

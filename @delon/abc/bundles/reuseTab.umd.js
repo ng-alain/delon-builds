@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
-}(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, operators, icon, menu, tabs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
 
     /**
      * @fileoverview added by tsickle
@@ -1640,7 +1640,7 @@
              * @return {?}
              */
             get: function () {
-                return this.injector.get(i1.ScrollService);
+                return this.injector.get(browser.ScrollService);
             },
             enumerable: false,
             configurable: true

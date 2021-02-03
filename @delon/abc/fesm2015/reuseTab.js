@@ -1,5 +1,5 @@
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
-import { DelonLocaleService, ScrollService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
+import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -9,6 +9,7 @@ import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, Navigati
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { takeUntil, debounceTime, filter } from 'rxjs/operators';
+import { ScrollService } from '@delon/util/browser';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 

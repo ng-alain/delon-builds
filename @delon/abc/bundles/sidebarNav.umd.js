@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util/decorator', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.decorator, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, bidi, common, core, platformBrowser, router, theme, decorator, rxjs, operators, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/theme'), require('@delon/util/decorator'), require('@delon/util/token'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/sidebar-nav', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/theme', '@delon/util/decorator', '@delon/util/token', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['sidebar-nav'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.platformBrowser, global.ng.router, global.delon.theme, global.decorator, global.token, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, bidi, common, core, platformBrowser, router, theme, decorator, token, rxjs, operators, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -765,7 +765,7 @@
         { type: core.NgZone },
         { type: platformBrowser.DomSanitizer },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: Window, decorators: [{ type: core.Inject, args: [theme.WINDOW,] }] },
+        { type: Window, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     SidebarNavComponent.propDecorators = {

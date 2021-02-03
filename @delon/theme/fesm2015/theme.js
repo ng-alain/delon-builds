@@ -32,7 +32,10 @@ import { NzIconService } from 'ng-zorro-antd/icon';
 function WINDOW_FACTORY() {
     return typeof window === 'object' && !!window ? window : null;
 }
-/** @type {?} */
+/**
+ * @deprecated Will be removed in 12.0.0, Pls used `import { WINDOW } from '{AT}delon/util/token';` instead
+ * @type {?}
+ */
 const WINDOW = new InjectionToken('Window', {
     providedIn: 'root',
     factory: WINDOW_FACTORY,
@@ -4191,7 +4194,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.3.1-c02b7552');
+const VERSION = new Version('11.3.1-7793250a');
 
 /**
  * @fileoverview added by tsickle
