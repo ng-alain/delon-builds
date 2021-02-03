@@ -26,7 +26,10 @@ class ArrayService {
         })));
     }
     /**
+     * Convert tree structure to array structure
+     *
      * 将树结构转换成数组结构
+     * @template T
      * @param {?} tree
      * @param {?=} options
      * @return {?}
@@ -54,37 +57,42 @@ class ArrayService {
                 /** @type {?} */
                 const children = i[(/** @type {?} */ (opt.childrenMapName))];
                 if (children != null && Array.isArray(children) && children.length > 0) {
-                    inFn(children, i, deep + 1);
+                    inFn(children, (/** @type {?} */ (i)), deep + 1);
                 }
                 if (opt.clearChildren) {
                     delete i[(/** @type {?} */ (opt.childrenMapName))];
                 }
             }
         });
-        inFn(tree, 1);
-        return result;
+        inFn(tree, null);
+        return (/** @type {?} */ (result));
     }
     /**
+     * Convert array structure to tree structure
+     *
      * 数组转换成树数据
+     * @template T
      * @param {?} arr
      * @param {?=} options
      * @return {?}
      */
     arrToTree(arr, options) {
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
-        if (arr.length === 0) {
+        if (!Array.isArray(arr) || arr.length === 0) {
             return [];
         }
+        /** @type {?} */
+        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
         /** @type {?} */
         const tree = [];
         /** @type {?} */
         const childrenOf = {};
         /** @type {?} */
         let rootPid = opt.rootParentIdValue;
+        /** @type {?} */
+        const arrType = (/** @type {?} */ (arr));
         if (!rootPid) {
             /** @type {?} */
-            const pids = arr.map((/**
+            const pids = arrType.map((/**
              * @param {?} i
              * @return {?}
              */
@@ -97,7 +105,7 @@ class ArrayService {
             w => w == null));
             rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
         }
-        for (const item of arr) {
+        for (const item of arrType) {
             /** @type {?} */
             const id = item[(/** @type {?} */ (opt.idMapName))];
             /** @type {?} */
@@ -105,20 +113,21 @@ class ArrayService {
             childrenOf[id] = childrenOf[id] || [];
             item[(/** @type {?} */ (opt.childrenMapName))] = childrenOf[id];
             if (opt.cb) {
-                opt.cb(item);
+                opt.cb((/** @type {?} */ (item)));
             }
             if (pid !== rootPid) {
                 childrenOf[pid] = childrenOf[pid] || [];
-                childrenOf[pid].push(item);
+                childrenOf[pid].push((/** @type {?} */ (item)));
             }
             else {
-                tree.push(item);
+                tree.push((/** @type {?} */ (item)));
             }
         }
         return tree;
     }
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
+     * @template T
      * @param {?} arr
      * @param {?=} options
      * @return {?}
@@ -152,17 +161,18 @@ class ArrayService {
                 item.isLeaf = item[(/** @type {?} */ (opt.isLeafMapName))];
             }
             if (opt.cb) {
-                opt.cb(item, parent, deep);
+                opt.cb((/** @type {?} */ (item)), parent, deep);
             }
         }));
         return tree.map((/**
          * @param {?} node
          * @return {?}
          */
-        node => new NzTreeNode(node)));
+        node => new NzTreeNode((/** @type {?} */ (node)))));
     }
     /**
      * 递归访问整个树
+     * @template T
      * @param {?} tree
      * @param {?} cb
      * @param {?=} options
@@ -181,7 +191,7 @@ class ArrayService {
             for (const item of data) {
                 cb(item, parent, deep);
                 /** @type {?} */
-                const childrenVal = item[(/** @type {?} */ ((/** @type {?} */ (options)).childrenMapName))];
+                const childrenVal = ((/** @type {?} */ (item)))[(/** @type {?} */ ((/** @type {?} */ (options)).childrenMapName))];
                 if (Array.isArray(childrenVal) && childrenVal.length > 0) {
                     inFn(childrenVal, item, deep + 1);
                 }
@@ -351,6 +361,7 @@ if (false) {
  */
 /**
  * @record
+ * @template T
  */
 function ArrayServiceTreeToArrOptions() { }
 if (false) {
@@ -382,6 +393,7 @@ if (false) {
 }
 /**
  * @record
+ * @template T
  */
 function ArrayServiceArrToTreeOptions() { }
 if (false) {
@@ -421,6 +433,7 @@ if (false) {
 }
 /**
  * @record
+ * @template T
  */
 function ArrayServiceArrToTreeNodeOptions() { }
 if (false) {
