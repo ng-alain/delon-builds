@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/autoFocus.umd.js",
+  "module": "../fesm2015/autoFocus.js",
+  "es2015": "../fesm2015/autoFocus.js",
+  "esm2015": "../esm2015/auto-focus/autoFocus.js",
+  "fesm2015": "../fesm2015/autoFocus.js",
+  "typings": "autoFocus.d.ts",
+  "metadata": "autoFocus.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/abc/auto-focus"
+}
