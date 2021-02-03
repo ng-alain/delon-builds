@@ -8,4 +8,3 @@ export * from '@delon/util/math';
 export * from '@delon/util/decorator';
 export * from '@delon/util/other';
 export * from '@delon/util/pipes';
-export * from '@delon/util/token';
