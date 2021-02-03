@@ -5,21 +5,25 @@ export declare class ArrayService {
     private c;
     constructor(cog: AlainConfigService);
     /**
+     * Convert tree structure to array structure
+     *
      * 将树结构转换成数组结构
      */
-    treeToArr(tree: any[], options?: ArrayServiceTreeToArrOptions): any[];
+    treeToArr<T extends object = any>(tree: ReadonlyArray<T>, options?: ArrayServiceTreeToArrOptions<T>): T[];
     /**
+     * Convert array structure to tree structure
+     *
      * 数组转换成树数据
      */
-    arrToTree(arr: any[], options?: ArrayServiceArrToTreeOptions): any[];
+    arrToTree<T extends object = any>(arr: ReadonlyArray<T>, options?: ArrayServiceArrToTreeOptions<T>): T[];
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
      */
-    arrToTreeNode(arr: any[], options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
+    arrToTreeNode<T extends object = any>(arr: ReadonlyArray<T>, options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
     /**
      * 递归访问整个树
      */
-    visitTree(tree: any[], cb: (item: any, parent: any, deep: number) => void, options?: {
+    visitTree<T extends object = any>(tree: ReadonlyArray<T>, cb: (item: T, parent: T | null, deep: number) => void, options?: {
         /** 子项名，默认：`'children'` */
         childrenMapName?: string;
     }): void;
