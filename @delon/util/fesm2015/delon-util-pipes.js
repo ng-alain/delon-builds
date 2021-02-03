@@ -1,6 +1,5 @@
 export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, ɵa } from '@delon/util/pipes/currency';
 export { FormatMaskPipe, FormatPipeModule } from '@delon/util/pipes/format';
-export { FilterPipe, FilterPipeModule } from '@delon/util/pipes/filter';
 
 /**
  * @fileoverview added by tsickle

@@ -375,18 +375,6 @@
 			return pipes.CurrencyPricePipe;
 		}
 	});
-	Object.defineProperty(exports, 'FilterPipe', {
-		enumerable: true,
-		get: function () {
-			return pipes.FilterPipe;
-		}
-	});
-	Object.defineProperty(exports, 'FilterPipeModule', {
-		enumerable: true,
-		get: function () {
-			return pipes.FilterPipeModule;
-		}
-	});
 	Object.defineProperty(exports, 'FormatMaskPipe', {
 		enumerable: true,
 		get: function () {
