@@ -522,7 +522,7 @@
                         cb(item, parent, deep);
                         /** @type {?} */
                         var childrenVal = item[( /** @type {?} */(( /** @type {?} */(options)).childrenMapName))];
-                        if (childrenVal && childrenVal.length > 0) {
+                        if (Array.isArray(childrenVal) && childrenVal.length > 0) {
                             inFn(childrenVal, item, deep + 1);
                         }
                     }
