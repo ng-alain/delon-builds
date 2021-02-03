@@ -1,7 +1,7 @@
 import { InjectionToken, Injectable, ɵɵdefineInjectable, Optional, Inject, ɵɵinject, Injector, INJECTOR, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
-import { filter, share, map, finalize, switchMap } from 'rxjs/operators';
+import { filter, share, map, finalize, tap, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService } from '@delon/util/config';
@@ -3450,10 +3450,12 @@ class _HttpClient {
      * @return {?}
      */
     request(method, url, options = {}) {
-        this.push();
         if (options.params)
             options.params = this.parseParams(options.params);
-        return of(null).pipe(switchMap((/**
+        return of(null).pipe(tap((/**
+         * @return {?}
+         */
+        () => this.push())), switchMap((/**
          * @return {?}
          */
         () => this.http.request(method, url, options))), finalize((/**
@@ -4189,7 +4191,7 @@ AlainThemeModule.ctorParameters = () => [
  * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
  */
 /** @type {?} */
-const VERSION = new Version('11.3.1-26d41e1e');
+const VERSION = new Version('11.3.1-5e734dc0');
 
 /**
  * @fileoverview added by tsickle

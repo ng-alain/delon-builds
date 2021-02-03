@@ -3402,10 +3402,11 @@
         _HttpClient.prototype.request = function (method, url, options) {
             var _this = this;
             if (options === void 0) { options = {}; }
-            this.push();
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return rxjs.of(null).pipe(operators.switchMap(( /**
+            return rxjs.of(null).pipe(operators.tap(( /**
+             * @return {?}
+             */function () { return _this.push(); })), operators.switchMap(( /**
              * @return {?}
              */function () { return _this.http.request(method, url, options); })), operators.finalize(( /**
              * @return {?}
