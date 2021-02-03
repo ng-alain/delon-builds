@@ -337,10 +337,7 @@
             })));
         }
         /**
-         * Convert tree structure to array structure
-         *
          * 将树结构转换成数组结构
-         * @template T
          * @param {?} tree
          * @param {?=} options
          * @return {?}
@@ -371,7 +368,7 @@
                         /** @type {?} */
                         var children = i[( /** @type {?} */(opt.childrenMapName))];
                         if (children != null && Array.isArray(children) && children.length > 0) {
-                            inFn(children, ( /** @type {?} */(i)), deep + 1);
+                            inFn(children, i, deep + 1);
                         }
                         if (opt.clearChildren) {
                             delete i[( /** @type {?} */(opt.childrenMapName))];
@@ -386,36 +383,31 @@
                     finally { if (e_1) throw e_1.error; }
                 }
             });
-            inFn(tree, null);
-            return ( /** @type {?} */(result));
+            inFn(tree, 1);
+            return result;
         };
         /**
-         * Convert array structure to tree structure
-         *
          * 数组转换成树数据
-         * @template T
          * @param {?} arr
          * @param {?=} options
          * @return {?}
          */
         ArrayService.prototype.arrToTree = function (arr, options) {
             var e_2, _a;
-            if (!Array.isArray(arr) || arr.length === 0) {
-                return [];
-            }
             /** @type {?} */
             var opt = ( /** @type {?} */(Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
+            if (arr.length === 0) {
+                return [];
+            }
             /** @type {?} */
             var tree = [];
             /** @type {?} */
             var childrenOf = {};
             /** @type {?} */
             var rootPid = opt.rootParentIdValue;
-            /** @type {?} */
-            var arrType = ( /** @type {?} */(arr));
             if (!rootPid) {
                 /** @type {?} */
-                var pids = arrType.map(( /**
+                var pids = arr.map(( /**
                  * @param {?} i
                  * @return {?}
                  */function (/**
@@ -433,8 +425,8 @@
                 rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
             }
             try {
-                for (var arrType_1 = __values(arrType), arrType_1_1 = arrType_1.next(); !arrType_1_1.done; arrType_1_1 = arrType_1.next()) {
-                    var item = arrType_1_1.value;
+                for (var arr_1 = __values(arr), arr_1_1 = arr_1.next(); !arr_1_1.done; arr_1_1 = arr_1.next()) {
+                    var item = arr_1_1.value;
                     /** @type {?} */
                     var id = item[( /** @type {?} */(opt.idMapName))];
                     /** @type {?} */
@@ -442,21 +434,21 @@
                     childrenOf[id] = childrenOf[id] || [];
                     item[( /** @type {?} */(opt.childrenMapName))] = childrenOf[id];
                     if (opt.cb) {
-                        opt.cb(( /** @type {?} */(item)));
+                        opt.cb(item);
                     }
                     if (pid !== rootPid) {
                         childrenOf[pid] = childrenOf[pid] || [];
-                        childrenOf[pid].push(( /** @type {?} */(item)));
+                        childrenOf[pid].push(item);
                     }
                     else {
-                        tree.push(( /** @type {?} */(item)));
+                        tree.push(item);
                     }
                 }
             }
             catch (e_2_1) { e_2 = { error: e_2_1 }; }
             finally {
                 try {
-                    if (arrType_1_1 && !arrType_1_1.done && (_a = arrType_1.return)) _a.call(arrType_1);
+                    if (arr_1_1 && !arr_1_1.done && (_a = arr_1.return)) _a.call(arr_1);
                 }
                 finally { if (e_2) throw e_2.error; }
             }
@@ -464,7 +456,6 @@
         };
         /**
          * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
-         * @template T
          * @param {?} arr
          * @param {?=} options
          * @return {?}
@@ -497,7 +488,7 @@
                     item.isLeaf = item[( /** @type {?} */(opt.isLeafMapName))];
                 }
                 if (opt.cb) {
-                    opt.cb(( /** @type {?} */(item)), parent, deep);
+                    opt.cb(item, parent, deep);
                 }
             }));
             return tree$1.map(( /**
@@ -506,11 +497,10 @@
              */function (/**
              * @param {?} node
              * @return {?}
-             */ node) { return new tree.NzTreeNode(( /** @type {?} */(node))); }));
+             */ node) { return new tree.NzTreeNode(node); }));
         };
         /**
          * 递归访问整个树
-         * @template T
          * @param {?} tree
          * @param {?} cb
          * @param {?=} options
@@ -531,8 +521,8 @@
                         var item = data_1_1.value;
                         cb(item, parent, deep);
                         /** @type {?} */
-                        var childrenVal = (( /** @type {?} */(item)))[( /** @type {?} */(( /** @type {?} */(options)).childrenMapName))];
-                        if (childrenVal && childrenVal.length > 0) {
+                        var childrenVal = item[( /** @type {?} */(( /** @type {?} */(options)).childrenMapName))];
+                        if (Array.isArray(childrenVal) && childrenVal.length > 0) {
                             inFn(childrenVal, item, deep + 1);
                         }
                     }

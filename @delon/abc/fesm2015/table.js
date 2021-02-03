@@ -168,7 +168,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STRes() { }
 if (false) {
@@ -298,7 +297,6 @@ if (false) {
 /**
  * 列描述
  * @record
- * @template T
  */
 function STColumn() { }
 if (false) {
@@ -507,7 +505,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STWidgetColumn() { }
 if (false) {
@@ -545,7 +542,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STStatistical() { }
 if (false) {
@@ -579,7 +575,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STColumnSort() { }
 if (false) {
@@ -612,7 +607,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STSortMap() { }
 if (false) {
@@ -625,7 +619,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STColumnFilter() { }
 if (false) {
@@ -718,7 +711,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STColumnSelection() { }
 if (false) {
@@ -813,7 +805,6 @@ if (false) {
 /**
  * 按钮配置
  * @record
- * @template T
  */
 function STColumnButton() { }
 if (false) {
@@ -906,7 +897,23 @@ if (false) {
 }
 /**
  * @record
- * @template T
+ */
+function STColumnButtonOK() { }
+if (false) {
+    /** @type {?} */
+    STColumnButtonOK.prototype.record;
+    /**
+     * Modal or drawer return value when trigger confirm.
+     * @type {?|undefined}
+     */
+    STColumnButtonOK.prototype.ret;
+    /** @type {?|undefined} */
+    STColumnButtonOK.prototype.instance;
+    /** @type {?} */
+    STColumnButtonOK.prototype.event;
+}
+/**
+ * @record
  */
 function STColumnButtonModal() { }
 if (false) {
@@ -954,7 +961,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STColumnButtonDrawer() { }
 if (false) {
@@ -1021,7 +1027,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STColumnButtonPop() { }
 if (false) {
@@ -1102,7 +1107,6 @@ if (false) {
 }
 /**
  * @record
- * @template T
  */
 function STExportOptions() { }
 if (false) {
@@ -1243,7 +1247,6 @@ if (false) {
 /**
  * 回调数据
  * @record
- * @template T
  */
 function STChange() { }
 if (false) {
@@ -1329,7 +1332,6 @@ if (false) {
 /**
  * 行单击参数
  * @record
- * @template T
  */
 function STChangeRowClick() { }
 if (false) {

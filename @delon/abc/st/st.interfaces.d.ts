@@ -90,7 +90,7 @@ export interface STLoadOptions {
     /** 是否跳转至顶部，若不指定由 `page.toTop` 来决定 */
     toTop?: boolean;
 }
-export interface STRes<T extends STData = any> {
+export interface STRes {
     /**
      * 重命名返回参数 `total`、`list`
      * - `{ total: 'Total' }` => Total 会被当作 `total`
@@ -99,7 +99,7 @@ export interface STRes<T extends STData = any> {
     /**
      * 数据预处理
      */
-    process?: (data: T[], rawData?: any) => T[];
+    process?: (data: STData[], rawData?: any) => STData[];
 }
 export interface STPage {
     /**
@@ -191,7 +191,7 @@ export interface STData {
 /**
  * 列描述
  */
-export interface STColumn<T extends STData = any> {
+export interface STColumn {
     /**
      * 用于定义数据源主键，例如：`statistical`
      */
@@ -227,11 +227,11 @@ export interface STColumn<T extends STData = any> {
     /**
      * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
      */
-    click?: (record: T, instance?: STComponent) => any;
+    click?: (record: STData, instance?: STComponent) => any;
     /**
      * 按钮组
      */
-    buttons?: STColumnButton<T>[];
+    buttons?: STColumnButton[];
     /**
      * 自定义渲染ID
      * @example
@@ -240,7 +240,7 @@ export interface STColumn<T extends STData = any> {
      * </ng-template>
      */
     render?: string | TemplateRef<void> | TemplateRef<{
-        $implicit: T;
+        $implicit: STData;
         index: number;
     }>;
     /**
@@ -265,19 +265,19 @@ export interface STColumn<T extends STData = any> {
      * - `true` 表示允许排序，且若数据源为本地时自动生成 `compare: (a, b) => a[index] - b[index]` 方法
      * - `string` 表示远程数据排序相对应 `key` 值
      */
-    sort?: true | string | STColumnSort<T>;
+    sort?: true | string | STColumnSort;
     /**
      * 过滤配置项
      */
-    filter?: STColumnFilter<T>;
+    filter?: STColumnFilter;
     /**
      * 格式化列值
      */
-    format?: (item: T, col: STColumn, index: number) => string;
+    format?: (item: STData, col: STColumn, index: number) => string;
     /**
      * 自定义全/反选选择项
      */
-    selections?: STColumnSelection<T>[];
+    selections?: STColumnSelection[];
     /**
      * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
      * - `text-center` 居中
@@ -340,21 +340,21 @@ export interface STColumn<T extends STData = any> {
      * - 计算规则为：`index + noIndex`
      * - 支持自定义方法
      */
-    noIndex?: number | ((item: T, col: STColumn, idx: number) => number);
+    noIndex?: number | ((item: STData, col: STColumn, idx: number) => number);
     /**
      * 条件表达式
      * - 仅赋值 `columns` 时执行一次
      * - 可调用 `resetColumns()` 再一次触发
      */
-    iif?: (item: STColumn<T>) => boolean;
+    iif?: (item: STColumn) => boolean;
     /**
      * 统计列数据
      * - 若使用自定义统计函数可无须指定 `index`
      * - 可以根据 `key` 来定义生成后需要的键名，如果未指定 `key` 则使用 `index` 来表示键名
      * - 当无法找到有效键名时，使用下标（从 `0` 开始）来代替
      */
-    statistical?: STStatisticalType | STStatistical<T>;
-    widget?: STWidgetColumn<T>;
+    statistical?: STStatisticalType | STStatistical;
+    widget?: STWidgetColumn;
     enum?: {
         [key: string]: string;
         [key: number]: string;
@@ -362,7 +362,7 @@ export interface STColumn<T extends STData = any> {
     /**
      * 分组表头
      */
-    children?: STColumn<T>[];
+    children?: STColumn[];
     rowSpan?: number;
     /**
      * 调整表头配置
@@ -371,10 +371,10 @@ export interface STColumn<T extends STData = any> {
      */
     resizable?: STResizable | boolean;
 }
-export interface STWidgetColumn<T extends STData = any> {
+export interface STWidgetColumn {
     type: string;
     params?: (options: {
-        record: T;
+        record: STData;
         column: STColumn;
     }) => {};
 }
@@ -398,9 +398,9 @@ export interface STColumnTitle {
     optionalHelp?: string;
 }
 export declare type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
-export declare type STStatisticalFn<T extends STData = any> = (values: number[], col: STColumn, list: T[], rawData?: any) => STStatisticalResult;
-export interface STStatistical<T extends STData = any> {
-    type: STStatisticalType | STStatisticalFn<T>;
+export declare type STStatisticalFn = (values: number[], col: STColumn, list: STData[], rawData?: any) => STStatisticalResult;
+export interface STStatistical {
+    type: STStatisticalType | STStatisticalFn;
     /**
      * 保留小数位数，默认：`2`
      */
@@ -419,7 +419,7 @@ export interface STStatisticalResult {
     value: number;
     text?: string;
 }
-export interface STColumnSort<T extends STData = any> {
+export interface STColumnSort {
     /**
      * 排序的默认受控属性
      */
@@ -429,7 +429,7 @@ export interface STColumnSort<T extends STData = any> {
      * - `null` 忽略本地排序，但保持排序功能
      * - 若数据源为本地时自动生成 `(a, b) => a[index] - b[index]` 方法
      */
-    compare?: ((a: T, b: T) => number) | null;
+    compare?: ((a: STData, b: STData) => number) | null;
     /**
      * 远程数据的排序时后端相对应的KEY，默认使用 `index` 属性
      * - 若 `multiSort: false` 时：`key: 'name' => ?name=1&pi=1`
@@ -446,12 +446,12 @@ export interface STColumnSort<T extends STData = any> {
         descend?: string;
     };
 }
-export interface STSortMap<T extends STData = any> extends STColumnSort<T> {
+export interface STSortMap extends STColumnSort {
     [key: string]: any;
     /** 是否启用排序 */
     enabled?: boolean;
 }
-export interface STColumnFilter<T extends STData = any> {
+export interface STColumnFilter {
     /**
      * 搜索方式
      * - `defualt` 默认形式
@@ -466,7 +466,7 @@ export interface STColumnFilter<T extends STData = any> {
     /**
      * 本地数据的筛选函数
      */
-    fn?: ((filter: STColumnFilterMenu, record: T) => boolean) | null;
+    fn?: ((filter: STColumnFilterMenu, record: STData) => boolean) | null;
     /**
      * 标识数据是否已过滤，筛选图标会高亮
      */
@@ -521,7 +521,7 @@ export interface STColumnFilterMenu {
     acl?: ACLCanType;
     [key: string]: any;
 }
-export interface STColumnSelection<T extends STData = any> {
+export interface STColumnSelection {
     /**
      * 选择项显示的文字
      */
@@ -529,7 +529,7 @@ export interface STColumnSelection<T extends STData = any> {
     /**
      * 选择项点击回调，允许对参数 `data.checked` 进行操作
      */
-    select: (data: T[]) => void;
+    select: (data: STData[]) => void;
     /** 权限，等同 `can()` 参数值 */
     acl?: ACLCanType;
 }
@@ -576,11 +576,11 @@ export interface STIcon {
 /**
  * 按钮配置
  */
-export interface STColumnButton<T extends STData = any> {
+export interface STColumnButton {
     /**
      * 文本
      */
-    text?: string | ((record: T, btn: STColumnButton<T>) => string);
+    text?: string | ((record: STData, btn: STColumnButton) => string);
     /**
      * 文本 i18n
      */
@@ -609,7 +609,7 @@ export interface STColumnButton<T extends STData = any> {
      *
      * @todo Bad parameter design
      */
-    click?: 'reload' | 'load' | ((record: T, modal?: any, instance?: STComponent) => any);
+    click?: 'reload' | 'load' | ((record: STData, modal?: any, instance?: STComponent) => any);
     /**
      * 气泡确认框参数，若 `string` 类型表示标题
      */
@@ -626,7 +626,7 @@ export interface STColumnButton<T extends STData = any> {
      * 下拉菜单，当存在时以 `dropdown` 形式渲染
      * - 只支持一级
      */
-    children?: STColumnButton<T>[];
+    children?: STColumnButton[];
     /**
      * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
      */
@@ -636,7 +636,7 @@ export interface STColumnButton<T extends STData = any> {
      *
      * @todo Bad parameter design
      */
-    iif?: (item: T, btn: STColumnButton<T>, column: STColumn) => boolean;
+    iif?: (item: STData, btn: STColumnButton, column: STColumn) => boolean;
     /**
      * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`
      */
@@ -652,8 +652,17 @@ export interface STColumnButton<T extends STData = any> {
     };
     [key: string]: any;
 }
+export interface STColumnButtonOK {
+    record: STData;
+    /**
+     * Modal or drawer return value when trigger confirm.
+     */
+    ret?: any;
+    instance?: STComponent;
+    event: Event;
+}
 export declare type IifBehaviorType = 'hide' | 'disabled';
-export interface STColumnButtonModal<T extends STData = any> extends ModalHelperOptions {
+export interface STColumnButtonModal extends ModalHelperOptions {
     /**
      * 对话框组件对象
      */
@@ -661,7 +670,7 @@ export interface STColumnButtonModal<T extends STData = any> extends ModalHelper
     /**
      * 对话框参数
      */
-    params?: (record: T) => {};
+    params?: (record: STData) => {};
     /**
      * 对话框目标组件的接收参数名，默认：`record`
      */
@@ -679,7 +688,7 @@ export interface STColumnButtonModalConfig {
     /** 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误 */
     exact?: boolean;
 }
-export interface STColumnButtonDrawer<T extends STData = any> extends DrawerHelperOptions {
+export interface STColumnButtonDrawer extends DrawerHelperOptions {
     /**
      * 标题
      */
@@ -691,7 +700,7 @@ export interface STColumnButtonDrawer<T extends STData = any> extends DrawerHelp
     /**
      * 抽屉参数
      */
-    params?: (record: T) => {};
+    params?: (record: STData) => {};
     /**
      * 抽屉目标组件的接收参数名，默认：`record`
      */
@@ -726,7 +735,7 @@ export interface STColumnButtonDrawerConfig {
     /** 抽屉 [NzDrawerOptions](https://ng.ant.design/components/drawer/zh#nzdraweroptions) 参数 */
     drawerOptions?: NzDrawerOptions;
 }
-export interface STColumnButtonPop<T extends STData = any> {
+export interface STColumnButtonPop {
     /**
      * Title of the popover, default: `确认删除吗？`
      */
@@ -766,7 +775,7 @@ export interface STColumnButtonPop<T extends STData = any> {
     /**
      * Whether to directly emit `onConfirm` without showing Popconfirm, default: `() => false`
      */
-    condition?: (item: T) => boolean;
+    condition?: (item: STData) => boolean;
 }
 export interface STReqReNameType {
     pi?: string;
@@ -778,11 +787,11 @@ export interface STResReNameType {
     total?: string | string[];
     list?: string | string[];
 }
-export interface STExportOptions<T extends STData = any> {
+export interface STExportOptions {
     /**
      * Specify the currently exported data, default the current table data
      */
-    data?: T[];
+    data?: STData[];
     /**
      * Specify the currently exported column configuration, default the current table data
      */
@@ -879,7 +888,7 @@ export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio'
 /**
  * 回调数据
  */
-export interface STChange<T extends STData = any> {
+export interface STChange {
     /**
      * 回调类型
      */
@@ -899,15 +908,15 @@ export interface STChange<T extends STData = any> {
     /**
      * `loaded` 参数
      */
-    loaded?: T[];
+    loaded?: STData[];
     /**
      * `checkbox` 参数
      */
-    checkbox?: T[];
+    checkbox?: STData[];
     /**
      * `radio` 参数
      */
-    radio?: T;
+    radio?: STData;
     /**
      * 排序参数
      */
@@ -919,15 +928,15 @@ export interface STChange<T extends STData = any> {
     /**
      * 行点击参数
      */
-    click?: STChangeRowClick<T>;
+    click?: STChangeRowClick;
     /**
      * 行双击参数
      */
-    dblClick?: STChangeRowClick<T>;
+    dblClick?: STChangeRowClick;
     /**
      * `expand` 参数
      */
-    expand?: T;
+    expand?: STData;
     /**
      * `resize` 参数
      */
@@ -942,16 +951,16 @@ export interface STChangeSort {
     column?: STColumn;
 }
 /** 行单击参数 */
-export interface STChangeRowClick<T extends STData = any> {
+export interface STChangeRowClick {
     e?: Event;
-    item?: T;
+    item?: STData;
     index?: number;
 }
 export interface STError {
     type?: 'req';
     error?: any;
 }
-export declare type STRowClassName<T extends STData = any> = (record: T, index: number) => string;
+export declare type STRowClassName = (record: STData, index: number) => string;
 export interface STColumnGroupType {
     column: STColumn;
     colStart: number;
