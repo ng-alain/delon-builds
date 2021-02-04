@@ -548,6 +548,32 @@
             inFn(tree, null, 1);
         };
         /**
+         * Return the value of the first tree value in the tree where predicate is true, and `undefined` otherwise
+         *
+         * 根据条件返回树的第一个值，否则返回 `undefined`
+         * @template T
+         * @param {?} tree
+         * @param {?} predicate
+         * @param {?=} options
+         * @return {?}
+         */
+        ArrayService.prototype.findTree = function (tree, predicate, options) {
+            /** @type {?} */
+            var res;
+            this.visitTree(tree, ( /**
+             * @param {?} item
+             * @return {?}
+             */function (/**
+             * @param {?} item
+             * @return {?}
+             */ item) {
+                if (res === undefined && predicate(item)) {
+                    res = item;
+                }
+            }), options);
+            return res;
+        };
+        /**
          * 获取所有已经选中的 `key` 值
          * @param {?} tree
          * @param {?=} options
