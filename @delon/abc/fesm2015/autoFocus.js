@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { Directive, ElementRef, ChangeDetectorRef, Input, NgModule } from '@angular/core';
-import { InputBoolean } from '@delon/util/decorator';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 /**
  * @fileoverview added by tsickle
@@ -16,6 +16,7 @@ class AutoFocusDirective {
         this.el = el;
         this.cdr = cdr;
         this.enabled = true;
+        this.delay = 300;
     }
     /**
      * @return {?}
@@ -32,7 +33,7 @@ class AutoFocusDirective {
         () => {
             el.focus({ preventScroll: false });
             this.cdr.markForCheck();
-        }), 50);
+        }), this.delay);
     }
 }
 AutoFocusDirective.decorators = [
@@ -47,17 +48,26 @@ AutoFocusDirective.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
 AutoFocusDirective.propDecorators = {
-    enabled: [{ type: Input }]
+    enabled: [{ type: Input }],
+    delay: [{ type: Input }]
 };
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], AutoFocusDirective.prototype, "enabled", void 0);
+__decorate([
+    InputNumber(),
+    __metadata("design:type", Object)
+], AutoFocusDirective.prototype, "delay", void 0);
 if (false) {
     /** @type {?} */
     AutoFocusDirective.ngAcceptInputType_enabled;
     /** @type {?} */
+    AutoFocusDirective.ngAcceptInputType_delay;
+    /** @type {?} */
     AutoFocusDirective.prototype.enabled;
+    /** @type {?} */
+    AutoFocusDirective.prototype.delay;
     /**
      * @type {?}
      * @private

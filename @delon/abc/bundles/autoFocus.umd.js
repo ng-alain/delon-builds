@@ -332,6 +332,7 @@
             this.el = el;
             this.cdr = cdr;
             this.enabled = true;
+            this.delay = 300;
         }
         /**
          * @return {?}
@@ -348,7 +349,7 @@
              */function () {
                 el.focus({ preventScroll: false });
                 _this.cdr.markForCheck();
-            }), 50);
+            }), this.delay);
         };
         return AutoFocusDirective;
     }());
@@ -364,17 +365,26 @@
         { type: core.ChangeDetectorRef }
     ]; };
     AutoFocusDirective.propDecorators = {
-        enabled: [{ type: core.Input }]
+        enabled: [{ type: core.Input }],
+        delay: [{ type: core.Input }]
     };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], AutoFocusDirective.prototype, "enabled", void 0);
+    __decorate([
+        decorator.InputNumber(),
+        __metadata("design:type", Object)
+    ], AutoFocusDirective.prototype, "delay", void 0);
     if (false) {
         /** @type {?} */
         AutoFocusDirective.ngAcceptInputType_enabled;
         /** @type {?} */
+        AutoFocusDirective.ngAcceptInputType_delay;
+        /** @type {?} */
         AutoFocusDirective.prototype.enabled;
+        /** @type {?} */
+        AutoFocusDirective.prototype.delay;
         /**
          * @type {?}
          * @private
