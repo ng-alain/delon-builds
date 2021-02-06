@@ -21,35 +21,18 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: setting-drawer-item.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SettingDrawerItemComponent {
     constructor() {
         this.i = {};
         this.pxVal = 0;
-        this.format = (/**
-         * @param {?} value
-         * @return {?}
-         */
-        (value) => `${value} px`);
+        this.format = (value) => `${value} px`;
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
     set data(val) {
         this.i = val;
         if (val.type === 'px') {
             this.pxVal = +val.value.replace('px', '');
         }
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
     pxChange(val) {
         this.i.value = `${val}px`;
     }
@@ -61,28 +44,13 @@ SettingDrawerItemComponent.decorators = [
                 host: {
                     '[class.setting-drawer__body-item]': 'true',
                 }
-            }] }
+            },] }
 ];
 SettingDrawerItemComponent.propDecorators = {
     data: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    SettingDrawerItemComponent.prototype.i;
-    /** @type {?} */
-    SettingDrawerItemComponent.prototype.pxVal;
-    /** @type {?} */
-    SettingDrawerItemComponent.prototype.format;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: setting-drawer.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const ALAINDEFAULTVAR = 'alain-default-vars';
-/** @type {?} */
 const DEFAULT_COLORS = [
     {
         key: 'dust',
@@ -121,7 +89,6 @@ const DEFAULT_COLORS = [
         color: '#001529',
     },
 ];
-/** @type {?} */
 const DEFAULT_VARS = {
     'primary-color': { label: '主颜色', type: 'color', default: '#1890ff' },
     'alain-default-header-hg': {
@@ -276,21 +243,7 @@ const DEFAULT_VARS = {
     },
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: setting-drawer.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SettingDrawerComponent {
-    /**
-     * @param {?} cdr
-     * @param {?} msg
-     * @param {?} settingSrv
-     * @param {?} lazy
-     * @param {?} zone
-     * @param {?} doc
-     * @param {?} directionality
-     */
     constructor(cdr, msg, settingSrv, lazy, zone, doc, directionality) {
         this.cdr = cdr;
         this.msg = msg;
@@ -311,48 +264,26 @@ class SettingDrawerComponent {
         this.color = this.cachedData['@primary-color'] || this.DEFAULT_PRIMARY;
         this.resetData(this.cachedData, false);
     }
-    /**
-     * @return {?}
-     */
     get layout() {
         return this.settingSrv.layout;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get cachedData() {
         return this.settingSrv.layout[ALAINDEFAULTVAR] || {};
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get DEFAULT_PRIMARY() {
         return DEFAULT_VARS['primary-color'].default;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
-        }));
+        });
         if (this.autoApplyColor && this.color !== this.DEFAULT_PRIMARY) {
             this.changeColor(this.color);
             this.runLess();
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     loadLess() {
         return __awaiter(this, void 0, void 0, function* () {
             if (this.loadedLess) {
@@ -360,11 +291,7 @@ class SettingDrawerComponent {
             }
             return this.lazy
                 .loadStyle('./assets/color.less', 'stylesheet/less')
-                .then((/**
-             * @return {?}
-             */
-            () => {
-                /** @type {?} */
+                .then(() => {
                 const lessConfigNode = this.doc.createElement('script');
                 lessConfigNode.innerHTML = `
           window.less = {
@@ -374,179 +301,82 @@ class SettingDrawerComponent {
           };
         `;
                 this.doc.body.appendChild(lessConfigNode);
-            }))
-                .then((/**
-             * @return {?}
-             */
-            () => this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js')))
-                .then((/**
-             * @return {?}
-             */
-            () => {
+            })
+                .then(() => this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js'))
+                .then(() => {
                 this.loadedLess = true;
-            }));
+            });
         });
     }
-    /**
-     * @private
-     * @return {?}
-     */
     genVars() {
         const { data, color, validKeys } = this;
-        /** @type {?} */
         const vars = {
             [`@primary-color`]: color,
         };
-        validKeys.filter((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => key !== 'primary-color')).forEach((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => (vars[`@${key}`] = data[key].value)));
+        validKeys.filter(key => key !== 'primary-color').forEach(key => (vars[`@${key}`] = data[key].value));
         this.setLayout(ALAINDEFAULTVAR, vars);
         return vars;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     runLess() {
         const { zone, msg, cdr } = this;
-        /** @type {?} */
         const msgId = msg.loading(`正在编译主题！`, { nzDuration: 0 }).messageId;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => {
-            zone.runOutsideAngular((/**
-             * @return {?}
-             */
-            () => {
-                this.loadLess().then((/**
-                 * @return {?}
-                 */
-                () => {
-                    ((/** @type {?} */ (window))).less.modifyVars(this.genVars()).then((/**
-                     * @return {?}
-                     */
-                    () => {
+        setTimeout(() => {
+            zone.runOutsideAngular(() => {
+                this.loadLess().then(() => {
+                    window.less.modifyVars(this.genVars()).then(() => {
                         msg.success('成功');
                         msg.remove(msgId);
-                        zone.run((/**
-                         * @return {?}
-                         */
-                        () => cdr.detectChanges()));
-                    }));
-                }));
-            }));
-        }), 200);
+                        zone.run(() => cdr.detectChanges());
+                    });
+                });
+            });
+        }, 200);
     }
-    /**
-     * @return {?}
-     */
     toggle() {
         this.collapse = !this.collapse;
     }
-    /**
-     * @param {?} color
-     * @return {?}
-     */
     changeColor(color) {
         this.color = color;
         Object.keys(DEFAULT_VARS)
-            .filter((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => DEFAULT_VARS[key].default === '@primary-color'))
-            .forEach((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => delete this.cachedData[`@${key}`]));
+            .filter(key => DEFAULT_VARS[key].default === '@primary-color')
+            .forEach(key => delete this.cachedData[`@${key}`]);
         this.resetData(this.cachedData, false);
     }
-    /**
-     * @param {?} name
-     * @param {?} value
-     * @return {?}
-     */
     setLayout(name, value) {
         this.settingSrv.setLayout(name, value);
     }
-    /**
-     * @private
-     * @param {?=} nowData
-     * @param {?=} run
-     * @return {?}
-     */
     resetData(nowData, run = true) {
         nowData = nowData || {};
-        /** @type {?} */
         const data = deepCopy(DEFAULT_VARS);
-        Object.keys(data).forEach((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => {
-            /** @type {?} */
-            const value = (/** @type {?} */ (nowData))[`@${key}`] || data[key].default || '';
+        Object.keys(data).forEach(key => {
+            const value = nowData[`@${key}`] || data[key].default || '';
             data[key].value = value === `@primary-color` ? this.color : value;
-        }));
+        });
         this.data = data;
         if (run) {
             this.cdr.detectChanges();
             this.runLess();
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get validKeys() {
-        return Object.keys(this.data).filter((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => this.data[key].value !== this.data[key].default));
+        return Object.keys(this.data).filter(key => this.data[key].value !== this.data[key].default);
     }
-    /**
-     * @return {?}
-     */
     apply() {
         this.runLess();
     }
-    /**
-     * @return {?}
-     */
     reset() {
         this.color = this.DEFAULT_PRIMARY;
         this.settingSrv.setLayout(ALAINDEFAULTVAR, {});
         this.resetData({});
     }
-    /**
-     * @return {?}
-     */
     copyVar() {
-        /** @type {?} */
         const vars = this.genVars();
-        /** @type {?} */
         const copyContent = Object.keys(vars)
-            .map((/**
-         * @param {?} key
-         * @return {?}
-         */
-        key => `${key}: ${vars[key]};`))
+            .map(key => `${key}: ${vars[key]};`)
             .join('\n');
         copy(copyContent);
         this.msg.success('Copy success');
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
@@ -561,7 +391,7 @@ SettingDrawerComponent.decorators = [
                     '[class.setting-drawer-rtl]': `dir === 'rtl'`,
                 },
                 changeDetection: ChangeDetectionStrategy.OnPush
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SettingDrawerComponent.ctorParameters = () => [
@@ -581,76 +411,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
-if (false) {
-    /** @type {?} */
-    SettingDrawerComponent.prototype.autoApplyColor;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.devTips;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.loadedLess;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.destroy$;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.dir;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.isDev;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.collapse;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.data;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.color;
-    /** @type {?} */
-    SettingDrawerComponent.prototype.colors;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.msg;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.settingSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.lazy;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.zone;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    SettingDrawerComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: setting-drawer.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
 class SettingDrawerModule {
 }
@@ -676,15 +437,7 @@ SettingDrawerModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: setting-drawer.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { SettingDrawerComponent, SettingDrawerItemComponent, SettingDrawerModule };

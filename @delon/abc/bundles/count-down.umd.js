@@ -14,11 +14,6 @@
     var addSeconds__default = /*#__PURE__*/_interopDefaultLegacy(addSeconds);
     var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: count-down.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var CountDownComponent = /** @class */ (function () {
         function CountDownComponent() {
             this.event = new core.EventEmitter();
@@ -26,8 +21,6 @@
         Object.defineProperty(CountDownComponent.prototype, "target", {
             /**
              * 目标时间
-             * @param {?} value
-             * @return {?}
              */
             set: function (value) {
                 this.config = {
@@ -38,10 +31,6 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?} e
-         * @return {?}
-         */
         CountDownComponent.prototype.handleEvent = function (e) {
             this.event.emit(e);
         };
@@ -55,7 +44,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     CountDownComponent.propDecorators = {
         instance: [{ type: core.ViewChild, args: ['cd', { static: false },] }],
@@ -63,21 +52,7 @@
         target: [{ type: core.Input }],
         event: [{ type: core.Output }]
     };
-    if (false) {
-        /** @type {?} */
-        CountDownComponent.prototype.instance;
-        /** @type {?} */
-        CountDownComponent.prototype.config;
-        /** @type {?} */
-        CountDownComponent.prototype.event;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: count-down.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [CountDownComponent];
     var CountDownModule = /** @class */ (function () {
         function CountDownModule() {
@@ -93,15 +68,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: count-down.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.CountDownComponent = CountDownComponent;

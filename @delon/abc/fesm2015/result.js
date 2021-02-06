@@ -6,15 +6,7 @@ import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: result.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ResultComponent {
-    /**
-     * @param {?} directionality
-     */
     constructor(directionality) {
         this.directionality = directionality;
         this.destroy$ = new Subject();
@@ -22,10 +14,6 @@ class ResultComponent {
         this._icon = '';
         this.dir = 'ltr';
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set type(value) {
         this._type = value;
         switch (value) {
@@ -40,23 +28,13 @@ class ResultComponent {
                 break;
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
-        }));
+        });
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
@@ -74,7 +52,7 @@ ResultComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 ResultComponent.ctorParameters = () => [
@@ -86,37 +64,7 @@ ResultComponent.propDecorators = {
     description: [{ type: Input }],
     extra: [{ type: Input }]
 };
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ResultComponent.prototype.destroy$;
-    /** @type {?} */
-    ResultComponent.prototype._type;
-    /** @type {?} */
-    ResultComponent.prototype._icon;
-    /** @type {?} */
-    ResultComponent.prototype.title;
-    /** @type {?} */
-    ResultComponent.prototype.description;
-    /** @type {?} */
-    ResultComponent.prototype.extra;
-    /** @type {?} */
-    ResultComponent.prototype.dir;
-    /**
-     * @type {?}
-     * @private
-     */
-    ResultComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: result.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [ResultComponent];
 class ResultModule {
 }
@@ -129,15 +77,7 @@ ResultModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: result.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { ResultComponent, ResultModule };

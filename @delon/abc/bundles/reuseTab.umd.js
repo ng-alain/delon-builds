@@ -9,30 +9,15 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
 }(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab-context-menu.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabContextMenuComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18nSrv
-         */
         function ReuseTabContextMenuComponent(i18nSrv) {
             this.i18nSrv = i18nSrv;
             this.close = new i0.EventEmitter();
         }
         Object.defineProperty(ReuseTabContextMenuComponent.prototype, "i18n", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._i18n;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._i18n = Object.assign(Object.assign({}, this.i18nSrv.getData('reuseTab')), value);
             },
@@ -40,20 +25,12 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabContextMenuComponent.prototype, "includeNonCloseable", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.event.ctrlKey;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} type
-         * @return {?}
-         */
         ReuseTabContextMenuComponent.prototype.notify = function (type) {
             this.close.next({
                 type: type,
@@ -61,19 +38,10 @@
                 includeNonCloseable: this.includeNonCloseable,
             });
         };
-        /**
-         * @return {?}
-         */
         ReuseTabContextMenuComponent.prototype.ngOnInit = function () {
             if (this.includeNonCloseable)
                 this.item.closable = true;
         };
-        /**
-         * @param {?} e
-         * @param {?} type
-         * @param {?=} custom
-         * @return {?}
-         */
         ReuseTabContextMenuComponent.prototype.click = function (e, type, custom) {
             e.preventDefault();
             e.stopPropagation();
@@ -88,17 +56,9 @@
             }
             this.notify(type);
         };
-        /**
-         * @param {?} custom
-         * @return {?}
-         */
         ReuseTabContextMenuComponent.prototype.isDisabled = function (custom) {
             return custom.disabled ? custom.disabled(this.item) : false;
         };
-        /**
-         * @param {?} event
-         * @return {?}
-         */
         ReuseTabContextMenuComponent.prototype.closeMenu = function (event) {
             if (event.type === 'click' && event.button === 2)
                 return;
@@ -117,7 +77,7 @@
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
                     encapsulation: i0.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ReuseTabContextMenuComponent.ctorParameters = function () { return [
@@ -130,44 +90,13 @@
         customContextMenu: [{ type: i0.Input }],
         close: [{ type: i0.Output }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextMenuComponent.prototype._i18n;
-        /** @type {?} */
-        ReuseTabContextMenuComponent.prototype.item;
-        /** @type {?} */
-        ReuseTabContextMenuComponent.prototype.event;
-        /** @type {?} */
-        ReuseTabContextMenuComponent.prototype.customContextMenu;
-        /** @type {?} */
-        ReuseTabContextMenuComponent.prototype.close;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextMenuComponent.prototype.i18nSrv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab-context.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabContextService = /** @class */ (function () {
-        /**
-         * @param {?} overlay
-         */
         function ReuseTabContextService(overlay) {
             this.overlay = overlay;
             this.show = new rxjs.Subject();
             this.close = new rxjs.Subject();
         }
-        /**
-         * @return {?}
-         */
         ReuseTabContextService.prototype.remove = function () {
             if (!this.ref)
                 return;
@@ -175,59 +104,42 @@
             this.ref.dispose();
             this.ref = null;
         };
-        /**
-         * @param {?} context
-         * @return {?}
-         */
         ReuseTabContextService.prototype.open = function (context) {
             var _this = this;
             this.remove();
             var event = context.event, item = context.item, customContextMenu = context.customContextMenu;
-            /** @type {?} */
             var fakeElement = new i0.ElementRef({
-                getBoundingClientRect: ( /**
-                 * @return {?}
-                 */function () { return ({
+                getBoundingClientRect: function () { return ({
                     bottom: event.clientY,
                     height: 0,
                     left: event.clientX,
                     right: event.clientX,
                     top: event.clientY,
                     width: 0,
-                }); }),
+                }); },
             });
-            /** @type {?} */
             var positions = [
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
             ];
-            /** @type {?} */
             var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
             this.ref = this.overlay.create({
                 positionStrategy: positionStrategy,
                 panelClass: 'reuse-tab__cm',
                 scrollStrategy: this.overlay.scrollStrategies.close(),
             });
-            /** @type {?} */
             var comp = this.ref.attach(new portal.ComponentPortal(ReuseTabContextMenuComponent));
-            /** @type {?} */
             var instance = comp.instance;
             instance.i18n = this.i18n;
             instance.item = Object.assign({}, item);
-            instance.customContextMenu = ( /** @type {?} */(customContextMenu));
+            instance.customContextMenu = customContextMenu;
             instance.event = event;
-            /** @type {?} */
             var sub$ = new rxjs.Subscription();
-            sub$.add(instance.close.subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (res) {
+            sub$.add(instance.close.subscribe(function (res) {
                 _this.close.next(res);
                 _this.remove();
-            })));
-            comp.onDestroy(( /**
-             * @return {?}
-             */function () { return sub$.unsubscribe(); }));
+            }));
+            comp.onDestroy(function () { return sub$.unsubscribe(); });
         };
         return ReuseTabContextService;
     }());
@@ -238,68 +150,23 @@
     ReuseTabContextService.ctorParameters = function () { return [
         { type: overlay.Overlay }
     ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextService.prototype.ref;
-        /** @type {?} */
-        ReuseTabContextService.prototype.i18n;
-        /** @type {?} */
-        ReuseTabContextService.prototype.show;
-        /** @type {?} */
-        ReuseTabContextService.prototype.close;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextService.prototype.overlay;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab-context.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabContextComponent = /** @class */ (function () {
-        /**
-         * @param {?} srv
-         */
         function ReuseTabContextComponent(srv) {
             var _this = this;
             this.srv = srv;
             this.sub$ = new rxjs.Subscription();
             this.change = new i0.EventEmitter();
-            this.sub$.add(srv.show.subscribe(( /**
-             * @param {?} context
-             * @return {?}
-             */function (/**
-             * @param {?} context
-             * @return {?}
-             */ context) { return _this.srv.open(context); })));
-            this.sub$.add(srv.close.subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) { return _this.change.emit(res); })));
+            this.sub$.add(srv.show.subscribe(function (context) { return _this.srv.open(context); }));
+            this.sub$.add(srv.close.subscribe(function (res) { return _this.change.emit(res); }));
         }
         Object.defineProperty(ReuseTabContextComponent.prototype, "i18n", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this.srv.i18n = value;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         ReuseTabContextComponent.prototype.ngOnDestroy = function () {
             this.sub$.unsubscribe();
         };
@@ -309,7 +176,7 @@
         { type: i0.Component, args: [{
                     selector: 'reuse-tab-context',
                     template: ""
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ReuseTabContextComponent.ctorParameters = function () { return [
@@ -319,37 +186,11 @@
         i18n: [{ type: i0.Input }],
         change: [{ type: i0.Output }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextComponent.prototype.sub$;
-        /** @type {?} */
-        ReuseTabContextComponent.prototype.change;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextComponent.prototype.srv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab-context.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabContextDirective = /** @class */ (function () {
-        /**
-         * @param {?} srv
-         */
         function ReuseTabContextDirective(srv) {
             this.srv = srv;
         }
-        /**
-         * @param {?} event
-         * @return {?}
-         */
         ReuseTabContextDirective.prototype._onContextMenu = function (event) {
             this.srv.show.next({
                 event: event,
@@ -378,17 +219,6 @@
         item: [{ type: i0.Input, args: ['reuse-tab-context-menu',] }],
         customContextMenu: [{ type: i0.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        ReuseTabContextDirective.prototype.item;
-        /** @type {?} */
-        ReuseTabContextDirective.prototype.customContextMenu;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabContextDirective.prototype.srv;
-    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -700,12 +530,9 @@
     }
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab.interfaces.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * 复用匹配模式
      */
-    /** @enum {number} */
-    var ReuseTabMatchMode = {
+    (function (ReuseTabMatchMode) {
         /**
          * （推荐）按菜单 `Menu` 配置
          *
@@ -716,7 +543,7 @@
          * 不可复用：
          * - `{ text:'Dashboard', reuse: false }`
          */
-        Menu: 0,
+        ReuseTabMatchMode[ReuseTabMatchMode["Menu"] = 0] = "Menu";
         /**
          * 按菜单 `Menu` 强制配置
          *
@@ -727,176 +554,15 @@
          * - `{ text:'Dashboard' }`
          * - `{ text:'Dashboard', reuse: false }`
          */
-        MenuForce: 1,
+        ReuseTabMatchMode[ReuseTabMatchMode["MenuForce"] = 1] = "MenuForce";
         /**
          * 对所有路由有效，可以配合 `excludes` 过滤无须复用路由
          */
-        URL: 2,
-    };
-    ReuseTabMatchMode[ReuseTabMatchMode.Menu] = 'Menu';
-    ReuseTabMatchMode[ReuseTabMatchMode.MenuForce] = 'MenuForce';
-    ReuseTabMatchMode[ReuseTabMatchMode.URL] = 'URL';
-    /**
-     * @record
-     */
-    function ReuseTitle() { }
-    if (false) {
-        /** @type {?|undefined} */
-        ReuseTitle.prototype.text;
-        /** @type {?|undefined} */
-        ReuseTitle.prototype.i18n;
-    }
-    /**
-     * @record
-     */
-    function ReuseTabCached() { }
-    if (false) {
-        /** @type {?} */
-        ReuseTabCached.prototype.title;
-        /** @type {?} */
-        ReuseTabCached.prototype.url;
-        /**
-         * 是否允许关闭，默认：`true`
-         * @type {?|undefined}
-         */
-        ReuseTabCached.prototype.closable;
-        /**
-         * 当前滚动条位置
-         * @type {?|undefined}
-         */
-        ReuseTabCached.prototype.position;
-        /** @type {?} */
-        ReuseTabCached.prototype._snapshot;
-        /** @type {?} */
-        ReuseTabCached.prototype._handle;
-    }
-    /**
-     * @record
-     */
-    function ReuseTabNotify() { }
-    if (false) {
-        /**
-         * 事件类型
-         * @type {?}
-         */
-        ReuseTabNotify.prototype.active;
-        /** @type {?|undefined} */
-        ReuseTabNotify.prototype.url;
-        /** @type {?|undefined} */
-        ReuseTabNotify.prototype.title;
-        /** @type {?|undefined} */
-        ReuseTabNotify.prototype.item;
-        /** @type {?|undefined} */
-        ReuseTabNotify.prototype.list;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function ReuseItem() { }
-    if (false) {
-        /** @type {?} */
-        ReuseItem.prototype.url;
-        /** @type {?} */
-        ReuseItem.prototype.title;
-        /** @type {?} */
-        ReuseItem.prototype.closable;
-        /** @type {?} */
-        ReuseItem.prototype.index;
-        /** @type {?} */
-        ReuseItem.prototype.active;
-        /** @type {?} */
-        ReuseItem.prototype.last;
-    }
-    /**
-     * @record
-     */
-    function ReuseContextEvent() { }
-    if (false) {
-        /** @type {?} */
-        ReuseContextEvent.prototype.event;
-        /** @type {?} */
-        ReuseContextEvent.prototype.item;
-        /** @type {?|undefined} */
-        ReuseContextEvent.prototype.comp;
-        /** @type {?|undefined} */
-        ReuseContextEvent.prototype.customContextMenu;
-    }
-    /**
-     * @record
-     */
-    function ReuseContextCloseEvent() { }
-    if (false) {
-        /** @type {?} */
-        ReuseContextCloseEvent.prototype.type;
-        /** @type {?} */
-        ReuseContextCloseEvent.prototype.item;
-        /** @type {?} */
-        ReuseContextCloseEvent.prototype.includeNonCloseable;
-    }
-    /**
-     * @record
-     */
-    function ReuseContextI18n() { }
-    if (false) {
-        /** @type {?|undefined} */
-        ReuseContextI18n.prototype.close;
-        /** @type {?|undefined} */
-        ReuseContextI18n.prototype.closeOther;
-        /** @type {?|undefined} */
-        ReuseContextI18n.prototype.closeRight;
-        /** @type {?|undefined} */
-        ReuseContextI18n.prototype.refresh;
-    }
-    /**
-     * @record
-     */
-    function ReuseCustomContextMenu() { }
-    if (false) {
-        /** @type {?} */
-        ReuseCustomContextMenu.prototype.id;
-        /** @type {?} */
-        ReuseCustomContextMenu.prototype.title;
-        /** @type {?} */
-        ReuseCustomContextMenu.prototype.fn;
-        /** @type {?|undefined} */
-        ReuseCustomContextMenu.prototype.disabled;
-    }
-    /**
-     * @record
-     */
-    function ReuseComponentHandle() { }
-    if (false) {
-        /** @type {?} */
-        ReuseComponentHandle.prototype.componentRef;
-    }
-    /**
-     * @record
-     */
-    function ReuseComponentRef() { }
-    if (false) {
-        /** @type {?} */
-        ReuseComponentRef.prototype.instance;
-    }
-    /**
-     * @record
-     */
-    function ReuseComponentInstance() { }
-    if (false) {
-        /** @type {?} */
-        ReuseComponentInstance.prototype._onReuseInit;
-        /** @type {?} */
-        ReuseComponentInstance.prototype._onReuseDestroy;
-        /** @type {?} */
-        ReuseComponentInstance.prototype.destroy;
-    }
+        ReuseTabMatchMode[ReuseTabMatchMode["URL"] = 2] = "URL";
+    })(exports.ReuseTabMatchMode || (exports.ReuseTabMatchMode = {}));
 
     var ReuseTabService = /** @class */ (function () {
         // #endregion
-        /**
-         * @param {?} injector
-         * @param {?} menuService
-         */
         function ReuseTabService(injector, menuService) {
             this.injector = injector;
             this.menuService = menuService;
@@ -910,17 +576,11 @@
             this.positionBuffer = {};
             this.debug = false;
             this.routeParamMatchMode = 'strict';
-            this.mode = ReuseTabMatchMode.Menu;
-            /**
-             * 排除规则，限 `mode=URL`
-             */
+            this.mode = exports.ReuseTabMatchMode.Menu;
+            /** 排除规则，限 `mode=URL` */
             this.excludes = [];
         }
         Object.defineProperty(ReuseTabService.prototype, "snapshot", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.injector.get(router.ActivatedRoute).snapshot;
             },
@@ -933,7 +593,6 @@
              * Get init status
              *
              * 是否已经初始化完成
-             * @return {?}
              */
             get: function () {
                 return this._inited;
@@ -946,7 +605,6 @@
              * Current routing address
              *
              * 当前路由地址
-             * @return {?}
              */
             get: function () {
                 return this.getUrl(this.snapshot);
@@ -957,8 +615,6 @@
         Object.defineProperty(ReuseTabService.prototype, "max", {
             /**
              * 允许最多复用多少个页面，取值范围 `2-100`，值发生变更时会强制关闭且忽略可关闭条件
-             * @param {?} value
-             * @return {?}
              */
             set: function (value) {
                 this._max = Math.min(Math.max(value, 2), 100);
@@ -970,16 +626,9 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "keepingScroll", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._keepingScroll;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._keepingScroll = value;
                 this.initScroll();
@@ -988,10 +637,7 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "items", {
-            /**
-             * 获取已缓存的路由
-             * @return {?}
-             */
+            /** 获取已缓存的路由 */
             get: function () {
                 return this._cached;
             },
@@ -999,10 +645,7 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "count", {
-            /**
-             * 获取当前缓存的路由总数
-             * @return {?}
-             */
+            /** 获取当前缓存的路由总数 */
             get: function () {
                 return this._cached.length;
             },
@@ -1010,10 +653,7 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "change", {
-            /**
-             * 订阅缓存变更通知
-             * @return {?}
-             */
+            /** 订阅缓存变更通知 */
             get: function () {
                 return this._cachedChange.asObservable(); // .pipe(filter(w => w !== null));
             },
@@ -1021,13 +661,8 @@
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "title", {
-            /**
-             * 自定义当前标题
-             * @param {?} value
-             * @return {?}
-             */
+            /** 自定义当前标题 */
             set: function (value) {
-                /** @type {?} */
                 var url = this.curUrl;
                 if (typeof value === 'string')
                     value = { text: value };
@@ -1043,52 +678,20 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * 获取指定路径缓存所在位置，`-1` 表示无缓存
-         * @param {?} url
-         * @return {?}
-         */
+        /** 获取指定路径缓存所在位置，`-1` 表示无缓存 */
         ReuseTabService.prototype.index = function (url) {
-            return this._cached.findIndex(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.url === url; }));
+            return this._cached.findIndex(function (w) { return w.url === url; });
         };
-        /**
-         * 获取指定路径缓存是否存在
-         * @param {?} url
-         * @return {?}
-         */
+        /** 获取指定路径缓存是否存在 */
         ReuseTabService.prototype.exists = function (url) {
             return this.index(url) !== -1;
         };
-        /**
-         * 获取指定路径缓存
-         * @param {?=} url
-         * @return {?}
-         */
+        /** 获取指定路径缓存 */
         ReuseTabService.prototype.get = function (url) {
-            return url ? this._cached.find(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.url === url; })) || null : null;
+            return url ? this._cached.find(function (w) { return w.url === url; }) || null : null;
         };
-        /**
-         * @private
-         * @param {?} url
-         * @param {?} includeNonCloseable
-         * @return {?}
-         */
         ReuseTabService.prototype.remove = function (url, includeNonCloseable) {
-            /** @type {?} */
             var idx = typeof url === 'string' ? this.index(url) : url;
-            /** @type {?} */
             var item = idx !== -1 ? this._cached[idx] : null;
             if (!item || (!includeNonCloseable && !item.closable))
                 return false;
@@ -1100,9 +703,7 @@
         /**
          * 根据URL移除标签
          *
-         * @param {?} url
-         * @param {?=} includeNonCloseable
-         * @return {?}
+         * @param [includeNonCloseable=false] 是否强制包含不可关闭
          */
         ReuseTabService.prototype.close = function (url, includeNonCloseable) {
             if (includeNonCloseable === void 0) { includeNonCloseable = false; }
@@ -1115,13 +716,10 @@
         /**
          * 清除右边
          *
-         * @param {?} url
-         * @param {?=} includeNonCloseable
-         * @return {?}
+         * @param [includeNonCloseable=false] 是否强制包含不可关闭
          */
         ReuseTabService.prototype.closeRight = function (url, includeNonCloseable) {
             if (includeNonCloseable === void 0) { includeNonCloseable = false; }
-            /** @type {?} */
             var start = this.index(url);
             for (var i = this.count - 1; i > start; i--) {
                 this.remove(i, includeNonCloseable);
@@ -1134,36 +732,26 @@
         /**
          * 清除所有缓存
          *
-         * @param {?=} includeNonCloseable
-         * @return {?}
+         * @param [includeNonCloseable=false] 是否强制包含不可关闭
          */
         ReuseTabService.prototype.clear = function (includeNonCloseable) {
             var _this = this;
             if (includeNonCloseable === void 0) { includeNonCloseable = false; }
-            this._cached.forEach(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) {
+            this._cached.forEach(function (w) {
                 if (!includeNonCloseable && w.closable)
                     _this.destroy(w._handle);
-            }));
-            this._cached = this._cached.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !includeNonCloseable && !w.closable; }));
+            });
+            this._cached = this._cached.filter(function (w) { return !includeNonCloseable && !w.closable; });
             this.removeUrlBuffer = null;
             this._cachedChange.next({ active: 'clear', list: this._cached });
             this.di('clear all catch');
         };
         /**
          * 移动缓存数据
-         * \@example
+         * @param url 要移动的URL地址
+         * @param position 新位置，下标从 `0` 开始
+         *
+         * @example
          * ```
          * // source
          * [ '/a/1', '/a/2', '/a/3', '/a/4', '/a/5' ]
@@ -1174,23 +762,11 @@
          * // output
          * [ '/a/2', '/a/3', '/a/4', '/a/5', '/a/1' ]
          * ```
-         * @param {?} url 要移动的URL地址
-         * @param {?} position 新位置，下标从 `0` 开始
-         *
-         * @return {?}
          */
         ReuseTabService.prototype.move = function (url, position) {
-            /** @type {?} */
-            var start = this._cached.findIndex(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.url === url; }));
+            var start = this._cached.findIndex(function (w) { return w.url === url; });
             if (start === -1)
                 return;
-            /** @type {?} */
             var data = this._cached.slice();
             data.splice(position < 0 ? data.length + position : position, 0, data.splice(start, 1)[0]);
             this._cached = data;
@@ -1203,11 +779,8 @@
         };
         /**
          * 强制关闭当前路由（包含不可关闭状态），并重新导航至 `newUrl` 路由
-         * @param {?} newUrl
-         * @return {?}
          */
         ReuseTabService.prototype.replace = function (newUrl) {
-            /** @type {?} */
             var url = this.curUrl;
             if (this.exists(url)) {
                 this.close(url, true);
@@ -1224,39 +797,31 @@
          * 2. 路由配置中 data 属性中包含 titleI18n > title
          * 3. 菜单数据中 text 属性
          *
-         * @param {?} url 指定URL
-         * @param {?=} route 指定路由快照
-         * @return {?}
+         * @param url 指定URL
+         * @param route 指定路由快照
          */
         ReuseTabService.prototype.getTitle = function (url, route) {
             if (this._titleCached[url]) {
                 return this._titleCached[url];
             }
             if (route && route.data && (route.data.titleI18n || route.data.title)) {
-                return ( /** @type {?} */({
+                return {
                     text: route.data.title,
                     i18n: route.data.titleI18n,
-                }));
+                };
             }
-            /** @type {?} */
             var menu = this.getMenu(url);
             return menu ? { text: menu.text, i18n: menu.i18n } : { text: url };
         };
         /**
          * 清除标题缓存
-         * @return {?}
          */
         ReuseTabService.prototype.clearTitleCached = function () {
             this._titleCached = {};
         };
         Object.defineProperty(ReuseTabService.prototype, "closable", {
-            /**
-             * 自定义当前 `closable` 状态
-             * @param {?} value
-             * @return {?}
-             */
+            /** 自定义当前 `closable` 状态 */
             set: function (value) {
-                /** @type {?} */
                 var url = this.curUrl;
                 this._closableCached[url] = value;
                 this.di('update current tag closable: ', value);
@@ -1276,34 +841,26 @@
          * 2. 路由配置中 data 属性中包含 `reuseClosable`
          * 3. 菜单数据中 `reuseClosable` 属性
          *
-         * @param {?} url 指定URL
-         * @param {?=} route 指定路由快照
-         * @return {?}
+         * @param url 指定URL
+         * @param route 指定路由快照
          */
         ReuseTabService.prototype.getClosable = function (url, route) {
             if (typeof this._closableCached[url] !== 'undefined')
                 return this._closableCached[url];
             if (route && route.data && typeof route.data.reuseClosable === 'boolean')
                 return route.data.reuseClosable;
-            /** @type {?} */
-            var menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+            var menu = this.mode !== exports.ReuseTabMatchMode.URL ? this.getMenu(url) : null;
             if (menu && typeof menu.reuseClosable === 'boolean')
                 return menu.reuseClosable;
             return true;
         };
         /**
          * 清空 `closable` 缓存
-         * @return {?}
          */
         ReuseTabService.prototype.clearClosableCached = function () {
             this._closableCached = {};
         };
-        /**
-         * @param {?} route
-         * @return {?}
-         */
         ReuseTabService.prototype.getTruthRoute = function (route) {
-            /** @type {?} */
             var next = route;
             while (next.firstChild)
                 next = next.firstChild;
@@ -1311,50 +868,35 @@
         };
         /**
          * 根据快照获取URL地址
-         * @param {?} route
-         * @return {?}
          */
         ReuseTabService.prototype.getUrl = function (route) {
-            /** @type {?} */
             var next = this.getTruthRoute(route);
-            /** @type {?} */
             var segments = [];
             while (next) {
                 segments.push(next.url.join('/'));
-                next = ( /** @type {?} */(next.parent));
+                next = next.parent;
             }
-            /** @type {?} */
             var url = '/' +
                 segments
-                    .filter(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return i; }))
+                    .filter(function (i) { return i; })
                     .reverse()
                     .join('/');
             return url;
         };
         /**
          * 检查快照是否允许被复用
-         * @param {?} route
-         * @return {?}
          */
         ReuseTabService.prototype.can = function (route) {
-            /** @type {?} */
             var url = this.getUrl(route);
             if (url === this.removeUrlBuffer)
                 return false;
             if (route.data && typeof route.data.reuse === 'boolean')
                 return route.data.reuse;
-            if (this.mode !== ReuseTabMatchMode.URL) {
-                /** @type {?} */
+            if (this.mode !== exports.ReuseTabMatchMode.URL) {
                 var menu = this.getMenu(url);
                 if (!menu)
                     return false;
-                if (this.mode === ReuseTabMatchMode.Menu) {
+                if (this.mode === exports.ReuseTabMatchMode.Menu) {
                     if (menu.reuse === false)
                         return false;
                 }
@@ -1366,43 +908,21 @@
             }
             return !this.isExclude(url);
         };
-        /**
-         * @param {?} url
-         * @return {?}
-         */
         ReuseTabService.prototype.isExclude = function (url) {
-            return this.excludes.findIndex(( /**
-             * @param {?} r
-             * @return {?}
-             */function (/**
-             * @param {?} r
-             * @return {?}
-             */ r) { return r.test(url); })) !== -1;
+            return this.excludes.findIndex(function (r) { return r.test(url); }) !== -1;
         };
         /**
          * 刷新，触发一个 refresh 类型事件
-         * @param {?=} data
-         * @return {?}
          */
         ReuseTabService.prototype.refresh = function (data) {
             this._cachedChange.next({ active: 'refresh', data: data });
         };
         // #endregion
         // #region privates
-        /**
-         * @private
-         * @param {?} _handle
-         * @return {?}
-         */
         ReuseTabService.prototype.destroy = function (_handle) {
             if (_handle && _handle.componentRef && _handle.componentRef.destroy)
                 _handle.componentRef.destroy();
         };
-        /**
-         * @private
-         * @param {...?} args
-         * @return {?}
-         */
         ReuseTabService.prototype.di = function () {
             var args = [];
             for (var _i = 0; _i < arguments.length; _i++) {
@@ -1413,44 +933,26 @@
             // tslint:disable-next-line:no-console
             console.warn.apply(console, __spread(args));
         };
-        /**
-         * @return {?}
-         */
         ReuseTabService.prototype.init = function () {
             this.initScroll();
             this._inited = true;
         };
-        /**
-         * @private
-         * @param {?} url
-         * @return {?}
-         */
         ReuseTabService.prototype.getMenu = function (url) {
-            /** @type {?} */
             var menus = this.menuService.getPathByUrl(url);
             if (!menus || menus.length === 0)
                 return null;
             return menus.pop();
         };
-        /**
-         * @param {?} method
-         * @param {?} comp
-         * @param {?=} type
-         * @return {?}
-         */
         ReuseTabService.prototype.runHook = function (method, comp, type) {
             if (type === void 0) { type = 'init'; }
             if (typeof comp === 'number') {
-                /** @type {?} */
                 var item = this._cached[comp];
                 comp = item._handle.componentRef;
             }
-            /** @type {?} */
             var compThis = comp.instance;
             if (comp == null || !compThis) {
                 return;
             }
-            /** @type {?} */
             var fn = compThis[method];
             if (typeof fn !== 'function') {
                 return;
@@ -1459,21 +961,14 @@
                 fn.call(compThis, type);
             }
             else {
-                (( /** @type {?} */(fn))).call(compThis);
+                fn.call(compThis);
             }
         };
-        /**
-         * @private
-         * @param {?} route
-         * @return {?}
-         */
         ReuseTabService.prototype.hasInValidRoute = function (route) {
             return !route.routeConfig || !!route.routeConfig.loadChildren || !!route.routeConfig.children;
         };
         /**
          * 决定是否允许路由复用，若 `true` 会触发 `store`
-         * @param {?} route
-         * @return {?}
          */
         ReuseTabService.prototype.shouldDetach = function (route) {
             if (this.hasInValidRoute(route))
@@ -1483,18 +978,11 @@
         };
         /**
          * 存储
-         * @param {?} _snapshot
-         * @param {?} _handle
-         * @return {?}
          */
         ReuseTabService.prototype.store = function (_snapshot, _handle) {
-            /** @type {?} */
             var url = this.getUrl(_snapshot);
-            /** @type {?} */
             var idx = this.index(url);
-            /** @type {?} */
             var isAdd = idx === -1;
-            /** @type {?} */
             var item = {
                 title: this.getTitle(url, _snapshot),
                 closable: this.getClosable(url, _snapshot),
@@ -1506,14 +994,7 @@
             if (isAdd) {
                 if (this.count >= this._max) {
                     // Get the oldest closable location
-                    /** @type {?} */
-                    var closeIdx = this._cached.findIndex(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (/**
-                     * @param {?} w
-                     * @return {?}
-                     */ w) { return ( /** @type {?} */(w.closable)); }));
+                    var closeIdx = this._cached.findIndex(function (w) { return w.closable; });
                     if (closeIdx !== -1)
                         this.remove(closeIdx, false);
                 }
@@ -1533,22 +1014,16 @@
         };
         /**
          * 决定是否允许应用缓存数据
-         * @param {?} route
-         * @return {?}
          */
         ReuseTabService.prototype.shouldAttach = function (route) {
             if (this.hasInValidRoute(route))
                 return false;
-            /** @type {?} */
             var url = this.getUrl(route);
-            /** @type {?} */
             var data = this.get(url);
-            /** @type {?} */
             var ret = !!(data && data._handle);
             this.di('#shouldAttach', ret, url);
             if (ret) {
-                /** @type {?} */
-                var compRef = ( /** @type {?} */(data))._handle.componentRef;
+                var compRef = data._handle.componentRef;
                 if (compRef) {
                     this.componentRef = compRef;
                     this.runHook('_onReuseInit', compRef);
@@ -1561,34 +1036,24 @@
         };
         /**
          * 提取复用数据
-         * @param {?} route
-         * @return {?}
          */
         ReuseTabService.prototype.retrieve = function (route) {
             if (this.hasInValidRoute(route))
                 return null;
-            /** @type {?} */
             var url = this.getUrl(route);
-            /** @type {?} */
             var data = this.get(url);
-            /** @type {?} */
             var ret = (data && data._handle) || null;
             this.di('#retrieve', url, ret);
             return ret;
         };
         /**
          * 决定是否应该进行复用路由处理
-         * @param {?} future
-         * @param {?} curr
-         * @return {?}
          */
         ReuseTabService.prototype.shouldReuseRoute = function (future, curr) {
-            /** @type {?} */
             var ret = future.routeConfig === curr.routeConfig;
             if (!ret)
                 return false;
-            /** @type {?} */
-            var path = ( /** @type {?} */(((future.routeConfig && future.routeConfig.path) || '')));
+            var path = ((future.routeConfig && future.routeConfig.path) || '');
             if (path.length > 0 && ~path.indexOf(':')) {
                 if (this.routeParamMatchMode === 'strict') {
                     ret = this.getUrl(future) === this.getUrl(curr);
@@ -1608,61 +1073,37 @@
          * 1. 路由配置中 data 属性中包含 `keepingScroll`
          * 2. 菜单数据中 `keepingScroll` 属性
          * 3. 组件 `keepingScroll` 值
-         * @param {?} url
-         * @param {?=} route
-         * @return {?}
          */
         ReuseTabService.prototype.getKeepingScroll = function (url, route) {
             if (route && route.data && typeof route.data.keepingScroll === 'boolean')
                 return route.data.keepingScroll;
-            /** @type {?} */
-            var menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
+            var menu = this.mode !== exports.ReuseTabMatchMode.URL ? this.getMenu(url) : null;
             if (menu && typeof menu.keepingScroll === 'boolean')
                 return menu.keepingScroll;
             return this.keepingScroll;
         };
         Object.defineProperty(ReuseTabService.prototype, "isDisabledInRouter", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
-                /** @type {?} */
-                var routerConfig = this.injector.get(router.ROUTER_CONFIGURATION, ( /** @type {?} */({})));
+                var routerConfig = this.injector.get(router.ROUTER_CONFIGURATION, {});
                 return routerConfig.scrollPositionRestoration === 'disabled';
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ReuseTabService.prototype, "ss", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.injector.get(browser.ScrollService);
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         ReuseTabService.prototype.initScroll = function () {
             var _this = this;
             if (this._router$) {
                 this._router$.unsubscribe();
             }
-            this._router$ = this.injector.get(router.Router).events.subscribe(( /**
-             * @param {?} e
-             * @return {?}
-             */function (/**
-             * @param {?} e
-             * @return {?}
-             */ e) {
+            this._router$ = this.injector.get(router.Router).events.subscribe(function (e) {
                 if (e instanceof router.NavigationStart) {
-                    /** @type {?} */
                     var url = _this.curUrl;
                     if (_this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                         _this.positionBuffer[url] = _this.ss.getScrollPosition(_this.keepingScrollContainer);
@@ -1672,27 +1113,20 @@
                     }
                 }
                 else if (e instanceof router.NavigationEnd) {
-                    /** @type {?} */
                     var url = _this.curUrl;
-                    /** @type {?} */
                     var item_1 = _this.get(url);
                     if (item_1 && item_1.position && _this.getKeepingScroll(url, _this.getTruthRoute(_this.snapshot))) {
                         if (_this.isDisabledInRouter) {
                             _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position);
                         }
                         else {
-                            setTimeout(( /**
-                             * @return {?}
-                             */function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, ( /** @type {?} */(item_1.position))); }), 1);
+                            setTimeout(function () { return _this.ss.scrollToPosition(_this.keepingScrollContainer, item_1.position); }, 1);
                         }
                     }
                 }
-            }));
+            });
         };
         // #endregion
-        /**
-         * @return {?}
-         */
         ReuseTabService.prototype.ngOnDestroy = function () {
             var _a = this, _cachedChange = _a._cachedChange, _router$ = _a._router$;
             this.clear();
@@ -1704,6 +1138,7 @@
         };
         return ReuseTabService;
     }());
+    /** @nocollapse */ ReuseTabService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
     ReuseTabService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -1712,100 +1147,9 @@
         { type: i0.Injector },
         { type: i1.MenuService }
     ]; };
-    /** @nocollapse */ ReuseTabService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._inited;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._max;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._keepingScroll;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._cachedChange;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._cached;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._titleCached;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._closableCached;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype._router$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype.removeUrlBuffer;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype.positionBuffer;
-        /** @type {?} */
-        ReuseTabService.prototype.componentRef;
-        /** @type {?} */
-        ReuseTabService.prototype.debug;
-        /** @type {?} */
-        ReuseTabService.prototype.routeParamMatchMode;
-        /** @type {?} */
-        ReuseTabService.prototype.mode;
-        /**
-         * 排除规则，限 `mode=URL`
-         * @type {?}
-         */
-        ReuseTabService.prototype.excludes;
-        /** @type {?} */
-        ReuseTabService.prototype.keepingScrollContainer;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype.injector;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabService.prototype.menuService;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
-        /**
-         * @param {?} srv
-         * @param {?} cdr
-         * @param {?} router
-         * @param {?} route
-         * @param {?} i18nSrv
-         * @param {?} doc
-         */
         function ReuseTabComponent(srv, cdr, router, route, i18nSrv, doc) {
             this.srv = srv;
             this.cdr = cdr;
@@ -1818,7 +1162,7 @@
             this.list = [];
             this.pos = 0;
             // #region fields
-            this.mode = ReuseTabMatchMode.Menu;
+            this.mode = exports.ReuseTabMatchMode.Menu;
             this.debug = false;
             this.allowClose = true;
             this.keepingScroll = false;
@@ -1829,43 +1173,24 @@
             this.close = new i0.EventEmitter();
         }
         Object.defineProperty(ReuseTabComponent.prototype, "keepingScrollContainer", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} title
-         * @return {?}
-         */
         ReuseTabComponent.prototype.genTit = function (title) {
-            return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : ( /** @type {?} */(title.text));
+            return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
         };
         Object.defineProperty(ReuseTabComponent.prototype, "curUrl", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.srv.getUrl(this.route.snapshot);
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         ReuseTabComponent.prototype.genCurItem = function () {
-            /** @type {?} */
             var url = this.curUrl;
-            /** @type {?} */
             var snapshotTrue = this.srv.getTruthRoute(this.route.snapshot);
             return {
                 url: url,
@@ -1876,48 +1201,22 @@
                 index: 0,
             };
         };
-        /**
-         * @private
-         * @param {?} notify
-         * @return {?}
-         */
         ReuseTabComponent.prototype.genList = function (notify) {
             var _this = this;
-            /** @type {?} */
-            var ls = this.srv.items.map(( /**
-             * @param {?} item
-             * @param {?} index
-             * @return {?}
-             */function (item, index) { return (( /** @type {?} */({
+            var ls = this.srv.items.map(function (item, index) { return ({
                 url: item.url,
                 title: _this.genTit(item.title),
                 closable: _this.allowClose && item.closable && _this.srv.count > 0,
                 index: index,
                 active: false,
                 last: false,
-            }))); }));
-            /** @type {?} */
+            }); });
             var url = this.curUrl;
-            /** @type {?} */
-            var addCurrent = ls.findIndex(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.url === url; })) === -1;
+            var addCurrent = ls.findIndex(function (w) { return w.url === url; }) === -1;
             if (notify && notify.active === 'close' && notify.url === url) {
                 addCurrent = false;
-                /** @type {?} */
                 var toPos = 0;
-                /** @type {?} */
-                var curItem = ( /** @type {?} */(this.list.find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.url === url; }))));
+                var curItem = this.list.find(function (w) { return w.url === url; });
                 if (curItem.index === ls.length) {
                     // When closed is last
                     toPos = ls.length - 1;
@@ -1931,11 +1230,7 @@
             if (addCurrent) {
                 ls.push(this.genCurItem());
             }
-            ls.forEach(( /**
-             * @param {?} item
-             * @param {?} index
-             * @return {?}
-             */function (item, index) { return (item.index = index); }));
+            ls.forEach(function (item, index) { return (item.index = index); });
             if (ls.length === 1) {
                 ls[0].closable = false;
             }
@@ -1943,41 +1238,19 @@
             this.cdr.detectChanges();
             this.updatePos$.next();
         };
-        /**
-         * @private
-         * @param {?} res
-         * @return {?}
-         */
         ReuseTabComponent.prototype.updateTitle = function (res) {
-            /** @type {?} */
-            var item = this.list.find(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.url === ( /** @type {?} */(res)).url; }));
+            var item = this.list.find(function (w) { return w.url === res.url; });
             if (!item)
                 return;
-            item.title = this.genTit(( /** @type {?} */(( /** @type {?} */(res)).title)));
+            item.title = this.genTit(res.title);
             this.cdr.detectChanges();
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         ReuseTabComponent.prototype.refresh = function (item) {
             this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index, 'refresh');
         };
         // #region UI
-        /**
-         * @param {?} res
-         * @return {?}
-         */
         ReuseTabComponent.prototype.contextMenuChange = function (res) {
             var _this = this;
-            /** @type {?} */
             var fn = null;
             switch (res.type) {
                 case 'refresh':
@@ -1987,55 +1260,33 @@
                     this._close(null, res.item.index, res.includeNonCloseable);
                     break;
                 case 'closeRight':
-                    fn = ( /**
-                     * @return {?}
-                     */function () {
+                    fn = function () {
                         _this.srv.closeRight(res.item.url, res.includeNonCloseable);
                         _this.close.emit(null);
-                    });
+                    };
                     break;
                 case 'closeOther':
-                    fn = ( /**
-                     * @return {?}
-                     */function () {
+                    fn = function () {
                         _this.srv.clear(res.includeNonCloseable);
                         _this.close.emit(null);
-                    });
+                    };
                     break;
             }
             if (!fn) {
                 return;
             }
-            if (!res.item.active && res.item.index <= ( /** @type {?} */(this.list.find(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.active; })))).index) {
+            if (!res.item.active && res.item.index <= this.list.find(function (w) { return w.active; }).index) {
                 this._to(res.item.index, fn);
             }
             else {
                 fn();
             }
         };
-        /**
-         * @param {?} index
-         * @param {?=} cb
-         * @return {?}
-         */
         ReuseTabComponent.prototype._to = function (index, cb) {
             var _this = this;
             index = Math.max(0, Math.min(index, this.list.length - 1));
-            /** @type {?} */
             var item = this.list[index];
-            this.router.navigateByUrl(item.url).then(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) {
+            this.router.navigateByUrl(item.url).then(function (res) {
                 if (!res)
                     return;
                 _this.item = item;
@@ -2043,87 +1294,44 @@
                 if (cb) {
                     cb();
                 }
-            }));
+            });
         };
-        /**
-         * @param {?} e
-         * @param {?} idx
-         * @param {?} includeNonCloseable
-         * @return {?}
-         */
         ReuseTabComponent.prototype._close = function (e, idx, includeNonCloseable) {
             if (e != null) {
                 e.preventDefault();
                 e.stopPropagation();
             }
-            /** @type {?} */
             var item = this.list[idx];
             this.srv.close(item.url, includeNonCloseable);
             this.close.emit(item);
             this.cdr.detectChanges();
             return false;
         };
-        /**
-         * @param {?} instance
-         * @return {?}
-         */
         ReuseTabComponent.prototype.activate = function (instance) {
             this.srv.componentRef = { instance: instance };
         };
         // #endregion
-        /**
-         * @return {?}
-         */
         ReuseTabComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.updatePos$.pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(50)).subscribe(( /**
-             * @return {?}
-             */function () {
-                /** @type {?} */
+            this.updatePos$.pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(50)).subscribe(function () {
                 var url = _this.srv.getUrl(_this.route.snapshot);
-                /** @type {?} */
-                var ls = _this.list.filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.url === url || !_this.srv.isExclude(w.url); }));
+                var ls = _this.list.filter(function (w) { return w.url === url || !_this.srv.isExclude(w.url); });
                 if (ls.length === 0) {
                     return;
                 }
-                /** @type {?} */
                 var last = ls[ls.length - 1];
-                /** @type {?} */
-                var item = ls.find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.url === url; }));
+                var item = ls.find(function (w) { return w.url === url; });
                 last.last = true;
-                /** @type {?} */
                 var pos = item == null ? last.index : item.index;
-                ls.forEach(( /**
-                 * @param {?} i
-                 * @param {?} idx
-                 * @return {?}
-                 */function (i, idx) { return (i.active = pos === idx); }));
+                ls.forEach(function (i, idx) { return (i.active = pos === idx); });
                 _this.pos = pos;
                 // TODO: 目前无法知道为什么 `pos` 无法通过 `nzSelectedIndex` 生效，因此强制使用组件实例的方式来修改，这种方式是安全的
                 // https://github.com/ng-alain/ng-alain/issues/1736
                 _this.tabset.nzSelectedIndex = pos;
                 _this.list = ls;
                 _this.cdr.detectChanges();
-            }));
-            this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) {
+            });
+            this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) {
                 var _a;
                 switch (res === null || res === void 0 ? void 0 : res.active) {
                     case 'title':
@@ -2137,20 +1345,12 @@
                         break;
                 }
                 _this.genList(res);
-            }));
+            });
             this.i18nSrv.change
-                .pipe(operators.filter(( /**
-         * @return {?}
-         */function () { return _this.srv.inited; })), operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.genList({ active: 'title' }); }));
+                .pipe(operators.filter(function () { return _this.srv.inited; }), operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
+                .subscribe(function () { return _this.genList({ active: 'title' }); });
             this.srv.init();
         };
-        /**
-         * @param {?} changes
-         * @return {?}
-         */
         ReuseTabComponent.prototype.ngOnChanges = function (changes) {
             if (changes.max)
                 this.srv.max = this.max;
@@ -2167,9 +1367,6 @@
             this.srv.debug = this.debug;
             this.cdr.detectChanges();
         };
-        /**
-         * @return {?}
-         */
         ReuseTabComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
@@ -2191,7 +1388,7 @@
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
                     encapsulation: i0.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ReuseTabComponent.ctorParameters = function () { return [
@@ -2242,169 +1439,30 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], ReuseTabComponent.prototype, "keepingScroll", void 0);
-    if (false) {
-        /** @type {?} */
-        ReuseTabComponent.ngAcceptInputType_debug;
-        /** @type {?} */
-        ReuseTabComponent.ngAcceptInputType_max;
-        /** @type {?} */
-        ReuseTabComponent.ngAcceptInputType_tabMaxWidth;
-        /** @type {?} */
-        ReuseTabComponent.ngAcceptInputType_allowClose;
-        /** @type {?} */
-        ReuseTabComponent.ngAcceptInputType_keepingScroll;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.tabset;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.unsubscribe$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.updatePos$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype._keepingScrollContainer;
-        /** @type {?} */
-        ReuseTabComponent.prototype.list;
-        /** @type {?} */
-        ReuseTabComponent.prototype.item;
-        /** @type {?} */
-        ReuseTabComponent.prototype.pos;
-        /** @type {?} */
-        ReuseTabComponent.prototype.mode;
-        /** @type {?} */
-        ReuseTabComponent.prototype.i18n;
-        /** @type {?} */
-        ReuseTabComponent.prototype.debug;
-        /** @type {?} */
-        ReuseTabComponent.prototype.max;
-        /** @type {?} */
-        ReuseTabComponent.prototype.tabMaxWidth;
-        /** @type {?} */
-        ReuseTabComponent.prototype.excludes;
-        /** @type {?} */
-        ReuseTabComponent.prototype.allowClose;
-        /** @type {?} */
-        ReuseTabComponent.prototype.keepingScroll;
-        /** @type {?} */
-        ReuseTabComponent.prototype.customContextMenu;
-        /** @type {?} */
-        ReuseTabComponent.prototype.tabBarExtraContent;
-        /** @type {?} */
-        ReuseTabComponent.prototype.tabBarGutter;
-        /** @type {?} */
-        ReuseTabComponent.prototype.tabBarStyle;
-        /** @type {?} */
-        ReuseTabComponent.prototype.tabType;
-        /** @type {?} */
-        ReuseTabComponent.prototype.routeParamMatchMode;
-        /** @type {?} */
-        ReuseTabComponent.prototype.change;
-        /** @type {?} */
-        ReuseTabComponent.prototype.close;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.route;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.i18nSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabComponent.prototype.doc;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuse-tab.strategy.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ReuseTabStrategy = /** @class */ (function () {
-        /**
-         * @param {?} srv
-         */
         function ReuseTabStrategy(srv) {
             this.srv = srv;
         }
-        /**
-         * @param {?} route
-         * @return {?}
-         */
         ReuseTabStrategy.prototype.shouldDetach = function (route) {
             return this.srv.shouldDetach(route);
         };
-        /**
-         * @param {?} route
-         * @param {?} handle
-         * @return {?}
-         */
         ReuseTabStrategy.prototype.store = function (route, handle) {
             this.srv.store(route, handle);
         };
-        /**
-         * @param {?} route
-         * @return {?}
-         */
         ReuseTabStrategy.prototype.shouldAttach = function (route) {
             return this.srv.shouldAttach(route);
         };
-        /**
-         * @param {?} route
-         * @return {?}
-         */
         ReuseTabStrategy.prototype.retrieve = function (route) {
             return this.srv.retrieve(route);
         };
-        /**
-         * @param {?} future
-         * @param {?} curr
-         * @return {?}
-         */
         ReuseTabStrategy.prototype.shouldReuseRoute = function (future, curr) {
             return this.srv.shouldReuseRoute(future, curr);
         };
         return ReuseTabStrategy;
     }());
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ReuseTabStrategy.prototype.srv;
-    }
 
-    /** @type {?} */
     var COMPONENTS = [ReuseTabComponent];
-    /** @type {?} */
     var NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
     var ReuseTabModule = /** @class */ (function () {
         function ReuseTabModule() {
@@ -2420,15 +1478,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: reuseTab.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ReuseTabComponent = ReuseTabComponent;
@@ -2436,7 +1486,6 @@
     exports.ReuseTabContextDirective = ReuseTabContextDirective;
     exports.ReuseTabContextMenuComponent = ReuseTabContextMenuComponent;
     exports.ReuseTabContextService = ReuseTabContextService;
-    exports.ReuseTabMatchMode = ReuseTabMatchMode;
     exports.ReuseTabModule = ReuseTabModule;
     exports.ReuseTabService = ReuseTabService;
     exports.ReuseTabStrategy = ReuseTabStrategy;

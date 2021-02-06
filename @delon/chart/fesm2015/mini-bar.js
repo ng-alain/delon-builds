@@ -4,32 +4,6 @@ import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-bar.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function G2MiniBarData() { }
-if (false) {
-    /** @type {?} */
-    G2MiniBarData.prototype.x;
-    /** @type {?} */
-    G2MiniBarData.prototype.y;
-    /* Skipping unhandled member: [key: string]: any;*/
-}
-/**
- * @record
- */
-function G2MiniBarClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2MiniBarClickItem.prototype.item;
-    /** @type {?} */
-    G2MiniBarClickItem.prototype.ev;
-}
 class G2MiniBarComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -44,13 +18,9 @@ class G2MiniBarComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
-        /** @type {?} */
-        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -67,7 +37,6 @@ class G2MiniBarComponent extends G2BaseComponent {
         });
         chart.legend(false);
         chart.axis(false);
-        /** @type {?} */
         const tooltipOption = {
             showTitle: false,
             showMarkers: true,
@@ -81,7 +50,7 @@ class G2MiniBarComponent extends G2BaseComponent {
         };
         if (tooltipType === 'mini') {
             tooltipOption.position = 'top';
-            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
             tooltipOption.itemTpl = `<li>{value}</li>`;
             tooltipOption.offset = 0;
         }
@@ -89,28 +58,13 @@ class G2MiniBarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('x*y')
-            .tooltip('x*y', (/**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */
-        (x, y) => ({ name: x, value: y + yTooltipSuffix })));
-        chart.on(`interval:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
-        }));
+            .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }));
+        chart.on(`interval:click`, (ev) => {
+            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
+        });
         chart.render();
         this.attachChart();
     }
-    /**
-     * @return {?}
-     */
     attachChart() {
         const { _chart, height, padding, data, color, borderWidth } = this;
         if (!_chart || !data || data.length <= 0)
@@ -133,7 +87,7 @@ G2MiniBarComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 G2MiniBarComponent.propDecorators = {
     color: [{ type: Input }],
@@ -153,35 +107,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2MiniBarComponent.prototype, "borderWidth", void 0);
-if (false) {
-    /** @type {?} */
-    G2MiniBarComponent.ngAcceptInputType_height;
-    /** @type {?} */
-    G2MiniBarComponent.ngAcceptInputType_borderWidth;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.color;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.height;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.borderWidth;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.padding;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.data;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.yTooltipSuffix;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.tooltipType;
-    /** @type {?} */
-    G2MiniBarComponent.prototype.clickItem;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-bar.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2MiniBarComponent];
 class G2MiniBarModule {
 }
@@ -194,15 +120,7 @@ G2MiniBarModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-bar.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2MiniBarComponent, G2MiniBarModule };

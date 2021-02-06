@@ -16,36 +16,8 @@ import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: page-header.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function PageHeaderPath() { }
-if (false) {
-    /** @type {?|undefined} */
-    PageHeaderPath.prototype.title;
-    /** @type {?|undefined} */
-    PageHeaderPath.prototype.link;
-}
 class PageHeaderComponent {
     // #endregion
-    /**
-     * @param {?} settings
-     * @param {?} renderer
-     * @param {?} router
-     * @param {?} menuSrv
-     * @param {?} i18nSrv
-     * @param {?} titleSrv
-     * @param {?} reuseSrv
-     * @param {?} cdr
-     * @param {?} configSrv
-     * @param {?} platform
-     * @param {?} directionality
-     */
     constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
         this.renderer = renderer;
         this.router = router;
@@ -75,40 +47,15 @@ class PageHeaderComponent {
             fixedOffsetTop: 64,
         });
         settings.notify
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => this.affix && w.type === 'layout' && w.name === 'collapsed')))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.affix.updatePosition((/** @type {?} */ ({})))));
-        merge(menuSrv.change.pipe(filter((/**
-         * @return {?}
-         */
-        () => this.inited))), router.events.pipe(filter((/**
-         * @param {?} ev
-         * @return {?}
-         */
-        ev => ev instanceof NavigationEnd))), i18nSrv.change)
+            .pipe(takeUntil(this.destroy$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
+            .subscribe(() => this.affix.updatePosition({}));
+        merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter(ev => ev instanceof NavigationEnd)), i18nSrv.change)
             .pipe(takeUntil(this.destroy$))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.refresh()));
+            .subscribe(() => this.refresh());
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get menus() {
         return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set title(value) {
         if (value instanceof TemplateRef) {
             this._title = null;
@@ -120,37 +67,24 @@ class PageHeaderComponent {
             this._titleVal = this._title;
         }
     }
-    /**
-     * @return {?}
-     */
     refresh() {
         this.setTitle().genBreadcrumb();
         this.cdr.detectChanges();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     genBreadcrumb() {
         if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
             this.paths = [];
             return;
         }
-        /** @type {?} */
         const paths = [];
-        this.menus.forEach((/**
-         * @param {?} item
-         * @return {?}
-         */
-        item => {
+        this.menus.forEach(item => {
             if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                 return;
-            /** @type {?} */
             let title = item.text;
             if (item.i18n && this.i18nSrv)
                 title = this.i18nSrv.fanyi(item.i18n);
-            paths.push({ title, link: (/** @type {?} */ ((item.link && [item.link]))) });
-        }));
+            paths.push({ title, link: (item.link && [item.link]) });
+        });
         // add home
         if (this.home) {
             paths.splice(0, 0, {
@@ -160,36 +94,25 @@ class PageHeaderComponent {
         }
         this.paths = paths;
     }
-    /**
-     * @private
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
-     */
     setTitle() {
-        if ((/** @type {?} */ (this))._title == null && (/** @type {?} */ (this))._titleTpl == null && (/** @type {?} */ (this)).autoTitle && (/** @type {?} */ (this)).menus.length > 0) {
-            /** @type {?} */
-            const item = (/** @type {?} */ (this)).menus[(/** @type {?} */ (this)).menus.length - 1];
-            /** @type {?} */
+        if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus.length > 0) {
+            const item = this.menus[this.menus.length - 1];
             let title = item.text;
-            if (item.i18n && (/** @type {?} */ (this)).i18nSrv) {
-                title = (/** @type {?} */ (this)).i18nSrv.fanyi(item.i18n);
+            if (item.i18n && this.i18nSrv) {
+                title = this.i18nSrv.fanyi(item.i18n);
             }
-            (/** @type {?} */ (this))._titleVal = (/** @type {?} */ (title));
+            this._titleVal = title;
         }
-        if ((/** @type {?} */ (this))._titleVal && (/** @type {?} */ (this)).syncTitle) {
-            if ((/** @type {?} */ (this)).titleSrv) {
-                (/** @type {?} */ (this)).titleSrv.setTitle((/** @type {?} */ (this))._titleVal);
+        if (this._titleVal && this.syncTitle) {
+            if (this.titleSrv) {
+                this.titleSrv.setTitle(this._titleVal);
             }
-            if (!(/** @type {?} */ (this)).inited && (/** @type {?} */ (this)).reuseSrv) {
-                (/** @type {?} */ (this)).reuseSrv.title = (/** @type {?} */ (this))._titleVal;
+            if (!this.inited && this.reuseSrv) {
+                this.reuseSrv.title = this._titleVal;
             }
         }
-        return (/** @type {?} */ (this));
+        return this;
     }
-    /**
-     * @return {?}
-     */
     checkContent() {
         if (isEmpty(this.conTpl.nativeElement)) {
             this.renderer.setAttribute(this.conTpl.nativeElement, 'hidden', '');
@@ -198,40 +121,24 @@ class PageHeaderComponent {
             this.renderer.removeAttribute(this.conTpl.nativeElement, 'hidden');
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
-        }));
+        });
         this.refresh();
         this.inited = true;
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         this.checkContent();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         if (this.inited) {
             this.refresh();
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
@@ -245,7 +152,7 @@ PageHeaderComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 PageHeaderComponent.ctorParameters = () => [
@@ -315,134 +222,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
-if (false) {
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_loading;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_wide;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_autoBreadcrumb;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_autoTitle;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_syncTitle;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_fixed;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
-    /** @type {?} */
-    PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.destroy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.conTpl;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.affix;
-    /** @type {?} */
-    PageHeaderComponent.prototype.inited;
-    /** @type {?} */
-    PageHeaderComponent.prototype.isBrowser;
-    /** @type {?} */
-    PageHeaderComponent.prototype.dir;
-    /** @type {?} */
-    PageHeaderComponent.prototype._titleVal;
-    /** @type {?} */
-    PageHeaderComponent.prototype.paths;
-    /** @type {?} */
-    PageHeaderComponent.prototype._title;
-    /** @type {?} */
-    PageHeaderComponent.prototype._titleTpl;
-    /** @type {?} */
-    PageHeaderComponent.prototype.loading;
-    /** @type {?} */
-    PageHeaderComponent.prototype.wide;
-    /** @type {?} */
-    PageHeaderComponent.prototype.home;
-    /** @type {?} */
-    PageHeaderComponent.prototype.homeLink;
-    /** @type {?} */
-    PageHeaderComponent.prototype.homeI18n;
-    /** @type {?} */
-    PageHeaderComponent.prototype.autoBreadcrumb;
-    /** @type {?} */
-    PageHeaderComponent.prototype.autoTitle;
-    /** @type {?} */
-    PageHeaderComponent.prototype.syncTitle;
-    /** @type {?} */
-    PageHeaderComponent.prototype.fixed;
-    /** @type {?} */
-    PageHeaderComponent.prototype.fixedOffsetTop;
-    /** @type {?} */
-    PageHeaderComponent.prototype.breadcrumb;
-    /** @type {?} */
-    PageHeaderComponent.prototype.recursiveBreadcrumb;
-    /** @type {?} */
-    PageHeaderComponent.prototype.logo;
-    /** @type {?} */
-    PageHeaderComponent.prototype.action;
-    /** @type {?} */
-    PageHeaderComponent.prototype.content;
-    /** @type {?} */
-    PageHeaderComponent.prototype.extra;
-    /** @type {?} */
-    PageHeaderComponent.prototype.tab;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.renderer;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.router;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.menuSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.i18nSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.titleSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.reuseSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    PageHeaderComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: page-header.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [PageHeaderComponent];
 class PageHeaderModule {
 }
@@ -455,15 +235,7 @@ PageHeaderModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: pageHeader.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { PageHeaderComponent, PageHeaderModule };

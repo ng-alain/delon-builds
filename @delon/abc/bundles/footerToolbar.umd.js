@@ -318,19 +318,8 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: footer-toolbar.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var CLSBODY = 'footer-toolbar__body';
     var FooterToolbarComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} renderer
-         * @param {?} doc
-         */
         function FooterToolbarComponent(el, renderer, doc) {
             this.el = el;
             this.renderer = renderer;
@@ -338,26 +327,16 @@
             this.errorCollect = false;
         }
         Object.defineProperty(FooterToolbarComponent.prototype, "bodyCls", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
-                return (( /** @type {?} */(this.doc.querySelector('body')))).classList;
+                return this.doc.querySelector('body').classList;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         FooterToolbarComponent.prototype.ngOnInit = function () {
             this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
             this.bodyCls.add(CLSBODY);
         };
-        /**
-         * @return {?}
-         */
         FooterToolbarComponent.prototype.ngOnDestroy = function () {
             this.bodyCls.remove(CLSBODY);
         };
@@ -371,7 +350,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     FooterToolbarComponent.ctorParameters = function () { return [
@@ -387,36 +366,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
-    if (false) {
-        /** @type {?} */
-        FooterToolbarComponent.ngAcceptInputType_errorCollect;
-        /** @type {?} */
-        FooterToolbarComponent.prototype.errorCollect;
-        /** @type {?} */
-        FooterToolbarComponent.prototype.extra;
-        /**
-         * @type {?}
-         * @private
-         */
-        FooterToolbarComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        FooterToolbarComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        FooterToolbarComponent.prototype.doc;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: footer-toolbar.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [FooterToolbarComponent];
     var FooterToolbarModule = /** @class */ (function () {
         function FooterToolbarModule() {
@@ -432,15 +382,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: footerToolbar.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.FooterToolbarComponent = FooterToolbarComponent;

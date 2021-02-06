@@ -5,20 +5,11 @@ import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: number-info.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class NumberInfoComponent {
     constructor() {
-        /**
-         * 状态样式
-         */
+        /** 状态样式 */
         this.theme = 'light';
-        /**
-         * 设置数字和描述直接的间距（像素）
-         */
+        /** 设置数字和描述直接的间距（像素） */
         this.gap = 8;
     }
 }
@@ -35,7 +26,7 @@ NumberInfoComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 NumberInfoComponent.propDecorators = {
     title: [{ type: Input }],
@@ -51,57 +42,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], NumberInfoComponent.prototype, "gap", void 0);
-if (false) {
-    /** @type {?} */
-    NumberInfoComponent.ngAcceptInputType_gap;
-    /**
-     * 标题
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.title;
-    /**
-     * 子标题
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.subTitle;
-    /**
-     * 总量
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.total;
-    /**
-     * 总量后缀
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.subTotal;
-    /**
-     * 子总量
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.suffix;
-    /**
-     * 增加状态
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.status;
-    /**
-     * 状态样式
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.theme;
-    /**
-     * 设置数字和描述直接的间距（像素）
-     * @type {?}
-     */
-    NumberInfoComponent.prototype.gap;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: number-info.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [NumberInfoComponent];
 class NumberInfoModule {
 }
@@ -114,15 +55,7 @@ NumberInfoModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: number-info.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { NumberInfoComponent, NumberInfoModule };

@@ -5,17 +5,7 @@ import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: quick-menu.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class QuickMenuComponent {
-    /**
-     * @param {?} cdr
-     * @param {?} el
-     * @param {?} render
-     */
     constructor(cdr, el, render) {
         this.cdr = cdr;
         this.el = el;
@@ -29,24 +19,16 @@ class QuickMenuComponent {
         this.show = false;
         this.initFlag = false;
     }
-    /**
-     * @return {?}
-     */
     _click() {
         this.show = !this.show;
         this.expandChange.emit(this.show);
         this.setStyle();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     setStyle() {
         this.ctrlStyle = {
             'background-color': this.bgColor,
             'border-color': this.borderColor,
         };
-        /** @type {?} */
         const res = [`top:${this.top}px`, `width:${this.width}px`, `margin-right:-${this.show ? 0 : this.width}px`];
         if (this.bgColor) {
             res.push(`background-color:${this.bgColor}`);
@@ -57,16 +39,10 @@ class QuickMenuComponent {
         this.render.setAttribute(this.el.nativeElement, 'style', res.join(';'));
         this.cdr.detectChanges();
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.initFlag = true;
         this.setStyle();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         this.show = this.expand;
         if (this.initFlag) {
@@ -86,7 +62,7 @@ QuickMenuComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 QuickMenuComponent.ctorParameters = () => [
@@ -115,62 +91,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], QuickMenuComponent.prototype, "expand", void 0);
-if (false) {
-    /** @type {?} */
-    QuickMenuComponent.ngAcceptInputType_top;
-    /** @type {?} */
-    QuickMenuComponent.ngAcceptInputType_width;
-    /** @type {?} */
-    QuickMenuComponent.ngAcceptInputType_expand;
-    /** @type {?} */
-    QuickMenuComponent.prototype.ctrlStyle;
-    /** @type {?} */
-    QuickMenuComponent.prototype.icon;
-    /** @type {?} */
-    QuickMenuComponent.prototype.top;
-    /** @type {?} */
-    QuickMenuComponent.prototype.width;
-    /** @type {?} */
-    QuickMenuComponent.prototype.bgColor;
-    /** @type {?} */
-    QuickMenuComponent.prototype.borderColor;
-    /** @type {?} */
-    QuickMenuComponent.prototype.expand;
-    /** @type {?} */
-    QuickMenuComponent.prototype.expandChange;
-    /**
-     * @type {?}
-     * @private
-     */
-    QuickMenuComponent.prototype.show;
-    /**
-     * @type {?}
-     * @private
-     */
-    QuickMenuComponent.prototype.initFlag;
-    /**
-     * @type {?}
-     * @private
-     */
-    QuickMenuComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    QuickMenuComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    QuickMenuComponent.prototype.render;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: quick-menu.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [QuickMenuComponent];
 class QuickMenuModule {
 }
@@ -183,15 +104,7 @@ QuickMenuModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: quickMenu.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { QuickMenuComponent, QuickMenuModule };

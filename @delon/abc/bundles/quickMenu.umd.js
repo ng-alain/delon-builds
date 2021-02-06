@@ -318,17 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: quick-menu.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var QuickMenuComponent = /** @class */ (function () {
-        /**
-         * @param {?} cdr
-         * @param {?} el
-         * @param {?} render
-         */
         function QuickMenuComponent(cdr, el, render) {
             this.cdr = cdr;
             this.el = el;
@@ -342,24 +332,16 @@
             this.show = false;
             this.initFlag = false;
         }
-        /**
-         * @return {?}
-         */
         QuickMenuComponent.prototype._click = function () {
             this.show = !this.show;
             this.expandChange.emit(this.show);
             this.setStyle();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         QuickMenuComponent.prototype.setStyle = function () {
             this.ctrlStyle = {
                 'background-color': this.bgColor,
                 'border-color': this.borderColor,
             };
-            /** @type {?} */
             var res = ["top:" + this.top + "px", "width:" + this.width + "px", "margin-right:-" + (this.show ? 0 : this.width) + "px"];
             if (this.bgColor) {
                 res.push("background-color:" + this.bgColor);
@@ -370,16 +352,10 @@
             this.render.setAttribute(this.el.nativeElement, 'style', res.join(';'));
             this.cdr.detectChanges();
         };
-        /**
-         * @return {?}
-         */
         QuickMenuComponent.prototype.ngOnInit = function () {
             this.initFlag = true;
             this.setStyle();
         };
-        /**
-         * @return {?}
-         */
         QuickMenuComponent.prototype.ngOnChanges = function () {
             this.show = this.expand;
             if (this.initFlag) {
@@ -400,7 +376,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     QuickMenuComponent.ctorParameters = function () { return [
@@ -429,62 +405,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], QuickMenuComponent.prototype, "expand", void 0);
-    if (false) {
-        /** @type {?} */
-        QuickMenuComponent.ngAcceptInputType_top;
-        /** @type {?} */
-        QuickMenuComponent.ngAcceptInputType_width;
-        /** @type {?} */
-        QuickMenuComponent.ngAcceptInputType_expand;
-        /** @type {?} */
-        QuickMenuComponent.prototype.ctrlStyle;
-        /** @type {?} */
-        QuickMenuComponent.prototype.icon;
-        /** @type {?} */
-        QuickMenuComponent.prototype.top;
-        /** @type {?} */
-        QuickMenuComponent.prototype.width;
-        /** @type {?} */
-        QuickMenuComponent.prototype.bgColor;
-        /** @type {?} */
-        QuickMenuComponent.prototype.borderColor;
-        /** @type {?} */
-        QuickMenuComponent.prototype.expand;
-        /** @type {?} */
-        QuickMenuComponent.prototype.expandChange;
-        /**
-         * @type {?}
-         * @private
-         */
-        QuickMenuComponent.prototype.show;
-        /**
-         * @type {?}
-         * @private
-         */
-        QuickMenuComponent.prototype.initFlag;
-        /**
-         * @type {?}
-         * @private
-         */
-        QuickMenuComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        QuickMenuComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        QuickMenuComponent.prototype.render;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: quick-menu.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [QuickMenuComponent];
     var QuickMenuModule = /** @class */ (function () {
         function QuickMenuModule() {
@@ -500,15 +421,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: quickMenu.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.QuickMenuComponent = QuickMenuComponent;

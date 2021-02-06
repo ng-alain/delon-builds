@@ -8,31 +8,8 @@ import { takeUntil } from 'rxjs/operators';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: theme-btn.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const ThemeBtnStorageKey = `site-theme`;
-/**
- * @record
- */
-function ThemeBtnType() { }
-if (false) {
-    /** @type {?} */
-    ThemeBtnType.prototype.key;
-    /** @type {?} */
-    ThemeBtnType.prototype.text;
-}
 class ThemeBtnComponent {
-    /**
-     * @param {?} renderer
-     * @param {?} configSrv
-     * @param {?} platform
-     * @param {?} doc
-     * @param {?} directionality
-     */
     constructor(renderer, configSrv, platform, doc, directionality) {
         this.renderer = renderer;
         this.configSrv = configSrv;
@@ -50,25 +27,14 @@ class ThemeBtnComponent {
         this.destroy$ = new Subject();
         this.dir = 'ltr';
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
-        }));
+        });
         this.initTheme();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     initTheme() {
         if (!this.platform.isBrowser) {
             return;
@@ -77,31 +43,21 @@ class ThemeBtnComponent {
         this.updateChartTheme();
         this.onThemeChange(this.theme);
     }
-    /**
-     * @private
-     * @return {?}
-     */
     updateChartTheme() {
         this.configSrv.set('chart', { theme: this.theme === 'dark' ? 'dark' : '' });
     }
-    /**
-     * @param {?} theme
-     * @return {?}
-     */
     onThemeChange(theme) {
         if (!this.platform.isBrowser) {
             return;
         }
         this.theme = theme;
         this.renderer.setAttribute(this.doc.body, 'data-theme', theme);
-        /** @type {?} */
         const dom = this.doc.getElementById(ThemeBtnStorageKey);
         if (dom) {
             dom.remove();
         }
         localStorage.removeItem(ThemeBtnStorageKey);
         if (theme !== 'default') {
-            /** @type {?} */
             const el = (this.el = this.doc.createElement('link'));
             el.type = 'text/css';
             el.rel = 'stylesheet';
@@ -112,9 +68,6 @@ class ThemeBtnComponent {
         }
         this.updateChartTheme();
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         if (this.el) {
             this.doc.body.removeChild(this.el);
@@ -132,7 +85,7 @@ ThemeBtnComponent.decorators = [
                     '[class.theme-btn-rtl]': `dir === 'rtl'`,
                 },
                 changeDetection: ChangeDetectionStrategy.OnPush
-            }] }
+            },] }
 ];
 /** @nocollapse */
 ThemeBtnComponent.ctorParameters = () => [
@@ -146,63 +99,7 @@ ThemeBtnComponent.propDecorators = {
     types: [{ type: Input }],
     devTips: [{ type: Input }]
 };
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.theme;
-    /** @type {?} */
-    ThemeBtnComponent.prototype.isDev;
-    /** @type {?} */
-    ThemeBtnComponent.prototype.types;
-    /** @type {?} */
-    ThemeBtnComponent.prototype.devTips;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.destroy$;
-    /** @type {?} */
-    ThemeBtnComponent.prototype.dir;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.renderer;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.configSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.platform;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    ThemeBtnComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: theme-btn.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [ThemeBtnComponent];
 class ThemeBtnModule {
 }
@@ -215,15 +112,7 @@ ThemeBtnModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: layout-theme-btn.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { ThemeBtnComponent, ThemeBtnModule, ThemeBtnStorageKey };

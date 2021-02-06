@@ -4,32 +4,6 @@ import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-area.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function G2MiniAreaData() { }
-if (false) {
-    /** @type {?} */
-    G2MiniAreaData.prototype.x;
-    /** @type {?} */
-    G2MiniAreaData.prototype.y;
-    /* Skipping unhandled member: [key: string]: any;*/
-}
-/**
- * @record
- */
-function G2MiniAreaClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.item;
-    /** @type {?} */
-    G2MiniAreaClickItem.prototype.ev;
-}
 class G2MiniAreaComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -48,13 +22,9 @@ class G2MiniAreaComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     install() {
         const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
-        /** @type {?} */
-        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
@@ -77,7 +47,6 @@ class G2MiniAreaComponent extends G2BaseComponent {
             chart.axis('y', false);
         }
         chart.legend(false);
-        /** @type {?} */
         const tooltipOption = {
             showTitle: false,
             showMarkers: true,
@@ -90,7 +59,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
         };
         if (tooltipType === 'mini') {
             tooltipOption.position = 'top';
-            (/** @type {?} */ (tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+            tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
             tooltipOption.itemTpl = `<li>{value}</li>`;
             tooltipOption.offset = 0;
         }
@@ -98,46 +67,25 @@ class G2MiniAreaComponent extends G2BaseComponent {
         chart
             .area()
             .position('x*y')
-            .tooltip('x*y', (/**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */
-        (x, y) => ({ name: x, value: y + yTooltipSuffix })))
+            .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }))
             .shape('smooth');
         if (line) {
             chart.line().position('x*y').shape('smooth').tooltip(false);
         }
-        chart.on(`plot:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            /** @type {?} */
+        chart.on(`plot:click`, (ev) => {
             const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => this.clickItem.emit({ item: records[0]._origin, ev })));
-        }));
+            this.ngZone.run(() => this.clickItem.emit({ item: records[0]._origin, ev }));
+        });
         chart.render();
         this.attachChart();
     }
-    /**
-     * @return {?}
-     */
     attachChart() {
         const { _chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
         if (!_chart || !data || data.length <= 0) {
             return;
         }
-        /** @type {?} */
         const geoms = _chart.geometries;
-        geoms.forEach((/**
-         * @param {?} g
-         * @return {?}
-         */
-        g => g.color(color)));
+        geoms.forEach(g => g.color(color));
         if (line) {
             geoms[1].color(borderColor).size(borderWidth);
         }
@@ -160,7 +108,7 @@ G2MiniAreaComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 G2MiniAreaComponent.propDecorators = {
     color: [{ type: Input }],
@@ -198,53 +146,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2MiniAreaComponent.prototype, "animate", void 0);
-if (false) {
-    /** @type {?} */
-    G2MiniAreaComponent.ngAcceptInputType_borderWidth;
-    /** @type {?} */
-    G2MiniAreaComponent.ngAcceptInputType_height;
-    /** @type {?} */
-    G2MiniAreaComponent.ngAcceptInputType_fit;
-    /** @type {?} */
-    G2MiniAreaComponent.ngAcceptInputType_line;
-    /** @type {?} */
-    G2MiniAreaComponent.ngAcceptInputType_animate;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.color;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.borderColor;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.borderWidth;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.height;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.fit;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.line;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.animate;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.xAxis;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.yAxis;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.padding;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.data;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.yTooltipSuffix;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.tooltipType;
-    /** @type {?} */
-    G2MiniAreaComponent.prototype.clickItem;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-area.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2MiniAreaComponent];
 class G2MiniAreaModule {
 }
@@ -257,15 +159,7 @@ G2MiniAreaModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: mini-area.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2MiniAreaComponent, G2MiniAreaModule };

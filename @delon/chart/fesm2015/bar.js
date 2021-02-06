@@ -8,36 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: bar.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const TITLE_HEIGHT = 41;
-/**
- * @record
- */
-function G2BarData() { }
-if (false) {
-    /** @type {?} */
-    G2BarData.prototype.x;
-    /** @type {?} */
-    G2BarData.prototype.y;
-    /** @type {?|undefined} */
-    G2BarData.prototype.color;
-    /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-}
-/**
- * @record
- */
-function G2BarClickItem() { }
-if (false) {
-    /** @type {?} */
-    G2BarClickItem.prototype.item;
-    /** @type {?} */
-    G2BarClickItem.prototype.ev;
-}
 class G2BarComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -50,22 +21,13 @@ class G2BarComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
-    /**
-     * @private
-     * @return {?}
-     */
     getHeight() {
         return this.title ? this.height - TITLE_HEIGHT : this.height;
     }
-    /**
-     * @return {?}
-     */
     install() {
         const { node, padding, interaction, theme } = this;
-        /** @type {?} */
-        const container = (/** @type {?} */ (node.nativeElement));
-        /** @type {?} */
-        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
+        const container = node.nativeElement;
+        const chart = (this._chart = new window.G2.Chart({
             container,
             autoFit: true,
             height: this.getHeight(),
@@ -96,47 +58,21 @@ class G2BarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('x*y')
-            .color('x*y', (/**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */
-        (x, y) => {
-            /** @type {?} */
-            const colorItem = this.data.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w.x === x && w.y === y));
+            .color('x*y', (x, y) => {
+            const colorItem = this.data.find(w => w.x === x && w.y === y);
             return colorItem && colorItem.color ? colorItem.color : this.color;
-        }))
-            .tooltip('x*y', (/**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */
-        (x, y) => ({ name: x, value: y })));
-        chart.on(`interval:click`, (/**
-         * @param {?} ev
-         * @return {?}
-         */
-        (ev) => {
-            this.ngZone.run((/**
-             * @return {?}
-             */
-            () => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); }));
-        }));
+        })
+            .tooltip('x*y', (x, y) => ({ name: x, value: y }));
+        chart.on(`interval:click`, (ev) => {
+            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
+        });
         this.attachChart();
     }
-    /**
-     * @return {?}
-     */
     attachChart() {
         const { _chart, padding, data } = this;
         if (!_chart || !data || data.length <= 0)
             return;
         this.installResizeEvent();
-        /** @type {?} */
         const height = this.getHeight();
         if (_chart.height !== height) {
             _chart.height = height;
@@ -145,37 +81,18 @@ class G2BarComponent extends G2BaseComponent {
         _chart.data(data);
         _chart.render();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     updatelabel() {
         const { node, data, _chart } = this;
-        /** @type {?} */
         const canvasWidth = node.nativeElement.clientWidth;
-        /** @type {?} */
         const minWidth = data.length * 30;
         _chart.axis('x', canvasWidth > minWidth).render();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     installResizeEvent() {
         if (!this.autoLabel || this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), filter((/**
-         * @return {?}
-         */
-        () => !!this._chart)), debounceTime(200))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.ngZone.runOutsideAngular((/**
-         * @return {?}
-         */
-        () => this.updatelabel()))));
+            .pipe(takeUntil(this.destroy$), filter(() => !!this._chart), debounceTime(200))
+            .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
     }
 }
 G2BarComponent.decorators = [
@@ -195,7 +112,7 @@ G2BarComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 G2BarComponent.propDecorators = {
     title: [{ type: Input }],
@@ -215,35 +132,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2BarComponent.prototype, "autoLabel", void 0);
-if (false) {
-    /** @type {?} */
-    G2BarComponent.ngAcceptInputType_height;
-    /** @type {?} */
-    G2BarComponent.ngAcceptInputType_autoLabel;
-    /** @type {?} */
-    G2BarComponent.prototype.title;
-    /** @type {?} */
-    G2BarComponent.prototype.color;
-    /** @type {?} */
-    G2BarComponent.prototype.height;
-    /** @type {?} */
-    G2BarComponent.prototype.padding;
-    /** @type {?} */
-    G2BarComponent.prototype.data;
-    /** @type {?} */
-    G2BarComponent.prototype.autoLabel;
-    /** @type {?} */
-    G2BarComponent.prototype.interaction;
-    /** @type {?} */
-    G2BarComponent.prototype.clickItem;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: bar.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2BarComponent];
 class G2BarModule {
 }
@@ -256,15 +145,7 @@ G2BarModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: bar.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2BarComponent, G2BarModule };

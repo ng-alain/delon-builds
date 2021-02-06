@@ -1,18 +1,10 @@
-import { Injectable, ɵɵdefineInjectable, ɵɵinject } from '@angular/core';
+import { ɵɵdefineInjectable, ɵɵinject, Injectable } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: array.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ArrayService {
-    /**
-     * @param {?} cog
-     */
     constructor(cog) {
-        this.c = (/** @type {?} */ (cog.merge('utilArray', {
+        this.c = cog.merge('utilArray', {
             deepMapName: 'deep',
             parentMapName: 'parent',
             idMapName: 'id',
@@ -23,251 +15,155 @@ class ArrayService {
             selectedMapname: 'selected',
             expandedMapname: 'expanded',
             disabledMapname: 'disabled',
-        })));
+        });
     }
     /**
      * Convert tree structure to array structure
      *
      * 将树结构转换成数组结构
-     * @template T
-     * @param {?} tree
-     * @param {?=} options
-     * @return {?}
      */
     treeToArr(tree, options) {
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options)));
-        /** @type {?} */
+        const opt = Object.assign({ deepMapName: this.c.deepMapName, parentMapName: this.c.parentMapName, childrenMapName: this.c.childrenMapName, clearChildren: true, cb: null }, options);
         const result = [];
-        /** @type {?} */
-        const inFn = (/**
-         * @param {?} list
-         * @param {?} parent
-         * @param {?=} deep
-         * @return {?}
-         */
-        (list, parent, deep = 0) => {
+        const inFn = (list, parent, deep = 0) => {
             for (const i of list) {
-                i[(/** @type {?} */ (opt.deepMapName))] = deep;
-                i[(/** @type {?} */ (opt.parentMapName))] = parent;
+                i[opt.deepMapName] = deep;
+                i[opt.parentMapName] = parent;
                 if (opt.cb) {
                     opt.cb(i, parent, deep);
                 }
                 result.push(i);
-                /** @type {?} */
-                const children = i[(/** @type {?} */ (opt.childrenMapName))];
+                const children = i[opt.childrenMapName];
                 if (children != null && Array.isArray(children) && children.length > 0) {
-                    inFn(children, (/** @type {?} */ (i)), deep + 1);
+                    inFn(children, i, deep + 1);
                 }
                 if (opt.clearChildren) {
-                    delete i[(/** @type {?} */ (opt.childrenMapName))];
+                    delete i[opt.childrenMapName];
                 }
             }
-        });
+        };
         inFn(tree, null);
-        return (/** @type {?} */ (result));
+        return result;
     }
     /**
      * Convert array structure to tree structure
      *
      * 数组转换成树数据
-     * @template T
-     * @param {?} arr
-     * @param {?=} options
-     * @return {?}
      */
     arrToTree(arr, options) {
         if (!Array.isArray(arr) || arr.length === 0) {
             return [];
         }
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options)));
-        /** @type {?} */
+        const opt = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, childrenMapName: this.c.childrenMapName, cb: null }, options);
         const tree = [];
-        /** @type {?} */
         const childrenOf = {};
-        /** @type {?} */
         let rootPid = opt.rootParentIdValue;
-        /** @type {?} */
-        const arrType = (/** @type {?} */ (arr));
+        const arrType = arr;
         if (!rootPid) {
-            /** @type {?} */
-            const pids = arrType.map((/**
-             * @param {?} i
-             * @return {?}
-             */
-            i => i[(/** @type {?} */ (opt.parentIdMapName))]));
-            /** @type {?} */
-            const emptyPid = pids.findIndex((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w == null));
+            const pids = arrType.map(i => i[opt.parentIdMapName]);
+            const emptyPid = pids.findIndex(w => w == null);
             rootPid = emptyPid !== -1 ? pids[emptyPid] : pids.sort()[0];
         }
         for (const item of arrType) {
-            /** @type {?} */
-            const id = item[(/** @type {?} */ (opt.idMapName))];
-            /** @type {?} */
-            const pid = item[(/** @type {?} */ (opt.parentIdMapName))];
+            const id = item[opt.idMapName];
+            const pid = item[opt.parentIdMapName];
             childrenOf[id] = childrenOf[id] || [];
-            item[(/** @type {?} */ (opt.childrenMapName))] = childrenOf[id];
+            item[opt.childrenMapName] = childrenOf[id];
             if (opt.cb) {
-                opt.cb((/** @type {?} */ (item)));
+                opt.cb(item);
             }
             if (pid !== rootPid) {
                 childrenOf[pid] = childrenOf[pid] || [];
-                childrenOf[pid].push((/** @type {?} */ (item)));
+                childrenOf[pid].push(item);
             }
             else {
-                tree.push((/** @type {?} */ (item)));
+                tree.push(item);
             }
         }
         return tree;
     }
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
-     * @template T
-     * @param {?} arr
-     * @param {?=} options
-     * @return {?}
      */
     arrToTreeNode(arr, options) {
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options)));
-        /** @type {?} */
+        const opt = Object.assign({ idMapName: this.c.idMapName, parentIdMapName: this.c.parentIdMapName, titleMapName: this.c.titleMapName, isLeafMapName: 'isLeaf', checkedMapname: this.c.checkedMapname, selectedMapname: this.c.selectedMapname, expandedMapname: this.c.expandedMapname, disabledMapname: this.c.disabledMapname, cb: null }, options);
         const tree = this.arrToTree(arr, {
             idMapName: opt.idMapName,
             parentIdMapName: opt.parentIdMapName,
             childrenMapName: 'children',
         });
-        this.visitTree(tree, (/**
-         * @param {?} item
-         * @param {?} parent
-         * @param {?} deep
-         * @return {?}
-         */
-        (item, parent, deep) => {
-            item.key = item[(/** @type {?} */ (opt.idMapName))];
-            item.title = item[(/** @type {?} */ (opt.titleMapName))];
-            item.checked = item[(/** @type {?} */ (opt.checkedMapname))];
-            item.selected = item[(/** @type {?} */ (opt.selectedMapname))];
-            item.expanded = item[(/** @type {?} */ (opt.expandedMapname))];
-            item.disabled = item[(/** @type {?} */ (opt.disabledMapname))];
-            if (item[(/** @type {?} */ (opt.isLeafMapName))] == null) {
+        this.visitTree(tree, (item, parent, deep) => {
+            item.key = item[opt.idMapName];
+            item.title = item[opt.titleMapName];
+            item.checked = item[opt.checkedMapname];
+            item.selected = item[opt.selectedMapname];
+            item.expanded = item[opt.expandedMapname];
+            item.disabled = item[opt.disabledMapname];
+            if (item[opt.isLeafMapName] == null) {
                 item.isLeaf = item.children.length === 0;
             }
             else {
-                item.isLeaf = item[(/** @type {?} */ (opt.isLeafMapName))];
+                item.isLeaf = item[opt.isLeafMapName];
             }
             if (opt.cb) {
-                opt.cb((/** @type {?} */ (item)), parent, deep);
+                opt.cb(item, parent, deep);
             }
-        }));
-        return tree.map((/**
-         * @param {?} node
-         * @return {?}
-         */
-        node => new NzTreeNode((/** @type {?} */ (node)))));
+        });
+        return tree.map(node => new NzTreeNode(node));
     }
     /**
      * 递归访问整个树
-     * @template T
-     * @param {?} tree
-     * @param {?} cb
-     * @param {?=} options
-     * @return {?}
      */
     visitTree(tree, cb, options) {
         options = Object.assign({ childrenMapName: this.c.childrenMapName }, options);
-        /** @type {?} */
-        const inFn = (/**
-         * @param {?} data
-         * @param {?} parent
-         * @param {?} deep
-         * @return {?}
-         */
-        (data, parent, deep) => {
+        const inFn = (data, parent, deep) => {
             for (const item of data) {
                 cb(item, parent, deep);
-                /** @type {?} */
-                const childrenVal = ((/** @type {?} */ (item)))[(/** @type {?} */ ((/** @type {?} */ (options)).childrenMapName))];
+                const childrenVal = item[options.childrenMapName];
                 if (Array.isArray(childrenVal) && childrenVal.length > 0) {
                     inFn(childrenVal, item, deep + 1);
                 }
             }
-        });
+        };
         inFn(tree, null, 1);
     }
     /**
      * Return the value of the first tree value in the tree where predicate is true, and `undefined` otherwise
      *
      * 根据条件返回树的第一个值，否则返回 `undefined`
-     * @template T
-     * @param {?} tree
-     * @param {?} predicate
-     * @param {?=} options
-     * @return {?}
      */
     findTree(tree, predicate, options) {
-        /** @type {?} */
         let res;
-        this.visitTree(tree, (/**
-         * @param {?} item
-         * @return {?}
-         */
-        item => {
+        this.visitTree(tree, item => {
             if (res === undefined && predicate(item)) {
                 res = item;
             }
-        }), options);
+        }, options);
         return res;
     }
     /**
      * 获取所有已经选中的 `key` 值
-     * @param {?} tree
-     * @param {?=} options
-     * @return {?}
      */
     getKeysByTreeNode(tree, options) {
-        /** @type {?} */
-        const opt = (/** @type {?} */ (Object.assign({ includeHalfChecked: true }, options)));
-        /** @type {?} */
+        const opt = Object.assign({ includeHalfChecked: true }, options);
         const keys = [];
-        this.visitTree(tree, (/**
-         * @param {?} item
-         * @param {?} parent
-         * @param {?} deep
-         * @return {?}
-         */
-        (item, parent, deep) => {
+        this.visitTree(tree, (item, parent, deep) => {
             if (item.isChecked || (opt.includeHalfChecked && item.isHalfChecked)) {
                 keys.push(opt.cb ? opt.cb(item, parent, deep) : opt.keyMapName ? item.origin[opt.keyMapName] : item.key);
             }
-        }));
+        });
         return keys;
     }
-    /**
-     * @private
-     * @param {?} array
-     * @param {?} depth
-     * @param {?=} result
-     * @return {?}
-     */
     baseFlat(array, depth, result = []) {
-        /** @type {?} */
         let index = -1;
         while (++index < array.length) {
-            /** @type {?} */
             const value = array[index];
             if (depth > 0 && Array.isArray(value)) {
                 if (depth > 1) {
                     this.baseFlat(value, depth - 1, result);
                 }
                 else {
-                    /** @type {?} */
                     let pushIndex = -1;
-                    /** @type {?} */
                     const offset = result.length;
                     while (++pushIndex < value.length) {
                         result[offset + pushIndex] = value[pushIndex];
@@ -288,13 +184,9 @@ class ArrayService {
      * srv.flat([1, [2, 3, [4, 5, [6]]]]) => [1,2,3,4,5,6]
      * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
      * ```
-     * @template T
-     * @param {?} array
-     * @param {?=} depth
-     * @return {?}
      */
     flat(array, depth = 1 / 0) {
-        return Array.isArray(array) ? this.baseFlat((/** @type {?} */ (array)), depth) : array;
+        return Array.isArray(array) ? this.baseFlat(array, depth) : array;
     }
     /**
      * Group the array
@@ -304,22 +196,12 @@ class ArrayService {
      * srv.groupBy([6.1, 4.2, 6.3], Math.floor) => {"4":[4.2],"6":[6.1,6.3]}
      * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
      * ```
-     * @template T
-     * @param {?} array
-     * @param {?} iteratee
-     * @return {?}
      */
     groupBy(array, iteratee) {
         if (!Array.isArray(array)) {
             return {};
         }
-        return array.reduce((/**
-         * @param {?} result
-         * @param {?} value
-         * @return {?}
-         */
-        (result, value) => {
-            /** @type {?} */
+        return array.reduce((result, value) => {
             const key = iteratee(value);
             if (Object.prototype.hasOwnProperty.call(result, key)) {
                 result[key].push(value);
@@ -328,7 +210,7 @@ class ArrayService {
                 result[key] = [value];
             }
             return result;
-        }), (/** @type {?} */ ({})));
+        }, {});
     }
     /**
      * Creates a duplicate-free version of an array
@@ -339,29 +221,20 @@ class ArrayService {
      * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], 'a') => [{"a":1},{"a":2}]
      * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
      * ```
-     * @template T
-     * @param {?} array
-     * @param {?=} predicate
-     * @return {?}
      */
     uniq(array, predicate) {
         return Array.from(array
-            .reduce((/**
-         * @param {?} map
-         * @param {?} value
-         * @return {?}
-         */
-        (map, value) => {
-            /** @type {?} */
-            const key = predicate ? (typeof predicate === 'string' ? ((/** @type {?} */ (value)))[predicate] : (/** @type {?} */ (predicate))(value)) : value;
+            .reduce((map, value) => {
+            const key = predicate ? (typeof predicate === 'string' ? value[predicate] : predicate(value)) : value;
             if (!map.has(key)) {
                 map.set(key, value);
             }
             return map;
-        }), new Map())
+        }, new Map())
             .values());
     }
 }
+/** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
 ArrayService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -369,180 +242,9 @@ ArrayService.decorators = [
 ArrayService.ctorParameters = () => [
     { type: AlainConfigService }
 ];
-/** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ArrayService.prototype.c;
-}
 
 /**
- * @fileoverview added by tsickle
- * Generated from: array-type.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- * @template T
- */
-function ArrayServiceTreeToArrOptions() { }
-if (false) {
-    /**
-     * 深度项名，默认：`'deep'`
-     * @type {?|undefined}
-     */
-    ArrayServiceTreeToArrOptions.prototype.deepMapName;
-    /**
-     * 扁平后数组的父数据项名，默认：`'parent'`
-     * @type {?|undefined}
-     */
-    ArrayServiceTreeToArrOptions.prototype.parentMapName;
-    /**
-     * 源数据子项名，默认：`'children'`
-     * @type {?|undefined}
-     */
-    ArrayServiceTreeToArrOptions.prototype.childrenMapName;
-    /**
-     * 是否移除 `children` 节点，默认：`true`
-     * @type {?|undefined}
-     */
-    ArrayServiceTreeToArrOptions.prototype.clearChildren;
-    /**
-     * 转换成数组结构时回调
-     * @type {?|undefined}
-     */
-    ArrayServiceTreeToArrOptions.prototype.cb;
-}
-/**
- * @record
- * @template T
- */
-function ArrayServiceArrToTreeOptions() { }
-if (false) {
-    /**
-     * 编号项名，默认：`'id'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeOptions.prototype.idMapName;
-    /**
-     * 父编号项名，默认：`'parent_id'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeOptions.prototype.parentIdMapName;
-    /**
-     * 根父编号值，默认会自动计算得到最合适的根父编号值，例如：
-     * \@example
-     * ```ts
-     * const res = srv.arrToTree([
-     *    { id: 2, parent_id: 'a', title: 'c1' },
-     *    { id: 4, parent_id: 2, title: 't1' },
-     *  ],
-     *  { rootParentValue: 'a' });
-     * ```
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeOptions.prototype.rootParentIdValue;
-    /**
-     * 子项名，默认：`'children'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeOptions.prototype.childrenMapName;
-    /**
-     * 转换成树数据时回调
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeOptions.prototype.cb;
-}
-/**
- * @record
- * @template T
- */
-function ArrayServiceArrToTreeNodeOptions() { }
-if (false) {
-    /**
-     * 编号项名，默认：`'id'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.idMapName;
-    /**
-     * 父编号项名，默认：`'parent_id'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.parentIdMapName;
-    /**
-     * 标题项名，默认：`'title'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.titleMapName;
-    /**
-     * 设置为叶子节点项名，若数据源不存在时自动根据 `children` 值决定是否为叶子节点，默认：`'isLeaf'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.isLeafMapName;
-    /**
-     * 节点 Checkbox 是否选中项名，默认：`'checked'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.checkedMapname;
-    /**
-     * 节点本身是否选中项名，默认：`'selected'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.selectedMapname;
-    /**
-     * 节点是否展开(叶子节点无效)项名，默认：`'expanded'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.expandedMapname;
-    /**
-     * 设置是否禁用节点(不可进行任何操作)项名，默认：`'disabled'`
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.disabledMapname;
-    /**
-     * 转换成树数据后，执行的递归回调
-     * @type {?|undefined}
-     */
-    ArrayServiceArrToTreeNodeOptions.prototype.cb;
-}
-/**
- * @record
- */
-function ArrayServiceGetKeysByTreeNodeOptions() { }
-if (false) {
-    /**
-     * 是否包含半选状态的值，默认：`true`
-     * @type {?|undefined}
-     */
-    ArrayServiceGetKeysByTreeNodeOptions.prototype.includeHalfChecked;
-    /**
-     * 是否重新指定 `key` 键名，若不指定表示使用 `NzTreeNode.key` 值
-     * @type {?|undefined}
-     */
-    ArrayServiceGetKeysByTreeNodeOptions.prototype.keyMapName;
-    /**
-     * 回调，返回一个值 `key` 值，优先级高于其他
-     * @type {?|undefined}
-     */
-    ArrayServiceGetKeysByTreeNodeOptions.prototype.cb;
-}
-/**
- * @record
- */
-function ArrayServiceGroupByResult() { }
-
-/**
- * @fileoverview added by tsickle
- * Generated from: index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: delon-util-array.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { ArrayService };

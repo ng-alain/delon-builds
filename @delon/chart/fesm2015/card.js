@@ -6,39 +6,20 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: card.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class G2CardComponent {
-    /**
-     * @param {?} cdr
-     */
     constructor(cdr) {
         this.cdr = cdr;
-        /**
-         * 是否显示边框
-         */
+        /** 是否显示边框 */
         this.bordered = false;
         this.total = '';
         this._height = 'auto';
-        /**
-         * 是否显示Loading
-         */
+        /** 是否显示Loading */
         this.loading = false;
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set contentHeight(value) {
         this._orgHeight = value;
         this._height = typeof value === 'number' ? (this._height = `${value}px`) : value;
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         this.cdr.detectChanges();
     }
@@ -52,7 +33,7 @@ G2CardComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 G2CardComponent.ctorParameters = () => [
@@ -76,48 +57,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2CardComponent.prototype, "loading", void 0);
-if (false) {
-    /** @type {?} */
-    G2CardComponent.ngAcceptInputType_bordered;
-    /** @type {?} */
-    G2CardComponent.ngAcceptInputType_loading;
-    /**
-     * 是否显示边框
-     * @type {?}
-     */
-    G2CardComponent.prototype.bordered;
-    /** @type {?} */
-    G2CardComponent.prototype.avatar;
-    /** @type {?} */
-    G2CardComponent.prototype.title;
-    /** @type {?} */
-    G2CardComponent.prototype.action;
-    /** @type {?} */
-    G2CardComponent.prototype.total;
-    /** @type {?} */
-    G2CardComponent.prototype._height;
-    /** @type {?} */
-    G2CardComponent.prototype._orgHeight;
-    /** @type {?} */
-    G2CardComponent.prototype.footer;
-    /**
-     * 是否显示Loading
-     * @type {?}
-     */
-    G2CardComponent.prototype.loading;
-    /**
-     * @type {?}
-     * @private
-     */
-    G2CardComponent.prototype.cdr;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: card.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2CardComponent];
 class G2CardModule {
 }
@@ -130,15 +70,7 @@ G2CardModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: card.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2CardComponent, G2CardModule };

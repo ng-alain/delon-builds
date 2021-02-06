@@ -9,11 +9,6 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.browser, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator));
 }(this, (function (exports, common, core, router, theme, browser, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator) { 'use strict';
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-header-item.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
   var LayoutDefaultHeaderItemComponent = /** @class */ (function () {
       function LayoutDefaultHeaderItemComponent() {
           this.hidden = 'none';
@@ -25,36 +20,15 @@
       { type: core.Component, args: [{
                   selector: 'layout-default-header-item',
                   template: "\n    <ng-template #host>\n      <ng-content></ng-content>\n    </ng-template>\n  "
-              }] }
+              },] }
   ];
   LayoutDefaultHeaderItemComponent.propDecorators = {
       host: [{ type: core.ViewChild, args: ['host', { static: true },] }],
       hidden: [{ type: core.Input }],
       direction: [{ type: core.Input }]
   };
-  if (false) {
-      /** @type {?} */
-      LayoutDefaultHeaderItemComponent.prototype.host;
-      /** @type {?} */
-      LayoutDefaultHeaderItemComponent.prototype.hidden;
-      /** @type {?} */
-      LayoutDefaultHeaderItemComponent.prototype.direction;
-  }
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
   var LayoutDefaultComponent = /** @class */ (function () {
-      /**
-       * @param {?} router
-       * @param {?} msgSrv
-       * @param {?} settings
-       * @param {?} el
-       * @param {?} renderer
-       * @param {?} doc
-       */
       function LayoutDefaultComponent(router$1, msgSrv, settings, el, renderer, doc) {
           var _this = this;
           this.settings = settings;
@@ -64,13 +38,7 @@
           this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
           // scroll to top in change page
-          router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-           * @param {?} evt
-           * @return {?}
-           */function (/**
-           * @param {?} evt
-           * @return {?}
-           */ evt) {
+          router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (evt) {
               if (!_this.isFetching && evt instanceof router.RouteConfigLoadStart) {
                   _this.isFetching = true;
               }
@@ -85,22 +53,15 @@
                   return;
               }
               if (_this.isFetching) {
-                  setTimeout(( /**
-                   * @return {?}
-                   */function () {
+                  setTimeout(function () {
                       _this.isFetching = false;
-                  }), 100);
+                  }, 100);
               }
-          }));
+          });
       }
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultComponent.prototype.setClass = function () {
           var _a;
           var _b = this, el = _b.el, doc = _b.doc, renderer = _b.renderer, settings = _b.settings;
-          /** @type {?} */
           var layout = settings.layout;
           browser.updateHostClass(el.nativeElement, renderer, (_a = {},
               _a['alain-default'] = true,
@@ -109,23 +70,15 @@
               _a));
           doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultComponent.prototype.ngOnInit = function () {
           var _this = this;
           if (this.options == null) {
               throw new Error("Please specify the [options] parameter, otherwise the layout display cannot be completed");
           }
           var _a = this, settings = _a.settings, destroy$ = _a.destroy$;
-          settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-           * @return {?}
-           */function () { return _this.setClass(); }));
+          settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(function () { return _this.setClass(); });
           this.setClass();
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
@@ -136,7 +89,7 @@
       { type: core.Component, args: [{
                   selector: 'layout-default',
                   template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
-              }] }
+              },] }
   ];
   /** @nocollapse */
   LayoutDefaultComponent.ctorParameters = function () { return [
@@ -154,51 +107,7 @@
       nav: [{ type: core.Input }],
       content: [{ type: core.Input }]
   };
-  if (false) {
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.headerItems;
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.options;
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.asideUser;
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.nav;
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.content;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultComponent.prototype.destroy$;
-      /** @type {?} */
-      LayoutDefaultComponent.prototype.isFetching;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultComponent.prototype.settings;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultComponent.prototype.el;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultComponent.prototype.renderer;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultComponent.prototype.doc;
-  }
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-header-item-trigger.directive.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
   var LayoutDefaultHeaderItemTriggerDirective = /** @class */ (function () {
       function LayoutDefaultHeaderItemTriggerDirective() {
       }
@@ -213,29 +122,7 @@
               },] }
   ];
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-header.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  /**
-   * @record
-   */
-  function LayoutDefaultHeaderItem() { }
-  if (false) {
-      /** @type {?} */
-      LayoutDefaultHeaderItem.prototype.host;
-      /** @type {?|undefined} */
-      LayoutDefaultHeaderItem.prototype.hidden;
-      /** @type {?|undefined} */
-      LayoutDefaultHeaderItem.prototype.direction;
-  }
   var LayoutDefaultHeaderComponent = /** @class */ (function () {
-      /**
-       * @param {?} settings
-       * @param {?} parent
-       * @param {?} cdr
-       */
       function LayoutDefaultHeaderComponent(settings, parent, cdr) {
           this.settings = settings;
           this.parent = parent;
@@ -246,9 +133,6 @@
           this.right = [];
       }
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "options", {
-          /**
-           * @return {?}
-           */
           get: function () {
               return this.parent.options;
           },
@@ -256,9 +140,6 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "app", {
-          /**
-           * @return {?}
-           */
           get: function () {
               return this.settings.app;
           },
@@ -266,9 +147,6 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsed", {
-          /**
-           * @return {?}
-           */
           get: function () {
               return this.settings.layout.collapsed;
           },
@@ -276,11 +154,7 @@
           configurable: true
       });
       Object.defineProperty(LayoutDefaultHeaderComponent.prototype, "collapsedIcon", {
-          /**
-           * @return {?}
-           */
           get: function () {
-              /** @type {?} */
               var type = this.collapsed ? 'unfold' : 'fold';
               if (this.settings.layout.direction === 'rtl') {
                   type = this.collapsed ? 'fold' : 'unfold';
@@ -290,55 +164,21 @@
           enumerable: false,
           configurable: true
       });
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultHeaderComponent.prototype.refresh = function () {
-          /** @type {?} */
           var arr = this.parent.headerItems.toArray();
-          this.left = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'left'; }));
-          this.middle = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'middle'; }));
-          this.right = arr.filter(( /**
-           * @param {?} i
-           * @return {?}
-           */function (/**
-           * @param {?} i
-           * @return {?}
-           */ i) { return i.direction === 'right'; }));
+          this.left = arr.filter(function (i) { return i.direction === 'left'; });
+          this.middle = arr.filter(function (i) { return i.direction === 'middle'; });
+          this.right = arr.filter(function (i) { return i.direction === 'right'; });
           this.cdr.detectChanges();
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultHeaderComponent.prototype.ngAfterViewInit = function () {
           var _this = this;
-          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-           * @return {?}
-           */function () { return _this.refresh(); }));
+          this.parent.headerItems.changes.pipe(operators.takeUntil(this.destroy$)).subscribe(function () { return _this.refresh(); });
           this.refresh();
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultHeaderComponent.prototype.toggleCollapsed = function () {
           this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultHeaderComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
@@ -353,7 +193,7 @@
                       '[class.alain-default__header]': "true",
                   },
                   changeDetection: core.ChangeDetectionStrategy.OnPush
-              }] }
+              },] }
   ];
   /** @nocollapse */
   LayoutDefaultHeaderComponent.ctorParameters = function () { return [
@@ -361,34 +201,6 @@
       { type: LayoutDefaultComponent },
       { type: core.ChangeDetectorRef }
   ]; };
-  if (false) {
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.destroy$;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.left;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.middle;
-      /** @type {?} */
-      LayoutDefaultHeaderComponent.prototype.right;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.settings;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.parent;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultHeaderComponent.prototype.cdr;
-  }
 
   /*! *****************************************************************************
   Copyright (c) Microsoft Corporation.
@@ -699,37 +511,9 @@
       return value;
   }
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-nav.component.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  /**
-   * @record
-   */
-  function Nav() { }
-  if (false) {
-      /** @type {?|undefined} */
-      Nav.prototype._needIcon;
-      /** @type {?|undefined} */
-      Nav.prototype._text;
-  }
-  /** @type {?} */
   var SHOWCLS = 'sidebar-nav__floating-show';
-  /** @type {?} */
   var FLOATINGCLS = 'sidebar-nav__floating';
   var LayoutDefaultNavComponent = /** @class */ (function () {
-      /**
-       * @param {?} menuSrv
-       * @param {?} settings
-       * @param {?} router
-       * @param {?} render
-       * @param {?} cdr
-       * @param {?} ngZone
-       * @param {?} sanitizer
-       * @param {?} doc
-       * @param {?} directionality
-       */
       function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
           this.menuSrv = menuSrv;
           this.settings = settings;
@@ -751,61 +535,38 @@
           this.select = new core.EventEmitter();
       }
       Object.defineProperty(LayoutDefaultNavComponent.prototype, "collapsed", {
-          /**
-           * @return {?}
-           */
           get: function () {
               return this.settings.layout.collapsed;
           },
           enumerable: false,
           configurable: true
       });
-      /**
-       * @private
-       * @param {?} node
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.getLinkNode = function (node) {
-          node = node.nodeName === 'A' ? node : (( /** @type {?} */(node.parentNode)));
+          node = node.nodeName === 'A' ? node : node.parentNode;
           return node.nodeName !== 'A' ? null : node;
       };
-      /**
-       * @private
-       * @param {?} e
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.floatingClickHandle = function (e) {
           e.stopPropagation();
-          /** @type {?} */
-          var linkNode = this.getLinkNode(( /** @type {?} */(e.target)));
+          var linkNode = this.getLinkNode(e.target);
           if (linkNode == null) {
               return false;
           }
-          /** @type {?} */
-          var id = +( /** @type {?} */(( /** @type {?} */(linkNode.dataset)).id));
+          var id = +linkNode.dataset.id;
           // Should be ingore children title trigger event
           if (isNaN(id)) {
               return false;
           }
-          /** @type {?} */
           var item;
-          this.menuSrv.visit(this.list, ( /**
-           * @param {?} i
-           * @return {?}
-           */function (i) {
+          this.menuSrv.visit(this.list, function (i) {
               if (!item && i._id === id) {
                   item = i;
               }
-          }));
-          this.to(( /** @type {?} */(item)));
+          });
+          this.to(item);
           this.hideAll();
           e.preventDefault();
           return false;
       };
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.clearFloating = function () {
           if (!this.floatingEl)
               return;
@@ -818,10 +579,6 @@
               this.floatingEl.parentNode.removeChild(this.floatingEl);
           }
       };
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.genFloating = function () {
           this.clearFloating();
           this.floatingEl = this.render.createElement('div');
@@ -829,35 +586,19 @@
           this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
           this.bodyEl.appendChild(this.floatingEl);
       };
-      /**
-       * @private
-       * @param {?} linkNode
-       * @param {?} item
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.genSubNode = function (linkNode, item) {
-          /** @type {?} */
           var id = "_sidebar-nav-" + item._id;
-          /** @type {?} */
-          var childNode = item.badge ? ( /** @type {?} */(( /** @type {?} */(linkNode.nextElementSibling)).nextElementSibling)) : ( /** @type {?} */(linkNode.nextElementSibling));
-          /** @type {?} */
-          var node = ( /** @type {?} */(childNode.cloneNode(true)));
+          var childNode = item.badge ? linkNode.nextElementSibling.nextElementSibling : linkNode.nextElementSibling;
+          var node = childNode.cloneNode(true);
           node.id = id;
           node.classList.add(FLOATINGCLS);
-          node.addEventListener('mouseleave', ( /**
-           * @return {?}
-           */function () {
+          node.addEventListener('mouseleave', function () {
               node.classList.remove(SHOWCLS);
-          }), false);
+          }, false);
           this.floatingEl.appendChild(node);
           return node;
       };
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.hideAll = function () {
-          /** @type {?} */
           var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
           // tslint:disable-next-line:prefer-for-of
           for (var i = 0; i < allNode.length; i++) {
@@ -865,23 +606,12 @@
           }
       };
       // calculate the node position values.
-      /**
-       * @private
-       * @param {?} linkNode
-       * @param {?} node
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.calPos = function (linkNode, node) {
-          /** @type {?} */
           var rect = linkNode.getBoundingClientRect();
           // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
-          /** @type {?} */
           var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
-          /** @type {?} */
           var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
-          /** @type {?} */
           var spacing = 5;
-          /** @type {?} */
           var offsetHeight = -spacing;
           if (docHeight < rect.top + node.clientHeight) {
               offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
@@ -894,34 +624,21 @@
               node.style.left = rect.right + spacing + "px";
           }
       };
-      /**
-       * @param {?} e
-       * @param {?} item
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.showSubMenu = function (e, item) {
           var _this = this;
           if (this.collapsed !== true) {
               return;
           }
-          this.ngZone.runOutsideAngular(( /**
-           * @return {?}
-           */function () {
+          this.ngZone.runOutsideAngular(function () {
               e.preventDefault();
-              /** @type {?} */
-              var linkNode = ( /** @type {?} */(e.target));
+              var linkNode = e.target;
               _this.genFloating();
-              /** @type {?} */
-              var subNode = _this.genSubNode(( /** @type {?} */(linkNode)), item);
+              var subNode = _this.genSubNode(linkNode, item);
               _this.hideAll();
               subNode.classList.add(SHOWCLS);
-              _this.calPos(( /** @type {?} */(linkNode)), subNode);
-          }));
+              _this.calPos(linkNode, subNode);
+          });
       };
-      /**
-       * @param {?} item
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.to = function (item) {
           var _this = this;
           this.select.emit(item);
@@ -937,67 +654,42 @@
               }
               return;
           }
-          this.ngZone.run(( /**
-           * @return {?}
-           */function () { return _this.router.navigateByUrl(( /** @type {?} */(item.link))); }));
+          this.ngZone.run(function () { return _this.router.navigateByUrl(item.link); });
       };
-      /**
-       * @param {?} item
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.toggleOpen = function (item) {
           if (!this.openStrictly) {
-              this.menuSrv.visit(this.list, ( /**
-               * @param {?} i
-               * @return {?}
-               */function (i) {
+              this.menuSrv.visit(this.list, function (i) {
                   if (i !== item)
                       i._open = false;
-              }));
-              /** @type {?} */
-              var pItem = ( /** @type {?} */(item._parent));
+              });
+              var pItem = item._parent;
               while (pItem) {
                   pItem._open = true;
-                  pItem = ( /** @type {?} */(pItem._parent));
+                  pItem = pItem._parent;
               }
           }
           item._open = !item._open;
           this.cdr.markForCheck();
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype._click = function () {
           if (this.isPad && this.collapsed) {
               this.openAside(false);
               this.hideAll();
           }
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype._docClick = function () {
           if (this.collapsed) {
               this.hideAll();
           }
       };
-      /**
-       * @private
-       * @param {?} url
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.openedByUrl = function (url) {
           var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
-          /** @type {?} */
-          var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
-           * @param {?} i
-           * @return {?}
-           */function (i) {
+          var findItem = menuSrv.getHit(this.menuSrv.menus, url, recursivePath, function (i) {
               i._selected = false;
               if (!openStrictly) {
                   i._open = false;
               }
-          }));
+          });
           if (findItem == null)
               return;
           do {
@@ -1005,36 +697,20 @@
               if (!openStrictly) {
                   findItem._open = true;
               }
-              findItem = ( /** @type {?} */(findItem._parent));
+              findItem = findItem._parent;
           } while (findItem);
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.ngOnInit = function () {
           var _this = this;
           var _a;
           var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
           this.bodyEl = doc.querySelector('body');
           this.openedByUrl(router$1.url);
-          this.ngZone.runOutsideAngular(( /**
-           * @return {?}
-           */function () { return _this.genFloating(); }));
-          menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-           * @param {?} data
-           * @return {?}
-           */function (/**
-           * @param {?} data
-           * @return {?}
-           */ data) {
-              menuSrv.visit(data, ( /**
-               * @param {?} i
-               * @param {?} _p
-               * @param {?} depth
-               * @return {?}
-               */function (i, _p, depth) {
-                  i._text = _this.sanitizer.bypassSecurityTrustHtml(( /** @type {?} */(i.text)));
-                  i._needIcon = ( /** @type {?} */(depth)) <= _this.maxLevelIcon && !!i.icon;
+          this.ngZone.runOutsideAngular(function () { return _this.genFloating(); });
+          menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(function (data) {
+              menuSrv.visit(data, function (i, _p, depth) {
+                  i._text = _this.sanitizer.bypassSecurityTrustHtml(i.text);
+                  i._needIcon = depth <= _this.maxLevelIcon && !!i.icon;
                   if (!i._aclResult) {
                       if (_this.disabledAcl) {
                           i.disabled = true;
@@ -1046,49 +722,26 @@
                   if (_this.openStrictly) {
                       i._open = i.open != null ? i.open : false;
                   }
-              }));
-              _this.list = menuSrv.menus.filter(( /**
-               * @param {?} w
-               * @return {?}
-               */function (w) { return w._hidden !== true; }));
+              });
+              _this.list = menuSrv.menus.filter(function (w) { return w._hidden !== true; });
               cdr.detectChanges();
-          }));
-          router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-           * @param {?} e
-           * @return {?}
-           */function (/**
-           * @param {?} e
-           * @return {?}
-           */ e) {
+          });
+          router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(function (e) {
               if (e instanceof router.NavigationEnd) {
                   _this.openedByUrl(e.urlAfterRedirects);
                   _this.underPad();
                   _this.cdr.detectChanges();
               }
-          }));
+          });
           settings.notify
-              .pipe(operators.takeUntil(destroy$), operators.filter(( /**
-       * @param {?} t
-       * @return {?}
-       */function (/**
-       * @param {?} t
-       * @return {?}
-       */ t) { return t.type === 'layout' && t.name === 'collapsed'; })))
-              .subscribe(( /**
-       * @return {?}
-       */function () { return _this.clearFloating(); }));
+              .pipe(operators.takeUntil(destroy$), operators.filter(function (t) { return t.type === 'layout' && t.name === 'collapsed'; }))
+              .subscribe(function () { return _this.clearFloating(); });
           this.underPad();
           this.dir = this.directionality.value;
-          (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-           * @param {?} direction
-           * @return {?}
-           */function (direction) {
+          (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(function (direction) {
               _this.dir = direction;
-          }));
+          });
       };
-      /**
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.ngOnDestroy = function () {
           this.destroy$.next();
           this.destroy$.complete();
@@ -1096,33 +749,18 @@
       };
       Object.defineProperty(LayoutDefaultNavComponent.prototype, "isPad", {
           // #region Under pad
-          /**
-           * @private
-           * @return {?}
-           */
           get: function () {
-              return ( /** @type {?} */(this.doc.defaultView)).innerWidth < 768;
+              return this.doc.defaultView.innerWidth < 768;
           },
           enumerable: false,
           configurable: true
       });
-      /**
-       * @private
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.underPad = function () {
           var _this = this;
           if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
-              setTimeout(( /**
-               * @return {?}
-               */function () { return _this.openAside(true); }));
+              setTimeout(function () { return _this.openAside(true); });
           }
       };
-      /**
-       * @private
-       * @param {?} status
-       * @return {?}
-       */
       LayoutDefaultNavComponent.prototype.openAside = function (status) {
           this.settings.setLayout('collapsed', status);
       };
@@ -1139,7 +777,7 @@
                   preserveWhitespaces: false,
                   changeDetection: core.ChangeDetectionStrategy.OnPush,
                   encapsulation: core.ViewEncapsulation.None
-              }] }
+              },] }
   ];
   /** @nocollapse */
   LayoutDefaultNavComponent.ctorParameters = function () { return [
@@ -1181,101 +819,7 @@
       decorator.InputNumber(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
-  if (false) {
-      /** @type {?} */
-      LayoutDefaultNavComponent.ngAcceptInputType_disabledAcl;
-      /** @type {?} */
-      LayoutDefaultNavComponent.ngAcceptInputType_autoCloseUnderPad;
-      /** @type {?} */
-      LayoutDefaultNavComponent.ngAcceptInputType_recursivePath;
-      /** @type {?} */
-      LayoutDefaultNavComponent.ngAcceptInputType_openStrictly;
-      /** @type {?} */
-      LayoutDefaultNavComponent.ngAcceptInputType_maxLevelIcon;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.bodyEl;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.destroy$;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.floatingEl;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.dir;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.list;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.disabledAcl;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.autoCloseUnderPad;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.recursivePath;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.openStrictly;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.maxLevelIcon;
-      /** @type {?} */
-      LayoutDefaultNavComponent.prototype.select;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.menuSrv;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.settings;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.router;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.render;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.cdr;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.ngZone;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.sanitizer;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.doc;
-      /**
-       * @type {?}
-       * @private
-       */
-      LayoutDefaultNavComponent.prototype.directionality;
-  }
 
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout.module.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-  /** @type {?} */
   var COMPONENTS = [
       LayoutDefaultComponent,
       LayoutDefaultNavComponent,
@@ -1297,15 +841,7 @@
   ];
 
   /**
-   * @fileoverview added by tsickle
-   * Generated from: public_api.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-   */
-
-  /**
-   * @fileoverview added by tsickle
-   * Generated from: layout-default.ts
-   * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+   * Generated bundle index. Do not edit.
    */
 
   exports.LayoutDefaultComponent = LayoutDefaultComponent;

@@ -318,36 +318,17 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-row.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STRowSource = /** @class */ (function () {
         function STRowSource() {
             this.titles = {};
             this.rows = {};
         }
-        /**
-         * @param {?} type
-         * @param {?} path
-         * @param {?} ref
-         * @return {?}
-         */
         STRowSource.prototype.add = function (type, path, ref) {
             this[type === 'title' ? 'titles' : 'rows'][path] = ref;
         };
-        /**
-         * @param {?} path
-         * @return {?}
-         */
         STRowSource.prototype.getTitle = function (path) {
             return this.titles[path];
         };
-        /**
-         * @param {?} path
-         * @return {?}
-         */
         STRowSource.prototype.getRow = function (path) {
             return this.rows[path];
         };
@@ -356,30 +337,11 @@
     STRowSource.decorators = [
         { type: i0.Injectable }
     ];
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        STRowSource.prototype.titles;
-        /**
-         * @type {?}
-         * @private
-         */
-        STRowSource.prototype.rows;
-    }
     var STRowDirective = /** @class */ (function () {
-        /**
-         * @param {?} ref
-         * @param {?} source
-         */
         function STRowDirective(ref, source) {
             this.ref = ref;
             this.source = source;
         }
-        /**
-         * @return {?}
-         */
         STRowDirective.prototype.ngOnInit = function () {
             this.source.add(this.type, this.id, this.ref);
         };
@@ -397,96 +359,35 @@
         id: [{ type: i0.Input, args: ['st-row',] }],
         type: [{ type: i0.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        STRowDirective.prototype.id;
-        /** @type {?} */
-        STRowDirective.prototype.type;
-        /**
-         * @type {?}
-         * @private
-         */
-        STRowDirective.prototype.ref;
-        /**
-         * @type {?}
-         * @private
-         */
-        STRowDirective.prototype.source;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-widget.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STWidgetRegistry = /** @class */ (function () {
         function STWidgetRegistry() {
             this._widgets = {};
         }
         Object.defineProperty(STWidgetRegistry.prototype, "widgets", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._widgets;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?} type
-         * @param {?} widget
-         * @return {?}
-         */
         STWidgetRegistry.prototype.register = function (type, widget) {
             this._widgets[type] = widget;
         };
-        /**
-         * @param {?} type
-         * @return {?}
-         */
         STWidgetRegistry.prototype.has = function (type) {
             return this._widgets.hasOwnProperty(type);
         };
-        /**
-         * @param {?} type
-         * @return {?}
-         */
         STWidgetRegistry.prototype.get = function (type) {
             return this._widgets[type];
         };
         return STWidgetRegistry;
     }());
+    /** @nocollapse */ STWidgetRegistry.ɵprov = i0.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
     STWidgetRegistry.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */ STWidgetRegistry.ɵprov = i0.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetRegistry.prototype._widgets;
-    }
 
-    /**
-     * @record
-     */
-    function STColumnSourceProcessOptions() { }
-    if (false) {
-        /** @type {?} */
-        STColumnSourceProcessOptions.prototype.widthMode;
-        /** @type {?} */
-        STColumnSourceProcessOptions.prototype.resizable;
-    }
     var STColumnSource = /** @class */ (function () {
-        /**
-         * @param {?} dom
-         * @param {?} rowSource
-         * @param {?} acl
-         * @param {?} i18nSrv
-         * @param {?} stWidgetRegistry
-         */
         function STColumnSource(dom, rowSource, acl, i18nSrv, stWidgetRegistry) {
             this.dom = dom;
             this.rowSource = rowSource;
@@ -494,25 +395,14 @@
             this.i18nSrv = i18nSrv;
             this.stWidgetRegistry = stWidgetRegistry;
         }
-        /**
-         * @param {?} val
-         * @return {?}
-         */
         STColumnSource.prototype.setCog = function (val) {
             this.cog = val;
         };
-        /**
-         * @private
-         * @param {?} i
-         * @param {?} def
-         * @return {?}
-         */
         STColumnSource.prototype.fixPop = function (i, def) {
             if (i.pop == null || i.pop === false) {
                 i.pop = false;
                 return;
             }
-            /** @type {?} */
             var pop = Object.assign({}, def);
             if (typeof i.pop === 'string') {
                 pop.title = i.pop;
@@ -521,22 +411,14 @@
                 pop = Object.assign(Object.assign({}, pop), i.pop);
             }
             if (typeof pop.condition !== 'function') {
-                pop.condition = ( /**
-                 * @return {?}
-                 */function () { return false; });
+                pop.condition = function () { return false; };
             }
             i.pop = pop;
         };
-        /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
         STColumnSource.prototype.btnCoerce = function (list) {
             var e_1, _b;
             if (!list)
                 return [];
-            /** @type {?} */
             var ret = [];
             var _c = this.cog, modal = _c.modal, drawer = _c.drawer, pop = _c.pop, btnIcon = _c.btnIcon;
             try {
@@ -567,7 +449,7 @@
                         item.pop = true;
                     }
                     // pop
-                    this.fixPop(item, ( /** @type {?} */(pop)));
+                    this.fixPop(item, pop);
                     if (item.icon) {
                         item.icon = Object.assign(Object.assign({}, btnIcon), (typeof item.icon === 'string' ? { type: item.icon } : item.icon));
                     }
@@ -589,20 +471,13 @@
             this.btnCoerceIf(ret);
             return ret;
         };
-        /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
         STColumnSource.prototype.btnCoerceIf = function (list) {
             var e_2, _b;
             try {
                 for (var list_2 = __values(list), list_2_1 = list_2.next(); !list_2_1.done; list_2_1 = list_2.next()) {
                     var item = list_2_1.value;
                     if (!item.iif)
-                        item.iif = ( /**
-                         * @return {?}
-                         */function () { return true; });
+                        item.iif = function () { return true; };
                     item.iifBehavior = item.iifBehavior || this.cog.iifBehavior;
                     if (item.children && item.children.length > 0) {
                         this.btnCoerceIf(item.children);
@@ -620,69 +495,27 @@
                 finally { if (e_2) throw e_2.error; }
             }
         };
-        /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
         STColumnSource.prototype.fixedCoerce = function (list) {
-            /** @type {?} */
-            var countReduce = ( /**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */function (a, b) { return a + +( /** @type {?} */(b.width)).toString().replace('px', ''); });
+            var countReduce = function (a, b) { return a + +b.width.toString().replace('px', ''); };
             // left width
             list
-                .filter(( /**
-         * @param {?} w
-         * @return {?}
-         */function (/**
-         * @param {?} w
-         * @return {?}
-         */ w) { return w.fixed && w.fixed === 'left' && w.width; }))
-                .forEach(( /**
-         * @param {?} item
-         * @param {?} idx
-         * @return {?}
-         */function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); }));
+                .filter(function (w) { return w.fixed && w.fixed === 'left' && w.width; })
+                .forEach(function (item, idx) { return (item._left = list.slice(0, idx).reduce(countReduce, 0) + 'px'); });
             // right width
             list
-                .filter(( /**
-         * @param {?} w
-         * @return {?}
-         */function (/**
-         * @param {?} w
-         * @return {?}
-         */ w) { return w.fixed && w.fixed === 'right' && w.width; }))
+                .filter(function (w) { return w.fixed && w.fixed === 'right' && w.width; })
                 .reverse()
-                .forEach(( /**
-         * @param {?} item
-         * @param {?} idx
-         * @return {?}
-         */function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); }));
+                .forEach(function (item, idx) { return (item._right = (idx > 0 ? list.slice(-idx).reduce(countReduce, 0) : 0) + 'px'); });
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STColumnSource.prototype.sortCoerce = function (item) {
-            /** @type {?} */
             var res = this.fixSortCoerce(item);
             res.reName = Object.assign(Object.assign({}, this.cog.sortReName), res.reName);
             return res;
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STColumnSource.prototype.fixSortCoerce = function (item) {
             if (typeof item.sort === 'undefined') {
                 return { enabled: false };
             }
-            /** @type {?} */
             var res = {};
             if (typeof item.sort === 'string') {
                 res.key = item.sort;
@@ -691,11 +524,7 @@
                 res = item.sort;
             }
             else if (typeof item.sort === 'boolean') {
-                res.compare = ( /**
-                 * @param {?} a
-                 * @param {?} b
-                 * @return {?}
-                 */function (a, b) { return a[( /** @type {?} */(item.indexKey))] - b[( /** @type {?} */(item.indexKey))]; });
+                res.compare = function (a, b) { return a[item.indexKey] - b[item.indexKey]; };
             }
             if (!res.key) {
                 res.key = item.indexKey;
@@ -703,31 +532,23 @@
             res.enabled = true;
             return res;
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STColumnSource.prototype.filterCoerce = function (item) {
             var _this = this;
             if (item.filter == null) {
                 return null;
             }
-            /** @type {?} */
             var res = item.filter;
             res.type = res.type || 'default';
-            /** @type {?} */
             var icon = 'filter';
-            /** @type {?} */
             var iconTheme = 'fill';
             if (res.type === 'keyword') {
-                if (res.menus == null || ( /** @type {?} */(res.menus)).length === 0) {
+                if (res.menus == null || res.menus.length === 0) {
                     res.menus = [{ value: '' }];
                 }
                 icon = 'search';
                 iconTheme = 'outline';
             }
-            if (( /** @type {?} */(res.menus)).length === 0) {
+            if (res.menus.length === 0) {
                 return null;
             }
             if (typeof res.multiple === 'undefined') {
@@ -737,48 +558,31 @@
             res.clearText = res.clearText || this.cog.filterClearText;
             res.key = res.key || item.indexKey;
             res.icon = res.icon || icon;
-            /** @type {?} */
-            var baseIcon = ( /** @type {?} */({ type: icon, theme: iconTheme }));
+            var baseIcon = { type: icon, theme: iconTheme };
             if (typeof res.icon === 'string') {
-                res.icon = ( /** @type {?} */(Object.assign(Object.assign({}, baseIcon), { type: res.icon })));
+                res.icon = Object.assign(Object.assign({}, baseIcon), { type: res.icon });
             }
             else {
                 res.icon = Object.assign(Object.assign({}, baseIcon), res.icon);
             }
             this.updateDefault(res);
             if (this.acl) {
-                res.menus = ( /** @type {?} */(res.menus)).filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return _this.acl.can(( /** @type {?} */(w.acl))); }));
+                res.menus = res.menus.filter(function (w) { return _this.acl.can(w.acl); });
             }
-            if (( /** @type {?} */(res.menus)).length <= 0) {
+            if (res.menus.length <= 0) {
                 res = null;
             }
             return res;
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STColumnSource.prototype.restoreRender = function (item) {
             if (item.renderTitle) {
                 item.__renderTitle =
-                    typeof item.renderTitle === 'string' ? this.rowSource.getTitle(item.renderTitle) : (( /** @type {?} */(item.renderTitle)));
+                    typeof item.renderTitle === 'string' ? this.rowSource.getTitle(item.renderTitle) : item.renderTitle;
             }
             if (item.render) {
-                item.__render = typeof item.render === 'string' ? this.rowSource.getRow(item.render) : (( /** @type {?} */(item.render)));
+                item.__render = typeof item.render === 'string' ? this.rowSource.getRow(item.render) : item.render;
             }
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STColumnSource.prototype.widgetCoerce = function (item) {
             var _a;
             if (item.type !== 'widget')
@@ -788,103 +592,61 @@
                 other.warn("st: No widget for type \"" + ((_a = item.widget) === null || _a === void 0 ? void 0 : _a.type) + "\"");
             }
         };
-        /**
-         * @private
-         * @param {?} rootColumns
-         * @return {?}
-         */
         STColumnSource.prototype.genHeaders = function (rootColumns) {
-            /** @type {?} */
             var rows = [];
-            /** @type {?} */
             var widths = [];
-            /** @type {?} */
-            var fillRowCells = ( /**
-             * @param {?} columns
-             * @param {?} colIndex
-             * @param {?=} rowIndex
-             * @return {?}
-             */function (columns, colIndex, rowIndex) {
+            var fillRowCells = function (columns, colIndex, rowIndex) {
                 if (rowIndex === void 0) { rowIndex = 0; }
                 // Init rows
                 rows[rowIndex] = rows[rowIndex] || [];
-                /** @type {?} */
                 var currentColIndex = colIndex;
-                /** @type {?} */
-                var colSpans = columns.map(( /**
-                 * @param {?} column
-                 * @return {?}
-                 */function (/**
-                 * @param {?} column
-                 * @return {?}
-                 */ column) {
-                    /** @type {?} */
+                var colSpans = columns.map(function (column) {
                     var cell = {
                         column: column,
                         colStart: currentColIndex,
                         hasSubColumns: false,
                     };
-                    /** @type {?} */
                     var colSpan = 1;
-                    /** @type {?} */
                     var subColumns = column.children;
                     if (Array.isArray(subColumns) && subColumns.length > 0) {
-                        colSpan = fillRowCells(subColumns, currentColIndex, rowIndex + 1).reduce(( /**
-                         * @param {?} total
-                         * @param {?} count
-                         * @return {?}
-                         */function (total, count) { return total + count; }), 0);
+                        colSpan = fillRowCells(subColumns, currentColIndex, rowIndex + 1).reduce(function (total, count) { return total + count; }, 0);
                         cell.hasSubColumns = true;
                     }
                     else {
-                        widths.push((( /** @type {?} */(cell.column.width))) || '');
+                        widths.push(cell.column.width || '');
                     }
                     if ('colSpan' in column) {
-                        colSpan = ( /** @type {?} */(column.colSpan));
+                        colSpan = column.colSpan;
                     }
                     if ('rowSpan' in column) {
                         cell.rowSpan = column.rowSpan;
                     }
                     cell.colSpan = colSpan;
                     cell.colEnd = cell.colStart + colSpan - 1;
-                    rows[rowIndex].push(( /** @type {?} */(cell)));
+                    rows[rowIndex].push(cell);
                     currentColIndex += colSpan;
                     return colSpan;
-                }));
+                });
                 return colSpans;
-            });
+            };
             fillRowCells(rootColumns, 0);
             // Handle `rowSpan`
-            /** @type {?} */
             var rowCount = rows.length;
             var _loop_1 = function (rowIndex) {
-                rows[rowIndex].forEach(( /**
-                 * @param {?} cell
-                 * @return {?}
-                 */function (/**
-                 * @param {?} cell
-                 * @return {?}
-                 */ cell) {
+                rows[rowIndex].forEach(function (cell) {
                     if (!('rowSpan' in cell) && !cell.hasSubColumns) {
                         cell.rowSpan = rowCount - rowIndex;
                     }
-                }));
+                });
             };
             for (var rowIndex = 0; rowIndex < rowCount; rowIndex += 1) {
                 _loop_1(rowIndex);
             }
             return { headers: rows, headerWidths: rowCount > 1 ? widths : null };
         };
-        /**
-         * @private
-         * @param {?} list
-         * @return {?}
-         */
         STColumnSource.prototype.cleanCond = function (list) {
             var e_3, _b;
-            /** @type {?} */
             var res = [];
-            /** @type {?} */
             var copyList = other.deepCopy(list);
             try {
                 for (var copyList_1 = __values(copyList), copyList_1_1 = copyList_1.next(); !copyList_1_1.done; copyList_1_1 = copyList_1.next()) {
@@ -907,29 +669,16 @@
             }
             return res;
         };
-        /**
-         * @param {?} list
-         * @param {?} options
-         * @return {?}
-         */
         STColumnSource.prototype.process = function (list, options) {
             var _this = this;
             if (!list || list.length === 0)
                 throw new Error("[st]: the columns property muse be define!");
             var noIndex = this.cog.noIndex;
-            /** @type {?} */
             var checkboxCount = 0;
-            /** @type {?} */
             var radioCount = 0;
-            /** @type {?} */
             var point = 0;
-            /** @type {?} */
             var columns = [];
-            /** @type {?} */
-            var processItem = ( /**
-             * @param {?} item
-             * @return {?}
-             */function (item) {
+            var processItem = function (item) {
                 // index
                 if (item.index) {
                     if (!Array.isArray(item.index)) {
@@ -938,7 +687,6 @@
                     item.indexKey = item.index.join('.');
                 }
                 // #region title
-                /** @type {?} */
                 var tit = (typeof item.title === 'string' ? { text: item.title } : item.title) || {};
                 if (tit.i18n && _this.i18nSrv) {
                     tit.text = _this.i18nSrv.fanyi(tit.i18n);
@@ -963,13 +711,7 @@
                     }
                 }
                 if (_this.acl) {
-                    item.selections = item.selections.filter(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (/**
-                     * @param {?} w
-                     * @return {?}
-                     */ w) { return _this.acl.can(( /** @type {?} */(w.acl))); }));
+                    item.selections = item.selections.filter(function (w) { return _this.acl.can(w.acl); });
                 }
                 // radio
                 if (item.type === 'radio') {
@@ -992,11 +734,11 @@
                 item._isTruncate = !!item.width && options.widthMode.strictBehavior === 'truncate' && item.type !== 'img';
                 // className
                 if (!item.className) {
-                    item.className = (( /** @type {?} */({
+                    item.className = {
                         number: 'text-right',
                         currency: 'text-right',
                         date: 'text-center',
-                    })))[( /** @type {?} */(item.type))];
+                    }[item.type];
                 }
                 item._className = item.className || (item._isTruncate ? 'text-truncate' : null);
                 // width
@@ -1006,23 +748,19 @@
                 // sorter
                 item._sort = _this.sortCoerce(item);
                 // filter
-                item.filter = ( /** @type {?} */(_this.filterCoerce(item)));
+                item.filter = _this.filterCoerce(item);
                 // buttons
-                item.buttons = _this.btnCoerce(( /** @type {?} */(item.buttons)));
+                item.buttons = _this.btnCoerce(item.buttons);
                 // widget
                 _this.widgetCoerce(item);
                 // restore custom row
                 _this.restoreRender(item);
                 // resizable
-                item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, options.resizable), (typeof item.resizable === 'boolean' ? (( /** @type {?} */({ disabled: !item.resizable }))) : item.resizable));
+                item.resizable = Object.assign(Object.assign({ disabled: true, bounds: 'window', minWidth: 60, maxWidth: 360, preview: true }, options.resizable), (typeof item.resizable === 'boolean' ? { disabled: !item.resizable } : item.resizable));
                 item.__point = point++;
                 return item;
-            });
-            /** @type {?} */
-            var processList = ( /**
-             * @param {?} data
-             * @return {?}
-             */function (data) {
+            };
+            var processList = function (data) {
                 var e_4, _b;
                 try {
                     for (var data_1 = __values(data), data_1_1 = data_1.next(); !data_1_1.done; data_1_1 = data_1.next()) {
@@ -1040,9 +778,8 @@
                     }
                     finally { if (e_4) throw e_4.error; }
                 }
-            });
-            /** @type {?} */
-            var copyList = this.cleanCond(( /** @type {?} */(list)));
+            };
+            var copyList = this.cleanCond(list);
             processList(copyList);
             if (checkboxCount > 1) {
                 throw new Error("[st]: just only one column checkbox");
@@ -1050,73 +787,32 @@
             if (radioCount > 1) {
                 throw new Error("[st]: just only one column radio");
             }
-            this.fixedCoerce(( /** @type {?} */(columns)));
-            return Object.assign({ columns: columns.filter(( /**
-                     * @param {?} w
-                     * @return {?}
-                     */function (/**
-                     * @param {?} w
-                     * @return {?}
-                     */ w) { return !Array.isArray(w.children) || w.children.length === 0; })) }, this.genHeaders(copyList));
+            this.fixedCoerce(columns);
+            return Object.assign({ columns: columns.filter(function (w) { return !Array.isArray(w.children) || w.children.length === 0; }) }, this.genHeaders(copyList));
         };
-        /**
-         * @param {?} columns
-         * @return {?}
-         */
         STColumnSource.prototype.restoreAllRender = function (columns) {
             var _this = this;
-            columns.forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return _this.restoreRender(i); }));
+            columns.forEach(function (i) { return _this.restoreRender(i); });
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} filter
-         * @return {THIS}
-         */
         STColumnSource.prototype.updateDefault = function (filter) {
             if (filter.type === 'default') {
-                filter.default = ( /** @type {?} */(filter.menus)).findIndex(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return ( /** @type {?} */(w.checked)); })) !== -1;
+                filter.default = filter.menus.findIndex(function (w) { return w.checked; }) !== -1;
             }
             else {
-                filter.default = !!( /** @type {?} */(filter.menus))[0].value;
+                filter.default = !!filter.menus[0].value;
             }
-            return ( /** @type {?} */(this));
+            return this;
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} col
-         * @return {THIS}
-         */
         STColumnSource.prototype.cleanFilter = function (col) {
-            /** @type {?} */
-            var f = ( /** @type {?} */(col.filter));
+            var f = col.filter;
             f.default = false;
             if (f.type === 'default') {
-                ( /** @type {?} */(f.menus)).forEach(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (/**
-                 * @param {?} i
-                 * @return {?}
-                 */ i) { return (i.checked = false); }));
+                f.menus.forEach(function (i) { return (i.checked = false); });
             }
             else {
-                ( /** @type {?} */(f.menus))[0].value = undefined;
+                f.menus[0].value = undefined;
             }
-            return ( /** @type {?} */(this));
+            return this;
         };
         return STColumnSource;
     }());
@@ -1131,114 +827,8 @@
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
         { type: STWidgetRegistry }
     ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.dom;
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.rowSource;
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.acl;
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.i18nSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        STColumnSource.prototype.stWidgetRegistry;
-    }
 
-    /**
-     * @record
-     */
-    function STDataSourceOptions() { }
-    if (false) {
-        /** @type {?} */
-        STDataSourceOptions.prototype.pi;
-        /** @type {?} */
-        STDataSourceOptions.prototype.ps;
-        /** @type {?} */
-        STDataSourceOptions.prototype.paginator;
-        /** @type {?} */
-        STDataSourceOptions.prototype.data;
-        /** @type {?} */
-        STDataSourceOptions.prototype.total;
-        /** @type {?} */
-        STDataSourceOptions.prototype.req;
-        /** @type {?} */
-        STDataSourceOptions.prototype.res;
-        /** @type {?} */
-        STDataSourceOptions.prototype.page;
-        /** @type {?} */
-        STDataSourceOptions.prototype.columns;
-        /** @type {?|undefined} */
-        STDataSourceOptions.prototype.singleSort;
-        /** @type {?|undefined} */
-        STDataSourceOptions.prototype.multiSort;
-        /** @type {?|undefined} */
-        STDataSourceOptions.prototype.rowClassName;
-    }
-    /**
-     * @record
-     */
-    function STDataSourceResult() { }
-    if (false) {
-        /**
-         * 是否需要显示分页器
-         * @type {?}
-         */
-        STDataSourceResult.prototype.pageShow;
-        /**
-         * 新 `pi`，若返回 `undefined` 表示用户受控
-         * @type {?}
-         */
-        STDataSourceResult.prototype.pi;
-        /**
-         * 新 `ps`，若返回 `undefined` 表示用户受控
-         * @type {?}
-         */
-        STDataSourceResult.prototype.ps;
-        /**
-         * 新 `total`，若返回 `undefined` 表示用户受控
-         * @type {?}
-         */
-        STDataSourceResult.prototype.total;
-        /**
-         * 数据
-         * @type {?}
-         */
-        STDataSourceResult.prototype.list;
-        /**
-         * 统计数据
-         * @type {?}
-         */
-        STDataSourceResult.prototype.statistical;
-    }
     var STDataSource = /** @class */ (function () {
-        /**
-         * @param {?} http
-         * @param {?} datePipe
-         * @param {?} ynPipe
-         * @param {?} numberPipe
-         * @param {?} currencySrv
-         * @param {?} dom
-         */
         function STDataSource(http, datePipe, ynPipe, numberPipe, currencySrv, dom) {
             this.http = http;
             this.datePipe = datePipe;
@@ -1248,40 +838,21 @@
             this.dom = dom;
             this.sortTick = 0;
         }
-        /**
-         * @param {?} options
-         * @return {?}
-         */
         STDataSource.prototype.process = function (options) {
             var _this = this;
-            /** @type {?} */
             var data$;
-            /** @type {?} */
             var isRemote = false;
             var data = options.data, res = options.res, total = options.total, page = options.page, pi = options.pi, ps = options.ps, paginator = options.paginator, columns = options.columns;
-            /** @type {?} */
             var retTotal;
-            /** @type {?} */
             var retPs;
-            /** @type {?} */
             var retList;
-            /** @type {?} */
             var retPi;
-            /** @type {?} */
             var rawData;
-            /** @type {?} */
             var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(operators.map(( /**
-                 * @param {?} result
-                 * @return {?}
-                 */function (/**
-                 * @param {?} result
-                 * @return {?}
-                 */ result) {
+                data$ = this.getByHttp(data, options).pipe(operators.map(function (result) {
                     rawData = result;
-                    /** @type {?} */
                     var ret;
                     if (Array.isArray(result)) {
                         ret = result;
@@ -1291,17 +862,16 @@
                     }
                     else {
                         // list
-                        ret = other.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).list)), []);
+                        ret = other.deepGet(result, res.reName.list, []);
                         if (ret == null || !Array.isArray(ret)) {
                             ret = [];
                         }
                         // total
-                        /** @type {?} */
-                        var resultTotal = ( /** @type {?} */(res.reName)).total && other.deepGet(result, ( /** @type {?} */(( /** @type {?} */(res.reName)).total)), null);
+                        var resultTotal = res.reName.total && other.deepGet(result, res.reName.total, null);
                         retTotal = resultTotal == null ? total || 0 : +resultTotal;
                     }
                     return other.deepCopy(ret);
-                })));
+                }));
             }
             else if (Array.isArray(data)) {
                 data$ = rxjs.of(data);
@@ -1313,75 +883,36 @@
             if (!isRemote) {
                 data$ = data$.pipe(
                 // sort
-                operators.map(( /**
-                 * @param {?} result
-                 * @return {?}
-                 */function (result) {
+                operators.map(function (result) {
                     rawData = result;
-                    /** @type {?} */
                     var copyResult = other.deepCopy(result);
-                    /** @type {?} */
-                    var sorterFn = _this.getSorterFn(( /** @type {?} */(columns)));
+                    var sorterFn = _this.getSorterFn(columns);
                     if (sorterFn) {
                         copyResult = copyResult.sort(sorterFn);
                     }
                     return copyResult;
-                })), 
+                }), 
                 // filter
-                operators.map(( /**
-                 * @param {?} result
-                 * @return {?}
-                 */function (result) {
+                operators.map(function (result) {
                     columns
-                        .filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.filter; }))
-                        .forEach(( /**
-                 * @param {?} c
-                 * @return {?}
-                 */function (/**
-                 * @param {?} c
-                 * @return {?}
-                 */ c) {
-                        /** @type {?} */
-                        var filter = ( /** @type {?} */(c.filter));
-                        /** @type {?} */
+                        .filter(function (w) { return w.filter; })
+                        .forEach(function (c) {
+                        var filter = c.filter;
                         var values = _this.getFilteredData(filter);
                         if (values.length === 0)
                             return;
-                        /** @type {?} */
                         var onFilter = filter.fn;
                         if (typeof onFilter !== 'function') {
                             console.warn("[st] Muse provide the fn function in filter");
                             return;
                         }
-                        result = result.filter(( /**
-                         * @param {?} record
-                         * @return {?}
-                         */function (/**
-                         * @param {?} record
-                         * @return {?}
-                         */ record) { return values.some(( /**
-                         * @param {?} v
-                         * @return {?}
-                         */function (/**
-                         * @param {?} v
-                         * @return {?}
-                         */ v) { return onFilter(v, record); })); }));
-                    }));
+                        result = result.filter(function (record) { return values.some(function (v) { return onFilter(v, record); }); });
+                    });
                     return result;
-                })), 
+                }), 
                 // paging
-                operators.map(( /**
-                 * @param {?} result
-                 * @return {?}
-                 */function (result) {
+                operators.map(function (result) {
                     if (paginator && page.front) {
-                        /** @type {?} */
                         var maxPageIndex = Math.ceil(result.length / ps);
                         retPi = Math.max(1, pi > maxPageIndex ? maxPageIndex : pi);
                         retTotal = result.length;
@@ -1390,70 +921,39 @@
                         }
                     }
                     return result;
-                })));
+                }));
             }
             // pre-process
             if (typeof res.process === 'function') {
-                data$ = data$.pipe(operators.map(( /**
-                 * @param {?} result
-                 * @return {?}
-                 */function (/**
-                 * @param {?} result
-                 * @return {?}
-                 */ result) { return ( /** @type {?} */(res.process))(result, rawData); })));
+                data$ = data$.pipe(operators.map(function (result) { return res.process(result, rawData); }));
             }
-            data$ = data$.pipe(operators.map(( /**
-             * @param {?} result
-             * @return {?}
-             */function (/**
-             * @param {?} result
-             * @return {?}
-             */ result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); })));
-            return data$.pipe(operators.map(( /**
-             * @param {?} result
-             * @return {?}
-             */function (/**
-             * @param {?} result
-             * @return {?}
-             */ result) {
+            data$ = data$.pipe(operators.map(function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); }));
+            return data$.pipe(operators.map(function (result) {
                 retList = result;
-                /** @type {?} */
                 var realTotal = retTotal || total;
-                /** @type {?} */
                 var realPs = retPs || ps;
-                return ( /** @type {?} */({
+                return {
                     pi: retPi,
                     ps: retPs,
                     total: retTotal,
                     list: retList,
-                    statistical: _this.genStatistical(( /** @type {?} */(columns)), retList, rawData),
+                    statistical: _this.genStatistical(columns, retList, rawData),
                     pageShow: typeof showPage === 'undefined' ? realTotal > realPs : showPage,
-                }));
-            })));
+                };
+            }));
         };
-        /**
-         * @private
-         * @param {?} item
-         * @param {?} col
-         * @param {?} idx
-         * @return {?}
-         */
         STDataSource.prototype.get = function (item, col, idx) {
             var _a;
             try {
                 if (col.format) {
-                    /** @type {?} */
                     var formatRes = col.format(item, col, idx) || '';
                     if (formatRes && ~formatRes.indexOf('</')) {
                         return { text: formatRes, _text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
                     }
                     return { text: formatRes, _text: formatRes, org: formatRes };
                 }
-                /** @type {?} */
-                var value = other.deepGet(item, ( /** @type {?} */(col.index)), col.default);
-                /** @type {?} */
+                var value = other.deepGet(item, col.index, col.default);
                 var text = value;
-                /** @type {?} */
                 var color = void 0;
                 switch (col.type) {
                     case 'no':
@@ -1472,17 +972,15 @@
                         text = value === col.default ? col.default : this.datePipe.transform(value, col.dateFormat);
                         break;
                     case 'yn':
-                        text = this.ynPipe.transform(value === ( /** @type {?} */(col.yn)).truth, ( /** @type {?} */(( /** @type {?} */(col.yn)).yes)), ( /** @type {?} */(( /** @type {?} */(col.yn)).no)), ( /** @type {?} */(( /** @type {?} */(col.yn)).mode)), false);
+                        text = this.ynPipe.transform(value === col.yn.truth, col.yn.yes, col.yn.no, col.yn.mode, false);
                         break;
                     case 'enum':
-                        text = ( /** @type {?} */(col.enum))[value];
+                        text = col.enum[value];
                         break;
                     case 'tag':
                     case 'badge':
-                        /** @type {?} */
                         var data = col.type === 'tag' ? col.tag : col.badge;
                         if (data && data[text]) {
-                            /** @type {?} */
                             var dataItem = data[text];
                             text = dataItem.text;
                             color = dataItem.color;
@@ -1497,43 +995,32 @@
                 return { text: text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color: color };
             }
             catch (ex) {
-                /** @type {?} */
                 var text = "INVALID DATA";
                 console.error("Failed to get data", item, col, ex);
                 return { text: text, _text: this.dom.bypassSecurityTrustHtml(text), org: text };
             }
         };
-        /**
-         * @private
-         * @param {?} url
-         * @param {?} options
-         * @return {?}
-         */
         STDataSource.prototype.getByHttp = function (url, options) {
             var _b, _c;
             var req = options.req, page = options.page, paginator = options.paginator, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
-            /** @type {?} */
             var method = (req.method || 'GET').toUpperCase();
-            /** @type {?} */
             var params = {};
-            /** @type {?} */
-            var reName = ( /** @type {?} */(req.reName));
+            var reName = req.reName;
             if (paginator) {
                 if (req.type === 'page') {
                     params = (_b = {},
-                        _b[( /** @type {?} */(reName.pi))] = page.zeroIndexed ? pi - 1 : pi,
-                        _b[( /** @type {?} */(reName.ps))] = ps,
+                        _b[reName.pi] = page.zeroIndexed ? pi - 1 : pi,
+                        _b[reName.ps] = ps,
                         _b);
                 }
                 else {
                     params = (_c = {},
-                        _c[( /** @type {?} */(reName.skip))] = (pi - 1) * ps,
-                        _c[( /** @type {?} */(reName.limit))] = ps,
+                        _c[reName.skip] = (pi - 1) * ps,
+                        _c[reName.limit] = ps,
                         _c);
                 }
             }
             params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
-            /** @type {?} */
             var reqOptions = {
                 params: params,
                 body: req.body,
@@ -1553,21 +1040,11 @@
             }
             return this.http.request(method, url, reqOptions);
         };
-        /**
-         * @param {?} options
-         * @return {?}
-         */
         STDataSource.prototype.optimizeData = function (options) {
             var _this = this;
             var result = options.result, columns = options.columns, rowClassName = options.rowClassName;
             var _loop_1 = function (i, len) {
-                result[i]._values = columns.map(( /**
-                 * @param {?} c
-                 * @return {?}
-                 */function (/**
-                 * @param {?} c
-                 * @return {?}
-                 */ c) { return _this.get(result[i], c, i); }));
+                result[i]._values = columns.map(function (c) { return _this.get(result[i], c, i); });
                 if (rowClassName) {
                     result[i]._rowClassName = rowClassName(result[i], i);
                 }
@@ -1577,48 +1054,18 @@
             }
             return result;
         };
-        /**
-         * @param {?} item
-         * @param {?} col
-         * @param {?} idx
-         * @return {?}
-         */
         STDataSource.prototype.getNoIndex = function (item, col, idx) {
-            return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : ( /** @type {?} */(col.noIndex)) + idx;
+            return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
         };
         // #region sort
-        /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
         STDataSource.prototype.getValidSort = function (columns) {
-            return columns.filter(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return item._sort && item._sort.enabled && item._sort.default; })).map(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return ( /** @type {?} */(item._sort)); }));
+            return columns.filter(function (item) { return item._sort && item._sort.enabled && item._sort.default; }).map(function (item) { return item._sort; });
         };
-        /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
         STDataSource.prototype.getSorterFn = function (columns) {
-            /** @type {?} */
             var sortList = this.getValidSort(columns);
             if (sortList.length === 0) {
                 return;
             }
-            /** @type {?} */
             var sortItem = sortList[0];
             if (sortItem.compare === null) {
                 return;
@@ -1627,177 +1074,84 @@
                 console.warn("[st] Muse provide the compare function in sort");
                 return;
             }
-            return ( /**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */function (a, b) {
-                /** @type {?} */
-                var result = ( /** @type {?} */(sortItem.compare))(a, b);
+            return function (a, b) {
+                var result = sortItem.compare(a, b);
                 if (result !== 0) {
                     return sortItem.default === 'descend' ? -result : result;
                 }
                 return 0;
-            });
+            };
         };
         Object.defineProperty(STDataSource.prototype, "nextSortTick", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return ++this.sortTick;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?} singleSort
-         * @param {?} multiSort
-         * @param {?} columns
-         * @return {?}
-         */
         STDataSource.prototype.getReqSortMap = function (singleSort, multiSort, columns) {
             var _b;
-            /** @type {?} */
             var ret = {};
-            /** @type {?} */
             var sortList = this.getValidSort(columns);
             if (multiSort) {
-                /** @type {?} */
                 var ms_1 = Object.assign({ key: 'sort', separator: '-', nameSeparator: '.', keepEmptyKey: true, arrayParam: false }, multiSort);
-                /** @type {?} */
                 var sortMap = sortList
-                    .sort(( /**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */function (a, b) { return a.tick - b.tick; }))
-                    .map(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return ( /** @type {?} */(item.key)) + ms_1.nameSeparator + ((item.reName || {})[( /** @type {?} */(item.default))] || item.default); }));
-                ret = (_b = {}, _b[( /** @type {?} */(ms_1.key))] = ms_1.arrayParam ? sortMap : sortMap.join(ms_1.separator), _b);
+                    .sort(function (a, b) { return a.tick - b.tick; })
+                    .map(function (item) { return item.key + ms_1.nameSeparator + ((item.reName || {})[item.default] || item.default); });
+                ret = (_b = {}, _b[ms_1.key] = ms_1.arrayParam ? sortMap : sortMap.join(ms_1.separator), _b);
                 return sortMap.length === 0 && ms_1.keepEmptyKey === false ? {} : ret;
             }
             if (sortList.length === 0)
                 return ret;
-            /** @type {?} */
             var mapData = sortList[0];
-            /** @type {?} */
             var sortFiled = mapData.key;
-            /** @type {?} */
-            var sortValue = (sortList[0].reName || {})[( /** @type {?} */(mapData.default))] || mapData.default;
+            var sortValue = (sortList[0].reName || {})[mapData.default] || mapData.default;
             if (singleSort) {
                 sortValue = sortFiled + (singleSort.nameSeparator || '.') + sortValue;
                 sortFiled = singleSort.key || 'sort';
             }
-            ret[( /** @type {?} */(sortFiled))] = ( /** @type {?} */(sortValue));
+            ret[sortFiled] = sortValue;
             return ret;
         };
         // #endregion
         // #region filter
-        /**
-         * @private
-         * @param {?} filter
-         * @return {?}
-         */
         STDataSource.prototype.getFilteredData = function (filter) {
-            return filter.type === 'default' ? ( /** @type {?} */(filter.menus)).filter(( /**
-             * @param {?} f
-             * @return {?}
-             */function (/**
-             * @param {?} f
-             * @return {?}
-             */ f) { return f.checked === true; })) : ( /** @type {?} */(filter.menus)).slice(0, 1);
+            return filter.type === 'default' ? filter.menus.filter(function (f) { return f.checked === true; }) : filter.menus.slice(0, 1);
         };
-        /**
-         * @private
-         * @param {?} columns
-         * @return {?}
-         */
         STDataSource.prototype.getReqFilterMap = function (columns) {
             var _this = this;
-            /** @type {?} */
             var ret = {};
             columns
-                .filter(( /**
-         * @param {?} w
-         * @return {?}
-         */function (/**
-         * @param {?} w
-         * @return {?}
-         */ w) { return w.filter && w.filter.default === true; }))
-                .forEach(( /**
-         * @param {?} col
-         * @return {?}
-         */function (/**
-         * @param {?} col
-         * @return {?}
-         */ col) {
-                /** @type {?} */
-                var filter = ( /** @type {?} */(col.filter));
-                /** @type {?} */
+                .filter(function (w) { return w.filter && w.filter.default === true; })
+                .forEach(function (col) {
+                var filter = col.filter;
                 var values = _this.getFilteredData(filter);
-                /** @type {?} */
                 var obj = {};
                 if (filter.reName) {
-                    obj = ( /** @type {?} */(filter.reName))(( /** @type {?} */(filter.menus)), col);
+                    obj = filter.reName(filter.menus, col);
                 }
                 else {
-                    obj[( /** @type {?} */(filter.key))] = values.map(( /**
-                     * @param {?} i
-                     * @return {?}
-                     */function (/**
-                     * @param {?} i
-                     * @return {?}
-                     */ i) { return i.value; })).join(',');
+                    obj[filter.key] = values.map(function (i) { return i.value; }).join(',');
                 }
                 ret = Object.assign(Object.assign({}, ret), obj);
-            }));
+            });
             return ret;
         };
         // #endregion
         // #region statistical
-        /**
-         * @private
-         * @param {?} columns
-         * @param {?} list
-         * @param {?} rawData
-         * @return {?}
-         */
         STDataSource.prototype.genStatistical = function (columns, list, rawData) {
             var _this = this;
-            /** @type {?} */
             var res = {};
-            columns.forEach(( /**
-             * @param {?} col
-             * @param {?} index
-             * @return {?}
-             */function (col, index) {
+            columns.forEach(function (col, index) {
                 res[col.key || col.indexKey || index] = col.statistical == null ? {} : _this.getStatistical(col, index, list, rawData);
-            }));
+            });
             return res;
         };
-        /**
-         * @private
-         * @param {?} col
-         * @param {?} index
-         * @param {?} list
-         * @param {?} rawData
-         * @return {?}
-         */
         STDataSource.prototype.getStatistical = function (col, index, list, rawData) {
             var _a;
-            /** @type {?} */
             var val = col.statistical;
-            /** @type {?} */
-            var item = Object.assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: ( /** @type {?} */(val)) } : (( /** @type {?} */(val)))));
-            /** @type {?} */
+            var item = Object.assign({ digits: 2, currency: undefined }, (typeof val === 'string' ? { type: val } : val));
             var res = { value: 0 };
-            /** @type {?} */
             var currency = false;
             if (typeof item.type === 'function') {
                 res = item.type(this.getValues(index, list), col, list, rawData);
@@ -1809,19 +1163,14 @@
                         res.value = list.length;
                         break;
                     case 'distinctCount':
-                        res.value = this.getValues(index, list).filter(( /**
-                         * @param {?} value
-                         * @param {?} idx
-                         * @param {?} self
-                         * @return {?}
-                         */function (value, idx, self) { return self.indexOf(value) === idx; })).length;
+                        res.value = this.getValues(index, list).filter(function (value, idx, self) { return self.indexOf(value) === idx; }).length;
                         break;
                     case 'sum':
-                        res.value = this.toFixed(this.getSum(index, list), ( /** @type {?} */(item.digits)));
+                        res.value = this.toFixed(this.getSum(index, list), item.digits);
                         currency = true;
                         break;
                     case 'average':
-                        res.value = this.toFixed(this.getSum(index, list) / list.length, ( /** @type {?} */(item.digits)));
+                        res.value = this.toFixed(this.getSum(index, list) / list.length, item.digits);
                         currency = true;
                         break;
                     case 'max':
@@ -1835,58 +1184,24 @@
                 }
             }
             if (item.currency === true || (item.currency == null && currency === true)) {
-                res.text = ( /** @type {?} */(this.currencySrv.format(res.value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format)));
+                res.text = this.currencySrv.format(res.value, (_a = col.currency) === null || _a === void 0 ? void 0 : _a.format);
             }
             else {
                 res.text = String(res.value);
             }
             return res;
         };
-        /**
-         * @private
-         * @param {?} val
-         * @param {?} digits
-         * @return {?}
-         */
         STDataSource.prototype.toFixed = function (val, digits) {
             if (isNaN(val) || !isFinite(val)) {
                 return 0;
             }
             return parseFloat(val.toFixed(digits));
         };
-        /**
-         * @private
-         * @param {?} index
-         * @param {?} list
-         * @return {?}
-         */
         STDataSource.prototype.getValues = function (index, list) {
-            return list.map(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return i._values[index].org; })).map(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i === '' || i == null ? 0 : i); }));
+            return list.map(function (i) { return i._values[index].org; }).map(function (i) { return (i === '' || i == null ? 0 : i); });
         };
-        /**
-         * @private
-         * @param {?} index
-         * @param {?} list
-         * @return {?}
-         */
         STDataSource.prototype.getSum = function (index, list) {
-            return this.getValues(index, list).reduce(( /**
-             * @param {?} p
-             * @param {?} i
-             * @return {?}
-             */function (p, i) { return (p += parseFloat(String(i))); }), 0);
+            return this.getValues(index, list).reduce(function (p, i) { return (p += parseFloat(String(i))); }, 0);
         };
         return STDataSource;
     }());
@@ -1902,67 +1217,18 @@
         { type: format.CurrencyService },
         { type: platformBrowser.DomSanitizer }
     ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.sortTick;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.http;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.datePipe;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.ynPipe;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.numberPipe;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.currencySrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        STDataSource.prototype.dom;
-    }
 
     var STExport = /** @class */ (function () {
-        /**
-         * @param {?} xlsxSrv
-         */
         function STExport(xlsxSrv) {
             this.xlsxSrv = xlsxSrv;
         }
-        /**
-         * @private
-         * @param {?} item
-         * @param {?} col
-         * @param {?} index
-         * @return {?}
-         */
         STExport.prototype._stGet = function (item, col, index) {
-            /** @type {?} */
             var ret = { t: 's', v: '' };
             if (col.format) {
                 ret.v = col.format(item, col, index);
             }
             else {
-                /** @type {?} */
-                var val = other.deepGet(item, ( /** @type {?} */(col.index)), '');
+                var val = other.deepGet(item, col.index, '');
                 ret.v = val;
                 if (val != null) {
                     switch (col.type) {
@@ -1973,8 +1239,7 @@
                             ret.t = 'd';
                             break;
                         case 'yn':
-                            /** @type {?} */
-                            var yn = ( /** @type {?} */(col.yn));
+                            var yn = col.yn;
                             ret.v = ret.v === yn.truth ? yn.yes || '是' : yn.no || '否';
                             break;
                     }
@@ -1983,31 +1248,14 @@
             ret.v = ret.v || '';
             return ret;
         };
-        /**
-         * @private
-         * @param {?} opt
-         * @return {?}
-         */
         STExport.prototype.genSheet = function (opt) {
-            /** @type {?} */
             var sheets = {};
-            /** @type {?} */
             var sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
-            /** @type {?} */
-            var colData = ( /** @type {?} */(opt.columens)).filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); }));
-            /** @type {?} */
+            var colData = opt.columens.filter(function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); });
             var colLen = colData.length;
-            /** @type {?} */
-            var dataLen = ( /** @type {?} */(opt.data)).length;
+            var dataLen = opt.data.length;
             // column
             for (var i = 0; i < colLen; i++) {
-                /** @type {?} */
                 var tit = colData[i].title;
                 sheet[this.xlsxSrv.numberToSchema(i + 1) + "1"] = {
                     t: 's',
@@ -2017,7 +1265,7 @@
             // content
             for (var i = 0; i < dataLen; i++) {
                 for (var j = 0; j < colLen; j++) {
-                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(( /** @type {?} */(opt.data))[i], colData[j], i);
+                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(opt.data[i], colData[j], i);
                 }
             }
             if (colLen > 0 && dataLen > 0) {
@@ -2025,10 +1273,6 @@
             }
             return sheets;
         };
-        /**
-         * @param {?} opt
-         * @return {?}
-         */
         STExport.prototype.export = function (opt) {
             return __awaiter(this, void 0, void 0, function () {
                 var sheets;
@@ -2051,55 +1295,24 @@
     STExport.ctorParameters = function () { return [
         { type: xlsx.XlsxService, decorators: [{ type: i0.Optional }] }
     ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        STExport.prototype.xlsxSrv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st-widget-host.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var STWidgetHostDirective = /** @class */ (function () {
-        /**
-         * @param {?} stWidgetRegistry
-         * @param {?} viewContainerRef
-         * @param {?} componentFactoryResolver
-         */
         function STWidgetHostDirective(stWidgetRegistry, viewContainerRef, componentFactoryResolver) {
             this.stWidgetRegistry = stWidgetRegistry;
             this.viewContainerRef = viewContainerRef;
             this.componentFactoryResolver = componentFactoryResolver;
         }
-        /**
-         * @return {?}
-         */
         STWidgetHostDirective.prototype.ngOnInit = function () {
-            /** @type {?} */
-            var widget = ( /** @type {?} */(this.column.widget));
-            /** @type {?} */
+            var widget = this.column.widget;
             var componentType = this.stWidgetRegistry.get(widget.type);
-            /** @type {?} */
-            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(( /** @type {?} */(componentType)));
+            var componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
             this.viewContainerRef.clear();
-            /** @type {?} */
             var componentRef = this.viewContainerRef.createComponent(componentFactory);
             var _a = this, record = _a.record, column = _a.column;
-            /** @type {?} */
             var data = widget.params ? widget.params({ record: record, column: column }) : { record: record };
-            Object.keys(data).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                (( /** @type {?} */(componentRef.instance)))[key] = data[key];
-            }));
+            Object.keys(data).forEach(function (key) {
+                componentRef.instance[key] = data[key];
+            });
         };
         return STWidgetHostDirective;
     }());
@@ -2116,34 +1329,7 @@
         record: [{ type: i0.Input }],
         column: [{ type: i0.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        STWidgetHostDirective.prototype.record;
-        /** @type {?} */
-        STWidgetHostDirective.prototype.column;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.stWidgetRegistry;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.viewContainerRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        STWidgetHostDirective.prototype.componentFactoryResolver;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: st.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var ST_DEFULAT_CONFIG = {
         pi: 1,
         ps: 10,
@@ -2211,20 +1397,6 @@
     };
 
     var STComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18nSrv
-         * @param {?} cdr
-         * @param {?} router
-         * @param {?} el
-         * @param {?} exportSrv
-         * @param {?} modalHelper
-         * @param {?} drawerHelper
-         * @param {?} doc
-         * @param {?} columnSource
-         * @param {?} dataSource
-         * @param {?} delonI18n
-         * @param {?} configSrv
-         */
         function STComponent(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv) {
             var _this = this;
             this.cdr = cdr;
@@ -2270,44 +1442,23 @@
             this.virtualItemSize = 54;
             this.virtualMaxBufferPx = 200;
             this.virtualMinBufferPx = 100;
-            this.virtualForTrackBy = ( /**
-             * @param {?} index
-             * @return {?}
-             */function (/**
-             * @param {?} index
-             * @return {?}
-             */ index) { return index; });
-            this.setCog(( /** @type {?} */(configSrv.merge('st', ST_DEFULAT_CONFIG))));
-            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(( /**
-             * @return {?}
-             */function () {
+            this.virtualForTrackBy = function (index) { return index; };
+            this.setCog(configSrv.merge('st', ST_DEFULAT_CONFIG));
+            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
                 _this.locale = _this.delonI18n.getData('st');
                 if (_this._columns.length > 0) {
                     _this.updateTotalTpl();
                     _this.cd();
                 }
-            }));
+            });
             i18nSrv.change
-                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(( /**
-         * @return {?}
-         */function () { return _this._columns.length > 0; })))
-                .subscribe(( /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */function () { return _this.refreshColumns(); }));
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function () { return _this._columns.length > 0; }))
+                .subscribe(function () { return _this.refreshColumns(); });
         }
         Object.defineProperty(STComponent.prototype, "req", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._req;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._req = other.deepMergeKey({}, true, this.cog.req, value);
             },
@@ -2315,42 +1466,26 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "res", {
-            /**
-             * 返回体配置
-             * @return {?}
-             */
+            /** 返回体配置 */
             get: function () {
                 return this._res;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
-                /** @type {?} */
                 var item = (this._res = other.deepMergeKey({}, true, this.cog.res, value));
-                /** @type {?} */
-                var reName = ( /** @type {?} */(item.reName));
+                var reName = item.reName;
                 if (!Array.isArray(reName.list))
-                    reName.list = ( /** @type {?} */(reName.list)).split('.');
+                    reName.list = reName.list.split('.');
                 if (!Array.isArray(reName.total))
-                    reName.total = ( /** @type {?} */(reName.total)).split('.');
+                    reName.total = reName.total.split('.');
                 this._res = item;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "page", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._page;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._page = Object.assign(Object.assign({}, this.cog.page), value);
                 this.updateTotalTpl();
@@ -2359,16 +1494,9 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "multiSort", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._multiSort;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 if ((typeof value === 'boolean' && !decorator.toBoolean(value)) || (typeof value === 'object' && Object.keys(value).length === 0)) {
                     this._multiSort = undefined;
@@ -2380,16 +1508,9 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "widthMode", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._widthMode;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._widthMode = Object.assign(Object.assign({}, this.cog.widthMode), value);
             },
@@ -2397,10 +1518,6 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "widthConfig", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this._widthConfig = val;
                 this.customWidthConfig = val && val.length > 0;
@@ -2409,10 +1526,6 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "resizable", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this._resizable = typeof val === 'object' ? val : { disabled: !decorator.toBoolean(val) };
             },
@@ -2422,7 +1535,6 @@
         Object.defineProperty(STComponent.prototype, "count", {
             /**
              * Get the number of the current page
-             * @return {?}
              */
             get: function () {
                 return this._data.length;
@@ -2433,7 +1545,6 @@
         Object.defineProperty(STComponent.prototype, "list", {
             /**
              * Get the data of the current page
-             * @return {?}
              */
             get: function () {
                 return this._data;
@@ -2442,10 +1553,6 @@
             configurable: true
         });
         Object.defineProperty(STComponent.prototype, "routerState", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 var _b = this, pi = _b.pi, ps = _b.ps, total = _b.total;
                 return { pi: pi, ps: ps, total: total };
@@ -2453,13 +1560,7 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} cog
-         * @return {?}
-         */
         STComponent.prototype.setCog = function (cog) {
-            /** @type {?} */
             var copyMultiSort = Object.assign({}, cog.multiSort);
             // Because multiSort.global will affect the result, it should be removed first, and multiSort will be operated again after processing.
             delete cog.multiSort;
@@ -2470,33 +1571,16 @@
             }
             this.columnSource.setCog(cog);
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype.cd = function () {
-            ( /** @type {?} */(this)).cdr.detectChanges();
-            return ( /** @type {?} */(this));
+            this.cdr.detectChanges();
+            return this;
         };
-        /**
-         * @param {?} total
-         * @param {?} range
-         * @return {?}
-         */
         STComponent.prototype.renderTotal = function (total, range) {
             return this.totalTpl
                 ? this.totalTpl.replace('{{total}}', total).replace('{{range[0]}}', range[0]).replace('{{range[1]}}', range[1])
                 : '';
         };
-        /**
-         * @private
-         * @param {?} type
-         * @param {?=} data
-         * @return {?}
-         */
         STComponent.prototype.changeEmit = function (type, data) {
-            /** @type {?} */
             var res = {
                 type: type,
                 pi: this.pi,
@@ -2514,24 +1598,13 @@
              * 获取过滤后所有数据
              * - 本地数据：包含排序、过滤后不分页数据
              * - 远程数据：不传递 `pi`、`ps` 两个参数
-             * @return {?}
              */
             get: function () {
-                return this.loadData(( /** @type {?} */({ paginator: false }))).then(( /**
-                 * @param {?} res
-                 * @return {?}
-                 */function (/**
-                 * @param {?} res
-                 * @return {?}
-                 */ res) { return res.list; }));
+                return this.loadData({ paginator: false }).then(function (res) { return res.list; });
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         STComponent.prototype.updateTotalTpl = function () {
             var total = this.page.total;
             if (typeof total === 'string' && total.length) {
@@ -2544,30 +1617,16 @@
                 this.totalTpl = '';
             }
         };
-        /**
-         * @private
-         * @param {?} val
-         * @return {?}
-         */
         STComponent.prototype.setLoading = function (val) {
             if (this.loading == null) {
                 this._loading = val;
                 this.cdr.detectChanges();
             }
         };
-        /**
-         * @private
-         * @param {?=} options
-         * @return {?}
-         */
         STComponent.prototype.loadData = function (options) {
             var _this = this;
             var _b = this, pi = _b.pi, ps = _b.ps, data = _b.data, req = _b.req, res = _b.res, page = _b.page, total = _b.total, singleSort = _b.singleSort, multiSort = _b.multiSort, rowClassName = _b.rowClassName;
-            return new Promise(( /**
-             * @param {?} resolvePromise
-             * @param {?} rejectPromise
-             * @return {?}
-             */function (resolvePromise, rejectPromise) {
+            return new Promise(function (resolvePromise, rejectPromise) {
                 if (_this.data$) {
                     _this.data$.unsubscribe();
                 }
@@ -2582,28 +1641,12 @@
                     multiSort: multiSort,
                     rowClassName: rowClassName, paginator: true }, options))
                     .pipe(operators.takeUntil(_this.unsubscribe$))
-                    .subscribe(( /**
-             * @param {?} result
-             * @return {?}
-             */function (/**
-             * @param {?} result
-             * @return {?}
-             */ result) { return resolvePromise(result); }), ( /**
-                 * @param {?} error
-                 * @return {?}
-                 */function (/**
-                 * @param {?} error
-                 * @return {?}
-                 */ error) {
+                    .subscribe(function (result) { return resolvePromise(result); }, function (error) {
                     console.warn('st.loadDate', error);
                     rejectPromise(error);
-                }));
-            }));
+                });
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         STComponent.prototype.loadPageData = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var result, error_1;
@@ -2631,15 +1674,13 @@
                             if (typeof result.pageShow !== 'undefined') {
                                 this._isPagination = result.pageShow;
                             }
-                            this._data = ( /** @type {?} */(result.list));
-                            this._statistical = ( /** @type {?} */(result.statistical));
+                            this._data = result.list;
+                            this._statistical = result.statistical;
                             this.changeEmit('loaded', result.list);
                             // Should be re-render in next tike when using virtual scroll
                             // https://github.com/ng-alain/ng-alain/issues/1836
                             if (this.cdkVirtualScrollViewport) {
-                                Promise.resolve().then(( /**
-                                 * @return {?}
-                                 */function () { return _this.cdkVirtualScrollViewport.checkViewportSize(); }));
+                                Promise.resolve().then(function () { return _this.cdkVirtualScrollViewport.checkViewportSize(); });
                             }
                             return [2 /*return*/, this._refCheck()];
                         case 3:
@@ -2655,60 +1696,42 @@
                 });
             });
         };
-        /**
-         * 清空所有数据
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} cleanStatus
-         * @return {THIS}
-         */
+        /** 清空所有数据 */
         STComponent.prototype.clear = function (cleanStatus) {
             if (cleanStatus === void 0) { cleanStatus = true; }
             if (cleanStatus) {
-                ( /** @type {?} */(this)).clearStatus();
+                this.clearStatus();
             }
-            ( /** @type {?} */(this))._data = [];
-            return ( /** @type {?} */(this)).cd();
+            this._data = [];
+            return this.cd();
         };
-        /**
-         * 清空所有状态
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
+        /** 清空所有状态 */
         STComponent.prototype.clearStatus = function () {
-            return ( /** @type {?} */(this)).clearCheck().clearRadio().clearFilter().clearSort();
+            return this.clearCheck().clearRadio().clearFilter().clearSort();
         };
         /**
          * 根据页码重新加载数据
          *
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} pi 指定当前页码，默认：`1`
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options 选项
-         * @return {THIS}
+         * @param pi 指定当前页码，默认：`1`
+         * @param extraParams 重新指定 `extraParams` 值
+         * @param options 选项
          */
         STComponent.prototype.load = function (pi, extraParams, options) {
             if (pi === void 0) { pi = 1; }
             if (pi !== -1)
-                ( /** @type {?} */(this)).pi = pi;
+                this.pi = pi;
             if (typeof extraParams !== 'undefined') {
-                ( /** @type {?} */(this)).req.params = options && options.merge ? Object.assign(Object.assign({}, ( /** @type {?} */(this)).req.params), extraParams) : extraParams;
+                this.req.params = options && options.merge ? Object.assign(Object.assign({}, this.req.params), extraParams) : extraParams;
             }
-            ( /** @type {?} */(this))._change('pi', options);
-            return ( /** @type {?} */(this));
+            this._change('pi', options);
+            return this;
         };
         /**
          * 重新刷新当前页
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options
-         * @return {THIS}
+         * @param extraParams 重新指定 `extraParams` 值
          */
         STComponent.prototype.reload = function (extraParams, options) {
-            return ( /** @type {?} */(this)).load(-1, extraParams, options);
+            return this.load(-1, extraParams, options);
         };
         /**
          * 重置且重新设置 `pi` 为 `1`，包含以下值：
@@ -2717,27 +1740,17 @@
          * - `sort` 数据
          * - `fileter` 数据
          *
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} extraParams 重新指定 `extraParams` 值
-         * @param {?=} options
-         * @return {THIS}
+         * @param extraParams 重新指定 `extraParams` 值
          */
         STComponent.prototype.reset = function (extraParams, options) {
-            ( /** @type {?} */(this)).clearStatus().load(1, extraParams, options);
-            return ( /** @type {?} */(this));
+            this.clearStatus().load(1, extraParams, options);
+            return this;
         };
-        /**
-         * @private
-         * @param {?=} enforce
-         * @return {?}
-         */
         STComponent.prototype._toTop = function (enforce) {
             var _a;
             if (!(enforce == null ? this.page.toTop : enforce))
                 return;
-            /** @type {?} */
-            var el = ( /** @type {?} */(this.el.nativeElement));
+            var el = this.el.nativeElement;
             if (this.scroll) {
                 if (this.cdkVirtualScrollViewport) {
                     this.cdkVirtualScrollViewport.scrollTo({
@@ -2752,69 +1765,32 @@
             }
             el.scrollIntoView();
             // fix header height
-            this.doc.documentElement.scrollTop -= ( /** @type {?} */(this.page.toTopOffset));
+            this.doc.documentElement.scrollTop -= this.page.toTopOffset;
         };
-        /**
-         * @param {?} type
-         * @param {?=} options
-         * @return {?}
-         */
         STComponent.prototype._change = function (type, options) {
             var _this = this;
             if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {
-                this.loadPageData().then(( /**
-                 * @return {?}
-                 */function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); }));
+                this.loadPageData().then(function () { return _this._toTop(options === null || options === void 0 ? void 0 : options.toTop); });
             }
             this.changeEmit(type);
         };
-        /**
-         * @param {?} e
-         * @param {?} item
-         * @param {?} col
-         * @return {?}
-         */
         STComponent.prototype._click = function (e, item, col) {
             e.preventDefault();
             e.stopPropagation();
-            /** @type {?} */
-            var res = ( /** @type {?} */(col.click))(item, this);
+            var res = col.click(item, this);
             if (typeof res === 'string') {
                 this.router.navigateByUrl(res, { state: this.routerState });
             }
             return false;
         };
-        /**
-         * @private
-         * @param {?} item
-         * @return {?}
-         */
         STComponent.prototype.closeOtherExpand = function (item) {
             if (this.expandAccordion === false)
                 return;
-            this._data.filter(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return i !== item; })).forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i.expand = false); }));
+            this._data.filter(function (i) { return i !== item; }).forEach(function (i) { return (i.expand = false); });
         };
-        /**
-         * @param {?} e
-         * @param {?} item
-         * @param {?} index
-         * @return {?}
-         */
         STComponent.prototype._rowClick = function (e, item, index) {
             var _this = this;
-            if ((( /** @type {?} */(e.target))).nodeName === 'INPUT')
+            if (e.target.nodeName === 'INPUT')
                 return;
             var _b = this, expand = _b.expand, expandRowByClick = _b.expandRowByClick, rowClickTime = _b.rowClickTime;
             if (!!expand && item.showExpand !== false && expandRowByClick) {
@@ -2826,10 +1802,7 @@
             ++this.rowClickCount;
             if (this.rowClickCount !== 1)
                 return;
-            setTimeout(( /**
-             * @return {?}
-             */function () {
-                /** @type {?} */
+            setTimeout(function () {
                 var data = { e: e, item: item, index: index };
                 if (_this.rowClickCount === 1) {
                     _this.changeEmit('click', data);
@@ -2838,13 +1811,8 @@
                     _this.changeEmit('dblClick', data);
                 }
                 _this.rowClickCount = 0;
-            }), rowClickTime);
+            }, rowClickTime);
         };
-        /**
-         * @param {?} item
-         * @param {?} expand
-         * @return {?}
-         */
         STComponent.prototype._expandChange = function (item, expand) {
             if (this.expandRowByClick) {
                 return;
@@ -2860,64 +1828,26 @@
          * this.st.removeRow(0)
          * this.st.removeRow(stDataItem)
          * ```
-         * @template THIS
-         * @this {THIS}
-         * @param {?} data
-         * @return {THIS}
          */
         STComponent.prototype.removeRow = function (data) {
             var _this = this;
             if (typeof data === 'number') {
-                ( /** @type {?} */(this))._data.splice(data, 1);
+                this._data.splice(data, 1);
             }
             else {
                 if (!Array.isArray(data)) {
                     data = [data];
                 }
-                (( /** @type {?} */(data)))
-                    .map(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return ( /** @type {?} */(_this))._data.indexOf(item); }))
-                    .filter(( /**
-             * @param {?} pos
-             * @return {?}
-             */function (/**
-             * @param {?} pos
-             * @return {?}
-             */ pos) { return pos !== -1; }))
-                    .forEach(( /**
-             * @param {?} pos
-             * @return {?}
-             */function (/**
-             * @param {?} pos
-             * @return {?}
-             */ pos) { return ( /** @type {?} */(_this))._data.splice(pos, 1); }));
+                data
+                    .map(function (item) { return _this._data.indexOf(item); })
+                    .filter(function (pos) { return pos !== -1; })
+                    .forEach(function (pos) { return _this._data.splice(pos, 1); });
             }
             // recalculate no
-            ( /** @type {?} */(this))._columns
-                .filter(( /**
-         * @param {?} w
-         * @return {?}
-         */function (/**
-         * @param {?} w
-         * @return {?}
-         */ w) { return w.type === 'no'; }))
-                .forEach(( /**
-         * @param {?} c
-         * @return {?}
-         */function (/**
-         * @param {?} c
-         * @return {?}
-         */ c) { return ( /** @type {?} */(_this))._data.forEach(( /**
-             * @param {?} i
-             * @param {?} idx
-             * @return {?}
-             */function (i, idx) { return (i._values[( /** @type {?} */(c.__point))] = { _text: ( /** @type {?} */(_this)).dataSource.getNoIndex(i, c, idx), org: idx }); })); }));
-            return ( /** @type {?} */(this)).cd();
+            this._columns
+                .filter(function (w) { return w.type === 'no'; })
+                .forEach(function (c) { return _this._data.forEach(function (i, idx) { return (i._values[c.__point] = { _text: _this.dataSource.getNoIndex(i, c, idx), org: idx }); }); });
+            return this.cd();
         };
         /**
          * Sets the row value for the `index` in the table, like this:
@@ -2930,50 +1860,33 @@
          * this.st.setRow(0, { price: 100, name: 'asdf' })
          * this.st.setRow(item, { price: 100 })
          * ```
-         * @template THIS
-         * @this {THIS}
-         * @param {?} index
-         * @param {?} item
-         * @param {?=} options
-         * @return {THIS}
          */
         STComponent.prototype.setRow = function (index, item, options) {
             options = Object.assign({ refreshSchema: false, emitReload: false }, options);
             if (typeof index !== 'number') {
-                index = ( /** @type {?} */(this))._data.indexOf(index);
+                index = this._data.indexOf(index);
             }
-            ( /** @type {?} */(this))._data[index] = other.deepMergeKey(( /** @type {?} */(this))._data[index], false, item);
-            ( /** @type {?} */(this)).optimizeData();
+            this._data[index] = other.deepMergeKey(this._data[index], false, item);
+            this.optimizeData();
             if (options.refreshSchema) {
-                ( /** @type {?} */(this)).resetColumns({ emitReload: options.emitReload });
-                return ( /** @type {?} */(this));
+                this.resetColumns({ emitReload: options.emitReload });
+                return this;
             }
-            ( /** @type {?} */(this)).cdr.detectChanges();
-            return ( /** @type {?} */(this));
+            this.cdr.detectChanges();
+            return this;
         };
         // #endregion
         // #region sort
-        /**
-         * @param {?} col
-         * @param {?} idx
-         * @param {?} value
-         * @return {?}
-         */
         STComponent.prototype.sort = function (col, idx, value) {
             if (this.multiSort) {
-                ( /** @type {?} */(col._sort)).default = value;
-                ( /** @type {?} */(col._sort)).tick = this.dataSource.nextSortTick;
+                col._sort.default = value;
+                col._sort.tick = this.dataSource.nextSortTick;
             }
             else {
-                this._columns.forEach(( /**
-                 * @param {?} item
-                 * @param {?} index
-                 * @return {?}
-                 */function (item, index) { return (( /** @type {?} */(item._sort)).default = index === idx ? value : null); }));
+                this._columns.forEach(function (item, index) { return (item._sort.default = index === idx ? value : null); });
             }
             this.cdr.detectChanges();
             this.loadPageData();
-            /** @type {?} */
             var res = {
                 value: value,
                 map: this.dataSource.getReqSortMap(this.singleSort, this.multiSort, this._columns),
@@ -2981,268 +1894,88 @@
             };
             this.changeEmit('sort', res);
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype.clearSort = function () {
-            ( /** @type {?} */(this))._columns.forEach(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return (( /** @type {?} */(item._sort)).default = null); }));
-            return ( /** @type {?} */(this));
+            this._columns.forEach(function (item) { return (item._sort.default = null); });
+            return this;
         };
         // #endregion
         // #region filter
-        /**
-         * @private
-         * @param {?} col
-         * @return {?}
-         */
         STComponent.prototype.handleFilter = function (col) {
             // 过滤表示一种数据的变化应重置页码为 `1`
             this.pi = 1;
-            this.columnSource.updateDefault(( /** @type {?} */(col.filter)));
+            this.columnSource.updateDefault(col.filter);
             this.loadPageData();
             this.changeEmit('filter', col);
         };
-        /**
-         * @param {?} col
-         * @return {?}
-         */
         STComponent.prototype._filterConfirm = function (col) {
             this.handleFilter(col);
         };
-        /**
-         * @param {?} col
-         * @param {?} item
-         * @param {?} checked
-         * @return {?}
-         */
         STComponent.prototype._filterRadio = function (col, item, checked) {
-            ( /** @type {?} */(( /** @type {?} */(col.filter)).menus)).forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i.checked = false); }));
+            col.filter.menus.forEach(function (i) { return (i.checked = false); });
             item.checked = checked;
         };
-        /**
-         * @param {?} col
-         * @return {?}
-         */
         STComponent.prototype._filterClear = function (col) {
             this.columnSource.cleanFilter(col);
             this.handleFilter(col);
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype.clearFilter = function () {
             var _this = this;
-            ( /** @type {?} */(this))._columns.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.filter && w.filter.default === true; })).forEach(( /**
-             * @param {?} col
-             * @return {?}
-             */function (/**
-             * @param {?} col
-             * @return {?}
-             */ col) { return ( /** @type {?} */(_this)).columnSource.cleanFilter(col); }));
-            return ( /** @type {?} */(this));
+            this._columns.filter(function (w) { return w.filter && w.filter.default === true; }).forEach(function (col) { return _this.columnSource.cleanFilter(col); });
+            return this;
         };
-        /**
-         * @param {?} $event
-         * @return {?}
-         */
         STComponent.prototype._filterClick = function ($event) {
             $event.stopPropagation();
         };
         // #endregion
         // #region checkbox
-        /**
-         * 清除所有 `checkbox`
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
+        /** 清除所有 `checkbox` */
         STComponent.prototype.clearCheck = function () {
-            return ( /** @type {?} */(this))._checkAll(false);
+            return this._checkAll(false);
         };
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype._refCheck = function () {
-            /** @type {?} */
-            var validData = ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !w.disabled; }));
-            /** @type {?} */
-            var checkedList = validData.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.checked === true; }));
-            ( /** @type {?} */(this))._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
-            /** @type {?} */
-            var allUnChecked = validData.every(( /**
-             * @param {?} value
-             * @return {?}
-             */function (/**
-             * @param {?} value
-             * @return {?}
-             */ value) { return !value.checked; }));
-            ( /** @type {?} */(this))._indeterminate = !( /** @type {?} */(this))._allChecked && !allUnChecked;
-            ( /** @type {?} */(this))._allCheckedDisabled = ( /** @type {?} */(this))._data.length === ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.disabled; })).length;
-            return ( /** @type {?} */(this)).cd();
+            var validData = this._data.filter(function (w) { return !w.disabled; });
+            var checkedList = validData.filter(function (w) { return w.checked === true; });
+            this._allChecked = checkedList.length > 0 && checkedList.length === validData.length;
+            var allUnChecked = validData.every(function (value) { return !value.checked; });
+            this._indeterminate = !this._allChecked && !allUnChecked;
+            this._allCheckedDisabled = this._data.length === this._data.filter(function (w) { return w.disabled; }).length;
+            return this.cd();
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?=} checked
-         * @return {THIS}
-         */
         STComponent.prototype._checkAll = function (checked) {
-            checked = typeof checked === 'undefined' ? ( /** @type {?} */(this))._allChecked : checked;
-            ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !w.disabled; })).forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i.checked = checked); }));
-            return ( /** @type {?} */(this))._refCheck()._checkNotify();
+            checked = typeof checked === 'undefined' ? this._allChecked : checked;
+            this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = checked); });
+            return this._refCheck()._checkNotify();
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} i
-         * @param {?} value
-         * @return {THIS}
-         */
         STComponent.prototype._checkSelection = function (i, value) {
             i.checked = value;
-            return ( /** @type {?} */(this))._refCheck()._checkNotify();
+            return this._refCheck()._checkNotify();
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} row
-         * @return {THIS}
-         */
         STComponent.prototype._rowSelection = function (row) {
-            row.select(( /** @type {?} */(this))._data);
-            return ( /** @type {?} */(this))._refCheck()._checkNotify();
+            row.select(this._data);
+            return this._refCheck()._checkNotify();
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype._checkNotify = function () {
-            /** @type {?} */
-            var res = ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !w.disabled && w.checked === true; }));
-            ( /** @type {?} */(this)).changeEmit('checkbox', res);
-            return ( /** @type {?} */(this));
+            var res = this._data.filter(function (w) { return !w.disabled && w.checked === true; });
+            this.changeEmit('checkbox', res);
+            return this;
         };
         // #endregion
         // #region radio
-        /**
-         * 清除所有 `radio`
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
+        /** 清除所有 `radio` */
         STComponent.prototype.clearRadio = function () {
-            ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return w.checked; })).forEach(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) { return (item.checked = false); }));
-            ( /** @type {?} */(this)).changeEmit('radio', null);
-            return ( /** @type {?} */(this));
+            this._data.filter(function (w) { return w.checked; }).forEach(function (item) { return (item.checked = false); });
+            this.changeEmit('radio', null);
+            return this;
         };
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @param {?} checked
-         * @param {?} item
-         * @return {THIS}
-         */
         STComponent.prototype._refRadio = function (checked, item) {
             // if (item.disabled === true) return;
-            ( /** @type {?} */(this))._data.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return !w.disabled; })).forEach(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return (i.checked = false); }));
+            this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
             item.checked = checked;
-            ( /** @type {?} */(this)).changeEmit('radio', item);
-            return ( /** @type {?} */(this));
+            this.changeEmit('radio', item);
+            return this;
         };
         // #endregion
         // #region buttons
-        /**
-         * @param {?} record
-         * @param {?} btn
-         * @param {?=} e
-         * @return {?}
-         */
         STComponent.prototype._btnClick = function (record, btn, e) {
             var _b, _c;
             var _this = this;
@@ -3252,46 +1985,22 @@
             }
             if (btn.type === 'modal' || btn.type === 'static') {
                 var modal = btn.modal;
-                /** @type {?} */
-                var obj = (_b = {}, _b[( /** @type {?} */(( /** @type {?} */(modal)).paramsName))] = record, _b);
-                (( /** @type {?} */(this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'])))(( /** @type {?} */(modal)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(modal)).params && ( /** @type {?} */(( /** @type {?} */(modal)).params))(record))), other.deepMergeKey({}, true, this.cog.modal, modal))
-                    .pipe(operators.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return typeof w !== 'undefined'; })))
-                    .subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (res) { return _this.btnCallback(record, btn, res); }));
+                var obj = (_b = {}, _b[modal.paramsName] = record, _b);
+                this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'](modal.component, Object.assign(Object.assign({}, obj), (modal.params && modal.params(record))), other.deepMergeKey({}, true, this.cog.modal, modal))
+                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
+                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
                 return;
             }
             else if (btn.type === 'drawer') {
                 var drawer = btn.drawer;
-                /** @type {?} */
-                var obj = (_c = {}, _c[( /** @type {?} */(( /** @type {?} */(drawer)).paramsName))] = record, _c);
+                var obj = (_c = {}, _c[drawer.paramsName] = record, _c);
                 this.drawerHelper
-                    .create(( /** @type {?} */(( /** @type {?} */(drawer)).title)), ( /** @type {?} */(drawer)).component, Object.assign(Object.assign({}, obj), (( /** @type {?} */(drawer)).params && ( /** @type {?} */(( /** @type {?} */(drawer)).params))(record))), other.deepMergeKey({}, true, this.cog.drawer, drawer))
-                    .pipe(operators.filter(( /**
-             * @param {?} w
-             * @return {?}
-             */function (/**
-             * @param {?} w
-             * @return {?}
-             */ w) { return typeof w !== 'undefined'; })))
-                    .subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (/**
-             * @param {?} res
-             * @return {?}
-             */ res) { return _this.btnCallback(record, btn, res); }));
+                    .create(drawer.title, drawer.component, Object.assign(Object.assign({}, obj), (drawer.params && drawer.params(record))), other.deepMergeKey({}, true, this.cog.drawer, drawer))
+                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
+                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
                 return;
             }
             else if (btn.type === 'link') {
-                /** @type {?} */
                 var clickRes = this.btnCallback(record, btn);
                 if (typeof clickRes === 'string') {
                     this.router.navigateByUrl(clickRes, { state: this.routerState });
@@ -3300,13 +2009,6 @@
             }
             this.btnCallback(record, btn);
         };
-        /**
-         * @private
-         * @param {?} record
-         * @param {?} btn
-         * @param {?=} modal
-         * @return {?}
-         */
         STComponent.prototype.btnCallback = function (record, btn, modal) {
             if (!btn.click)
                 return;
@@ -3324,59 +2026,31 @@
                 return btn.click(record, modal, this);
             }
         };
-        /**
-         * @param {?} record
-         * @param {?} btn
-         * @return {?}
-         */
         STComponent.prototype._btnText = function (record, btn) {
             return typeof btn.text === 'function' ? btn.text(record, btn) : btn.text || '';
         };
-        /**
-         * @param {?} btns
-         * @param {?} item
-         * @param {?} col
-         * @return {?}
-         */
         STComponent.prototype._validBtns = function (btns, item, col) {
-            return btns.filter(( /**
-             * @param {?} btn
-             * @return {?}
-             */function (/**
-             * @param {?} btn
-             * @return {?}
-             */ btn) {
-                /** @type {?} */
-                var result = ( /** @type {?} */(btn.iif))(item, btn, col);
-                /** @type {?} */
+            return btns.filter(function (btn) {
+                var result = btn.iif(item, btn, col);
                 var isRenderDisabled = btn.iifBehavior === 'disabled';
                 btn._result = result;
                 btn._disabled = !result && isRenderDisabled;
                 return result || isRenderDisabled;
-            }));
+            });
         };
         // #endregion
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
-         * @param {?=} newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
-         * @param {?=} opt 额外参数
-         * @return {?}
+         * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
+         * @param opt 额外参数
          */
         STComponent.prototype.export = function (newData, opt) {
             var _this = this;
-            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(( /**
-             * @param {?} res
-             * @return {?}
-             */function (res) { return _this.exportSrv.export(Object.assign(Object.assign({}, opt), { data: res, columens: _this._columns })); }));
+            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(function (res) { return _this.exportSrv.export(Object.assign(Object.assign({}, opt), { data: res, columens: _this._columns })); });
         };
         // #endregion
         // #region resizable
-        /**
-         * @param {?} __0
-         * @param {?} column
-         * @return {?}
-         */
         STComponent.prototype.colResize = function (_b, column) {
             var width = _b.width;
             column.width = width + "px";
@@ -3384,19 +2058,12 @@
         };
         Object.defineProperty(STComponent.prototype, "cdkVirtualScrollViewport", {
             // #endregion
-            /**
-             * @return {?}
-             */
             get: function () {
-                return ( /** @type {?} */(this.orgTable.cdkVirtualScrollViewport));
+                return this.orgTable.cdkVirtualScrollViewport;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?=} options
-         * @return {?}
-         */
         STComponent.prototype.resetColumns = function (options) {
             options = Object.assign({ emitReload: true, preClearData: false }, options);
             if (typeof options.columns !== 'undefined') {
@@ -3424,26 +2091,15 @@
                 return Promise.resolve(this);
             }
         };
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         STComponent.prototype.refreshColumns = function () {
-            /** @type {?} */
-            var res = ( /** @type {?} */(this)).columnSource.process(( /** @type {?} */(( /** @type {?} */(this)).columns)), { widthMode: ( /** @type {?} */(this)).widthMode, resizable: ( /** @type {?} */(this))._resizable });
-            ( /** @type {?} */(this))._columns = res.columns;
-            ( /** @type {?} */(this))._headers = res.headers;
-            if (( /** @type {?} */(this)).customWidthConfig === false && res.headerWidths != null) {
-                ( /** @type {?} */(this))._widthConfig = res.headerWidths;
+            var res = this.columnSource.process(this.columns, { widthMode: this.widthMode, resizable: this._resizable });
+            this._columns = res.columns;
+            this._headers = res.headers;
+            if (this.customWidthConfig === false && res.headerWidths != null) {
+                this._widthConfig = res.headerWidths;
             }
-            return ( /** @type {?} */(this));
+            return this;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         STComponent.prototype.optimizeData = function () {
             this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
         };
@@ -3451,8 +2107,6 @@
          * Return pure data, `st` internally maintains a set of data for caching, this part of data may affect the backend
          *
          * 返回纯净数据，`st` 内部会维护一组用于缓存的数据，这部分数据可能会影响后端
-         * @param {?} itemOrIndex
-         * @return {?}
          */
         STComponent.prototype.pureItem = function (itemOrIndex) {
             if (typeof itemOrIndex === 'number') {
@@ -3461,26 +2115,17 @@
             if (!itemOrIndex) {
                 return null;
             }
-            /** @type {?} */
             var copyItem = other.deepCopy(itemOrIndex);
             delete copyItem._values;
             return copyItem;
         };
-        /**
-         * @return {?}
-         */
         STComponent.prototype.ngAfterViewInit = function () {
             this.columnSource.restoreAllRender(this._columns);
         };
-        /**
-         * @param {?} changes
-         * @return {?}
-         */
         STComponent.prototype.ngOnChanges = function (changes) {
             if (changes.columns) {
                 this.refreshColumns().optimizeData();
             }
-            /** @type {?} */
             var changeData = changes.data;
             if (changeData && changeData.currentValue && !(this.req.lazyLoad && changeData.firstChange)) {
                 this.loadPageData();
@@ -3489,9 +2134,6 @@
                 this._loading = changes.loading.currentValue;
             }
         };
-        /**
-         * @return {?}
-         */
         STComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
@@ -3516,7 +2158,7 @@
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
                     encapsulation: i0.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     STComponent.ctorParameters = function () { return [
@@ -3635,238 +2277,8 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], STComponent.prototype, "virtualMinBufferPx", void 0);
-    if (false) {
-        /** @type {?} */
-        STComponent.ngAcceptInputType_ps;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_pi;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_total;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_loadingDelay;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_bordered;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_expandRowByClick;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_expandAccordion;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_rowClickTime;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_responsive;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_responsiveHideHeaderFooter;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_virtualScroll;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_virtualItemSize;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_virtualMaxBufferPx;
-        /** @type {?} */
-        STComponent.ngAcceptInputType_virtualMinBufferPx;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.unsubscribe$;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.data$;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.totalTpl;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.rowClickCount;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._req;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._res;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._page;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._widthMode;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.customWidthConfig;
-        /** @type {?} */
-        STComponent.prototype._widthConfig;
-        /** @type {?} */
-        STComponent.prototype.locale;
-        /** @type {?} */
-        STComponent.prototype._loading;
-        /** @type {?} */
-        STComponent.prototype._data;
-        /** @type {?} */
-        STComponent.prototype._statistical;
-        /** @type {?} */
-        STComponent.prototype._isPagination;
-        /** @type {?} */
-        STComponent.prototype._allChecked;
-        /** @type {?} */
-        STComponent.prototype._allCheckedDisabled;
-        /** @type {?} */
-        STComponent.prototype._indeterminate;
-        /** @type {?} */
-        STComponent.prototype._headers;
-        /** @type {?} */
-        STComponent.prototype._columns;
-        /** @type {?} */
-        STComponent.prototype.orgTable;
-        /** @type {?} */
-        STComponent.prototype.data;
-        /** @type {?} */
-        STComponent.prototype.columns;
-        /** @type {?} */
-        STComponent.prototype.ps;
-        /** @type {?} */
-        STComponent.prototype.pi;
-        /** @type {?} */
-        STComponent.prototype.total;
-        /** @type {?} */
-        STComponent.prototype.loading;
-        /** @type {?} */
-        STComponent.prototype.loadingDelay;
-        /** @type {?} */
-        STComponent.prototype.loadingIndicator;
-        /** @type {?} */
-        STComponent.prototype.bordered;
-        /** @type {?} */
-        STComponent.prototype.size;
-        /** @type {?} */
-        STComponent.prototype.scroll;
-        /** @type {?} */
-        STComponent.prototype.singleSort;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._multiSort;
-        /** @type {?} */
-        STComponent.prototype.rowClassName;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype._resizable;
-        /** @type {?} */
-        STComponent.prototype.header;
-        /** @type {?} */
-        STComponent.prototype.showHeader;
-        /** @type {?} */
-        STComponent.prototype.footer;
-        /** @type {?} */
-        STComponent.prototype.bodyHeader;
-        /** @type {?} */
-        STComponent.prototype.body;
-        /** @type {?} */
-        STComponent.prototype.expandRowByClick;
-        /** @type {?} */
-        STComponent.prototype.expandAccordion;
-        /** @type {?} */
-        STComponent.prototype.expand;
-        /** @type {?} */
-        STComponent.prototype.noResult;
-        /** @type {?} */
-        STComponent.prototype.rowClickTime;
-        /** @type {?} */
-        STComponent.prototype.responsive;
-        /** @type {?} */
-        STComponent.prototype.responsiveHideHeaderFooter;
-        /** @type {?} */
-        STComponent.prototype.error;
-        /** @type {?} */
-        STComponent.prototype.change;
-        /** @type {?} */
-        STComponent.prototype.virtualScroll;
-        /** @type {?} */
-        STComponent.prototype.virtualItemSize;
-        /** @type {?} */
-        STComponent.prototype.virtualMaxBufferPx;
-        /** @type {?} */
-        STComponent.prototype.virtualMinBufferPx;
-        /** @type {?} */
-        STComponent.prototype.virtualForTrackBy;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.exportSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.modalHelper;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.drawerHelper;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.columnSource;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.dataSource;
-        /**
-         * @type {?}
-         * @private
-         */
-        STComponent.prototype.delonI18n;
-    }
 
-    /** @type {?} */
     var COMPONENTS = [STComponent];
-    /** @type {?} */
     var DIRECTIVES = [STRowDirective, STWidgetHostDirective];
     var STModule = /** @class */ (function () {
         function STModule() {
@@ -3899,9 +2311,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: table.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.STColumnSource = STColumnSource;

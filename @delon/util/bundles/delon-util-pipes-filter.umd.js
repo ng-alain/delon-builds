@@ -325,24 +325,13 @@
          * Filter array
          *
          * 过滤数组
-         * @template T
-         * @param {?} array
-         * @param {?} matcher
-         * @param {...?} args
-         * @return {?}
          */
         FilterPipe.prototype.transform = function (array, matcher) {
             var args = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 args[_i - 2] = arguments[_i];
             }
-            return array.filter(( /**
-             * @param {?} i
-             * @return {?}
-             */function (/**
-             * @param {?} i
-             * @return {?}
-             */ i) { return matcher.apply(void 0, __spread([i], args)); }));
+            return array.filter(function (i) { return matcher.apply(void 0, __spread([i], args)); });
         };
         return FilterPipe;
     }());
@@ -350,12 +339,6 @@
         { type: core.Pipe, args: [{ name: 'filter' },] }
     ];
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var PIPES = [FilterPipe];
     var FilterPipeModule = /** @class */ (function () {
         function FilterPipeModule() {
@@ -370,15 +353,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: delon-util-pipes-filter.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.FilterPipe = FilterPipe;

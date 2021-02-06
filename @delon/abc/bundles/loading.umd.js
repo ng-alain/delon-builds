@@ -9,31 +9,20 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.bidi, global.ng.cdk.overlay, global.ng.cdk.portal, global.i2, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
 }(this, (function (exports, i0, i3, i1, portal, i2, rxjs, operators, common, icon, spin) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: loading.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var LoadingDefaultComponent = /** @class */ (function () {
         function LoadingDefaultComponent() {
             this.dir = 'ltr';
         }
         Object.defineProperty(LoadingDefaultComponent.prototype, "icon", {
-            /**
-             * @return {?}
-             */
             get: function () {
-                return ( /** @type {?} */(this.options.icon));
+                return this.options.icon;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(LoadingDefaultComponent.prototype, "custom", {
-            /**
-             * @return {?}
-             */
             get: function () {
-                return ( /** @type {?} */(this.options.custom));
+                return this.options.custom;
             },
             enumerable: false,
             configurable: true
@@ -51,26 +40,10 @@
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
                     encapsulation: i0.ViewEncapsulation.None
-                }] }
+                },] }
     ];
-    if (false) {
-        /** @type {?} */
-        LoadingDefaultComponent.prototype.options;
-        /** @type {?} */
-        LoadingDefaultComponent.prototype.dir;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: loading.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var LoadingService = /** @class */ (function () {
-        /**
-         * @param {?} overlay
-         * @param {?} configSrv
-         * @param {?} directionality
-         */
         function LoadingService(overlay, configSrv, directionality) {
             var _this = this;
             this.overlay = overlay;
@@ -79,7 +52,7 @@
             this.compRef = null;
             this.opt = null;
             this.n$ = new rxjs.Subject();
-            this.cog = ( /** @type {?} */(configSrv.merge('loading', {
+            this.cog = configSrv.merge('loading', {
                 type: 'spin',
                 text: '加载中...',
                 icon: {
@@ -88,30 +61,19 @@
                     spin: true,
                 },
                 delay: 0,
-            })));
+            });
             this.loading$ = this.n$
                 .asObservable()
-                .pipe(operators.debounce(( /**
-         * @return {?}
-         */function () { return rxjs.timer(( /** @type {?} */(_this.opt)).delay); })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.create(); }));
+                .pipe(operators.debounce(function () { return rxjs.timer(_this.opt.delay); }))
+                .subscribe(function () { return _this.create(); });
         }
         Object.defineProperty(LoadingService.prototype, "instance", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.compRef != null ? this.compRef.instance : null;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         LoadingService.prototype.create = function () {
             if (this.opt == null)
                 return;
@@ -123,8 +85,7 @@
                 backdropClass: 'loading-backdrop',
             });
             this.compRef = this._overlayRef.attach(new portal.ComponentPortal(LoadingDefaultComponent));
-            /** @type {?} */
-            var dir = ( /** @type {?} */(this.configSrv.get('loading'))).direction || this.directionality.value;
+            var dir = this.configSrv.get('loading').direction || this.directionality.value;
             Object.assign(this.instance, { options: this.opt, dir: dir });
             this.compRef.changeDetectorRef.markForCheck();
         };
@@ -132,18 +93,11 @@
          * Open a new loading indicator
          *
          * 打开一个新加载指示符
-         * @param {?=} options
-         * @return {?}
          */
         LoadingService.prototype.open = function (options) {
             this.opt = Object.assign(Object.assign({}, this.cog), options);
             this.n$.next();
         };
-        /**
-         * @private
-         * @param {?} cleanOpt
-         * @return {?}
-         */
         LoadingService.prototype._close = function (cleanOpt) {
             if (cleanOpt)
                 this.opt = null;
@@ -156,19 +110,16 @@
          * Turn off a loading indicator
          *
          * 关闭一个加载指示符
-         * @return {?}
          */
         LoadingService.prototype.close = function () {
             this._close(true);
         };
-        /**
-         * @return {?}
-         */
         LoadingService.prototype.ngOnDestroy = function () {
             this.loading$.unsubscribe();
         };
         return LoadingService;
     }());
+    /** @nocollapse */ LoadingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(i0.ɵɵinject(i1.Overlay), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i3.Directionality, 8)); }, token: LoadingService, providedIn: "root" });
     LoadingService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -178,61 +129,7 @@
         { type: i2.AlainConfigService },
         { type: i3.Directionality, decorators: [{ type: i0.Optional }] }
     ]; };
-    /** @nocollapse */ LoadingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(i0.ɵɵinject(i1.Overlay), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i3.Directionality, 8)); }, token: LoadingService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype._overlayRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.compRef;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.opt;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.n$;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.loading$;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.overlay;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.configSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        LoadingService.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: loading.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [LoadingDefaultComponent];
     var LoadingModule = /** @class */ (function () {
         function LoadingModule() {
@@ -249,15 +146,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: loading.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.LoadingDefaultComponent = LoadingDefaultComponent;

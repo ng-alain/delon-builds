@@ -1,6 +1,6 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, ɵɵdefineInjectable, ɵɵinject, ApplicationRef, ComponentFactoryResolver, INJECTOR, Injectable, Injector, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -12,38 +12,7 @@ import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: onboarding.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function OnboardingLightData() { }
-if (false) {
-    /** @type {?} */
-    OnboardingLightData.prototype.el;
-    /** @type {?} */
-    OnboardingLightData.prototype.top;
-    /** @type {?} */
-    OnboardingLightData.prototype.left;
-    /** @type {?} */
-    OnboardingLightData.prototype.width;
-    /** @type {?} */
-    OnboardingLightData.prototype.height;
-    /** @type {?} */
-    OnboardingLightData.prototype.clientHeight;
-    /** @type {?} */
-    OnboardingLightData.prototype.clientWidth;
-}
 class OnboardingComponent {
-    /**
-     * @param {?} el
-     * @param {?} doc
-     * @param {?} platform
-     * @param {?} cdr
-     */
     constructor(el, doc, platform, cdr) {
         this.el = el;
         this.doc = doc;
@@ -55,63 +24,33 @@ class OnboardingComponent {
         this.running = false;
         this.dir = 'ltr';
     }
-    /**
-     * @return {?}
-     */
     get first() {
         return this.active === 0;
     }
-    /**
-     * @return {?}
-     */
     get last() {
         return this.active === this.max - 1;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     _getDoc() {
         return this.doc;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     _getWin() {
         return this._getDoc().defaultView || window;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     getLightData() {
-        /** @type {?} */
         const doc = this._getDoc();
-        /** @type {?} */
         const win = this._getWin();
-        /** @type {?} */
-        const el = (/** @type {?} */ (doc.querySelector(this.item.selectors)));
+        const el = doc.querySelector(this.item.selectors);
         if (!el) {
             return null;
         }
-        /** @type {?} */
         const scrollTop = win.pageYOffset || doc.documentElement.scrollTop || doc.body.scrollTop;
-        /** @type {?} */
         const scrollLeft = win.pageXOffset || doc.documentElement.scrollLeft || doc.body.scrollLeft;
-        /** @type {?} */
         const rect = el.getBoundingClientRect();
-        /** @type {?} */
         const top = rect.top + scrollTop;
-        /** @type {?} */
         const left = rect.left + scrollLeft;
-        /** @type {?} */
         const padding = 8;
-        /** @type {?} */
         const needPadding = top > padding && left > padding;
-        /** @type {?} */
         const offsetPos = needPadding ? padding : 0;
-        /** @type {?} */
         const offsetWH = needPadding ? padding * 2 : 0;
         return {
             top: top - offsetPos,
@@ -123,22 +62,12 @@ class OnboardingComponent {
             clientHeight: doc.body.clientHeight,
         };
     }
-    /**
-     * @private
-     * @param {?} pos
-     * @return {?}
-     */
     scroll(pos) {
         this.prevSelectorEl = pos.el;
-        /** @type {?} */
         const scrollY = pos.top - (pos.clientHeight - pos.height) / 2;
         this._getWin().scrollTo({ top: scrollY });
         this.updatePrevElStatus(true);
     }
-    /**
-     * @param {?} status
-     * @return {?}
-     */
     updateRunning(status) {
         this.running = status;
         this.cdr.detectChanges();
@@ -146,22 +75,16 @@ class OnboardingComponent {
             this.updatePosition();
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     updatePosition() {
         if (!this.platform.isBrowser) {
             return;
         }
-        /** @type {?} */
         const pos = this.getLightData();
         if (pos == null) {
             console.warn(`Did not matches selectors [${this.item.selectors}]`);
             return;
         }
-        /** @type {?} */
-        const lightStyle = ((/** @type {?} */ (this.el.nativeElement.querySelector('.onboarding__light')))).style;
+        const lightStyle = this.el.nativeElement.querySelector('.onboarding__light').style;
         lightStyle.top = `${pos.top}px`;
         lightStyle.left = `${pos.left}px`;
         lightStyle.width = `${pos.width}px`;
@@ -169,34 +92,19 @@ class OnboardingComponent {
         this.updatePrevElStatus(false);
         this.scroll(pos);
     }
-    /**
-     * @private
-     * @param {?} status
-     * @return {?}
-     */
     updatePrevElStatus(status) {
         if (this.prevSelectorEl) {
             this.prevSelectorEl.classList[status ? 'add' : 'remove']('onboarding__light-el');
         }
     }
-    /**
-     * @param {?} type
-     * @return {?}
-     */
     to(type) {
         this.op.emit(type);
     }
-    /**
-     * @return {?}
-     */
     handleMask() {
         if (this.config.maskClosable === true) {
             this.to('done');
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         clearTimeout(this.time);
         this.updatePrevElStatus(false);
@@ -214,7 +122,7 @@ OnboardingComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 OnboardingComponent.ctorParameters = () => [
@@ -223,69 +131,8 @@ OnboardingComponent.ctorParameters = () => [
     { type: Platform },
     { type: ChangeDetectorRef }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.time;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.prevSelectorEl;
-    /** @type {?} */
-    OnboardingComponent.prototype.config;
-    /** @type {?} */
-    OnboardingComponent.prototype.item;
-    /** @type {?} */
-    OnboardingComponent.prototype.active;
-    /** @type {?} */
-    OnboardingComponent.prototype.max;
-    /** @type {?} */
-    OnboardingComponent.prototype.op;
-    /** @type {?} */
-    OnboardingComponent.prototype.running;
-    /** @type {?} */
-    OnboardingComponent.prototype.dir;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.platform;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingComponent.prototype.cdr;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: onboarding.service.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class OnboardingService {
-    /**
-     * @param {?} i18n
-     * @param {?} appRef
-     * @param {?} resolver
-     * @param {?} router
-     * @param {?} injector
-     * @param {?} doc
-     * @param {?} configSrv
-     * @param {?} directionality
-     */
     constructor(i18n, appRef, resolver, router, injector, doc, configSrv, directionality) {
         this.i18n = i18n;
         this.appRef = appRef;
@@ -300,10 +147,6 @@ class OnboardingService {
         this._running = false;
         this.type = null;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     _getDoc() {
         return this.doc;
     }
@@ -311,36 +154,23 @@ class OnboardingService {
      * Get whether it is booting
      *
      * 获取是否正在引导中
-     * @return {?}
      */
     get running() {
         return this._running;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     attach() {
-        /** @type {?} */
         const compRef = (this.compRef = this.resolver.resolveComponentFactory(OnboardingComponent).create(this.injector));
         this.appRef.attachView(compRef.hostView);
-        /** @type {?} */
-        const compNode = ((/** @type {?} */ (compRef.hostView))).rootNodes[0];
-        /** @type {?} */
+        const compNode = compRef.hostView.rootNodes[0];
         const doc = this._getDoc();
-        /** @type {?} */
-        const cdk = (/** @type {?} */ (doc.querySelector('.cdk-overlay-container')));
+        const cdk = doc.querySelector('.cdk-overlay-container');
         if (cdk) {
             doc.body.insertBefore(compNode, cdk);
         }
         else {
             doc.body.appendChild(compNode);
         }
-        this.op$ = this.compRef.instance.op.subscribe((/**
-         * @param {?} type
-         * @return {?}
-         */
-        (type) => {
+        this.op$ = this.compRef.instance.op.subscribe((type) => {
             switch (type) {
                 case 'next':
                     this.next();
@@ -352,37 +182,20 @@ class OnboardingService {
                     this.done();
                     break;
             }
-        }));
+        });
     }
-    /**
-     * @private
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
-     */
     cancelRunning() {
-        if ((/** @type {?} */ (this)).running$) {
-            (/** @type {?} */ (this)).running$.unsubscribe();
-            (/** @type {?} */ (this)).running$ = null;
+        if (this.running$) {
+            this.running$.unsubscribe();
+            this.running$ = null;
         }
-        return (/** @type {?} */ (this));
+        return this;
     }
-    /**
-     * @private
-     * @template THIS
-     * @this {THIS}
-     * @param {?} status
-     * @return {THIS}
-     */
     updateRunning(status) {
-        (/** @type {?} */ (this))._running = status;
-        (/** @type {?} */ ((/** @type {?} */ (this)).compRef)).instance.updateRunning(status);
-        return (/** @type {?} */ (this));
+        this._running = status;
+        this.compRef.instance.updateRunning(status);
+        return this;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     destroy() {
         this.cancelRunning();
         if (this.compRef) {
@@ -391,33 +204,17 @@ class OnboardingService {
             this.op$.unsubscribe();
         }
     }
-    /**
-     * @private
-     * @param {?=} isStart
-     * @return {?}
-     */
     showItem(isStart = false) {
-        /** @type {?} */
-        const items = (/** @type {?} */ (this.config.items));
-        /** @type {?} */
-        const item = (/** @type {?} */ (Object.assign(Object.assign({ position: 'bottomLeft', before: of(true), after: of(true) }, this.i18n.getData('onboarding')), items[this.active])));
-        /** @type {?} */
-        const dir = (/** @type {?} */ (this.configSrv.get('onboarding'))).direction || this.directionality.value;
+        const items = this.config.items;
+        const item = Object.assign(Object.assign({ position: 'bottomLeft', before: of(true), after: of(true) }, this.i18n.getData('onboarding')), items[this.active]);
+        const dir = this.configSrv.get('onboarding').direction || this.directionality.value;
         Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length, dir });
-        /** @type {?} */
         const pipes = [
-            switchMap((/**
-             * @return {?}
-             */
-            () => (item.url ? this.router.navigateByUrl(item.url) : of(true)))),
-            switchMap((/**
-             * @return {?}
-             */
-            () => {
-                /** @type {?} */
-                const obs = this.type === 'prev' ? (/** @type {?} */ (item.after)) : (/** @type {?} */ (item.before));
+            switchMap(() => (item.url ? this.router.navigateByUrl(item.url) : of(true))),
+            switchMap(() => {
+                const obs = this.type === 'prev' ? item.after : item.before;
                 return typeof obs === 'number' ? of(true).pipe(delay(obs)) : obs;
-            })),
+            }),
         ];
         if (!isStart) {
             pipes.push(delay(1));
@@ -425,22 +222,12 @@ class OnboardingService {
         this.updateRunning(true);
         this.running$ = of(true)
             .pipe(pipe.apply(this, pipes))
-            .subscribe((/**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
-        () => this.cancelRunning().updateRunning(false)), (/**
-         * @return {?}
-         */
-        () => this.done()));
+            .subscribe(() => this.cancelRunning().updateRunning(false), () => this.done());
     }
     /**
      * Start a new user guidance
      *
      * 开启新的用户引导流程
-     * @param {?} config
-     * @return {?}
      */
     start(config) {
         if (this.running) {
@@ -457,10 +244,9 @@ class OnboardingService {
      * Next
      *
      * 下一步
-     * @return {?}
      */
     next() {
-        if (this._running || this.active + 1 >= (/** @type {?} */ (this.config.items)).length) {
+        if (this._running || this.active + 1 >= this.config.items.length) {
             this.done();
             return;
         }
@@ -472,7 +258,6 @@ class OnboardingService {
      * Prev
      *
      * 上一步
-     * @return {?}
      */
     prev() {
         if (this._running || this.active - 1 < 0) {
@@ -486,19 +271,16 @@ class OnboardingService {
      * Done
      *
      * 完成
-     * @return {?}
      */
     done() {
         this.type = 'done';
         this.destroy();
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy();
     }
 }
+/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
 OnboardingService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -513,205 +295,7 @@ OnboardingService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: Directionality, decorators: [{ type: Optional }] }
 ];
-/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.compRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.op$;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.config;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.active;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.running$;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype._running;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.type;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.i18n;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.appRef;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.resolver;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.router;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.injector;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.configSrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    OnboardingService.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: onboarding.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function OnboardingConfig() { }
-if (false) {
-    /**
-     * Onboarding items
-     * @type {?|undefined}
-     */
-    OnboardingConfig.prototype.items;
-    /**
-     * Whether to show mask or not, Default: `true`
-     * @type {?|undefined}
-     */
-    OnboardingConfig.prototype.mask;
-    /**
-     * Clicking on the mask (area outside the onboarding) to close the onboarding or not, Default: `true`
-     * @type {?|undefined}
-     */
-    OnboardingConfig.prototype.maskClosable;
-    /**
-     * Whether to show total, Default: `true`
-     * @type {?|undefined}
-     */
-    OnboardingConfig.prototype.showTotal;
-}
-/**
- * @record
- */
-function OnboardingItem() { }
-if (false) {
-    /**
-     * The CSS selector, which identifies the html element you want to describe
-     * @type {?}
-     */
-    OnboardingItem.prototype.selectors;
-    /**
-     * Positioning of the selector element, relative to the contents of the children, Default: `bottomLeft`
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.position;
-    /**
-     * Class name of the panel
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.className;
-    /**
-     * Light style
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.lightStyle;
-    /**
-     * Width of the panel
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.width;
-    /**
-     * Title text of the panel
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.title;
-    /**
-     * Content text of the panel
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.content;
-    /**
-     * Skip button of the panel
-     * - `null` Don't show
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.skip;
-    /**
-     * Prev button of the panel
-     * - `null` Don't show
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.prev;
-    /**
-     * Next button of the panel
-     * - `null` Don't show
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.next;
-    /**
-     * Done button of the panel
-     * - `null` Don't show
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.done;
-    /**
-     * Target router url
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.url;
-    /**
-     * Callback before entering, triggered when call `next` operates
-     * - `number` indicate delay
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.before;
-    /**
-     * Callback after entering, triggered when call `prev` operates
-     * - `number` indicate delay
-     * @type {?|undefined}
-     */
-    OnboardingItem.prototype.after;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: onboarding.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [OnboardingComponent];
 class OnboardingModule {
 }
@@ -725,15 +309,7 @@ OnboardingModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: onboarding.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { OnboardingComponent, OnboardingModule, OnboardingService };

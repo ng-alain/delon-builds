@@ -4,11 +4,6 @@ import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: single-bar.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class G2SingleBarComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -25,13 +20,9 @@ class G2SingleBarComponent extends G2BaseComponent {
         this.textStyle = { fontSize: 12, color: '#595959' };
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     install() {
         const { el, height, padding, textStyle, line, format, theme } = this;
-        /** @type {?} */
-        const chart = (this._chart = new ((/** @type {?} */ (window))).G2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,
@@ -45,13 +36,10 @@ class G2SingleBarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('1*value')
-            .label('value', (/**
-         * @return {?}
-         */
-        () => ({
+            .label('value', () => ({
             formatter: format,
             style: Object.assign({}, textStyle),
-        })));
+        }));
         if (line) {
             chart.annotation().line({
                 start: ['50%', '0%'],
@@ -65,9 +53,6 @@ class G2SingleBarComponent extends G2BaseComponent {
         chart.render();
         this.attachChart();
     }
-    /**
-     * @return {?}
-     */
     attachChart() {
         const { _chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
         if (!_chart)
@@ -75,11 +60,7 @@ class G2SingleBarComponent extends G2BaseComponent {
         _chart.scale({ value: { max, min } });
         _chart.height = height;
         _chart.padding = padding;
-        _chart.geometries[0].color('value', (/**
-         * @param {?} val
-         * @return {?}
-         */
-        (val) => (val > 0 ? plusColor : minusColor))).size(barSize);
+        _chart.geometries[0].color('value', (val) => (val > 0 ? plusColor : minusColor)).size(barSize);
         _chart.changeData([{ value }]);
         _chart.render();
     }
@@ -95,7 +76,7 @@ G2SingleBarComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 G2SingleBarComponent.propDecorators = {
     plusColor: [{ type: Input }],
@@ -134,49 +115,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], G2SingleBarComponent.prototype, "line", void 0);
-if (false) {
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_height;
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_barSize;
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_min;
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_max;
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_value;
-    /** @type {?} */
-    G2SingleBarComponent.ngAcceptInputType_line;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.plusColor;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.minusColor;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.height;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.barSize;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.min;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.max;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.value;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.line;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.format;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.padding;
-    /** @type {?} */
-    G2SingleBarComponent.prototype.textStyle;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: single-bar.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2SingleBarComponent];
 class G2SingleBarModule {
 }
@@ -189,15 +128,7 @@ G2SingleBarModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: single-bar.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2SingleBarComponent, G2SingleBarModule };

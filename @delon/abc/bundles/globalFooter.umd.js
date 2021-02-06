@@ -318,11 +318,6 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: global-footer-item.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var GlobalFooterItemComponent = /** @class */ (function () {
         function GlobalFooterItemComponent() {
         }
@@ -336,7 +331,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     GlobalFooterItemComponent.propDecorators = {
         host: [{ type: core.ViewChild, args: ['host', { static: true },] }],
@@ -347,29 +342,8 @@
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
-    if (false) {
-        /** @type {?} */
-        GlobalFooterItemComponent.ngAcceptInputType_blankTarget;
-        /** @type {?} */
-        GlobalFooterItemComponent.prototype.host;
-        /** @type {?} */
-        GlobalFooterItemComponent.prototype.href;
-        /** @type {?} */
-        GlobalFooterItemComponent.prototype.blankTarget;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: global-footer.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var GlobalFooterComponent = /** @class */ (function () {
-        /**
-         * @param {?} router
-         * @param {?} win
-         * @param {?} dom
-         * @param {?} directionality
-         */
         function GlobalFooterComponent(router, win, dom, directionality) {
             this.router = router;
             this.win = win;
@@ -380,34 +354,17 @@
             this.dir = 'ltr';
         }
         Object.defineProperty(GlobalFooterComponent.prototype, "links", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._links;
             },
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 var _this = this;
-                val.forEach(( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (/**
-                 * @param {?} i
-                 * @return {?}
-                 */ i) { return (i._title = _this.dom.bypassSecurityTrustHtml(i.title)); }));
+                val.forEach(function (i) { return (i._title = _this.dom.bypassSecurityTrustHtml(i.title)); });
                 this._links = val;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?} item
-         * @return {?}
-         */
         GlobalFooterComponent.prototype.to = function (item) {
             if (!item.href) {
                 return;
@@ -423,23 +380,14 @@
                 this.router.navigateByUrl(item.href);
             }
         };
-        /**
-         * @return {?}
-         */
         GlobalFooterComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         GlobalFooterComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -458,7 +406,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     GlobalFooterComponent.ctorParameters = function () { return [
@@ -471,49 +419,7 @@
         links: [{ type: core.Input }],
         items: [{ type: core.ContentChildren, args: [GlobalFooterItemComponent,] }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype._links;
-        /** @type {?} */
-        GlobalFooterComponent.prototype.dir;
-        /** @type {?} */
-        GlobalFooterComponent.prototype.items;
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype.win;
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype.dom;
-        /**
-         * @type {?}
-         * @private
-         */
-        GlobalFooterComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: global-footer.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
     var GlobalFooterModule = /** @class */ (function () {
         function GlobalFooterModule() {
@@ -529,9 +435,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: globalFooter.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.GlobalFooterComponent = GlobalFooterComponent;

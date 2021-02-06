@@ -10,61 +10,34 @@
 }(this, (function (exports, common, core, rxjs, operators) { 'use strict';
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: window.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * Access to global `window` object
      *
      * 访问全局 `window` 对象
-     * @type {?}
      */
     var WINDOW = new core.InjectionToken('WINDOW', {
-        factory: ( /**
-         * @return {?}
-         */function () {
+        factory: function () {
             var defaultView = core.inject(common.DOCUMENT).defaultView;
             if (!defaultView) {
                 throw new Error('Window is not available');
             }
             return defaultView;
-        }),
+        },
     });
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: page-visibility.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     /**
      * Use the `visibilitychange` event to monitor whether the browser tab is visible, which is generally used when the user leaves the browser tab to temp interrupt the backend to continue sending requests
      *
      * 通过 `visibilitychange` 事件来监听浏览器选项卡是否可见，一般用于当用户离开应用时暂时中断后端持续发送请求时
-     * @type {?}
      */
     var PAGE_VISIBILITY = new core.InjectionToken('PAGE_VISIBILITY`', {
-        factory: ( /**
-         * @return {?}
-         */function () {
-            /** @type {?} */
+        factory: function () {
             var doc = core.inject(common.DOCUMENT);
-            return rxjs.fromEvent(doc, 'visibilitychange').pipe(operators.startWith(0), operators.map(( /**
-             * @return {?}
-             */function () { return !doc.hidden; })), operators.distinctUntilChanged(), operators.share());
-        }),
+            return rxjs.fromEvent(doc, 'visibilitychange').pipe(operators.startWith(0), operators.map(function () { return !doc.hidden; }), operators.distinctUntilChanged(), operators.share());
+        },
     });
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: delon-util-token.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.PAGE_VISIBILITY = PAGE_VISIBILITY;

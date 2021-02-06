@@ -8,11 +8,6 @@ import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: avatar-list-item.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class AvatarListItemComponent {
 }
 AvatarListItemComponent.decorators = [
@@ -23,7 +18,7 @@ AvatarListItemComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 AvatarListItemComponent.propDecorators = {
     src: [{ type: Input }],
@@ -31,27 +26,8 @@ AvatarListItemComponent.propDecorators = {
     icon: [{ type: Input }],
     tips: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    AvatarListItemComponent.prototype.src;
-    /** @type {?} */
-    AvatarListItemComponent.prototype.text;
-    /** @type {?} */
-    AvatarListItemComponent.prototype.icon;
-    /** @type {?} */
-    AvatarListItemComponent.prototype.tips;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: avatar-list.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class AvatarListComponent {
-    /**
-     * @param {?} cdr
-     * @param {?} directionality
-     */
     constructor(cdr, directionality) {
         this.cdr = cdr;
         this.directionality = directionality;
@@ -64,10 +40,6 @@ class AvatarListComponent {
         this.avatarSize = '';
         this.maxLength = 0;
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set size(value) {
         this.cls = 'avatar-list__item' + (value === 'default' ? '' : ` avatar-list__${value}`);
         switch (value) {
@@ -81,49 +53,29 @@ class AvatarListComponent {
                 break;
         }
     }
-    /**
-     * @private
-     * @return {?}
-     */
     gen() {
         const { _items } = this;
-        /** @type {?} */
         const maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
-        /** @type {?} */
         const numOfChildren = _items.length;
-        /** @type {?} */
         const numToShow = maxLength > 0 && maxLength >= numOfChildren ? numOfChildren : maxLength;
         this.items = _items.toArray().slice(0, numToShow);
         this.exceedCount = numToShow < numOfChildren ? numOfChildren - maxLength : 0;
         this.cdr.detectChanges();
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
-        }));
+        });
         this.gen();
         this.inited = true;
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         if (this.inited) {
             this.gen();
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
@@ -141,7 +93,7 @@ AvatarListComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 AvatarListComponent.ctorParameters = () => [
@@ -158,56 +110,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], AvatarListComponent.prototype, "maxLength", void 0);
-if (false) {
-    /** @type {?} */
-    AvatarListComponent.ngAcceptInputType_maxLength;
-    /**
-     * @type {?}
-     * @private
-     */
-    AvatarListComponent.prototype.inited;
-    /**
-     * @type {?}
-     * @private
-     */
-    AvatarListComponent.prototype._items;
-    /**
-     * @type {?}
-     * @private
-     */
-    AvatarListComponent.prototype.destroy$;
-    /** @type {?} */
-    AvatarListComponent.prototype.items;
-    /** @type {?} */
-    AvatarListComponent.prototype.exceedCount;
-    /** @type {?} */
-    AvatarListComponent.prototype.dir;
-    /** @type {?} */
-    AvatarListComponent.prototype.cls;
-    /** @type {?} */
-    AvatarListComponent.prototype.avatarSize;
-    /** @type {?} */
-    AvatarListComponent.prototype.maxLength;
-    /** @type {?} */
-    AvatarListComponent.prototype.excessItemsStyle;
-    /**
-     * @type {?}
-     * @private
-     */
-    AvatarListComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    AvatarListComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: avatar-list.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
 class AvatarListModule {
 }
@@ -220,15 +123,7 @@ AvatarListModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: avatarList.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { AvatarListComponent, AvatarListItemComponent, AvatarListModule };

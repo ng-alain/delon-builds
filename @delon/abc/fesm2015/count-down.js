@@ -4,19 +4,12 @@ import format from 'date-fns/format';
 import { CountdownModule } from 'ngx-countdown';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class CountDownComponent {
     constructor() {
         this.event = new EventEmitter();
     }
     /**
      * 目标时间
-     * @param {?} value
-     * @return {?}
      */
     set target(value) {
         this.config = {
@@ -24,10 +17,6 @@ class CountDownComponent {
             stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 't'),
         };
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     handleEvent(e) {
         this.event.emit(e);
     }
@@ -40,7 +29,7 @@ CountDownComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 CountDownComponent.propDecorators = {
     instance: [{ type: ViewChild, args: ['cd', { static: false },] }],
@@ -48,21 +37,7 @@ CountDownComponent.propDecorators = {
     target: [{ type: Input }],
     event: [{ type: Output }]
 };
-if (false) {
-    /** @type {?} */
-    CountDownComponent.prototype.instance;
-    /** @type {?} */
-    CountDownComponent.prototype.config;
-    /** @type {?} */
-    CountDownComponent.prototype.event;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [CountDownComponent];
 class CountDownModule {
 }
@@ -75,15 +50,7 @@ CountDownModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: count-down.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { CountDownComponent, CountDownModule };

@@ -318,15 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-container.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVContainerComponent = /** @class */ (function () {
-        /**
-         * @param {?} configSrv
-         */
         function SVContainerComponent(configSrv) {
             configSrv.attach(this, 'sv', {
                 size: 'large',
@@ -354,7 +346,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SVContainerComponent.ctorParameters = function () { return [
@@ -381,46 +373,8 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_gutter;
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_labelWidth;
-        /** @type {?} */
-        SVContainerComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SVContainerComponent.prototype.title;
-        /** @type {?} */
-        SVContainerComponent.prototype.size;
-        /**
-         * 列表项间距，单位为 `px`
-         * @type {?}
-         */
-        SVContainerComponent.prototype.gutter;
-        /** @type {?} */
-        SVContainerComponent.prototype.layout;
-        /** @type {?} */
-        SVContainerComponent.prototype.labelWidth;
-        /**
-         * 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定
-         * @type {?}
-         */
-        SVContainerComponent.prototype.col;
-        /** @type {?} */
-        SVContainerComponent.prototype.default;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-title.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVTitleComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} parent
-         * @param {?} ren
-         */
         function SVTitleComponent(el, parent, ren) {
             this.parent = parent;
             this.ren = ren;
@@ -429,19 +383,12 @@
             }
             this.el = el.nativeElement;
         }
-        /**
-         * @private
-         * @return {?}
-         */
         SVTitleComponent.prototype.setClass = function () {
             var gutter = this.parent.gutter;
             var el = this.el;
             this.ren.setStyle(el, 'padding-left', gutter / 2 + "px");
             this.ren.setStyle(el, 'padding-right', gutter / 2 + "px");
         };
-        /**
-         * @return {?}
-         */
         SVTitleComponent.prototype.ngOnInit = function () {
             this.setClass();
         };
@@ -458,7 +405,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SVTitleComponent.ctorParameters = function () { return [
@@ -466,29 +413,7 @@
         { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
         { type: core.Renderer2 }
     ]; };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVTitleComponent.prototype.ren;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv-value.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SVValueComponent = /** @class */ (function () {
         function SVValueComponent() {
             this.size = 'default';
@@ -508,7 +433,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     SVValueComponent.propDecorators = {
         prefix: [{ type: core.Input }],
@@ -516,26 +441,9 @@
         tooltip: [{ type: core.Input }],
         size: [{ type: core.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        SVValueComponent.prototype.prefix;
-        /** @type {?} */
-        SVValueComponent.prototype.unit;
-        /** @type {?} */
-        SVValueComponent.prototype.tooltip;
-        /** @type {?} */
-        SVValueComponent.prototype.size;
-    }
 
-    /** @type {?} */
     var prefixCls = "sv";
     var SVComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} parent
-         * @param {?} rep
-         * @param {?} ren
-         */
         function SVComponent(el, parent, rep, ren) {
             this.parent = parent;
             this.rep = rep;
@@ -548,9 +456,6 @@
         }
         Object.defineProperty(SVComponent.prototype, "paddingValue", {
             // #endregion
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.parent && this.parent.gutter / 2;
             },
@@ -558,9 +463,6 @@
             configurable: true
         });
         Object.defineProperty(SVComponent.prototype, "labelWidth", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 var _a = this.parent, labelWidth = _a.labelWidth, layout = _a.layout;
                 return layout === 'horizontal' ? labelWidth : null;
@@ -568,19 +470,9 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         SVComponent.prototype.setClass = function () {
             var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep;
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.removeClass(el, cls); }));
+            clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
             clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
             clsMap.push(prefixCls + "__item");
@@ -588,40 +480,22 @@
                 clsMap.push(prefixCls + "__item-fixed");
             if (type)
                 clsMap.push(prefixCls + "__type-" + type);
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.addClass(el, cls); }));
+            clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.ngAfterViewInit = function () {
             this.setClass();
             this.checkContent();
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.ngOnChanges = function () {
             this.setClass();
         };
-        /**
-         * @return {?}
-         */
         SVComponent.prototype.checkContent = function () {
             var conEl = this.conEl;
-            /** @type {?} */
             var def = this.default;
             if (!(def != null ? def : this.parent.default)) {
                 return;
             }
-            /** @type {?} */
-            var el = ( /** @type {?} */(conEl.nativeElement));
-            /** @type {?} */
+            var el = conEl.nativeElement;
             var cls = "sv__default";
             if (el.classList.contains(cls)) {
                 el.classList.remove(cls);
@@ -644,7 +518,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SVComponent.ctorParameters = function () { return [
@@ -672,62 +546,7 @@
         decorator.InputBoolean(null),
         __metadata("design:type", Boolean)
     ], SVComponent.prototype, "default", void 0);
-    if (false) {
-        /** @type {?} */
-        SVComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SVComponent.ngAcceptInputType_default;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.conEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.clsMap;
-        /** @type {?} */
-        SVComponent.prototype.optional;
-        /** @type {?} */
-        SVComponent.prototype.optionalHelp;
-        /** @type {?} */
-        SVComponent.prototype.optionalHelpColor;
-        /** @type {?} */
-        SVComponent.prototype.label;
-        /** @type {?} */
-        SVComponent.prototype.unit;
-        /** @type {?} */
-        SVComponent.prototype.col;
-        /** @type {?} */
-        SVComponent.prototype.default;
-        /** @type {?} */
-        SVComponent.prototype.type;
-        /** @type {?} */
-        SVComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.rep;
-        /**
-         * @type {?}
-         * @private
-         */
-        SVComponent.prototype.ren;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sv.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
     var SVModule = /** @class */ (function () {
         function SVModule() {
@@ -743,15 +562,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: view.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SVComponent = SVComponent;

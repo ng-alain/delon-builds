@@ -10,64 +10,32 @@
 }(this, (function (exports, currency, format, filter) { 'use strict';
 
 	/**
-	 * @fileoverview added by tsickle
-	 * Generated from: index.ts
-	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+	 * Generated bundle index. Do not edit.
 	 */
 
-	/**
-	 * @fileoverview added by tsickle
-	 * Generated from: delon-util-pipes.ts
-	 * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-	 */
-
-	Object.defineProperty(exports, 'CurrencyMegaPipe', {
-		enumerable: true,
-		get: function () {
-			return currency.CurrencyMegaPipe;
-		}
+	Object.keys(currency).forEach(function (k) {
+		if (k !== 'default') Object.defineProperty(exports, k, {
+			enumerable: true,
+			get: function () {
+				return currency[k];
+			}
+		});
 	});
-	Object.defineProperty(exports, 'CurrencyPipeModule', {
-		enumerable: true,
-		get: function () {
-			return currency.CurrencyPipeModule;
-		}
+	Object.keys(format).forEach(function (k) {
+		if (k !== 'default') Object.defineProperty(exports, k, {
+			enumerable: true,
+			get: function () {
+				return format[k];
+			}
+		});
 	});
-	Object.defineProperty(exports, 'CurrencyPricePipe', {
-		enumerable: true,
-		get: function () {
-			return currency.CurrencyPricePipe;
-		}
-	});
-	Object.defineProperty(exports, 'ɵa', {
-		enumerable: true,
-		get: function () {
-			return currency.ɵa;
-		}
-	});
-	Object.defineProperty(exports, 'FormatMaskPipe', {
-		enumerable: true,
-		get: function () {
-			return format.FormatMaskPipe;
-		}
-	});
-	Object.defineProperty(exports, 'FormatPipeModule', {
-		enumerable: true,
-		get: function () {
-			return format.FormatPipeModule;
-		}
-	});
-	Object.defineProperty(exports, 'FilterPipe', {
-		enumerable: true,
-		get: function () {
-			return filter.FilterPipe;
-		}
-	});
-	Object.defineProperty(exports, 'FilterPipeModule', {
-		enumerable: true,
-		get: function () {
-			return filter.FilterPipeModule;
-		}
+	Object.keys(filter).forEach(function (k) {
+		if (k !== 'default') Object.defineProperty(exports, k, {
+			enumerable: true,
+			get: function () {
+				return filter[k];
+			}
+		});
 	});
 
 	Object.defineProperty(exports, '__esModule', { value: true });

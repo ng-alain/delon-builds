@@ -318,12 +318,6 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: qr.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var QR_DEFULAT_CONFIG = {
         lib: "https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js",
         background: 'white',
@@ -337,18 +331,7 @@
         delay: 0,
     };
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: qr.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var QRComponent = /** @class */ (function () {
-        /**
-         * @param {?} cdr
-         * @param {?} configSrv
-         * @param {?} lazySrv
-         * @param {?} platform
-         */
         function QRComponent(cdr, configSrv, lazySrv, platform) {
             this.cdr = cdr;
             this.lazySrv = lazySrv;
@@ -356,68 +339,42 @@
             this.inited = false;
             this.value = '';
             this.change = new core.EventEmitter();
-            this.cog = ( /** @type {?} */(configSrv.merge('qr', QR_DEFULAT_CONFIG)));
+            this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
             Object.assign(this, this.cog);
         }
-        /**
-         * @private
-         * @return {?}
-         */
         QRComponent.prototype.init = function () {
             if (!this.inited) {
                 return;
             }
             if (this.qr == null) {
-                this.qr = new (( /** @type {?} */(window))).QRious();
+                this.qr = new window.QRious();
             }
             this.qr.set(this.option);
             this.dataURL = this.qr.toDataURL();
             this.change.emit(this.dataURL);
             this.cdr.detectChanges();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         QRComponent.prototype.initDelay = function () {
             var _this = this;
             this.inited = true;
-            setTimeout(( /**
-             * @return {?}
-             */function () { return _this.init(); }), this.delay);
+            setTimeout(function () { return _this.init(); }, this.delay);
         };
-        /**
-         * @return {?}
-         */
         QRComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
-            if ((( /** @type {?} */(window))).QRious) {
+            if (window.QRious) {
                 this.initDelay();
                 return;
             }
-            /** @type {?} */
-            var url = ( /** @type {?} */(this.cog.lib));
+            var url = this.cog.lib;
             this.lazy$ = this.lazySrv.change
-                .pipe(operators.filter(( /**
-         * @param {?} ls
-         * @return {?}
-         */function (/**
-         * @param {?} ls
-         * @return {?}
-         */ ls) { return ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.initDelay(); }));
+                .pipe(operators.filter(function (ls) { return ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'; }))
+                .subscribe(function () { return _this.initDelay(); });
             this.lazySrv.load(url);
         };
-        /**
-         * @return {?}
-         */
         QRComponent.prototype.ngOnChanges = function () {
-            /** @type {?} */
             var option = {
                 background: this.background,
                 backgroundAlpha: this.backgroundAlpha,
@@ -432,14 +389,8 @@
             this.option = option;
             this.init();
         };
-        /**
-         * @private
-         * @param {?} str
-         * @return {?}
-         */
         QRComponent.prototype.toUtf8ByteArray = function (str) {
             str = encodeURI(str);
-            /** @type {?} */
             var result = [];
             for (var i = 0; i < str.length; i++) {
                 if (str.charAt(i) !== '%') {
@@ -450,17 +401,8 @@
                     i += 2;
                 }
             }
-            return result.map(( /**
-             * @param {?} v
-             * @return {?}
-             */function (/**
-             * @param {?} v
-             * @return {?}
-             */ v) { return String.fromCharCode(v); })).join('');
+            return result.map(function (v) { return String.fromCharCode(v); }).join('');
         };
-        /**
-         * @return {?}
-         */
         QRComponent.prototype.ngOnDestroy = function () {
             if (this.lazy$) {
                 this.lazy$.unsubscribe();
@@ -481,7 +423,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     QRComponent.ctorParameters = function () { return [
@@ -515,85 +457,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], QRComponent.prototype, "delay", void 0);
-    if (false) {
-        /** @type {?} */
-        QRComponent.ngAcceptInputType_padding;
-        /** @type {?} */
-        QRComponent.ngAcceptInputType_size;
-        /** @type {?} */
-        QRComponent.ngAcceptInputType_delay;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.lazy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.qr;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.option;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.inited;
-        /** @type {?} */
-        QRComponent.prototype.dataURL;
-        /** @type {?} */
-        QRComponent.prototype.background;
-        /** @type {?} */
-        QRComponent.prototype.backgroundAlpha;
-        /** @type {?} */
-        QRComponent.prototype.foreground;
-        /** @type {?} */
-        QRComponent.prototype.foregroundAlpha;
-        /** @type {?} */
-        QRComponent.prototype.level;
-        /** @type {?} */
-        QRComponent.prototype.mime;
-        /** @type {?} */
-        QRComponent.prototype.padding;
-        /** @type {?} */
-        QRComponent.prototype.size;
-        /** @type {?} */
-        QRComponent.prototype.value;
-        /** @type {?} */
-        QRComponent.prototype.delay;
-        /** @type {?} */
-        QRComponent.prototype.change;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.lazySrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        QRComponent.prototype.platform;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: qr.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [QRComponent];
     var QRModule = /** @class */ (function () {
         function QRModule() {
@@ -609,15 +473,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: qr.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.QRComponent = QRComponent;

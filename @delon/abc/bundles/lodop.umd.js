@@ -319,10 +319,6 @@
     }
 
     var LodopService = /** @class */ (function () {
-        /**
-         * @param {?} scriptSrv
-         * @param {?} configSrv
-         */
         function LodopService(scriptSrv, configSrv) {
             this.scriptSrv = scriptSrv;
             this.pending = false;
@@ -330,12 +326,12 @@
             this._init = new rxjs.Subject();
             this._events = new rxjs.Subject();
             this.printBuffer = [];
-            this.defaultConfig = ( /** @type {?} */(configSrv.merge('lodop', {
+            this.defaultConfig = configSrv.merge('lodop', {
                 url: '//localhost:8443/CLodopfuncs.js',
                 name: 'CLODOP',
                 companyName: '',
                 checkMaxCount: 100,
-            })));
+            });
             this.cog = this.defaultConfig;
         }
         Object.defineProperty(LodopService.prototype, "cog", {
@@ -343,15 +339,10 @@
              * Get or set configuration, **Note:** Resetting will invert and reload script resources
              *
              * 获取或重新设置配置，**注：**重新设置会倒置重新加载脚本资源
-             * @return {?}
              */
             get: function () {
                 return this._cog;
             },
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._cog = Object.assign(Object.assign({}, this.defaultConfig), value);
             },
@@ -363,7 +354,6 @@
              * Event change notification
              *
              * 事件变更通知
-             * @return {?}
              */
             get: function () {
                 return this._events.asObservable();
@@ -376,11 +366,10 @@
              * Get lodop object
              *
              * 获取 lodop 对象
-             * @return {?}
              */
             get: function () {
                 if (this._lodop)
-                    return rxjs.of(( /** @type {?} */({ ok: true, lodop: this._lodop })));
+                    return rxjs.of({ ok: true, lodop: this._lodop });
                 if (this.pending)
                     return this._init.asObservable();
                 this.request();
@@ -394,60 +383,39 @@
              * Get printer list
              *
              * 获取打印机列表
-             * @return {?}
              */
             get: function () {
                 this.check();
-                /** @type {?} */
                 var ret = [];
-                /** @type {?} */
-                var count = ( /** @type {?} */(this._lodop)).GET_PRINTER_COUNT();
+                var count = this._lodop.GET_PRINTER_COUNT();
                 for (var index = 0; index < count; index++) {
-                    ret.push(( /** @type {?} */(this._lodop)).GET_PRINTER_NAME(index));
+                    ret.push(this._lodop.GET_PRINTER_NAME(index));
                 }
                 return ret;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         LodopService.prototype.check = function () {
             if (!this._lodop)
                 throw new Error("\u8BF7\u52A1\u5FC5\u5148\u8C03\u7528 lodop \u83B7\u53D6\u5BF9\u8C61");
         };
-        /**
-         * @private
-         * @return {?}
-         */
         LodopService.prototype.request = function () {
             var _this = this;
             this.pending = true;
-            /** @type {?} */
             var url = this.cog.url + "?name=" + this.cog.name;
-            /** @type {?} */
-            var checkMaxCount = ( /** @type {?} */(this.cog.checkMaxCount));
-            /** @type {?} */
-            var onResolve = ( /**
-             * @param {?} status
-             * @param {?=} error
-             * @return {?}
-             */function (status, error) {
+            var checkMaxCount = this.cog.checkMaxCount;
+            var onResolve = function (status, error) {
                 _this._init.next({
                     ok: status === 'ok',
                     status: status,
                     error: error,
-                    lodop: ( /** @type {?} */(_this._lodop)),
+                    lodop: _this._lodop,
                 });
-            });
-            /** @type {?} */
-            var checkStatus = ( /**
-             * @return {?}
-             */function () {
+            };
+            var checkStatus = function () {
                 --checkMaxCount;
-                if (( /** @type {?} */(_this._lodop)).webskt && ( /** @type {?} */(_this._lodop)).webskt.readyState === 1) {
+                if (_this._lodop.webskt && _this._lodop.webskt.readyState === 1) {
                     onResolve('ok');
                 }
                 else {
@@ -455,38 +423,31 @@
                         onResolve('check-limit');
                         return;
                     }
-                    setTimeout(( /**
-                     * @return {?}
-                     */function () { return checkStatus(); }), 100);
+                    setTimeout(function () { return checkStatus(); }, 100);
                 }
-            });
-            this.scriptSrv.loadScript(url).then(( /**
-             * @param {?} res
-             * @return {?}
-             */function (res) {
+            };
+            this.scriptSrv.loadScript(url).then(function (res) {
                 if (res.status !== 'ok') {
                     _this.pending = false;
                     onResolve('script-load-error', res[0]);
                     return;
                 }
-                /** @type {?} */
-                var win = ( /** @type {?} */(window));
-                if (win.hasOwnProperty(( /** @type {?} */(_this.cog.name)))) {
-                    _this._lodop = ( /** @type {?} */(win[( /** @type {?} */(_this.cog.name))]));
+                var win = window;
+                if (win.hasOwnProperty(_this.cog.name)) {
+                    _this._lodop = win[_this.cog.name];
                 }
                 if (_this._lodop === null) {
                     onResolve('load-variable-name-error', { name: _this.cog.name });
                     return;
                 }
-                _this._lodop.SET_LICENSES(( /** @type {?} */(_this.cog.companyName)), ( /** @type {?} */(_this.cog.license)), _this.cog.licenseA, _this.cog.licenseB);
+                _this._lodop.SET_LICENSES(_this.cog.companyName, _this.cog.license, _this.cog.licenseA, _this.cog.licenseB);
                 checkStatus();
-            }));
+            });
         };
         /**
          * Reset lodop object
          *
          * 重置 lodop 对象
-         * @return {?}
          */
         LodopService.prototype.reset = function () {
             this._lodop = null;
@@ -498,35 +459,21 @@
          * **Note:** The code refers to the string data generated by the print design
          *
          * 附加代码至 `lodop` 对象上，字符串类支持 `{{key}}` 的动态参数，**注：** 代码是指打印设计所产生字符串数据
-         * @param {?} code
-         * @param {?=} contextObj
-         * @param {?=} parser
-         * @return {?}
          */
         LodopService.prototype.attachCode = function (code, contextObj, parser) {
             var _this = this;
             this.check();
             if (!parser)
                 parser = /LODOP\.([^(]+)\(([^\n]+)?\);/i;
-            code.split('\n').forEach(( /**
-             * @param {?} line
-             * @return {?}
-             */function (/**
-             * @param {?} line
-             * @return {?}
-             */ line) {
-                /** @type {?} */
-                var res = ( /** @type {?} */(parser)).exec(line.trim());
+            code.split('\n').forEach(function (line) {
+                var res = parser.exec(line.trim());
                 if (!res)
                     return;
-                /** @type {?} */
-                var fn = ( /** @type {?} */(_this._lodop))[res[1]];
+                var fn = _this._lodop[res[1]];
                 if (fn) {
-                    /** @type {?} */
                     var arr = null;
                     try {
                         // tslint:disable-next-line: function-constructor
-                        /** @type {?} */
                         var fakeFn = new Function("return [" + res[2] + "]");
                         arr = fakeFn();
                     }
@@ -534,108 +481,70 @@
                     if (arr != null && Array.isArray(arr) && contextObj) {
                         for (var i = 0; i < arr.length; i++) {
                             if (typeof arr[i] === 'string') {
-                                arr[i] = (( /** @type {?} */(arr[i]))).replace(/{{(.*?)}}/g, ( /**
-                                 * @param {?} _match
-                                 * @param {?} key
-                                 * @return {?}
-                                 */function (_match, key) { return contextObj[key.trim()] || ''; }));
+                                arr[i] = arr[i].replace(/{{(.*?)}}/g, function (_match, key) { return contextObj[key.trim()] || ''; });
                             }
                         }
                     }
-                    fn.apply(_this._lodop, ( /** @type {?} */(arr)));
+                    fn.apply(_this._lodop, arr);
                 }
-            }));
+            });
         };
         /**
          * The code is automatically returned after opening the print design and closing,
          * **Note:** Automatically listen for the `On_Return` event, and it will be removed after running
          *
          * 打开打印设计关闭后自动返回代码，**注：** 自动监听 `On_Return` 事件，运行后会移除
-         * @return {?}
          */
         LodopService.prototype.design = function () {
             var _this = this;
             this.check();
-            /** @type {?} */
-            var tid = ( /** @type {?} */(this._lodop)).PRINT_DESIGN();
-            return new Promise(( /**
-             * @param {?} resolve
-             * @return {?}
-             */function (/**
-             * @param {?} resolve
-             * @return {?}
-             */ resolve) {
-                ( /** @type {?} */(_this._lodop)).On_Return = ( /**
-                 * @param {?} taskID
-                 * @param {?} value
-                 * @return {?}
-                 */function (taskID, value) {
+            var tid = this._lodop.PRINT_DESIGN();
+            return new Promise(function (resolve) {
+                _this._lodop.On_Return = function (taskID, value) {
                     if (tid !== taskID)
                         return;
-                    ( /** @type {?} */(_this._lodop)).On_Return = null;
+                    _this._lodop.On_Return = null;
                     resolve('' + value);
-                });
-            }));
+                };
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         LodopService.prototype.printDo = function () {
             var _this = this;
-            /** @type {?} */
             var data = this.printBuffer.shift();
             if (!data)
                 return;
             this.attachCode(data.code, data.item, data.parser);
-            /** @type {?} */
-            var tid = ( /** @type {?} */(this._lodop)).PRINT();
-            ( /** @type {?} */(this._lodop)).On_Return = ( /**
-             * @param {?} taskID
-             * @param {?} value
-             * @return {?}
-             */function (taskID, value) {
+            var tid = this._lodop.PRINT();
+            this._lodop.On_Return = function (taskID, value) {
                 if (tid !== taskID)
                     return;
-                ( /** @type {?} */(_this._lodop)).On_Return = null;
+                _this._lodop.On_Return = null;
                 _this._events.next(Object.assign({ ok: value === true, error: value === true ? null : value }, data));
                 _this.printDo();
-            });
+            };
         };
         /**
          * Print immediately, generally used for batch printing
          *
          * 立即打印，一般用于批量套打
-         * @param {?} code
-         * @param {?} contextObj
-         * @param {?=} parser
-         * @return {?}
          */
         LodopService.prototype.print = function (code, contextObj, parser) {
             var _b;
             this.check();
             if (contextObj) {
-                (_b = this.printBuffer).push.apply(_b, __spread((Array.isArray(contextObj) ? contextObj : [contextObj]).map(( /**
-                 * @param {?} item
-                 * @return {?}
-                 */function (/**
-                 * @param {?} item
-                 * @return {?}
-                 */ item) {
+                (_b = this.printBuffer).push.apply(_b, __spread((Array.isArray(contextObj) ? contextObj : [contextObj]).map(function (item) {
                     return { code: code, parser: parser, item: item };
-                }))));
+                })));
             }
             this.printDo();
         };
-        /**
-         * @return {?}
-         */
         LodopService.prototype.ngOnDestroy = function () {
             this._init.unsubscribe();
             this._events.unsubscribe();
         };
         return LodopService;
     }());
+    /** @nocollapse */ LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i2.AlainConfigService)); }, token: LodopService, providedIn: "root" });
     LodopService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -644,55 +553,7 @@
         { type: i1.LazyService },
         { type: i2.AlainConfigService }
     ]; };
-    /** @nocollapse */ LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i2.AlainConfigService)); }, token: LodopService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype.defaultConfig;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype._cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype.pending;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype._lodop;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype._init;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype._events;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype.printBuffer;
-        /**
-         * @type {?}
-         * @private
-         */
-        LodopService.prototype.scriptSrv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: lodop.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var LodopModule = /** @class */ (function () {
         function LodopModule() {
         }
@@ -703,9 +564,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: lodop.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.LodopModule = LodopModule;

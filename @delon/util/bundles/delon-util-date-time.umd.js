@@ -30,23 +30,15 @@
     var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: time.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
      * Get the time range, return `[ Date, Date]` for the start and end dates
      *
      * 获取时间范围
-     * @param {?} type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
-     * @param {?=} time 开始时间
-     * @return {?}
+     * @param type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
+     * @param time 开始时间
      */
     function getTimeDistance(type, time) {
         time = time ? (typeof time === 'string' ? parse__default['default'](time, 'yyyy-MM-dd HH:mm:ss', new Date()) : new Date(time)) : new Date();
-        /** @type {?} */
         var options = { weekStartsOn: 1 };
-        /** @type {?} */
         var res;
         switch (type) {
             case 'today':
@@ -84,8 +76,6 @@
     }
     /**
      * fix time is the most, big value
-     * @param {?} dates
-     * @return {?}
      */
     function fixEndTimeOfRange(dates) {
         return [startOfDay__default['default'](dates[0]), endOfDay__default['default'](dates[1])];
@@ -93,9 +83,8 @@
     /**
      * Return the date parsed from string using the given format string
      * - If the argument is a number, it is treated as a timestamp.
-     * @param {?} value
-     * @param {?=} options
-     * @return {?}
+     * @param formatString If parsing fails try to parse the date by pressing `formatString`
+     * @param defaultValue If parsing fails returned default value, default: `new Date(NaN)`
      */
     function toDate(value, options) {
         if (typeof options === 'string')
@@ -110,19 +99,13 @@
         if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
             return new Date(+value);
         }
-        /** @type {?} */
         var tryDate = parseISO__default['default'](value);
-        if (isNaN(( /** @type {?} */(tryDate)))) {
-            tryDate = parse__default['default'](value, ( /** @type {?} */(formatString)), new Date());
+        if (isNaN(tryDate)) {
+            tryDate = parse__default['default'](value, formatString, new Date());
         }
-        return isNaN(( /** @type {?} */(tryDate))) ? defaultValue : tryDate;
+        return isNaN(tryDate) ? defaultValue : tryDate;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: picker.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     // TODO: timezone process
     var DateTimePickerUtil = /** @class */ (function () {
         function DateTimePickerUtil() {
@@ -132,7 +115,6 @@
              * Current local time
              *
              * 当前本地时间
-             * @return {?}
              */
             get: function () {
                 return new Date();
@@ -145,7 +127,6 @@
              * Current local date (not including time part)
              *
              * 当前本地日期（不包含时间部分）
-             * @return {?}
              */
             get: function () {
                 return this.removeTime(this.now);
@@ -157,8 +138,6 @@
          * Remove the time part of the date
          *
          * 移除日期的时间部分
-         * @param {?} d
-         * @return {?}
          */
         DateTimePickerUtil.prototype.removeTime = function (d) {
             return new Date(d.toDateString());
@@ -167,33 +146,18 @@
          * Format date-time
          *
          * 格式化日期
-         * @param {?} d
-         * @param {?=} formatString
-         * @return {?}
          */
         DateTimePickerUtil.prototype.format = function (d, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm:ss'; }
             return format__default['default'](d, formatString);
         };
-        /**
-         * @private
-         * @param {?} count
-         * @return {?}
-         */
         DateTimePickerUtil.prototype.genTick = function (count) {
-            return new Array(count).fill(0).map(( /**
-             * @param {?} _
-             * @param {?} idx
-             * @return {?}
-             */function (_, idx) { return idx; }));
+            return new Array(count).fill(0).map(function (_, idx) { return idx; });
         };
         /**
          * Calculate the number of days between two dates, `0` means the same day
          *
          * 计算两个日期相差天数，`0` 表示同一天
-         * @param {?} dateLeft
-         * @param {?=} dateRight
-         * @return {?}
          */
         DateTimePickerUtil.prototype.getDiffDays = function (dateLeft, dateRight) {
             return differenceInCalendarDays__default['default'](dateLeft, typeof dateRight === 'number' ? addDays__default['default'](this.date, dateRight) : dateRight || this.date);
@@ -202,96 +166,60 @@
          * Disabled Before date (Default: today), Generally serves `nzDisabledDate`
          *
          * 禁用之前日期（默认：今天），一般服务于 `nzDisabledDate`
-         * @param {?=} options
-         * @return {?}
          */
         DateTimePickerUtil.prototype.disabledBeforeDate = function (options) {
             var _this = this;
-            return ( /**
-             * @param {?} d
-             * @return {?}
-             */function (d) { return _this.getDiffDays(d, options === null || options === void 0 ? void 0 : options.offsetDays) < 0; });
+            return function (d) { return _this.getDiffDays(d, options === null || options === void 0 ? void 0 : options.offsetDays) < 0; };
         };
         /**
          * Disabled After date (Default: today), Generally serves `nzDisabledDate`
          *
          * 禁用之后日期（默认：今天），一般服务于 `nzDisabledDate`
-         * @param {?=} options
-         * @return {?}
          */
         DateTimePickerUtil.prototype.disabledAfterDate = function (options) {
             var _this = this;
-            return ( /**
-             * @param {?} d
-             * @return {?}
-             */function (d) { return _this.getDiffDays(d, options === null || options === void 0 ? void 0 : options.offsetDays) > 0; });
+            return function (d) { return _this.getDiffDays(d, options === null || options === void 0 ? void 0 : options.offsetDays) > 0; };
         };
-        /**
-         * @private
-         * @param {?} type
-         * @param {?=} offsetSeconds
-         * @return {?}
-         */
         DateTimePickerUtil.prototype.baseDisabledTime = function (type, offsetSeconds) {
             var _this = this;
-            /** @type {?} */
             var tick24 = this.genTick(24);
-            /** @type {?} */
             var tick60 = this.genTick(60);
-            return ( /**
-             * @param {?} current
-             * @return {?}
-             */function (current) {
-                /** @type {?} */
-                var cur = ( /** @type {?} */(current));
+            return function (current) {
+                var cur = current;
                 if (cur == null) {
-                    return ( /** @type {?} */({}));
+                    return {};
                 }
-                /** @type {?} */
                 var now = addSeconds__default['default'](_this.now, offsetSeconds || 0);
-                /** @type {?} */
                 var nowHours = now.getHours();
-                /** @type {?} */
                 var nowMinutes = now.getMinutes();
-                /** @type {?} */
                 var curHours = cur.getHours();
-                /** @type {?} */
                 var isToday = _this.getDiffDays(_this.removeTime(cur)) === 0;
                 return {
-                    nzDisabledHours: ( /**
-                     * @return {?}
-                     */function () {
+                    nzDisabledHours: function () {
                         if (!isToday)
                             return [];
                         return type === 'before' ? tick24.slice(0, nowHours) : tick24.slice(nowHours + 1);
-                    }),
-                    nzDisabledMinutes: ( /**
-                     * @return {?}
-                     */function () {
+                    },
+                    nzDisabledMinutes: function () {
                         if (isToday && curHours === nowHours) {
                             return type === 'before' ? tick60.slice(0, nowMinutes) : tick60.slice(nowMinutes + 1);
                         }
                         return [];
-                    }),
-                    nzDisabledSeconds: ( /**
-                     * @return {?}
-                     */function () {
+                    },
+                    nzDisabledSeconds: function () {
                         if (isToday && curHours === nowHours && cur.getMinutes() === nowMinutes) {
-                            /** @type {?} */
                             var nowSeconds = now.getSeconds();
                             return type === 'before' ? tick60.slice(0, nowSeconds) : tick60.slice(nowSeconds + 1);
                         }
                         return [];
-                    }),
+                    },
                 };
-            });
+            };
         };
         /**
          * Disabled Before time (Default: now), Generally serves `nzDisabledTime`
          *
          * 禁用之前时间（默认：现在），一般服务于 `nzDisabledTime`
-         * @param {?=} options
-         * @return {?}
          */
         DateTimePickerUtil.prototype.disabledBeforeTime = function (options) {
             return this.baseDisabledTime('before', options === null || options === void 0 ? void 0 : options.offsetSeconds);
@@ -300,27 +228,16 @@
          * Disabled After time (Default: now), Generally serves `nzDisabledTime`
          *
          * 禁用之后时间（默认：现在），一般服务于 `nzDisabledTime`
-         * @param {?=} options
-         * @return {?}
          */
         DateTimePickerUtil.prototype.disabledAfterTime = function (options) {
             return this.baseDisabledTime('after', options === null || options === void 0 ? void 0 : options.offsetSeconds);
         };
         return DateTimePickerUtil;
     }());
-    /** @type {?} */
     var dateTimePickerUtil = new DateTimePickerUtil();
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: delon-util-date-time.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.DateTimePickerUtil = DateTimePickerUtil;

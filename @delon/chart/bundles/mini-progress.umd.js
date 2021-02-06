@@ -318,32 +318,15 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-progress.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var G2MiniProgressComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18n
-         * @param {?} cdr
-         */
         function G2MiniProgressComponent(i18n, cdr) {
             this.i18n = i18n;
             this.cdr = cdr;
             this.color = '#1890FF';
         }
-        /**
-         * @private
-         * @param {?} value
-         * @return {?}
-         */
         G2MiniProgressComponent.prototype.fixNum = function (value) {
             return Math.min(Math.max(decorator.toNumber(value), 0), 100);
         };
-        /**
-         * @return {?}
-         */
         G2MiniProgressComponent.prototype.ngOnChanges = function () {
             this.target = this.fixNum(this.target);
             this.percent = this.fixNum(this.percent);
@@ -360,7 +343,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     G2MiniProgressComponent.ctorParameters = function () { return [
@@ -385,36 +368,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
-    if (false) {
-        /** @type {?} */
-        G2MiniProgressComponent.ngAcceptInputType_target;
-        /** @type {?} */
-        G2MiniProgressComponent.ngAcceptInputType_percent;
-        /** @type {?} */
-        G2MiniProgressComponent.ngAcceptInputType_strokeWidth;
-        /** @type {?} */
-        G2MiniProgressComponent.prototype.color;
-        /** @type {?} */
-        G2MiniProgressComponent.prototype.target;
-        /** @type {?} */
-        G2MiniProgressComponent.prototype.percent;
-        /** @type {?} */
-        G2MiniProgressComponent.prototype.strokeWidth;
-        /** @type {?} */
-        G2MiniProgressComponent.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2MiniProgressComponent.prototype.cdr;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-progress.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2MiniProgressComponent];
     var G2MiniProgressModule = /** @class */ (function () {
         function G2MiniProgressModule() {
@@ -430,15 +384,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-progress.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2MiniProgressComponent = G2MiniProgressComponent;

@@ -318,31 +318,7 @@
         return value;
     }
 
-    /** @type {?} */
     var TITLE_HEIGHT = 41;
-    /**
-     * @record
-     */
-    function G2BarData() { }
-    if (false) {
-        /** @type {?} */
-        G2BarData.prototype.x;
-        /** @type {?} */
-        G2BarData.prototype.y;
-        /** @type {?|undefined} */
-        G2BarData.prototype.color;
-        /* Skipping unhandled member: [key: string]: NzSafeAny;*/
-    }
-    /**
-     * @record
-     */
-    function G2BarClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2BarClickItem.prototype.item;
-        /** @type {?} */
-        G2BarClickItem.prototype.ev;
-    }
     var G2BarComponent = /** @class */ (function (_super) {
         __extends(G2BarComponent, _super);
         function G2BarComponent() {
@@ -357,23 +333,14 @@
             return _this;
         }
         // #endregion
-        /**
-         * @private
-         * @return {?}
-         */
         G2BarComponent.prototype.getHeight = function () {
             return this.title ? this.height - TITLE_HEIGHT : this.height;
         };
-        /**
-         * @return {?}
-         */
         G2BarComponent.prototype.install = function () {
             var _this = this;
             var _b = this, node = _b.node, padding = _b.padding, interaction = _b.interaction, theme = _b.theme;
-            /** @type {?} */
-            var container = ( /** @type {?} */(node.nativeElement));
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var container = node.nativeElement;
+            var chart = (this._chart = new window.G2.Chart({
                 container: container,
                 autoFit: true,
                 height: this.getHeight(),
@@ -404,45 +371,21 @@
             chart
                 .interval()
                 .position('x*y')
-                .color('x*y', ( /**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */function (x, y) {
-                /** @type {?} */
-                var colorItem = _this.data.find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.x === x && w.y === y; }));
+                .color('x*y', function (x, y) {
+                var colorItem = _this.data.find(function (w) { return w.x === x && w.y === y; });
                 return colorItem && colorItem.color ? colorItem.color : _this.color;
-            }))
-                .tooltip('x*y', ( /**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */function (x, y) { return ({ name: x, value: y }); }));
-            chart.on("interval:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
+            })
+                .tooltip('x*y', function (x, y) { return ({ name: x, value: y }); });
+            chart.on("interval:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2BarComponent.prototype.attachChart = function () {
             var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
             if (!_chart || !data || data.length <= 0)
                 return;
             this.installResizeEvent();
-            /** @type {?} */
             var height = this.getHeight();
             if (_chart.height !== height) {
                 _chart.height = height;
@@ -451,35 +394,19 @@
             _chart.data(data);
             _chart.render();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2BarComponent.prototype.updatelabel = function () {
             var _b = this, node = _b.node, data = _b.data, _chart = _b._chart;
-            /** @type {?} */
             var canvasWidth = node.nativeElement.clientWidth;
-            /** @type {?} */
             var minWidth = data.length * 30;
             _chart.axis('x', canvasWidth > minWidth).render();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         G2BarComponent.prototype.installResizeEvent = function () {
             var _this = this;
             if (!this.autoLabel || this.resize$)
                 return;
             this.resize$ = rxjs.fromEvent(window, 'resize')
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @return {?}
-         */function () { return !!_this._chart; })), operators.debounceTime(200))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.updatelabel(); })); }));
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(function () { return !!_this._chart; }), operators.debounceTime(200))
+                .subscribe(function () { return _this.ngZone.runOutsideAngular(function () { return _this.updatelabel(); }); });
         };
         return G2BarComponent;
     }(core$1.G2BaseComponent));
@@ -494,7 +421,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     G2BarComponent.propDecorators = {
         title: [{ type: core.Input }],
@@ -514,35 +441,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], G2BarComponent.prototype, "autoLabel", void 0);
-    if (false) {
-        /** @type {?} */
-        G2BarComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2BarComponent.ngAcceptInputType_autoLabel;
-        /** @type {?} */
-        G2BarComponent.prototype.title;
-        /** @type {?} */
-        G2BarComponent.prototype.color;
-        /** @type {?} */
-        G2BarComponent.prototype.height;
-        /** @type {?} */
-        G2BarComponent.prototype.padding;
-        /** @type {?} */
-        G2BarComponent.prototype.data;
-        /** @type {?} */
-        G2BarComponent.prototype.autoLabel;
-        /** @type {?} */
-        G2BarComponent.prototype.interaction;
-        /** @type {?} */
-        G2BarComponent.prototype.clickItem;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: bar.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2BarComponent];
     var G2BarModule = /** @class */ (function () {
         function G2BarModule() {
@@ -558,15 +457,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: bar.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2BarComponent = G2BarComponent;

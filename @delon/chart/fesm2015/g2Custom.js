@@ -7,11 +7,6 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: custom.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class G2CustomComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
@@ -21,31 +16,18 @@ class G2CustomComponent extends G2BaseComponent {
         this.destroy = new EventEmitter();
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     install() {
         this.el.nativeElement.innerHTML = '';
         this.render.emit(this.el);
         this.installResizeEvent();
     }
-    /**
-     * @return {?}
-     */
     attachChart() { }
-    /**
-     * @private
-     * @return {?}
-     */
     installResizeEvent() {
         if (this.resizeTime <= 0)
             return;
         fromEvent(window, 'resize')
             .pipe(takeUntil(this.destroy$), debounceTime(Math.min(200, this.resizeTime)))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.resize.emit(this.el)));
+            .subscribe(() => this.resize.emit(this.el));
     }
 }
 G2CustomComponent.decorators = [
@@ -62,7 +44,7 @@ G2CustomComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 G2CustomComponent.propDecorators = {
     height: [{ type: Input }],
@@ -79,29 +61,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2CustomComponent.prototype, "resizeTime", void 0);
-if (false) {
-    /** @type {?} */
-    G2CustomComponent.ngAcceptInputType_height;
-    /** @type {?} */
-    G2CustomComponent.ngAcceptInputType_resizeTime;
-    /** @type {?} */
-    G2CustomComponent.prototype.height;
-    /** @type {?} */
-    G2CustomComponent.prototype.resizeTime;
-    /** @type {?} */
-    G2CustomComponent.prototype.render;
-    /** @type {?} */
-    G2CustomComponent.prototype.resize;
-    /** @type {?} */
-    G2CustomComponent.prototype.destroy;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: custom.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [G2CustomComponent];
 class G2CustomModule {
 }
@@ -114,15 +74,7 @@ G2CustomModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: g2Custom.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { G2CustomComponent, G2CustomModule };

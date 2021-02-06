@@ -329,31 +329,19 @@
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2CustomComponent.prototype.install = function () {
             this.el.nativeElement.innerHTML = '';
             this.render.emit(this.el);
             this.installResizeEvent();
         };
-        /**
-         * @return {?}
-         */
         G2CustomComponent.prototype.attachChart = function () { };
-        /**
-         * @private
-         * @return {?}
-         */
         G2CustomComponent.prototype.installResizeEvent = function () {
             var _this = this;
             if (this.resizeTime <= 0)
                 return;
             rxjs.fromEvent(window, 'resize')
                 .pipe(operators.takeUntil(this.destroy$), operators.debounceTime(Math.min(200, this.resizeTime)))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.resize.emit(_this.el); }));
+                .subscribe(function () { return _this.resize.emit(_this.el); });
         };
         return G2CustomComponent;
     }(core$1.G2BaseComponent));
@@ -368,7 +356,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     G2CustomComponent.propDecorators = {
         height: [{ type: core.Input }],
@@ -385,29 +373,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2CustomComponent.prototype, "resizeTime", void 0);
-    if (false) {
-        /** @type {?} */
-        G2CustomComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2CustomComponent.ngAcceptInputType_resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.height;
-        /** @type {?} */
-        G2CustomComponent.prototype.resizeTime;
-        /** @type {?} */
-        G2CustomComponent.prototype.render;
-        /** @type {?} */
-        G2CustomComponent.prototype.resize;
-        /** @type {?} */
-        G2CustomComponent.prototype.destroy;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: custom.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2CustomComponent];
     var G2CustomModule = /** @class */ (function () {
         function G2CustomModule() {
@@ -423,15 +389,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: g2Custom.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2CustomComponent = G2CustomComponent;

@@ -9,31 +9,8 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['theme-btn'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.rxjs, global.rxjs.operators, global.dropdown, global.tooltip));
 }(this, (function (exports, bidi, platform, common, core, config, rxjs, operators, dropdown, tooltip) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: theme-btn.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var ThemeBtnStorageKey = "site-theme";
-    /**
-     * @record
-     */
-    function ThemeBtnType() { }
-    if (false) {
-        /** @type {?} */
-        ThemeBtnType.prototype.key;
-        /** @type {?} */
-        ThemeBtnType.prototype.text;
-    }
     var ThemeBtnComponent = /** @class */ (function () {
-        /**
-         * @param {?} renderer
-         * @param {?} configSrv
-         * @param {?} platform
-         * @param {?} doc
-         * @param {?} directionality
-         */
         function ThemeBtnComponent(renderer, configSrv, platform, doc, directionality) {
             this.renderer = renderer;
             this.configSrv = configSrv;
@@ -51,25 +28,15 @@
             this.destroy$ = new rxjs.Subject();
             this.dir = 'ltr';
         }
-        /**
-         * @return {?}
-         */
         ThemeBtnComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
+            });
             this.initTheme();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         ThemeBtnComponent.prototype.initTheme = function () {
             if (!this.platform.isBrowser) {
                 return;
@@ -78,31 +45,21 @@
             this.updateChartTheme();
             this.onThemeChange(this.theme);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         ThemeBtnComponent.prototype.updateChartTheme = function () {
             this.configSrv.set('chart', { theme: this.theme === 'dark' ? 'dark' : '' });
         };
-        /**
-         * @param {?} theme
-         * @return {?}
-         */
         ThemeBtnComponent.prototype.onThemeChange = function (theme) {
             if (!this.platform.isBrowser) {
                 return;
             }
             this.theme = theme;
             this.renderer.setAttribute(this.doc.body, 'data-theme', theme);
-            /** @type {?} */
             var dom = this.doc.getElementById(ThemeBtnStorageKey);
             if (dom) {
                 dom.remove();
             }
             localStorage.removeItem(ThemeBtnStorageKey);
             if (theme !== 'default') {
-                /** @type {?} */
                 var el = (this.el = this.doc.createElement('link'));
                 el.type = 'text/css';
                 el.rel = 'stylesheet';
@@ -113,9 +70,6 @@
             }
             this.updateChartTheme();
         };
-        /**
-         * @return {?}
-         */
         ThemeBtnComponent.prototype.ngOnDestroy = function () {
             if (this.el) {
                 this.doc.body.removeChild(this.el);
@@ -134,7 +88,7 @@
                         '[class.theme-btn-rtl]': "dir === 'rtl'",
                     },
                     changeDetection: core.ChangeDetectionStrategy.OnPush
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ThemeBtnComponent.ctorParameters = function () { return [
@@ -148,63 +102,7 @@
         types: [{ type: core.Input }],
         devTips: [{ type: core.Input }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.theme;
-        /** @type {?} */
-        ThemeBtnComponent.prototype.isDev;
-        /** @type {?} */
-        ThemeBtnComponent.prototype.types;
-        /** @type {?} */
-        ThemeBtnComponent.prototype.devTips;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.destroy$;
-        /** @type {?} */
-        ThemeBtnComponent.prototype.dir;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.configSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.platform;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        ThemeBtnComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: theme-btn.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [ThemeBtnComponent];
     var ThemeBtnModule = /** @class */ (function () {
         function ThemeBtnModule() {
@@ -220,15 +118,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: layout-theme-btn.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ThemeBtnComponent = ThemeBtnComponent;

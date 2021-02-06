@@ -9,15 +9,7 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.result = {}), global.ng.cdk.bidi, global.ng.core, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
 }(this, (function (exports, bidi, core, rxjs, operators, common, outlet, icon) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: result.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ResultComponent = /** @class */ (function () {
-        /**
-         * @param {?} directionality
-         */
         function ResultComponent(directionality) {
             this.directionality = directionality;
             this.destroy$ = new rxjs.Subject();
@@ -26,10 +18,6 @@
             this.dir = 'ltr';
         }
         Object.defineProperty(ResultComponent.prototype, "type", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._type = value;
                 switch (value) {
@@ -47,23 +35,14 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         ResultComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         ResultComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -82,7 +61,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ResultComponent.ctorParameters = function () { return [
@@ -94,37 +73,7 @@
         description: [{ type: core.Input }],
         extra: [{ type: core.Input }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        ResultComponent.prototype.destroy$;
-        /** @type {?} */
-        ResultComponent.prototype._type;
-        /** @type {?} */
-        ResultComponent.prototype._icon;
-        /** @type {?} */
-        ResultComponent.prototype.title;
-        /** @type {?} */
-        ResultComponent.prototype.description;
-        /** @type {?} */
-        ResultComponent.prototype.extra;
-        /** @type {?} */
-        ResultComponent.prototype.dir;
-        /**
-         * @type {?}
-         * @private
-         */
-        ResultComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: result.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [ResultComponent];
     var ResultModule = /** @class */ (function () {
         function ResultModule() {
@@ -140,15 +89,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: result.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ResultComponent = ResultComponent;

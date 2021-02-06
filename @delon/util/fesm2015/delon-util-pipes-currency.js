@@ -1,16 +1,7 @@
 import { Pipe, Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { CurrencyService } from '@delon/util/format';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: mega.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class CurrencyMegaPipe {
-    /**
-     * @param {?} srv
-     * @param {?} locale
-     */
     constructor(srv, locale) {
         this.srv = srv;
         this.isCN = false;
@@ -20,12 +11,8 @@ class CurrencyMegaPipe {
      * Large number format filter
      *
      * 大数据格式化
-     * @param {?} value
-     * @param {?=} options
-     * @return {?}
      */
     transform(value, options) {
-        /** @type {?} */
         const res = this.srv.mega(value, options);
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
@@ -38,28 +25,8 @@ CurrencyMegaPipe.ctorParameters = () => [
     { type: CurrencyService },
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    CurrencyMegaPipe.prototype.isCN;
-    /**
-     * @type {?}
-     * @private
-     */
-    CurrencyMegaPipe.prototype.srv;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: price.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class CurrencyPricePipe {
-    /**
-     * @param {?} srv
-     */
     constructor(srv) {
         this.srv = srv;
     }
@@ -71,9 +38,6 @@ class CurrencyPricePipe {
      * 10000 => `10,000`
      * 10000.567 => `10,000.57`
      * ```
-     * @param {?} value
-     * @param {?=} options
-     * @return {?}
      */
     transform(value, options) {
         return this.srv.format(value, options);
@@ -86,23 +50,8 @@ CurrencyPricePipe.decorators = [
 CurrencyPricePipe.ctorParameters = () => [
     { type: CurrencyService }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    CurrencyPricePipe.prototype.srv;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: cny.pipe.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class CurrencyCNYPipe {
-    /**
-     * @param {?} srv
-     */
     constructor(srv) {
         this.srv = srv;
     }
@@ -110,9 +59,6 @@ class CurrencyCNYPipe {
      * Converted into RMB notation.
      *
      * 转化成人民币表示法
-     * @param {?} value
-     * @param {?=} options
-     * @return {?}
      */
     transform(value, options) {
         return this.srv.cny(value, options);
@@ -125,20 +71,7 @@ CurrencyCNYPipe.decorators = [
 CurrencyCNYPipe.ctorParameters = () => [
     { type: CurrencyService }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    CurrencyCNYPipe.prototype.srv;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
@@ -150,15 +83,7 @@ CurrencyPipeModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: index.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: delon-util-pipes-currency.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { CurrencyMegaPipe, CurrencyPipeModule, CurrencyPricePipe, CurrencyCNYPipe as ɵa };

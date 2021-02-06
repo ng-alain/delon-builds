@@ -319,10 +319,6 @@
     }
 
     var DownFileDirective = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} _http
-         */
         function DownFileDirective(el, _http) {
             this.el = el;
             this._http = _http;
@@ -330,7 +326,6 @@
             this.httpMethod = 'get';
             this.success = new core.EventEmitter();
             this.error = new core.EventEmitter();
-            /** @type {?} */
             var isFileSaverSupported = false;
             try {
                 isFileSaverSupported = !!new Blob();
@@ -341,61 +336,26 @@
                 el.nativeElement.classList.add("down-file__not-support");
             }
         }
-        /**
-         * @private
-         * @param {?} data
-         * @return {?}
-         */
         DownFileDirective.prototype.getDisposition = function (data) {
-            /** @type {?} */
             var arr = (data || '')
                 .split(';')
-                .filter(( /**
-         * @param {?} i
-         * @return {?}
-         */function (/**
-         * @param {?} i
-         * @return {?}
-         */ i) { return i.includes('='); }))
-                .map(( /**
-         * @param {?} v
-         * @return {?}
-         */function (/**
-         * @param {?} v
-         * @return {?}
-         */ v) {
+                .filter(function (i) { return i.includes('='); })
+                .map(function (v) {
                 var _b;
-                /** @type {?} */
                 var strArr = v.split('=');
-                /** @type {?} */
                 var utfId = "UTF-8''";
-                /** @type {?} */
                 var value = strArr[1];
                 if (value.startsWith(utfId))
                     value = value.substr(utfId.length);
                 return _b = {}, _b[strArr[0].trim()] = value, _b;
-            }));
-            return arr.reduce(( /**
-             * @param {?} _o
-             * @param {?} item
-             * @return {?}
-             */function (_o, item) { return item; }), {});
+            });
+            return arr.reduce(function (_o, item) { return item; }, {});
         };
-        /**
-         * @private
-         * @param {?} status
-         * @return {?}
-         */
         DownFileDirective.prototype.setDisabled = function (status) {
-            /** @type {?} */
             var el = this.el.nativeElement;
             el.disabled = status;
             el.classList[status ? 'add' : 'remove']("down-file__disabled");
         };
-        /**
-         * @param {?} ev
-         * @return {?}
-         */
         DownFileDirective.prototype._click = function (ev) {
             return __awaiter(this, void 0, void 0, function () {
                 var _b, _c;
@@ -428,33 +388,20 @@
                                 observe: 'response',
                                 body: this.httpBody,
                             })
-                                .subscribe(( /**
-                         * @param {?} res
-                         * @return {?}
-                         */function (res) {
-                                if (res.status !== 200 || ( /** @type {?} */(res.body)).size <= 0) {
+                                .subscribe(function (res) {
+                                if (res.status !== 200 || res.body.size <= 0) {
                                     _this.error.emit(res);
                                     return;
                                 }
-                                /** @type {?} */
                                 var disposition = _this.getDisposition(res.headers.get('content-disposition'));
-                                /** @type {?} */
                                 var fileName = _this.fileName;
                                 if (typeof fileName === 'function')
                                     fileName = fileName(res);
                                 fileName =
                                     fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
-                                fileSaver.saveAs(( /** @type {?} */(res.body)), decodeURI(( /** @type {?} */(fileName))));
+                                fileSaver.saveAs(res.body, decodeURI(fileName));
                                 _this.success.emit(res);
-                            }), ( /**
-                             * @param {?} err
-                             * @return {?}
-                             */function (/**
-                             * @param {?} err
-                             * @return {?}
-                             */ err) { return _this.error.emit(err); }), ( /**
-                             * @return {?}
-                             */function () { return _this.setDisabled(false); }));
+                            }, function (err) { return _this.error.emit(err); }, function () { return _this.setDisabled(false); });
                             return [2 /*return*/];
                     }
                 });
@@ -486,41 +433,7 @@
         success: [{ type: core.Output }],
         error: [{ type: core.Output }]
     };
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype.isFileSaverSupported;
-        /** @type {?} */
-        DownFileDirective.prototype.httpData;
-        /** @type {?} */
-        DownFileDirective.prototype.httpBody;
-        /** @type {?} */
-        DownFileDirective.prototype.httpMethod;
-        /** @type {?} */
-        DownFileDirective.prototype.httpUrl;
-        /** @type {?} */
-        DownFileDirective.prototype.fileName;
-        /** @type {?} */
-        DownFileDirective.prototype.pre;
-        /** @type {?} */
-        DownFileDirective.prototype.success;
-        /** @type {?} */
-        DownFileDirective.prototype.error;
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        DownFileDirective.prototype._http;
-    }
 
-    /** @type {?} */
     var DIRECTIVES = [DownFileDirective];
     var DownFileModule = /** @class */ (function () {
         function DownFileModule() {
@@ -536,15 +449,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: downFile.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.DownFileDirective = DownFileDirective;

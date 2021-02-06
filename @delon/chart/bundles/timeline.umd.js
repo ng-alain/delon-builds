@@ -322,85 +322,6 @@
         return value;
     }
 
-    /**
-     * @record
-     */
-    function G2TimelineData() { }
-    if (false) {
-        /**
-         * 时间值
-         * @type {?|undefined}
-         */
-        G2TimelineData.prototype.time;
-        /**
-         * 指标1数据
-         * @type {?}
-         */
-        G2TimelineData.prototype.y1;
-        /**
-         * 指标2数据
-         * @type {?}
-         */
-        G2TimelineData.prototype.y2;
-        /**
-         * 指标3数据
-         * @type {?|undefined}
-         */
-        G2TimelineData.prototype.y3;
-        /**
-         * 指标4数据
-         * @type {?|undefined}
-         */
-        G2TimelineData.prototype.y4;
-        /**
-         * 指标5数据
-         * @type {?|undefined}
-         */
-        G2TimelineData.prototype.y5;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function G2TimelineMap() { }
-    if (false) {
-        /**
-         * 指标1
-         * @type {?}
-         */
-        G2TimelineMap.prototype.y1;
-        /**
-         * 指标
-         * @type {?}
-         */
-        G2TimelineMap.prototype.y2;
-        /**
-         * 指标3
-         * @type {?|undefined}
-         */
-        G2TimelineMap.prototype.y3;
-        /**
-         * 指标4
-         * @type {?|undefined}
-         */
-        G2TimelineMap.prototype.y4;
-        /**
-         * 指标5
-         * @type {?|undefined}
-         */
-        G2TimelineMap.prototype.y5;
-        /* Skipping unhandled member: [key: string]: string | undefined;*/
-    }
-    /**
-     * @record
-     */
-    function G2TimelineClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2TimelineClickItem.prototype.item;
-        /** @type {?} */
-        G2TimelineClickItem.prototype.ev;
-    }
     var G2TimelineComponent = /** @class */ (function (_super) {
         __extends(G2TimelineComponent, _super);
         function G2TimelineComponent() {
@@ -419,14 +340,10 @@
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2TimelineComponent.prototype.install = function () {
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, slider = _b.slider, maxAxis = _b.maxAxis, theme = _b.theme, maskSlider = _b.maskSlider;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
                 height: height,
@@ -446,7 +363,6 @@
                 showCrosshairs: true,
                 shared: true,
             });
-            /** @type {?} */
             var sliderPadding = Object.assign(Object.assign({}, []), padding);
             sliderPadding[0] = 0;
             if (slider) {
@@ -458,150 +374,72 @@
                         isArea: false,
                     },
                     minLimit: 2,
-                    formatter: ( /**
-                     * @param {?} val
-                     * @return {?}
-                     */function (val) { return format__default['default'](val, maskSlider); }),
+                    formatter: function (val) { return format__default['default'](val, maskSlider); },
                 });
             }
-            chart.on("plot:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                /** @type {?} */
+            chart.on("plot:click", function (ev) {
                 var records = _this._chart.getSnapRecords({ x: ev.x, y: ev.y });
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); }));
-            }));
-            chart.on("legend-item:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
+                _this.ngZone.run(function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); });
+            });
+            chart.on("legend-item:click", function (ev) {
                 var _a;
-                /** @type {?} */
                 var item = (_a = ev === null || ev === void 0 ? void 0 : ev.target) === null || _a === void 0 ? void 0 : _a.get('delegateObject').item;
-                /** @type {?} */
                 var id = item === null || item === void 0 ? void 0 : item.id;
-                /** @type {?} */
-                var line = chart.geometries.find(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (/**
-                 * @param {?} w
-                 * @return {?}
-                 */ w) { return w.getAttribute('position').getFields()[1] === id; }));
+                var line = chart.geometries.find(function (w) { return w.getAttribute('position').getFields()[1] === id; });
                 if (line) {
                     line.changeVisible(!item.unchecked);
                 }
-            }));
+            });
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2TimelineComponent.prototype.attachChart = function () {
             var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, mask = _b.mask, titleMap = _b.titleMap, position = _b.position, colorMap = _b.colorMap, borderWidth = _b.borderWidth, maxAxis = _b.maxAxis;
-            /** @type {?} */
             var data = __spread(this.data);
             if (!_chart || !data || data.length <= 0)
                 return;
-            /** @type {?} */
-            var arrAxis = __spread(Array(maxAxis)).map(( /**
-             * @param {?} _
-             * @param {?} index
-             * @return {?}
-             */function (_, index) { return index + 1; }));
+            var arrAxis = __spread(Array(maxAxis)).map(function (_, index) { return index + 1; });
             _chart.legend({
                 position: position,
                 custom: true,
-                items: arrAxis.map(( /**
-                 * @param {?} id
-                 * @return {?}
-                 */function (/**
-                 * @param {?} id
-                 * @return {?}
-                 */ id) {
-                    /** @type {?} */
+                items: arrAxis.map(function (id) {
                     var key = "y" + id;
-                    return ( /** @type {?} */({ id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } }));
-                })),
+                    return { id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } };
+                }),
             });
             // border
-            _chart.geometries.forEach(( /**
-             * @param {?} v
-             * @param {?} idx
-             * @return {?}
-             */function (v, idx) {
-                v.color((( /** @type {?} */(colorMap)))["y" + (idx + 1)]).size(borderWidth);
-            }));
+            _chart.geometries.forEach(function (v, idx) {
+                v.color(colorMap["y" + (idx + 1)]).size(borderWidth);
+            });
             _chart.height = height;
             _chart.padding = padding;
             // 转换成日期类型
             data = data
-                .map(( /**
-         * @param {?} item
-         * @return {?}
-         */function (/**
-         * @param {?} item
-         * @return {?}
-         */ item) {
-                item.time = dateTime.toDate(( /** @type {?} */(item.time)));
+                .map(function (item) {
+                item.time = dateTime.toDate(item.time);
                 item._time = +item.time;
                 return item;
-            }))
-                .sort(( /**
-         * @param {?} a
-         * @param {?} b
-         * @return {?}
-         */function (a, b) { return a._time - b._time; }));
-            /** @type {?} */
-            var max = Math.max.apply(Math, __spread(arrAxis.map(( /**
-             * @param {?} id
-             * @return {?}
-             */function (/**
-             * @param {?} id
-             * @return {?}
-             */ id) { return __spread(data).sort(( /**
-             * @param {?} a
-             * @param {?} b
-             * @return {?}
-             */function (a, b) { return b["y" + id] - a["y" + id]; }))[0]["y" + id]; }))));
-            /** @type {?} */
+            })
+                .sort(function (a, b) { return a._time - b._time; });
+            var max = Math.max.apply(Math, __spread(arrAxis.map(function (id) { return __spread(data).sort(function (a, b) { return b["y" + id] - a["y" + id]; })[0]["y" + id]; })));
             var scaleOptions = {};
-            arrAxis.forEach(( /**
-             * @param {?} id
-             * @return {?}
-             */function (/**
-             * @param {?} id
-             * @return {?}
-             */ id) {
-                /** @type {?} */
+            arrAxis.forEach(function (id) {
                 var key = "y" + id;
                 scaleOptions[key] = {
                     alias: titleMap[key],
                     max: max,
                     min: 0,
                 };
-            }));
+            });
             _chart.scale(Object.assign({ time: {
                     type: 'time',
                     mask: mask,
                     range: [0, 1],
                 } }, scaleOptions));
-            /** @type {?} */
             var initialRange = {
                 start: data[0]._time,
                 end: data[data.length - 1]._time,
             };
-            /** @type {?} */
-            var filterData = data.filter(( /**
-             * @param {?} val
-             * @return {?}
-             */function (/**
-             * @param {?} val
-             * @return {?}
-             */ val) { return val._time >= initialRange.start && val._time <= initialRange.end; }));
+            var filterData = data.filter(function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; });
             _chart.changeData(filterData);
             _chart.render();
         };
@@ -615,7 +453,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     G2TimelineComponent.propDecorators = {
         title: [{ type: core.Input }],
@@ -648,49 +486,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], G2TimelineComponent.prototype, "slider", void 0);
-    if (false) {
-        /** @type {?} */
-        G2TimelineComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2TimelineComponent.ngAcceptInputType_maxAxis;
-        /** @type {?} */
-        G2TimelineComponent.ngAcceptInputType_borderWidth;
-        /** @type {?} */
-        G2TimelineComponent.ngAcceptInputType_slider;
-        /** @type {?} */
-        G2TimelineComponent.prototype.title;
-        /** @type {?} */
-        G2TimelineComponent.prototype.maxAxis;
-        /** @type {?} */
-        G2TimelineComponent.prototype.data;
-        /** @type {?} */
-        G2TimelineComponent.prototype.titleMap;
-        /** @type {?} */
-        G2TimelineComponent.prototype.colorMap;
-        /** @type {?} */
-        G2TimelineComponent.prototype.mask;
-        /** @type {?} */
-        G2TimelineComponent.prototype.maskSlider;
-        /** @type {?} */
-        G2TimelineComponent.prototype.position;
-        /** @type {?} */
-        G2TimelineComponent.prototype.height;
-        /** @type {?} */
-        G2TimelineComponent.prototype.padding;
-        /** @type {?} */
-        G2TimelineComponent.prototype.borderWidth;
-        /** @type {?} */
-        G2TimelineComponent.prototype.slider;
-        /** @type {?} */
-        G2TimelineComponent.prototype.clickItem;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: timeline.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2TimelineComponent];
     var G2TimelineModule = /** @class */ (function () {
         function G2TimelineModule() {
@@ -706,15 +502,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: timeline.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2TimelineComponent = G2TimelineComponent;

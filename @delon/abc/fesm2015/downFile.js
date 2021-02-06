@@ -4,16 +4,7 @@ import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: down-file.directive.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class DownFileDirective {
-    /**
-     * @param {?} el
-     * @param {?} _http
-     */
     constructor(el, _http) {
         this.el = el;
         this._http = _http;
@@ -21,7 +12,6 @@ class DownFileDirective {
         this.httpMethod = 'get';
         this.success = new EventEmitter();
         this.error = new EventEmitter();
-        /** @type {?} */
         let isFileSaverSupported = false;
         try {
             isFileSaverSupported = !!new Blob();
@@ -32,57 +22,25 @@ class DownFileDirective {
             el.nativeElement.classList.add(`down-file__not-support`);
         }
     }
-    /**
-     * @private
-     * @param {?} data
-     * @return {?}
-     */
     getDisposition(data) {
-        /** @type {?} */
         const arr = (data || '')
             .split(';')
-            .filter((/**
-         * @param {?} i
-         * @return {?}
-         */
-        i => i.includes('=')))
-            .map((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => {
-            /** @type {?} */
+            .filter(i => i.includes('='))
+            .map(v => {
             const strArr = v.split('=');
-            /** @type {?} */
             const utfId = `UTF-8''`;
-            /** @type {?} */
             let value = strArr[1];
             if (value.startsWith(utfId))
                 value = value.substr(utfId.length);
             return { [strArr[0].trim()]: value };
-        }));
-        return arr.reduce((/**
-         * @param {?} _o
-         * @param {?} item
-         * @return {?}
-         */
-        (_o, item) => item), {});
+        });
+        return arr.reduce((_o, item) => item, {});
     }
-    /**
-     * @private
-     * @param {?} status
-     * @return {?}
-     */
     setDisabled(status) {
-        /** @type {?} */
         const el = this.el.nativeElement;
         el.disabled = status;
         el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
-    /**
-     * @param {?} ev
-     * @return {?}
-     */
     _click(ev) {
         return __awaiter(this, void 0, void 0, function* () {
             if (!this.isFileSaverSupported || (typeof this.pre === 'function' && !(yield this.pre(ev)))) {
@@ -98,33 +56,20 @@ class DownFileDirective {
                 observe: 'response',
                 body: this.httpBody,
             })
-                .subscribe((/**
-             * @param {?} res
-             * @return {?}
-             */
-            (res) => {
-                if (res.status !== 200 || (/** @type {?} */ (res.body)).size <= 0) {
+                .subscribe((res) => {
+                if (res.status !== 200 || res.body.size <= 0) {
                     this.error.emit(res);
                     return;
                 }
-                /** @type {?} */
                 const disposition = this.getDisposition(res.headers.get('content-disposition'));
-                /** @type {?} */
                 let fileName = this.fileName;
                 if (typeof fileName === 'function')
                     fileName = fileName(res);
                 fileName =
                     fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
-                saveAs((/** @type {?} */ (res.body)), decodeURI((/** @type {?} */ (fileName))));
+                saveAs(res.body, decodeURI(fileName));
                 this.success.emit(res);
-            }), (/**
-             * @param {?} err
-             * @return {?}
-             */
-            err => this.error.emit(err)), (/**
-             * @return {?}
-             */
-            () => this.setDisabled(false)));
+            }, err => this.error.emit(err), () => this.setDisabled(false));
         });
     }
 }
@@ -152,46 +97,7 @@ DownFileDirective.propDecorators = {
     success: [{ type: Output }],
     error: [{ type: Output }]
 };
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    DownFileDirective.prototype.isFileSaverSupported;
-    /** @type {?} */
-    DownFileDirective.prototype.httpData;
-    /** @type {?} */
-    DownFileDirective.prototype.httpBody;
-    /** @type {?} */
-    DownFileDirective.prototype.httpMethod;
-    /** @type {?} */
-    DownFileDirective.prototype.httpUrl;
-    /** @type {?} */
-    DownFileDirective.prototype.fileName;
-    /** @type {?} */
-    DownFileDirective.prototype.pre;
-    /** @type {?} */
-    DownFileDirective.prototype.success;
-    /** @type {?} */
-    DownFileDirective.prototype.error;
-    /**
-     * @type {?}
-     * @private
-     */
-    DownFileDirective.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    DownFileDirective.prototype._http;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: down-file.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const DIRECTIVES = [DownFileDirective];
 class DownFileModule {
 }
@@ -204,15 +110,7 @@ DownFileModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: downFile.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { DownFileDirective, DownFileModule };

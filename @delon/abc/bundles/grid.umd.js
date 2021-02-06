@@ -318,15 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sg-container.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SGContainerComponent = /** @class */ (function () {
-        /**
-         * @param {?} configSrv
-         */
         function SGContainerComponent(configSrv) {
             configSrv.attach(this, 'sg', {
                 gutter: 32,
@@ -334,9 +326,6 @@
             });
         }
         Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return -(this.gutter / 2);
             },
@@ -359,7 +348,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SGContainerComponent.ctorParameters = function () { return [
@@ -382,30 +371,9 @@
         decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], SGContainerComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_gutter;
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_colInCon;
-        /** @type {?} */
-        SGContainerComponent.ngAcceptInputType_col;
-        /** @type {?} */
-        SGContainerComponent.prototype.gutter;
-        /** @type {?} */
-        SGContainerComponent.prototype.colInCon;
-        /** @type {?} */
-        SGContainerComponent.prototype.col;
-    }
 
-    /** @type {?} */
     var prefixCls = "sg";
     var SGComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} ren
-         * @param {?} parent
-         * @param {?} rep
-         */
         function SGComponent(el, ren, parent, rep) {
             this.ren = ren;
             this.parent = parent;
@@ -418,51 +386,24 @@
             this.el = el.nativeElement;
         }
         Object.defineProperty(SGComponent.prototype, "paddingValue", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.parent.gutter / 2;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         SGComponent.prototype.setClass = function () {
-            var _a = ( /** @type {?} */(this)), el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.removeClass(el, cls); }));
+            var _a = this, el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
+            clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
-            clsMap.push.apply(clsMap, __spread(( /** @type {?} */(this)).rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
-            clsMap.forEach(( /**
-             * @param {?} cls
-             * @return {?}
-             */function (/**
-             * @param {?} cls
-             * @return {?}
-             */ cls) { return ren.addClass(el, cls); }));
-            return ( /** @type {?} */(this));
+            clsMap.push.apply(clsMap, __spread(this.rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
+            clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
+            return this;
         };
-        /**
-         * @return {?}
-         */
         SGComponent.prototype.ngOnChanges = function () {
             if (this.inited)
                 this.setClass();
         };
-        /**
-         * @return {?}
-         */
         SGComponent.prototype.ngAfterViewInit = function () {
             this.setClass();
             this.inited = true;
@@ -481,7 +422,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SGComponent.ctorParameters = function () { return [
@@ -497,49 +438,7 @@
         decorator.InputNumber(null),
         __metadata("design:type", Number)
     ], SGComponent.prototype, "col", void 0);
-    if (false) {
-        /** @type {?} */
-        SGComponent.ngAcceptInputType_col;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.clsMap;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.inited;
-        /** @type {?} */
-        SGComponent.prototype.col;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.ren;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.parent;
-        /**
-         * @type {?}
-         * @private
-         */
-        SGComponent.prototype.rep;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sg.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [SGContainerComponent, SGComponent];
     var SGModule = /** @class */ (function () {
         function SGModule() {
@@ -555,15 +454,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: grid.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SGComponent = SGComponent;

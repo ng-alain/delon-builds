@@ -1,25 +1,27 @@
 import { __decorate, __metadata } from 'tslib';
-import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, Directive, Host, Optional, ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService } from '@delon/util/config';
 import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
 import { InputBoolean } from '@delon/util/decorator';
-import { deepMergeKey } from '@delon/util/other';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { deepMergeKey, assert } from '@delon/util/other';
+import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
+import { Subject } from 'rxjs';
 
 /**
- * @fileoverview added by tsickle
- * Generated from: range.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * @deprecated Will be removed in 12.0.0, Pls used `[extend]` instead, for examples:
+ * ```html
+ * <range-picker [(ngModel)]="i.start" [(ngModelEnd)]="i.end"></range-picker>
+ * ```
+ * Changed to =>
+ * ```html
+ * <nz-range-picker [(ngModel)]="i.start" extend [(ngModelEnd)]="i.end"></nz-range-picker>
+ * ```
  */
 class RangePickerComponent {
     // #endregion
-    /**
-     * @param {?} dom
-     * @param {?} configSrv
-     */
     constructor(dom, configSrv) {
         this.dom = dom;
         this.value = [];
@@ -31,8 +33,7 @@ class RangePickerComponent {
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
         this.nzOnOk = new EventEmitter();
-        /** @type {?} */
-        const cog = (/** @type {?} */ (configSrv.merge('dataRange', {
+        const cog = configSrv.merge('dataRange', {
             nzFormat: 'yyyy-MM-dd',
             nzAllowClear: true,
             nzAutoFocus: false,
@@ -44,153 +45,84 @@ class RangePickerComponent {
                 list: [
                     {
                         text: '今天',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance('today')),
+                        fn: () => getTimeDistance('today'),
                     },
                     {
                         text: '昨天',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance('yesterday')),
+                        fn: () => getTimeDistance('yesterday'),
                     },
                     {
                         text: '近3天',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance(-2)),
+                        fn: () => getTimeDistance(-2),
                     },
                     {
                         text: '近7天',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance(-6)),
+                        fn: () => getTimeDistance(-6),
                     },
                     {
                         text: '本周',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance('week')),
+                        fn: () => getTimeDistance('week'),
                     },
                     {
                         text: '本月',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance('month')),
+                        fn: () => getTimeDistance('month'),
                     },
                     {
                         text: '全年',
-                        fn: (/**
-                         * @return {?}
-                         */
-                        () => getTimeDistance('year')),
+                        fn: () => getTimeDistance('year'),
                     },
                 ],
             },
-        })));
-        this.defaultShortcuts = (/** @type {?} */ (Object.assign({}, cog.shortcuts)));
+        });
+        this.defaultShortcuts = Object.assign({}, cog.shortcuts);
         Object.assign(this, cog);
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
     set shortcut(val) {
-        /** @type {?} */
-        const item = (/** @type {?} */ (deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val)));
+        const item = deepMergeKey({}, true, this.defaultShortcuts, val == null ? {} : val);
         if (typeof val === 'boolean') {
             item.enabled = val;
         }
-        (item.list || []).forEach((/**
-         * @param {?} i
-         * @return {?}
-         */
-        i => {
+        (item.list || []).forEach(i => {
             i._text = this.dom.bypassSecurityTrustHtml(i.text);
-        }));
+        });
         this._shortcut = item;
     }
-    /**
-     * @return {?}
-     */
     get shortcut() {
         return this._shortcut;
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     _nzOnOpenChange(e) {
         this.nzOnOpenChange.emit(e);
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     _nzOnPanelChange(e) {
         this.nzOnPanelChange.emit(e);
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     _nzOnOk(e) {
         this.nzOnOk.emit(e);
     }
-    /**
-     * @param {?} e
-     * @return {?}
-     */
     valueChange(e) {
         e = fixEndTimeOfRange(e);
         this.onChangeFn(e[0]);
         this.ngModelEnd = e[1];
         this.ngModelEndChange.emit(e[1]);
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     writeValue(value) {
         this.value = value && this.ngModelEnd ? [value, this.ngModelEnd] : [];
     }
-    /**
-     * @param {?} fn
-     * @return {?}
-     */
     registerOnChange(fn) {
         this.onChangeFn = fn;
     }
-    /**
-     * @param {?} _fn
-     * @return {?}
-     */
     registerOnTouched(_fn) {
         // this.onTouchedFn = fn;
     }
-    /**
-     * @param {?} disabled
-     * @return {?}
-     */
     setDisabledState(disabled) {
         this.nzDisabled = disabled;
     }
-    /**
-     * @param {?} item
-     * @return {?}
-     */
     clickShortcut(item) {
-        this.value = item.fn((/** @type {?} */ (this.value)));
-        this.valueChange((/** @type {?} */ (this.value)));
+        this.value = item.fn(this.value);
+        this.valueChange(this.value);
         if (this._shortcut.closed) {
             // tslint:disable-next-line:no-string-literal
-            ((/** @type {?} */ (this.comp)))['picker'].hideOverlay();
+            this.comp['picker'].hideOverlay();
         }
     }
 }
@@ -203,13 +135,10 @@ RangePickerComponent.decorators = [
                     {
                         provide: NG_VALUE_ACCESSOR,
                         multi: true,
-                        useExisting: forwardRef((/**
-                         * @return {?}
-                         */
-                        () => RangePickerComponent)),
+                        useExisting: forwardRef(() => RangePickerComponent),
                     },
                 ]
-            }] }
+            },] }
 ];
 /** @nocollapse */
 RangePickerComponent.ctorParameters = () => [
@@ -248,91 +177,192 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], RangePickerComponent.prototype, "nzShowToday", void 0);
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype.onChangeFn;
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype._shortcut;
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype.defaultShortcuts;
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype.comp;
-    /** @type {?} */
-    RangePickerComponent.prototype.value;
-    /** @type {?} */
-    RangePickerComponent.prototype.ngModelEnd;
-    /** @type {?} */
-    RangePickerComponent.prototype.ngModelEndChange;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzAllowClear;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzAutoFocus;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzClassName;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzDisabled;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzSize;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzStyle;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzDisabledDate;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzLocale;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzPopupStyle;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzDropdownClassName;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzPlaceHolder;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzOnOpenChange;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzDateRender;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzFormat;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzDisabledTime;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzRenderExtraFooter;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzShowTime;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzShowToday;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzMode;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzRanges;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzOnPanelChange;
-    /** @type {?} */
-    RangePickerComponent.prototype.nzOnOk;
-    /**
-     * @type {?}
-     * @private
-     */
-    RangePickerComponent.prototype.dom;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: date-picker.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
-const COMPONENTS = [RangePickerComponent];
+class RangePickerShortcutTplComponent {
+    constructor() {
+        this.list = [];
+    }
+    click(_) { }
+}
+RangePickerShortcutTplComponent.decorators = [
+    { type: Component, args: [{
+                selector: '',
+                template: `
+    <ng-template #tpl>
+      <a *ngFor="let i of list; let first = first" (click)="click(i)" [innerHTML]="i._text" [ngClass]="{ 'ml-sm': !first }"></a>
+    </ng-template>
+  `
+            },] }
+];
+RangePickerShortcutTplComponent.propDecorators = {
+    tpl: [{ type: ViewChild, args: ['tpl', { static: true },] }]
+};
+
+class RangePickerDirective {
+    constructor(dom, configSrv, nativeComp, resolver, injector) {
+        this.dom = dom;
+        this.nativeComp = nativeComp;
+        this.resolver = resolver;
+        this.injector = injector;
+        this.destroy$ = new Subject();
+        this.shortcutFactory = null;
+        this.start = null;
+        this.end = null;
+        this.ngModelEndChange = new EventEmitter();
+        assert(!!nativeComp, `It should be attached to nz-range-picker component, for example: '<nz-range-picker [(ngModel)]="i.start" extend [(ngModelEnd)]="i.end" shortcut></nz-range-picker>'`);
+        const cog = configSrv.merge('dataRange', {
+            nzFormat: 'yyyy-MM-dd',
+            nzAllowClear: true,
+            nzAutoFocus: false,
+            nzPopupStyle: { position: 'relative' },
+            nzShowToday: true,
+            shortcuts: {
+                enabled: false,
+                closed: true,
+                list: [
+                    {
+                        text: '今天',
+                        fn: () => getTimeDistance('today'),
+                    },
+                    {
+                        text: '昨天',
+                        fn: () => getTimeDistance('yesterday'),
+                    },
+                    {
+                        text: '近3天',
+                        fn: () => getTimeDistance(-2),
+                    },
+                    {
+                        text: '近7天',
+                        fn: () => getTimeDistance(-6),
+                    },
+                    {
+                        text: '本周',
+                        fn: () => getTimeDistance('week'),
+                    },
+                    {
+                        text: '本月',
+                        fn: () => getTimeDistance('month'),
+                    },
+                    {
+                        text: '全年',
+                        fn: () => getTimeDistance('year'),
+                    },
+                ],
+            },
+        });
+        this.defaultShortcuts = Object.assign({}, cog.shortcuts);
+        Object.assign(this, cog);
+    }
+    set shortcut(val) {
+        const item = deepMergeKey({ list: [] }, true, this.defaultShortcuts, val == null ? {} : val);
+        if (typeof val !== 'object') {
+            item.enabled = val !== false;
+        }
+        (item.list || []).forEach(i => {
+            i._text = this.dom.bypassSecurityTrustHtml(i.text);
+        });
+        this._shortcut = item;
+        this.refreshShortcut();
+    }
+    get shortcut() {
+        return this._shortcut;
+    }
+    get dp() {
+        return this.nativeComp.datePicker;
+    }
+    get srv() {
+        return this.dp.datePickerService;
+    }
+    cd() {
+        this.dp.cdr.markForCheck();
+    }
+    overrideNative() {
+        const dp = this.dp;
+        dp.writeValue = (value) => {
+            const dates = (value && this.ngModelEnd ? [value, this.ngModelEnd] : []).filter(w => !!w);
+            this.srv.setValue(this.srv.makeValue(dates));
+            this.start = dates.length > 0 ? dates[0] : null;
+            this.end = dates.length > 0 ? dates[1] : null;
+            this.cd();
+        };
+        const oldOnChangeFn = dp.onChangeFn;
+        dp.onChangeFn = (list) => {
+            let start = null;
+            let end = null;
+            if (list.length > 0 && list.filter(w => w != null).length === 2) {
+                [start, end] = fixEndTimeOfRange([list[0], list[1]]);
+            }
+            this.start = start;
+            this.end = end;
+            oldOnChangeFn(start);
+            this.ngModelEnd = end;
+            this.ngModelEndChange.emit(end);
+        };
+    }
+    refreshShortcut() {
+        if (!this._shortcut) {
+            return;
+        }
+        const { enabled, list } = this._shortcut;
+        let extraFooter;
+        if (!this.nativeComp || !enabled) {
+            extraFooter = undefined;
+        }
+        else {
+            if (!this.shortcutFactory) {
+                const factory = this.resolver.resolveComponentFactory(RangePickerShortcutTplComponent);
+                this.shortcutFactory = factory.create(this.injector);
+            }
+            const { instance } = this.shortcutFactory;
+            instance.list = list;
+            instance.click = (item) => {
+                const res = item.fn([this.start, this.end]);
+                this.srv.setValue(this.srv.makeValue(res));
+                this.dp.onChangeFn(res);
+                this.dp.close();
+            };
+            extraFooter = instance.tpl;
+        }
+        this.nativeComp.datePicker.extraFooter = extraFooter;
+        Promise.resolve().then(() => this.cd());
+    }
+    ngAfterViewInit() {
+        this.overrideNative();
+        this.refreshShortcut();
+    }
+    destoryShortcut() {
+        if (this.shortcutFactory != null) {
+            this.shortcutFactory.destroy();
+        }
+    }
+    ngOnDestroy() {
+        this.destoryShortcut();
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
+RangePickerDirective.decorators = [
+    { type: Directive, args: [{
+                selector: 'nz-range-picker[extend]',
+                exportAs: 'extendRangePicker',
+            },] }
+];
+/** @nocollapse */
+RangePickerDirective.ctorParameters = () => [
+    { type: DomSanitizer },
+    { type: AlainConfigService },
+    { type: NzRangePickerComponent, decorators: [{ type: Host }, { type: Optional }] },
+    { type: ComponentFactoryResolver },
+    { type: Injector }
+];
+RangePickerDirective.propDecorators = {
+    ngModelEnd: [{ type: Input }],
+    shortcut: [{ type: Input }],
+    ngModelEndChange: [{ type: Output }]
+};
+
+const COMPONENTS = [RangePickerComponent, RangePickerDirective, RangePickerShortcutTplComponent];
 class DatePickerModule {
 }
 DatePickerModule.decorators = [
@@ -344,16 +374,8 @@ DatePickerModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
-/**
- * @fileoverview added by tsickle
- * Generated from: datePicker.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-export { DatePickerModule, RangePickerComponent };
+export { DatePickerModule, RangePickerComponent, RangePickerDirective, RangePickerShortcutTplComponent as ɵa };
 //# sourceMappingURL=datePicker.js.map

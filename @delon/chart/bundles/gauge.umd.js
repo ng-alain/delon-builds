@@ -327,24 +327,14 @@
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2GaugeComponent.prototype.install = function () {
             // 自定义Shape 部分
-            (( /** @type {?} */(window))).G2.registerShape('point', 'pointer', {
+            window.G2.registerShape('point', 'pointer', {
                 // tslint:disable-next-line: typedef
-                /**
-                 * @param {?} cfg
-                 * @param {?} container
-                 * @return {?}
-                 */
                 draw: function (cfg, container) {
-                    /** @type {?} */
                     var group = container.addGroup({});
                     // 获取极坐标系下画布中心点
-                    /** @type {?} */
-                    var center = (( /** @type {?} */(this))).parsePoint({ x: 0, y: 0 });
+                    var center = this.parsePoint({ x: 0, y: 0 });
                     // 绘制指针
                     group.addShape('line', {
                         attrs: {
@@ -371,8 +361,7 @@
                 },
             });
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -406,16 +395,11 @@
             chart.point().position('value*1').shape('pointer');
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2GaugeComponent.prototype.attachChart = function () {
             var _a = this, _chart = _a._chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
             if (!_chart)
                 return;
-            /** @type {?} */
             var data = [{ name: title, value: percent }];
-            /** @type {?} */
             var val = data[0].value;
             _chart.annotation().clear(true);
             _chart.geometries[0].color(color);
@@ -474,7 +458,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core$1.ChangeDetectionStrategy.OnPush,
                     encapsulation: core$1.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     G2GaugeComponent.propDecorators = {
         title: [{ type: core$1.Input }],
@@ -493,33 +477,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], G2GaugeComponent.prototype, "percent", void 0);
-    if (false) {
-        /** @type {?} */
-        G2GaugeComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2GaugeComponent.ngAcceptInputType_percent;
-        /** @type {?} */
-        G2GaugeComponent.prototype.title;
-        /** @type {?} */
-        G2GaugeComponent.prototype.height;
-        /** @type {?} */
-        G2GaugeComponent.prototype.color;
-        /** @type {?} */
-        G2GaugeComponent.prototype.bgColor;
-        /** @type {?} */
-        G2GaugeComponent.prototype.format;
-        /** @type {?} */
-        G2GaugeComponent.prototype.percent;
-        /** @type {?} */
-        G2GaugeComponent.prototype.padding;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: gauge.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2GaugeComponent];
     var G2GaugeModule = /** @class */ (function () {
         function G2GaugeModule() {
@@ -535,15 +493,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: gauge.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2GaugeComponent = G2GaugeComponent;

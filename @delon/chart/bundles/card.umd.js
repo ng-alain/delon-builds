@@ -318,33 +318,17 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: card.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var G2CardComponent = /** @class */ (function () {
-        /**
-         * @param {?} cdr
-         */
         function G2CardComponent(cdr) {
             this.cdr = cdr;
-            /**
-             * 是否显示边框
-             */
+            /** 是否显示边框 */
             this.bordered = false;
             this.total = '';
             this._height = 'auto';
-            /**
-             * 是否显示Loading
-             */
+            /** 是否显示Loading */
             this.loading = false;
         }
         Object.defineProperty(G2CardComponent.prototype, "contentHeight", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._orgHeight = value;
                 this._height = typeof value === 'number' ? (this._height = value + "px") : value;
@@ -352,9 +336,6 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         G2CardComponent.prototype.ngOnChanges = function () {
             this.cdr.detectChanges();
         };
@@ -369,7 +350,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     G2CardComponent.ctorParameters = function () { return [
@@ -393,48 +374,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], G2CardComponent.prototype, "loading", void 0);
-    if (false) {
-        /** @type {?} */
-        G2CardComponent.ngAcceptInputType_bordered;
-        /** @type {?} */
-        G2CardComponent.ngAcceptInputType_loading;
-        /**
-         * 是否显示边框
-         * @type {?}
-         */
-        G2CardComponent.prototype.bordered;
-        /** @type {?} */
-        G2CardComponent.prototype.avatar;
-        /** @type {?} */
-        G2CardComponent.prototype.title;
-        /** @type {?} */
-        G2CardComponent.prototype.action;
-        /** @type {?} */
-        G2CardComponent.prototype.total;
-        /** @type {?} */
-        G2CardComponent.prototype._height;
-        /** @type {?} */
-        G2CardComponent.prototype._orgHeight;
-        /** @type {?} */
-        G2CardComponent.prototype.footer;
-        /**
-         * 是否显示Loading
-         * @type {?}
-         */
-        G2CardComponent.prototype.loading;
-        /**
-         * @type {?}
-         * @private
-         */
-        G2CardComponent.prototype.cdr;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: card.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2CardComponent];
     var G2CardModule = /** @class */ (function () {
         function G2CardModule() {
@@ -450,15 +390,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: card.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2CardComponent = G2CardComponent;

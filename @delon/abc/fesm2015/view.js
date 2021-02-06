@@ -10,15 +10,7 @@ import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: sv-container.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SVContainerComponent {
-    /**
-     * @param {?} configSrv
-     */
     constructor(configSrv) {
         configSrv.attach(this, 'sv', {
             size: 'large',
@@ -45,7 +37,7 @@ SVContainerComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SVContainerComponent.ctorParameters = () => [
@@ -72,46 +64,8 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], SVContainerComponent.prototype, "col", void 0);
-if (false) {
-    /** @type {?} */
-    SVContainerComponent.ngAcceptInputType_gutter;
-    /** @type {?} */
-    SVContainerComponent.ngAcceptInputType_labelWidth;
-    /** @type {?} */
-    SVContainerComponent.ngAcceptInputType_col;
-    /** @type {?} */
-    SVContainerComponent.prototype.title;
-    /** @type {?} */
-    SVContainerComponent.prototype.size;
-    /**
-     * 列表项间距，单位为 `px`
-     * @type {?}
-     */
-    SVContainerComponent.prototype.gutter;
-    /** @type {?} */
-    SVContainerComponent.prototype.layout;
-    /** @type {?} */
-    SVContainerComponent.prototype.labelWidth;
-    /**
-     * 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定
-     * @type {?}
-     */
-    SVContainerComponent.prototype.col;
-    /** @type {?} */
-    SVContainerComponent.prototype.default;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: sv-title.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SVTitleComponent {
-    /**
-     * @param {?} el
-     * @param {?} parent
-     * @param {?} ren
-     */
     constructor(el, parent, ren) {
         this.parent = parent;
         this.ren = ren;
@@ -120,19 +74,12 @@ class SVTitleComponent {
         }
         this.el = el.nativeElement;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     setClass() {
         const { gutter } = this.parent;
         const { el } = this;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.setClass();
     }
@@ -148,7 +95,7 @@ SVTitleComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SVTitleComponent.ctorParameters = () => [
@@ -156,29 +103,7 @@ SVTitleComponent.ctorParameters = () => [
     { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: Renderer2 }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SVTitleComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVTitleComponent.prototype.parent;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVTitleComponent.prototype.ren;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: sv-value.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SVValueComponent {
     constructor() {
         this.size = 'default';
@@ -201,7 +126,7 @@ SVValueComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 SVValueComponent.propDecorators = {
     prefix: [{ type: Input }],
@@ -209,31 +134,9 @@ SVValueComponent.propDecorators = {
     tooltip: [{ type: Input }],
     size: [{ type: Input }]
 };
-if (false) {
-    /** @type {?} */
-    SVValueComponent.prototype.prefix;
-    /** @type {?} */
-    SVValueComponent.prototype.unit;
-    /** @type {?} */
-    SVValueComponent.prototype.tooltip;
-    /** @type {?} */
-    SVValueComponent.prototype.size;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: sv.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const prefixCls = `sv`;
 class SVComponent {
-    /**
-     * @param {?} el
-     * @param {?} parent
-     * @param {?} rep
-     * @param {?} ren
-     */
     constructor(el, parent, rep, ren) {
         this.parent = parent;
         this.rep = rep;
@@ -245,30 +148,16 @@ class SVComponent {
         this.el = el.nativeElement;
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     get paddingValue() {
         return this.parent && this.parent.gutter / 2;
     }
-    /**
-     * @return {?}
-     */
     get labelWidth() {
         const { labelWidth, layout } = this.parent;
         return layout === 'horizontal' ? labelWidth : null;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     setClass() {
         const { el, ren, col, clsMap, type, rep } = this;
-        clsMap.forEach((/**
-         * @param {?} cls
-         * @return {?}
-         */
-        cls => ren.removeClass(el, cls)));
+        clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         clsMap.push(...rep.genCls(col != null ? col : this.parent.col));
         clsMap.push(`${prefixCls}__item`);
@@ -276,38 +165,22 @@ class SVComponent {
             clsMap.push(`${prefixCls}__item-fixed`);
         if (type)
             clsMap.push(`${prefixCls}__type-${type}`);
-        clsMap.forEach((/**
-         * @param {?} cls
-         * @return {?}
-         */
-        cls => ren.addClass(el, cls)));
+        clsMap.forEach(cls => ren.addClass(el, cls));
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         this.setClass();
         this.checkContent();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         this.setClass();
     }
-    /**
-     * @return {?}
-     */
     checkContent() {
         const { conEl } = this;
-        /** @type {?} */
         const def = this.default;
         if (!(def != null ? def : this.parent.default)) {
             return;
         }
-        /** @type {?} */
-        const el = (/** @type {?} */ (conEl.nativeElement));
-        /** @type {?} */
+        const el = conEl.nativeElement;
         const cls = `sv__default`;
         if (el.classList.contains(cls)) {
             el.classList.remove(cls);
@@ -329,7 +202,7 @@ SVComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SVComponent.ctorParameters = () => [
@@ -357,62 +230,7 @@ __decorate([
     InputBoolean(null),
     __metadata("design:type", Boolean)
 ], SVComponent.prototype, "default", void 0);
-if (false) {
-    /** @type {?} */
-    SVComponent.ngAcceptInputType_col;
-    /** @type {?} */
-    SVComponent.ngAcceptInputType_default;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVComponent.prototype.conEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVComponent.prototype.clsMap;
-    /** @type {?} */
-    SVComponent.prototype.optional;
-    /** @type {?} */
-    SVComponent.prototype.optionalHelp;
-    /** @type {?} */
-    SVComponent.prototype.optionalHelpColor;
-    /** @type {?} */
-    SVComponent.prototype.label;
-    /** @type {?} */
-    SVComponent.prototype.unit;
-    /** @type {?} */
-    SVComponent.prototype.col;
-    /** @type {?} */
-    SVComponent.prototype.default;
-    /** @type {?} */
-    SVComponent.prototype.type;
-    /** @type {?} */
-    SVComponent.prototype.parent;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVComponent.prototype.rep;
-    /**
-     * @type {?}
-     * @private
-     */
-    SVComponent.prototype.ren;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: sv.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
 class SVModule {
 }
@@ -425,15 +243,7 @@ SVModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: view.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { SVComponent, SVContainerComponent, SVModule, SVTitleComponent, SVValueComponent };

@@ -323,42 +323,22 @@
     }
 
     var XlsxService = /** @class */ (function () {
-        /**
-         * @param {?} http
-         * @param {?} lazy
-         * @param {?} configSrv
-         * @param {?} ngZone
-         */
         function XlsxService(http, lazy, configSrv, ngZone) {
             this.http = http;
             this.lazy = lazy;
             this.ngZone = ngZone;
-            this.cog = ( /** @type {?} */(configSrv.merge('xlsx', {
+            this.cog = configSrv.merge('xlsx', {
                 url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
                 modules: ["https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js"],
-            })));
+            });
         }
-        /**
-         * @private
-         * @return {?}
-         */
         XlsxService.prototype.init = function () {
-            return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([( /** @type {?} */(this.cog.url))].concat(( /** @type {?} */(this.cog.modules))));
+            return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([this.cog.url].concat(this.cog.modules));
         };
-        /**
-         * @private
-         * @param {?} data
-         * @param {?} options
-         * @return {?}
-         */
         XlsxService.prototype.read = function (data, options) {
-            /** @type {?} */
             var ret = {};
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
+            this.ngZone.runOutsideAngular(function () {
                 if (options.type === 'binary') {
-                    /** @type {?} */
                     var buf = new Uint8Array(data);
                     if (!isUtf8__default['default'](buf)) {
                         try {
@@ -370,103 +350,53 @@
                         }
                     }
                 }
-                /** @type {?} */
                 var wb = XLSX.read(data, options);
-                wb.SheetNames.forEach(( /**
-                 * @param {?} name
-                 * @return {?}
-                 */function (name) {
-                    /** @type {?} */
+                wb.SheetNames.forEach(function (name) {
                     var sheet = wb.Sheets[name];
                     ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
-                }));
-            }));
+                });
+            });
             return ret;
         };
-        /**
-         * @param {?} fileOrUrl
-         * @param {?=} _rABS
-         * @return {?}
-         */
         XlsxService.prototype.import = function (fileOrUrl, _rABS) {
             var _this = this;
             if (_rABS === void 0) { _rABS = 'readAsBinaryString'; }
-            return new Promise(( /**
-             * @param {?} resolve
-             * @param {?} reject
-             * @return {?}
-             */function (resolve, reject) {
+            return new Promise(function (resolve, reject) {
                 _this.init()
-                    .then(( /**
-             * @return {?}
-             */function () {
+                    .then(function () {
                     // from url
                     if (typeof fileOrUrl === 'string') {
-                        _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(( /**
-                         * @param {?} res
-                         * @return {?}
-                         */function (res) {
-                            _this.ngZone.run(( /**
-                             * @return {?}
-                             */function () { return resolve(_this.read(new Uint8Array(res), { type: 'array' })); }));
-                        }), ( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (err) {
+                        _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) {
+                            _this.ngZone.run(function () { return resolve(_this.read(new Uint8Array(res), { type: 'array' })); });
+                        }, function (err) {
                             reject(err);
-                        }));
+                        });
                         return;
                     }
                     // from file
-                    /** @type {?} */
                     var reader = new FileReader();
-                    reader.onload = ( /**
-                     * @param {?} e
-                     * @return {?}
-                     */function (e) {
-                        _this.ngZone.run(( /**
-                         * @return {?}
-                         */function () { return resolve(_this.read(e.target.result, { type: 'binary' })); }));
-                    });
+                    reader.onload = function (e) {
+                        _this.ngZone.run(function () { return resolve(_this.read(e.target.result, { type: 'binary' })); });
+                    };
                     reader.readAsArrayBuffer(fileOrUrl);
-                }))
-                    .catch(( /**
-             * @return {?}
-             */function () { return reject("Unable to load xlsx.js"); }));
-            }));
+                })
+                    .catch(function () { return reject("Unable to load xlsx.js"); });
+            });
         };
-        /**
-         * @param {?} options
-         * @return {?}
-         */
         XlsxService.prototype.export = function (options) {
             return __awaiter(this, void 0, void 0, function () {
                 var _this = this;
                 return __generator(this, function (_b) {
-                    return [2 /*return*/, new Promise(( /**
-                         * @param {?} resolve
-                         * @param {?} reject
-                         * @return {?}
-                         */function (resolve, reject) {
+                    return [2 /*return*/, new Promise(function (resolve, reject) {
                             _this.init()
-                                .then(( /**
-                         * @return {?}
-                         */function () {
-                                _this.ngZone.runOutsideAngular(( /**
-                                 * @return {?}
-                                 */function () {
-                                    /** @type {?} */
+                                .then(function () {
+                                _this.ngZone.runOutsideAngular(function () {
                                     var wb = XLSX.utils.book_new();
                                     if (Array.isArray(options.sheets)) {
-                                        (( /** @type {?} */(options.sheets))).forEach(( /**
-                                         * @param {?} value
-                                         * @param {?} index
-                                         * @return {?}
-                                         */function (value, index) {
-                                            /** @type {?} */
+                                        options.sheets.forEach(function (value, index) {
                                             var ws = XLSX.utils.aoa_to_sheet(value.data);
                                             XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
-                                        }));
+                                        });
                                     }
                                     else {
                                         wb.SheetNames = Object.keys(options.sheets);
@@ -474,22 +404,14 @@
                                     }
                                     if (options.callback)
                                         options.callback(wb);
-                                    /** @type {?} */
                                     var wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                                    /** @type {?} */
                                     var filename = options.filename || 'export.xlsx';
                                     fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
                                     resolve({ filename: filename, wb: wb });
-                                }));
-                            }))
-                                .catch(( /**
-                         * @param {?} err
-                         * @return {?}
-                         */function (/**
-                         * @param {?} err
-                         * @return {?}
-                         */ err) { return reject(err); }));
-                        }))];
+                                });
+                            })
+                                .catch(function (err) { return reject(err); });
+                        })];
                 });
             });
         };
@@ -498,13 +420,9 @@
          * - `1` => `A`
          * - `27` => `AA`
          * - `703` => `AAA`
-         * @param {?} val
-         * @return {?}
          */
         XlsxService.prototype.numberToSchema = function (val) {
-            /** @type {?} */
             var startCode = 'A'.charCodeAt(0);
-            /** @type {?} */
             var res = '';
             do {
                 --val;
@@ -515,6 +433,7 @@
         };
         return XlsxService;
     }());
+    /** @nocollapse */ XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
     XlsxService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -525,45 +444,11 @@
         { type: i3.AlainConfigService },
         { type: i0.NgZone }
     ]; };
-    /** @nocollapse */ XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        XlsxService.prototype.cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        XlsxService.prototype.http;
-        /**
-         * @type {?}
-         * @private
-         */
-        XlsxService.prototype.lazy;
-        /**
-         * @type {?}
-         * @private
-         */
-        XlsxService.prototype.ngZone;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: xlsx.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var XlsxDirective = /** @class */ (function () {
-        /**
-         * @param {?} srv
-         */
         function XlsxDirective(srv) {
             this.srv = srv;
         }
-        /**
-         * @return {?}
-         */
         XlsxDirective.prototype._click = function () {
             this.srv.export(this.data);
         };
@@ -585,22 +470,7 @@
     XlsxDirective.propDecorators = {
         data: [{ type: i0.Input, args: ['xlsx',] }]
     };
-    if (false) {
-        /** @type {?} */
-        XlsxDirective.prototype.data;
-        /**
-         * @type {?}
-         * @private
-         */
-        XlsxDirective.prototype.srv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: xlsx.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [XlsxDirective];
     var XlsxModule = /** @class */ (function () {
         function XlsxModule() {
@@ -616,9 +486,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: xlsx.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.XlsxDirective = XlsxDirective;

@@ -318,36 +318,8 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: page-header.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function PageHeaderPath() { }
-    if (false) {
-        /** @type {?|undefined} */
-        PageHeaderPath.prototype.title;
-        /** @type {?|undefined} */
-        PageHeaderPath.prototype.link;
-    }
     var PageHeaderComponent = /** @class */ (function () {
         // #endregion
-        /**
-         * @param {?} settings
-         * @param {?} renderer
-         * @param {?} router
-         * @param {?} menuSrv
-         * @param {?} i18nSrv
-         * @param {?} titleSrv
-         * @param {?} reuseSrv
-         * @param {?} cdr
-         * @param {?} configSrv
-         * @param {?} platform
-         * @param {?} directionality
-         */
         function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
             var _this = this;
             this.renderer = renderer;
@@ -378,35 +350,13 @@
                 fixedOffsetTop: 64,
             });
             settings.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(( /**
-         * @param {?} w
-         * @return {?}
-         */function (/**
-         * @param {?} w
-         * @return {?}
-         */ w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.affix.updatePosition(( /** @type {?} */({}))); }));
-            rxjs.merge(menuSrv.change.pipe(operators.filter(( /**
-             * @return {?}
-             */function () { return _this.inited; }))), router$1.events.pipe(operators.filter(( /**
-             * @param {?} ev
-             * @return {?}
-             */function (/**
-             * @param {?} ev
-             * @return {?}
-             */ ev) { return ev instanceof router.NavigationEnd; }))), i18nSrv.change)
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
+                .subscribe(function () { return _this.affix.updatePosition({}); });
+            rxjs.merge(menuSrv.change.pipe(operators.filter(function () { return _this.inited; })), router$1.events.pipe(operators.filter(function (ev) { return ev instanceof router.NavigationEnd; })), i18nSrv.change)
                 .pipe(operators.takeUntil(this.destroy$))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.refresh(); }));
+                .subscribe(function () { return _this.refresh(); });
         }
         Object.defineProperty(PageHeaderComponent.prototype, "menus", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.menuSrv.getPathByUrl(this.router.url, this.recursiveBreadcrumb);
             },
@@ -414,10 +364,6 @@
             configurable: true
         });
         Object.defineProperty(PageHeaderComponent.prototype, "title", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 if (value instanceof core.TemplateRef) {
                     this._title = null;
@@ -432,40 +378,25 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.refresh = function () {
             this.setTitle().genBreadcrumb();
             this.cdr.detectChanges();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PageHeaderComponent.prototype.genBreadcrumb = function () {
             var _this = this;
             if (this.breadcrumb || !this.autoBreadcrumb || this.menus.length <= 0) {
                 this.paths = [];
                 return;
             }
-            /** @type {?} */
             var paths = [];
-            this.menus.forEach(( /**
-             * @param {?} item
-             * @return {?}
-             */function (/**
-             * @param {?} item
-             * @return {?}
-             */ item) {
+            this.menus.forEach(function (item) {
                 if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                     return;
-                /** @type {?} */
                 var title = item.text;
                 if (item.i18n && _this.i18nSrv)
                     title = _this.i18nSrv.fanyi(item.i18n);
-                paths.push({ title: title, link: ( /** @type {?} */((item.link && [item.link]))) });
-            }));
+                paths.push({ title: title, link: (item.link && [item.link]) });
+            });
             // add home
             if (this.home) {
                 paths.splice(0, 0, {
@@ -475,36 +406,25 @@
             }
             this.paths = paths;
         };
-        /**
-         * @private
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         PageHeaderComponent.prototype.setTitle = function () {
-            if (( /** @type {?} */(this))._title == null && ( /** @type {?} */(this))._titleTpl == null && ( /** @type {?} */(this)).autoTitle && ( /** @type {?} */(this)).menus.length > 0) {
-                /** @type {?} */
-                var item = ( /** @type {?} */(this)).menus[( /** @type {?} */(this)).menus.length - 1];
-                /** @type {?} */
+            if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus.length > 0) {
+                var item = this.menus[this.menus.length - 1];
                 var title = item.text;
-                if (item.i18n && ( /** @type {?} */(this)).i18nSrv) {
-                    title = ( /** @type {?} */(this)).i18nSrv.fanyi(item.i18n);
+                if (item.i18n && this.i18nSrv) {
+                    title = this.i18nSrv.fanyi(item.i18n);
                 }
-                ( /** @type {?} */(this))._titleVal = ( /** @type {?} */(title));
+                this._titleVal = title;
             }
-            if (( /** @type {?} */(this))._titleVal && ( /** @type {?} */(this)).syncTitle) {
-                if (( /** @type {?} */(this)).titleSrv) {
-                    ( /** @type {?} */(this)).titleSrv.setTitle(( /** @type {?} */(this))._titleVal);
+            if (this._titleVal && this.syncTitle) {
+                if (this.titleSrv) {
+                    this.titleSrv.setTitle(this._titleVal);
                 }
-                if (!( /** @type {?} */(this)).inited && ( /** @type {?} */(this)).reuseSrv) {
-                    ( /** @type {?} */(this)).reuseSrv.title = ( /** @type {?} */(this))._titleVal;
+                if (!this.inited && this.reuseSrv) {
+                    this.reuseSrv.title = this._titleVal;
                 }
             }
-            return ( /** @type {?} */(this));
+            return this;
         };
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.checkContent = function () {
             if (browser.isEmpty(this.conTpl.nativeElement)) {
                 this.renderer.setAttribute(this.conTpl.nativeElement, 'hidden', '');
@@ -513,40 +433,25 @@
                 this.renderer.removeAttribute(this.conTpl.nativeElement, 'hidden');
             }
         };
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
                 _this.cdr.detectChanges();
-            }));
+            });
             this.refresh();
             this.inited = true;
         };
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.ngAfterViewInit = function () {
             this.checkContent();
         };
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.ngOnChanges = function () {
             if (this.inited) {
                 this.refresh();
             }
         };
-        /**
-         * @return {?}
-         */
         PageHeaderComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -561,7 +466,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     PageHeaderComponent.ctorParameters = function () { return [
@@ -631,134 +536,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
-    if (false) {
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_loading;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_wide;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_autoBreadcrumb;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_autoTitle;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_syncTitle;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_fixed;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_fixedOffsetTop;
-        /** @type {?} */
-        PageHeaderComponent.ngAcceptInputType_recursiveBreadcrumb;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.conTpl;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.affix;
-        /** @type {?} */
-        PageHeaderComponent.prototype.inited;
-        /** @type {?} */
-        PageHeaderComponent.prototype.isBrowser;
-        /** @type {?} */
-        PageHeaderComponent.prototype.dir;
-        /** @type {?} */
-        PageHeaderComponent.prototype._titleVal;
-        /** @type {?} */
-        PageHeaderComponent.prototype.paths;
-        /** @type {?} */
-        PageHeaderComponent.prototype._title;
-        /** @type {?} */
-        PageHeaderComponent.prototype._titleTpl;
-        /** @type {?} */
-        PageHeaderComponent.prototype.loading;
-        /** @type {?} */
-        PageHeaderComponent.prototype.wide;
-        /** @type {?} */
-        PageHeaderComponent.prototype.home;
-        /** @type {?} */
-        PageHeaderComponent.prototype.homeLink;
-        /** @type {?} */
-        PageHeaderComponent.prototype.homeI18n;
-        /** @type {?} */
-        PageHeaderComponent.prototype.autoBreadcrumb;
-        /** @type {?} */
-        PageHeaderComponent.prototype.autoTitle;
-        /** @type {?} */
-        PageHeaderComponent.prototype.syncTitle;
-        /** @type {?} */
-        PageHeaderComponent.prototype.fixed;
-        /** @type {?} */
-        PageHeaderComponent.prototype.fixedOffsetTop;
-        /** @type {?} */
-        PageHeaderComponent.prototype.breadcrumb;
-        /** @type {?} */
-        PageHeaderComponent.prototype.recursiveBreadcrumb;
-        /** @type {?} */
-        PageHeaderComponent.prototype.logo;
-        /** @type {?} */
-        PageHeaderComponent.prototype.action;
-        /** @type {?} */
-        PageHeaderComponent.prototype.content;
-        /** @type {?} */
-        PageHeaderComponent.prototype.extra;
-        /** @type {?} */
-        PageHeaderComponent.prototype.tab;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.menuSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.i18nSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.titleSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.reuseSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        PageHeaderComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: page-header.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [PageHeaderComponent];
     var PageHeaderModule = /** @class */ (function () {
         function PageHeaderModule() {
@@ -774,15 +552,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pageHeader.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.PageHeaderComponent = PageHeaderComponent;

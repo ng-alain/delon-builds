@@ -318,16 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.service.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var MediaService = /** @class */ (function () {
-        /**
-         * @param {?} cogSrv
-         * @param {?} lazySrv
-         */
         function MediaService(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
             this.lazySrv = lazySrv;
@@ -336,54 +327,38 @@
             this.notify$ = new rxjs.Subject();
         }
         Object.defineProperty(MediaService.prototype, "cog", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._cog;
             },
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
-                this._cog = ( /** @type {?} */(this.cogSrv.merge('media', {
+                this._cog = this.cogSrv.merge('media', {
                     urls: ['https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js', 'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'],
-                }, val)));
+                }, val);
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @template THIS
-         * @this {THIS}
-         * @return {THIS}
-         */
         MediaService.prototype.load = function () {
             var _this = this;
-            if (( /** @type {?} */(this)).loading) {
-                if (( /** @type {?} */(this)).loaded) {
-                    ( /** @type {?} */(this)).notify$.next();
+            if (this.loading) {
+                if (this.loaded) {
+                    this.notify$.next();
                 }
-                return ( /** @type {?} */(this));
+                return this;
             }
-            ( /** @type {?} */(this)).loading = true;
-            ( /** @type {?} */(this)).lazySrv.load(( /** @type {?} */(( /** @type {?} */(this)).cog.urls))).then(( /**
-             * @return {?}
-             */function () {
-                ( /** @type {?} */(_this)).loaded = true;
-                ( /** @type {?} */(_this)).notify$.next();
-            }));
-            return ( /** @type {?} */(this));
+            this.loading = true;
+            this.lazySrv.load(this.cog.urls).then(function () {
+                _this.loaded = true;
+                _this.notify$.next();
+            });
+            return this;
         };
-        /**
-         * @return {?}
-         */
         MediaService.prototype.notify = function () {
             return this.notify$.asObservable();
         };
         return MediaService;
     }());
+    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: MediaService, providedIn: "root" });
     MediaService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -392,53 +367,8 @@
         { type: i1.AlainConfigService },
         { type: i2.LazyService }
     ]; };
-    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: MediaService, providedIn: "root" });
-    if (false) {
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype._cog;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.loading;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.loaded;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.notify$;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.cogSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaService.prototype.lazySrv;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var MediaComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} renderer
-         * @param {?} srv
-         * @param {?} ngZone
-         * @param {?} platform
-         */
         function MediaComponent(el, renderer, srv, ngZone, platform) {
             var _this = this;
             this.el = el;
@@ -449,105 +379,62 @@
             this.type = 'video';
             this.delay = 0;
             this.ready = new i0.EventEmitter();
-            this.notify$ = this.srv.notify().subscribe(( /**
-             * @return {?}
-             */function () { return _this.initDelay(); }));
+            this.notify$ = this.srv.notify().subscribe(function () { return _this.initDelay(); });
         }
         Object.defineProperty(MediaComponent.prototype, "player", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._p;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.initDelay = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
-                _this.time = setTimeout(( /**
-                 * @return {?}
-                 */function () { return _this.init(); }), _this.delay);
-            }));
+            this.ngZone.runOutsideAngular(function () {
+                _this.time = setTimeout(function () { return _this.init(); }, _this.delay);
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.init = function () {
             var _this = this;
-            if (!(( /** @type {?} */(window))).Plyr) {
+            if (!window.Plyr) {
                 throw new Error("No window.Plyr found, please make sure that cdn or local path exists, the current referenced path is: " + JSON.stringify(this.srv.cog.urls));
             }
             this.ensureElement();
-            /** @type {?} */
             var player = (this._p = new Plyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
-            player.on('ready', ( /**
-             * @return {?}
-             */function () { return _this.ready.next(player); }));
+            player.on('ready', function () { return _this.ready.next(player); });
             this.uploadSource();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.ensureElement = function () {
             var type = this.type;
-            /** @type {?} */
-            var el = ( /** @type {?} */(this.el.nativeElement.querySelector(type)));
+            var el = this.el.nativeElement.querySelector(type);
             if (!el) {
                 el = this.renderer.createElement(type);
-                (( /** @type {?} */(el))).controls = true;
+                el.controls = true;
                 this.el.nativeElement.appendChild(el);
             }
             this.videoEl = el;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.destroy = function () {
             if (this._p) {
                 this._p.destroy();
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         MediaComponent.prototype.uploadSource = function () {
             var _a = this, source = _a.source, type = _a.type;
             this._p.source = typeof source === 'string' ? { type: type, sources: [{ src: source }] } : source;
         };
-        /**
-         * @return {?}
-         */
         MediaComponent.prototype.ngAfterViewInit = function () {
             if (!this.platform.isBrowser) {
                 return;
             }
             this.srv.load();
         };
-        /**
-         * @param {?} changes
-         * @return {?}
-         */
         MediaComponent.prototype.ngOnChanges = function (changes) {
             this.srv.cog = { options: this.options };
             if (changes.source && this._p) {
                 this.uploadSource();
             }
         };
-        /**
-         * @return {?}
-         */
         MediaComponent.prototype.ngOnDestroy = function () {
             clearTimeout(this.time);
             this.destroy();
@@ -567,7 +454,7 @@
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
                     encapsulation: i0.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     MediaComponent.ctorParameters = function () { return [
@@ -588,72 +475,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], MediaComponent.prototype, "delay", void 0);
-    if (false) {
-        /** @type {?} */
-        MediaComponent.ngAcceptInputType_delay;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype._p;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.videoEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.time;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.notify$;
-        /** @type {?} */
-        MediaComponent.prototype.type;
-        /** @type {?} */
-        MediaComponent.prototype.source;
-        /** @type {?} */
-        MediaComponent.prototype.options;
-        /** @type {?} */
-        MediaComponent.prototype.delay;
-        /** @type {?} */
-        MediaComponent.prototype.ready;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.renderer;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.srv;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        MediaComponent.prototype.platform;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [MediaComponent];
     var MediaModule = /** @class */ (function () {
         function MediaModule() {
@@ -669,15 +491,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: media.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.MediaComponent = MediaComponent;

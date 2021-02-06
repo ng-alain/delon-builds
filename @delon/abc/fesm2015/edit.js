@@ -13,17 +13,9 @@ import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: se-container.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SEContainerComponent {
-    /**
-     * @param {?} configSrv
-     */
     constructor(configSrv) {
-        this.errorNotify$ = new BehaviorSubject((/** @type {?} */ (null)));
+        this.errorNotify$ = new BehaviorSubject(null);
         this.line = false;
         configSrv.attach(this, 'se', {
             size: 'default',
@@ -35,56 +27,27 @@ class SEContainerComponent {
             ingoreDirty: false,
         });
     }
-    /**
-     * @return {?}
-     */
     get gutter() {
         return this.nzLayout === 'horizontal' ? this._gutter : 0;
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set gutter(value) {
         this._gutter = toNumber(value);
     }
-    /**
-     * @return {?}
-     */
     get nzLayout() {
         return this._nzLayout;
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set nzLayout(value) {
         this._nzLayout = value;
         if (value === 'inline') {
             this.size = 'compact';
         }
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
     set errors(val) {
         this.setErrors(val);
     }
-    /**
-     * @return {?}
-     */
     get errorNotify() {
-        return this.errorNotify$.pipe(filter((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => v != null)));
+        return this.errorNotify$.pipe(filter(v => v != null));
     }
-    /**
-     * @param {?} errors
-     * @return {?}
-     */
     setErrors(errors) {
         for (const error of errors) {
             this.errorNotify$.next(error);
@@ -114,7 +77,7 @@ SEContainerComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SEContainerComponent.ctorParameters = () => [
@@ -157,57 +120,8 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SEContainerComponent.prototype, "line", void 0);
-if (false) {
-    /** @type {?} */
-    SEContainerComponent.ngAcceptInputType_col;
-    /** @type {?} */
-    SEContainerComponent.ngAcceptInputType_colInCon;
-    /** @type {?} */
-    SEContainerComponent.ngAcceptInputType_labelWidth;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEContainerComponent.prototype.errorNotify$;
-    /** @type {?} */
-    SEContainerComponent.prototype.colInCon;
-    /** @type {?} */
-    SEContainerComponent.prototype.col;
-    /** @type {?} */
-    SEContainerComponent.prototype.labelWidth;
-    /** @type {?} */
-    SEContainerComponent.prototype.title;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEContainerComponent.prototype._gutter;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEContainerComponent.prototype._nzLayout;
-    /** @type {?} */
-    SEContainerComponent.prototype.size;
-    /** @type {?} */
-    SEContainerComponent.prototype.firstVisual;
-    /** @type {?} */
-    SEContainerComponent.prototype.ingoreDirty;
-    /** @type {?} */
-    SEContainerComponent.prototype.line;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: se-title.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class SETitleComponent {
-    /**
-     * @param {?} parent
-     * @param {?} el
-     * @param {?} ren
-     */
     constructor(parent, el, ren) {
         this.parent = parent;
         this.ren = ren;
@@ -216,19 +130,12 @@ class SETitleComponent {
         }
         this.el = el.nativeElement;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     setClass() {
         const { gutter } = this.parent;
         const { el } = this;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.setClass();
     }
@@ -244,7 +151,7 @@ SETitleComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SETitleComponent.ctorParameters = () => [
@@ -252,41 +159,10 @@ SETitleComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 }
 ];
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    SETitleComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    SETitleComponent.prototype.parent;
-    /**
-     * @type {?}
-     * @private
-     */
-    SETitleComponent.prototype.ren;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: se.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const prefixCls = `se`;
-/** @type {?} */
 let nextUniqueId = 0;
 class SEComponent {
-    /**
-     * @param {?} el
-     * @param {?} parent
-     * @param {?} rep
-     * @param {?} ren
-     * @param {?} cdr
-     */
     constructor(el, parent, rep, ren, cdr) {
         this.parent = parent;
         this.rep = rep;
@@ -309,109 +185,55 @@ class SEComponent {
         }
         this.el = el.nativeElement;
         parent.errorNotify
-            .pipe(takeUntil(this.unsubscribe$), filter((/**
-         * @param {?} w
-         * @return {?}
-         */
-        w => this.inited && this.ngControl != null && this.ngControl.name === w.name)))
-            .subscribe((/**
-         * @param {?} item
-         * @return {?}
-         */
-        item => {
+            .pipe(takeUntil(this.unsubscribe$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
+            .subscribe(item => {
             this.error = item.error;
-            this.updateStatus((/** @type {?} */ (this.ngControl.invalid)));
-        }));
+            this.updateStatus(this.ngControl.invalid);
+        });
     }
-    /**
-     * @param {?} val
-     * @return {?}
-     */
     set error(val) {
         this.errorData = typeof val === 'string' || val instanceof TemplateRef ? { '': val } : val;
     }
-    /**
-     * @param {?} value
-     * @return {?}
-     */
     set id(value) {
         this._id = value;
         this._autoId = false;
     }
     // #endregion
-    /**
-     * @return {?}
-     */
     get paddingValue() {
         return this.parent.gutter / 2;
     }
-    /**
-     * @return {?}
-     */
     get showErr() {
         return this.invalid && !!this._error && !this.compact;
     }
-    /**
-     * @return {?}
-     */
     get compact() {
         return this.parent.size === 'compact';
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get ngControl() {
         return this.ngModel || this.formControlName;
     }
-    /**
-     * @private
-     * @template THIS
-     * @this {THIS}
-     * @return {THIS}
-     */
     setClass() {
-        const { el, ren, clsMap, col, parent, cdr, line, labelWidth, rep } = (/** @type {?} */ (this));
-        (/** @type {?} */ (this))._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
-        clsMap.forEach((/**
-         * @param {?} cls
-         * @return {?}
-         */
-        cls => ren.removeClass(el, cls)));
+        const { el, ren, clsMap, col, parent, cdr, line, labelWidth, rep } = this;
+        this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
+        clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        /** @type {?} */
         const repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if (line || parent.line) {
             clsMap.push(`${prefixCls}__line`);
         }
-        clsMap.forEach((/**
-         * @param {?} cls
-         * @return {?}
-         */
-        cls => ren.addClass(el, cls)));
+        clsMap.forEach(cls => ren.addClass(el, cls));
         cdr.detectChanges();
-        return (/** @type {?} */ (this));
+        return this;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     bindModel() {
         var _a, _b;
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
-        (/** @type {?} */ (this.ngControl.statusChanges)).pipe(takeUntil(this.unsubscribe$)).subscribe((/**
-         * @param {?} res
-         * @return {?}
-         */
-        res => this.updateStatus(res === 'INVALID')));
+        this.ngControl.statusChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
-            /** @type {?} */
-            const controlAccessor = (/** @type {?} */ (this.ngControl.valueAccessor));
-            /** @type {?} */
-            const control = (/** @type {?} */ ((_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement));
+            const controlAccessor = this.ngControl.valueAccessor;
+            const control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
             if (!!control) {
                 if (control.id) {
                     this._id = control.id;
@@ -423,44 +245,26 @@ class SEComponent {
         }
         // auto required
         if (this.required !== true) {
-            /** @type {?} */
-            const rawValidators = (/** @type {?} */ ((_b = ((/** @type {?} */ (this.ngControl)))) === null || _b === void 0 ? void 0 : _b._rawValidators));
-            this.required = rawValidators.find((/**
-             * @param {?} w
-             * @return {?}
-             */
-            w => w instanceof RequiredValidator)) != null;
+            const rawValidators = (_b = this.ngControl) === null || _b === void 0 ? void 0 : _b._rawValidators;
+            this.required = rawValidators.find(w => w instanceof RequiredValidator) != null;
             this.cdr.detectChanges();
         }
     }
-    /**
-     * @private
-     * @param {?} invalid
-     * @return {?}
-     */
     updateStatus(invalid) {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
         this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
-        /** @type {?} */
         const errors = this.ngControl.errors;
         if (errors != null && Object.keys(errors).length > 0) {
-            /** @type {?} */
             const key = Object.keys(errors)[0] || '';
-            /** @type {?} */
             const err = this.errorData[key];
             this._error = err != null ? err : this.errorData[''] || '';
         }
         this.cdr.detectChanges();
     }
-    /**
-     * @return {?}
-     */
     checkContent() {
-        /** @type {?} */
         const el = this.contentElement.nativeElement;
-        /** @type {?} */
         const cls = `${prefixCls}__item-empty`;
         if (isEmpty(el)) {
             this.ren.addClass(el, cls);
@@ -469,40 +273,25 @@ class SEComponent {
             this.ren.removeClass(el, cls);
         }
     }
-    /**
-     * @return {?}
-     */
     ngAfterContentInit() {
         this.checkContent();
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
         this.onceFlag = this.parent.firstVisual;
         if (this.inited) {
             this.setClass().bindModel();
         }
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         this.setClass().bindModel();
         this.inited = true;
         if (this.onceFlag) {
-            Promise.resolve().then((/**
-             * @return {?}
-             */
-            () => {
-                this.updateStatus((/** @type {?} */ (this.ngControl.invalid)));
+            Promise.resolve().then(() => {
+                this.updateStatus(this.ngControl.invalid);
                 this.onceFlag = false;
-            }));
+            });
         }
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         const { unsubscribe$ } = this;
         unsubscribe$.next();
@@ -524,7 +313,7 @@ SEComponent.decorators = [
                 animations: [helpMotion],
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 SEComponent.ctorParameters = () => [
@@ -567,123 +356,7 @@ __decorate([
     InputNumber(null),
     __metadata("design:type", Number)
 ], SEComponent.prototype, "labelWidth", void 0);
-if (false) {
-    /** @type {?} */
-    SEComponent.ngAcceptInputType_col;
-    /** @type {?} */
-    SEComponent.ngAcceptInputType_required;
-    /** @type {?} */
-    SEComponent.ngAcceptInputType_line;
-    /** @type {?} */
-    SEComponent.ngAcceptInputType_labelWidth;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.unsubscribe$;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.ngModel;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.formControlName;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.contentElement;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.clsMap;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.inited;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.onceFlag;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.errorData;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.isBindModel;
-    /** @type {?} */
-    SEComponent.prototype.invalid;
-    /** @type {?} */
-    SEComponent.prototype._labelWidth;
-    /** @type {?} */
-    SEComponent.prototype._error;
-    /** @type {?} */
-    SEComponent.prototype.optional;
-    /** @type {?} */
-    SEComponent.prototype.optionalHelp;
-    /** @type {?} */
-    SEComponent.prototype.optionalHelpColor;
-    /** @type {?} */
-    SEComponent.prototype.extra;
-    /** @type {?} */
-    SEComponent.prototype.label;
-    /** @type {?} */
-    SEComponent.prototype.col;
-    /** @type {?} */
-    SEComponent.prototype.required;
-    /** @type {?} */
-    SEComponent.prototype.controlClass;
-    /** @type {?} */
-    SEComponent.prototype.line;
-    /** @type {?} */
-    SEComponent.prototype.labelWidth;
-    /** @type {?} */
-    SEComponent.prototype._id;
-    /** @type {?} */
-    SEComponent.prototype._autoId;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.parent;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.rep;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.ren;
-    /**
-     * @type {?}
-     * @private
-     */
-    SEComponent.prototype.cdr;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: se.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
 class SEModule {
 }
@@ -695,36 +368,21 @@ SEModule.decorators = [
             },] }
 ];
 
-/**
- * @fileoverview added by tsickle
- * Generated from: se.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function SEError() { }
-/**
- * @record
- */
-function SEErrorRefresh() { }
-if (false) {
-    /** @type {?} */
-    SEErrorRefresh.prototype.name;
-    /** @type {?} */
-    SEErrorRefresh.prototype.error;
-}
+// /**
+//  * Error collection
+//  * - `name`: The value of` ngModel` or `formControlName`
+//  * - `error`: Replaced error value
+//  */
+// errors: Array<{ name: string; error: SEErrorType }>;
+// /**
+//  * Whether force show error, even if the form component has not invalid, Default: `false`
+//  * - `false`: Whether to display error by `invalid`
+//  * - `true`: Force show display error
+//  */
+// force?: boolean;
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: edit.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { SEComponent, SEContainerComponent, SEModule, SETitleComponent };

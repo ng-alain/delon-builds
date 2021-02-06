@@ -7,12 +7,6 @@ import { LazyService } from '@delon/util/other';
 import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.config.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const QR_DEFULAT_CONFIG = {
     lib: `https://cdn.bootcdn.net/ajax/libs/qrious/4.0.2/qrious.min.js`,
     background: 'white',
@@ -26,18 +20,7 @@ const QR_DEFULAT_CONFIG = {
     delay: 0,
 };
 
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class QRComponent {
-    /**
-     * @param {?} cdr
-     * @param {?} configSrv
-     * @param {?} lazySrv
-     * @param {?} platform
-     */
     constructor(cdr, configSrv, lazySrv, platform) {
         this.cdr = cdr;
         this.lazySrv = lazySrv;
@@ -45,66 +28,40 @@ class QRComponent {
         this.inited = false;
         this.value = '';
         this.change = new EventEmitter();
-        this.cog = (/** @type {?} */ (configSrv.merge('qr', QR_DEFULAT_CONFIG)));
+        this.cog = configSrv.merge('qr', QR_DEFULAT_CONFIG);
         Object.assign(this, this.cog);
     }
-    /**
-     * @private
-     * @return {?}
-     */
     init() {
         if (!this.inited) {
             return;
         }
         if (this.qr == null) {
-            this.qr = new ((/** @type {?} */ (window))).QRious();
+            this.qr = new window.QRious();
         }
         this.qr.set(this.option);
         this.dataURL = this.qr.toDataURL();
         this.change.emit(this.dataURL);
         this.cdr.detectChanges();
     }
-    /**
-     * @private
-     * @return {?}
-     */
     initDelay() {
         this.inited = true;
-        setTimeout((/**
-         * @return {?}
-         */
-        () => this.init()), this.delay);
+        setTimeout(() => this.init(), this.delay);
     }
-    /**
-     * @return {?}
-     */
     ngAfterViewInit() {
         if (!this.platform.isBrowser) {
             return;
         }
-        if (((/** @type {?} */ (window))).QRious) {
+        if (window.QRious) {
             this.initDelay();
             return;
         }
-        /** @type {?} */
-        const url = (/** @type {?} */ (this.cog.lib));
+        const url = this.cog.lib;
         this.lazy$ = this.lazySrv.change
-            .pipe(filter((/**
-         * @param {?} ls
-         * @return {?}
-         */
-        ls => ls.length === 1 && ls[0].path === url && ls[0].status === 'ok')))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.initDelay()));
+            .pipe(filter(ls => ls.length === 1 && ls[0].path === url && ls[0].status === 'ok'))
+            .subscribe(() => this.initDelay());
         this.lazySrv.load(url);
     }
-    /**
-     * @return {?}
-     */
     ngOnChanges() {
-        /** @type {?} */
         const option = {
             background: this.background,
             backgroundAlpha: this.backgroundAlpha,
@@ -119,14 +76,8 @@ class QRComponent {
         this.option = option;
         this.init();
     }
-    /**
-     * @private
-     * @param {?} str
-     * @return {?}
-     */
     toUtf8ByteArray(str) {
         str = encodeURI(str);
-        /** @type {?} */
         const result = [];
         for (let i = 0; i < str.length; i++) {
             if (str.charAt(i) !== '%') {
@@ -137,15 +88,8 @@ class QRComponent {
                 i += 2;
             }
         }
-        return result.map((/**
-         * @param {?} v
-         * @return {?}
-         */
-        v => String.fromCharCode(v))).join('');
+        return result.map(v => String.fromCharCode(v)).join('');
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         if (this.lazy$) {
             this.lazy$.unsubscribe();
@@ -165,7 +109,7 @@ QRComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 QRComponent.ctorParameters = () => [
@@ -199,99 +143,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], QRComponent.prototype, "delay", void 0);
-if (false) {
-    /** @type {?} */
-    QRComponent.ngAcceptInputType_padding;
-    /** @type {?} */
-    QRComponent.ngAcceptInputType_size;
-    /** @type {?} */
-    QRComponent.ngAcceptInputType_delay;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.lazy$;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.qr;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.cog;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.option;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.inited;
-    /** @type {?} */
-    QRComponent.prototype.dataURL;
-    /** @type {?} */
-    QRComponent.prototype.background;
-    /** @type {?} */
-    QRComponent.prototype.backgroundAlpha;
-    /** @type {?} */
-    QRComponent.prototype.foreground;
-    /** @type {?} */
-    QRComponent.prototype.foregroundAlpha;
-    /** @type {?} */
-    QRComponent.prototype.level;
-    /** @type {?} */
-    QRComponent.prototype.mime;
-    /** @type {?} */
-    QRComponent.prototype.padding;
-    /** @type {?} */
-    QRComponent.prototype.size;
-    /** @type {?} */
-    QRComponent.prototype.value;
-    /** @type {?} */
-    QRComponent.prototype.delay;
-    /** @type {?} */
-    QRComponent.prototype.change;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.lazySrv;
-    /**
-     * @type {?}
-     * @private
-     */
-    QRComponent.prototype.platform;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.types.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/**
- * @record
- */
-function QROptions() { }
-if (false) {
-    /** @type {?} */
-    QROptions.prototype.value;
-}
-
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [QRComponent];
 class QRModule {
 }
@@ -304,15 +156,7 @@ QRModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: qr.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { QRComponent, QRModule, QR_DEFULAT_CONFIG };

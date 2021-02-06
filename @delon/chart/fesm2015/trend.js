@@ -4,20 +4,11 @@ import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: trend.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class TrendComponent {
     constructor() {
-        /**
-         * 是否彩色标记
-         */
+        /** 是否彩色标记 */
         this.colorful = true;
-        /**
-         * 颜色反转
-         */
+        /** 颜色反转 */
         this.reverseColor = false;
     }
 }
@@ -34,7 +25,7 @@ TrendComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 TrendComponent.propDecorators = {
     flag: [{ type: Input }],
@@ -49,34 +40,7 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], TrendComponent.prototype, "reverseColor", void 0);
-if (false) {
-    /** @type {?} */
-    TrendComponent.ngAcceptInputType_colorful;
-    /** @type {?} */
-    TrendComponent.ngAcceptInputType_reverseColor;
-    /**
-     * 上升下降标识
-     * @type {?}
-     */
-    TrendComponent.prototype.flag;
-    /**
-     * 是否彩色标记
-     * @type {?}
-     */
-    TrendComponent.prototype.colorful;
-    /**
-     * 颜色反转
-     * @type {?}
-     */
-    TrendComponent.prototype.reverseColor;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: trend.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [TrendComponent];
 class TrendModule {
 }
@@ -89,15 +53,7 @@ TrendModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: trend.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { TrendComponent, TrendModule };

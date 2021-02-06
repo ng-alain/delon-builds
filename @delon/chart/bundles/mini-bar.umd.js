@@ -318,27 +318,6 @@
         return value;
     }
 
-    /**
-     * @record
-     */
-    function G2MiniBarData() { }
-    if (false) {
-        /** @type {?} */
-        G2MiniBarData.prototype.x;
-        /** @type {?} */
-        G2MiniBarData.prototype.y;
-        /* Skipping unhandled member: [key: string]: any;*/
-    }
-    /**
-     * @record
-     */
-    function G2MiniBarClickItem() { }
-    if (false) {
-        /** @type {?} */
-        G2MiniBarClickItem.prototype.item;
-        /** @type {?} */
-        G2MiniBarClickItem.prototype.ev;
-    }
     var G2MiniBarComponent = /** @class */ (function (_super) {
         __extends(G2MiniBarComponent, _super);
         function G2MiniBarComponent() {
@@ -355,14 +334,10 @@
             return _this;
         }
         // #endregion
-        /**
-         * @return {?}
-         */
         G2MiniBarComponent.prototype.install = function () {
             var _this = this;
             var _b = this, el = _b.el, height = _b.height, padding = _b.padding, yTooltipSuffix = _b.yTooltipSuffix, tooltipType = _b.tooltipType, theme = _b.theme;
-            /** @type {?} */
-            var chart = (this._chart = new (( /** @type {?} */(window))).G2.Chart({
+            var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
                 height: height,
@@ -379,7 +354,6 @@
             });
             chart.legend(false);
             chart.axis(false);
-            /** @type {?} */
             var tooltipOption = {
                 showTitle: false,
                 showMarkers: true,
@@ -393,7 +367,7 @@
             };
             if (tooltipType === 'mini') {
                 tooltipOption.position = 'top';
-                ( /** @type {?} */(tooltipOption.domStyles))['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+                tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
                 tooltipOption.itemTpl = "<li>{value}</li>";
                 tooltipOption.offset = 0;
             }
@@ -401,25 +375,13 @@
             chart
                 .interval()
                 .position('x*y')
-                .tooltip('x*y', ( /**
-         * @param {?} x
-         * @param {?} y
-         * @return {?}
-         */function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); }));
-            chart.on("interval:click", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                _this.ngZone.run(( /**
-                 * @return {?}
-                 */function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); }));
-            }));
+                .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
+            chart.on("interval:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
             chart.render();
             this.attachChart();
         };
-        /**
-         * @return {?}
-         */
         G2MiniBarComponent.prototype.attachChart = function () {
             var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, data = _b.data, color = _b.color, borderWidth = _b.borderWidth;
             if (!_chart || !data || data.length <= 0)
@@ -443,7 +405,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     G2MiniBarComponent.propDecorators = {
         color: [{ type: core.Input }],
@@ -463,35 +425,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2MiniBarComponent.prototype, "borderWidth", void 0);
-    if (false) {
-        /** @type {?} */
-        G2MiniBarComponent.ngAcceptInputType_height;
-        /** @type {?} */
-        G2MiniBarComponent.ngAcceptInputType_borderWidth;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.color;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.height;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.borderWidth;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.padding;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.data;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.yTooltipSuffix;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.tooltipType;
-        /** @type {?} */
-        G2MiniBarComponent.prototype.clickItem;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-bar.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [G2MiniBarComponent];
     var G2MiniBarModule = /** @class */ (function () {
         function G2MiniBarModule() {
@@ -507,15 +441,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: mini-bar.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.G2MiniBarComponent = G2MiniBarComponent;

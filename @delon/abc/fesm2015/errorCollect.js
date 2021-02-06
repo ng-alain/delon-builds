@@ -8,19 +8,7 @@ import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-/**
- * @fileoverview added by tsickle
- * Generated from: error-collect.component.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
 class ErrorCollectComponent {
-    /**
-     * @param {?} el
-     * @param {?} cdr
-     * @param {?} doc
-     * @param {?} configSrv
-     * @param {?} directionality
-     */
     constructor(el, cdr, doc, configSrv, directionality) {
         this.el = el;
         this.cdr = cdr;
@@ -32,19 +20,10 @@ class ErrorCollectComponent {
         this.dir = 'ltr';
         configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
     }
-    /**
-     * @private
-     * @return {?}
-     */
     get errEls() {
-        return (/** @type {?} */ (this.formEl)).querySelectorAll('.ant-form-item-has-error');
+        return this.formEl.querySelectorAll('.ant-form-item-has-error');
     }
-    /**
-     * @private
-     * @return {?}
-     */
     update() {
-        /** @type {?} */
         const count = this.errEls.length;
         if (count === this.count)
             return;
@@ -52,74 +31,45 @@ class ErrorCollectComponent {
         this._hiden = count === 0;
         this.cdr.markForCheck();
     }
-    /**
-     * @return {?}
-     */
     _click() {
         if (this.count === 0)
             return false;
         // nz-form-control
-        /** @type {?} */
         const els = this.errEls;
-        /** @type {?} */
         const formItemEl = this.findParent(els[0], '[nz-form-control]') || els[0];
         formItemEl.scrollIntoView(true);
         // fix header height
         this.doc.documentElement.scrollTop -= this.offsetTop;
         return true;
     }
-    /**
-     * @private
-     * @return {?}
-     */
     install() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((/**
-         * @param {?} direction
-         * @return {?}
-         */
-        (direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
-        }));
+        });
         interval(this.freq)
             .pipe(takeUntil(this.destroy$))
-            .subscribe((/**
-         * @return {?}
-         */
-        () => this.update()));
+            .subscribe(() => this.update());
         this.update();
     }
-    /**
-     * @private
-     * @param {?} el
-     * @param {?} selector
-     * @return {?}
-     */
     findParent(el, selector) {
-        /** @type {?} */
         let retEl = null;
         while (el) {
             if (el.querySelector(selector)) {
-                retEl = (/** @type {?} */ (el));
+                retEl = el;
                 break;
             }
-            el = (/** @type {?} */ (el.parentElement));
+            el = el.parentElement;
         }
         return retEl;
     }
-    /**
-     * @return {?}
-     */
     ngOnInit() {
         this.formEl = this.findParent(this.el.nativeElement, 'form');
         if (this.formEl === null)
             throw new Error('No found form element');
         this.install();
     }
-    /**
-     * @return {?}
-     */
     ngOnDestroy() {
         this.destroy$.next();
         this.destroy$.complete();
@@ -142,7 +92,7 @@ ErrorCollectComponent.decorators = [
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
-            }] }
+            },] }
 ];
 /** @nocollapse */
 ErrorCollectComponent.ctorParameters = () => [
@@ -164,55 +114,7 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], ErrorCollectComponent.prototype, "offsetTop", void 0);
-if (false) {
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.formEl;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.destroy$;
-    /** @type {?} */
-    ErrorCollectComponent.prototype._hiden;
-    /** @type {?} */
-    ErrorCollectComponent.prototype.count;
-    /** @type {?} */
-    ErrorCollectComponent.prototype.dir;
-    /** @type {?} */
-    ErrorCollectComponent.prototype.freq;
-    /** @type {?} */
-    ErrorCollectComponent.prototype.offsetTop;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.el;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.cdr;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.doc;
-    /**
-     * @type {?}
-     * @private
-     */
-    ErrorCollectComponent.prototype.directionality;
-}
 
-/**
- * @fileoverview added by tsickle
- * Generated from: error-collect.module.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-/** @type {?} */
 const COMPONENTS = [ErrorCollectComponent];
 class ErrorCollectModule {
 }
@@ -225,15 +127,7 @@ ErrorCollectModule.decorators = [
 ];
 
 /**
- * @fileoverview added by tsickle
- * Generated from: public_api.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
- */
-
-/**
- * @fileoverview added by tsickle
- * Generated from: errorCollect.ts
- * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+ * Generated bundle index. Do not edit.
  */
 
 export { ErrorCollectComponent, ErrorCollectModule };

@@ -318,20 +318,11 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: trend.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var TrendComponent = /** @class */ (function () {
         function TrendComponent() {
-            /**
-             * 是否彩色标记
-             */
+            /** 是否彩色标记 */
             this.colorful = true;
-            /**
-             * 颜色反转
-             */
+            /** 颜色反转 */
             this.reverseColor = false;
         }
         return TrendComponent;
@@ -349,7 +340,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     TrendComponent.propDecorators = {
         flag: [{ type: core.Input }],
@@ -364,34 +355,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], TrendComponent.prototype, "reverseColor", void 0);
-    if (false) {
-        /** @type {?} */
-        TrendComponent.ngAcceptInputType_colorful;
-        /** @type {?} */
-        TrendComponent.ngAcceptInputType_reverseColor;
-        /**
-         * 上升下降标识
-         * @type {?}
-         */
-        TrendComponent.prototype.flag;
-        /**
-         * 是否彩色标记
-         * @type {?}
-         */
-        TrendComponent.prototype.colorful;
-        /**
-         * 颜色反转
-         * @type {?}
-         */
-        TrendComponent.prototype.reverseColor;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: trend.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [TrendComponent];
     var TrendModule = /** @class */ (function () {
         function TrendModule() {
@@ -407,15 +371,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: trend.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.TrendComponent = TrendComponent;

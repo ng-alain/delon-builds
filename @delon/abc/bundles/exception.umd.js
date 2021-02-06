@@ -9,17 +9,7 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.delon.theme, global.browser, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
 }(this, (function (exports, bidi, core, platformBrowser, theme, browser, rxjs, operators, common, router, button) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: exception.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var ExceptionComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18n
-         * @param {?} dom
-         * @param {?} directionality
-         */
         function ExceptionComponent(i18n, dom, directionality) {
             this.i18n = i18n;
             this.dom = dom;
@@ -33,12 +23,7 @@
             this._desc = '';
         }
         Object.defineProperty(ExceptionComponent.prototype, "type", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
-                /** @type {?} */
                 var item = {
                     403: {
                         img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
@@ -63,19 +48,10 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} src
-         * @return {?}
-         */
         ExceptionComponent.prototype.fixImg = function (src) {
             this._img = this.dom.bypassSecurityTrustStyle("url('" + src + "')");
         };
         Object.defineProperty(ExceptionComponent.prototype, "img", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this.fixImg(value);
             },
@@ -83,10 +59,6 @@
             configurable: true
         });
         Object.defineProperty(ExceptionComponent.prototype, "title", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._title = this.dom.bypassSecurityTrustHtml(value);
             },
@@ -94,43 +66,25 @@
             configurable: true
         });
         Object.defineProperty(ExceptionComponent.prototype, "desc", {
-            /**
-             * @param {?} value
-             * @return {?}
-             */
             set: function (value) {
                 this._desc = this.dom.bypassSecurityTrustHtml(value);
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         ExceptionComponent.prototype.checkContent = function () {
             this.hasCon = !browser.isEmpty(this.conTpl.nativeElement);
         };
-        /**
-         * @return {?}
-         */
         ExceptionComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
-            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @return {?}
-             */function () { return (_this.locale = _this.i18n.getData('exception')); }));
+            });
+            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(function () { return (_this.locale = _this.i18n.getData('exception')); });
             this.checkContent();
         };
-        /**
-         * @return {?}
-         */
         ExceptionComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -149,7 +103,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     ExceptionComponent.ctorParameters = function () { return [
@@ -164,56 +118,7 @@
         title: [{ type: core.Input }],
         desc: [{ type: core.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        ExceptionComponent.ngAcceptInputType_type;
-        /**
-         * @type {?}
-         * @private
-         */
-        ExceptionComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        ExceptionComponent.prototype.conTpl;
-        /** @type {?} */
-        ExceptionComponent.prototype._type;
-        /** @type {?} */
-        ExceptionComponent.prototype.locale;
-        /** @type {?} */
-        ExceptionComponent.prototype.hasCon;
-        /** @type {?} */
-        ExceptionComponent.prototype.dir;
-        /** @type {?} */
-        ExceptionComponent.prototype._img;
-        /** @type {?} */
-        ExceptionComponent.prototype._title;
-        /** @type {?} */
-        ExceptionComponent.prototype._desc;
-        /**
-         * @type {?}
-         * @private
-         */
-        ExceptionComponent.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        ExceptionComponent.prototype.dom;
-        /**
-         * @type {?}
-         * @private
-         */
-        ExceptionComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: exception.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [ExceptionComponent];
     var ExceptionModule = /** @class */ (function () {
         function ExceptionModule() {
@@ -229,15 +134,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: exception.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.ExceptionComponent = ExceptionComponent;

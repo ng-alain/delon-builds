@@ -3,13 +3,23 @@ import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
 import { FunctionProp } from 'ng-zorro-antd/core/types';
+/**
+ * @deprecated Will be removed in 12.0.0, Pls used `[extend]` instead, for examples:
+ * ```html
+ * <range-picker [(ngModel)]="i.start" [(ngModelEnd)]="i.end"></range-picker>
+ * ```
+ * Changed to =>
+ * ```html
+ * <nz-range-picker [(ngModel)]="i.start" extend [(ngModelEnd)]="i.end"></nz-range-picker>
+ * ```
+ */
 export declare class RangePickerComponent implements ControlValueAccessor {
     private dom;
     private onChangeFn;
     private _shortcut;
     private defaultShortcuts;
     private comp;
-    value: Date[];
+    value: Array<Date | null>;
     ngModelEnd: Date;
     set shortcut(val: AlainDateRangePickerShortcut | null);
     get shortcut(): AlainDateRangePickerShortcut | null;

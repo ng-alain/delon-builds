@@ -318,38 +318,23 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: auto-focus.directive.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var AutoFocusDirective = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} cdr
-         */
         function AutoFocusDirective(el, cdr) {
             this.el = el;
             this.cdr = cdr;
             this.enabled = true;
             this.delay = 300;
         }
-        /**
-         * @return {?}
-         */
         AutoFocusDirective.prototype.ngAfterViewInit = function () {
             var _this = this;
-            /** @type {?} */
             var el = this.el.nativeElement;
             if (!(el instanceof HTMLElement) || !this.enabled) {
                 return;
             }
-            setTimeout(( /**
-             * @return {?}
-             */function () {
+            setTimeout(function () {
                 el.focus({ preventScroll: false });
                 _this.cdr.markForCheck();
-            }), this.delay);
+            }, this.delay);
         };
         return AutoFocusDirective;
     }());
@@ -376,33 +361,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], AutoFocusDirective.prototype, "delay", void 0);
-    if (false) {
-        /** @type {?} */
-        AutoFocusDirective.ngAcceptInputType_enabled;
-        /** @type {?} */
-        AutoFocusDirective.ngAcceptInputType_delay;
-        /** @type {?} */
-        AutoFocusDirective.prototype.enabled;
-        /** @type {?} */
-        AutoFocusDirective.prototype.delay;
-        /**
-         * @type {?}
-         * @private
-         */
-        AutoFocusDirective.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        AutoFocusDirective.prototype.cdr;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: auto-focus.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [AutoFocusDirective];
     var AutoFocusModule = /** @class */ (function () {
         function AutoFocusModule() {
@@ -417,15 +376,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: index.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: autoFocus.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.AutoFocusDirective = AutoFocusDirective;

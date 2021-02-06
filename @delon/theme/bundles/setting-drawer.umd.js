@@ -9,25 +9,13 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.cdk.bidi, global.ng.common, global.delon.theme, global.browser, global.decorator, global.other, global.message, global.rxjs, global.rxjs.operators, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
 }(this, (function (exports, core, bidi, common, theme, browser, decorator, other, message, rxjs, operators, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: setting-drawer-item.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SettingDrawerItemComponent = /** @class */ (function () {
         function SettingDrawerItemComponent() {
             this.i = {};
             this.pxVal = 0;
-            this.format = ( /**
-             * @param {?} value
-             * @return {?}
-             */function (value) { return value + " px"; });
+            this.format = function (value) { return value + " px"; };
         }
         Object.defineProperty(SettingDrawerItemComponent.prototype, "data", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this.i = val;
                 if (val.type === 'px') {
@@ -37,10 +25,6 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @param {?} val
-         * @return {?}
-         */
         SettingDrawerItemComponent.prototype.pxChange = function (val) {
             this.i.value = val + "px";
         };
@@ -53,19 +37,11 @@
                     host: {
                         '[class.setting-drawer__body-item]': 'true',
                     }
-                }] }
+                },] }
     ];
     SettingDrawerItemComponent.propDecorators = {
         data: [{ type: core.Input }]
     };
-    if (false) {
-        /** @type {?} */
-        SettingDrawerItemComponent.prototype.i;
-        /** @type {?} */
-        SettingDrawerItemComponent.prototype.pxVal;
-        /** @type {?} */
-        SettingDrawerItemComponent.prototype.format;
-    }
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -376,14 +352,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: setting-drawer.types.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var ALAINDEFAULTVAR = 'alain-default-vars';
-    /** @type {?} */
     var DEFAULT_COLORS = [
         {
             key: 'dust',
@@ -422,7 +391,6 @@
             color: '#001529',
         },
     ];
-    /** @type {?} */
     var DEFAULT_VARS = {
         'primary-color': { label: '主颜色', type: 'color', default: '#1890ff' },
         'alain-default-header-hg': {
@@ -578,15 +546,6 @@
     };
 
     var SettingDrawerComponent = /** @class */ (function () {
-        /**
-         * @param {?} cdr
-         * @param {?} msg
-         * @param {?} settingSrv
-         * @param {?} lazy
-         * @param {?} zone
-         * @param {?} doc
-         * @param {?} directionality
-         */
         function SettingDrawerComponent(cdr, msg, settingSrv, lazy, zone, doc, directionality) {
             this.cdr = cdr;
             this.msg = msg;
@@ -608,9 +567,6 @@
             this.resetData(this.cachedData, false);
         }
         Object.defineProperty(SettingDrawerComponent.prototype, "layout", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.settingSrv.layout;
             },
@@ -618,10 +574,6 @@
             configurable: true
         });
         Object.defineProperty(SettingDrawerComponent.prototype, "cachedData", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.settingSrv.layout[ALAINDEFAULTVAR] || {};
             },
@@ -629,38 +581,24 @@
             configurable: true
         });
         Object.defineProperty(SettingDrawerComponent.prototype, "DEFAULT_PRIMARY", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return DEFAULT_VARS['primary-color'].default;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
+            });
             if (this.autoApplyColor && this.color !== this.DEFAULT_PRIMARY) {
                 this.changeColor(this.color);
                 this.runLess();
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.loadLess = function () {
             return __awaiter(this, void 0, void 0, function () {
                 var _this = this;
@@ -670,144 +608,67 @@
                     }
                     return [2 /*return*/, this.lazy
                             .loadStyle('./assets/color.less', 'stylesheet/less')
-                            .then(( /**
-                     * @return {?}
-                     */function () {
-                            /** @type {?} */
+                            .then(function () {
                             var lessConfigNode = _this.doc.createElement('script');
                             lessConfigNode.innerHTML = "\n          window.less = {\n            async: true,\n            env: 'production',\n            javascriptEnabled: true\n          };\n        ";
                             _this.doc.body.appendChild(lessConfigNode);
-                        }))
-                            .then(( /**
-                     * @return {?}
-                     */function () { return _this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js'); }))
-                            .then(( /**
-                     * @return {?}
-                     */function () {
+                        })
+                            .then(function () { return _this.lazy.loadScript('https://gw.alipayobjects.com/os/lib/less.js/3.8.1/less.min.js'); })
+                            .then(function () {
                             _this.loadedLess = true;
-                        }))];
+                        })];
                 });
             });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.genVars = function () {
             var _b;
             var _c = this, data = _c.data, color = _c.color, validKeys = _c.validKeys;
-            /** @type {?} */
             var vars = (_b = {},
                 _b["@primary-color"] = color,
                 _b);
-            validKeys.filter(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) { return key !== 'primary-color'; })).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) { return (vars["@" + key] = data[key].value); }));
+            validKeys.filter(function (key) { return key !== 'primary-color'; }).forEach(function (key) { return (vars["@" + key] = data[key].value); });
             this.setLayout(ALAINDEFAULTVAR, vars);
             return vars;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.runLess = function () {
             var _this = this;
             var _b = this, zone = _b.zone, msg = _b.msg, cdr = _b.cdr;
-            /** @type {?} */
             var msgId = msg.loading("\u6B63\u5728\u7F16\u8BD1\u4E3B\u9898\uFF01", { nzDuration: 0 }).messageId;
-            setTimeout(( /**
-             * @return {?}
-             */function () {
-                zone.runOutsideAngular(( /**
-                 * @return {?}
-                 */function () {
-                    _this.loadLess().then(( /**
-                     * @return {?}
-                     */function () {
-                        (( /** @type {?} */(window))).less.modifyVars(_this.genVars()).then(( /**
-                         * @return {?}
-                         */function () {
+            setTimeout(function () {
+                zone.runOutsideAngular(function () {
+                    _this.loadLess().then(function () {
+                        window.less.modifyVars(_this.genVars()).then(function () {
                             msg.success('成功');
                             msg.remove(msgId);
-                            zone.run(( /**
-                             * @return {?}
-                             */function () { return cdr.detectChanges(); }));
-                        }));
-                    }));
-                }));
-            }), 200);
+                            zone.run(function () { return cdr.detectChanges(); });
+                        });
+                    });
+                });
+            }, 200);
         };
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.toggle = function () {
             this.collapse = !this.collapse;
         };
-        /**
-         * @param {?} color
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.changeColor = function (color) {
             var _this = this;
             this.color = color;
             Object.keys(DEFAULT_VARS)
-                .filter(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return DEFAULT_VARS[key].default === '@primary-color'; }))
-                .forEach(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return delete _this.cachedData["@" + key]; }));
+                .filter(function (key) { return DEFAULT_VARS[key].default === '@primary-color'; })
+                .forEach(function (key) { return delete _this.cachedData["@" + key]; });
             this.resetData(this.cachedData, false);
         };
-        /**
-         * @param {?} name
-         * @param {?} value
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.setLayout = function (name, value) {
             this.settingSrv.setLayout(name, value);
         };
-        /**
-         * @private
-         * @param {?=} nowData
-         * @param {?=} run
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.resetData = function (nowData, run) {
             var _this = this;
             if (run === void 0) { run = true; }
             nowData = nowData || {};
-            /** @type {?} */
             var data = other.deepCopy(DEFAULT_VARS);
-            Object.keys(data).forEach(( /**
-             * @param {?} key
-             * @return {?}
-             */function (/**
-             * @param {?} key
-             * @return {?}
-             */ key) {
-                /** @type {?} */
-                var value = ( /** @type {?} */(nowData))["@" + key] || data[key].default || '';
+            Object.keys(data).forEach(function (key) {
+                var value = nowData["@" + key] || data[key].default || '';
                 data[key].value = value === "@primary-color" ? _this.color : value;
-            }));
+            });
             this.data = data;
             if (run) {
                 this.cdr.detectChanges();
@@ -815,59 +676,29 @@
             }
         };
         Object.defineProperty(SettingDrawerComponent.prototype, "validKeys", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 var _this = this;
-                return Object.keys(this.data).filter(( /**
-                 * @param {?} key
-                 * @return {?}
-                 */function (/**
-                 * @param {?} key
-                 * @return {?}
-                 */ key) { return _this.data[key].value !== _this.data[key].default; }));
+                return Object.keys(this.data).filter(function (key) { return _this.data[key].value !== _this.data[key].default; });
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.apply = function () {
             this.runLess();
         };
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.reset = function () {
             this.color = this.DEFAULT_PRIMARY;
             this.settingSrv.setLayout(ALAINDEFAULTVAR, {});
             this.resetData({});
         };
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.copyVar = function () {
-            /** @type {?} */
             var vars = this.genVars();
-            /** @type {?} */
             var copyContent = Object.keys(vars)
-                .map(( /**
-         * @param {?} key
-         * @return {?}
-         */function (/**
-         * @param {?} key
-         * @return {?}
-         */ key) { return key + ": " + vars[key] + ";"; }))
+                .map(function (key) { return key + ": " + vars[key] + ";"; })
                 .join('\n');
             browser.copy(copyContent);
             this.msg.success('Copy success');
         };
-        /**
-         * @return {?}
-         */
         SettingDrawerComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -883,7 +714,7 @@
                         '[class.setting-drawer-rtl]': "dir === 'rtl'",
                     },
                     changeDetection: core.ChangeDetectionStrategy.OnPush
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SettingDrawerComponent.ctorParameters = function () { return [
@@ -903,76 +734,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
-    if (false) {
-        /** @type {?} */
-        SettingDrawerComponent.prototype.autoApplyColor;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.devTips;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.loadedLess;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.destroy$;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.dir;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.isDev;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.collapse;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.data;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.color;
-        /** @type {?} */
-        SettingDrawerComponent.prototype.colors;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.msg;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.settingSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.lazy;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.zone;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        SettingDrawerComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: setting-drawer.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
     var SettingDrawerModule = /** @class */ (function () {
         function SettingDrawerModule() {
@@ -1001,15 +763,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: setting-drawer.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SettingDrawerComponent = SettingDrawerComponent;

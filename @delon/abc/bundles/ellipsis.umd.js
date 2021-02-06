@@ -318,19 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: ellipsis.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var EllipsisComponent = /** @class */ (function () {
-        /**
-         * @param {?} el
-         * @param {?} ngZone
-         * @param {?} dom
-         * @param {?} doc
-         * @param {?} cdr
-         */
         function EllipsisComponent(el, ngZone, dom, doc, cdr) {
             this.el = el;
             this.ngZone = ngZone;
@@ -349,9 +337,6 @@
             this.tail = '...';
         }
         Object.defineProperty(EllipsisComponent.prototype, "linsWord", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 var _a = this, targetCount = _a.targetCount, text = _a.text, tail = _a.tail;
                 return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
@@ -359,40 +344,18 @@
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} str
-         * @return {?}
-         */
         EllipsisComponent.prototype.getStrFullLength = function (str) {
-            return str.split('').reduce(( /**
-             * @param {?} pre
-             * @param {?} cur
-             * @return {?}
-             */function (pre, cur) {
-                /** @type {?} */
+            return str.split('').reduce(function (pre, cur) {
                 var charCode = cur.charCodeAt(0);
                 if (charCode >= 0 && charCode <= 128) {
                     return pre + 1;
                 }
                 return pre + 2;
-            }), 0);
+            }, 0);
         };
-        /**
-         * @private
-         * @param {?} str
-         * @param {?} maxLength
-         * @return {?}
-         */
         EllipsisComponent.prototype.cutStrByFullLength = function (str, maxLength) {
-            /** @type {?} */
             var showLength = 0;
-            return str.split('').reduce(( /**
-             * @param {?} pre
-             * @param {?} cur
-             * @return {?}
-             */function (pre, cur) {
-                /** @type {?} */
+            return str.split('').reduce(function (pre, cur) {
                 var charCode = cur.charCodeAt(0);
                 if (charCode >= 0 && charCode <= 128) {
                     showLength += 1;
@@ -404,23 +367,11 @@
                     return pre + cur;
                 }
                 return pre;
-            }), '');
+            }, '');
         };
-        /**
-         * @private
-         * @param {?} targetHeight
-         * @param {?} mid
-         * @param {?} begin
-         * @param {?} end
-         * @param {?} text
-         * @param {?} node
-         * @return {?}
-         */
         EllipsisComponent.prototype.bisection = function (targetHeight, mid, begin, end, text, node) {
-            /** @type {?} */
             var suffix = this.tail;
             node.innerHTML = text.substring(0, mid) + suffix;
-            /** @type {?} */
             var sh = node.offsetHeight;
             if (sh <= targetHeight) {
                 node.innerHTML = text.substring(0, mid + 1) + suffix;
@@ -444,10 +395,6 @@
             mid = Math.floor((end - begin) / 2) + begin;
             return this.bisection(targetHeight, mid, begin, end, text, node);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         EllipsisComponent.prototype.genType = function () {
             var _a = this, lines = _a.lines, length = _a.length, isSupportLineClamp = _a.isSupportLineClamp;
             this.cls = {
@@ -468,27 +415,19 @@
                 this.type = 'line';
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         EllipsisComponent.prototype.gen = function () {
             var _a = this, type = _a.type, lines = _a.lines, length = _a.length, fullWidthRecognition = _a.fullWidthRecognition, tail = _a.tail, orgEl = _a.orgEl, cdr = _a.cdr, ngZone = _a.ngZone;
             if (type === 'length') {
-                /** @type {?} */
-                var el = ( /** @type {?} */(orgEl.nativeElement));
+                var el = orgEl.nativeElement;
                 if (el.children.length > 0) {
                     throw new Error('Ellipsis content must be string.');
                 }
-                /** @type {?} */
-                var lengthText = ( /** @type {?} */(el.textContent));
-                /** @type {?} */
+                var lengthText = el.textContent;
                 var textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
                 if (textLength <= length || length < 0) {
                     this.text = lengthText;
                 }
                 else {
-                    /** @type {?} */
                     var displayText = void 0;
                     if (length - tail.length <= 0) {
                         displayText = '';
@@ -498,19 +437,13 @@
                     }
                     this.text = displayText + tail;
                 }
-                ngZone.run(( /**
-                 * @return {?}
-                 */function () { return cdr.detectChanges(); }));
+                ngZone.run(function () { return cdr.detectChanges(); });
             }
             else if (type === 'line') {
                 var _b = this, shadowOrgEl = _b.shadowOrgEl, shadowTextEl = _b.shadowTextEl;
-                /** @type {?} */
-                var orgNode = ( /** @type {?} */(shadowOrgEl.nativeElement));
-                /** @type {?} */
-                var lineText = orgNode.innerText || ( /** @type {?} */(orgNode.textContent));
-                /** @type {?} */
-                var lineHeight = parseInt(( /** @type {?} */(getComputedStyle(this.getEl('.ellipsis')).lineHeight)), 10);
-                /** @type {?} */
+                var orgNode = shadowOrgEl.nativeElement;
+                var lineText = orgNode.innerText || orgNode.textContent;
+                var lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
                 var targetHeight = lines * lineHeight;
                 this.getEl('.ellipsis__handle').style.height = targetHeight + "px";
                 if (orgNode.offsetHeight <= targetHeight) {
@@ -519,33 +452,18 @@
                 }
                 else {
                     // bisection
-                    /** @type {?} */
                     var len = lineText.length;
-                    /** @type {?} */
                     var mid = Math.ceil(len / 2);
-                    /** @type {?} */
                     var count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
                     this.text = lineText;
                     this.targetCount = count;
                 }
-                ngZone.run(( /**
-                 * @return {?}
-                 */function () { return cdr.detectChanges(); }));
+                ngZone.run(function () { return cdr.detectChanges(); });
             }
         };
-        /**
-         * @private
-         * @param {?} cls
-         * @return {?}
-         */
         EllipsisComponent.prototype.getEl = function (cls) {
             return this.el.nativeElement.querySelector(cls);
         };
-        /**
-         * @private
-         * @param {?} fn
-         * @return {?}
-         */
         EllipsisComponent.prototype.executeOnStable = function (fn) {
             if (this.ngZone.isStable) {
                 fn();
@@ -554,40 +472,27 @@
                 this.ngZone.onStable.asObservable().pipe(operators.take(1)).subscribe(fn);
             }
         };
-        /**
-         * @return {?}
-         */
         EllipsisComponent.prototype.refresh = function () {
             var _this = this;
             this.genType();
             var _a = this, type = _a.type, dom = _a.dom, orgEl = _a.orgEl, cdr = _a.cdr;
-            /** @type {?} */
             var html = orgEl.nativeElement.innerHTML;
             this.orgHtml = dom.bypassSecurityTrustHtml(html);
             cdr.detectChanges();
-            this.executeOnStable(( /**
-             * @return {?}
-             */function () {
+            this.executeOnStable(function () {
                 _this.gen();
                 if (type !== 'line') {
-                    /** @type {?} */
                     var el = _this.getEl('.ellipsis');
                     if (el) {
                         el.innerHTML = html;
                     }
                 }
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         EllipsisComponent.prototype.ngAfterViewInit = function () {
             this.inited = true;
             this.refresh();
         };
-        /**
-         * @return {?}
-         */
         EllipsisComponent.prototype.ngOnChanges = function () {
             if (this.inited) {
                 this.refresh();
@@ -603,7 +508,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     EllipsisComponent.ctorParameters = function () { return [
@@ -639,93 +544,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
-    if (false) {
-        /** @type {?} */
-        EllipsisComponent.ngAcceptInputType_tooltip;
-        /** @type {?} */
-        EllipsisComponent.ngAcceptInputType_length;
-        /** @type {?} */
-        EllipsisComponent.ngAcceptInputType_lines;
-        /** @type {?} */
-        EllipsisComponent.ngAcceptInputType_fullWidthRecognition;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.isSupportLineClamp;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.orgEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.shadowOrgEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.shadowTextEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.inited;
-        /** @type {?} */
-        EllipsisComponent.prototype.orgHtml;
-        /** @type {?} */
-        EllipsisComponent.prototype.type;
-        /** @type {?} */
-        EllipsisComponent.prototype.cls;
-        /** @type {?} */
-        EllipsisComponent.prototype.text;
-        /** @type {?} */
-        EllipsisComponent.prototype.targetCount;
-        /** @type {?} */
-        EllipsisComponent.prototype.tooltip;
-        /** @type {?} */
-        EllipsisComponent.prototype.length;
-        /** @type {?} */
-        EllipsisComponent.prototype.lines;
-        /** @type {?} */
-        EllipsisComponent.prototype.fullWidthRecognition;
-        /** @type {?} */
-        EllipsisComponent.prototype.tail;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.dom;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        EllipsisComponent.prototype.cdr;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: ellipsis.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [EllipsisComponent];
     var EllipsisModule = /** @class */ (function () {
         function EllipsisModule() {
@@ -741,15 +560,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: ellipsis.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.EllipsisComponent = EllipsisComponent;

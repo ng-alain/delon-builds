@@ -318,12 +318,6 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pdf.config.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var PDF_DEFULAT_CONFIG = {
         lib: "https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/",
         showAll: true,
@@ -334,72 +328,22 @@
         autoReSize: true,
     };
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pdf.types.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /**
-     * @record
-     */
-    function PdfChangeEvent() { }
-    if (false) {
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.type;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.pi;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.total;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.pdf;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.ev;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.progress;
-        /** @type {?|undefined} */
-        PdfChangeEvent.prototype.error;
-    }
-    /** @enum {number} */
-    var PdfTextLayerMode = {
-        DISABLE: 0,
-        ENABLE: 1,
-        ENABLE_ENHANCE: 2,
-    };
-    PdfTextLayerMode[PdfTextLayerMode.DISABLE] = 'DISABLE';
-    PdfTextLayerMode[PdfTextLayerMode.ENABLE] = 'ENABLE';
-    PdfTextLayerMode[PdfTextLayerMode.ENABLE_ENHANCE] = 'ENABLE_ENHANCE';
-    /** @enum {number} */
-    var PdfExternalLinkTarget = {
-        NONE: 0,
-        SELF: 1,
-        BLANK: 2,
-        PARENT: 3,
-        TOP: 4,
-    };
-    PdfExternalLinkTarget[PdfExternalLinkTarget.NONE] = 'NONE';
-    PdfExternalLinkTarget[PdfExternalLinkTarget.SELF] = 'SELF';
-    PdfExternalLinkTarget[PdfExternalLinkTarget.BLANK] = 'BLANK';
-    PdfExternalLinkTarget[PdfExternalLinkTarget.PARENT] = 'PARENT';
-    PdfExternalLinkTarget[PdfExternalLinkTarget.TOP] = 'TOP';
+    (function (PdfTextLayerMode) {
+        PdfTextLayerMode[PdfTextLayerMode["DISABLE"] = 0] = "DISABLE";
+        PdfTextLayerMode[PdfTextLayerMode["ENABLE"] = 1] = "ENABLE";
+        PdfTextLayerMode[PdfTextLayerMode["ENABLE_ENHANCE"] = 2] = "ENABLE_ENHANCE";
+    })(exports.PdfTextLayerMode || (exports.PdfTextLayerMode = {}));
+    (function (PdfExternalLinkTarget) {
+        PdfExternalLinkTarget[PdfExternalLinkTarget["NONE"] = 0] = "NONE";
+        PdfExternalLinkTarget[PdfExternalLinkTarget["SELF"] = 1] = "SELF";
+        PdfExternalLinkTarget[PdfExternalLinkTarget["BLANK"] = 2] = "BLANK";
+        PdfExternalLinkTarget[PdfExternalLinkTarget["PARENT"] = 3] = "PARENT";
+        PdfExternalLinkTarget[PdfExternalLinkTarget["TOP"] = 4] = "TOP";
+    })(exports.PdfExternalLinkTarget || (exports.PdfExternalLinkTarget = {}));
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pdf.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var CSS_UNITS = 96.0 / 72.0;
-    /** @type {?} */
     var BORDER_WIDTH = 9;
     var PdfComponent = /** @class */ (function () {
-        /**
-         * @param {?} ngZone
-         * @param {?} configSrv
-         * @param {?} lazySrv
-         * @param {?} platform
-         * @param {?} el
-         * @param {?} doc
-         */
         function PdfComponent(ngZone, configSrv, lazySrv, platform, el, doc) {
             this.ngZone = ngZone;
             this.lazySrv = lazySrv;
@@ -415,27 +359,21 @@
             this._rotation = 0;
             this._zoom = 1;
             this._renderText = true;
-            this.textLayerMode = PdfTextLayerMode.ENABLE;
+            this.textLayerMode = exports.PdfTextLayerMode.ENABLE;
             this.showBorders = false;
             this.stickToPage = false;
             this.originalSize = true;
             this.fitToPage = false;
             this.zoomScale = 'page-width';
             this.autoReSize = true;
-            this.externalLinkTarget = PdfExternalLinkTarget.BLANK;
+            this.externalLinkTarget = exports.PdfExternalLinkTarget.BLANK;
             this.change = new core.EventEmitter();
-            /** @type {?} */
-            var cog = ( /** @type {?} */(configSrv.merge('pdf', PDF_DEFULAT_CONFIG)));
+            var cog = configSrv.merge('pdf', PDF_DEFULAT_CONFIG);
             Object.assign(this, cog);
-            /** @type {?} */
-            var lib = ( /** @type {?} */(cog.lib));
+            var lib = cog.lib;
             this.lib = lib.endsWith('/') ? lib : lib + "/";
         }
         Object.defineProperty(PdfComponent.prototype, "src", {
-            /**
-             * @param {?} dataOrBuffer
-             * @return {?}
-             */
             set: function (dataOrBuffer) {
                 this._src = dataOrBuffer;
                 this.load();
@@ -444,10 +382,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "pi", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this._pi = this.getValidPi(val);
                 if (this._pdf) {
@@ -458,10 +392,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "showAll", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this._showAll = val;
                 this.resetDoc();
@@ -470,10 +400,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "renderText", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 this._renderText = val;
                 if (this._pdf) {
@@ -485,10 +411,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "zoom", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 if (val <= 0)
                     return;
@@ -498,10 +420,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "rotation", {
-            /**
-             * @param {?} val
-             * @return {?}
-             */
             set: function (val) {
                 if (val % 90 !== 0) {
                     console.warn("Invalid rotation angle, shoule be divisible by 90.");
@@ -513,9 +431,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "pdf", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._pdf;
             },
@@ -523,9 +438,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "findController", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._showAll ? this.multiPageFindController : this.singlePageFindController;
             },
@@ -533,9 +445,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "pageViewer", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._showAll ? this.multiPageViewer : this.singlePageViewer;
             },
@@ -543,9 +452,6 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "linkService", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this._showAll ? this.multiPageLinkService : this.singlePageLinkService;
             },
@@ -553,67 +459,35 @@
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "_textLayerMode", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
-                return this._renderText ? this.textLayerMode : PdfTextLayerMode.DISABLE;
+                return this._renderText ? this.textLayerMode : exports.PdfTextLayerMode.DISABLE;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(PdfComponent.prototype, "win", {
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return this.doc.defaultView || window;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} pi
-         * @return {?}
-         */
         PdfComponent.prototype.getValidPi = function (pi) {
             if (pi < 1)
                 return 1;
-            /** @type {?} */
             var pdf = this._pdf;
             return pdf && pi > pdf.numPages ? pdf.numPages : pi;
         };
-        /**
-         * @private
-         * @param {?} type
-         * @param {?=} opt
-         * @return {?}
-         */
         PdfComponent.prototype.emit = function (type, opt) {
             var _this = this;
-            this.ngZone.run(( /**
-             * @return {?}
-             */function () { return _this.change.emit(Object.assign({ type: type, pdf: _this._pdf, pi: _this._pi, total: _this._total }, opt)); }));
+            this.ngZone.run(function () { return _this.change.emit(Object.assign({ type: type, pdf: _this._pdf, pi: _this._pi, total: _this._total }, opt)); });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.initDelay = function () {
             var _this = this;
             this.inited = true;
             this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = this.lib + "build/pdf.worker.min.js";
-            setTimeout(( /**
-             * @return {?}
-             */function () { return _this.load(); }), this.delay);
+            setTimeout(function () { return _this.load(); }, this.delay);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.load = function () {
             var _this = this;
             var _src = this._src;
@@ -624,20 +498,11 @@
                 this.render();
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
+            this.ngZone.runOutsideAngular(function () {
                 _this.destroy();
-                /** @type {?} */
                 var loadingTask = (_this.loadingTask = _this.win.pdfjsLib.getDocument(_src));
-                loadingTask.onProgress = ( /**
-                 * @param {?} progress
-                 * @return {?}
-                 */function (progress) { return _this.emit('load-progress', { progress: progress }); });
-                loadingTask.promise.then(( /**
-                 * @param {?} pdf
-                 * @return {?}
-                 */function (pdf) {
+                loadingTask.onProgress = function (progress) { return _this.emit('load-progress', { progress: progress }); };
+                loadingTask.promise.then(function (pdf) {
                     _this._pdf = pdf;
                     _this.lastSrc = _src;
                     _this._total = pdf.numPages;
@@ -647,36 +512,22 @@
                     }
                     _this.resetDoc();
                     _this.render();
-                }), ( /**
-                 * @param {?} error
-                 * @return {?}
-                 */function (error) { return _this.emit('error', { error: error }); }));
-            }));
+                }, function (error) { return _this.emit('error', { error: error }); });
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.resetDoc = function () {
             var _this = this;
-            /** @type {?} */
             var pdf = this._pdf;
             if (!pdf) {
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
+            this.ngZone.runOutsideAngular(function () {
                 _this.cleanDoc();
                 _this.findController.setDocument(pdf);
                 _this.pageViewer.setDocument(pdf);
                 _this.linkService.setDocument(pdf, null);
-            }));
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.cleanDoc = function () {
             this.multiPageViewer.setDocument(null);
             this.singlePageViewer.setDocument(null);
@@ -685,90 +536,55 @@
             this.multiPageFindController.setDocument(null);
             this.singlePageFindController.setDocument(null);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.render = function () {
             var _this = this;
-            /** @type {?} */
             var currentViewer = this.pageViewer;
             if (!currentViewer) {
                 return;
             }
             if (this._rotation !== 0 || currentViewer.pagesRotation !== this._rotation) {
-                setTimeout(( /**
-                 * @return {?}
-                 */function () {
+                setTimeout(function () {
                     currentViewer.pagesRotation = _this._rotation;
-                }));
+                });
             }
             if (this.stickToPage) {
-                setTimeout(( /**
-                 * @return {?}
-                 */function () {
+                setTimeout(function () {
                     currentViewer.currentPageNumber = _this._pi;
-                }));
+                });
             }
             this.updateSize();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.updateSize = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
-                /** @type {?} */
+            this.ngZone.runOutsideAngular(function () {
                 var currentViewer = _this.pageViewer;
-                _this._pdf.getPage(currentViewer.currentPageNumber).then(( /**
-                 * @param {?} page
-                 * @return {?}
-                 */function (page) {
+                _this._pdf.getPage(currentViewer.currentPageNumber).then(function (page) {
                     var _a = _this, _rotation = _a._rotation, _zoom = _a._zoom;
-                    /** @type {?} */
                     var rotation = _rotation || page.rotate;
-                    /** @type {?} */
                     var viewportWidth = page.getViewport({
                         scale: _zoom,
                         rotation: rotation,
                     }).width * CSS_UNITS;
-                    /** @type {?} */
                     var scale = _zoom;
-                    /** @type {?} */
                     var stickToPage = true;
                     // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
                     if (!_this.originalSize || (_this.fitToPage && viewportWidth > _this.el.nativeElement.clientWidth)) {
-                        /** @type {?} */
                         var viewPort = page.getViewport({ scale: 1, rotation: rotation });
                         scale = _this.getScale(viewPort.width, viewPort.height);
                         stickToPage = !_this.stickToPage;
                     }
                     currentViewer._setScale(scale, stickToPage);
-                }));
-            }));
+                });
+            });
         };
-        /**
-         * @private
-         * @param {?} viewportWidth
-         * @param {?} viewportHeight
-         * @return {?}
-         */
         PdfComponent.prototype.getScale = function (viewportWidth, viewportHeight) {
-            /** @type {?} */
             var borderSize = this.showBorders ? 2 * BORDER_WIDTH : 0;
-            /** @type {?} */
             var el = this.el.nativeElement;
-            /** @type {?} */
             var containerWidth = el.clientWidth - borderSize;
-            /** @type {?} */
             var containerHeight = el.clientHeight - borderSize;
             if (containerHeight === 0 || viewportHeight === 0 || containerWidth === 0 || viewportWidth === 0) {
                 return 1;
             }
-            /** @type {?} */
             var ratio = 1;
             switch (this.zoomScale) {
                 case 'page-fit':
@@ -784,15 +600,9 @@
             }
             return (this._zoom * ratio) / CSS_UNITS;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.destroy = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
+            this.ngZone.runOutsideAngular(function () {
                 var loadingTask = _this.loadingTask;
                 if (loadingTask && !loadingTask.destroyed) {
                     loadingTask.destroy();
@@ -802,76 +612,45 @@
                     _this._pdf = null;
                     _this.cleanDoc();
                 }
-            }));
+            });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.setupPageViewer = function () {
             this.win.pdfjsLib.disableTextLayer = !this._renderText;
             this.win.pdfjsLib.externalLinkTarget = this.externalLinkTarget;
             this.setupMultiPageViewer();
             this.setupSinglePageViewer();
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.createEventBus = function () {
             var _this = this;
-            /** @type {?} */
             var eventBus = new this.win.pdfjsViewer.EventBus();
-            eventBus.on("pagesinit", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
+            eventBus.on("pagesinit", function (ev) {
                 _this.emit('pages-init', { ev: ev });
-            }));
-            eventBus.on("pagerendered", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
+            });
+            eventBus.on("pagerendered", function (ev) {
                 _this.emit('page-rendered', { ev: ev });
-            }));
-            eventBus.on("pagechanging", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
-                /** @type {?} */
+            });
+            eventBus.on("pagechanging", function (ev) {
                 var nowPi = ev.pageNumber;
                 if (nowPi !== _this._pi) {
                     _this._pi = nowPi;
                     _this.emit('pi', { ev: ev });
                 }
-            }));
-            eventBus.on("textlayerrendered", ( /**
-             * @param {?} ev
-             * @return {?}
-             */function (ev) {
+            });
+            eventBus.on("textlayerrendered", function (ev) {
                 _this.emit('text-layer-rendered', { ev: ev });
-            }));
+            });
             return eventBus;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.setupMultiPageViewer = function () {
-            /** @type {?} */
             var VIEWER = this.win.pdfjsViewer;
-            /** @type {?} */
             var eventBus = this.createEventBus();
-            /** @type {?} */
             var linkService = (this.multiPageLinkService = new VIEWER.PDFLinkService({
                 eventBus: eventBus,
             }));
-            /** @type {?} */
             var findController = (this.multiPageFindController = new VIEWER.PDFFindController({
                 eventBus: eventBus,
                 linkService: linkService,
             }));
-            /** @type {?} */
             var viewer = (this.multiPageViewer = new VIEWER.PDFViewer({
                 eventBus: eventBus,
                 container: this.el.nativeElement,
@@ -882,25 +661,16 @@
             }));
             linkService.setViewer(viewer);
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.setupSinglePageViewer = function () {
-            /** @type {?} */
             var VIEWER = this.win.pdfjsViewer;
-            /** @type {?} */
             var eventBus = this.createEventBus();
-            /** @type {?} */
             var linkService = (this.singlePageLinkService = new VIEWER.PDFLinkService({
                 eventBus: eventBus,
             }));
-            /** @type {?} */
             var findController = (this.singlePageFindController = new VIEWER.PDFFindController({
                 eventBus: eventBus,
                 linkService: linkService,
             }));
-            /** @type {?} */
             var pageViewer = (this.singlePageViewer = new VIEWER.PDFSinglePageViewer({
                 eventBus: eventBus,
                 container: this.el.nativeElement,
@@ -912,9 +682,6 @@
             linkService.setViewer(pageViewer);
             pageViewer._currentPageNumber = this._pi;
         };
-        /**
-         * @return {?}
-         */
         PdfComponent.prototype.ngAfterViewInit = function () {
             var _this = this;
             if (!this.platform.isBrowser) {
@@ -927,42 +694,21 @@
             var lib = this.lib;
             this.lazySrv
                 .load(lib + "build/pdf.min.js")
-                .then(( /**
-         * @return {?}
-         */function () { return _this.lazySrv.load([lib + "web/pdf_viewer.js", lib + "web/pdf_viewer.css"]); }))
-                .then(( /**
-         * @return {?}
-         */function () { return _this.initDelay(); }));
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.initResize(); }));
+                .then(function () { return _this.lazySrv.load([lib + "web/pdf_viewer.js", lib + "web/pdf_viewer.css"]); })
+                .then(function () { return _this.initDelay(); });
+            this.ngZone.runOutsideAngular(function () { return _this.initResize(); });
         };
-        /**
-         * @private
-         * @return {?}
-         */
         PdfComponent.prototype.initResize = function () {
             var _this = this;
             rxjs.fromEvent(this.win, 'resize')
-                .pipe(operators.debounceTime(100), operators.filter(( /**
-         * @return {?}
-         */function () { return _this.autoReSize && _this._pdf; })), operators.takeUntil(this.unsubscribe$))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.updateSize(); }));
+                .pipe(operators.debounceTime(100), operators.filter(function () { return _this.autoReSize && _this._pdf; }), operators.takeUntil(this.unsubscribe$))
+                .subscribe(function () { return _this.updateSize(); });
         };
-        /**
-         * @param {?} changes
-         * @return {?}
-         */
         PdfComponent.prototype.ngOnChanges = function (changes) {
             if (this.inited && !changes.src) {
                 this.render();
             }
         };
-        /**
-         * @return {?}
-         */
         PdfComponent.prototype.ngOnDestroy = function () {
             var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
@@ -982,7 +728,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     PdfComponent.ctorParameters = function () { return [
@@ -1060,168 +806,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], PdfComponent.prototype, "delay", void 0);
-    if (false) {
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_pi;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_delay;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_showAllPages;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_stickToPage;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_originalSize;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_fitToPage;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_disableTextLayer;
-        /** @type {?} */
-        PdfComponent.ngAcceptInputType_removePageBorders;
-        /** @type {?} */
-        PdfComponent.prototype.inited;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.unsubscribe$;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.lib;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._pdf;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.loadingTask;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._src;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.lastSrc;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._pi;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._total;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._showAll;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._rotation;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._zoom;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype._renderText;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.multiPageViewer;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.multiPageLinkService;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.multiPageFindController;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.singlePageViewer;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.singlePageLinkService;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.singlePageFindController;
-        /** @type {?} */
-        PdfComponent.prototype.textLayerMode;
-        /** @type {?} */
-        PdfComponent.prototype.showBorders;
-        /** @type {?} */
-        PdfComponent.prototype.stickToPage;
-        /** @type {?} */
-        PdfComponent.prototype.originalSize;
-        /** @type {?} */
-        PdfComponent.prototype.fitToPage;
-        /** @type {?} */
-        PdfComponent.prototype.zoomScale;
-        /** @type {?} */
-        PdfComponent.prototype.autoReSize;
-        /** @type {?} */
-        PdfComponent.prototype.externalLinkTarget;
-        /** @type {?} */
-        PdfComponent.prototype.delay;
-        /** @type {?} */
-        PdfComponent.prototype.change;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.lazySrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.platform;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.el;
-        /**
-         * @type {?}
-         * @private
-         */
-        PdfComponent.prototype.doc;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pdf.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [PdfComponent];
     var PdfModule = /** @class */ (function () {
         function PdfModule() {
@@ -1237,22 +822,12 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: pdf.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.PDF_DEFULAT_CONFIG = PDF_DEFULAT_CONFIG;
     exports.PdfComponent = PdfComponent;
-    exports.PdfExternalLinkTarget = PdfExternalLinkTarget;
     exports.PdfModule = PdfModule;
-    exports.PdfTextLayerMode = PdfTextLayerMode;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

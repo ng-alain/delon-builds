@@ -318,17 +318,7 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: tag-select.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var TagSelectComponent = /** @class */ (function () {
-        /**
-         * @param {?} i18n
-         * @param {?} directionality
-         * @param {?} cdr
-         */
         function TagSelectComponent(i18n, directionality, cdr) {
             this.i18n = i18n;
             this.directionality = directionality;
@@ -337,42 +327,26 @@
             this.locale = {};
             this.expand = false;
             this.dir = 'ltr';
-            /**
-             * 是否启用 `展开与收进`
-             */
+            /** 是否启用 `展开与收进` */
             this.expandable = true;
             this.change = new core.EventEmitter();
         }
-        /**
-         * @return {?}
-         */
         TagSelectComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
-            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(( /**
-             * @return {?}
-             */function () {
+            });
+            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(function () {
                 _this.locale = _this.i18n.getData('tagSelect');
                 _this.cdr.detectChanges();
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         TagSelectComponent.prototype.trigger = function () {
             this.expand = !this.expand;
             this.change.emit(this.expand);
         };
-        /**
-         * @return {?}
-         */
         TagSelectComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -394,7 +368,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     TagSelectComponent.ctorParameters = function () { return [
@@ -410,50 +384,7 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], TagSelectComponent.prototype, "expandable", void 0);
-    if (false) {
-        /** @type {?} */
-        TagSelectComponent.ngAcceptInputType_expandable;
-        /**
-         * @type {?}
-         * @private
-         */
-        TagSelectComponent.prototype.destroy$;
-        /** @type {?} */
-        TagSelectComponent.prototype.locale;
-        /** @type {?} */
-        TagSelectComponent.prototype.expand;
-        /** @type {?} */
-        TagSelectComponent.prototype.dir;
-        /**
-         * 是否启用 `展开与收进`
-         * @type {?}
-         */
-        TagSelectComponent.prototype.expandable;
-        /** @type {?} */
-        TagSelectComponent.prototype.change;
-        /**
-         * @type {?}
-         * @private
-         */
-        TagSelectComponent.prototype.i18n;
-        /**
-         * @type {?}
-         * @private
-         */
-        TagSelectComponent.prototype.directionality;
-        /**
-         * @type {?}
-         * @private
-         */
-        TagSelectComponent.prototype.cdr;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: tag-select.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var COMPONENTS = [TagSelectComponent];
     var TagSelectModule = /** @class */ (function () {
         function TagSelectModule() {
@@ -469,15 +400,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: tagSelect.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.TagSelectComponent = TagSelectComponent;

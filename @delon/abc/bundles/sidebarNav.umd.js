@@ -318,31 +318,12 @@
         return value;
     }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sidebar-nav.component.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-    /** @type {?} */
     var SHOWCLS = 'sidebar-nav__floating-show';
-    /** @type {?} */
     var FLOATINGCLS = 'sidebar-nav__floating';
     /**
      * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
      */
     var SidebarNavComponent = /** @class */ (function () {
-        /**
-         * @param {?} menuSrv
-         * @param {?} settings
-         * @param {?} router
-         * @param {?} render
-         * @param {?} cdr
-         * @param {?} ngZone
-         * @param {?} sanitizer
-         * @param {?} doc
-         * @param {?} win
-         * @param {?} directionality
-         */
         function SidebarNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
             this.menuSrv = menuSrv;
             this.settings = settings;
@@ -365,61 +346,38 @@
             this.select = new core.EventEmitter();
         }
         Object.defineProperty(SidebarNavComponent.prototype, "collapsed", {
-            /**
-             * @return {?}
-             */
             get: function () {
                 return this.settings.layout.collapsed;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @param {?} node
-         * @return {?}
-         */
         SidebarNavComponent.prototype.getLinkNode = function (node) {
-            node = node.nodeName === 'A' ? node : (( /** @type {?} */(node.parentNode)));
+            node = node.nodeName === 'A' ? node : node.parentNode;
             return node.nodeName !== 'A' ? null : node;
         };
-        /**
-         * @private
-         * @param {?} e
-         * @return {?}
-         */
         SidebarNavComponent.prototype.floatingClickHandle = function (e) {
             e.stopPropagation();
-            /** @type {?} */
-            var linkNode = this.getLinkNode(( /** @type {?} */(e.target)));
+            var linkNode = this.getLinkNode(e.target);
             if (linkNode == null) {
                 return false;
             }
-            /** @type {?} */
-            var id = +( /** @type {?} */(( /** @type {?} */(linkNode.dataset)).id));
+            var id = +linkNode.dataset.id;
             // Should be ingore children title trigger event
             if (isNaN(id)) {
                 return false;
             }
-            /** @type {?} */
             var item;
-            this.menuSrv.visit(this.list, ( /**
-             * @param {?} i
-             * @return {?}
-             */function (i) {
+            this.menuSrv.visit(this.list, function (i) {
                 if (!item && i._id === id) {
                     item = i;
                 }
-            }));
-            this.to(( /** @type {?} */(item)));
+            });
+            this.to(item);
             this.hideAll();
             e.preventDefault();
             return false;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SidebarNavComponent.prototype.clearFloating = function () {
             if (!this.floatingEl)
                 return;
@@ -432,10 +390,6 @@
                 this.floatingEl.parentNode.removeChild(this.floatingEl);
             }
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SidebarNavComponent.prototype.genFloating = function () {
             this.clearFloating();
             this.floatingEl = this.render.createElement('div');
@@ -443,35 +397,19 @@
             this.floatingEl.addEventListener('click', this.floatingClickHandle.bind(this), false);
             this.bodyEl.appendChild(this.floatingEl);
         };
-        /**
-         * @private
-         * @param {?} linkNode
-         * @param {?} item
-         * @return {?}
-         */
         SidebarNavComponent.prototype.genSubNode = function (linkNode, item) {
-            /** @type {?} */
             var id = "_sidebar-nav-" + item._id;
-            /** @type {?} */
-            var childNode = item.badge ? ( /** @type {?} */(( /** @type {?} */(linkNode.nextElementSibling)).nextElementSibling)) : ( /** @type {?} */(linkNode.nextElementSibling));
-            /** @type {?} */
-            var node = ( /** @type {?} */(childNode.cloneNode(true)));
+            var childNode = item.badge ? linkNode.nextElementSibling.nextElementSibling : linkNode.nextElementSibling;
+            var node = childNode.cloneNode(true);
             node.id = id;
             node.classList.add(FLOATINGCLS);
-            node.addEventListener('mouseleave', ( /**
-             * @return {?}
-             */function () {
+            node.addEventListener('mouseleave', function () {
                 node.classList.remove(SHOWCLS);
-            }), false);
+            }, false);
             this.floatingEl.appendChild(node);
             return node;
         };
-        /**
-         * @private
-         * @return {?}
-         */
         SidebarNavComponent.prototype.hideAll = function () {
-            /** @type {?} */
             var allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
             // tslint:disable-next-line:prefer-for-of
             for (var i = 0; i < allNode.length; i++) {
@@ -479,23 +417,12 @@
             }
         };
         // calculate the node position values.
-        /**
-         * @private
-         * @param {?} linkNode
-         * @param {?} node
-         * @return {?}
-         */
         SidebarNavComponent.prototype.calPos = function (linkNode, node) {
-            /** @type {?} */
             var rect = linkNode.getBoundingClientRect();
             // bug: https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/14721015/
-            /** @type {?} */
             var scrollTop = Math.max(this.doc.documentElement.scrollTop, this.bodyEl.scrollTop);
-            /** @type {?} */
             var docHeight = Math.max(this.doc.documentElement.clientHeight, this.bodyEl.clientHeight);
-            /** @type {?} */
             var spacing = 5;
-            /** @type {?} */
             var offsetHeight = -spacing;
             if (docHeight < rect.top + node.clientHeight) {
                 offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
@@ -508,34 +435,21 @@
                 node.style.left = rect.right + spacing + "px";
             }
         };
-        /**
-         * @param {?} e
-         * @param {?} item
-         * @return {?}
-         */
         SidebarNavComponent.prototype.showSubMenu = function (e, item) {
             var _this = this;
             if (this.collapsed !== true) {
                 return;
             }
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () {
+            this.ngZone.runOutsideAngular(function () {
                 e.preventDefault();
-                /** @type {?} */
-                var linkNode = ( /** @type {?} */(e.target));
+                var linkNode = e.target;
                 _this.genFloating();
-                /** @type {?} */
-                var subNode = _this.genSubNode(( /** @type {?} */(linkNode)), item);
+                var subNode = _this.genSubNode(linkNode, item);
                 _this.hideAll();
                 subNode.classList.add(SHOWCLS);
-                _this.calPos(( /** @type {?} */(linkNode)), subNode);
-            }));
+                _this.calPos(linkNode, subNode);
+            });
         };
-        /**
-         * @param {?} item
-         * @return {?}
-         */
         SidebarNavComponent.prototype.to = function (item) {
             var _this = this;
             this.select.emit(item);
@@ -550,67 +464,42 @@
                 }
                 return;
             }
-            this.ngZone.run(( /**
-             * @return {?}
-             */function () { return _this.router.navigateByUrl(( /** @type {?} */(item.link))); }));
+            this.ngZone.run(function () { return _this.router.navigateByUrl(item.link); });
         };
-        /**
-         * @param {?} item
-         * @return {?}
-         */
         SidebarNavComponent.prototype.toggleOpen = function (item) {
             if (!this.openStrictly) {
-                this.menuSrv.visit(this.list, ( /**
-                 * @param {?} i
-                 * @return {?}
-                 */function (i) {
+                this.menuSrv.visit(this.list, function (i) {
                     if (i !== item)
                         i._open = false;
-                }));
-                /** @type {?} */
-                var pItem = ( /** @type {?} */(item._parent));
+                });
+                var pItem = item._parent;
                 while (pItem) {
                     pItem._open = true;
-                    pItem = ( /** @type {?} */(pItem._parent));
+                    pItem = pItem._parent;
                 }
             }
             item._open = !item._open;
             this.cdr.markForCheck();
         };
-        /**
-         * @return {?}
-         */
         SidebarNavComponent.prototype._click = function () {
             if (this.isPad && this.collapsed) {
                 this.openAside(false);
                 this.hideAll();
             }
         };
-        /**
-         * @return {?}
-         */
         SidebarNavComponent.prototype._docClick = function () {
             if (this.collapsed) {
                 this.hideAll();
             }
         };
-        /**
-         * @private
-         * @param {?} url
-         * @return {?}
-         */
         SidebarNavComponent.prototype.openedByUrl = function (url) {
             var _b = this, menuSrv = _b.menuSrv, recursivePath = _b.recursivePath, openStrictly = _b.openStrictly;
-            /** @type {?} */
-            var findItem = menuSrv.getHit(this.menuSrv.menus, ( /** @type {?} */(url)), recursivePath, ( /**
-             * @param {?} i
-             * @return {?}
-             */function (i) {
+            var findItem = menuSrv.getHit(this.menuSrv.menus, url, recursivePath, function (i) {
                 i._selected = false;
                 if (!openStrictly) {
                     i._open = false;
                 }
-            }));
+            });
             if (findItem == null)
                 return;
             do {
@@ -618,36 +507,20 @@
                 if (!openStrictly) {
                     findItem._open = true;
                 }
-                findItem = ( /** @type {?} */(findItem._parent));
+                findItem = findItem._parent;
             } while (findItem);
         };
-        /**
-         * @return {?}
-         */
         SidebarNavComponent.prototype.ngOnInit = function () {
             var _this = this;
             var _a;
             var _b = this, doc = _b.doc, router$1 = _b.router, destroy$ = _b.destroy$, menuSrv = _b.menuSrv, settings = _b.settings, cdr = _b.cdr;
             this.bodyEl = doc.querySelector('body');
             this.openedByUrl(router$1.url);
-            this.ngZone.runOutsideAngular(( /**
-             * @return {?}
-             */function () { return _this.genFloating(); }));
-            menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-             * @param {?} data
-             * @return {?}
-             */function (/**
-             * @param {?} data
-             * @return {?}
-             */ data) {
-                menuSrv.visit(data, ( /**
-                 * @param {?} i
-                 * @param {?} _p
-                 * @param {?} depth
-                 * @return {?}
-                 */function (i, _p, depth) {
-                    i._text = _this.sanitizer.bypassSecurityTrustHtml(( /** @type {?} */(i.text)));
-                    i._needIcon = ( /** @type {?} */(depth)) <= _this.maxLevelIcon && !!i.icon;
+            this.ngZone.runOutsideAngular(function () { return _this.genFloating(); });
+            menuSrv.change.pipe(operators.takeUntil(destroy$)).subscribe(function (data) {
+                menuSrv.visit(data, function (i, _p, depth) {
+                    i._text = _this.sanitizer.bypassSecurityTrustHtml(i.text);
+                    i._needIcon = depth <= _this.maxLevelIcon && !!i.icon;
                     if (!i._aclResult) {
                         if (_this.disabledAcl) {
                             i.disabled = true;
@@ -659,49 +532,26 @@
                     if (_this.openStrictly) {
                         i._open = i.open != null ? i.open : false;
                     }
-                }));
-                _this.list = menuSrv.menus.filter(( /**
-                 * @param {?} w
-                 * @return {?}
-                 */function (w) { return w._hidden !== true; }));
+                });
+                _this.list = menuSrv.menus.filter(function (w) { return w._hidden !== true; });
                 cdr.detectChanges();
-            }));
-            router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-             * @param {?} e
-             * @return {?}
-             */function (/**
-             * @param {?} e
-             * @return {?}
-             */ e) {
+            });
+            router$1.events.pipe(operators.takeUntil(destroy$)).subscribe(function (e) {
                 if (e instanceof router.NavigationEnd) {
                     _this.openedByUrl(e.urlAfterRedirects);
                     _this.underPad();
                     _this.cdr.detectChanges();
                 }
-            }));
+            });
             settings.notify
-                .pipe(operators.takeUntil(destroy$), operators.filter(( /**
-         * @param {?} t
-         * @return {?}
-         */function (/**
-         * @param {?} t
-         * @return {?}
-         */ t) { return t.type === 'layout' && t.name === 'collapsed'; })))
-                .subscribe(( /**
-         * @return {?}
-         */function () { return _this.clearFloating(); }));
+                .pipe(operators.takeUntil(destroy$), operators.filter(function (t) { return t.type === 'layout' && t.name === 'collapsed'; }))
+                .subscribe(function () { return _this.clearFloating(); });
             this.underPad();
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(( /**
-             * @param {?} direction
-             * @return {?}
-             */function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
-            }));
+            });
         };
-        /**
-         * @return {?}
-         */
         SidebarNavComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();
             this.destroy$.complete();
@@ -709,33 +559,18 @@
         };
         Object.defineProperty(SidebarNavComponent.prototype, "isPad", {
             // #region Under pad
-            /**
-             * @private
-             * @return {?}
-             */
             get: function () {
                 return window.innerWidth < 768;
             },
             enumerable: false,
             configurable: true
         });
-        /**
-         * @private
-         * @return {?}
-         */
         SidebarNavComponent.prototype.underPad = function () {
             var _this = this;
             if (this.autoCloseUnderPad && this.isPad && !this.collapsed) {
-                setTimeout(( /**
-                 * @return {?}
-                 */function () { return _this.openAside(true); }));
+                setTimeout(function () { return _this.openAside(true); });
             }
         };
-        /**
-         * @private
-         * @param {?} status
-         * @return {?}
-         */
         SidebarNavComponent.prototype.openAside = function (status) {
             this.settings.setLayout('collapsed', status);
         };
@@ -753,7 +588,7 @@
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
                     encapsulation: core.ViewEncapsulation.None
-                }] }
+                },] }
     ];
     /** @nocollapse */
     SidebarNavComponent.ctorParameters = function () { return [
@@ -796,105 +631,7 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
-    if (false) {
-        /** @type {?} */
-        SidebarNavComponent.ngAcceptInputType_disabledAcl;
-        /** @type {?} */
-        SidebarNavComponent.ngAcceptInputType_autoCloseUnderPad;
-        /** @type {?} */
-        SidebarNavComponent.ngAcceptInputType_recursivePath;
-        /** @type {?} */
-        SidebarNavComponent.ngAcceptInputType_openStrictly;
-        /** @type {?} */
-        SidebarNavComponent.ngAcceptInputType_maxLevelIcon;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.bodyEl;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.destroy$;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.floatingEl;
-        /** @type {?} */
-        SidebarNavComponent.prototype.list;
-        /** @type {?} */
-        SidebarNavComponent.prototype.dir;
-        /** @type {?} */
-        SidebarNavComponent.prototype.disabledAcl;
-        /** @type {?} */
-        SidebarNavComponent.prototype.autoCloseUnderPad;
-        /** @type {?} */
-        SidebarNavComponent.prototype.recursivePath;
-        /** @type {?} */
-        SidebarNavComponent.prototype.openStrictly;
-        /** @type {?} */
-        SidebarNavComponent.prototype.maxLevelIcon;
-        /** @type {?} */
-        SidebarNavComponent.prototype.select;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.menuSrv;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.settings;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.router;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.render;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.cdr;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.ngZone;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.sanitizer;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.doc;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.win;
-        /**
-         * @type {?}
-         * @private
-         */
-        SidebarNavComponent.prototype.directionality;
-    }
 
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sidebar-nav.module.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
     var SidebarNavModule = /** @class */ (function () {
         function SidebarNavModule() {
         }
@@ -909,15 +646,7 @@
     ];
 
     /**
-     * @fileoverview added by tsickle
-     * Generated from: public_api.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
-     */
-
-    /**
-     * @fileoverview added by tsickle
-     * Generated from: sidebarNav.ts
-     * @suppress {checkTypes,constantProperty,extraRequire,missingOverride,missingRequire,missingReturn,unusedPrivateMembers,uselessCode} checked by tsc
+     * Generated bundle index. Do not edit.
      */
 
     exports.SidebarNavComponent = SidebarNavComponent;
