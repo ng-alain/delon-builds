@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v11.3.1
+ * @license ng-alain(cipchk@qq.com) v11.6.0
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -319,7 +319,7 @@
     }
 
     /**
-     * @deprecated Will be removed in 12.0.0, Pls used `[extend]` instead, for examples:
+     * @deprecated Will be removed in 12.0.0, Pls used `nz-range-picker` and `[extend]` directive instead, for examples:
      * ```html
      * <range-picker [(ngModel)]="i.start" [(ngModelEnd)]="i.end"></range-picker>
      * ```

@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
 import { FunctionProp } from 'ng-zorro-antd/core/types';
 /**
- * @deprecated Will be removed in 12.0.0, Pls used `[extend]` instead, for examples:
+ * @deprecated Will be removed in 12.0.0, Pls used `nz-range-picker` and `[extend]` directive instead, for examples:
  * ```html
  * <range-picker [(ngModel)]="i.start" [(ngModelEnd)]="i.end"></range-picker>
  * ```
