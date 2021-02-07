@@ -46,5 +46,5 @@ export interface AlainDateRangePickerShortcut {
 export interface AlainDateRangePickerShortcutItem {
     [key: string]: NzSafeAny;
     text: string;
-    fn: (value: Array<Date | null>) => [Date | null, Date | null];
+    fn: (value: [Date, Date]) => [Date, Date];
 }
