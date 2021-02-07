@@ -5,13 +5,14 @@ import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHe
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -24,6 +25,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private columnSource;
     private dataSource;
     private delonI18n;
+    private cms;
     static ngAcceptInputType_ps: NumberInput;
     static ngAcceptInputType_pi: NumberInput;
     static ngAcceptInputType_total: NumberInput;
@@ -59,7 +61,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _indeterminate: boolean;
     _headers: _STColumn[][];
     _columns: _STColumn[];
+    contextmenuList: STContextmenuItem[];
     readonly orgTable: NzTableComponent;
+    readonly contextmenuTpl: NzDropdownMenuComponent;
     get req(): STReq;
     set req(value: STReq);
     /** 返回体配置 */
@@ -113,6 +117,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     virtualMaxBufferPx: number;
     virtualMinBufferPx: number;
     virtualForTrackBy: TrackByFunction<NzTableData>;
+    contextmenu?: STContextmenuFn;
     /**
      * Get the number of the current page
      */
@@ -122,7 +127,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     get list(): STData[];
     private get routerState();
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
     private setCog;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
@@ -224,6 +229,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     export(newData?: STData[] | true, opt?: STExportOptions): void;
     colResize({ width }: NzResizeEvent, column: _STColumn): void;
+    onContextmenu(event: MouseEvent): void;
     get cdkVirtualScrollViewport(): CdkVirtualScrollViewport;
     resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;

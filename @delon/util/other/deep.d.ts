@@ -9,7 +9,7 @@ export declare function deepGet(obj: any, path: string | string[] | null | undef
  *
  * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
  */
-export declare function deepCopy<T extends object = any>(obj: T | null | undefined): T;
+export declare function deepCopy(obj: any): any;
 /**
  * Deep merge object.
  *
