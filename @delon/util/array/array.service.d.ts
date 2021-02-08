@@ -50,7 +50,7 @@ export declare class ArrayService {
      * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
      * ```
      */
-    flat<T>(array: ReadonlyArray<T>, depth?: number): ReadonlyArray<T>;
+    flat<T>(array: ReadonlyArray<T>, depth?: number): T[];
     /**
      * Group the array
      *
@@ -71,5 +71,5 @@ export declare class ArrayService {
      * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
      * ```
      */
-    uniq<T>(array: ReadonlyArray<T>, predicate?: string | ((value: T) => string | number | boolean)): ReadonlyArray<T>;
+    uniq<T>(array: ReadonlyArray<T>, predicate?: string | ((value: T) => string | number | boolean)): T[];
 }
