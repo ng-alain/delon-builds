@@ -26980,7 +26980,7 @@ a:focus {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 16px / 2 16px / 2;
+    padding: 8px 8px;
     white-space: inherit;
     text-align: left !important;
     border-bottom: none;
@@ -27110,17 +27110,17 @@ fieldset {
 }
 .badge-gold {
   /* AUTOGENERATE: Set the badge background color to "#d89614" ![Color](https://dummyimage.com/20x20/d89614/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#d89614" ![Color](https://dummyimage.com/20x20/d89614/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #d89614;
 }
 .badge-yellow {
   /* AUTOGENERATE: Set the badge background color to "#d8bd14" ![Color](https://dummyimage.com/20x20/d8bd14/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#d8bd14" ![Color](https://dummyimage.com/20x20/d8bd14/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #d8bd14;
 }
 .badge-lime {
   /* AUTOGENERATE: Set the badge background color to "#8bbb11" ![Color](https://dummyimage.com/20x20/8bbb11/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#8bbb11" ![Color](https://dummyimage.com/20x20/8bbb11/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #8bbb11;
 }
 .badge-green {
@@ -27155,7 +27155,7 @@ fieldset {
 }
 .badge-grey {
   /* AUTOGENERATE: Set the badge background color to "#bfbfbf" ![Color](https://dummyimage.com/20x20/bfbfbf/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#bfbfbf" ![Color](https://dummyimage.com/20x20/bfbfbf/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #bfbfbf;
 }
 .badge-primary {
@@ -27175,7 +27175,7 @@ fieldset {
 }
 .badge-warning {
   /* AUTOGENERATE: Set the badge background color to "#d89614" ![Color](https://dummyimage.com/20x20/d89614/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#d89614" ![Color](https://dummyimage.com/20x20/d89614/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #d89614;
 }
 .badge-info {
@@ -27195,7 +27195,7 @@ fieldset {
 }
 .badge-normal {
   /* AUTOGENERATE: Set the badge background color to "#d9d9d9" ![Color](https://dummyimage.com/20x20/d9d9d9/fff.png&text=+)|SPLIT|设置微标背景颜色为 "#d9d9d9" ![Color](https://dummyimage.com/20x20/d9d9d9/fff.png&text=+)*/
-  color: #fff;
+  color: #111;
   background-color: #d9d9d9;
 }
 /**
@@ -29670,64 +29670,64 @@ code {
   padding-bottom: 0 !important;
 }
 .m-xs {
-  /* AUTOGENERATE: Set the margin size to "8px / 2"|SPLIT|设置 margin 大小为 "8px / 2"*/
-  margin: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin size to "4px"|SPLIT|设置 margin 大小为 "4px"*/
+  margin: 4px !important;
 }
 .mt-xs {
-  /* AUTOGENERATE: Set the margin-top size to "8px / 2"|SPLIT|设置 margin-top 大小为 "8px / 2"*/
-  margin-top: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin-top size to "4px"|SPLIT|设置 margin-top 大小为 "4px"*/
+  margin-top: 4px !important;
 }
 .mr-xs {
-  /* AUTOGENERATE: Set the margin-right size to "8px / 2"|SPLIT|设置 margin-right 大小为 "8px / 2"*/
-  margin-right: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin-right size to "4px"|SPLIT|设置 margin-right 大小为 "4px"*/
+  margin-right: 4px !important;
 }
 .mb-xs {
-  /* AUTOGENERATE: Set the margin-bottom size to "8px / 2"|SPLIT|设置 margin-bottom 大小为 "8px / 2"*/
-  margin-bottom: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin-bottom size to "4px"|SPLIT|设置 margin-bottom 大小为 "4px"*/
+  margin-bottom: 4px !important;
 }
 .ml-xs {
-  /* AUTOGENERATE: Set the margin-left size to "8px / 2"|SPLIT|设置 margin-left 大小为 "8px / 2"*/
-  margin-left: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin-left size to "4px"|SPLIT|设置 margin-left 大小为 "4px"*/
+  margin-left: 4px !important;
 }
 .mx-xs {
-  /* AUTOGENERATE: Set the margin horizontal (left & right) size to "8px / 2"|SPLIT|设置 margin 水平（即左与右）大小为 "8px / 2"*/
-  margin-right: 8px / 2 !important;
-  margin-left: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin horizontal (left & right) size to "4px"|SPLIT|设置 margin 水平（即左与右）大小为 "4px"*/
+  margin-right: 4px !important;
+  margin-left: 4px !important;
 }
 .my-xs {
-  /* AUTOGENERATE: Set the margin vertical (top & bottom) size to "8px / 2"|SPLIT|设置 margin 垂直（即上与下）大小为 "8px / 2"*/
-  margin-top: 8px / 2 !important;
-  margin-bottom: 8px / 2 !important;
+  /* AUTOGENERATE: Set the margin vertical (top & bottom) size to "4px"|SPLIT|设置 margin 垂直（即上与下）大小为 "4px"*/
+  margin-top: 4px !important;
+  margin-bottom: 4px !important;
 }
 .p-xs {
-  /* AUTOGENERATE: Set the padding size to "8px / 2"|SPLIT|设置 padding 大小为 "8px / 2"*/
-  padding: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding size to "4px"|SPLIT|设置 padding 大小为 "4px"*/
+  padding: 4px !important;
 }
 .pt-xs {
-  /* AUTOGENERATE: Set the padding-top size to "8px / 2"|SPLIT|设置 padding-top 大小为 "8px / 2"*/
-  padding-top: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding-top size to "4px"|SPLIT|设置 padding-top 大小为 "4px"*/
+  padding-top: 4px !important;
 }
 .pr-xs {
-  /* AUTOGENERATE: Set the padding-right size to "8px / 2"|SPLIT|设置 padding-right 大小为 "8px / 2"*/
-  padding-right: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding-right size to "4px"|SPLIT|设置 padding-right 大小为 "4px"*/
+  padding-right: 4px !important;
 }
 .pb-xs {
-  /* AUTOGENERATE: Set the padding-bottom size to "8px / 2"|SPLIT|设置 padding-bottom 大小为 "8px / 2"*/
-  padding-bottom: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding-bottom size to "4px"|SPLIT|设置 padding-bottom 大小为 "4px"*/
+  padding-bottom: 4px !important;
 }
 .pl-xs {
-  /* AUTOGENERATE: Set the padding-left size to "8px / 2"|SPLIT|设置 padding-left 大小为 "8px / 2"*/
-  padding-left: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding-left size to "4px"|SPLIT|设置 padding-left 大小为 "4px"*/
+  padding-left: 4px !important;
 }
 .px-xs {
-  /* AUTOGENERATE: Set the padding horizontal (left & right) size to "8px / 2"|SPLIT|设置 padding 水平（即左与右）大小为 "8px / 2"*/
-  padding-right: 8px / 2 !important;
-  padding-left: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding horizontal (left & right) size to "4px"|SPLIT|设置 padding 水平（即左与右）大小为 "4px"*/
+  padding-right: 4px !important;
+  padding-left: 4px !important;
 }
 .py-xs {
-  /* AUTOGENERATE: Set the padding vertical (top & bottom) size to "8px / 2"|SPLIT|设置 padding 垂直（即上与下）大小为 "8px / 2"*/
-  padding-top: 8px / 2 !important;
-  padding-bottom: 8px / 2 !important;
+  /* AUTOGENERATE: Set the padding vertical (top & bottom) size to "4px"|SPLIT|设置 padding 垂直（即上与下）大小为 "4px"*/
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
 }
 .m-sm {
   /* AUTOGENERATE: Set the margin size to "8px"|SPLIT|设置 margin 大小为 "8px"*/
@@ -30046,19 +30046,19 @@ code {
   padding-left: inherit !important;
 }
 [dir="rtl"] .mr-xs {
-  margin-left: 8px / 2 !important;
+  margin-left: 4px !important;
   margin-right: inherit !important;
 }
 [dir="rtl"] .ml-xs {
-  margin-right: 8px / 2 !important;
+  margin-right: 4px !important;
   margin-left: inherit !important;
 }
 [dir="rtl"] .pr-xs {
-  padding-left: 8px / 2 !important;
+  padding-left: 4px !important;
   padding-right: inherit !important;
 }
 [dir="rtl"] .pl-xs {
-  padding-right: 8px / 2 !important;
+  padding-right: 4px !important;
   padding-left: inherit !important;
 }
 [dir="rtl"] .mr-sm {
