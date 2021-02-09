@@ -4,19 +4,14 @@ import { Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { Subject, of, throwError, Observable } from 'rxjs';
-import { takeUntil, take, finalize, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 class ImageDirective {
-    constructor(el, configSrv, http, platform, modal) {
+    constructor(el, configSrv, http, platform) {
         this.http = http;
         this.platform = platform;
-        this.modal = modal;
         this.useHttp = false;
         this.inited = false;
-        this.destroy$ = new Subject();
         configSrv.attach(this, 'image', { size: 64, error: `./assets/img/logo.svg` });
         this.imgEl = el.nativeElement;
     }
@@ -37,38 +32,32 @@ class ImageDirective {
         }
     }
     update() {
-        this.getSrc(this.src, true)
-            .pipe(takeUntil(this.destroy$), take(1))
-            .subscribe(src => (this.imgEl.src = src), () => this.setError());
-    }
-    getSrc(data, isSize) {
-        const { size, useHttp } = this;
+        const { size, imgEl, useHttp } = this;
         if (useHttp) {
-            return this.getByHttp(data);
+            this.getByHttp();
+            return;
         }
-        if (isSize && data.includes('qlogo.cn')) {
-            const arr = data.split('/');
+        let newSrc = this.src;
+        if (newSrc.includes('qlogo.cn')) {
+            const arr = newSrc.split('/');
             const imgSize = arr[arr.length - 1];
             arr[arr.length - 1] = imgSize === '0' || +imgSize !== size ? size.toString() : imgSize;
-            data = arr.join('/');
+            newSrc = arr.join('/');
         }
-        return of(data.replace(/^(?:https?:)/i, ''));
+        newSrc = newSrc.replace(/^(?:https?:)/i, '');
+        imgEl.src = newSrc;
     }
-    getByHttp(url) {
+    getByHttp() {
         if (!this.platform.isBrowser) {
-            return throwError(`Not supported`);
+            return;
         }
-        return new Observable((observer) => {
-            this.http
-                .get(url, null, { responseType: 'blob' })
-                .pipe(takeUntil(this.destroy$), take(1), finalize(() => observer.complete()))
-                .subscribe((blob) => {
-                const reader = new FileReader();
-                reader.onloadend = () => observer.next(reader.result);
-                reader.onerror = () => observer.error(`Can't reader image data by ${url}`);
-                reader.readAsDataURL(blob);
-            }, () => observer.error(`Can't access remote url ${url}`));
-        });
+        const { imgEl } = this;
+        this.http.get(this.src, null, { responseType: 'blob' }).subscribe((blob) => {
+            const reader = new FileReader();
+            reader.onloadend = () => (imgEl.src = reader.result);
+            reader.onerror = () => this.setError();
+            reader.readAsDataURL(blob);
+        }, () => this.setError());
     }
     updateError() {
         const { imgEl, error } = this;
@@ -82,31 +71,11 @@ class ImageDirective {
         const { imgEl, error } = this;
         imgEl.src = error;
     }
-    open(ev) {
-        if (!this.previewSrc) {
-            return;
-        }
-        ev.stopPropagation();
-        ev.preventDefault();
-        this.getSrc(this.previewSrc, false)
-            .pipe(takeUntil(this.destroy$), filter(w => !!w), take(1))
-            .subscribe(src => {
-            this.modal.create(Object.assign({ nzTitle: undefined, nzFooter: null, nzContent: `<img class="img-fluid" src="${src}" />` }, this.previewModalOptions));
-        });
-    }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
 }
 ImageDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[_src]',
                 exportAs: '_src',
-                host: {
-                    '(click)': 'open($event)',
-                    '[class.point]': `previewSrc`,
-                },
             },] }
 ];
 /** @nocollapse */
@@ -114,16 +83,13 @@ ImageDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: AlainConfigService },
     { type: _HttpClient },
-    { type: Platform },
-    { type: NzModalService }
+    { type: Platform }
 ];
 ImageDirective.propDecorators = {
     src: [{ type: Input, args: ['_src',] }],
     size: [{ type: Input }],
     error: [{ type: Input }],
-    useHttp: [{ type: Input }],
-    previewSrc: [{ type: Input }],
-    previewModalOptions: [{ type: Input }]
+    useHttp: [{ type: Input }]
 };
 __decorate([
     InputNumber(),
@@ -139,9 +105,9 @@ class ImageModule {
 }
 ImageModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, NzModalModule],
-                declarations: DIRECTIVES,
-                exports: DIRECTIVES,
+                imports: [CommonModule],
+                declarations: [...DIRECTIVES],
+                exports: [...DIRECTIVES],
             },] }
 ];
 
