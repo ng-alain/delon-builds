@@ -348,14 +348,8 @@
         ImageDirective.prototype.update = function () {
             var _this = this;
             this.getSrc(this.src, true)
-                .pipe(operators.takeUntil(this.destroy$))
-                .subscribe(function (src) {
-                if (src === null) {
-                    _this.setError();
-                    return;
-                }
-                _this.imgEl.src = src;
-            }, function () { return _this.setError(); });
+                .pipe(operators.takeUntil(this.destroy$), operators.take(1))
+                .subscribe(function (src) { return (_this.imgEl.src = src); }, function () { return _this.setError(); });
         };
         ImageDirective.prototype.getSrc = function (data, isSize) {
             var _a = this, size = _a.size, useHttp = _a.useHttp;
@@ -373,12 +367,12 @@
         ImageDirective.prototype.getByHttp = function (url) {
             var _this = this;
             if (!this.platform.isBrowser) {
-                return rxjs.of(null);
+                return rxjs.throwError("Not supported");
             }
             return new rxjs.Observable(function (observer) {
                 _this.http
                     .get(url, null, { responseType: 'blob' })
-                    .pipe(operators.takeUntil(_this.destroy$), operators.finalize(function () { return observer.complete(); }))
+                    .pipe(operators.takeUntil(_this.destroy$), operators.take(1), operators.finalize(function () { return observer.complete(); }))
                     .subscribe(function (blob) {
                     var reader = new FileReader();
                     reader.onloadend = function () { return observer.next(reader.result); };
@@ -407,7 +401,7 @@
             ev.stopPropagation();
             ev.preventDefault();
             this.getSrc(this.previewSrc, false)
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return !!w; }))
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return !!w; }), operators.take(1))
                 .subscribe(function (src) {
                 _this.modal.create(Object.assign({ nzTitle: undefined, nzFooter: null, nzContent: "<img class=\"img-fluid\" src=\"" + src + "\" />" }, _this.previewModalOptions));
             });

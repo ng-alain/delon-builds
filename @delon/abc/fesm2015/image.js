@@ -5,8 +5,8 @@ import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { Subject, of, Observable } from 'rxjs';
-import { takeUntil, finalize, filter } from 'rxjs/operators';
+import { Subject, of, throwError, Observable } from 'rxjs';
+import { takeUntil, take, finalize, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 class ImageDirective {
@@ -38,14 +38,8 @@ class ImageDirective {
     }
     update() {
         this.getSrc(this.src, true)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(src => {
-            if (src === null) {
-                this.setError();
-                return;
-            }
-            this.imgEl.src = src;
-        }, () => this.setError());
+            .pipe(takeUntil(this.destroy$), take(1))
+            .subscribe(src => (this.imgEl.src = src), () => this.setError());
     }
     getSrc(data, isSize) {
         const { size, useHttp } = this;
@@ -62,12 +56,12 @@ class ImageDirective {
     }
     getByHttp(url) {
         if (!this.platform.isBrowser) {
-            return of(null);
+            return throwError(`Not supported`);
         }
         return new Observable((observer) => {
             this.http
                 .get(url, null, { responseType: 'blob' })
-                .pipe(takeUntil(this.destroy$), finalize(() => observer.complete()))
+                .pipe(takeUntil(this.destroy$), take(1), finalize(() => observer.complete()))
                 .subscribe((blob) => {
                 const reader = new FileReader();
                 reader.onloadend = () => observer.next(reader.result);
@@ -95,7 +89,7 @@ class ImageDirective {
         ev.stopPropagation();
         ev.preventDefault();
         this.getSrc(this.previewSrc, false)
-            .pipe(takeUntil(this.destroy$), filter(w => !!w))
+            .pipe(takeUntil(this.destroy$), filter(w => !!w), take(1))
             .subscribe(src => {
             this.modal.create(Object.assign({ nzTitle: undefined, nzFooter: null, nzContent: `<img class="img-fluid" src="${src}" />` }, this.previewModalOptions));
         });
