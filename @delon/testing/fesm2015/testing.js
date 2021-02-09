@@ -309,11 +309,24 @@ const createTestContext = (component) => {
     return new TestContext(TestBed.createComponent(component));
 };
 
+/**
+ * 清除Cdk的窗体，以便下一次使用，一般这样使用：
+ * ```ts
+ * afterEach(cleanCdkOverlayHtml);
+ * ```
+ */
+function cleanCdkOverlayHtml() {
+    const els = document.querySelectorAll('.cdk-overlay-container');
+    if (els && els.length > 0) {
+        els.forEach(el => (el.innerHTML = ''));
+    }
+}
+
 // from angular
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
+export { DROPDOWN_MIN_TIME, PageG2, PageG2DataCount, PageG2Height, TestContext, checkDelay, cleanCdkOverlayHtml, createFakeEvent, createKeyboardEvent, createMouseEvent, createTestContext, createTouchEvent, dispatchDropDown, dispatchEvent, dispatchFakeEvent, dispatchKeyboardEvent, dispatchMouseEvent, dispatchTouchEvent, typeInElement };
 //# sourceMappingURL=testing.js.map
