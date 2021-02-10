@@ -16,7 +16,10 @@ TrendComponent.decorators = [
     { type: Component, args: [{
                 selector: 'trend',
                 exportAs: 'trend',
-                template: "<ng-content></ng-content>\n<span *ngIf=\"flag\" class=\"trend__{{ flag }}\"><i nz-icon nzType=\"caret-{{ flag }}\"></i></span>\n",
+                template: `
+    <ng-content></ng-content>
+    <span *ngIf="flag" class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+  `,
                 host: {
                     '[class.trend]': 'true',
                     '[class.trend__grey]': '!colorful',
