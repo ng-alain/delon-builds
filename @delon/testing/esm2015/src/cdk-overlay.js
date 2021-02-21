@@ -1,0 +1,13 @@
+/**
+ * 清除Cdk的窗体，以便下一次使用，一般这样使用：
+ * ```ts
+ * afterEach(cleanCdkOverlayHtml);
+ * ```
+ */
+export function cleanCdkOverlayHtml() {
+    const els = document.querySelectorAll('.cdk-overlay-container');
+    if (els && els.length > 0) {
+        els.forEach(el => (el.innerHTML = ''));
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2RrLW92ZXJsYXkuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy90ZXN0aW5nL3NyYy9jZGstb3ZlcmxheS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7R0FLRztBQUNILE1BQU0sVUFBVSxtQkFBbUI7SUFDakMsTUFBTSxHQUFHLEdBQUcsUUFBUSxDQUFDLGdCQUFnQixDQUFDLHdCQUF3QixDQUFDLENBQUM7SUFDaEUsSUFBSSxHQUFHLElBQUksR0FBRyxDQUFDLE1BQU0sR0FBRyxDQUFDLEVBQUU7UUFDekIsR0FBRyxDQUFDLE9BQU8sQ0FBQyxFQUFFLENBQUMsRUFBRSxDQUFDLENBQUMsRUFBRSxDQUFDLFNBQVMsR0FBRyxFQUFFLENBQUMsQ0FBQyxDQUFDO0tBQ3hDO0FBQ0gsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICog5riF6ZmkQ2Rr55qE56qX5L2T77yM5Lul5L6/5LiL5LiA5qyh5L2/55So77yM5LiA6Iis6L+Z5qC35L2/55So77yaXG4gKiBgYGB0c1xuICogYWZ0ZXJFYWNoKGNsZWFuQ2RrT3ZlcmxheUh0bWwpO1xuICogYGBgXG4gKi9cbmV4cG9ydCBmdW5jdGlvbiBjbGVhbkNka092ZXJsYXlIdG1sKCk6IHZvaWQge1xuICBjb25zdCBlbHMgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yQWxsKCcuY2RrLW92ZXJsYXktY29udGFpbmVyJyk7XG4gIGlmIChlbHMgJiYgZWxzLmxlbmd0aCA+IDApIHtcbiAgICBlbHMuZm9yRWFjaChlbCA9PiAoZWwuaW5uZXJIVE1MID0gJycpKTtcbiAgfVxufVxuIl19

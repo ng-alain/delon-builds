@@ -1669,89 +1669,6 @@ var frFR = {
     },
 };
 
-var esES = {
-    abbr: 'es-ES',
-    exception: {
-        403: `Lo sentimos, no tiene acceso a esta página`,
-        404: `Lo sentimos, la página que ha visitado no existe`,
-        500: `Lo siento, error interno del servidor `,
-        backToHome: 'Volver a la página de inicio',
-    },
-    noticeIcon: {
-        emptyText: 'No hay datos',
-        clearText: 'Limpiar',
-    },
-    reuseTab: {
-        close: 'Cerrar pestaña',
-        closeOther: 'Cerrar otras pestañas',
-        closeRight: 'Cerrar pestañas a la derecha',
-        refresh: 'Actualizar',
-    },
-    tagSelect: {
-        expand: 'Expandir',
-        collapse: 'Ocultar',
-    },
-    miniProgress: {
-        target: 'Target: ',
-    },
-    st: {
-        total: '{{rango[0]}} - {{rango[1]}} de {{total}}',
-        filterConfirm: 'Aceptar',
-        filterReset: 'Reiniciar',
-    },
-    sf: {
-        submit: 'Submit',
-        reset: 'Reiniciar',
-        search: 'Buscar',
-        edit: 'Guardar',
-        addText: 'Añadir',
-        removeText: 'Eliminar',
-        checkAllText: 'Comprobar todo',
-        error: {
-            'false schema': `Boolean schema is false`,
-            $ref: `Can't resolve reference {ref}`,
-            additionalItems: `Should not have more than {limit} item`,
-            additionalProperties: `Should not have additional properties`,
-            anyOf: `Should match some schema in "anyOf"`,
-            dependencies: `should have property {deps} when property {property} is present`,
-            enum: `Should be equal to one of predefined values`,
-            format: `Should match format "{format}"`,
-            type: `Should be {type}`,
-            required: `Required`,
-            maxLength: `Should not be longer than {limit} character`,
-            minLength: `Should not be shorter than {limit} character`,
-            minimum: `Should be {comparison} {limit}`,
-            formatMinimum: `Should be {comparison} {limit}`,
-            maximum: `Should be {comparison} {limit}`,
-            formatMaximum: `Should be {comparison} {limit}`,
-            maxItems: `Should not have more than {limit} item`,
-            minItems: `Should not have less than {limit} item`,
-            maxProperties: `Should not have more than {limit} property`,
-            minProperties: `Should not have less than {limit} property`,
-            multipleOf: `Should be a multiple of {multipleOf}`,
-            not: `Should not be valid according to schema in "not"`,
-            oneOf: `Should match exactly one schema in "oneOf"`,
-            pattern: `Should match pattern "{pattern}"`,
-            uniqueItems: `Should not have duplicate items (items ## {j} and {i} are identical)`,
-            custom: `Should match format`,
-            propertyNames: `Property name "{propertyName}" is invalid`,
-            patternRequired: `Should have property matching pattern "{missingPattern}"`,
-            switch: `Should pass "switch" keyword validation, case {caseIndex} fails`,
-            const: `Should be equal to constant`,
-            contains: `Should contain a valid item`,
-            formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
-            formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
-    },
-    onboarding: {
-        skip: `Omitir`,
-        prev: `Previo`,
-        next: `Siguiente`,
-        done: `Terminado`,
-    },
-};
-
 /**
  * 对话框辅助类
  */
@@ -2488,11 +2405,11 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.6.0-b6af5256');
+const VERSION = new Version('11.6.0-ffa3b63f');
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ɵ0, I18nPipe as ɵa };
+export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ɵ0, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

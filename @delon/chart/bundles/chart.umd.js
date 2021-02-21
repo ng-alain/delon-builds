@@ -46,8 +46,9 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.DelonChartModule = DelonChartModule;
     Object.keys(bar).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return bar[k];
@@ -55,7 +56,7 @@
         });
     });
     Object.keys(card).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return card[k];
@@ -63,7 +64,7 @@
         });
     });
     Object.keys(custom).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return custom[k];
@@ -71,7 +72,7 @@
         });
     });
     Object.keys(gauge).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return gauge[k];
@@ -79,7 +80,7 @@
         });
     });
     Object.keys(miniArea).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return miniArea[k];
@@ -87,7 +88,7 @@
         });
     });
     Object.keys(miniBar).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return miniBar[k];
@@ -95,7 +96,7 @@
         });
     });
     Object.keys(miniProgress).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return miniProgress[k];
@@ -103,7 +104,7 @@
         });
     });
     Object.keys(pie).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return pie[k];
@@ -111,7 +112,7 @@
         });
     });
     Object.keys(radar).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return radar[k];
@@ -119,7 +120,7 @@
         });
     });
     Object.keys(tagCloud).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return tagCloud[k];
@@ -127,7 +128,7 @@
         });
     });
     Object.keys(timeline).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return timeline[k];
@@ -135,7 +136,7 @@
         });
     });
     Object.keys(waterWave).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return waterWave[k];
@@ -143,7 +144,7 @@
         });
     });
     Object.keys(numberInfo).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return numberInfo[k];
@@ -151,7 +152,7 @@
         });
     });
     Object.keys(trend).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return trend[k];
@@ -159,14 +160,13 @@
         });
     });
     Object.keys(singleBar).forEach(function (k) {
-        if (k !== 'default') Object.defineProperty(exports, k, {
+        if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
             enumerable: true,
             get: function () {
                 return singleBar[k];
             }
         });
     });
-    exports.DelonChartModule = DelonChartModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

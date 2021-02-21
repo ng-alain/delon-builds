@@ -372,6 +372,19 @@
         return new TestContext(testing.TestBed.createComponent(component));
     };
 
+    /**
+     * 清除Cdk的窗体，以便下一次使用，一般这样使用：
+     * ```ts
+     * afterEach(cleanCdkOverlayHtml);
+     * ```
+     */
+    function cleanCdkOverlayHtml() {
+        var els = document.querySelectorAll('.cdk-overlay-container');
+        if (els && els.length > 0) {
+            els.forEach(function (el) { return (el.innerHTML = ''); });
+        }
+    }
+
     // from angular
 
     /**
@@ -384,6 +397,7 @@
     exports.PageG2Height = PageG2Height;
     exports.TestContext = TestContext;
     exports.checkDelay = checkDelay;
+    exports.cleanCdkOverlayHtml = cleanCdkOverlayHtml;
     exports.createFakeEvent = createFakeEvent;
     exports.createKeyboardEvent = createKeyboardEvent;
     exports.createMouseEvent = createMouseEvent;

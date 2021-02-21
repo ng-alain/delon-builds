@@ -328,11 +328,13 @@
         autoReSize: true,
     };
 
+    exports.PdfTextLayerMode = void 0;
     (function (PdfTextLayerMode) {
         PdfTextLayerMode[PdfTextLayerMode["DISABLE"] = 0] = "DISABLE";
         PdfTextLayerMode[PdfTextLayerMode["ENABLE"] = 1] = "ENABLE";
         PdfTextLayerMode[PdfTextLayerMode["ENABLE_ENHANCE"] = 2] = "ENABLE_ENHANCE";
     })(exports.PdfTextLayerMode || (exports.PdfTextLayerMode = {}));
+    exports.PdfExternalLinkTarget = void 0;
     (function (PdfExternalLinkTarget) {
         PdfExternalLinkTarget[PdfExternalLinkTarget["NONE"] = 0] = "NONE";
         PdfExternalLinkTarget[PdfExternalLinkTarget["SELF"] = 1] = "SELF";

@@ -532,6 +532,7 @@
     /**
      * 复用匹配模式
      */
+    exports.ReuseTabMatchMode = void 0;
     (function (ReuseTabMatchMode) {
         /**
          * （推荐）按菜单 `Menu` 配置
