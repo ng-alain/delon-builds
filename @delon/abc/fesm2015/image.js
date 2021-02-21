@@ -9,6 +9,9 @@ import { Subject, of, throwError, Observable } from 'rxjs';
 import { takeUntil, take, finalize, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
+/**
+ * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
+ */
 class ImageDirective {
     constructor(el, configSrv, http, platform, modal) {
         this.http = http;
