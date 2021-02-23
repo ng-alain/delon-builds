@@ -68,29 +68,15 @@ export async function createAlainAndModuleApp(name: string = 'trade', ngAddOptio
   return res;
 }
 
-export async function createTestApp(): Promise<{ runner: SchematicTestRunner; tree: UnitTestTree }> {
-  const runner = await createNgRunner();
-  const workspaceTree = await runner
-    .runSchematicAsync('workspace', {
-      name: 'workspace',
-      newProjectRoot: 'projects',
-      version: '8.0.0',
+export async function createTestApp(): Promise<UnitTestTree> {
+  const res = await createNgRunner()
+    .runSchematicAsync('ng-new', {
+      name: APPNAME,
+      directory: '',
+      version: '6.0.0',
+      routing: true,
+      style: 'less',
     })
     .toPromise();
-  const appTree = await runner
-    .runSchematicAsync(
-      'application',
-      {
-        name: APPNAME,
-        inlineStyle: false,
-        inlineTemplate: false,
-        routing: false,
-        style: 'css',
-        skipTests: false,
-        skipPackageJson: false,
-      },
-      workspaceTree,
-    )
-    .toPromise();
-  return { runner, tree: appTree };
+  return res;
 }

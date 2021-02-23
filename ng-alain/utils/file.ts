@@ -64,11 +64,3 @@ export function overwriteIfExists(tree: Tree): Rule {
     return fileEntry;
   });
 }
-
-export function writeFile(tree: Tree, filePath: string, content: string): void {
-  if (tree.exists(filePath)) {
-    tree.overwrite(filePath, content);
-  } else {
-    tree.create(filePath, content);
-  }
-}

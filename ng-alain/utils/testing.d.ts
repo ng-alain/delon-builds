@@ -14,7 +14,4 @@ export declare function createNgRunner(): SchematicTestRunner;
 export declare function createAlainRunner(): SchematicTestRunner;
 export declare function createAlainApp(ngAddOptions?: NgAddSchema): Promise<AppResult>;
 export declare function createAlainAndModuleApp(name?: string, ngAddOptions?: object): Promise<AppResult>;
-export declare function createTestApp(): Promise<{
-    runner: SchematicTestRunner;
-    tree: UnitTestTree;
-}>;
+export declare function createTestApp(): Promise<UnitTestTree>;

@@ -16,4 +16,3 @@ export interface OverWriteFileOptions {
  */
 export declare function overwriteFile(options: OverWriteFileOptions): Tree;
 export declare function overwriteIfExists(tree: Tree): Rule;
-export declare function writeFile(tree: Tree, filePath: string, content: string): void;

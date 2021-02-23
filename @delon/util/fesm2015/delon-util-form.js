@@ -82,8 +82,38 @@ class _Validators {
 }
 
 /**
+ * Match two control values
+ *
+ * 匹配两个控件值
+ * ```ts
+ * this.form = new FormGroup({
+ *  pwd: new FormControl(''),
+ *  repwd: new FormControl(''),
+ * }, {
+ *  validators: MatchControl('pwd', 'repwd'),
+ * });
+ * ```
+ */
+function MatchControl(controlName, matchingControlName) {
+    return (formGroup) => {
+        const control = formGroup.get(controlName);
+        const matchingControl = formGroup.get(matchingControlName);
+        if (matchingControl.errors && !matchingControl.errors.matchControl) {
+            return null;
+        }
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ matchControl: true });
+        }
+        else {
+            matchingControl.setErrors(null);
+        }
+        return null;
+    };
+}
+
+/**
  * Generated bundle index. Do not edit.
  */
 
-export { _Validators };
+export { MatchControl, _Validators };
 //# sourceMappingURL=delon-util-form.js.map

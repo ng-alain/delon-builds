@@ -94,9 +94,40 @@
     }());
 
     /**
+     * Match two control values
+     *
+     * 匹配两个控件值
+     * ```ts
+     * this.form = new FormGroup({
+     *  pwd: new FormControl(''),
+     *  repwd: new FormControl(''),
+     * }, {
+     *  validators: MatchControl('pwd', 'repwd'),
+     * });
+     * ```
+     */
+    function MatchControl(controlName, matchingControlName) {
+        return function (formGroup) {
+            var control = formGroup.get(controlName);
+            var matchingControl = formGroup.get(matchingControlName);
+            if (matchingControl.errors && !matchingControl.errors.matchControl) {
+                return null;
+            }
+            if (control.value !== matchingControl.value) {
+                matchingControl.setErrors({ matchControl: true });
+            }
+            else {
+                matchingControl.setErrors(null);
+            }
+            return null;
+        };
+    }
+
+    /**
      * Generated bundle index. Do not edit.
      */
 
+    exports.MatchControl = MatchControl;
     exports._Validators = _Validators;
 
     Object.defineProperty(exports, '__esModule', { value: true });
