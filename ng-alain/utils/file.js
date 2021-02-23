@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.overwriteIfExists = exports.overwriteFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
+exports.writeFile = exports.overwriteIfExists = exports.overwriteFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 function tryDelFile(tree, filePath) {
@@ -61,4 +61,13 @@ function overwriteIfExists(tree) {
     });
 }
 exports.overwriteIfExists = overwriteIfExists;
+function writeFile(tree, filePath, content) {
+    if (tree.exists(filePath)) {
+        tree.overwrite(filePath, content);
+    }
+    else {
+        tree.create(filePath, content);
+    }
+}
+exports.writeFile = writeFile;
 //# sourceMappingURL=file.js.map

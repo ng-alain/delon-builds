@@ -65,16 +65,26 @@ function createAlainAndModuleApp(name = 'trade', ngAddOptions) {
 exports.createAlainAndModuleApp = createAlainAndModuleApp;
 function createTestApp() {
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield createNgRunner()
-            .runSchematicAsync('ng-new', {
-            name: exports.APPNAME,
-            directory: '',
-            version: '6.0.0',
-            routing: true,
-            style: 'less',
+        const runner = yield createNgRunner();
+        const workspaceTree = yield runner
+            .runSchematicAsync('workspace', {
+            name: 'workspace',
+            newProjectRoot: 'projects',
+            version: '8.0.0',
         })
             .toPromise();
-        return res;
+        const appTree = yield runner
+            .runSchematicAsync('application', {
+            name: exports.APPNAME,
+            inlineStyle: false,
+            inlineTemplate: false,
+            routing: false,
+            style: 'css',
+            skipTests: false,
+            skipPackageJson: false,
+        }, workspaceTree)
+            .toPromise();
+        return { runner, tree: appTree };
     });
 }
 exports.createTestApp = createTestApp;
