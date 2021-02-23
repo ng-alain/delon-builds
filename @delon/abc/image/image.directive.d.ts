@@ -4,6 +4,9 @@ import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
+/**
+ * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
+ */
 export declare class ImageDirective implements OnChanges, OnInit, OnDestroy {
     private http;
     private platform;
