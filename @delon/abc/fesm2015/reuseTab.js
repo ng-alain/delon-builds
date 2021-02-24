@@ -788,6 +788,7 @@ class ReuseTabComponent {
         this.customContextMenu = [];
         this.tabType = 'line';
         this.routeParamMatchMode = 'strict';
+        this.disabled = false;
         this.change = new EventEmitter();
         this.close = new EventEmitter();
     }
@@ -989,6 +990,7 @@ ReuseTabComponent.decorators = [
                     '[class.reuse-tab]': 'true',
                     '[class.reuse-tab__line]': `tabType === 'line'`,
                     '[class.reuse-tab__card]': `tabType === 'card'`,
+                    '[class.reuse-tab__disabled]': `disabled`,
                 },
                 providers: [ReuseTabContextService],
                 preserveWhitespaces: false,
@@ -1022,6 +1024,7 @@ ReuseTabComponent.propDecorators = {
     tabBarStyle: [{ type: Input }],
     tabType: [{ type: Input }],
     routeParamMatchMode: [{ type: Input }],
+    disabled: [{ type: Input }],
     change: [{ type: Output }],
     close: [{ type: Output }]
 };
@@ -1045,6 +1048,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "keepingScroll", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], ReuseTabComponent.prototype, "disabled", void 0);
 
 class ReuseTabStrategy {
     constructor(srv) {

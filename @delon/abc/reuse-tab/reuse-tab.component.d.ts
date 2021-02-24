@@ -16,6 +16,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     static ngAcceptInputType_tabMaxWidth: NumberInput;
     static ngAcceptInputType_allowClose: BooleanInput;
     static ngAcceptInputType_keepingScroll: BooleanInput;
+    static ngAcceptInputType_disabled: BooleanInput;
     private tabset;
     private unsubscribe$;
     private updatePos$;
@@ -40,6 +41,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     };
     tabType: 'line' | 'card';
     routeParamMatchMode: ReuseTabRouteParamMatchMode;
+    disabled: boolean;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
     constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any);

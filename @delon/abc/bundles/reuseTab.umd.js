@@ -1170,6 +1170,7 @@
             this.customContextMenu = [];
             this.tabType = 'line';
             this.routeParamMatchMode = 'strict';
+            this.disabled = false;
             this.change = new i0.EventEmitter();
             this.close = new i0.EventEmitter();
         }
@@ -1384,6 +1385,7 @@
                         '[class.reuse-tab]': 'true',
                         '[class.reuse-tab__line]': "tabType === 'line'",
                         '[class.reuse-tab__card]': "tabType === 'card'",
+                        '[class.reuse-tab__disabled]': "disabled",
                     },
                     providers: [ReuseTabContextService],
                     preserveWhitespaces: false,
@@ -1417,6 +1419,7 @@
         tabBarStyle: [{ type: i0.Input }],
         tabType: [{ type: i0.Input }],
         routeParamMatchMode: [{ type: i0.Input }],
+        disabled: [{ type: i0.Input }],
         change: [{ type: i0.Output }],
         close: [{ type: i0.Output }]
     };
@@ -1440,6 +1443,10 @@
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], ReuseTabComponent.prototype, "keepingScroll", void 0);
+    __decorate([
+        decorator.InputBoolean(),
+        __metadata("design:type", Object)
+    ], ReuseTabComponent.prototype, "disabled", void 0);
 
     var ReuseTabStrategy = /** @class */ (function () {
         function ReuseTabStrategy(srv) {
