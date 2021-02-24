@@ -1222,13 +1222,13 @@
         function STExport(xlsxSrv) {
             this.xlsxSrv = xlsxSrv;
         }
-        STExport.prototype._stGet = function (item, col, index) {
+        STExport.prototype._stGet = function (item, col, index, colIndex) {
             var ret = { t: 's', v: '' };
             if (col.format) {
                 ret.v = col.format(item, col, index);
             }
             else {
-                var val = other.deepGet(item, col.index, '');
+                var val = item._values ? item._values[colIndex].text : other.deepGet(item, col.index, '');
                 ret.v = val;
                 if (val != null) {
                     switch (col.type) {
@@ -1265,7 +1265,7 @@
             // content
             for (var i = 0; i < dataLen; i++) {
                 for (var j = 0; j < colLen; j++) {
-                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(opt.data[i], colData[j], i);
+                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(opt.data[i], colData[j], i, j);
                 }
             }
             if (colLen > 0 && dataLen > 0) {

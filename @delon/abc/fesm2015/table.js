@@ -859,13 +859,13 @@ class STExport {
     constructor(xlsxSrv) {
         this.xlsxSrv = xlsxSrv;
     }
-    _stGet(item, col, index) {
+    _stGet(item, col, index, colIndex) {
         const ret = { t: 's', v: '' };
         if (col.format) {
             ret.v = col.format(item, col, index);
         }
         else {
-            const val = deepGet(item, col.index, '');
+            const val = item._values ? item._values[colIndex].text : deepGet(item, col.index, '');
             ret.v = val;
             if (val != null) {
                 switch (col.type) {
@@ -902,7 +902,7 @@ class STExport {
         // content
         for (let i = 0; i < dataLen; i++) {
             for (let j = 0; j < colLen; j++) {
-                sheet[`${this.xlsxSrv.numberToSchema(j + 1)}${i + 2}`] = this._stGet(opt.data[i], colData[j], i);
+                sheet[`${this.xlsxSrv.numberToSchema(j + 1)}${i + 2}`] = this._stGet(opt.data[i], colData[j], i, j);
             }
         }
         if (colLen > 0 && dataLen > 0) {
