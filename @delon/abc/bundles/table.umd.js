@@ -2049,7 +2049,7 @@
          */
         STComponent.prototype.export = function (newData, opt) {
             var _this = this;
-            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(function (res) { return _this.exportSrv.export(Object.assign(Object.assign({}, opt), { data: res, columens: _this._columns })); });
+            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(function (res) { return _this.exportSrv.export(Object.assign(Object.assign({ columens: _this._columns }, opt), { data: res })); });
         };
         // #endregion
         // #region resizable
