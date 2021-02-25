@@ -373,15 +373,6 @@
             enumerable: false,
             configurable: true
         });
-        AlainI18NServiceFake.prototype.use = function (lang) {
-            this.change$.next(lang);
-        };
-        AlainI18NServiceFake.prototype.getLangs = function () {
-            return [];
-        };
-        AlainI18NServiceFake.prototype.fanyi = function (key) {
-            return key;
-        };
         Object.defineProperty(AlainI18NServiceFake.prototype, "defaultLang", {
             get: function () {
                 return '';
@@ -396,6 +387,15 @@
             enumerable: false,
             configurable: true
         });
+        AlainI18NServiceFake.prototype.use = function (lang) {
+            this.change$.next(lang);
+        };
+        AlainI18NServiceFake.prototype.getLangs = function () {
+            return [];
+        };
+        AlainI18NServiceFake.prototype.fanyi = function (key) {
+            return key;
+        };
         return AlainI18NServiceFake;
     }());
     /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });

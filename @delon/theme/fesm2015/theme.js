@@ -67,6 +67,12 @@ class AlainI18NServiceFake {
     get change() {
         return this.change$.asObservable().pipe(filter(w => w != null));
     }
+    get defaultLang() {
+        return '';
+    }
+    get currentLang() {
+        return '';
+    }
     use(lang) {
         this.change$.next(lang);
     }
@@ -75,12 +81,6 @@ class AlainI18NServiceFake {
     }
     fanyi(key) {
         return key;
-    }
-    get defaultLang() {
-        return '';
-    }
-    get currentLang() {
-        return '';
     }
 }
 /** @nocollapse */ AlainI18NServiceFake.ɵprov = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
@@ -2494,7 +2494,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.6.0-cba10114');
+const VERSION = new Version('11.6.0-e0b74759');
 
 /**
  * Generated bundle index. Do not edit.
