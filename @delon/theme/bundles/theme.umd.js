@@ -382,6 +382,20 @@
         AlainI18NServiceFake.prototype.fanyi = function (key) {
             return key;
         };
+        Object.defineProperty(AlainI18NServiceFake.prototype, "defaultLang", {
+            get: function () {
+                return '';
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(AlainI18NServiceFake.prototype, "currentLang", {
+            get: function () {
+                return '';
+            },
+            enumerable: false,
+            configurable: true
+        });
         return AlainI18NServiceFake;
     }());
     /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
