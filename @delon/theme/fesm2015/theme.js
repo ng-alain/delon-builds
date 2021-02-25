@@ -67,6 +67,12 @@ class AlainI18NServiceFake {
     get change() {
         return this.change$.asObservable().pipe(filter(w => w != null));
     }
+    get defaultLang() {
+        return '';
+    }
+    get currentLang() {
+        return '';
+    }
     use(lang) {
         this.change$.next(lang);
     }
@@ -2488,7 +2494,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.6.0-4e1c432b');
+const VERSION = new Version('11.6.0-3a96b891');
 
 /**
  * Generated bundle index. Do not edit.

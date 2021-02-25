@@ -373,6 +373,20 @@
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(AlainI18NServiceFake.prototype, "defaultLang", {
+            get: function () {
+                return '';
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(AlainI18NServiceFake.prototype, "currentLang", {
+            get: function () {
+                return '';
+            },
+            enumerable: false,
+            configurable: true
+        });
         AlainI18NServiceFake.prototype.use = function (lang) {
             this.change$.next(lang);
         };
