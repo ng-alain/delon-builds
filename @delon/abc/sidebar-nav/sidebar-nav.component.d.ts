@@ -36,7 +36,7 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: any, directionality: Directionality);
+    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: any, win: Window, directionality: Directionality);
     private getLinkNode;
     private floatingClickHandle;
     private clearFloating;

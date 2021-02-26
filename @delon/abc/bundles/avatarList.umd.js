@@ -350,7 +350,7 @@
             this.exceedCount = 0;
             this.dir = 'ltr';
             this.cls = '';
-            this.avatarSize = 'default';
+            this.avatarSize = '';
             this.maxLength = 0;
         }
         Object.defineProperty(AvatarListComponent.prototype, "size", {

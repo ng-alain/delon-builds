@@ -281,7 +281,7 @@ SidebarNavComponent.ctorParameters = () => [
     { type: NgZone },
     { type: DomSanitizer },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
+    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: Directionality, decorators: [{ type: Optional }] }
 ];
 SidebarNavComponent.propDecorators = {

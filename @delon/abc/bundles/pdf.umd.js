@@ -739,7 +739,7 @@
         { type: other.LazyService },
         { type: platform.Platform },
         { type: core.ElementRef },
-        { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [common.DOCUMENT,] }] }
+        { type: Document, decorators: [{ type: core.Optional }, { type: core.Inject, args: [common.DOCUMENT,] }] }
     ]; };
     PdfComponent.propDecorators = {
         src: [{ type: core.Input }],

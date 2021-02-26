@@ -24,6 +24,7 @@ function propDecoratorFactory(name, fallback, defaultValue) {
     }
     return propDecorator;
 }
+
 function toBoolean(value, allowUndefined = false) {
     return allowUndefined && typeof value === 'undefined' ? undefined : value != null && `${value}` !== 'false';
 }
@@ -31,13 +32,14 @@ function toBoolean(value, allowUndefined = false) {
  * Input decorator that handle a prop to do get/set automatically with toBoolean
  *
  * ```ts
- * {AT}Input() {AT}InputBoolean() visible: boolean = false;
- * {AT}Input() {AT}InputBoolean(null) visible: boolean = false;
+ * @Input() InputBoolean() visible: boolean = false;
+ * @Input() @InputBoolean(null) visible: boolean = false;
  * ```
  */
 function InputBoolean(defaultValue = false) {
     return propDecoratorFactory('InputNumber', toBoolean, defaultValue);
 }
+
 function toNumber(value, fallbackValue = 0) {
     return !isNaN(parseFloat(value)) && !isNaN(Number(value)) ? Number(value) : fallbackValue;
 }
@@ -45,8 +47,8 @@ function toNumber(value, fallbackValue = 0) {
  * Input decorator that handle a prop to do get/set automatically with toNumber
  *
  * ```ts
- * {AT}Input() {AT}InputNumber() visible: number = 1;
- * {AT}Input() {AT}InputNumber(null) visible: number = 2;
+ * @Input() @InputNumber() visible: number = 1;
+ * @Input() @InputNumber(null) visible: number = 2;
  * ```
  */
 function InputNumber(defaultValue = 0) {
@@ -57,5 +59,5 @@ function InputNumber(defaultValue = 0) {
  * Generated bundle index. Do not edit.
  */
 
-export { InputBoolean, InputNumber, toBoolean, toNumber };
+export { InputBoolean, InputNumber, propDecoratorFactory, toBoolean, toNumber };
 //# sourceMappingURL=delon-util-decorator.js.map

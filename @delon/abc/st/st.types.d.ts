@@ -4,6 +4,10 @@ export interface _STColumn extends STColumn {
     children?: _STColumn[];
     indexKey?: string;
     /**
+     * 是否有子列
+     */
+    hasSubColumns?: boolean;
+    /**
      * 是否需要截短行为
      * - `type: 'img'` 强制非必要
      */
@@ -14,19 +18,11 @@ export interface _STColumn extends STColumn {
     _className?: string | string[] | Set<string> | {
         [klass: string]: any;
     } | null;
-    _sort: STSortMap;
+    _sort?: STSortMap;
     _left?: string;
     _right?: string;
     __point?: number;
-    __renderTitle?: TemplateRef<any>;
-    __render?: TemplateRef<any>;
-}
-export interface _STHeader {
-    /**
-     * 是否有子列
-     */
-    hasSubColumns: boolean;
-    colSpan: number;
-    rowSpan: number;
-    column: _STColumn;
+    __renderTitle?: TemplateRef<void>;
+    __render?: TemplateRef<void>;
+    column?: _STColumn;
 }

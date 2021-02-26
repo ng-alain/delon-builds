@@ -60,7 +60,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     get linkService(): NzSafeAny;
     private get _textLayerMode();
     private get win();
-    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, el: ElementRef<HTMLElement>, doc: any);
+    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, el: ElementRef<HTMLElement>, doc: Document);
     private getValidPi;
     private emit;
     private initDelay;

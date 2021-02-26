@@ -1,9 +1,9 @@
-import { AfterViewInit, ChangeDetectorRef, OnDestroy, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, OnDestroy } from '@angular/core';
 import { App, SettingsService } from '@delon/theme';
 import { LayoutDefaultComponent } from './layout.component';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden, LayoutDefaultOptions } from './types';
 interface LayoutDefaultHeaderItem {
-    host: TemplateRef<any>;
+    host: ElementRef;
     hidden?: LayoutDefaultHeaderItemHidden;
     direction?: LayoutDefaultHeaderItemDirection;
 }

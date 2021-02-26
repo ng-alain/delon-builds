@@ -362,13 +362,6 @@
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(SEContainerComponent.prototype, "margin", {
-            get: function () {
-                return -(this.gutter / 2);
-            },
-            enumerable: false,
-            configurable: true
-        });
         Object.defineProperty(SEContainerComponent.prototype, "errorNotify", {
             get: function () {
                 return this.errorNotify$.pipe(operators.filter(function (v) { return v != null; }));
@@ -406,8 +399,8 @@
                         '[class.se__vertical]': "nzLayout === 'vertical'",
                         '[class.se__inline]': "nzLayout === 'inline'",
                         '[class.se__compact]': "size === 'compact'",
-                        '[style.margin-left.px]': "margin",
-                        '[style.margin-right.px]': "margin",
+                        '[style.margin-left.px]': "-(gutter / 2)",
+                        '[style.margin-right.px]': "-(gutter / 2)",
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -466,8 +459,8 @@
             this.el = el.nativeElement;
         }
         SETitleComponent.prototype.setClass = function () {
-            var el = this.el;
             var gutter = this.parent.gutter;
+            var el = this.el;
             this.ren.setStyle(el, 'padding-left', gutter / 2 + "px");
             this.ren.setStyle(el, 'padding-right', gutter / 2 + "px");
         };

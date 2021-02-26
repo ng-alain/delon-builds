@@ -1,11 +1,9 @@
 import { OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
-import { BooleanInput } from '@delon/util/decorator';
 import { ACLService } from './acl.service';
 import { ACLCanType } from './acl.type';
 export declare class ACLIfDirective implements OnDestroy {
     private srv;
     private _viewContainer;
-    static ngAcceptInputType_except: BooleanInput;
     private _value;
     private _change$;
     private _thenTemplateRef;

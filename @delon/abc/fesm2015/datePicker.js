@@ -29,7 +29,6 @@ class RangePickerComponent {
         // #region Native properties
         this.nzAllowClear = true;
         this.nzAutoFocus = false;
-        this.nzSize = 'default';
         this.nzOnOpenChange = new EventEmitter();
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();
@@ -358,8 +357,8 @@ RangePickerDirective.ctorParameters = () => [
     { type: Injector }
 ];
 RangePickerDirective.propDecorators = {
-    shortcut: [{ type: Input }],
     ngModelEnd: [{ type: Input }],
+    shortcut: [{ type: Input }],
     ngModelEndChange: [{ type: Output }]
 };
 
