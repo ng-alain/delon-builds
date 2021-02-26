@@ -6,6 +6,12 @@ export interface SFDateWidgetSchema extends SFUISchemaItem {
     size?: NzDatePickerSizeType;
     placeholder?: string;
     /**
+     * Inline mode of the date picker
+     *
+     * 内联模式
+     */
+    inline?: boolean;
+    /**
      * **Just only support date-fns**
      *
      * Return the formatted date string in the given format, [Accepted tokens](https://date-fns.org/v2.12.0/docs/format), like this:
