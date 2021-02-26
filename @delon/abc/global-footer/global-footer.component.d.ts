@@ -15,7 +15,7 @@ export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     set links(val: GlobalFooterLink[]);
     get links(): GlobalFooterLink[];
     items: QueryList<GlobalFooterItemComponent>;
-    constructor(router: Router, win: Window, dom: DomSanitizer, directionality: Directionality);
+    constructor(router: Router, win: any, dom: DomSanitizer, directionality: Directionality);
     to(item: GlobalFooterLink): void;
     ngOnInit(): void;
     ngOnDestroy(): void;

@@ -374,7 +374,7 @@ PdfComponent.ctorParameters = () => [
     { type: LazyService },
     { type: Platform },
     { type: ElementRef },
-    { type: Document, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] }
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] }
 ];
 PdfComponent.propDecorators = {
     src: [{ type: Input }],

@@ -45,6 +45,9 @@ class SEContainerComponent {
     set errors(val) {
         this.setErrors(val);
     }
+    get margin() {
+        return -(this.gutter / 2);
+    }
     get errorNotify() {
         return this.errorNotify$.pipe(filter(v => v != null));
     }
@@ -71,8 +74,8 @@ SEContainerComponent.decorators = [
                     '[class.se__vertical]': `nzLayout === 'vertical'`,
                     '[class.se__inline]': `nzLayout === 'inline'`,
                     '[class.se__compact]': `size === 'compact'`,
-                    '[style.margin-left.px]': `-(gutter / 2)`,
-                    '[style.margin-right.px]': `-(gutter / 2)`,
+                    '[style.margin-left.px]': `margin`,
+                    '[style.margin-right.px]': `margin`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -131,8 +134,8 @@ class SETitleComponent {
         this.el = el.nativeElement;
     }
     setClass() {
-        const { gutter } = this.parent;
         const { el } = this;
+        const gutter = this.parent.gutter;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }

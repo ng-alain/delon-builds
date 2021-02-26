@@ -92,7 +92,7 @@ GlobalFooterComponent.decorators = [
 /** @nocollapse */
 GlobalFooterComponent.ctorParameters = () => [
     { type: Router },
-    { type: Window, decorators: [{ type: Inject, args: [WINDOW,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: DomSanitizer },
     { type: Directionality, decorators: [{ type: Optional }] }
 ];

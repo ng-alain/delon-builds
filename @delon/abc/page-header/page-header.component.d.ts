@@ -34,11 +34,11 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     isBrowser: boolean;
     dir: Direction;
     private get menus();
-    _titleVal: string;
+    _titleVal: string | null;
     paths: PageHeaderPath[];
     _title: string | null;
     _titleTpl: TemplateRef<void>;
-    set title(value: string | TemplateRef<void>);
+    set title(value: string | TemplateRef<void> | null);
     loading: boolean;
     wide: boolean;
     home: string;

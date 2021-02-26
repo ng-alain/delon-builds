@@ -411,7 +411,7 @@
     /** @nocollapse */
     GlobalFooterComponent.ctorParameters = function () { return [
         { type: router.Router },
-        { type: Window, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
         { type: platformBrowser.DomSanitizer },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };

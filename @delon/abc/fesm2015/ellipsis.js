@@ -198,7 +198,7 @@ EllipsisComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
     { type: DomSanitizer },
-    { type: Document, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: ChangeDetectorRef }
 ];
 EllipsisComponent.propDecorators = {
