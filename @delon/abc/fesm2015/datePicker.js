@@ -29,6 +29,7 @@ class RangePickerComponent {
         // #region Native properties
         this.nzAllowClear = true;
         this.nzAutoFocus = false;
+        this.nzSize = 'default';
         this.nzOnOpenChange = new EventEmitter();
         this.nzShowToday = true;
         this.nzOnPanelChange = new EventEmitter();

@@ -1,13 +1,16 @@
 import { TemplateRef } from '@angular/core';
 import { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { NumberInput } from '@delon/util/decorator';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { Observable } from 'rxjs';
 import { SEErrorRefresh, SELayout } from './se.types';
 export declare class SEContainerComponent {
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_colInCon: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;
+    static ngAcceptInputType_firstVisual: BooleanInput;
+    static ngAcceptInputType_ingoreDirty: BooleanInput;
+    static ngAcceptInputType_line: BooleanInput;
     private errorNotify$;
     colInCon: REP_TYPE;
     col: REP_TYPE;

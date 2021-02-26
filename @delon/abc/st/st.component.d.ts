@@ -95,7 +95,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get widthMode(): STWidthMode;
     set widthConfig(val: string[]);
     private _resizable;
-    set resizable(val: STResizable | boolean);
+    set resizable(val: STResizable | boolean | string);
     header: string | TemplateRef<void>;
     showHeader: boolean;
     footer: string | TemplateRef<void>;
