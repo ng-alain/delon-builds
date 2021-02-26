@@ -37,7 +37,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     _titleVal: string | null;
     paths: PageHeaderPath[];
     _title: string | null;
-    _titleTpl: TemplateRef<void>;
+    _titleTpl: TemplateRef<any>;
     set title(value: string | TemplateRef<void> | null);
     loading: boolean;
     wide: boolean;
@@ -49,7 +49,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     syncTitle: boolean;
     fixed: boolean;
     fixedOffsetTop: number;
-    breadcrumb: TemplateRef<void>;
+    breadcrumb: TemplateRef<any>;
     recursiveBreadcrumb: boolean;
     logo: TemplateRef<void>;
     action: TemplateRef<void>;

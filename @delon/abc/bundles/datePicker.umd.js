@@ -686,8 +686,8 @@
         { type: core.Injector }
     ]; };
     RangePickerDirective.propDecorators = {
-        ngModelEnd: [{ type: core.Input }],
         shortcut: [{ type: core.Input }],
+        ngModelEnd: [{ type: core.Input }],
         ngModelEndChange: [{ type: core.Output }]
     };
 

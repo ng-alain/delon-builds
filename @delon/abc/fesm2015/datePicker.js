@@ -358,8 +358,8 @@ RangePickerDirective.ctorParameters = () => [
     { type: Injector }
 ];
 RangePickerDirective.propDecorators = {
-    ngModelEnd: [{ type: Input }],
     shortcut: [{ type: Input }],
+    ngModelEnd: [{ type: Input }],
     ngModelEndChange: [{ type: Output }]
 };
 
