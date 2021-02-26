@@ -2066,7 +2066,13 @@ class DateWidget extends ControlUIWidget {
         };
     }
     reset(value) {
-        value = toDate(value, { formatString: this.startFormat, defaultValue: null });
+        const toDateOptions = { formatString: this.startFormat, defaultValue: null };
+        if (Array.isArray(value)) {
+            value = value.map(v => toDate(v, toDateOptions));
+        }
+        else {
+            value = toDate(value, toDateOptions);
+        }
         if (this.flatRange) {
             const endValue = toDate(this.endProperty.formData, {
                 formatString: this.endFormat || this.startFormat,

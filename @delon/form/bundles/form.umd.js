@@ -2595,7 +2595,13 @@
         };
         DateWidget.prototype.reset = function (value) {
             var _this = this;
-            value = dateTime.toDate(value, { formatString: this.startFormat, defaultValue: null });
+            var toDateOptions = { formatString: this.startFormat, defaultValue: null };
+            if (Array.isArray(value)) {
+                value = value.map(function (v) { return dateTime.toDate(v, toDateOptions); });
+            }
+            else {
+                value = dateTime.toDate(value, toDateOptions);
+            }
             if (this.flatRange) {
                 var endValue = dateTime.toDate(this.endProperty.formData, {
                     formatString: this.endFormat || this.startFormat,
