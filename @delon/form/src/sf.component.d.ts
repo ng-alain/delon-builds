@@ -45,6 +45,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
+    get btnGrid(): any;
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
     layout: SFLayout;
     /** JSON Schema */
