@@ -1,9 +1,10 @@
 import { OnInit } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import { NzButtonType } from 'ng-zorro-antd/button';
 import { ArrayLayoutWidget } from '../../widget';
 export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     addTitle: SafeHtml;
-    addType: string;
+    addType: NzButtonType;
     removeTitle: string | null;
     arraySpan: number;
     get addDisabled(): boolean;

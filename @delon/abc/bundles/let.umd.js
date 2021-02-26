@@ -10,19 +10,19 @@
 }(this, (function (exports, core) { 'use strict';
 
     var LetContext = /** @class */ (function () {
-        function LetContext(internalDirectiveInstance) {
-            this.internalDirectiveInstance = internalDirectiveInstance;
+        function LetContext(dir) {
+            this.dir = dir;
         }
         Object.defineProperty(LetContext.prototype, "$implicit", {
             get: function () {
-                return this.internalDirectiveInstance.let;
+                return this.dir.let;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(LetContext.prototype, "let", {
             get: function () {
-                return this.internalDirectiveInstance.let;
+                return this.dir.let;
             },
             enumerable: false,
             configurable: true

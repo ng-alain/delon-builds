@@ -1,4 +1,5 @@
-import { NzCascaderOption } from 'ng-zorro-antd/cascader';
+import { NzCascaderExpandTrigger, NzCascaderOption, NzShowSearchOptions } from 'ng-zorro-antd/cascader';
+import { NgStyleInterface } from 'ng-zorro-antd/core/types';
 import { SFUISchemaItem } from '../../schema/ui';
 import { CascaderWidget } from './cascader.widget';
 export interface SFCascaderWidgetSchema extends SFUISchemaItem {
@@ -13,7 +14,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 是否支持搜索，默认：`false`
      */
-    showSearch?: boolean;
+    showSearch?: boolean | NzShowSearchOptions;
     /**
      * 是否显示清除按钮，默认：`true`
      */
@@ -37,7 +38,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 自定义浮层样式
      */
-    menuStyle?: string;
+    menuStyle?: NgStyleInterface;
     /**
      * 当下拉列表为空时显示的内容
      */
@@ -53,7 +54,7 @@ export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 次级菜单的展开方式，默认：`click`
      */
-    expandTrigger?: 'click' | 'hover';
+    expandTrigger?: NzCascaderExpandTrigger;
     /**
      * 当此项为 `true` 时，点选每级菜单选项值都会发生变化，具体见上面的演示，默认：`false`
      */

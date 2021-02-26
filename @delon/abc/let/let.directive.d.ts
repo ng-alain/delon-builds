@@ -1,7 +1,7 @@
 import { TemplateRef, ViewContainerRef } from '@angular/core';
 export declare class LetContext<T> {
-    private readonly internalDirectiveInstance;
-    constructor(internalDirectiveInstance: LetDirective<T>);
+    private readonly dir;
+    constructor(dir: LetDirective<T>);
     get $implicit(): T;
     get let(): T;
 }

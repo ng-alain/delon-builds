@@ -1,7 +1,7 @@
-import { ElementRef } from '@angular/core';
+import { TemplateRef } from '@angular/core';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden } from './types';
 export declare class LayoutDefaultHeaderItemComponent {
-    host: ElementRef;
+    host: TemplateRef<any>;
     hidden: LayoutDefaultHeaderItemHidden;
     direction: LayoutDefaultHeaderItemDirection;
 }

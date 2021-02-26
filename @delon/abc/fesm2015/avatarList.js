@@ -37,7 +37,7 @@ class AvatarListComponent {
         this.exceedCount = 0;
         this.dir = 'ltr';
         this.cls = '';
-        this.avatarSize = '';
+        this.avatarSize = 'default';
         this.maxLength = 0;
     }
     set size(value) {

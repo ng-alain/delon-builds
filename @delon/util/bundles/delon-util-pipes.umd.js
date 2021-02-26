@@ -14,7 +14,7 @@
 	 */
 
 	Object.keys(currency).forEach(function (k) {
-		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+		if (k !== 'default') Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return currency[k];
@@ -22,7 +22,7 @@
 		});
 	});
 	Object.keys(format).forEach(function (k) {
-		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+		if (k !== 'default') Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return format[k];
@@ -30,7 +30,7 @@
 		});
 	});
 	Object.keys(filter).forEach(function (k) {
-		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
+		if (k !== 'default') Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return filter[k];

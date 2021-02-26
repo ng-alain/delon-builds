@@ -515,7 +515,7 @@
         { type: core.ElementRef },
         { type: core.NgZone },
         { type: platformBrowser.DomSanitizer },
-        { type: Document, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
         { type: core.ChangeDetectorRef }
     ]; };
     EllipsisComponent.propDecorators = {

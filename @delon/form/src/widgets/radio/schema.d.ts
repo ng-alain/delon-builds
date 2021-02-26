@@ -1,13 +1,14 @@
+import { NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
 import { SFValue } from '../../interface';
 import { SFSchemaEnumType } from '../../schema';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { SFUISchemaItem } from '../../schema/ui';
 export interface SFRadioWidgetSchema extends SFUISchemaItem {
     /**
      * 异步数据源
      */
     asyncData?: () => Observable<SFSchemaEnumType[]>;
-    size?: SFDLSSize;
+    size?: NzSizeLDSType;
     /**
      * radio 的样式，默认：`default`
      */

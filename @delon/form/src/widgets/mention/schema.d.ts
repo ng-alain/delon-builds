@@ -1,14 +1,15 @@
+import { NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { AutoSizeType } from 'ng-zorro-antd/input';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import { Observable } from 'rxjs';
 import { SFSchemaEnumType } from '../../schema';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { SFUISchemaItem } from '../../schema/ui';
 export interface SFMentionWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源
      */
     asyncData?: () => Observable<SFSchemaEnumType[]>;
-    size?: SFDLSSize;
+    size?: NzSizeLDSType;
     /**
      * 在文字框中显示提示讯息
      */

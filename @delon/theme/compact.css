@@ -6836,6 +6836,13 @@ _:-ms-fullscreen .ant-picker-range-wrapper .ant-picker-year-panel .ant-picker-ce
 .ant-picker-panel-rtl .ant-picker-time-panel {
   direction: ltr;
 }
+.ant-picker-inline {
+  border: none;
+  padding: 0;
+}
+.ant-picker-inline .ant-picker-range-arrow {
+  display: none !important;
+}
 .ant-descriptions-header {
   display: flex;
   align-items: center;

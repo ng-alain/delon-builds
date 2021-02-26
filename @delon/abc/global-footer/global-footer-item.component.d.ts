@@ -1,8 +1,8 @@
-import { ElementRef } from '@angular/core';
+import { TemplateRef } from '@angular/core';
 import { BooleanInput } from '@delon/util/decorator';
 export declare class GlobalFooterItemComponent {
     static ngAcceptInputType_blankTarget: BooleanInput;
-    host: ElementRef;
+    host: TemplateRef<void>;
     href: string;
     blankTarget: boolean;
 }

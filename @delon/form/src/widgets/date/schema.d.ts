@@ -1,8 +1,9 @@
-import { DisabledDateFn, DisabledTimeFn, SupportTimeOptions } from 'ng-zorro-antd/date-picker';
-import { SFDLSSize, SFUISchemaItem } from '../../schema/ui';
+import { DisabledDateFn, DisabledTimeFn, NzDatePickerSizeType, SupportTimeOptions } from 'ng-zorro-antd/date-picker';
+import { NzDatePickerI18nInterface } from 'ng-zorro-antd/i18n';
+import { SFUISchemaItem } from '../../schema/ui';
 export interface SFDateWidgetSchema extends SFUISchemaItem {
     mode?: 'date' | 'week' | 'month' | 'year' | 'range';
-    size?: SFDLSSize;
+    size?: NzDatePickerSizeType;
     placeholder?: string;
     /**
      * **Just only support date-fns**
@@ -34,11 +35,11 @@ export interface SFDateWidgetSchema extends SFUISchemaItem {
     /**
      * Localization configuration
      */
-    locale?: {};
+    locale?: NzDatePickerI18nInterface;
     /**
      * To customize the style of the popup calendar
      */
-    popupStyle?: {};
+    popupStyle?: object;
     /**
      * To customize the className of the popup calendar
      */

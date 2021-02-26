@@ -6,7 +6,7 @@ export declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> 
     max: number;
     step: number;
     formatter: (value: number) => string | number;
-    parser: (value: string) => string | number;
+    parser: (value: string) => string;
     ngOnInit(): void;
     _setValue(val: number): void;
 }

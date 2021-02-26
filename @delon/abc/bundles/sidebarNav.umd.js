@@ -600,7 +600,7 @@
         { type: core.NgZone },
         { type: platformBrowser.DomSanitizer },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: Window, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
+        { type: undefined, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     SidebarNavComponent.propDecorators = {

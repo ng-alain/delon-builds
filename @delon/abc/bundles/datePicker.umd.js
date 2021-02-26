@@ -337,6 +337,7 @@
             // #region Native properties
             this.nzAllowClear = true;
             this.nzAutoFocus = false;
+            this.nzSize = 'default';
             this.nzOnOpenChange = new core.EventEmitter();
             this.nzShowToday = true;
             this.nzOnPanelChange = new core.EventEmitter();
@@ -685,8 +686,8 @@
         { type: core.Injector }
     ]; };
     RangePickerDirective.propDecorators = {
-        ngModelEnd: [{ type: core.Input }],
         shortcut: [{ type: core.Input }],
+        ngModelEnd: [{ type: core.Input }],
         ngModelEndChange: [{ type: core.Output }]
     };
 

@@ -7,9 +7,9 @@ export declare class NumberInfoComponent {
     /** 子标题 */
     subTitle: string | TemplateRef<void>;
     /** 总量 */
-    total: string | TemplateRef<void>;
+    total: string | number | TemplateRef<void>;
     /** 总量后缀 */
-    subTotal: string | TemplateRef<void>;
+    subTotal: string | number | TemplateRef<void>;
     /** 子总量 */
     suffix: string;
     /** 增加状态 */

@@ -9,6 +9,6 @@ export declare class SliderWidget extends ControlUIWidget<SFSliderWidgetSchema> 
     marks: NzMarks | null;
     included: boolean;
     ngOnInit(): void;
-    _formatter: (value: number) => string | number;
+    _formatter: (value: number) => string;
     _afterChange(value: NzSliderValue): void;
 }

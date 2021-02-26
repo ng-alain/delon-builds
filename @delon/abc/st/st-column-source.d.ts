@@ -5,7 +5,7 @@ import { AlainSTConfig } from '@delon/util/config';
 import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
 import { STColumn, STColumnFilter, STResizable, STWidthMode } from './st.interfaces';
-import { _STColumn } from './st.types';
+import { _STColumn, _STHeader } from './st.types';
 export interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
     resizable: STResizable;
@@ -32,7 +32,7 @@ export declare class STColumnSource {
     private cleanCond;
     process(list: STColumn[], options: STColumnSourceProcessOptions): {
         columns: _STColumn[];
-        headers: _STColumn[][];
+        headers: _STHeader[][];
         headerWidths: string[] | null;
     };
     restoreAllRender(columns: _STColumn[]): void;

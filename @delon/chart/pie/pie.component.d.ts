@@ -27,7 +27,7 @@ export declare class G2PieComponent extends G2BaseComponent {
     animate: boolean;
     color: string;
     subTitle: string | TemplateRef<void>;
-    total: string | TemplateRef<void>;
+    total: string | number | TemplateRef<void>;
     height: number;
     hasLegend: boolean;
     inner: number;

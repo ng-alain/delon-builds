@@ -20,7 +20,7 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     backgroundAlpha: number;
     foreground: string;
     foregroundAlpha: number;
-    level: 'L' | 'M' | 'Q' | 'H';
+    level: string;
     mime: string;
     padding: number;
     size: number;

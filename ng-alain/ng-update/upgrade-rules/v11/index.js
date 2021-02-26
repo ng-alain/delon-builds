@@ -26,7 +26,7 @@ function fixThirdVersion() {
     return (tree, context) => {
         // dependencies
         utils_1.addPackage(tree, [
-            `ng-zorro-antd@~11.1.0`,
+            `ng-zorro-antd@~11.2.0`,
             `ngx-ueditor@^11.0.0`,
             `ngx-tinymce@^11.0.0`,
             `ngx-countdown@^11.0.1`,

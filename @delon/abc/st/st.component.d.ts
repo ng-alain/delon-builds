@@ -13,7 +13,7 @@ import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
-import { _STColumn } from './st.types';
+import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private router;
@@ -59,7 +59,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _allChecked: boolean;
     _allCheckedDisabled: boolean;
     _indeterminate: boolean;
-    _headers: _STColumn[][];
+    _headers: _STHeader[][];
     _columns: _STColumn[];
     contextmenuList: STContextmenuItem[];
     readonly orgTable: NzTableComponent;
@@ -95,7 +95,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get widthMode(): STWidthMode;
     set widthConfig(val: string[]);
     private _resizable;
-    set resizable(val: STResizable | boolean);
+    set resizable(val: STResizable | boolean | string);
     header: string | TemplateRef<void>;
     showHeader: boolean;
     footer: string | TemplateRef<void>;

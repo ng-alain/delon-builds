@@ -1,11 +1,10 @@
 import { OnInit } from '@angular/core';
-import { SFGridSchema } from '../../schema/ui';
 import { ObjectLayoutWidget } from '../../widget';
 import { SFObjectWidgetRenderType } from './schema';
 export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
-    grid: SFGridSchema;
+    grid: any;
     type: SFObjectWidgetRenderType;
-    list: Array<{}>;
+    list: Array<any>;
     title: string;
     showExpand: boolean;
     expand: boolean;

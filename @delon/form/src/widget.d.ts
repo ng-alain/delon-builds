@@ -23,7 +23,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     ui: UIT;
     firstVisual: boolean;
     get cls(): string | string[];
-    get disabled(): boolean | null;
+    get disabled(): boolean;
     get l(): LocaleData;
     get oh(): SFOptionalHelp;
     get dom(): DomSanitizer;

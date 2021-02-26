@@ -9,5 +9,5 @@ export declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> 
     change(val: string): void;
     focus(e: FocusEvent): void;
     blur(e: FocusEvent): void;
-    enter(e: KeyboardEvent): void;
+    enter(e: Event): void;
 }

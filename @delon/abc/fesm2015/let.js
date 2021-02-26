@@ -1,14 +1,14 @@
 import { Directive, ViewContainerRef, Inject, TemplateRef, Input, NgModule } from '@angular/core';
 
 class LetContext {
-    constructor(internalDirectiveInstance) {
-        this.internalDirectiveInstance = internalDirectiveInstance;
+    constructor(dir) {
+        this.dir = dir;
     }
     get $implicit() {
-        return this.internalDirectiveInstance.let;
+        return this.dir.let;
     }
     get let() {
-        return this.internalDirectiveInstance.let;
+        return this.dir.let;
     }
 }
 class LetDirective {
