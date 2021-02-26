@@ -30,8 +30,8 @@
         return LetContext;
     }());
     var LetDirective = /** @class */ (function () {
-        function LetDirective(viewContainer, templateRef) {
-            viewContainer.createEmbeddedView(templateRef, new LetContext(this));
+        function LetDirective(viewContainer, ref) {
+            viewContainer.createEmbeddedView(ref, new LetContext(this));
         }
         LetDirective.ngTemplateContextGuard = function (_dir, _ctx) {
             return true;
