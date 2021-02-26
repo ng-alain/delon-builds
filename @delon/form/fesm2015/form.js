@@ -10,6 +10,7 @@ import { deepCopy, deepGet } from '@delon/util/other';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
 import { REGEX } from '@delon/util/format';
+import Ajv from 'ajv';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -844,7 +845,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
             return;
         }
         this.options = mergeConfig(cogSrv);
-        this.ajv = new Ajv(Object.assign(Object.assign({}, this.options.ajv), { errorDataPath: 'property', allErrors: true, jsonPointers: true }));
+        this.ajv = new Ajv(Object.assign(Object.assign({}, this.options.ajv), { 
+            // errorDataPath: 'property',
+            allErrors: true }));
         this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
         this.ajv.addFormat('color', REGEX.color);
         this.ajv.addFormat('mobile', REGEX.mobile);

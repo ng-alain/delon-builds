@@ -98,7 +98,7 @@ function addDependenciesToPackageJson(options: ApplicationOptions): Rule {
       // `ng-zorro-antd@${ZORROVERSION}`,
       // ng-zorro-antd need
       'screenfull@^5.1.0',
-      // 'ajv@^6.12.6',
+      // 'ajv@^7.1.1',
     ]);
     // add ajv
     addAssetsToTarget([{ type: 'script', value: 'node_modules/ajv/dist/ajv.bundle.js' }], 'add', [BUILD_TARGET_BUILD, BUILD_TARGET_TEST]);

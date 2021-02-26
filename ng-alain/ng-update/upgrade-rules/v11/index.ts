@@ -27,7 +27,7 @@ function fixThirdVersion(): Rule {
         `ngx-ueditor@^11.0.0`,
         `ngx-tinymce@^11.0.0`,
         `ngx-countdown@^11.0.1`,
-        'ajv@^6.12.6',
+        'ajv@^7.1.1',
       ],
       'dependencies',
     );

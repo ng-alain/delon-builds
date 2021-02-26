@@ -30,7 +30,7 @@ function fixThirdVersion() {
             `ngx-ueditor@^11.0.0`,
             `ngx-tinymce@^11.0.0`,
             `ngx-countdown@^11.0.1`,
-            'ajv@^6.12.6',
+            'ajv@^7.1.1',
         ], 'dependencies');
         // dependencies
         utils_1.addPackage(tree, [`ng-alain-plugin-theme@^11.0.1`, `ng-alain-sts@^0.0.1`], 'devDependencies');
