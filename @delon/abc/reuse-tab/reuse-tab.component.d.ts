@@ -42,9 +42,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     tabType: 'line' | 'card';
     routeParamMatchMode: ReuseTabRouteParamMatchMode;
     disabled: boolean;
-    titleRender?: TemplateRef<{
-        $implicit: ReuseItem;
-    }>;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
     constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any);
