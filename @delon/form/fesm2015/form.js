@@ -845,13 +845,8 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
             return;
         }
         this.options = mergeConfig(cogSrv);
-        this.ajv = new Ajv(Object.assign(Object.assign({}, this.options.ajv), { 
-            // errorDataPath: 'property',
-            allErrors: true }));
-        this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
-        this.ajv.addFormat('color', REGEX.color);
-        this.ajv.addFormat('mobile', REGEX.mobile);
-        this.ajv.addFormat('id-card', REGEX.idCard);
+        const customOptions = this.options.ajv || {};
+        this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
     }
     createValidatorFn(schema, extraOptions) {
         const ingoreKeywords = [...this.options.ingoreKeywords, ...(extraOptions.ingoreKeywords || [])];

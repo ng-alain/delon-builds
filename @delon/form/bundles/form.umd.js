@@ -1247,14 +1247,8 @@
                 return _this;
             }
             _this.options = mergeConfig(cogSrv);
-            _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({}, _this.options.ajv), {
-                // errorDataPath: 'property',
-                allErrors: true
-            }));
-            _this.ajv.addFormat('data-url', /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/);
-            _this.ajv.addFormat('color', format.REGEX.color);
-            _this.ajv.addFormat('mobile', format.REGEX.mobile);
-            _this.ajv.addFormat('id-card', format.REGEX.idCard);
+            var customOptions = _this.options.ajv || {};
+            _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: format.REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: format.REGEX.color, mobile: format.REGEX.mobile, 'id-card': format.REGEX.idCard }, customOptions.formats) }));
             return _this;
         }
         AjvSchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) {
