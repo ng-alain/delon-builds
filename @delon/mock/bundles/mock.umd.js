@@ -36,6 +36,7 @@
             this.cached = [];
             this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
             this.setData((options === null || options === void 0 ? void 0 : options.data) || this.config.data);
+            delete this.config.data;
         }
         /**
          * Reset request data
@@ -43,23 +44,20 @@
          * 重新设置请求数据
          */
         MockService.prototype.setData = function (data) {
-            this.config.data = data;
-            this.applyMock();
-            delete this.config.data;
+            this.applyMock(data);
         };
         // #region parse rule
-        MockService.prototype.applyMock = function () {
+        MockService.prototype.applyMock = function (data) {
             this.cached = [];
             try {
-                this.realApplyMock();
+                this.realApplyMock(data);
             }
             catch (e) {
                 this.outputError(e);
             }
         };
-        MockService.prototype.realApplyMock = function () {
+        MockService.prototype.realApplyMock = function (data) {
             var _this = this;
-            var data = this.config.data;
             if (!data)
                 return;
             Object.keys(data).forEach(function (key) {

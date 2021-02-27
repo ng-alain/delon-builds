@@ -28,6 +28,7 @@ class MockService {
         this.cached = [];
         this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
         this.setData((options === null || options === void 0 ? void 0 : options.data) || this.config.data);
+        delete this.config.data;
     }
     /**
      * Reset request data
@@ -35,22 +36,19 @@ class MockService {
      * 重新设置请求数据
      */
     setData(data) {
-        this.config.data = data;
-        this.applyMock();
-        delete this.config.data;
+        this.applyMock(data);
     }
     // #region parse rule
-    applyMock() {
+    applyMock(data) {
         this.cached = [];
         try {
-            this.realApplyMock();
+            this.realApplyMock(data);
         }
         catch (e) {
             this.outputError(e);
         }
     }
-    realApplyMock() {
-        const data = this.config.data;
+    realApplyMock(data) {
         if (!data)
             return;
         Object.keys(data).forEach((key) => {
