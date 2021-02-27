@@ -17,6 +17,7 @@ const workspace_1 = require("@schematics/angular/utility/workspace");
 const path = require("path");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
+const versions_1 = require("../utils/versions");
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
 const spinner = new spinner_1.Spinner();
@@ -62,16 +63,7 @@ function fixAngularJson(options) {
 function addDependenciesToPackageJson(options) {
     return (tree) => {
         // 3rd
-        utils_1.addPackage(tree, [
-            // allow ignore ng-zorro-antd becauce of @delon/theme dependency
-            // `ng-zorro-antd@${ZORROVERSION}`,
-            // ng-zorro-antd need
-            'screenfull@^5.1.0',
-        ]);
-        // add ajv
-        utils_1.addAssetsToTarget([{ type: 'script', value: 'node_modules/ajv/dist/ajv.bundle.js' }], 'add', [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_TEST]);
-        // @delon/*
-        utils_1.addPackage(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(pkg => `@delon/${pkg}@${utils_1.VERSION}`));
+        utils_1.addPackage(tree, ['screenfull@^5.1.0']);
         // ng-alain
         utils_1.addPackage(tree, [
             `ng-alain@${utils_1.VERSION}`,
@@ -311,6 +303,7 @@ function default_1(options) {
         project = (yield utils_1.getProject(tree, options.project)).project;
         spinner.start(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
+            versions_1.UpgradeDelonVersions(),
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
             // Configuring CommonJS dependencies
