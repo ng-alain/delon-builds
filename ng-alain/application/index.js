@@ -62,6 +62,7 @@ function fixAngularJson(options) {
 }
 function addDependenciesToPackageJson(options) {
     return (tree) => {
+        versions_1.UpgradeDelonVersions(tree);
         // 3rd
         utils_1.addPackage(tree, ['screenfull@^5.1.0']);
         // ng-alain
@@ -303,7 +304,6 @@ function default_1(options) {
         project = (yield utils_1.getProject(tree, options.project)).project;
         spinner.start(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
-            versions_1.UpgradeDelonVersions(),
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
             // Configuring CommonJS dependencies

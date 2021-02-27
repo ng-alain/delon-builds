@@ -13,12 +13,13 @@ exports.v11Rule = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const color_1 = require("@angular/cli/utilities/color");
 const utils_1 = require("../../../utils");
+const versions_1 = require("../../../utils/versions");
 const hmr_1 = require("./hmr");
 const layout_1 = require("./layout");
 let project;
 function fixVersion() {
     return (tree, context) => {
-        utils_1.addPackage(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${utils_1.VERSION}`));
+        versions_1.UpgradeDelonVersions(tree);
         utils_1.logStart(context, `Upgrade @delon/* version number`);
     };
 }

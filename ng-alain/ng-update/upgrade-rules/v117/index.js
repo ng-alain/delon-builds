@@ -71,8 +71,10 @@ function removeQriousLib(context) {
 }
 function v117Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
+        versions_1.UpgradeDelonVersions(tree);
+        utils_1.logStart(context, `Upgrade @delon/* version number`);
         utils_1.removePackage(tree, ['qrious', 'ajv'], 'dependencies');
-        return schematics_1.chain([versions_1.UpgradeDelonVersions(), removeAjvLib(context), removeQriousLib(context)]);
+        return schematics_1.chain([removeAjvLib(context), removeQriousLib(context)]);
     });
 }
 exports.v117Rule = v117Rule;
