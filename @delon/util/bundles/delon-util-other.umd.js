@@ -449,19 +449,17 @@
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (!ngDevMode) {
-            var stack_1 = new Error().stack;
-            return consoleCommonBehavior.apply(void 0, __spread([function () {
-                    var arg = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        arg[_i] = arguments[_i];
-                    }
-                    return console.warn.apply(console, __spread([PREFIX, 'deprecated:'], arg, [stack_1]));
-                }], args));
-        }
-        else {
+        if (ngDevMode) {
             return function () { };
         }
+        var stack = new Error().stack;
+        return consoleCommonBehavior.apply(void 0, __spread([function () {
+                var arg = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    arg[_i] = arguments[_i];
+                }
+                return console.warn.apply(console, __spread([PREFIX, 'deprecated:'], arg, [stack]));
+            }], args));
     };
     // Log should only be printed in dev mode.
     var log = function () {
@@ -617,7 +615,7 @@
      * 断言是否空值（`null` 或 `undefined`）
      */
     function assertEmpty(actual, msg) {
-        if (ngDevMode || actual == null) {
+        if (actual == null) {
             throwError(msg, typeof actual, 'NULL', '==');
         }
     }

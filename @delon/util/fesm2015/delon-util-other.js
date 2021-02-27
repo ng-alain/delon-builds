@@ -99,13 +99,11 @@ const deprecation11 = (comp, from, to) => {
     warnDeprecation(`${comp} => '${from}' is going to be removed in 11.0.0${to ? `, Please use '${to}' instead` : ``}.`);
 };
 const warnDeprecation = (...args) => {
-    if (!ngDevMode) {
-        const stack = new Error().stack;
-        return consoleCommonBehavior((...arg) => console.warn(PREFIX, 'deprecated:', ...arg, stack), ...args);
-    }
-    else {
+    if (ngDevMode) {
         return () => { };
     }
+    const stack = new Error().stack;
+    return consoleCommonBehavior((...arg) => console.warn(PREFIX, 'deprecated:', ...arg, stack), ...args);
 };
 // Log should only be printed in dev mode.
 const log = (...args) => {
@@ -248,7 +246,7 @@ function assert(expression, msg) {
  * 断言是否空值（`null` 或 `undefined`）
  */
 function assertEmpty(actual, msg) {
-    if (ngDevMode || actual == null) {
+    if (actual == null) {
         throwError(msg, typeof actual, 'NULL', '==');
     }
 }
