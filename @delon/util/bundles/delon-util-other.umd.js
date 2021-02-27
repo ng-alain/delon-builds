@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('@angular/core'), require('ng-zorro-antd/core/environments'), require('@angular/common'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/other', ['exports', 'extend', '@angular/core', 'ng-zorro-antd/core/environments', '@angular/common', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.other = {}), global.extend, global.ng.core, global.environments, global.ng.common, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, extend, i0, environments, i1, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/other', ['exports', 'extend', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.other = {}), global.extend, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators));
+}(this, (function (exports, extend, i1, i0, rxjs, operators) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -423,7 +423,7 @@
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        if (environments.environment.isTestMode || (i0.isDevMode() && notRecorded.apply(void 0, __spread(args)))) {
+        if (ngDevMode && notRecorded.apply(void 0, __spread(args))) {
             consoleFunc.apply(void 0, __spread(args));
         }
     }
@@ -449,7 +449,7 @@
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (!environments.environment.isTestMode) {
+        if (!ngDevMode) {
             var stack_1 = new Error().stack;
             return consoleCommonBehavior.apply(void 0, __spread([function () {
                     var arg = [];
@@ -469,7 +469,7 @@
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (i0.isDevMode()) {
+        if (ngDevMode) {
             console.log.apply(console, __spread([PREFIX], args));
         }
     };
@@ -597,7 +597,7 @@
     ]; };
 
     function throwError(msg, actual, expected, comparison) {
-        if (i0.isDevMode()) {
+        if (ngDevMode) {
             throw new Error("ASSERTION ERROR: " + msg + (comparison == null ? '' : " [Expected=> " + expected + " " + comparison + " " + actual + " <=Actual]"));
         }
     }
@@ -617,7 +617,7 @@
      * 断言是否空值（`null` 或 `undefined`）
      */
     function assertEmpty(actual, msg) {
-        if (actual == null) {
+        if (ngDevMode || actual == null) {
             throwError(msg, typeof actual, 'NULL', '==');
         }
     }

@@ -1,7 +1,6 @@
 import extend from 'extend';
-import { isDevMode, ɵɵdefineInjectable, ɵɵinject, Injectable, Inject } from '@angular/core';
-import { environment } from 'ng-zorro-antd/core/environments';
 import { DOCUMENT } from '@angular/common';
+import { ɵɵdefineInjectable, ɵɵinject, Injectable, Inject } from '@angular/core';
 import { BehaviorSubject, isObservable } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
 
@@ -90,7 +89,7 @@ function notRecorded(...args) {
     }
 }
 function consoleCommonBehavior(consoleFunc, ...args) {
-    if (environment.isTestMode || (isDevMode() && notRecorded(...args))) {
+    if (ngDevMode && notRecorded(...args)) {
         consoleFunc(...args);
     }
 }
@@ -100,7 +99,7 @@ const deprecation11 = (comp, from, to) => {
     warnDeprecation(`${comp} => '${from}' is going to be removed in 11.0.0${to ? `, Please use '${to}' instead` : ``}.`);
 };
 const warnDeprecation = (...args) => {
-    if (!environment.isTestMode) {
+    if (!ngDevMode) {
         const stack = new Error().stack;
         return consoleCommonBehavior((...arg) => console.warn(PREFIX, 'deprecated:', ...arg, stack), ...args);
     }
@@ -110,7 +109,7 @@ const warnDeprecation = (...args) => {
 };
 // Log should only be printed in dev mode.
 const log = (...args) => {
-    if (isDevMode()) {
+    if (ngDevMode) {
         console.log(PREFIX, ...args);
     }
 };
@@ -229,7 +228,7 @@ LazyService.ctorParameters = () => [
 ];
 
 function throwError(msg, actual, expected, comparison) {
-    if (isDevMode()) {
+    if (ngDevMode) {
         throw new Error(`ASSERTION ERROR: ${msg}` + (comparison == null ? '' : ` [Expected=> ${expected} ${comparison} ${actual} <=Actual]`));
     }
 }
@@ -249,7 +248,7 @@ function assert(expression, msg) {
  * 断言是否空值（`null` 或 `undefined`）
  */
 function assertEmpty(actual, msg) {
-    if (actual == null) {
+    if (ngDevMode || actual == null) {
         throwError(msg, typeof actual, 'NULL', '==');
     }
 }
