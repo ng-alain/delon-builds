@@ -46,9 +46,33 @@ function removeAjvLib(context) {
         utils_1.logInfo(context, `Remove ajv lib`);
     }));
 }
+function removeQriousLib(context) {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+        workspace.projects.forEach(project => {
+            [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_TEST].forEach(targetName => {
+                var _a, _b;
+                const targetOptions = (_b = (_a = project.targets) === null || _a === void 0 ? void 0 : _a.get(targetName)) === null || _b === void 0 ? void 0 : _b.options;
+                if (!targetOptions) {
+                    return;
+                }
+                // options
+                const scripts = targetOptions.scripts;
+                const removePath = `node_modules/qrious/dist/qrious.min.js`;
+                if (Array.isArray(scripts)) {
+                    const idx = scripts.findIndex(w => w === removePath);
+                    if (idx !== -1) {
+                        scripts.splice(idx, 1);
+                    }
+                }
+            });
+        });
+        utils_1.logInfo(context, `Remove qrious lib`);
+    }));
+}
 function v117Rule() {
-    return (_tree, context) => __awaiter(this, void 0, void 0, function* () {
-        return schematics_1.chain([versions_1.UpgradeDelonVersions(), removeAjvLib(context)]);
+    return (tree, context) => __awaiter(this, void 0, void 0, function* () {
+        utils_1.removePackage(tree, ['qrious', 'ajv'], 'dependencies');
+        return schematics_1.chain([versions_1.UpgradeDelonVersions(), removeAjvLib(context), removeQriousLib(context)]);
     });
 }
 exports.v117Rule = v117Rule;
