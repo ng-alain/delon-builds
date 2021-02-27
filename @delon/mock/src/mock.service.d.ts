@@ -1,10 +1,10 @@
 import { OnDestroy } from '@angular/core';
 import { AlainConfigService, AlainMockConfig } from '@delon/util/config';
-import { MockCachedRule, MockRule } from './interface';
+import { MockCachedRule, MockOptions, MockRule } from './interface';
 export declare class MockService implements OnDestroy {
     private cached;
     readonly config: AlainMockConfig;
-    constructor(cogSrv: AlainConfigService);
+    constructor(cogSrv: AlainConfigService, options: MockOptions);
     /**
      * Reset request data
      *

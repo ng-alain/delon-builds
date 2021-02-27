@@ -9,6 +9,12 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.i1, global.ng.common.http, global.other, global.rxjs, global.rxjs.operators));
 }(this, (function (exports, i0, i1, http, other, rxjs, operators) { 'use strict';
 
+    var MockOptions = /** @class */ (function () {
+        function MockOptions() {
+        }
+        return MockOptions;
+    }());
+
     var MockStatusError = /** @class */ (function () {
         function MockStatusError(status, error) {
             this.status = status;
@@ -26,10 +32,10 @@
     };
 
     var MockService = /** @class */ (function () {
-        function MockService(cogSrv) {
+        function MockService(cogSrv, options) {
             this.cached = [];
             this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
-            this.setData(this.config.data);
+            this.setData((options === null || options === void 0 ? void 0 : options.data) || this.config.data);
         }
         /**
          * Reset request data
@@ -162,13 +168,14 @@
         };
         return MockService;
     }());
-    /** @nocollapse */ MockService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(i0.ɵɵinject(i1.AlainConfigService)); }, token: MockService, providedIn: "root" });
+    /** @nocollapse */ MockService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
     MockService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
     MockService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService }
+        { type: i1.AlainConfigService },
+        { type: MockOptions }
     ]; };
 
     var HttpMockInterceptorHandler = /** @class */ (function () {
@@ -279,10 +286,13 @@
     var DelonMockModule = /** @class */ (function () {
         function DelonMockModule() {
         }
-        DelonMockModule.forRoot = function () {
+        DelonMockModule.forRoot = function (options) {
             return {
                 ngModule: DelonMockModule,
-                providers: [{ provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
+                providers: [
+                    { provide: MockOptions, useValue: options },
+                    { provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
+                ],
             };
         };
         DelonMockModule.forChild = function () {
@@ -303,6 +313,7 @@
 
     exports.DelonMockModule = DelonMockModule;
     exports.MockInterceptor = MockInterceptor;
+    exports.MockOptions = MockOptions;
     exports.MockService = MockService;
     exports.MockStatusError = MockStatusError;
 

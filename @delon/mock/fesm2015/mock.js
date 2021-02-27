@@ -5,6 +5,9 @@ import { deepCopy } from '@delon/util/other';
 import { throwError, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
+class MockOptions {
+}
+
 class MockStatusError {
     constructor(status, error) {
         this.status = status;
@@ -21,10 +24,10 @@ const MOCK_DEFULAT_CONFIG = {
 };
 
 class MockService {
-    constructor(cogSrv) {
+    constructor(cogSrv, options) {
         this.cached = [];
         this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
-        this.setData(this.config.data);
+        this.setData((options === null || options === void 0 ? void 0 : options.data) || this.config.data);
     }
     /**
      * Reset request data
@@ -151,13 +154,14 @@ class MockService {
         this.clearCache();
     }
 }
-/** @nocollapse */ MockService.ɵprov = ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(ɵɵinject(AlainConfigService)); }, token: MockService, providedIn: "root" });
+/** @nocollapse */ MockService.ɵprov = ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(ɵɵinject(AlainConfigService), ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
 MockService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 MockService.ctorParameters = () => [
-    { type: AlainConfigService }
+    { type: AlainConfigService },
+    { type: MockOptions }
 ];
 
 class HttpMockInterceptorHandler {
@@ -264,10 +268,13 @@ MockInterceptor.ctorParameters = () => [
 ];
 
 class DelonMockModule {
-    static forRoot() {
+    static forRoot(options) {
         return {
             ngModule: DelonMockModule,
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
+            providers: [
+                { provide: MockOptions, useValue: options },
+                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
+            ],
         };
     }
     static forChild() {
@@ -285,5 +292,5 @@ DelonMockModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { DelonMockModule, MockInterceptor, MockService, MockStatusError };
+export { DelonMockModule, MockInterceptor, MockOptions, MockService, MockStatusError };
 //# sourceMappingURL=mock.js.map

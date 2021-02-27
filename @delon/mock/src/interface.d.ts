@@ -1,4 +1,7 @@
 import { HttpRequest } from '@angular/common/http';
+export declare class MockOptions {
+    data?: any;
+}
 export interface MockCachedRule {
     [key: string]: any;
     method: string;
