@@ -29,9 +29,18 @@
         function MockService(cogSrv) {
             this.cached = [];
             this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
+            this.setData(this.config.data);
+        }
+        /**
+         * Reset request data
+         *
+         * 重新设置请求数据
+         */
+        MockService.prototype.setData = function (data) {
+            this.config.data = data;
             this.applyMock();
             delete this.config.data;
-        }
+        };
         // #region parse rule
         MockService.prototype.applyMock = function () {
             this.cached = [];

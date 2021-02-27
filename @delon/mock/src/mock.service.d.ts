@@ -5,6 +5,12 @@ export declare class MockService implements OnDestroy {
     private cached;
     readonly config: AlainMockConfig;
     constructor(cogSrv: AlainConfigService);
+    /**
+     * Reset request data
+     *
+     * 重新设置请求数据
+     */
+    setData(data: any): void;
     private applyMock;
     private realApplyMock;
     private genRule;
