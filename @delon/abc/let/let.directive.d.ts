@@ -7,6 +7,6 @@ export declare class LetContext<T> {
 }
 export declare class LetDirective<T> {
     let: T;
-    constructor(viewContainer: ViewContainerRef, ref: TemplateRef<LetContext<T>>);
+    constructor(vc: ViewContainerRef, ref: TemplateRef<LetContext<T>>);
     static ngTemplateContextGuard<T>(_dir: LetDirective<T>, _ctx: any): _ctx is LetDirective<T>;
 }

@@ -17,7 +17,9 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges, On
     avatarSize: NzSizeLDSType;
     set size(value: 'large' | 'small' | 'mini' | 'default');
     maxLength: number;
-    excessItemsStyle: {};
+    excessItemsStyle: {
+        [klass: string]: any;
+    };
     constructor(cdr: ChangeDetectorRef, directionality: Directionality);
     private gen;
     ngAfterViewInit(): void;

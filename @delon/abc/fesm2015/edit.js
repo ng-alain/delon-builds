@@ -179,6 +179,9 @@ class SEComponent {
         this.isBindModel = false;
         this.invalid = false;
         this._labelWidth = null;
+        // #region fields
+        this.optional = null;
+        this.optionalHelp = null;
         this.required = false;
         this.controlClass = '';
         this._id = `_se-${++nextUniqueId}`;

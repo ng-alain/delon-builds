@@ -12,8 +12,8 @@ class LetContext {
     }
 }
 class LetDirective {
-    constructor(viewContainer, ref) {
-        viewContainer.createEmbeddedView(ref, new LetContext(this));
+    constructor(vc, ref) {
+        vc.createEmbeddedView(ref, new LetContext(this));
     }
     static ngTemplateContextGuard(_dir, _ctx) {
         return true;

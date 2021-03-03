@@ -48,8 +48,6 @@ class NoticeIconComponent {
         this.data = [];
         this.loading = false;
         this.popoverVisible = false;
-        this.btnClass = '';
-        this.btnIconClass = '';
         this.select = new EventEmitter();
         this.clear = new EventEmitter();
         this.popoverVisibleChange = new EventEmitter();

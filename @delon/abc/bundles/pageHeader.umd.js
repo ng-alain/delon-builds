@@ -338,6 +338,12 @@
             this.paths = [];
             this.loading = false;
             this.wide = false;
+            this.breadcrumb = null;
+            this.logo = null;
+            this.action = null;
+            this.content = null;
+            this.extra = null;
+            this.tab = null;
             this.isBrowser = platform.isBrowser;
             configSrv.attach(this, 'pageHeader', {
                 home: '首页',

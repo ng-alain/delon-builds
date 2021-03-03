@@ -356,8 +356,6 @@
             this.data = [];
             this.loading = false;
             this.popoverVisible = false;
-            this.btnClass = '';
-            this.btnIconClass = '';
             this.select = new core.EventEmitter();
             this.clear = new core.EventEmitter();
             this.popoverVisibleChange = new core.EventEmitter();

@@ -1,10 +1,11 @@
 import { TemplateRef } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { NumberInput } from '@delon/util/decorator';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class SVContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;
     static ngAcceptInputType_col: NumberInput;
+    static ngAcceptInputType_default: BooleanInput;
     title: string | TemplateRef<void>;
     size: 'small' | 'large';
     /** 列表项间距，单位为 `px` */

@@ -14,8 +14,12 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     count: number;
     loading: boolean;
     popoverVisible: boolean;
-    btnClass: string;
-    btnIconClass: string;
+    btnClass?: string | string[] | Set<string> | {
+        [klass: string]: any;
+    };
+    btnIconClass?: string | string[] | Set<string> | {
+        [klass: string]: any;
+    };
     readonly select: EventEmitter<NoticeIconSelect>;
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;

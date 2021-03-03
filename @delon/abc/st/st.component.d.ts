@@ -96,18 +96,18 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     set widthConfig(val: string[]);
     private _resizable;
     set resizable(val: STResizable | boolean | string);
-    header: string | TemplateRef<void>;
+    header?: string | TemplateRef<void> | null;
     showHeader: boolean;
-    footer: string | TemplateRef<void>;
-    bodyHeader: TemplateRef<STStatisticalResults>;
-    body: TemplateRef<STStatisticalResults>;
+    footer?: string | TemplateRef<void> | null;
+    bodyHeader?: TemplateRef<STStatisticalResults> | null;
+    body?: TemplateRef<STStatisticalResults> | null;
     expandRowByClick: boolean;
     expandAccordion: boolean;
     expand: TemplateRef<{
         $implicit: {};
         column: STColumn;
     }>;
-    noResult: string | TemplateRef<void>;
+    noResult?: string | TemplateRef<void> | null;
     rowClickTime: number;
     responsive: boolean;
     responsiveHideHeaderFooter: boolean;

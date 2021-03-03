@@ -5,8 +5,8 @@ export declare class DownFileDirective {
     private el;
     private _http;
     private isFileSaverSupported;
-    httpData: {};
-    httpBody: {};
+    httpData: any;
+    httpBody: any;
     httpMethod: string;
     httpUrl: string;
     fileName: string | ((rep: HttpResponse<Blob>) => string);

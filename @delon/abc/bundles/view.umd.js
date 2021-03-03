@@ -373,6 +373,10 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], SVContainerComponent.prototype, "col", void 0);
+    __decorate([
+        decorator.InputBoolean(),
+        __metadata("design:type", Boolean)
+    ], SVContainerComponent.prototype, "default", void 0);
 
     var SVTitleComponent = /** @class */ (function () {
         function SVTitleComponent(el, parent, ren) {

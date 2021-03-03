@@ -64,6 +64,10 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], SVContainerComponent.prototype, "col", void 0);
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Boolean)
+], SVContainerComponent.prototype, "default", void 0);
 
 class SVTitleComponent {
     constructor(el, parent, ren) {

@@ -15,7 +15,7 @@ export declare class SEContainerComponent {
     colInCon: REP_TYPE;
     col: REP_TYPE;
     labelWidth: number;
-    title: string | TemplateRef<void>;
+    title?: string | TemplateRef<void> | null;
     get gutter(): number | string;
     set gutter(value: number | string);
     private _gutter;
