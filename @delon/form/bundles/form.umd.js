@@ -1241,14 +1241,17 @@
     ];
     var AjvSchemaValidatorFactory = /** @class */ (function (_super) {
         __extends(AjvSchemaValidatorFactory, _super);
-        function AjvSchemaValidatorFactory(cogSrv) {
+        function AjvSchemaValidatorFactory(cogSrv, ngZone) {
             var _this = _super.call(this) || this;
+            _this.ngZone = ngZone;
             if (!(typeof document === 'object' && !!document)) {
                 return _this;
             }
             _this.options = mergeConfig(cogSrv);
             var customOptions = _this.options.ajv || {};
-            _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: format.REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: format.REGEX.color, mobile: format.REGEX.mobile, 'id-card': format.REGEX.idCard }, customOptions.formats) }));
+            _this.ngZone.runOutsideAngular(function () {
+                _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: format.REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: format.REGEX.color, mobile: format.REGEX.mobile, 'id-card': format.REGEX.idCard }, customOptions.formats) }));
+            });
             return _this;
         }
         AjvSchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) {
@@ -1256,7 +1259,7 @@
             var ingoreKeywords = __spread(this.options.ingoreKeywords, (extraOptions.ingoreKeywords || []));
             return function (value) {
                 try {
-                    _this.ajv.validate(schema, value);
+                    _this.ngZone.runOutsideAngular(function () { return _this.ajv.validate(schema, value); });
                 }
                 catch (e) {
                     // swallow errors thrown in ajv due to invalid schemas, these
@@ -1279,7 +1282,8 @@
     ];
     /** @nocollapse */
     AjvSchemaValidatorFactory.ctorParameters = function () { return [
-        { type: config.AlainConfigService, decorators: [{ type: core.Inject, args: [config.AlainConfigService,] }] }
+        { type: config.AlainConfigService, decorators: [{ type: core.Inject, args: [config.AlainConfigService,] }] },
+        { type: core.NgZone }
     ]; };
 
     var WidgetRegistry = /** @class */ (function () {
@@ -1631,6 +1635,7 @@
             // cond
             resolveIfSchema(_schema, this._ui);
             this._schema = _schema;
+            delete _schema.ui;
             di(this._ui, 'cover schema & ui', this._ui, _schema);
         };
         SFComponent.prototype.coverButtonProperty = function () {
@@ -3621,7 +3626,7 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
-                        deps: [config.AlainConfigService],
+                        deps: [config.AlainConfigService, core.NgZone],
                     },
                     { provide: WidgetRegistry, useClass: NzWidgetRegistry },
                 ],
