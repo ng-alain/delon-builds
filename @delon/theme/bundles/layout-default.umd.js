@@ -625,19 +625,16 @@
           }
       };
       LayoutDefaultNavComponent.prototype.showSubMenu = function (e, item) {
-          var _this = this;
           if (this.collapsed !== true) {
               return;
           }
-          this.ngZone.runOutsideAngular(function () {
-              e.preventDefault();
-              var linkNode = e.target;
-              _this.genFloating();
-              var subNode = _this.genSubNode(linkNode, item);
-              _this.hideAll();
-              subNode.classList.add(SHOWCLS);
-              _this.calPos(linkNode, subNode);
-          });
+          e.preventDefault();
+          var linkNode = e.target;
+          this.genFloating();
+          var subNode = this.genSubNode(linkNode, item);
+          this.hideAll();
+          subNode.classList.add(SHOWCLS);
+          this.calPos(linkNode, subNode);
       };
       LayoutDefaultNavComponent.prototype.to = function (item) {
           var _this = this;
@@ -819,6 +816,12 @@
       decorator.InputNumber(),
       __metadata("design:type", Object)
   ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
+  __decorate([
+      decorator.ZoneOutside(),
+      __metadata("design:type", Function),
+      __metadata("design:paramtypes", [MouseEvent, Object]),
+      __metadata("design:returntype", void 0)
+  ], LayoutDefaultNavComponent.prototype, "showSubMenu", null);
 
   var COMPONENTS = [
       LayoutDefaultComponent,

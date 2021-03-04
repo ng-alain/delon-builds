@@ -1,6 +1,8 @@
+import { __decorate, __metadata } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { ɵɵdefineInjectable, ɵɵinject, NgZone, Injectable, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
+import { ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
@@ -29,23 +31,21 @@ class ZipService {
                 this.ngZone.run(() => resolve(data));
             };
             this.init().then(() => {
-                this.ngZone.runOutsideAngular(() => {
-                    // from url
-                    if (typeof fileOrUrl === 'string') {
-                        this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                            JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
-                        }, (err) => {
-                            reject(err);
-                        });
-                        return;
-                    }
-                    // from file
-                    const reader = new FileReader();
-                    reader.onload = (e) => {
-                        JSZip.loadAsync(e.target.result, options).then((ret) => resolveCallback(ret));
-                    };
-                    reader.readAsBinaryString(fileOrUrl);
-                });
+                // from url
+                if (typeof fileOrUrl === 'string') {
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
+                        JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
+                    }, (err) => {
+                        reject(err);
+                    });
+                    return;
+                }
+                // from file
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    JSZip.loadAsync(e.target.result, options).then((ret) => resolveCallback(ret));
+                };
+                reader.readAsBinaryString(fileOrUrl);
             });
         });
     }
@@ -107,6 +107,12 @@ ZipService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: NgZone }
 ];
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, Object]),
+    __metadata("design:returntype", Promise)
+], ZipService.prototype, "read", null);
 
 class ZipModule {
 }

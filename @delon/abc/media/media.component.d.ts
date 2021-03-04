@@ -8,7 +8,7 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private el;
     private renderer;
     private srv;
-    private ngZone;
+    ngZone: NgZone;
     private platform;
     static ngAcceptInputType_delay: NumberInput;
     private _p;

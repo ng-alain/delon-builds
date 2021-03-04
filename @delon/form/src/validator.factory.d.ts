@@ -1,4 +1,3 @@
-import { NgZone } from '@angular/core';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import Ajv from 'ajv';
 import { ErrorData } from './errors';
@@ -11,10 +10,9 @@ export declare abstract class SchemaValidatorFactory {
     }): (value: SFValue) => ErrorData[];
 }
 export declare class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
-    private ngZone;
     protected ajv: Ajv;
     protected options: AlainSFConfig;
-    constructor(cogSrv: AlainConfigService, ngZone: NgZone);
+    constructor(cogSrv: AlainConfigService);
     createValidatorFn(schema: SFSchema, extraOptions: {
         ingoreKeywords: string[];
         debug: boolean;

@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { ɵɵdefineInjectable, ɵɵinject, Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
-import { InputNumber } from '@delon/util/decorator';
+import { InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
@@ -67,9 +67,7 @@ class MediaComponent {
         return this._p;
     }
     initDelay() {
-        this.ngZone.runOutsideAngular(() => {
-            this.time = setTimeout(() => this.init(), this.delay);
-        });
+        this.time = setTimeout(() => this.init(), this.delay);
     }
     init() {
         if (!window.Plyr) {
@@ -150,6 +148,12 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], MediaComponent.prototype, "delay", void 0);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], MediaComponent.prototype, "initDelay", null);
 
 const COMPONENTS = [MediaComponent];
 class MediaModule {

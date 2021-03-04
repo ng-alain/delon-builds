@@ -411,7 +411,7 @@
                 _this.loaded = true;
                 _this.cdr.detectChanges();
             });
-            this.ngZone.runOutsideAngular(function () { return setTimeout(function () { return _this.install(); }, _this.delay); });
+            setTimeout(function () { return _this.install(); }, this.delay);
         };
         G2BaseComponent.prototype.ngOnInit = function () {
             if (!this.platform.isBrowser) {
@@ -430,16 +430,18 @@
             this.onChanges();
             this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
         };
+        G2BaseComponent.prototype.destroyChart = function () {
+            if (this._chart) {
+                this._chart.destroy();
+            }
+        };
         G2BaseComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
             if (this.resize$) {
                 this.resize$.unsubscribe();
             }
             this.destroy$.next();
             this.destroy$.complete();
-            if (this._chart) {
-                this.ngZone.runOutsideAngular(function () { return _this._chart.destroy(); });
-            }
+            this.destroyChart();
         };
         return G2BaseComponent;
     }());
@@ -463,6 +465,18 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], G2BaseComponent.prototype, "delay", void 0);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], G2BaseComponent.prototype, "load", null);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], G2BaseComponent.prototype, "destroyChart", null);
 
     /**
      * Generated bundle index. Do not edit.

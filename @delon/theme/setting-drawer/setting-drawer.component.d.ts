@@ -8,10 +8,11 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     private msg;
     private settingSrv;
     private lazy;
-    private zone;
+    private ngZone;
     private doc;
     private directionality;
     autoApplyColor: boolean;
+    compilingText: string;
     devTips: string;
     private loadedLess;
     private destroy$;
@@ -25,7 +26,7 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
         key: string;
         color: string;
     }[];
-    constructor(cdr: ChangeDetectorRef, msg: NzMessageService, settingSrv: SettingsService, lazy: LazyService, zone: NgZone, doc: any, directionality: Directionality);
+    constructor(cdr: ChangeDetectorRef, msg: NzMessageService, settingSrv: SettingsService, lazy: LazyService, ngZone: NgZone, doc: any, directionality: Directionality);
     private get cachedData();
     private get DEFAULT_PRIMARY();
     ngOnInit(): void;

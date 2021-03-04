@@ -390,9 +390,7 @@
         });
         MediaComponent.prototype.initDelay = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(function () {
-                _this.time = setTimeout(function () { return _this.init(); }, _this.delay);
-            });
+            this.time = setTimeout(function () { return _this.init(); }, this.delay);
         };
         MediaComponent.prototype.init = function () {
             var _this = this;
@@ -475,6 +473,12 @@
         decorator.InputNumber(),
         __metadata("design:type", Object)
     ], MediaComponent.prototype, "delay", void 0);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], MediaComponent.prototype, "initDelay", null);
 
     var COMPONENTS = [MediaComponent];
     var MediaModule = /** @class */ (function () {
