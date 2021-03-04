@@ -546,16 +546,15 @@
     };
 
     var SettingDrawerComponent = /** @class */ (function () {
-        function SettingDrawerComponent(cdr, msg, settingSrv, lazy, ngZone, doc, directionality) {
+        function SettingDrawerComponent(cdr, msg, settingSrv, lazy, zone, doc, directionality) {
             this.cdr = cdr;
             this.msg = msg;
             this.settingSrv = settingSrv;
             this.lazy = lazy;
-            this.ngZone = ngZone;
+            this.zone = zone;
             this.doc = doc;
             this.directionality = directionality;
             this.autoApplyColor = true;
-            this.compilingText = 'Compiling...';
             this.devTips = "When the color can't be switched, you need to run it once: npm run color-less";
             this.loadedLess = false;
             this.destroy$ = new rxjs.Subject();
@@ -633,14 +632,16 @@
         };
         SettingDrawerComponent.prototype.runLess = function () {
             var _this = this;
-            var _b = this, ngZone = _b.ngZone, msg = _b.msg, cdr = _b.cdr;
-            var msgId = msg.loading(this.compilingText, { nzDuration: 0 }).messageId;
+            var _b = this, zone = _b.zone, msg = _b.msg, cdr = _b.cdr;
+            var msgId = msg.loading("\u6B63\u5728\u7F16\u8BD1\u4E3B\u9898\uFF01", { nzDuration: 0 }).messageId;
             setTimeout(function () {
-                _this.loadLess().then(function () {
-                    window.less.modifyVars(_this.genVars()).then(function () {
-                        msg.success('成功');
-                        msg.remove(msgId);
-                        ngZone.run(function () { return cdr.detectChanges(); });
+                zone.runOutsideAngular(function () {
+                    _this.loadLess().then(function () {
+                        window.less.modifyVars(_this.genVars()).then(function () {
+                            msg.success('成功');
+                            msg.remove(msgId);
+                            zone.run(function () { return cdr.detectChanges(); });
+                        });
                     });
                 });
             }, 200);
@@ -727,25 +728,12 @@
     ]; };
     SettingDrawerComponent.propDecorators = {
         autoApplyColor: [{ type: core.Input }],
-        compilingText: [{ type: core.Input }],
         devTips: [{ type: core.Input }]
     };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
     ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
-    __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Promise)
-    ], SettingDrawerComponent.prototype, "loadLess", null);
-    __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
-    ], SettingDrawerComponent.prototype, "runLess", null);
 
     var COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
     var SettingDrawerModule = /** @class */ (function () {

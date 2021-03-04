@@ -1,6 +1,6 @@
 import { __rest, __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { Injectable, Inject, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
+import { Injectable, Inject, NgZone, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
@@ -839,20 +839,23 @@ SchemaValidatorFactory.decorators = [
     { type: Injectable }
 ];
 class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
-    constructor(cogSrv) {
+    constructor(cogSrv, ngZone) {
         super();
+        this.ngZone = ngZone;
         if (!(typeof document === 'object' && !!document)) {
             return;
         }
         this.options = mergeConfig(cogSrv);
         const customOptions = this.options.ajv || {};
-        this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
+        this.ngZone.runOutsideAngular(() => {
+            this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
+        });
     }
     createValidatorFn(schema, extraOptions) {
         const ingoreKeywords = [...this.options.ingoreKeywords, ...(extraOptions.ingoreKeywords || [])];
         return (value) => {
             try {
-                this.ajv.validate(schema, value);
+                this.ngZone.runOutsideAngular(() => this.ajv.validate(schema, value));
             }
             catch (e) {
                 // swallow errors thrown in ajv due to invalid schemas, these
@@ -874,7 +877,8 @@ AjvSchemaValidatorFactory.decorators = [
 ];
 /** @nocollapse */
 AjvSchemaValidatorFactory.ctorParameters = () => [
-    { type: AlainConfigService, decorators: [{ type: Inject, args: [AlainConfigService,] }] }
+    { type: AlainConfigService, decorators: [{ type: Inject, args: [AlainConfigService,] }] },
+    { type: NgZone }
 ];
 
 class WidgetRegistry {
@@ -1202,6 +1206,7 @@ class SFComponent {
         // cond
         resolveIfSchema(_schema, this._ui);
         this._schema = _schema;
+        delete _schema.ui;
         di(this._ui, 'cover schema & ui', this._ui, _schema);
     }
     coverButtonProperty() {
@@ -2992,7 +2997,7 @@ class DelonFormModule {
                 {
                     provide: SchemaValidatorFactory,
                     useClass: AjvSchemaValidatorFactory,
-                    deps: [AlainConfigService],
+                    deps: [AlainConfigService, NgZone],
                 },
                 { provide: WidgetRegistry, useClass: NzWidgetRegistry },
             ],

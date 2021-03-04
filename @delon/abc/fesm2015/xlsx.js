@@ -1,8 +1,7 @@
-import { __awaiter, __decorate, __metadata } from 'tslib';
+import { __awaiter } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import { ɵɵdefineInjectable, ɵɵinject, NgZone, Injectable, Directive, Input, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
@@ -23,22 +22,24 @@ class XlsxService {
     }
     read(data, options) {
         const ret = {};
-        if (options.type === 'binary') {
-            const buf = new Uint8Array(data);
-            if (!isUtf8(buf)) {
-                try {
-                    data = cptable.utils.decode(936, buf);
-                    options.type = 'string';
-                }
-                catch (_a) {
-                    options.type = 'array';
+        this.ngZone.runOutsideAngular(() => {
+            if (options.type === 'binary') {
+                const buf = new Uint8Array(data);
+                if (!isUtf8(buf)) {
+                    try {
+                        data = cptable.utils.decode(936, buf);
+                        options.type = 'string';
+                    }
+                    catch (_a) {
+                        options.type = 'array';
+                    }
                 }
             }
-        }
-        const wb = XLSX.read(data, options);
-        wb.SheetNames.forEach((name) => {
-            const sheet = wb.Sheets[name];
-            ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            const wb = XLSX.read(data, options);
+            wb.SheetNames.forEach((name) => {
+                const sheet = wb.Sheets[name];
+                ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            });
         });
         return ret;
     }
@@ -70,23 +71,25 @@ class XlsxService {
             return new Promise((resolve, reject) => {
                 this.init()
                     .then(() => {
-                    const wb = XLSX.utils.book_new();
-                    if (Array.isArray(options.sheets)) {
-                        options.sheets.forEach((value, index) => {
-                            const ws = XLSX.utils.aoa_to_sheet(value.data);
-                            XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
-                        });
-                    }
-                    else {
-                        wb.SheetNames = Object.keys(options.sheets);
-                        wb.Sheets = options.sheets;
-                    }
-                    if (options.callback)
-                        options.callback(wb);
-                    const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                    const filename = options.filename || 'export.xlsx';
-                    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
-                    resolve({ filename, wb });
+                    this.ngZone.runOutsideAngular(() => {
+                        const wb = XLSX.utils.book_new();
+                        if (Array.isArray(options.sheets)) {
+                            options.sheets.forEach((value, index) => {
+                                const ws = XLSX.utils.aoa_to_sheet(value.data);
+                                XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                            });
+                        }
+                        else {
+                            wb.SheetNames = Object.keys(options.sheets);
+                            wb.Sheets = options.sheets;
+                        }
+                        if (options.callback)
+                            options.callback(wb);
+                        const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                        const filename = options.filename || 'export.xlsx';
+                        saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                        resolve({ filename, wb });
+                    });
                 })
                     .catch(err => reject(err));
             });
@@ -120,18 +123,6 @@ XlsxService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: NgZone }
 ];
-__decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Object)
-], XlsxService.prototype, "read", null);
-__decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], XlsxService.prototype, "export", null);
 
 class XlsxDirective {
     constructor(srv) {

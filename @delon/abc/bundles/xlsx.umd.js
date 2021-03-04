@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('file-saver'), require('isutf8'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'file-saver', 'isutf8', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.i3, global.decorator, global.i2, global.saveAs, global.isUtf8, global.ng.common));
-}(this, (function (exports, i1, i0, i3, decorator, i2, fileSaver, isUtf8, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('file-saver'), require('isutf8'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', '@delon/util/other', 'file-saver', 'isutf8', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.i3, global.i2, global.saveAs, global.isUtf8, global.ng.common));
+}(this, (function (exports, i1, i0, i3, i2, fileSaver, isUtf8, common) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -337,22 +337,24 @@
         };
         XlsxService.prototype.read = function (data, options) {
             var ret = {};
-            if (options.type === 'binary') {
-                var buf = new Uint8Array(data);
-                if (!isUtf8__default['default'](buf)) {
-                    try {
-                        data = cptable.utils.decode(936, buf);
-                        options.type = 'string';
-                    }
-                    catch (_a) {
-                        options.type = 'array';
+            this.ngZone.runOutsideAngular(function () {
+                if (options.type === 'binary') {
+                    var buf = new Uint8Array(data);
+                    if (!isUtf8__default['default'](buf)) {
+                        try {
+                            data = cptable.utils.decode(936, buf);
+                            options.type = 'string';
+                        }
+                        catch (_a) {
+                            options.type = 'array';
+                        }
                     }
                 }
-            }
-            var wb = XLSX.read(data, options);
-            wb.SheetNames.forEach(function (name) {
-                var sheet = wb.Sheets[name];
-                ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                var wb = XLSX.read(data, options);
+                wb.SheetNames.forEach(function (name) {
+                    var sheet = wb.Sheets[name];
+                    ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                });
             });
             return ret;
         };
@@ -388,23 +390,25 @@
                     return [2 /*return*/, new Promise(function (resolve, reject) {
                             _this.init()
                                 .then(function () {
-                                var wb = XLSX.utils.book_new();
-                                if (Array.isArray(options.sheets)) {
-                                    options.sheets.forEach(function (value, index) {
-                                        var ws = XLSX.utils.aoa_to_sheet(value.data);
-                                        XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
-                                    });
-                                }
-                                else {
-                                    wb.SheetNames = Object.keys(options.sheets);
-                                    wb.Sheets = options.sheets;
-                                }
-                                if (options.callback)
-                                    options.callback(wb);
-                                var wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                                var filename = options.filename || 'export.xlsx';
-                                fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
-                                resolve({ filename: filename, wb: wb });
+                                _this.ngZone.runOutsideAngular(function () {
+                                    var wb = XLSX.utils.book_new();
+                                    if (Array.isArray(options.sheets)) {
+                                        options.sheets.forEach(function (value, index) {
+                                            var ws = XLSX.utils.aoa_to_sheet(value.data);
+                                            XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
+                                        });
+                                    }
+                                    else {
+                                        wb.SheetNames = Object.keys(options.sheets);
+                                        wb.Sheets = options.sheets;
+                                    }
+                                    if (options.callback)
+                                        options.callback(wb);
+                                    var wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
+                                    var filename = options.filename || 'export.xlsx';
+                                    fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                                    resolve({ filename: filename, wb: wb });
+                                });
                             })
                                 .catch(function (err) { return reject(err); });
                         })];
@@ -440,18 +444,6 @@
         { type: i3.AlainConfigService },
         { type: i0.NgZone }
     ]; };
-    __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object, Object]),
-        __metadata("design:returntype", Object)
-    ], XlsxService.prototype, "read", null);
-    __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
-        __metadata("design:returntype", Promise)
-    ], XlsxService.prototype, "export", null);
 
     var XlsxDirective = /** @class */ (function () {
         function XlsxDirective(srv) {

@@ -27,6 +27,5 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     private load;
     ngOnInit(): void;
     ngOnChanges(): void;
-    private destroyChart;
     ngOnDestroy(): void;
 }

@@ -13,7 +13,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 class LayoutDefaultHeaderItemComponent {
     constructor() {
@@ -346,13 +346,15 @@ class LayoutDefaultNavComponent {
         if (this.collapsed !== true) {
             return;
         }
-        e.preventDefault();
-        const linkNode = e.target;
-        this.genFloating();
-        const subNode = this.genSubNode(linkNode, item);
-        this.hideAll();
-        subNode.classList.add(SHOWCLS);
-        this.calPos(linkNode, subNode);
+        this.ngZone.runOutsideAngular(() => {
+            e.preventDefault();
+            const linkNode = e.target;
+            this.genFloating();
+            const subNode = this.genSubNode(linkNode, item);
+            this.hideAll();
+            subNode.classList.add(SHOWCLS);
+            this.calPos(linkNode, subNode);
+        });
     }
     to(item) {
         this.select.emit(item);
@@ -526,12 +528,6 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
-__decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [MouseEvent, Object]),
-    __metadata("design:returntype", void 0)
-], LayoutDefaultNavComponent.prototype, "showSubMenu", null);
 
 const COMPONENTS = [
     LayoutDefaultComponent,

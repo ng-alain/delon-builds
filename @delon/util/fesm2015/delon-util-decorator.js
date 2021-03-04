@@ -53,64 +53,9 @@ function InputNumber(defaultValue = 0) {
     return propDecoratorFactory('InputNumber', toNumber, defaultValue);
 }
 
-function makeFn(type, options) {
-    return (_, __, descriptor) => {
-        const source = descriptor.value;
-        descriptor.value = function (...data) {
-            const that = this;
-            const ngZone = that[(options === null || options === void 0 ? void 0 : options.ngZoneName) || 'ngZone'];
-            if (!ngZone) {
-                warn(`ZoneOutside: Decorator should have 'ngZone' property with 'NgZone' class.`);
-                return source.call(this, ...data);
-            }
-            let res;
-            ngZone[type](() => {
-                console.log('in runOutsideAngular call');
-                res = source.call(this, ...data);
-            });
-            return res;
-        };
-        return descriptor;
-    };
-}
-/**
- * The decoration method runs in `runOutsideAngular`
- *
- * 装饰方法运行在 `runOutsideAngular` 内
- *
- * ```ts
- * class MockClass {
- *  constructor(public ngZone: NgZone) {}
- *
- *  {AT}ZoneOutside()
- *  runOutsideAngular(): void {}
- * }
- * ```
- */
-function ZoneOutside(options) {
-    return makeFn('runOutsideAngular', options);
-}
-/**
- * The decoration method runs in `run`
- *
- * 装饰方法运行在 `run` 内
- *
- * ```ts
- * class MockClass {
- *  constructor(public ngZone: NgZone) {}
- *
- *  {AT}ZoneRun()
- *  run(): void {}
- * }
- * ```
- */
-function ZoneRun(options) {
-    return makeFn('run', options);
-}
-
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { InputBoolean, InputNumber, ZoneOutside, ZoneRun, toBoolean, toNumber };
+export { InputBoolean, InputNumber, toBoolean, toNumber };
 //# sourceMappingURL=delon-util-decorator.js.map

@@ -4,7 +4,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { SettingsService } from '@delon/theme';
 import { copy } from '@delon/util/browser';
-import { InputBoolean, ZoneOutside } from '@delon/util/decorator';
+import { InputBoolean } from '@delon/util/decorator';
 import { deepCopy, LazyService } from '@delon/util/other';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
@@ -244,16 +244,15 @@ const DEFAULT_VARS = {
 };
 
 class SettingDrawerComponent {
-    constructor(cdr, msg, settingSrv, lazy, ngZone, doc, directionality) {
+    constructor(cdr, msg, settingSrv, lazy, zone, doc, directionality) {
         this.cdr = cdr;
         this.msg = msg;
         this.settingSrv = settingSrv;
         this.lazy = lazy;
-        this.ngZone = ngZone;
+        this.zone = zone;
         this.doc = doc;
         this.directionality = directionality;
         this.autoApplyColor = true;
-        this.compilingText = 'Compiling...';
         this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
         this.loadedLess = false;
         this.destroy$ = new Subject();
@@ -319,14 +318,16 @@ class SettingDrawerComponent {
         return vars;
     }
     runLess() {
-        const { ngZone, msg, cdr } = this;
-        const msgId = msg.loading(this.compilingText, { nzDuration: 0 }).messageId;
+        const { zone, msg, cdr } = this;
+        const msgId = msg.loading(`正在编译主题！`, { nzDuration: 0 }).messageId;
         setTimeout(() => {
-            this.loadLess().then(() => {
-                window.less.modifyVars(this.genVars()).then(() => {
-                    msg.success('成功');
-                    msg.remove(msgId);
-                    ngZone.run(() => cdr.detectChanges());
+            zone.runOutsideAngular(() => {
+                this.loadLess().then(() => {
+                    window.less.modifyVars(this.genVars()).then(() => {
+                        msg.success('成功');
+                        msg.remove(msgId);
+                        zone.run(() => cdr.detectChanges());
+                    });
                 });
             });
         }, 200);
@@ -404,25 +405,12 @@ SettingDrawerComponent.ctorParameters = () => [
 ];
 SettingDrawerComponent.propDecorators = {
     autoApplyColor: [{ type: Input }],
-    compilingText: [{ type: Input }],
     devTips: [{ type: Input }]
 };
 __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
-__decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
-], SettingDrawerComponent.prototype, "loadLess", null);
-__decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], SettingDrawerComponent.prototype, "runLess", null);
 
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
 class SettingDrawerModule {
