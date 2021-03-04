@@ -1,15 +1,15 @@
+import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { isDevMode, Component, ChangeDetectionStrategy, Renderer2, Inject, Optional, Input, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 const ThemeBtnStorageKey = `site-theme`;
-class ThemeBtnComponent {
+let ThemeBtnComponent = class ThemeBtnComponent {
     constructor(renderer, configSrv, platform, doc, directionality) {
         this.renderer = renderer;
         this.configSrv = configSrv;
@@ -24,13 +24,12 @@ class ThemeBtnComponent {
             { key: 'compact', text: 'Compact Theme' },
         ];
         this.devTips = `When the dark.css file can't be found, you need to run it once: npm run theme`;
-        this.destroy$ = new Subject();
         this.dir = 'ltr';
     }
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
         this.initTheme();
@@ -72,10 +71,8 @@ class ThemeBtnComponent {
         if (this.el) {
             this.doc.body.removeChild(this.el);
         }
-        this.destroy$.next();
-        this.destroy$.complete();
     }
-}
+};
 ThemeBtnComponent.decorators = [
     { type: Component, args: [{
                 selector: 'theme-btn',
@@ -99,6 +96,12 @@ ThemeBtnComponent.propDecorators = {
     types: [{ type: Input }],
     devTips: [{ type: Input }]
 };
+ThemeBtnComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [Renderer2,
+        AlainConfigService,
+        Platform, Object, Directionality])
+], ThemeBtnComponent);
 
 const COMPONENTS = [ThemeBtnComponent];
 class ThemeBtnModule {

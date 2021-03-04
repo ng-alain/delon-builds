@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('@delon/util/decorator'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', '@delon/util/decorator', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators));
-}(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('rxjs/operators')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', '@delon/util/decorator', '@ngneat/until-destroy', 'rxjs/operators'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.untilDestroy, global.rxjs.operators));
+}(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, untilDestroy, operators) { 'use strict';
 
     var G2Service = /** @class */ (function () {
         function G2Service(cogSrv, lazySrv) {
@@ -380,7 +380,7 @@
         return value;
     }
 
-    var G2BaseComponent = /** @class */ (function () {
+    exports.G2BaseComponent = /** @class */ (function () {
         function G2BaseComponent(srv, el, ngZone, platform, cdr) {
             var _this = this;
             this.srv = srv;
@@ -388,12 +388,11 @@
             this.ngZone = ngZone;
             this.platform = platform;
             this.cdr = cdr;
-            this.destroy$ = new rxjs.Subject();
             this.loaded = false;
             this.delay = 0;
             this.theme = srv.cog.theme;
             this.srv.notify
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(function () { return !_this.loaded; }))
+                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function () { return !_this.loaded; }))
                 .subscribe(function () { return _this.load(); });
         }
         Object.defineProperty(G2BaseComponent.prototype, "chart", {
@@ -435,26 +434,24 @@
             if (this.resize$) {
                 this.resize$.unsubscribe();
             }
-            this.destroy$.next();
-            this.destroy$.complete();
             if (this._chart) {
                 this.ngZone.runOutsideAngular(function () { return _this._chart.destroy(); });
             }
         };
         return G2BaseComponent;
     }());
-    G2BaseComponent.decorators = [
+    exports.G2BaseComponent.decorators = [
         { type: i0.Directive }
     ];
     /** @nocollapse */
-    G2BaseComponent.ctorParameters = function () { return [
+    exports.G2BaseComponent.ctorParameters = function () { return [
         { type: G2Service },
         { type: i0.ElementRef },
         { type: i0.NgZone },
         { type: platform.Platform },
         { type: i0.ChangeDetectorRef }
     ]; };
-    G2BaseComponent.propDecorators = {
+    exports.G2BaseComponent.propDecorators = {
         node: [{ type: i0.ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: i0.Input }],
         theme: [{ type: i0.Input }]
@@ -462,13 +459,20 @@
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], G2BaseComponent.prototype, "delay", void 0);
+    ], exports.G2BaseComponent.prototype, "delay", void 0);
+    exports.G2BaseComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [G2Service,
+            i0.ElementRef,
+            i0.NgZone,
+            platform.Platform,
+            i0.ChangeDetectorRef])
+    ], exports.G2BaseComponent);
 
     /**
      * Generated bundle index. Do not edit.
      */
 
-    exports.G2BaseComponent = G2BaseComponent;
     exports.G2Service = G2Service;
 
     Object.defineProperty(exports, '__esModule', { value: true });

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, bidi, decorator, rxjs, operators, common, avatar, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util/decorator', '@ngneat/until-destroy', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.decorator, global.untilDestroy, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, decorator, untilDestroy, common, avatar, tooltip) { 'use strict';
 
     var AvatarListItemComponent = /** @class */ (function () {
         function AvatarListItemComponent() {
@@ -340,12 +340,11 @@
         return value;
     }
 
-    var AvatarListComponent = /** @class */ (function () {
+    exports.AvatarListComponent = /** @class */ (function () {
         function AvatarListComponent(cdr, directionality) {
             this.cdr = cdr;
             this.directionality = directionality;
             this.inited = false;
-            this.destroy$ = new rxjs.Subject();
             this.items = [];
             this.exceedCount = 0;
             this.dir = 'ltr';
@@ -383,7 +382,7 @@
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (direction) {
                 _this.dir = direction;
             });
             this.gen();
@@ -394,13 +393,9 @@
                 this.gen();
             }
         };
-        AvatarListComponent.prototype.ngOnDestroy = function () {
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return AvatarListComponent;
     }());
-    AvatarListComponent.decorators = [
+    exports.AvatarListComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'avatar-list',
                     exportAs: 'avatarList',
@@ -415,11 +410,11 @@
                 },] }
     ];
     /** @nocollapse */
-    AvatarListComponent.ctorParameters = function () { return [
+    exports.AvatarListComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
-    AvatarListComponent.propDecorators = {
+    exports.AvatarListComponent.propDecorators = {
         _items: [{ type: core.ContentChildren, args: [AvatarListItemComponent, { descendants: false },] }],
         size: [{ type: core.Input }],
         maxLength: [{ type: core.Input }],
@@ -428,9 +423,13 @@
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], AvatarListComponent.prototype, "maxLength", void 0);
+    ], exports.AvatarListComponent.prototype, "maxLength", void 0);
+    exports.AvatarListComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [core.ChangeDetectorRef, bidi.Directionality])
+    ], exports.AvatarListComponent);
 
-    var COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
+    var COMPONENTS = [exports.AvatarListComponent, AvatarListItemComponent];
     var AvatarListModule = /** @class */ (function () {
         function AvatarListModule() {
         }
@@ -448,7 +447,6 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.AvatarListComponent = AvatarListComponent;
     exports.AvatarListItemComponent = AvatarListItemComponent;
     exports.AvatarListModule = AvatarListModule;
 

@@ -2,7 +2,7 @@ import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Chart, Types } from '@antv/g2';
 import { NumberInput } from '@delon/util/decorator';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { G2Service } from './g2.servicce';
 export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDestroy {
     protected srv: G2Service;
@@ -13,7 +13,6 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     static ngAcceptInputType_delay: NumberInput;
     protected node: ElementRef;
     protected resize$: Subscription;
-    protected destroy$: Subject<void>;
     protected _chart: Chart;
     loaded: boolean;
     delay: number;

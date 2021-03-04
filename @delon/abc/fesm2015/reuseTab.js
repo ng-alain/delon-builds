@@ -7,8 +7,9 @@ import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { takeUntil, debounceTime, filter } from 'rxjs/operators';
+import { debounceTime, filter } from 'rxjs/operators';
 import { ScrollService } from '@delon/util/browser';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -767,7 +768,7 @@ ReuseTabService.ctorParameters = () => [
     { type: MenuService }
 ];
 
-class ReuseTabComponent {
+let ReuseTabComponent = class ReuseTabComponent {
     // #endregion
     constructor(srv, cdr, router, route, i18nSrv, doc) {
         this.srv = srv;
@@ -776,7 +777,6 @@ class ReuseTabComponent {
         this.route = route;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
-        this.unsubscribe$ = new Subject();
         this.updatePos$ = new Subject();
         this.list = [];
         this.pos = 0;
@@ -921,7 +921,7 @@ class ReuseTabComponent {
     }
     // #endregion
     ngOnInit() {
-        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(50)).subscribe(() => {
+        this.updatePos$.pipe(untilDestroyed(this), debounceTime(50)).subscribe(() => {
             const url = this.srv.getUrl(this.route.snapshot);
             const ls = this.list.filter(w => w.url === url || !this.srv.isExclude(w.url));
             if (ls.length === 0) {
@@ -939,7 +939,7 @@ class ReuseTabComponent {
             this.list = ls;
             this.cdr.detectChanges();
         });
-        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
+        this.srv.change.pipe(untilDestroyed(this)).subscribe(res => {
             var _a;
             switch (res === null || res === void 0 ? void 0 : res.active) {
                 case 'title':
@@ -955,7 +955,7 @@ class ReuseTabComponent {
             this.genList(res);
         });
         this.i18nSrv.change
-            .pipe(filter(() => this.srv.inited), takeUntil(this.unsubscribe$), debounceTime(100))
+            .pipe(filter(() => this.srv.inited), untilDestroyed(this), debounceTime(100))
             .subscribe(() => this.genList({ active: 'title' }));
         this.srv.init();
     }
@@ -975,12 +975,7 @@ class ReuseTabComponent {
         this.srv.debug = this.debug;
         this.cdr.detectChanges();
     }
-    ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
-    }
-}
+};
 ReuseTabComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab, [reuse-tab]',
@@ -1053,6 +1048,13 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], ReuseTabComponent.prototype, "disabled", void 0);
+ReuseTabComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [ReuseTabService,
+        ChangeDetectorRef,
+        Router,
+        ActivatedRoute, Object, Object])
+], ReuseTabComponent);
 
 class ReuseTabStrategy {
     constructor(srv) {

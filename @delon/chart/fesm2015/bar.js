@@ -2,8 +2,9 @@ import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
+import { untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent } from 'rxjs';
-import { takeUntil, filter, debounceTime } from 'rxjs/operators';
+import { filter, debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -91,7 +92,7 @@ class G2BarComponent extends G2BaseComponent {
         if (!this.autoLabel || this.resize$)
             return;
         this.resize$ = fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), filter(() => !!this._chart), debounceTime(200))
+            .pipe(untilDestroyed(this), filter(() => !!this._chart), debounceTime(200))
             .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
     }
 }

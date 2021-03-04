@@ -25,7 +25,6 @@ export declare class SidebarNavComponent implements OnInit, OnDestroy {
     static ngAcceptInputType_openStrictly: BooleanInput;
     static ngAcceptInputType_maxLevelIcon: NumberInput;
     private bodyEl;
-    private destroy$;
     private floatingEl;
     list: Nav[];
     dir: Direction;

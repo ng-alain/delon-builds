@@ -8,15 +8,16 @@ import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@d
 import { isEmpty } from '@delon/util/browser';
 import { AlainConfigService } from '@delon/util/config';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzAffixModule } from 'ng-zorro-antd/affix';
-import { Subject, merge } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { merge } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
-class PageHeaderComponent {
+let PageHeaderComponent = class PageHeaderComponent {
     // #endregion
     constructor(settings, renderer, router, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
         this.renderer = renderer;
@@ -27,7 +28,6 @@ class PageHeaderComponent {
         this.reuseSrv = reuseSrv;
         this.cdr = cdr;
         this.directionality = directionality;
-        this.destroy$ = new Subject();
         this.inited = false;
         this.isBrowser = true;
         this.dir = 'ltr';
@@ -53,10 +53,10 @@ class PageHeaderComponent {
             fixedOffsetTop: 64,
         });
         settings.notify
-            .pipe(takeUntil(this.destroy$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
+            .pipe(untilDestroyed(this), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));
         merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter(ev => ev instanceof NavigationEnd)), i18nSrv.change)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(untilDestroyed(this))
             .subscribe(() => this.refresh());
     }
     get menus() {
@@ -130,7 +130,7 @@ class PageHeaderComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
@@ -145,11 +145,7 @@ class PageHeaderComponent {
             this.refresh();
         }
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 PageHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'page-header',
@@ -228,6 +224,18 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Boolean)
 ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
+PageHeaderComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [SettingsService,
+        Renderer2,
+        Router,
+        MenuService, Object, TitleService,
+        ReuseTabService,
+        ChangeDetectorRef,
+        AlainConfigService,
+        Platform,
+        Directionality])
+], PageHeaderComponent);
 
 const COMPONENTS = [PageHeaderComponent];
 class PageHeaderModule {

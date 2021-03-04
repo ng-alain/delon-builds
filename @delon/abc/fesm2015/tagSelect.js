@@ -3,17 +3,15 @@ import { Directionality } from '@angular/cdk/bidi';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { InputBoolean } from '@delon/util/decorator';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-class TagSelectComponent {
+let TagSelectComponent = class TagSelectComponent {
     constructor(i18n, directionality, cdr) {
         this.i18n = i18n;
         this.directionality = directionality;
         this.cdr = cdr;
-        this.destroy$ = new Subject();
         this.locale = {};
         this.expand = false;
         this.dir = 'ltr';
@@ -24,10 +22,10 @@ class TagSelectComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
-        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        this.i18n.change.pipe(untilDestroyed(this)).subscribe(() => {
             this.locale = this.i18n.getData('tagSelect');
             this.cdr.detectChanges();
         });
@@ -36,11 +34,7 @@ class TagSelectComponent {
         this.expand = !this.expand;
         this.change.emit(this.expand);
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 TagSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'tag-select',
@@ -72,6 +66,10 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], TagSelectComponent.prototype, "expandable", void 0);
+TagSelectComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [DelonLocaleService, Directionality, ChangeDetectorRef])
+], TagSelectComponent);
 
 const COMPONENTS = [TagSelectComponent];
 class TagSelectModule {

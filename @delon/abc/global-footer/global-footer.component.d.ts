@@ -1,15 +1,14 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { OnDestroy, OnInit, QueryList } from '@angular/core';
+import { OnInit, QueryList } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
-export declare class GlobalFooterComponent implements OnInit, OnDestroy {
+export declare class GlobalFooterComponent implements OnInit {
     private router;
     private win;
     private dom;
     private directionality;
-    private destroy$;
     private _links;
     dir: Direction;
     set links(val: GlobalFooterLink[]);
@@ -18,5 +17,4 @@ export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     constructor(router: Router, win: any, dom: DomSanitizer, directionality: Directionality);
     to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
     ngOnInit(): void;
-    ngOnDestroy(): void;
 }

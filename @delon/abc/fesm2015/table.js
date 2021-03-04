@@ -6,13 +6,14 @@ import { warn, deepCopy, deepGet, deepMergeKey } from '@delon/util/other';
 import { DecimalPipe, DOCUMENT, CommonModule } from '@angular/common';
 import { HttpParams } from '@angular/common/http';
 import { CurrencyService } from '@delon/util/format';
-import { of, Subject, from, isObservable } from 'rxjs';
-import { map, takeUntil, filter } from 'rxjs/operators';
+import { of, from, isObservable } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
 import { __awaiter, __decorate, __metadata } from 'tslib';
 import { XlsxService } from '@delon/abc/xlsx';
 import { Router } from '@angular/router';
 import { AlainConfigService } from '@delon/util/config';
 import { toBoolean, InputNumber, InputBoolean } from '@delon/util/decorator';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzContextMenuService, NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { FormsModule } from '@angular/forms';
@@ -1029,7 +1030,7 @@ const ST_DEFAULT_CONFIG = {
     loadingDelay: 0,
 };
 
-class STComponent {
+let STComponent = class STComponent {
     constructor(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv, cms) {
         this.cdr = cdr;
         this.router = router;
@@ -1042,10 +1043,10 @@ class STComponent {
         this.dataSource = dataSource;
         this.delonI18n = delonI18n;
         this.cms = cms;
-        this.unsubscribe$ = new Subject();
         this.totalTpl = ``;
         this.rowClickCount = 0;
         this.customWidthConfig = false;
+        this.destroy = false;
         this._widthConfig = [];
         this.locale = {};
         this._loading = false;
@@ -1078,7 +1079,7 @@ class STComponent {
         this.virtualMinBufferPx = 100;
         this.virtualForTrackBy = index => index;
         this.setCog(configSrv.merge('st', ST_DEFAULT_CONFIG));
-        this.delonI18n.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.delonI18n.change.pipe(untilDestroyed(this)).subscribe(() => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
                 this.updateTotalTpl();
@@ -1086,7 +1087,7 @@ class STComponent {
             }
         });
         i18nSrv.change
-            .pipe(takeUntil(this.unsubscribe$), filter(() => this._columns.length > 0))
+            .pipe(untilDestroyed(this), filter(() => this._columns.length > 0))
             .subscribe(() => this.refreshColumns());
     }
     get req() {
@@ -1229,7 +1230,7 @@ class STComponent {
                 page, columns: this._columns, singleSort,
                 multiSort,
                 rowClassName, paginator: true }, options))
-                .pipe(takeUntil(this.unsubscribe$))
+                .pipe(untilDestroyed(this))
                 .subscribe(result => resolvePromise(result), error => {
                 console.warn('st.loadDate', error);
                 rejectPromise(error);
@@ -1265,8 +1266,8 @@ class STComponent {
                 return this._refCheck();
             }
             catch (error) {
-                this.setLoading(false);
-                if (!this.unsubscribe$.isStopped) {
+                if (!this.destroy) {
+                    this.setLoading(false);
                     this.cdr.detectChanges();
                     this.error.emit({ type: 'req', error });
                 }
@@ -1648,7 +1649,7 @@ class STComponent {
             column: this._columns[colIndex],
         });
         (isObservable(obs$) ? obs$ : of(obs$))
-            .pipe(takeUntil(this.unsubscribe$), filter(res => res.length > 0))
+            .pipe(untilDestroyed(this), filter(res => res.length > 0))
             .subscribe(res => {
             this.contextmenuList = res.map(i => {
                 if (!Array.isArray(i.children)) {
@@ -1735,11 +1736,9 @@ class STComponent {
         }
     }
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        this.destroy = true;
     }
-}
+};
 STComponent.decorators = [
     { type: Component, args: [{
                 selector: 'st',
@@ -1879,6 +1878,19 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], STComponent.prototype, "virtualMinBufferPx", void 0);
+STComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [Object, ChangeDetectorRef,
+        Router,
+        ElementRef,
+        STExport,
+        ModalHelper,
+        DrawerHelper, Object, STColumnSource,
+        STDataSource,
+        DelonLocaleService,
+        AlainConfigService,
+        NzContextMenuService])
+], STComponent);
 
 const COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
 class STModule {

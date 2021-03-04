@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('ajv'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('@delon/util/date-time'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs', 'rxjs/operators', '@delon/util/format', 'ajv', 'ng-zorro-antd/core/animation', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', '@delon/util/date-time', 'date-fns/format'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.config, global.decorator, global.other, global.rxjs, global.rxjs.operators, global.format, global.Ajv, global['ng-zorro-antd/core/animation'], global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.dateTime, global.format$1));
-}(this, (function (exports, platform, core, platformBrowser, acl, theme, config, decorator, other, rxjs, operators, format, Ajv, animation, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, dateTime, format$1) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@ngneat/until-destroy'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('ajv'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('@delon/util/date-time'), require('date-fns/format')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@ngneat/until-destroy', 'rxjs', 'rxjs/operators', '@delon/util/format', 'ajv', 'ng-zorro-antd/core/animation', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', '@delon/util/date-time', 'date-fns/format'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.config, global.decorator, global.other, global.untilDestroy, global.rxjs, global.rxjs.operators, global.format, global.Ajv, global['ng-zorro-antd/core/animation'], global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.dateTime, global.format$1));
+}(this, (function (exports, platform, core, platformBrowser, acl, theme, config, decorator, other, untilDestroy, rxjs, operators, format, Ajv, animation, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, dateTime, format$1) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -1341,7 +1341,7 @@
     function useFactory(schemaValidatorFactory, cogSrv) {
         return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
     }
-    var SFComponent = /** @class */ (function () {
+    exports.SFComponent = /** @class */ (function () {
         function SFComponent(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv, platform) {
             var _this = this;
             this.formPropertyFactory = formPropertyFactory;
@@ -1352,7 +1352,6 @@
             this.aclSrv = aclSrv;
             this.i18nSrv = i18nSrv;
             this.platform = platform;
-            this.unsubscribe$ = new rxjs.Subject();
             this._renders = new Map();
             this._valid = true;
             this._inited = false;
@@ -1395,7 +1394,7 @@
             this.liveValidate = this.options.liveValidate;
             this.firstVisual = this.options.firstVisual;
             this.autocomplete = this.options.autocomplete;
-            this.localeSrv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
+            this.localeSrv.change.pipe(untilDestroy.untilDestroyed(this)).subscribe(function () {
                 _this.locale = _this.localeSrv.getData('sf');
                 if (_this._inited) {
                     _this.validator({ emitError: false, onlyRoot: false });
@@ -1408,7 +1407,7 @@
                 this.i18nSrv ? this.i18nSrv.change : null,
             ].filter(function (o) { return o != null; });
             if (refSchemas.length > 0) {
-                rxjs.merge.apply(void 0, __spread(refSchemas)).pipe(operators.filter(function () { return _this._inited; }), operators.takeUntil(this.unsubscribe$))
+                rxjs.merge.apply(void 0, __spread(refSchemas)).pipe(operators.filter(function () { return _this._inited; }), untilDestroy.untilDestroyed(this))
                     .subscribe(function () { return _this.refreshSchema(); });
             }
         }
@@ -1826,13 +1825,10 @@
         SFComponent.prototype.ngOnDestroy = function () {
             this.cleanRootSub();
             this.terminator.destroy();
-            var unsubscribe$ = this.unsubscribe$;
-            unsubscribe$.next();
-            unsubscribe$.complete();
         };
         return SFComponent;
     }());
-    SFComponent.decorators = [
+    exports.SFComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf, [sf]',
                     exportAs: 'sf',
@@ -1862,7 +1858,7 @@
                 },] }
     ];
     /** @nocollapse */
-    SFComponent.ctorParameters = function () { return [
+    exports.SFComponent.ctorParameters = function () { return [
         { type: FormPropertyFactory },
         { type: TerminatorService },
         { type: platformBrowser.DomSanitizer },
@@ -1873,7 +1869,7 @@
         { type: config.AlainConfigService },
         { type: platform.Platform }
     ]; };
-    SFComponent.propDecorators = {
+    exports.SFComponent.propDecorators = {
         layout: [{ type: core.Input }],
         schema: [{ type: core.Input }],
         ui: [{ type: core.Input }],
@@ -1898,35 +1894,45 @@
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "liveValidate", void 0);
+    ], exports.SFComponent.prototype, "liveValidate", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "firstVisual", void 0);
+    ], exports.SFComponent.prototype, "firstVisual", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "onlyVisual", void 0);
+    ], exports.SFComponent.prototype, "onlyVisual", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "compact", void 0);
+    ], exports.SFComponent.prototype, "compact", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "loading", void 0);
+    ], exports.SFComponent.prototype, "loading", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "disabled", void 0);
+    ], exports.SFComponent.prototype, "disabled", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "noColon", void 0);
+    ], exports.SFComponent.prototype, "noColon", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SFComponent.prototype, "cleanValue", void 0);
+    ], exports.SFComponent.prototype, "cleanValue", void 0);
+    exports.SFComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [FormPropertyFactory,
+            TerminatorService,
+            platformBrowser.DomSanitizer,
+            core.ChangeDetectorRef,
+            theme.DelonLocaleService,
+            acl.ACLService, Object, config.AlainConfigService,
+            platform.Platform])
+    ], exports.SFComponent);
 
     var nextUniqueId = 0;
     var SFItemComponent = /** @class */ (function () {
@@ -2097,7 +2103,7 @@
     /** @nocollapse */
     SFTemplateDirective.ctorParameters = function () { return [
         { type: core.TemplateRef },
-        { type: SFComponent }
+        { type: exports.SFComponent }
     ]; };
     SFTemplateDirective.propDecorators = {
         path: [{ type: core.Input, args: ['sf-template',] }]
@@ -2205,7 +2211,7 @@
         { type: core.ChangeDetectorRef, decorators: [{ type: core.Inject, args: [core.ChangeDetectorRef,] }] },
         { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] },
         { type: SFItemComponent, decorators: [{ type: core.Inject, args: [SFItemComponent,] }] },
-        { type: SFComponent, decorators: [{ type: core.Inject, args: [SFComponent,] }] }
+        { type: exports.SFComponent, decorators: [{ type: core.Inject, args: [exports.SFComponent,] }] }
     ]; };
     Widget.propDecorators = {
         cls: [{ type: core.HostBinding, args: ['class',] }]
@@ -3590,7 +3596,7 @@
         treeSelect.NzTreeSelectModule,
         upload.NzUploadModule,
     ];
-    var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
+    var COMPONENTS = [exports.SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
     var WIDGETS = [
         ObjectWidget,
         ArrayWidget,
@@ -3711,7 +3717,6 @@
     exports.PropertyGroup = PropertyGroup;
     exports.RadioWidget = RadioWidget;
     exports.RateWidget = RateWidget;
-    exports.SFComponent = SFComponent;
     exports.SFFixedDirective = SFFixedDirective;
     exports.SFItemComponent = SFItemComponent;
     exports.SFItemWrapComponent = SFItemWrapComponent;

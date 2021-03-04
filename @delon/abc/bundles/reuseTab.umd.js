@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
-}(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util/decorator', '@ngneat/until-destroy', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.untilDestroy, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, untilDestroy, operators, browser, icon, menu, tabs) { 'use strict';
 
     var ReuseTabContextMenuComponent = /** @class */ (function () {
         function ReuseTabContextMenuComponent(i18nSrv) {
@@ -1148,7 +1148,7 @@
         { type: i1.MenuService }
     ]; };
 
-    var ReuseTabComponent = /** @class */ (function () {
+    exports.ReuseTabComponent = /** @class */ (function () {
         // #endregion
         function ReuseTabComponent(srv, cdr, router, route, i18nSrv, doc) {
             this.srv = srv;
@@ -1157,7 +1157,6 @@
             this.route = route;
             this.i18nSrv = i18nSrv;
             this.doc = doc;
-            this.unsubscribe$ = new rxjs.Subject();
             this.updatePos$ = new rxjs.Subject();
             this.list = [];
             this.pos = 0;
@@ -1314,7 +1313,7 @@
         // #endregion
         ReuseTabComponent.prototype.ngOnInit = function () {
             var _this = this;
-            this.updatePos$.pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(50)).subscribe(function () {
+            this.updatePos$.pipe(untilDestroy.untilDestroyed(this), operators.debounceTime(50)).subscribe(function () {
                 var url = _this.srv.getUrl(_this.route.snapshot);
                 var ls = _this.list.filter(function (w) { return w.url === url || !_this.srv.isExclude(w.url); });
                 if (ls.length === 0) {
@@ -1332,7 +1331,7 @@
                 _this.list = ls;
                 _this.cdr.detectChanges();
             });
-            this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) {
+            this.srv.change.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (res) {
                 var _a;
                 switch (res === null || res === void 0 ? void 0 : res.active) {
                     case 'title':
@@ -1348,7 +1347,7 @@
                 _this.genList(res);
             });
             this.i18nSrv.change
-                .pipe(operators.filter(function () { return _this.srv.inited; }), operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
+                .pipe(operators.filter(function () { return _this.srv.inited; }), untilDestroy.untilDestroyed(this), operators.debounceTime(100))
                 .subscribe(function () { return _this.genList({ active: 'title' }); });
             this.srv.init();
         };
@@ -1368,14 +1367,9 @@
             this.srv.debug = this.debug;
             this.cdr.detectChanges();
         };
-        ReuseTabComponent.prototype.ngOnDestroy = function () {
-            var unsubscribe$ = this.unsubscribe$;
-            unsubscribe$.next();
-            unsubscribe$.complete();
-        };
         return ReuseTabComponent;
     }());
-    ReuseTabComponent.decorators = [
+    exports.ReuseTabComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'reuse-tab, [reuse-tab]',
                     exportAs: 'reuseTab',
@@ -1393,7 +1387,7 @@
                 },] }
     ];
     /** @nocollapse */
-    ReuseTabComponent.ctorParameters = function () { return [
+    exports.ReuseTabComponent.ctorParameters = function () { return [
         { type: ReuseTabService },
         { type: i0.ChangeDetectorRef },
         { type: router.Router },
@@ -1401,7 +1395,7 @@
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i1.ALAIN_I18N_TOKEN,] }] },
         { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] }
     ]; };
-    ReuseTabComponent.propDecorators = {
+    exports.ReuseTabComponent.propDecorators = {
         tabset: [{ type: i0.ViewChild, args: ['tabset',] }],
         mode: [{ type: i0.Input }],
         i18n: [{ type: i0.Input }],
@@ -1426,27 +1420,34 @@
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], ReuseTabComponent.prototype, "debug", void 0);
+    ], exports.ReuseTabComponent.prototype, "debug", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], ReuseTabComponent.prototype, "max", void 0);
+    ], exports.ReuseTabComponent.prototype, "max", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], ReuseTabComponent.prototype, "tabMaxWidth", void 0);
+    ], exports.ReuseTabComponent.prototype, "tabMaxWidth", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], ReuseTabComponent.prototype, "allowClose", void 0);
+    ], exports.ReuseTabComponent.prototype, "allowClose", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], ReuseTabComponent.prototype, "keepingScroll", void 0);
+    ], exports.ReuseTabComponent.prototype, "keepingScroll", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], ReuseTabComponent.prototype, "disabled", void 0);
+    ], exports.ReuseTabComponent.prototype, "disabled", void 0);
+    exports.ReuseTabComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [ReuseTabService,
+            i0.ChangeDetectorRef,
+            router.Router,
+            router.ActivatedRoute, Object, Object])
+    ], exports.ReuseTabComponent);
 
     var ReuseTabStrategy = /** @class */ (function () {
         function ReuseTabStrategy(srv) {
@@ -1470,7 +1471,7 @@
         return ReuseTabStrategy;
     }());
 
-    var COMPONENTS = [ReuseTabComponent];
+    var COMPONENTS = [exports.ReuseTabComponent];
     var NOEXPORTS = [ReuseTabContextMenuComponent, ReuseTabContextComponent, ReuseTabContextDirective];
     var ReuseTabModule = /** @class */ (function () {
         function ReuseTabModule() {
@@ -1489,7 +1490,6 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.ReuseTabComponent = ReuseTabComponent;
     exports.ReuseTabContextComponent = ReuseTabContextComponent;
     exports.ReuseTabContextDirective = ReuseTabContextDirective;
     exports.ReuseTabContextMenuComponent = ReuseTabContextMenuComponent;

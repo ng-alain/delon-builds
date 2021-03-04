@@ -2,8 +2,9 @@ import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
+import { untilDestroyed } from '@ngneat/until-destroy';
 import { fromEvent } from 'rxjs';
-import { takeUntil, debounceTime } from 'rxjs/operators';
+import { debounceTime } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -26,7 +27,7 @@ class G2CustomComponent extends G2BaseComponent {
         if (this.resizeTime <= 0)
             return;
         fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), debounceTime(Math.min(200, this.resizeTime)))
+            .pipe(untilDestroyed(this), debounceTime(Math.min(200, this.resizeTime)))
             .subscribe(() => this.resize.emit(this.el));
     }
 }

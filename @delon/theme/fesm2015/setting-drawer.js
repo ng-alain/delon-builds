@@ -6,9 +6,8 @@ import { SettingsService } from '@delon/theme';
 import { copy } from '@delon/util/browser';
 import { InputBoolean } from '@delon/util/decorator';
 import { deepCopy, LazyService } from '@delon/util/other';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { FormsModule } from '@angular/forms';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -243,7 +242,7 @@ const DEFAULT_VARS = {
     },
 };
 
-class SettingDrawerComponent {
+let SettingDrawerComponent = class SettingDrawerComponent {
     constructor(cdr, msg, settingSrv, lazy, zone, doc, directionality) {
         this.cdr = cdr;
         this.msg = msg;
@@ -255,7 +254,6 @@ class SettingDrawerComponent {
         this.autoApplyColor = true;
         this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
         this.loadedLess = false;
-        this.destroy$ = new Subject();
         this.dir = 'ltr';
         this.isDev = isDevMode();
         this.collapse = false;
@@ -276,7 +274,7 @@ class SettingDrawerComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
         if (this.autoApplyColor && this.color !== this.DEFAULT_PRIMARY) {
@@ -377,11 +375,7 @@ class SettingDrawerComponent {
         copy(copyContent);
         this.msg.success('Copy success');
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 SettingDrawerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'setting-drawer',
@@ -411,6 +405,14 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
+SettingDrawerComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [ChangeDetectorRef,
+        NzMessageService,
+        SettingsService,
+        LazyService,
+        NgZone, Object, Directionality])
+], SettingDrawerComponent);
 
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
 class SettingDrawerModule {

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.browser, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, config, decorator, rxjs, operators, forms, theme, browser, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('@delon/util/browser'), require('@ngneat/until-destroy'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', '@delon/util/browser', '@ngneat/until-destroy', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.browser, global.untilDestroy, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, config, decorator, rxjs, operators, forms, theme, browser, untilDestroy, animation, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -498,14 +498,13 @@
 
     var prefixCls = "se";
     var nextUniqueId = 0;
-    var SEComponent = /** @class */ (function () {
+    exports.SEComponent = /** @class */ (function () {
         function SEComponent(el, parent, rep, ren, cdr) {
             var _this = this;
             this.parent = parent;
             this.rep = rep;
             this.ren = ren;
             this.cdr = cdr;
-            this.unsubscribe$ = new rxjs.Subject();
             this.clsMap = [];
             this.inited = false;
             this.onceFlag = false;
@@ -525,7 +524,7 @@
             }
             this.el = el.nativeElement;
             parent.errorNotify
-                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; }))
+                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function (w) { return _this.inited && _this.ngControl != null && _this.ngControl.name === w.name; }))
                 .subscribe(function (item) {
                 _this.error = item.error;
                 _this.updateStatus(_this.ngControl.invalid);
@@ -595,7 +594,7 @@
             if (!this.ngControl || this.isBindModel)
                 return;
             this.isBindModel = true;
-            this.ngControl.statusChanges.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.updateStatus(res === 'INVALID'); });
+            this.ngControl.statusChanges.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (res) { return _this.updateStatus(res === 'INVALID'); });
             if (this._autoId) {
                 var controlAccessor = this.ngControl.valueAccessor;
                 var control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
@@ -658,14 +657,9 @@
                 });
             }
         };
-        SEComponent.prototype.ngOnDestroy = function () {
-            var unsubscribe$ = this.unsubscribe$;
-            unsubscribe$.next();
-            unsubscribe$.complete();
-        };
         return SEComponent;
     }());
-    SEComponent.decorators = [
+    exports.SEComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'se',
                     exportAs: 'se',
@@ -683,14 +677,14 @@
                 },] }
     ];
     /** @nocollapse */
-    SEComponent.ctorParameters = function () { return [
+    exports.SEComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: SEContainerComponent, decorators: [{ type: core.Optional }, { type: core.Host }] },
         { type: theme.ResponsiveService },
         { type: core.Renderer2 },
         { type: core.ChangeDetectorRef }
     ]; };
-    SEComponent.propDecorators = {
+    exports.SEComponent.propDecorators = {
         ngModel: [{ type: core.ContentChild, args: [forms.NgModel, { static: true },] }],
         formControlName: [{ type: core.ContentChild, args: [forms.FormControlName, { static: true },] }],
         contentElement: [{ type: core.ViewChild, args: ['contentElement', { static: true },] }],
@@ -710,21 +704,29 @@
     __decorate([
         decorator.InputNumber(null),
         __metadata("design:type", Number)
-    ], SEComponent.prototype, "col", void 0);
+    ], exports.SEComponent.prototype, "col", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], SEComponent.prototype, "required", void 0);
+    ], exports.SEComponent.prototype, "required", void 0);
     __decorate([
         decorator.InputBoolean(null),
         __metadata("design:type", Boolean)
-    ], SEComponent.prototype, "line", void 0);
+    ], exports.SEComponent.prototype, "line", void 0);
     __decorate([
         decorator.InputNumber(null),
         __metadata("design:type", Number)
-    ], SEComponent.prototype, "labelWidth", void 0);
+    ], exports.SEComponent.prototype, "labelWidth", void 0);
+    exports.SEComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [core.ElementRef,
+            SEContainerComponent,
+            theme.ResponsiveService,
+            core.Renderer2,
+            core.ChangeDetectorRef])
+    ], exports.SEComponent);
 
-    var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
+    var COMPONENTS = [SEContainerComponent, exports.SEComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
         function SEModule() {
         }
@@ -755,7 +757,6 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.SEComponent = SEComponent;
     exports.SEContainerComponent = SEContainerComponent;
     exports.SEModule = SEModule;
     exports.SETitleComponent = SETitleComponent;

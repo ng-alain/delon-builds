@@ -1,8 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { OnDestroy, OnInit, TemplateRef } from '@angular/core';
-export declare class ResultComponent implements OnInit, OnDestroy {
+import { OnInit, TemplateRef } from '@angular/core';
+export declare class ResultComponent implements OnInit {
     private directionality;
-    private destroy$;
     _type: string;
     _icon: string;
     set type(value: string);
@@ -12,5 +11,4 @@ export declare class ResultComponent implements OnInit, OnDestroy {
     dir: Direction;
     constructor(directionality: Directionality);
     ngOnInit(): void;
-    ngOnDestroy(): void;
 }

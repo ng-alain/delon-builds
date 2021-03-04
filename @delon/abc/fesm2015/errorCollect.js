@@ -4,17 +4,16 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Optional, Input, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber } from '@delon/util/decorator';
-import { Subject, interval } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { interval } from 'rxjs';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-class ErrorCollectComponent {
+let ErrorCollectComponent = class ErrorCollectComponent {
     constructor(el, cdr, doc, configSrv, directionality) {
         this.el = el;
         this.cdr = cdr;
         this.doc = doc;
         this.directionality = directionality;
-        this.destroy$ = new Subject();
         this._hiden = true;
         this.count = 0;
         this.dir = 'ltr';
@@ -45,11 +44,11 @@ class ErrorCollectComponent {
     install() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
         interval(this.freq)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(untilDestroyed(this))
             .subscribe(() => this.update());
         this.update();
     }
@@ -70,11 +69,7 @@ class ErrorCollectComponent {
             throw new Error('No found form element');
         this.install();
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 ErrorCollectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'error-collect, [error-collect]',
@@ -114,6 +109,12 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], ErrorCollectComponent.prototype, "offsetTop", void 0);
+ErrorCollectComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [ElementRef,
+        ChangeDetectorRef, Object, AlainConfigService,
+        Directionality])
+], ErrorCollectComponent);
 
 const COMPONENTS = [ErrorCollectComponent];
 class ErrorCollectModule {

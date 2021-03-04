@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, common, core, config, decorator, rxjs, operators, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('rxjs'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@ngneat/until-destroy', 'rxjs', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.config, global.decorator, global.untilDestroy, global.rxjs, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, config, decorator, untilDestroy, rxjs, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,13 +318,12 @@
         return value;
     }
 
-    var ErrorCollectComponent = /** @class */ (function () {
+    exports.ErrorCollectComponent = /** @class */ (function () {
         function ErrorCollectComponent(el, cdr, doc, configSrv, directionality) {
             this.el = el;
             this.cdr = cdr;
             this.doc = doc;
             this.directionality = directionality;
-            this.destroy$ = new rxjs.Subject();
             this._hiden = true;
             this.count = 0;
             this.dir = 'ltr';
@@ -360,11 +359,11 @@
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (direction) {
                 _this.dir = direction;
             });
             rxjs.interval(this.freq)
-                .pipe(operators.takeUntil(this.destroy$))
+                .pipe(untilDestroy.untilDestroyed(this))
                 .subscribe(function () { return _this.update(); });
             this.update();
         };
@@ -385,13 +384,9 @@
                 throw new Error('No found form element');
             this.install();
         };
-        ErrorCollectComponent.prototype.ngOnDestroy = function () {
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return ErrorCollectComponent;
     }());
-    ErrorCollectComponent.decorators = [
+    exports.ErrorCollectComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'error-collect, [error-collect]',
                     exportAs: 'errorCollect',
@@ -408,27 +403,33 @@
                 },] }
     ];
     /** @nocollapse */
-    ErrorCollectComponent.ctorParameters = function () { return [
+    exports.ErrorCollectComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.ChangeDetectorRef },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
         { type: config.AlainConfigService },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
-    ErrorCollectComponent.propDecorators = {
+    exports.ErrorCollectComponent.propDecorators = {
         freq: [{ type: core.Input }],
         offsetTop: [{ type: core.Input }]
     };
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], ErrorCollectComponent.prototype, "freq", void 0);
+    ], exports.ErrorCollectComponent.prototype, "freq", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], ErrorCollectComponent.prototype, "offsetTop", void 0);
+    ], exports.ErrorCollectComponent.prototype, "offsetTop", void 0);
+    exports.ErrorCollectComponent = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [core.ElementRef,
+            core.ChangeDetectorRef, Object, config.AlainConfigService,
+            bidi.Directionality])
+    ], exports.ErrorCollectComponent);
 
-    var COMPONENTS = [ErrorCollectComponent];
+    var COMPONENTS = [exports.ErrorCollectComponent];
     var ErrorCollectModule = /** @class */ (function () {
         function ErrorCollectModule() {
         }
@@ -446,7 +447,6 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.ErrorCollectComponent = ErrorCollectComponent;
     exports.ErrorCollectModule = ErrorCollectModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

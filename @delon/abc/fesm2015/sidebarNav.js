@@ -7,8 +7,8 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MenuService, SettingsService } from '@delon/theme';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { WINDOW } from '@delon/util/token';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { filter } from 'rxjs/operators';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
@@ -17,7 +17,7 @@ const FLOATINGCLS = 'sidebar-nav__floating';
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `layout-default` instead
  */
-class SidebarNavComponent {
+let SidebarNavComponent = class SidebarNavComponent {
     constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
         this.menuSrv = menuSrv;
         this.settings = settings;
@@ -29,7 +29,6 @@ class SidebarNavComponent {
         this.doc = doc;
         this.win = win;
         this.directionality = directionality;
-        this.destroy$ = new Subject();
         this.list = [];
         this.dir = 'ltr';
         this.disabledAcl = false;
@@ -200,11 +199,11 @@ class SidebarNavComponent {
     }
     ngOnInit() {
         var _a;
-        const { doc, router, destroy$, menuSrv, settings, cdr } = this;
+        const { doc, router, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular(() => this.genFloating());
-        menuSrv.change.pipe(takeUntil(destroy$)).subscribe(data => {
+        menuSrv.change.pipe(untilDestroyed(this)).subscribe(data => {
             menuSrv.visit(data, (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml(i.text);
                 i._needIcon = depth <= this.maxLevelIcon && !!i.icon;
@@ -223,7 +222,7 @@ class SidebarNavComponent {
             this.list = menuSrv.menus.filter((w) => w._hidden !== true);
             cdr.detectChanges();
         });
-        router.events.pipe(takeUntil(destroy$)).subscribe(e => {
+        router.events.pipe(untilDestroyed(this)).subscribe(e => {
             if (e instanceof NavigationEnd) {
                 this.openedByUrl(e.urlAfterRedirects);
                 this.underPad();
@@ -231,17 +230,15 @@ class SidebarNavComponent {
             }
         });
         settings.notify
-            .pipe(takeUntil(destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
+            .pipe(untilDestroyed(this), filter(t => t.type === 'layout' && t.name === 'collapsed'))
             .subscribe(() => this.clearFloating());
         this.underPad();
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
     }
     ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
         this.clearFloating();
     }
     // #region Under pad
@@ -256,7 +253,7 @@ class SidebarNavComponent {
     openAside(status) {
         this.settings.setLayout('collapsed', status);
     }
-}
+};
 SidebarNavComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sidebar-nav',
@@ -312,6 +309,16 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
+SidebarNavComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [MenuService,
+        SettingsService,
+        Router,
+        Renderer2,
+        ChangeDetectorRef,
+        NgZone,
+        DomSanitizer, Object, Object, Directionality])
+], SidebarNavComponent);
 
 class SidebarNavModule {
 }

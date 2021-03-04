@@ -1,19 +1,19 @@
+import { __decorate, __metadata } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChildren, Directive, ChangeDetectionStrategy, ChangeDetectorRef, EventEmitter, ViewEncapsulation, NgZone, Optional, Output, NgModule } from '@angular/core';
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { SettingsService, MenuService } from '@delon/theme';
 import { updateHostClass } from '@delon/util/browser';
+import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Subject } from 'rxjs';
-import { takeUntil, filter } from 'rxjs/operators';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
+import { filter } from 'rxjs/operators';
 
 class LayoutDefaultHeaderItemComponent {
     constructor() {
@@ -37,16 +37,15 @@ LayoutDefaultHeaderItemComponent.propDecorators = {
     direction: [{ type: Input }]
 };
 
-class LayoutDefaultComponent {
+let LayoutDefaultComponent = class LayoutDefaultComponent {
     constructor(router, msgSrv, settings, el, renderer, doc) {
         this.settings = settings;
         this.el = el;
         this.renderer = renderer;
         this.doc = doc;
-        this.destroy$ = new Subject();
         this.isFetching = false;
         // scroll to top in change page
-        router.events.pipe(takeUntil(this.destroy$)).subscribe(evt => {
+        router.events.pipe(untilDestroyed(this)).subscribe(evt => {
             if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
                 this.isFetching = true;
             }
@@ -81,15 +80,10 @@ class LayoutDefaultComponent {
         if (this.options == null) {
             throw new Error(`Please specify the [options] parameter, otherwise the layout display cannot be completed`);
         }
-        const { settings, destroy$ } = this;
-        settings.notify.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
+        this.settings.notify.pipe(untilDestroyed(this)).subscribe(() => this.setClass());
         this.setClass();
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 LayoutDefaultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'layout-default',
@@ -126,6 +120,14 @@ LayoutDefaultComponent.propDecorators = {
     nav: [{ type: Input }],
     content: [{ type: Input }]
 };
+LayoutDefaultComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [Router,
+        NzMessageService,
+        SettingsService,
+        ElementRef,
+        Renderer2, Object])
+], LayoutDefaultComponent);
 
 class LayoutDefaultHeaderItemTriggerDirective {
 }
@@ -138,12 +140,11 @@ LayoutDefaultHeaderItemTriggerDirective.decorators = [
             },] }
 ];
 
-class LayoutDefaultHeaderComponent {
+let LayoutDefaultHeaderComponent = class LayoutDefaultHeaderComponent {
     constructor(settings, parent, cdr) {
         this.settings = settings;
         this.parent = parent;
         this.cdr = cdr;
-        this.destroy$ = new Subject();
         this.left = [];
         this.middle = [];
         this.right = [];
@@ -172,17 +173,13 @@ class LayoutDefaultHeaderComponent {
         this.cdr.detectChanges();
     }
     ngAfterViewInit() {
-        this.parent.headerItems.changes.pipe(takeUntil(this.destroy$)).subscribe(() => this.refresh());
+        this.parent.headerItems.changes.pipe(untilDestroyed(this)).subscribe(() => this.refresh());
         this.refresh();
     }
     toggleCollapsed() {
         this.settings.setLayout('collapsed', !this.settings.layout.collapsed);
     }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
-    }
-}
+};
 LayoutDefaultHeaderComponent.decorators = [
     { type: Component, args: [{
                 selector: 'layout-default-header',
@@ -232,10 +229,14 @@ LayoutDefaultHeaderComponent.ctorParameters = () => [
     { type: LayoutDefaultComponent },
     { type: ChangeDetectorRef }
 ];
+LayoutDefaultHeaderComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [SettingsService, LayoutDefaultComponent, ChangeDetectorRef])
+], LayoutDefaultHeaderComponent);
 
 const SHOWCLS = 'sidebar-nav__floating-show';
 const FLOATINGCLS = 'sidebar-nav__floating';
-class LayoutDefaultNavComponent {
+let LayoutDefaultNavComponent = class LayoutDefaultNavComponent {
     constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
         this.menuSrv = menuSrv;
         this.settings = settings;
@@ -246,7 +247,6 @@ class LayoutDefaultNavComponent {
         this.sanitizer = sanitizer;
         this.doc = doc;
         this.directionality = directionality;
-        this.destroy$ = new Subject();
         this.dir = 'ltr';
         this.list = [];
         this.disabledAcl = false;
@@ -418,11 +418,11 @@ class LayoutDefaultNavComponent {
     }
     ngOnInit() {
         var _a;
-        const { doc, router, destroy$, menuSrv, settings, cdr } = this;
+        const { doc, router, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
         this.openedByUrl(router.url);
         this.ngZone.runOutsideAngular(() => this.genFloating());
-        menuSrv.change.pipe(takeUntil(destroy$)).subscribe(data => {
+        menuSrv.change.pipe(untilDestroyed(this)).subscribe(data => {
             menuSrv.visit(data, (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml(i.text);
                 i._needIcon = depth <= this.maxLevelIcon && !!i.icon;
@@ -441,7 +441,7 @@ class LayoutDefaultNavComponent {
             this.list = menuSrv.menus.filter((w) => w._hidden !== true);
             cdr.detectChanges();
         });
-        router.events.pipe(takeUntil(destroy$)).subscribe(e => {
+        router.events.pipe(untilDestroyed(this)).subscribe(e => {
             if (e instanceof NavigationEnd) {
                 this.openedByUrl(e.urlAfterRedirects);
                 this.underPad();
@@ -449,17 +449,15 @@ class LayoutDefaultNavComponent {
             }
         });
         settings.notify
-            .pipe(takeUntil(destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
+            .pipe(untilDestroyed(this), filter(t => t.type === 'layout' && t.name === 'collapsed'))
             .subscribe(() => this.clearFloating());
         this.underPad();
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(destroy$)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
             this.dir = direction;
         });
     }
     ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
         this.clearFloating();
     }
     // #region Under pad
@@ -474,7 +472,7 @@ class LayoutDefaultNavComponent {
     openAside(status) {
         this.settings.setLayout('collapsed', status);
     }
-}
+};
 LayoutDefaultNavComponent.decorators = [
     { type: Component, args: [{
                 selector: 'layout-default-nav',
@@ -528,6 +526,16 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
+LayoutDefaultNavComponent = __decorate([
+    UntilDestroy(),
+    __metadata("design:paramtypes", [MenuService,
+        SettingsService,
+        Router,
+        Renderer2,
+        ChangeDetectorRef,
+        NgZone,
+        DomSanitizer, Object, Directionality])
+], LayoutDefaultNavComponent);
 
 const COMPONENTS = [
     LayoutDefaultComponent,

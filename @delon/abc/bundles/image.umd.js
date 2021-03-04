@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/modal'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/modal', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.config, global.decorator, global.modal, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, theme, config, decorator, modal, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('ng-zorro-antd/modal'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@ngneat/until-destroy', 'ng-zorro-antd/modal', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.config, global.decorator, global.untilDestroy, global.modal, global.rxjs, global.rxjs.operators, global.ng.common));
+}(this, (function (exports, platform, core, theme, config, decorator, untilDestroy, modal, rxjs, operators, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -321,14 +321,13 @@
     /**
      * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
      */
-    var ImageDirective = /** @class */ (function () {
+    exports.ImageDirective = /** @class */ (function () {
         function ImageDirective(el, configSrv, http, platform, modal) {
             this.http = http;
             this.platform = platform;
             this.modal = modal;
             this.useHttp = false;
             this.inited = false;
-            this.destroy$ = new rxjs.Subject();
             configSrv.attach(this, 'image', { size: 64, error: "./assets/img/logo.svg" });
             this.imgEl = el.nativeElement;
         }
@@ -351,7 +350,7 @@
         ImageDirective.prototype.update = function () {
             var _this = this;
             this.getSrc(this.src, true)
-                .pipe(operators.takeUntil(this.destroy$), operators.take(1))
+                .pipe(untilDestroy.untilDestroyed(this), operators.take(1))
                 .subscribe(function (src) { return (_this.imgEl.src = src); }, function () { return _this.setError(); });
         };
         ImageDirective.prototype.getSrc = function (data, isSize) {
@@ -375,7 +374,7 @@
             return new rxjs.Observable(function (observer) {
                 _this.http
                     .get(url, null, { responseType: 'blob' })
-                    .pipe(operators.takeUntil(_this.destroy$), operators.take(1), operators.finalize(function () { return observer.complete(); }))
+                    .pipe(untilDestroy.untilDestroyed(_this), operators.take(1), operators.finalize(function () { return observer.complete(); }))
                     .subscribe(function (blob) {
                     var reader = new FileReader();
                     reader.onloadend = function () { return observer.next(reader.result); };
@@ -404,18 +403,14 @@
             ev.stopPropagation();
             ev.preventDefault();
             this.getSrc(this.previewSrc, false)
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return !!w; }), operators.take(1))
+                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function (w) { return !!w; }), operators.take(1))
                 .subscribe(function (src) {
                 _this.modal.create(Object.assign({ nzTitle: undefined, nzFooter: null, nzContent: "<img class=\"img-fluid\" src=\"" + src + "\" />" }, _this.previewModalOptions));
             });
         };
-        ImageDirective.prototype.ngOnDestroy = function () {
-            this.destroy$.next();
-            this.destroy$.complete();
-        };
         return ImageDirective;
     }());
-    ImageDirective.decorators = [
+    exports.ImageDirective.decorators = [
         { type: core.Directive, args: [{
                     selector: '[_src]',
                     exportAs: '_src',
@@ -426,14 +421,14 @@
                 },] }
     ];
     /** @nocollapse */
-    ImageDirective.ctorParameters = function () { return [
+    exports.ImageDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: config.AlainConfigService },
         { type: theme._HttpClient },
         { type: platform.Platform },
         { type: modal.NzModalService }
     ]; };
-    ImageDirective.propDecorators = {
+    exports.ImageDirective.propDecorators = {
         src: [{ type: core.Input, args: ['_src',] }],
         size: [{ type: core.Input }],
         error: [{ type: core.Input }],
@@ -444,13 +439,21 @@
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], ImageDirective.prototype, "size", void 0);
+    ], exports.ImageDirective.prototype, "size", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], ImageDirective.prototype, "useHttp", void 0);
+    ], exports.ImageDirective.prototype, "useHttp", void 0);
+    exports.ImageDirective = __decorate([
+        untilDestroy.UntilDestroy(),
+        __metadata("design:paramtypes", [core.ElementRef,
+            config.AlainConfigService,
+            theme._HttpClient,
+            platform.Platform,
+            modal.NzModalService])
+    ], exports.ImageDirective);
 
-    var DIRECTIVES = [ImageDirective];
+    var DIRECTIVES = [exports.ImageDirective];
     var ImageModule = /** @class */ (function () {
         function ImageModule() {
         }
@@ -468,7 +471,6 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.ImageDirective = ImageDirective;
     exports.ImageModule = ImageModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
