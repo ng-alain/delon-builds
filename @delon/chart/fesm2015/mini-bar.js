@@ -1,6 +1,6 @@
 import { __decorate, __metadata } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { G2BaseComponent } from '@delon/chart/core';
+import { G2BaseComponent, genMiniTooltipOptions } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
@@ -37,24 +37,7 @@ class G2MiniBarComponent extends G2BaseComponent {
         });
         chart.legend(false);
         chart.axis(false);
-        const tooltipOption = {
-            showTitle: false,
-            showMarkers: true,
-            showCrosshairs: false,
-            enterable: true,
-            domStyles: {
-                'g2-tooltip': { padding: '0px' },
-                'g2-tooltip-title': { display: 'none' },
-                'g2-tooltip-list-item': { margin: '4px' },
-            },
-        };
-        if (tooltipType === 'mini') {
-            tooltipOption.position = 'top';
-            tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-            tooltipOption.itemTpl = `<li>{value}</li>`;
-            tooltipOption.offset = 8;
-        }
-        chart.tooltip(tooltipOption);
+        chart.tooltip(genMiniTooltipOptions(tooltipType, { showCrosshairs: false }));
         chart
             .interval()
             .position('x*y')

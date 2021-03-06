@@ -364,23 +364,7 @@
                 chart.axis('y', false);
             }
             chart.legend(false);
-            var tooltipOption = {
-                showTitle: false,
-                showMarkers: true,
-                enterable: true,
-                domStyles: {
-                    'g2-tooltip': { padding: '0px' },
-                    'g2-tooltip-title': { display: 'none' },
-                    'g2-tooltip-list-item': { margin: '4px' },
-                },
-            };
-            if (tooltipType === 'mini') {
-                tooltipOption.position = 'top';
-                tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-                tooltipOption.itemTpl = "<li>{value}</li>";
-                tooltipOption.offset = 8;
-            }
-            chart.tooltip(tooltipOption);
+            chart.tooltip(core$1.genMiniTooltipOptions(tooltipType));
             chart
                 .area()
                 .position('x*y')

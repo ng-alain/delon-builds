@@ -354,24 +354,7 @@
             });
             chart.legend(false);
             chart.axis(false);
-            var tooltipOption = {
-                showTitle: false,
-                showMarkers: true,
-                showCrosshairs: false,
-                enterable: true,
-                domStyles: {
-                    'g2-tooltip': { padding: '0px' },
-                    'g2-tooltip-title': { display: 'none' },
-                    'g2-tooltip-list-item': { margin: '4px' },
-                },
-            };
-            if (tooltipType === 'mini') {
-                tooltipOption.position = 'top';
-                tooltipOption.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
-                tooltipOption.itemTpl = "<li>{value}</li>";
-                tooltipOption.offset = 8;
-            }
-            chart.tooltip(tooltipOption);
+            chart.tooltip(core$1.genMiniTooltipOptions(tooltipType, { showCrosshairs: false }));
             chart
                 .interval()
                 .position('x*y')

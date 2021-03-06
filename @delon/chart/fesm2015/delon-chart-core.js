@@ -134,9 +134,24 @@ __decorate([
     __metadata("design:type", Object)
 ], G2BaseComponent.prototype, "delay", void 0);
 
+function genMiniTooltipOptions(type, options) {
+    const res = Object.assign({ showTitle: false, showMarkers: true, enterable: true, domStyles: {
+            'g2-tooltip': { padding: '0px' },
+            'g2-tooltip-title': { display: 'none' },
+            'g2-tooltip-list-item': { margin: '4px' },
+        } }, options);
+    if (type === 'mini') {
+        res.position = 'top';
+        res.domStyles['g2-tooltip'] = { padding: '0px', backgroundColor: 'transparent', boxShadow: 'none' };
+        res.itemTpl = `<li>{value}</li>`;
+        res.offset = 8;
+    }
+    return res;
+}
+
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { G2BaseComponent, G2Service };
+export { G2BaseComponent, G2Service, genMiniTooltipOptions };
 //# sourceMappingURL=delon-chart-core.js.map
