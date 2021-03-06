@@ -1,14 +1,15 @@
-import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input, NgModule } from '@angular/core';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
-let ResultComponent = class ResultComponent {
+class ResultComponent {
     constructor(directionality) {
         this.directionality = directionality;
+        this.destroy$ = new Subject();
         this._type = '';
         this._icon = '';
         this.dir = 'ltr';
@@ -30,11 +31,15 @@ let ResultComponent = class ResultComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
     }
-};
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
 ResultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'result',
@@ -59,10 +64,6 @@ ResultComponent.propDecorators = {
     description: [{ type: Input }],
     extra: [{ type: Input }]
 };
-ResultComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [Directionality])
-], ResultComponent);
 
 const COMPONENTS = [ResultComponent];
 class ResultModule {

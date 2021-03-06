@@ -1,19 +1,20 @@
-import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 
-let ExceptionComponent = class ExceptionComponent {
+class ExceptionComponent {
     constructor(i18n, dom, directionality) {
         this.i18n = i18n;
         this.dom = dom;
         this.directionality = directionality;
+        this.destroy$ = new Subject();
         this.locale = {};
         this.hasCon = false;
         this.dir = 'ltr';
@@ -61,13 +62,17 @@ let ExceptionComponent = class ExceptionComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
-        this.i18n.change.pipe(untilDestroyed(this)).subscribe(() => (this.locale = this.i18n.getData('exception')));
+        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe(() => (this.locale = this.i18n.getData('exception')));
         this.checkContent();
     }
-};
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
 ExceptionComponent.decorators = [
     { type: Component, args: [{
                 selector: 'exception',
@@ -95,10 +100,6 @@ ExceptionComponent.propDecorators = {
     title: [{ type: Input }],
     desc: [{ type: Input }]
 };
-ExceptionComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [DelonLocaleService, DomSanitizer, Directionality])
-], ExceptionComponent);
 
 const COMPONENTS = [ExceptionComponent];
 class ExceptionModule {

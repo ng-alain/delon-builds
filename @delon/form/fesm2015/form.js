@@ -7,9 +7,8 @@ import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/
 import { AlainConfigService } from '@delon/util/config';
 import { toBoolean, InputBoolean, InputNumber } from '@delon/util/decorator';
 import { deepCopy, deepGet } from '@delon/util/other';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
-import { map, distinctUntilChanged, filter, takeUntil, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
 import { REGEX } from '@delon/util/format';
 import Ajv from 'ajv';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
@@ -931,7 +930,7 @@ WidgetFactory.ctorParameters = () => [
 function useFactory(schemaValidatorFactory, cogSrv) {
     return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
 }
-let SFComponent = class SFComponent {
+class SFComponent {
     constructor(formPropertyFactory, terminator, dom, cdr, localeSrv, aclSrv, i18nSrv, cogSrv, platform) {
         this.formPropertyFactory = formPropertyFactory;
         this.terminator = terminator;
@@ -941,6 +940,7 @@ let SFComponent = class SFComponent {
         this.aclSrv = aclSrv;
         this.i18nSrv = i18nSrv;
         this.platform = platform;
+        this.unsubscribe$ = new Subject();
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
@@ -983,7 +983,7 @@ let SFComponent = class SFComponent {
         this.liveValidate = this.options.liveValidate;
         this.firstVisual = this.options.firstVisual;
         this.autocomplete = this.options.autocomplete;
-        this.localeSrv.change.pipe(untilDestroyed(this)).subscribe(() => {
+        this.localeSrv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
             this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
                 this.validator({ emitError: false, onlyRoot: false });
@@ -997,7 +997,7 @@ let SFComponent = class SFComponent {
         ].filter(o => o != null);
         if (refSchemas.length > 0) {
             merge(...refSchemas)
-                .pipe(filter(() => this._inited), untilDestroyed(this))
+                .pipe(filter(() => this._inited), takeUntil(this.unsubscribe$))
                 .subscribe(() => this.refreshSchema());
         }
     }
@@ -1392,8 +1392,11 @@ let SFComponent = class SFComponent {
     ngOnDestroy() {
         this.cleanRootSub();
         this.terminator.destroy();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
-};
+}
 SFComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sf, [sf]',
@@ -1489,16 +1492,6 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], SFComponent.prototype, "cleanValue", void 0);
-SFComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [FormPropertyFactory,
-        TerminatorService,
-        DomSanitizer,
-        ChangeDetectorRef,
-        DelonLocaleService,
-        ACLService, Object, AlainConfigService,
-        Platform])
-], SFComponent);
 
 let nextUniqueId = 0;
 class SFItemComponent {

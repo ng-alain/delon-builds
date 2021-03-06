@@ -4,22 +4,22 @@ import { Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { of, throwError, Observable } from 'rxjs';
-import { take, finalize, filter } from 'rxjs/operators';
+import { Subject, of, throwError, Observable } from 'rxjs';
+import { takeUntil, take, finalize, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
  * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
  */
-let ImageDirective = class ImageDirective {
+class ImageDirective {
     constructor(el, configSrv, http, platform, modal) {
         this.http = http;
         this.platform = platform;
         this.modal = modal;
         this.useHttp = false;
         this.inited = false;
+        this.destroy$ = new Subject();
         configSrv.attach(this, 'image', { size: 64, error: `./assets/img/logo.svg` });
         this.imgEl = el.nativeElement;
     }
@@ -41,7 +41,7 @@ let ImageDirective = class ImageDirective {
     }
     update() {
         this.getSrc(this.src, true)
-            .pipe(untilDestroyed(this), take(1))
+            .pipe(takeUntil(this.destroy$), take(1))
             .subscribe(src => (this.imgEl.src = src), () => this.setError());
     }
     getSrc(data, isSize) {
@@ -64,7 +64,7 @@ let ImageDirective = class ImageDirective {
         return new Observable((observer) => {
             this.http
                 .get(url, null, { responseType: 'blob' })
-                .pipe(untilDestroyed(this), take(1), finalize(() => observer.complete()))
+                .pipe(takeUntil(this.destroy$), take(1), finalize(() => observer.complete()))
                 .subscribe((blob) => {
                 const reader = new FileReader();
                 reader.onloadend = () => observer.next(reader.result);
@@ -92,12 +92,16 @@ let ImageDirective = class ImageDirective {
         ev.stopPropagation();
         ev.preventDefault();
         this.getSrc(this.previewSrc, false)
-            .pipe(untilDestroyed(this), filter(w => !!w), take(1))
+            .pipe(takeUntil(this.destroy$), filter(w => !!w), take(1))
             .subscribe(src => {
             this.modal.create(Object.assign({ nzTitle: undefined, nzFooter: null, nzContent: `<img class="img-fluid" src="${src}" />` }, this.previewModalOptions));
         });
     }
-};
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
 ImageDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[_src]',
@@ -132,14 +136,6 @@ __decorate([
     InputBoolean(),
     __metadata("design:type", Object)
 ], ImageDirective.prototype, "useHttp", void 0);
-ImageDirective = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [ElementRef,
-        AlainConfigService,
-        _HttpClient,
-        Platform,
-        NzModalService])
-], ImageDirective);
 
 const DIRECTIVES = [ImageDirective];
 class ImageModule {

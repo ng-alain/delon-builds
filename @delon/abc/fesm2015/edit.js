@@ -2,12 +2,11 @@ import { __decorate, __metadata } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
-import { BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { ResponsiveService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -166,12 +165,13 @@ SETitleComponent.ctorParameters = () => [
 
 const prefixCls = `se`;
 let nextUniqueId = 0;
-let SEComponent = class SEComponent {
+class SEComponent {
     constructor(el, parent, rep, ren, cdr) {
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
         this.cdr = cdr;
+        this.unsubscribe$ = new Subject();
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
@@ -191,7 +191,7 @@ let SEComponent = class SEComponent {
         }
         this.el = el.nativeElement;
         parent.errorNotify
-            .pipe(untilDestroyed(this), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
+            .pipe(takeUntil(this.unsubscribe$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
             .subscribe(item => {
             this.error = item.error;
             this.updateStatus(this.ngControl.invalid);
@@ -236,7 +236,7 @@ let SEComponent = class SEComponent {
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
-        this.ngControl.statusChanges.pipe(untilDestroyed(this)).subscribe(res => this.updateStatus(res === 'INVALID'));
+        this.ngControl.statusChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
             const control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
@@ -298,7 +298,12 @@ let SEComponent = class SEComponent {
             });
         }
     }
-};
+    ngOnDestroy() {
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
+    }
+}
 SEComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se',
@@ -357,14 +362,6 @@ __decorate([
     InputNumber(null),
     __metadata("design:type", Number)
 ], SEComponent.prototype, "labelWidth", void 0);
-SEComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [ElementRef,
-        SEContainerComponent,
-        ResponsiveService,
-        Renderer2,
-        ChangeDetectorRef])
-], SEComponent);
 
 const COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
 class SEModule {

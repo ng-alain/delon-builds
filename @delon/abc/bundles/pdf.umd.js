@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@ngneat/until-destroy'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@ngneat/until-destroy', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.decorator, global.other, global.untilDestroy, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, common, core, config, decorator, other, untilDestroy, rxjs, operators, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.decorator, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, common, core, config, decorator, other, rxjs, operators, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -343,7 +343,7 @@
 
     var CSS_UNITS = 96.0 / 72.0;
     var BORDER_WIDTH = 9;
-    exports.PdfComponent = /** @class */ (function () {
+    var PdfComponent = /** @class */ (function () {
         function PdfComponent(ngZone, configSrv, lazySrv, platform, el, doc) {
             this.ngZone = ngZone;
             this.lazySrv = lazySrv;
@@ -351,6 +351,7 @@
             this.el = el;
             this.doc = doc;
             this.inited = false;
+            this.unsubscribe$ = new rxjs.Subject();
             this.lib = '';
             this._pi = 1;
             this._total = 0;
@@ -700,7 +701,7 @@
         PdfComponent.prototype.initResize = function () {
             var _this = this;
             rxjs.fromEvent(this.win, 'resize')
-                .pipe(operators.debounceTime(100), operators.filter(function () { return _this.autoReSize && _this._pdf; }), untilDestroy.untilDestroyed(this))
+                .pipe(operators.debounceTime(100), operators.filter(function () { return _this.autoReSize && _this._pdf; }), operators.takeUntil(this.unsubscribe$))
                 .subscribe(function () { return _this.updateSize(); });
         };
         PdfComponent.prototype.ngOnChanges = function (changes) {
@@ -709,11 +710,14 @@
             }
         };
         PdfComponent.prototype.ngOnDestroy = function () {
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
             this.destroy();
         };
         return PdfComponent;
     }());
-    exports.PdfComponent.decorators = [
+    PdfComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'pdf',
                     exportAs: 'pdf',
@@ -727,7 +731,7 @@
                 },] }
     ];
     /** @nocollapse */
-    exports.PdfComponent.ctorParameters = function () { return [
+    PdfComponent.ctorParameters = function () { return [
         { type: core.NgZone },
         { type: config.AlainConfigService },
         { type: other.LazyService },
@@ -735,7 +739,7 @@
         { type: core.ElementRef },
         { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [common.DOCUMENT,] }] }
     ]; };
-    exports.PdfComponent.propDecorators = {
+    PdfComponent.propDecorators = {
         src: [{ type: core.Input }],
         pi: [{ type: core.Input }],
         showAll: [{ type: core.Input }],
@@ -757,61 +761,53 @@
         decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
-    ], exports.PdfComponent.prototype, "pi", null);
+    ], PdfComponent.prototype, "pi", null);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
-    ], exports.PdfComponent.prototype, "showAll", null);
+    ], PdfComponent.prototype, "showAll", null);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [Boolean])
-    ], exports.PdfComponent.prototype, "renderText", null);
+    ], PdfComponent.prototype, "renderText", null);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PdfComponent.prototype, "showBorders", void 0);
+    ], PdfComponent.prototype, "showBorders", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PdfComponent.prototype, "stickToPage", void 0);
+    ], PdfComponent.prototype, "stickToPage", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PdfComponent.prototype, "originalSize", void 0);
+    ], PdfComponent.prototype, "originalSize", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PdfComponent.prototype, "fitToPage", void 0);
+    ], PdfComponent.prototype, "fitToPage", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
-    ], exports.PdfComponent.prototype, "zoom", null);
+    ], PdfComponent.prototype, "zoom", null);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number),
         __metadata("design:paramtypes", [Number])
-    ], exports.PdfComponent.prototype, "rotation", null);
+    ], PdfComponent.prototype, "rotation", null);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PdfComponent.prototype, "autoReSize", void 0);
+    ], PdfComponent.prototype, "autoReSize", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], exports.PdfComponent.prototype, "delay", void 0);
-    exports.PdfComponent = __decorate([
-        untilDestroy.UntilDestroy(),
-        __metadata("design:paramtypes", [core.NgZone,
-            config.AlainConfigService,
-            other.LazyService,
-            platform.Platform,
-            core.ElementRef, Object])
-    ], exports.PdfComponent);
+    ], PdfComponent.prototype, "delay", void 0);
 
-    var COMPONENTS = [exports.PdfComponent];
+    var COMPONENTS = [PdfComponent];
     var PdfModule = /** @class */ (function () {
         function PdfModule() {
         }
@@ -830,6 +826,7 @@
      */
 
     exports.PDF_DEFULAT_CONFIG = PDF_DEFULAT_CONFIG;
+    exports.PdfComponent = PdfComponent;
     exports.PdfModule = PdfModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

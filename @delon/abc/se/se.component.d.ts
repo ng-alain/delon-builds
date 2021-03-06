@@ -1,9 +1,9 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
-export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit {
+export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
     private parent;
     private rep;
     private ren;
@@ -13,6 +13,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     static ngAcceptInputType_line: BooleanInput;
     static ngAcceptInputType_labelWidth: NumberInput;
     private el;
+    private unsubscribe$;
     private readonly ngModel;
     private readonly formControlName;
     private readonly contentElement;
@@ -50,4 +51,5 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngAfterContentInit(): void;
     ngOnChanges(): void;
     ngAfterViewInit(): void;
+    ngOnDestroy(): void;
 }

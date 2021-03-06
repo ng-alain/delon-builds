@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { ElementRef, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ElementRef, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
@@ -7,7 +7,7 @@ import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 /**
  * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
  */
-export declare class ImageDirective implements OnChanges, OnInit {
+export declare class ImageDirective implements OnChanges, OnInit, OnDestroy {
     private http;
     private platform;
     private modal;
@@ -21,6 +21,7 @@ export declare class ImageDirective implements OnChanges, OnInit {
     previewModalOptions: ModalOptions;
     private inited;
     private imgEl;
+    private destroy$;
     constructor(el: ElementRef<HTMLImageElement>, configSrv: AlainConfigService, http: _HttpClient, platform: Platform, modal: NzModalService);
     ngOnInit(): void;
     ngOnChanges(changes: {
@@ -32,4 +33,5 @@ export declare class ImageDirective implements OnChanges, OnInit {
     private updateError;
     private setError;
     open(ev: Event): void;
+    ngOnDestroy(): void;
 }

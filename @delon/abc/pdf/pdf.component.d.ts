@@ -20,6 +20,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     static ngAcceptInputType_disableTextLayer: BooleanInput;
     static ngAcceptInputType_removePageBorders: BooleanInput;
     inited: boolean;
+    private unsubscribe$;
     private lib;
     private _pdf;
     private loadingTask;

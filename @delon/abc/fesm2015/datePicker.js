@@ -8,6 +8,7 @@ import { InputBoolean } from '@delon/util/decorator';
 import { deepMergeKey, assert } from '@delon/util/other';
 import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
+import { Subject } from 'rxjs';
 
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `nz-range-picker` and `[extend]` directive instead, for examples:
@@ -204,6 +205,7 @@ class RangePickerDirective {
         this.nativeComp = nativeComp;
         this.resolver = resolver;
         this.injector = injector;
+        this.destroy$ = new Subject();
         this.shortcutFactory = null;
         this.start = null;
         this.end = null;
@@ -337,6 +339,8 @@ class RangePickerDirective {
     }
     ngOnDestroy() {
         this.destoryShortcut();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 RangePickerDirective.decorators = [

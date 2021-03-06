@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('@delon/util/format'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', '@delon/util/format', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', '@ngneat/until-destroy', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.format, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global.untilDestroy, global['ng-zorro-antd/dropdown'], global.ng.forms, global.delon.abc.let, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, format, rxjs, operators, xlsx, router, config, decorator, untilDestroy, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('@delon/util/format'), require('rxjs'), require('rxjs/operators'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', '@delon/util/format', 'rxjs', 'rxjs/operators', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.format, global.rxjs, global.rxjs.operators, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global['ng-zorro-antd/dropdown'], global.ng.forms, global.delon.abc.let, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, format, rxjs, operators, xlsx, router, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -1396,7 +1396,7 @@
         loadingDelay: 0,
     };
 
-    exports.STComponent = /** @class */ (function () {
+    var STComponent = /** @class */ (function () {
         function STComponent(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv, cms) {
             var _this = this;
             this.cdr = cdr;
@@ -1410,10 +1410,10 @@
             this.dataSource = dataSource;
             this.delonI18n = delonI18n;
             this.cms = cms;
+            this.unsubscribe$ = new rxjs.Subject();
             this.totalTpl = "";
             this.rowClickCount = 0;
             this.customWidthConfig = false;
-            this.destroy = false;
             this._widthConfig = [];
             this.locale = {};
             this._loading = false;
@@ -1446,7 +1446,7 @@
             this.virtualMinBufferPx = 100;
             this.virtualForTrackBy = function (index) { return index; };
             this.setCog(configSrv.merge('st', ST_DEFAULT_CONFIG));
-            this.delonI18n.change.pipe(untilDestroy.untilDestroyed(this)).subscribe(function () {
+            this.delonI18n.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function () {
                 _this.locale = _this.delonI18n.getData('st');
                 if (_this._columns.length > 0) {
                     _this.updateTotalTpl();
@@ -1454,7 +1454,7 @@
                 }
             });
             i18nSrv.change
-                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function () { return _this._columns.length > 0; }))
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function () { return _this._columns.length > 0; }))
                 .subscribe(function () { return _this.refreshColumns(); });
         }
         Object.defineProperty(STComponent.prototype, "req", {
@@ -1642,7 +1642,7 @@
                     page: page, columns: _this._columns, singleSort: singleSort,
                     multiSort: multiSort,
                     rowClassName: rowClassName, paginator: true }, options))
-                    .pipe(untilDestroy.untilDestroyed(_this))
+                    .pipe(operators.takeUntil(_this.unsubscribe$))
                     .subscribe(function (result) { return resolvePromise(result); }, function (error) {
                     console.warn('st.loadDate', error);
                     rejectPromise(error);
@@ -1687,8 +1687,8 @@
                             return [2 /*return*/, this._refCheck()];
                         case 3:
                             error_1 = _b.sent();
-                            if (!this.destroy) {
-                                this.setLoading(false);
+                            this.setLoading(false);
+                            if (!this.unsubscribe$.isStopped) {
                                 this.cdr.detectChanges();
                                 this.error.emit({ type: 'req', error: error_1 });
                             }
@@ -2083,7 +2083,7 @@
                 column: this._columns[colIndex],
             });
             (rxjs.isObservable(obs$) ? obs$ : rxjs.of(obs$))
-                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function (res) { return res.length > 0; }))
+                .pipe(operators.takeUntil(this.unsubscribe$), operators.filter(function (res) { return res.length > 0; }))
                 .subscribe(function (res) {
                 _this.contextmenuList = res.map(function (i) {
                     if (!Array.isArray(i.children)) {
@@ -2174,11 +2174,13 @@
             }
         };
         STComponent.prototype.ngOnDestroy = function () {
-            this.destroy = true;
+            var unsubscribe$ = this.unsubscribe$;
+            unsubscribe$.next();
+            unsubscribe$.complete();
         };
         return STComponent;
     }());
-    exports.STComponent.decorators = [
+    STComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'st',
                     exportAs: 'st',
@@ -2198,7 +2200,7 @@
                 },] }
     ];
     /** @nocollapse */
-    exports.STComponent.ctorParameters = function () { return [
+    STComponent.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
         { type: i0.ChangeDetectorRef },
         { type: router.Router },
@@ -2213,7 +2215,7 @@
         { type: config.AlainConfigService },
         { type: dropdown.NzContextMenuService }
     ]; };
-    exports.STComponent.propDecorators = {
+    STComponent.propDecorators = {
         orgTable: [{ type: i0.ViewChild, args: ['table',] }],
         contextmenuTpl: [{ type: i0.ViewChild, args: ['contextmenuTpl',] }],
         req: [{ type: i0.Input }],
@@ -2260,78 +2262,65 @@
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "ps", void 0);
+    ], STComponent.prototype, "ps", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "pi", void 0);
+    ], STComponent.prototype, "pi", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "total", void 0);
+    ], STComponent.prototype, "total", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "loadingDelay", void 0);
+    ], STComponent.prototype, "loadingDelay", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "bordered", void 0);
+    ], STComponent.prototype, "bordered", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "showHeader", void 0);
+    ], STComponent.prototype, "showHeader", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "expandRowByClick", void 0);
+    ], STComponent.prototype, "expandRowByClick", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "expandAccordion", void 0);
+    ], STComponent.prototype, "expandAccordion", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "rowClickTime", void 0);
-    __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
-    ], exports.STComponent.prototype, "responsive", void 0);
+    ], STComponent.prototype, "rowClickTime", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.STComponent.prototype, "responsiveHideHeaderFooter", void 0);
+    ], STComponent.prototype, "responsive", void 0);
+    __decorate([
+        decorator.InputBoolean(),
+        __metadata("design:type", Boolean)
+    ], STComponent.prototype, "responsiveHideHeaderFooter", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "virtualScroll", void 0);
+    ], STComponent.prototype, "virtualScroll", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "virtualItemSize", void 0);
+    ], STComponent.prototype, "virtualItemSize", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "virtualMaxBufferPx", void 0);
+    ], STComponent.prototype, "virtualMaxBufferPx", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
-    ], exports.STComponent.prototype, "virtualMinBufferPx", void 0);
-    exports.STComponent = __decorate([
-        untilDestroy.UntilDestroy(),
-        __metadata("design:paramtypes", [Object, i0.ChangeDetectorRef,
-            router.Router,
-            i0.ElementRef,
-            STExport,
-            theme.ModalHelper,
-            theme.DrawerHelper, Object, STColumnSource,
-            STDataSource,
-            theme.DelonLocaleService,
-            config.AlainConfigService,
-            dropdown.NzContextMenuService])
-    ], exports.STComponent);
+    ], STComponent.prototype, "virtualMinBufferPx", void 0);
 
-    var COMPONENTS = [exports.STComponent, STRowDirective, STWidgetHostDirective];
+    var COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
     var STModule = /** @class */ (function () {
         function STModule() {
         }
@@ -2368,6 +2357,7 @@
      */
 
     exports.STColumnSource = STColumnSource;
+    exports.STComponent = STComponent;
     exports.STDataSource = STDataSource;
     exports.STExport = STExport;
     exports.STModule = STModule;

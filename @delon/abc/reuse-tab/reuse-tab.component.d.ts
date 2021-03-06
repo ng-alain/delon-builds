@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
-export declare class ReuseTabComponent implements OnInit, OnChanges {
+export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
     private cdr;
     private router;
@@ -18,6 +18,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges {
     static ngAcceptInputType_keepingScroll: BooleanInput;
     static ngAcceptInputType_disabled: BooleanInput;
     private tabset;
+    private unsubscribe$;
     private updatePos$;
     private _keepingScrollContainer;
     list: ReuseItem[];
@@ -61,4 +62,5 @@ export declare class ReuseTabComponent implements OnInit, OnChanges {
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
+    ngOnDestroy(): void;
 }

@@ -5,9 +5,8 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Ng
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { fromEvent } from 'rxjs';
-import { debounceTime, filter } from 'rxjs/operators';
+import { Subject, fromEvent } from 'rxjs';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 const PDF_DEFULAT_CONFIG = {
@@ -37,7 +36,7 @@ var PdfExternalLinkTarget;
 
 const CSS_UNITS = 96.0 / 72.0;
 const BORDER_WIDTH = 9;
-let PdfComponent = class PdfComponent {
+class PdfComponent {
     constructor(ngZone, configSrv, lazySrv, platform, el, doc) {
         this.ngZone = ngZone;
         this.lazySrv = lazySrv;
@@ -45,6 +44,7 @@ let PdfComponent = class PdfComponent {
         this.el = el;
         this.doc = doc;
         this.inited = false;
+        this.unsubscribe$ = new Subject();
         this.lib = '';
         this._pi = 1;
         this._total = 0;
@@ -336,7 +336,7 @@ let PdfComponent = class PdfComponent {
     }
     initResize() {
         fromEvent(this.win, 'resize')
-            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), untilDestroyed(this))
+            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), takeUntil(this.unsubscribe$))
             .subscribe(() => this.updateSize());
     }
     ngOnChanges(changes) {
@@ -345,9 +345,12 @@ let PdfComponent = class PdfComponent {
         }
     }
     ngOnDestroy() {
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
         this.destroy();
     }
-};
+}
 PdfComponent.decorators = [
     { type: Component, args: [{
                 selector: 'pdf',
@@ -440,14 +443,6 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], PdfComponent.prototype, "delay", void 0);
-PdfComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [NgZone,
-        AlainConfigService,
-        LazyService,
-        Platform,
-        ElementRef, Object])
-], PdfComponent);
 
 const COMPONENTS = [PdfComponent];
 class PdfModule {

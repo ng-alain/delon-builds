@@ -18,6 +18,7 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     types: ThemeBtnType[];
     devTips: string;
     private el;
+    private destroy$;
     dir: Direction;
     constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: any, directionality: Directionality);
     ngOnInit(): void;

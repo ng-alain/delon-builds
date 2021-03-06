@@ -1,10 +1,11 @@
-import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/util/token';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { __decorate, __metadata } from 'tslib';
 import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
@@ -30,12 +31,13 @@ __decorate([
     __metadata("design:type", Boolean)
 ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
 
-let GlobalFooterComponent = class GlobalFooterComponent {
+class GlobalFooterComponent {
     constructor(router, win, dom, directionality) {
         this.router = router;
         this.win = win;
         this.dom = dom;
         this.directionality = directionality;
+        this.destroy$ = new Subject();
         this._links = [];
         this.dir = 'ltr';
     }
@@ -64,11 +66,15 @@ let GlobalFooterComponent = class GlobalFooterComponent {
     ngOnInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
     }
-};
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
 GlobalFooterComponent.decorators = [
     { type: Component, args: [{
                 selector: 'global-footer',
@@ -94,11 +100,6 @@ GlobalFooterComponent.propDecorators = {
     links: [{ type: Input }],
     items: [{ type: ContentChildren, args: [GlobalFooterItemComponent,] }]
 };
-GlobalFooterComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [Router, Object, DomSanitizer,
-        Directionality])
-], GlobalFooterComponent);
 
 const COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
 class GlobalFooterModule {

@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { AfterViewInit, ChangeDetectorRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
@@ -10,7 +10,7 @@ interface PageHeaderPath {
     title?: string;
     link?: string[];
 }
-export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
+export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
     private renderer;
     private router;
     private menuSrv;
@@ -27,6 +27,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     static ngAcceptInputType_fixed: BooleanInput;
     static ngAcceptInputType_fixedOffsetTop: NumberInput;
     static ngAcceptInputType_recursiveBreadcrumb: BooleanInput;
+    private destroy$;
     private conTpl;
     private affix;
     inited: boolean;
@@ -63,5 +64,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
+    ngOnDestroy(): void;
 }
 export {};

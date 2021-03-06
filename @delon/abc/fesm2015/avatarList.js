@@ -2,7 +2,8 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDet
 import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { InputNumber } from '@delon/util/decorator';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -26,11 +27,12 @@ AvatarListItemComponent.propDecorators = {
     tips: [{ type: Input }]
 };
 
-let AvatarListComponent = class AvatarListComponent {
+class AvatarListComponent {
     constructor(cdr, directionality) {
         this.cdr = cdr;
         this.directionality = directionality;
         this.inited = false;
+        this.destroy$ = new Subject();
         this.items = [];
         this.exceedCount = 0;
         this.dir = 'ltr';
@@ -63,7 +65,7 @@ let AvatarListComponent = class AvatarListComponent {
     ngAfterViewInit() {
         var _a;
         this.dir = this.directionality.value;
-        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroyed(this)).subscribe((direction) => {
+        (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
         this.gen();
@@ -74,7 +76,11 @@ let AvatarListComponent = class AvatarListComponent {
             this.gen();
         }
     }
-};
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
+    }
+}
 AvatarListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list',
@@ -104,10 +110,6 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], AvatarListComponent.prototype, "maxLength", void 0);
-AvatarListComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [ChangeDetectorRef, Directionality])
-], AvatarListComponent);
 
 const COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
 class AvatarListModule {

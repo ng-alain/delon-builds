@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util/browser', '@delon/util/config', '@delon/util/decorator', '@ngneat/until-destroy', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.browser, global.config, global.decorator, global.untilDestroy, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, browser, config, decorator, untilDestroy, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/core'), require('@angular/router'), require('@delon/abc/reuse-tab'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/affix'), require('ng-zorro-antd/breadcrumb'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/page-header', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/core', '@angular/router', '@delon/abc/reuse-tab', '@delon/theme', '@delon/util/browser', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/affix', 'ng-zorro-antd/breadcrumb', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['page-header'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.core, global.ng.router, global.delon.abc['reuse-tab'], global.delon.theme, global.browser, global.config, global.decorator, global.rxjs, global.rxjs.operators, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/affix'], global['ng-zorro-antd/breadcrumb'], global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, bidi, platform, core, router, reuseTab, theme, browser, config, decorator, rxjs, operators, observers, common, affix, breadcrumb, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,7 +318,7 @@
         return value;
     }
 
-    exports.PageHeaderComponent = /** @class */ (function () {
+    var PageHeaderComponent = /** @class */ (function () {
         // #endregion
         function PageHeaderComponent(settings, renderer, router$1, menuSrv, i18nSrv, titleSrv, reuseSrv, cdr, configSrv, platform, directionality) {
             var _this = this;
@@ -330,6 +330,7 @@
             this.reuseSrv = reuseSrv;
             this.cdr = cdr;
             this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this.inited = false;
             this.isBrowser = true;
             this.dir = 'ltr';
@@ -355,10 +356,10 @@
                 fixedOffsetTop: 64,
             });
             settings.notify
-                .pipe(untilDestroy.untilDestroyed(this), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
+                .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
             rxjs.merge(menuSrv.change.pipe(operators.filter(function () { return _this.inited; })), router$1.events.pipe(operators.filter(function (ev) { return ev instanceof router.NavigationEnd; })), i18nSrv.change)
-                .pipe(untilDestroy.untilDestroyed(this))
+                .pipe(operators.takeUntil(this.destroy$))
                 .subscribe(function () { return _this.refresh(); });
         }
         Object.defineProperty(PageHeaderComponent.prototype, "menus", {
@@ -442,7 +443,7 @@
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
                 _this.cdr.detectChanges();
             });
@@ -457,9 +458,13 @@
                 this.refresh();
             }
         };
+        PageHeaderComponent.prototype.ngOnDestroy = function () {
+            this.destroy$.next();
+            this.destroy$.complete();
+        };
         return PageHeaderComponent;
     }());
-    exports.PageHeaderComponent.decorators = [
+    PageHeaderComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'page-header',
                     exportAs: 'pageHeader',
@@ -470,7 +475,7 @@
                 },] }
     ];
     /** @nocollapse */
-    exports.PageHeaderComponent.ctorParameters = function () { return [
+    PageHeaderComponent.ctorParameters = function () { return [
         { type: theme.SettingsService },
         { type: core.Renderer2 },
         { type: router.Router },
@@ -483,7 +488,7 @@
         { type: platform.Platform },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
-    exports.PageHeaderComponent.propDecorators = {
+    PageHeaderComponent.propDecorators = {
         conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: false },] }],
         affix: [{ type: core.ViewChild, args: ['affix', { static: false },] }],
         title: [{ type: core.Input }],
@@ -508,49 +513,37 @@
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PageHeaderComponent.prototype, "loading", void 0);
+    ], PageHeaderComponent.prototype, "loading", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.PageHeaderComponent.prototype, "wide", void 0);
+    ], PageHeaderComponent.prototype, "wide", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
+    ], PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.PageHeaderComponent.prototype, "autoTitle", void 0);
+    ], PageHeaderComponent.prototype, "autoTitle", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.PageHeaderComponent.prototype, "syncTitle", void 0);
+    ], PageHeaderComponent.prototype, "syncTitle", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.PageHeaderComponent.prototype, "fixed", void 0);
+    ], PageHeaderComponent.prototype, "fixed", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Number)
-    ], exports.PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
+    ], PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Boolean)
-    ], exports.PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
-    exports.PageHeaderComponent = __decorate([
-        untilDestroy.UntilDestroy(),
-        __metadata("design:paramtypes", [theme.SettingsService,
-            core.Renderer2,
-            router.Router,
-            theme.MenuService, Object, theme.TitleService,
-            reuseTab.ReuseTabService,
-            core.ChangeDetectorRef,
-            config.AlainConfigService,
-            platform.Platform,
-            bidi.Directionality])
-    ], exports.PageHeaderComponent);
+    ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
 
-    var COMPONENTS = [exports.PageHeaderComponent];
+    var COMPONENTS = [PageHeaderComponent];
     var PageHeaderModule = /** @class */ (function () {
         function PageHeaderModule() {
         }
@@ -568,6 +561,7 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.PageHeaderComponent = PageHeaderComponent;
     exports.PageHeaderModule = PageHeaderModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });

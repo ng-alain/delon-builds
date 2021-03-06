@@ -5,8 +5,7 @@ import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { InputNumber } from '@delon/util/decorator';
-import { untilDestroyed, UntilDestroy } from '@ngneat/until-destroy';
-import { filter } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 
 class G2Service {
     constructor(cogSrv, lazySrv) {
@@ -60,18 +59,19 @@ G2Service.ctorParameters = () => [
     { type: LazyService }
 ];
 
-let G2BaseComponent = class G2BaseComponent {
+class G2BaseComponent {
     constructor(srv, el, ngZone, platform, cdr) {
         this.srv = srv;
         this.el = el;
         this.ngZone = ngZone;
         this.platform = platform;
         this.cdr = cdr;
+        this.destroy$ = new Subject();
         this.loaded = false;
         this.delay = 0;
         this.theme = srv.cog.theme;
         this.srv.notify
-            .pipe(untilDestroyed(this), filter(() => !this.loaded))
+            .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
             .subscribe(() => this.load());
     }
     get chart() {
@@ -106,11 +106,13 @@ let G2BaseComponent = class G2BaseComponent {
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
+        this.destroy$.next();
+        this.destroy$.complete();
         if (this._chart) {
             this.ngZone.runOutsideAngular(() => this._chart.destroy());
         }
     }
-};
+}
 G2BaseComponent.decorators = [
     { type: Directive }
 ];
@@ -131,14 +133,6 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2BaseComponent.prototype, "delay", void 0);
-G2BaseComponent = __decorate([
-    UntilDestroy(),
-    __metadata("design:paramtypes", [G2Service,
-        ElementRef,
-        NgZone,
-        Platform,
-        ChangeDetectorRef])
-], G2BaseComponent);
 
 /**
  * Generated bundle index. Do not edit.

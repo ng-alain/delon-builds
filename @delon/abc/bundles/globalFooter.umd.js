@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/token'), require('@ngneat/until-destroy'), require('@delon/util/decorator'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/util/token', '@ngneat/until-destroy', '@delon/util/decorator', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.token, global.untilDestroy, global.decorator, global.ng.common));
-}(this, (function (exports, bidi, core, platformBrowser, router, token, untilDestroy, decorator, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/token'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', '@delon/util/token', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.token, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common));
+}(this, (function (exports, bidi, core, platformBrowser, router, token, rxjs, operators, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -343,12 +343,13 @@
         __metadata("design:type", Boolean)
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
 
-    exports.GlobalFooterComponent = /** @class */ (function () {
+    var GlobalFooterComponent = /** @class */ (function () {
         function GlobalFooterComponent(router, win, dom, directionality) {
             this.router = router;
             this.win = win;
             this.dom = dom;
             this.directionality = directionality;
+            this.destroy$ = new rxjs.Subject();
             this._links = [];
             this.dir = 'ltr';
         }
@@ -383,13 +384,17 @@
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
             });
         };
+        GlobalFooterComponent.prototype.ngOnDestroy = function () {
+            this.destroy$.next();
+            this.destroy$.complete();
+        };
         return GlobalFooterComponent;
     }());
-    exports.GlobalFooterComponent.decorators = [
+    GlobalFooterComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'global-footer',
                     exportAs: 'globalFooter',
@@ -404,23 +409,18 @@
                 },] }
     ];
     /** @nocollapse */
-    exports.GlobalFooterComponent.ctorParameters = function () { return [
+    GlobalFooterComponent.ctorParameters = function () { return [
         { type: router.Router },
         { type: undefined, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
         { type: platformBrowser.DomSanitizer },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
-    exports.GlobalFooterComponent.propDecorators = {
+    GlobalFooterComponent.propDecorators = {
         links: [{ type: core.Input }],
         items: [{ type: core.ContentChildren, args: [GlobalFooterItemComponent,] }]
     };
-    exports.GlobalFooterComponent = __decorate([
-        untilDestroy.UntilDestroy(),
-        __metadata("design:paramtypes", [router.Router, Object, platformBrowser.DomSanitizer,
-            bidi.Directionality])
-    ], exports.GlobalFooterComponent);
 
-    var COMPONENTS = [exports.GlobalFooterComponent, GlobalFooterItemComponent];
+    var COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
     var GlobalFooterModule = /** @class */ (function () {
         function GlobalFooterModule() {
         }
@@ -438,6 +438,7 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.GlobalFooterComponent = GlobalFooterComponent;
     exports.GlobalFooterItemComponent = GlobalFooterItemComponent;
     exports.GlobalFooterModule = GlobalFooterModule;
 

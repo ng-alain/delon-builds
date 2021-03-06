@@ -40,6 +40,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_virtualItemSize: NumberInput;
     static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
+    private unsubscribe$;
     private data$;
     private totalTpl;
     private cog;
@@ -49,7 +50,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _page;
     private _widthMode;
     private customWidthConfig;
-    private destroy;
     _widthConfig: string[];
     locale: LocaleData;
     _loading: boolean;

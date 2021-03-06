@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, OnDestroy, TemplateRef } from '@angular/core';
 import { App, SettingsService } from '@delon/theme';
 import { LayoutDefaultComponent } from './layout.component';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden, LayoutDefaultOptions } from './types';
@@ -7,10 +7,11 @@ interface LayoutDefaultHeaderItem {
     hidden?: LayoutDefaultHeaderItemHidden;
     direction?: LayoutDefaultHeaderItemDirection;
 }
-export declare class LayoutDefaultHeaderComponent implements AfterViewInit {
+export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDestroy {
     private settings;
     private parent;
     private cdr;
+    private destroy$;
     left: LayoutDefaultHeaderItem[];
     middle: LayoutDefaultHeaderItem[];
     right: LayoutDefaultHeaderItem[];
@@ -22,5 +23,6 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit {
     private refresh;
     ngAfterViewInit(): void;
     toggleCollapsed(): void;
+    ngOnDestroy(): void;
 }
 export {};

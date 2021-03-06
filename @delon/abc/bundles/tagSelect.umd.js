@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util/decorator'), require('@ngneat/until-destroy'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util/decorator', '@ngneat/until-destroy', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.decorator, global.untilDestroy, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, core, theme, decorator, untilDestroy, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, core, theme, decorator, rxjs, operators, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -318,11 +318,12 @@
         return value;
     }
 
-    exports.TagSelectComponent = /** @class */ (function () {
+    var TagSelectComponent = /** @class */ (function () {
         function TagSelectComponent(i18n, directionality, cdr) {
             this.i18n = i18n;
             this.directionality = directionality;
             this.cdr = cdr;
+            this.destroy$ = new rxjs.Subject();
             this.locale = {};
             this.expand = false;
             this.dir = 'ltr';
@@ -334,10 +335,10 @@
             var _this = this;
             var _a;
             this.dir = this.directionality.value;
-            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(untilDestroy.untilDestroyed(this)).subscribe(function (direction) {
+            (_a = this.directionality.change) === null || _a === void 0 ? void 0 : _a.pipe(operators.takeUntil(this.destroy$)).subscribe(function (direction) {
                 _this.dir = direction;
             });
-            this.i18n.change.pipe(untilDestroy.untilDestroyed(this)).subscribe(function () {
+            this.i18n.change.pipe(operators.takeUntil(this.destroy$)).subscribe(function () {
                 _this.locale = _this.i18n.getData('tagSelect');
                 _this.cdr.detectChanges();
             });
@@ -346,9 +347,13 @@
             this.expand = !this.expand;
             this.change.emit(this.expand);
         };
+        TagSelectComponent.prototype.ngOnDestroy = function () {
+            this.destroy$.next();
+            this.destroy$.complete();
+        };
         return TagSelectComponent;
     }());
-    exports.TagSelectComponent.decorators = [
+    TagSelectComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'tag-select',
                     exportAs: 'tagSelect',
@@ -366,25 +371,21 @@
                 },] }
     ];
     /** @nocollapse */
-    exports.TagSelectComponent.ctorParameters = function () { return [
+    TagSelectComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] },
         { type: core.ChangeDetectorRef }
     ]; };
-    exports.TagSelectComponent.propDecorators = {
+    TagSelectComponent.propDecorators = {
         expandable: [{ type: core.Input }],
         change: [{ type: core.Output }]
     };
     __decorate([
         decorator.InputBoolean(),
         __metadata("design:type", Object)
-    ], exports.TagSelectComponent.prototype, "expandable", void 0);
-    exports.TagSelectComponent = __decorate([
-        untilDestroy.UntilDestroy(),
-        __metadata("design:paramtypes", [theme.DelonLocaleService, bidi.Directionality, core.ChangeDetectorRef])
-    ], exports.TagSelectComponent);
+    ], TagSelectComponent.prototype, "expandable", void 0);
 
-    var COMPONENTS = [exports.TagSelectComponent];
+    var COMPONENTS = [TagSelectComponent];
     var TagSelectModule = /** @class */ (function () {
         function TagSelectModule() {
         }
@@ -402,6 +403,7 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.TagSelectComponent = TagSelectComponent;
     exports.TagSelectModule = TagSelectModule;
 
     Object.defineProperty(exports, '__esModule', { value: true });
