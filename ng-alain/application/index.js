@@ -64,7 +64,7 @@ function addDependenciesToPackageJson(options) {
     return (tree) => {
         versions_1.UpgradeDelonVersions(tree);
         // 3rd
-        utils_1.addPackage(tree, ['screenfull@^5.1.0']);
+        utils_1.addPackage(tree, ['screenfull@^5.1.0', 'ajv@^7.1.1']);
         // ng-alain
         utils_1.addPackage(tree, [
             `ng-alain@${utils_1.VERSION}`,
