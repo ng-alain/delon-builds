@@ -13,7 +13,7 @@ import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
-import { _STColumn, _STHeader } from './st.types';
+import { _STColumn, _STData, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private router;
@@ -40,7 +40,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_virtualItemSize: NumberInput;
     static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
-    private unsubscribe$;
+    private destroy$;
     private data$;
     private totalTpl;
     private cog;
@@ -53,7 +53,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _widthConfig: string[];
     locale: LocaleData;
     _loading: boolean;
-    _data: STData[];
+    _data: _STData[];
     _statistical: STStatisticalResults;
     _isPagination: boolean;
     _allChecked: boolean;
@@ -220,8 +220,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _refRadio(checked: boolean, item: STData): this;
     _btnClick(record: STData, btn: STColumnButton, e?: Event): void;
     private btnCallback;
-    _btnText(record: STData, btn: STColumnButton): string;
-    _validBtns(btns: STColumnButton[], item: STData, col: STColumn): STColumnButton[];
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据

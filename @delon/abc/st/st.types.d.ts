@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { STColumn, STSortMap } from './st.interfaces';
+import { SafeHtml } from '@angular/platform-browser';
+import { STColumn, STColumnButton, STData, STSortMap } from './st.interfaces';
 export interface _STColumn extends STColumn {
     children?: _STColumn[];
     indexKey?: string;
@@ -29,4 +30,18 @@ export interface _STHeader {
     colSpan: number;
     rowSpan: number;
     column: _STColumn;
+}
+export interface _STColumnButton<T extends STData = any> extends STColumnButton<T> {
+    _text?: string;
+    children?: _STColumnButton<T>[];
+}
+export interface _STDataValue {
+    text: string;
+    _text: SafeHtml;
+    org?: any;
+    color?: string;
+    buttons?: _STColumnButton[];
+}
+export interface _STData extends STData {
+    _values?: _STDataValue[];
 }
