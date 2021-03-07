@@ -31818,7 +31818,6 @@ ellipsis {
 }
 .onboarding__light-el {
   z-index: 100000 !important;
-  pointer-events: none;
 }
 .onboarding__light-ant {
   transition: all 0.3s ease-out;

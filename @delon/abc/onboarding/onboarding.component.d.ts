@@ -1,8 +1,8 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
-export declare class OnboardingComponent implements OnDestroy {
+export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     private el;
     private doc;
     private platform;
@@ -16,12 +16,14 @@ export declare class OnboardingComponent implements OnDestroy {
     readonly op: EventEmitter<OnboardingOpType>;
     running: boolean;
     dir: Direction;
+    private popover;
     get first(): boolean;
     get last(): boolean;
     private _getDoc;
     private _getWin;
     constructor(el: ElementRef<HTMLElement>, doc: any, platform: Platform, cdr: ChangeDetectorRef);
     private getLightData;
+    ngAfterViewInit(): void;
     private scroll;
     updateRunning(status: boolean): void;
     private updatePosition;
