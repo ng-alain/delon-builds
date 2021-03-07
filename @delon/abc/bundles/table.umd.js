@@ -745,6 +745,8 @@
                 if (typeof item.width === 'number') {
                     item.width = item.width + "px";
                 }
+                item._left = false;
+                item._right = false;
                 // sorter
                 item._sort = _this.sortCoerce(item);
                 // filter
