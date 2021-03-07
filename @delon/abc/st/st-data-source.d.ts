@@ -4,12 +4,12 @@ import { DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { CurrencyService } from '@delon/util/format';
 import { Observable } from 'rxjs';
 import { STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
-import { _STColumn, _STData } from './st.types';
+import { _STColumn } from './st.types';
 export interface STDataSourceOptions {
     pi: number;
     ps: number;
     paginator: boolean;
-    data: string | _STData[] | Observable<_STData[]>;
+    data: string | STData[] | Observable<STData[]>;
     total: number;
     req: STReq;
     res: STRes;
@@ -29,7 +29,7 @@ export interface STDataSourceResult {
     /** 新 `total`，若返回 `undefined` 表示用户受控 */
     total: number;
     /** 数据 */
-    list: _STData[];
+    list: STData[];
     /** 统计数据 */
     statistical: STStatisticalResults;
 }
@@ -47,9 +47,9 @@ export declare class STDataSource {
     private getByHttp;
     optimizeData(options: {
         columns: _STColumn[];
-        result: _STData[];
+        result: STData[];
         rowClassName?: STRowClassName;
-    }): _STData[];
+    }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;
     private getValidSort;

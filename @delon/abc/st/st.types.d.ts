@@ -42,6 +42,3 @@ export interface _STDataValue {
     color?: string;
     buttons?: _STColumnButton[];
 }
-export interface _STData extends STData {
-    _values?: _STDataValue[];
-}

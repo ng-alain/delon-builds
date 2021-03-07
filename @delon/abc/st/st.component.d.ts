@@ -13,7 +13,7 @@ import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
 import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
-import { _STColumn, _STData, _STHeader } from './st.types';
+import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private router;
@@ -53,7 +53,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _widthConfig: string[];
     locale: LocaleData;
     _loading: boolean;
-    _data: _STData[];
+    _data: STData[];
     _statistical: STStatisticalResults;
     _isPagination: boolean;
     _allChecked: boolean;
