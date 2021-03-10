@@ -30679,6 +30679,7 @@ body {
 .alain-default__header-logo-expanded,
 .alain-default__header-logo-collapsed {
   max-width: 100%;
+  max-height: 36px;
   vertical-align: middle;
   animation: fadeIn 1s;
 }
@@ -30686,7 +30687,7 @@ body {
   display: none;
 }
 .alain-default__header-logo-expanded {
-  display: inline;
+  display: inline-block;
 }
 .alain-default__nav {
   display: flex;
@@ -30806,7 +30807,7 @@ body {
   width: 64px;
 }
 .alain-default__collapsed .alain-default__header-logo-collapsed {
-  display: inline;
+  display: inline-block;
 }
 .alain-default__collapsed .alain-default__header-logo-expanded {
   display: none;
