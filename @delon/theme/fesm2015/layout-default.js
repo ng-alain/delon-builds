@@ -46,7 +46,6 @@ class LayoutDefaultComponent {
         this.doc = doc;
         this.destroy$ = new Subject();
         this.isFetching = false;
-        // scroll to top in change page
         router.events.pipe(takeUntil(this.destroy$)).subscribe(evt => {
             if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
                 this.isFetching = true;
@@ -93,6 +92,7 @@ class LayoutDefaultComponent {
 LayoutDefaultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'layout-default',
+                exportAs: 'layoutDefault',
                 template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header></layout-default-header>

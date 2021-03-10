@@ -37,7 +37,6 @@
           this.doc = doc;
           this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
-          // scroll to top in change page
           router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (evt) {
               if (!_this.isFetching && evt instanceof router.RouteConfigLoadStart) {
                   _this.isFetching = true;
@@ -87,6 +86,7 @@
   LayoutDefaultComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default',
+                  exportAs: 'layoutDefault',
                   template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div *ngIf=\"!options.hideAside\" class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
               },] }
   ];
