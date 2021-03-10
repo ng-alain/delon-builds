@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser'), require('@delon/util/decorator')) :
-  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser', '@delon/util/decorator'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.browser, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator));
-}(this, (function (exports, common, core, router, theme, browser, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/message'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser'), require('@delon/util/decorator'), require('@delon/util/token')) :
+  typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/message', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser', '@delon/util/decorator', '@delon/util/token'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.browser, global.message, global.rxjs, global.rxjs.operators, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator, global.token));
+}(this, (function (exports, common, core, router, theme, browser, message, rxjs, operators, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator, token) { 'use strict';
 
   var LayoutDefaultHeaderItemComponent = /** @class */ (function () {
       function LayoutDefaultHeaderItemComponent() {
@@ -67,14 +67,13 @@
               _a['alain-default'] = true,
               _a["alain-default__fixed"] = layout.fixed,
               _a["alain-default__collapsed"] = layout.collapsed,
+              _a["alain-default__hide-aside"] = this.options.hideAside,
               _a));
           doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
       };
       LayoutDefaultComponent.prototype.ngOnInit = function () {
           var _this = this;
-          if (this.options == null) {
-              throw new Error("Please specify the [options] parameter, otherwise the layout display cannot be completed");
-          }
+          this.options = Object.assign({ logoExpanded: "./assets/logo-full.svg", logoCollapsed: "./assets/logo.svg", logoLink: "/", hideAside: false }, this.options);
           var _a = this, settings = _a.settings, destroy$ = _a.destroy$;
           settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(function () { return _this.setClass(); });
           this.setClass();
@@ -88,7 +87,7 @@
   LayoutDefaultComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default',
-                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
+                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div *ngIf=\"!options.hideAside\" class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
               },] }
   ];
   /** @nocollapse */
@@ -188,7 +187,7 @@
   LayoutDefaultHeaderComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default-header',
-                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
+                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\" [style.width.px]=\"options.logoFixWidth\">\n      <a [routerLink]=\"options.logoLink\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" />\n        <img class=\"alain-default__header-logo-collapsed\" [attr.src]=\"options.logoCollapsed\" [attr.alt]=\"app.name\" />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li *ngIf=\"!options.hideAside\">\n          <div class=\"alain-default__nav-item alain-default__nav-item--collapse\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
                   host: {
                       '[class.alain-default__header]': "true",
                   },
@@ -514,7 +513,7 @@
   var SHOWCLS = 'sidebar-nav__floating-show';
   var FLOATINGCLS = 'sidebar-nav__floating';
   var LayoutDefaultNavComponent = /** @class */ (function () {
-      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
+      function LayoutDefaultNavComponent(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
           this.menuSrv = menuSrv;
           this.settings = settings;
           this.router = router;
@@ -523,6 +522,7 @@
           this.ngZone = ngZone;
           this.sanitizer = sanitizer;
           this.doc = doc;
+          this.win = win;
           this.directionality = directionality;
           this.destroy$ = new rxjs.Subject();
           this.dir = 'ltr';
@@ -645,12 +645,11 @@
           if (item.disabled)
               return;
           if (item.externalLink) {
-              var defaultView = this.doc.defaultView;
               if (item.target === '_blank') {
-                  defaultView.open(item.externalLink);
+                  this.win.open(item.externalLink);
               }
               else {
-                  defaultView.location.href = item.externalLink;
+                  this.win.location.href = item.externalLink;
               }
               return;
           }
@@ -789,6 +788,7 @@
       { type: core.NgZone },
       { type: platformBrowser.DomSanitizer },
       { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
+      { type: undefined, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },
       { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
   ]; };
   LayoutDefaultNavComponent.propDecorators = {
@@ -834,7 +834,7 @@
   }());
   LayoutDefaultModule.decorators = [
       { type: core.NgModule, args: [{
-                  imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule],
+                  imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule, message.NzMessageModule],
                   declarations: COMPONENTS,
                   exports: COMPONENTS,
               },] }

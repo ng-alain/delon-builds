@@ -30632,6 +30632,10 @@ body {
 .alain-default__content nz-input-group {
   width: auto;
 }
+.alain-default__hide-aside .alain-default__content {
+  margin-left: 24px !important;
+  transform: none !important;
+}
 @media (min-width: 768px) {
   .alain-default__content {
     margin-left: 224px;
@@ -30675,6 +30679,7 @@ body {
 .alain-default__header-logo-expanded,
 .alain-default__header-logo-collapsed {
   max-width: 100%;
+  max-height: 36px;
   vertical-align: middle;
   animation: fadeIn 1s;
 }
@@ -30682,7 +30687,7 @@ body {
   display: none;
 }
 .alain-default__header-logo-expanded {
-  display: inline;
+  display: inline-block;
 }
 .alain-default__nav {
   display: flex;
@@ -30802,7 +30807,7 @@ body {
   width: 64px;
 }
 .alain-default__collapsed .alain-default__header-logo-collapsed {
-  display: inline;
+  display: inline-block;
 }
 .alain-default__collapsed .alain-default__header-logo-expanded {
   display: none;
@@ -31192,6 +31197,9 @@ body {
 }
 .alain-default__collapsed .reuse-tab {
   left: 88px;
+}
+.alain-default__hide-aside .reuse-tab {
+  left: 24px;
 }
 @media (min-width: 768px) {
   .alain-default__fixed .reuse-tab + router-outlet {

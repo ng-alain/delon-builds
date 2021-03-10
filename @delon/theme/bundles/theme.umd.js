@@ -761,11 +761,8 @@
         { type: i2$1.Platform }
     ]; };
 
-    /** Layout data specifies the stored key */
     var LAYOUT = 'layout';
-    /** User data specifies the stored key */
     var USER = 'user';
-    /** App data specifies the stored key */
     var APP = 'app';
     var SettingsService = /** @class */ (function () {
         function SettingsService(platform) {
