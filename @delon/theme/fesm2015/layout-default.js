@@ -3,7 +3,7 @@ import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChil
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { SettingsService, MenuService } from '@delon/theme';
 import { updateHostClass } from '@delon/util/browser';
-import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzMessageService, NzMessageModule } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -74,6 +74,7 @@ class LayoutDefaultComponent {
             ['alain-default']: true,
             [`alain-default__fixed`]: layout.fixed,
             [`alain-default__collapsed`]: layout.collapsed,
+            [`alain-default__hide-aside`]: this.options.hideAside,
         });
         doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
     }
@@ -96,7 +97,7 @@ LayoutDefaultComponent.decorators = [
                 template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header></layout-default-header>
-    <div class="alain-default__aside">
+    <div *ngIf="!options.hideAside" class="alain-default__aside">
       <div class="alain-default__aside-inner">
         <ng-container *ngTemplateOutlet="asideUser"></ng-container>
         <ng-container *ngTemplateOutlet="nav"></ng-container>
@@ -205,8 +206,8 @@ LayoutDefaultHeaderComponent.decorators = [
     </div>
     <div class="alain-default__nav-wrap">
       <ul class="alain-default__nav">
-        <li>
-          <div class="alain-default__nav-item" (click)="toggleCollapsed()">
+        <li *ngIf="!options.hideAside">
+          <div class="alain-default__nav-item alain-default__nav-item--collapse" (click)="toggleCollapsed()">
             <i nz-icon [nzType]="collapsedIcon"></i>
           </div>
         </li>
@@ -540,7 +541,7 @@ class LayoutDefaultModule {
 }
 LayoutDefaultModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, NzToolTipModule, NzIconModule, NzAvatarModule, NzDropDownModule],
+                imports: [CommonModule, RouterModule, NzToolTipModule, NzIconModule, NzAvatarModule, NzDropDownModule, NzMessageModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }

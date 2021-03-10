@@ -30632,6 +30632,10 @@ body {
 .alain-default__content nz-input-group {
   width: auto;
 }
+.alain-default__hide-aside .alain-default__content {
+  margin-left: 24px !important;
+  transform: none !important;
+}
 @media (min-width: 768px) {
   .alain-default__content {
     margin-left: 224px;
@@ -31192,6 +31196,9 @@ body {
 }
 .alain-default__collapsed .reuse-tab {
   left: 88px;
+}
+.alain-default__hide-aside .reuse-tab {
+  left: 24px;
 }
 @media (min-width: 768px) {
   .alain-default__fixed .reuse-tab + router-outlet {

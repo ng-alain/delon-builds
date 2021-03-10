@@ -67,6 +67,7 @@
               _a['alain-default'] = true,
               _a["alain-default__fixed"] = layout.fixed,
               _a["alain-default__collapsed"] = layout.collapsed,
+              _a["alain-default__hide-aside"] = this.options.hideAside,
               _a));
           doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
       };
@@ -88,7 +89,7 @@
   LayoutDefaultComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default',
-                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
+                  template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div *ngIf=\"!options.hideAside\" class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
               },] }
   ];
   /** @nocollapse */
@@ -188,7 +189,7 @@
   LayoutDefaultHeaderComponent.decorators = [
       { type: core.Component, args: [{
                   selector: 'layout-default-header',
-                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li>\n          <div class=\"alain-default__nav-item\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
+                  template: "\n    <ng-template #render let-ls>\n      <li *ngFor=\"let i of ls\" [class.hidden-mobile]=\"i.hidden === 'mobile'\" [class.hidden-pc]=\"i.hidden === 'pc'\">\n        <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n      </li>\n    </ng-template>\n    <div class=\"alain-default__header-logo\">\n      <a [routerLink]=\"['/']\" class=\"alain-default__header-logo-link\">\n        <img class=\"alain-default__header-logo-expanded\" [attr.src]=\"options.logoExpanded\" [attr.alt]=\"app.name\" style=\"max-height: 40px\" />\n        <img\n          class=\"alain-default__header-logo-collapsed\"\n          [attr.src]=\"options.logoCollapsed\"\n          [attr.alt]=\"app.name\"\n          style=\"max-height: 30px\"\n        />\n      </a>\n    </div>\n    <div class=\"alain-default__nav-wrap\">\n      <ul class=\"alain-default__nav\">\n        <li *ngIf=\"!options.hideAside\">\n          <div class=\"alain-default__nav-item alain-default__nav-item--collapse\" (click)=\"toggleCollapsed()\">\n            <i nz-icon [nzType]=\"collapsedIcon\"></i>\n          </div>\n        </li>\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: left }\"></ng-template>\n      </ul>\n      <div *ngIf=\"middle.length > 0\" class=\"alain-default__nav alain-default__nav-middle\">\n        <ng-container *ngTemplateOutlet=\"middle[0].host\"></ng-container>\n      </div>\n      <ul class=\"alain-default__nav\">\n        <ng-template [ngTemplateOutlet]=\"render\" [ngTemplateOutletContext]=\"{ $implicit: right }\"></ng-template>\n      </ul>\n    </div>\n  ",
                   host: {
                       '[class.alain-default__header]': "true",
                   },
@@ -834,7 +835,7 @@
   }());
   LayoutDefaultModule.decorators = [
       { type: core.NgModule, args: [{
-                  imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule],
+                  imports: [common.CommonModule, router.RouterModule, tooltip.NzToolTipModule, icon.NzIconModule, avatar.NzAvatarModule, dropdown.NzDropDownModule, message.NzMessageModule],
                   declarations: COMPONENTS,
                   exports: COMPONENTS,
               },] }
