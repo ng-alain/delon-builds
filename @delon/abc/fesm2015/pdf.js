@@ -3,7 +3,7 @@ import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { InputNumber, InputBoolean } from '@delon/util/decorator';
+import { InputNumber, InputBoolean, ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
@@ -140,34 +140,30 @@ class PdfComponent {
             this.render();
             return;
         }
-        this.ngZone.runOutsideAngular(() => {
-            this.destroy();
-            const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
-            loadingTask.onProgress = (progress) => this.emit('load-progress', { progress });
-            loadingTask.promise.then((pdf) => {
-                this._pdf = pdf;
-                this.lastSrc = _src;
-                this._total = pdf.numPages;
-                this.emit('loaded');
-                if (!this.pageViewer) {
-                    this.setupPageViewer();
-                }
-                this.resetDoc();
-                this.render();
-            }, (error) => this.emit('error', { error }));
-        });
+        this.destroy();
+        const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
+        loadingTask.onProgress = (progress) => this.emit('load-progress', { progress });
+        loadingTask.promise.then((pdf) => {
+            this._pdf = pdf;
+            this.lastSrc = _src;
+            this._total = pdf.numPages;
+            this.emit('loaded');
+            if (!this.pageViewer) {
+                this.setupPageViewer();
+            }
+            this.resetDoc();
+            this.render();
+        }, (error) => this.emit('error', { error }));
     }
     resetDoc() {
         const pdf = this._pdf;
         if (!pdf) {
             return;
         }
-        this.ngZone.runOutsideAngular(() => {
-            this.cleanDoc();
-            this.findController.setDocument(pdf);
-            this.pageViewer.setDocument(pdf);
-            this.linkService.setDocument(pdf, null);
-        });
+        this.cleanDoc();
+        this.findController.setDocument(pdf);
+        this.pageViewer.setDocument(pdf);
+        this.linkService.setDocument(pdf, null);
     }
     cleanDoc() {
         this.multiPageViewer.setDocument(null);
@@ -195,25 +191,23 @@ class PdfComponent {
         this.updateSize();
     }
     updateSize() {
-        this.ngZone.runOutsideAngular(() => {
-            const currentViewer = this.pageViewer;
-            this._pdf.getPage(currentViewer.currentPageNumber).then((page) => {
-                const { _rotation, _zoom } = this;
-                const rotation = _rotation || page.rotate;
-                const viewportWidth = page.getViewport({
-                    scale: _zoom,
-                    rotation,
-                }).width * CSS_UNITS;
-                let scale = _zoom;
-                let stickToPage = true;
-                // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
-                if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.nativeElement.clientWidth)) {
-                    const viewPort = page.getViewport({ scale: 1, rotation });
-                    scale = this.getScale(viewPort.width, viewPort.height);
-                    stickToPage = !this.stickToPage;
-                }
-                currentViewer._setScale(scale, stickToPage);
-            });
+        const currentViewer = this.pageViewer;
+        this._pdf.getPage(currentViewer.currentPageNumber).then((page) => {
+            const { _rotation, _zoom } = this;
+            const rotation = _rotation || page.rotate;
+            const viewportWidth = page.getViewport({
+                scale: _zoom,
+                rotation,
+            }).width * CSS_UNITS;
+            let scale = _zoom;
+            let stickToPage = true;
+            // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
+            if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.nativeElement.clientWidth)) {
+                const viewPort = page.getViewport({ scale: 1, rotation });
+                scale = this.getScale(viewPort.width, viewPort.height);
+                stickToPage = !this.stickToPage;
+            }
+            currentViewer._setScale(scale, stickToPage);
         });
     }
     getScale(viewportWidth, viewportHeight) {
@@ -240,17 +234,15 @@ class PdfComponent {
         return (this._zoom * ratio) / CSS_UNITS;
     }
     destroy() {
-        this.ngZone.runOutsideAngular(() => {
-            const { loadingTask } = this;
-            if (loadingTask && !loadingTask.destroyed) {
-                loadingTask.destroy();
-            }
-            if (this._pdf) {
-                this._pdf.destroy();
-                this._pdf = null;
-                this.cleanDoc();
-            }
-        });
+        const { loadingTask } = this;
+        if (loadingTask && !loadingTask.destroyed) {
+            loadingTask.destroy();
+        }
+        if (this._pdf) {
+            this._pdf.destroy();
+            this._pdf = null;
+            this.cleanDoc();
+        }
     }
     setupPageViewer() {
         this.win.pdfjsLib.disableTextLayer = !this._renderText;
@@ -443,6 +435,30 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Number)
 ], PdfComponent.prototype, "delay", void 0);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PdfComponent.prototype, "load", null);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PdfComponent.prototype, "resetDoc", null);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PdfComponent.prototype, "updateSize", null);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PdfComponent.prototype, "destroy", null);
 
 const COMPONENTS = [PdfComponent];
 class PdfModule {

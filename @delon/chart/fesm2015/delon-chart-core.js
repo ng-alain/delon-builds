@@ -4,7 +4,7 @@ import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { InputNumber } from '@delon/util/decorator';
+import { InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
 
 class G2Service {
@@ -84,7 +84,7 @@ class G2BaseComponent {
             this.loaded = true;
             this.cdr.detectChanges();
         });
-        this.ngZone.runOutsideAngular(() => setTimeout(() => this.install(), this.delay));
+        setTimeout(() => this.install(), this.delay);
     }
     ngOnInit() {
         if (!this.platform.isBrowser) {
@@ -102,15 +102,18 @@ class G2BaseComponent {
         this.onChanges();
         this.ngZone.runOutsideAngular(() => this.attachChart());
     }
+    destroyChart() {
+        if (this._chart) {
+            this._chart.destroy();
+        }
+    }
     ngOnDestroy() {
         if (this.resize$) {
             this.resize$.unsubscribe();
         }
         this.destroy$.next();
         this.destroy$.complete();
-        if (this._chart) {
-            this.ngZone.runOutsideAngular(() => this._chart.destroy());
-        }
+        this.destroyChart();
     }
 }
 G2BaseComponent.decorators = [
@@ -133,6 +136,18 @@ __decorate([
     InputNumber(),
     __metadata("design:type", Object)
 ], G2BaseComponent.prototype, "delay", void 0);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], G2BaseComponent.prototype, "load", null);
+__decorate([
+    ZoneOutside(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], G2BaseComponent.prototype, "destroyChart", null);
 
 function genMiniTooltipOptions(type, options) {
     const res = Object.assign({ showTitle: false, showMarkers: true, enterable: true, domStyles: {

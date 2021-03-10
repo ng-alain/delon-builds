@@ -498,35 +498,30 @@
                 this.render();
                 return;
             }
-            this.ngZone.runOutsideAngular(function () {
-                _this.destroy();
-                var loadingTask = (_this.loadingTask = _this.win.pdfjsLib.getDocument(_src));
-                loadingTask.onProgress = function (progress) { return _this.emit('load-progress', { progress: progress }); };
-                loadingTask.promise.then(function (pdf) {
-                    _this._pdf = pdf;
-                    _this.lastSrc = _src;
-                    _this._total = pdf.numPages;
-                    _this.emit('loaded');
-                    if (!_this.pageViewer) {
-                        _this.setupPageViewer();
-                    }
-                    _this.resetDoc();
-                    _this.render();
-                }, function (error) { return _this.emit('error', { error: error }); });
-            });
+            this.destroy();
+            var loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
+            loadingTask.onProgress = function (progress) { return _this.emit('load-progress', { progress: progress }); };
+            loadingTask.promise.then(function (pdf) {
+                _this._pdf = pdf;
+                _this.lastSrc = _src;
+                _this._total = pdf.numPages;
+                _this.emit('loaded');
+                if (!_this.pageViewer) {
+                    _this.setupPageViewer();
+                }
+                _this.resetDoc();
+                _this.render();
+            }, function (error) { return _this.emit('error', { error: error }); });
         };
         PdfComponent.prototype.resetDoc = function () {
-            var _this = this;
             var pdf = this._pdf;
             if (!pdf) {
                 return;
             }
-            this.ngZone.runOutsideAngular(function () {
-                _this.cleanDoc();
-                _this.findController.setDocument(pdf);
-                _this.pageViewer.setDocument(pdf);
-                _this.linkService.setDocument(pdf, null);
-            });
+            this.cleanDoc();
+            this.findController.setDocument(pdf);
+            this.pageViewer.setDocument(pdf);
+            this.linkService.setDocument(pdf, null);
         };
         PdfComponent.prototype.cleanDoc = function () {
             this.multiPageViewer.setDocument(null);
@@ -556,25 +551,23 @@
         };
         PdfComponent.prototype.updateSize = function () {
             var _this = this;
-            this.ngZone.runOutsideAngular(function () {
-                var currentViewer = _this.pageViewer;
-                _this._pdf.getPage(currentViewer.currentPageNumber).then(function (page) {
-                    var _a = _this, _rotation = _a._rotation, _zoom = _a._zoom;
-                    var rotation = _rotation || page.rotate;
-                    var viewportWidth = page.getViewport({
-                        scale: _zoom,
-                        rotation: rotation,
-                    }).width * CSS_UNITS;
-                    var scale = _zoom;
-                    var stickToPage = true;
-                    // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
-                    if (!_this.originalSize || (_this.fitToPage && viewportWidth > _this.el.nativeElement.clientWidth)) {
-                        var viewPort = page.getViewport({ scale: 1, rotation: rotation });
-                        scale = _this.getScale(viewPort.width, viewPort.height);
-                        stickToPage = !_this.stickToPage;
-                    }
-                    currentViewer._setScale(scale, stickToPage);
-                });
+            var currentViewer = this.pageViewer;
+            this._pdf.getPage(currentViewer.currentPageNumber).then(function (page) {
+                var _a = _this, _rotation = _a._rotation, _zoom = _a._zoom;
+                var rotation = _rotation || page.rotate;
+                var viewportWidth = page.getViewport({
+                    scale: _zoom,
+                    rotation: rotation,
+                }).width * CSS_UNITS;
+                var scale = _zoom;
+                var stickToPage = true;
+                // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
+                if (!_this.originalSize || (_this.fitToPage && viewportWidth > _this.el.nativeElement.clientWidth)) {
+                    var viewPort = page.getViewport({ scale: 1, rotation: rotation });
+                    scale = _this.getScale(viewPort.width, viewPort.height);
+                    stickToPage = !_this.stickToPage;
+                }
+                currentViewer._setScale(scale, stickToPage);
             });
         };
         PdfComponent.prototype.getScale = function (viewportWidth, viewportHeight) {
@@ -601,18 +594,15 @@
             return (this._zoom * ratio) / CSS_UNITS;
         };
         PdfComponent.prototype.destroy = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(function () {
-                var loadingTask = _this.loadingTask;
-                if (loadingTask && !loadingTask.destroyed) {
-                    loadingTask.destroy();
-                }
-                if (_this._pdf) {
-                    _this._pdf.destroy();
-                    _this._pdf = null;
-                    _this.cleanDoc();
-                }
-            });
+            var loadingTask = this.loadingTask;
+            if (loadingTask && !loadingTask.destroyed) {
+                loadingTask.destroy();
+            }
+            if (this._pdf) {
+                this._pdf.destroy();
+                this._pdf = null;
+                this.cleanDoc();
+            }
         };
         PdfComponent.prototype.setupPageViewer = function () {
             this.win.pdfjsLib.disableTextLayer = !this._renderText;
@@ -806,6 +796,30 @@
         decorator.InputNumber(),
         __metadata("design:type", Number)
     ], PdfComponent.prototype, "delay", void 0);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], PdfComponent.prototype, "load", null);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], PdfComponent.prototype, "resetDoc", null);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], PdfComponent.prototype, "updateSize", null);
+    __decorate([
+        decorator.ZoneOutside(),
+        __metadata("design:type", Function),
+        __metadata("design:paramtypes", []),
+        __metadata("design:returntype", void 0)
+    ], PdfComponent.prototype, "destroy", null);
 
     var COMPONENTS = [PdfComponent];
     var PdfModule = /** @class */ (function () {
