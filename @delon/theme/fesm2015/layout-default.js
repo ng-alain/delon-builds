@@ -3,7 +3,7 @@ import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChil
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { SettingsService, MenuService } from '@delon/theme';
 import { updateHostClass } from '@delon/util/browser';
-import { NzMessageService, NzMessageModule } from 'ng-zorro-antd/message';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -14,7 +14,6 @@ import { __decorate, __metadata } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
-import { WINDOW } from '@delon/util/token';
 
 class LayoutDefaultHeaderItemComponent {
     constructor() {
@@ -46,6 +45,7 @@ class LayoutDefaultComponent {
         this.doc = doc;
         this.destroy$ = new Subject();
         this.isFetching = false;
+        // scroll to top in change page
         router.events.pipe(takeUntil(this.destroy$)).subscribe(evt => {
             if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
                 this.isFetching = true;
@@ -74,12 +74,13 @@ class LayoutDefaultComponent {
             ['alain-default']: true,
             [`alain-default__fixed`]: layout.fixed,
             [`alain-default__collapsed`]: layout.collapsed,
-            [`alain-default__hide-aside`]: this.options.hideAside,
         });
         doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
     }
     ngOnInit() {
-        this.options = Object.assign({ logoExpanded: `./assets/logo-full.svg`, logoCollapsed: `./assets/logo.svg`, logoLink: `/`, hideAside: false }, this.options);
+        if (this.options == null) {
+            throw new Error(`Please specify the [options] parameter, otherwise the layout display cannot be completed`);
+        }
         const { settings, destroy$ } = this;
         settings.notify.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
         this.setClass();
@@ -92,11 +93,10 @@ class LayoutDefaultComponent {
 LayoutDefaultComponent.decorators = [
     { type: Component, args: [{
                 selector: 'layout-default',
-                exportAs: 'layoutDefault',
                 template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header></layout-default-header>
-    <div *ngIf="!options.hideAside" class="alain-default__aside">
+    <div class="alain-default__aside">
       <div class="alain-default__aside-inner">
         <ng-container *ngTemplateOutlet="asideUser"></ng-container>
         <ng-container *ngTemplateOutlet="nav"></ng-container>
@@ -192,16 +192,21 @@ LayoutDefaultHeaderComponent.decorators = [
         <ng-container *ngTemplateOutlet="i.host"></ng-container>
       </li>
     </ng-template>
-    <div class="alain-default__header-logo" [style.width.px]="options.logoFixWidth">
-      <a [routerLink]="options.logoLink" class="alain-default__header-logo-link">
-        <img class="alain-default__header-logo-expanded" [attr.src]="options.logoExpanded" [attr.alt]="app.name" />
-        <img class="alain-default__header-logo-collapsed" [attr.src]="options.logoCollapsed" [attr.alt]="app.name" />
+    <div class="alain-default__header-logo">
+      <a [routerLink]="['/']" class="alain-default__header-logo-link">
+        <img class="alain-default__header-logo-expanded" [attr.src]="options.logoExpanded" [attr.alt]="app.name" style="max-height: 40px" />
+        <img
+          class="alain-default__header-logo-collapsed"
+          [attr.src]="options.logoCollapsed"
+          [attr.alt]="app.name"
+          style="max-height: 30px"
+        />
       </a>
     </div>
     <div class="alain-default__nav-wrap">
       <ul class="alain-default__nav">
-        <li *ngIf="!options.hideAside">
-          <div class="alain-default__nav-item alain-default__nav-item--collapse" (click)="toggleCollapsed()">
+        <li>
+          <div class="alain-default__nav-item" (click)="toggleCollapsed()">
             <i nz-icon [nzType]="collapsedIcon"></i>
           </div>
         </li>
@@ -231,7 +236,7 @@ LayoutDefaultHeaderComponent.ctorParameters = () => [
 const SHOWCLS = 'sidebar-nav__floating-show';
 const FLOATINGCLS = 'sidebar-nav__floating';
 class LayoutDefaultNavComponent {
-    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, win, directionality) {
+    constructor(menuSrv, settings, router, render, cdr, ngZone, sanitizer, doc, directionality) {
         this.menuSrv = menuSrv;
         this.settings = settings;
         this.router = router;
@@ -240,7 +245,6 @@ class LayoutDefaultNavComponent {
         this.ngZone = ngZone;
         this.sanitizer = sanitizer;
         this.doc = doc;
-        this.win = win;
         this.directionality = directionality;
         this.destroy$ = new Subject();
         this.dir = 'ltr';
@@ -357,11 +361,12 @@ class LayoutDefaultNavComponent {
         if (item.disabled)
             return;
         if (item.externalLink) {
+            const { defaultView } = this.doc;
             if (item.target === '_blank') {
-                this.win.open(item.externalLink);
+                defaultView.open(item.externalLink);
             }
             else {
-                this.win.location.href = item.externalLink;
+                defaultView.location.href = item.externalLink;
             }
             return;
         }
@@ -493,7 +498,6 @@ LayoutDefaultNavComponent.ctorParameters = () => [
     { type: NgZone },
     { type: DomSanitizer },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },
     { type: Directionality, decorators: [{ type: Optional }] }
 ];
 LayoutDefaultNavComponent.propDecorators = {
@@ -536,7 +540,7 @@ class LayoutDefaultModule {
 }
 LayoutDefaultModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, NzToolTipModule, NzIconModule, NzAvatarModule, NzDropDownModule, NzMessageModule],
+                imports: [CommonModule, RouterModule, NzToolTipModule, NzIconModule, NzAvatarModule, NzDropDownModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }
