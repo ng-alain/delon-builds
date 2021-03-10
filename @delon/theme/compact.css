@@ -26410,6 +26410,10 @@ a:focus {
   .ant-table-rep__hide-header-footer .ant-table-footer {
     display: block;
   }
+  .ant-table-rep .ant-table table {
+    width: auto !important;
+    table-layout: auto !important;
+  }
   .ant-table-rep .ant-table-thead {
     display: none;
   }
