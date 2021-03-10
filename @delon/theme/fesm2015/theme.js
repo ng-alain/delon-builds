@@ -417,8 +417,11 @@ ScrollService.ctorParameters = () => [
     { type: Platform }
 ];
 
+/** Layout data specifies the stored key */
 const LAYOUT = 'layout';
+/** User data specifies the stored key */
 const USER = 'user';
+/** App data specifies the stored key */
 const APP = 'app';
 class SettingsService {
     constructor(platform) {
@@ -2494,7 +2497,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.7.1-b5894a09');
+const VERSION = new Version('11.7.1-23bff312');
 
 /**
  * Generated bundle index. Do not edit.
