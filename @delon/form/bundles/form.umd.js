@@ -1250,7 +1250,7 @@
             _this.options = mergeConfig(cogSrv);
             var customOptions = _this.options.ajv || {};
             _this.ngZone.runOutsideAngular(function () {
-                _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: format.REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: format.REGEX.color, mobile: format.REGEX.mobile, 'id-card': format.REGEX.idCard }, customOptions.formats) }));
+                _this.ajv = new Ajv__default['default'](Object.assign(Object.assign({ allErrors: true, loopEnum: 50 }, customOptions), { formats: Object.assign({ ip: format.REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: format.REGEX.color, mobile: format.REGEX.mobile, 'id-card': format.REGEX.idCard }, customOptions.formats) }));
             });
             return _this;
         }
