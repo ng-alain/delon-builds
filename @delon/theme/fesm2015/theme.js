@@ -1,7 +1,7 @@
 import { InjectionToken, ɵɵdefineInjectable, Injectable, ɵɵinject, Optional, Inject, INJECTOR, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
-import { filter, share, map, finalize, tap, switchMap } from 'rxjs/operators';
+import { filter, share, map, finalize, delay, tap, switchMap } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService } from '@delon/util/config';
@@ -417,11 +417,15 @@ ScrollService.ctorParameters = () => [
     { type: Platform }
 ];
 
-const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
+/** Layout data specifies the stored key */
+const LAYOUT = 'layout';
+/** User data specifies the stored key */
+const USER = 'user';
+/** App data specifies the stored key */
+const APP = 'app';
 class SettingsService {
-    constructor(platform, KEYS) {
+    constructor(platform) {
         this.platform = platform;
-        this.KEYS = KEYS;
         this.notify$ = new Subject();
         this._app = null;
         this._user = null;
@@ -441,22 +445,22 @@ class SettingsService {
     }
     get layout() {
         if (!this._layout) {
-            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
-            this.setData(this.KEYS.layout, this._layout);
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
+            this.setData(LAYOUT, this._layout);
         }
         return this._layout;
     }
     get app() {
         if (!this._app) {
-            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
-            this.setData(this.KEYS.app, this._app);
+            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(APP));
+            this.setData(APP, this._app);
         }
         return this._app;
     }
     get user() {
         if (!this._user) {
-            this._user = Object.assign({}, this.getData(this.KEYS.user));
-            this.setData(this.KEYS.user, this._user);
+            this._user = Object.assign({}, this.getData(USER));
+            this.setData(USER, this._user);
         }
         return this._user;
     }
@@ -470,29 +474,28 @@ class SettingsService {
         else {
             this._layout = name;
         }
-        this.setData(this.KEYS.layout, this._layout);
+        this.setData(LAYOUT, this._layout);
         this.notify$.next({ type: 'layout', name, value });
         return true;
     }
     setApp(value) {
         this._app = value;
-        this.setData(this.KEYS.app, value);
+        this.setData(APP, value);
         this.notify$.next({ type: 'app', value });
     }
     setUser(value) {
         this._user = value;
-        this.setData(this.KEYS.user, value);
+        this.setData(USER, value);
         this.notify$.next({ type: 'user', value });
     }
 }
-/** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(ɵɵinject(Platform), ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+/** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(ɵɵinject(Platform)); }, token: SettingsService, providedIn: "root" });
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 SettingsService.ctorParameters = () => [
-    { type: Platform },
-    { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
+    { type: Platform }
 ];
 
 const REP_MAX = 6;
@@ -2103,7 +2106,9 @@ class _HttpClient {
     request(method, url, options = {}) {
         if (options.params)
             options.params = this.parseParams(options.params);
-        return of(null).pipe(tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
+        return of(null).pipe(
+        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+        delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
 }
 /** @nocollapse */ _HttpClient.ɵprov = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
@@ -2464,11 +2469,6 @@ I18nPipe.ctorParameters = () => [
 const HELPERS = [ModalHelper, DrawerHelper];
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
-const ɵ0$1 = {
-    layout: 'layout',
-    user: 'user',
-    app: 'app',
-};
 // #endregion
 class AlainThemeModule {
     constructor(iconSrv) {
@@ -2491,12 +2491,6 @@ AlainThemeModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
                 declarations: [...PIPES],
-                providers: [
-                    {
-                        provide: ALAIN_SETTING_KEYS,
-                        useValue: ɵ0$1,
-                    },
-                ],
                 exports: [...PIPES, DelonLocaleModule],
             },] }
 ];
@@ -2505,11 +2499,11 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.7.1-4ad7e079');
+const VERSION = new Version('11.7.1-1046dbf1');
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ɵ0, I18nPipe as ɵa };
+export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, APP, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LAYOUT, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, USER, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ɵ0, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

@@ -761,11 +761,15 @@
         { type: i2$1.Platform }
     ]; };
 
-    var ALAIN_SETTING_KEYS = new i0.InjectionToken('ALAIN_SETTING_KEYS');
+    /** Layout data specifies the stored key */
+    var LAYOUT = 'layout';
+    /** User data specifies the stored key */
+    var USER = 'user';
+    /** App data specifies the stored key */
+    var APP = 'app';
     var SettingsService = /** @class */ (function () {
-        function SettingsService(platform, KEYS) {
+        function SettingsService(platform) {
             this.platform = platform;
-            this.KEYS = KEYS;
             this.notify$ = new rxjs.Subject();
             this._app = null;
             this._user = null;
@@ -786,8 +790,8 @@
         Object.defineProperty(SettingsService.prototype, "layout", {
             get: function () {
                 if (!this._layout) {
-                    this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
-                    this.setData(this.KEYS.layout, this._layout);
+                    this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(LAYOUT));
+                    this.setData(LAYOUT, this._layout);
                 }
                 return this._layout;
             },
@@ -797,8 +801,8 @@
         Object.defineProperty(SettingsService.prototype, "app", {
             get: function () {
                 if (!this._app) {
-                    this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
-                    this.setData(this.KEYS.app, this._app);
+                    this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(APP));
+                    this.setData(APP, this._app);
                 }
                 return this._app;
             },
@@ -808,8 +812,8 @@
         Object.defineProperty(SettingsService.prototype, "user", {
             get: function () {
                 if (!this._user) {
-                    this._user = Object.assign({}, this.getData(this.KEYS.user));
-                    this.setData(this.KEYS.user, this._user);
+                    this._user = Object.assign({}, this.getData(USER));
+                    this.setData(USER, this._user);
                 }
                 return this._user;
             },
@@ -830,30 +834,29 @@
             else {
                 this._layout = name;
             }
-            this.setData(this.KEYS.layout, this._layout);
+            this.setData(LAYOUT, this._layout);
             this.notify$.next({ type: 'layout', name: name, value: value });
             return true;
         };
         SettingsService.prototype.setApp = function (value) {
             this._app = value;
-            this.setData(this.KEYS.app, value);
+            this.setData(APP, value);
             this.notify$.next({ type: 'app', value: value });
         };
         SettingsService.prototype.setUser = function (value) {
             this._user = value;
-            this.setData(this.KEYS.user, value);
+            this.setData(USER, value);
             this.notify$.next({ type: 'user', value: value });
         };
         return SettingsService;
     }());
-    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform)); }, token: SettingsService, providedIn: "root" });
     SettingsService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
     SettingsService.ctorParameters = function () { return [
-        { type: i2$1.Platform },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
+        { type: i2$1.Platform }
     ]; };
 
     var REP_MAX = 6;
@@ -2537,7 +2540,9 @@
             if (options === void 0) { options = {}; }
             if (options.params)
                 options.params = this.parseParams(options.params);
-            return rxjs.of(null).pipe(operators.tap(function () { return _this.push(); }), operators.switchMap(function () { return _this.http.request(method, url, options); }), operators.finalize(function () { return _this.pop(); }));
+            return rxjs.of(null).pipe(
+            // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+            operators.delay(0), operators.tap(function () { return _this.push(); }), operators.switchMap(function () { return _this.http.request(method, url, options); }), operators.finalize(function () { return _this.pop(); }));
         };
         return _HttpClient;
     }());
@@ -2920,11 +2925,6 @@
     var HELPERS = [ModalHelper, DrawerHelper];
     var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
-    var ɵ0$1 = {
-        layout: 'layout',
-        user: 'user',
-        app: 'app',
-    };
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
         function AlainThemeModule(iconSrv) {
@@ -2948,12 +2948,6 @@
         { type: i0.NgModule, args: [{
                     imports: [i1.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
                     declarations: __spread(PIPES),
-                    providers: [
-                        {
-                            provide: ALAIN_SETTING_KEYS,
-                            useValue: ɵ0$1,
-                        },
-                    ],
                     exports: __spread(PIPES, [DelonLocaleModule]),
                 },] }
     ];
@@ -2970,7 +2964,7 @@
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
     exports.ALAIN_I18N_TOKEN_FACTORY = ALAIN_I18N_TOKEN_FACTORY;
-    exports.ALAIN_SETTING_KEYS = ALAIN_SETTING_KEYS;
+    exports.APP = APP;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
     exports.AlainThemeModule = AlainThemeModule;
     exports.BaseApi = BaseApi;
@@ -2994,6 +2988,7 @@
     exports.Headers = Headers;
     exports.JSONP = JSONP;
     exports.KeysPipe = KeysPipe;
+    exports.LAYOUT = LAYOUT;
     exports.LTR = LTR;
     exports.MenuService = MenuService;
     exports.ModalHelper = ModalHelper;
@@ -3015,6 +3010,7 @@
     exports.SettingsService = SettingsService;
     exports.TitleService = TitleService;
     exports.URLPipe = URLPipe;
+    exports.USER = USER;
     exports.VERSION = VERSION;
     exports.WINDOW = WINDOW;
     exports.YNPipe = YNPipe;
