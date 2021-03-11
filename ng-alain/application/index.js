@@ -62,17 +62,9 @@ function fixAngularJson(options) {
 }
 function addDependenciesToPackageJson(options) {
     return (tree) => {
-        versions_1.UpgradeDelonVersions(tree);
+        versions_1.UpgradeMainVersions(tree);
         // 3rd
-        utils_1.addPackage(tree, ['screenfull@^5.1.0', 'ajv@^7.1.1']);
-        // ng-alain
-        utils_1.addPackage(tree, [
-            `ng-alain@${utils_1.VERSION}`,
-            `ng-alain-codelyzer@^0.0.1`,
-            `ng-alain-plugin-theme@^11.0.1`,
-            `source-map-explorer@^2.5.1`,
-            `@delon/testing@${utils_1.VERSION}`,
-        ], 'devDependencies');
+        utils_1.addPackage(tree, ['screenfull@^5.1.0']);
         // i18n
         if (options.i18n) {
             utils_1.addPackage(tree, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);

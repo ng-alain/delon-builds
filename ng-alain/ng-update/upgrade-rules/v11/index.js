@@ -19,7 +19,7 @@ const layout_1 = require("./layout");
 let project;
 function fixVersion() {
     return (tree, context) => {
-        versions_1.UpgradeDelonVersions(tree);
+        versions_1.UpgradeMainVersions(tree);
         utils_1.logStart(context, `Upgrade @delon/* version number`);
     };
 }

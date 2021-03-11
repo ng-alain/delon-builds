@@ -38,7 +38,7 @@ import {
   writePackage,
   ZORROVERSION,
 } from '../utils';
-import { UpgradeDelonVersions } from '../utils/versions';
+import { UpgradeMainVersions } from '../utils/versions';
 import { Schema as ApplicationOptions } from './schema';
 
 const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
@@ -92,21 +92,9 @@ function fixAngularJson(options: ApplicationOptions): Rule {
 
 function addDependenciesToPackageJson(options: ApplicationOptions): Rule {
   return (tree: Tree) => {
-    UpgradeDelonVersions(tree);
+    UpgradeMainVersions(tree);
     // 3rd
-    addPackage(tree, ['screenfull@^5.1.0', 'ajv@^7.1.1']);
-    // ng-alain
-    addPackage(
-      tree,
-      [
-        `ng-alain@${VERSION}`,
-        `ng-alain-codelyzer@^0.0.1`,
-        `ng-alain-plugin-theme@^11.0.1`,
-        `source-map-explorer@^2.5.1`,
-        `@delon/testing@${VERSION}`,
-      ],
-      'devDependencies',
-    );
+    addPackage(tree, ['screenfull@^5.1.0']);
     // i18n
     if (options.i18n) {
       addPackage(tree, [`@ngx-translate/core@^13.0.0`, `@ngx-translate/http-loader@^6.0.0`]);
