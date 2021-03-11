@@ -2515,8 +2515,9 @@
         _HttpClient.prototype.jsonp = function (url, params, callbackParam) {
             var _this = this;
             if (callbackParam === void 0) { callbackParam = 'JSONP_CALLBACK'; }
-            this.push();
-            return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(operators.finalize(function () { return _this.pop(); }));
+            return rxjs.of(null).pipe(
+            // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+            operators.delay(0), operators.tap(function () { return _this.push(); }), operators.switchMap(function () { return _this.http.jsonp(_this.appliedUrl(url, params), callbackParam); }), operators.finalize(function () { return _this.pop(); }));
         };
         _HttpClient.prototype.patch = function (url, body, params, options) {
             if (options === void 0) { options = {}; }

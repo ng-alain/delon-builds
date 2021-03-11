@@ -1,7 +1,7 @@
 import { InjectionToken, ɵɵdefineInjectable, Injectable, ɵɵinject, Optional, Inject, INJECTOR, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
-import { filter, share, map, finalize, delay, tap, switchMap } from 'rxjs/operators';
+import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import { AlainConfigService } from '@delon/util/config';
@@ -2086,8 +2086,9 @@ class _HttpClient {
      * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
      */
     jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
-        this.push();
-        return this.http.jsonp(this.appliedUrl(url, params), callbackParam).pipe(finalize(() => this.pop()));
+        return of(null).pipe(
+        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+        delay(0), tap(() => this.push()), switchMap(() => this.http.jsonp(this.appliedUrl(url, params), callbackParam)), finalize(() => this.pop()));
     }
     patch(url, body, params, options = {}) {
         return this.request('PATCH', url, Object.assign({ body,
@@ -2499,7 +2500,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.7.1-1046dbf1');
+const VERSION = new Version('11.7.1-66d46f7b');
 
 /**
  * Generated bundle index. Do not edit.
