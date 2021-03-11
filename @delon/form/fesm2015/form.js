@@ -848,7 +848,7 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         this.options = mergeConfig(cogSrv);
         const customOptions = this.options.ajv || {};
         this.ngZone.runOutsideAngular(() => {
-            this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true, loopEnum: 50 }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
+            this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
         });
     }
     createValidatorFn(schema, extraOptions) {
