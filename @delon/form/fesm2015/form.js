@@ -428,7 +428,7 @@ class FormProperty {
                 }
                 if (message) {
                     if (~message.indexOf('{')) {
-                        message = message.replace(/{([\.a-z0-9]+)}/g, (_v, key) => err.params[key] || '');
+                        message = message.replace(/{([\.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] || '');
                     }
                     err.message = message;
                 }
