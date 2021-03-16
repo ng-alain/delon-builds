@@ -769,7 +769,7 @@
                     }
                     if (message) {
                         if (~message.indexOf('{')) {
-                            message = message.replace(/{([\.a-zA-Z0-9]+)}/g, function (_v, key) { return err.params[key] || ''; });
+                            message = message.replace(/{([\.a-z0-9]+)}/g, function (_v, key) { return err.params[key] || ''; });
                         }
                         err.message = message;
                     }
@@ -3639,6 +3639,7 @@
                     imports: __spread([common.CommonModule, forms.FormsModule, theme.DelonLocaleModule], ZORROS),
                     declarations: __spread(COMPONENTS, WIDGETS),
                     exports: COMPONENTS,
+                    entryComponents: WIDGETS,
                 },] }
     ];
 
