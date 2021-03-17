@@ -65,7 +65,6 @@ function makeFn(type, options) {
             }
             let res;
             ngZone[type](() => {
-                console.log('in runOutsideAngular call');
                 res = source.call(this, ...data);
             });
             return res;

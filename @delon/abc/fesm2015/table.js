@@ -712,7 +712,7 @@ class STDataSource {
     }
     genButtons(_btns, item, col) {
         const fn = (btns) => {
-            return deepCopy(btns).filter(btn => {
+            return btns.filter(btn => {
                 const result = btn.iif(item, btn, col);
                 const isRenderDisabled = btn.iifBehavior === 'disabled';
                 btn._result = result;
@@ -720,7 +720,6 @@ class STDataSource {
                 if (btn.children.length > 0) {
                     btn.children = fn(btn.children);
                 }
-                delete btn.iif;
                 return result || isRenderDisabled;
             });
         };
