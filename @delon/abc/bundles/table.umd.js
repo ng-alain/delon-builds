@@ -1066,7 +1066,7 @@
         };
         STDataSource.prototype.genButtons = function (_btns, item, col) {
             var fn = function (btns) {
-                return btns.filter(function (btn) {
+                return other.deepCopy(btns).filter(function (btn) {
                     var result = btn.iif(item, btn, col);
                     var isRenderDisabled = btn.iifBehavior === 'disabled';
                     btn._result = result;
@@ -1074,6 +1074,7 @@
                     if (btn.children.length > 0) {
                         btn.children = fn(btn.children);
                     }
+                    delete btn.iif;
                     return result || isRenderDisabled;
                 });
             };
