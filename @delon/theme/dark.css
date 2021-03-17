@@ -26974,7 +26974,7 @@ a:focus {
     display: block;
   }
   .ant-table-rep .ant-table table {
-    width: auto !important;
+    width: 100% !important;
     table-layout: auto !important;
   }
   .ant-table-rep .ant-table-thead {
