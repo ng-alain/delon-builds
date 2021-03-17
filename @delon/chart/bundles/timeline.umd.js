@@ -4,14 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('date-fns/format'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/decorator', 'date-fns/format', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.decorator, global.format, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, dateTime, decorator, format, common, outlet, skeleton) { 'use strict';
-
-    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-    var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('date-fns'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/decorator', 'date-fns', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.decorator, global.dateFns, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, core$1, dateTime, decorator, dateFns, common, outlet, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -374,7 +370,7 @@
                         isArea: false,
                     },
                     minLimit: 2,
-                    formatter: function (val) { return format__default['default'](val, maskSlider); },
+                    formatter: function (val) { return dateFns.format(val, maskSlider); },
                 });
             }
             chart.on("plot:click", function (ev) {

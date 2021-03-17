@@ -1,20 +1,4 @@
-import addDays from 'date-fns/addDays';
-import endOfDay from 'date-fns/endOfDay';
-import endOfMonth from 'date-fns/endOfMonth';
-import endOfWeek from 'date-fns/endOfWeek';
-import endOfYear from 'date-fns/endOfYear';
-import parse from 'date-fns/parse';
-import parseISO from 'date-fns/parseISO';
-import startOfDay from 'date-fns/startOfDay';
-import startOfMonth from 'date-fns/startOfMonth';
-import startOfWeek from 'date-fns/startOfWeek';
-import startOfYear from 'date-fns/startOfYear';
-import subMonths from 'date-fns/subMonths';
-import subWeeks from 'date-fns/subWeeks';
-import subYears from 'date-fns/subYears';
-import addSeconds from 'date-fns/addSeconds';
-import differenceInCalendarDays from 'date-fns/differenceInCalendarDays';
-import format from 'date-fns/format';
+import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMonths, endOfMonth, startOfWeek, subWeeks, endOfWeek, startOfDay, endOfDay, parseISO, format, differenceInCalendarDays, addSeconds } from 'date-fns';
 
 /**
  * Get the time range, return `[ Date, Date]` for the start and end dates

@@ -3,7 +3,7 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, In
 import { G2BaseComponent } from '@delon/chart/core';
 import { toDate } from '@delon/util/date-time';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';

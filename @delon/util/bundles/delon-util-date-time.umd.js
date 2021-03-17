@@ -4,30 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns/addDays'), require('date-fns/endOfDay'), require('date-fns/endOfMonth'), require('date-fns/endOfWeek'), require('date-fns/endOfYear'), require('date-fns/parse'), require('date-fns/parseISO'), require('date-fns/startOfDay'), require('date-fns/startOfMonth'), require('date-fns/startOfWeek'), require('date-fns/startOfYear'), require('date-fns/subMonths'), require('date-fns/subWeeks'), require('date-fns/subYears'), require('date-fns/addSeconds'), require('date-fns/differenceInCalendarDays'), require('date-fns/format')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/date-time', ['exports', 'date-fns/addDays', 'date-fns/endOfDay', 'date-fns/endOfMonth', 'date-fns/endOfWeek', 'date-fns/endOfYear', 'date-fns/parse', 'date-fns/parseISO', 'date-fns/startOfDay', 'date-fns/startOfMonth', 'date-fns/startOfWeek', 'date-fns/startOfYear', 'date-fns/subMonths', 'date-fns/subWeeks', 'date-fns/subYears', 'date-fns/addSeconds', 'date-fns/differenceInCalendarDays', 'date-fns/format'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util['date-time'] = {}), global.addDays, global.endOfDay, global.endOfMonth, global.endOfWeek, global.endOfYear, global.parse, global.parseISO, global.startOfDay, global.startOfMonth, global.startOfWeek, global.startOfYear, global.subMonths, global.subWeeks, global.subYears, global.addSeconds, global.differenceInCalendarDays, global.format));
-}(this, (function (exports, addDays, endOfDay, endOfMonth, endOfWeek, endOfYear, parse, parseISO, startOfDay, startOfMonth, startOfWeek, startOfYear, subMonths, subWeeks, subYears, addSeconds, differenceInCalendarDays, format) { 'use strict';
-
-    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-    var addDays__default = /*#__PURE__*/_interopDefaultLegacy(addDays);
-    var endOfDay__default = /*#__PURE__*/_interopDefaultLegacy(endOfDay);
-    var endOfMonth__default = /*#__PURE__*/_interopDefaultLegacy(endOfMonth);
-    var endOfWeek__default = /*#__PURE__*/_interopDefaultLegacy(endOfWeek);
-    var endOfYear__default = /*#__PURE__*/_interopDefaultLegacy(endOfYear);
-    var parse__default = /*#__PURE__*/_interopDefaultLegacy(parse);
-    var parseISO__default = /*#__PURE__*/_interopDefaultLegacy(parseISO);
-    var startOfDay__default = /*#__PURE__*/_interopDefaultLegacy(startOfDay);
-    var startOfMonth__default = /*#__PURE__*/_interopDefaultLegacy(startOfMonth);
-    var startOfWeek__default = /*#__PURE__*/_interopDefaultLegacy(startOfWeek);
-    var startOfYear__default = /*#__PURE__*/_interopDefaultLegacy(startOfYear);
-    var subMonths__default = /*#__PURE__*/_interopDefaultLegacy(subMonths);
-    var subWeeks__default = /*#__PURE__*/_interopDefaultLegacy(subWeeks);
-    var subYears__default = /*#__PURE__*/_interopDefaultLegacy(subYears);
-    var addSeconds__default = /*#__PURE__*/_interopDefaultLegacy(addSeconds);
-    var differenceInCalendarDays__default = /*#__PURE__*/_interopDefaultLegacy(differenceInCalendarDays);
-    var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/date-time', ['exports', 'date-fns'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util['date-time'] = {}), global.dateFns));
+}(this, (function (exports, dateFns) { 'use strict';
 
     /**
      * Get the time range, return `[ Date, Date]` for the start and end dates
@@ -37,7 +17,7 @@
      * @param time 开始时间
      */
     function getTimeDistance(type, time) {
-        time = time ? (typeof time === 'string' ? parse__default['default'](time, 'yyyy-MM-dd HH:mm:ss', new Date()) : new Date(time)) : new Date();
+        time = time ? (typeof time === 'string' ? dateFns.parse(time, 'yyyy-MM-dd HH:mm:ss', new Date()) : new Date(time)) : new Date();
         var options = { weekStartsOn: 1 };
         var res;
         switch (type) {
@@ -45,31 +25,31 @@
                 res = [time, time];
                 break;
             case '-today':
-                res = [addDays__default['default'](time, -1), time];
+                res = [dateFns.addDays(time, -1), time];
                 break;
             case 'yesterday':
-                res = [addDays__default['default'](time, -1), addDays__default['default'](time, -1)];
+                res = [dateFns.addDays(time, -1), dateFns.addDays(time, -1)];
                 break;
             case 'week':
-                res = [startOfWeek__default['default'](time, options), endOfWeek__default['default'](time, options)];
+                res = [dateFns.startOfWeek(time, options), dateFns.endOfWeek(time, options)];
                 break;
             case '-week':
-                res = [startOfWeek__default['default'](subWeeks__default['default'](time, 1), options), endOfWeek__default['default'](subWeeks__default['default'](time, 1), options)];
+                res = [dateFns.startOfWeek(dateFns.subWeeks(time, 1), options), dateFns.endOfWeek(dateFns.subWeeks(time, 1), options)];
                 break;
             case 'month':
-                res = [startOfMonth__default['default'](time), endOfMonth__default['default'](time)];
+                res = [dateFns.startOfMonth(time), dateFns.endOfMonth(time)];
                 break;
             case '-month':
-                res = [startOfMonth__default['default'](subMonths__default['default'](time, 1)), endOfMonth__default['default'](subMonths__default['default'](time, 1))];
+                res = [dateFns.startOfMonth(dateFns.subMonths(time, 1)), dateFns.endOfMonth(dateFns.subMonths(time, 1))];
                 break;
             case 'year':
-                res = [startOfYear__default['default'](time), endOfYear__default['default'](time)];
+                res = [dateFns.startOfYear(time), dateFns.endOfYear(time)];
                 break;
             case '-year':
-                res = [startOfYear__default['default'](subYears__default['default'](time, 1)), endOfYear__default['default'](subYears__default['default'](time, 1))];
+                res = [dateFns.startOfYear(dateFns.subYears(time, 1)), dateFns.endOfYear(dateFns.subYears(time, 1))];
                 break;
             default:
-                res = type > 0 ? [time, addDays__default['default'](time, type)] : [addDays__default['default'](time, type), time];
+                res = type > 0 ? [time, dateFns.addDays(time, type)] : [dateFns.addDays(time, type), time];
                 break;
         }
         return fixEndTimeOfRange(res);
@@ -78,7 +58,7 @@
      * fix time is the most, big value
      */
     function fixEndTimeOfRange(dates) {
-        return [startOfDay__default['default'](dates[0]), endOfDay__default['default'](dates[1])];
+        return [dateFns.startOfDay(dates[0]), dateFns.endOfDay(dates[1])];
     }
     /**
      * Return the date parsed from string using the given format string
@@ -99,9 +79,9 @@
         if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
             return new Date(+value);
         }
-        var tryDate = parseISO__default['default'](value);
+        var tryDate = dateFns.parseISO(value);
         if (isNaN(tryDate)) {
-            tryDate = parse__default['default'](value, formatString, new Date());
+            tryDate = dateFns.parse(value, formatString, new Date());
         }
         return isNaN(tryDate) ? defaultValue : tryDate;
     }
@@ -149,7 +129,7 @@
          */
         DateTimePickerUtil.prototype.format = function (d, formatString) {
             if (formatString === void 0) { formatString = 'yyyy-MM-dd HH:mm:ss'; }
-            return format__default['default'](d, formatString);
+            return dateFns.format(d, formatString);
         };
         DateTimePickerUtil.prototype.genTick = function (count) {
             return new Array(count).fill(0).map(function (_, idx) { return idx; });
@@ -160,7 +140,7 @@
          * 计算两个日期相差天数，`0` 表示同一天
          */
         DateTimePickerUtil.prototype.getDiffDays = function (dateLeft, dateRight) {
-            return differenceInCalendarDays__default['default'](dateLeft, typeof dateRight === 'number' ? addDays__default['default'](this.date, dateRight) : dateRight || this.date);
+            return dateFns.differenceInCalendarDays(dateLeft, typeof dateRight === 'number' ? dateFns.addDays(this.date, dateRight) : dateRight || this.date);
         };
         /**
          * Disabled Before date (Default: today), Generally serves `nzDisabledDate`
@@ -189,7 +169,7 @@
                 if (cur == null) {
                     return {};
                 }
-                var now = addSeconds__default['default'](_this.now, offsetSeconds || 0);
+                var now = dateFns.addSeconds(_this.now, offsetSeconds || 0);
                 var nowHours = now.getHours();
                 var nowMinutes = now.getMinutes();
                 var curHours = cur.getHours();

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { InjectionToken, inject, ɵɵdefineInjectable, ɵɵinject, Injectable, Inject, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import addSeconds from 'date-fns/addSeconds';
+import { addSeconds } from 'date-fns';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';

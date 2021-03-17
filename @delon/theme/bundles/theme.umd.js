@@ -4,15 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('@delon/util/date-time'), require('date-fns/format'), require('date-fns/formatDistanceToNow'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', '@delon/util/date-time', 'date-fns/format', 'date-fns/formatDistanceToNow', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.delon.util['date-time'], global.format, global.formatDistanceToNow, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateTime, format, formatDistanceToNow, i18n, overlay, icons, icon) { 'use strict';
-
-    function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-    var format__default = /*#__PURE__*/_interopDefaultLegacy(format);
-    var formatDistanceToNow__default = /*#__PURE__*/_interopDefaultLegacy(formatDistanceToNow);
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('@delon/util/date-time'), require('date-fns'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', '@delon/util/date-time', 'date-fns', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.delon.util['date-time'], global.DateFns, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateTime, dateFns, i18n, overlay, icons, icon) { 'use strict';
 
     function WINDOW_FACTORY() {
         return typeof window === 'object' && !!window ? window : null;
@@ -2777,7 +2772,7 @@
             if (isNaN(value))
                 return '';
             var langOpt = { locale: this.nzI18n.getDateLocale() };
-            return formatString === 'fn' ? formatDistanceToNow__default['default'](value, langOpt) : format__default['default'](value, formatString, langOpt);
+            return formatString === 'fn' ? dateFns.formatDistanceToNow(value, langOpt) : dateFns.format(value, formatString, langOpt);
         };
         return DatePipe;
     }());

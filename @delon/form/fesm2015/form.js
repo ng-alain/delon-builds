@@ -39,7 +39,7 @@ import { NzTransferModule } from 'ng-zorro-antd/transfer';
 import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { toDate } from '@delon/util/date-time';
-import format from 'date-fns/format';
+import { format } from 'date-fns';
 
 const SF_DEFAULT_CONFIG = {
     formatMap: {

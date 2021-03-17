@@ -14,8 +14,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { toDate } from '@delon/util/date-time';
-import format from 'date-fns/format';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+import { formatDistanceToNow, format } from 'date-fns';
 import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
@@ -2508,7 +2507,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.8.0-df0aeb12');
+const VERSION = new Version('11.8.0-59d63d04');
 
 /**
  * Generated bundle index. Do not edit.

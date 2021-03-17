@@ -1,6 +1,5 @@
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
-import addSeconds from 'date-fns/addSeconds';
-import format from 'date-fns/format';
+import { addSeconds, format } from 'date-fns';
 import { CountdownModule } from 'ngx-countdown';
 import { CommonModule } from '@angular/common';
 
