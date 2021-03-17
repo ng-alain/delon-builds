@@ -392,6 +392,7 @@
                 }
                 var res;
                 ngZone[type](function () {
+                    console.log('in runOutsideAngular call');
                     res = source.call.apply(source, __spread([_this], data));
                 });
                 return res;

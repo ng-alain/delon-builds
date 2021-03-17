@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
+import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
@@ -9,9 +9,8 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private ngZone;
     private lazySrv;
     private platform;
-    private _el;
+    private el;
     private doc;
-    private cdr;
     static ngAcceptInputType_pi: NumberInput;
     static ngAcceptInputType_delay: NumberInput;
     static ngAcceptInputType_showAllPages: BooleanInput;
@@ -61,8 +60,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     get linkService(): NzSafeAny;
     private get _textLayerMode();
     private get win();
-    private get el();
-    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, _el: ElementRef<HTMLElement>, doc: any, cdr: ChangeDetectorRef);
+    constructor(ngZone: NgZone, configSrv: AlainConfigService, lazySrv: LazyService, platform: Platform, el: ElementRef<HTMLElement>, doc: any);
     private getValidPi;
     private emit;
     private initDelay;
