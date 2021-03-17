@@ -1,7 +1,7 @@
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean, ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
@@ -37,12 +37,13 @@ var PdfExternalLinkTarget;
 const CSS_UNITS = 96.0 / 72.0;
 const BORDER_WIDTH = 9;
 class PdfComponent {
-    constructor(ngZone, configSrv, lazySrv, platform, el, doc) {
+    constructor(ngZone, configSrv, lazySrv, platform, _el, doc, cdr) {
         this.ngZone = ngZone;
         this.lazySrv = lazySrv;
         this.platform = platform;
-        this.el = el;
+        this._el = _el;
         this.doc = doc;
+        this.cdr = cdr;
         this.inited = false;
         this.unsubscribe$ = new Subject();
         this.lib = '';
@@ -117,6 +118,9 @@ class PdfComponent {
     get win() {
         return this.doc.defaultView || window;
     }
+    get el() {
+        return this._el.nativeElement.querySelector('.pdf-container');
+    }
     getValidPi(pi) {
         if (pi < 1)
             return 1;
@@ -128,6 +132,7 @@ class PdfComponent {
     }
     initDelay() {
         this.inited = true;
+        this.cdr.detectChanges();
         this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.lib}build/pdf.worker.min.js`;
         setTimeout(() => this.load(), this.delay);
     }
@@ -202,7 +207,7 @@ class PdfComponent {
             let scale = _zoom;
             let stickToPage = true;
             // Scale the document when it shouldn't be in original size or doesn't fit into the viewport
-            if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.nativeElement.clientWidth)) {
+            if (!this.originalSize || (this.fitToPage && viewportWidth > this.el.clientWidth)) {
                 const viewPort = page.getViewport({ scale: 1, rotation });
                 scale = this.getScale(viewPort.width, viewPort.height);
                 stickToPage = !this.stickToPage;
@@ -212,7 +217,7 @@ class PdfComponent {
     }
     getScale(viewportWidth, viewportHeight) {
         const borderSize = this.showBorders ? 2 * BORDER_WIDTH : 0;
-        const el = this.el.nativeElement;
+        const el = this.el;
         const containerWidth = el.clientWidth - borderSize;
         const containerHeight = el.clientHeight - borderSize;
         if (containerHeight === 0 || viewportHeight === 0 || containerWidth === 0 || viewportWidth === 0) {
@@ -282,7 +287,7 @@ class PdfComponent {
         }));
         const viewer = (this.multiPageViewer = new VIEWER.PDFViewer({
             eventBus,
-            container: this.el.nativeElement,
+            container: this.el,
             removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
@@ -302,7 +307,7 @@ class PdfComponent {
         }));
         const pageViewer = (this.singlePageViewer = new VIEWER.PDFSinglePageViewer({
             eventBus,
-            container: this.el.nativeElement,
+            container: this.el,
             removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
@@ -349,10 +354,12 @@ PdfComponent.decorators = [
                 exportAs: 'pdf',
                 template: `
     <nz-skeleton *ngIf="!inited"></nz-skeleton>
-    <div class="pdfViewer"></div>
+    <div class="pdf-container">
+      <div class="pdfViewer"></div>
+    </div>
   `,
                 host: {
-                    '[class.pdf-container]': `true`,
+                    '[class.d-block]': `true`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -366,7 +373,8 @@ PdfComponent.ctorParameters = () => [
     { type: LazyService },
     { type: Platform },
     { type: ElementRef },
-    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] }
+    { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] },
+    { type: ChangeDetectorRef }
 ];
 PdfComponent.propDecorators = {
     src: [{ type: Input }],
