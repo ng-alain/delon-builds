@@ -151,7 +151,12 @@ const CurrencyMega_Powers = [
 class CurrencyService {
     constructor(cog, locale) {
         this.locale = locale;
-        this.c = cog.merge('utilCurrency', { startingUnit: 'yuan', megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } });
+        this.c = cog.merge('utilCurrency', {
+            startingUnit: 'yuan',
+            megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
+            precision: 2,
+            ingoreZeroPrecision: true,
+        });
     }
     /**
      * Format a number with commas as thousands separators
@@ -163,7 +168,7 @@ class CurrencyService {
      * ```
      */
     format(value, options) {
-        options = Object.assign({ startingUnit: this.c.startingUnit, precision: 2 }, options);
+        options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision }, options);
         let truthValue = Number(value);
         if (value == null || isNaN(truthValue)) {
             return '';
@@ -171,7 +176,8 @@ class CurrencyService {
         if (options.startingUnit === 'cent') {
             truthValue = truthValue / 100;
         }
-        return formatNumber(truthValue, this.locale, `.1-${options.precision}`).replace(/(?:\.[0]+)$/g, '');
+        const res = formatNumber(truthValue, this.locale, `.${options.ingoreZeroPrecision ? 1 : options.precision}-${options.precision}`);
+        return options.ingoreZeroPrecision ? res.replace(/(?:\.[0]+)$/g, '') : res;
     }
     /**
      * Large number format filter
@@ -183,7 +189,7 @@ class CurrencyService {
      * ```
      */
     mega(value, options) {
-        options = Object.assign({ precision: 2, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
+        options = Object.assign({ precision: this.c.precision, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
         let num = Number(value);
         const res = { raw: value, value: '', unit: '', unitI18n: '' };
         if (isNaN(num) || num === 0) {
