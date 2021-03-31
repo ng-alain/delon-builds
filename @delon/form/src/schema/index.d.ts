@@ -84,7 +84,7 @@ export interface SFSchema {
      */
     minLength?: number;
     /**
-     * 验证输入字段正则表达式字符串
+     * 验证输入字段正则表达式字符串，若指定 `format: 'regex'` 时务必指定
      */
     pattern?: string;
     /**
@@ -183,6 +183,7 @@ export interface SFSchema {
      * - 非标准：`month`，渲染为 `nz-month-picker`
      * - `ip` IP地址，渲染为 `input`
      * - `uri` URL地址，渲染为 `upload`
+     * - `regex` 正则表达式，必须指定 `pattern` 属性，渲染为 `input`
      * - `mobile` 手机号
      * - `id-card` 身份证
      * - `color` 颜色值

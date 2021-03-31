@@ -1,21 +1,22 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { isDevMode, Component, ChangeDetectionStrategy, Renderer2, Inject, Optional, Input, NgModule } from '@angular/core';
+import { InjectionToken, isDevMode, Component, ChangeDetectionStrategy, Renderer2, Inject, Optional, Input, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
-const ThemeBtnStorageKey = `site-theme`;
+const ALAIN_THEME_BTN_KEYS = new InjectionToken('ALAIN_THEME_BTN_KEYS');
 class ThemeBtnComponent {
-    constructor(renderer, configSrv, platform, doc, directionality) {
+    constructor(renderer, configSrv, platform, doc, directionality, KEYS) {
         this.renderer = renderer;
         this.configSrv = configSrv;
         this.platform = platform;
         this.doc = doc;
         this.directionality = directionality;
+        this.KEYS = KEYS;
         this.theme = 'default';
         this.isDev = isDevMode();
         this.types = [
@@ -39,7 +40,7 @@ class ThemeBtnComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.theme = localStorage.getItem(ThemeBtnStorageKey) || 'default';
+        this.theme = localStorage.getItem(this.KEYS) || 'default';
         this.updateChartTheme();
         this.onThemeChange(this.theme);
     }
@@ -52,18 +53,18 @@ class ThemeBtnComponent {
         }
         this.theme = theme;
         this.renderer.setAttribute(this.doc.body, 'data-theme', theme);
-        const dom = this.doc.getElementById(ThemeBtnStorageKey);
+        const dom = this.doc.getElementById(this.KEYS);
         if (dom) {
             dom.remove();
         }
-        localStorage.removeItem(ThemeBtnStorageKey);
+        localStorage.removeItem(this.KEYS);
         if (theme !== 'default') {
             const el = (this.el = this.doc.createElement('link'));
             el.type = 'text/css';
             el.rel = 'stylesheet';
-            el.id = ThemeBtnStorageKey;
+            el.id = this.KEYS;
             el.href = `assets/style.${theme}.css`;
-            localStorage.setItem(ThemeBtnStorageKey, theme);
+            localStorage.setItem(this.KEYS, theme);
             this.doc.body.append(el);
         }
         this.updateChartTheme();
@@ -93,7 +94,8 @@ ThemeBtnComponent.ctorParameters = () => [
     { type: AlainConfigService },
     { type: Platform },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Directionality, decorators: [{ type: Optional }] }
+    { type: Directionality, decorators: [{ type: Optional }] },
+    { type: String, decorators: [{ type: Inject, args: [ALAIN_THEME_BTN_KEYS,] }] }
 ];
 ThemeBtnComponent.propDecorators = {
     types: [{ type: Input }],
@@ -106,6 +108,12 @@ class ThemeBtnModule {
 ThemeBtnModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzDropDownModule, NzToolTipModule],
+                providers: [
+                    {
+                        provide: ALAIN_THEME_BTN_KEYS,
+                        useValue: 'site-theme',
+                    },
+                ],
                 declarations: COMPONENTS,
                 exports: COMPONENTS,
             },] }
@@ -115,5 +123,5 @@ ThemeBtnModule.decorators = [
  * Generated bundle index. Do not edit.
  */
 
-export { ThemeBtnComponent, ThemeBtnModule, ThemeBtnStorageKey };
+export { ALAIN_THEME_BTN_KEYS, ThemeBtnComponent, ThemeBtnModule };
 //# sourceMappingURL=layout-theme-btn.js.map
