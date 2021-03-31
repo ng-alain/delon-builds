@@ -467,7 +467,12 @@
     var CurrencyService = /** @class */ (function () {
         function CurrencyService(cog, locale) {
             this.locale = locale;
-            this.c = cog.merge('utilCurrency', { startingUnit: 'yuan', megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' } });
+            this.c = cog.merge('utilCurrency', {
+                startingUnit: 'yuan',
+                megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
+                precision: 2,
+                ingoreZeroPrecision: true,
+            });
         }
         /**
          * Format a number with commas as thousands separators
@@ -479,7 +484,7 @@
          * ```
          */
         CurrencyService.prototype.format = function (value, options) {
-            options = Object.assign({ startingUnit: this.c.startingUnit, precision: 2 }, options);
+            options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision }, options);
             var truthValue = Number(value);
             if (value == null || isNaN(truthValue)) {
                 return '';
@@ -487,7 +492,8 @@
             if (options.startingUnit === 'cent') {
                 truthValue = truthValue / 100;
             }
-            return common.formatNumber(truthValue, this.locale, ".1-" + options.precision).replace(/(?:\.[0]+)$/g, '');
+            var res = common.formatNumber(truthValue, this.locale, "." + (options.ingoreZeroPrecision ? 1 : options.precision) + "-" + options.precision);
+            return options.ingoreZeroPrecision ? res.replace(/(?:\.[0]+)$/g, '') : res;
         };
         /**
          * Large number format filter
@@ -500,7 +506,7 @@
          */
         CurrencyService.prototype.mega = function (value, options) {
             var e_1, _a;
-            options = Object.assign({ precision: 2, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
+            options = Object.assign({ precision: this.c.precision, unitI18n: this.c.megaUnit, startingUnit: this.c.startingUnit }, options);
             var num = Number(value);
             var res = { raw: value, value: '', unit: '', unitI18n: '' };
             if (isNaN(num) || num === 0) {
