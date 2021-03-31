@@ -21717,6 +21717,41 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-table-wrapper-rtl .ant-table thead > tr > th.ant-table-selection-column {
   text-align: center;
 }
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > thead > tr > th,
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td,
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tfoot > tr > th,
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tfoot > tr > td {
+  border-right: 1px solid #f0f0f0;
+}
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > thead > tr:not(:last-child) > th {
+  border-bottom: 1px solid #f0f0f0;
+}
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > thead > tr > .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > .ant-table-cell-fix-right-first::after,
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tfoot > tr > .ant-table-cell-fix-right-first::after {
+  border-right: 1px solid #f0f0f0;
+}
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td > .ant-table-expanded-row-fixed {
+  margin: -16px -17px;
+}
+.ant-table.ant-table-bordered > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td > .ant-table-expanded-row-fixed::after {
+  position: absolute;
+  top: 0;
+  right: 1px;
+  bottom: 0;
+  border-right: 1px solid #f0f0f0;
+  content: '';
+}
+.ant-table.ant-table-bordered.ant-table-scroll-horizontal > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr.ant-table-expanded-row > td,
+.ant-table.ant-table-bordered.ant-table-scroll-horizontal > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr.ant-table-placeholder > td {
+  border-right: 0;
+}
+.ant-table.ant-table-bordered.ant-table-middle > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td > .ant-table-expanded-row-fixed {
+  margin: -12px -9px;
+}
+.ant-table.ant-table-bordered.ant-table-small > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td > .ant-table-expanded-row-fixed {
+  margin: -8px -9px;
+}
 .ant-tabs-small > .ant-tabs-nav .ant-tabs-tab {
   padding: 8px 0;
   font-size: 14px;
