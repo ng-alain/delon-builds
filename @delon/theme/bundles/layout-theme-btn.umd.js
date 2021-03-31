@@ -9,15 +9,14 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['theme-btn'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.rxjs, global.rxjs.operators, global.dropdown, global.tooltip));
 }(this, (function (exports, bidi, platform, common, core, config, rxjs, operators, dropdown, tooltip) { 'use strict';
 
-    var ALAIN_THEME_BTN_KEYS = new core.InjectionToken('ALAIN_THEME_BTN_KEYS');
+    var ThemeBtnStorageKey = "site-theme";
     var ThemeBtnComponent = /** @class */ (function () {
-        function ThemeBtnComponent(renderer, configSrv, platform, doc, directionality, KEYS) {
+        function ThemeBtnComponent(renderer, configSrv, platform, doc, directionality) {
             this.renderer = renderer;
             this.configSrv = configSrv;
             this.platform = platform;
             this.doc = doc;
             this.directionality = directionality;
-            this.KEYS = KEYS;
             this.theme = 'default';
             this.isDev = core.isDevMode();
             this.types = [
@@ -42,7 +41,7 @@
             if (!this.platform.isBrowser) {
                 return;
             }
-            this.theme = localStorage.getItem(this.KEYS) || 'default';
+            this.theme = localStorage.getItem(ThemeBtnStorageKey) || 'default';
             this.updateChartTheme();
             this.onThemeChange(this.theme);
         };
@@ -55,18 +54,18 @@
             }
             this.theme = theme;
             this.renderer.setAttribute(this.doc.body, 'data-theme', theme);
-            var dom = this.doc.getElementById(this.KEYS);
+            var dom = this.doc.getElementById(ThemeBtnStorageKey);
             if (dom) {
                 dom.remove();
             }
-            localStorage.removeItem(this.KEYS);
+            localStorage.removeItem(ThemeBtnStorageKey);
             if (theme !== 'default') {
                 var el = (this.el = this.doc.createElement('link'));
                 el.type = 'text/css';
                 el.rel = 'stylesheet';
-                el.id = this.KEYS;
+                el.id = ThemeBtnStorageKey;
                 el.href = "assets/style." + theme + ".css";
-                localStorage.setItem(this.KEYS, theme);
+                localStorage.setItem(ThemeBtnStorageKey, theme);
                 this.doc.body.append(el);
             }
             this.updateChartTheme();
@@ -97,8 +96,7 @@
         { type: config.AlainConfigService },
         { type: platform.Platform },
         { type: undefined, decorators: [{ type: core.Inject, args: [common.DOCUMENT,] }] },
-        { type: bidi.Directionality, decorators: [{ type: core.Optional }] },
-        { type: String, decorators: [{ type: core.Inject, args: [ALAIN_THEME_BTN_KEYS,] }] }
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };
     ThemeBtnComponent.propDecorators = {
         types: [{ type: core.Input }],
@@ -114,12 +112,6 @@
     ThemeBtnModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, dropdown.NzDropDownModule, tooltip.NzToolTipModule],
-                    providers: [
-                        {
-                            provide: ALAIN_THEME_BTN_KEYS,
-                            useValue: 'site-theme',
-                        },
-                    ],
                     declarations: COMPONENTS,
                     exports: COMPONENTS,
                 },] }
@@ -129,9 +121,9 @@
      * Generated bundle index. Do not edit.
      */
 
-    exports.ALAIN_THEME_BTN_KEYS = ALAIN_THEME_BTN_KEYS;
     exports.ThemeBtnComponent = ThemeBtnComponent;
     exports.ThemeBtnModule = ThemeBtnModule;
+    exports.ThemeBtnStorageKey = ThemeBtnStorageKey;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
