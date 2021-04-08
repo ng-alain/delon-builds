@@ -53,6 +53,7 @@ class PdfComponent {
         this._rotation = 0;
         this._zoom = 1;
         this._renderText = true;
+        this._loading = false;
         this.textLayerMode = PdfTextLayerMode.ENABLE;
         this.showBorders = false;
         this.stickToPage = false;
@@ -100,6 +101,9 @@ class PdfComponent {
         }
         this._rotation = val;
     }
+    get loading() {
+        return this._loading;
+    }
     get pdf() {
         return this._pdf;
     }
@@ -136,6 +140,12 @@ class PdfComponent {
         this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.lib}build/pdf.worker.min.js`;
         setTimeout(() => this.load(), this.delay);
     }
+    setLoading(status) {
+        this.ngZone.run(() => {
+            this._loading = status;
+            this.cdr.detectChanges();
+        });
+    }
     load() {
         const { _src } = this;
         if (!this.inited || !_src) {
@@ -146,9 +156,15 @@ class PdfComponent {
             return;
         }
         this.destroy();
+        this.ngZone.run(() => {
+            this._loading = true;
+            this.cdr.detectChanges();
+        });
+        this.setLoading(true);
         const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
         loadingTask.onProgress = (progress) => this.emit('load-progress', { progress });
-        loadingTask.promise.then((pdf) => {
+        loadingTask.promise
+            .then((pdf) => {
             this._pdf = pdf;
             this.lastSrc = _src;
             this._total = pdf.numPages;
@@ -158,7 +174,8 @@ class PdfComponent {
             }
             this.resetDoc();
             this.render();
-        }, (error) => this.emit('error', { error }));
+        }, (error) => this.emit('error', { error }))
+            .then(() => this.setLoading(false));
     }
     resetDoc() {
         const pdf = this._pdf;
@@ -353,7 +370,7 @@ PdfComponent.decorators = [
                 selector: 'pdf',
                 exportAs: 'pdf',
                 template: `
-    <nz-skeleton *ngIf="!inited"></nz-skeleton>
+    <nz-skeleton *ngIf="!inited || loading"></nz-skeleton>
     <div class="pdf-container">
       <div class="pdfViewer"></div>
     </div>
