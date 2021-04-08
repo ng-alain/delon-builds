@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', '@delon/util/decorator', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.decorator, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, i0, config, rxjs, decorator, operators, i2, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, i0, config, rxjs, operators, i2, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -584,7 +584,7 @@
             this._elseTemplateRef = null;
             this._thenViewRef = null;
             this._elseViewRef = null;
-            this.except = false;
+            this._except = false;
             this._change$ = this.srv.change.pipe(operators.filter(function (r) { return r != null; })).subscribe(function () { return _this._updateView(); });
             this._thenTemplateRef = templateRef;
         }
@@ -610,6 +610,16 @@
                 this._elseTemplateRef = templateRef;
                 this._elseViewRef = null;
                 this._updateView();
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ACLIfDirective.prototype, "except", {
+            get: function () {
+                return this._except;
+            },
+            set: function (value) {
+                this._except = value != null && "" + value !== 'false';
             },
             enumerable: false,
             configurable: true
@@ -658,10 +668,6 @@
         aclIfElse: [{ type: i0.Input }],
         except: [{ type: i0.Input }]
     };
-    __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
-    ], ACLIfDirective.prototype, "except", void 0);
 
     var ACLDirective = /** @class */ (function () {
         function ACLDirective(el, renderer, srv) {

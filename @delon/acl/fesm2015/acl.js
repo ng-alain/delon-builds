@@ -1,8 +1,6 @@
 import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, ɵɵdefineInjectable, ɵɵinject, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { __decorate, __metadata } from 'tslib';
-import { InputBoolean } from '@delon/util/decorator';
 import { filter, map, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -210,7 +208,7 @@ class ACLIfDirective {
         this._elseTemplateRef = null;
         this._thenViewRef = null;
         this._elseViewRef = null;
-        this.except = false;
+        this._except = false;
         this._change$ = this.srv.change.pipe(filter(r => r != null)).subscribe(() => this._updateView());
         this._thenTemplateRef = templateRef;
     }
@@ -227,6 +225,12 @@ class ACLIfDirective {
         this._elseTemplateRef = templateRef;
         this._elseViewRef = null;
         this._updateView();
+    }
+    set except(value) {
+        this._except = value != null && `${value}` !== 'false';
+    }
+    get except() {
+        return this._except;
     }
     _updateView() {
         const res = this.srv.can(this._value);
@@ -271,10 +275,6 @@ ACLIfDirective.propDecorators = {
     aclIfElse: [{ type: Input }],
     except: [{ type: Input }]
 };
-__decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
-], ACLIfDirective.prototype, "except", void 0);
 
 class ACLDirective {
     constructor(el, renderer, srv) {
