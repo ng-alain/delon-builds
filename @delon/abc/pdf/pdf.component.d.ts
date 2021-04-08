@@ -33,6 +33,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private _rotation;
     private _zoom;
     private _renderText;
+    private _loading;
     private multiPageViewer;
     private multiPageLinkService;
     private multiPageFindController;
@@ -55,6 +56,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     externalLinkTarget: PdfExternalLinkTarget;
     delay: number;
     readonly change: EventEmitter<PdfChangeEvent>;
+    get loading(): boolean;
     get pdf(): NzSafeAny;
     get findController(): NzSafeAny;
     get pageViewer(): NzSafeAny;
@@ -66,6 +68,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private getValidPi;
     private emit;
     private initDelay;
+    setLoading(status: boolean): void;
     private load;
     private resetDoc;
     private cleanDoc;

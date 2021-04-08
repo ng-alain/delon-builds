@@ -363,6 +363,7 @@
             this._rotation = 0;
             this._zoom = 1;
             this._renderText = true;
+            this._loading = false;
             this.textLayerMode = exports.PdfTextLayerMode.ENABLE;
             this.showBorders = false;
             this.stickToPage = false;
@@ -434,6 +435,13 @@
             enumerable: false,
             configurable: true
         });
+        Object.defineProperty(PdfComponent.prototype, "loading", {
+            get: function () {
+                return this._loading;
+            },
+            enumerable: false,
+            configurable: true
+        });
         Object.defineProperty(PdfComponent.prototype, "pdf", {
             get: function () {
                 return this._pdf;
@@ -500,6 +508,13 @@
             this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = this.lib + "build/pdf.worker.min.js";
             setTimeout(function () { return _this.load(); }, this.delay);
         };
+        PdfComponent.prototype.setLoading = function (status) {
+            var _this = this;
+            this.ngZone.run(function () {
+                _this._loading = status;
+                _this.cdr.detectChanges();
+            });
+        };
         PdfComponent.prototype.load = function () {
             var _this = this;
             var _src = this._src;
@@ -511,9 +526,15 @@
                 return;
             }
             this.destroy();
+            this.ngZone.run(function () {
+                _this._loading = true;
+                _this.cdr.detectChanges();
+            });
+            this.setLoading(true);
             var loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
             loadingTask.onProgress = function (progress) { return _this.emit('load-progress', { progress: progress }); };
-            loadingTask.promise.then(function (pdf) {
+            loadingTask.promise
+                .then(function (pdf) {
                 _this._pdf = pdf;
                 _this.lastSrc = _src;
                 _this._total = pdf.numPages;
@@ -523,7 +544,8 @@
                 }
                 _this.resetDoc();
                 _this.render();
-            }, function (error) { return _this.emit('error', { error: error }); });
+            }, function (error) { return _this.emit('error', { error: error }); })
+                .then(function () { return _this.setLoading(false); });
         };
         PdfComponent.prototype.resetDoc = function () {
             var pdf = this._pdf;
@@ -723,7 +745,7 @@
         { type: core.Component, args: [{
                     selector: 'pdf',
                     exportAs: 'pdf',
-                    template: "\n    <nz-skeleton *ngIf=\"!inited\"></nz-skeleton>\n    <div class=\"pdf-container\">\n      <div class=\"pdfViewer\"></div>\n    </div>\n  ",
+                    template: "\n    <nz-skeleton *ngIf=\"!inited || loading\"></nz-skeleton>\n    <div class=\"pdf-container\">\n      <div class=\"pdfViewer\"></div>\n    </div>\n  ",
                     host: {
                         '[class.d-block]': "true",
                     },
