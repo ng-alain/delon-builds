@@ -3,7 +3,8 @@ import { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, Currenc
 export declare class CurrencyService {
     private locale;
     private c;
-    constructor(cog: AlainConfigService, locale: string);
+    private readonly currencyPipe;
+    constructor(cog: AlainConfigService, locale: string, _defaultCurrencyCode?: string);
     /**
      * Format a number with commas as thousands separators
      *

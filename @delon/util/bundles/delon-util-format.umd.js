@@ -468,8 +468,10 @@
     ];
 
     var CurrencyService = /** @class */ (function () {
-        function CurrencyService(cog, locale) {
+        function CurrencyService(cog, locale, _defaultCurrencyCode) {
+            if (_defaultCurrencyCode === void 0) { _defaultCurrencyCode = 'USD'; }
             this.locale = locale;
+            this.currencyPipe = new common.CurrencyPipe(locale, _defaultCurrencyCode);
             this.c = cog.merge('utilCurrency', {
                 startingUnit: 'yuan',
                 megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
@@ -487,13 +489,17 @@
          * ```
          */
         CurrencyService.prototype.format = function (value, options) {
-            options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision }, options);
+            options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision, ngCurrency: this.c.ngCurrency }, options);
             var truthValue = Number(value);
             if (value == null || isNaN(truthValue)) {
                 return '';
             }
             if (options.startingUnit === 'cent') {
                 truthValue = truthValue / 100;
+            }
+            if (options.ngCurrency != null) {
+                var cur = options.ngCurrency;
+                return this.currencyPipe.transform(truthValue, cur.currencyCode, cur.display, cur.digitsInfo, cur.locale || this.locale);
             }
             var res = common.formatNumber(truthValue, this.locale, "." + (options.ingoreZeroPrecision ? 1 : options.precision) + "-" + options.precision);
             return options.ingoreZeroPrecision ? res.replace(/(?:\.[0]+)$/g, '') : res;
@@ -642,14 +648,15 @@
         };
         return CurrencyService;
     }());
-    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i0.LOCALE_ID)); }, token: CurrencyService, providedIn: "root" });
+    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i0.LOCALE_ID), i0.ɵɵinject(i0.DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
     CurrencyService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     /** @nocollapse */
     CurrencyService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
-        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
+        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] },
+        { type: String, decorators: [{ type: i0.Inject, args: [i0.DEFAULT_CURRENCY_CODE,] }] }
     ]; };
 
     /**

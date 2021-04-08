@@ -1,6 +1,6 @@
 import { deepGet } from '@delon/util/other';
-import { formatNumber } from '@angular/common';
-import { ɵɵdefineInjectable, ɵɵinject, LOCALE_ID, Injectable, Inject } from '@angular/core';
+import { CurrencyPipe, formatNumber } from '@angular/common';
+import { ɵɵdefineInjectable, ɵɵinject, LOCALE_ID, DEFAULT_CURRENCY_CODE, Injectable, Inject } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 
 /**
@@ -149,8 +149,9 @@ const CurrencyMega_Powers = [
 ];
 
 class CurrencyService {
-    constructor(cog, locale) {
+    constructor(cog, locale, _defaultCurrencyCode = 'USD') {
         this.locale = locale;
+        this.currencyPipe = new CurrencyPipe(locale, _defaultCurrencyCode);
         this.c = cog.merge('utilCurrency', {
             startingUnit: 'yuan',
             megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
@@ -168,13 +169,17 @@ class CurrencyService {
      * ```
      */
     format(value, options) {
-        options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision }, options);
+        options = Object.assign({ startingUnit: this.c.startingUnit, precision: this.c.precision, ingoreZeroPrecision: this.c.ingoreZeroPrecision, ngCurrency: this.c.ngCurrency }, options);
         let truthValue = Number(value);
         if (value == null || isNaN(truthValue)) {
             return '';
         }
         if (options.startingUnit === 'cent') {
             truthValue = truthValue / 100;
+        }
+        if (options.ngCurrency != null) {
+            const cur = options.ngCurrency;
+            return this.currencyPipe.transform(truthValue, cur.currencyCode, cur.display, cur.digitsInfo, cur.locale || this.locale);
         }
         const res = formatNumber(truthValue, this.locale, `.${options.ingoreZeroPrecision ? 1 : options.precision}-${options.precision}`);
         return options.ingoreZeroPrecision ? res.replace(/(?:\.[0]+)$/g, '') : res;
@@ -310,14 +315,15 @@ class CurrencyService {
         return ret;
     }
 }
-/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService), ɵɵinject(LOCALE_ID)); }, token: CurrencyService, providedIn: "root" });
+/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService), ɵɵinject(LOCALE_ID), ɵɵinject(DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
 CurrencyService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 /** @nocollapse */
 CurrencyService.ctorParameters = () => [
     { type: AlainConfigService },
-    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
+    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] },
+    { type: String, decorators: [{ type: Inject, args: [DEFAULT_CURRENCY_CODE,] }] }
 ];
 
 /**
