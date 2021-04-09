@@ -22914,6 +22914,9 @@ a[nz-tab-link]::before {
   background-color: transparent;
   content: '';
 }
+a[nz-tab-link] ~ * {
+  position: relative;
+}
 nz-tabset,
 nz-tab-nav-operation,
 nz-tabs-nav {
