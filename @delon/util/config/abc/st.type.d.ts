@@ -367,8 +367,4 @@ export interface AlainSTConfig {
      * Custom no result content
      */
     noResult?: string | TemplateRef<void>;
-    /**
-     * 是否信任HTML，默认：`true`
-     */
-    saftHtml?: boolean;
 }

@@ -932,7 +932,7 @@
             if (typeof res.process === 'function') {
                 data$ = data$.pipe(operators.map(function (result) { return res.process(result, rawData); }));
             }
-            data$ = data$.pipe(operators.map(function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName, safeHtml: options.saftHtml }); }));
+            data$ = data$.pipe(operators.map(function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName }); }));
             return data$.pipe(operators.map(function (result) {
                 retList = result;
                 var realTotal = retTotal || total;
@@ -947,12 +947,12 @@
                 };
             }));
         };
-        STDataSource.prototype.get = function (item, col, idx, safeHtml) {
+        STDataSource.prototype.get = function (item, col, idx) {
             var _a;
             try {
                 if (col.format) {
                     var formatRes = col.format(item, col, idx) || '';
-                    if (safeHtml && formatRes && ~formatRes.indexOf('</')) {
+                    if (formatRes && ~formatRes.indexOf('</')) {
                         return { text: formatRes, _text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
                     }
                     return { text: formatRes, _text: formatRes, org: formatRes };
@@ -997,12 +997,12 @@
                 }
                 if (text == null)
                     text = '';
-                return { text: text, _text: safeHtml ? this.dom.bypassSecurityTrustHtml(text) : text, org: value, color: color, buttons: [] };
+                return { text: text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color: color, buttons: [] };
             }
             catch (ex) {
                 var text = "INVALID DATA";
                 console.error("Failed to get data", item, col, ex);
-                return { text: text, _text: text, org: text, buttons: [] };
+                return { text: text, _text: this.dom.bypassSecurityTrustHtml(text), org: text, buttons: [] };
             }
         };
         STDataSource.prototype.getByHttp = function (url, options) {
@@ -1047,13 +1047,13 @@
         };
         STDataSource.prototype.optimizeData = function (options) {
             var _this = this;
-            var result = options.result, columns = options.columns, rowClassName = options.rowClassName, safeHtml = options.safeHtml;
+            var result = options.result, columns = options.columns, rowClassName = options.rowClassName;
             var _loop_1 = function (i, len) {
                 result[i]._values = columns.map(function (c) {
                     if (Array.isArray(c.buttons) && c.buttons.length > 0) {
                         return { buttons: _this.genButtons(c.buttons, result[i], c) };
                     }
-                    return _this.get(result[i], c, i, c.saftHtml == null ? safeHtml : c.saftHtml);
+                    return _this.get(result[i], c, i);
                 });
                 if (rowClassName) {
                     result[i]._rowClassName = rowClassName(result[i], i);
@@ -1441,7 +1441,6 @@
         virtualMinBufferPx: 100,
         iifBehavior: 'hide',
         loadingDelay: 0,
-        saftHtml: true,
     };
 
     var STComponent = /** @class */ (function () {
@@ -1689,7 +1688,7 @@
                     res: res,
                     page: page, columns: _this._columns, singleSort: singleSort,
                     multiSort: multiSort,
-                    rowClassName: rowClassName, paginator: true, saftHtml: _this.cog.saftHtml }, options))
+                    rowClassName: rowClassName, paginator: true }, options))
                     .pipe(operators.takeUntil(_this.destroy$))
                     .subscribe(function (result) { return resolvePromise(result); }, function (error) {
                     console.warn('st.loadDate', error);
@@ -2179,12 +2178,7 @@
             return this;
         };
         STComponent.prototype.optimizeData = function () {
-            this._data = this.dataSource.optimizeData({
-                columns: this._columns,
-                result: this._data,
-                rowClassName: this.rowClassName,
-                safeHtml: this.cog.saftHtml,
-            });
+            this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
         };
         /**
          * Return pure data, `st` internally maintains a set of data for caching, this part of data may affect the backend

@@ -4,6 +4,7 @@ import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate, __metadata } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
@@ -769,13 +770,14 @@ ReuseTabService.ctorParameters = () => [
 
 class ReuseTabComponent {
     // #endregion
-    constructor(srv, cdr, router, route, i18nSrv, doc) {
+    constructor(srv, cdr, router, route, i18nSrv, doc, platform) {
         this.srv = srv;
         this.cdr = cdr;
         this.router = router;
         this.route = route;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
+        this.platform = platform;
         this.unsubscribe$ = new Subject();
         this.updatePos$ = new Subject();
         this.list = [];
@@ -921,6 +923,9 @@ class ReuseTabComponent {
     }
     // #endregion
     ngOnInit() {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(50)).subscribe(() => {
             const url = this.srv.getUrl(this.route.snapshot);
             const ls = this.list.filter(w => w.url === url || !this.srv.isExclude(w.url));
@@ -960,6 +965,9 @@ class ReuseTabComponent {
         this.srv.init();
     }
     ngOnChanges(changes) {
+        if (!this.platform.isBrowser) {
+            return;
+        }
         if (changes.max)
             this.srv.max = this.max;
         if (changes.excludes)
@@ -1005,7 +1013,8 @@ ReuseTabComponent.ctorParameters = () => [
     { type: Router },
     { type: ActivatedRoute },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
+    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
+    { type: Platform }
 ];
 ReuseTabComponent.propDecorators = {
     tabset: [{ type: ViewChild, args: ['tabset',] }],
