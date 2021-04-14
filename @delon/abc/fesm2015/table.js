@@ -580,7 +580,7 @@ class STDataSource {
         if (typeof res.process === 'function') {
             data$ = data$.pipe(map(result => res.process(result, rawData)));
         }
-        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName })));
+        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName, safeHtml: options.saftHtml })));
         return data$.pipe(map(result => {
             retList = result;
             const realTotal = retTotal || total;
@@ -595,12 +595,12 @@ class STDataSource {
             };
         }));
     }
-    get(item, col, idx) {
+    get(item, col, idx, safeHtml) {
         var _a;
         try {
             if (col.format) {
                 const formatRes = col.format(item, col, idx) || '';
-                if (formatRes && ~formatRes.indexOf('</')) {
+                if (safeHtml && formatRes && ~formatRes.indexOf('</')) {
                     return { text: formatRes, _text: this.dom.bypassSecurityTrustHtml(formatRes), org: formatRes };
                 }
                 return { text: formatRes, _text: formatRes, org: formatRes };
@@ -645,12 +645,12 @@ class STDataSource {
             }
             if (text == null)
                 text = '';
-            return { text, _text: this.dom.bypassSecurityTrustHtml(text), org: value, color, buttons: [] };
+            return { text, _text: safeHtml ? this.dom.bypassSecurityTrustHtml(text) : text, org: value, color, buttons: [] };
         }
         catch (ex) {
             const text = `INVALID DATA`;
             console.error(`Failed to get data`, item, col, ex);
-            return { text, _text: this.dom.bypassSecurityTrustHtml(text), org: text, buttons: [] };
+            return { text, _text: text, org: text, buttons: [] };
         }
     }
     getByHttp(url, options) {
@@ -693,13 +693,13 @@ class STDataSource {
         return this.http.request(method, url, reqOptions);
     }
     optimizeData(options) {
-        const { result, columns, rowClassName } = options;
+        const { result, columns, rowClassName, safeHtml } = options;
         for (let i = 0, len = result.length; i < len; i++) {
             result[i]._values = columns.map(c => {
                 if (Array.isArray(c.buttons) && c.buttons.length > 0) {
                     return { buttons: this.genButtons(c.buttons, result[i], c) };
                 }
-                return this.get(result[i], c, i);
+                return this.get(result[i], c, i, c.saftHtml == null ? safeHtml : c.saftHtml);
             });
             if (rowClassName) {
                 result[i]._rowClassName = rowClassName(result[i], i);
@@ -1060,6 +1060,7 @@ const ST_DEFAULT_CONFIG = {
     virtualMinBufferPx: 100,
     iifBehavior: 'hide',
     loadingDelay: 0,
+    saftHtml: true,
 };
 
 class STComponent {
@@ -1261,7 +1262,7 @@ class STComponent {
                 res,
                 page, columns: this._columns, singleSort,
                 multiSort,
-                rowClassName, paginator: true }, options))
+                rowClassName, paginator: true, saftHtml: this.cog.saftHtml }, options))
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(result => resolvePromise(result), error => {
                 console.warn('st.loadDate', error);
@@ -1725,7 +1726,12 @@ class STComponent {
         return this;
     }
     optimizeData() {
-        this._data = this.dataSource.optimizeData({ columns: this._columns, result: this._data, rowClassName: this.rowClassName });
+        this._data = this.dataSource.optimizeData({
+            columns: this._columns,
+            result: this._data,
+            rowClassName: this.rowClassName,
+            safeHtml: this.cog.saftHtml,
+        });
     }
     /**
      * Return pure data, `st` internally maintains a set of data for caching, this part of data may affect the backend
