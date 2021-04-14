@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
@@ -12,7 +11,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route;
     private i18nSrv;
     private doc;
-    private platform;
     static ngAcceptInputType_debug: BooleanInput;
     static ngAcceptInputType_max: NumberInput;
     static ngAcceptInputType_tabMaxWidth: NumberInput;
@@ -49,7 +47,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     }>;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
-    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any, platform: Platform);
+    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any);
     private genTit;
     private get curUrl();
     private genCurItem;

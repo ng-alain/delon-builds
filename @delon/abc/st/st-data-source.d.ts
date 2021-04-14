@@ -18,6 +18,7 @@ export interface STDataSourceOptions {
     singleSort?: STSingleSort;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
+    saftHtml: boolean;
 }
 export interface STDataSourceResult {
     /** 是否需要显示分页器 */
@@ -49,6 +50,7 @@ export declare class STDataSource {
         columns: _STColumn[];
         result: STData[];
         rowClassName?: STRowClassName;
+        safeHtml: boolean;
     }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;
