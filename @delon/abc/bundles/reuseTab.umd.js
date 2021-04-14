@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
-}(this, (function (exports, i0, i1, rxjs, overlay, portal, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/cdk/platform'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/cdk/platform', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.cdk.platform, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, i0, i1, rxjs, overlay, portal, platform, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
 
     var ReuseTabContextMenuComponent = /** @class */ (function () {
         function ReuseTabContextMenuComponent(i18nSrv) {
@@ -1153,13 +1153,14 @@
 
     var ReuseTabComponent = /** @class */ (function () {
         // #endregion
-        function ReuseTabComponent(srv, cdr, router, route, i18nSrv, doc) {
+        function ReuseTabComponent(srv, cdr, router, route, i18nSrv, doc, platform) {
             this.srv = srv;
             this.cdr = cdr;
             this.router = router;
             this.route = route;
             this.i18nSrv = i18nSrv;
             this.doc = doc;
+            this.platform = platform;
             this.unsubscribe$ = new rxjs.Subject();
             this.updatePos$ = new rxjs.Subject();
             this.list = [];
@@ -1317,6 +1318,9 @@
         // #endregion
         ReuseTabComponent.prototype.ngOnInit = function () {
             var _this = this;
+            if (!this.platform.isBrowser) {
+                return;
+            }
             this.updatePos$.pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(50)).subscribe(function () {
                 var url = _this.srv.getUrl(_this.route.snapshot);
                 var ls = _this.list.filter(function (w) { return w.url === url || !_this.srv.isExclude(w.url); });
@@ -1356,6 +1360,9 @@
             this.srv.init();
         };
         ReuseTabComponent.prototype.ngOnChanges = function (changes) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
             if (changes.max)
                 this.srv.max = this.max;
             if (changes.excludes)
@@ -1402,7 +1409,8 @@
         { type: router.Router },
         { type: router.ActivatedRoute },
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i1.ALAIN_I18N_TOKEN,] }] },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
+        { type: platform.Platform }
     ]; };
     ReuseTabComponent.propDecorators = {
         tabset: [{ type: i0.ViewChild, args: ['tabset',] }],
