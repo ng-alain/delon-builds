@@ -2181,11 +2181,11 @@
          * @example
          * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
+         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+         * this.nzModalRef.close(data);
+         * this.nzModalRef.close();
          * // 关闭
-         * this.NzModalRef.destroy();
+         * this.nzModalRef.destroy();
          */
         ModalHelper.prototype.create = function (comp, params, options) {
             var _this = this;
@@ -2245,11 +2245,11 @@
          * @example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
+         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+         * this.nzModalRef.close(data);
+         * this.nzModalRef.close();
          * // 关闭
-         * this.NzModalRef.destroy();
+         * this.nzModalRef.destroy();
          */
         ModalHelper.prototype.createStatic = function (comp, params, options) {
             var modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
@@ -2263,11 +2263,11 @@
          * @example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
+         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+         * this.nzModalRef.close(data);
+         * this.nzModalRef.close();
          * // 关闭
-         * this.NzModalRef.destroy();
+         * this.nzModalRef.destroy();
          */
         ModalHelper.prototype.open = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
@@ -2285,11 +2285,11 @@
          * @example
          * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
          * // 对于组件的成功&关闭的处理说明
-         * // 成功
-         * this.NzModalRef.close(data);
-         * this.NzModalRef.close();
+         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+         * this.nzModalRef.close(data);
+         * this.nzModalRef.close();
          * // 关闭
-         * this.NzModalRef.destroy();
+         * this.nzModalRef.destroy();
          */
         ModalHelper.prototype.static = function (comp, params, size, options) {
             if (size === void 0) { size = 'lg'; }
