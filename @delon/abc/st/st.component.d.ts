@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -117,6 +117,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     virtualItemSize: number;
     virtualMaxBufferPx: number;
     virtualMinBufferPx: number;
+    customRequest?: (options: STCustomRequestOptions) => Observable<any>;
     virtualForTrackBy: TrackByFunction<NzTableData>;
     /**
      * Get the number of the current page

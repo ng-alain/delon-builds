@@ -856,7 +856,7 @@
             var showPage = page.show;
             if (typeof data === 'string') {
                 isRemote = true;
-                data$ = this.getByHttp(data, options).pipe(operators.map(function (result) {
+                data$ = this.getByRemote(data, options).pipe(operators.map(function (result) {
                     rawData = result;
                     var ret;
                     if (Array.isArray(result)) {
@@ -1005,7 +1005,7 @@
                 return { text: text, _text: text, org: text, buttons: [] };
             }
         };
-        STDataSource.prototype.getByHttp = function (url, options) {
+        STDataSource.prototype.getByRemote = function (url, options) {
             var _b, _c;
             var req = options.req, page = options.page, paginator = options.paginator, pi = options.pi, ps = options.ps, singleSort = options.singleSort, multiSort = options.multiSort, columns = options.columns;
             var method = (req.method || 'GET').toUpperCase();
@@ -1042,6 +1042,9 @@
             }
             if (!(reqOptions.params instanceof http.HttpParams)) {
                 reqOptions.params = new http.HttpParams({ fromObject: reqOptions.params });
+            }
+            if (typeof options.customRequest === 'function') {
+                return options.customRequest({ method: method, url: url, options: reqOptions });
             }
             return this.http.request(method, url, reqOptions);
         };
@@ -1689,7 +1692,7 @@
                     res: res,
                     page: page, columns: _this._columns, singleSort: singleSort,
                     multiSort: multiSort,
-                    rowClassName: rowClassName, paginator: true, saftHtml: _this.cog.saftHtml }, options))
+                    rowClassName: rowClassName, paginator: true, saftHtml: _this.cog.saftHtml, customRequest: _this.customRequest || _this.cog.customRequest }, options))
                     .pipe(operators.takeUntil(_this.destroy$))
                     .subscribe(function (result) { return resolvePromise(result); }, function (error) {
                     console.warn('st.loadDate', error);
@@ -2300,6 +2303,7 @@
         virtualItemSize: [{ type: i0.Input }],
         virtualMaxBufferPx: [{ type: i0.Input }],
         virtualMinBufferPx: [{ type: i0.Input }],
+        customRequest: [{ type: i0.Input }],
         virtualForTrackBy: [{ type: i0.Input }]
     };
     __decorate([

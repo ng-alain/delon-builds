@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { CurrencyService } from '@delon/util/format';
 import { Observable } from 'rxjs';
-import { STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
+import { STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
 import { _STColumn } from './st.types';
 export interface STDataSourceOptions {
     pi: number;
@@ -19,6 +19,7 @@ export interface STDataSourceOptions {
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
     saftHtml: boolean;
+    customRequest?: (options: STCustomRequestOptions) => Observable<any>;
 }
 export interface STDataSourceResult {
     /** 是否需要显示分页器 */
@@ -45,7 +46,7 @@ export declare class STDataSource {
     constructor(http: _HttpClient, datePipe: DatePipe, ynPipe: YNPipe, numberPipe: DecimalPipe, currencySrv: CurrencyService, dom: DomSanitizer);
     process(options: STDataSourceOptions): Observable<STDataSourceResult>;
     private get;
-    private getByHttp;
+    private getByRemote;
     optimizeData(options: {
         columns: _STColumn[];
         result: STData[];

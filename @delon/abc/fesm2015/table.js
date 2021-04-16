@@ -504,7 +504,7 @@ class STDataSource {
         let showPage = page.show;
         if (typeof data === 'string') {
             isRemote = true;
-            data$ = this.getByHttp(data, options).pipe(map(result => {
+            data$ = this.getByRemote(data, options).pipe(map(result => {
                 rawData = result;
                 let ret;
                 if (Array.isArray(result)) {
@@ -653,7 +653,7 @@ class STDataSource {
             return { text, _text: text, org: text, buttons: [] };
         }
     }
-    getByHttp(url, options) {
+    getByRemote(url, options) {
         const { req, page, paginator, pi, ps, singleSort, multiSort, columns } = options;
         const method = (req.method || 'GET').toUpperCase();
         let params = {};
@@ -689,6 +689,9 @@ class STDataSource {
         }
         if (!(reqOptions.params instanceof HttpParams)) {
             reqOptions.params = new HttpParams({ fromObject: reqOptions.params });
+        }
+        if (typeof options.customRequest === 'function') {
+            return options.customRequest({ method, url, options: reqOptions });
         }
         return this.http.request(method, url, reqOptions);
     }
@@ -1262,7 +1265,7 @@ class STComponent {
                 res,
                 page, columns: this._columns, singleSort,
                 multiSort,
-                rowClassName, paginator: true, saftHtml: this.cog.saftHtml }, options))
+                rowClassName, paginator: true, saftHtml: this.cog.saftHtml, customRequest: this.customRequest || this.cog.customRequest }, options))
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(result => resolvePromise(result), error => {
                 console.warn('st.loadDate', error);
@@ -1846,6 +1849,7 @@ STComponent.propDecorators = {
     virtualItemSize: [{ type: Input }],
     virtualMaxBufferPx: [{ type: Input }],
     virtualMinBufferPx: [{ type: Input }],
+    customRequest: [{ type: Input }],
     virtualForTrackBy: [{ type: Input }]
 };
 __decorate([

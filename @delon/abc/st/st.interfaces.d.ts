@@ -1026,3 +1026,8 @@ export interface STContextmenuItem {
     children?: STContextmenuItem[];
     [key: string]: any;
 }
+export interface STCustomRequestOptions {
+    method: string;
+    url: string;
+    options: STRequestOptions;
+}
