@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "11.9.0-daf50dfd",
+  "version": "11.9.0-4a840b40",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,8 +27,8 @@
   "dependencies": {
     "@antv/data-set": "^0.11.7",
     "@antv/g2": "^4.1.4",
-    "@delon/util": "^11.9.0-daf50dfd",
-    "@delon/theme": "^11.9.0-daf50dfd",
+    "@delon/util": "^11.9.0-4a840b40",
+    "@delon/theme": "^11.9.0-4a840b40",
     "tslib": "^2.0.0"
   },
   "main": "bundles/chart.umd.js",
