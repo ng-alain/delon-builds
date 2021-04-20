@@ -114,7 +114,7 @@ class G2TagCloudComponent extends G2BaseComponent {
             },
         });
         _chart.data(dv.rows);
-        _chart.render();
+        _chart.render(true);
     }
     _attachChart() {
         this.ngZone.runOutsideAngular(() => this.attachChart());

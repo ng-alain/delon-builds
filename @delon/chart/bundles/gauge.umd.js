@@ -446,7 +446,7 @@
                 offsetY: 15,
             });
             _chart.changeData(data);
-            _chart.render();
+            _chart.render(true);
         };
         return G2GaugeComponent;
     }(core.G2BaseComponent));

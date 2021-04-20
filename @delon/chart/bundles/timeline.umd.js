@@ -339,7 +339,14 @@
             return _this;
         }
         // #endregion
-        G2TimelineComponent.prototype.install = function () {
+        G2TimelineComponent.prototype.onChanges = function (changes) {
+            var tm = changes.titleMap;
+            if (tm && !tm.firstChange && tm.currentValue !== tm.previousValue) {
+                this.destroyChart();
+                this._install();
+            }
+        };
+        G2TimelineComponent.prototype._install = function () {
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, slider = _b.slider, maxAxis = _b.maxAxis, theme = _b.theme, maskSlider = _b.maskSlider;
             var chart = (this._chart = new window.G2.Chart({
@@ -389,6 +396,9 @@
                     line.changeVisible(!item.unchecked);
                 }
             });
+        };
+        G2TimelineComponent.prototype.install = function () {
+            this._install();
             this.attachChart();
         };
         G2TimelineComponent.prototype.attachChart = function () {
@@ -440,7 +450,7 @@
             };
             var filterData = data.filter(function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; });
             _chart.changeData(filterData);
-            _chart.render();
+            _chart.render(true);
         };
         return G2TimelineComponent;
     }(core$1.G2BaseComponent));

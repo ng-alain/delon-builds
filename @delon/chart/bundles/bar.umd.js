@@ -395,7 +395,7 @@
             }
             _chart.padding = padding;
             _chart.data(data);
-            _chart.render();
+            _chart.render(true);
         };
         G2BarComponent.prototype.updatelabel = function () {
             var _b = this, node = _b.node, data = _b.data, _chart = _b._chart;

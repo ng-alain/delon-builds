@@ -381,7 +381,7 @@
             _chart.padding = padding;
             _chart.geometries[0].color('value', function (val) { return (val > 0 ? plusColor : minusColor); }).size(barSize);
             _chart.changeData([{ value: value }]);
-            _chart.render();
+            _chart.render(true);
         };
         return G2SingleBarComponent;
     }(core.G2BaseComponent));

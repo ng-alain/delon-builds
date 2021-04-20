@@ -376,7 +376,7 @@
             _chart.height = height;
             _chart.padding = padding;
             _chart.changeData(data);
-            _chart.render();
+            _chart.render(true);
         };
         return G2MiniBarComponent;
     }(core$1.G2BaseComponent));

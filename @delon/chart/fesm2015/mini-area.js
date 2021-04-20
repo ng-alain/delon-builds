@@ -78,7 +78,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
         _chart.animate(animate);
         _chart.padding = padding;
         _chart.changeData(data);
-        _chart.render();
+        _chart.render(true);
     }
 }
 G2MiniAreaComponent.decorators = [

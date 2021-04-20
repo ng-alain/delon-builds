@@ -79,7 +79,7 @@ class G2BarComponent extends G2BaseComponent {
         }
         _chart.padding = padding;
         _chart.data(data);
-        _chart.render();
+        _chart.render(true);
     }
     updatelabel() {
         const { node, data, _chart } = this;

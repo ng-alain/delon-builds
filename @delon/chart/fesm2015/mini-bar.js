@@ -56,7 +56,7 @@ class G2MiniBarComponent extends G2BaseComponent {
         _chart.height = height;
         _chart.padding = padding;
         _chart.changeData(data);
-        _chart.render();
+        _chart.render(true);
     }
 }
 G2MiniBarComponent.decorators = [

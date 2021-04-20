@@ -1,4 +1,4 @@
-import { EventEmitter, TemplateRef } from '@angular/core';
+import { EventEmitter, SimpleChanges, TemplateRef } from '@angular/core';
 import { Event } from '@antv/g2';
 import { G2BaseComponent, G2Time } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
@@ -54,6 +54,8 @@ export declare class G2TimelineComponent extends G2BaseComponent {
     borderWidth: number;
     slider: boolean;
     clickItem: EventEmitter<G2TimelineClickItem>;
+    onChanges(changes: SimpleChanges): void;
+    private _install;
     install(): void;
     attachChart(): void;
 }

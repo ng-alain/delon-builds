@@ -439,7 +439,7 @@
                 finally { if (e_1) throw e_1.error; }
             }
             _chart.changeData(data);
-            _chart.render();
+            _chart.render(true);
             this.ngZone.run(function () { return _this.genLegend(); });
         };
         G2PieComponent.prototype.genLegend = function () {

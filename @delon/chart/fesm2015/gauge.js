@@ -128,7 +128,7 @@ class G2GaugeComponent extends G2BaseComponent {
             offsetY: 15,
         });
         _chart.changeData(data);
-        _chart.render();
+        _chart.render(true);
     }
 }
 G2GaugeComponent.decorators = [

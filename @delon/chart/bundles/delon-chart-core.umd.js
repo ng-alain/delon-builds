@@ -407,7 +407,7 @@
             configurable: true
         });
         G2BaseComponent.prototype.onInit = function () { };
-        G2BaseComponent.prototype.onChanges = function () { };
+        G2BaseComponent.prototype.onChanges = function (_changes) { };
         G2BaseComponent.prototype.load = function () {
             var _this = this;
             this.ngZone.run(function () {
@@ -428,9 +428,9 @@
                 this.srv.libLoad();
             }
         };
-        G2BaseComponent.prototype.ngOnChanges = function () {
+        G2BaseComponent.prototype.ngOnChanges = function (changes) {
             var _this = this;
-            this.onChanges();
+            this.onChanges(changes);
             this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
         };
         G2BaseComponent.prototype.destroyChart = function () {

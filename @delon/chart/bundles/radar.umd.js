@@ -405,7 +405,7 @@
             });
             _chart.geometries.forEach(function (g) { return g.color('name', colors); });
             _chart.changeData(data);
-            _chart.render();
+            _chart.render(true);
             this.ngZone.run(function () { return _this.genLegend(); });
         };
         G2RadarComponent.prototype.genLegend = function () {

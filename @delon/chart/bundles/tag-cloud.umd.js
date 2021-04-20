@@ -431,7 +431,7 @@
                 },
             });
             _chart.data(dv.rows);
-            _chart.render();
+            _chart.render(true);
         };
         G2TagCloudComponent.prototype._attachChart = function () {
             var _this = this;

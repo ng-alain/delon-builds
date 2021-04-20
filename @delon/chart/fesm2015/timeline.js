@@ -24,7 +24,14 @@ class G2TimelineComponent extends G2BaseComponent {
         this.clickItem = new EventEmitter();
     }
     // #endregion
-    install() {
+    onChanges(changes) {
+        const tm = changes.titleMap;
+        if (tm && !tm.firstChange && tm.currentValue !== tm.previousValue) {
+            this.destroyChart();
+            this._install();
+        }
+    }
+    _install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
@@ -73,6 +80,9 @@ class G2TimelineComponent extends G2BaseComponent {
                 line.changeVisible(!item.unchecked);
             }
         });
+    }
+    install() {
+        this._install();
         this.attachChart();
     }
     attachChart() {
@@ -124,7 +134,7 @@ class G2TimelineComponent extends G2BaseComponent {
         };
         const filterData = data.filter(val => val._time >= initialRange.start && val._time <= initialRange.end);
         _chart.changeData(filterData);
-        _chart.render();
+        _chart.render(true);
     }
 }
 G2TimelineComponent.decorators = [

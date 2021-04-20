@@ -62,7 +62,7 @@ class G2SingleBarComponent extends G2BaseComponent {
         _chart.padding = padding;
         _chart.geometries[0].color('value', (val) => (val > 0 ? plusColor : minusColor)).size(barSize);
         _chart.changeData([{ value }]);
-        _chart.render();
+        _chart.render(true);
     }
 }
 G2SingleBarComponent.decorators = [

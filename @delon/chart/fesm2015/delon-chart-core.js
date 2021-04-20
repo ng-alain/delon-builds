@@ -78,7 +78,7 @@ class G2BaseComponent {
         return this._chart;
     }
     onInit() { }
-    onChanges() { }
+    onChanges(_changes) { }
     load() {
         this.ngZone.run(() => {
             this.loaded = true;
@@ -98,8 +98,8 @@ class G2BaseComponent {
             this.srv.libLoad();
         }
     }
-    ngOnChanges() {
-        this.onChanges();
+    ngOnChanges(changes) {
+        this.onChanges(changes);
         this.ngZone.runOutsideAngular(() => this.attachChart());
     }
     destroyChart() {
