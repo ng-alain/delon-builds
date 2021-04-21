@@ -1,13 +1,12 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
-import { Event } from '@antv/g2';
+import type { Event } from '@antv/g2';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2BarData {
-    x: NzSafeAny;
-    y: NzSafeAny;
+    x: any;
+    y: any;
     color?: string;
-    [key: string]: NzSafeAny;
+    [key: string]: any;
 }
 export interface G2BarClickItem {
     item: G2BarData;

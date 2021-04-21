@@ -26,8 +26,8 @@
                 this._cog = this.cogSrv.merge('chart', {
                     theme: '',
                     libs: [
-                        'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.4/dist/g2.min.js',
-                        'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.7/dist/data-set.js',
+                        'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.14/dist/g2.min.js',
+                        'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js',
                     ],
                 }, val);
             },
@@ -407,8 +407,11 @@
             enumerable: false,
             configurable: true
         });
+        /** G2数据变更 */
         G2BaseComponent.prototype.changeData = function () { };
+        /** 等同 `ngOnInit` */
         G2BaseComponent.prototype.onInit = function () { };
+        /** 等同 `ngOnChanges` */
         G2BaseComponent.prototype.onChanges = function (_) { };
         G2BaseComponent.prototype.load = function () {
             var _this = this;

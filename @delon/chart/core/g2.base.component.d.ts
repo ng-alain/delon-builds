@@ -1,6 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
-import { Chart, Types } from '@antv/g2';
+import type { Chart, Types } from '@antv/g2';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { Subject, Subscription } from 'rxjs';
 import { G2Service } from './g2.servicce';
@@ -22,10 +22,14 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     loaded: boolean;
     delay: number;
     theme: string | Types.LooseObject;
+    /** 检查是否只变更数据 */
     onlyChangeData?: (changes: SimpleChanges) => boolean;
     abstract install(): void;
+    /** G2数据变更 */
     changeData(): void;
+    /** 等同 `ngOnInit` */
     onInit(): void;
+    /** 等同 `ngOnChanges` */
     onChanges(_: SimpleChanges): void;
     private load;
     ngOnInit(): void;

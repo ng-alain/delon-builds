@@ -23,8 +23,8 @@ class G2Service {
         this._cog = this.cogSrv.merge('chart', {
             theme: '',
             libs: [
-                'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.4/dist/g2.min.js',
-                'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.7/dist/data-set.js',
+                'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.14/dist/g2.min.js',
+                'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js',
             ],
         }, val);
     }
@@ -78,8 +78,11 @@ class G2BaseComponent {
     get chart() {
         return this._chart;
     }
+    /** G2数据变更 */
     changeData() { }
+    /** 等同 `ngOnInit` */
     onInit() { }
+    /** 等同 `ngOnChanges` */
     onChanges(_) { }
     load() {
         this.ngZone.run(() => {
