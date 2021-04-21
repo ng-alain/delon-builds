@@ -21,7 +21,6 @@ class G2CustomComponent extends G2BaseComponent {
         this.render.emit(this.el);
         this.installResizeEvent();
     }
-    attachChart() { }
     installResizeEvent() {
         if (this.resizeTime <= 0)
             return;

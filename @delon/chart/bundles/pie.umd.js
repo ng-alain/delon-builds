@@ -339,6 +339,12 @@
             _this.select = true;
             _this.data = [];
             _this.interaction = 'none';
+            _this.ratio = {
+                text: '占比',
+                inverse: '反比',
+                color: '',
+                inverseColor: '#F0F2F5',
+            };
             _this.clickItem = new core.EventEmitter();
             return _this;
         }
@@ -353,25 +359,27 @@
         G2PieComponent.prototype.fixData = function () {
             var _b = this, percent = _b.percent, color = _b.color;
             this.isPercent = percent != null;
-            if (this.isPercent) {
-                this.select = false;
-                this.tooltip = false;
-                this.percentColor = function (value) { return (value === '占比' ? color || 'rgba(24, 144, 255, 0.85)' : '#F0F2F5'); };
-                this.data = [
-                    {
-                        x: '占比',
-                        y: percent,
-                    },
-                    {
-                        x: '反比',
-                        y: 100 - percent,
-                    },
-                ];
+            if (!this.isPercent) {
+                return;
             }
+            this.select = false;
+            this.tooltip = false;
+            var _c = this.ratio, text = _c.text, inverse = _c.inverse, textColor = _c.color, inverseColor = _c.inverseColor;
+            this.percentColor = function (value) { return (value === text ? textColor || color : inverseColor); };
+            this.data = [
+                {
+                    x: text,
+                    y: percent,
+                },
+                {
+                    x: inverse,
+                    y: 100 - percent,
+                },
+            ];
         };
         G2PieComponent.prototype.install = function () {
             var _this = this;
-            var _b = this, node = _b.node, height = _b.height, padding = _b.padding, tooltip = _b.tooltip, inner = _b.inner, hasLegend = _b.hasLegend, interaction = _b.interaction, theme = _b.theme;
+            var _b = this, node = _b.node, height = _b.height, padding = _b.padding, tooltip = _b.tooltip, inner = _b.inner, hasLegend = _b.hasLegend, interaction = _b.interaction, theme = _b.theme, animate = _b.animate, lineWidth = _b.lineWidth, isPercent = _b.isPercent, percentColor = _b.percentColor, colors = _b.colors;
             var chart = (this._chart = new window.G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
@@ -379,6 +387,7 @@
                 padding: padding,
                 theme: theme,
             }));
+            chart.animate(animate);
             if (!tooltip) {
                 chart.tooltip(false);
             }
@@ -397,32 +406,31 @@
                 .interval()
                 .adjust('stack')
                 .position('y')
+                .style({ lineWidth: lineWidth, stroke: '#fff' })
+                .color('x', isPercent ? percentColor : colors)
                 .tooltip('x*percent', function (name, p) { return ({
                 name: name,
                 value: (hasLegend ? p : (p * 100).toFixed(2)) + " %",
             }); })
                 .state({});
-            chart.on("interval:click", function (ev) {
-                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
-            });
-            this.attachChart();
-        };
-        G2PieComponent.prototype.attachChart = function () {
-            var e_1, _b;
-            var _this = this;
-            var _c = this, _chart = _c._chart, height = _c.height, padding = _c.padding, animate = _c.animate, data = _c.data, lineWidth = _c.lineWidth, isPercent = _c.isPercent, percentColor = _c.percentColor, colors = _c.colors;
-            if (!_chart)
-                return;
-            _chart.height = height;
-            _chart.padding = padding;
-            _chart.animate(animate);
-            _chart.geometries[0].style({ lineWidth: lineWidth, stroke: '#fff' }).color('x', isPercent ? percentColor : colors);
-            _chart.scale({
+            chart.scale({
                 x: {
                     type: 'cat',
                     range: [0, 1],
                 },
             });
+            chart.on("interval:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
+            this.changeData();
+            chart.render();
+        };
+        G2PieComponent.prototype.changeData = function () {
+            var e_1, _b;
+            var _this = this;
+            var _c = this, _chart = _c._chart, data = _c.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
+                return;
             // 转化 percent
             var totalSum = data.reduce(function (cur, item) { return cur + item.y; }, 0);
             try {
@@ -439,7 +447,6 @@
                 finally { if (e_1) throw e_1.error; }
             }
             _chart.changeData(data);
-            _chart.render(true);
             this.ngZone.run(function () { return _this.genLegend(); });
         };
         G2PieComponent.prototype.genLegend = function () {
@@ -458,7 +465,7 @@
         G2PieComponent.prototype._click = function (i) {
             var _b = this, legendData = _b.legendData, _chart = _b._chart;
             legendData[i].checked = !legendData[i].checked;
-            _chart.render();
+            _chart.render(true);
         };
         G2PieComponent.prototype.onChanges = function () {
             this.fixData();
@@ -499,6 +506,7 @@
         data: [{ type: core.Input }],
         colors: [{ type: core.Input }],
         interaction: [{ type: core.Input }],
+        ratio: [{ type: core.Input }],
         clickItem: [{ type: core.Output }]
     };
     __decorate([

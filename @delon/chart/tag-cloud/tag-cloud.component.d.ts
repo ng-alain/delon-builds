@@ -21,8 +21,7 @@ export declare class G2TagCloudComponent extends G2BaseComponent {
     clickItem: EventEmitter<G2TagCloudClickItem>;
     private initTagCloud;
     install(): void;
-    attachChart(): void;
-    private _attachChart;
+    changeData(): void;
     private installResizeEvent;
     onInit(): void;
 }

@@ -26,7 +26,7 @@ export declare class G2BarComponent extends G2BaseComponent {
     clickItem: EventEmitter<G2BarClickItem>;
     private getHeight;
     install(): void;
-    attachChart(): void;
+    changeData(): void;
     private updatelabel;
     private installResizeEvent;
 }

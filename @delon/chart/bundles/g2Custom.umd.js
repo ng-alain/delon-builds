@@ -337,7 +337,6 @@
             this.render.emit(this.el);
             this.installResizeEvent();
         };
-        G2CustomComponent.prototype.attachChart = function () { };
         G2CustomComponent.prototype.installResizeEvent = function () {
             var _this = this;
             if (this.resizeTime <= 0)

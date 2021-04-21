@@ -32,5 +32,5 @@ export declare class G2MiniAreaComponent extends G2BaseComponent {
     tooltipType: 'mini' | 'default';
     clickItem: EventEmitter<G2MiniAreaClickItem>;
     install(): void;
-    attachChart(): void;
+    changeData(): void;
 }

@@ -78,9 +78,10 @@ class G2GaugeComponent extends G2BaseComponent {
             grid: null,
         });
         chart.point().position('value*1').shape('pointer');
-        this.attachChart();
+        this.changeData();
+        chart.render();
     }
-    attachChart() {
+    changeData() {
         const { _chart, percent, color, bgColor, title } = this;
         if (!_chart)
             return;
@@ -128,7 +129,6 @@ class G2GaugeComponent extends G2BaseComponent {
             offsetY: 15,
         });
         _chart.changeData(data);
-        _chart.render(true);
     }
 }
 G2GaugeComponent.decorators = [

@@ -22,16 +22,13 @@ class G2TimelineComponent extends G2BaseComponent {
         this.borderWidth = 2;
         this.slider = true;
         this.clickItem = new EventEmitter();
+        // #endregion
+        this.onlyChangeData = (changes) => {
+            const tm = changes.titleMap;
+            return !(tm && !tm.firstChange && tm.currentValue !== tm.previousValue);
+        };
     }
-    // #endregion
-    onChanges(changes) {
-        const tm = changes.titleMap;
-        if (tm && !tm.firstChange && tm.currentValue !== tm.previousValue) {
-            this.destroyChart();
-            this._install();
-        }
-    }
-    _install() {
+    install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
@@ -80,15 +77,13 @@ class G2TimelineComponent extends G2BaseComponent {
                 line.changeVisible(!item.unchecked);
             }
         });
+        this.changeData();
+        chart.render();
     }
-    install() {
-        this._install();
-        this.attachChart();
-    }
-    attachChart() {
+    changeData() {
         const { _chart, height, padding, mask, titleMap, position, colorMap, borderWidth, maxAxis } = this;
         let data = [...this.data];
-        if (!_chart || !data || data.length <= 0)
+        if (!_chart || data.length <= 0)
             return;
         const arrAxis = [...Array(maxAxis)].map((_, index) => index + 1);
         _chart.legend({
@@ -134,7 +129,6 @@ class G2TimelineComponent extends G2BaseComponent {
         };
         const filterData = data.filter(val => val._time >= initialRange.start && val._time <= initialRange.end);
         _chart.changeData(filterData);
-        _chart.render(true);
     }
 }
 G2TimelineComponent.decorators = [

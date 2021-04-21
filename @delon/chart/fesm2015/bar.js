@@ -66,20 +66,15 @@ class G2BarComponent extends G2BaseComponent {
         chart.on(`interval:click`, (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
         });
-        this.attachChart();
-    }
-    attachChart() {
-        const { _chart, padding, data } = this;
-        if (!_chart || !data || data.length <= 0)
-            return;
+        this.changeData();
+        chart.render();
         this.installResizeEvent();
-        const height = this.getHeight();
-        if (_chart.height !== height) {
-            _chart.height = height;
-        }
-        _chart.padding = padding;
-        _chart.data(data);
-        _chart.render(true);
+    }
+    changeData() {
+        const { _chart, data } = this;
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
+            return;
+        _chart.changeData(data);
     }
     updatelabel() {
         const { node, data, _chart } = this;

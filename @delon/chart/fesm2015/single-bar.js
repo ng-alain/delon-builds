@@ -18,10 +18,13 @@ class G2SingleBarComponent extends G2BaseComponent {
         this.line = false;
         this.padding = 0;
         this.textStyle = { fontSize: 12, color: '#595959' };
+        this.onlyChangeData = (changes) => {
+            return Object.keys(changes).length === 1 && !!changes.value;
+        };
     }
     // #endregion
     install() {
-        const { el, height, padding, textStyle, line, format, theme } = this;
+        const { el, height, padding, textStyle, line, format, theme, min, max, plusColor, minusColor, barSize } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
@@ -31,11 +34,14 @@ class G2SingleBarComponent extends G2BaseComponent {
         }));
         chart.legend(false);
         chart.axis(false);
+        chart.scale({ value: { max, min } });
         chart.tooltip(false);
         chart.coordinate().transpose();
         chart
             .interval()
             .position('1*value')
+            .color('value', (val) => (val > 0 ? plusColor : minusColor))
+            .size(barSize)
             .label('value', () => ({
             formatter: format,
             style: Object.assign({}, textStyle),
@@ -50,19 +56,14 @@ class G2SingleBarComponent extends G2BaseComponent {
                 },
             });
         }
+        this.changeData();
         chart.render();
-        this.attachChart();
     }
-    attachChart() {
-        const { _chart, height, padding, value, min, max, plusColor, minusColor, barSize } = this;
+    changeData() {
+        const { _chart, value } = this;
         if (!_chart)
             return;
-        _chart.scale({ value: { max, min } });
-        _chart.height = height;
-        _chart.padding = padding;
-        _chart.geometries[0].color('value', (val) => (val > 0 ? plusColor : minusColor)).size(barSize);
         _chart.changeData([{ value }]);
-        _chart.render(true);
     }
 }
 G2SingleBarComponent.decorators = [

@@ -12,6 +12,16 @@ export interface G2PieClickItem {
     item: G2PieData;
     ev: Event;
 }
+export interface G2PieRatio {
+    /** 占比文本，默认：`占比` */
+    text: string;
+    /** 反比文本，默认：`反比` */
+    inverse: string;
+    /** 正比颜色，默认使用 `color` 值 */
+    color: string;
+    /** 反比颜色，默认：`#F0F2F5` */
+    inverseColor: string;
+}
 export declare class G2PieComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_animate: BooleanInput;
@@ -41,11 +51,12 @@ export declare class G2PieComponent extends G2BaseComponent {
     data: G2PieData[];
     colors: any[];
     interaction: G2InteractionType;
+    ratio: G2PieRatio;
     clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
     private fixData;
     install(): void;
-    attachChart(): void;
+    changeData(): void;
     private genLegend;
     _click(i: number): void;
     onChanges(): void;

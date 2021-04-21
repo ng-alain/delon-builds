@@ -23,7 +23,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
     }
     // #endregion
     install() {
-        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme } = this;
+        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme, animate, color, borderColor, borderWidth, } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: fit,
@@ -31,6 +31,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
             padding,
             theme,
         }));
+        chart.animate(animate);
         if (!xAxis && !yAxis) {
             chart.axis(false);
         }
@@ -51,34 +52,24 @@ class G2MiniAreaComponent extends G2BaseComponent {
         chart
             .area()
             .position('x*y')
+            .color(color)
             .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }))
             .shape('smooth');
         if (line) {
-            chart.line().position('x*y').shape('smooth').tooltip(false);
+            chart.line().position('x*y').shape('smooth').color(borderColor).size(borderWidth).tooltip(false);
         }
         chart.on(`plot:click`, (ev) => {
             const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
             this.ngZone.run(() => this.clickItem.emit({ item: records[0]._origin, ev }));
         });
+        this.changeData();
         chart.render();
-        this.attachChart();
     }
-    attachChart() {
-        const { _chart, line, fit, height, animate, padding, data, color, borderColor, borderWidth } = this;
-        if (!_chart || !data || data.length <= 0) {
+    changeData() {
+        const { _chart, data } = this;
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
             return;
-        }
-        const geoms = _chart.geometries;
-        geoms.forEach(g => g.color(color));
-        if (line) {
-            geoms[1].color(borderColor).size(borderWidth);
-        }
-        _chart.autoFit = fit;
-        _chart.height = height;
-        _chart.animate(animate);
-        _chart.padding = padding;
         _chart.changeData(data);
-        _chart.render(true);
     }
 }
 G2MiniAreaComponent.decorators = [

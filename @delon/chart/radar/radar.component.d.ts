@@ -27,7 +27,7 @@ export declare class G2RadarComponent extends G2BaseComponent {
     clickItem: EventEmitter<G2RadarClickItem>;
     private getHeight;
     install(): void;
-    attachChart(): void;
+    changeData(): void;
     private genLegend;
     _click(i: number): void;
     onChanges(): void;

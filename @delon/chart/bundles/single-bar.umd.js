@@ -336,11 +336,14 @@
             _this.line = false;
             _this.padding = 0;
             _this.textStyle = { fontSize: 12, color: '#595959' };
+            _this.onlyChangeData = function (changes) {
+                return Object.keys(changes).length === 1 && !!changes.value;
+            };
             return _this;
         }
         // #endregion
         G2SingleBarComponent.prototype.install = function () {
-            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme;
+            var _a = this, el = _a.el, height = _a.height, padding = _a.padding, textStyle = _a.textStyle, line = _a.line, format = _a.format, theme = _a.theme, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
             var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
@@ -350,11 +353,14 @@
             }));
             chart.legend(false);
             chart.axis(false);
+            chart.scale({ value: { max: max, min: min } });
             chart.tooltip(false);
             chart.coordinate().transpose();
             chart
                 .interval()
                 .position('1*value')
+                .color('value', function (val) { return (val > 0 ? plusColor : minusColor); })
+                .size(barSize)
                 .label('value', function () { return ({
                 formatter: format,
                 style: Object.assign({}, textStyle),
@@ -369,19 +375,14 @@
                     },
                 });
             }
+            this.changeData();
             chart.render();
-            this.attachChart();
         };
-        G2SingleBarComponent.prototype.attachChart = function () {
-            var _a = this, _chart = _a._chart, height = _a.height, padding = _a.padding, value = _a.value, min = _a.min, max = _a.max, plusColor = _a.plusColor, minusColor = _a.minusColor, barSize = _a.barSize;
+        G2SingleBarComponent.prototype.changeData = function () {
+            var _a = this, _chart = _a._chart, value = _a.value;
             if (!_chart)
                 return;
-            _chart.scale({ value: { max: max, min: min } });
-            _chart.height = height;
-            _chart.padding = padding;
-            _chart.geometries[0].color('value', function (val) { return (val > 0 ? plusColor : minusColor); }).size(barSize);
             _chart.changeData([{ value: value }]);
-            _chart.render(true);
         };
         return G2SingleBarComponent;
     }(core.G2BaseComponent));

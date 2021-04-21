@@ -382,20 +382,15 @@
             chart.on("interval:click", function (ev) {
                 _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
             });
-            this.attachChart();
-        };
-        G2BarComponent.prototype.attachChart = function () {
-            var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
-            if (!_chart || !data || data.length <= 0)
-                return;
+            this.changeData();
+            chart.render();
             this.installResizeEvent();
-            var height = this.getHeight();
-            if (_chart.height !== height) {
-                _chart.height = height;
-            }
-            _chart.padding = padding;
-            _chart.data(data);
-            _chart.render(true);
+        };
+        G2BarComponent.prototype.changeData = function () {
+            var _b = this, _chart = _b._chart, data = _b.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
+                return;
+            _chart.changeData(data);
         };
         G2BarComponent.prototype.updatelabel = function () {
             var _b = this, node = _b.node, data = _b.data, _chart = _b._chart;

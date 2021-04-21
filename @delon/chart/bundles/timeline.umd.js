@@ -336,17 +336,14 @@
             _this.borderWidth = 2;
             _this.slider = true;
             _this.clickItem = new core.EventEmitter();
+            // #endregion
+            _this.onlyChangeData = function (changes) {
+                var tm = changes.titleMap;
+                return !(tm && !tm.firstChange && tm.currentValue !== tm.previousValue);
+            };
             return _this;
         }
-        // #endregion
-        G2TimelineComponent.prototype.onChanges = function (changes) {
-            var tm = changes.titleMap;
-            if (tm && !tm.firstChange && tm.currentValue !== tm.previousValue) {
-                this.destroyChart();
-                this._install();
-            }
-        };
-        G2TimelineComponent.prototype._install = function () {
+        G2TimelineComponent.prototype.install = function () {
             var _this = this;
             var _b = this, node = _b.node, height = _b.height, padding = _b.padding, slider = _b.slider, maxAxis = _b.maxAxis, theme = _b.theme, maskSlider = _b.maskSlider;
             var chart = (this._chart = new window.G2.Chart({
@@ -396,15 +393,13 @@
                     line.changeVisible(!item.unchecked);
                 }
             });
+            this.changeData();
+            chart.render();
         };
-        G2TimelineComponent.prototype.install = function () {
-            this._install();
-            this.attachChart();
-        };
-        G2TimelineComponent.prototype.attachChart = function () {
+        G2TimelineComponent.prototype.changeData = function () {
             var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, mask = _b.mask, titleMap = _b.titleMap, position = _b.position, colorMap = _b.colorMap, borderWidth = _b.borderWidth, maxAxis = _b.maxAxis;
             var data = __spread(this.data);
-            if (!_chart || !data || data.length <= 0)
+            if (!_chart || data.length <= 0)
                 return;
             var arrAxis = __spread(Array(maxAxis)).map(function (_, index) { return index + 1; });
             _chart.legend({
@@ -450,7 +445,6 @@
             };
             var filterData = data.filter(function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; });
             _chart.changeData(filterData);
-            _chart.render(true);
         };
         return G2TimelineComponent;
     }(core$1.G2BaseComponent));

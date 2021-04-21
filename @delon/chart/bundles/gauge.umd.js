@@ -396,9 +396,10 @@
                 grid: null,
             });
             chart.point().position('value*1').shape('pointer');
-            this.attachChart();
+            this.changeData();
+            chart.render();
         };
-        G2GaugeComponent.prototype.attachChart = function () {
+        G2GaugeComponent.prototype.changeData = function () {
             var _a = this, _chart = _a._chart, percent = _a.percent, color = _a.color, bgColor = _a.bgColor, title = _a.title;
             if (!_chart)
                 return;
@@ -446,7 +447,6 @@
                 offsetY: 15,
             });
             _chart.changeData(data);
-            _chart.render(true);
         };
         return G2GaugeComponent;
     }(core.G2BaseComponent));

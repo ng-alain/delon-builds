@@ -11,5 +11,5 @@ export declare class G2GaugeComponent extends G2BaseComponent {
     percent: number;
     padding: number | number[] | 'auto';
     install(): void;
-    attachChart(): void;
+    changeData(): void;
 }

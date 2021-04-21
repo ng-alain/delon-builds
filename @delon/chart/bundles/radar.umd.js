@@ -341,7 +341,7 @@
         };
         G2RadarComponent.prototype.install = function () {
             var _this = this;
-            var _b = this, node = _b.node, padding = _b.padding, theme = _b.theme;
+            var _b = this, node = _b.node, padding = _b.padding, theme = _b.theme, tickCount = _b.tickCount;
             var chart = (this._chart = new window.G2.Chart({
                 container: node.nativeElement,
                 autoFit: true,
@@ -378,34 +378,30 @@
                     },
                 },
             });
-            chart.filter('name', function (name) {
-                var legendItem = _this.legendData.find(function (w) { return w.name === name; });
-                return legendItem ? legendItem.checked !== false : true;
-            });
-            chart.line().position('label*value');
-            chart.point().position('label*value').shape('circle').size(3);
-            chart.render();
-            chart.on("point:click", function (ev) {
-                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
-            });
-            this.attachChart();
-        };
-        G2RadarComponent.prototype.attachChart = function () {
-            var _this = this;
-            var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data, colors = _b.colors, tickCount = _b.tickCount;
-            if (!_chart || !data || data.length <= 0)
-                return;
-            _chart.height = this.getHeight();
-            _chart.padding = padding;
-            _chart.scale({
+            chart.scale({
                 value: {
                     min: 0,
                     tickCount: tickCount,
                 },
             });
-            _chart.geometries.forEach(function (g) { return g.color('name', colors); });
+            chart.filter('name', function (name) {
+                var legendItem = _this.legendData.find(function (w) { return w.name === name; });
+                return legendItem ? legendItem.checked !== false : true;
+            });
+            chart.line().position('label*value').color('name', this.colors);
+            chart.point().position('label*value').shape('circle').size(3);
+            chart.on("point:click", function (ev) {
+                _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
+            });
+            this.changeData();
+            chart.render();
+        };
+        G2RadarComponent.prototype.changeData = function () {
+            var _this = this;
+            var _b = this, _chart = _b._chart, data = _b.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
+                return;
             _chart.changeData(data);
-            _chart.render(true);
             this.ngZone.run(function () { return _this.genLegend(); });
         };
         G2RadarComponent.prototype.genLegend = function () {
@@ -427,7 +423,7 @@
         G2RadarComponent.prototype._click = function (i) {
             var _b = this, legendData = _b.legendData, _chart = _b._chart;
             legendData[i].checked = !legendData[i].checked;
-            _chart.render();
+            _chart.render(true);
         };
         G2RadarComponent.prototype.onChanges = function () {
             this.legendData.forEach(function (i) { return (i.checked = true); });

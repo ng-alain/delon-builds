@@ -10,6 +10,5 @@ export declare class G2CustomComponent extends G2BaseComponent {
     readonly resize: EventEmitter<ElementRef<any>>;
     readonly destroy: EventEmitter<ElementRef<any>>;
     install(): void;
-    attachChart(): void;
     private installResizeEvent;
 }

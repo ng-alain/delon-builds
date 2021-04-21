@@ -339,7 +339,7 @@
         // #endregion
         G2MiniBarComponent.prototype.install = function () {
             var _this = this;
-            var _b = this, el = _b.el, height = _b.height, padding = _b.padding, yTooltipSuffix = _b.yTooltipSuffix, tooltipType = _b.tooltipType, theme = _b.theme;
+            var _b = this, el = _b.el, height = _b.height, padding = _b.padding, yTooltipSuffix = _b.yTooltipSuffix, tooltipType = _b.tooltipType, theme = _b.theme, color = _b.color, borderWidth = _b.borderWidth;
             var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: true,
@@ -361,22 +361,20 @@
             chart
                 .interval()
                 .position('x*y')
+                .color(color)
+                .size(borderWidth)
                 .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
             chart.on("interval:click", function (ev) {
                 _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
             });
+            this.changeData();
             chart.render();
-            this.attachChart();
         };
-        G2MiniBarComponent.prototype.attachChart = function () {
-            var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, data = _b.data, color = _b.color, borderWidth = _b.borderWidth;
-            if (!_chart || !data || data.length <= 0)
+        G2MiniBarComponent.prototype.changeData = function () {
+            var _b = this, _chart = _b._chart, data = _b.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
                 return;
-            _chart.geometries[0].size(borderWidth).color(color);
-            _chart.height = height;
-            _chart.padding = padding;
             _chart.changeData(data);
-            _chart.render(true);
         };
         return G2MiniBarComponent;
     }(core$1.G2BaseComponent));

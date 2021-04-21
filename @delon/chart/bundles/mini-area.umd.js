@@ -343,7 +343,7 @@
         // #endregion
         G2MiniAreaComponent.prototype.install = function () {
             var _this = this;
-            var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme;
+            var _a = this, el = _a.el, fit = _a.fit, height = _a.height, padding = _a.padding, xAxis = _a.xAxis, yAxis = _a.yAxis, yTooltipSuffix = _a.yTooltipSuffix, tooltipType = _a.tooltipType, line = _a.line, theme = _a.theme, animate = _a.animate, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
             var chart = (this._chart = new window.G2.Chart({
                 container: el.nativeElement,
                 autoFit: fit,
@@ -351,6 +351,7 @@
                 padding: padding,
                 theme: theme,
             }));
+            chart.animate(animate);
             if (!xAxis && !yAxis) {
                 chart.axis(false);
             }
@@ -371,34 +372,24 @@
             chart
                 .area()
                 .position('x*y')
+                .color(color)
                 .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); })
                 .shape('smooth');
             if (line) {
-                chart.line().position('x*y').shape('smooth').tooltip(false);
+                chart.line().position('x*y').shape('smooth').color(borderColor).size(borderWidth).tooltip(false);
             }
             chart.on("plot:click", function (ev) {
                 var records = _this._chart.getSnapRecords({ x: ev.x, y: ev.y });
                 _this.ngZone.run(function () { return _this.clickItem.emit({ item: records[0]._origin, ev: ev }); });
             });
+            this.changeData();
             chart.render();
-            this.attachChart();
         };
-        G2MiniAreaComponent.prototype.attachChart = function () {
-            var _a = this, _chart = _a._chart, line = _a.line, fit = _a.fit, height = _a.height, animate = _a.animate, padding = _a.padding, data = _a.data, color = _a.color, borderColor = _a.borderColor, borderWidth = _a.borderWidth;
-            if (!_chart || !data || data.length <= 0) {
+        G2MiniAreaComponent.prototype.changeData = function () {
+            var _a = this, _chart = _a._chart, data = _a.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
                 return;
-            }
-            var geoms = _chart.geometries;
-            geoms.forEach(function (g) { return g.color(color); });
-            if (line) {
-                geoms[1].color(borderColor).size(borderWidth);
-            }
-            _chart.autoFit = fit;
-            _chart.height = height;
-            _chart.animate(animate);
-            _chart.padding = padding;
             _chart.changeData(data);
-            _chart.render(true);
         };
         return G2MiniAreaComponent;
     }(core$1.G2BaseComponent));

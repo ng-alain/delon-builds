@@ -79,15 +79,13 @@ class G2TagCloudComponent extends G2BaseComponent {
         chart.on('tag-cloud-text:click', (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
         });
-        this.attachChart();
+        this.changeData();
+        chart.render();
     }
-    attachChart() {
-        const { _chart, padding, data } = this;
-        if (!_chart || !data || data.length <= 0)
+    changeData() {
+        const { _chart, data } = this;
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
             return;
-        _chart.height = this.height;
-        _chart.width = this.width;
-        _chart.padding = padding;
         const dv = new window.DataSet.View().source(data);
         const range = dv.range('value');
         const min = range[0];
@@ -113,16 +111,12 @@ class G2TagCloudComponent extends G2BaseComponent {
                 return ((d.value - min) / (max - min)) * (32 - 8) + 8;
             },
         });
-        _chart.data(dv.rows);
-        _chart.render(true);
-    }
-    _attachChart() {
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        _chart.changeData(dv.rows);
     }
     installResizeEvent() {
         this.resize$ = fromEvent(window, 'resize')
             .pipe(filter(() => !!this._chart), debounceTime(200))
-            .subscribe(() => this._attachChart());
+            .subscribe(() => this.changeData());
     }
     onInit() {
         this.installResizeEvent();

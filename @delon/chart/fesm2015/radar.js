@@ -24,7 +24,7 @@ class G2RadarComponent extends G2BaseComponent {
         return this.height - (this.hasLegend ? 80 : 22);
     }
     install() {
-        const { node, padding, theme } = this;
+        const { node, padding, theme, tickCount } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
             autoFit: true,
@@ -61,33 +61,29 @@ class G2RadarComponent extends G2BaseComponent {
                 },
             },
         });
-        chart.filter('name', (name) => {
-            const legendItem = this.legendData.find(w => w.name === name);
-            return legendItem ? legendItem.checked !== false : true;
-        });
-        chart.line().position('label*value');
-        chart.point().position('label*value').shape('circle').size(3);
-        chart.render();
-        chart.on(`point:click`, (ev) => {
-            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
-        });
-        this.attachChart();
-    }
-    attachChart() {
-        const { _chart, padding, data, colors, tickCount } = this;
-        if (!_chart || !data || data.length <= 0)
-            return;
-        _chart.height = this.getHeight();
-        _chart.padding = padding;
-        _chart.scale({
+        chart.scale({
             value: {
                 min: 0,
                 tickCount,
             },
         });
-        _chart.geometries.forEach(g => g.color('name', colors));
+        chart.filter('name', (name) => {
+            const legendItem = this.legendData.find(w => w.name === name);
+            return legendItem ? legendItem.checked !== false : true;
+        });
+        chart.line().position('label*value').color('name', this.colors);
+        chart.point().position('label*value').shape('circle').size(3);
+        chart.on(`point:click`, (ev) => {
+            this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
+        });
+        this.changeData();
+        chart.render();
+    }
+    changeData() {
+        const { _chart, data } = this;
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
+            return;
         _chart.changeData(data);
-        _chart.render(true);
         this.ngZone.run(() => this.genLegend());
     }
     genLegend() {
@@ -109,7 +105,7 @@ class G2RadarComponent extends G2BaseComponent {
     _click(i) {
         const { legendData, _chart } = this;
         legendData[i].checked = !legendData[i].checked;
-        _chart.render();
+        _chart.render(true);
     }
     onChanges() {
         this.legendData.forEach(i => (i.checked = true));

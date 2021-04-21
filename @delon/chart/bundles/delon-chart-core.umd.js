@@ -391,6 +391,7 @@
             this.ngZone = ngZone;
             this.platform = platform;
             this.cdr = cdr;
+            this.repaint = true;
             this.destroy$ = new rxjs.Subject();
             this.loaded = false;
             this.delay = 0;
@@ -406,8 +407,9 @@
             enumerable: false,
             configurable: true
         });
+        G2BaseComponent.prototype.changeData = function () { };
         G2BaseComponent.prototype.onInit = function () { };
-        G2BaseComponent.prototype.onChanges = function (_changes) { };
+        G2BaseComponent.prototype.onChanges = function (_) { };
         G2BaseComponent.prototype.load = function () {
             var _this = this;
             this.ngZone.run(function () {
@@ -431,12 +433,22 @@
         G2BaseComponent.prototype.ngOnChanges = function (changes) {
             var _this = this;
             this.onChanges(changes);
-            this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+            var isOnlyChangeData = this.onlyChangeData ? this.onlyChangeData(changes) : Object.keys(changes).length === 1 && !!changes.data;
+            if (isOnlyChangeData) {
+                this.changeData();
+                return;
+            }
+            if (!this.chart || !this.repaint)
+                return;
+            this.ngZone.runOutsideAngular(function () {
+                _this.destroyChart().install();
+            });
         };
         G2BaseComponent.prototype.destroyChart = function () {
             if (this._chart) {
                 this._chart.destroy();
             }
+            return this;
         };
         G2BaseComponent.prototype.ngOnDestroy = function () {
             if (this.resize$) {
@@ -460,10 +472,15 @@
         { type: i0.ChangeDetectorRef }
     ]; };
     G2BaseComponent.propDecorators = {
+        repaint: [{ type: i0.Input }],
         node: [{ type: i0.ViewChild, args: ['container', { static: true },] }],
         delay: [{ type: i0.Input }],
         theme: [{ type: i0.Input }]
     };
+    __decorate([
+        decorator.InputBoolean(),
+        __metadata("design:type", Object)
+    ], G2BaseComponent.prototype, "repaint", void 0);
     __decorate([
         decorator.InputNumber(),
         __metadata("design:type", Object)
@@ -478,7 +495,7 @@
         decorator.ZoneOutside(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        __metadata("design:returntype", Object)
     ], G2BaseComponent.prototype, "destroyChart", null);
 
     function genMiniTooltipOptions(type, options) {

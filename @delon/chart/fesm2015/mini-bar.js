@@ -19,7 +19,7 @@ class G2MiniBarComponent extends G2BaseComponent {
     }
     // #endregion
     install() {
-        const { el, height, padding, yTooltipSuffix, tooltipType, theme } = this;
+        const { el, height, padding, yTooltipSuffix, tooltipType, theme, color, borderWidth } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
@@ -41,22 +41,20 @@ class G2MiniBarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('x*y')
+            .color(color)
+            .size(borderWidth)
             .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }));
         chart.on(`interval:click`, (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
         });
+        this.changeData();
         chart.render();
-        this.attachChart();
     }
-    attachChart() {
-        const { _chart, height, padding, data, color, borderWidth } = this;
-        if (!_chart || !data || data.length <= 0)
+    changeData() {
+        const { _chart, data } = this;
+        if (!_chart || !Array.isArray(data) || data.length <= 0)
             return;
-        _chart.geometries[0].size(borderWidth).color(color);
-        _chart.height = height;
-        _chart.padding = padding;
         _chart.changeData(data);
-        _chart.render(true);
     }
 }
 G2MiniBarComponent.decorators = [

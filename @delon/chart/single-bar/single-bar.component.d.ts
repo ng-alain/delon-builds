@@ -1,3 +1,4 @@
+import { SimpleChanges } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class G2SingleBarComponent extends G2BaseComponent {
@@ -19,5 +20,6 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     padding: number | number[] | 'auto';
     textStyle: any;
     install(): void;
-    attachChart(): void;
+    onlyChangeData: (changes: SimpleChanges) => boolean;
+    changeData(): void;
 }

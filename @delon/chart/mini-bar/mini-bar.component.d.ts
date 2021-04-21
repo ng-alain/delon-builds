@@ -23,5 +23,5 @@ export declare class G2MiniBarComponent extends G2BaseComponent {
     tooltipType: 'mini' | 'default';
     clickItem: EventEmitter<G2MiniBarClickItem>;
     install(): void;
-    attachChart(): void;
+    changeData(): void;
 }

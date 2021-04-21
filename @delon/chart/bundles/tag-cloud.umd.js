@@ -396,15 +396,13 @@
             chart.on('tag-cloud-text:click', function (ev) {
                 _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
             });
-            this.attachChart();
+            this.changeData();
+            chart.render();
         };
-        G2TagCloudComponent.prototype.attachChart = function () {
-            var _b = this, _chart = _b._chart, padding = _b.padding, data = _b.data;
-            if (!_chart || !data || data.length <= 0)
+        G2TagCloudComponent.prototype.changeData = function () {
+            var _b = this, _chart = _b._chart, data = _b.data;
+            if (!_chart || !Array.isArray(data) || data.length <= 0)
                 return;
-            _chart.height = this.height;
-            _chart.width = this.width;
-            _chart.padding = padding;
             var dv = new window.DataSet.View().source(data);
             var range = dv.range('value');
             var min = range[0];
@@ -430,18 +428,13 @@
                     return ((d.value - min) / (max - min)) * (32 - 8) + 8;
                 },
             });
-            _chart.data(dv.rows);
-            _chart.render(true);
-        };
-        G2TagCloudComponent.prototype._attachChart = function () {
-            var _this = this;
-            this.ngZone.runOutsideAngular(function () { return _this.attachChart(); });
+            _chart.changeData(dv.rows);
         };
         G2TagCloudComponent.prototype.installResizeEvent = function () {
             var _this = this;
             this.resize$ = rxjs.fromEvent(window, 'resize')
                 .pipe(operators.filter(function () { return !!_this._chart; }), operators.debounceTime(200))
-                .subscribe(function () { return _this._attachChart(); });
+                .subscribe(function () { return _this.changeData(); });
         };
         G2TagCloudComponent.prototype.onInit = function () {
             this.installResizeEvent();

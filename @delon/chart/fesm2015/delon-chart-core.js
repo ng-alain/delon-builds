@@ -1,10 +1,10 @@
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, Directive, ElementRef, NgZone, ChangeDetectorRef, ViewChild, Input } from '@angular/core';
+import { ɵɵdefineInjectable, ɵɵinject, Injectable, Directive, ElementRef, NgZone, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
 
 class G2Service {
@@ -66,6 +66,7 @@ class G2BaseComponent {
         this.ngZone = ngZone;
         this.platform = platform;
         this.cdr = cdr;
+        this.repaint = true;
         this.destroy$ = new Subject();
         this.loaded = false;
         this.delay = 0;
@@ -77,8 +78,9 @@ class G2BaseComponent {
     get chart() {
         return this._chart;
     }
+    changeData() { }
     onInit() { }
-    onChanges(_changes) { }
+    onChanges(_) { }
     load() {
         this.ngZone.run(() => {
             this.loaded = true;
@@ -100,12 +102,22 @@ class G2BaseComponent {
     }
     ngOnChanges(changes) {
         this.onChanges(changes);
-        this.ngZone.runOutsideAngular(() => this.attachChart());
+        const isOnlyChangeData = this.onlyChangeData ? this.onlyChangeData(changes) : Object.keys(changes).length === 1 && !!changes.data;
+        if (isOnlyChangeData) {
+            this.changeData();
+            return;
+        }
+        if (!this.chart || !this.repaint)
+            return;
+        this.ngZone.runOutsideAngular(() => {
+            this.destroyChart().install();
+        });
     }
     destroyChart() {
         if (this._chart) {
             this._chart.destroy();
         }
+        return this;
     }
     ngOnDestroy() {
         if (this.resize$) {
@@ -128,10 +140,15 @@ G2BaseComponent.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
 G2BaseComponent.propDecorators = {
+    repaint: [{ type: Input }],
     node: [{ type: ViewChild, args: ['container', { static: true },] }],
     delay: [{ type: Input }],
     theme: [{ type: Input }]
 };
+__decorate([
+    InputBoolean(),
+    __metadata("design:type", Object)
+], G2BaseComponent.prototype, "repaint", void 0);
 __decorate([
     InputNumber(),
     __metadata("design:type", Object)
@@ -146,7 +163,7 @@ __decorate([
     ZoneOutside(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Object)
 ], G2BaseComponent.prototype, "destroyChart", null);
 
 function genMiniTooltipOptions(type, options) {
