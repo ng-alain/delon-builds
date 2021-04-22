@@ -1,0 +1,35 @@
+import { Platform } from '@angular/cdk/platform';
+import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { NumberInput } from '@delon/util/decorator';
+import { ChartEChartsService } from './echarts.service';
+import { ChartECharts, ChartEChartsEvent, ChartEChartsOption } from './echarts.types';
+export declare class ChartEChartsComponent implements OnInit, OnDestroy {
+    private srv;
+    private cdr;
+    private ngZone;
+    private platform;
+    static ngAcceptInputType_width: NumberInput;
+    static ngAcceptInputType_height: NumberInput;
+    private node;
+    private destroy$;
+    private _chart;
+    private _theme?;
+    private _initOpt?;
+    private _option;
+    width: number;
+    height: number;
+    set theme(value: string | object | null | undefined);
+    set initOpt(value: any);
+    set option(value: ChartEChartsOption);
+    events: EventEmitter<ChartEChartsEvent>;
+    get chart(): ChartECharts;
+    loaded: boolean;
+    constructor(srv: ChartEChartsService, cdr: ChangeDetectorRef, ngZone: NgZone, platform: Platform);
+    private emit;
+    private load;
+    install(): this;
+    destroy(): this;
+    setOption(option: ChartEChartsOption, notMerge?: boolean, lazyUpdate?: boolean): this;
+    ngOnInit(): void;
+    ngOnDestroy(): void;
+}

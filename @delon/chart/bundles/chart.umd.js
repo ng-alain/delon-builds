@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/chart/bar'), require('@delon/chart/card'), require('@delon/chart/custom'), require('@delon/chart/gauge'), require('@delon/chart/mini-area'), require('@delon/chart/mini-bar'), require('@delon/chart/mini-progress'), require('@delon/chart/pie'), require('@delon/chart/radar'), require('@delon/chart/tag-cloud'), require('@delon/chart/timeline'), require('@delon/chart/water-wave'), require('@delon/chart/number-info'), require('@delon/chart/trend'), require('@delon/chart/single-bar'), require('@angular/core'), require('@delon/util/other')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart', ['exports', '@delon/chart/bar', '@delon/chart/card', '@delon/chart/custom', '@delon/chart/gauge', '@delon/chart/mini-area', '@delon/chart/mini-bar', '@delon/chart/mini-progress', '@delon/chart/pie', '@delon/chart/radar', '@delon/chart/tag-cloud', '@delon/chart/timeline', '@delon/chart/water-wave', '@delon/chart/number-info', '@delon/chart/trend', '@delon/chart/single-bar', '@angular/core', '@delon/util/other'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = {}), global.delon.chart.bar, global.delon.chart.card, global.delon.chart.custom, global.delon.chart.gauge, global.delon.chart['mini-area'], global.delon.chart['mini-bar'], global.delon.chart['mini-progress'], global.delon.chart.pie, global.delon.chart.radar, global.delon.chart['tag-cloud'], global.delon.chart.timeline, global.delon.chart['water-wave'], global.delon.chart['number-info'], global.delon.chart.trend, global.delon.chart['single-bar'], global.ng.core, global.other));
-}(this, (function (exports, bar, card, custom, gauge, miniArea, miniBar, miniProgress, pie, radar, tagCloud, timeline, waterWave, numberInfo, trend, singleBar, core, other) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/chart/bar'), require('@delon/chart/card'), require('@delon/chart/custom'), require('@delon/chart/gauge'), require('@delon/chart/mini-area'), require('@delon/chart/mini-bar'), require('@delon/chart/mini-progress'), require('@delon/chart/pie'), require('@delon/chart/radar'), require('@delon/chart/tag-cloud'), require('@delon/chart/timeline'), require('@delon/chart/water-wave'), require('@delon/chart/number-info'), require('@delon/chart/trend'), require('@delon/chart/single-bar'), require('@delon/chart/chart-echarts'), require('@angular/core'), require('@delon/util/other')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart', ['exports', '@delon/chart/bar', '@delon/chart/card', '@delon/chart/custom', '@delon/chart/gauge', '@delon/chart/mini-area', '@delon/chart/mini-bar', '@delon/chart/mini-progress', '@delon/chart/pie', '@delon/chart/radar', '@delon/chart/tag-cloud', '@delon/chart/timeline', '@delon/chart/water-wave', '@delon/chart/number-info', '@delon/chart/trend', '@delon/chart/single-bar', '@delon/chart/chart-echarts', '@angular/core', '@delon/util/other'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = {}), global.delon.chart.bar, global.delon.chart.card, global.delon.chart.custom, global.delon.chart.gauge, global.delon.chart['mini-area'], global.delon.chart['mini-bar'], global.delon.chart['mini-progress'], global.delon.chart.pie, global.delon.chart.radar, global.delon.chart['tag-cloud'], global.delon.chart.timeline, global.delon.chart['water-wave'], global.delon.chart['number-info'], global.delon.chart.trend, global.delon.chart['single-bar'], global.delon.chart['chart-echarts'], global.ng.core, global.other));
+}(this, (function (exports, bar, card, custom, gauge, miniArea, miniBar, miniProgress, pie, radar, tagCloud, timeline, waterWave, numberInfo, trend, singleBar, chartEcharts, core, other) { 'use strict';
 
     var MODULES = [
         bar.G2BarModule,
@@ -163,6 +163,14 @@
             enumerable: true,
             get: function () {
                 return singleBar[k];
+            }
+        });
+    });
+    Object.keys(chartEcharts).forEach(function (k) {
+        if (k !== 'default') Object.defineProperty(exports, k, {
+            enumerable: true,
+            get: function () {
+                return chartEcharts[k];
             }
         });
     });

@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/delon-chart-chart-echarts.umd.js",
+  "module": "../fesm2015/delon-chart-chart-echarts.js",
+  "es2015": "../fesm2015/delon-chart-chart-echarts.js",
+  "esm2015": "../esm2015/chart-echarts/delon-chart-chart-echarts.js",
+  "fesm2015": "../fesm2015/delon-chart-chart-echarts.js",
+  "typings": "delon-chart-chart-echarts.d.ts",
+  "metadata": "delon-chart-chart-echarts.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/chart/chart-echarts"
+}

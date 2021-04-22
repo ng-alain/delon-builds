@@ -28,6 +28,7 @@ import { TrendModule } from '@delon/chart/trend';
 export * from '@delon/chart/trend';
 import { G2SingleBarModule } from '@delon/chart/single-bar';
 export * from '@delon/chart/single-bar';
+export * from '@delon/chart/chart-echarts';
 import { NgModule } from '@angular/core';
 import { warnDeprecation } from '@delon/util/other';
 
