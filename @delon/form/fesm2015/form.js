@@ -11,6 +11,7 @@ import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from '
 import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
 import { REGEX } from '@delon/util/format';
 import Ajv from 'ajv';
+import addFormats from 'ajv-formats';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NgModel, FormsModule } from '@angular/forms';
@@ -848,7 +849,8 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
         this.options = mergeConfig(cogSrv);
         const customOptions = this.options.ajv || {};
         this.ngZone.runOutsideAngular(() => {
-            this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true, loopEnum: 50 }, customOptions), { formats: Object.assign({ ip: REGEX.ip, 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
+            this.ajv = new Ajv(Object.assign(Object.assign({ allErrors: true, loopEnum: 50 }, customOptions), { formats: Object.assign({ 'data-url': /^data:([a-z]+\/[a-z0-9-+.]+)?;name=(.*);base64,(.*)$/, color: REGEX.color, mobile: REGEX.mobile, 'id-card': REGEX.idCard }, customOptions.formats) }));
+            addFormats(this.ajv);
         });
     }
     createValidatorFn(schema, extraOptions) {
