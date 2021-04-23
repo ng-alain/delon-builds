@@ -22,5 +22,5 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     'devDependencies',
   );
   // TODO: fix angular depends on 6.x
-  addPackage(tree, ['ajv@^8.1.0', 'ajv-formats@^2.0.2']);
+  addPackage(tree, ['ajv@^7.1.1', 'ajv-formats@^2.0.2']);
 }

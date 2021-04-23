@@ -176,6 +176,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     _expandChange(item: STData, expand: boolean): void;
+    _stopPropagation(ev: Event): void;
     /**
      * Remove a row in the table, like this:
      *
@@ -219,7 +220,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 清除所有 `radio` */
     clearRadio(): this;
     _refRadio(checked: boolean, item: STData): this;
-    _btnClick(record: STData, btn: STColumnButton, e?: Event): void;
+    _btnClick(record: STData, btn: STColumnButton, ev?: Event): void;
     private btnCallback;
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
