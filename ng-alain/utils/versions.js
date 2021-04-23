@@ -16,7 +16,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@delon/testing@${version}`,
     ], 'devDependencies');
     // TODO: fix angular depends on 6.x
-    package_1.addPackage(tree, ['ajv@^7.1.1', 'ajv-formats@^2.0.2']);
+    package_1.addPackage(tree, ['ajv@^8.1.0', 'ajv-formats@^2.0.2']);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 //# sourceMappingURL=versions.js.map
