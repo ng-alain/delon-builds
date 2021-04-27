@@ -652,7 +652,13 @@
         return model != null && typeof model.token === 'string' && model.token.length > 0;
     }
     function CheckJwt(model, offset) {
-        return model != null && !!model.token && !model.isExpired(offset);
+        try {
+            return model != null && !!model.token && !model.isExpired(offset);
+        }
+        catch (err) {
+            console.warn(err.message + ", jump to login_url");
+            return false;
+        }
     }
     function ToLogin(options, injector, url) {
         var router$1 = injector.get(router.Router);
