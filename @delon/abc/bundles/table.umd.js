@@ -727,7 +727,7 @@
                 }
                 // types
                 if (item.type === 'yn') {
-                    item.yn = Object.assign({ truth: true }, item.yn);
+                    item.yn = Object.assign(Object.assign({ truth: true }, _this.cog.yn), item.yn);
                 }
                 // date
                 if (item.type === 'date') {
@@ -1295,7 +1295,7 @@
                             break;
                         case 'yn':
                             var yn = col.yn;
-                            ret.v = ret.v === yn.truth ? yn.yes || '是' : yn.no || '否';
+                            ret.v = ret.v === yn.truth ? yn.yes : yn.no;
                             break;
                     }
                 }
@@ -1306,25 +1306,27 @@
         STExport.prototype.genSheet = function (opt) {
             var sheets = {};
             var sheet = (sheets[opt.sheetname || 'Sheet1'] = {});
-            var colData = opt.columens.filter(function (w) { return w.exported !== false && w.index && (!w.buttons || w.buttons.length === 0); });
-            var colLen = colData.length;
             var dataLen = opt.data.length;
-            // column
-            for (var i = 0; i < colLen; i++) {
-                var tit = colData[i].title;
-                sheet[this.xlsxSrv.numberToSchema(i + 1) + "1"] = {
+            var validColCount = 0;
+            var loseCount = 0;
+            for (var colIdx = 0; colIdx < opt.columens.length; colIdx++) {
+                var col = opt.columens[colIdx];
+                if (col.exported === false || !col.index || !(!col.buttons || col.buttons.length === 0)) {
+                    ++loseCount;
+                    continue;
+                }
+                ++validColCount;
+                var columnName = this.xlsxSrv.numberToSchema(colIdx + 1 - loseCount);
+                sheet[columnName + "1"] = {
                     t: 's',
-                    v: typeof tit === 'object' ? tit.text : tit,
+                    v: typeof col.title === 'object' ? col.title.text : col.title,
                 };
-            }
-            // content
-            for (var i = 0; i < dataLen; i++) {
-                for (var j = 0; j < colLen; j++) {
-                    sheet["" + this.xlsxSrv.numberToSchema(j + 1) + (i + 2)] = this._stGet(opt.data[i], colData[j], i, j);
+                for (var dataIdx = 0; dataIdx < dataLen; dataIdx++) {
+                    sheet["" + columnName + (dataIdx + 2)] = this._stGet(opt.data[dataIdx], col, dataIdx, colIdx);
                 }
             }
-            if (colLen > 0 && dataLen > 0) {
-                sheet['!ref'] = "A1:" + this.xlsxSrv.numberToSchema(colLen) + (dataLen + 1);
+            if (validColCount > 0 && dataLen > 0) {
+                sheet['!ref'] = "A1:" + this.xlsxSrv.numberToSchema(validColCount) + (dataLen + 1);
             }
             return sheets;
         };
@@ -1452,6 +1454,11 @@
         saftHtml: true,
         date: {
             format: "yyyy-MM-dd HH:mm",
+        },
+        yn: {
+            truth: true,
+            yes: '是',
+            mode: 'icon',
         },
     };
 
