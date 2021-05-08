@@ -344,6 +344,7 @@ class STColumnSource {
         let point = 0;
         const columns = [];
         const processItem = (item) => {
+            var _a;
             // index
             if (item.index) {
                 if (!Array.isArray(item.index)) {
@@ -389,6 +390,10 @@ class STColumnSource {
             // types
             if (item.type === 'yn') {
                 item.yn = Object.assign({ truth: true }, item.yn);
+            }
+            // date
+            if (item.type === 'date') {
+                item.dateFormat = item.dateFormat || ((_a = this.cog.date) === null || _a === void 0 ? void 0 : _a.format);
             }
             if ((item.type === 'link' && typeof item.click !== 'function') ||
                 (item.type === 'badge' && item.badge == null) ||
@@ -1064,6 +1069,9 @@ const ST_DEFAULT_CONFIG = {
     iifBehavior: 'hide',
     loadingDelay: 0,
     saftHtml: true,
+    date: {
+        format: `yyyy-MM-dd HH:mm`,
+    },
 };
 
 class STComponent {

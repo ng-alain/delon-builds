@@ -682,6 +682,7 @@
             var point = 0;
             var columns = [];
             var processItem = function (item) {
+                var _a;
                 // index
                 if (item.index) {
                     if (!Array.isArray(item.index)) {
@@ -727,6 +728,10 @@
                 // types
                 if (item.type === 'yn') {
                     item.yn = Object.assign({ truth: true }, item.yn);
+                }
+                // date
+                if (item.type === 'date') {
+                    item.dateFormat = item.dateFormat || ((_a = _this.cog.date) === null || _a === void 0 ? void 0 : _a.format);
                 }
                 if ((item.type === 'link' && typeof item.click !== 'function') ||
                     (item.type === 'badge' && item.badge == null) ||
@@ -1445,6 +1450,9 @@
         iifBehavior: 'hide',
         loadingDelay: 0,
         saftHtml: true,
+        date: {
+            format: "yyyy-MM-dd HH:mm",
+        },
     };
 
     var STComponent = /** @class */ (function () {

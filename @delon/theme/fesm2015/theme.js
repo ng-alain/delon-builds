@@ -2507,7 +2507,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.0-e60ffd71');
+const VERSION = new Version('11.10.0-66f178e2');
 
 /**
  * Generated bundle index. Do not edit.
