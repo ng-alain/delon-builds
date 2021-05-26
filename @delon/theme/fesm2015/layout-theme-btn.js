@@ -59,7 +59,7 @@ class ThemeBtnComponent {
         }
         localStorage.removeItem(this.KEYS);
         if (theme !== 'default') {
-            const el = this.doc.createElement('link');
+            const el = (this.el = this.doc.createElement('link'));
             el.type = 'text/css';
             el.rel = 'stylesheet';
             el.id = this.KEYS;
@@ -70,9 +70,8 @@ class ThemeBtnComponent {
         this.updateChartTheme();
     }
     ngOnDestroy() {
-        const el = this.doc.getElementById(this.KEYS);
-        if (el != null) {
-            this.doc.body.removeChild(el);
+        if (this.el) {
+            this.doc.body.removeChild(this.el);
         }
         this.destroy$.next();
         this.destroy$.complete();

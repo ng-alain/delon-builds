@@ -61,7 +61,7 @@
             }
             localStorage.removeItem(this.KEYS);
             if (theme !== 'default') {
-                var el = this.doc.createElement('link');
+                var el = (this.el = this.doc.createElement('link'));
                 el.type = 'text/css';
                 el.rel = 'stylesheet';
                 el.id = this.KEYS;
@@ -72,9 +72,8 @@
             this.updateChartTheme();
         };
         ThemeBtnComponent.prototype.ngOnDestroy = function () {
-            var el = this.doc.getElementById(this.KEYS);
-            if (el != null) {
-                this.doc.body.removeChild(el);
+            if (this.el) {
+                this.doc.body.removeChild(this.el);
             }
             this.destroy$.next();
             this.destroy$.complete();
