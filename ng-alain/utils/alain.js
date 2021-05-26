@@ -22,7 +22,6 @@ const path = require("path");
 const ts = require("typescript");
 const ast_1 = require("./ast");
 const workspace_1 = require("./workspace");
-const TEMPLATE_FILENAME_RE = /\.template$/;
 function buildSelector(schema, projectPrefix) {
     const ret = [];
     if (!schema.withoutPrefix) {
@@ -68,7 +67,7 @@ function resolveSchema(tree, project, schema) {
     schema.name = parsedPath.name;
     schema.path = parsedPath.path;
     const fullPath = path.join(process.cwd(), schema.path, schema.name);
-    if (fs.existsSync(fullPath) && fs.readdirSync(fullPath).length > 0) {
+    if (fs.existsSync(fullPath)) {
         throw new schematics_1.SchematicsException(`The directory (${fullPath}) already exists`);
     }
     schema.importModulePath = find_module_1.findModuleFromOptions(tree, schema);
@@ -76,8 +75,8 @@ function resolveSchema(tree, project, schema) {
         // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
         if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName)) {
             const overrideDir = '/' + [project.root, `_cli-tpl/_${schema.schematicName}`].filter(i => !!i).join('/');
-            const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts`;
-            if (tree.exists(overridePath) || tree.exists(overridePath + '.template')) {
+            const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts.template`;
+            if (tree.exists(overridePath)) {
                 // 所在目录与命令目录同属一个目录结构，因此无须特殊处理
                 schema._filesPath = path.relative(__dirname, process.cwd()) + overrideDir;
             }
@@ -149,13 +148,10 @@ function buildAlain(schema) {
         schema.inlineTemplate = false;
         const templateSource = schematics_1.apply(schematics_1.url(schema._filesPath), [
             schematics_1.filter(filePath => !filePath.endsWith('.DS_Store')),
-            schema.skipTests ? schematics_1.filter(filePath => !filePath.endsWith('.spec.ts.template')) : schematics_1.noop(),
-            schema.inlineStyle ? schematics_1.filter(filePath => !filePath.endsWith('.__style__.template')) : schematics_1.noop(),
-            schema.inlineTemplate ? schematics_1.filter(filePath => !filePath.endsWith('.html.template')) : schematics_1.noop(),
-            // schema.spec ? noop() : filter(filePath => !filePath.endsWith('.spec.ts')),
-            // schema.inlineStyle ? filter(filePath => !filePath.endsWith('.__styleext__')) : noop(),
-            // schema.inlineTemplate ? filter(filePath => !filePath.endsWith('.html')) : noop(),
-            schematics_1.applyTemplates(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
+            schema.spec ? schematics_1.noop() : schematics_1.filter(filePath => !filePath.endsWith('.spec.ts')),
+            schema.inlineStyle ? schematics_1.filter(filePath => !filePath.endsWith('.__styleext__')) : schematics_1.noop(),
+            schema.inlineTemplate ? schematics_1.filter(filePath => !filePath.endsWith('.html')) : schematics_1.noop(),
+            schematics_1.template(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             schematics_1.move(null, schema.path + '/'),
         ]);
         return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))]);

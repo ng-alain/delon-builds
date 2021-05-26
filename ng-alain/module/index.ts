@@ -1,7 +1,6 @@
 import { basename, dirname, normalize, relative, strings } from '@angular-devkit/core';
 import {
   apply,
-  applyTemplates,
   branchAndMerge,
   chain,
   filter,
@@ -10,6 +9,7 @@ import {
   noop,
   Rule,
   SchematicsException,
+  template,
   Tree,
   url,
 } from '@angular-devkit/schematics';
@@ -107,7 +107,7 @@ export default function (schema: ModuleSchema): Rule {
 
     const templateSource = apply(url('./files'), [
       schema.routing ? noop() : filter(path => !path.endsWith('-routing.module.ts')),
-      applyTemplates({
+      template({
         ...strings,
         'if-flat': (s: string) => (schema.flat ? '' : s),
         ...schema,
