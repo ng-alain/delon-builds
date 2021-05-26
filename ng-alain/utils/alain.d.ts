@@ -14,6 +14,7 @@ export interface CommonSchema {
     prefix?: string;
     withoutPrefix?: boolean;
     project?: string;
+    skipTests?: boolean;
 }
 export declare function addImportToModule(tree: Tree, filePath: string, symbolName: string, fileName: string): void;
 export declare function addValueToVariable(tree: Tree, filePath: string, variableName: string, text: string, needWrap?: boolean): void;
