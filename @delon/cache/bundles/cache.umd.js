@@ -131,7 +131,7 @@
             var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
             if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                 if (isPromise) {
-                    return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(operators.map(function (ret) { return _this.deepGet(ret, _this.cog.reName, null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                    return this.http.get(key).pipe(operators.map(function (ret) { return _this.deepGet(ret, _this.cog.reName, null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
                 }
                 return null;
             }
