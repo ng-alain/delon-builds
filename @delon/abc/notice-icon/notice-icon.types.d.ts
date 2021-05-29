@@ -1,10 +1,8 @@
-import { TemplateRef } from '@angular/core';
 export interface NoticeItem {
-    [key: string]: any;
     title: string;
     list: NoticeIconList[];
     /** 空列表文本，默认：`无通知` */
-    emptyText?: string | TemplateRef<void>;
+    emptyText?: string;
     /** 空列表图像 */
     emptyImage?: string;
     /** 清空文本，默认：`清空` */
@@ -15,13 +13,9 @@ export interface NoticeIconList {
     /** 头像图片链接 */
     avatar?: string;
     /** 标题 */
-    title?: string | TemplateRef<{
-        $implicit: NoticeIconList;
-    }>;
+    title?: string;
     /** 描述信息 */
-    description?: string | TemplateRef<{
-        $implicit: NoticeIconList;
-    }>;
+    description?: string;
     /** 时间戳 */
     datetime?: string | Date | number;
     /** 额外信息，在列表项右上角 */
