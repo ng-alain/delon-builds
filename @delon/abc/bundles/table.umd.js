@@ -937,7 +937,7 @@
             if (typeof res.process === 'function') {
                 data$ = data$.pipe(operators.map(function (result) { return res.process(result, rawData); }));
             }
-            data$ = data$.pipe(operators.map(function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName, safeHtml: options.saftHtml }); }));
+            data$ = data$.pipe(operators.map(function (result) { return _this.optimizeData({ result: result, columns: columns, rowClassName: options.rowClassName, safeHtml: options.safeHtml }); }));
             return data$.pipe(operators.map(function (result) {
                 retList = result;
                 var realTotal = retTotal || total;
@@ -1061,7 +1061,7 @@
                     if (Array.isArray(c.buttons) && c.buttons.length > 0) {
                         return { buttons: _this.genButtons(c.buttons, result[i], c) };
                     }
-                    return _this.get(result[i], c, i, c.saftHtml == null ? safeHtml : c.saftHtml);
+                    return _this.get(result[i], c, i, c.safeHtml == null ? safeHtml : c.safeHtml);
                 });
                 if (rowClassName) {
                     result[i]._rowClassName = rowClassName(result[i], i);
@@ -1451,7 +1451,7 @@
         virtualMinBufferPx: 100,
         iifBehavior: 'hide',
         loadingDelay: 0,
-        saftHtml: true,
+        safeHtml: true,
         date: {
             format: "yyyy-MM-dd HH:mm",
         },
@@ -1707,7 +1707,7 @@
                     res: res,
                     page: page, columns: _this._columns, singleSort: singleSort,
                     multiSort: multiSort,
-                    rowClassName: rowClassName, paginator: true, saftHtml: _this.cog.saftHtml, customRequest: _this.customRequest || _this.cog.customRequest }, options))
+                    rowClassName: rowClassName, paginator: true, safeHtml: _this.cog.safeHtml, customRequest: _this.customRequest || _this.cog.customRequest }, options))
                     .pipe(operators.takeUntil(_this.destroy$))
                     .subscribe(function (result) { return resolvePromise(result); }, function (error) {
                     console.warn('st.loadDate', error);
@@ -2200,7 +2200,7 @@
                 columns: this._columns,
                 result: this._data,
                 rowClassName: this.rowClassName,
-                safeHtml: this.cog.saftHtml,
+                safeHtml: this.cog.safeHtml,
             });
         };
         /**

@@ -18,7 +18,7 @@ export interface STDataSourceOptions {
     singleSort?: STSingleSort;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
-    saftHtml: boolean;
+    safeHtml: boolean;
     customRequest?: (options: STCustomRequestOptions) => Observable<any>;
 }
 export interface STDataSourceResult {
