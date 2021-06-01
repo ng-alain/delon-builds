@@ -1,0 +1,11 @@
+{
+  "main": "../bundles/price.umd.js",
+  "module": "../fesm2015/price.js",
+  "es2015": "../fesm2015/price.js",
+  "esm2015": "../esm2015/price/price.js",
+  "fesm2015": "../fesm2015/price.js",
+  "typings": "price.d.ts",
+  "metadata": "price.metadata.json",
+  "sideEffects": false,
+  "name": "@delon/abc/price"
+}

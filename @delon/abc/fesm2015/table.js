@@ -585,7 +585,7 @@ class STDataSource {
         if (typeof res.process === 'function') {
             data$ = data$.pipe(map(result => res.process(result, rawData)));
         }
-        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName, safeHtml: options.safeHtml })));
+        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName, safeHtml: options.saftHtml })));
         return data$.pipe(map(result => {
             retList = result;
             const realTotal = retTotal || total;
@@ -707,7 +707,7 @@ class STDataSource {
                 if (Array.isArray(c.buttons) && c.buttons.length > 0) {
                     return { buttons: this.genButtons(c.buttons, result[i], c) };
                 }
-                return this.get(result[i], c, i, c.safeHtml == null ? safeHtml : c.safeHtml);
+                return this.get(result[i], c, i, c.saftHtml == null ? safeHtml : c.saftHtml);
             });
             if (rowClassName) {
                 result[i]._rowClassName = rowClassName(result[i], i);
@@ -1070,7 +1070,7 @@ const ST_DEFAULT_CONFIG = {
     virtualMinBufferPx: 100,
     iifBehavior: 'hide',
     loadingDelay: 0,
-    safeHtml: true,
+    saftHtml: true,
     date: {
         format: `yyyy-MM-dd HH:mm`,
     },
@@ -1280,7 +1280,7 @@ class STComponent {
                 res,
                 page, columns: this._columns, singleSort,
                 multiSort,
-                rowClassName, paginator: true, safeHtml: this.cog.safeHtml, customRequest: this.customRequest || this.cog.customRequest }, options))
+                rowClassName, paginator: true, saftHtml: this.cog.saftHtml, customRequest: this.customRequest || this.cog.customRequest }, options))
                 .pipe(takeUntil(this.destroy$))
                 .subscribe(result => resolvePromise(result), error => {
                 console.warn('st.loadDate', error);
@@ -1747,7 +1747,7 @@ class STComponent {
             columns: this._columns,
             result: this._data,
             rowClassName: this.rowClassName,
-            safeHtml: this.cog.safeHtml,
+            safeHtml: this.cog.saftHtml,
         });
     }
     /**
