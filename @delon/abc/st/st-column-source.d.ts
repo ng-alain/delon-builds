@@ -4,11 +4,12 @@ import { AlainI18NService } from '@delon/theme';
 import { AlainSTConfig } from '@delon/util/config';
 import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
-import { STColumn, STColumnFilter, STResizable, STWidthMode } from './st.interfaces';
+import { STColumn, STColumnFilter, STColumnSafeType, STResizable, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
 export interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
     resizable: STResizable;
+    safeType: STColumnSafeType;
 }
 export declare class STColumnSource {
     private dom;
