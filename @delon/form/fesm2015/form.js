@@ -461,15 +461,13 @@ class FormProperty {
      * 设置小部件的隐藏或显示
      */
     setVisible(visible) {
-        var _a, _b;
         this._visible = visible;
         this._visibilityChanges.next(visible);
-        // 部分数据源来自 reset
-        if (((_b = (_a = this.root.widget) === null || _a === void 0 ? void 0 : _a.sfComp) === null || _b === void 0 ? void 0 : _b._inited) === true) {
+        // 渲染时需要重新触发 reset
+        if (visible) {
             this.resetValue(this.value, true);
         }
     }
-    // A field is visible if AT LEAST ONE of the properties it depends on is visible AND has a value in the list
     _bindVisibility() {
         const visibleIf = this.ui.visibleIf;
         if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
