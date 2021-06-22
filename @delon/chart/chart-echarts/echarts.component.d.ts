@@ -16,8 +16,10 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     private _theme?;
     private _initOpt?;
     private _option;
-    width: number;
-    height: number;
+    _width: string;
+    _height: string;
+    set width(val: NumberInput);
+    set height(val: NumberInput);
     set theme(value: string | object | null | undefined);
     set initOpt(value: any);
     set option(value: ChartEChartsOption);

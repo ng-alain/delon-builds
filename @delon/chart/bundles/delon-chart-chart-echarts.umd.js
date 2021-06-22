@@ -403,8 +403,8 @@
             this.ngZone = ngZone;
             this.platform = platform;
             this.destroy$ = new rxjs.Subject();
-            this.width = 600;
-            this.height = 400;
+            this._width = '100%';
+            this._height = '400px';
             this.events = new i0.EventEmitter();
             this.loaded = false;
             this.srv.notify
@@ -412,6 +412,20 @@
                 .subscribe(function () { return _this.load(); });
             this.theme = srv.cog.echartsTheme;
         }
+        Object.defineProperty(ChartEChartsComponent.prototype, "width", {
+            set: function (val) {
+                this._width = typeof val === 'number' ? val + 'px' : "" + val;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(ChartEChartsComponent.prototype, "height", {
+            set: function (val) {
+                this._height = typeof val === 'number' ? val + 'px' : "" + val;
+            },
+            enumerable: false,
+            configurable: true
+        });
         Object.defineProperty(ChartEChartsComponent.prototype, "theme", {
             set: function (value) {
                 this._theme = value;
@@ -506,9 +520,11 @@
         { type: i0.Component, args: [{
                     selector: 'chart-echarts, [chart-echarts]',
                     exportAs: 'chartECharts',
-                    template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <div #container [style.width.px]=\"width\" [style.height.px]=\"height\"></div>\n  ",
+                    template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <div #container [style.width]=\"_width\" [style.height]=\"_height\"></div>\n  ",
                     host: {
                         '[style.display]': "'inline-block'",
+                        '[style.width]': "_width",
+                        '[style.height]': "_height",
                     },
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -531,14 +547,6 @@
         option: [{ type: i0.Input }],
         events: [{ type: i0.Output }]
     };
-    __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
-    ], ChartEChartsComponent.prototype, "width", void 0);
-    __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
-    ], ChartEChartsComponent.prototype, "height", void 0);
     __decorate([
         decorator.ZoneOutside(),
         __metadata("design:type", Function),

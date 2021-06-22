@@ -4,7 +4,7 @@ import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -74,14 +74,20 @@ class ChartEChartsComponent {
         this.ngZone = ngZone;
         this.platform = platform;
         this.destroy$ = new Subject();
-        this.width = 600;
-        this.height = 400;
+        this._width = '100%';
+        this._height = '400px';
         this.events = new EventEmitter();
         this.loaded = false;
         this.srv.notify
             .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
             .subscribe(() => this.load());
         this.theme = srv.cog.echartsTheme;
+    }
+    set width(val) {
+        this._width = typeof val === 'number' ? val + 'px' : `${val}`;
+    }
+    set height(val) {
+        this._height = typeof val === 'number' ? val + 'px' : `${val}`;
     }
     set theme(value) {
         this._theme = value;
@@ -159,10 +165,12 @@ ChartEChartsComponent.decorators = [
                 exportAs: 'chartECharts',
                 template: `
     <nz-skeleton *ngIf="!loaded"></nz-skeleton>
-    <div #container [style.width.px]="width" [style.height.px]="height"></div>
+    <div #container [style.width]="_width" [style.height]="_height"></div>
   `,
                 host: {
                     '[style.display]': `'inline-block'`,
+                    '[style.width]': `_width`,
+                    '[style.height]': `_height`,
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -185,14 +193,6 @@ ChartEChartsComponent.propDecorators = {
     option: [{ type: Input }],
     events: [{ type: Output }]
 };
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], ChartEChartsComponent.prototype, "width", void 0);
-__decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
-], ChartEChartsComponent.prototype, "height", void 0);
 __decorate([
     ZoneOutside(),
     __metadata("design:type", Function),
