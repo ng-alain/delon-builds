@@ -1671,6 +1671,10 @@ html {
 .nz-overlay-transparent-backdrop.cdk-overlay-backdrop-showing {
   opacity: 0;
 }
+.nz-animate-disabled.ant-scroll-number-only {
+  animation: none;
+  transition: none;
+}
 .nz-animate-disabled.ant-drawer.ant-drawer-open .ant-drawer-mask {
   animation: none;
   transition: none;
@@ -22597,6 +22601,7 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-tabs-right > .ant-tabs-nav .ant-tabs-nav-operations,
 .ant-tabs-left > div > .ant-tabs-nav .ant-tabs-nav-operations,
 .ant-tabs-right > div > .ant-tabs-nav .ant-tabs-nav-operations {
+  flex: 1 0 auto;
   flex-direction: column;
 }
 .ant-tabs-left > .ant-tabs-nav .ant-tabs-ink-bar,
@@ -22793,13 +22798,11 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-list {
   position: relative;
   display: flex;
-  flex: 1 0 auto;
   transition: transform 0.3s;
 }
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-operations,
 .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-operations {
   display: flex;
-  flex: 1 0 auto;
   align-self: stretch;
 }
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-operations-hidden,
