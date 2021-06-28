@@ -24,7 +24,7 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     set initOpt(value: any);
     set option(value: ChartEChartsOption);
     events: EventEmitter<ChartEChartsEvent>;
-    get chart(): ChartECharts | null;
+    get chart(): ChartECharts;
     loaded: boolean;
     constructor(srv: ChartEChartsService, cdr: ChangeDetectorRef, ngZone: NgZone, platform: Platform);
     private emit;

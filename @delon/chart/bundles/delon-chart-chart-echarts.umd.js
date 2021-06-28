@@ -403,7 +403,6 @@
             this.ngZone = ngZone;
             this.platform = platform;
             this.destroy$ = new rxjs.Subject();
-            this._chart = null;
             this._width = '100%';
             this._height = '400px';
             this.events = new i0.EventEmitter();
@@ -500,7 +499,6 @@
             return this;
         };
         ChartEChartsComponent.prototype.ngOnInit = function () {
-            var _this = this;
             if (!this.platform.isBrowser) {
                 return;
             }
@@ -510,9 +508,6 @@
             else {
                 this.srv.libLoad();
             }
-            rxjs.fromEvent(window, 'resize')
-                .pipe(operators.takeUntil(this.destroy$), operators.filter(function () { return !!_this._chart; }), operators.debounceTime(200))
-                .subscribe(function () { return _this._chart.resize(); });
         };
         ChartEChartsComponent.prototype.ngOnDestroy = function () {
             this.destroy$.next();

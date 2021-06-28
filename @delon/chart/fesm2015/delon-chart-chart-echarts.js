@@ -1,11 +1,11 @@
 import { ɵɵdefineInjectable, ɵɵinject, Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import { Subject, fromEvent } from 'rxjs';
+import { Subject } from 'rxjs';
 import { __decorate, __metadata } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { ZoneOutside } from '@delon/util/decorator';
-import { takeUntil, filter, debounceTime } from 'rxjs/operators';
+import { takeUntil, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -74,7 +74,6 @@ class ChartEChartsComponent {
         this.ngZone = ngZone;
         this.platform = platform;
         this.destroy$ = new Subject();
-        this._chart = null;
         this._width = '100%';
         this._height = '400px';
         this.events = new EventEmitter();
@@ -153,9 +152,6 @@ class ChartEChartsComponent {
         else {
             this.srv.libLoad();
         }
-        fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), filter(() => !!this._chart), debounceTime(200))
-            .subscribe(() => this._chart.resize());
     }
     ngOnDestroy() {
         this.destroy$.next();

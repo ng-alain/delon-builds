@@ -26,6 +26,7 @@
                 { key: 'compact', text: 'Compact Theme' },
             ];
             this.devTips = "When the dark.css file can't be found, you need to run it once: npm run theme";
+            this.deployUrl = '';
             this.destroy$ = new rxjs.Subject();
             this.dir = 'ltr';
         }
@@ -65,7 +66,7 @@
                 el.type = 'text/css';
                 el.rel = 'stylesheet';
                 el.id = this.KEYS;
-                el.href = "assets/style." + theme + ".css";
+                el.href = this.deployUrl + "assets/style." + theme + ".css";
                 localStorage.setItem(this.KEYS, theme);
                 this.doc.body.append(el);
             }
@@ -103,7 +104,8 @@
     ]; };
     ThemeBtnComponent.propDecorators = {
         types: [{ type: core.Input }],
-        devTips: [{ type: core.Input }]
+        devTips: [{ type: core.Input }],
+        deployUrl: [{ type: core.Input }]
     };
 
     var COMPONENTS = [ThemeBtnComponent];
