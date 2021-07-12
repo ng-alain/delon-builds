@@ -2,6 +2,7 @@ import { __awaiter } from 'tslib';
 import { EventEmitter, Directive, ElementRef, Input, Output, NgModule } from '@angular/core';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { saveAs } from 'file-saver';
+import { finalize } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 class DownFileDirective {
@@ -56,6 +57,7 @@ class DownFileDirective {
                 observe: 'response',
                 body: this.httpBody,
             })
+                .pipe(finalize(() => this.setDisabled(false)))
                 .subscribe((res) => {
                 if (res.status !== 200 || res.body.size <= 0) {
                     this.error.emit(res);
@@ -69,7 +71,7 @@ class DownFileDirective {
                     fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
                 saveAs(res.body, decodeURI(fileName));
                 this.success.emit(res);
-            }, err => this.error.emit(err), () => this.setDisabled(false));
+            }, err => this.error.emit(err));
         });
     }
 }
