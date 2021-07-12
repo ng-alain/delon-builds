@@ -2367,9 +2367,9 @@ CNCurrencyPipe.ctorParameters = () => [
 class KeysPipe {
     transform(value, keyIsNumber = false) {
         const ret = [];
-        for (const key in value) {
+        Object.keys(value).forEach(key => {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
-        }
+        });
         return ret;
     }
 }
@@ -2502,7 +2502,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.4-69f61376');
+const VERSION = new Version('11.10.4-7d2fa91d');
 
 /**
  * Generated bundle index. Do not edit.

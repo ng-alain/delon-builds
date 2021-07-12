@@ -273,9 +273,7 @@
     ]; };
 
     function removeClass(el, classMap, renderer) {
-        for (var i in classMap) {
-            renderer.removeClass(el, i);
-        }
+        Object.keys(classMap).forEach(function (key) { return renderer.removeClass(el, key); });
     }
     function addClass(el, classMap, renderer) {
         for (var i in classMap) {

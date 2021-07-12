@@ -2839,9 +2839,9 @@
         KeysPipe.prototype.transform = function (value, keyIsNumber) {
             if (keyIsNumber === void 0) { keyIsNumber = false; }
             var ret = [];
-            for (var key in value) {
+            Object.keys(value).forEach(function (key) {
                 ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
-            }
+            });
             return ret;
         };
         return KeysPipe;

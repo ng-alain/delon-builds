@@ -233,9 +233,7 @@ ScrollService.ctorParameters = () => [
 ];
 
 function removeClass(el, classMap, renderer) {
-    for (const i in classMap) {
-        renderer.removeClass(el, i);
-    }
+    Object.keys(classMap).forEach(key => renderer.removeClass(el, key));
 }
 function addClass(el, classMap, renderer) {
     for (const i in classMap) {

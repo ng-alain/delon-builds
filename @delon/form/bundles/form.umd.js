@@ -956,7 +956,9 @@
             value = value || this.schema.default || {};
             var properties = this.properties;
             for (var propertyId in this.schema.properties) {
-                properties[propertyId].resetValue(value[propertyId], true);
+                if (this.schema.properties.hasOwnProperty(propertyId)) {
+                    properties[propertyId].resetValue(value[propertyId], true);
+                }
             }
             this.updateValueAndValidity({ onlySelf: onlySelf, emitValueEvent: true });
         };
