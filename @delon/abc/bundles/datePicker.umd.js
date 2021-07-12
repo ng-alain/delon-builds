@@ -338,12 +338,10 @@
      * ```
      */
     var RangePickerComponent = /** @class */ (function () {
-        // #endregion
         function RangePickerComponent(dom, configSrv) {
             this.dom = dom;
             this.value = [];
             this.ngModelEndChange = new core.EventEmitter();
-            // #region Native properties
             this.nzAllowClear = true;
             this.nzAutoFocus = false;
             this.nzSize = 'default';

@@ -2040,9 +2040,9 @@ class _HttpClient {
             return url;
         url += ~url.indexOf('?') ? '' : '?';
         const arr = [];
-        for (const key in params) {
+        Object.keys(params).forEach(key => {
             arr.push(`${key}=${params[key]}`);
-        }
+        });
         return url + arr.join('&');
     }
     setCount(count) {
@@ -2502,7 +2502,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.4-97a7f1e0');
+const VERSION = new Version('11.10.4-3f30ec9b');
 
 /**
  * Generated bundle index. Do not edit.

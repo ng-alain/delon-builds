@@ -2489,9 +2489,9 @@
                 return url;
             url += ~url.indexOf('?') ? '' : '?';
             var arr = [];
-            for (var key in params) {
+            Object.keys(params).forEach(function (key) {
                 arr.push(key + "=" + params[key]);
-            }
+            });
             return url + arr.join('&');
         };
         _HttpClient.prototype.setCount = function (count) {

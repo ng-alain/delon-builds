@@ -21,12 +21,10 @@ import { Subject } from 'rxjs';
  * ```
  */
 class RangePickerComponent {
-    // #endregion
     constructor(dom, configSrv) {
         this.dom = dom;
         this.value = [];
         this.ngModelEndChange = new EventEmitter();
-        // #region Native properties
         this.nzAllowClear = true;
         this.nzAutoFocus = false;
         this.nzSize = 'default';
