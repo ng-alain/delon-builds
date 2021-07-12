@@ -394,6 +394,7 @@
          * 设置当前用户角色或权限能力（会先清除所有）
          */
         ACLService.prototype.set = function (value) {
+            this.full = false;
             this.abilities = [];
             this.roles = [];
             this.add(value);
