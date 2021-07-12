@@ -7,7 +7,6 @@ export interface NoticeItem {
     emptyImage?: string;
     /** 清空文本，默认：`清空` */
     clearText?: string;
-    [key: string]: any;
 }
 export interface NoticeIconList {
     [key: string]: any;
