@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { TemplateRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, Optional, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
@@ -8,11 +8,11 @@ import { SettingsService, MenuService, ALAIN_I18N_TOKEN, TitleService } from '@d
 import { isEmpty } from '@delon/util/browser';
 import { AlainConfigService } from '@delon/util/config';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
-import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { Subject, merge } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
 import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
+import { NzAffixModule } from 'ng-zorro-antd/affix';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -160,7 +160,6 @@ PageHeaderComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 PageHeaderComponent.ctorParameters = () => [
     { type: SettingsService },
     { type: Renderer2 },
@@ -197,36 +196,28 @@ PageHeaderComponent.propDecorators = {
     tab: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "loading", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "wide", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "autoTitle", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "syncTitle", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "fixed", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
 
 const COMPONENTS = [PageHeaderComponent];

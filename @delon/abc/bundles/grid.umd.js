@@ -359,7 +359,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SGContainerComponent.ctorParameters = function () { return [
         { type: config.AlainConfigService }
     ]; };
@@ -369,16 +368,13 @@
         col: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], SGContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SGContainerComponent.prototype, "colInCon", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SGContainerComponent.prototype, "col", void 0);
 
     var prefixCls = "sg";
@@ -405,7 +401,7 @@
             var _a = this, el = _a.el, ren = _a.ren, clsMap = _a.clsMap, col = _a.col, parent = _a.parent;
             clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
-            clsMap.push.apply(clsMap, __spread(this.rep.genCls(col != null ? col : parent.colInCon || parent.col), [prefixCls + "__item"]));
+            clsMap.push.apply(clsMap, __spreadArray(__spreadArray([], __read(this.rep.genCls(col != null ? col : parent.colInCon || parent.col))), [prefixCls + "__item"]));
             clsMap.forEach(function (cls) { return ren.addClass(el, cls); });
             return this;
         };
@@ -433,7 +429,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SGComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.Renderer2 },
@@ -444,8 +439,7 @@
         col: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SGComponent.prototype, "col", void 0);
 
     var COMPONENTS = [SGContainerComponent, SGComponent];

@@ -84,7 +84,6 @@ DownFileDirective.decorators = [
                 },
             },] }
 ];
-/** @nocollapse */
 DownFileDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: _HttpClient }

@@ -93,7 +93,6 @@
                     changeDetection: core.ChangeDetectionStrategy.OnPush
                 },] }
     ];
-    /** @nocollapse */
     ThemeBtnComponent.ctorParameters = function () { return [
         { type: core.Renderer2 },
         { type: config.AlainConfigService },

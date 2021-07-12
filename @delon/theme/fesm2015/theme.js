@@ -1,17 +1,28 @@
-import { InjectionToken, ɵɵdefineInjectable, Injectable, ɵɵinject, Optional, Inject, INJECTOR, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
+import * as i0 from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
+import * as i2 from '@delon/acl';
 import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
+import * as i2$1 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
+import * as i1 from '@angular/common';
 import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
+import * as i1$1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
+import * as i1$2 from '@angular/cdk/bidi';
 import { Directionality } from '@angular/cdk/bidi';
+import * as i3 from 'ng-zorro-antd/core/config';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
+import * as i1$3 from '@angular/platform-browser';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { deepMerge } from '@delon/util/other';
+import * as i1$4 from 'ng-zorro-antd/modal';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import * as i1$5 from 'ng-zorro-antd/drawer';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
+import * as i1$6 from '@angular/common/http';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { toDate } from '@delon/util/date-time';
 import { formatDistanceToNow, format } from 'date-fns';
@@ -82,7 +93,7 @@ class AlainI18NServiceFake {
         return key;
     }
 }
-/** @nocollapse */ AlainI18NServiceFake.ɵprov = ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -323,11 +334,10 @@ class MenuService {
         this.i18n$.unsubscribe();
     }
 }
-/** @nocollapse */ MenuService.ɵprov = ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(ACLService, 8)); }, token: MenuService, providedIn: "root" });
+MenuService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i2.ACLService, 8)); }, token: MenuService, providedIn: "root" });
 MenuService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 MenuService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ACLService, decorators: [{ type: Optional }] }
@@ -406,11 +416,10 @@ class ScrollService {
         this.scrollToElement(this._getDoc().body, topOffset);
     }
 }
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: ScrollService, providedIn: "root" });
+ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2$1.Platform)); }, token: ScrollService, providedIn: "root" });
 ScrollService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ScrollService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: Platform }
@@ -484,11 +493,10 @@ class SettingsService {
         this.notify$.next({ type: 'user', value });
     }
 }
-/** @nocollapse */ SettingsService.ɵprov = ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(ɵɵinject(Platform), ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 SettingsService.ctorParameters = () => [
     { type: Platform },
     { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
@@ -530,11 +538,10 @@ class ResponsiveService {
         return clsMap;
     }
 }
-/** @nocollapse */ ResponsiveService.ɵprov = ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(ɵɵinject(AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
 ResponsiveService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ResponsiveService.ctorParameters = () => [
     { type: AlainConfigService }
 ];
@@ -621,11 +628,10 @@ class RTLService {
         });
     }
 }
-/** @nocollapse */ RTLService.ɵprov = ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(ɵɵinject(Directionality), ɵɵinject(SettingsService), ɵɵinject(NzConfigService), ɵɵinject(AlainConfigService), ɵɵinject(Platform), ɵɵinject(DOCUMENT)); }, token: RTLService, providedIn: "root" });
+RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
 RTLService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 RTLService.ctorParameters = () => [
     { type: Directionality },
     { type: SettingsService },
@@ -735,11 +741,10 @@ class TitleService {
         this.i18n$.unsubscribe();
     }
 }
-/** @nocollapse */ TitleService.ɵprov = ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(ɵɵinject(INJECTOR), ɵɵinject(Title), ɵɵinject(MenuService), ɵɵinject(ALAIN_I18N_TOKEN, 8), ɵɵinject(DOCUMENT)); }, token: TitleService, providedIn: "root" });
+TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
 TitleService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 TitleService.ctorParameters = () => [
     { type: Injector },
     { type: Title },
@@ -859,7 +864,6 @@ class DelonLocaleService {
 DelonLocaleService.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 DelonLocaleService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DELON_LOCALE,] }] }
 ];
@@ -872,12 +876,12 @@ const DELON_LOCALE_SERVICE_PROVIDER = {
     deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE],
 };
 
-const ɵ0 = zhCN;
+const ɵ0$1 = zhCN;
 class DelonLocaleModule {
 }
 DelonLocaleModule.decorators = [
     { type: NgModule, args: [{
-                providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
+                providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER],
             },] }
 ];
 
@@ -1886,11 +1890,10 @@ class ModalHelper {
         return this.open(comp, params, size, Object.assign({ nzMaskClosable: false }, options));
     }
 }
-/** @nocollapse */ ModalHelper.ɵprov = ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(ɵɵinject(NzModalService)); }, token: ModalHelper, providedIn: "root" });
+ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
 ModalHelper.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ModalHelper.ctorParameters = () => [
     { type: NzModalService }
 ];
@@ -1971,11 +1974,10 @@ class DrawerHelper {
         return this.create(title, comp, params, Object.assign(Object.assign({}, options), { drawerOptions }));
     }
 }
-/** @nocollapse */ DrawerHelper.ɵprov = ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(ɵɵinject(NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$5.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
 DrawerHelper.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
@@ -2108,11 +2110,10 @@ class _HttpClient {
         delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
 }
-/** @nocollapse */ _HttpClient.ɵprov = ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(ɵɵinject(HttpClient), ɵɵinject(AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+_HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
 _HttpClient.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 _HttpClient.ctorParameters = () => [
     { type: HttpClient },
     { type: AlainConfigService }
@@ -2133,7 +2134,6 @@ class BaseApi {
 BaseApi.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 BaseApi.ctorParameters = () => [
     { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
 ];
@@ -2339,7 +2339,6 @@ class DatePipe {
 DatePipe.decorators = [
     { type: Pipe, args: [{ name: '_date' },] }
 ];
-/** @nocollapse */
 DatePipe.ctorParameters = () => [
     { type: NzI18nService }
 ];
@@ -2359,7 +2358,6 @@ class CNCurrencyPipe {
 CNCurrencyPipe.decorators = [
     { type: Pipe, args: [{ name: '_currency' },] }
 ];
-/** @nocollapse */
 CNCurrencyPipe.ctorParameters = () => [
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
 ];
@@ -2410,7 +2408,6 @@ class YNPipe {
 YNPipe.decorators = [
     { type: Pipe, args: [{ name: 'yn' },] }
 ];
-/** @nocollapse */
 YNPipe.ctorParameters = () => [
     { type: DomSanitizer }
 ];
@@ -2426,7 +2423,6 @@ class HTMLPipe {
 HTMLPipe.decorators = [
     { type: Pipe, args: [{ name: 'html' },] }
 ];
-/** @nocollapse */
 HTMLPipe.ctorParameters = () => [
     { type: DomSanitizer }
 ];
@@ -2442,7 +2438,6 @@ class URLPipe {
 URLPipe.decorators = [
     { type: Pipe, args: [{ name: 'url' },] }
 ];
-/** @nocollapse */
 URLPipe.ctorParameters = () => [
     { type: DomSanitizer }
 ];
@@ -2458,7 +2453,6 @@ class I18nPipe {
 I18nPipe.decorators = [
     { type: Pipe, args: [{ name: 'i18n' },] }
 ];
-/** @nocollapse */
 I18nPipe.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [ALAIN_I18N_TOKEN,] }] }
 ];
@@ -2466,7 +2460,7 @@ I18nPipe.ctorParameters = () => [
 const HELPERS = [ModalHelper, DrawerHelper];
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
-const ɵ0$1 = {
+const ɵ0 = {
     layout: 'layout',
     user: 'user',
     app: 'app',
@@ -2496,22 +2490,21 @@ AlainThemeModule.decorators = [
                 providers: [
                     {
                         provide: ALAIN_SETTING_KEYS,
-                        useValue: ɵ0$1,
+                        useValue: ɵ0,
                     },
                 ],
                 exports: [...PIPES, DelonLocaleModule],
             },] }
 ];
-/** @nocollapse */
 AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.4-9ac3a99c');
+const VERSION = new Version('11.10.4-0dfb6dbc');
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, ɵ0, I18nPipe as ɵa };
+export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

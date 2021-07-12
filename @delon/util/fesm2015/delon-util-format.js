@@ -1,6 +1,8 @@
 import { deepGet } from '@delon/util/other';
 import { CurrencyPipe, formatNumber } from '@angular/common';
-import { ɵɵdefineInjectable, ɵɵinject, LOCALE_ID, DEFAULT_CURRENCY_CODE, Injectable, Inject } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, Inject, LOCALE_ID, DEFAULT_CURRENCY_CODE } from '@angular/core';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 
 /**
@@ -315,11 +317,10 @@ class CurrencyService {
         return ret;
     }
 }
-/** @nocollapse */ CurrencyService.ɵprov = ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(ɵɵinject(AlainConfigService), ɵɵinject(LOCALE_ID), ɵɵinject(DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
+CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i0.LOCALE_ID), i0.ɵɵinject(i0.DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
 CurrencyService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 CurrencyService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] },

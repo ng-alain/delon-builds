@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.i1, global.i2, global.rxjs, global.ng.common));
 }(this, (function (exports, platform, i0, decorator, i1, i2, rxjs, common) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -367,11 +391,10 @@
         };
         return MediaService;
     }());
-    /** @nocollapse */ MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: MediaService, providedIn: "root" });
+    MediaService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(i2__namespace.LazyService)); }, token: MediaService, providedIn: "root" });
     MediaService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     MediaService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: i2.LazyService }
@@ -463,7 +486,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     MediaComponent.ctorParameters = function () { return [
         { type: i0.ElementRef },
         { type: i0.Renderer2 },
@@ -479,14 +501,10 @@
         ready: [{ type: i0.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], MediaComponent.prototype, "delay", void 0);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], MediaComponent.prototype, "initDelay", null);
 
     var COMPONENTS = [MediaComponent];

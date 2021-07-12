@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
@@ -37,12 +37,10 @@ TrendComponent.propDecorators = {
     reverseColor: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], TrendComponent.prototype, "colorful", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], TrendComponent.prototype, "reverseColor", void 0);
 
 const COMPONENTS = [TrendComponent];

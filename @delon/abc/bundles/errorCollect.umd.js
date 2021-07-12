@@ -416,7 +416,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ErrorCollectComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.ChangeDetectorRef },
@@ -429,12 +428,10 @@
         offsetTop: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], ErrorCollectComponent.prototype, "freq", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], ErrorCollectComponent.prototype, "offsetTop", void 0);
 
     var COMPONENTS = [ErrorCollectComponent];

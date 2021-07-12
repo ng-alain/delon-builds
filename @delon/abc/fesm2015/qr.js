@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
@@ -111,7 +111,6 @@ QRComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 QRComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: AlainConfigService },
@@ -132,16 +131,13 @@ QRComponent.propDecorators = {
     change: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], QRComponent.prototype, "padding", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], QRComponent.prototype, "size", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], QRComponent.prototype, "delay", void 0);
 
 const COMPONENTS = [QRComponent];

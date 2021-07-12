@@ -423,7 +423,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     AvatarListComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
@@ -435,8 +434,7 @@
         excessItemsStyle: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], AvatarListComponent.prototype, "maxLength", void 0);
 
     var COMPONENTS = [AvatarListComponent, AvatarListItemComponent];

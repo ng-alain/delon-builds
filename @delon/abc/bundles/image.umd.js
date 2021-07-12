@@ -434,7 +434,6 @@
                     },
                 },] }
     ];
-    /** @nocollapse */
     ImageDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: config.AlainConfigService },
@@ -451,12 +450,10 @@
         previewModalOptions: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], ImageDirective.prototype, "size", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], ImageDirective.prototype, "useHttp", void 0);
 
     var DIRECTIVES = [ImageDirective];

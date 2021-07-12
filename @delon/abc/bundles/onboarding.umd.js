@@ -9,6 +9,33 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.delon.theme, global.i4, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
 }(this, (function (exports, i5, i3, i0, i2, i1, i4, rxjs, operators, platform, button, noAnimation, outlet, popover) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i5__namespace = /*#__PURE__*/_interopNamespace(i5);
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i4__namespace = /*#__PURE__*/_interopNamespace(i4);
+
     var OnboardingComponent = /** @class */ (function () {
         function OnboardingComponent(el, doc, platform, cdr) {
             this.el = el;
@@ -135,7 +162,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     OnboardingComponent.ctorParameters = function () { return [
         { type: i0.ElementRef },
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [i3.DOCUMENT,] }] },
@@ -302,11 +328,10 @@
         };
         return OnboardingService;
     }());
-    /** @nocollapse */ OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0.ɵɵinject(i1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i3.DOCUMENT), i0.ɵɵinject(i4.AlainConfigService), i0.ɵɵinject(i5.Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
+    OnboardingService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0__namespace.ɵɵinject(i1__namespace.DelonLocaleService), i0__namespace.ɵɵinject(i0__namespace.ApplicationRef), i0__namespace.ɵɵinject(i0__namespace.ComponentFactoryResolver), i0__namespace.ɵɵinject(i2__namespace.Router), i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i3__namespace.DOCUMENT), i0__namespace.ɵɵinject(i4__namespace.AlainConfigService), i0__namespace.ɵɵinject(i5__namespace.Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
     OnboardingService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     OnboardingService.ctorParameters = function () { return [
         { type: i1.DelonLocaleService },
         { type: i0.ApplicationRef },

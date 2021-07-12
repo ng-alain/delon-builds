@@ -387,7 +387,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     QuickMenuComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
         { type: core.ElementRef },
@@ -403,16 +402,13 @@
         expandChange: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], QuickMenuComponent.prototype, "top", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], QuickMenuComponent.prototype, "width", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], QuickMenuComponent.prototype, "expand", void 0);
 
     var COMPONENTS = [QuickMenuComponent];

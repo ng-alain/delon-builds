@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent, genMiniTooltipOptions } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
@@ -102,24 +102,19 @@ G2MiniAreaComponent.propDecorators = {
     clickItem: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2MiniAreaComponent.prototype, "borderWidth", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2MiniAreaComponent.prototype, "height", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2MiniAreaComponent.prototype, "fit", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2MiniAreaComponent.prototype, "line", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2MiniAreaComponent.prototype, "animate", void 0);
 
 const COMPONENTS = [G2MiniAreaComponent];

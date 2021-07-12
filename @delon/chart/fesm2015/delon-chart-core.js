@@ -1,8 +1,11 @@
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, Directive, ElementRef, NgZone, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, Directive, ElementRef, NgZone, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
+import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
@@ -49,11 +52,10 @@ class G2Service {
         this.notify$.unsubscribe();
     }
 }
-/** @nocollapse */ G2Service.ɵprov = ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(ɵɵinject(AlainConfigService), ɵɵinject(LazyService)); }, token: G2Service, providedIn: "root" });
+G2Service.ɵprov = i0.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: G2Service, providedIn: "root" });
 G2Service.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 G2Service.ctorParameters = () => [
     { type: AlainConfigService },
     { type: LazyService }
@@ -134,7 +136,6 @@ class G2BaseComponent {
 G2BaseComponent.decorators = [
     { type: Directive }
 ];
-/** @nocollapse */
 G2BaseComponent.ctorParameters = () => [
     { type: G2Service },
     { type: ElementRef },
@@ -149,24 +150,16 @@ G2BaseComponent.propDecorators = {
     theme: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2BaseComponent.prototype, "repaint", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2BaseComponent.prototype, "delay", void 0);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], G2BaseComponent.prototype, "load", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Object)
+    ZoneOutside()
 ], G2BaseComponent.prototype, "destroyChart", null);
 
 function genMiniTooltipOptions(type, options) {

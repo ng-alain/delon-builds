@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent, genMiniTooltipOptions } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
@@ -81,12 +81,10 @@ G2MiniBarComponent.propDecorators = {
     clickItem: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2MiniBarComponent.prototype, "height", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2MiniBarComponent.prototype, "borderWidth", void 0);
 
 const COMPONENTS = [G2MiniBarComponent];

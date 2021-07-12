@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, forwardRef, ViewChild, Input, Output, Directive, Host, Optional, ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
 import { NG_VALUE_ACCESSOR, FormsModule } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -6,8 +6,8 @@ import { AlainConfigService } from '@delon/util/config';
 import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
 import { InputBoolean } from '@delon/util/decorator';
 import { deepMergeKey, assert } from '@delon/util/other';
-import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { CommonModule } from '@angular/common';
+import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { Subject } from 'rxjs';
 
 /**
@@ -141,7 +141,6 @@ RangePickerComponent.decorators = [
                 ]
             },] }
 ];
-/** @nocollapse */
 RangePickerComponent.ctorParameters = () => [
     { type: DomSanitizer },
     { type: AlainConfigService }
@@ -175,8 +174,7 @@ RangePickerComponent.propDecorators = {
     nzOnOk: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], RangePickerComponent.prototype, "nzShowToday", void 0);
 
 class RangePickerShortcutTplComponent {
@@ -349,7 +347,6 @@ RangePickerDirective.decorators = [
                 exportAs: 'extendRangePicker',
             },] }
 ];
-/** @nocollapse */
 RangePickerDirective.ctorParameters = () => [
     { type: DomSanitizer },
     { type: AlainConfigService },

@@ -20,7 +20,6 @@ class CurrencyMegaPipe {
 CurrencyMegaPipe.decorators = [
     { type: Pipe, args: [{ name: 'mega' },] }
 ];
-/** @nocollapse */
 CurrencyMegaPipe.ctorParameters = () => [
     { type: CurrencyService },
     { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
@@ -46,7 +45,6 @@ class CurrencyPricePipe {
 CurrencyPricePipe.decorators = [
     { type: Pipe, args: [{ name: 'price' },] }
 ];
-/** @nocollapse */
 CurrencyPricePipe.ctorParameters = () => [
     { type: CurrencyService }
 ];
@@ -67,7 +65,6 @@ class CurrencyCNYPipe {
 CurrencyCNYPipe.decorators = [
     { type: Pipe, args: [{ name: 'cny' },] }
 ];
-/** @nocollapse */
 CurrencyCNYPipe.ctorParameters = () => [
     { type: CurrencyService }
 ];

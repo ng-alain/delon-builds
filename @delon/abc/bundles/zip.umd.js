@@ -9,6 +9,31 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.zip = {}), global.ng.common.http, global.ng.core, global.i3, global.decorator, global.i2, global.saveAs, global.ng.common));
 }(this, (function (exports, i1, i0, i3, decorator, i2, fileSaver, common) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -420,11 +445,10 @@
         };
         return ZipService;
     }());
-    /** @nocollapse */ ZipService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: ZipService, providedIn: "root" });
+    ZipService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0__namespace.ɵɵinject(i1__namespace.HttpClient), i0__namespace.ɵɵinject(i2__namespace.LazyService), i0__namespace.ɵɵinject(i3__namespace.AlainConfigService), i0__namespace.ɵɵinject(i0__namespace.NgZone)); }, token: ZipService, providedIn: "root" });
     ZipService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ZipService.ctorParameters = function () { return [
         { type: i1.HttpClient },
         { type: i2.LazyService },
@@ -432,10 +456,7 @@
         { type: i0.NgZone }
     ]; };
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object, Object]),
-        __metadata("design:returntype", Promise)
+        decorator.ZoneOutside()
     ], ZipService.prototype, "read", null);
 
     var ZipModule = /** @class */ (function () {

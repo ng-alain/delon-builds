@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
@@ -82,7 +82,6 @@ SEContainerComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SEContainerComponent.ctorParameters = () => [
     { type: AlainConfigService }
 ];
@@ -100,28 +99,22 @@ SEContainerComponent.propDecorators = {
     errors: [{ type: Input }]
 };
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SEContainerComponent.prototype, "colInCon", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SEContainerComponent.prototype, "col", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SEContainerComponent.prototype, "labelWidth", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], SEContainerComponent.prototype, "firstVisual", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], SEContainerComponent.prototype, "ingoreDirty", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SEContainerComponent.prototype, "line", void 0);
 
 class SETitleComponent {
@@ -156,7 +149,6 @@ SETitleComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SETitleComponent.ctorParameters = () => [
     { type: SEContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
     { type: ElementRef },
@@ -321,7 +313,6 @@ SEComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SEComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: SEContainerComponent, decorators: [{ type: Optional }, { type: Host }] },
@@ -347,20 +338,16 @@ SEComponent.propDecorators = {
     id: [{ type: Input }]
 };
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SEComponent.prototype, "col", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SEComponent.prototype, "required", void 0);
 __decorate([
-    InputBoolean(null),
-    __metadata("design:type", Boolean)
+    InputBoolean(null)
 ], SEComponent.prototype, "line", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SEComponent.prototype, "labelWidth", void 0);
 
 const COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];

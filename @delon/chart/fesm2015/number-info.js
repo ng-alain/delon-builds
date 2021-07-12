@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
@@ -39,8 +39,7 @@ NumberInfoComponent.propDecorators = {
     gap: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], NumberInfoComponent.prototype, "gap", void 0);
 
 const COMPONENTS = [NumberInfoComponent];

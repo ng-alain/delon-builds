@@ -483,7 +483,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     PageHeaderComponent.ctorParameters = function () { return [
         { type: theme.SettingsService },
         { type: core.Renderer2 },
@@ -520,36 +519,28 @@
         tab: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "loading", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "wide", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "autoBreadcrumb", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "autoTitle", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "syncTitle", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "fixed", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], PageHeaderComponent.prototype, "fixedOffsetTop", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], PageHeaderComponent.prototype, "recursiveBreadcrumb", void 0);
 
     var COMPONENTS = [PageHeaderComponent];

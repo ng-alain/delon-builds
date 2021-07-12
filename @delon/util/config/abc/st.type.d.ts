@@ -4,7 +4,6 @@ import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
 import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
-import { NzTableData } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 export interface AlainSTConfig {
     /**
@@ -352,7 +351,7 @@ export interface AlainSTConfig {
     /**
      * The TrackByFunction to use for tracking changes
      */
-    virtualForTrackBy?: TrackByFunction<NzTableData>;
+    virtualForTrackBy?: TrackByFunction<unknown>;
     /**
      * Conditional expression rendering behavior, can be set to `hide` (default) or `disabled`, Default: `hide`
      */
@@ -370,9 +369,11 @@ export interface AlainSTConfig {
      */
     noResult?: string | TemplateRef<void>;
     /**
-     * 是否信任HTML，默认：`true`
+     * Safe rendering type, default: `safeHtml`
+     *
+     * 安全渲染方式，默认：`safeHtml`
      */
-    saftHtml?: boolean;
+    safeType?: 'text' | 'html' | 'safeHtml';
     /**
      * Override the default request behavior, you can customize your own request implementation, for example: Graphql
      *

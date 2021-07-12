@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
@@ -58,7 +58,6 @@ TagSelectComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 TagSelectComponent.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: Directionality, decorators: [{ type: Optional }] },
@@ -69,8 +68,7 @@ TagSelectComponent.propDecorators = {
     change: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], TagSelectComponent.prototype, "expandable", void 0);
 
 const COMPONENTS = [TagSelectComponent];

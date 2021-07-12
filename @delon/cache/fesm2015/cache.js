@@ -1,5 +1,8 @@
+import * as i3 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { InjectionToken, inject, ɵɵdefineInjectable, ɵɵinject, Injectable, Inject, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { InjectionToken, inject, Injectable, Inject, NgModule } from '@angular/core';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { addSeconds } from 'date-fns';
 import { Observable, of, BehaviorSubject } from 'rxjs';
@@ -122,7 +125,7 @@ class CacheService {
         const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return this.http.get(key).pipe(map((ret) => this.deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
+                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => this.deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
             }
             return null;
         }
@@ -251,11 +254,10 @@ class CacheService {
         this.clearNotify();
     }
 }
-/** @nocollapse */ CacheService.ɵprov = ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(ɵɵinject(AlainConfigService), ɵɵinject(DC_STORE_STORAGE_TOKEN), ɵɵinject(HttpClient)); }, token: CacheService, providedIn: "root" });
+CacheService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(DC_STORE_STORAGE_TOKEN), i0.ɵɵinject(i3.HttpClient)); }, token: CacheService, providedIn: "root" });
 CacheService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 CacheService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: undefined, decorators: [{ type: Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },

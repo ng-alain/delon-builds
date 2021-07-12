@@ -5,7 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/util/token';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
@@ -27,8 +27,7 @@ GlobalFooterItemComponent.propDecorators = {
     blankTarget: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
 
 class GlobalFooterComponent {
@@ -89,7 +88,6 @@ GlobalFooterComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 GlobalFooterComponent.ctorParameters = () => [
     { type: Router },
     { type: undefined, decorators: [{ type: Inject, args: [WINDOW,] }] },

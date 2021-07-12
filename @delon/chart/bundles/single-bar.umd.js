@@ -330,7 +330,7 @@
     var G2SingleBarComponent = /** @class */ (function (_super) {
         __extends(G2SingleBarComponent, _super);
         function G2SingleBarComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             // #region fields
             _this.plusColor = '#40a9ff';
             _this.minusColor = '#ff4d4f';
@@ -419,28 +419,22 @@
         textStyle: [{ type: core$1.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2SingleBarComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2SingleBarComponent.prototype, "barSize", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2SingleBarComponent.prototype, "min", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2SingleBarComponent.prototype, "max", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2SingleBarComponent.prototype, "value", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2SingleBarComponent.prototype, "line", void 0);
 
     var COMPONENTS = [G2SingleBarComponent];

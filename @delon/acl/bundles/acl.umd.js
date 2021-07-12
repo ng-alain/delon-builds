@@ -9,6 +9,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
 }(this, (function (exports, i0, config, rxjs, operators, i2, common) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -425,10 +448,10 @@
         ACLService.prototype.add = function (value) {
             var _a, _b;
             if (value.role && value.role.length > 0) {
-                (_a = this.roles).push.apply(_a, __spread(value.role));
+                (_a = this.roles).push.apply(_a, __spreadArray([], __read(value.role)));
             }
             if (value.ability && value.ability.length > 0) {
-                (_b = this.abilities).push.apply(_b, __spread(value.ability));
+                (_b = this.abilities).push.apply(_b, __spreadArray([], __read(value.ability)));
             }
         };
         /**
@@ -577,7 +600,6 @@
     ACLService.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     ACLService.ctorParameters = function () { return [
         { type: config.AlainConfigService }
     ]; };
@@ -663,7 +685,6 @@
                     exportAs: 'aclIf',
                 },] }
     ];
-    /** @nocollapse */
     ACLIfDirective.ctorParameters = function () { return [
         { type: i0.TemplateRef },
         { type: ACLService },
@@ -720,7 +741,6 @@
                     exportAs: 'acl',
                 },] }
     ];
-    /** @nocollapse */
     ACLDirective.ctorParameters = function () { return [
         { type: i0.ElementRef },
         { type: i0.Renderer2 },
@@ -771,11 +791,10 @@
         };
         return ACLGuard;
     }());
-    /** @nocollapse */ ACLGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.ɵɵinject(ACLService), i0.ɵɵinject(i2.Router)); }, token: ACLGuard, providedIn: "root" });
+    ACLGuard.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0__namespace.ɵɵinject(ACLService), i0__namespace.ɵɵinject(i2__namespace.Router)); }, token: ACLGuard, providedIn: "root" });
     ACLGuard.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ACLGuard.ctorParameters = function () { return [
         { type: ACLService },
         { type: i2.Router }

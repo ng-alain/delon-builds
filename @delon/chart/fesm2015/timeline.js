@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { toDate } from '@delon/util/date-time';
@@ -163,20 +163,16 @@ G2TimelineComponent.propDecorators = {
     clickItem: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2TimelineComponent.prototype, "maxAxis", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2TimelineComponent.prototype, "height", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2TimelineComponent.prototype, "borderWidth", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2TimelineComponent.prototype, "slider", void 0);
 
 const COMPONENTS = [G2TimelineComponent];

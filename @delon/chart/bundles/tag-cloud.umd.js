@@ -330,7 +330,7 @@
     var G2TagCloudComponent = /** @class */ (function (_super) {
         __extends(G2TagCloudComponent, _super);
         function G2TagCloudComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             // #region fields
             _this.width = 0;
             _this.height = 200;
@@ -465,12 +465,10 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2TagCloudComponent.prototype, "width", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2TagCloudComponent.prototype, "height", void 0);
 
     var COMPONENTS = [G2TagCloudComponent];

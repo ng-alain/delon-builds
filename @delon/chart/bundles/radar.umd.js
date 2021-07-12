@@ -330,7 +330,7 @@
     var G2RadarComponent = /** @class */ (function (_super) {
         __extends(G2RadarComponent, _super);
         function G2RadarComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.legendData = [];
             _this.height = 0;
             _this.padding = [44, 30, 16, 30];
@@ -461,16 +461,13 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2RadarComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2RadarComponent.prototype, "hasLegend", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2RadarComponent.prototype, "tickCount", void 0);
 
     var COMPONENTS = [G2RadarComponent];

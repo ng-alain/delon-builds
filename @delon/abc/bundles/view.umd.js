@@ -357,7 +357,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SVContainerComponent.ctorParameters = function () { return [
         { type: config.AlainConfigService }
     ]; };
@@ -371,20 +370,16 @@
         default: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], SVContainerComponent.prototype, "gutter", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], SVContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], SVContainerComponent.prototype, "col", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], SVContainerComponent.prototype, "default", void 0);
 
     var SVTitleComponent = /** @class */ (function () {
@@ -420,7 +415,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SVTitleComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
@@ -487,7 +481,7 @@
             var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep;
             clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
-            clsMap.push.apply(clsMap, __spread(rep.genCls(col != null ? col : this.parent.col)));
+            clsMap.push.apply(clsMap, __spreadArray([], __read(rep.genCls(col != null ? col : this.parent.col))));
             clsMap.push(prefixCls + "__item");
             if (this.parent.labelWidth)
                 clsMap.push(prefixCls + "__item-fixed");
@@ -533,7 +527,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SVComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: SVContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
@@ -552,12 +545,10 @@
         type: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SVComponent.prototype, "col", void 0);
     __decorate([
-        decorator.InputBoolean(null),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean(null)
     ], SVComponent.prototype, "default", void 0);
 
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];

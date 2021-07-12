@@ -1,5 +1,8 @@
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
+import * as i2 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
+import * as i1 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
 import { Subject, of } from 'rxjs';
 
@@ -207,11 +210,10 @@ class LodopService {
         this._events.unsubscribe();
     }
 }
-/** @nocollapse */ LodopService.ɵprov = ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(ɵɵinject(LazyService), ɵɵinject(AlainConfigService)); }, token: LodopService, providedIn: "root" });
+LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i2.AlainConfigService)); }, token: LodopService, providedIn: "root" });
 LodopService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 LodopService.ctorParameters = () => [
     { type: LazyService },
     { type: AlainConfigService }

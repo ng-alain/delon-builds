@@ -330,7 +330,7 @@
     var G2GaugeComponent = /** @class */ (function (_super) {
         __extends(G2GaugeComponent, _super);
         function G2GaugeComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.color = '#2f9cff';
             _this.padding = [10, 10, 30, 10];
             return _this;
@@ -479,12 +479,10 @@
         padding: [{ type: core$1.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2GaugeComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2GaugeComponent.prototype, "percent", void 0);
 
     var COMPONENTS = [G2GaugeComponent];

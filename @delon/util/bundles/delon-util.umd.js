@@ -14,7 +14,7 @@
 	 */
 
 	Object.keys(array).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return array[k];
@@ -22,7 +22,7 @@
 		});
 	});
 	Object.keys(browser).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return browser[k];
@@ -30,7 +30,7 @@
 		});
 	});
 	Object.keys(config).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return config[k];
@@ -38,7 +38,7 @@
 		});
 	});
 	Object.keys(dateTime).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return dateTime[k];
@@ -46,7 +46,7 @@
 		});
 	});
 	Object.keys(form).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return form[k];
@@ -54,7 +54,7 @@
 		});
 	});
 	Object.keys(format).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return format[k];
@@ -62,7 +62,7 @@
 		});
 	});
 	Object.keys(math).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return math[k];
@@ -70,7 +70,7 @@
 		});
 	});
 	Object.keys(decorator).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return decorator[k];
@@ -78,7 +78,7 @@
 		});
 	});
 	Object.keys(other).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return other[k];
@@ -86,7 +86,7 @@
 		});
 	});
 	Object.keys(pipes).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return pipes[k];
@@ -94,7 +94,7 @@
 		});
 	});
 	Object.keys(token).forEach(function (k) {
-		if (k !== 'default') Object.defineProperty(exports, k, {
+		if (k !== 'default' && !exports.hasOwnProperty(k)) Object.defineProperty(exports, k, {
 			enumerable: true,
 			get: function () {
 				return token[k];

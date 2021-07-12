@@ -361,7 +361,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     FooterToolbarComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.Renderer2 },
@@ -372,8 +371,7 @@
         extra: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], FooterToolbarComponent.prototype, "errorCollect", void 0);
 
     var COMPONENTS = [FooterToolbarComponent];

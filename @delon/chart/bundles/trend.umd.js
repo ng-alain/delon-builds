@@ -358,12 +358,10 @@
         reverseColor: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], TrendComponent.prototype, "colorful", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], TrendComponent.prototype, "reverseColor", void 0);
 
     var COMPONENTS = [TrendComponent];

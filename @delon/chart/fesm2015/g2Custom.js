@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
@@ -53,12 +53,10 @@ G2CustomComponent.propDecorators = {
     destroy: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2CustomComponent.prototype, "height", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2CustomComponent.prototype, "resizeTime", void 0);
 
 const COMPONENTS = [G2CustomComponent];

@@ -379,7 +379,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     TagSelectComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] },
@@ -390,8 +389,7 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], TagSelectComponent.prototype, "expandable", void 0);
 
     var COMPONENTS = [TagSelectComponent];

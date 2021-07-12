@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.i1, global.dateFns, global.rxjs, global.rxjs.operators, global.ng.cdk.platform));
 }(this, (function (exports, i3, i0, i1, dateFns, rxjs, operators, platform) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     var DC_STORE_STORAGE_TOKEN = new i0.InjectionToken('DC_STORE_STORAGE_TOKEN', {
         providedIn: 'root',
         factory: function () { return new LocalStorageCacheService(i0.inject(platform.Platform)); },
@@ -101,8 +125,7 @@
             if (options === void 0) { options = {}; }
             var e = 0;
             var _a = this.cog, type = _a.type, expire = _a.expire;
-            options = Object.assign({ type: type,
-                expire: expire }, options);
+            options = Object.assign({ type: type, expire: expire }, options);
             if (options.expire) {
                 e = dateFns.addSeconds(new Date(), options.expire).valueOf();
             }
@@ -131,7 +154,7 @@
             var value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
             if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
                 if (isPromise) {
-                    return this.http.get(key).pipe(operators.map(function (ret) { return _this.deepGet(ret, _this.cog.reName, null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
+                    return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(operators.map(function (ret) { return _this.deepGet(ret, _this.cog.reName, null); }), operators.tap(function (v) { return _this.set(key, v, { type: options.type, expire: options.expire }); }));
                 }
                 return null;
             }
@@ -269,11 +292,10 @@
         };
         return CacheService;
     }());
-    /** @nocollapse */ CacheService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(DC_STORE_STORAGE_TOKEN), i0.ɵɵinject(i3.HttpClient)); }, token: CacheService, providedIn: "root" });
+    CacheService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function CacheService_Factory() { return new CacheService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(DC_STORE_STORAGE_TOKEN), i0__namespace.ɵɵinject(i3__namespace.HttpClient)); }, token: CacheService, providedIn: "root" });
     CacheService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     CacheService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: undefined, decorators: [{ type: i0.Inject, args: [DC_STORE_STORAGE_TOKEN,] }] },

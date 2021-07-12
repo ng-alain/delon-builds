@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Host, Optional, Renderer2, ViewChild, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
@@ -39,7 +39,6 @@ SVContainerComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SVContainerComponent.ctorParameters = () => [
     { type: AlainConfigService }
 ];
@@ -53,20 +52,16 @@ SVContainerComponent.propDecorators = {
     default: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], SVContainerComponent.prototype, "gutter", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], SVContainerComponent.prototype, "labelWidth", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], SVContainerComponent.prototype, "col", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], SVContainerComponent.prototype, "default", void 0);
 
 class SVTitleComponent {
@@ -101,7 +96,6 @@ SVTitleComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SVTitleComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
@@ -208,7 +202,6 @@ SVComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SVComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: SVContainerComponent, decorators: [{ type: Host }, { type: Optional }] },
@@ -227,12 +220,10 @@ SVComponent.propDecorators = {
     type: [{ type: Input }]
 };
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SVComponent.prototype, "col", void 0);
 __decorate([
-    InputBoolean(null),
-    __metadata("design:type", Boolean)
+    InputBoolean(null)
 ], SVComponent.prototype, "default", void 0);
 
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];

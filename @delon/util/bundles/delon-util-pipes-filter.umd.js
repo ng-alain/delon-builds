@@ -340,7 +340,7 @@
             for (var _i = 2; _i < arguments.length; _i++) {
                 args[_i - 2] = arguments[_i];
             }
-            return array.filter(function (i) { return matcher.apply(void 0, __spread([i], args)); });
+            return array.filter(function (i) { return matcher.apply(void 0, __spreadArray([i], __read(args))); });
         };
         return FilterPipe;
     }());

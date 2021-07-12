@@ -397,11 +397,11 @@
                 var ngZone = that[(options === null || options === void 0 ? void 0 : options.ngZoneName) || 'ngZone'];
                 if (!ngZone) {
                     other.warn("ZoneOutside: Decorator should have 'ngZone' property with 'NgZone' class.");
-                    return source.call.apply(source, __spread([this], data));
+                    return source.call.apply(source, __spreadArray([this], __read(data)));
                 }
                 var res;
                 ngZone[type](function () {
-                    res = source.call.apply(source, __spread([_this], data));
+                    res = source.call.apply(source, __spreadArray([_this], __read(data)));
                 });
                 return res;
             };

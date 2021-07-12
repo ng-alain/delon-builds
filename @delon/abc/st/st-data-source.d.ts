@@ -18,7 +18,6 @@ export interface STDataSourceOptions {
     singleSort?: STSingleSort;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName;
-    saftHtml: boolean;
     customRequest?: (options: STCustomRequestOptions) => Observable<any>;
 }
 export interface STDataSourceResult {
@@ -51,7 +50,6 @@ export declare class STDataSource {
         columns: _STColumn[];
         result: STData[];
         rowClassName?: STRowClassName;
-        safeHtml: boolean;
     }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;

@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.browser = {}), global.ng.cdk.platform, global.ng.common, global.ng.core));
 }(this, (function (exports, i2, i1, i0) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     /**
      * A set of simple Cookie manipulation classes.
      *
@@ -108,11 +132,10 @@
         };
         return CookieService;
     }());
-    /** @nocollapse */ CookieService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: CookieService, providedIn: "root" });
+    CookieService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(i0__namespace.ɵɵinject(i1__namespace.DOCUMENT), i0__namespace.ɵɵinject(i2__namespace.Platform)); }, token: CookieService, providedIn: "root" });
     CookieService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     CookieService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
         { type: i2.Platform }
@@ -237,11 +260,10 @@
         };
         return ScrollService;
     }());
-    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: ScrollService, providedIn: "root" });
+    ScrollService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0__namespace.ɵɵinject(i1__namespace.DOCUMENT), i0__namespace.ɵɵinject(i2__namespace.Platform)); }, token: ScrollService, providedIn: "root" });
     ScrollService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ScrollService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
         { type: i2.Platform }

@@ -9,6 +9,28 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.decorator, global.rxjs, global.rxjs.operators));
 }(this, (function (exports, common, i0, router, decorator, rxjs, operators) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -344,7 +366,7 @@
         });
         return FullContentService;
     }());
-    /** @nocollapse */ FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+    FullContentService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
     FullContentService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -455,7 +477,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     FullContentComponent.ctorParameters = function () { return [
         { type: i0.ElementRef },
         { type: i0.ChangeDetectorRef },
@@ -470,16 +491,13 @@
         fullscreenChange: [{ type: i0.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], FullContentComponent.prototype, "fullscreen", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], FullContentComponent.prototype, "hideTitle", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], FullContentComponent.prototype, "padding", void 0);
 
     var FullContentToggleDirective = /** @class */ (function () {
@@ -500,7 +518,6 @@
                     },
                 },] }
     ];
-    /** @nocollapse */
     FullContentToggleDirective.ctorParameters = function () { return [
         { type: FullContentComponent }
     ]; };

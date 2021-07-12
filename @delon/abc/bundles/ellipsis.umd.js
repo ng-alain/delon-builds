@@ -519,7 +519,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     EllipsisComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.NgZone },
@@ -538,20 +537,16 @@
         tail: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], EllipsisComponent.prototype, "tooltip", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], EllipsisComponent.prototype, "length", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], EllipsisComponent.prototype, "lines", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
 
     var COMPONENTS = [EllipsisComponent];

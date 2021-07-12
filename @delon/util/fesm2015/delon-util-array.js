@@ -1,4 +1,6 @@
-import { ɵɵdefineInjectable, ɵɵinject, Injectable } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable } from '@angular/core';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
@@ -234,11 +236,10 @@ class ArrayService {
             .values());
     }
 }
-/** @nocollapse */ ArrayService.ɵprov = ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(ɵɵinject(AlainConfigService)); }, token: ArrayService, providedIn: "root" });
+ArrayService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.ɵɵinject(i1.AlainConfigService)); }, token: ArrayService, providedIn: "root" });
 ArrayService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ArrayService.ctorParameters = () => [
     { type: AlainConfigService }
 ];

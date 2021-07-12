@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -193,7 +193,6 @@ EllipsisComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 EllipsisComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: NgZone },
@@ -212,20 +211,16 @@ EllipsisComponent.propDecorators = {
     tail: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], EllipsisComponent.prototype, "tooltip", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], EllipsisComponent.prototype, "length", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], EllipsisComponent.prototype, "lines", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], EllipsisComponent.prototype, "fullWidthRecognition", void 0);
 
 const COMPONENTS = [EllipsisComponent];

@@ -1,8 +1,11 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
+import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
 import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -41,11 +44,10 @@ class MediaService {
         return this.notify$.asObservable();
     }
 }
-/** @nocollapse */ MediaService.ɵprov = ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(ɵɵinject(AlainConfigService), ɵɵinject(LazyService)); }, token: MediaService, providedIn: "root" });
+MediaService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MediaService_Factory() { return new MediaService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: MediaService, providedIn: "root" });
 MediaService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 MediaService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: LazyService }
@@ -129,7 +131,6 @@ MediaComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 MediaComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
@@ -145,14 +146,10 @@ MediaComponent.propDecorators = {
     ready: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], MediaComponent.prototype, "delay", void 0);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], MediaComponent.prototype, "initDelay", null);
 
 const COMPONENTS = [MediaComponent];

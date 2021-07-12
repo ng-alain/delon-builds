@@ -9,6 +9,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.array = {}), global.ng.core, global.delon.util.config, global.tree));
 }(this, (function (exports, i0, i1, tree) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -596,11 +619,10 @@
         };
         return ArrayService;
     }());
-    /** @nocollapse */ ArrayService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0.ɵɵinject(i1.AlainConfigService)); }, token: ArrayService, providedIn: "root" });
+    ArrayService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ArrayService_Factory() { return new ArrayService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService)); }, token: ArrayService, providedIn: "root" });
     ArrayService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ArrayService.ctorParameters = function () { return [
         { type: i1.AlainConfigService }
     ]; };

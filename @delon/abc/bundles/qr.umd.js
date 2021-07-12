@@ -434,7 +434,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     QRComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
         { type: config.AlainConfigService },
@@ -455,16 +454,13 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], QRComponent.prototype, "padding", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], QRComponent.prototype, "size", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], QRComponent.prototype, "delay", void 0);
 
     var COMPONENTS = [QRComponent];

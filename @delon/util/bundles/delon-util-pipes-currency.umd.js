@@ -29,7 +29,6 @@
     CurrencyMegaPipe.decorators = [
         { type: core.Pipe, args: [{ name: 'mega' },] }
     ];
-    /** @nocollapse */
     CurrencyMegaPipe.ctorParameters = function () { return [
         { type: format.CurrencyService },
         { type: String, decorators: [{ type: core.Inject, args: [core.LOCALE_ID,] }] }
@@ -56,7 +55,6 @@
     CurrencyPricePipe.decorators = [
         { type: core.Pipe, args: [{ name: 'price' },] }
     ];
-    /** @nocollapse */
     CurrencyPricePipe.ctorParameters = function () { return [
         { type: format.CurrencyService }
     ]; };
@@ -78,7 +76,6 @@
     CurrencyCNYPipe.decorators = [
         { type: core.Pipe, args: [{ name: 'cny' },] }
     ];
-    /** @nocollapse */
     CurrencyCNYPipe.ctorParameters = function () { return [
         { type: format.CurrencyService }
     ]; };

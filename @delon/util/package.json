@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "11.10.4-9ac3a99c",
+  "version": "11.10.4-0dfb6dbc",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "extend": "^3.0.2",
-    "tslib": "^2.0.0"
+    "tslib": "^2.2.0"
   },
   "main": "bundles/delon-util.umd.js",
   "module": "fesm2015/delon-util.js",

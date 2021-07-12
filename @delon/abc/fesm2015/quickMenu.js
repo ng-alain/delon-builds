@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, ElementRef, Renderer2, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
@@ -64,7 +64,6 @@ QuickMenuComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 QuickMenuComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: ElementRef },
@@ -80,16 +79,13 @@ QuickMenuComponent.propDecorators = {
     expandChange: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], QuickMenuComponent.prototype, "top", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], QuickMenuComponent.prototype, "width", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], QuickMenuComponent.prototype, "expand", void 0);
 
 const COMPONENTS = [QuickMenuComponent];

@@ -1,4 +1,4 @@
-import { __rest, __decorate, __metadata } from 'tslib';
+import { __rest, __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Injectable, Inject, NgZone, ComponentFactoryResolver, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Optional, Input, Output, ViewChild, ViewContainerRef, Directive, ElementRef, Renderer2, TemplateRef, Injector, HostBinding, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -875,7 +875,6 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
 AjvSchemaValidatorFactory.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 AjvSchemaValidatorFactory.ctorParameters = () => [
     { type: AlainConfigService, decorators: [{ type: Inject, args: [AlainConfigService,] }] },
     { type: NgZone }
@@ -921,7 +920,6 @@ class WidgetFactory {
 WidgetFactory.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 WidgetFactory.ctorParameters = () => [
     { type: WidgetRegistry },
     { type: ComponentFactoryResolver }
@@ -1426,7 +1424,6 @@ SFComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SFComponent.ctorParameters = () => [
     { type: FormPropertyFactory },
     { type: TerminatorService },
@@ -1461,36 +1458,28 @@ SFComponent.propDecorators = {
     formError: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "liveValidate", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "firstVisual", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "onlyVisual", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "compact", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "loading", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "disabled", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "noColon", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SFComponent.prototype, "cleanValue", void 0);
 
 let nextUniqueId = 0;
@@ -1537,7 +1526,6 @@ SFItemComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SFItemComponent.ctorParameters = () => [
     { type: WidgetFactory },
     { type: TerminatorService }
@@ -1581,7 +1569,6 @@ class SFFixedDirective {
 SFFixedDirective.decorators = [
     { type: Directive, args: [{ selector: '[fixed-label]' },] }
 ];
-/** @nocollapse */
 SFFixedDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 }
@@ -1590,8 +1577,7 @@ SFFixedDirective.propDecorators = {
     num: [{ type: Input, args: ['fixed-label',] }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], SFFixedDirective.prototype, "num", void 0);
 
 class SFItemWrapComponent {
@@ -1642,7 +1628,6 @@ SFTemplateDirective.decorators = [
                 selector: '[sf-template]',
             },] }
 ];
-/** @nocollapse */
 SFTemplateDirective.ctorParameters = () => [
     { type: TemplateRef },
     { type: SFComponent }
@@ -1717,7 +1702,6 @@ class Widget {
 Widget.decorators = [
     { type: Directive }
 ];
-/** @nocollapse */
 Widget.ctorParameters = () => [
     { type: ChangeDetectorRef, decorators: [{ type: Inject, args: [ChangeDetectorRef,] }] },
     { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] },

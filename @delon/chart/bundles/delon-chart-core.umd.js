@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators));
 }(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     var G2Service = /** @class */ (function () {
         function G2Service(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
@@ -61,11 +85,10 @@
         };
         return G2Service;
     }());
-    /** @nocollapse */ G2Service.ɵprov = i0.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: G2Service, providedIn: "root" });
+    G2Service.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function G2Service_Factory() { return new G2Service(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(i2__namespace.LazyService)); }, token: G2Service, providedIn: "root" });
     G2Service.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     G2Service.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: i2.LazyService }
@@ -472,7 +495,6 @@
     G2BaseComponent.decorators = [
         { type: i0.Directive }
     ];
-    /** @nocollapse */
     G2BaseComponent.ctorParameters = function () { return [
         { type: G2Service },
         { type: i0.ElementRef },
@@ -487,24 +509,16 @@
         theme: [{ type: i0.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2BaseComponent.prototype, "repaint", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2BaseComponent.prototype, "delay", void 0);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], G2BaseComponent.prototype, "load", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Object)
+        decorator.ZoneOutside()
     ], G2BaseComponent.prototype, "destroyChart", null);
 
     function genMiniTooltipOptions(type, options) {

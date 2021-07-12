@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
@@ -199,7 +199,6 @@ G2WaterWaveComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 G2WaterWaveComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
@@ -217,20 +216,16 @@ G2WaterWaveComponent.propDecorators = {
     percent: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2WaterWaveComponent.prototype, "animate", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2WaterWaveComponent.prototype, "delay", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2WaterWaveComponent.prototype, "height", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2WaterWaveComponent.prototype, "percent", void 0);
 
 const COMPONENTS = [G2WaterWaveComponent];

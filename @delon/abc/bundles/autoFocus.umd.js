@@ -353,7 +353,6 @@
                     exportAs: 'autoFocus',
                 },] }
     ];
-    /** @nocollapse */
     AutoFocusDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.ChangeDetectorRef }
@@ -363,12 +362,10 @@
         delay: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], AutoFocusDirective.prototype, "enabled", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], AutoFocusDirective.prototype, "delay", void 0);
 
     var COMPONENTS = [AutoFocusDirective];

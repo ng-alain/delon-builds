@@ -9,6 +9,31 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.loading = {}), global.ng.core, global.ng.cdk.bidi, global.ng.cdk.overlay, global.ng.cdk.portal, global.i2, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon'], global['ng-zorro-antd/spin']));
 }(this, (function (exports, i0, i3, i1, portal, i2, rxjs, operators, common, icon, spin) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     var LoadingDefaultComponent = /** @class */ (function () {
         function LoadingDefaultComponent() {
             this.dir = 'ltr';
@@ -119,11 +144,10 @@
         };
         return LoadingService;
     }());
-    /** @nocollapse */ LoadingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(i0.ɵɵinject(i1.Overlay), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i3.Directionality, 8)); }, token: LoadingService, providedIn: "root" });
+    LoadingService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(i0__namespace.ɵɵinject(i1__namespace.Overlay), i0__namespace.ɵɵinject(i2__namespace.AlainConfigService), i0__namespace.ɵɵinject(i3__namespace.Directionality, 8)); }, token: LoadingService, providedIn: "root" });
     LoadingService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     LoadingService.ctorParameters = function () { return [
         { type: i1.Overlay },
         { type: i2.AlainConfigService },

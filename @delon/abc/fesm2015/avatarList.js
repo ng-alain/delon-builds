@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Optional, ContentChildren, NgModule } from '@angular/core';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { InputNumber } from '@delon/util/decorator';
 import { Subject } from 'rxjs';
@@ -95,7 +95,6 @@ AvatarListComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 AvatarListComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: Directionality, decorators: [{ type: Optional }] }
@@ -107,8 +106,7 @@ AvatarListComponent.propDecorators = {
     excessItemsStyle: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], AvatarListComponent.prototype, "maxLength", void 0);
 
 const COMPONENTS = [AvatarListComponent, AvatarListItemComponent];

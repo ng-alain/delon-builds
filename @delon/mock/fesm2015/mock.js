@@ -1,4 +1,6 @@
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, Injector, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, Injector, NgModule } from '@angular/core';
+import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { deepCopy } from '@delon/util/other';
@@ -152,11 +154,10 @@ class MockService {
         this.clearCache();
     }
 }
-/** @nocollapse */ MockService.ɵprov = ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(ɵɵinject(AlainConfigService), ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
+MockService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
 MockService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 MockService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: MockOptions }
@@ -260,7 +261,6 @@ class MockInterceptor {
 MockInterceptor.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 MockInterceptor.ctorParameters = () => [
     { type: Injector }
 ];

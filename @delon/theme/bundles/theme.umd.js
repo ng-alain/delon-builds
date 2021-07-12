@@ -9,6 +9,38 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.delon.util['date-time'], global.DateFns, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
 }(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateTime, dateFns, i18n, overlay, icons, icon) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+    var i2__namespace$1 = /*#__PURE__*/_interopNamespace(i2$1);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i1__namespace$1 = /*#__PURE__*/_interopNamespace(i1$1);
+    var i1__namespace$2 = /*#__PURE__*/_interopNamespace(i1$2);
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i1__namespace$3 = /*#__PURE__*/_interopNamespace(i1$3);
+    var i1__namespace$4 = /*#__PURE__*/_interopNamespace(i1$4);
+    var i1__namespace$5 = /*#__PURE__*/_interopNamespace(i1$5);
+    var i1__namespace$6 = /*#__PURE__*/_interopNamespace(i1$6);
+
     function WINDOW_FACTORY() {
         return typeof window === 'object' && !!window ? window : null;
     }
@@ -402,7 +434,7 @@
         };
         return AlainI18NServiceFake;
     }());
-    /** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+    AlainI18NServiceFake.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
     AlainI18NServiceFake.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -669,11 +701,10 @@
         };
         return MenuService;
     }());
-    /** @nocollapse */ MenuService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i2.ACLService, 8)); }, token: MenuService, providedIn: "root" });
+    MenuService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function MenuService_Factory() { return new MenuService(i0__namespace.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0__namespace.ɵɵinject(i2__namespace.ACLService, 8)); }, token: MenuService, providedIn: "root" });
     MenuService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     MenuService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
@@ -755,11 +786,10 @@
         };
         return ScrollService;
     }());
-    /** @nocollapse */ ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2$1.Platform)); }, token: ScrollService, providedIn: "root" });
+    ScrollService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0__namespace.ɵɵinject(i1__namespace.DOCUMENT), i0__namespace.ɵɵinject(i2__namespace$1.Platform)); }, token: ScrollService, providedIn: "root" });
     ScrollService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ScrollService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
         { type: i2$1.Platform }
@@ -850,11 +880,10 @@
         };
         return SettingsService;
     }());
-    /** @nocollapse */ SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i2__namespace$1.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
     SettingsService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     SettingsService.ctorParameters = function () { return [
         { type: i2$1.Platform },
         { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
@@ -897,11 +926,10 @@
         };
         return ResponsiveService;
     }());
-    /** @nocollapse */ ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+    ResponsiveService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
     ResponsiveService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ResponsiveService.ctorParameters = function () { return [
         { type: i1$1.AlainConfigService }
     ]; };
@@ -1003,11 +1031,10 @@
         };
         return RTLService;
     }());
-    /** @nocollapse */ RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    RTLService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0__namespace.ɵɵinject(i1__namespace$2.Directionality), i0__namespace.ɵɵinject(SettingsService), i0__namespace.ɵɵinject(i3__namespace.NzConfigService), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService), i0__namespace.ɵɵinject(i2__namespace$1.Platform), i0__namespace.ɵɵinject(i1__namespace.DOCUMENT)); }, token: RTLService, providedIn: "root" });
     RTLService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     RTLService.ctorParameters = function () { return [
         { type: i1$2.Directionality },
         { type: SettingsService },
@@ -1109,7 +1136,7 @@
             if (this._prefix) {
                 newTitles.push(this._prefix);
             }
-            newTitles.push.apply(newTitles, __spread(title));
+            newTitles.push.apply(newTitles, __spreadArray([], __read(title)));
             if (this._suffix) {
                 newTitles.push(this._suffix);
             }
@@ -1136,11 +1163,10 @@
         };
         return TitleService;
     }());
-    /** @nocollapse */ TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+    TitleService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i1__namespace$3.Title), i0__namespace.ɵɵinject(MenuService), i0__namespace.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0__namespace.ɵɵinject(i1__namespace.DOCUMENT)); }, token: TitleService, providedIn: "root" });
     TitleService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     TitleService.ctorParameters = function () { return [
         { type: i0.Injector },
         { type: i1$3.Title },
@@ -1269,7 +1295,6 @@
     DelonLocaleService.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     DelonLocaleService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [DELON_LOCALE,] }] }
     ]; };
@@ -1282,7 +1307,7 @@
         deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
     };
 
-    var ɵ0 = zhCN;
+    var ɵ0$1 = zhCN;
     var DelonLocaleModule = /** @class */ (function () {
         function DelonLocaleModule() {
         }
@@ -1290,7 +1315,7 @@
     }());
     DelonLocaleModule.decorators = [
         { type: i0.NgModule, args: [{
-                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0 }, DELON_LOCALE_SERVICE_PROVIDER],
+                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER],
                 },] }
     ];
 
@@ -2303,11 +2328,10 @@
         };
         return ModalHelper;
     }());
-    /** @nocollapse */ ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
+    ModalHelper.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0__namespace.ɵɵinject(i1__namespace$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
     ModalHelper.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ModalHelper.ctorParameters = function () { return [
         { type: i1$4.NzModalService }
     ]; };
@@ -2390,11 +2414,10 @@
         };
         return DrawerHelper;
     }());
-    /** @nocollapse */ DrawerHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0.ɵɵinject(i1$5.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
+    DrawerHelper.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function DrawerHelper_Factory() { return new DrawerHelper(i0__namespace.ɵɵinject(i1__namespace$5.NzDrawerService)); }, token: DrawerHelper, providedIn: "root" });
     DrawerHelper.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     DrawerHelper.ctorParameters = function () { return [
         { type: i1$5.NzDrawerService }
     ]; };
@@ -2499,8 +2522,7 @@
         };
         _HttpClient.prototype.post = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('POST', url, Object.assign({ body: body,
-                params: params }, options));
+            return this.request('POST', url, Object.assign({ body: body, params: params }, options));
         };
         _HttpClient.prototype.delete = function (url, params, options) {
             if (options === void 0) { options = {}; }
@@ -2522,18 +2544,15 @@
         };
         _HttpClient.prototype.patch = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('PATCH', url, Object.assign({ body: body,
-                params: params }, options));
+            return this.request('PATCH', url, Object.assign({ body: body, params: params }, options));
         };
         _HttpClient.prototype.put = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('PUT', url, Object.assign({ body: body,
-                params: params }, options));
+            return this.request('PUT', url, Object.assign({ body: body, params: params }, options));
         };
         _HttpClient.prototype.form = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
-            return this.request('POST', url, Object.assign(Object.assign({ body: body,
-                params: params }, options), { headers: {
+            return this.request('POST', url, Object.assign(Object.assign({ body: body, params: params }, options), { headers: {
                     'content-type': "application/x-www-form-urlencoded",
                 } }));
         };
@@ -2548,11 +2567,10 @@
         };
         return _HttpClient;
     }());
-    /** @nocollapse */ _HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+    _HttpClient.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0__namespace.ɵɵinject(i1__namespace$6.HttpClient), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
     _HttpClient.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     _HttpClient.ctorParameters = function () { return [
         { type: i1$6.HttpClient },
         { type: i1$1.AlainConfigService }
@@ -2574,7 +2592,6 @@
     BaseApi.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     BaseApi.ctorParameters = function () { return [
         { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] }
     ]; };
@@ -2788,7 +2805,6 @@
     DatePipe.decorators = [
         { type: i0.Pipe, args: [{ name: '_date' },] }
     ];
-    /** @nocollapse */
     DatePipe.ctorParameters = function () { return [
         { type: i18n.NzI18nService }
     ]; };
@@ -2811,7 +2827,6 @@
     CNCurrencyPipe.decorators = [
         { type: i0.Pipe, args: [{ name: '_currency' },] }
     ];
-    /** @nocollapse */
     CNCurrencyPipe.ctorParameters = function () { return [
         { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
     ]; };
@@ -2868,7 +2883,6 @@
     YNPipe.decorators = [
         { type: i0.Pipe, args: [{ name: 'yn' },] }
     ];
-    /** @nocollapse */
     YNPipe.ctorParameters = function () { return [
         { type: i1$3.DomSanitizer }
     ]; };
@@ -2885,7 +2899,6 @@
     HTMLPipe.decorators = [
         { type: i0.Pipe, args: [{ name: 'html' },] }
     ];
-    /** @nocollapse */
     HTMLPipe.ctorParameters = function () { return [
         { type: i1$3.DomSanitizer }
     ]; };
@@ -2902,7 +2915,6 @@
     URLPipe.decorators = [
         { type: i0.Pipe, args: [{ name: 'url' },] }
     ];
-    /** @nocollapse */
     URLPipe.ctorParameters = function () { return [
         { type: i1$3.DomSanitizer }
     ]; };
@@ -2919,7 +2931,6 @@
     I18nPipe.decorators = [
         { type: i0.Pipe, args: [{ name: 'i18n' },] }
     ];
-    /** @nocollapse */
     I18nPipe.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] }
     ]; };
@@ -2927,7 +2938,7 @@
     var HELPERS = [ModalHelper, DrawerHelper];
     var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
-    var ɵ0$1 = {
+    var ɵ0 = {
         layout: 'layout',
         user: 'user',
         app: 'app',
@@ -2935,18 +2946,18 @@
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
         function AlainThemeModule(iconSrv) {
-            iconSrv.addIcon.apply(iconSrv, __spread(ICONS));
+            iconSrv.addIcon.apply(iconSrv, __spreadArray([], __read(ICONS)));
         }
         AlainThemeModule.forRoot = function () {
             return {
                 ngModule: AlainThemeModule,
-                providers: __spread(HELPERS),
+                providers: __spreadArray([], __read(HELPERS)),
             };
         };
         AlainThemeModule.forChild = function () {
             return {
                 ngModule: AlainThemeModule,
-                providers: __spread(HELPERS),
+                providers: __spreadArray([], __read(HELPERS)),
             };
         };
         return AlainThemeModule;
@@ -2954,17 +2965,16 @@
     AlainThemeModule.decorators = [
         { type: i0.NgModule, args: [{
                     imports: [i1.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
-                    declarations: __spread(PIPES),
+                    declarations: __spreadArray([], __read(PIPES)),
                     providers: [
                         {
                             provide: ALAIN_SETTING_KEYS,
-                            useValue: ɵ0$1,
+                            useValue: ɵ0,
                         },
                     ],
-                    exports: __spread(PIPES, [DelonLocaleModule]),
+                    exports: __spreadArray(__spreadArray([], __read(PIPES)), [DelonLocaleModule]),
                 },] }
     ];
-    /** @nocollapse */
     AlainThemeModule.ctorParameters = function () { return [
         { type: icon.NzIconService }
     ]; };
@@ -3039,7 +3049,6 @@
     exports.tr_TR = trTR;
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;
-    exports.ɵ0 = ɵ0;
     exports.ɵa = I18nPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });

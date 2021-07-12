@@ -330,7 +330,7 @@
     var G2MiniAreaComponent = /** @class */ (function (_super) {
         __extends(G2MiniAreaComponent, _super);
         function G2MiniAreaComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             // #region fields
             _this.color = 'rgba(24, 144, 255, 0.2)';
             _this.borderColor = '#1890FF';
@@ -429,24 +429,19 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2MiniAreaComponent.prototype, "borderWidth", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2MiniAreaComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2MiniAreaComponent.prototype, "fit", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2MiniAreaComponent.prototype, "line", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2MiniAreaComponent.prototype, "animate", void 0);
 
     var COMPONENTS = [G2MiniAreaComponent];

@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { toNumber, InputNumber } from '@delon/util/decorator';
@@ -31,7 +31,6 @@ G2MiniProgressComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 G2MiniProgressComponent.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: ChangeDetectorRef }
@@ -43,16 +42,13 @@ G2MiniProgressComponent.propDecorators = {
     strokeWidth: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2MiniProgressComponent.prototype, "target", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2MiniProgressComponent.prototype, "percent", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
 
 const COMPONENTS = [G2MiniProgressComponent];

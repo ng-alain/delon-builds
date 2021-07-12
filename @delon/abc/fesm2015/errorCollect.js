@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Optional, Input, NgModule } from '@angular/core';
@@ -94,7 +94,6 @@ ErrorCollectComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 ErrorCollectComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: ChangeDetectorRef },
@@ -107,12 +106,10 @@ ErrorCollectComponent.propDecorators = {
     offsetTop: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], ErrorCollectComponent.prototype, "freq", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], ErrorCollectComponent.prototype, "offsetTop", void 0);
 
 const COMPONENTS = [ErrorCollectComponent];

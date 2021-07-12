@@ -1,18 +1,20 @@
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, ɵɵdefineInjectable, ɵɵinject, INJECTOR, Injector, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
+import * as i1 from '@delon/theme';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, ROUTER_CONFIGURATION, NavigationStart, NavigationEnd, RouterModule } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { takeUntil, debounceTime, filter } from 'rxjs/operators';
 import { ScrollService } from '@delon/util/browser';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 
 class ReuseTabContextMenuComponent {
     constructor(i18nSrv) {
@@ -75,7 +77,6 @@ ReuseTabContextMenuComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 ReuseTabContextMenuComponent.ctorParameters = () => [
     { type: DelonLocaleService }
 ];
@@ -140,7 +141,6 @@ class ReuseTabContextService {
 ReuseTabContextService.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 ReuseTabContextService.ctorParameters = () => [
     { type: Overlay }
 ];
@@ -166,7 +166,6 @@ ReuseTabContextComponent.decorators = [
                 template: ``
             },] }
 ];
-/** @nocollapse */
 ReuseTabContextComponent.ctorParameters = () => [
     { type: ReuseTabContextService }
 ];
@@ -198,7 +197,6 @@ ReuseTabContextDirective.decorators = [
                 },
             },] }
 ];
-/** @nocollapse */
 ReuseTabContextDirective.ctorParameters = () => [
     { type: ReuseTabContextService }
 ];
@@ -758,11 +756,10 @@ class ReuseTabService {
         }
     }
 }
-/** @nocollapse */ ReuseTabService.ɵprov = ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(ɵɵinject(INJECTOR), ɵɵinject(MenuService)); }, token: ReuseTabService, providedIn: "root" });
+ReuseTabService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
 ReuseTabService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ReuseTabService.ctorParameters = () => [
     { type: Injector },
     { type: MenuService }
@@ -1006,7 +1003,6 @@ ReuseTabComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 ReuseTabComponent.ctorParameters = () => [
     { type: ReuseTabService },
     { type: ChangeDetectorRef },
@@ -1039,28 +1035,22 @@ ReuseTabComponent.propDecorators = {
     close: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], ReuseTabComponent.prototype, "debug", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], ReuseTabComponent.prototype, "max", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], ReuseTabComponent.prototype, "tabMaxWidth", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], ReuseTabComponent.prototype, "allowClose", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], ReuseTabComponent.prototype, "keepingScroll", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], ReuseTabComponent.prototype, "disabled", void 0);
 
 class ReuseTabStrategy {

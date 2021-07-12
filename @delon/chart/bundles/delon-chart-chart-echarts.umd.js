@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['chart-echarts'] = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators, global.ng.common, global.skeleton));
 }(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators, common, skeleton) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+
     var ChartEChartsService = /** @class */ (function () {
         function ChartEChartsService(cogSrv, lazySrv) {
             this.cogSrv = cogSrv;
@@ -67,11 +91,10 @@
         };
         return ChartEChartsService;
     }());
-    /** @nocollapse */ ChartEChartsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ChartEChartsService_Factory() { return new ChartEChartsService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i2.LazyService)); }, token: ChartEChartsService, providedIn: "root" });
+    ChartEChartsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ChartEChartsService_Factory() { return new ChartEChartsService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(i2__namespace.LazyService)); }, token: ChartEChartsService, providedIn: "root" });
     ChartEChartsService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ChartEChartsService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: i2.LazyService }
@@ -536,7 +559,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ChartEChartsComponent.ctorParameters = function () { return [
         { type: ChartEChartsService },
         { type: i0.ChangeDetectorRef },
@@ -553,10 +575,7 @@
         events: [{ type: i0.Output }]
     };
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], ChartEChartsComponent.prototype, "load", null);
 
     var COMPONENTS = [ChartEChartsComponent];

@@ -1,4 +1,5 @@
-import { InjectionToken, ɵɵdefineInjectable, ɵɵinject, Injectable, Optional, Inject } from '@angular/core';
+import * as i0 from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject } from '@angular/core';
 import { deepMergeKey } from '@delon/util/other';
 
 class AlainSVConfig {
@@ -33,11 +34,10 @@ class AlainConfigService {
         this.config[componentName] = Object.assign(Object.assign({}, this.config[componentName]), value);
     }
 }
-/** @nocollapse */ AlainConfigService.ɵprov = ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
+AlainConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(i0.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
 AlainConfigService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 AlainConfigService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_CONFIG,] }] }
 ];

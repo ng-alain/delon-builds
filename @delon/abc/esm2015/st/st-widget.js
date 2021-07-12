@@ -17,7 +17,7 @@ export class STWidgetRegistry {
         return this._widgets[type];
     }
 }
-/** @nocollapse */ STWidgetRegistry.ɵprov = i0.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
+STWidgetRegistry.ɵprov = i0.ɵɵdefineInjectable({ factory: function STWidgetRegistry_Factory() { return new STWidgetRegistry(); }, token: STWidgetRegistry, providedIn: "root" });
 STWidgetRegistry.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];

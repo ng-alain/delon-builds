@@ -423,7 +423,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SEContainerComponent.ctorParameters = function () { return [
         { type: config.AlainConfigService }
     ]; };
@@ -441,28 +440,22 @@
         errors: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SEContainerComponent.prototype, "colInCon", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SEContainerComponent.prototype, "col", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SEContainerComponent.prototype, "labelWidth", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], SEContainerComponent.prototype, "firstVisual", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], SEContainerComponent.prototype, "ingoreDirty", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SEContainerComponent.prototype, "line", void 0);
 
     var SETitleComponent = /** @class */ (function () {
@@ -498,7 +491,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SETitleComponent.ctorParameters = function () { return [
         { type: SEContainerComponent, decorators: [{ type: core.Host }, { type: core.Optional }] },
         { type: core.ElementRef },
@@ -590,7 +582,7 @@
             clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
             var repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parent.colInCon || parent.col) : [];
-            clsMap.push.apply(clsMap, __spread(["ant-form-item"], repCls, [prefixCls + "__item"]));
+            clsMap.push.apply(clsMap, __spreadArray(__spreadArray(["ant-form-item"], __read(repCls)), [prefixCls + "__item"]));
             if (line || parent.line) {
                 clsMap.push(prefixCls + "__line");
             }
@@ -691,7 +683,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SEComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: SEContainerComponent, decorators: [{ type: core.Optional }, { type: core.Host }] },
@@ -717,20 +708,16 @@
         id: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SEComponent.prototype, "col", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SEComponent.prototype, "required", void 0);
     __decorate([
-        decorator.InputBoolean(null),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean(null)
     ], SEComponent.prototype, "line", void 0);
     __decorate([
-        decorator.InputNumber(null),
-        __metadata("design:type", Number)
+        decorator.InputNumber(null)
     ], SEComponent.prototype, "labelWidth", void 0);
 
     var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];

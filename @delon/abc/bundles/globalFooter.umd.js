@@ -348,8 +348,7 @@
         blankTarget: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
 
     var GlobalFooterComponent = /** @class */ (function () {
@@ -417,7 +416,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     GlobalFooterComponent.ctorParameters = function () { return [
         { type: router.Router },
         { type: undefined, decorators: [{ type: core.Inject, args: [token.WINDOW,] }] },

@@ -54,7 +54,6 @@ ResultComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 ResultComponent.ctorParameters = () => [
     { type: Directionality, decorators: [{ type: Optional }] }
 ];

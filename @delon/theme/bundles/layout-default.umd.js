@@ -90,7 +90,6 @@
                   template: "\n    <div class=\"alain-default__progress-bar\" *ngIf=\"isFetching\"></div>\n    <layout-default-header></layout-default-header>\n    <div *ngIf=\"!options.hideAside\" class=\"alain-default__aside\">\n      <div class=\"alain-default__aside-inner\">\n        <ng-container *ngTemplateOutlet=\"asideUser\"></ng-container>\n        <ng-container *ngTemplateOutlet=\"nav\"></ng-container>\n        <layout-default-nav *ngIf=\"!nav\" class=\"d-block py-lg\"></layout-default-nav>\n      </div>\n    </div>\n    <section class=\"alain-default__content\">\n      <ng-container *ngTemplateOutlet=\"content\"></ng-container>\n      <ng-content></ng-content>\n    </section>\n  "
               },] }
   ];
-  /** @nocollapse */
   LayoutDefaultComponent.ctorParameters = function () { return [
       { type: router.Router },
       { type: message.NzMessageService },
@@ -194,7 +193,6 @@
                   changeDetection: core.ChangeDetectionStrategy.OnPush
               },] }
   ];
-  /** @nocollapse */
   LayoutDefaultHeaderComponent.ctorParameters = function () { return [
       { type: theme.SettingsService },
       { type: LayoutDefaultComponent },
@@ -784,7 +782,6 @@
                   encapsulation: core.ViewEncapsulation.None
               },] }
   ];
-  /** @nocollapse */
   LayoutDefaultNavComponent.ctorParameters = function () { return [
       { type: theme.MenuService },
       { type: theme.SettingsService },
@@ -806,30 +803,22 @@
       select: [{ type: core.Output }]
   };
   __decorate([
-      decorator.InputBoolean(),
-      __metadata("design:type", Object)
+      decorator.InputBoolean()
   ], LayoutDefaultNavComponent.prototype, "disabledAcl", void 0);
   __decorate([
-      decorator.InputBoolean(),
-      __metadata("design:type", Object)
+      decorator.InputBoolean()
   ], LayoutDefaultNavComponent.prototype, "autoCloseUnderPad", void 0);
   __decorate([
-      decorator.InputBoolean(),
-      __metadata("design:type", Object)
+      decorator.InputBoolean()
   ], LayoutDefaultNavComponent.prototype, "recursivePath", void 0);
   __decorate([
-      decorator.InputBoolean(),
-      __metadata("design:type", Object)
+      decorator.InputBoolean()
   ], LayoutDefaultNavComponent.prototype, "openStrictly", void 0);
   __decorate([
-      decorator.InputNumber(),
-      __metadata("design:type", Object)
+      decorator.InputNumber()
   ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
   __decorate([
-      decorator.ZoneOutside(),
-      __metadata("design:type", Function),
-      __metadata("design:paramtypes", [MouseEvent, Object]),
-      __metadata("design:returntype", void 0)
+      decorator.ZoneOutside()
   ], LayoutDefaultNavComponent.prototype, "showSubMenu", null);
 
   var COMPONENTS = [

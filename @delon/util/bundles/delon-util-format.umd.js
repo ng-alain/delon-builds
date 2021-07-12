@@ -9,6 +9,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other, global.ng.common, global.ng.core, global.delon.util.config));
 }(this, (function (exports, other, common, i0, i1) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     /**
      * String formatting
      *
@@ -654,11 +677,10 @@
         };
         return CurrencyService;
     }());
-    /** @nocollapse */ CurrencyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i0.LOCALE_ID), i0.ɵɵinject(i0.DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
+    CurrencyService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function CurrencyService_Factory() { return new CurrencyService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(i0__namespace.LOCALE_ID), i0__namespace.ɵɵinject(i0__namespace.DEFAULT_CURRENCY_CODE)); }, token: CurrencyService, providedIn: "root" });
     CurrencyService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     CurrencyService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] },

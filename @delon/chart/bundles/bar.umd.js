@@ -331,7 +331,7 @@
     var G2BarComponent = /** @class */ (function (_super) {
         __extends(G2BarComponent, _super);
         function G2BarComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.color = 'rgba(24, 144, 255, 0.85)';
             _this.height = 0;
             _this.padding = 'auto';
@@ -438,12 +438,10 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2BarComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2BarComponent.prototype, "autoLabel", void 0);
 
     var COMPONENTS = [G2BarComponent];

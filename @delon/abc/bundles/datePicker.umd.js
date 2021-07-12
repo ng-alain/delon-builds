@@ -464,7 +464,6 @@
                     ]
                 },] }
     ];
-    /** @nocollapse */
     RangePickerComponent.ctorParameters = function () { return [
         { type: platformBrowser.DomSanitizer },
         { type: config.AlainConfigService }
@@ -498,8 +497,7 @@
         nzOnOk: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean)
+        decorator.InputBoolean()
     ], RangePickerComponent.prototype, "nzShowToday", void 0);
 
     var RangePickerShortcutTplComponent = /** @class */ (function () {
@@ -686,7 +684,6 @@
                     exportAs: 'extendRangePicker',
                 },] }
     ];
-    /** @nocollapse */
     RangePickerDirective.ctorParameters = function () { return [
         { type: platformBrowser.DomSanitizer },
         { type: config.AlainConfigService },

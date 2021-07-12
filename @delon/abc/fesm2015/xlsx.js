@@ -1,8 +1,12 @@
-import { __awaiter, __decorate, __metadata } from 'tslib';
+import { __awaiter, __decorate } from 'tslib';
+import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { ɵɵdefineInjectable, ɵɵinject, NgZone, Injectable, Directive, Input, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, NgZone, Directive, Input, NgModule } from '@angular/core';
+import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
+import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
@@ -109,11 +113,10 @@ class XlsxService {
         return res;
     }
 }
-/** @nocollapse */ XlsxService.ɵprov = ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: XlsxService, providedIn: "root" });
+XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
 XlsxService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 XlsxService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService },
@@ -121,16 +124,10 @@ XlsxService.ctorParameters = () => [
     { type: NgZone }
 ];
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Object)
+    ZoneOutside()
 ], XlsxService.prototype, "read", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
+    ZoneOutside()
 ], XlsxService.prototype, "export", null);
 
 class XlsxDirective {
@@ -150,7 +147,6 @@ XlsxDirective.decorators = [
                 },
             },] }
 ];
-/** @nocollapse */
 XlsxDirective.ctorParameters = () => [
     { type: XlsxService }
 ];

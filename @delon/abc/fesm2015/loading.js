@@ -1,7 +1,11 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ɵɵdefineInjectable, ɵɵinject, Injectable, Optional, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, Optional, NgModule } from '@angular/core';
+import * as i3 from '@angular/cdk/bidi';
 import { Directionality } from '@angular/cdk/bidi';
+import * as i1 from '@angular/cdk/overlay';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
+import * as i2 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
@@ -104,11 +108,10 @@ class LoadingService {
         this.loading$.unsubscribe();
     }
 }
-/** @nocollapse */ LoadingService.ɵprov = ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(ɵɵinject(Overlay), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: LoadingService, providedIn: "root" });
+LoadingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LoadingService_Factory() { return new LoadingService(i0.ɵɵinject(i1.Overlay), i0.ɵɵinject(i2.AlainConfigService), i0.ɵɵinject(i3.Directionality, 8)); }, token: LoadingService, providedIn: "root" });
 LoadingService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 LoadingService.ctorParameters = () => [
     { type: Overlay },
     { type: AlainConfigService },

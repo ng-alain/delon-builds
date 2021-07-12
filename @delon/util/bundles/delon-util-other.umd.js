@@ -11,7 +11,29 @@
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
     var extend__default = /*#__PURE__*/_interopDefaultLegacy(extend);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -384,7 +406,7 @@
                 var fromValue = obj[key];
                 var toValue = target[key];
                 if (Array.isArray(toValue)) {
-                    target[key] = arrayProcessMethod ? fromValue : __spread(toValue, fromValue);
+                    target[key] = arrayProcessMethod ? fromValue : __spreadArray(__spreadArray([], __read(toValue)), __read(fromValue));
                 }
                 else if (fromValue != null && isObject(fromValue) && toValue != null && isObject(toValue)) {
                     target[key] = merge(toValue, fromValue);
@@ -408,7 +430,7 @@
         for (var _i = 1; _i < arguments.length; _i++) {
             objects[_i - 1] = arguments[_i];
         }
-        return deepMergeKey.apply(void 0, __spread([original, false], objects));
+        return deepMergeKey.apply(void 0, __spreadArray([original, false], __read(objects)));
     }
 
     var record = {};
@@ -432,8 +454,8 @@
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        if (ngDevMode && notRecorded.apply(void 0, __spread(args))) {
-            consoleFunc.apply(void 0, __spread(args));
+        if (ngDevMode && notRecorded.apply(void 0, __spreadArray([], __read(args)))) {
+            consoleFunc.apply(void 0, __spreadArray([], __read(args)));
         }
     }
     // Warning should only be printed in dev mode and only once.
@@ -442,13 +464,13 @@
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        return consoleCommonBehavior.apply(void 0, __spread([function () {
+        return consoleCommonBehavior.apply(void 0, __spreadArray([function () {
                 var arg = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
                     arg[_i] = arguments[_i];
                 }
-                return console.warn.apply(console, __spread([PREFIX], arg));
-            }], args));
+                return console.warn.apply(console, __spreadArray([PREFIX], __read(arg)));
+            }], __read(args)));
     };
     var deprecation11 = function (comp, from, to) {
         warnDeprecation(comp + " => '" + from + "' is going to be removed in 11.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
@@ -462,13 +484,13 @@
             return function () { };
         }
         var stack = new Error().stack;
-        return consoleCommonBehavior.apply(void 0, __spread([function () {
+        return consoleCommonBehavior.apply(void 0, __spreadArray([function () {
                 var arg = [];
                 for (var _i = 0; _i < arguments.length; _i++) {
                     arg[_i] = arguments[_i];
                 }
-                return console.warn.apply(console, __spread([PREFIX, 'deprecated:'], arg, [stack]));
-            }], args));
+                return console.warn.apply(console, __spreadArray(__spreadArray([PREFIX, 'deprecated:'], __read(arg)), [stack]));
+            }], __read(args)));
     };
     // Log should only be printed in dev mode.
     var log = function () {
@@ -477,7 +499,7 @@
             args[_i] = arguments[_i];
         }
         if (ngDevMode) {
-            console.log.apply(console, __spread([PREFIX], args));
+            console.log.apply(console, __spreadArray([PREFIX], __read(args)));
         }
     };
 
@@ -594,11 +616,10 @@
         };
         return LazyService;
     }());
-    /** @nocollapse */ LazyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(i0.ɵɵinject(i1.DOCUMENT)); }, token: LazyService, providedIn: "root" });
+    LazyService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(i0__namespace.ɵɵinject(i1__namespace.DOCUMENT)); }, token: LazyService, providedIn: "root" });
     LazyService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     LazyService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
     ]; };

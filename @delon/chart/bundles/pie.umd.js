@@ -330,7 +330,7 @@
     var G2PieComponent = /** @class */ (function (_super) {
         __extends(G2PieComponent, _super);
         function G2PieComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.legendData = [];
             // #region fields
             _this.animate = true;
@@ -516,36 +516,28 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2PieComponent.prototype, "animate", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2PieComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2PieComponent.prototype, "hasLegend", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2PieComponent.prototype, "percent", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2PieComponent.prototype, "tooltip", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2PieComponent.prototype, "lineWidth", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2PieComponent.prototype, "blockMaxWidth", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2PieComponent.prototype, "select", void 0);
 
     var COMPONENTS = [G2PieComponent];

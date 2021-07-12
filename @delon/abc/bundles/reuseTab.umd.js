@@ -9,6 +9,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.cdk.platform, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
 }(this, (function (exports, i0, i1, rxjs, overlay, portal, platform, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     var ReuseTabContextMenuComponent = /** @class */ (function () {
         function ReuseTabContextMenuComponent(i18nSrv) {
             this.i18nSrv = i18nSrv;
@@ -79,7 +102,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ReuseTabContextMenuComponent.ctorParameters = function () { return [
         { type: i1.DelonLocaleService }
     ]; };
@@ -146,7 +168,6 @@
     ReuseTabContextService.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     ReuseTabContextService.ctorParameters = function () { return [
         { type: overlay.Overlay }
     ]; };
@@ -178,7 +199,6 @@
                     template: ""
                 },] }
     ];
-    /** @nocollapse */
     ReuseTabContextComponent.ctorParameters = function () { return [
         { type: ReuseTabContextService }
     ]; };
@@ -211,7 +231,6 @@
                     },
                 },] }
     ];
-    /** @nocollapse */
     ReuseTabContextDirective.ctorParameters = function () { return [
         { type: ReuseTabContextService }
     ]; };
@@ -541,6 +560,7 @@
     /**
      * 复用匹配模式
      */
+    exports.ReuseTabMatchMode = void 0;
     (function (ReuseTabMatchMode) {
         /**
          * （推荐）按菜单 `Menu` 配置
@@ -940,7 +960,7 @@
             if (!this.debug)
                 return;
             // tslint:disable-next-line:no-console
-            console.warn.apply(console, __spread(args));
+            console.warn.apply(console, __spreadArray([], __read(args)));
         };
         ReuseTabService.prototype.init = function () {
             this.initScroll();
@@ -1147,11 +1167,10 @@
         };
         return ReuseTabService;
     }());
-    /** @nocollapse */ ReuseTabService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1.MenuService)); }, token: ReuseTabService, providedIn: "root" });
+    ReuseTabService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ReuseTabService_Factory() { return new ReuseTabService(i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i1__namespace.MenuService)); }, token: ReuseTabService, providedIn: "root" });
     ReuseTabService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     ReuseTabService.ctorParameters = function () { return [
         { type: i0.Injector },
         { type: i1.MenuService }
@@ -1408,7 +1427,6 @@
                     encapsulation: i0.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ReuseTabComponent.ctorParameters = function () { return [
         { type: ReuseTabService },
         { type: i0.ChangeDetectorRef },
@@ -1441,28 +1459,22 @@
         close: [{ type: i0.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], ReuseTabComponent.prototype, "debug", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], ReuseTabComponent.prototype, "max", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], ReuseTabComponent.prototype, "tabMaxWidth", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], ReuseTabComponent.prototype, "allowClose", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], ReuseTabComponent.prototype, "keepingScroll", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], ReuseTabComponent.prototype, "disabled", void 0);
 
     var ReuseTabStrategy = /** @class */ (function () {
@@ -1497,7 +1509,7 @@
     ReuseTabModule.decorators = [
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, router.RouterModule, i1.DelonLocaleModule, menu.NzMenuModule, tabs.NzTabsModule, icon.NzIconModule, overlay.OverlayModule],
-                    declarations: __spread(COMPONENTS, NOEXPORTS),
+                    declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), __read(NOEXPORTS)),
                     exports: COMPONENTS,
                 },] }
     ];

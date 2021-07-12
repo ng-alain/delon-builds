@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
@@ -154,12 +154,10 @@ G2GaugeComponent.propDecorators = {
     padding: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2GaugeComponent.prototype, "height", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], G2GaugeComponent.prototype, "percent", void 0);
 
 const COMPONENTS = [G2GaugeComponent];

@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directive, ElementRef, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
@@ -26,7 +26,6 @@ AutoFocusDirective.decorators = [
                 exportAs: 'autoFocus',
             },] }
 ];
-/** @nocollapse */
 AutoFocusDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: ChangeDetectorRef }
@@ -36,12 +35,10 @@ AutoFocusDirective.propDecorators = {
     delay: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], AutoFocusDirective.prototype, "enabled", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], AutoFocusDirective.prototype, "delay", void 0);
 
 const COMPONENTS = [AutoFocusDirective];

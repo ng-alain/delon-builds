@@ -14,7 +14,7 @@ export class FullContentService {
         return this._change.pipe(share());
     }
 }
-/** @nocollapse */ FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
 FullContentService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];

@@ -48,7 +48,7 @@ function fixAngularJson(options) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         const p = utils_1.getProjectFromWorkspace(workspace, options.project);
         // Add proxy.conf.json
-        utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_SERVE).proxyConfig = 'proxy.conf.json';
+        utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD).proxyConfig = 'proxy.conf.json';
         // 调整budgets
         const budgets = utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production.budgets;
         if (budgets && budgets.length > 0) {
@@ -212,6 +212,7 @@ function addFilesToRoot(options) {
             options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
             schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
                 ZORROVERSION: utils_1.ZORROVERSION })),
+            // move('/')
         ]), schematics_1.MergeStrategy.Overwrite),
     ]);
 }

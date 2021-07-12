@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
@@ -35,7 +35,6 @@ G2CardComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 G2CardComponent.ctorParameters = () => [
     { type: ChangeDetectorRef }
 ];
@@ -50,12 +49,10 @@ G2CardComponent.propDecorators = {
     loading: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2CardComponent.prototype, "bordered", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2CardComponent.prototype, "loading", void 0);
 
 const COMPONENTS = [G2CardComponent];

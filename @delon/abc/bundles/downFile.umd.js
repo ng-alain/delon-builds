@@ -428,7 +428,6 @@
                     },
                 },] }
     ];
-    /** @nocollapse */
     DownFileDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: theme._HttpClient }
@@ -453,8 +452,8 @@
     DownFileModule.decorators = [
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, theme.AlainThemeModule],
-                    declarations: __spread(DIRECTIVES),
-                    exports: __spread(DIRECTIVES),
+                    declarations: __spreadArray([], __read(DIRECTIVES)),
+                    exports: __spreadArray([], __read(DIRECTIVES)),
                 },] }
     ];
 

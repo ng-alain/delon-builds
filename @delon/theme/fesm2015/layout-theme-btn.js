@@ -90,7 +90,6 @@ ThemeBtnComponent.decorators = [
                 changeDetection: ChangeDetectionStrategy.OnPush
             },] }
 ];
-/** @nocollapse */
 ThemeBtnComponent.ctorParameters = () => [
     { type: Renderer2 },
     { type: AlainConfigService },

@@ -26,10 +26,9 @@ function setAngularJson(options) {
             p.targets.get(utils_1.BUILD_TARGET_TEST).configurations = {
                 es5: { tsConfig: './tsconfig-es5.app.json' },
             };
-            p.targets.get(utils_1.BUILD_TARGET_E2E).configurations.es5 = { browserTarget: `${options.project}:${utils_1.BUILD_TARGET_BUILD}:es5` };
         }
         else {
-            [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_SERVE, utils_1.BUILD_TARGET_TEST, utils_1.BUILD_TARGET_E2E]
+            [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_SERVE, utils_1.BUILD_TARGET_TEST]
                 .map(key => p.targets.get(key))
                 .filter(item => !!item)
                 .forEach(item => {
@@ -67,10 +66,10 @@ function setPolyfills(options) {
             content = `import 'core-js/modules/es.array.includes';
 import 'classlist.js';
 import 'web-animations-js';
-import 'zone.js/dist/zone';`;
+import 'zone.js';`;
         }
         else {
-            content = `import 'zone.js/dist/zone';`;
+            content = `import 'zone.js';`;
         }
         utils_1.overwriteFile({ tree, filePath, content, overwrite: true, contentIsString: true });
     };

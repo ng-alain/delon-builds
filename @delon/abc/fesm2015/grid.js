@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, Renderer2, Optional, Host, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber } from '@delon/util/decorator';
@@ -32,7 +32,6 @@ SGContainerComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SGContainerComponent.ctorParameters = () => [
     { type: AlainConfigService }
 ];
@@ -42,16 +41,13 @@ SGContainerComponent.propDecorators = {
     col: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], SGContainerComponent.prototype, "gutter", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SGContainerComponent.prototype, "colInCon", void 0);
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SGContainerComponent.prototype, "col", void 0);
 
 const prefixCls = `sg`;
@@ -101,7 +97,6 @@ SGComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SGComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
@@ -112,8 +107,7 @@ SGComponent.propDecorators = {
     col: [{ type: Input }]
 };
 __decorate([
-    InputNumber(null),
-    __metadata("design:type", Number)
+    InputNumber(null)
 ], SGComponent.prototype, "col", void 0);
 
 const COMPONENTS = [SGContainerComponent, SGComponent];

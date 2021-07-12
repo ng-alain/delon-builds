@@ -9,6 +9,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.i1, global.ng.common.http, global.other, global.rxjs, global.rxjs.operators));
 }(this, (function (exports, i0, i1, http, other, rxjs, operators) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     var MockOptions = /** @class */ (function () {
         function MockOptions() {
         }
@@ -166,11 +189,10 @@
         };
         return MockService;
     }());
-    /** @nocollapse */ MockService.ɵprov = i0.ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
+    MockService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function MockService_Factory() { return new MockService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(MockOptions)); }, token: MockService, providedIn: "root" });
     MockService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     MockService.ctorParameters = function () { return [
         { type: i1.AlainConfigService },
         { type: MockOptions }
@@ -276,7 +298,6 @@
     MockInterceptor.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     MockInterceptor.ctorParameters = function () { return [
         { type: i0.Injector }
     ]; };

@@ -1,16 +1,22 @@
+import * as i5 from '@angular/cdk/bidi';
 import { Directionality } from '@angular/cdk/bidi';
+import * as i3 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, ViewChild, ɵɵdefineInjectable, ɵɵinject, ApplicationRef, ComponentFactoryResolver, INJECTOR, Injectable, Injector, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Optional, Inject, ChangeDetectorRef, ViewChild, Injectable, ApplicationRef, ComponentFactoryResolver, Injector, NgModule } from '@angular/core';
+import * as i2 from '@angular/router';
 import { Router } from '@angular/router';
+import * as i1 from '@delon/theme';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import * as i4 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { of, pipe } from 'rxjs';
 import { switchMap, delay } from 'rxjs/operators';
 import { Platform } from '@angular/cdk/platform';
-import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzNoAnimationModule } from 'ng-zorro-antd/core/no-animation';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
 
 class OnboardingComponent {
     constructor(el, doc, platform, cdr) {
@@ -129,7 +135,6 @@ OnboardingComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 OnboardingComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [DOCUMENT,] }] },
@@ -288,11 +293,10 @@ class OnboardingService {
         this.destroy();
     }
 }
-/** @nocollapse */ OnboardingService.ɵprov = ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(ɵɵinject(DelonLocaleService), ɵɵinject(ApplicationRef), ɵɵinject(ComponentFactoryResolver), ɵɵinject(Router), ɵɵinject(INJECTOR), ɵɵinject(DOCUMENT), ɵɵinject(AlainConfigService), ɵɵinject(Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
+OnboardingService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnboardingService_Factory() { return new OnboardingService(i0.ɵɵinject(i1.DelonLocaleService), i0.ɵɵinject(i0.ApplicationRef), i0.ɵɵinject(i0.ComponentFactoryResolver), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i3.DOCUMENT), i0.ɵɵinject(i4.AlainConfigService), i0.ɵɵinject(i5.Directionality, 8)); }, token: OnboardingService, providedIn: "root" });
 OnboardingService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 OnboardingService.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: ApplicationRef },

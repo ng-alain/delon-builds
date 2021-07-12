@@ -1,8 +1,12 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
+import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { ɵɵdefineInjectable, ɵɵinject, NgZone, Injectable, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, NgZone, NgModule } from '@angular/core';
+import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
+import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
 import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
@@ -96,11 +100,10 @@ class ZipService {
         });
     }
 }
-/** @nocollapse */ ZipService.ɵprov = ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(ɵɵinject(HttpClient), ɵɵinject(LazyService), ɵɵinject(AlainConfigService), ɵɵinject(NgZone)); }, token: ZipService, providedIn: "root" });
+ZipService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ZipService_Factory() { return new ZipService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: ZipService, providedIn: "root" });
 ZipService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ZipService.ctorParameters = () => [
     { type: HttpClient },
     { type: LazyService },
@@ -108,10 +111,7 @@ ZipService.ctorParameters = () => [
     { type: NgZone }
 ];
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, Object]),
-    __metadata("design:returntype", Promise)
+    ZoneOutside()
 ], ZipService.prototype, "read", null);
 
 class ZipModule {

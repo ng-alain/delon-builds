@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
@@ -112,7 +112,6 @@ ImageDirective.decorators = [
                 },
             },] }
 ];
-/** @nocollapse */
 ImageDirective.ctorParameters = () => [
     { type: ElementRef },
     { type: AlainConfigService },
@@ -129,12 +128,10 @@ ImageDirective.propDecorators = {
     previewModalOptions: [{ type: Input }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], ImageDirective.prototype, "size", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], ImageDirective.prototype, "useHttp", void 0);
 
 const DIRECTIVES = [ImageDirective];

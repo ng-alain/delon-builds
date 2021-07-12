@@ -15,12 +15,12 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     [
       `ng-alain@${version}`,
       `ng-alain-codelyzer@^0.0.1`,
-      `ng-alain-plugin-theme@^11.0.1`,
+      `ng-alain-plugin-theme@^12.0.0`,
       `source-map-explorer@^2.5.1`,
       `@delon/testing@${version}`,
     ],
     'devDependencies',
   );
   // TODO: fix angular depends on 6.x
-  addPackage(tree, ['ajv@^8.1.0', 'ajv-formats@^2.0.2']);
+  addPackage(tree, ['ajv@^8.6.1', 'ajv-formats@^2.1.0']);
 }

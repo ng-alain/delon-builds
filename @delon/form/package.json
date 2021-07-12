@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "11.10.4-9ac3a99c",
+  "version": "11.10.4-0dfb6dbc",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,12 +28,12 @@
     "component"
   ],
   "dependencies": {
-    "ajv": "^8.1.0",
-    "ajv-formats": "^2.0.2",
-    "@delon/theme": "^11.10.4-9ac3a99c",
-    "@delon/acl": "^11.10.4-9ac3a99c",
-    "@delon/util": "^11.10.4-9ac3a99c",
-    "tslib": "^2.0.0"
+    "ajv": "^8.6.1",
+    "ajv-formats": "^2.1.0",
+    "@delon/theme": "^11.10.4-0dfb6dbc",
+    "@delon/acl": "^11.10.4-0dfb6dbc",
+    "@delon/util": "^11.10.4-0dfb6dbc",
+    "tslib": "^2.2.0"
   },
   "main": "bundles/form.umd.js",
   "module": "fesm2015/form.js",

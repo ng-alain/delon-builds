@@ -105,7 +105,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ExceptionComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
         { type: platformBrowser.DomSanitizer },

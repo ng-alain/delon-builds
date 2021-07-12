@@ -724,7 +724,6 @@
                     changeDetection: core.ChangeDetectionStrategy.OnPush
                 },] }
     ];
-    /** @nocollapse */
     SettingDrawerComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef },
         { type: message.NzMessageService },
@@ -740,20 +739,13 @@
         devTips: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Promise)
+        decorator.ZoneOutside()
     ], SettingDrawerComponent.prototype, "loadLess", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], SettingDrawerComponent.prototype, "runLess", null);
 
     var COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];

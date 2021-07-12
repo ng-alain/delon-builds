@@ -4,7 +4,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const utils_1 = require("../utils");
-const V = 11;
+const V = 12;
 function genRules(options) {
     const rules = [];
     const applicationOptions = Object.assign({}, options);

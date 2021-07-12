@@ -10,7 +10,7 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DomSanitizer } from '@angular/platform-browser';
 import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
@@ -110,7 +110,6 @@ LayoutDefaultComponent.decorators = [
   `
             },] }
 ];
-/** @nocollapse */
 LayoutDefaultComponent.ctorParameters = () => [
     { type: Router },
     { type: NzMessageService },
@@ -221,7 +220,6 @@ LayoutDefaultHeaderComponent.decorators = [
                 changeDetection: ChangeDetectionStrategy.OnPush
             },] }
 ];
-/** @nocollapse */
 LayoutDefaultHeaderComponent.ctorParameters = () => [
     { type: SettingsService },
     { type: LayoutDefaultComponent },
@@ -481,7 +479,6 @@ LayoutDefaultNavComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 LayoutDefaultNavComponent.ctorParameters = () => [
     { type: MenuService },
     { type: SettingsService },
@@ -503,30 +500,22 @@ LayoutDefaultNavComponent.propDecorators = {
     select: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], LayoutDefaultNavComponent.prototype, "disabledAcl", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], LayoutDefaultNavComponent.prototype, "autoCloseUnderPad", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], LayoutDefaultNavComponent.prototype, "recursivePath", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], LayoutDefaultNavComponent.prototype, "openStrictly", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], LayoutDefaultNavComponent.prototype, "maxLevelIcon", void 0);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [MouseEvent, Object]),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], LayoutDefaultNavComponent.prototype, "showSubMenu", null);
 
 const COMPONENTS = [

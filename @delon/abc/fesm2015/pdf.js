@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
@@ -383,7 +383,6 @@ PdfComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 PdfComponent.ctorParameters = () => [
     { type: NgZone },
     { type: AlainConfigService },
@@ -412,77 +411,49 @@ PdfComponent.propDecorators = {
     change: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [Number])
+    InputNumber()
 ], PdfComponent.prototype, "pi", null);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [Boolean])
+    InputBoolean()
 ], PdfComponent.prototype, "showAll", null);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean),
-    __metadata("design:paramtypes", [Boolean])
+    InputBoolean()
 ], PdfComponent.prototype, "renderText", null);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PdfComponent.prototype, "showBorders", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PdfComponent.prototype, "stickToPage", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PdfComponent.prototype, "originalSize", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PdfComponent.prototype, "fitToPage", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [Number])
+    InputNumber()
 ], PdfComponent.prototype, "zoom", null);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number),
-    __metadata("design:paramtypes", [Number])
+    InputNumber()
 ], PdfComponent.prototype, "rotation", null);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], PdfComponent.prototype, "autoReSize", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Number)
+    InputNumber()
 ], PdfComponent.prototype, "delay", void 0);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], PdfComponent.prototype, "load", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], PdfComponent.prototype, "resetDoc", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], PdfComponent.prototype, "updateSize", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], PdfComponent.prototype, "destroy", null);
 
 const COMPONENTS = [PdfComponent];

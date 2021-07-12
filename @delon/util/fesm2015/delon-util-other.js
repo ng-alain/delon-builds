@@ -1,6 +1,8 @@
 import extend from 'extend';
+import * as i1 from '@angular/common';
 import { DOCUMENT } from '@angular/common';
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, Inject } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { BehaviorSubject, isObservable } from 'rxjs';
 import { share, filter } from 'rxjs/operators';
 
@@ -216,11 +218,10 @@ class LazyService {
         });
     }
 }
-/** @nocollapse */ LazyService.ɵprov = ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(ɵɵinject(DOCUMENT)); }, token: LazyService, providedIn: "root" });
+LazyService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LazyService_Factory() { return new LazyService(i0.ɵɵinject(i1.DOCUMENT)); }, token: LazyService, providedIn: "root" });
 LazyService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 LazyService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] }
 ];

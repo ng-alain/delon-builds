@@ -9,6 +9,7 @@ import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { NzTablePaginationType } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STComponent } from './st.component';
+export declare type STColumnSafeType = 'text' | 'html' | 'safeHtml';
 export interface STWidthMode {
     /**
      * 宽度类型
@@ -276,11 +277,11 @@ export interface STColumn<T extends STData = any> {
      */
     format?: (item: T, col: STColumn, index: number) => string;
     /**
-     * Whether trust html, default: `true`, Support [global config](https://ng-alain.com/docs/global-config)
+     * Safe rendering type, default: `safeHtml`, Support [global config](https://ng-alain.com/docs/global-config)
      *
-     * 是否信任HTML，默认：`true`，支持[全局配置](https://ng-alain.com/docs/global-config/zh)
+     * 安全渲染方式，默认：`safeHtml`，支持[全局配置](https://ng-alain.com/docs/global-config/zh)
      */
-    saftHtml?: boolean;
+    safeType?: STColumnSafeType;
     /**
      * 自定义全/反选选择项
      */

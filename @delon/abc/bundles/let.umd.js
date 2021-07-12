@@ -41,7 +41,6 @@
     LetDirective.decorators = [
         { type: core.Directive, args: [{ selector: '[let]' },] }
     ];
-    /** @nocollapse */
     LetDirective.ctorParameters = function () { return [
         { type: core.ViewContainerRef, decorators: [{ type: core.Inject, args: [core.ViewContainerRef,] }] },
         { type: core.TemplateRef, decorators: [{ type: core.Inject, args: [core.TemplateRef,] }] }

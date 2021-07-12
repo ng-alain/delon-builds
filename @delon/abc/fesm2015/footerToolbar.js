@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Inject, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
@@ -34,7 +34,6 @@ FooterToolbarComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 FooterToolbarComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: Renderer2 },
@@ -45,8 +44,7 @@ FooterToolbarComponent.propDecorators = {
     extra: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], FooterToolbarComponent.prototype, "errorCollect", void 0);
 
 const COMPONENTS = [FooterToolbarComponent];

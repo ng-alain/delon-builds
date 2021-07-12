@@ -11,6 +11,30 @@
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
     var isUtf8__default = /*#__PURE__*/_interopDefaultLegacy(isUtf8);
 
     /*! *****************************************************************************
@@ -438,11 +462,10 @@
         };
         return XlsxService;
     }());
-    /** @nocollapse */ XlsxService.ɵprov = i0.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0.ɵɵinject(i1.HttpClient), i0.ɵɵinject(i2.LazyService), i0.ɵɵinject(i3.AlainConfigService), i0.ɵɵinject(i0.NgZone)); }, token: XlsxService, providedIn: "root" });
+    XlsxService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function XlsxService_Factory() { return new XlsxService(i0__namespace.ɵɵinject(i1__namespace.HttpClient), i0__namespace.ɵɵinject(i2__namespace.LazyService), i0__namespace.ɵɵinject(i3__namespace.AlainConfigService), i0__namespace.ɵɵinject(i0__namespace.NgZone)); }, token: XlsxService, providedIn: "root" });
     XlsxService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     XlsxService.ctorParameters = function () { return [
         { type: i1.HttpClient },
         { type: i2.LazyService },
@@ -450,16 +473,10 @@
         { type: i0.NgZone }
     ]; };
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object, Object]),
-        __metadata("design:returntype", Object)
+        decorator.ZoneOutside()
     ], XlsxService.prototype, "read", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", [Object]),
-        __metadata("design:returntype", Promise)
+        decorator.ZoneOutside()
     ], XlsxService.prototype, "export", null);
 
     var XlsxDirective = /** @class */ (function () {
@@ -480,7 +497,6 @@
                     },
                 },] }
     ];
-    /** @nocollapse */
     XlsxDirective.ctorParameters = function () { return [
         { type: XlsxService }
     ]; };

@@ -354,7 +354,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     G2MiniProgressComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
         { type: core.ChangeDetectorRef }
@@ -366,16 +365,13 @@
         strokeWidth: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2MiniProgressComponent.prototype, "target", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2MiniProgressComponent.prototype, "percent", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2MiniProgressComponent.prototype, "strokeWidth", void 0);
 
     var COMPONENTS = [G2MiniProgressComponent];

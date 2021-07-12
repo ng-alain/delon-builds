@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { InjectionToken, inject, Injectable, Inject, Injector, Optional, ɵɵdefineInjectable, ɵɵinject, INJECTOR, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { InjectionToken, inject, Injectable, Inject, Injector, Optional, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, BehaviorSubject, interval, Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
@@ -132,7 +133,6 @@ class TokenService {
 TokenService.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 TokenService.ctorParameters = () => [
     { type: AlainConfigService },
     { type: undefined, decorators: [{ type: Inject, args: [DA_STORE_TOKEN,] }] }
@@ -227,7 +227,6 @@ class SocialService {
 SocialService.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 SocialService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DA_SERVICE_TOKEN,] }] },
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
@@ -404,7 +403,6 @@ class BaseInterceptor {
 BaseInterceptor.decorators = [
     { type: Injectable }
 ];
-/** @nocollapse */
 BaseInterceptor.ctorParameters = () => [
     { type: Injector, decorators: [{ type: Optional }] }
 ];
@@ -570,11 +568,10 @@ class JWTGuard {
         return this.process();
     }
 }
-/** @nocollapse */ JWTGuard.ɵprov = ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR)); }, token: JWTGuard, providedIn: "root" });
+JWTGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: JWTGuard, providedIn: "root" });
 JWTGuard.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 JWTGuard.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DA_SERVICE_TOKEN,] }] },
     { type: Injector }
@@ -675,11 +672,10 @@ class SimpleGuard {
         return this.process();
     }
 }
-/** @nocollapse */ SimpleGuard.ɵprov = ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(ɵɵinject(DA_SERVICE_TOKEN), ɵɵinject(INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
+SimpleGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
 SimpleGuard.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 SimpleGuard.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DA_SERVICE_TOKEN,] }] },
     { type: Injector }

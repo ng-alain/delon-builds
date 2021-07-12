@@ -7,7 +7,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
-import { NzTableComponent, NzTableData } from 'ng-zorro-antd/table';
+import { NzTableComponent } from 'ng-zorro-antd/table';
 import { Observable } from 'rxjs';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
@@ -62,7 +62,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _headers: _STHeader[][];
     _columns: _STColumn[];
     contextmenuList: STContextmenuItem[];
-    readonly orgTable: NzTableComponent;
+    readonly orgTable: NzTableComponent<STData>;
     readonly contextmenuTpl: NzDropdownMenuComponent;
     get req(): STReq;
     set req(value: STReq);
@@ -118,7 +118,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     virtualMaxBufferPx: number;
     virtualMinBufferPx: number;
     customRequest?: (options: STCustomRequestOptions) => Observable<any>;
-    virtualForTrackBy: TrackByFunction<NzTableData>;
+    virtualForTrackBy: TrackByFunction<STData>;
     /**
      * Get the number of the current page
      */

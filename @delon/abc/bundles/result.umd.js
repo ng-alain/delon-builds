@@ -63,7 +63,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     ResultComponent.ctorParameters = function () { return [
         { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
     ]; };

@@ -1,5 +1,5 @@
 import { Component, Input, isDevMode, ChangeDetectionStrategy, ChangeDetectorRef, NgZone, Inject, Optional, NgModule } from '@angular/core';
-import { __awaiter, __decorate, __metadata } from 'tslib';
+import { __awaiter, __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { SettingsService } from '@delon/theme';
@@ -392,7 +392,6 @@ SettingDrawerComponent.decorators = [
                 changeDetection: ChangeDetectionStrategy.OnPush
             },] }
 ];
-/** @nocollapse */
 SettingDrawerComponent.ctorParameters = () => [
     { type: ChangeDetectorRef },
     { type: NzMessageService },
@@ -408,20 +407,13 @@ SettingDrawerComponent.propDecorators = {
     devTips: [{ type: Input }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SettingDrawerComponent.prototype, "autoApplyColor", void 0);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", Promise)
+    ZoneOutside()
 ], SettingDrawerComponent.prototype, "loadLess", null);
 __decorate([
-    ZoneOutside(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    ZoneOutside()
 ], SettingDrawerComponent.prototype, "runLess", null);
 
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];

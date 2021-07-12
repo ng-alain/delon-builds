@@ -1,6 +1,9 @@
+import * as i2 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
+import * as i1 from '@angular/common';
 import { DOCUMENT } from '@angular/common';
-import { ɵɵdefineInjectable, ɵɵinject, Injectable, Inject } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 
 /**
  * A set of simple Cookie manipulation classes.
@@ -92,11 +95,10 @@ class CookieService {
         this.doc.cookie = '';
     }
 }
-/** @nocollapse */ CookieService.ɵprov = ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: CookieService, providedIn: "root" });
+CookieService.ɵprov = i0.ɵɵdefineInjectable({ factory: function CookieService_Factory() { return new CookieService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: CookieService, providedIn: "root" });
 CookieService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 CookieService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: Platform }
@@ -218,11 +220,10 @@ class ScrollService {
         this.scrollToElement(this._getDoc().body, topOffset);
     }
 }
-/** @nocollapse */ ScrollService.ɵprov = ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(ɵɵinject(DOCUMENT), ɵɵinject(Platform)); }, token: ScrollService, providedIn: "root" });
+ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2.Platform)); }, token: ScrollService, providedIn: "root" });
 ScrollService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
-/** @nocollapse */
 ScrollService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
     { type: Platform }

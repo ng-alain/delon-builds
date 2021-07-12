@@ -330,7 +330,7 @@
     var G2MiniBarComponent = /** @class */ (function (_super) {
         __extends(G2MiniBarComponent, _super);
         function G2MiniBarComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             // #region fields
             _this.color = '#1890FF';
             _this.height = 0;
@@ -408,12 +408,10 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2MiniBarComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2MiniBarComponent.prototype, "borderWidth", void 0);
 
     var COMPONENTS = [G2MiniBarComponent];

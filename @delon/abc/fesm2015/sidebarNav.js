@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Renderer2, ChangeDetectorRef, NgZone, Inject, Optional, Input, Output, NgModule } from '@angular/core';
@@ -271,7 +271,6 @@ SidebarNavComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 SidebarNavComponent.ctorParameters = () => [
     { type: MenuService },
     { type: SettingsService },
@@ -293,24 +292,19 @@ SidebarNavComponent.propDecorators = {
     select: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SidebarNavComponent.prototype, "disabledAcl", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SidebarNavComponent.prototype, "autoCloseUnderPad", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SidebarNavComponent.prototype, "recursivePath", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], SidebarNavComponent.prototype, "openStrictly", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
 
 class SidebarNavModule {

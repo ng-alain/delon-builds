@@ -361,7 +361,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     G2CardComponent.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef }
     ]; };
@@ -376,12 +375,10 @@
         loading: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2CardComponent.prototype, "bordered", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2CardComponent.prototype, "loading", void 0);
 
     var COMPONENTS = [G2CardComponent];

@@ -337,11 +337,13 @@
         autoReSize: true,
     };
 
+    exports.PdfTextLayerMode = void 0;
     (function (PdfTextLayerMode) {
         PdfTextLayerMode[PdfTextLayerMode["DISABLE"] = 0] = "DISABLE";
         PdfTextLayerMode[PdfTextLayerMode["ENABLE"] = 1] = "ENABLE";
         PdfTextLayerMode[PdfTextLayerMode["ENABLE_ENHANCE"] = 2] = "ENABLE_ENHANCE";
     })(exports.PdfTextLayerMode || (exports.PdfTextLayerMode = {}));
+    exports.PdfExternalLinkTarget = void 0;
     (function (PdfExternalLinkTarget) {
         PdfExternalLinkTarget[PdfExternalLinkTarget["NONE"] = 0] = "NONE";
         PdfExternalLinkTarget[PdfExternalLinkTarget["SELF"] = 1] = "SELF";
@@ -760,7 +762,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     PdfComponent.ctorParameters = function () { return [
         { type: core.NgZone },
         { type: config.AlainConfigService },
@@ -789,77 +790,49 @@
         change: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [Number])
+        decorator.InputNumber()
     ], PdfComponent.prototype, "pi", null);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [Boolean])
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "showAll", null);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Boolean),
-        __metadata("design:paramtypes", [Boolean])
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "renderText", null);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "showBorders", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "stickToPage", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "originalSize", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "fitToPage", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [Number])
+        decorator.InputNumber()
     ], PdfComponent.prototype, "zoom", null);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number),
-        __metadata("design:paramtypes", [Number])
+        decorator.InputNumber()
     ], PdfComponent.prototype, "rotation", null);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], PdfComponent.prototype, "autoReSize", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], PdfComponent.prototype, "delay", void 0);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], PdfComponent.prototype, "load", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], PdfComponent.prototype, "resetDoc", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], PdfComponent.prototype, "updateSize", null);
     __decorate([
-        decorator.ZoneOutside(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", void 0)
+        decorator.ZoneOutside()
     ], PdfComponent.prototype, "destroy", null);
 
     var COMPONENTS = [PdfComponent];

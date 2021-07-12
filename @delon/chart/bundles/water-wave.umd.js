@@ -534,7 +534,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     G2WaterWaveComponent.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.Renderer2 },
@@ -552,20 +551,16 @@
         percent: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2WaterWaveComponent.prototype, "animate", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2WaterWaveComponent.prototype, "delay", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2WaterWaveComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2WaterWaveComponent.prototype, "percent", void 0);
 
     var COMPONENTS = [G2WaterWaveComponent];

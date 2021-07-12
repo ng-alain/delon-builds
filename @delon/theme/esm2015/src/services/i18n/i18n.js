@@ -32,7 +32,7 @@ export class AlainI18NServiceFake {
         return key;
     }
 }
-/** @nocollapse */ AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];

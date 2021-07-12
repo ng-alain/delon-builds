@@ -599,7 +599,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SidebarNavComponent.ctorParameters = function () { return [
         { type: theme.MenuService },
         { type: theme.SettingsService },
@@ -621,24 +620,19 @@
         select: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SidebarNavComponent.prototype, "disabledAcl", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SidebarNavComponent.prototype, "autoCloseUnderPad", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SidebarNavComponent.prototype, "recursivePath", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SidebarNavComponent.prototype, "openStrictly", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], SidebarNavComponent.prototype, "maxLevelIcon", void 0);
 
     var SidebarNavModule = /** @class */ (function () {

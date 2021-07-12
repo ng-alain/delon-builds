@@ -330,7 +330,7 @@
     var G2CustomComponent = /** @class */ (function (_super) {
         __extends(G2CustomComponent, _super);
         function G2CustomComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.resizeTime = 0;
             _this.render = new core.EventEmitter();
             _this.resize = new core.EventEmitter();
@@ -374,12 +374,10 @@
         destroy: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], G2CustomComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2CustomComponent.prototype, "resizeTime", void 0);
 
     var COMPONENTS = [G2CustomComponent];

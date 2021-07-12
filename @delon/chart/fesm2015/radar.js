@@ -1,4 +1,4 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
@@ -136,16 +136,13 @@ G2RadarComponent.propDecorators = {
     clickItem: [{ type: Output }]
 };
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2RadarComponent.prototype, "height", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], G2RadarComponent.prototype, "hasLegend", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], G2RadarComponent.prototype, "tickCount", void 0);
 
 const COMPONENTS = [G2RadarComponent];

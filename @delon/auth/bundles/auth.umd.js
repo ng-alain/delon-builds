@@ -9,6 +9,28 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.config, global.rxjs.operators, global.ng.common.http, global.delon.util));
 }(this, (function (exports, common, i0, router, rxjs, config, operators, http, util) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     var AUTH_DEFAULT_CONFIG = {
         store_key: "_token",
         token_invalid_redirect: true,
@@ -156,7 +178,6 @@
     TokenService.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     TokenService.ctorParameters = function () { return [
         { type: config.AlainConfigService },
         { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] }
@@ -255,7 +276,6 @@
     SocialService.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     SocialService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
         { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
@@ -768,7 +788,6 @@
     BaseInterceptor.decorators = [
         { type: i0.Injectable }
     ];
-    /** @nocollapse */
     BaseInterceptor.ctorParameters = function () { return [
         { type: i0.Injector, decorators: [{ type: i0.Optional }] }
     ]; };
@@ -956,11 +975,10 @@
         };
         return JWTGuard;
     }());
-    /** @nocollapse */ JWTGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: JWTGuard, providedIn: "root" });
+    JWTGuard.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function JWTGuard_Factory() { return new JWTGuard(i0__namespace.ɵɵinject(DA_SERVICE_TOKEN), i0__namespace.ɵɵinject(i0__namespace.INJECTOR)); }, token: JWTGuard, providedIn: "root" });
     JWTGuard.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     JWTGuard.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
         { type: i0.Injector }
@@ -1075,11 +1093,10 @@
         };
         return SimpleGuard;
     }());
-    /** @nocollapse */ SimpleGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0.ɵɵinject(DA_SERVICE_TOKEN), i0.ɵɵinject(i0.INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
+    SimpleGuard.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SimpleGuard_Factory() { return new SimpleGuard(i0__namespace.ɵɵinject(DA_SERVICE_TOKEN), i0__namespace.ɵɵinject(i0__namespace.INJECTOR)); }, token: SimpleGuard, providedIn: "root" });
     SimpleGuard.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     SimpleGuard.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Inject, args: [DA_SERVICE_TOKEN,] }] },
         { type: i0.Injector }

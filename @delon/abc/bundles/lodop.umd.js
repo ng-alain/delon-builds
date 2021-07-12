@@ -9,6 +9,30 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.i2, global.i1, global.rxjs));
 }(this, (function (exports, i0, i2, i1, rxjs) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
 
@@ -541,9 +565,9 @@
             var _b;
             this.check();
             if (contextObj) {
-                (_b = this.printBuffer).push.apply(_b, __spread((Array.isArray(contextObj) ? contextObj : [contextObj]).map(function (item) {
+                (_b = this.printBuffer).push.apply(_b, __spreadArray([], __read((Array.isArray(contextObj) ? contextObj : [contextObj]).map(function (item) {
                     return { code: code, parser: parser, item: item };
-                })));
+                }))));
             }
             this.printDo();
         };
@@ -553,11 +577,10 @@
         };
         return LodopService;
     }());
-    /** @nocollapse */ LodopService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0.ɵɵinject(i1.LazyService), i0.ɵɵinject(i2.AlainConfigService)); }, token: LodopService, providedIn: "root" });
+    LodopService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LodopService_Factory() { return new LodopService(i0__namespace.ɵɵinject(i1__namespace.LazyService), i0__namespace.ɵɵinject(i2__namespace.AlainConfigService)); }, token: LodopService, providedIn: "root" });
     LodopService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     LodopService.ctorParameters = function () { return [
         { type: i1.LazyService },
         { type: i2.AlainConfigService }

@@ -9,6 +9,28 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.config = {}), global.ng.core, global.delon.util.other));
 }(this, (function (exports, i0, other) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+
     var AlainSVConfig = /** @class */ (function () {
         function AlainSVConfig() {
         }
@@ -355,7 +377,7 @@
             for (var _i = 1; _i < arguments.length; _i++) {
                 defaultValues[_i - 1] = arguments[_i];
             }
-            return other.deepMergeKey.apply(void 0, __spread([{}, true], defaultValues, [this.get(componentName)]));
+            return other.deepMergeKey.apply(void 0, __spreadArray(__spreadArray([{}, true], __read(defaultValues)), [this.get(componentName)]));
         };
         AlainConfigService.prototype.attach = function (componentThis, componentName, defaultValues) {
             Object.assign(componentThis, this.merge(componentName, defaultValues));
@@ -368,11 +390,10 @@
         };
         return AlainConfigService;
     }());
-    /** @nocollapse */ AlainConfigService.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(i0.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
+    AlainConfigService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainConfigService_Factory() { return new AlainConfigService(i0__namespace.ɵɵinject(ALAIN_CONFIG, 8)); }, token: AlainConfigService, providedIn: "root" });
     AlainConfigService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
-    /** @nocollapse */
     AlainConfigService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_CONFIG,] }] }
     ]; };

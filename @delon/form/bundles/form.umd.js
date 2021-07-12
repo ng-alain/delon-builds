@@ -384,7 +384,7 @@
         }
         if (ui.debug) {
             // tslint:disable-next-line:no-console
-            console.warn.apply(console, __spread(args));
+            console.warn.apply(console, __spreadArray([], __read(args)));
         }
     }
     /** 根据 `$ref` 查找 `definitions` */
@@ -508,8 +508,8 @@
         if (restIndex !== order.lastIndexOf('*')) {
             throw new Error('ui schema order list contains more than one wildcard item');
         }
-        var complete = __spread(order);
-        complete.splice.apply(complete, __spread([restIndex, 1], rest));
+        var complete = __spreadArray([], __read(order));
+        complete.splice.apply(complete, __spreadArray([restIndex, 1], __read(rest)));
         return complete;
     }
     function getEnum(list, formData, readOnly) {
@@ -756,7 +756,7 @@
         FormProperty.prototype.mergeErrors = function (errors, newErrors) {
             if (newErrors) {
                 if (Array.isArray(newErrors)) {
-                    errors = errors.concat.apply(errors, __spread(newErrors));
+                    errors = errors.concat.apply(errors, __spreadArray([], __read(newErrors)));
                 }
                 else {
                     errors.push(newErrors);
@@ -800,7 +800,7 @@
                 var property = _this.searchProperty(p);
                 if (property && !property.visible)
                     return;
-                platErrors.push.apply(platErrors, __spread(_this._objErrors[p]));
+                platErrors.push.apply(platErrors, __spreadArray([], __read(_this._objErrors[p])));
             });
             this.setErrors(platErrors, false);
         };
@@ -865,7 +865,7 @@
     var PropertyGroup = /** @class */ (function (_super) {
         __extends(PropertyGroup, _super);
         function PropertyGroup() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.properties = null;
             return _this;
         }
@@ -1264,7 +1264,7 @@
         }
         AjvSchemaValidatorFactory.prototype.createValidatorFn = function (schema, extraOptions) {
             var _this = this;
-            var ingoreKeywords = __spread(this.options.ingoreKeywords, (extraOptions.ingoreKeywords || []));
+            var ingoreKeywords = __spreadArray(__spreadArray([], __read(this.options.ingoreKeywords)), __read((extraOptions.ingoreKeywords || [])));
             return function (value) {
                 try {
                     _this.ngZone.runOutsideAngular(function () { return _this.ajv.validate(schema, value); });
@@ -1288,7 +1288,6 @@
     AjvSchemaValidatorFactory.decorators = [
         { type: core.Injectable }
     ];
-    /** @nocollapse */
     AjvSchemaValidatorFactory.ctorParameters = function () { return [
         { type: config.AlainConfigService, decorators: [{ type: core.Inject, args: [config.AlainConfigService,] }] },
         { type: core.NgZone }
@@ -1340,7 +1339,6 @@
     WidgetFactory.decorators = [
         { type: core.Injectable }
     ];
-    /** @nocollapse */
     WidgetFactory.ctorParameters = function () { return [
         { type: WidgetRegistry },
         { type: core.ComponentFactoryResolver }
@@ -1416,7 +1414,7 @@
                 this.i18nSrv ? this.i18nSrv.change : null,
             ].filter(function (o) { return o != null; });
             if (refSchemas.length > 0) {
-                rxjs.merge.apply(void 0, __spread(refSchemas)).pipe(operators.filter(function () { return _this._inited; }), operators.takeUntil(this.unsubscribe$))
+                rxjs.merge.apply(void 0, __spreadArray([], __read(refSchemas))).pipe(operators.filter(function () { return _this._inited; }), operators.takeUntil(this.unsubscribe$))
                     .subscribe(function () { return _this.refreshSchema(); });
             }
         }
@@ -1869,7 +1867,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SFComponent.ctorParameters = function () { return [
         { type: FormPropertyFactory },
         { type: TerminatorService },
@@ -1904,36 +1901,28 @@
         formError: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "liveValidate", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "firstVisual", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "onlyVisual", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "compact", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "loading", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "disabled", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "noColon", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], SFComponent.prototype, "cleanValue", void 0);
 
     var nextUniqueId = 0;
@@ -1982,7 +1971,6 @@
                     encapsulation: core.ViewEncapsulation.None
                 },] }
     ];
-    /** @nocollapse */
     SFItemComponent.ctorParameters = function () { return [
         { type: WidgetFactory },
         { type: TerminatorService }
@@ -2027,7 +2015,6 @@
     SFFixedDirective.decorators = [
         { type: core.Directive, args: [{ selector: '[fixed-label]' },] }
     ];
-    /** @nocollapse */
     SFFixedDirective.ctorParameters = function () { return [
         { type: core.ElementRef },
         { type: core.Renderer2 }
@@ -2036,8 +2023,7 @@
         num: [{ type: core.Input, args: ['fixed-label',] }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Number)
+        decorator.InputNumber()
     ], SFFixedDirective.prototype, "num", void 0);
 
     var SFItemWrapComponent = /** @class */ (function () {
@@ -2102,7 +2088,6 @@
                     selector: '[sf-template]',
                 },] }
     ];
-    /** @nocollapse */
     SFTemplateDirective.ctorParameters = function () { return [
         { type: core.TemplateRef },
         { type: SFComponent }
@@ -2208,7 +2193,6 @@
     Widget.decorators = [
         { type: core.Directive }
     ];
-    /** @nocollapse */
     Widget.ctorParameters = function () { return [
         { type: core.ChangeDetectorRef, decorators: [{ type: core.Inject, args: [core.ChangeDetectorRef,] }] },
         { type: core.Injector, decorators: [{ type: core.Inject, args: [core.Injector,] }] },
@@ -2278,7 +2262,7 @@
     var ArrayWidget = /** @class */ (function (_super) {
         __extends(ArrayWidget, _super);
         function ArrayWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.arraySpan = 8;
             return _this;
         }
@@ -2337,7 +2321,7 @@
     var AutoCompleteWidget = /** @class */ (function (_super) {
         __extends(AutoCompleteWidget, _super);
         function AutoCompleteWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.i = {};
             _this.typing = '';
             _this.isAsync = false;
@@ -2435,7 +2419,7 @@
     var CascaderWidget = /** @class */ (function (_super) {
         __extends(CascaderWidget, _super);
         function CascaderWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.data = [];
             return _this;
         }
@@ -2490,7 +2474,7 @@
     var CheckboxWidget = /** @class */ (function (_super) {
         __extends(CheckboxWidget, _super);
         function CheckboxWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.data = [];
             _this.allChecked = false;
             _this.indeterminate = false;
@@ -2581,7 +2565,7 @@
     var DateWidget = /** @class */ (function (_super) {
         __extends(DateWidget, _super);
         function DateWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.flatRange = false;
             _this.displayValue = null;
             return _this;
@@ -2700,7 +2684,7 @@
     var MentionWidget = /** @class */ (function (_super) {
         __extends(MentionWidget, _super);
         function MentionWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.data = [];
             _this.loading = false;
             return _this;
@@ -2772,7 +2756,7 @@
     var NumberWidget = /** @class */ (function (_super) {
         __extends(NumberWidget, _super);
         function NumberWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.formatter = function (value) { return value; };
             _this.parser = function (value) { return value; };
             return _this;
@@ -2822,7 +2806,7 @@
     var ObjectWidget = /** @class */ (function (_super) {
         __extends(ObjectWidget, _super);
         function ObjectWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.type = 'default';
             _this.list = [];
             _this.showExpand = true;
@@ -2884,7 +2868,7 @@
     var RadioWidget = /** @class */ (function (_super) {
         __extends(RadioWidget, _super);
         function RadioWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.data = [];
             return _this;
         }
@@ -2918,7 +2902,7 @@
     var RateWidget = /** @class */ (function (_super) {
         __extends(RateWidget, _super);
         function RateWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.hasText = false;
             return _this;
         }
@@ -2951,7 +2935,7 @@
     var SelectWidget = /** @class */ (function (_super) {
         __extends(SelectWidget, _super);
         function SelectWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.search$ = new rxjs.Subject();
             _this.hasGroup = false;
             _this.loading = false;
@@ -3050,7 +3034,7 @@
     var SliderWidget = /** @class */ (function (_super) {
         __extends(SliderWidget, _super);
         function SliderWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this._formatter = function (value) {
                 var formatter = _this.ui.formatter;
                 if (formatter)
@@ -3193,7 +3177,7 @@
     var TextareaWidget = /** @class */ (function (_super) {
         __extends(TextareaWidget, _super);
         function TextareaWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.autosize = true;
             return _this;
         }
@@ -3230,7 +3214,7 @@
     var TimeWidget = /** @class */ (function (_super) {
         __extends(TimeWidget, _super);
         function TimeWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.displayValue = null;
             return _this;
         }
@@ -3303,7 +3287,7 @@
     var TransferWidget = /** @class */ (function (_super) {
         __extends(TransferWidget, _super);
         function TransferWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.list = [];
             _this._data = [];
             _this._canMove = function (arg) {
@@ -3344,7 +3328,7 @@
         TransferWidget.prototype._change = function (options) {
             var _a;
             if (options.to === 'right') {
-                this._data = (_a = this._data).concat.apply(_a, __spread(options.list));
+                this._data = (_a = this._data).concat.apply(_a, __spreadArray([], __read(options.list)));
             }
             else {
                 this._data = this._data.filter(function (w) { return options.list.indexOf(w) === -1; });
@@ -3377,7 +3361,7 @@
     var TreeSelectWidget = /** @class */ (function (_super) {
         __extends(TreeSelectWidget, _super);
         function TreeSelectWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.data = [];
             _this.asyncData = false;
             return _this;
@@ -3437,7 +3421,7 @@
     var UploadWidget = /** @class */ (function (_super) {
         __extends(UploadWidget, _super);
         function UploadWidget() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.fileList = [];
             _this.btnType = '';
             _this.handleRemove = function () {
@@ -3644,8 +3628,8 @@
     }());
     DelonFormModule.decorators = [
         { type: core.NgModule, args: [{
-                    imports: __spread([common.CommonModule, forms.FormsModule, theme.DelonLocaleModule], ZORROS),
-                    declarations: __spread(COMPONENTS, WIDGETS),
+                    imports: __spreadArray([common.CommonModule, forms.FormsModule, theme.DelonLocaleModule], __read(ZORROS)),
+                    declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), __read(WIDGETS)),
                     exports: COMPONENTS,
                     entryComponents: WIDGETS,
                 },] }

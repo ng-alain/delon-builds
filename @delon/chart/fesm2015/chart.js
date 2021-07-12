@@ -61,7 +61,6 @@ class DelonChartModule {
 DelonChartModule.decorators = [
     { type: NgModule, args: [{ exports: MODULES },] }
 ];
-/** @nocollapse */
 DelonChartModule.ctorParameters = () => [];
 
 /**

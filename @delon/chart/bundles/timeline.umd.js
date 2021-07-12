@@ -330,7 +330,7 @@
     var G2TimelineComponent = /** @class */ (function (_super) {
         __extends(G2TimelineComponent, _super);
         function G2TimelineComponent() {
-            var _this = _super.apply(this, __spread(arguments)) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
             _this.maxAxis = 2;
             _this.data = [];
             _this.colorMap = { y1: '#5B8FF9', y2: '#5AD8A6', y3: '#5D7092', y4: '#F6BD16', y5: '#E86452' };
@@ -404,10 +404,10 @@
         };
         G2TimelineComponent.prototype.changeData = function () {
             var _b = this, _chart = _b._chart, height = _b.height, padding = _b.padding, mask = _b.mask, titleMap = _b.titleMap, position = _b.position, colorMap = _b.colorMap, borderWidth = _b.borderWidth, maxAxis = _b.maxAxis;
-            var data = __spread(this.data);
+            var data = __spreadArray([], __read(this.data));
             if (!_chart || data.length <= 0)
                 return;
-            var arrAxis = __spread(Array(maxAxis)).map(function (_, index) { return index + 1; });
+            var arrAxis = __spreadArray([], __read(Array(maxAxis))).map(function (_, index) { return index + 1; });
             _chart.legend({
                 position: position,
                 custom: true,
@@ -430,7 +430,7 @@
                 return item;
             })
                 .sort(function (a, b) { return a._time - b._time; });
-            var max = Math.max.apply(Math, __spread(arrAxis.map(function (id) { return __spread(data).sort(function (a, b) { return b["y" + id] - a["y" + id]; })[0]["y" + id]; })));
+            var max = Math.max.apply(Math, __spreadArray([], __read(arrAxis.map(function (id) { return __spreadArray([], __read(data)).sort(function (a, b) { return b["y" + id] - a["y" + id]; })[0]["y" + id]; }))));
             var scaleOptions = {};
             arrAxis.forEach(function (id) {
                 var key = "y" + id;
@@ -480,20 +480,16 @@
         clickItem: [{ type: core.Output }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2TimelineComponent.prototype, "maxAxis", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2TimelineComponent.prototype, "height", void 0);
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], G2TimelineComponent.prototype, "borderWidth", void 0);
     __decorate([
-        decorator.InputBoolean(),
-        __metadata("design:type", Object)
+        decorator.InputBoolean()
     ], G2TimelineComponent.prototype, "slider", void 0);
 
     var COMPONENTS = [G2TimelineComponent];

@@ -362,8 +362,7 @@
         gap: [{ type: core.Input }]
     };
     __decorate([
-        decorator.InputNumber(),
-        __metadata("design:type", Object)
+        decorator.InputNumber()
     ], NumberInfoComponent.prototype, "gap", void 0);
 
     var COMPONENTS = [NumberInfoComponent];

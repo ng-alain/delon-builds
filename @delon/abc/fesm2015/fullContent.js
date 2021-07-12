@@ -1,6 +1,7 @@
-import { __decorate, __metadata } from 'tslib';
+import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
-import { ɵɵdefineInjectable, Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
+import * as i0 from '@angular/core';
+import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import { ActivationStart, ActivationEnd, Router } from '@angular/router';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { BehaviorSubject, fromEvent } from 'rxjs';
@@ -18,7 +19,7 @@ class FullContentService {
         return this._change.pipe(share());
     }
 }
-/** @nocollapse */ FullContentService.ɵprov = ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
+FullContentService.ɵprov = i0.ɵɵdefineInjectable({ factory: function FullContentService_Factory() { return new FullContentService(); }, token: FullContentService, providedIn: "root" });
 FullContentService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -126,7 +127,6 @@ FullContentComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 FullContentComponent.ctorParameters = () => [
     { type: ElementRef },
     { type: ChangeDetectorRef },
@@ -141,16 +141,13 @@ FullContentComponent.propDecorators = {
     fullscreenChange: [{ type: Output }]
 };
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Boolean)
+    InputBoolean()
 ], FullContentComponent.prototype, "fullscreen", void 0);
 __decorate([
-    InputBoolean(),
-    __metadata("design:type", Object)
+    InputBoolean()
 ], FullContentComponent.prototype, "hideTitle", void 0);
 __decorate([
-    InputNumber(),
-    __metadata("design:type", Object)
+    InputNumber()
 ], FullContentComponent.prototype, "padding", void 0);
 
 class FullContentToggleDirective {
@@ -170,7 +167,6 @@ FullContentToggleDirective.decorators = [
                 },
             },] }
 ];
-/** @nocollapse */
 FullContentToggleDirective.ctorParameters = () => [
     { type: FullContentComponent }
 ];

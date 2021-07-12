@@ -87,7 +87,6 @@ ExceptionComponent.decorators = [
                 encapsulation: ViewEncapsulation.None
             },] }
 ];
-/** @nocollapse */
 ExceptionComponent.ctorParameters = () => [
     { type: DelonLocaleService },
     { type: DomSanitizer },
