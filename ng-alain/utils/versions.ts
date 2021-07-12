@@ -1,4 +1,5 @@
 import { Tree } from '@angular-devkit/schematics';
+
 import { VERSION } from './lib-versions';
 import { addPackage } from './package';
 
@@ -8,7 +9,7 @@ import { addPackage } from './package';
 export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void {
   addPackage(
     tree,
-    ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`),
+    ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`)
   );
   addPackage(
     tree,
@@ -17,9 +18,9 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `ng-alain-codelyzer@^0.0.1`,
       `ng-alain-plugin-theme@^12.0.0`,
       `source-map-explorer@^2.5.1`,
-      `@delon/testing@${version}`,
+      `@delon/testing@${version}`
     ],
-    'devDependencies',
+    'devDependencies'
   );
   // TODO: fix angular depends on 6.x
   addPackage(tree, ['ajv@^8.6.1', 'ajv-formats@^2.1.0']);
