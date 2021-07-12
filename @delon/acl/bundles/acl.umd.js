@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v11.10.3
+ * @license ng-alain(cipchk@qq.com) v11.10.4
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -394,6 +394,7 @@
          * 设置当前用户角色或权限能力（会先清除所有）
          */
         ACLService.prototype.set = function (value) {
+            this.full = false;
             this.abilities = [];
             this.roles = [];
             this.add(value);
