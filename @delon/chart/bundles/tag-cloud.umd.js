@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.delon.chart.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
-}(this, (function (exports, core, core$1, decorator, rxjs, operators, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/chart/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.chart.core, global.decorator, global.ng.common, global.skeleton));
+}(this, (function (exports, core, rxjs, operators, core$1, decorator, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -342,19 +342,18 @@
         // #endregion
         G2TagCloudComponent.prototype.initTagCloud = function () {
             window.G2.registerShape('point', 'cloud', {
-                // tslint:disable-next-line: typedef
                 draw: function (cfg, container) {
                     var data = cfg.data;
                     var textShape = container.addShape({
                         type: 'text',
                         name: 'tag-cloud-text',
-                        attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                        attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y })
                     });
                     if (data.rotate) {
                         window.G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                     }
                     return textShape;
-                },
+                }
             });
         };
         G2TagCloudComponent.prototype.install = function () {
@@ -373,17 +372,17 @@
                 padding: padding,
                 height: this.height,
                 width: this.width,
-                theme: theme,
+                theme: theme
             }));
             chart.scale({
                 x: { nice: false },
-                y: { nice: false },
+                y: { nice: false }
             });
             chart.legend(false);
             chart.axis(false);
             chart.tooltip({
                 showTitle: false,
-                showMarkers: false,
+                showMarkers: false
             });
             chart.coordinate().reflect();
             chart
@@ -394,9 +393,9 @@
                 .state({
                 active: {
                     style: {
-                        fillOpacity: 0.4,
-                    },
-                },
+                        fillOpacity: 0.4
+                    }
+                }
             });
             chart.interaction('element-active');
             chart.on('tag-cloud-text:click', function (ev) {
@@ -421,7 +420,6 @@
                 size: [this.width, this.height],
                 padding: 0,
                 timeInterval: 5000,
-                // tslint:disable-next-line: typedef
                 rotate: function () {
                     var random = ~~(Math.random() * 4) % 4;
                     if (random === 2) {
@@ -429,10 +427,9 @@
                     }
                     return random * 90; // 0, 90, 270
                 },
-                // tslint:disable-next-line: typedef
                 fontSize: function (d) {
                     return ((d.value - min) / (max - min)) * (32 - 8) + 8;
-                },
+                }
             });
             _chart.changeData(dv.rows);
         };
@@ -481,7 +478,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

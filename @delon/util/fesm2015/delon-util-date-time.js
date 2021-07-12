@@ -4,11 +4,16 @@ import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMont
  * Get the time range, return `[ Date, Date]` for the start and end dates
  *
  * 获取时间范围
+ *
  * @param type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
  * @param time 开始时间
  */
 function getTimeDistance(type, time) {
-    time = time ? (typeof time === 'string' ? parse(time, 'yyyy-MM-dd HH:mm:ss', new Date()) : new Date(time)) : new Date();
+    time = time
+        ? typeof time === 'string'
+            ? parse(time, 'yyyy-MM-dd HH:mm:ss', new Date())
+            : new Date(time)
+        : new Date();
     const options = { weekStartsOn: 1 };
     let res;
     switch (type) {
@@ -54,6 +59,7 @@ function fixEndTimeOfRange(dates) {
 /**
  * Return the date parsed from string using the given format string
  * - If the argument is a number, it is treated as a timestamp.
+ *
  * @param formatString If parsing fails try to parse the date by pressing `formatString`
  * @param defaultValue If parsing fails returned default value, default: `new Date(NaN)`
  */
@@ -169,7 +175,7 @@ class DateTimePickerUtil {
                         return type === 'before' ? tick60.slice(0, nowSeconds) : tick60.slice(nowSeconds + 1);
                     }
                     return [];
-                },
+                }
             };
         };
     }

@@ -3,13 +3,13 @@ import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { Injectable, NgZone, Directive, Input, NgModule } from '@angular/core';
+import { saveAs } from 'file-saver';
+import isUtf8 from 'isutf8';
 import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
 import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { saveAs } from 'file-saver';
-import isUtf8 from 'isutf8';
 import { CommonModule } from '@angular/common';
 
 class XlsxService {
@@ -19,11 +19,13 @@ class XlsxService {
         this.ngZone = ngZone;
         this.cog = configSrv.merge('xlsx', {
             url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
-            modules: [`https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js`],
+            modules: [`https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js`]
         });
     }
     init() {
-        return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([this.cog.url].concat(this.cog.modules));
+        return typeof XLSX !== 'undefined'
+            ? Promise.resolve([])
+            : this.lazy.load([this.cog.url].concat(this.cog.modules));
     }
     read(data, options) {
         const ret = {};
@@ -143,8 +145,8 @@ XlsxDirective.decorators = [
                 selector: '[xlsx]',
                 exportAs: 'xlsx',
                 host: {
-                    '(click)': '_click()',
-                },
+                    '(click)': '_click()'
+                }
             },] }
 ];
 XlsxDirective.ctorParameters = () => [
@@ -161,7 +163,7 @@ XlsxModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

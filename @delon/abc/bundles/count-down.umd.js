@@ -20,7 +20,7 @@
             set: function (value) {
                 this.config = {
                     format: "HH:mm:ss",
-                    stopTime: typeof value === 'number' ? dateFns.addSeconds(new Date(), value).valueOf() : +dateFns.format(value, 't'),
+                    stopTime: typeof value === 'number' ? dateFns.addSeconds(new Date(), value).valueOf() : +dateFns.format(value, 't')
                 };
             },
             enumerable: false,
@@ -58,7 +58,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, ngxCountdown.CountdownModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

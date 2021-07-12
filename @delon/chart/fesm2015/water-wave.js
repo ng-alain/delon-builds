@@ -1,9 +1,9 @@
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
-import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
@@ -28,6 +28,7 @@ class G2WaterWaveComponent {
         this.updateRadio();
         const { percent, color, node, animate } = this;
         const data = Math.min(Math.max(percent / 100, 0), 100);
+        // eslint-disable-next-line @typescript-eslint/no-this-alias
         const self = this;
         cancelAnimationFrame(this.timer);
         const canvas = node.nativeElement;
@@ -51,7 +52,6 @@ class G2WaterWaveComponent {
         const bR = radius - lineWidth;
         const circleOffset = -(Math.PI / 2);
         let circleLock = true;
-        // tslint:disable-next-line:binary-expression-operand-order
         for (let i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
             arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
         }
@@ -66,7 +66,6 @@ class G2WaterWaveComponent {
                 const x = sp + (xOffset + i) / unit;
                 const y = Math.sin(x) * currRange;
                 const dx = i;
-                // tslint:disable-next-line:binary-expression-operand-order
                 const dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
                 ctx.lineTo(dx, dy);
                 sinStack.push([dx, dy]);
@@ -107,11 +106,9 @@ class G2WaterWaveComponent {
                     ctx.globalCompositeOperation = 'destination-over';
                     ctx.beginPath();
                     ctx.lineWidth = lineWidth;
-                    // tslint:disable-next-line:binary-expression-operand-order
                     ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
                     ctx.beginPath();
                     ctx.save();
-                    // tslint:disable-next-line:binary-expression-operand-order
                     ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
                     ctx.restore();
                     ctx.clip();
@@ -235,7 +232,7 @@ G2WaterWaveModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

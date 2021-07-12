@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
+import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';
 export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;

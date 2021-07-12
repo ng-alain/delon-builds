@@ -33,7 +33,7 @@ export interface _STHeader {
 }
 export interface _STColumnButton<T extends STData = any> extends STColumnButton<T> {
     _text?: string;
-    children?: _STColumnButton<T>[];
+    children?: Array<_STColumnButton<T>>;
 }
 export interface _STDataValue {
     text: string;

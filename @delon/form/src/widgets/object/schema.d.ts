@@ -34,6 +34,7 @@ export interface SFObjectWidgetSchema extends SFUISchemaItem {
     };
     /**
      * 等同 `nzBordered` 属性，默认：`true`
+     *
      * @deprecated 使用 `cardBorderless` 替代
      */
     cardBordered?: boolean;

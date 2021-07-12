@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, decorator, rxjs, operators, common, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet']));
+}(this, (function (exports, platform, core, rxjs, operators, decorator, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -348,6 +348,7 @@
             this.updateRadio();
             var _a = this, percent = _a.percent, color = _a.color, node = _a.node, animate = _a.animate;
             var data = Math.min(Math.max(percent / 100, 0), 100);
+            // eslint-disable-next-line @typescript-eslint/no-this-alias
             var self = this;
             cancelAnimationFrame(this.timer);
             var canvas = node.nativeElement;
@@ -371,7 +372,6 @@
             var bR = radius - lineWidth;
             var circleOffset = -(Math.PI / 2);
             var circleLock = true;
-            // tslint:disable-next-line:binary-expression-operand-order
             for (var i = circleOffset; i < circleOffset + 2 * Math.PI; i += 1 / (8 * Math.PI)) {
                 arcStack.push([radius + bR * Math.cos(i), radius + bR * Math.sin(i)]);
             }
@@ -386,7 +386,6 @@
                     var x = sp + (xOffset + i) / unit;
                     var y = Math.sin(x) * currRange;
                     var dx = i;
-                    // tslint:disable-next-line:binary-expression-operand-order
                     var dy = 2 * cR * (1 - currData) + (radius - cR) - unit * y;
                     ctx.lineTo(dx, dy);
                     sinStack.push([dx, dy]);
@@ -438,11 +437,9 @@
                         ctx.globalCompositeOperation = 'destination-over';
                         ctx.beginPath();
                         ctx.lineWidth = lineWidth;
-                        // tslint:disable-next-line:binary-expression-operand-order
                         ctx.arc(radius, radius, bR, 0, 2 * Math.PI, true);
                         ctx.beginPath();
                         ctx.save();
-                        // tslint:disable-next-line:binary-expression-operand-order
                         ctx.arc(radius, radius, radius - 3 * lineWidth, 0, 2 * Math.PI, true);
                         ctx.restore();
                         ctx.clip();
@@ -573,7 +570,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

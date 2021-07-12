@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/decorator'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/decorator', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.i1, global.i2, global.rxjs, global.ng.common));
-}(this, (function (exports, platform, i0, decorator, i1, i2, rxjs, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('@delon/util/config'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/decorator', 'rxjs', '@delon/util/config', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.rxjs, global.i1, global.i2, global.ng.common));
+}(this, (function (exports, platform, i0, decorator, rxjs, i1, i2, common) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -365,7 +365,10 @@
             },
             set: function (val) {
                 this._cog = this.cogSrv.merge('media', {
-                    urls: ['https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js', 'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'],
+                    urls: [
+                        'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js',
+                        'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'
+                    ]
                 }, val);
             },
             enumerable: false,
@@ -479,7 +482,7 @@
                     exportAs: 'mediaComponent',
                     template: "<ng-content></ng-content>",
                     host: {
-                        '[style.display]': "'block'",
+                        '[style.display]': "'block'"
                     },
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -517,7 +520,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

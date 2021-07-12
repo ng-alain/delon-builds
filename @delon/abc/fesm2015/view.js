@@ -17,7 +17,7 @@ class SVContainerComponent {
             gutter: 32,
             layout: 'horizontal',
             col: 3,
-            default: true,
+            default: true
         });
     }
 }
@@ -32,7 +32,7 @@ SVContainerComponent.decorators = [
                     '[class.sv__vertical]': `layout === 'vertical'`,
                     '[class.sv__small]': `size === 'small'`,
                     '[class.sv__large]': `size === 'large'`,
-                    '[class.clearfix]': `true`,
+                    '[class.clearfix]': `true`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -89,7 +89,7 @@ SVTitleComponent.decorators = [
                 exportAs: 'svTitle',
                 template: '<ng-content></ng-content>',
                 host: {
-                    '[class.sv__title]': 'true',
+                    '[class.sv__title]': 'true'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -119,7 +119,7 @@ SVValueComponent.decorators = [
                 host: {
                     '[class.sv__value]': 'true',
                     '[class.sv__value-small]': `size === 'small'`,
-                    '[class.sv__value-large]': `size === 'large'`,
+                    '[class.sv__value-large]': `size === 'large'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -192,10 +192,10 @@ SVComponent.decorators = [
     { type: Component, args: [{
                 selector: 'sv, [sv]',
                 exportAs: 'sv',
-                template: "<div class=\"sv__label\" [class.sv__label-empty]=\"!label\" [class.sv__label-width]=\"labelWidth != null\" [style.width.px]=\"labelWidth\">\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
+                template: "<div\n  class=\"sv__label\"\n  [class.sv__label-empty]=\"!label\"\n  [class.sv__label-width]=\"labelWidth !== null\"\n  [style.width.px]=\"labelWidth\"\n>\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i\n      *ngIf=\"optionalHelp\"\n      nz-tooltip\n      [nzTooltipTitle]=\"optionalHelp\"\n      [nzTooltipColor]=\"optionalHelpColor\"\n      nz-icon\n      nzType=\"question-circle\"\n    ></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
-                    '[style.padding-right.px]': 'paddingValue',
+                    '[style.padding-right.px]': 'paddingValue'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -233,7 +233,7 @@ SVModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

@@ -1,15 +1,18 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * Gets the value at `path` of `object`, like `_.get` in lodash.
  *
  * 类似 `_.get`，根据 `path` 获取安全值
  */
-export declare function deepGet(obj: any, path: string | string[] | null | undefined, defaultValue?: any): any;
+export declare function deepGet(obj: NzSafeAny, path: string | string[] | null | undefined, defaultValue?: unknown): NzSafeAny;
 /**
  * Base on [extend](https://github.com/justmoon/node-extend) deep copy.
  *
  * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
  */
-export declare function deepCopy<T extends object = any>(obj: T | null | undefined): T;
+export declare function deepCopy<T extends {
+    [key: string]: NzSafeAny;
+} = NzSafeAny>(obj: T | null | undefined): T;
 /**
  * Deep merge object.
  *
@@ -21,10 +24,10 @@ export declare function deepCopy<T extends object = any>(obj: T | null | undefin
  *  - `false` 表示会合并整个数组（将旧数据与新数据合并成新数组）
  * @param objects 要合并的对象
  */
-export declare function deepMergeKey(original: any, arrayProcessMethod: boolean, ...objects: any[]): any;
+export declare function deepMergeKey(original: unknown, arrayProcessMethod: boolean, ...objects: any[]): NzSafeAny;
 /**
  * Deep merge object.
  *
  * 深度合并对象
  */
-export declare function deepMerge(original: any, ...objects: any[]): any;
+export declare function deepMerge(original: unknown, ...objects: unknown[]): NzSafeAny;

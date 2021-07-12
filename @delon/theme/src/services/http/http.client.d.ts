@@ -1,7 +1,7 @@
 import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { AlainConfigService } from '@delon/util/config';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AlainConfigService } from '@delon/util/config';
 export declare type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
@@ -173,7 +173,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **DELETE Request** Return a `any` type / 返回一个 `any` 类型
      */
@@ -219,7 +219,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **PATCH Request** Return a `any` type / 返回一个 `any` 类型
      */
@@ -259,7 +259,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<{}>>;
+    }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **PUT Request** Return a `any` type / 返回一个 `any` 类型
      */
@@ -473,7 +473,7 @@ export declare class _HttpClient {
         observe: 'response';
         responseType?: 'json';
         withCredentials?: boolean;
-    }): Observable<HttpResponse<Object>>;
+    }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **Request** Return a `HttpResponse<R>` type / 返回一个 `HttpResponse<R>` 类型
      */
@@ -497,7 +497,7 @@ export declare class _HttpClient {
         responseType?: 'json';
         reportProgress?: boolean;
         withCredentials?: boolean;
-    }): Observable<Object>;
+    }): Observable<Record<string, unknown>>;
     /**
      * **Request** Return a `R` type / 返回一个 `R` 类型
      */

@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Optional, ContentChildren, NgModule } from '@angular/core';
 import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
-import { InputNumber } from '@delon/util/decorator';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
@@ -41,7 +41,7 @@ class AvatarListComponent {
         this.maxLength = 0;
     }
     set size(value) {
-        this.cls = 'avatar-list__item' + (value === 'default' ? '' : ` avatar-list__${value}`);
+        this.cls = `avatar-list__item${value === 'default' ? '' : ` avatar-list__${value}`}`;
         switch (value) {
             case 'large':
             case 'small':
@@ -85,10 +85,10 @@ AvatarListComponent.decorators = [
     { type: Component, args: [{
                 selector: 'avatar-list',
                 exportAs: 'avatarList',
-                template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
+                template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar\n      *ngIf=\"i.tips\"\n      nz-tooltip\n      [nzTooltipTitle]=\"i.tips\"\n      [nzSrc]=\"i.src\"\n      [nzText]=\"i.text\"\n      [nzIcon]=\"i.icon\"\n      [nzSize]=\"avatarSize\"\n    ></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar\n      [nzSize]=\"avatarSize\"\n      style=\"cursor: auto\"\n      [ngStyle]=\"excessItemsStyle\"\n      [nzText]=\"'+' + exceedCount\"\n    ></nz-avatar>\n  </li>\n</ul>\n",
                 host: {
                     '[class.avatar-list]': 'true',
-                    '[class.avatar-list-rtl]': `dir === 'rtl'`,
+                    '[class.avatar-list-rtl]': `dir === 'rtl'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -116,7 +116,7 @@ AvatarListModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzAvatarModule, NzToolTipModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

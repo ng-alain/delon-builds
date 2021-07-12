@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('ajv'), require('ajv-formats'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('@delon/util/date-time'), require('date-fns')) :
-    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs', 'rxjs/operators', '@delon/util/format', 'ajv', 'ajv-formats', 'ng-zorro-antd/core/animation', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', '@delon/util/date-time', 'date-fns'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.config, global.decorator, global.other, global.rxjs, global.rxjs.operators, global.format, global.Ajv, global.addFormats, global['ng-zorro-antd/core/animation'], global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.dateTime, global.dateFns));
-}(this, (function (exports, platform, core, platformBrowser, acl, theme, config, decorator, other, rxjs, operators, format, Ajv, addFormats, animation, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, dateTime, dateFns) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('ajv'), require('ajv-formats'), require('@delon/util/format'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('@angular/forms'), require('ng-zorro-antd/auto-complete'), require('ng-zorro-antd/button'), require('ng-zorro-antd/card'), require('ng-zorro-antd/cascader'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/form'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/mention'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/rate'), require('ng-zorro-antd/select'), require('ng-zorro-antd/slider'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/time-picker'), require('ng-zorro-antd/tooltip'), require('ng-zorro-antd/transfer'), require('ng-zorro-antd/tree-select'), require('ng-zorro-antd/upload'), require('date-fns'), require('@delon/util/date-time')) :
+    typeof define === 'function' && define.amd ? define('@delon/form', ['exports', '@angular/cdk/platform', '@angular/core', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/acl', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'ajv', 'ajv-formats', '@delon/util/format', 'ng-zorro-antd/core/animation', '@angular/common', '@angular/forms', 'ng-zorro-antd/auto-complete', 'ng-zorro-antd/button', 'ng-zorro-antd/card', 'ng-zorro-antd/cascader', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/form', 'ng-zorro-antd/grid', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/mention', 'ng-zorro-antd/modal', 'ng-zorro-antd/radio', 'ng-zorro-antd/rate', 'ng-zorro-antd/select', 'ng-zorro-antd/slider', 'ng-zorro-antd/switch', 'ng-zorro-antd/tag', 'ng-zorro-antd/time-picker', 'ng-zorro-antd/tooltip', 'ng-zorro-antd/transfer', 'ng-zorro-antd/tree-select', 'ng-zorro-antd/upload', 'date-fns', '@delon/util/date-time'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.form = {}), global.ng.cdk.platform, global.ng.core, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.acl, global.delon.theme, global.config, global.decorator, global.other, global.Ajv, global.addFormats, global.format, global['ng-zorro-antd/core/animation'], global.ng.common, global.ng.forms, global['ng-zorro-antd/auto-complete'], global['ng-zorro-antd/button'], global['ng-zorro-antd/card'], global['ng-zorro-antd/cascader'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/date-picker'], global['ng-zorro-antd/form'], global['ng-zorro-antd/grid'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/input-number'], global['ng-zorro-antd/mention'], global['ng-zorro-antd/modal'], global['ng-zorro-antd/radio'], global['ng-zorro-antd/rate'], global['ng-zorro-antd/select'], global['ng-zorro-antd/slider'], global['ng-zorro-antd/switch'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/time-picker'], global['ng-zorro-antd/tooltip'], global['ng-zorro-antd/transfer'], global['ng-zorro-antd/tree-select'], global['ng-zorro-antd/upload'], global.dateFns, global.dateTime));
+}(this, (function (exports, platform, core, platformBrowser, rxjs, operators, acl, theme, config, decorator, other, Ajv, addFormats, format, animation, common, forms, autoComplete, button, card, cascader, checkbox, datePicker, form, grid, icon, input, inputNumber, mention, modal, radio, rate, select, slider, _switch, tag, timePicker, tooltip, transfer, treeSelect, upload, dateFns, dateTime) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -19,7 +19,7 @@
             'date-time': {
                 widget: 'date',
                 showTime: true,
-                format: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx",
+                format: "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"
             },
             date: { widget: 'date', format: 'yyyy-MM-dd' },
             'full-date': { widget: 'date', format: 'yyyy-MM-dd' },
@@ -30,7 +30,7 @@
             uri: { widget: 'upload' },
             email: { widget: 'autocomplete', type: 'email' },
             color: { widget: 'string', type: 'color' },
-            '': { widget: 'string' },
+            '': { widget: 'string' }
         },
         ingoreKeywords: ['type', 'enum'],
         liveValidate: true,
@@ -44,7 +44,7 @@
         uiDateNumberFormat: 'T',
         uiTimeStringFormat: 'HH:mm:ss',
         uiTimeNumberFormat: 'T',
-        uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
+        uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com']
     };
     function mergeConfig(srv) {
         return srv.merge('sf', SF_DEFAULT_CONFIG);
@@ -383,7 +383,6 @@
             args[_i - 1] = arguments[_i];
         }
         if (ui.debug) {
-            // tslint:disable-next-line:no-console
             console.warn.apply(console, __spreadArray([], __read(args)));
         }
     }
@@ -568,7 +567,7 @@
             this.ui = ui;
             this.schemaValidator = schemaValidatorFactory.createValidatorFn(schema, {
                 ingoreKeywords: this.ui.ingoreKeywords,
-                debug: ui.debug,
+                debug: ui.debug
             });
             this.formData = formData || schema.default;
             this._parent = parent;
@@ -671,6 +670,7 @@
         };
         /** 根据路径搜索表单属性 */
         FormProperty.prototype.searchProperty = function (path) {
+            // eslint-disable-next-line @typescript-eslint/no-this-alias
             var prop = this;
             var base = null;
             var result = null;
@@ -688,6 +688,7 @@
         };
         /** 查找根表单属性 */
         FormProperty.prototype.findRoot = function () {
+            // eslint-disable-next-line @typescript-eslint/no-this-alias
             var property = this;
             while (property.parent !== null) {
                 property = property.parent;
@@ -700,7 +701,7 @@
                 return true;
             switch (this.type) {
                 case 'string':
-                    return ('' + value).length === 0;
+                    return ("" + value).length === 0;
             }
             return false;
         };
@@ -938,7 +939,7 @@
                 console.error("Invalid " + (this.schema.title || 'root') + " object field configuration:", e);
             }
             orderedProperties.forEach(function (propertyId) {
-                _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui['$' + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
+                _this.properties[propertyId] = _this.formPropertyFactory.createProperty(_this.schema.properties[propertyId], _this.ui["$" + propertyId], (_this.formData || {})[propertyId], _this, propertyId);
                 _this._propertiesId.push(propertyId);
             });
         };
@@ -954,7 +955,6 @@
         ObjectProperty.prototype.resetValue = function (value, onlySelf) {
             value = value || this.schema.default || {};
             var properties = this.properties;
-            // tslint:disable-next-line: forin
             for (var propertyId in this.schema.properties) {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
@@ -1166,7 +1166,7 @@
                         path += parent.properties.length;
                         break;
                     default:
-                        throw new Error('Instanciation of a FormProperty with an unknown parent type: ' + parent.type);
+                        throw new Error("Instanciation of a FormProperty with an unknown parent type: " + parent.type);
                 }
             }
             else {
@@ -1178,7 +1178,8 @@
             }
             else {
                 // fix required
-                if ((propertyId && parent.schema.required.indexOf(propertyId.split(SF_SEQ).pop()) !== -1) || ui.showRequired === true) {
+                if ((propertyId && parent.schema.required.indexOf(propertyId.split(SF_SEQ).pop()) !== -1) ||
+                    ui.showRequired === true) {
                     ui._required = true;
                 }
                 // fix title
@@ -1411,7 +1412,7 @@
             });
             var refSchemas = [
                 this.aclSrv ? this.aclSrv.change : null,
-                this.i18nSrv ? this.i18nSrv.change : null,
+                this.i18nSrv ? this.i18nSrv.change : null
             ].filter(function (o) { return o != null; });
             if (refSchemas.length > 0) {
                 rxjs.merge.apply(void 0, __spreadArray([], __read(refSchemas))).pipe(operators.filter(function () { return _this._inited; }), operators.takeUntil(this.unsubscribe$))
@@ -1535,7 +1536,9 @@
                 Object.keys(schema.properties).forEach(function (key) {
                     var uiKey = "$" + key;
                     var property = retrieveSchema(schema.properties[key], definitions);
-                    var ui = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && _this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0 ? { widget: 'select' } : null)), _this._defUi), property.ui), uiSchema[uiKey]);
+                    var ui = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && _this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
+                        ? { widget: 'select' }
+                        : null)), _this._defUi), property.ui), uiSchema[uiKey]);
                     // 继承父节点布局属性
                     if (isHorizontal) {
                         if (parentUiSchema.spanLabelFixed) {
@@ -1549,7 +1552,8 @@
                             if (!ui.spanControl)
                                 ui.spanControl = typeof parentUiSchema.spanControl === 'undefined' ? 19 : parentUiSchema.spanControl;
                             if (!ui.offsetControl)
-                                ui.offsetControl = typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
+                                ui.offsetControl =
+                                    typeof parentUiSchema.offsetControl === 'undefined' ? null : parentUiSchema.offsetControl;
                         }
                     }
                     else {
@@ -1583,7 +1587,7 @@
                     if (ui.optionalHelp) {
                         if (typeof ui.optionalHelp === 'string') {
                             ui.optionalHelp = {
-                                text: ui.optionalHelp,
+                                text: ui.optionalHelp
                             };
                         }
                         var oh = (ui.optionalHelp = Object.assign({ text: '', icon: 'question-circle', placement: 'top', trigger: 'hover', mouseEnterDelay: 0.15, mouseLeaveDelay: 0.1 }, ui.optionalHelp));
@@ -1653,7 +1657,7 @@
                 if (!btnRender.grid) {
                     btnRender.grid = {
                         offset: btnUi.spanLabel,
-                        span: btnUi.spanControl,
+                        span: btnUi.spanControl
                     };
                 }
                 // fixed label
@@ -1808,6 +1812,7 @@
          * Reset form
          *
          * 重置表单
+         *
          * @param [emit] 是否触发 `formReset` 事件，默认：`false`
          */
         SFComponent.prototype.reset = function (emit) {
@@ -1842,15 +1847,15 @@
         { type: core.Component, args: [{
                     selector: 'sf, [sf]',
                     exportAs: 'sf',
-                    template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item *ngIf=\"rootProperty\" [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item *ngIf=\"_btn.render\" [ngClass]=\"_btn.render!.class!\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed!\">\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"btnGrid.span\"\n        [nzOffset]=\"btnGrid.offset\"\n        [nzXs]=\"btnGrid.xs\"\n        [nzSm]=\"btnGrid.sm\"\n        [nzMd]=\"btnGrid.md\"\n        [nzLg]=\"btnGrid.lg\"\n        [nzXl]=\"btnGrid.xl\"\n        [nzXXl]=\"btnGrid.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type!\"\n                  [nzTheme]=\"_btn.submit_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type!\"\n                  [nzTheme]=\"_btn.reset_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont!\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
+                    template: "<ng-template #con>\n  <ng-content></ng-content>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item *ngIf=\"rootProperty\" [formProperty]=\"rootProperty\"></sf-item>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item\n      *ngIf=\"_btn.render\"\n      [ngClass]=\"_btn.render!.class!\"\n      class=\"sf-btns\"\n      [fixed-label]=\"_btn.render!.spanLabelFixed!\"\n    >\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"btnGrid.span\"\n        [nzOffset]=\"btnGrid.offset\"\n        [nzXs]=\"btnGrid.xs\"\n        [nzSm]=\"btnGrid.sm\"\n        [nzMd]=\"btnGrid.md\"\n        [nzLg]=\"btnGrid.lg\"\n        [nzXl]=\"btnGrid.xl\"\n        [nzXXl]=\"btnGrid.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type!\"\n                  [nzTheme]=\"_btn.submit_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type!\"\n                  [nzTheme]=\"_btn.reset_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont!\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</form>\n",
                     providers: [
                         WidgetFactory,
                         {
                             provide: FormPropertyFactory,
                             useFactory: useFactory,
-                            deps: [SchemaValidatorFactory, config.AlainConfigService],
+                            deps: [SchemaValidatorFactory, config.AlainConfigService]
                         },
-                        TerminatorService,
+                        TerminatorService
                     ],
                     host: {
                         '[class.sf]': 'true',
@@ -1860,7 +1865,7 @@
                         '[class.sf__edit]': "mode === 'edit'",
                         '[class.sf__no-error]': "onlyVisual",
                         '[class.sf__no-colon]': "noColon",
-                        '[class.sf__compact]': "compact",
+                        '[class.sf__compact]': "compact"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -1993,7 +1998,7 @@
             this.render.addClass(widgetEl, 'sf__fixed');
             var labelEl = widgetEl.querySelector('.ant-form-item-label');
             var controlEl = widgetEl.querySelector('.ant-form-item-control');
-            var unit = this.num + 'px';
+            var unit = this.num + "px";
             if (labelEl) {
                 this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
                 this.render.setStyle(controlEl, 'max-width', "calc(100% - " + unit + ")");
@@ -2057,7 +2062,7 @@
     SFItemWrapComponent.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-item-wrap',
-                    template: "<nz-form-item [style.width.px]=\"ui.width\" [class.ant-form-item-has-error]=\"showError\" [class.ant-form-item-with-help]=\"showError\">\n  <div nz-col *ngIf=\"_showTitle\" [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n  </div>\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </div>\n</nz-form-item>\n",
+                    template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n>\n  <div nz-col *ngIf=\"_showTitle\" [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n    <label *ngIf=\"t\" [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n      <span class=\"sf__label-text\">{{ t }}</span>\n      <span *ngIf=\"ui.optional || oh\" class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipColor]=\"oh.bgColor\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n  </div>\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content></ng-content>\n      </div>\n    </div>\n    <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-item-explain ant-form-item-explain-error\">\n      <div @helpMotion>{{ error }}</div>\n    </div>\n    <div *ngIf=\"schema.description\" class=\"ant-form-item-extra\" [innerHTML]=\"schema._description\"></div>\n  </div>\n</nz-form-item>\n",
                     animations: [animation.helpMotion],
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
@@ -2085,7 +2090,7 @@
     }());
     SFTemplateDirective.decorators = [
         { type: core.Directive, args: [{
-                    selector: '[sf-template]',
+                    selector: '[sf-template]'
                 },] }
     ];
     SFTemplateDirective.ctorParameters = function () { return [
@@ -2154,7 +2159,9 @@
         });
         Widget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function (errors) {
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .subscribe(function (errors) {
                 if (errors == null)
                     return;
                 di(_this.ui, 'errorsChanges', _this.formProperty.path, errors);
@@ -2235,7 +2242,9 @@
         ArrayLayoutWidget.prototype.afterViewInit = function () { };
         ArrayLayoutWidget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function () { return _this.cd.detectChanges(); });
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .subscribe(function () { return _this.cd.detectChanges(); });
         };
         return ArrayLayoutWidget;
     }(Widget));
@@ -2251,7 +2260,9 @@
         ObjectLayoutWidget.prototype.afterViewInit = function () { };
         ObjectLayoutWidget.prototype.ngAfterViewInit = function () {
             var _this = this;
-            this.formProperty.errorsChanges.pipe(operators.takeUntil(this.sfItemComp.unsubscribe$)).subscribe(function () { return _this.cd.detectChanges(); });
+            this.formProperty.errorsChanges
+                .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$))
+                .subscribe(function () { return _this.cd.detectChanges(); });
         };
         return ObjectLayoutWidget;
     }(Widget));
@@ -2268,7 +2279,8 @@
         }
         Object.defineProperty(ArrayWidget.prototype, "addDisabled", {
             get: function () {
-                return (this.disabled || (this.schema.maxItems != null && this.formProperty.properties.length >= this.schema.maxItems));
+                return (this.disabled ||
+                    (this.schema.maxItems != null && this.formProperty.properties.length >= this.schema.maxItems));
             },
             enumerable: false,
             configurable: true
@@ -2311,7 +2323,7 @@
     ArrayWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-array',
-                    template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <div nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button type=\"button\" nz-button [nzType]=\"addType\" [disabled]=\"addDisabled\" (click)=\"addItem()\" [innerHTML]=\"addTitle\"></button>\n    </div>\n  </div>\n  <div nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <div nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of $any(formProperty).properties; let idx=index\">\n          <div nz-col *ngIf=\"i.visible && !i.ui.hidden\" [nzSpan]=\"arraySpan\" [attr.data-index]=\"idx\" class=\"sf__array-item\">\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </div>\n        </ng-container>\n      </div>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{error}}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </div>\n</nz-form-item>\n",
+                    template: "<nz-form-item [class.ant-form-item-with-help]=\"showError\">\n  <div nz-col *ngIf=\"schema.title\" [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n    <label>\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n    <div class=\"sf__array-add\">\n      <button\n        type=\"button\"\n        nz-button\n        [nzType]=\"addType\"\n        [disabled]=\"addDisabled\"\n        (click)=\"addItem()\"\n        [innerHTML]=\"addTitle\"\n      ></button>\n    </div>\n  </div>\n  <div nz-col class=\"ant-form-item-control-wrapper\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control\" [class.has-error]=\"showError\">\n      <div nz-row class=\"sf__array-container\">\n        <ng-container *ngFor=\"let i of $any(formProperty).properties; let idx = index\">\n          <div\n            nz-col\n            *ngIf=\"i.visible && !i.ui.hidden\"\n            [nzSpan]=\"arraySpan\"\n            [attr.data-index]=\"idx\"\n            class=\"sf__array-item\"\n          >\n            <nz-card>\n              <sf-item [formProperty]=\"i\"></sf-item>\n              <span *ngIf=\"showRemove\" class=\"sf__array-remove\" (click)=\"removeItem(idx)\" [attr.title]=\"removeTitle\">\n                <i nz-icon nzType=\"delete\"></i>\n              </span>\n            </nz-card>\n          </div>\n        </ng-container>\n      </div>\n      <div *ngIf=\"!ui.onlyVisual && showError\" class=\"ant-form-explain\">{{ error }}</div>\n      <div *ngIf=\"schema.description\" [innerHTML]=\"schema._description\" class=\"ant-form-extra\"></div>\n    </div>\n  </div>\n</nz-form-item>\n",
                     host: { '[class.sf__array]': 'true' },
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
@@ -2349,7 +2361,7 @@
             this.i = {
                 backfill: toBool(backfill, false),
                 defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
-                width: nzWidth || undefined,
+                width: nzWidth || undefined
             };
             var filterOptionValue = filterOption == null ? true : filterOption;
             if (typeof filterOptionValue === 'boolean') {
@@ -2391,7 +2403,7 @@
     AutoCompleteWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-autocomplete',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <input\n    nz-input\n    [nzAutocomplete]=\"auto\"\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size!\"\n    [(ngModel)]=\"typing\"\n    (ngModelChange)=\"_setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    autocomplete=\"off\"\n  />\n  <nz-autocomplete\n    #auto\n    [nzBackfill]=\"i.backfill\"\n    [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n    [nzWidth]=\"i.width\"\n    (selectionChange)=\"updateValue($event)\"\n  >\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i\" [nzLabel]=\"i.label\"> {{i.label}} </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <input\n    nz-input\n    [nzAutocomplete]=\"auto\"\n    [attr.id]=\"id\"\n    [disabled]=\"disabled\"\n    [attr.disabled]=\"disabled\"\n    [nzSize]=\"ui.size!\"\n    [(ngModel)]=\"typing\"\n    (ngModelChange)=\"_setValue($event)\"\n    [attr.maxLength]=\"schema.maxLength || null\"\n    [attr.placeholder]=\"ui.placeholder\"\n    autocomplete=\"off\"\n  />\n  <nz-autocomplete\n    #auto\n    [nzBackfill]=\"i.backfill\"\n    [nzDefaultActiveFirstOption]=\"i.defaultActiveFirstOption\"\n    [nzWidth]=\"i.width\"\n    (selectionChange)=\"updateValue($event)\"\n  >\n    <nz-auto-option *ngFor=\"let i of list | async\" [nzValue]=\"i\" [nzLabel]=\"i.label\"> {{ i.label }} </nz-auto-option>\n  </nz-autocomplete>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -2540,7 +2552,7 @@
     CheckboxWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-checkbox',
-                    template: "<ng-template #all>\n  <label\n    *ngIf=\"ui.checkAll\"\n    nz-checkbox\n    class=\"sf__checkbox-all mr-sm\"\n    [(ngModel)]=\"allChecked\"\n    (ngModelChange)=\"onAllChecked()\"\n    [nzIndeterminate]=\"indeterminate\"\n    >{{ ui.checkAllText || l.checkAllText }}</label\n  >\n</ng-template>\n<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"true\" [title]=\"labelTitle\">\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{schema.title}}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <div nz-row>\n          <div nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </div>\n          <div nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{i.label}}</label>\n          </div>\n        </div>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n",
+                    template: "<ng-template #all>\n  <label\n    *ngIf=\"ui.checkAll\"\n    nz-checkbox\n    class=\"sf__checkbox-all mr-sm\"\n    [(ngModel)]=\"allChecked\"\n    (ngModelChange)=\"onAllChecked()\"\n    [nzIndeterminate]=\"indeterminate\"\n    >{{ ui.checkAllText || l.checkAllText }}</label\n  >\n</ng-template>\n<sf-item-wrap\n  [id]=\"id\"\n  [schema]=\"schema\"\n  [ui]=\"ui\"\n  [showError]=\"showError\"\n  [error]=\"error\"\n  [showTitle]=\"true\"\n  [title]=\"labelTitle\"\n>\n  <ng-container *ngIf=\"inited && data.length === 0\">\n    <label nz-checkbox [nzDisabled]=\"disabled\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\">\n      {{ schema.title }}\n      <span class=\"sf__optional\">\n        {{ ui.optional }}\n        <i\n          *ngIf=\"oh\"\n          nz-tooltip\n          [nzTooltipTitle]=\"oh.text\"\n          [nzTooltipPlacement]=\"oh.placement\"\n          [nzTooltipTrigger]=\"oh.trigger\"\n          [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n          [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n          [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n          [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n          nz-icon\n          [nzType]=\"oh.icon!\"\n        ></i>\n      </span>\n    </label>\n  </ng-container>\n  <ng-container *ngIf=\"inited && data.length > 0\">\n    <ng-container *ngIf=\"grid_span === 0\">\n      <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n      <nz-checkbox-group [ngModel]=\"data\" (ngModelChange)=\"notifySet()\"></nz-checkbox-group>\n    </ng-container>\n    <ng-container *ngIf=\"grid_span !== 0\">\n      <nz-checkbox-wrapper class=\"sf__checkbox-list\" (nzOnChange)=\"groupInGridChange($event)\">\n        <div nz-row>\n          <div nz-col [nzSpan]=\"grid_span\" *ngIf=\"ui.checkAll\">\n            <ng-template [ngTemplateOutlet]=\"all\"></ng-template>\n          </div>\n          <div nz-col [nzSpan]=\"grid_span\" *ngFor=\"let i of data\">\n            <label nz-checkbox [nzValue]=\"i.value\" [ngModel]=\"i.checked\" [nzDisabled]=\"i.disabled\">{{ i.label }}</label>\n          </div>\n        </div>\n      </nz-checkbox-wrapper>\n    </ng-container>\n  </ng-container>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -2556,7 +2568,7 @@
     CustomWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-custom',
-                    template: "\n    <sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{$implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
+                    template: "\n    <sf-item-wrap\n      [id]=\"id\"\n      [schema]=\"schema\"\n      [ui]=\"ui\"\n      [showError]=\"showError\"\n      [error]=\"error\"\n      [showTitle]=\"schema.title\"\n    >\n      <ng-template\n        [ngTemplateOutlet]=\"$any(ui)._render\"\n        [ngTemplateOutletContext]=\"{ $implicit: this, schema: schema, ui: ui }\"\n      ></ng-template>\n    </sf-item-wrap>\n  ",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -2600,7 +2612,7 @@
             this.i = {
                 allowClear: toBool(allowClear, true),
                 // nz-date-picker
-                showToday: toBool(showToday, true),
+                showToday: toBool(showToday, true)
             };
         };
         DateWidget.prototype.reset = function (value) {
@@ -2615,7 +2627,7 @@
             if (this.flatRange) {
                 var endValue = dateTime.toDate(this.endProperty.formData, {
                     formatString: this.endFormat || this.startFormat,
-                    defaultValue: null,
+                    defaultValue: null
                 });
                 this.displayValue = value == null || endValue == null ? [] : [value, endValue];
             }
@@ -2697,7 +2709,7 @@
                 notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
                 placement: placement || 'bottom',
                 prefix: prefix || '@',
-                autosize: typeof autosize === 'undefined' ? true : this.ui.autosize,
+                autosize: typeof autosize === 'undefined' ? true : this.ui.autosize
             };
             var _b = this.schema, minimum = _b.minimum, maximum = _b.maximum;
             var min = typeof minimum !== 'undefined' ? minimum : -1;
@@ -2820,7 +2832,8 @@
             this.showExpand = toBool(ui.showExpand, true);
             this.expand = toBool(ui.expand, true);
             this.type = type !== null && type !== void 0 ? type : 'default';
-            if (this.type === 'card' || (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
+            if (this.type === 'card' ||
+                (!formProperty.isRoot() && !(formProperty.parent instanceof ArrayProperty) && showTitle === true)) {
                 this.title = this.schema.title;
             }
             this.grid = grid;
@@ -2833,7 +2846,7 @@
                         property: property,
                         grid: property.ui.grid || grid || {},
                         spanLabelFixed: property.ui.spanLabelFixed,
-                        show: property.ui.hidden === false,
+                        show: property.ui.hidden === false
                     };
                     list.push(item);
                 }
@@ -2859,7 +2872,7 @@
     ObjectWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-object',
-                    template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"cardTitleTpl\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"ui.cardBodyStyle!\"\n  [nzBordered]=\"ui.cardBordered || true\"\n  [nzBorderless]=\"ui.cardBorderless || false\"\n  class=\"sf__object-card\"\n  [class.sf__object-card-fold]=\"!expand\"\n>\n  <ng-template #cardTitleTpl>\n    <div [class.point]=\"showExpand\" (click)=\"changeExpand()\">\n      <i *ngIf=\"showExpand\" nz-icon [nzType]=\"expand ? 'down' : 'up'\" class=\"mr-xs text-xs\"></i>\n      {{title}}\n    </div>\n  </ng-template>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
+                    template: "<ng-template #default let-noTitle>\n  <div *ngIf=\"!noTitle && title\" class=\"sf__title\">{{ title }}</div>\n  <ng-container *ngIf=\"grid; else noGrid\">\n    <div nz-row [nzGutter]=\"grid.gutter\">\n      <ng-container *ngFor=\"let i of list\">\n        <ng-container *ngIf=\"i.property.visible && i.show\">\n          <div\n            nz-col\n            [nzSpan]=\"i.grid.span\"\n            [nzOffset]=\"i.grid.offset\"\n            [nzXs]=\"i.grid.xs\"\n            [nzSm]=\"i.grid.sm\"\n            [nzMd]=\"i.grid.md\"\n            [nzLg]=\"i.grid.lg\"\n            [nzXl]=\"i.grid.xl\"\n            [nzXXl]=\"i.grid.xxl\"\n          >\n            <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n          </div>\n        </ng-container>\n      </ng-container>\n    </div>\n  </ng-container>\n  <ng-template #noGrid>\n    <ng-container *ngFor=\"let i of list\">\n      <ng-container *ngIf=\"i.property.visible && i.show\">\n        <sf-item [formProperty]=\"i.property\" [fixed-label]=\"i.spanLabelFixed\"></sf-item>\n      </ng-container>\n    </ng-container>\n  </ng-template>\n</ng-template>\n<nz-card\n  *ngIf=\"type === 'card'; else default\"\n  [nzTitle]=\"cardTitleTpl\"\n  [nzExtra]=\"ui.cardExtra\"\n  [nzSize]=\"ui.cardSize || 'small'\"\n  [nzActions]=\"ui.cardActions || []\"\n  [nzBodyStyle]=\"ui.cardBodyStyle!\"\n  [nzBordered]=\"ui.cardBordered || true\"\n  [nzBorderless]=\"ui.cardBorderless || false\"\n  class=\"sf__object-card\"\n  [class.sf__object-card-fold]=\"!expand\"\n>\n  <ng-template #cardTitleTpl>\n    <div [class.point]=\"showExpand\" (click)=\"changeExpand()\">\n      <i *ngIf=\"showExpand\" nz-icon [nzType]=\"expand ? 'down' : 'up'\" class=\"mr-xs text-xs\"></i>\n      {{ title }}\n    </div>\n  </ng-template>\n  <ng-template [ngTemplateOutlet]=\"default\" [ngTemplateOutletContext]=\"{ $implicit: true }\"></ng-template>\n</nz-card>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -2893,7 +2906,7 @@
     RadioWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-radio',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-radio-group [nzSize]=\"ui.size!\" [nzName]=\"id\" [ngModel]=\"value\" (ngModelChange)=\"_setValue($event)\" [nzButtonStyle]=\"ui.buttonStyle || 'outline'\">\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\" nz-radio [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label *ngFor=\"let option of data\" nz-radio-button [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-radio-group\n    [nzSize]=\"ui.size!\"\n    [nzName]=\"id\"\n    [ngModel]=\"value\"\n    (ngModelChange)=\"_setValue($event)\"\n    [nzButtonStyle]=\"ui.buttonStyle || 'outline'\"\n  >\n    <ng-container *ngIf=\"styleType\">\n      <label *ngFor=\"let option of data\" nz-radio [nzValue]=\"option.value\" [nzDisabled]=\"disabled || option.disabled\">\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n    <ng-container *ngIf=\"!styleType\">\n      <label\n        *ngFor=\"let option of data\"\n        nz-radio-button\n        [nzValue]=\"option.value\"\n        [nzDisabled]=\"disabled || option.disabled\"\n      >\n        <span [innerHTML]=\"option.label\"></span>\n      </label>\n    </ng-container>\n  </nz-radio-group>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -2961,7 +2974,7 @@
                 optionHeightPx: optionHeightPx || 32,
                 optionOverflowSize: optionOverflowSize || 8,
                 showArrow: typeof showArrow !== 'boolean' ? undefined : showArrow,
-                compareWith: compareWith || (function (o1, o2) { return o1 === o2; }),
+                compareWith: compareWith || (function (o1, o2) { return o1 === o2; })
             };
             var onSearch = this.ui.onSearch;
             if (onSearch) {
@@ -3025,7 +3038,7 @@
     SelectWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-select',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzId]=\"id\"\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size!\"\n    [nzPlaceHolder]=\"ui.placeholder!\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName!\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle!\"\n    [nzCustomTemplate]=\"ui.customTemplate!\"\n    [nzSuffixIcon]=\"ui.suffixIcon!\"\n    [nzRemoveIcon]=\"ui.removeIcon!\"\n    [nzClearIcon]=\"ui.clearIcon!\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon!\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder!\"\n    [nzDropdownRender]=\"ui.dropdownRender!\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth!\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount!\"\n    [nzMode]=\"i.mode!\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowArrow]=\"i.showArrow!\"\n    [nzTokenSeparators]=\"i.tokenSeparators!\"\n    [nzMaxTagCount]=\"i.maxTagCount!\"\n    [compareWith]=\"i.compareWith!\"\n    [nzOptionHeightPx]=\"i.optionHeightPx!\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize!\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!loading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!loading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option *ngFor=\"let o of i.children\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"loading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n      {{ ui.searchLoadingText }}\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <nz-select\n    [nzId]=\"id\"\n    [nzDisabled]=\"disabled\"\n    [(ngModel)]=\"_value\"\n    (ngModelChange)=\"change($event)\"\n    [nzSize]=\"ui.size!\"\n    [nzPlaceHolder]=\"ui.placeholder!\"\n    [nzNotFoundContent]=\"ui.notFoundContent\"\n    [nzDropdownClassName]=\"ui.dropdownClassName!\"\n    [nzAllowClear]=\"ui.allowClear\"\n    [nzDropdownStyle]=\"ui.dropdownStyle!\"\n    [nzCustomTemplate]=\"ui.customTemplate!\"\n    [nzSuffixIcon]=\"ui.suffixIcon!\"\n    [nzRemoveIcon]=\"ui.removeIcon!\"\n    [nzClearIcon]=\"ui.clearIcon!\"\n    [nzMenuItemSelectedIcon]=\"ui.menuItemSelectedIcon!\"\n    [nzMaxTagPlaceholder]=\"ui.maxTagPlaceholder!\"\n    [nzDropdownRender]=\"ui.dropdownRender!\"\n    [nzAutoClearSearchValue]=\"i.autoClearSearchValue\"\n    [nzBorderless]=\"i.borderless\"\n    [nzAutoFocus]=\"i.autoFocus\"\n    [nzDropdownMatchSelectWidth]=\"i.dropdownMatchSelectWidth!\"\n    [nzServerSearch]=\"i.serverSearch\"\n    [nzMaxMultipleCount]=\"i.maxMultipleCount!\"\n    [nzMode]=\"i.mode!\"\n    [nzShowSearch]=\"i.showSearch\"\n    [nzShowArrow]=\"i.showArrow!\"\n    [nzTokenSeparators]=\"i.tokenSeparators!\"\n    [nzMaxTagCount]=\"i.maxTagCount!\"\n    [compareWith]=\"i.compareWith!\"\n    [nzOptionHeightPx]=\"i.optionHeightPx!\"\n    [nzOptionOverflowSize]=\"i.optionOverflowSize!\"\n    (nzOpenChange)=\"openChange($event)\"\n    (nzOnSearch)=\"onSearch($event)\"\n    (nzScrollToBottom)=\"scrollToBottom()\"\n  >\n    <ng-container *ngIf=\"!loading && !hasGroup\">\n      <nz-option *ngFor=\"let o of data\" [nzLabel]=\"o.label\" [nzValue]=\"o.value\" [nzDisabled]=\"o.disabled\"></nz-option>\n    </ng-container>\n    <ng-container *ngIf=\"!loading && hasGroup\">\n      <nz-option-group *ngFor=\"let i of data\" [nzLabel]=\"i.label\">\n        <nz-option\n          *ngFor=\"let o of i.children\"\n          [nzLabel]=\"o.label\"\n          [nzValue]=\"o.value\"\n          [nzDisabled]=\"o.disabled\"\n        ></nz-option>\n      </nz-option-group>\n    </ng-container>\n    <nz-option *ngIf=\"loading\" nzDisabled nzCustomContent>\n      <i nz-icon nzType=\"loading\"></i>\n      {{ ui.searchLoadingText }}\n    </nz-option>\n  </nz-select>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -3076,7 +3089,14 @@
         StringWidget.prototype.ngOnInit = function () {
             var _this = this;
             var _a = this.ui, addOnAfter = _a.addOnAfter, addOnAfterIcon = _a.addOnAfterIcon, addOnBefore = _a.addOnBefore, addOnBeforeIcon = _a.addOnBeforeIcon, prefix = _a.prefix, prefixIcon = _a.prefixIcon, suffix = _a.suffix, suffixIcon = _a.suffixIcon, autofocus = _a.autofocus;
-            this.type = !!(addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon)
+            this.type = !!(addOnAfter ||
+                addOnBefore ||
+                addOnAfterIcon ||
+                addOnBeforeIcon ||
+                prefix ||
+                prefixIcon ||
+                suffix ||
+                suffixIcon)
                 ? 'addon'
                 : '';
             if (autofocus === true) {
@@ -3149,7 +3169,7 @@
     TagWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-tag',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #icon let-i>\n    <i nz-icon [nzType]=\"i.type\" [nzTheme]=\"i.theme\" [nzTwotoneColor]=\"i.twotoneColor\" [nzRotate]=\"i.rotate\" [nzIconfont]=\"i.iconfont\" [nzSpin]=\"i.spin\"></i>\n  </ng-template>\n  <nz-tag *ngFor=\"let i of data\" [nzMode]=\"ui.mode || 'checkable'\" [nzChecked]=\"i.checked\" (nzOnClose)=\"_close($event)\" (nzCheckedChange)=\"onChange(i)\">\n    <ng-container *ngIf=\"i.prefixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.prefixIcon }\"></ng-template>\n    </ng-container>\n    <span>{{i.label}}</span>\n    <ng-container *ngIf=\"i.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.suffixIcon }\"></ng-template>\n    </ng-container>\n  </nz-tag>\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  <ng-template #icon let-i>\n    <i\n      nz-icon\n      [nzType]=\"i.type\"\n      [nzTheme]=\"i.theme\"\n      [nzTwotoneColor]=\"i.twotoneColor\"\n      [nzRotate]=\"i.rotate\"\n      [nzIconfont]=\"i.iconfont\"\n      [nzSpin]=\"i.spin\"\n    ></i>\n  </ng-template>\n  <nz-tag\n    *ngFor=\"let i of data\"\n    [nzMode]=\"ui.mode || 'checkable'\"\n    [nzChecked]=\"i.checked\"\n    (nzOnClose)=\"_close($event)\"\n    (nzCheckedChange)=\"onChange(i)\"\n  >\n    <ng-container *ngIf=\"i.prefixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.prefixIcon }\"></ng-template>\n    </ng-container>\n    <span>{{ i.label }}</span>\n    <ng-container *ngIf=\"i.suffixIcon\">\n      <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.suffixIcon }\"></ng-template>\n    </ng-container>\n  </nz-tag>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
@@ -3230,7 +3250,7 @@
                 use12Hours: toBool(ui.use12Hours, false),
                 hourStep: ui.hourStep || 1,
                 minuteStep: ui.minuteStep || 1,
-                secondStep: ui.secondStep || 1,
+                secondStep: ui.secondStep || 1
             };
             if (opt.use12Hours && !ui.displayFormat) {
                 opt.displayFormat = "h:mm:ss a";
@@ -3301,7 +3321,7 @@
                 titles: titles || ['', ''],
                 operations: operations || ['', ''],
                 itemUnit: itemUnit || '项',
-                itemsUnit: itemsUnit || '项',
+                itemsUnit: itemsUnit || '项'
             };
         };
         TransferWidget.prototype.reset = function (value) {
@@ -3380,7 +3400,7 @@
                 checkStrictly: toBool(ui.checkStrictly, false),
                 hideUnMatched: toBool(ui.hideUnMatched, false),
                 defaultExpandAll: toBool(ui.defaultExpandAll, false),
-                displayWith: ui.displayWith || (function (node) { return node.title; }),
+                displayWith: ui.displayWith || (function (node) { return node.title; })
             };
             this.asyncData = typeof ui.expandChange === 'function';
         };
@@ -3439,7 +3459,7 @@
                 }
                 _this.injector.get(modal.NzModalService).create({
                     nzContent: "<img src=\"" + _url + "\" class=\"img-fluid\" />",
-                    nzFooter: null,
+                    nzFooter: null
                 });
             };
             return _this;
@@ -3466,7 +3486,7 @@
                 urlReName: (urlReName || '').split('.'),
                 beforeUpload: typeof beforeUpload === 'function' ? beforeUpload : null,
                 customRequest: typeof customRequest === 'function' ? customRequest : null,
-                limitFileCount: limitFileCount || 999,
+                limitFileCount: limitFileCount || 999
             };
             if (res.listType === 'picture-card') {
                 this.btnType = 'plus';
@@ -3580,7 +3600,7 @@
         tooltip.NzToolTipModule,
         transfer.NzTransferModule,
         treeSelect.NzTreeSelectModule,
-        upload.NzUploadModule,
+        upload.NzUploadModule
     ];
     var COMPONENTS = [SFComponent, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SFFixedDirective];
     var WIDGETS = [
@@ -3605,7 +3625,7 @@
         CascaderWidget,
         MentionWidget,
         CustomWidget,
-        TextWidget,
+        TextWidget
     ];
     // #endregion
     var DelonFormModule = /** @class */ (function () {
@@ -3618,10 +3638,10 @@
                     {
                         provide: SchemaValidatorFactory,
                         useClass: AjvSchemaValidatorFactory,
-                        deps: [config.AlainConfigService, core.NgZone],
+                        deps: [config.AlainConfigService, core.NgZone]
                     },
-                    { provide: WidgetRegistry, useClass: NzWidgetRegistry },
-                ],
+                    { provide: WidgetRegistry, useClass: NzWidgetRegistry }
+                ]
             };
         };
         return DelonFormModule;
@@ -3631,7 +3651,7 @@
                     imports: __spreadArray([common.CommonModule, forms.FormsModule, theme.DelonLocaleModule], __read(ZORROS)),
                     declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), __read(WIDGETS)),
                     exports: COMPONENTS,
-                    entryComponents: WIDGETS,
+                    entryComponents: WIDGETS
                 },] }
     ];
 
@@ -3669,7 +3689,7 @@
         contains: "\u5E94\u5F53\u5305\u542B\u4E00\u4E2A\u6709\u6548\u9879",
         formatExclusiveMaximum: "formatExclusiveMaximum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
         formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
-        if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
+        if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\""
     };
 
     /**

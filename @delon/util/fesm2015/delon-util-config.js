@@ -7,7 +7,7 @@ class AlainSVConfig {
 
 const ALAIN_CONFIG = new InjectionToken('alain-config', {
     providedIn: 'root',
-    factory: ALAIN_CONFIG_FACTORY,
+    factory: ALAIN_CONFIG_FACTORY
 });
 function ALAIN_CONFIG_FACTORY() {
     return {};

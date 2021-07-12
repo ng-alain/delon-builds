@@ -1,9 +1,9 @@
 import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { filter, debounceTime } from 'rxjs/operators';
+import { G2BaseComponent } from '@delon/chart/core';
+import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -20,19 +20,18 @@ class G2TagCloudComponent extends G2BaseComponent {
     // #endregion
     initTagCloud() {
         window.G2.registerShape('point', 'cloud', {
-            // tslint:disable-next-line: typedef
             draw(cfg, container) {
                 const data = cfg.data;
                 const textShape = container.addShape({
                     type: 'text',
                     name: 'tag-cloud-text',
-                    attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y }),
+                    attrs: Object.assign(Object.assign({}, cfg.style), { fontSize: data.size, text: data.text, textAlign: 'center', fontFamily: data.font, fill: cfg.color, textBaseline: 'Alphabetic', x: cfg.x, y: cfg.y })
                 });
                 if (data.rotate) {
                     window.G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                 }
                 return textShape;
-            },
+            }
         });
     }
     install() {
@@ -50,17 +49,17 @@ class G2TagCloudComponent extends G2BaseComponent {
             padding,
             height: this.height,
             width: this.width,
-            theme,
+            theme
         }));
         chart.scale({
             x: { nice: false },
-            y: { nice: false },
+            y: { nice: false }
         });
         chart.legend(false);
         chart.axis(false);
         chart.tooltip({
             showTitle: false,
-            showMarkers: false,
+            showMarkers: false
         });
         chart.coordinate().reflect();
         chart
@@ -71,9 +70,9 @@ class G2TagCloudComponent extends G2BaseComponent {
             .state({
             active: {
                 style: {
-                    fillOpacity: 0.4,
-                },
-            },
+                    fillOpacity: 0.4
+                }
+            }
         });
         chart.interaction('element-active');
         chart.on('tag-cloud-text:click', (ev) => {
@@ -98,7 +97,6 @@ class G2TagCloudComponent extends G2BaseComponent {
             size: [this.width, this.height],
             padding: 0,
             timeInterval: 5000,
-            // tslint:disable-next-line: typedef
             rotate() {
                 let random = ~~(Math.random() * 4) % 4;
                 if (random === 2) {
@@ -106,10 +104,9 @@ class G2TagCloudComponent extends G2BaseComponent {
                 }
                 return random * 90; // 0, 90, 270
             },
-            // tslint:disable-next-line: typedef
             fontSize(d) {
                 return ((d.value - min) / (max - min)) * (32 - 8) + 8;
-            },
+            }
         });
         _chart.changeData(dv.rows);
     }
@@ -153,7 +150,7 @@ G2TagCloudModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

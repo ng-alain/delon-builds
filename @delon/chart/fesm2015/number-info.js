@@ -21,7 +21,7 @@ NumberInfoComponent.decorators = [
                 host: {
                     '[class.number-info]': `true`,
                     '[class.number-info__light]': `theme === 'light'`,
-                    '[class.number-info__default]': `theme === 'default'`,
+                    '[class.number-info__default]': `theme === 'default'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,7 +49,7 @@ NumberInfoModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

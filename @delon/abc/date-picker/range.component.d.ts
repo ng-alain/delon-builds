@@ -1,10 +1,10 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
-import { FunctionProp } from 'ng-zorro-antd/core/types';
+import { FunctionProp, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDatePickerSizeType } from 'ng-zorro-antd/date-picker';
 import { NzDatePickerI18nInterface } from 'ng-zorro-antd/i18n';
+import { AlainConfigService, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
 /**
  * @deprecated Will be removed in 12.0.0, Pls used `nz-range-picker` and `[extend]` directive instead, for examples:
  * ```html
@@ -37,7 +37,7 @@ export declare class RangePickerComponent implements ControlValueAccessor {
     };
     nzDisabledDate: (d: Date) => boolean;
     nzLocale: NzDatePickerI18nInterface;
-    nzPopupStyle: object;
+    nzPopupStyle: NzSafeAny;
     nzDropdownClassName: string;
     nzPlaceHolder: string | string[];
     readonly nzOnOpenChange: EventEmitter<boolean>;

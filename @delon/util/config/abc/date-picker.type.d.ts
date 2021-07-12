@@ -21,7 +21,9 @@ export interface AlainDateRangePickerConfig {
     /**
      * 默认：`{ position: 'relative' }`
      */
-    nzPopupStyle?: object;
+    nzPopupStyle?: {
+        [klass: string]: unknown;
+    };
     nzDropdownClassName?: string;
     nzRenderExtraFooter?: string;
     nzShowTime?: SupportTimeOptions | boolean;

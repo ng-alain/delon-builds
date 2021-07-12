@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.i2, global.i1, global.rxjs));
-}(this, (function (exports, i0, i2, i1, rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('@delon/util/other')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/lodop', ['exports', '@angular/core', 'rxjs', '@delon/util/config', '@delon/util/other'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.lodop = {}), global.ng.core, global.rxjs, global.i2, global.i1));
+}(this, (function (exports, i0, rxjs, i2, i1) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -363,7 +363,7 @@
                 url: '//localhost:8443/CLodopfuncs.js',
                 name: 'CLODOP',
                 companyName: '',
-                checkMaxCount: 100,
+                checkMaxCount: 100
             });
             this.cog = this.defaultConfig;
         }
@@ -443,7 +443,7 @@
                     ok: status === 'ok',
                     status: status,
                     error: error,
-                    lodop: _this._lodop,
+                    lodop: _this._lodop
                 });
             };
             var checkStatus = function () {
@@ -506,7 +506,6 @@
                 if (fn) {
                     var arr = null;
                     try {
-                        // tslint:disable-next-line: function-constructor
                         var fakeFn = new Function("return [" + res[2] + "]");
                         arr = fakeFn();
                     }
@@ -537,7 +536,7 @@
                     if (tid !== taskID)
                         return;
                     _this._lodop.On_Return = null;
-                    resolve('' + value);
+                    resolve("" + value);
                 };
             });
         };

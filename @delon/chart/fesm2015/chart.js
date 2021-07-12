@@ -47,7 +47,7 @@ const MODULES = [
     G2WaterWaveModule,
     G2SingleBarModule,
     NumberInfoModule,
-    TrendModule,
+    TrendModule
 ];
 // #endregion
 /**

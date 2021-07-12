@@ -1,14 +1,14 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import { Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { NzTableComponent } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { AlainConfigService } from '@delon/util/config';
+import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
@@ -104,7 +104,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     expandRowByClick: boolean;
     expandAccordion: boolean;
     expand: TemplateRef<{
-        $implicit: {};
+        $implicit: NzSafeAny;
         column: STColumn;
     }>;
     noResult?: string | TemplateRef<void> | null;
@@ -154,12 +154,13 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * @param extraParams 重新指定 `extraParams` 值
      * @param options 选项
      */
-    load(pi?: number, extraParams?: {}, options?: STLoadOptions): this;
+    load(pi?: number, extraParams?: NzSafeAny, options?: STLoadOptions): this;
     /**
      * 重新刷新当前页
+     *
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reload(extraParams?: {}, options?: STLoadOptions): this;
+    reload(extraParams?: NzSafeAny, options?: STLoadOptions): this;
     /**
      * 重置且重新设置 `pi` 为 `1`，包含以下值：
      * - `check` 数据
@@ -169,7 +170,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      *
      * @param extraParams 重新指定 `extraParams` 值
      */
-    reset(extraParams?: {}, options?: STLoadOptions): this;
+    reset(extraParams?: NzSafeAny, options?: STLoadOptions): this;
     private _toTop;
     _change(type: 'pi' | 'ps', options?: STLoadOptions): void;
     _click(e: Event, item: STData, col: STColumn): boolean;
@@ -224,6 +225,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private btnCallback;
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
+     *
      * @param newData 重新指定数据；若为 `true` 表示使用 `filteredData` 数据
      * @param opt 额外参数
      */

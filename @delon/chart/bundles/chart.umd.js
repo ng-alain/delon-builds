@@ -24,7 +24,7 @@
         waterWave.G2WaterWaveModule,
         singleBar.G2SingleBarModule,
         numberInfo.NumberInfoModule,
-        trend.TrendModule,
+        trend.TrendModule
     ];
     // #endregion
     /**

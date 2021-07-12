@@ -349,9 +349,13 @@
         QuickMenuComponent.prototype.setStyle = function () {
             this.ctrlStyle = {
                 'background-color': this.bgColor,
-                'border-color': this.borderColor,
+                'border-color': this.borderColor
             };
-            var res = ["top:" + this.top + "px", "width:" + this.width + "px", "margin-right:-" + (this.show ? 0 : this.width) + "px"];
+            var res = [
+                "top:" + this.top + "px",
+                "width:" + this.width + "px",
+                "margin-right:-" + (this.show ? 0 : this.width) + "px"
+            ];
             if (this.bgColor) {
                 res.push("background-color:" + this.bgColor);
             }
@@ -380,7 +384,7 @@
                     template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *nzStringTemplateOutlet=\"icon\">\n        <i nz-icon [nzType]=\"$any(icon)\"></i>\n      </ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
                     host: {
                         '[class.quick-menu]': 'true',
-                        '(click)': '_click()',
+                        '(click)': '_click()'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -421,7 +425,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

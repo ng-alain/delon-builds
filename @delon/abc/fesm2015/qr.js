@@ -1,10 +1,10 @@
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { filter } from 'rxjs/operators';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
-import { filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 const QR_DEFULAT_CONFIG = {
@@ -17,7 +17,7 @@ const QR_DEFULAT_CONFIG = {
     mime: 'image/png',
     padding: 10,
     size: 220,
-    delay: 0,
+    delay: 0
 };
 
 class QRComponent {
@@ -71,7 +71,7 @@ class QRComponent {
             mime: this.mime,
             padding: this.padding,
             size: this.size,
-            value: this.toUtf8ByteArray(this.value),
+            value: this.toUtf8ByteArray(this.value)
         };
         this.option = option;
         this.init();
@@ -104,7 +104,7 @@ QRComponent.decorators = [
                 host: {
                     '[style.display]': `'inline-block'`,
                     '[style.height.px]': 'size',
-                    '[style.width.px]': 'size',
+                    '[style.width.px]': 'size'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -147,7 +147,7 @@ QRModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

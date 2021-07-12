@@ -1,9 +1,9 @@
 import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { format } from 'date-fns';
 import { G2BaseComponent } from '@delon/chart/core';
 import { toDate } from '@delon/util/date-time';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import { format } from 'date-fns';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -35,7 +35,7 @@ class G2TimelineComponent extends G2BaseComponent {
             autoFit: true,
             height,
             padding,
-            theme,
+            theme
         }));
         chart.axis('time', { title: null });
         chart.axis('y1', { title: null });
@@ -48,7 +48,7 @@ class G2TimelineComponent extends G2BaseComponent {
         }
         chart.tooltip({
             showCrosshairs: true,
-            shared: true,
+            shared: true
         });
         const sliderPadding = Object.assign(Object.assign({}, []), padding);
         sliderPadding[0] = 0;
@@ -58,10 +58,10 @@ class G2TimelineComponent extends G2BaseComponent {
                 start: 0,
                 end: 1,
                 trendCfg: {
-                    isArea: false,
+                    isArea: false
                 },
                 minLimit: 2,
-                formatter: (val) => format(val, maskSlider),
+                formatter: (val) => format(val, maskSlider)
             });
         }
         chart.on(`plot:click`, (ev) => {
@@ -91,8 +91,13 @@ class G2TimelineComponent extends G2BaseComponent {
             custom: true,
             items: arrAxis.map(id => {
                 const key = `y${id}`;
-                return { id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } };
-            }),
+                return {
+                    id: key,
+                    name: titleMap[key],
+                    value: key,
+                    marker: { style: { fill: colorMap[key] } }
+                };
+            })
         });
         // border
         _chart.geometries.forEach((v, idx) => {
@@ -115,17 +120,17 @@ class G2TimelineComponent extends G2BaseComponent {
             scaleOptions[key] = {
                 alias: titleMap[key],
                 max,
-                min: 0,
+                min: 0
             };
         });
         _chart.scale(Object.assign({ time: {
                 type: 'time',
                 mask,
-                range: [0, 1],
+                range: [0, 1]
             } }, scaleOptions));
         const initialRange = {
             start: data[0]._time,
-            end: data[data.length - 1]._time,
+            end: data[data.length - 1]._time
         };
         const filterData = data.filter(val => val._time >= initialRange.start && val._time <= initialRange.end);
         _chart.changeData(filterData);
@@ -182,7 +187,7 @@ G2TimelineModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

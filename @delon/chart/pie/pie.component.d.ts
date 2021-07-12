@@ -51,7 +51,7 @@ export declare class G2PieComponent extends G2BaseComponent {
     colors: any[];
     interaction: G2InteractionType;
     ratio: G2PieRatio;
-    clickItem: EventEmitter<G2PieClickItem>;
+    readonly clickItem: EventEmitter<G2PieClickItem>;
     get block(): boolean;
     private fixData;
     install(): void;

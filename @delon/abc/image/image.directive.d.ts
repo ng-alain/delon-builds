@@ -1,9 +1,9 @@
 import { Platform } from '@angular/cdk/platform';
 import { ElementRef, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 /**
  * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
  */

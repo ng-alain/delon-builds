@@ -17,18 +17,20 @@
             }
             Object.defineProperty(target, privatePropName, {
                 configurable: true,
-                writable: true,
+                writable: true
             });
             return {
                 get: function () {
-                    return originalDescriptor && originalDescriptor.get ? originalDescriptor.get.bind(this)() : this[privatePropName];
+                    return originalDescriptor && originalDescriptor.get
+                        ? originalDescriptor.get.bind(this)()
+                        : this[privatePropName];
                 },
                 set: function (value) {
                     if (originalDescriptor && originalDescriptor.set) {
                         originalDescriptor.set.bind(this)(fallback(value, defaultValue));
                     }
                     this[privatePropName] = fallback(value, defaultValue);
-                },
+                }
             };
         }
         return propDecorator;

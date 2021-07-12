@@ -30,7 +30,7 @@ export declare class G2MiniAreaComponent extends G2BaseComponent {
     data: G2MiniAreaData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';
-    clickItem: EventEmitter<G2MiniAreaClickItem>;
+    readonly clickItem: EventEmitter<G2MiniAreaClickItem>;
     install(): void;
     changeData(): void;
 }

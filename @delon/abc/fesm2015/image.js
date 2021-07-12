@@ -1,12 +1,12 @@
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, NgModule } from '@angular/core';
+import { Subject, of, throwError, Observable } from 'rxjs';
+import { takeUntil, take, finalize, filter } from 'rxjs/operators';
+import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
-import { Subject, of, throwError, Observable } from 'rxjs';
-import { takeUntil, take, finalize, filter } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
 /**
@@ -75,7 +75,6 @@ class ImageDirective {
     }
     updateError() {
         const { imgEl, error } = this;
-        // tslint:disable-next-line: only-arrow-functions, typedef
         imgEl.onerror = function () {
             this.onerror = null;
             this.src = error;
@@ -108,8 +107,8 @@ ImageDirective.decorators = [
                 exportAs: '_src',
                 host: {
                     '(click)': 'open($event)',
-                    '[class.point]': `previewSrc`,
-                },
+                    '[class.point]': `previewSrc`
+                }
             },] }
 ];
 ImageDirective.ctorParameters = () => [
@@ -141,7 +140,7 @@ ImageModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzModalModule],
                 declarations: DIRECTIVES,
-                exports: DIRECTIVES,
+                exports: DIRECTIVES
             },] }
 ];
 

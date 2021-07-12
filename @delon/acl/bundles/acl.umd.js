@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('rxjs'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', '@delon/util/config', 'rxjs', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.config, global.rxjs, global.rxjs.operators, global.ng.router, global.ng.common));
-}(this, (function (exports, i0, config, rxjs, operators, i2, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('rxjs/operators'), require('@angular/router'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/acl', ['exports', '@angular/core', 'rxjs', '@delon/util/config', 'rxjs/operators', '@angular/router', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.acl = {}), global.ng.core, global.rxjs, global.config, global.rxjs.operators, global.ng.router, global.ng.common));
+}(this, (function (exports, i0, rxjs, config, operators, i2, common) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -351,7 +351,7 @@
     }
 
     var ACL_DEFAULT_CONFIG = {
-        guard_url: "/403",
+        guard_url: "/403"
     };
 
     /**
@@ -381,7 +381,7 @@
                 return {
                     full: this.full,
                     roles: this.roles,
-                    abilities: this.abilities,
+                    abilities: this.abilities
                 };
             },
             enumerable: false,
@@ -682,7 +682,7 @@
     ACLIfDirective.decorators = [
         { type: i0.Directive, args: [{
                     selector: '[aclIf]',
-                    exportAs: 'aclIf',
+                    exportAs: 'aclIf'
                 },] }
     ];
     ACLIfDirective.ctorParameters = function () { return [
@@ -738,7 +738,7 @@
     ACLDirective.decorators = [
         { type: i0.Directive, args: [{
                     selector: '[acl]',
-                    exportAs: 'acl',
+                    exportAs: 'acl'
                 },] }
     ];
     ACLDirective.ctorParameters = function () { return [
@@ -807,7 +807,7 @@
         DelonACLModule.forRoot = function () {
             return {
                 ngModule: DelonACLModule,
-                providers: [ACLService],
+                providers: [ACLService]
             };
         };
         return DelonACLModule;
@@ -816,7 +816,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

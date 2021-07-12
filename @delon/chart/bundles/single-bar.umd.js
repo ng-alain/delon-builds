@@ -355,7 +355,7 @@
                 autoFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.legend(false);
             chart.axis(false);
@@ -369,7 +369,7 @@
                 .size(barSize)
                 .label('value', function () { return ({
                 formatter: format,
-                style: Object.assign({}, textStyle),
+                style: Object.assign({}, textStyle)
             }); });
             if (line) {
                 chart.annotation().line({
@@ -377,8 +377,8 @@
                     end: ['50%', '100%'],
                     style: {
                         stroke: '#e8e8e8',
-                        lineDash: [0, 0],
-                    },
+                        lineDash: [0, 0]
+                    }
                 });
             }
             this.changeData();
@@ -398,7 +398,7 @@
                     exportAs: 'g2SingleBar',
                     template: "",
                     host: {
-                        '[style.height.px]': 'height',
+                        '[style.height.px]': 'height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core$1.ChangeDetectionStrategy.OnPush,
@@ -447,7 +447,7 @@
         { type: core$1.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

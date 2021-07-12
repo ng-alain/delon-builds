@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/forms'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/core/animation'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/forms', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/core/animation', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global.ng.forms, global.delon.theme, global.browser, global.animation, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, config, decorator, rxjs, operators, forms, theme, browser, animation, common, outlet, icon, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@delon/util/decorator'), require('@angular/forms'), require('ng-zorro-antd/core/animation'), require('@delon/theme'), require('@delon/util/browser'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/se', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/config', '@delon/util/decorator', '@angular/forms', 'ng-zorro-antd/core/animation', '@delon/theme', '@delon/util/browser', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.se = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.config, global.decorator, global.ng.forms, global.animation, global.delon.theme, global.browser, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, rxjs, operators, config, decorator, forms, animation, theme, browser, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -338,7 +338,7 @@
                 col: 2,
                 labelWidth: 150,
                 firstVisual: false,
-                ingoreDirty: false,
+                ingoreDirty: false
             });
         }
         Object.defineProperty(SEContainerComponent.prototype, "gutter", {
@@ -416,7 +416,7 @@
                         '[class.se__inline]': "nzLayout === 'inline'",
                         '[class.se__compact]': "size === 'compact'",
                         '[style.margin-left.px]': "margin",
-                        '[style.margin-right.px]': "margin",
+                        '[style.margin-right.px]': "margin"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -484,7 +484,7 @@
                     exportAs: 'seTitle',
                     template: '<ng-content></ng-content>',
                     host: {
-                        '[class.se__title]': 'true',
+                        '[class.se__title]': 'true'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -596,7 +596,9 @@
             if (!this.ngControl || this.isBindModel)
                 return;
             this.isBindModel = true;
-            this.ngControl.statusChanges.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) { return _this.updateStatus(res === 'INVALID'); });
+            this.ngControl
+                .statusChanges.pipe(operators.takeUntil(this.unsubscribe$))
+                .subscribe(function (res) { return _this.updateStatus(res === 'INVALID'); });
             if (this._autoId) {
                 var controlAccessor = this.ngControl.valueAccessor;
                 var control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
@@ -620,7 +622,8 @@
             if (this.ngControl.disabled || this.ngControl.isDisabled) {
                 return;
             }
-            this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
+            this.invalid =
+                !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
             var errors = this.ngControl.errors;
             if (errors != null && Object.keys(errors).length > 0) {
                 var key = Object.keys(errors)[0] || '';
@@ -670,12 +673,12 @@
         { type: core.Component, args: [{
                     selector: 'se',
                     exportAs: 'se',
-                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
+                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i\n        *ngIf=\"optionalHelp\"\n        nz-tooltip\n        [nzTooltipTitle]=\"optionalHelp\"\n        [nzTooltipColor]=\"optionalHelpColor\"\n        nz-icon\n        nzType=\"question-circle\"\n      ></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
                         '[class.ant-form-item-has-error]': 'invalid',
-                        '[class.ant-form-item-with-help]': 'showErr',
+                        '[class.ant-form-item-with-help]': 'showErr'
                     },
                     preserveWhitespaces: false,
                     animations: [animation.helpMotion],
@@ -730,7 +733,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, tooltip.NzToolTipModule, icon.NzIconModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

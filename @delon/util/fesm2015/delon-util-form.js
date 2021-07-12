@@ -5,7 +5,6 @@ import { isNum, isInt, isDecimal, isIdCard, isMobile, isUrl, isIp, isColor, isCh
  *
  * 一套用于响应式表单的验证器
  */
-// tslint:disable-next-line:class-name
 class _Validators {
     /**
      * Wheter is number

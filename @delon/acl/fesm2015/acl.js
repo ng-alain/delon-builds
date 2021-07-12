@@ -1,14 +1,14 @@
 import * as i0 from '@angular/core';
 import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { filter, map, tap } from 'rxjs/operators';
 import * as i2 from '@angular/router';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 const ACL_DEFAULT_CONFIG = {
-    guard_url: `/403`,
+    guard_url: `/403`
 };
 
 /**
@@ -33,7 +33,7 @@ class ACLService {
         return {
             full: this.full,
             roles: this.roles,
-            abilities: this.abilities,
+            abilities: this.abilities
         };
     }
     get guard_url() {
@@ -262,7 +262,7 @@ class ACLIfDirective {
 ACLIfDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[aclIf]',
-                exportAs: 'aclIf',
+                exportAs: 'aclIf'
             },] }
 ];
 ACLIfDirective.ctorParameters = () => [
@@ -308,7 +308,7 @@ class ACLDirective {
 ACLDirective.decorators = [
     { type: Directive, args: [{
                 selector: '[acl]',
-                exportAs: 'acl',
+                exportAs: 'acl'
             },] }
 ];
 ACLDirective.ctorParameters = () => [
@@ -379,7 +379,7 @@ class DelonACLModule {
     static forRoot() {
         return {
             ngModule: DelonACLModule,
-            providers: [ACLService],
+            providers: [ACLService]
         };
     }
 }
@@ -387,7 +387,7 @@ DelonACLModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

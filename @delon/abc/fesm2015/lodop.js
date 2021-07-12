@@ -1,10 +1,10 @@
 import * as i0 from '@angular/core';
 import { Injectable, NgModule } from '@angular/core';
+import { Subject, of } from 'rxjs';
 import * as i2 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { Subject, of } from 'rxjs';
 
 class LodopService {
     constructor(scriptSrv, configSrv) {
@@ -18,7 +18,7 @@ class LodopService {
             url: '//localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
             companyName: '',
-            checkMaxCount: 100,
+            checkMaxCount: 100
         });
         this.cog = this.defaultConfig;
     }
@@ -81,7 +81,7 @@ class LodopService {
                 ok: status === 'ok',
                 status,
                 error,
-                lodop: this._lodop,
+                lodop: this._lodop
             });
         };
         const checkStatus = () => {
@@ -143,7 +143,6 @@ class LodopService {
             if (fn) {
                 let arr = null;
                 try {
-                    // tslint:disable-next-line: function-constructor
                     const fakeFn = new Function(`return [${res[2]}]`);
                     arr = fakeFn();
                 }
@@ -173,7 +172,7 @@ class LodopService {
                 if (tid !== taskID)
                     return;
                 this._lodop.On_Return = null;
-                resolve('' + value);
+                resolve(`${value}`);
             };
         });
     }

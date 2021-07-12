@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('@delon/util/decorator'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', '@delon/util/decorator', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators));
-}(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('@delon/util/other'), require('@angular/cdk/platform'), require('rxjs/operators'), require('@delon/util/decorator')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/core', ['exports', '@angular/core', 'rxjs', '@delon/util/config', '@delon/util/other', '@angular/cdk/platform', 'rxjs/operators', '@delon/util/decorator'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.core = {}), global.ng.core, global.rxjs, global.i1, global.i2, global.ng.cdk.platform, global.rxjs.operators, global.decorator));
+}(this, (function (exports, i0, rxjs, i1, i2, platform, operators, decorator) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -51,8 +51,8 @@
                     theme: '',
                     libs: [
                         'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.14/dist/g2.min.js',
-                        'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js',
-                    ],
+                        'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js'
+                    ]
                 }, val);
             },
             enumerable: false,
@@ -465,7 +465,9 @@
         G2BaseComponent.prototype.ngOnChanges = function (changes) {
             var _this = this;
             this.onChanges(changes);
-            var isOnlyChangeData = this.onlyChangeData ? this.onlyChangeData(changes) : Object.keys(changes).length === 1 && !!changes.data;
+            var isOnlyChangeData = this.onlyChangeData
+                ? this.onlyChangeData(changes)
+                : Object.keys(changes).length === 1 && !!changes.data;
             if (isOnlyChangeData) {
                 this.changeData();
                 return;
@@ -525,7 +527,7 @@
         var res = Object.assign({ showTitle: false, showMarkers: true, enterable: true, domStyles: {
                 'g2-tooltip': { padding: '0px' },
                 'g2-tooltip-title': { display: 'none' },
-                'g2-tooltip-list-item': { margin: '4px' },
+                'g2-tooltip-list-item': { margin: '4px' }
             } }, options);
         if (type === 'mini') {
             res.position = 'top';

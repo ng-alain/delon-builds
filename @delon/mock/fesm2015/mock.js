@@ -3,9 +3,9 @@ import { Injectable, Injector, NgModule } from '@angular/core';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { deepCopy } from '@delon/util/other';
 import { throwError, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
+import { deepCopy } from '@delon/util/other';
 
 class MockOptions {
 }
@@ -22,7 +22,7 @@ const MOCK_DEFULAT_CONFIG = {
     delay: 300,
     force: false,
     log: true,
-    executeOtherInterceptors: true,
+    executeOtherInterceptors: true
 };
 
 class MockService {
@@ -107,7 +107,7 @@ class MockService {
             martcher,
             segments,
             callback,
-            method: method.toUpperCase(),
+            method: method.toUpperCase()
         };
     }
     outputError(error) {
@@ -141,7 +141,7 @@ class MockService {
             url,
             method: ret.method,
             params,
-            callback: ret.callback,
+            callback: ret.callback
         };
     }
     clearCache() {
@@ -191,7 +191,7 @@ class MockInterceptor {
                     body: req.body,
                     queryString: {},
                     headers: {},
-                    params: rule.params,
+                    params: rule.params
                 };
                 const urlParams = req.url.split('?');
                 if (urlParams.length > 1) {
@@ -222,7 +222,7 @@ class MockInterceptor {
                         headers: req.headers,
                         status: e instanceof MockStatusError ? e.status : 400,
                         statusText: e.statusText || 'Unknown Error',
-                        error: e.error,
+                        error: e.error
                     });
                 }
                 break;
@@ -234,7 +234,7 @@ class MockInterceptor {
             res = new HttpResponse({
                 status: 200,
                 url: req.url,
-                body: res,
+                body: res
             });
         }
         if (res.body) {
@@ -250,7 +250,7 @@ class MockInterceptor {
             const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
             if (lastInterceptors.length > 0) {
                 const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor), {
-                    handle: () => res$,
+                    handle: () => res$
                 });
                 return chain.handle(req).pipe(delay(config.delay));
             }
@@ -271,14 +271,14 @@ class DelonMockModule {
             ngModule: DelonMockModule,
             providers: [
                 { provide: MockOptions, useValue: options },
-                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
-            ],
+                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }
+            ]
         };
     }
     static forChild() {
         return {
             ngModule: DelonMockModule,
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
+            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }]
         };
     }
 }

@@ -1,13 +1,13 @@
 import { __decorate } from 'tslib';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, ElementRef, Renderer2, TemplateRef, ChangeDetectorRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
-import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { AlainConfigService } from '@delon/util/config';
+import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
+import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { ResponsiveService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
-import { helpMotion } from 'ng-zorro-antd/core/animation';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -24,7 +24,7 @@ class SEContainerComponent {
             col: 2,
             labelWidth: 150,
             firstVisual: false,
-            ingoreDirty: false,
+            ingoreDirty: false
         });
     }
     get gutter() {
@@ -75,7 +75,7 @@ SEContainerComponent.decorators = [
                     '[class.se__inline]': `nzLayout === 'inline'`,
                     '[class.se__compact]': `size === 'compact'`,
                     '[style.margin-left.px]': `margin`,
-                    '[style.margin-right.px]': `margin`,
+                    '[style.margin-right.px]': `margin`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -142,7 +142,7 @@ SETitleComponent.decorators = [
                 exportAs: 'seTitle',
                 template: '<ng-content></ng-content>',
                 host: {
-                    '[class.se__title]': 'true',
+                    '[class.se__title]': 'true'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -228,7 +228,9 @@ class SEComponent {
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
-        this.ngControl.statusChanges.pipe(takeUntil(this.unsubscribe$)).subscribe(res => this.updateStatus(res === 'INVALID'));
+        this.ngControl
+            .statusChanges.pipe(takeUntil(this.unsubscribe$))
+            .subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
             const control = (_a = ((controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor.elementRef) || (controlAccessor === null || controlAccessor === void 0 ? void 0 : controlAccessor._elementRef))) === null || _a === void 0 ? void 0 : _a.nativeElement;
@@ -252,7 +254,8 @@ class SEComponent {
         if (this.ngControl.disabled || this.ngControl.isDisabled) {
             return;
         }
-        this.invalid = !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
+        this.invalid =
+            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
         const errors = this.ngControl.errors;
         if (errors != null && Object.keys(errors).length > 0) {
             const key = Object.keys(errors)[0] || '';
@@ -300,12 +303,12 @@ SEComponent.decorators = [
     { type: Component, args: [{
                 selector: 'se',
                 exportAs: 'se',
-                template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i *ngIf=\"optionalHelp\" nz-tooltip [nzTooltipTitle]=\"optionalHelp\" [nzTooltipColor]=\"optionalHelpColor\" nz-icon nzType=\"question-circle\"></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
+                template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i\n        *ngIf=\"optionalHelp\"\n        nz-tooltip\n        [nzTooltipTitle]=\"optionalHelp\"\n        [nzTooltipColor]=\"optionalHelpColor\"\n        nz-icon\n        nzType=\"question-circle\"\n      ></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
                     '[style.padding-right.px]': 'paddingValue',
                     '[class.ant-form-item-has-error]': 'invalid',
-                    '[class.ant-form-item-with-help]': 'showErr',
+                    '[class.ant-form-item-with-help]': 'showErr'
                 },
                 preserveWhitespaces: false,
                 animations: [helpMotion],
@@ -357,7 +360,7 @@ SEModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzToolTipModule, NzIconModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

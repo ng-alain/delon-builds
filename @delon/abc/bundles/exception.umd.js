@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@delon/theme'), require('@delon/util/browser'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@delon/theme', '@delon/util/browser', 'rxjs', 'rxjs/operators', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.delon.theme, global.browser, global.rxjs, global.rxjs.operators, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, bidi, core, platformBrowser, theme, browser, rxjs, operators, common, router, button) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/browser'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/browser', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
+}(this, (function (exports, bidi, core, platformBrowser, rxjs, operators, theme, browser, common, router, button) { 'use strict';
 
     var ExceptionComponent = /** @class */ (function () {
         function ExceptionComponent(i18n, dom, directionality) {
@@ -27,16 +27,16 @@
                 var item = {
                     403: {
                         img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
-                        title: '403',
+                        title: '403'
                     },
                     404: {
                         img: 'https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg',
-                        title: '404',
+                        title: '404'
                     },
                     500: {
                         img: 'https://gw.alipayobjects.com/zos/rmsportal/RVRUAYdCGeYNBWoKiIwB.svg',
-                        title: '500',
-                    },
+                        title: '500'
+                    }
                 }[value];
                 if (!item)
                     return;
@@ -98,7 +98,7 @@
                     template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
                     host: {
                         '[class.exception]': 'true',
-                        '[class.exception-rtl]': "dir === 'rtl'",
+                        '[class.exception-rtl]': "dir === 'rtl'"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -128,7 +128,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, router.RouterModule, theme.DelonLocaleModule, button.NzButtonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

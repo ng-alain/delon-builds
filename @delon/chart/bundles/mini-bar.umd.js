@@ -351,15 +351,15 @@
                 autoFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.scale({
                 x: {
-                    type: 'cat',
+                    type: 'cat'
                 },
                 y: {
-                    min: 0,
-                },
+                    min: 0
+                }
             });
             chart.legend(false);
             chart.axis(false);
@@ -390,7 +390,7 @@
                     exportAs: 'g2MiniBar',
                     template: "",
                     host: {
-                        '[style.height.px]': 'height',
+                        '[style.height.px]': 'height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -424,7 +424,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

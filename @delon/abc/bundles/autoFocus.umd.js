@@ -350,7 +350,7 @@
     AutoFocusDirective.decorators = [
         { type: core.Directive, args: [{
                     selector: '[auto-focus], input[autofocus="autofocus"], textarea[autofocus="autofocus"]',
-                    exportAs: 'autoFocus',
+                    exportAs: 'autoFocus'
                 },] }
     ];
     AutoFocusDirective.ctorParameters = function () { return [
@@ -377,7 +377,7 @@
     AutoFocusModule.decorators = [
         { type: core.NgModule, args: [{
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

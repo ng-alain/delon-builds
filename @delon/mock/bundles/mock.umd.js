@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@angular/common/http'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@delon/util/config', '@angular/common/http', '@delon/util/other', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.i1, global.ng.common.http, global.other, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, i0, i1, http, other, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/other')) :
+    typeof define === 'function' && define.amd ? define('@delon/mock', ['exports', '@angular/core', '@delon/util/config', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/other'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.mock = {}), global.ng.core, global.i1, global.ng.common.http, global.rxjs, global.rxjs.operators, global.other));
+}(this, (function (exports, i0, i1, http, rxjs, operators, other) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -51,7 +51,7 @@
         delay: 300,
         force: false,
         log: true,
-        executeOtherInterceptors: true,
+        executeOtherInterceptors: true
     };
 
     var MockService = /** @class */ (function () {
@@ -137,7 +137,7 @@
                 martcher: martcher,
                 segments: segments,
                 callback: callback,
-                method: method.toUpperCase(),
+                method: method.toUpperCase()
             };
         };
         MockService.prototype.outputError = function (error) {
@@ -171,7 +171,7 @@
                 url: url,
                 method: ret.method,
                 params: params,
-                callback: ret.callback,
+                callback: ret.callback
             };
         };
         MockService.prototype.clearCache = function () {
@@ -227,7 +227,7 @@
                         body: req.body,
                         queryString: {},
                         headers: {},
-                        params: rule.params,
+                        params: rule.params
                     };
                     var urlParams = req.url.split('?');
                     if (urlParams.length > 1) {
@@ -258,7 +258,7 @@
                             headers: req.headers,
                             status: e instanceof MockStatusError ? e.status : 400,
                             statusText: e.statusText || 'Unknown Error',
-                            error: e.error,
+                            error: e.error
                         });
                     }
                     break;
@@ -270,7 +270,7 @@
                 res = new http.HttpResponse({
                     status: 200,
                     url: req.url,
-                    body: res,
+                    body: res
                 });
             }
             if (res.body) {
@@ -286,7 +286,7 @@
                 var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                 if (lastInterceptors.length > 0) {
                     var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpMockInterceptorHandler(_next, _interceptor); }, {
-                        handle: function () { return res$; },
+                        handle: function () { return res$; }
                     });
                     return chain.handle(req).pipe(operators.delay(config.delay));
                 }
@@ -310,14 +310,14 @@
                 ngModule: DelonMockModule,
                 providers: [
                     { provide: MockOptions, useValue: options },
-                    { provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true },
-                ],
+                    { provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }
+                ]
             };
         };
         DelonMockModule.forChild = function () {
             return {
                 ngModule: DelonMockModule,
-                providers: [{ provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }],
+                providers: [{ provide: http.HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }]
             };
         };
         return DelonMockModule;

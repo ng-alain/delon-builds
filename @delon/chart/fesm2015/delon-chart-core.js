@@ -1,14 +1,14 @@
 import * as i0 from '@angular/core';
 import { Injectable, Directive, ElementRef, NgZone, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
+import { Subject } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { Subject } from 'rxjs';
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter } from 'rxjs/operators';
+import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 
 class G2Service {
     constructor(cogSrv, lazySrv) {
@@ -27,8 +27,8 @@ class G2Service {
             theme: '',
             libs: [
                 'https://gw.alipayobjects.com/os/lib/antv/g2/4.1.14/dist/g2.min.js',
-                'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js',
-            ],
+                'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js'
+            ]
         }, val);
     }
     libLoad() {
@@ -107,7 +107,9 @@ class G2BaseComponent {
     }
     ngOnChanges(changes) {
         this.onChanges(changes);
-        const isOnlyChangeData = this.onlyChangeData ? this.onlyChangeData(changes) : Object.keys(changes).length === 1 && !!changes.data;
+        const isOnlyChangeData = this.onlyChangeData
+            ? this.onlyChangeData(changes)
+            : Object.keys(changes).length === 1 && !!changes.data;
         if (isOnlyChangeData) {
             this.changeData();
             return;
@@ -166,7 +168,7 @@ function genMiniTooltipOptions(type, options) {
     const res = Object.assign({ showTitle: false, showMarkers: true, enterable: true, domStyles: {
             'g2-tooltip': { padding: '0px' },
             'g2-tooltip-title': { display: 'none' },
-            'g2-tooltip-list-item': { margin: '4px' },
+            'g2-tooltip-list-item': { margin: '4px' }
         } }, options);
     if (type === 'mini') {
         res.position = 'top';

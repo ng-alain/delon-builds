@@ -1,8 +1,8 @@
 import { __awaiter } from 'tslib';
 import { EventEmitter, Directive, ElementRef, Input, Output, NgModule } from '@angular/core';
-import { _HttpClient, AlainThemeModule } from '@delon/theme';
-import { saveAs } from 'file-saver';
 import { finalize } from 'rxjs/operators';
+import { saveAs } from 'file-saver';
+import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
 class DownFileDirective {
@@ -55,7 +55,7 @@ class DownFileDirective {
                 params: this.httpData || {},
                 responseType: 'blob',
                 observe: 'response',
-                body: this.httpBody,
+                body: this.httpBody
             })
                 .pipe(finalize(() => this.setDisabled(false)))
                 .subscribe((res) => {
@@ -68,7 +68,11 @@ class DownFileDirective {
                 if (typeof fileName === 'function')
                     fileName = fileName(res);
                 fileName =
-                    fileName || disposition[`filename*`] || disposition[`filename`] || res.headers.get('filename') || res.headers.get('x-filename');
+                    fileName ||
+                        disposition[`filename*`] ||
+                        disposition[`filename`] ||
+                        res.headers.get('filename') ||
+                        res.headers.get('x-filename');
                 saveAs(res.body, decodeURI(fileName));
                 this.success.emit(res);
             }, err => this.error.emit(err));
@@ -80,8 +84,8 @@ DownFileDirective.decorators = [
                 selector: '[down-file]',
                 exportAs: 'downFile',
                 host: {
-                    '(click)': '_click($event)',
-                },
+                    '(click)': '_click($event)'
+                }
             },] }
 ];
 DownFileDirective.ctorParameters = () => [
@@ -106,7 +110,7 @@ DownFileModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, AlainThemeModule],
                 declarations: [...DIRECTIVES],
-                exports: [...DIRECTIVES],
+                exports: [...DIRECTIVES]
             },] }
 ];
 

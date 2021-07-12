@@ -3,11 +3,11 @@ import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, NgZone, Input, Output, NgModule } from '@angular/core';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { Subject } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { Subject } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 class MediaService {
@@ -23,7 +23,10 @@ class MediaService {
     }
     set cog(val) {
         this._cog = this.cogSrv.merge('media', {
-            urls: ['https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js', 'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'],
+            urls: [
+                'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.min.js',
+                'https://cdn.bootcdn.net/ajax/libs/plyr/3.5.10/plyr.css'
+            ]
         }, val);
     }
     load() {
@@ -124,7 +127,7 @@ MediaComponent.decorators = [
                 exportAs: 'mediaComponent',
                 template: `<ng-content></ng-content>`,
                 host: {
-                    '[style.display]': `'block'`,
+                    '[style.display]': `'block'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -159,7 +162,7 @@ MediaModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

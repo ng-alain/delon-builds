@@ -1,7 +1,7 @@
 import { TemplateRef, Type } from '@angular/core';
+import { Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzDrawerOptions, NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
-import { Observable } from 'rxjs';
 export interface DrawerHelperOptions {
     /**
      * 大小，若值为数值类型，则根据 `nzPlacement` 自动转化为 `nzHeight` 或 `nzWidth`；例如：lg、600，默认：`md`
@@ -50,14 +50,14 @@ export declare class DrawerHelper {
     /**
      * 构建一个抽屉
      */
-    create(title: string | TemplateRef<{}> | undefined | null, comp: TemplateRef<{
+    create(title: string | TemplateRef<NzSafeAny> | undefined | null, comp: TemplateRef<{
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<any>;
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
      */
-    static(title: string | TemplateRef<{}> | undefined | null, comp: TemplateRef<{
+    static(title: string | TemplateRef<NzSafeAny> | undefined | null, comp: TemplateRef<{
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<any>;

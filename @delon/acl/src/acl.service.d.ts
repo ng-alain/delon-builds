@@ -1,5 +1,5 @@
-import { AlainConfigService } from '@delon/util/config';
 import { Observable } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { ACLCanType, ACLType } from './acl.type';
 /**
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)

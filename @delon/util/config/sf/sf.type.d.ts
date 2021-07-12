@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainSFConfigFormatMap {
     'date-time': {
         widget?: string;
@@ -57,7 +58,7 @@ export interface AlainSFConfig {
     /**
      * [ajv](https://github.com/ajv-validator/ajv/blob/master/docs/api.md#options) 参数
      */
-    ajv?: any;
+    ajv?: NzSafeAny;
     /**
      * 是否实时校验，默认：`true`
      * - `true` 每一次都校验
@@ -89,7 +90,7 @@ export interface AlainSFConfig {
      * ui: {} as SFUISchemaItem
      * ```
      */
-    ui?: any;
+    ui?: NzSafeAny;
     /**
      * 元素组件大小，用于 `nzSize` 值
      */
@@ -101,7 +102,7 @@ export interface AlainSFConfig {
      * button: {} as SFButton
      * ```
      */
-    button?: any;
+    button?: NzSafeAny;
     /**
      * date小部件：`type="string"` 且不指定 `schema.format` 和 `ui.format` 时日期格式，默认：`yyyy-MM-dd HH:mm:ss`
      */

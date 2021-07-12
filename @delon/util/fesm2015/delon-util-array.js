@@ -1,9 +1,10 @@
 import * as i0 from '@angular/core';
 import { Injectable } from '@angular/core';
+import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
-import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class ArrayService {
     constructor(cog) {
         this.c = cog.merge('utilArray', {
@@ -16,7 +17,7 @@ class ArrayService {
             checkedMapname: 'checked',
             selectedMapname: 'selected',
             expandedMapname: 'expanded',
-            disabledMapname: 'disabled',
+            disabledMapname: 'disabled'
         });
     }
     /**
@@ -92,7 +93,7 @@ class ArrayService {
         const tree = this.arrToTree(arr, {
             idMapName: opt.idMapName,
             parentIdMapName: opt.parentIdMapName,
-            childrenMapName: 'children',
+            childrenMapName: 'children'
         });
         this.visitTree(tree, (item, parent, deep) => {
             item.key = item[opt.idMapName];
@@ -227,7 +228,11 @@ class ArrayService {
     uniq(array, predicate) {
         return Array.from(array
             .reduce((map, value) => {
-            const key = predicate ? (typeof predicate === 'string' ? value[predicate] : predicate(value)) : value;
+            const key = predicate
+                ? typeof predicate === 'string'
+                    ? value[predicate]
+                    : predicate(value)
+                : value;
             if (!map.has(key)) {
                 map.set(key, value);
             }

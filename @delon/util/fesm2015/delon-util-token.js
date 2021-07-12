@@ -15,7 +15,7 @@ const WINDOW = new InjectionToken('WINDOW', {
             throw new Error('Window is not available');
         }
         return defaultView;
-    },
+    }
 });
 
 /**
@@ -27,7 +27,7 @@ const PAGE_VISIBILITY = new InjectionToken('PAGE_VISIBILITY`', {
     factory: () => {
         const doc = inject(DOCUMENT);
         return fromEvent(doc, 'visibilitychange').pipe(startWith(0), map(() => !doc.hidden), distinctUntilChanged(), share());
-    },
+    }
 });
 
 /**

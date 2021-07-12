@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.config, global.decorator, global.other, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/skeleton']));
-}(this, (function (exports, platform, common, core, config, decorator, other, rxjs, operators, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/pdf', ['exports', '@angular/cdk/platform', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.pdf = {}), global.ng.cdk.platform, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.config, global.decorator, global.other, global['ng-zorro-antd/skeleton']));
+}(this, (function (exports, platform, common, core, rxjs, operators, config, decorator, other, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -334,7 +334,7 @@
         showBorders: false,
         originalSize: true,
         fitToPage: false,
-        autoReSize: true,
+        autoReSize: true
     };
 
     exports.PdfTextLayerMode = void 0;
@@ -599,7 +599,7 @@
                 var rotation = _rotation || page.rotate;
                 var viewportWidth = page.getViewport({
                     scale: _zoom,
-                    rotation: rotation,
+                    rotation: rotation
                 }).width * CSS_UNITS;
                 var scale = _zoom;
                 var stickToPage = true;
@@ -677,11 +677,11 @@
             var VIEWER = this.win.pdfjsViewer;
             var eventBus = this.createEventBus();
             var linkService = (this.multiPageLinkService = new VIEWER.PDFLinkService({
-                eventBus: eventBus,
+                eventBus: eventBus
             }));
             var findController = (this.multiPageFindController = new VIEWER.PDFFindController({
                 eventBus: eventBus,
-                linkService: linkService,
+                linkService: linkService
             }));
             var viewer = (this.multiPageViewer = new VIEWER.PDFViewer({
                 eventBus: eventBus,
@@ -689,7 +689,7 @@
                 removePageBorders: !this.showBorders,
                 textLayerMode: this._textLayerMode,
                 linkService: linkService,
-                findController: findController,
+                findController: findController
             }));
             linkService.setViewer(viewer);
         };
@@ -697,11 +697,11 @@
             var VIEWER = this.win.pdfjsViewer;
             var eventBus = this.createEventBus();
             var linkService = (this.singlePageLinkService = new VIEWER.PDFLinkService({
-                eventBus: eventBus,
+                eventBus: eventBus
             }));
             var findController = (this.singlePageFindController = new VIEWER.PDFFindController({
                 eventBus: eventBus,
-                linkService: linkService,
+                linkService: linkService
             }));
             var pageViewer = (this.singlePageViewer = new VIEWER.PDFSinglePageViewer({
                 eventBus: eventBus,
@@ -709,7 +709,7 @@
                 removePageBorders: !this.showBorders,
                 textLayerMode: this._textLayerMode,
                 linkService: linkService,
-                findController: findController,
+                findController: findController
             }));
             linkService.setViewer(pageViewer);
             pageViewer._currentPageNumber = this._pi;
@@ -755,7 +755,7 @@
                     exportAs: 'pdf',
                     template: "\n    <nz-skeleton *ngIf=\"!inited || loading\"></nz-skeleton>\n    <div class=\"pdf-container\">\n      <div class=\"pdfViewer\"></div>\n    </div>\n  ",
                     host: {
-                        '[class.d-block]': "true",
+                        '[class.d-block]': "true"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -845,7 +845,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

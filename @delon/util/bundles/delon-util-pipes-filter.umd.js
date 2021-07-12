@@ -357,7 +357,7 @@
     FilterPipeModule.decorators = [
         { type: core.NgModule, args: [{
                     declarations: PIPES,
-                    exports: PIPES,
+                    exports: PIPES
                 },] }
     ];
 

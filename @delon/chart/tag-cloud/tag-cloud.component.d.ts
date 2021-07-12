@@ -18,7 +18,7 @@ export declare class G2TagCloudComponent extends G2BaseComponent {
     height: number;
     padding: number | number[] | 'auto';
     data: G2TagCloudData[];
-    clickItem: EventEmitter<G2TagCloudClickItem>;
+    readonly clickItem: EventEmitter<G2TagCloudClickItem>;
     private initTagCloud;
     install(): void;
     changeData(): void;

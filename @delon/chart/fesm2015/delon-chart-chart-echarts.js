@@ -1,14 +1,14 @@
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, NgZone, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { Subject, fromEvent } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { Subject, fromEvent } from 'rxjs';
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
-import { ZoneOutside } from '@delon/util/decorator';
 import { takeUntil, filter, debounceTime } from 'rxjs/operators';
+import { ZoneOutside } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -27,7 +27,7 @@ class ChartEChartsService {
     set cog(val) {
         this._cog = this.cogSrv.merge('chart', {
             theme: '',
-            echartsLib: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.0/echarts.min.js',
+            echartsLib: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.0/echarts.min.js'
         }, val);
     }
     libLoad() {
@@ -87,10 +87,10 @@ class ChartEChartsComponent {
         this.theme = srv.cog.echartsTheme;
     }
     set width(val) {
-        this._width = typeof val === 'number' ? val + 'px' : `${val}`;
+        this._width = typeof val === 'number' ? `${val}px` : `${val}`;
     }
     set height(val) {
-        this._height = typeof val === 'number' ? val + 'px' : `${val}`;
+        this._height = typeof val === 'number' ? `${val}px` : `${val}`;
     }
     set theme(value) {
         this._theme = value;
@@ -176,7 +176,7 @@ ChartEChartsComponent.decorators = [
                 host: {
                     '[style.display]': `'inline-block'`,
                     '[style.width]': `_width`,
-                    '[style.height]': `_height`,
+                    '[style.height]': `_height`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -209,7 +209,7 @@ ChartEChartsModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

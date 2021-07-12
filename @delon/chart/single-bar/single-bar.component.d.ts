@@ -1,4 +1,5 @@
 import { SimpleChanges } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class G2SingleBarComponent extends G2BaseComponent {
@@ -16,7 +17,7 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     max: number;
     value: number;
     line: boolean;
-    format: (value: number, item: {}, index: number) => string;
+    format: (value: number, item: NzSafeAny, index: number) => string;
     padding: number | number[] | 'auto';
     textStyle: any;
     install(): void;

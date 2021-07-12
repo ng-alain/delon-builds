@@ -21,7 +21,7 @@
                 throw new Error('Window is not available');
             }
             return defaultView;
-        },
+        }
     });
 
     /**
@@ -33,7 +33,7 @@
         factory: function () {
             var doc = core.inject(common.DOCUMENT);
             return rxjs.fromEvent(doc, 'visibilitychange').pipe(operators.startWith(0), operators.map(function () { return !doc.hidden; }), operators.distinctUntilChanged(), operators.share());
-        },
+        }
     });
 
     /**

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('file-saver'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/core', '@delon/theme', 'file-saver', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}), global.ng.core, global.delon.theme, global.saveAs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, core, theme, fileSaver, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs/operators'), require('file-saver'), require('@delon/theme'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/down-file', ['exports', '@angular/core', 'rxjs/operators', 'file-saver', '@delon/theme', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['down-file'] = {}), global.ng.core, global.rxjs.operators, global.saveAs, global.delon.theme, global.ng.common));
+}(this, (function (exports, core, operators, fileSaver, theme, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -395,7 +395,7 @@
                                 params: this.httpData || {},
                                 responseType: 'blob',
                                 observe: 'response',
-                                body: this.httpBody,
+                                body: this.httpBody
                             })
                                 .pipe(operators.finalize(function () { return _this.setDisabled(false); }))
                                 .subscribe(function (res) {
@@ -408,7 +408,11 @@
                                 if (typeof fileName === 'function')
                                     fileName = fileName(res);
                                 fileName =
-                                    fileName || disposition["filename*"] || disposition["filename"] || res.headers.get('filename') || res.headers.get('x-filename');
+                                    fileName ||
+                                        disposition["filename*"] ||
+                                        disposition["filename"] ||
+                                        res.headers.get('filename') ||
+                                        res.headers.get('x-filename');
                                 fileSaver.saveAs(res.body, decodeURI(fileName));
                                 _this.success.emit(res);
                             }, function (err) { return _this.error.emit(err); });
@@ -424,8 +428,8 @@
                     selector: '[down-file]',
                     exportAs: 'downFile',
                     host: {
-                        '(click)': '_click($event)',
-                    },
+                        '(click)': '_click($event)'
+                    }
                 },] }
     ];
     DownFileDirective.ctorParameters = function () { return [
@@ -453,7 +457,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, theme.AlainThemeModule],
                     declarations: __spreadArray([], __read(DIRECTIVES)),
-                    exports: __spreadArray([], __read(DIRECTIVES)),
+                    exports: __spreadArray([], __read(DIRECTIVES))
                 },] }
     ];
 

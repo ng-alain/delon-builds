@@ -22,7 +22,7 @@ export declare class G2BarComponent extends G2BaseComponent {
     data: G2BarData[];
     autoLabel: boolean;
     interaction: G2InteractionType;
-    clickItem: EventEmitter<G2BarClickItem>;
+    readonly clickItem: EventEmitter<G2BarClickItem>;
     private getHeight;
     install(): void;
     changeData(): void;

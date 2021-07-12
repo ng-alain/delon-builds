@@ -570,7 +570,7 @@
                             node.onreadystatechange = null;
                             onSuccess({
                                 path: path,
-                                status: 'ok',
+                                status: 'ok'
                             });
                         }
                     };
@@ -578,13 +578,13 @@
                 else {
                     node.onload = function () { return onSuccess({
                         path: path,
-                        status: 'ok',
+                        status: 'ok'
                     }); };
                 }
                 node.onerror = function (error) { return onSuccess({
                     path: path,
                     status: 'error',
-                    error: error,
+                    error: error
                 }); };
                 _this.doc.getElementsByTagName('head')[0].appendChild(node);
             });
@@ -608,7 +608,7 @@
                 _this.doc.getElementsByTagName('head')[0].appendChild(node);
                 var item = {
                     path: path,
-                    status: 'ok',
+                    status: 'ok'
                 };
                 _this.cached[path] = item;
                 resolve(item);

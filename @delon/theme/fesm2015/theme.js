@@ -1,9 +1,9 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
-import * as i2 from '@delon/acl';
-import { ACLService } from '@delon/acl';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
+import * as i2 from '@delon/acl';
+import { ACLService } from '@delon/acl';
 import * as i2$1 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
 import * as i1 from '@angular/common';
@@ -17,16 +17,16 @@ import { NzConfigService } from 'ng-zorro-antd/core/config';
 import * as i1$3 from '@angular/platform-browser';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { deepMerge } from '@delon/util/other';
 import * as i1$4 from 'ng-zorro-antd/modal';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/drawer';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import * as i1$6 from '@angular/common/http';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { toDate } from '@delon/util/date-time';
 import { formatDistanceToNow, format } from 'date-fns';
 import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
+import { toDate } from '@delon/util/date-time';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -39,7 +39,7 @@ function WINDOW_FACTORY() {
  */
 const WINDOW = new InjectionToken('Window', {
     providedIn: 'root',
-    factory: WINDOW_FACTORY,
+    factory: WINDOW_FACTORY
 });
 
 function preloaderFinished() {
@@ -65,7 +65,7 @@ function preloaderFinished() {
 
 const ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken', {
     providedIn: 'root',
-    factory: ALAIN_I18N_TOKEN_FACTORY,
+    factory: ALAIN_I18N_TOKEN_FACTORY
 });
 function ALAIN_I18N_TOKEN_FACTORY() {
     return new AlainI18NServiceFake();
@@ -216,19 +216,18 @@ class MenuService {
                 text: '快捷菜单',
                 i18n: 'shortcut',
                 icon: 'icon-rocket',
-                children: [],
+                children: []
             };
             this.data[0].children.splice(pos, 0, shortcutMenu);
         }
         let _data = this.data[0].children[pos];
         if (_data.i18n && this.i18nSrv)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
-        // tslint:disable-next-line:prefer-object-spread
         _data = Object.assign(_data, {
             shortcutRoot: true,
             _id: -1,
             _parent: null,
-            _depth: 1,
+            _depth: 1
         });
         _data.children = shortcuts.map(i => {
             i._depth = 2;
@@ -360,6 +359,7 @@ class ScrollService {
     }
     /**
      * 获取滚动条位置
+     *
      * @param element 指定元素，默认 `window`
      */
     getScrollPosition(element) {
@@ -376,6 +376,7 @@ class ScrollService {
     }
     /**
      * 设置滚动条位置
+     *
      * @param element 指定元素
      */
     scrollToPosition(element, position) {
@@ -386,6 +387,7 @@ class ScrollService {
     }
     /**
      * 设置滚动条至指定元素
+     *
      * @param element 指定元素，默认 `document.body`
      * @param topOffset 偏移值，默认 `0`
      */
@@ -407,6 +409,7 @@ class ScrollService {
     }
     /**
      * 滚动至顶部
+     *
      * @param topOffset 偏移值，默认 `0`
      */
     scrollToTop(topOffset = 0) {
@@ -512,8 +515,8 @@ class ResponsiveService {
                 3: { xs: 24, sm: 12, md: 8 },
                 4: { xs: 24, sm: 12, md: 8, lg: 6 },
                 5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
-                6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-            },
+                6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 }
+            }
         });
         if (Object.keys(this.cog.rules)
             .map(i => +i)
@@ -674,7 +677,8 @@ class TitleService {
         this._reverse = value;
     }
     getByElement() {
-        const el = (this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'));
+        const el = (this.doc.querySelector('.alain-default__content-title h1') ||
+            this.doc.querySelector('.page-header__title'));
         if (el) {
             let text = '';
             el.childNodes.forEach(val => {
@@ -761,29 +765,29 @@ var zhCN = {
         403: '抱歉，你无权访问该页面',
         404: '抱歉，你访问的页面不存在',
         500: '抱歉，服务器出错了',
-        backToHome: '返回首页',
+        backToHome: '返回首页'
     },
     noticeIcon: {
         emptyText: '暂无数据',
-        clearText: '清空',
+        clearText: '清空'
     },
     reuseTab: {
         close: '关闭标签',
         closeOther: '关闭其它标签',
         closeRight: '关闭右侧标签',
-        refresh: '刷新',
+        refresh: '刷新'
     },
     tagSelect: {
         expand: '展开',
-        collapse: '收起',
+        collapse: '收起'
     },
     miniProgress: {
-        target: '目标值：',
+        target: '目标值：'
     },
     st: {
         total: '共 {{total}} 条',
         filterConfirm: '确定',
-        filterReset: '重置',
+        filterReset: '重置'
     },
     sf: {
         submit: '提交',
@@ -827,15 +831,15 @@ var zhCN = {
             contains: `应当包含一个有效项`,
             formatExclusiveMaximum: `formatExclusiveMaximum 应当是布尔值`,
             formatExclusiveMinimum: `formatExclusiveMinimum 应当是布尔值`,
-            if: `应当匹配模式 "{failingKeyword}"`,
-        },
+            if: `应当匹配模式 "{failingKeyword}"`
+        }
     },
     onboarding: {
         skip: `跳过`,
         prev: `上一项`,
         next: `下一项`,
-        done: `完成`,
-    },
+        done: `完成`
+    }
 };
 
 class DelonLocaleService {
@@ -873,7 +877,7 @@ function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist, locale) {
 const DELON_LOCALE_SERVICE_PROVIDER = {
     provide: DelonLocaleService,
     useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE],
+    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE]
 };
 
 const ɵ0$1 = zhCN;
@@ -881,7 +885,7 @@ class DelonLocaleModule {
 }
 DelonLocaleModule.decorators = [
     { type: NgModule, args: [{
-                providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER],
+                providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER]
             },] }
 ];
 
@@ -891,29 +895,29 @@ var enUS = {
         403: `Sorry, you don't have access to this page`,
         404: `Sorry, the page you visited does not exist`,
         500: `Sorry, the server is reporting an error`,
-        backToHome: 'Back To Home',
+        backToHome: 'Back To Home'
     },
     noticeIcon: {
         emptyText: 'No data',
-        clearText: 'Clear',
+        clearText: 'Clear'
     },
     reuseTab: {
         close: 'Close tab',
         closeOther: 'Close other tabs',
         closeRight: 'Close tabs to right',
-        refresh: 'Refresh',
+        refresh: 'Refresh'
     },
     tagSelect: {
         expand: 'Expand',
-        collapse: 'Collapse',
+        collapse: 'Collapse'
     },
     miniProgress: {
-        target: 'Target: ',
+        target: 'Target: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} of {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Reset',
+        filterReset: 'Reset'
     },
     sf: {
         submit: 'Submit',
@@ -957,15 +961,15 @@ var enUS = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `Skip`,
         prev: `Prev`,
         next: `Next`,
-        done: `Done`,
-    },
+        done: `Done`
+    }
 };
 
 var zhTW = {
@@ -974,29 +978,29 @@ var zhTW = {
         403: '抱歉，你無權訪問該頁麵',
         404: '抱歉，你訪問的頁麵不存在',
         500: '抱歉，服務器出錯了',
-        backToHome: '返回首頁',
+        backToHome: '返回首頁'
     },
     noticeIcon: {
         emptyText: '暫無數據',
-        clearText: '清空',
+        clearText: '清空'
     },
     reuseTab: {
         close: '關閉標簽',
         closeOther: '關閉其它標簽',
         closeRight: '關閉右側標簽',
-        refresh: '刷新',
+        refresh: '刷新'
     },
     tagSelect: {
         expand: '展開',
-        collapse: '收起',
+        collapse: '收起'
     },
     miniProgress: {
-        target: '目標值：',
+        target: '目標值：'
     },
     st: {
         total: '共 {{total}} 條',
         filterConfirm: '確定',
-        filterReset: '重置',
+        filterReset: '重置'
     },
     sf: {
         submit: '提交',
@@ -1040,15 +1044,15 @@ var zhTW = {
             contains: `應當包含一個有效項`,
             formatExclusiveMaximum: `formatExclusiveMaximum 應當是佈爾值`,
             formatExclusiveMinimum: `formatExclusiveMinimum 應當是佈爾值`,
-            if: `應當匹配模式 "{failingKeyword}"`,
-        },
+            if: `應當匹配模式 "{failingKeyword}"`
+        }
     },
     onboarding: {
         skip: `跳過`,
         prev: `上一項`,
         next: `下一項`,
-        done: `完成`,
-    },
+        done: `完成`
+    }
 };
 
 var trTR = {
@@ -1057,29 +1061,29 @@ var trTR = {
         403: `Üzgünüz, bu sayfaya erişiminiz yok`,
         404: `Maalesef bu sayfa mevcut değil`,
         500: `Üzgünüz, sunucu hatası`,
-        backToHome: `Ana Sayfa'ya geri dön`,
+        backToHome: `Ana Sayfa'ya geri dön`
     },
     noticeIcon: {
         emptyText: 'Veri yok',
-        clearText: 'Temiz',
+        clearText: 'Temiz'
     },
     reuseTab: {
         close: 'Sekmeyi Kapat',
         closeOther: 'Diğer sekmeleri kapat',
         closeRight: 'Sağdaki sekmeleri kapat',
-        refresh: 'täzele',
+        refresh: 'täzele'
     },
     tagSelect: {
         expand: 'Genişlet',
-        collapse: 'Daralt',
+        collapse: 'Daralt'
     },
     miniProgress: {
-        target: 'Hedef: ',
+        target: 'Hedef: '
     },
     st: {
         total: '{{range[0]}} ile {{range[1]}} arasında {{total}}',
         filterConfirm: 'Tamam',
-        filterReset: 'Sıfırla',
+        filterReset: 'Sıfırla'
     },
     sf: {
         submit: 'Gönder',
@@ -1123,15 +1127,15 @@ var trTR = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `Atla`,
         prev: `Önceki`,
         next: `Sonraki`,
-        done: `Bitti`,
-    },
+        done: `Bitti`
+    }
 };
 
 var plPL = {
@@ -1140,29 +1144,29 @@ var plPL = {
         403: `Niestety, nie masz uprawnień do tej strony`,
         404: `Niestety, ta strona nie istnieje`,
         500: `Niestety, błąd serwera`,
-        backToHome: 'Powróć do strony głównej',
+        backToHome: 'Powróć do strony głównej'
     },
     noticeIcon: {
         emptyText: 'Brak danych',
-        clearText: 'Wyczyść',
+        clearText: 'Wyczyść'
     },
     reuseTab: {
         close: 'Zamknij kartę',
         closeOther: 'Zamknij inne karty',
         closeRight: 'Zamknij karty po prawej',
-        refresh: 'Refresh',
+        refresh: 'Refresh'
     },
     tagSelect: {
         expand: 'Rozszerz',
-        collapse: 'Zmniejsz',
+        collapse: 'Zmniejsz'
     },
     miniProgress: {
-        target: 'Cel: ',
+        target: 'Cel: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} z {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Wyczyść',
+        filterReset: 'Wyczyść'
     },
     sf: {
         submit: 'Wyślij',
@@ -1206,15 +1210,15 @@ var plPL = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `Pominąć`,
         prev: `Poprzedni`,
         next: `Kolejny`,
-        done: `Gotowe`,
-    },
+        done: `Gotowe`
+    }
 };
 
 var elGR = {
@@ -1223,29 +1227,29 @@ var elGR = {
         403: `Λυπούμαστε, δεν έχετε πρόσβαση σε αυτήν τη σελίδα`,
         404: `Λυπούμαστε, η σελίδα αυτή δεν βρέθηκε`,
         500: `Λυπούμαστε, σφάλμα διακομιστή`,
-        backToHome: 'Επιστροφή στην αρχική σελίδα',
+        backToHome: 'Επιστροφή στην αρχική σελίδα'
     },
     noticeIcon: {
         emptyText: 'Δεν υπάρχουν δεδομένα',
-        clearText: 'Καθαρισμός',
+        clearText: 'Καθαρισμός'
     },
     reuseTab: {
         close: 'Κλείσιμο καρτέλας',
         closeOther: 'Κλείσιμο των άλλων καρτέλων',
         closeRight: 'Κλείσιμο των καρτελών δεξιά',
-        refresh: 'Ανανέωση',
+        refresh: 'Ανανέωση'
     },
     tagSelect: {
         expand: 'Επέκταση',
-        collapse: 'Σύμπτυξη',
+        collapse: 'Σύμπτυξη'
     },
     miniProgress: {
-        target: 'Στόχος: ',
+        target: 'Στόχος: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} από {{total}}',
         filterConfirm: 'ΟΚ',
-        filterReset: 'Επαναφορά',
+        filterReset: 'Επαναφορά'
     },
     sf: {
         submit: 'Υποβολή',
@@ -1289,15 +1293,15 @@ var elGR = {
             contains: `Πρέπει να περιέχει κάποιο έγκυρο στοιχείο`,
             formatExclusiveMaximum: `formatExclusiveMaximum πρέπει να είναι boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum πρέπει να είναι boolean`,
-            if: `Πρέπει να ταιριάζει στην δομή "{failingKeyword}"`,
-        },
+            if: `Πρέπει να ταιριάζει στην δομή "{failingKeyword}"`
+        }
     },
     onboarding: {
         skip: `Παραλείπω`,
         prev: `Προηγ`,
         next: `Επόμενο`,
-        done: `Ολοκληρώθηκε`,
-    },
+        done: `Ολοκληρώθηκε`
+    }
 };
 
 var koKR = {
@@ -1306,29 +1310,29 @@ var koKR = {
         403: `죄송합니다.이 페이지에 액세스 할 수 없습니다.`,
         404: `죄송합니다. 해당 페이지가 없습니다.`,
         500: `죄송합니다, 서버 오류가 있습니다.`,
-        backToHome: '홈으로 돌아갑니다.',
+        backToHome: '홈으로 돌아갑니다.'
     },
     noticeIcon: {
         emptyText: '데이터 없음',
-        clearText: '지우기',
+        clearText: '지우기'
     },
     reuseTab: {
         close: '탭 닫기',
         closeOther: '다른 탭 닫기',
         closeRight: '오른쪽 탭 닫기',
-        refresh: '새롭게 하다',
+        refresh: '새롭게 하다'
     },
     tagSelect: {
         expand: '펼치기',
-        collapse: '접기',
+        collapse: '접기'
     },
     miniProgress: {
-        target: '대상: ',
+        target: '대상: '
     },
     st: {
         total: '전체 {{total}}건',
         filterConfirm: '확인',
-        filterReset: '초기화',
+        filterReset: '초기화'
     },
     sf: {
         submit: '제출',
@@ -1372,15 +1376,15 @@ var koKR = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `건너 뛰기`,
         prev: `이전`,
         next: `다음`,
-        done: `끝난`,
-    },
+        done: `끝난`
+    }
 };
 
 var hrHR = {
@@ -1389,29 +1393,29 @@ var hrHR = {
         403: `Nažalost, nemate pristup ovoj lokaciji`,
         404: `Nažalost, lokacija ne postoji`,
         500: `Nažalost, server je javio pogrešku`,
-        backToHome: 'Nazad na početnu stranicu',
+        backToHome: 'Nazad na početnu stranicu'
     },
     noticeIcon: {
         emptyText: 'Nema podataka',
-        clearText: 'Obriši',
+        clearText: 'Obriši'
     },
     reuseTab: {
         close: 'Zatvori karticu',
         closeOther: 'Zatvori druge kartice',
         closeRight: 'Zatvori kartice desno',
-        refresh: 'Refresh',
+        refresh: 'Refresh'
     },
     tagSelect: {
         expand: 'Proširi',
-        collapse: 'Skupi',
+        collapse: 'Skupi'
     },
     miniProgress: {
-        target: 'Cilj: ',
+        target: 'Cilj: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} od {{total}}',
         filterConfirm: 'U redu',
-        filterReset: 'Poništi',
+        filterReset: 'Poništi'
     },
     sf: {
         submit: 'Pošalji',
@@ -1420,14 +1424,14 @@ var hrHR = {
         edit: 'Spremi',
         addText: 'Dodaj',
         removeText: 'Ukloni',
-        checkAllText: 'Označi sve',
+        checkAllText: 'Označi sve'
     },
     onboarding: {
         skip: `Preskočiti`,
         prev: `Prethodna`,
         next: `Sljedeći`,
-        done: `Sastavljeno`,
-    },
+        done: `Sastavljeno`
+    }
 };
 
 var jaJP = {
@@ -1436,29 +1440,29 @@ var jaJP = {
         403: 'ページへのアクセス権限がありません',
         404: 'ページが存在しません',
         500: 'サーバーエラーが発生しました',
-        backToHome: 'ホームに戻る',
+        backToHome: 'ホームに戻る'
     },
     noticeIcon: {
         emptyText: 'データが有りません',
-        clearText: 'クリア',
+        clearText: 'クリア'
     },
     reuseTab: {
         close: 'タブを閉じる',
         closeOther: '他のタブを閉じる',
         closeRight: '右のタブを閉じる',
-        refresh: 'リフレッシュ',
+        refresh: 'リフレッシュ'
     },
     tagSelect: {
         expand: '展開する',
-        collapse: '折りたたむ',
+        collapse: '折りたたむ'
     },
     miniProgress: {
-        target: '設定値: ',
+        target: '設定値: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} / {{total}}',
         filterConfirm: '確定',
-        filterReset: 'リセット',
+        filterReset: 'リセット'
     },
     sf: {
         submit: '送信',
@@ -1485,8 +1489,8 @@ var jaJP = {
             formatMinimum: `値が不正です: {comparison} {limit}`,
             maximum: `値が不正です: {comparison} {limit}`,
             formatMaximum: `値が不正です: {comparison} {limit}`,
-            maxItems: `最大選択数は {limit}　より小さい必要があります`,
-            minItems: `最小選択数は {limit}　より大きい必要があります`,
+            maxItems: `最大選択数は {limit} より小さい必要があります`,
+            minItems: `最小選択数は {limit} より大きい必要があります`,
             maxProperties: `値を{limit}より大きくすることはできません`,
             minProperties: `値を{limit}より小さくすることはできません`,
             multipleOf: `値は次の数の倍数である必要があります: {multipleOf}`,
@@ -1502,15 +1506,15 @@ var jaJP = {
             contains: `有効なアイテムを含める必要があります`,
             formatExclusiveMaximum: `formatExclusiveMaximum は真偽値である必要があります`,
             formatExclusiveMinimum: `formatExclusiveMaximum は真偽値である必要があります`,
-            if: `パターンと一致する必要があります: "{failingKeyword}" `,
-        },
+            if: `パターンと一致する必要があります: "{failingKeyword}" `
+        }
     },
     onboarding: {
         skip: `スキップ`,
         prev: `前へ`,
         next: `次`,
-        done: `できた`,
-    },
+        done: `できた`
+    }
 };
 
 var slSI = {
@@ -1519,28 +1523,28 @@ var slSI = {
         403: `Žal nimate dostopa do te strani`,
         404: `Žal stran, ki ste jo obiskali, ne obstaja`,
         500: `Žal strežnik poroča o napaki`,
-        backToHome: 'Nazaj domov',
+        backToHome: 'Nazaj domov'
     },
     noticeIcon: {
         emptyText: 'Ni podatkov',
-        clearText: 'Počisti',
+        clearText: 'Počisti'
     },
     reuseTab: {
         close: 'Zapri zavihek',
         closeOther: 'Zaprite druge zavihke',
-        closeRight: 'Zaprite zavihke na desni',
+        closeRight: 'Zaprite zavihke na desni'
     },
     tagSelect: {
         expand: 'Razširi',
-        collapse: 'Strni',
+        collapse: 'Strni'
     },
     miniProgress: {
-        target: 'Cilj: ',
+        target: 'Cilj: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} of {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Reset',
+        filterReset: 'Reset'
     },
     sf: {
         submit: 'Pošlji',
@@ -1584,15 +1588,15 @@ var slSI = {
             contains: `Naj vsebuje veljaven artikel`,
             formatExclusiveMaximum: `formatExclusiveMaximum naj bo boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum naj bo boolean`,
-            if: `Naj se ujema s shemo "{failingKeyword}"`,
-        },
+            if: `Naj se ujema s shemo "{failingKeyword}"`
+        }
     },
     onboarding: {
         skip: `Preskoči`,
         prev: `Prejšnje`,
         next: `Naslednji`,
-        done: `Končano`,
-    },
+        done: `Končano`
+    }
 };
 
 var frFR = {
@@ -1601,29 +1605,29 @@ var frFR = {
         403: `Désolé, vous n'avez pas accès à cette page`,
         404: `Désolé, la page que vous avez visitée n'existe pas`,
         500: `Désolé, le serveur signale une erreur`,
-        backToHome: "Retour à l'accueil",
+        backToHome: "Retour à l'accueil"
     },
     noticeIcon: {
         emptyText: 'Pas de données',
-        clearText: 'Effacer',
+        clearText: 'Effacer'
     },
     reuseTab: {
         close: "Fermer l'onglet",
         closeOther: 'Fermer les autres onglets',
         closeRight: 'Fermer les onglets à droite',
-        refresh: 'Rafraîchir',
+        refresh: 'Rafraîchir'
     },
     tagSelect: {
         expand: 'Etendre',
-        collapse: 'Effondrer',
+        collapse: 'Effondrer'
     },
     miniProgress: {
-        target: 'Cible: ',
+        target: 'Cible: '
     },
     st: {
         total: '{{range[0]}} - {{range[1]}} de {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Réinitialiser',
+        filterReset: 'Réinitialiser'
     },
     sf: {
         submit: 'Soumettre',
@@ -1667,15 +1671,15 @@ var frFR = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `Passer`,
         prev: `Précédent`,
         next: `Suivant`,
-        done: `Terminé`,
-    },
+        done: `Terminé`
+    }
 };
 
 var esES = {
@@ -1684,29 +1688,29 @@ var esES = {
         403: `Lo sentimos, no tiene acceso a esta página`,
         404: `Lo sentimos, la página que ha visitado no existe`,
         500: `Lo siento, error interno del servidor `,
-        backToHome: 'Volver a la página de inicio',
+        backToHome: 'Volver a la página de inicio'
     },
     noticeIcon: {
         emptyText: 'No hay datos',
-        clearText: 'Limpiar',
+        clearText: 'Limpiar'
     },
     reuseTab: {
         close: 'Cerrar pestaña',
         closeOther: 'Cerrar otras pestañas',
         closeRight: 'Cerrar pestañas a la derecha',
-        refresh: 'Actualizar',
+        refresh: 'Actualizar'
     },
     tagSelect: {
         expand: 'Expandir',
-        collapse: 'Ocultar',
+        collapse: 'Ocultar'
     },
     miniProgress: {
-        target: 'Target: ',
+        target: 'Target: '
     },
     st: {
         total: '{{rango[0]}} - {{rango[1]}} de {{total}}',
         filterConfirm: 'Aceptar',
-        filterReset: 'Reiniciar',
+        filterReset: 'Reiniciar'
     },
     sf: {
         submit: 'Submit',
@@ -1750,15 +1754,15 @@ var esES = {
             contains: `Should contain a valid item`,
             formatExclusiveMaximum: `formatExclusiveMaximum should be boolean`,
             formatExclusiveMinimum: `formatExclusiveMinimum should be boolean`,
-            if: `Should match "{failingKeyword}" schema`,
-        },
+            if: `Should match "{failingKeyword}" schema`
+        }
     },
     onboarding: {
         skip: `Omitir`,
         prev: `Previo`,
         next: `Siguiente`,
-        done: `Terminado`,
-    },
+        done: `Terminado`
+    }
 };
 
 /**
@@ -1788,7 +1792,7 @@ class ModalHelper {
         options = deepMerge({
             size: 'lg',
             exact: true,
-            includeTabs: false,
+            includeTabs: false
         }, options);
         return new Observable((observer) => {
             const { size, includeTabs, modalOptions } = options;
@@ -1814,7 +1818,7 @@ class ModalHelper {
                 nzContent: comp,
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
-                nzComponentParams: params,
+                nzComponentParams: params
             };
             const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
             const afterClose$ = subject.afterClose.subscribe((res) => {
@@ -1869,7 +1873,7 @@ class ModalHelper {
         return this.create(comp, params, {
             size,
             modalOptions: options,
-            exact: false,
+            exact: false
         });
     }
     /**
@@ -1928,27 +1932,27 @@ class DrawerHelper {
             exact: true,
             drawerOptions: {
                 nzPlacement: 'right',
-                nzWrapClassName: '',
-            },
+                nzWrapClassName: ''
+            }
         }, options);
         return new Observable((observer) => {
             const { size, footer, footerHeight, drawerOptions } = options;
             const defaultOptions = {
                 nzContent: comp,
                 nzContentParams: params,
-                nzTitle: title,
+                nzTitle: title
             };
             if (typeof size === 'number') {
                 defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
             }
             else if (!drawerOptions.nzWidth) {
-                defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + ` drawer-${options.size}`).trim();
+                defaultOptions.nzWrapClassName = `${drawerOptions.nzWrapClassName} drawer-${options.size}`.trim();
                 delete drawerOptions.nzWrapClassName;
             }
             if (footer) {
                 // The 24 value is @drawer-body-padding
                 defaultOptions.nzBodyStyle = {
-                    'padding-bottom.px': footerHeight + 24,
+                    'padding-bottom.px': footerHeight + 24
                 };
             }
             const subject = this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
@@ -1988,14 +1992,13 @@ DrawerHelper.ctorParameters = () => [
  * + 统一实现 loading
  * + 统一处理时间格式问题
  */
-// tslint:disable-next-line:class-name
 class _HttpClient {
     constructor(http, cogSrv) {
         this.http = http;
         this.lc = 0;
         this.cog = cogSrv.merge('themeHttp', {
             nullValueHandling: 'include',
-            dateValueHandling: 'timestamp',
+            dateValueHandling: 'timestamp'
         });
     }
     /**
@@ -2037,7 +2040,6 @@ class _HttpClient {
             return url;
         url += ~url.indexOf('?') ? '' : '?';
         const arr = [];
-        // tslint:disable-next-line: forin
         for (const key in params) {
             arr.push(`${key}=${params[key]}`);
         }
@@ -2099,7 +2101,7 @@ class _HttpClient {
     form(url, body, params, options = {}) {
         return this.request('POST', url, Object.assign(Object.assign({ body,
             params }, options), { headers: {
-                'content-type': `application/x-www-form-urlencoded`,
+                'content-type': `application/x-www-form-urlencoded`
             } }));
     }
     request(method, url, options = {}) {
@@ -2177,7 +2179,7 @@ function makeParam(paramName) {
             }
             tParams.push({
                 key,
-                index,
+                index
             });
         };
     };
@@ -2217,11 +2219,9 @@ function getValidArgs(data, key, args) {
 }
 function genBody(data, payload) {
     if (Array.isArray(data) || Array.isArray(payload)) {
-        // tslint:disable-next-line:prefer-object-spread
         return Object.assign([], data, payload);
     }
-    // tslint:disable-next-line:prefer-object-spread
-    return Object.assign({}, data, payload);
+    return Object.assign(Object.assign({}, data), payload);
 }
 function makeMethod(method) {
     return function (url = '', options) {
@@ -2247,7 +2247,7 @@ function makeMethod(method) {
                         return throwError({
                             url: requestUrl,
                             status: 401,
-                            statusText: `From Http Decorator`,
+                            statusText: `From Http Decorator`
                         });
                     }
                     delete options.acl;
@@ -2346,7 +2346,6 @@ DatePipe.ctorParameters = () => [
 /**
  * @deprecated Will be removed in 12.0.0, Pls used [price](https://ng-alain.com/util/pipes-currency/en?#price) pipe instead
  */
-// tslint:disable-next-line:use-pipe-transform-interface
 class CNCurrencyPipe {
     constructor(locale) {
         this.ngCurrencyPipe = new CurrencyPipe(locale);
@@ -2368,7 +2367,6 @@ CNCurrencyPipe.ctorParameters = () => [
 class KeysPipe {
     transform(value, keyIsNumber = false) {
         const ret = [];
-        // tslint:disable-next-line: forin
         for (const key in value) {
             ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
         }
@@ -2393,7 +2391,9 @@ class YNPipe {
         no = no || '否';
         switch (mode) {
             case 'full':
-                html = value ? `<i ${CLS_YES}>${ICON_YES}<span>${yes}</span></i>` : `<i ${CLS_NO}>${ICON_NO}<span>${no}</span></i>`;
+                html = value
+                    ? `<i ${CLS_YES}>${ICON_YES}<span>${yes}</span></i>`
+                    : `<i ${CLS_NO}>${ICON_NO}<span>${no}</span></i>`;
                 break;
             case 'text':
                 html = value ? `<i ${CLS_YES}>${yes}</i>` : `<i ${CLS_NO}>${no}</i>`;
@@ -2457,13 +2457,15 @@ I18nPipe.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Inject, args: [ALAIN_I18N_TOKEN,] }] }
 ];
 
+/* eslint-disable import/order */
+// #region import
 const HELPERS = [ModalHelper, DrawerHelper];
 const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
 const ɵ0 = {
     layout: 'layout',
     user: 'user',
-    app: 'app',
+    app: 'app'
 };
 // #endregion
 class AlainThemeModule {
@@ -2473,13 +2475,13 @@ class AlainThemeModule {
     static forRoot() {
         return {
             ngModule: AlainThemeModule,
-            providers: [...HELPERS],
+            providers: [...HELPERS]
         };
     }
     static forChild() {
         return {
             ngModule: AlainThemeModule,
-            providers: [...HELPERS],
+            providers: [...HELPERS]
         };
     }
 }
@@ -2490,17 +2492,17 @@ AlainThemeModule.decorators = [
                 providers: [
                     {
                         provide: ALAIN_SETTING_KEYS,
-                        useValue: ɵ0,
-                    },
+                        useValue: ɵ0
+                    }
                 ],
-                exports: [...PIPES, DelonLocaleModule],
+                exports: [...PIPES, DelonLocaleModule]
             },] }
 ];
 AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.4-c5cbb868');
+const VERSION = new Version('11.10.4-3eac92ff');
 
 /**
  * Generated bundle index. Do not edit.

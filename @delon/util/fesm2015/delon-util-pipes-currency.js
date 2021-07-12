@@ -75,7 +75,7 @@ class CurrencyPipeModule {
 CurrencyPipeModule.decorators = [
     { type: NgModule, args: [{
                 declarations: PIPES,
-                exports: PIPES,
+                exports: PIPES
             },] }
 ];
 

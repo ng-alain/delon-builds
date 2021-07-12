@@ -339,7 +339,6 @@
         G2GaugeComponent.prototype.install = function () {
             // 自定义Shape 部分
             window.G2.registerShape('point', 'pointer', {
-                // tslint:disable-next-line: typedef
                 draw: function (cfg, container) {
                     var group = container.addGroup({});
                     // 获取极坐标系下画布中心点
@@ -353,8 +352,8 @@
                             y2: cfg.y,
                             stroke: cfg.color,
                             lineWidth: 2.5,
-                            lineCap: 'round',
-                        },
+                            lineCap: 'round'
+                        }
                     });
                     group.addShape('circle', {
                         attrs: {
@@ -363,11 +362,11 @@
                             r: 5.75,
                             stroke: cfg.color,
                             lineWidth: 2,
-                            fill: '#fff',
-                        },
+                            fill: '#fff'
+                        }
                     });
                     return group;
-                },
+                }
             });
             var _a = this, el = _a.el, height = _a.height, padding = _a.padding, format = _a.format, theme = _a.theme;
             var chart = (this._chart = new window.G2.Chart({
@@ -375,7 +374,7 @@
                 autoFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.legend(false);
             chart.animate(false);
@@ -383,23 +382,23 @@
             chart.coordinate('polar', {
                 startAngle: (-9 / 8) * Math.PI,
                 endAngle: (1 / 8) * Math.PI,
-                radius: 0.75,
+                radius: 0.75
             });
             chart.scale('value', {
                 min: 0,
                 max: 100,
                 nice: true,
-                tickCount: 6,
+                tickCount: 6
             });
             chart.axis('1', false);
             chart.axis('value', {
                 line: null,
                 label: {
                     offset: -14,
-                    formatter: format,
+                    formatter: format
                 },
                 tickLine: null,
-                grid: null,
+                grid: null
             });
             chart.point().position('value*1').shape('pointer');
             this.changeData();
@@ -421,8 +420,8 @@
                 style: {
                     stroke: bgColor,
                     lineWidth: 12,
-                    lineDash: null,
-                },
+                    lineDash: null
+                }
             });
             _chart.annotation().arc({
                 start: [0, 0.95],
@@ -430,8 +429,8 @@
                 style: {
                     stroke: color,
                     lineWidth: 12,
-                    lineDash: null,
-                },
+                    lineDash: null
+                }
             });
             _chart.annotation().text({
                 position: ['50%', '85%'],
@@ -439,8 +438,8 @@
                 style: {
                     fontSize: 12,
                     fill: 'rgba(0, 0, 0, 0.43)',
-                    textAlign: 'center',
-                },
+                    textAlign: 'center'
+                }
             });
             _chart.annotation().text({
                 position: ['50%', '90%'],
@@ -448,9 +447,9 @@
                 style: {
                     fontSize: 20,
                     fill: 'rgba(0, 0, 0, 0.85)',
-                    textAlign: 'center',
+                    textAlign: 'center'
                 },
-                offsetY: 15,
+                offsetY: 15
             });
             _chart.changeData(data);
         };
@@ -462,7 +461,7 @@
                     exportAs: 'g2Gauge',
                     template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>",
                     host: {
-                        '[class.g2-gauge]': 'true',
+                        '[class.g2-gauge]': 'true'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core$1.ChangeDetectionStrategy.OnPush,
@@ -495,7 +494,7 @@
         { type: core$1.NgModule, args: [{
                     imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

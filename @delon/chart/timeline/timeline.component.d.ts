@@ -53,7 +53,7 @@ export declare class G2TimelineComponent extends G2BaseComponent {
     padding: number[];
     borderWidth: number;
     slider: boolean;
-    clickItem: EventEmitter<G2TimelineClickItem>;
+    readonly clickItem: EventEmitter<G2TimelineClickItem>;
     onlyChangeData: (changes: SimpleChanges) => boolean;
     install(): void;
     changeData(): void;

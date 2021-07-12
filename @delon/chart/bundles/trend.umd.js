@@ -345,7 +345,7 @@
                         '[class.trend]': 'true',
                         '[class.trend__grey]': '!colorful',
                         '[class.trend__reverse]': 'colorful && reverseColor',
-                        '[attr.data-flag]': "flag",
+                        '[attr.data-flag]': "flag"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -374,7 +374,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

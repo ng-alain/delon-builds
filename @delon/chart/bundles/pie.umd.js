@@ -349,7 +349,7 @@
                 text: '占比',
                 inverse: '反比',
                 color: '',
-                inverseColor: '#F0F2F5',
+                inverseColor: '#F0F2F5'
             };
             _this.clickItem = new core.EventEmitter();
             return _this;
@@ -375,12 +375,12 @@
             this.data = [
                 {
                     x: text,
-                    y: percent,
+                    y: percent
                 },
                 {
                     x: inverse,
-                    y: 100 - percent,
-                },
+                    y: 100 - percent
+                }
             ];
         };
         G2PieComponent.prototype.install = function () {
@@ -391,7 +391,7 @@
                 autoFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.animate(animate);
             if (!tooltip) {
@@ -400,7 +400,7 @@
             else {
                 chart.tooltip({
                     showTitle: false,
-                    showMarkers: false,
+                    showMarkers: false
                 });
             }
             if (interaction !== 'none') {
@@ -416,14 +416,14 @@
                 .color('x', isPercent ? percentColor : colors)
                 .tooltip('x*percent', function (name, p) { return ({
                 name: name,
-                value: (hasLegend ? p : (p * 100).toFixed(2)) + " %",
+                value: (hasLegend ? p : (p * 100).toFixed(2)) + " %"
             }); })
                 .state({});
             chart.scale({
                 x: {
                     type: 'cat',
-                    range: [0, 1],
-                },
+                    range: [0, 1]
+                }
             });
             chart.on("interval:click", function (ev) {
                 _this.ngZone.run(function () { var _a; return _this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev: ev }); });
@@ -487,7 +487,7 @@
                         '[class.g2-pie]': 'true',
                         '[class.g2-pie__legend-has]': 'hasLegend',
                         '[class.g2-pie__legend-block]': 'block',
-                        '[class.g2-pie__mini]': 'isPercent',
+                        '[class.g2-pie__mini]': 'isPercent'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -550,7 +550,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, divider.NzDividerModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

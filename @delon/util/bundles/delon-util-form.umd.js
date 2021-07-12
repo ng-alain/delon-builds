@@ -14,7 +14,6 @@
      *
      * 一套用于响应式表单的验证器
      */
-    // tslint:disable-next-line:class-name
     var _Validators = /** @class */ (function () {
         function _Validators() {
         }

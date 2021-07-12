@@ -9,7 +9,7 @@ class SGContainerComponent {
     constructor(configSrv) {
         configSrv.attach(this, 'sg', {
             gutter: 32,
-            col: 2,
+            col: 2
         });
     }
     get marginValue() {
@@ -25,7 +25,7 @@ SGContainerComponent.decorators = [
                     '[style.margin-left.px]': 'marginValue',
                     '[style.margin-right.px]': 'marginValue',
                     '[class.ant-row]': 'true',
-                    '[class.sg__wrap]': 'true',
+                    '[class.sg__wrap]': 'true'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -90,7 +90,7 @@ SGComponent.decorators = [
                 template: ` <ng-content></ng-content> `,
                 host: {
                     '[style.padding-left.px]': 'paddingValue',
-                    '[style.padding-right.px]': 'paddingValue',
+                    '[style.padding-right.px]': 'paddingValue'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -117,7 +117,7 @@ SGModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

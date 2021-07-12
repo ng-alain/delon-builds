@@ -1,7 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injector } from '@angular/core';
-import { AlainAuthConfig } from '@delon/util';
 import { Observable } from 'rxjs';
+import { AlainAuthConfig } from '@delon/util';
 import { ITokenModel } from './interface';
 export declare abstract class BaseInterceptor implements HttpInterceptor {
     protected injector: Injector;

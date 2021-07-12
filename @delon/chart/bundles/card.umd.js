@@ -391,7 +391,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, card.NzCardModule, spin.NzSpinModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

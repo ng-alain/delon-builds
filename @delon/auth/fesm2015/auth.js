@@ -3,8 +3,8 @@ import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, Injector, Optional, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, BehaviorSubject, interval, Observable } from 'rxjs';
-import { AlainConfigService } from '@delon/util/config';
 import { share, map, filter } from 'rxjs/operators';
+import { AlainConfigService } from '@delon/util/config';
 import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlainConfigService as AlainConfigService$1 } from '@delon/util';
 
@@ -13,7 +13,6 @@ const AUTH_DEFAULT_CONFIG = {
     token_invalid_redirect: true,
     token_exp_offset: 10,
     token_send_key: `token`,
-    // tslint:disable-next-line: no-invalid-template-strings
     token_send_template: '${token}',
     token_send_place: 'header',
     login_url: '/login',
@@ -21,7 +20,7 @@ const AUTH_DEFAULT_CONFIG = {
     allow_anonymous_key: `_allow_anonymous`,
     executeOtherInterceptors: true,
     refreshTime: 3000,
-    refreshOffset: 6000,
+    refreshOffset: 6000
 };
 function mergeConfig(srv) {
     return srv.merge('auth', AUTH_DEFAULT_CONFIG);
@@ -53,7 +52,7 @@ class LocalStorageStore {
 
 const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
     providedIn: 'root',
-    factory: DA_STORE_TOKEN_LOCAL_FACTORY,
+    factory: DA_STORE_TOKEN_LOCAL_FACTORY
 });
 
 function DA_SERVICE_TOKEN_FACTORY() {
@@ -140,7 +139,7 @@ TokenService.ctorParameters = () => [
 
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
     providedIn: 'root',
-    factory: DA_SERVICE_TOKEN_FACTORY,
+    factory: DA_SERVICE_TOKEN_FACTORY
 });
 
 const OPENTYPE = '_delonAuthSocialType';
@@ -153,6 +152,7 @@ class SocialService {
     }
     /**
      * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`
+     *
      * @param url 获取授权地址
      * @param callback 当 `type=href` 成功时的回调路由地址
      * @param options.type 打开方式，默认 `window`
@@ -199,7 +199,7 @@ class SocialService {
         let data = { token: `` };
         if (typeof rawData === 'string') {
             const rightUrl = rawData.split('?')[1].split('#')[0];
-            data = this.router.parseUrl('./?' + rightUrl).queryParams;
+            data = this.router.parseUrl(`./?${rightUrl}`).queryParams;
         }
         else {
             data = rawData;
@@ -381,7 +381,7 @@ class BaseInterceptor {
                     url: req.url,
                     headers: req.headers,
                     status: 401,
-                    statusText: `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`,
+                    statusText: `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`
                 });
                 observer.error(res);
             });
@@ -390,7 +390,7 @@ class BaseInterceptor {
                 const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                 if (lastInterceptors.length > 0) {
                     const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor), {
-                        handle: (_) => err$,
+                        handle: (_) => err$
                     });
                     return chain.handle(req);
                 }
@@ -433,13 +433,11 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
-    // tslint:disable:no-conditional-assignment binary-expression-operand-order
     let bc = 0, bs, buffer, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
     // character found in table? initialize bit storage and add its ascii value;
     ~buffer &&
-        // tslint:disable-next-line: ban-comma-operator
         ((bs = bc % 4 ? bs * 64 + buffer : buffer),
             // and if not first of each 4 characters,
             // convert the first 8 bits to one ascii character
@@ -455,7 +453,7 @@ function b64decode(str) {
 function b64DecodeUnicode(str) {
     return decodeURIComponent(Array.prototype.map
         .call(b64decode(str), (c) => {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+        return `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`;
     })
         .join(''));
 }
@@ -511,8 +509,8 @@ class JWTInterceptor extends BaseInterceptor {
     setReq(req, _options) {
         return req.clone({
             setHeaders: {
-                Authorization: `Bearer ${this.model.token}`,
-            },
+                Authorization: `Bearer ${this.model.token}`
+            }
         });
     }
 }
@@ -601,19 +599,19 @@ class SimpleInterceptor extends BaseInterceptor {
                 const obj = {};
                 obj[token_send_key] = token;
                 req = req.clone({
-                    setHeaders: obj,
+                    setHeaders: obj
                 });
                 break;
             case 'body':
                 const body = req.body || {};
                 body[token_send_key] = token;
                 req = req.clone({
-                    body,
+                    body
                 });
                 break;
             case 'url':
                 req = req.clone({
-                    params: req.params.append(token_send_key, token),
+                    params: req.params.append(token_send_key, token)
                 });
                 break;
         }

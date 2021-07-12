@@ -41,7 +41,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     _inited: boolean;
     locale: LocaleData;
     rootProperty: FormProperty | null;
-    _formData: {};
+    _formData: Record<string, unknown>;
     _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
@@ -53,7 +53,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** UI Schema */
     ui: SFUISchema;
     /** 表单默认值 */
-    formData: {};
+    formData: Record<string, unknown>;
     /**
      * 按钮
      * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
@@ -86,9 +86,9 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     noColon: boolean;
     cleanValue: boolean;
     readonly formValueChange: EventEmitter<SFValueChange>;
-    readonly formChange: EventEmitter<{}>;
-    readonly formSubmit: EventEmitter<{}>;
-    readonly formReset: EventEmitter<{}>;
+    readonly formChange: EventEmitter<Record<string, unknown>>;
+    readonly formSubmit: EventEmitter<Record<string, unknown>>;
+    readonly formReset: EventEmitter<Record<string, unknown>>;
     readonly formError: EventEmitter<ErrorData[]>;
     /**
      * Whether the form is valid
@@ -164,6 +164,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * Reset form
      *
      * 重置表单
+     *
      * @param [emit] 是否触发 `formReset` 事件，默认：`false`
      */
     reset(emit?: boolean): this;

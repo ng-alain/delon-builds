@@ -36,7 +36,7 @@ class LetModule {
 LetModule.decorators = [
     { type: NgModule, args: [{
                 declarations: DIRECTIVES,
-                exports: DIRECTIVES,
+                exports: DIRECTIVES
             },] }
 ];
 

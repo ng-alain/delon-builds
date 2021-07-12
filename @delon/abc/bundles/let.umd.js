@@ -58,7 +58,7 @@
     LetModule.decorators = [
         { type: core.NgModule, args: [{
                     declarations: DIRECTIVES,
-                    exports: DIRECTIVES,
+                    exports: DIRECTIVES
                 },] }
     ];
 

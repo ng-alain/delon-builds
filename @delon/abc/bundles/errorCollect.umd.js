@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@delon/util/config', '@delon/util/decorator', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.config, global.decorator, global.rxjs, global.rxjs.operators, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, common, core, config, decorator, rxjs, operators, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/error-collect', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['error-collect'] = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.config, global.decorator, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, common, core, rxjs, operators, config, decorator, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -409,7 +409,7 @@
                         '[class.error-collect]': 'true',
                         '[class.error-collect-rtl]': "dir === 'rtl'",
                         '[class.d-none]': '_hiden',
-                        '(click)': '_click()',
+                        '(click)': '_click()'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -444,7 +444,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

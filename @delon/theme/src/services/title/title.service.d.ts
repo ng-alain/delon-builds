@@ -1,5 +1,6 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainI18NService } from '../i18n/i18n';
 import { MenuService } from '../menu/menu.service';
 export declare class TitleService implements OnDestroy {
@@ -14,7 +15,7 @@ export declare class TitleService implements OnDestroy {
     private _reverse;
     private i18n$;
     readonly DELAY_TIME = 25;
-    constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: any);
+    constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: NzSafeAny);
     /** 设置分隔符 */
     set separator(value: string);
     /** 设置前缀 */
@@ -36,6 +37,6 @@ export declare class TitleService implements OnDestroy {
     /**
      * Set i18n key of the document title
      */
-    setTitleByI18n(key: string, params?: {}): void;
+    setTitleByI18n(key: string, params?: unknown): void;
     ngOnDestroy(): void;
 }

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util/decorator'), require('@delon/abc/error-collect'), require('ng-zorro-antd/core/outlet')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util/decorator', '@delon/abc/error-collect', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.decorator, global.delon.abc['error-collect'], global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, common, core, decorator, errorCollect, outlet) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@delon/util/decorator'), require('ng-zorro-antd/core/outlet'), require('@delon/abc/error-collect')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/footer-toolbar', ['exports', '@angular/common', '@angular/core', '@delon/util/decorator', 'ng-zorro-antd/core/outlet', '@delon/abc/error-collect'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['footer-toolbar'] = {}), global.ng.common, global.ng.core, global.decorator, global['ng-zorro-antd/core/outlet'], global.delon.abc['error-collect']));
+}(this, (function (exports, common, core, decorator, outlet, errorCollect) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -384,7 +384,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, errorCollect.ErrorCollectModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

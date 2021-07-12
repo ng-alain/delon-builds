@@ -175,7 +175,7 @@ class LazyService {
                         node.onreadystatechange = null;
                         onSuccess({
                             path,
-                            status: 'ok',
+                            status: 'ok'
                         });
                     }
                 };
@@ -183,13 +183,13 @@ class LazyService {
             else {
                 node.onload = () => onSuccess({
                     path,
-                    status: 'ok',
+                    status: 'ok'
                 });
             }
             node.onerror = (error) => onSuccess({
                 path,
                 status: 'error',
-                error,
+                error
             });
             this.doc.getElementsByTagName('head')[0].appendChild(node);
         });
@@ -211,7 +211,7 @@ class LazyService {
             this.doc.getElementsByTagName('head')[0].appendChild(node);
             const item = {
                 path,
-                status: 'ok',
+                status: 'ok'
             };
             this.cached[path] = item;
             resolve(item);
@@ -228,7 +228,7 @@ LazyService.ctorParameters = () => [
 
 function throwError(msg, actual, expected, comparison) {
     if (ngDevMode) {
-        throw new Error(`ASSERTION ERROR: ${msg}` + (comparison == null ? '' : ` [Expected=> ${expected} ${comparison} ${actual} <=Actual]`));
+        throw new Error(`ASSERTION ERROR: ${msg}${comparison == null ? '' : ` [Expected=> ${expected} ${comparison} ${actual} <=Actual]`}`);
     }
 }
 /**

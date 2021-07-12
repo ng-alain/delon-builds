@@ -5,10 +5,10 @@ import { Directionality } from '@angular/cdk/bidi';
 import * as i1 from '@angular/cdk/overlay';
 import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
-import * as i2 from '@delon/util/config';
-import { AlainConfigService } from '@delon/util/config';
 import { Subject, timer } from 'rxjs';
 import { debounce } from 'rxjs/operators';
+import * as i2 from '@delon/util/config';
+import { AlainConfigService } from '@delon/util/config';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
@@ -30,7 +30,7 @@ LoadingDefaultComponent.decorators = [
                 template: "<div class=\"loading-default__icon\" *ngIf=\"options.type! !== 'text'\">\n  <ng-container [ngSwitch]=\"options.type!\">\n    <nz-spin *ngSwitchCase=\"'spin'\" nzSimple></nz-spin>\n    <i *ngSwitchCase=\"'icon'\" nz-icon [nzType]=\"icon.type!\" [nzTheme]=\"icon.theme!\" [nzSpin]=\"icon.spin\"></i>\n    <div *ngSwitchDefault class=\"loading-default__custom\" [ngStyle]=\"custom.style!\" [innerHTML]=\"custom.html\"></div>\n  </ng-container>\n</div>\n<div *ngIf=\"options.text\" class=\"loading-default__text\">{{ options.text }}</div>\n",
                 host: {
                     '[class.loading-default]': 'true',
-                    '[class.loading-default-rtl]': `dir === 'rtl'`,
+                    '[class.loading-default-rtl]': `dir === 'rtl'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -52,9 +52,9 @@ class LoadingService {
             icon: {
                 type: 'loading',
                 theme: 'outline',
-                spin: true,
+                spin: true
             },
-            delay: 0,
+            delay: 0
         });
         this.loading$ = this.n$
             .asObservable()
@@ -72,7 +72,7 @@ class LoadingService {
             positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
             scrollStrategy: this.overlay.scrollStrategies.block(),
             hasBackdrop: true,
-            backdropClass: 'loading-backdrop',
+            backdropClass: 'loading-backdrop'
         });
         this.compRef = this._overlayRef.attach(new ComponentPortal(LoadingDefaultComponent));
         const dir = this.configSrv.get('loading').direction || this.directionality.value;
@@ -126,7 +126,7 @@ LoadingModule.decorators = [
                 imports: [CommonModule, OverlayModule, PortalModule, NzIconModule, NzSpinModule],
                 declarations: COMPONENTS,
                 entryComponents: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

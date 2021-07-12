@@ -344,7 +344,7 @@
                     host: {
                         '[class.number-info]': "true",
                         '[class.number-info__light]': "theme === 'light'",
-                        '[class.number-info__default]': "theme === 'default'",
+                        '[class.number-info__default]': "theme === 'default'"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -375,7 +375,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule, outlet.NzOutletModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

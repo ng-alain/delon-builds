@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface LazyResult {
     path: string;
     status: 'ok' | 'error' | 'loading';
-    error?: {};
+    error?: NzSafeAny;
 }
 /**
  * 延迟加载资源（js 或 css）服务
@@ -12,7 +13,7 @@ export declare class LazyService {
     private list;
     private cached;
     private _notify;
-    constructor(doc: any);
+    constructor(doc: NzSafeAny);
     get change(): Observable<LazyResult[]>;
     clear(): void;
     load(paths: string | string[]): Promise<LazyResult[]>;

@@ -331,7 +331,7 @@
         function SGContainerComponent(configSrv) {
             configSrv.attach(this, 'sg', {
                 gutter: 32,
-                col: 2,
+                col: 2
             });
         }
         Object.defineProperty(SGContainerComponent.prototype, "marginValue", {
@@ -352,7 +352,7 @@
                         '[style.margin-left.px]': 'marginValue',
                         '[style.margin-right.px]': 'marginValue',
                         '[class.ant-row]': 'true',
-                        '[class.sg__wrap]': 'true',
+                        '[class.sg__wrap]': 'true'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -422,7 +422,7 @@
                     template: " <ng-content></ng-content> ",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
-                        '[style.padding-right.px]': 'paddingValue',
+                        '[style.padding-right.px]': 'paddingValue'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -452,7 +452,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

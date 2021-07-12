@@ -1,5 +1,5 @@
-import { AlainSFConfig } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AlainSFConfig } from '@delon/util/config';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';

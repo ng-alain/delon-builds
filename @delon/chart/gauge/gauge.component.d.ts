@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NumberInput } from '@delon/util/decorator';
 export declare class G2GaugeComponent extends G2BaseComponent {
@@ -7,7 +8,7 @@ export declare class G2GaugeComponent extends G2BaseComponent {
     height: number;
     color: string;
     bgColor: string;
-    format: (text: string, item: {}, index: number) => string;
+    format: (text: string, item: NzSafeAny, index: number) => string;
     percent: number;
     padding: number | number[] | 'auto';
     install(): void;

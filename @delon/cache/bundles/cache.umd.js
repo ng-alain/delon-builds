@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('date-fns'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform')) :
-    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', 'date-fns', 'rxjs', 'rxjs/operators', '@angular/cdk/platform'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.i1, global.dateFns, global.rxjs, global.rxjs.operators, global.ng.cdk.platform));
-}(this, (function (exports, i3, i0, i1, dateFns, rxjs, operators, platform) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('date-fns'), require('@delon/util/config'), require('@angular/cdk/platform')) :
+    typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'rxjs', 'rxjs/operators', 'date-fns', '@delon/util/config', '@angular/cdk/platform'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.rxjs, global.rxjs.operators, global.dateFns, global.i1, global.ng.cdk.platform));
+}(this, (function (exports, i3, i0, rxjs, operators, dateFns, i1, platform) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -35,7 +35,7 @@
 
     var DC_STORE_STORAGE_TOKEN = new i0.InjectionToken('DC_STORE_STORAGE_TOKEN', {
         providedIn: 'root',
-        factory: function () { return new LocalStorageCacheService(i0.inject(platform.Platform)); },
+        factory: function () { return new LocalStorageCacheService(i0.inject(platform.Platform)); }
     });
     var LocalStorageCacheService = /** @class */ (function () {
         function LocalStorageCacheService(platform) {
@@ -75,7 +75,7 @@
                 mode: 'promise',
                 reName: '',
                 prefix: '',
-                meta_key: '__cache_meta',
+                meta_key: '__cache_meta'
             });
             this.loadMeta();
             this.startExpireNotify();

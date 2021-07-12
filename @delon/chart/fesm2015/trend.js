@@ -24,7 +24,7 @@ TrendComponent.decorators = [
                     '[class.trend]': 'true',
                     '[class.trend__grey]': '!colorful',
                     '[class.trend__reverse]': 'colorful && reverseColor',
-                    '[attr.data-flag]': `flag`,
+                    '[attr.data-flag]': `flag`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,7 +50,7 @@ TrendModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

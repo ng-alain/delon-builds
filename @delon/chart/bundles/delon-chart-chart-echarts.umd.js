@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/other'), require('rxjs'), require('@angular/cdk/platform'), require('@delon/util/decorator'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/chart-echarts', ['exports', '@angular/core', '@delon/util/config', '@delon/util/other', 'rxjs', '@angular/cdk/platform', '@delon/util/decorator', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['chart-echarts'] = {}), global.ng.core, global.i1, global.i2, global.rxjs, global.ng.cdk.platform, global.decorator, global.rxjs.operators, global.ng.common, global.skeleton));
-}(this, (function (exports, i0, i1, i2, rxjs, platform, decorator, operators, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('@delon/util/config'), require('@delon/util/other'), require('@angular/cdk/platform'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/chart-echarts', ['exports', '@angular/core', 'rxjs', '@delon/util/config', '@delon/util/other', '@angular/cdk/platform', 'rxjs/operators', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['chart-echarts'] = {}), global.ng.core, global.rxjs, global.i1, global.i2, global.ng.cdk.platform, global.rxjs.operators, global.decorator, global.ng.common, global.skeleton));
+}(this, (function (exports, i0, rxjs, i1, i2, platform, operators, decorator, common, skeleton) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -49,7 +49,7 @@
             set: function (val) {
                 this._cog = this.cogSrv.merge('chart', {
                     theme: '',
-                    echartsLib: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.0/echarts.min.js',
+                    echartsLib: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.0/echarts.min.js'
                 }, val);
             },
             enumerable: false,
@@ -438,14 +438,14 @@
         }
         Object.defineProperty(ChartEChartsComponent.prototype, "width", {
             set: function (val) {
-                this._width = typeof val === 'number' ? val + 'px' : "" + val;
+                this._width = typeof val === 'number' ? val + "px" : "" + val;
             },
             enumerable: false,
             configurable: true
         });
         Object.defineProperty(ChartEChartsComponent.prototype, "height", {
             set: function (val) {
-                this._height = typeof val === 'number' ? val + 'px' : "" + val;
+                this._height = typeof val === 'number' ? val + "px" : "" + val;
             },
             enumerable: false,
             configurable: true
@@ -552,7 +552,7 @@
                     host: {
                         '[style.display]': "'inline-block'",
                         '[style.width]': "_width",
-                        '[style.height]': "_height",
+                        '[style.height]': "_height"
                     },
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -588,7 +588,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

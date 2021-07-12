@@ -13,6 +13,7 @@ export declare class SocialService implements OnDestroy {
     constructor(tokenService: ITokenService, doc: any, router: Router);
     /**
      * 使用窗体打开授权页，返回值是 `Observable<ITokenModel>` 用于订阅授权后返回的结果
+     *
      * @param url 获取授权地址
      * @param callback 回调路由地址
      * @param options.windowFeatures 等同 `window.open` 的 `features` 参数值
@@ -23,6 +24,7 @@ export declare class SocialService implements OnDestroy {
     }): Observable<ITokenModel>;
     /**
      * 跳转至授权页
+     *
      * @param url 获取授权地址
      * @param callback 回调路由地址
      */

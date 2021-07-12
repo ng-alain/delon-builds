@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DisabledDateFn, DisabledTimeFn, NzDatePickerSizeType, SupportTimeOptions } from 'ng-zorro-antd/date-picker';
 import { NzDatePickerI18nInterface } from 'ng-zorro-antd/i18n';
 import { SFUISchemaItem } from '../../schema/ui';
@@ -45,7 +46,9 @@ export interface SFDateWidgetSchema extends SFUISchemaItem {
     /**
      * To customize the style of the popup calendar
      */
-    popupStyle?: object;
+    popupStyle?: {
+        [klass: string]: NzSafeAny;
+    };
     /**
      * To customize the className of the popup calendar
      */

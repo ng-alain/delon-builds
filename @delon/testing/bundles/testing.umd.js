@@ -36,7 +36,7 @@
         // Most of the browsers don't have a "initTouchEvent" method that can be used to define
         // the touch details.
         Object.defineProperties(event, {
-            touches: { value: [touchDetails] },
+            touches: { value: [touchDetails] }
         });
         return event;
     }
@@ -52,12 +52,11 @@
         Object.defineProperties(event, {
             keyCode: { get: function () { return keyCode; } },
             key: { get: function () { return key; } },
-            target: { get: function () { return target; } },
+            target: { get: function () { return target; } }
         });
         // IE won't set `defaultPrevented` on synthetic events so we need to do it manually.
         event.preventDefault = function () {
             Object.defineProperty(event, 'defaultPrevented', { get: function () { return true; } });
-            // tslint:disable-next-line:no-invalid-this
             return originalPreventDefault.apply(this, arguments);
         };
         return event;
@@ -115,6 +114,7 @@
     /**
      * Focuses an input, sets its value and dispatches
      * the `input` event, simulating the user typing.
+     *
      * @param value Value to be set on the input.
      * @param element Element onto which to set the value.
      */
@@ -168,7 +168,6 @@
         });
         Object.defineProperty(PageG2.prototype, "comp", {
             get: function () {
-                // tslint:disable-next-line:no-string-literal
                 return this.context['comp'];
             },
             enumerable: false,
@@ -184,7 +183,7 @@
         PageG2.prototype.genModule = function (module, comp) {
             testing.TestBed.configureTestingModule({
                 imports: [module],
-                declarations: [comp],
+                declarations: [comp]
             });
             return this;
         };
@@ -227,7 +226,6 @@
             this.comp.ngOnDestroy();
         };
         PageG2.prototype.newData = function (data) {
-            // tslint:disable-next-line:no-string-literal
             this.context['data'] = data;
             this.dc();
             return this;
@@ -284,7 +282,6 @@
         };
         Object.defineProperty(PageG2.prototype, "firstDataPoint", {
             get: function () {
-                // tslint:disable-next-line: no-string-literal
                 return this.chart.getXY(this.context['data'][0]);
             },
             enumerable: false,
@@ -303,7 +300,7 @@
             var clientPoint = this.chart.canvas.getClientByPoint(point.x, point.y);
             var event = new MouseEvent('click', {
                 clientX: clientPoint.x,
-                clientY: clientPoint.y,
+                clientY: clientPoint.y
             });
             this.chart.canvas.get('el').dispatchEvent(event);
             return this;

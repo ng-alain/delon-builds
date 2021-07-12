@@ -30,7 +30,7 @@ class G2SingleBarComponent extends G2BaseComponent {
             autoFit: true,
             height,
             padding,
-            theme,
+            theme
         }));
         chart.legend(false);
         chart.axis(false);
@@ -44,7 +44,7 @@ class G2SingleBarComponent extends G2BaseComponent {
             .size(barSize)
             .label('value', () => ({
             formatter: format,
-            style: Object.assign({}, textStyle),
+            style: Object.assign({}, textStyle)
         }));
         if (line) {
             chart.annotation().line({
@@ -52,8 +52,8 @@ class G2SingleBarComponent extends G2BaseComponent {
                 end: ['50%', '100%'],
                 style: {
                     stroke: '#e8e8e8',
-                    lineDash: [0, 0],
-                },
+                    lineDash: [0, 0]
+                }
             });
         }
         this.changeData();
@@ -72,7 +72,7 @@ G2SingleBarComponent.decorators = [
                 exportAs: 'g2SingleBar',
                 template: ``,
                 host: {
-                    '[style.height.px]': 'height',
+                    '[style.height.px]': 'height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -118,7 +118,7 @@ G2SingleBarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

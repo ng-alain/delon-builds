@@ -1,8 +1,8 @@
 import { TemplateRef } from '@angular/core';
+import { Observable } from 'rxjs';
 import { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import { Observable } from 'rxjs';
 import { SEErrorRefresh, SELayout } from './se.types';
 export declare class SEContainerComponent {
     static ngAcceptInputType_col: NumberInput;

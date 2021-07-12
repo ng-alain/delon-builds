@@ -3,9 +3,9 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import { ActivationStart, ActivationEnd, Router } from '@angular/router';
-import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { BehaviorSubject, fromEvent } from 'rxjs';
 import { share, debounceTime, filter } from 'rxjs/operators';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 class FullContentService {
     constructor() {
@@ -63,7 +63,8 @@ class FullContentComponent {
         this.fullscreenChange.emit(this.fullscreen);
     }
     updateHeight() {
-        this._height = this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
+        this._height =
+            this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
         this.cdr.detectChanges();
     }
     removeInBody() {
@@ -85,7 +86,7 @@ class FullContentComponent {
         this.route$ = this.router.events
             .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
             .subscribe(() => {
-            if (!!this.doc.querySelector('#' + this.id)) {
+            if (!!this.doc.querySelector(`#${this.id}`)) {
                 this.bodyEl.classList.add(wrapCls);
                 this.updateCls();
             }
@@ -120,7 +121,7 @@ FullContentComponent.decorators = [
                 template: ` <ng-content></ng-content> `,
                 host: {
                     '[class.full-content]': 'true',
-                    '[style.height.px]': '_height',
+                    '[style.height.px]': '_height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -163,8 +164,8 @@ FullContentToggleDirective.decorators = [
                 selector: '[full-toggle]',
                 exportAs: 'fullToggle',
                 host: {
-                    '(click)': '_click()',
-                },
+                    '(click)': '_click()'
+                }
             },] }
 ];
 FullContentToggleDirective.ctorParameters = () => [
@@ -178,7 +179,7 @@ FullContentModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

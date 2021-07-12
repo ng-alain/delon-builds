@@ -24,7 +24,7 @@ export declare class G2RadarComponent extends G2BaseComponent {
     tickCount: number;
     data: G2RadarData[];
     colors: string[];
-    clickItem: EventEmitter<G2RadarClickItem>;
+    readonly clickItem: EventEmitter<G2RadarClickItem>;
     private getHeight;
     install(): void;
     changeData(): void;

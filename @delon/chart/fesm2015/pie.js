@@ -28,7 +28,7 @@ class G2PieComponent extends G2BaseComponent {
             text: '占比',
             inverse: '反比',
             color: '',
-            inverseColor: '#F0F2F5',
+            inverseColor: '#F0F2F5'
         };
         this.clickItem = new EventEmitter();
     }
@@ -49,22 +49,22 @@ class G2PieComponent extends G2BaseComponent {
         this.data = [
             {
                 x: text,
-                y: percent,
+                y: percent
             },
             {
                 x: inverse,
-                y: 100 - percent,
-            },
+                y: 100 - percent
+            }
         ];
     }
     install() {
-        const { node, height, padding, tooltip, inner, hasLegend, interaction, theme, animate, lineWidth, isPercent, percentColor, colors, } = this;
+        const { node, height, padding, tooltip, inner, hasLegend, interaction, theme, animate, lineWidth, isPercent, percentColor, colors } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height,
             padding,
-            theme,
+            theme
         }));
         chart.animate(animate);
         if (!tooltip) {
@@ -73,7 +73,7 @@ class G2PieComponent extends G2BaseComponent {
         else {
             chart.tooltip({
                 showTitle: false,
-                showMarkers: false,
+                showMarkers: false
             });
         }
         if (interaction !== 'none') {
@@ -89,14 +89,14 @@ class G2PieComponent extends G2BaseComponent {
             .color('x', isPercent ? percentColor : colors)
             .tooltip('x*percent', (name, p) => ({
             name,
-            value: `${hasLegend ? p : (p * 100).toFixed(2)} %`,
+            value: `${hasLegend ? p : (p * 100).toFixed(2)} %`
         }))
             .state({});
         chart.scale({
             x: {
                 type: 'cat',
-                range: [0, 1],
-            },
+                range: [0, 1]
+            }
         });
         chart.on(`interval:click`, (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
@@ -147,7 +147,7 @@ G2PieComponent.decorators = [
                     '[class.g2-pie]': 'true',
                     '[class.g2-pie__legend-has]': 'hasLegend',
                     '[class.g2-pie__legend-block]': 'block',
-                    '[class.g2-pie__mini]': 'isPercent',
+                    '[class.g2-pie__mini]': 'isPercent'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -207,7 +207,7 @@ G2PieModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzDividerModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

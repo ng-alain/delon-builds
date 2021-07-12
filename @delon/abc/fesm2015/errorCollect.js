@@ -2,10 +2,10 @@ import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, ChangeDetectorRef, Inject, Optional, Input, NgModule } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
-import { InputNumber } from '@delon/util/decorator';
 import { Subject, interval } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { AlainConfigService } from '@delon/util/config';
+import { InputNumber } from '@delon/util/decorator';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 class ErrorCollectComponent {
@@ -87,7 +87,7 @@ ErrorCollectComponent.decorators = [
                     '[class.error-collect]': 'true',
                     '[class.error-collect-rtl]': `dir === 'rtl'`,
                     '[class.d-none]': '_hiden',
-                    '(click)': '_click()',
+                    '(click)': '_click()'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -119,7 +119,7 @@ ErrorCollectModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

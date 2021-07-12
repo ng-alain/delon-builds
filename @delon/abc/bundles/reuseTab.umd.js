@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/cdk/platform'), require('@angular/common'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs/operators'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/cdk/platform', '@angular/common', '@angular/router', '@delon/util/decorator', 'rxjs/operators', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.cdk.platform, global.ng.common, global.ng.router, global.decorator, global.rxjs.operators, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
-}(this, (function (exports, i0, i1, rxjs, overlay, portal, platform, common, router, decorator, operators, browser, icon, menu, tabs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/theme'), require('rxjs'), require('@angular/cdk/overlay'), require('@angular/cdk/portal'), require('@angular/cdk/platform'), require('@angular/common'), require('@angular/router'), require('rxjs/operators'), require('@delon/util/decorator'), require('@delon/util/browser'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/tabs')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/reuse-tab', ['exports', '@angular/core', '@delon/theme', 'rxjs', '@angular/cdk/overlay', '@angular/cdk/portal', '@angular/cdk/platform', '@angular/common', '@angular/router', 'rxjs/operators', '@delon/util/decorator', '@delon/util/browser', 'ng-zorro-antd/icon', 'ng-zorro-antd/menu', 'ng-zorro-antd/tabs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['reuse-tab'] = {}), global.ng.core, global.delon.theme, global.rxjs, global.ng.cdk.overlay, global.ng.cdk.portal, global.ng.cdk.platform, global.ng.common, global.ng.router, global.rxjs.operators, global.decorator, global.browser, global['ng-zorro-antd/icon'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/tabs']));
+}(this, (function (exports, i0, i1, rxjs, overlay, portal, platform, common, router, operators, decorator, browser, icon, menu, tabs) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -58,7 +58,7 @@
             this.close.next({
                 type: type,
                 item: this.item,
-                includeNonCloseable: this.includeNonCloseable,
+                includeNonCloseable: this.includeNonCloseable
             });
         };
         ReuseTabContextMenuComponent.prototype.ngOnInit = function () {
@@ -92,10 +92,10 @@
     ReuseTabContextMenuComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'reuse-tab-context-menu',
-                    template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  <li nz-menu-item (click)=\"click($event, 'close')\" data-type=\"close\" [nzDisabled]=\"!item.closable\" [innerHTML]=\"i18n.close\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li nz-menu-item (click)=\"click($event, 'closeRight')\" data-type=\"closeRight\" [nzDisabled]=\"item.last\" [innerHTML]=\"i18n.closeRight\"></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
+                    template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
                     host: {
                         '(document:click)': 'closeMenu($event)',
-                        '(document:contextmenu)': 'closeMenu($event)',
+                        '(document:contextmenu)': 'closeMenu($event)'
                     },
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -137,18 +137,18 @@
                     left: event.clientX,
                     right: event.clientX,
                     top: event.clientY,
-                    width: 0,
-                }); },
+                    width: 0
+                }); }
             });
             var positions = [
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
-                new overlay.ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' }),
+                new overlay.ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })
             ];
             var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
             this.ref = this.overlay.create({
                 positionStrategy: positionStrategy,
                 panelClass: 'reuse-tab__cm',
-                scrollStrategy: this.overlay.scrollStrategies.close(),
+                scrollStrategy: this.overlay.scrollStrategies.close()
             });
             var comp = this.ref.attach(new portal.ComponentPortal(ReuseTabContextMenuComponent));
             var instance = comp.instance;
@@ -215,7 +215,7 @@
             this.srv.show.next({
                 event: event,
                 item: this.item,
-                customContextMenu: this.customContextMenu,
+                customContextMenu: this.customContextMenu
             });
             event.preventDefault();
             event.stopPropagation();
@@ -227,8 +227,8 @@
                     selector: '[reuse-tab-context-menu]',
                     exportAs: 'reuseTabContextMenu',
                     host: {
-                        '(contextmenu)': '_onContextMenu($event)',
-                    },
+                        '(contextmenu)': '_onContextMenu($event)'
+                    }
                 },] }
     ];
     ReuseTabContextDirective.ctorParameters = function () { return [
@@ -701,7 +701,7 @@
                     active: 'title',
                     url: url,
                     title: value,
-                    list: this._cached,
+                    list: this._cached
                 });
             },
             enumerable: false,
@@ -777,6 +777,7 @@
         };
         /**
          * 移动缓存数据
+         *
          * @param url 要移动的URL地址
          * @param position 新位置，下标从 `0` 开始
          *
@@ -803,7 +804,7 @@
                 active: 'move',
                 url: url,
                 position: position,
-                list: this._cached,
+                list: this._cached
             });
         };
         /**
@@ -836,7 +837,7 @@
             if (route && route.data && (route.data.titleI18n || route.data.title)) {
                 return {
                     text: route.data.title,
-                    i18n: route.data.titleI18n,
+                    i18n: route.data.titleI18n
                 };
             }
             var menu = this.getMenu(url);
@@ -857,7 +858,7 @@
                 this._cachedChange.next({
                     active: 'closable',
                     closable: value,
-                    list: this._cached,
+                    list: this._cached
                 });
             },
             enumerable: false,
@@ -905,11 +906,10 @@
                 segments.push(next.url.join('/'));
                 next = next.parent;
             }
-            var url = '/' +
-                segments
-                    .filter(function (i) { return i; })
-                    .reverse()
-                    .join('/');
+            var url = "/" + segments
+                .filter(function (i) { return i; })
+                .reverse()
+                .join('/');
             return url;
         };
         /**
@@ -959,7 +959,6 @@
             }
             if (!this.debug)
                 return;
-            // tslint:disable-next-line:no-console
             console.warn.apply(console, __spreadArray([], __read(args)));
         };
         ReuseTabService.prototype.init = function () {
@@ -1018,7 +1017,7 @@
                 position: this.getKeepingScroll(url, _snapshot) ? this.positionBuffer[url] : null,
                 url: url,
                 _snapshot: _snapshot,
-                _handle: _handle,
+                _handle: _handle
             };
             if (isAdd) {
                 if (this.count >= this._max) {
@@ -1228,7 +1227,7 @@
                 closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
                 active: false,
                 last: false,
-                index: 0,
+                index: 0
             };
         };
         ReuseTabComponent.prototype.genList = function (notify) {
@@ -1239,7 +1238,7 @@
                 closable: _this.allowClose && item.closable && _this.srv.count > 0,
                 index: index,
                 active: false,
-                last: false,
+                last: false
             }); });
             var url = this.curUrl;
             var addCurrent = ls.findIndex(function (w) { return w.url === url; }) === -1;
@@ -1414,12 +1413,12 @@
         { type: i0.Component, args: [{
                     selector: 'reuse-tab, [reuse-tab]',
                     exportAs: 'reuseTab',
-                    template: "<nz-tabset\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div [reuse-tab-context-menu]=\"i\" [customContextMenu]=\"customContextMenu\" class=\"reuse-tab__name\" [attr.title]=\"i.title\">\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          <ng-container *ngIf=\"titleRender; else defaultTitle\" [ngTemplateOutlet]=\"titleRender\" [ngTemplateOutletContext]=\"{ $implicit: i }\"></ng-container>\n          <ng-template #defaultTitle>{{ i.title }}</ng-template>\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
+                    template: "<nz-tabset\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  <nz-tab *ngFor=\"let i of list; let index = index\" [nzTitle]=\"titleTemplate\" (nzClick)=\"_to(index)\">\n    <ng-template #titleTemplate>\n      <div\n        [reuse-tab-context-menu]=\"i\"\n        [customContextMenu]=\"customContextMenu\"\n        class=\"reuse-tab__name\"\n        [attr.title]=\"i.title\"\n      >\n        <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n          <ng-container\n            *ngIf=\"titleRender; else defaultTitle\"\n            [ngTemplateOutlet]=\"titleRender\"\n            [ngTemplateOutletContext]=\"{ $implicit: i }\"\n          ></ng-container>\n          <ng-template #defaultTitle>{{ i.title }}</ng-template>\n        </span>\n      </div>\n      <i *ngIf=\"i.closable\" nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, index, false)\"></i>\n    </ng-template>\n  </nz-tab>\n</nz-tabset>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\"></reuse-tab-context>\n",
                     host: {
                         '[class.reuse-tab]': 'true',
                         '[class.reuse-tab__line]': "tabType === 'line'",
                         '[class.reuse-tab__card]': "tabType === 'card'",
-                        '[class.reuse-tab__disabled]': "disabled",
+                        '[class.reuse-tab__disabled]': "disabled"
                     },
                     providers: [ReuseTabContextService],
                     preserveWhitespaces: false,
@@ -1510,7 +1509,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule, router.RouterModule, i1.DelonLocaleModule, menu.NzMenuModule, tabs.NzTabsModule, icon.NzIconModule, overlay.OverlayModule],
                     declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), __read(NOEXPORTS)),
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

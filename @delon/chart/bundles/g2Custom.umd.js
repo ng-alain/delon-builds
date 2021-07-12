@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.delon.chart.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global.skeleton));
-}(this, (function (exports, core, core$1, decorator, rxjs, operators, common, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/custom', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/chart/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.custom = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.chart.core, global.decorator, global.ng.common, global.skeleton));
+}(this, (function (exports, core, rxjs, operators, core$1, decorator, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -359,7 +359,7 @@
                     exportAs: 'g2Custom',
                     template: "\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <ng-content></ng-content>\n  ",
                     host: {
-                        '[style.height.px]': 'height',
+                        '[style.height.px]': 'height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -390,7 +390,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

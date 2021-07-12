@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('@delon/util/config'), require('rxjs/operators'), require('@angular/common/http'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', '@delon/util/config', 'rxjs/operators', '@angular/common/http', '@delon/util'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.config, global.rxjs.operators, global.ng.common.http, global.delon.util));
-}(this, (function (exports, common, i0, router, rxjs, config, operators, http, util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@angular/common/http'), require('@delon/util')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/util/config', '@angular/common/http', '@delon/util'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.config, global.ng.common.http, global.delon.util));
+}(this, (function (exports, common, i0, router, rxjs, operators, config, http, util) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -36,7 +36,6 @@
         token_invalid_redirect: true,
         token_exp_offset: 10,
         token_send_key: "token",
-        // tslint:disable-next-line: no-invalid-template-strings
         token_send_template: '${token}',
         token_send_place: 'header',
         login_url: '/login',
@@ -44,7 +43,7 @@
         allow_anonymous_key: "_allow_anonymous",
         executeOtherInterceptors: true,
         refreshTime: 3000,
-        refreshOffset: 6000,
+        refreshOffset: 6000
     };
     function mergeConfig(srv) {
         return srv.merge('auth', AUTH_DEFAULT_CONFIG);
@@ -79,7 +78,7 @@
 
     var DA_STORE_TOKEN = new i0.InjectionToken('AUTH_STORE_TOKEN', {
         providedIn: 'root',
-        factory: DA_STORE_TOKEN_LOCAL_FACTORY,
+        factory: DA_STORE_TOKEN_LOCAL_FACTORY
     });
 
     function DA_SERVICE_TOKEN_FACTORY() {
@@ -185,7 +184,7 @@
 
     var DA_SERVICE_TOKEN = new i0.InjectionToken('DA_SERVICE_TOKEN', {
         providedIn: 'root',
-        factory: DA_SERVICE_TOKEN_FACTORY,
+        factory: DA_SERVICE_TOKEN_FACTORY
     });
 
     var OPENTYPE = '_delonAuthSocialType';
@@ -198,6 +197,7 @@
         }
         /**
          * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`
+         *
          * @param url 获取授权地址
          * @param callback 当 `type=href` 成功时的回调路由地址
          * @param options.type 打开方式，默认 `window`
@@ -247,7 +247,7 @@
             var data = { token: "" };
             if (typeof rawData === 'string') {
                 var rightUrl = rawData.split('?')[1].split('#')[0];
-                data = this.router.parseUrl('./?' + rightUrl).queryParams;
+                data = this.router.parseUrl("./?" + rightUrl).queryParams;
             }
             else {
                 data = rawData;
@@ -765,7 +765,7 @@
                         url: req.url,
                         headers: req.headers,
                         status: 401,
-                        statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig",
+                        statusText: "\u6765\u81EA @delon/auth \u7684\u62E6\u622A\uFF0C\u6240\u8BF7\u6C42URL\u672A\u6388\u6743\uFF0C\u82E5\u662F\u767B\u5F55API\u53EF\u52A0\u5165 [url?_allow_anonymous=true] \u6765\u8868\u793A\u5FFD\u7565\u6821\u9A8C\uFF0C\u66F4\u591A\u65B9\u6CD5\u8BF7\u53C2\u8003\uFF1A https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig"
                     });
                     observer.error(res);
                 });
@@ -774,7 +774,7 @@
                     var lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
                     if (lastInterceptors.length > 0) {
                         var chain = lastInterceptors.reduceRight(function (_next, _interceptor) { return new HttpAuthInterceptorHandler(_next, _interceptor); }, {
-                            handle: function (_) { return err$_1; },
+                            handle: function (_) { return err$_1; }
                         });
                         return chain.handle(req);
                     }
@@ -818,13 +818,11 @@
         str = String(str).replace(/=+$/, '');
         for (
         // initialize result and counters
-        // tslint:disable:no-conditional-assignment binary-expression-operand-order
         var bc = 0, bs = void 0, buffer = void 0, idx = 0; 
         // get next character
         (buffer = str.charAt(idx++)); 
         // character found in table? initialize bit storage and add its ascii value;
         ~buffer &&
-            // tslint:disable-next-line: ban-comma-operator
             ((bs = bc % 4 ? bs * 64 + buffer : buffer),
                 // and if not first of each 4 characters,
                 // convert the first 8 bits to one ascii character
@@ -840,7 +838,7 @@
     function b64DecodeUnicode(str) {
         return decodeURIComponent(Array.prototype.map
             .call(b64decode(str), function (c) {
-            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
         })
             .join(''));
     }
@@ -912,8 +910,8 @@
         JWTInterceptor.prototype.setReq = function (req, _options) {
             return req.clone({
                 setHeaders: {
-                    Authorization: "Bearer " + this.model.token,
-                },
+                    Authorization: "Bearer " + this.model.token
+                }
             });
         };
         return JWTInterceptor;
@@ -1016,19 +1014,19 @@
                     var obj = {};
                     obj[token_send_key] = token;
                     req = req.clone({
-                        setHeaders: obj,
+                        setHeaders: obj
                     });
                     break;
                 case 'body':
                     var body = req.body || {};
                     body[token_send_key] = token;
                     req = req.clone({
-                        body: body,
+                        body: body
                     });
                     break;
                 case 'url':
                     req = req.clone({
-                        params: req.params.append(token_send_key, token),
+                        params: req.params.append(token_send_key, token)
                     });
                     break;
             }

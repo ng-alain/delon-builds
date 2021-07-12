@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('ng-zorro-antd/core/tree')) :
-    typeof define === 'function' && define.amd ? define('@delon/util/array', ['exports', '@angular/core', '@delon/util/config', 'ng-zorro-antd/core/tree'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.array = {}), global.ng.core, global.delon.util.config, global.tree));
-}(this, (function (exports, i0, i1, tree) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('ng-zorro-antd/core/tree'), require('@delon/util/config')) :
+    typeof define === 'function' && define.amd ? define('@delon/util/array', ['exports', '@angular/core', 'ng-zorro-antd/core/tree', '@delon/util/config'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.array = {}), global.ng.core, global.tree, global.delon.util.config));
+}(this, (function (exports, i0, tree, i1) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -362,7 +362,7 @@
                 checkedMapname: 'checked',
                 selectedMapname: 'selected',
                 expandedMapname: 'expanded',
-                disabledMapname: 'disabled',
+                disabledMapname: 'disabled'
             });
         }
         /**
@@ -461,7 +461,7 @@
             var tree$1 = this.arrToTree(arr, {
                 idMapName: opt.idMapName,
                 parentIdMapName: opt.parentIdMapName,
-                childrenMapName: 'children',
+                childrenMapName: 'children'
             });
             this.visitTree(tree$1, function (item, parent, deep) {
                 item.key = item[opt.idMapName];
@@ -609,7 +609,11 @@
         ArrayService.prototype.uniq = function (array, predicate) {
             return Array.from(array
                 .reduce(function (map, value) {
-                var key = predicate ? (typeof predicate === 'string' ? value[predicate] : predicate(value)) : value;
+                var key = predicate
+                    ? typeof predicate === 'string'
+                        ? value[predicate]
+                        : predicate(value)
+                    : value;
                 if (!map.has(key)) {
                     map.set(key, value);
                 }

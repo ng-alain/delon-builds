@@ -355,7 +355,7 @@
                 autoFit: fit,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.animate(animate);
             if (!xAxis && !yAxis) {
@@ -405,7 +405,7 @@
                     exportAs: 'g2MiniArea',
                     template: "",
                     host: {
-                        '[style.height.px]': 'height',
+                        '[style.height.px]': 'height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -454,7 +454,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

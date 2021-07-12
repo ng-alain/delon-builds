@@ -20,7 +20,7 @@ class FilterPipeModule {
 FilterPipeModule.decorators = [
     { type: NgModule, args: [{
                 declarations: PIPES,
-                exports: PIPES,
+                exports: PIPES
             },] }
 ];
 

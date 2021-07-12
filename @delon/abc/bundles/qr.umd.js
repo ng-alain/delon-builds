@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.config, global.decorator, global.other, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, config, decorator, other, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs/operators'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs/operators', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.rxjs.operators, global.config, global.decorator, global.other, global.ng.common));
+}(this, (function (exports, platform, core, operators, config, decorator, other, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -337,7 +337,7 @@
         mime: 'image/png',
         padding: 10,
         size: 220,
-        delay: 0,
+        delay: 0
     };
 
     var QRComponent = /** @class */ (function () {
@@ -393,7 +393,7 @@
                 mime: this.mime,
                 padding: this.padding,
                 size: this.size,
-                value: this.toUtf8ByteArray(this.value),
+                value: this.toUtf8ByteArray(this.value)
             };
             this.option = option;
             this.init();
@@ -427,7 +427,7 @@
                     host: {
                         '[style.display]': "'inline-block'",
                         '[style.height.px]': 'size',
-                        '[style.width.px]': 'size',
+                        '[style.width.px]': 'size'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -473,7 +473,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

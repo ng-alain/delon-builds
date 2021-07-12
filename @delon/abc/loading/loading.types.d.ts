@@ -8,7 +8,9 @@ export interface LoadingIcon {
 }
 export interface LoadingCustom {
     html?: string | SafeHtml;
-    style?: object;
+    style?: {
+        [key: string]: NzSafeAny;
+    };
     [key: string]: NzSafeAny;
 }
 export interface LoadingShowOptions {

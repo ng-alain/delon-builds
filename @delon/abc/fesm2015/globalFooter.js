@@ -2,9 +2,9 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router, RouterModule } from '@angular/router';
-import { WINDOW } from '@delon/util/token';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { WINDOW } from '@delon/util/token';
 import { __decorate } from 'tslib';
 import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
@@ -81,7 +81,7 @@ GlobalFooterComponent.decorators = [
                 template: "<div *ngIf=\"links.length > 0 || items.length > 0\" class=\"global-footer__links\">\n  <a *ngFor=\"let i of links\" class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n  <a *ngFor=\"let i of items\" class=\"global-footer__links-item\" (click)=\"to(i)\">\n    <ng-container *ngTemplateOutlet=\"i.host\"></ng-container>\n  </a>\n</div>\n<div class=\"global-footer__copyright\">\n  <ng-content></ng-content>\n</div>\n",
                 host: {
                     '[class.global-footer]': 'true',
-                    '[class.global-footer-rtl]': `dir === 'rtl'`,
+                    '[class.global-footer-rtl]': `dir === 'rtl'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -106,7 +106,7 @@ GlobalFooterModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

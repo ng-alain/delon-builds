@@ -1,9 +1,9 @@
 import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { takeUntil, filter, debounceTime } from 'rxjs/operators';
+import { G2BaseComponent } from '@delon/chart/core';
+import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -32,24 +32,24 @@ class G2BarComponent extends G2BaseComponent {
             autoFit: true,
             height: this.getHeight(),
             padding,
-            theme,
+            theme
         }));
         this.updatelabel();
         chart.axis('y', {
             title: null,
             line: null,
-            tickLine: null,
+            tickLine: null
         });
         chart.scale({
             x: {
-                type: 'cat',
+                type: 'cat'
             },
             y: {
-                min: 0,
-            },
+                min: 0
+            }
         });
         chart.tooltip({
-            showTitle: false,
+            showTitle: false
         });
         if (interaction !== 'none') {
             chart.interaction(interaction);
@@ -102,7 +102,7 @@ G2BarComponent.decorators = [
     <div #container></div>
   `,
                 host: {
-                    '[style.height.px]': 'height',
+                    '[style.height.px]': 'height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -133,7 +133,7 @@ G2BarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

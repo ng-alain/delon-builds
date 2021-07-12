@@ -20,10 +20,10 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     _height: string;
     set width(val: NumberInput);
     set height(val: NumberInput);
-    set theme(value: string | object | null | undefined);
+    set theme(value: string | Record<string, unknown> | null | undefined);
     set initOpt(value: any);
     set option(value: ChartEChartsOption);
-    events: EventEmitter<ChartEChartsEvent>;
+    readonly events: EventEmitter<ChartEChartsEvent>;
     get chart(): ChartECharts | null;
     loaded: boolean;
     constructor(srv: ChartEChartsService, cdr: ChangeDetectorRef, ngZone: NgZone, platform: Platform);

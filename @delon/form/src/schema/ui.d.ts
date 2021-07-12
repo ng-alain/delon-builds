@@ -1,5 +1,5 @@
-import { ACLCanType } from '@delon/acl';
 import { NzSizeLDSType } from 'ng-zorro-antd/core/types';
+import { ACLCanType } from '@delon/acl';
 import { ErrorSchema } from '../errors';
 export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 export declare type SFTrigger = 'click' | 'focus' | 'hover';

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@delon/theme'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', '@delon/theme', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.delon.theme, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/icon']));
-}(this, (function (exports, bidi, core, theme, decorator, rxjs, operators, common, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/tag-select', ['exports', '@angular/cdk/bidi', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['tag-select'] = {}), global.ng.cdk.bidi, global.ng.core, global.rxjs, global.rxjs.operators, global.delon.theme, global.decorator, global.ng.common, global['ng-zorro-antd/icon']));
+}(this, (function (exports, bidi, core, rxjs, operators, theme, decorator, common, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -366,13 +366,13 @@
         { type: core.Component, args: [{
                     selector: 'tag-select',
                     exportAs: 'tagSelect',
-                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                    template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand\n  }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                     host: {
                         '[class.tag-select]': 'true',
                         '[class.tag-select-rtl]': "dir === 'rtl'",
                         '[class.tag-select-rtl__has-expand]': "dir === 'rtl' && expandable",
                         '[class.tag-select__has-expand]': 'expandable',
-                        '[class.tag-select__expanded]': 'expand',
+                        '[class.tag-select__expanded]': 'expand'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -402,7 +402,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, icon.NzIconModule, theme.DelonLocaleModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

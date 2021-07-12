@@ -1,9 +1,9 @@
 import { __decorate } from 'tslib';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber } from '@delon/util/decorator';
 import { fromEvent } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
+import { G2BaseComponent } from '@delon/chart/core';
+import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
@@ -38,7 +38,7 @@ G2CustomComponent.decorators = [
     <ng-content></ng-content>
   `,
                 host: {
-                    '[style.height.px]': 'height',
+                    '[style.height.px]': 'height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -66,7 +66,7 @@ G2CustomModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

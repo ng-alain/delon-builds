@@ -62,7 +62,7 @@ G2CardModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

@@ -1,7 +1,7 @@
 import { AfterViewInit, ComponentFactoryResolver, EventEmitter, Injector, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { AlainConfigService, AlainDateRangePickerShortcut } from '@delon/util/config';
 import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
+import { AlainConfigService, AlainDateRangePickerShortcut } from '@delon/util/config';
 export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     private dom;
     private nativeComp;

@@ -70,7 +70,6 @@
         CookieService.prototype.getAll = function () {
             var ret = {};
             var arr = this.cookie.split('; ');
-            // tslint:disable-next-line: prefer-for-of
             for (var i = 0; i < arr.length; i++) {
                 var cookie = arr[i];
                 var index = cookie.indexOf('=');
@@ -112,7 +111,7 @@
                 .filter(function (k) { return optStr[k] && optStr[k] !== true; })
                 .map(function (k) { return k + "=" + optStr[k].split(';')[0]; })
                 .join(';');
-            this.doc.cookie = encodeURIComponent(String(key)) + '=' + encodeURIComponent(String(value)) + (attributes ? '; ' + attributes : '');
+            this.doc.cookie = encodeURIComponent(String(key)) + "=" + encodeURIComponent(String(value)) + (attributes ? "; " + attributes : '');
         };
         /**
          * Remove given cookie
@@ -201,6 +200,7 @@
         };
         /**
          * 获取滚动条位置
+         *
          * @param element 指定元素，默认 `window`
          */
         ScrollService.prototype.getScrollPosition = function (element) {
@@ -217,6 +217,7 @@
         };
         /**
          * 设置滚动条位置
+         *
          * @param element 指定元素
          */
         ScrollService.prototype.scrollToPosition = function (element, position) {
@@ -227,6 +228,7 @@
         };
         /**
          * 设置滚动条至指定元素
+         *
          * @param element 指定元素，默认 `document.body`
          * @param topOffset 偏移值，默认 `0`
          */
@@ -249,6 +251,7 @@
         };
         /**
          * 滚动至顶部
+         *
          * @param topOffset 偏移值，默认 `0`
          */
         ScrollService.prototype.scrollToTop = function (topOffset) {
@@ -270,7 +273,6 @@
     ]; };
 
     function removeClass(el, classMap, renderer) {
-        // tslint:disable-next-line: forin
         for (var i in classMap) {
             renderer.removeClass(el, i);
         }

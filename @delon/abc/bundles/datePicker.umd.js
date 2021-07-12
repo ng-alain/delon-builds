@@ -363,34 +363,34 @@
                     list: [
                         {
                             text: '今天',
-                            fn: function () { return dateTime.getTimeDistance('today'); },
+                            fn: function () { return dateTime.getTimeDistance('today'); }
                         },
                         {
                             text: '昨天',
-                            fn: function () { return dateTime.getTimeDistance('yesterday'); },
+                            fn: function () { return dateTime.getTimeDistance('yesterday'); }
                         },
                         {
                             text: '近3天',
-                            fn: function () { return dateTime.getTimeDistance(-2); },
+                            fn: function () { return dateTime.getTimeDistance(-2); }
                         },
                         {
                             text: '近7天',
-                            fn: function () { return dateTime.getTimeDistance(-6); },
+                            fn: function () { return dateTime.getTimeDistance(-6); }
                         },
                         {
                             text: '本周',
-                            fn: function () { return dateTime.getTimeDistance('week'); },
+                            fn: function () { return dateTime.getTimeDistance('week'); }
                         },
                         {
                             text: '本月',
-                            fn: function () { return dateTime.getTimeDistance('month'); },
+                            fn: function () { return dateTime.getTimeDistance('month'); }
                         },
                         {
                             text: '全年',
-                            fn: function () { return dateTime.getTimeDistance('year'); },
-                        },
-                    ],
-                },
+                            fn: function () { return dateTime.getTimeDistance('year'); }
+                        }
+                    ]
+                }
             });
             this.defaultShortcuts = Object.assign({}, cog.shortcuts);
             Object.assign(this, cog);
@@ -444,7 +444,6 @@
             this.value = item.fn(this.value);
             this.valueChange(this.value);
             if (this._shortcut.closed) {
-                // tslint:disable-next-line:no-string-literal
                 this.comp['picker'].hideOverlay();
             }
         };
@@ -454,13 +453,13 @@
         { type: core.Component, args: [{
                     selector: 'range-picker',
                     exportAs: 'rangePicker',
-                    template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list; let first = first\" (click)=\"clickShortcut(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n</ng-template>\n",
+                    template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a\n    *ngFor=\"let i of shortcut?.list; let first = first\"\n    (click)=\"clickShortcut(i)\"\n    [innerHTML]=\"i._text\"\n    [ngClass]=\"{ 'ml-sm': !first }\"\n  ></a>\n</ng-template>\n",
                     providers: [
                         {
                             provide: forms.NG_VALUE_ACCESSOR,
                             multi: true,
-                            useExisting: core.forwardRef(function () { return RangePickerComponent; }),
-                        },
+                            useExisting: core.forwardRef(function () { return RangePickerComponent; })
+                        }
                     ]
                 },] }
     ];
@@ -510,7 +509,7 @@
     RangePickerShortcutTplComponent.decorators = [
         { type: core.Component, args: [{
                     selector: '',
-                    template: "\n    <ng-template #tpl>\n      <a *ngFor=\"let i of list; let first = first\" (click)=\"click(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n    </ng-template>\n  "
+                    template: "\n    <ng-template #tpl>\n      <a\n        *ngFor=\"let i of list; let first = first\"\n        (click)=\"click(i)\"\n        [innerHTML]=\"i._text\"\n        [ngClass]=\"{ 'ml-sm': !first }\"\n      ></a>\n    </ng-template>\n  "
                 },] }
     ];
     RangePickerShortcutTplComponent.propDecorators = {
@@ -541,34 +540,34 @@
                     list: [
                         {
                             text: '今天',
-                            fn: function () { return dateTime.getTimeDistance('today'); },
+                            fn: function () { return dateTime.getTimeDistance('today'); }
                         },
                         {
                             text: '昨天',
-                            fn: function () { return dateTime.getTimeDistance('yesterday'); },
+                            fn: function () { return dateTime.getTimeDistance('yesterday'); }
                         },
                         {
                             text: '近3天',
-                            fn: function () { return dateTime.getTimeDistance(-2); },
+                            fn: function () { return dateTime.getTimeDistance(-2); }
                         },
                         {
                             text: '近7天',
-                            fn: function () { return dateTime.getTimeDistance(-6); },
+                            fn: function () { return dateTime.getTimeDistance(-6); }
                         },
                         {
                             text: '本周',
-                            fn: function () { return dateTime.getTimeDistance('week'); },
+                            fn: function () { return dateTime.getTimeDistance('week'); }
                         },
                         {
                             text: '本月',
-                            fn: function () { return dateTime.getTimeDistance('month'); },
+                            fn: function () { return dateTime.getTimeDistance('month'); }
                         },
                         {
                             text: '全年',
-                            fn: function () { return dateTime.getTimeDistance('year'); },
-                        },
-                    ],
-                },
+                            fn: function () { return dateTime.getTimeDistance('year'); }
+                        }
+                    ]
+                }
             });
             this.defaultShortcuts = Object.assign({}, cog.shortcuts);
             Object.assign(this, cog);
@@ -681,7 +680,7 @@
     RangePickerDirective.decorators = [
         { type: core.Directive, args: [{
                     selector: 'nz-range-picker[extend]',
-                    exportAs: 'extendRangePicker',
+                    exportAs: 'extendRangePicker'
                 },] }
     ];
     RangePickerDirective.ctorParameters = function () { return [
@@ -707,7 +706,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, forms.FormsModule, datePicker.NzDatePickerModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

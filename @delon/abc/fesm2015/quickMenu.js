@@ -27,9 +27,13 @@ class QuickMenuComponent {
     setStyle() {
         this.ctrlStyle = {
             'background-color': this.bgColor,
-            'border-color': this.borderColor,
+            'border-color': this.borderColor
         };
-        const res = [`top:${this.top}px`, `width:${this.width}px`, `margin-right:-${this.show ? 0 : this.width}px`];
+        const res = [
+            `top:${this.top}px`,
+            `width:${this.width}px`,
+            `margin-right:-${this.show ? 0 : this.width}px`
+        ];
         if (this.bgColor) {
             res.push(`background-color:${this.bgColor}`);
         }
@@ -57,7 +61,7 @@ QuickMenuComponent.decorators = [
                 template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [ngStyle]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *nzStringTemplateOutlet=\"icon\">\n        <i nz-icon [nzType]=\"$any(icon)\"></i>\n      </ng-container>\n    </div>\n  </div>\n  <ng-content></ng-content>\n</div>\n",
                 host: {
                     '[class.quick-menu]': 'true',
-                    '(click)': '_click()',
+                    '(click)': '_click()'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -95,7 +99,7 @@ QuickMenuModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, NzOutletModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

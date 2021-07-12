@@ -1,7 +1,7 @@
 import { OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AlainChartConfig, AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import { Observable } from 'rxjs';
 export declare class ChartEChartsService implements OnDestroy {
     private cogSrv;
     private lazySrv;

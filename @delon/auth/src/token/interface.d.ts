@@ -1,6 +1,6 @@
 import { InjectionToken } from '@angular/core';
-import { AlainAuthConfig } from '@delon/util/config';
 import { Observable } from 'rxjs';
+import { AlainAuthConfig } from '@delon/util/config';
 export declare const DA_SERVICE_TOKEN: InjectionToken<ITokenService>;
 export interface ITokenModel {
     [key: string]: any;

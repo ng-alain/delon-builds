@@ -1,10 +1,10 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { isEmpty } from '@delon/util/browser';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { isEmpty } from '@delon/util/browser';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -26,16 +26,16 @@ class ExceptionComponent {
         const item = {
             403: {
                 img: 'https://gw.alipayobjects.com/zos/rmsportal/wZcnGqRDyhPOEYFcZDnb.svg',
-                title: '403',
+                title: '403'
             },
             404: {
                 img: 'https://gw.alipayobjects.com/zos/rmsportal/KpnpchXsobRgLElEozzI.svg',
-                title: '404',
+                title: '404'
             },
             500: {
                 img: 'https://gw.alipayobjects.com/zos/rmsportal/RVRUAYdCGeYNBWoKiIwB.svg',
-                title: '500',
-            },
+                title: '500'
+            }
         }[value];
         if (!item)
             return;
@@ -80,7 +80,7 @@ ExceptionComponent.decorators = [
                 template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
                 host: {
                     '[class.exception]': 'true',
-                    '[class.exception-rtl]': `dir === 'rtl'`,
+                    '[class.exception-rtl]': `dir === 'rtl'`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -107,7 +107,7 @@ ExceptionModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, RouterModule, DelonLocaleModule, NzButtonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

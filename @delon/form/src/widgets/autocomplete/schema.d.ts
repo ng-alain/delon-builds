@@ -1,5 +1,5 @@
-import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
 import { Observable } from 'rxjs';
+import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
 import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
 import { SFUISchemaItem } from '../../schema/ui';
 export interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {

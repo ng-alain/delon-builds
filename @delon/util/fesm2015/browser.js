@@ -34,7 +34,6 @@ class CookieService {
     getAll() {
         const ret = {};
         const arr = this.cookie.split('; ');
-        // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < arr.length; i++) {
             const cookie = arr[i];
             const index = cookie.indexOf('=');
@@ -76,7 +75,7 @@ class CookieService {
             .filter(k => optStr[k] && optStr[k] !== true)
             .map(k => `${k}=${optStr[k].split(';')[0]}`)
             .join(';');
-        this.doc.cookie = encodeURIComponent(String(key)) + '=' + encodeURIComponent(String(value)) + (attributes ? '; ' + attributes : '');
+        this.doc.cookie = `${encodeURIComponent(String(key))}=${encodeURIComponent(String(value))}${attributes ? `; ${attributes}` : ''}`;
     }
     /**
      * Remove given cookie
@@ -164,6 +163,7 @@ class ScrollService {
     }
     /**
      * 获取滚动条位置
+     *
      * @param element 指定元素，默认 `window`
      */
     getScrollPosition(element) {
@@ -180,6 +180,7 @@ class ScrollService {
     }
     /**
      * 设置滚动条位置
+     *
      * @param element 指定元素
      */
     scrollToPosition(element, position) {
@@ -190,6 +191,7 @@ class ScrollService {
     }
     /**
      * 设置滚动条至指定元素
+     *
      * @param element 指定元素，默认 `document.body`
      * @param topOffset 偏移值，默认 `0`
      */
@@ -211,6 +213,7 @@ class ScrollService {
     }
     /**
      * 滚动至顶部
+     *
      * @param topOffset 偏移值，默认 `0`
      */
     scrollToTop(topOffset = 0) {
@@ -230,7 +233,6 @@ ScrollService.ctorParameters = () => [
 ];
 
 function removeClass(el, classMap, renderer) {
-    // tslint:disable-next-line: forin
     for (const i in classMap) {
         renderer.removeClass(el, i);
     }

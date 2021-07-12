@@ -2,16 +2,16 @@ import * as i3 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, NgModule } from '@angular/core';
-import * as i1 from '@delon/util/config';
-import { AlainConfigService } from '@delon/util/config';
-import { addSeconds } from 'date-fns';
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
+import { addSeconds } from 'date-fns';
+import * as i1 from '@delon/util/config';
+import { AlainConfigService } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
 
 const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
     providedIn: 'root',
-    factory: () => new LocalStorageCacheService(inject(Platform)),
+    factory: () => new LocalStorageCacheService(inject(Platform))
 });
 class LocalStorageCacheService {
     constructor(platform) {
@@ -50,7 +50,7 @@ class CacheService {
             mode: 'promise',
             reName: '',
             prefix: '',
-            meta_key: '__cache_meta',
+            meta_key: '__cache_meta'
         });
         this.loadMeta();
         this.startExpireNotify();

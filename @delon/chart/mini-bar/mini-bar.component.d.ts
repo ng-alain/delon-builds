@@ -21,7 +21,7 @@ export declare class G2MiniBarComponent extends G2BaseComponent {
     data: G2MiniBarData[];
     yTooltipSuffix: string;
     tooltipType: 'mini' | 'default';
-    clickItem: EventEmitter<G2MiniBarClickItem>;
+    readonly clickItem: EventEmitter<G2MiniBarClickItem>;
     install(): void;
     changeData(): void;
 }

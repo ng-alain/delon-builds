@@ -1,8 +1,8 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Layout, SettingsService } from '@delon/theme';
 import { LazyService } from '@delon/util/other';
-import { NzMessageService } from 'ng-zorro-antd/message';
 export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     private cdr;
     private msg;

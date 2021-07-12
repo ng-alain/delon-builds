@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/common', '@angular/core', '@angular/router', '@delon/util/decorator', 'rxjs', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.decorator, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, common, i0, router, decorator, rxjs, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/full-content', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/util/decorator'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['full-content'] = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.decorator));
+}(this, (function (exports, common, i0, router, rxjs, operators, decorator) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -410,7 +410,8 @@
             this.fullscreenChange.emit(this.fullscreen);
         };
         FullContentComponent.prototype.updateHeight = function () {
-            this._height = this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
+            this._height =
+                this.bodyEl.getBoundingClientRect().height - this.el.nativeElement.getBoundingClientRect().top - this.padding;
             this.cdr.detectChanges();
         };
         FullContentComponent.prototype.removeInBody = function () {
@@ -433,7 +434,7 @@
             this.route$ = this.router.events
                 .pipe(operators.filter(function (e) { return e instanceof router.ActivationStart || e instanceof router.ActivationEnd; }), operators.debounceTime(200))
                 .subscribe(function () {
-                if (!!_this.doc.querySelector('#' + _this.id)) {
+                if (!!_this.doc.querySelector("#" + _this.id)) {
                     _this.bodyEl.classList.add(wrapCls);
                     _this.updateCls();
                 }
@@ -470,7 +471,7 @@
                     template: " <ng-content></ng-content> ",
                     host: {
                         '[class.full-content]': 'true',
-                        '[style.height.px]': '_height',
+                        '[style.height.px]': '_height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: i0.ChangeDetectionStrategy.OnPush,
@@ -514,8 +515,8 @@
                     selector: '[full-toggle]',
                     exportAs: 'fullToggle',
                     host: {
-                        '(click)': '_click()',
-                    },
+                        '(click)': '_click()'
+                    }
                 },] }
     ];
     FullContentToggleDirective.ctorParameters = function () { return [
@@ -532,7 +533,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

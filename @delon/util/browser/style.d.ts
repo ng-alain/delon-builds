@@ -16,4 +16,6 @@ import { Renderer2 } from '@angular/core';
  *  })
  * ```
  */
-export declare function updateHostClass(el: HTMLElement, renderer: Renderer2, classMap: object, preClean?: boolean): void;
+export declare function updateHostClass(el: HTMLElement, renderer: Renderer2, classMap: {
+    [klass: string]: unknown;
+}, preClean?: boolean): void;

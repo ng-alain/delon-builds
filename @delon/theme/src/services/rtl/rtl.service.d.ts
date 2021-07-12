@@ -1,8 +1,8 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { AlainConfigService } from '@delon/util/config';
-import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { Observable } from 'rxjs';
+import { NzConfigService } from 'ng-zorro-antd/core/config';
+import { AlainConfigService } from '@delon/util/config';
 import { SettingsService } from '../settings/settings.service';
 export declare const HTML_DIR = "dir";
 export declare const RTL_DIRECTION = "direction";

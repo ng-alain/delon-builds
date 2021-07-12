@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('file-saver'), require('isutf8'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', 'file-saver', 'isutf8', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.i3, global.decorator, global.i2, global.saveAs, global.isUtf8, global.ng.common));
-}(this, (function (exports, i1, i0, i3, decorator, i2, fileSaver, isUtf8, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('file-saver'), require('isutf8'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', 'file-saver', 'isutf8', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.saveAs, global.isUtf8, global.i3, global.decorator, global.i2, global.ng.common));
+}(this, (function (exports, i1, i0, fileSaver, isUtf8, i3, decorator, i2, common) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -33,9 +33,9 @@
 
     var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
     var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var isUtf8__default = /*#__PURE__*/_interopDefaultLegacy(isUtf8);
     var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
     var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
-    var isUtf8__default = /*#__PURE__*/_interopDefaultLegacy(isUtf8);
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -362,11 +362,13 @@
             this.ngZone = ngZone;
             this.cog = configSrv.merge('xlsx', {
                 url: 'https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/xlsx.full.min.js',
-                modules: ["https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js"],
+                modules: ["https://cdn.bootcdn.net/ajax/libs/xlsx/0.16.8/cpexcel.min.js"]
             });
         }
         XlsxService.prototype.init = function () {
-            return typeof XLSX !== 'undefined' ? Promise.resolve([]) : this.lazy.load([this.cog.url].concat(this.cog.modules));
+            return typeof XLSX !== 'undefined'
+                ? Promise.resolve([])
+                : this.lazy.load([this.cog.url].concat(this.cog.modules));
         };
         XlsxService.prototype.read = function (data, options) {
             var ret = {};
@@ -493,8 +495,8 @@
                     selector: '[xlsx]',
                     exportAs: 'xlsx',
                     host: {
-                        '(click)': '_click()',
-                    },
+                        '(click)': '_click()'
+                    }
                 },] }
     ];
     XlsxDirective.ctorParameters = function () { return [
@@ -514,7 +516,7 @@
         { type: i0.NgModule, args: [{
                     imports: [common.CommonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

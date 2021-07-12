@@ -25,15 +25,15 @@ class G2MiniBarComponent extends G2BaseComponent {
             autoFit: true,
             height,
             padding,
-            theme,
+            theme
         }));
         chart.scale({
             x: {
-                type: 'cat',
+                type: 'cat'
             },
             y: {
-                min: 0,
-            },
+                min: 0
+            }
         });
         chart.legend(false);
         chart.axis(false);
@@ -63,7 +63,7 @@ G2MiniBarComponent.decorators = [
                 exportAs: 'g2MiniBar',
                 template: ``,
                 host: {
-                    '[style.height.px]': 'height',
+                    '[style.height.px]': 'height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -94,7 +94,7 @@ G2MiniBarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

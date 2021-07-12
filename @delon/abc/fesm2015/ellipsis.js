@@ -2,8 +2,8 @@ import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, NgZone, Inject, ChangeDetectorRef, ViewChild, Input, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { take } from 'rxjs/operators';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { ObserversModule } from '@angular/cdk/observers';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
@@ -14,7 +14,6 @@ class EllipsisComponent {
         this.dom = dom;
         this.doc = doc;
         this.cdr = cdr;
-        // tslint:disable-next-line:no-string-literal
         this.isSupportLineClamp = this.doc.body.style['webkitLineClamp'] !== undefined;
         this.inited = false;
         this.type = 'default';
@@ -27,7 +26,8 @@ class EllipsisComponent {
     }
     get linsWord() {
         const { targetCount, text, tail } = this;
-        return (targetCount > 0 ? text.substring(0, targetCount) : '') + (targetCount > 0 && targetCount < text.length ? tail : '');
+        return ((targetCount > 0 ? text.substring(0, targetCount) : '') +
+            (targetCount > 0 && targetCount < text.length ? tail : ''));
     }
     getStrFullLength(str) {
         return str.split('').reduce((pre, cur) => {
@@ -85,7 +85,7 @@ class EllipsisComponent {
         this.cls = {
             ellipsis: true,
             ellipsis__lines: lines && !isSupportLineClamp,
-            'ellipsis__line-clamp': lines && isSupportLineClamp,
+            'ellipsis__line-clamp': lines && isSupportLineClamp
         };
         if (!lines && !length) {
             this.type = 'default';
@@ -118,7 +118,9 @@ class EllipsisComponent {
                     displayText = '';
                 }
                 else {
-                    displayText = fullWidthRecognition ? this.cutStrByFullLength(lengthText, length) : lengthText.slice(0, length);
+                    displayText = fullWidthRecognition
+                        ? this.cutStrByFullLength(lengthText, length)
+                        : lengthText.slice(0, length);
                 }
                 this.text = displayText + tail;
             }
@@ -187,7 +189,7 @@ EllipsisComponent.decorators = [
     { type: Component, args: [{
                 selector: 'ellipsis',
                 exportAs: 'ellipsis',
-                template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none;\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span *ngIf=\"tooltip; else con\" nz-tooltip [nzTooltipTitle]=\"titleTpl\" [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\">\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n",
+                template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none\"><ng-content></ng-content></div>\n<ng-template #tooltipTpl let-con>\n  <span\n    *ngIf=\"tooltip; else con\"\n    nz-tooltip\n    [nzTooltipTitle]=\"titleTpl\"\n    [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\"\n  >\n    <ng-container *ngTemplateOutlet=\"con\"></ng-container>\n    <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n  </span>\n</ng-template>\n<ng-container [ngSwitch]=\"type\">\n  <span *ngSwitchCase=\"'default'\" [ngClass]=\"cls\"></span>\n  <ng-container *ngSwitchCase=\"'length'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\"></ng-template>\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  </ng-container>\n  <ng-container *ngSwitchCase=\"'line-clamp'\">\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\"></ng-template>\n    <ng-template #lineClampTpl>\n      <div [ngClass]=\"cls\" [ngStyle]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  </ng-container>\n  <div *ngSwitchCase=\"'line'\" [ngClass]=\"cls\">\n    <div class=\"ellipsis__handle\">\n      <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\"></ng-template>\n      <ng-template #lineTpl>{{ linsWord }}</ng-template>\n      <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n      <div class=\"ellipsis__shadow\" #shadowTextEl>\n        <span>{{ text }}</span>\n      </div>\n    </div>\n  </div>\n</ng-container>\n",
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
                 encapsulation: ViewEncapsulation.None
@@ -230,7 +232,7 @@ EllipsisModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, ObserversModule, NzToolTipModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

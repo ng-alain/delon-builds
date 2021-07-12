@@ -17,6 +17,7 @@ export declare class ZipService {
     create(): Promise<any>;
     /**
      * 下载URL资源并写入 zip
+     *
      * @param zip Zip 实例
      * @param path Zip 路径，例如： `text.txt`、`txt/hi.txt`
      * @param url URL 地址

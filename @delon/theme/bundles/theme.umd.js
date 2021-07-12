@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/acl'), require('rxjs'), require('rxjs/operators'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('@delon/util/date-time'), require('date-fns'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', '@delon/acl', 'rxjs', 'rxjs/operators', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', '@delon/util/date-time', 'date-fns', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.delon.acl, global.rxjs, global.rxjs.operators, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.delon.util['date-time'], global.DateFns, global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, i2, rxjs, operators, i2$1, i1, i1$1, i1$2, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateTime, dateFns, i18n, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('@delon/util/other'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('ng-zorro-antd/i18n'), require('@delon/util/date-time'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', '@delon/util/other', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', 'ng-zorro-antd/i18n', '@delon/util/date-time', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global.delon.util.other, global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global['ng-zorro-antd/i18n'], global.delon.util['date-time'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, rxjs, operators, i2, i2$1, i1, i1$1, i1$2, i3, i1$3, router, i1$4, other, i1$5, i1$6, dateFns, i18n, dateTime, overlay, icons, icon) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -49,7 +49,7 @@
      */
     var WINDOW = new i0.InjectionToken('Window', {
         providedIn: 'root',
-        factory: WINDOW_FACTORY,
+        factory: WINDOW_FACTORY
     });
 
     function preloaderFinished() {
@@ -393,7 +393,7 @@
 
     var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainTranslatorToken', {
         providedIn: 'root',
-        factory: ALAIN_I18N_TOKEN_FACTORY,
+        factory: ALAIN_I18N_TOKEN_FACTORY
     });
     function ALAIN_I18N_TOKEN_FACTORY() {
         return new AlainI18NServiceFake();
@@ -574,19 +574,18 @@
                     text: '快捷菜单',
                     i18n: 'shortcut',
                     icon: 'icon-rocket',
-                    children: [],
+                    children: []
                 };
                 this.data[0].children.splice(pos, 0, shortcutMenu);
             }
             var _data = this.data[0].children[pos];
             if (_data.i18n && this.i18nSrv)
                 _data.text = this.i18nSrv.fanyi(_data.i18n);
-            // tslint:disable-next-line:prefer-object-spread
             _data = Object.assign(_data, {
                 shortcutRoot: true,
                 _id: -1,
                 _parent: null,
-                _depth: 1,
+                _depth: 1
             });
             _data.children = shortcuts.map(function (i) {
                 i._depth = 2;
@@ -727,6 +726,7 @@
         };
         /**
          * 获取滚动条位置
+         *
          * @param element 指定元素，默认 `window`
          */
         ScrollService.prototype.getScrollPosition = function (element) {
@@ -743,6 +743,7 @@
         };
         /**
          * 设置滚动条位置
+         *
          * @param element 指定元素
          */
         ScrollService.prototype.scrollToPosition = function (element, position) {
@@ -753,6 +754,7 @@
         };
         /**
          * 设置滚动条至指定元素
+         *
          * @param element 指定元素，默认 `document.body`
          * @param topOffset 偏移值，默认 `0`
          */
@@ -775,6 +777,7 @@
         };
         /**
          * 滚动至顶部
+         *
          * @param topOffset 偏移值，默认 `0`
          */
         ScrollService.prototype.scrollToTop = function (topOffset) {
@@ -899,8 +902,8 @@
                     3: { xs: 24, sm: 12, md: 8 },
                     4: { xs: 24, sm: 12, md: 8, lg: 6 },
                     5: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4 },
-                    6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 },
-                },
+                    6: { xs: 24, sm: 12, md: 8, lg: 6, xl: 4, xxl: 2 }
+                }
             });
             if (Object.keys(this.cog.rules)
                 .map(function (i) { return +i; })
@@ -1094,7 +1097,8 @@
             configurable: true
         });
         TitleService.prototype.getByElement = function () {
-            var el = (this.doc.querySelector('.alain-default__content-title h1') || this.doc.querySelector('.page-header__title'));
+            var el = (this.doc.querySelector('.alain-default__content-title h1') ||
+                this.doc.querySelector('.page-header__title'));
             if (el) {
                 var text_1 = '';
                 el.childNodes.forEach(function (val) {
@@ -1183,29 +1187,29 @@
             403: '抱歉，你无权访问该页面',
             404: '抱歉，你访问的页面不存在',
             500: '抱歉，服务器出错了',
-            backToHome: '返回首页',
+            backToHome: '返回首页'
         },
         noticeIcon: {
             emptyText: '暂无数据',
-            clearText: '清空',
+            clearText: '清空'
         },
         reuseTab: {
             close: '关闭标签',
             closeOther: '关闭其它标签',
             closeRight: '关闭右侧标签',
-            refresh: '刷新',
+            refresh: '刷新'
         },
         tagSelect: {
             expand: '展开',
-            collapse: '收起',
+            collapse: '收起'
         },
         miniProgress: {
-            target: '目标值：',
+            target: '目标值：'
         },
         st: {
             total: '共 {{total}} 条',
             filterConfirm: '确定',
-            filterReset: '重置',
+            filterReset: '重置'
         },
         sf: {
             submit: '提交',
@@ -1249,15 +1253,15 @@
                 contains: "\u5E94\u5F53\u5305\u542B\u4E00\u4E2A\u6709\u6548\u9879",
                 formatExclusiveMaximum: "formatExclusiveMaximum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
                 formatExclusiveMinimum: "formatExclusiveMinimum \u5E94\u5F53\u662F\u5E03\u5C14\u503C",
-                if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
-            },
+                if: "\u5E94\u5F53\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\""
+            }
         },
         onboarding: {
             skip: "\u8DF3\u8FC7",
             prev: "\u4E0A\u4E00\u9879",
             next: "\u4E0B\u4E00\u9879",
-            done: "\u5B8C\u6210",
-        },
+            done: "\u5B8C\u6210"
+        }
     };
 
     var DelonLocaleService = /** @class */ (function () {
@@ -1304,7 +1308,7 @@
     var DELON_LOCALE_SERVICE_PROVIDER = {
         provide: DelonLocaleService,
         useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE],
+        deps: [[new i0.Optional(), new i0.SkipSelf(), DelonLocaleService], DELON_LOCALE]
     };
 
     var ɵ0$1 = zhCN;
@@ -1315,7 +1319,7 @@
     }());
     DelonLocaleModule.decorators = [
         { type: i0.NgModule, args: [{
-                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER],
+                    providers: [{ provide: DELON_LOCALE, useValue: ɵ0$1 }, DELON_LOCALE_SERVICE_PROVIDER]
                 },] }
     ];
 
@@ -1325,29 +1329,29 @@
             403: "Sorry, you don't have access to this page",
             404: "Sorry, the page you visited does not exist",
             500: "Sorry, the server is reporting an error",
-            backToHome: 'Back To Home',
+            backToHome: 'Back To Home'
         },
         noticeIcon: {
             emptyText: 'No data',
-            clearText: 'Clear',
+            clearText: 'Clear'
         },
         reuseTab: {
             close: 'Close tab',
             closeOther: 'Close other tabs',
             closeRight: 'Close tabs to right',
-            refresh: 'Refresh',
+            refresh: 'Refresh'
         },
         tagSelect: {
             expand: 'Expand',
-            collapse: 'Collapse',
+            collapse: 'Collapse'
         },
         miniProgress: {
-            target: 'Target: ',
+            target: 'Target: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} of {{total}}',
             filterConfirm: 'OK',
-            filterReset: 'Reset',
+            filterReset: 'Reset'
         },
         sf: {
             submit: 'Submit',
@@ -1391,15 +1395,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "Skip",
             prev: "Prev",
             next: "Next",
-            done: "Done",
-        },
+            done: "Done"
+        }
     };
 
     var zhTW = {
@@ -1408,29 +1412,29 @@
             403: '抱歉，你無權訪問該頁麵',
             404: '抱歉，你訪問的頁麵不存在',
             500: '抱歉，服務器出錯了',
-            backToHome: '返回首頁',
+            backToHome: '返回首頁'
         },
         noticeIcon: {
             emptyText: '暫無數據',
-            clearText: '清空',
+            clearText: '清空'
         },
         reuseTab: {
             close: '關閉標簽',
             closeOther: '關閉其它標簽',
             closeRight: '關閉右側標簽',
-            refresh: '刷新',
+            refresh: '刷新'
         },
         tagSelect: {
             expand: '展開',
-            collapse: '收起',
+            collapse: '收起'
         },
         miniProgress: {
-            target: '目標值：',
+            target: '目標值：'
         },
         st: {
             total: '共 {{total}} 條',
             filterConfirm: '確定',
-            filterReset: '重置',
+            filterReset: '重置'
         },
         sf: {
             submit: '提交',
@@ -1474,15 +1478,15 @@
                 contains: "\u61C9\u7576\u5305\u542B\u4E00\u500B\u6709\u6548\u9805",
                 formatExclusiveMaximum: "formatExclusiveMaximum \u61C9\u7576\u662F\u4F48\u723E\u503C",
                 formatExclusiveMinimum: "formatExclusiveMinimum \u61C9\u7576\u662F\u4F48\u723E\u503C",
-                if: "\u61C9\u7576\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\"",
-            },
+                if: "\u61C9\u7576\u5339\u914D\u6A21\u5F0F \"{failingKeyword}\""
+            }
         },
         onboarding: {
             skip: "\u8DF3\u904E",
             prev: "\u4E0A\u4E00\u9805",
             next: "\u4E0B\u4E00\u9805",
-            done: "\u5B8C\u6210",
-        },
+            done: "\u5B8C\u6210"
+        }
     };
 
     var trTR = {
@@ -1491,29 +1495,29 @@
             403: "\u00DCzg\u00FCn\u00FCz, bu sayfaya eri\u015Fiminiz yok",
             404: "Maalesef bu sayfa mevcut de\u011Fil",
             500: "\u00DCzg\u00FCn\u00FCz, sunucu hatas\u0131",
-            backToHome: "Ana Sayfa'ya geri d\u00F6n",
+            backToHome: "Ana Sayfa'ya geri d\u00F6n"
         },
         noticeIcon: {
             emptyText: 'Veri yok',
-            clearText: 'Temiz',
+            clearText: 'Temiz'
         },
         reuseTab: {
             close: 'Sekmeyi Kapat',
             closeOther: 'Diğer sekmeleri kapat',
             closeRight: 'Sağdaki sekmeleri kapat',
-            refresh: 'täzele',
+            refresh: 'täzele'
         },
         tagSelect: {
             expand: 'Genişlet',
-            collapse: 'Daralt',
+            collapse: 'Daralt'
         },
         miniProgress: {
-            target: 'Hedef: ',
+            target: 'Hedef: '
         },
         st: {
             total: '{{range[0]}} ile {{range[1]}} arasında {{total}}',
             filterConfirm: 'Tamam',
-            filterReset: 'Sıfırla',
+            filterReset: 'Sıfırla'
         },
         sf: {
             submit: 'Gönder',
@@ -1557,15 +1561,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "Atla",
             prev: "\u00D6nceki",
             next: "Sonraki",
-            done: "Bitti",
-        },
+            done: "Bitti"
+        }
     };
 
     var plPL = {
@@ -1574,29 +1578,29 @@
             403: "Niestety, nie masz uprawnie\u0144 do tej strony",
             404: "Niestety, ta strona nie istnieje",
             500: "Niestety, b\u0142\u0105d serwera",
-            backToHome: 'Powróć do strony głównej',
+            backToHome: 'Powróć do strony głównej'
         },
         noticeIcon: {
             emptyText: 'Brak danych',
-            clearText: 'Wyczyść',
+            clearText: 'Wyczyść'
         },
         reuseTab: {
             close: 'Zamknij kartę',
             closeOther: 'Zamknij inne karty',
             closeRight: 'Zamknij karty po prawej',
-            refresh: 'Refresh',
+            refresh: 'Refresh'
         },
         tagSelect: {
             expand: 'Rozszerz',
-            collapse: 'Zmniejsz',
+            collapse: 'Zmniejsz'
         },
         miniProgress: {
-            target: 'Cel: ',
+            target: 'Cel: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} z {{total}}',
             filterConfirm: 'OK',
-            filterReset: 'Wyczyść',
+            filterReset: 'Wyczyść'
         },
         sf: {
             submit: 'Wyślij',
@@ -1640,15 +1644,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "Pomin\u0105\u0107",
             prev: "Poprzedni",
             next: "Kolejny",
-            done: "Gotowe",
-        },
+            done: "Gotowe"
+        }
     };
 
     var elGR = {
@@ -1657,29 +1661,29 @@
             403: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03B4\u03B5\u03BD \u03AD\u03C7\u03B5\u03C4\u03B5 \u03C0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7 \u03C3\u03B5 \u03B1\u03C5\u03C4\u03AE\u03BD \u03C4\u03B7 \u03C3\u03B5\u03BB\u03AF\u03B4\u03B1",
             404: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03B7 \u03C3\u03B5\u03BB\u03AF\u03B4\u03B1 \u03B1\u03C5\u03C4\u03AE \u03B4\u03B5\u03BD \u03B2\u03C1\u03AD\u03B8\u03B7\u03BA\u03B5",
             500: "\u039B\u03C5\u03C0\u03BF\u03CD\u03BC\u03B1\u03C3\u03C4\u03B5, \u03C3\u03C6\u03AC\u03BB\u03BC\u03B1 \u03B4\u03B9\u03B1\u03BA\u03BF\u03BC\u03B9\u03C3\u03C4\u03AE",
-            backToHome: 'Επιστροφή στην αρχική σελίδα',
+            backToHome: 'Επιστροφή στην αρχική σελίδα'
         },
         noticeIcon: {
             emptyText: 'Δεν υπάρχουν δεδομένα',
-            clearText: 'Καθαρισμός',
+            clearText: 'Καθαρισμός'
         },
         reuseTab: {
             close: 'Κλείσιμο καρτέλας',
             closeOther: 'Κλείσιμο των άλλων καρτέλων',
             closeRight: 'Κλείσιμο των καρτελών δεξιά',
-            refresh: 'Ανανέωση',
+            refresh: 'Ανανέωση'
         },
         tagSelect: {
             expand: 'Επέκταση',
-            collapse: 'Σύμπτυξη',
+            collapse: 'Σύμπτυξη'
         },
         miniProgress: {
-            target: 'Στόχος: ',
+            target: 'Στόχος: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} από {{total}}',
             filterConfirm: 'ΟΚ',
-            filterReset: 'Επαναφορά',
+            filterReset: 'Επαναφορά'
         },
         sf: {
             submit: 'Υποβολή',
@@ -1723,15 +1727,15 @@
                 contains: "\u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C0\u03B5\u03C1\u03B9\u03AD\u03C7\u03B5\u03B9 \u03BA\u03AC\u03C0\u03BF\u03B9\u03BF \u03AD\u03B3\u03BA\u03C5\u03C1\u03BF \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03BF",
                 formatExclusiveMaximum: "formatExclusiveMaximum \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 boolean",
-                if: "\u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B1\u03B9\u03C1\u03B9\u03AC\u03B6\u03B5\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B4\u03BF\u03BC\u03AE \"{failingKeyword}\"",
-            },
+                if: "\u03A0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B1\u03B9\u03C1\u03B9\u03AC\u03B6\u03B5\u03B9 \u03C3\u03C4\u03B7\u03BD \u03B4\u03BF\u03BC\u03AE \"{failingKeyword}\""
+            }
         },
         onboarding: {
             skip: "\u03A0\u03B1\u03C1\u03B1\u03BB\u03B5\u03AF\u03C0\u03C9",
             prev: "\u03A0\u03C1\u03BF\u03B7\u03B3",
             next: "\u0395\u03C0\u03CC\u03BC\u03B5\u03BD\u03BF",
-            done: "\u039F\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03B8\u03B7\u03BA\u03B5",
-        },
+            done: "\u039F\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03B8\u03B7\u03BA\u03B5"
+        }
     };
 
     var koKR = {
@@ -1740,29 +1744,29 @@
             403: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4.\uC774 \uD398\uC774\uC9C0\uC5D0 \uC561\uC138\uC2A4 \uD560 \uC218 \uC5C6\uC2B5\uB2C8\uB2E4.",
             404: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4. \uD574\uB2F9 \uD398\uC774\uC9C0\uAC00 \uC5C6\uC2B5\uB2C8\uB2E4.",
             500: "\uC8C4\uC1A1\uD569\uB2C8\uB2E4, \uC11C\uBC84 \uC624\uB958\uAC00 \uC788\uC2B5\uB2C8\uB2E4.",
-            backToHome: '홈으로 돌아갑니다.',
+            backToHome: '홈으로 돌아갑니다.'
         },
         noticeIcon: {
             emptyText: '데이터 없음',
-            clearText: '지우기',
+            clearText: '지우기'
         },
         reuseTab: {
             close: '탭 닫기',
             closeOther: '다른 탭 닫기',
             closeRight: '오른쪽 탭 닫기',
-            refresh: '새롭게 하다',
+            refresh: '새롭게 하다'
         },
         tagSelect: {
             expand: '펼치기',
-            collapse: '접기',
+            collapse: '접기'
         },
         miniProgress: {
-            target: '대상: ',
+            target: '대상: '
         },
         st: {
             total: '전체 {{total}}건',
             filterConfirm: '확인',
-            filterReset: '초기화',
+            filterReset: '초기화'
         },
         sf: {
             submit: '제출',
@@ -1806,15 +1810,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "\uAC74\uB108 \uB6F0\uAE30",
             prev: "\uC774\uC804",
             next: "\uB2E4\uC74C",
-            done: "\uB05D\uB09C",
-        },
+            done: "\uB05D\uB09C"
+        }
     };
 
     var hrHR = {
@@ -1823,29 +1827,29 @@
             403: "Na\u017Ealost, nemate pristup ovoj lokaciji",
             404: "Na\u017Ealost, lokacija ne postoji",
             500: "Na\u017Ealost, server je javio pogre\u0161ku",
-            backToHome: 'Nazad na početnu stranicu',
+            backToHome: 'Nazad na početnu stranicu'
         },
         noticeIcon: {
             emptyText: 'Nema podataka',
-            clearText: 'Obriši',
+            clearText: 'Obriši'
         },
         reuseTab: {
             close: 'Zatvori karticu',
             closeOther: 'Zatvori druge kartice',
             closeRight: 'Zatvori kartice desno',
-            refresh: 'Refresh',
+            refresh: 'Refresh'
         },
         tagSelect: {
             expand: 'Proširi',
-            collapse: 'Skupi',
+            collapse: 'Skupi'
         },
         miniProgress: {
-            target: 'Cilj: ',
+            target: 'Cilj: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} od {{total}}',
             filterConfirm: 'U redu',
-            filterReset: 'Poništi',
+            filterReset: 'Poništi'
         },
         sf: {
             submit: 'Pošalji',
@@ -1854,14 +1858,14 @@
             edit: 'Spremi',
             addText: 'Dodaj',
             removeText: 'Ukloni',
-            checkAllText: 'Označi sve',
+            checkAllText: 'Označi sve'
         },
         onboarding: {
             skip: "Presko\u010Diti",
             prev: "Prethodna",
             next: "Sljede\u0107i",
-            done: "Sastavljeno",
-        },
+            done: "Sastavljeno"
+        }
     };
 
     var jaJP = {
@@ -1870,29 +1874,29 @@
             403: 'ページへのアクセス権限がありません',
             404: 'ページが存在しません',
             500: 'サーバーエラーが発生しました',
-            backToHome: 'ホームに戻る',
+            backToHome: 'ホームに戻る'
         },
         noticeIcon: {
             emptyText: 'データが有りません',
-            clearText: 'クリア',
+            clearText: 'クリア'
         },
         reuseTab: {
             close: 'タブを閉じる',
             closeOther: '他のタブを閉じる',
             closeRight: '右のタブを閉じる',
-            refresh: 'リフレッシュ',
+            refresh: 'リフレッシュ'
         },
         tagSelect: {
             expand: '展開する',
-            collapse: '折りたたむ',
+            collapse: '折りたたむ'
         },
         miniProgress: {
-            target: '設定値: ',
+            target: '設定値: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} / {{total}}',
             filterConfirm: '確定',
-            filterReset: 'リセット',
+            filterReset: 'リセット'
         },
         sf: {
             submit: '送信',
@@ -1919,8 +1923,8 @@
                 formatMinimum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
                 maximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
                 formatMaximum: "\u5024\u304C\u4E0D\u6B63\u3067\u3059: {comparison} {limit}",
-                maxItems: "\u6700\u5927\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5C0F\u3055\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-                minItems: "\u6700\u5C0F\u9078\u629E\u6570\u306F {limit}\u3000\u3088\u308A\u5927\u304D\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+                maxItems: "\u6700\u5927\u9078\u629E\u6570\u306F {limit} \u3088\u308A\u5C0F\u3055\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
+                minItems: "\u6700\u5C0F\u9078\u629E\u6570\u306F {limit} \u3088\u308A\u5927\u304D\u3044\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
                 maxProperties: "\u5024\u3092{limit}\u3088\u308A\u5927\u304D\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
                 minProperties: "\u5024\u3092{limit}\u3088\u308A\u5C0F\u3055\u304F\u3059\u308B\u3053\u3068\u306F\u3067\u304D\u307E\u305B\u3093",
                 multipleOf: "\u5024\u306F\u6B21\u306E\u6570\u306E\u500D\u6570\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: {multipleOf}",
@@ -1936,15 +1940,15 @@
                 contains: "\u6709\u52B9\u306A\u30A2\u30A4\u30C6\u30E0\u3092\u542B\u3081\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
                 formatExclusiveMaximum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
                 formatExclusiveMinimum: "formatExclusiveMaximum \u306F\u771F\u507D\u5024\u3067\u3042\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059",
-                if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" ",
-            },
+                if: "\u30D1\u30BF\u30FC\u30F3\u3068\u4E00\u81F4\u3059\u308B\u5FC5\u8981\u304C\u3042\u308A\u307E\u3059: \"{failingKeyword}\" "
+            }
         },
         onboarding: {
             skip: "\u30B9\u30AD\u30C3\u30D7",
             prev: "\u524D\u3078",
             next: "\u6B21",
-            done: "\u3067\u304D\u305F",
-        },
+            done: "\u3067\u304D\u305F"
+        }
     };
 
     var slSI = {
@@ -1953,28 +1957,28 @@
             403: "\u017Dal nimate dostopa do te strani",
             404: "\u017Dal stran, ki ste jo obiskali, ne obstaja",
             500: "\u017Dal stre\u017Enik poro\u010Da o napaki",
-            backToHome: 'Nazaj domov',
+            backToHome: 'Nazaj domov'
         },
         noticeIcon: {
             emptyText: 'Ni podatkov',
-            clearText: 'Počisti',
+            clearText: 'Počisti'
         },
         reuseTab: {
             close: 'Zapri zavihek',
             closeOther: 'Zaprite druge zavihke',
-            closeRight: 'Zaprite zavihke na desni',
+            closeRight: 'Zaprite zavihke na desni'
         },
         tagSelect: {
             expand: 'Razširi',
-            collapse: 'Strni',
+            collapse: 'Strni'
         },
         miniProgress: {
-            target: 'Cilj: ',
+            target: 'Cilj: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} of {{total}}',
             filterConfirm: 'OK',
-            filterReset: 'Reset',
+            filterReset: 'Reset'
         },
         sf: {
             submit: 'Pošlji',
@@ -2018,15 +2022,15 @@
                 contains: "Naj vsebuje veljaven artikel",
                 formatExclusiveMaximum: "formatExclusiveMaximum naj bo boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum naj bo boolean",
-                if: "Naj se ujema s shemo \"{failingKeyword}\"",
-            },
+                if: "Naj se ujema s shemo \"{failingKeyword}\""
+            }
         },
         onboarding: {
             skip: "Presko\u010Di",
             prev: "Prej\u0161nje",
             next: "Naslednji",
-            done: "Kon\u010Dano",
-        },
+            done: "Kon\u010Dano"
+        }
     };
 
     var frFR = {
@@ -2035,29 +2039,29 @@
             403: "D\u00E9sol\u00E9, vous n'avez pas acc\u00E8s \u00E0 cette page",
             404: "D\u00E9sol\u00E9, la page que vous avez visit\u00E9e n'existe pas",
             500: "D\u00E9sol\u00E9, le serveur signale une erreur",
-            backToHome: "Retour à l'accueil",
+            backToHome: "Retour à l'accueil"
         },
         noticeIcon: {
             emptyText: 'Pas de données',
-            clearText: 'Effacer',
+            clearText: 'Effacer'
         },
         reuseTab: {
             close: "Fermer l'onglet",
             closeOther: 'Fermer les autres onglets',
             closeRight: 'Fermer les onglets à droite',
-            refresh: 'Rafraîchir',
+            refresh: 'Rafraîchir'
         },
         tagSelect: {
             expand: 'Etendre',
-            collapse: 'Effondrer',
+            collapse: 'Effondrer'
         },
         miniProgress: {
-            target: 'Cible: ',
+            target: 'Cible: '
         },
         st: {
             total: '{{range[0]}} - {{range[1]}} de {{total}}',
             filterConfirm: 'OK',
-            filterReset: 'Réinitialiser',
+            filterReset: 'Réinitialiser'
         },
         sf: {
             submit: 'Soumettre',
@@ -2101,15 +2105,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "Passer",
             prev: "Pr\u00E9c\u00E9dent",
             next: "Suivant",
-            done: "Termin\u00E9",
-        },
+            done: "Termin\u00E9"
+        }
     };
 
     var esES = {
@@ -2118,29 +2122,29 @@
             403: "Lo sentimos, no tiene acceso a esta p\u00E1gina",
             404: "Lo sentimos, la p\u00E1gina que ha visitado no existe",
             500: "Lo siento, error interno del servidor ",
-            backToHome: 'Volver a la página de inicio',
+            backToHome: 'Volver a la página de inicio'
         },
         noticeIcon: {
             emptyText: 'No hay datos',
-            clearText: 'Limpiar',
+            clearText: 'Limpiar'
         },
         reuseTab: {
             close: 'Cerrar pestaña',
             closeOther: 'Cerrar otras pestañas',
             closeRight: 'Cerrar pestañas a la derecha',
-            refresh: 'Actualizar',
+            refresh: 'Actualizar'
         },
         tagSelect: {
             expand: 'Expandir',
-            collapse: 'Ocultar',
+            collapse: 'Ocultar'
         },
         miniProgress: {
-            target: 'Target: ',
+            target: 'Target: '
         },
         st: {
             total: '{{rango[0]}} - {{rango[1]}} de {{total}}',
             filterConfirm: 'Aceptar',
-            filterReset: 'Reiniciar',
+            filterReset: 'Reiniciar'
         },
         sf: {
             submit: 'Submit',
@@ -2184,15 +2188,15 @@
                 contains: "Should contain a valid item",
                 formatExclusiveMaximum: "formatExclusiveMaximum should be boolean",
                 formatExclusiveMinimum: "formatExclusiveMinimum should be boolean",
-                if: "Should match \"{failingKeyword}\" schema",
-            },
+                if: "Should match \"{failingKeyword}\" schema"
+            }
         },
         onboarding: {
             skip: "Omitir",
             prev: "Previo",
             next: "Siguiente",
-            done: "Terminado",
-        },
+            done: "Terminado"
+        }
     };
 
     /**
@@ -2223,7 +2227,7 @@
             options = other.deepMerge({
                 size: 'lg',
                 exact: true,
-                includeTabs: false,
+                includeTabs: false
             }, options);
             return new rxjs.Observable(function (observer) {
                 var size = options.size, includeTabs = options.includeTabs, modalOptions = options.modalOptions;
@@ -2249,7 +2253,7 @@
                     nzContent: comp,
                     nzWidth: width ? width : undefined,
                     nzFooter: null,
-                    nzComponentParams: params,
+                    nzComponentParams: params
                 };
                 var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), modalOptions));
                 var afterClose$ = subject.afterClose.subscribe(function (res) {
@@ -2305,7 +2309,7 @@
             return this.create(comp, params, {
                 size: size,
                 modalOptions: options,
-                exact: false,
+                exact: false
             });
         };
         /**
@@ -2367,27 +2371,27 @@
                 exact: true,
                 drawerOptions: {
                     nzPlacement: 'right',
-                    nzWrapClassName: '',
-                },
+                    nzWrapClassName: ''
+                }
             }, options);
             return new rxjs.Observable(function (observer) {
                 var size = options.size, footer = options.footer, footerHeight = options.footerHeight, drawerOptions = options.drawerOptions;
                 var defaultOptions = {
                     nzContent: comp,
                     nzContentParams: params,
-                    nzTitle: title,
+                    nzTitle: title
                 };
                 if (typeof size === 'number') {
                     defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
                 }
                 else if (!drawerOptions.nzWidth) {
-                    defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + (" drawer-" + options.size)).trim();
+                    defaultOptions.nzWrapClassName = (drawerOptions.nzWrapClassName + " drawer-" + options.size).trim();
                     delete drawerOptions.nzWrapClassName;
                 }
                 if (footer) {
                     // The 24 value is @drawer-body-padding
                     defaultOptions.nzBodyStyle = {
-                        'padding-bottom.px': footerHeight + 24,
+                        'padding-bottom.px': footerHeight + 24
                     };
                 }
                 var subject = _this.srv.create(Object.assign(Object.assign({}, defaultOptions), drawerOptions));
@@ -2428,14 +2432,13 @@
      * + 统一实现 loading
      * + 统一处理时间格式问题
      */
-    // tslint:disable-next-line:class-name
     var _HttpClient = /** @class */ (function () {
         function _HttpClient(http, cogSrv) {
             this.http = http;
             this.lc = 0;
             this.cog = cogSrv.merge('themeHttp', {
                 nullValueHandling: 'include',
-                dateValueHandling: 'timestamp',
+                dateValueHandling: 'timestamp'
             });
         }
         Object.defineProperty(_HttpClient.prototype, "loading", {
@@ -2486,7 +2489,6 @@
                 return url;
             url += ~url.indexOf('?') ? '' : '?';
             var arr = [];
-            // tslint:disable-next-line: forin
             for (var key in params) {
                 arr.push(key + "=" + params[key]);
             }
@@ -2553,7 +2555,7 @@
         _HttpClient.prototype.form = function (url, body, params, options) {
             if (options === void 0) { options = {}; }
             return this.request('POST', url, Object.assign(Object.assign({ body: body, params: params }, options), { headers: {
-                    'content-type': "application/x-www-form-urlencoded",
+                    'content-type': "application/x-www-form-urlencoded"
                 } }));
         };
         _HttpClient.prototype.request = function (method, url, options) {
@@ -2636,7 +2638,7 @@
                 }
                 tParams.push({
                     key: key,
-                    index: index,
+                    index: index
                 });
             };
         };
@@ -2676,11 +2678,9 @@
     }
     function genBody(data, payload) {
         if (Array.isArray(data) || Array.isArray(payload)) {
-            // tslint:disable-next-line:prefer-object-spread
             return Object.assign([], data, payload);
         }
-        // tslint:disable-next-line:prefer-object-spread
-        return Object.assign({}, data, payload);
+        return Object.assign(Object.assign({}, data), payload);
     }
     function makeMethod(method) {
         return function (url, options) {
@@ -2711,7 +2711,7 @@
                             return rxjs.throwError({
                                 url: requestUrl,
                                 status: 401,
-                                statusText: "From Http Decorator",
+                                statusText: "From Http Decorator"
                             });
                         }
                         delete options.acl;
@@ -2812,7 +2812,6 @@
     /**
      * @deprecated Will be removed in 12.0.0, Pls used [price](https://ng-alain.com/util/pipes-currency/en?#price) pipe instead
      */
-    // tslint:disable-next-line:use-pipe-transform-interface
     var CNCurrencyPipe = /** @class */ (function () {
         function CNCurrencyPipe(locale) {
             this.ngCurrencyPipe = new i1.CurrencyPipe(locale);
@@ -2840,7 +2839,6 @@
         KeysPipe.prototype.transform = function (value, keyIsNumber) {
             if (keyIsNumber === void 0) { keyIsNumber = false; }
             var ret = [];
-            // tslint:disable-next-line: forin
             for (var key in value) {
                 ret.push({ key: keyIsNumber ? +key : key, value: value[key] });
             }
@@ -2867,7 +2865,9 @@
             no = no || '否';
             switch (mode) {
                 case 'full':
-                    html = value ? "<i " + CLS_YES + ">" + ICON_YES + "<span>" + yes + "</span></i>" : "<i " + CLS_NO + ">" + ICON_NO + "<span>" + no + "</span></i>";
+                    html = value
+                        ? "<i " + CLS_YES + ">" + ICON_YES + "<span>" + yes + "</span></i>"
+                        : "<i " + CLS_NO + ">" + ICON_NO + "<span>" + no + "</span></i>";
                     break;
                 case 'text':
                     html = value ? "<i " + CLS_YES + ">" + yes + "</i>" : "<i " + CLS_NO + ">" + no + "</i>";
@@ -2935,13 +2935,14 @@
         { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] }
     ]; };
 
+    // #region import
     var HELPERS = [ModalHelper, DrawerHelper];
     var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
     var ɵ0 = {
         layout: 'layout',
         user: 'user',
-        app: 'app',
+        app: 'app'
     };
     // #endregion
     var AlainThemeModule = /** @class */ (function () {
@@ -2951,13 +2952,13 @@
         AlainThemeModule.forRoot = function () {
             return {
                 ngModule: AlainThemeModule,
-                providers: __spreadArray([], __read(HELPERS)),
+                providers: __spreadArray([], __read(HELPERS))
             };
         };
         AlainThemeModule.forChild = function () {
             return {
                 ngModule: AlainThemeModule,
-                providers: __spreadArray([], __read(HELPERS)),
+                providers: __spreadArray([], __read(HELPERS))
             };
         };
         return AlainThemeModule;
@@ -2969,10 +2970,10 @@
                     providers: [
                         {
                             provide: ALAIN_SETTING_KEYS,
-                            useValue: ɵ0,
-                        },
+                            useValue: ɵ0
+                        }
                     ],
-                    exports: __spreadArray(__spreadArray([], __read(PIPES)), [DelonLocaleModule]),
+                    exports: __spreadArray(__spreadArray([], __read(PIPES)), [DelonLocaleModule])
                 },] }
     ];
     AlainThemeModule.ctorParameters = function () { return [

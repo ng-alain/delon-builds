@@ -1,8 +1,8 @@
 import { OnDestroy } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService, AlainLodopConfig } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { Observable } from 'rxjs';
 import { LodopPrintResult, LodopResult } from './lodop.types';
 export declare class LodopService implements OnDestroy {
     private scriptSrv;
@@ -67,6 +67,6 @@ export declare class LodopService implements OnDestroy {
      *
      * 立即打印，一般用于批量套打
      */
-    print(code: string, contextObj: {} | Array<{}>, parser?: RegExp): void;
+    print(code: string, contextObj: NzSafeAny, parser?: RegExp): void;
     ngOnDestroy(): void;
 }

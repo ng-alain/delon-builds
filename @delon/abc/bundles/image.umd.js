@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/modal'), require('rxjs'), require('rxjs/operators'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/theme', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/modal', 'rxjs', 'rxjs/operators', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.delon.theme, global.config, global.decorator, global.modal, global.rxjs, global.rxjs.operators, global.ng.common));
-}(this, (function (exports, platform, core, theme, config, decorator, modal, rxjs, operators, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('ng-zorro-antd/modal'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs', 'rxjs/operators', 'ng-zorro-antd/modal', '@delon/theme', '@delon/util/config', '@delon/util/decorator', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.rxjs, global.rxjs.operators, global.modal, global.delon.theme, global.config, global.decorator, global.ng.common));
+}(this, (function (exports, platform, core, rxjs, operators, modal, theme, config, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -395,7 +395,6 @@
         };
         ImageDirective.prototype.updateError = function () {
             var _a = this, imgEl = _a.imgEl, error = _a.error;
-            // tslint:disable-next-line: only-arrow-functions, typedef
             imgEl.onerror = function () {
                 this.onerror = null;
                 this.src = error;
@@ -430,8 +429,8 @@
                     exportAs: '_src',
                     host: {
                         '(click)': 'open($event)',
-                        '[class.point]': "previewSrc",
-                    },
+                        '[class.point]': "previewSrc"
+                    }
                 },] }
     ];
     ImageDirective.ctorParameters = function () { return [
@@ -466,7 +465,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, modal.NzModalModule],
                     declarations: DIRECTIVES,
-                    exports: DIRECTIVES,
+                    exports: DIRECTIVES
                 },] }
     ];
 

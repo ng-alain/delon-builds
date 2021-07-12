@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, bidi, decorator, rxjs, operators, common, avatar, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
+}(this, (function (exports, core, bidi, rxjs, operators, decorator, common, avatar, tooltip) { 'use strict';
 
     var AvatarListItemComponent = /** @class */ (function () {
         function AvatarListItemComponent() {
@@ -364,7 +364,7 @@
         }
         Object.defineProperty(AvatarListComponent.prototype, "size", {
             set: function (value) {
-                this.cls = 'avatar-list__item' + (value === 'default' ? '' : " avatar-list__" + value);
+                this.cls = "avatar-list__item" + (value === 'default' ? '' : " avatar-list__" + value);
                 switch (value) {
                     case 'large':
                     case 'small':
@@ -413,10 +413,10 @@
         { type: core.Component, args: [{
                     selector: 'avatar-list',
                     exportAs: 'avatarList',
-                    template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar *ngIf=\"i.tips\" nz-tooltip [nzTooltipTitle]=\"i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto;\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\"></nz-avatar>\n  </li>\n</ul>\n",
+                    template: "<ul class=\"avatar-list__wrap\">\n  <li *ngFor=\"let i of items\" [ngClass]=\"cls\">\n    <nz-avatar\n      *ngIf=\"i.tips\"\n      nz-tooltip\n      [nzTooltipTitle]=\"i.tips\"\n      [nzSrc]=\"i.src\"\n      [nzText]=\"i.text\"\n      [nzIcon]=\"i.icon\"\n      [nzSize]=\"avatarSize\"\n    ></nz-avatar>\n    <nz-avatar *ngIf=\"!i.tips\" [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\"></nz-avatar>\n  </li>\n  <li *ngIf=\"exceedCount > 0\" [ngClass]=\"cls\">\n    <nz-avatar\n      [nzSize]=\"avatarSize\"\n      style=\"cursor: auto\"\n      [ngStyle]=\"excessItemsStyle\"\n      [nzText]=\"'+' + exceedCount\"\n    ></nz-avatar>\n  </li>\n</ul>\n",
                     host: {
                         '[class.avatar-list]': 'true',
-                        '[class.avatar-list-rtl]': "dir === 'rtl'",
+                        '[class.avatar-list-rtl]': "dir === 'rtl'"
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -447,7 +447,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, avatar.NzAvatarModule, tooltip.NzToolTipModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

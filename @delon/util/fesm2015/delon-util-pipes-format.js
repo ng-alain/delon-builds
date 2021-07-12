@@ -24,7 +24,7 @@ class FormatPipeModule {
 FormatPipeModule.decorators = [
     { type: NgModule, args: [{
                 declarations: PIPES,
-                exports: PIPES,
+                exports: PIPES
             },] }
 ];
 

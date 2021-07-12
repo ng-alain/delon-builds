@@ -2,11 +2,11 @@ import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, NgZone, ElementRef, Optional, Inject, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
+import { Subject, fromEvent } from 'rxjs';
+import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean, ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
-import { Subject, fromEvent } from 'rxjs';
-import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 const PDF_DEFULAT_CONFIG = {
@@ -16,7 +16,7 @@ const PDF_DEFULAT_CONFIG = {
     showBorders: false,
     originalSize: true,
     fitToPage: false,
-    autoReSize: true,
+    autoReSize: true
 };
 
 var PdfTextLayerMode;
@@ -219,7 +219,7 @@ class PdfComponent {
             const rotation = _rotation || page.rotate;
             const viewportWidth = page.getViewport({
                 scale: _zoom,
-                rotation,
+                rotation
             }).width * CSS_UNITS;
             let scale = _zoom;
             let stickToPage = true;
@@ -296,11 +296,11 @@ class PdfComponent {
         const VIEWER = this.win.pdfjsViewer;
         const eventBus = this.createEventBus();
         const linkService = (this.multiPageLinkService = new VIEWER.PDFLinkService({
-            eventBus,
+            eventBus
         }));
         const findController = (this.multiPageFindController = new VIEWER.PDFFindController({
             eventBus,
-            linkService,
+            linkService
         }));
         const viewer = (this.multiPageViewer = new VIEWER.PDFViewer({
             eventBus,
@@ -308,7 +308,7 @@ class PdfComponent {
             removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
-            findController,
+            findController
         }));
         linkService.setViewer(viewer);
     }
@@ -316,11 +316,11 @@ class PdfComponent {
         const VIEWER = this.win.pdfjsViewer;
         const eventBus = this.createEventBus();
         const linkService = (this.singlePageLinkService = new VIEWER.PDFLinkService({
-            eventBus,
+            eventBus
         }));
         const findController = (this.singlePageFindController = new VIEWER.PDFFindController({
             eventBus,
-            linkService,
+            linkService
         }));
         const pageViewer = (this.singlePageViewer = new VIEWER.PDFSinglePageViewer({
             eventBus,
@@ -328,7 +328,7 @@ class PdfComponent {
             removePageBorders: !this.showBorders,
             textLayerMode: this._textLayerMode,
             linkService,
-            findController,
+            findController
         }));
         linkService.setViewer(pageViewer);
         pageViewer._currentPageNumber = this._pi;
@@ -376,7 +376,7 @@ PdfComponent.decorators = [
     </div>
   `,
                 host: {
-                    '[class.d-block]': `true`,
+                    '[class.d-block]': `true`
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -463,7 +463,7 @@ PdfModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

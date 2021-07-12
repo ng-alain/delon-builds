@@ -1,7 +1,8 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { MenuService } from '@delon/theme';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { MenuService } from '@delon/theme';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
 export declare class ReuseTabService implements OnDestroy {
     private injector;
@@ -77,6 +78,7 @@ export declare class ReuseTabService implements OnDestroy {
     clear(includeNonCloseable?: boolean): void;
     /**
      * 移动缓存数据
+     *
      * @param url 要移动的URL地址
      * @param position 新位置，下标从 `0` 开始
      *
@@ -165,7 +167,7 @@ export declare class ReuseTabService implements OnDestroy {
     /**
      * 提取复用数据
      */
-    retrieve(route: ActivatedRouteSnapshot): {} | null;
+    retrieve(route: ActivatedRouteSnapshot): NzSafeAny | null;
     /**
      * 决定是否应该进行复用路由处理
      */

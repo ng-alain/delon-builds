@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AlainConfigService } from '@delon/util/config';
 import { CacheNotifyResult, ICacheStore } from './interface';
 export declare class CacheService implements OnDestroy {
     private store;
@@ -43,7 +43,7 @@ export declare class CacheService implements OnDestroy {
      * - `set('data/1', 1)`
      * - `set('data/1', 1, { expire: 10 })`
      */
-    set(key: string, data: {}, options?: {
+    set(key: string, data: unknown, options?: {
         type?: 's';
         expire?: number;
     }): void;
@@ -52,7 +52,7 @@ export declare class CacheService implements OnDestroy {
      * - `set('data/1', 1, { type: 'm' })`
      * - `set('data/1', 1, { type: 'm', expire: 10 })`
      */
-    set(key: string, data: {}, options: {
+    set(key: string, data: unknown, options: {
         type: 'm' | 's';
         expire?: number;
     }): void;
@@ -94,14 +94,14 @@ export declare class CacheService implements OnDestroy {
     /**
      * 获取缓存，若不存在则设置持久化缓存基础对象
      */
-    tryGet(key: string, data: {}, options?: {
+    tryGet(key: string, data: unknown, options?: {
         type?: 's';
         expire?: number;
     }): NzSafeAny;
     /**
      * 获取缓存，若不存在则设置指定缓存类型进行缓存对象
      */
-    tryGet(key: string, data: {}, options: {
+    tryGet(key: string, data: unknown, options: {
         type: 'm' | 's';
         expire?: number;
     }): NzSafeAny;

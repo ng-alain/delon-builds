@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('rxjs'), require('rxjs/operators'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', 'rxjs', 'rxjs/operators', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.delon.chart.core, global.decorator, global.rxjs, global.rxjs.operators, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, decorator, rxjs, operators, common, outlet, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/bar', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/chart/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.bar = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.chart.core, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, rxjs, operators, core$1, decorator, common, outlet, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -354,24 +354,24 @@
                 autoFit: true,
                 height: this.getHeight(),
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             this.updatelabel();
             chart.axis('y', {
                 title: null,
                 line: null,
-                tickLine: null,
+                tickLine: null
             });
             chart.scale({
                 x: {
-                    type: 'cat',
+                    type: 'cat'
                 },
                 y: {
-                    min: 0,
-                },
+                    min: 0
+                }
             });
             chart.tooltip({
-                showTitle: false,
+                showTitle: false
             });
             if (interaction !== 'none') {
                 chart.interaction(interaction);
@@ -420,7 +420,7 @@
                     exportAs: 'g2Bar',
                     template: "\n    <ng-container *nzStringTemplateOutlet=\"title\">\n      <h4 style=\"margin-bottom: 20px;\">{{ title }}</h4>\n    </ng-container>\n    <nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n    <div #container></div>\n  ",
                     host: {
-                        '[style.height.px]': 'height',
+                        '[style.height.px]': 'height'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -454,7 +454,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

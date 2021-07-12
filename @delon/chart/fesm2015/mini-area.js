@@ -23,13 +23,13 @@ class G2MiniAreaComponent extends G2BaseComponent {
     }
     // #endregion
     install() {
-        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme, animate, color, borderColor, borderWidth, } = this;
+        const { el, fit, height, padding, xAxis, yAxis, yTooltipSuffix, tooltipType, line, theme, animate, color, borderColor, borderWidth } = this;
         const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: fit,
             height,
             padding,
-            theme,
+            theme
         }));
         chart.animate(animate);
         if (!xAxis && !yAxis) {
@@ -78,7 +78,7 @@ G2MiniAreaComponent.decorators = [
                 exportAs: 'g2MiniArea',
                 template: ``,
                 host: {
-                    '[style.height.px]': 'height',
+                    '[style.height.px]': 'height'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -124,7 +124,7 @@ G2MiniAreaModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

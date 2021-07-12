@@ -3,12 +3,12 @@ import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { Injectable, NgZone, NgModule } from '@angular/core';
+import { saveAs } from 'file-saver';
 import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
 import * as i2 from '@delon/util/other';
 import { LazyService } from '@delon/util/other';
-import { saveAs } from 'file-saver';
 import { CommonModule } from '@angular/common';
 
 class ZipService {
@@ -18,7 +18,7 @@ class ZipService {
         this.ngZone = ngZone;
         this.cog = configSrv.merge('zip', {
             url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
-            utils: [],
+            utils: []
         });
     }
     init() {
@@ -64,6 +64,7 @@ class ZipService {
     }
     /**
      * 下载URL资源并写入 zip
+     *
      * @param zip Zip 实例
      * @param path Zip 路径，例如： `text.txt`、`txt/hi.txt`
      * @param url URL 地址
@@ -118,7 +119,7 @@ class ZipModule {
 }
 ZipModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule],
+                imports: [CommonModule]
             },] }
 ];
 

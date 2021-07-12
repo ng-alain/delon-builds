@@ -1,6 +1,6 @@
 import { NgZone } from '@angular/core';
-import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import Ajv from 'ajv';
+import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import { ErrorData } from './errors';
 import { SFValue } from './interface';
 import { SFSchema } from './schema';

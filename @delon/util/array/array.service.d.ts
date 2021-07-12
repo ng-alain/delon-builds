@@ -1,5 +1,5 @@
-import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
+import { AlainConfigService } from '@delon/util/config';
 import { ArrayServiceArrToTreeNodeOptions, ArrayServiceArrToTreeOptions, ArrayServiceGetKeysByTreeNodeOptions, ArrayServiceGroupByResult, ArrayServiceTreeToArrOptions } from './array-type.service';
 export declare class ArrayService {
     private c;
@@ -9,21 +9,21 @@ export declare class ArrayService {
      *
      * 将树结构转换成数组结构
      */
-    treeToArr<T extends object = any>(tree: ReadonlyArray<T>, options?: ArrayServiceTreeToArrOptions<T>): T[];
+    treeToArr<T extends object = any>(tree: readonly T[], options?: ArrayServiceTreeToArrOptions<T>): T[];
     /**
      * Convert array structure to tree structure
      *
      * 数组转换成树数据
      */
-    arrToTree<T extends object = any>(arr: ReadonlyArray<T>, options?: ArrayServiceArrToTreeOptions<T>): T[];
+    arrToTree<T extends object = any>(arr: readonly T[], options?: ArrayServiceArrToTreeOptions<T>): T[];
     /**
      * 数组转换成 `nz-tree` 数据源，通过 `options` 转化项名，也可以使用 `options.cb` 更高级决定数据项
      */
-    arrToTreeNode<T extends object = any>(arr: ReadonlyArray<T>, options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
+    arrToTreeNode<T extends object = any>(arr: readonly T[], options?: ArrayServiceArrToTreeNodeOptions): NzTreeNode[];
     /**
      * 递归访问整个树
      */
-    visitTree<T extends object = any>(tree: ReadonlyArray<T>, cb: (item: T, parent: T | null, deep: number) => void, options?: {
+    visitTree<T extends object = any>(tree: readonly T[], cb: (item: T, parent: T | null, deep: number) => void, options?: {
         /** 子项名，默认：`'children'` */
         childrenMapName?: string;
     }): void;
@@ -32,7 +32,7 @@ export declare class ArrayService {
      *
      * 根据条件返回树的第一个值，否则返回 `undefined`
      */
-    findTree<T extends object = any>(tree: ReadonlyArray<T>, predicate: (item: T) => boolean, options?: {
+    findTree<T extends object = any>(tree: readonly T[], predicate: (item: T) => boolean, options?: {
         /** 子项名，默认：`'children'` */
         childrenMapName?: string;
     }): T | undefined;
@@ -50,7 +50,7 @@ export declare class ArrayService {
      * srv.flat([1, [2, 3, [4, 5, [6]]]], 1) => [1,2,3,[4, 5, [6]]]
      * ```
      */
-    flat<T>(array: ReadonlyArray<T>, depth?: number): T[];
+    flat<T>(array: readonly T[], depth?: number): T[];
     /**
      * Group the array
      *
@@ -60,7 +60,7 @@ export declare class ArrayService {
      * srv.groupBy(['one', 'two', 'three'], v => v.length) => {"3":["one","two"],"5":["three"]}
      * ```
      */
-    groupBy<T>(array: ReadonlyArray<T>, iteratee: (value: T) => string | number): ArrayServiceGroupByResult;
+    groupBy<T>(array: readonly T[], iteratee: (value: T) => string | number): ArrayServiceGroupByResult;
     /**
      * Creates a duplicate-free version of an array
      *
@@ -71,5 +71,5 @@ export declare class ArrayService {
      * uniq([{ a: 1 }, { a: 1 }, { a: 2 }], i => (i.a === 1 ? 'a' : 'b')) => [{"a":1},{"a":2}]
      * ```
      */
-    uniq<T>(array: ReadonlyArray<T>, predicate?: string | ((value: T) => string | number | boolean)): T[];
+    uniq<T>(array: readonly T[], predicate?: string | ((value: T) => string | number | boolean)): T[];
 }

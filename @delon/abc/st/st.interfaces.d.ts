@@ -1,13 +1,13 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { ElementRef, TemplateRef } from '@angular/core';
-import { ACLCanType } from '@delon/acl';
-import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
-import { CurrencyFormatOptions } from '@delon/util/format';
+import { Observable } from 'rxjs';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
 import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { NzTablePaginationType } from 'ng-zorro-antd/table';
-import { Observable } from 'rxjs';
+import { ACLCanType } from '@delon/acl';
+import { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
+import { CurrencyFormatOptions } from '@delon/util/format';
 import { STComponent } from './st.component';
 export declare type STColumnSafeType = 'text' | 'html' | 'safeHtml';
 export interface STWidthMode {
@@ -233,9 +233,10 @@ export interface STColumn<T extends STData = any> {
     /**
      * 按钮组
      */
-    buttons?: STColumnButton<T>[];
+    buttons?: Array<STColumnButton<T>>;
     /**
      * 自定义渲染ID
+     *
      * @example
      * <ng-template st-row="custom" let-item let-index="index" let-column="column">
      *  {{ c.title }}
@@ -247,6 +248,7 @@ export interface STColumn<T extends STData = any> {
     }>;
     /**
      * 标题自定义渲染ID
+     *
      * @example
      * <ng-template st-row="custom" type="title" let-c>
      *  {{ item | json }}
@@ -285,7 +287,7 @@ export interface STColumn<T extends STData = any> {
     /**
      * 自定义全/反选选择项
      */
-    selections?: STColumnSelection<T>[];
+    selections?: Array<STColumnSelection<T>>;
     /**
      * 列 `class` 属性值（注：无须 `.` 点）多个用空格隔开，例如：
      * - `text-center` 居中
@@ -370,7 +372,7 @@ export interface STColumn<T extends STData = any> {
     /**
      * 分组表头
      */
-    children?: STColumn<T>[];
+    children?: Array<STColumn<T>>;
     rowSpan?: number;
     /**
      * 调整表头配置
@@ -384,7 +386,7 @@ export interface STWidgetColumn<T extends STData = any> {
     params?: (options: {
         record: T;
         column: STColumn;
-    }) => {};
+    }) => Record<string, unknown>;
 }
 export interface STColumnTitle {
     [key: string]: any;
@@ -505,9 +507,10 @@ export interface STColumnFilter<T extends STData = any> {
     /**
      * 远程数据的过滤时后端相对应的VALUE
      * - 默认当 `multiple: true` 时以英文逗号拼接的字符串
+     *
      * @return 返回为 Object 对象
      */
-    reName?: (list: STColumnFilterMenu[], col: STColumn) => {};
+    reName?: (list: STColumnFilterMenu[], col: STColumn) => Record<string, unknown>;
 }
 export interface STColumnFilterMenu {
     /**
@@ -634,7 +637,7 @@ export interface STColumnButton<T extends STData = any> {
      * 下拉菜单，当存在时以 `dropdown` 形式渲染
      * - 只支持一级
      */
-    children?: STColumnButton<T>[];
+    children?: Array<STColumnButton<T>>;
     /**
      * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
      */
@@ -669,7 +672,7 @@ export interface STColumnButtonModal<T extends STData = any> extends ModalHelper
     /**
      * 对话框参数
      */
-    params?: (record: T) => {};
+    params?: (record: T) => Record<string, unknown>;
     /**
      * 对话框目标组件的接收参数名，默认：`record`
      */
@@ -699,7 +702,7 @@ export interface STColumnButtonDrawer<T extends STData = any> extends DrawerHelp
     /**
      * 抽屉参数
      */
-    params?: (record: T) => {};
+    params?: (record: T) => Record<string, unknown>;
     /**
      * 抽屉目标组件的接收参数名，默认：`record`
      */
@@ -754,7 +757,9 @@ export interface STColumnButtonPop<T extends STData = any> {
     /**
      * Style of the popover card
      */
-    overlayStyle?: {};
+    overlayStyle?: {
+        [key: string]: string;
+    };
     /**
      * Text of the Cancel button
      */
@@ -844,9 +849,9 @@ export interface STMultiSort {
      */
     global?: boolean;
 }
-export declare type STMultiSortResultType = {
+export interface STMultiSortResultType {
     [key: string]: string | string[];
-};
+}
 /**
  * 徽标信息
  */

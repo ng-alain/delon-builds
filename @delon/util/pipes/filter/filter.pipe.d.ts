@@ -5,5 +5,5 @@ export declare class FilterPipe implements PipeTransform {
      *
      * 过滤数组
      */
-    transform<T>(array: ReadonlyArray<T>, matcher: (item: T, ...args: any[]) => boolean, ...args: any[]): T[];
+    transform<T>(array: readonly T[], matcher: (item: T, ...args: unknown[]) => boolean, ...args: unknown[]): T[];
 }

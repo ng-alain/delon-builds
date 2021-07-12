@@ -46,34 +46,34 @@ class RangePickerComponent {
                 list: [
                     {
                         text: '今天',
-                        fn: () => getTimeDistance('today'),
+                        fn: () => getTimeDistance('today')
                     },
                     {
                         text: '昨天',
-                        fn: () => getTimeDistance('yesterday'),
+                        fn: () => getTimeDistance('yesterday')
                     },
                     {
                         text: '近3天',
-                        fn: () => getTimeDistance(-2),
+                        fn: () => getTimeDistance(-2)
                     },
                     {
                         text: '近7天',
-                        fn: () => getTimeDistance(-6),
+                        fn: () => getTimeDistance(-6)
                     },
                     {
                         text: '本周',
-                        fn: () => getTimeDistance('week'),
+                        fn: () => getTimeDistance('week')
                     },
                     {
                         text: '本月',
-                        fn: () => getTimeDistance('month'),
+                        fn: () => getTimeDistance('month')
                     },
                     {
                         text: '全年',
-                        fn: () => getTimeDistance('year'),
-                    },
-                ],
-            },
+                        fn: () => getTimeDistance('year')
+                    }
+                ]
+            }
         });
         this.defaultShortcuts = Object.assign({}, cog.shortcuts);
         Object.assign(this, cog);
@@ -122,7 +122,6 @@ class RangePickerComponent {
         this.value = item.fn(this.value);
         this.valueChange(this.value);
         if (this._shortcut.closed) {
-            // tslint:disable-next-line:no-string-literal
             this.comp['picker'].hideOverlay();
         }
     }
@@ -131,13 +130,13 @@ RangePickerComponent.decorators = [
     { type: Component, args: [{
                 selector: 'range-picker',
                 exportAs: 'rangePicker',
-                template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a *ngFor=\"let i of shortcut?.list; let first = first\" (click)=\"clickShortcut(i)\" [innerHTML]=\"i._text\" [ngClass]=\"{ 'ml-sm': !first }\"></a>\n</ng-template>\n",
+                template: "<nz-range-picker\n  #comp\n  [ngModel]=\"value\"\n  (ngModelChange)=\"valueChange($event)\"\n  [nzAllowClear]=\"nzAllowClear\"\n  [nzAutoFocus]=\"nzAutoFocus\"\n  [ngClass]=\"nzClassName\"\n  [nzDisabled]=\"nzDisabled\"\n  [nzSize]=\"nzSize\"\n  [nzDisabledDate]=\"nzDisabledDate\"\n  [nzLocale]=\"nzLocale\"\n  [nzPopupStyle]=\"nzPopupStyle\"\n  [nzDropdownClassName]=\"nzDropdownClassName\"\n  [ngStyle]=\"nzStyle\"\n  [nzPlaceHolder]=\"nzPlaceHolder\"\n  (nzOnOpenChange)=\"_nzOnOpenChange($event)\"\n  [nzDateRender]=\"nzDateRender\"\n  [nzDisabledTime]=\"nzDisabledTime\"\n  [nzFormat]=\"nzFormat\"\n  [nzRenderExtraFooter]=\"nzRenderExtraFooter || (shortcut?.enabled ? shortcutTpl : null)\"\n  [nzShowTime]=\"nzShowTime\"\n  [nzShowToday]=\"nzShowToday\"\n  [nzMode]=\"nzMode\"\n  [nzRanges]=\"nzRanges\"\n  (nzOnPanelChange)=\"_nzOnPanelChange($event)\"\n  (nzOnOk)=\"_nzOnOk($event)\"\n></nz-range-picker>\n<ng-template #shortcutTpl>\n  <a\n    *ngFor=\"let i of shortcut?.list; let first = first\"\n    (click)=\"clickShortcut(i)\"\n    [innerHTML]=\"i._text\"\n    [ngClass]=\"{ 'ml-sm': !first }\"\n  ></a>\n</ng-template>\n",
                 providers: [
                     {
                         provide: NG_VALUE_ACCESSOR,
                         multi: true,
-                        useExisting: forwardRef(() => RangePickerComponent),
-                    },
+                        useExisting: forwardRef(() => RangePickerComponent)
+                    }
                 ]
             },] }
 ];
@@ -188,7 +187,12 @@ RangePickerShortcutTplComponent.decorators = [
                 selector: '',
                 template: `
     <ng-template #tpl>
-      <a *ngFor="let i of list; let first = first" (click)="click(i)" [innerHTML]="i._text" [ngClass]="{ 'ml-sm': !first }"></a>
+      <a
+        *ngFor="let i of list; let first = first"
+        (click)="click(i)"
+        [innerHTML]="i._text"
+        [ngClass]="{ 'ml-sm': !first }"
+      ></a>
     </ng-template>
   `
             },] }
@@ -221,34 +225,34 @@ class RangePickerDirective {
                 list: [
                     {
                         text: '今天',
-                        fn: () => getTimeDistance('today'),
+                        fn: () => getTimeDistance('today')
                     },
                     {
                         text: '昨天',
-                        fn: () => getTimeDistance('yesterday'),
+                        fn: () => getTimeDistance('yesterday')
                     },
                     {
                         text: '近3天',
-                        fn: () => getTimeDistance(-2),
+                        fn: () => getTimeDistance(-2)
                     },
                     {
                         text: '近7天',
-                        fn: () => getTimeDistance(-6),
+                        fn: () => getTimeDistance(-6)
                     },
                     {
                         text: '本周',
-                        fn: () => getTimeDistance('week'),
+                        fn: () => getTimeDistance('week')
                     },
                     {
                         text: '本月',
-                        fn: () => getTimeDistance('month'),
+                        fn: () => getTimeDistance('month')
                     },
                     {
                         text: '全年',
-                        fn: () => getTimeDistance('year'),
-                    },
-                ],
-            },
+                        fn: () => getTimeDistance('year')
+                    }
+                ]
+            }
         });
         this.defaultShortcuts = Object.assign({}, cog.shortcuts);
         Object.assign(this, cog);
@@ -344,7 +348,7 @@ class RangePickerDirective {
 RangePickerDirective.decorators = [
     { type: Directive, args: [{
                 selector: 'nz-range-picker[extend]',
-                exportAs: 'extendRangePicker',
+                exportAs: 'extendRangePicker'
             },] }
 ];
 RangePickerDirective.ctorParameters = () => [
@@ -367,7 +371,7 @@ DatePickerModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, FormsModule, NzDatePickerModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

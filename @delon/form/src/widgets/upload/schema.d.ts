@@ -1,5 +1,5 @@
-import { NzShowUploadList, NzUploadChangeParam, NzUploadFile, NzUploadTransformFileType, NzUploadXHRArgs, UploadFilter } from 'ng-zorro-antd/upload';
 import { Observable, Subscription } from 'rxjs';
+import { NzShowUploadList, NzUploadChangeParam, NzUploadFile, NzUploadTransformFileType, NzUploadXHRArgs, UploadFilter } from 'ng-zorro-antd/upload';
 import { SFSchemaEnumType } from '../../schema';
 import { SFUISchemaItem } from '../../schema/ui';
 export interface SFUploadWidgetSchema extends SFUISchemaItem {

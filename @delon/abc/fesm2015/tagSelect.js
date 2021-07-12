@@ -1,10 +1,10 @@
 import { __decorate } from 'tslib';
 import { Directionality } from '@angular/cdk/bidi';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ChangeDetectorRef, Input, Output, NgModule } from '@angular/core';
-import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
-import { InputBoolean } from '@delon/util/decorator';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
@@ -45,13 +45,13 @@ TagSelectComponent.decorators = [
     { type: Component, args: [{
                 selector: 'tag-select',
                 exportAs: 'tagSelect',
-                template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
+                template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand\n  }}<i nz-icon [nzType]=\"expand ? 'up' : 'down'\" class=\"tag-select__trigger-icon\"></i>\n</a>\n",
                 host: {
                     '[class.tag-select]': 'true',
                     '[class.tag-select-rtl]': `dir === 'rtl'`,
                     '[class.tag-select-rtl__has-expand]': `dir === 'rtl' && expandable`,
                     '[class.tag-select__has-expand]': 'expandable',
-                    '[class.tag-select__expanded]': 'expand',
+                    '[class.tag-select__expanded]': 'expand'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -78,7 +78,7 @@ TagSelectModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzIconModule, DelonLocaleModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

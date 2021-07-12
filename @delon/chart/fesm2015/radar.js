@@ -30,24 +30,24 @@ class G2RadarComponent extends G2BaseComponent {
             autoFit: true,
             height: this.getHeight(),
             padding,
-            theme,
+            theme
         }));
         chart.coordinate('polar');
         chart.legend(false);
         chart.axis('label', {
             line: null,
             label: {
-                offset: 8,
+                offset: 8
             },
             grid: {
                 line: {
                     style: {
                         stroke: '#e9e9e9',
                         lineWidth: 1,
-                        lineDash: [0, 0],
-                    },
-                },
-            },
+                        lineDash: [0, 0]
+                    }
+                }
+            }
         });
         chart.axis('value', {
             grid: {
@@ -56,16 +56,16 @@ class G2RadarComponent extends G2BaseComponent {
                     style: {
                         stroke: '#e9e9e9',
                         lineWidth: 1,
-                        lineDash: [0, 0],
-                    },
-                },
-            },
+                        lineDash: [0, 0]
+                    }
+                }
+            }
         });
         chart.scale({
             value: {
                 min: 0,
-                tickCount,
-            },
+                tickCount
+            }
         });
         chart.filter('name', (name) => {
             const legendItem = this.legendData.find(w => w.name === name);
@@ -96,7 +96,7 @@ class G2RadarComponent extends G2BaseComponent {
                 name: origin.name,
                 color: item[0].color,
                 checked: true,
-                value: item.reduce((p, n) => p + n._origin.value, 0),
+                value: item.reduce((p, n) => p + n._origin.value, 0)
             };
             return result;
         });
@@ -115,10 +115,10 @@ G2RadarComponent.decorators = [
     { type: Component, args: [{
                 selector: 'g2-radar',
                 exportAs: 'g2Radar',
-                template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
+                template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div\n    nz-col\n    [nzSpan]=\"24 / legendData.length\"\n    *ngFor=\"let i of legendData; let idx = index\"\n    (click)=\"_click(idx)\"\n    class=\"g2-radar__legend-item\"\n  >\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
                 host: {
                     '[style.height.px]': 'height',
-                    '[class.g2-radar]': 'true',
+                    '[class.g2-radar]': 'true'
                 },
                 preserveWhitespaces: false,
                 changeDetection: ChangeDetectionStrategy.OnPush,
@@ -152,7 +152,7 @@ G2RadarModule.decorators = [
     { type: NgModule, args: [{
                 imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule],
                 declarations: COMPONENTS,
-                exports: COMPONENTS,
+                exports: COMPONENTS
             },] }
 ];
 

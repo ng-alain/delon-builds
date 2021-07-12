@@ -353,24 +353,24 @@
                 autoFit: true,
                 height: this.getHeight(),
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.coordinate('polar');
             chart.legend(false);
             chart.axis('label', {
                 line: null,
                 label: {
-                    offset: 8,
+                    offset: 8
                 },
                 grid: {
                     line: {
                         style: {
                             stroke: '#e9e9e9',
                             lineWidth: 1,
-                            lineDash: [0, 0],
-                        },
-                    },
-                },
+                            lineDash: [0, 0]
+                        }
+                    }
+                }
             });
             chart.axis('value', {
                 grid: {
@@ -379,16 +379,16 @@
                         style: {
                             stroke: '#e9e9e9',
                             lineWidth: 1,
-                            lineDash: [0, 0],
-                        },
-                    },
-                },
+                            lineDash: [0, 0]
+                        }
+                    }
+                }
             });
             chart.scale({
                 value: {
                     min: 0,
-                    tickCount: tickCount,
-                },
+                    tickCount: tickCount
+                }
             });
             chart.filter('name', function (name) {
                 var legendItem = _this.legendData.find(function (w) { return w.name === name; });
@@ -420,7 +420,7 @@
                     name: origin.name,
                     color: item[0].color,
                     checked: true,
-                    value: item.reduce(function (p, n) { return p + n._origin.value; }, 0),
+                    value: item.reduce(function (p, n) { return p + n._origin.value; }, 0)
                 };
                 return result;
             });
@@ -440,10 +440,10 @@
         { type: core.Component, args: [{
                     selector: 'g2-radar',
                     exportAs: 'g2Radar',
-                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div nz-col [nzSpan]=\"24 / legendData.length\" *ngFor=\"let i of legendData; let idx = index\" (click)=\"_click(idx)\" class=\"g2-radar__legend-item\">\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
+                    template: "<nz-skeleton *ngIf=\"!loaded\"></nz-skeleton>\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n<div nz-row class=\"g2-radar__legend\" *ngIf=\"hasLegend\">\n  <div\n    nz-col\n    [nzSpan]=\"24 / legendData.length\"\n    *ngFor=\"let i of legendData; let idx = index\"\n    (click)=\"_click(idx)\"\n    class=\"g2-radar__legend-item\"\n  >\n    <i class=\"g2-radar__legend-dot\" [ngStyle]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n    {{ i.name }}\n    <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n  </div>\n</div>\n",
                     host: {
                         '[style.height.px]': 'height',
-                        '[class.g2-radar]': 'true',
+                        '[class.g2-radar]': 'true'
                     },
                     preserveWhitespaces: false,
                     changeDetection: core.ChangeDetectionStrategy.OnPush,
@@ -480,7 +480,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, grid.NzGridModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

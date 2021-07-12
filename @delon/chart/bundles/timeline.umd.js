@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('date-fns'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
-    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/date-time', '@delon/util/decorator', 'date-fns', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.delon.chart.core, global.dateTime, global.decorator, global.dateFns, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
-}(this, (function (exports, core, core$1, dateTime, decorator, dateFns, common, outlet, skeleton) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('date-fns'), require('@delon/chart/core'), require('@delon/util/date-time'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/skeleton')) :
+    typeof define === 'function' && define.amd ? define('@delon/chart/timeline', ['exports', '@angular/core', 'date-fns', '@delon/chart/core', '@delon/util/date-time', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/skeleton'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.timeline = {}), global.ng.core, global.dateFns, global.delon.chart.core, global.dateTime, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet'], global.skeleton));
+}(this, (function (exports, core, dateFns, core$1, dateTime, decorator, common, outlet, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -357,7 +357,7 @@
                 autoFit: true,
                 height: height,
                 padding: padding,
-                theme: theme,
+                theme: theme
             }));
             chart.axis('time', { title: null });
             chart.axis('y1', { title: null });
@@ -370,7 +370,7 @@
             }
             chart.tooltip({
                 showCrosshairs: true,
-                shared: true,
+                shared: true
             });
             var sliderPadding = Object.assign(Object.assign({}, []), padding);
             sliderPadding[0] = 0;
@@ -380,10 +380,10 @@
                     start: 0,
                     end: 1,
                     trendCfg: {
-                        isArea: false,
+                        isArea: false
                     },
                     minLimit: 2,
-                    formatter: function (val) { return dateFns.format(val, maskSlider); },
+                    formatter: function (val) { return dateFns.format(val, maskSlider); }
                 });
             }
             chart.on("plot:click", function (ev) {
@@ -413,8 +413,13 @@
                 custom: true,
                 items: arrAxis.map(function (id) {
                     var key = "y" + id;
-                    return { id: key, name: titleMap[key], value: key, marker: { style: { fill: colorMap[key] } } };
-                }),
+                    return {
+                        id: key,
+                        name: titleMap[key],
+                        value: key,
+                        marker: { style: { fill: colorMap[key] } }
+                    };
+                })
             });
             // border
             _chart.geometries.forEach(function (v, idx) {
@@ -437,17 +442,17 @@
                 scaleOptions[key] = {
                     alias: titleMap[key],
                     max: max,
-                    min: 0,
+                    min: 0
                 };
             });
             _chart.scale(Object.assign({ time: {
                     type: 'time',
                     mask: mask,
-                    range: [0, 1],
+                    range: [0, 1]
                 } }, scaleOptions));
             var initialRange = {
                 start: data[0]._time,
-                end: data[data.length - 1]._time,
+                end: data[data.length - 1]._time
             };
             var filterData = data.filter(function (val) { return val._time >= initialRange.start && val._time <= initialRange.end; });
             _chart.changeData(filterData);
@@ -502,7 +507,7 @@
         { type: core.NgModule, args: [{
                     imports: [common.CommonModule, outlet.NzOutletModule, skeleton.NzSkeletonModule],
                     declarations: COMPONENTS,
-                    exports: COMPONENTS,
+                    exports: COMPONENTS
                 },] }
     ];
 

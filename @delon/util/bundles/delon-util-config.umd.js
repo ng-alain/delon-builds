@@ -39,7 +39,7 @@
 
     var ALAIN_CONFIG = new i0.InjectionToken('alain-config', {
         providedIn: 'root',
-        factory: ALAIN_CONFIG_FACTORY,
+        factory: ALAIN_CONFIG_FACTORY
     });
     function ALAIN_CONFIG_FACTORY() {
         return {};
