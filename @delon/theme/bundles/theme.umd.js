@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/cdk/platform'), require('@angular/common'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('@delon/util/other'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('ng-zorro-antd/i18n'), require('@delon/util/date-time'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/cdk/platform', '@angular/common', '@delon/util/config', '@angular/cdk/bidi', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', '@delon/util/other', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', 'ng-zorro-antd/i18n', '@delon/util/date-time', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.cdk.platform, global.ng.common, global.delon.util.config, global.ng.cdk.bidi, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global.delon.util.other, global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global['ng-zorro-antd/i18n'], global.delon.util['date-time'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, rxjs, operators, i2, i2$1, i1, i1$1, i1$2, i3, i1$3, router, i1$4, other, i1$5, i1$6, dateFns, i18n, dateTime, overlay, icons, icon) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/cdk/platform'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('ng-zorro-antd/modal'), require('@delon/util/other'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('ng-zorro-antd/i18n'), require('@delon/util/date-time'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/cdk/platform', '@delon/util/config', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', 'ng-zorro-antd/modal', '@delon/util/other', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', 'ng-zorro-antd/i18n', '@delon/util/date-time', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.cdk.platform, global.delon.util.config, global.ng.cdk.bidi, global.ng.common, global.i3, global.ng.platformBrowser, global.ng.router, global['ng-zorro-antd/modal'], global.delon.util.other, global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global['ng-zorro-antd/i18n'], global.delon.util['date-time'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+}(this, (function (exports, i0, rxjs, operators, i2, i1, i1$1, i1$2, i6, i3, i1$3, router, i1$4, other, i1$5, i1$6, dateFns, i18n, dateTime, overlay, icons, icon) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -31,26 +31,15 @@
 
     var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
     var i2__namespace = /*#__PURE__*/_interopNamespace(i2);
-    var i2__namespace$1 = /*#__PURE__*/_interopNamespace(i2$1);
     var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
     var i1__namespace$1 = /*#__PURE__*/_interopNamespace(i1$1);
     var i1__namespace$2 = /*#__PURE__*/_interopNamespace(i1$2);
+    var i6__namespace = /*#__PURE__*/_interopNamespace(i6);
     var i3__namespace = /*#__PURE__*/_interopNamespace(i3);
     var i1__namespace$3 = /*#__PURE__*/_interopNamespace(i1$3);
     var i1__namespace$4 = /*#__PURE__*/_interopNamespace(i1$4);
     var i1__namespace$5 = /*#__PURE__*/_interopNamespace(i1$5);
     var i1__namespace$6 = /*#__PURE__*/_interopNamespace(i1$6);
-
-    function WINDOW_FACTORY() {
-        return typeof window === 'object' && !!window ? window : null;
-    }
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `import { WINDOW } from '{AT}delon/util/token';` instead
-     */
-    var WINDOW = new i0.InjectionToken('Window', {
-        providedIn: 'root',
-        factory: WINDOW_FACTORY
-    });
 
     function preloaderFinished() {
         var body = document.querySelector('body');
@@ -709,95 +698,6 @@
         { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
     ]; };
 
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
-     */
-    var ScrollService = /** @class */ (function () {
-        function ScrollService(_doc, platform) {
-            this._doc = _doc;
-            this.platform = platform;
-        }
-        ScrollService.prototype._getDoc = function () {
-            return this._doc || document;
-        };
-        ScrollService.prototype._getWin = function () {
-            var doc = this._getDoc();
-            return doc.defaultView || window;
-        };
-        /**
-         * 获取滚动条位置
-         *
-         * @param element 指定元素，默认 `window`
-         */
-        ScrollService.prototype.getScrollPosition = function (element) {
-            if (!this.platform.isBrowser) {
-                return [0, 0];
-            }
-            var win = this._getWin();
-            if (element && element !== win) {
-                return [element.scrollLeft, element.scrollTop];
-            }
-            else {
-                return [win.pageXOffset, win.pageYOffset];
-            }
-        };
-        /**
-         * 设置滚动条位置
-         *
-         * @param element 指定元素
-         */
-        ScrollService.prototype.scrollToPosition = function (element, position) {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            (element || this._getWin()).scrollTo(position[0], position[1]);
-        };
-        /**
-         * 设置滚动条至指定元素
-         *
-         * @param element 指定元素，默认 `document.body`
-         * @param topOffset 偏移值，默认 `0`
-         */
-        ScrollService.prototype.scrollToElement = function (element, topOffset) {
-            if (topOffset === void 0) { topOffset = 0; }
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            if (!element) {
-                element = this._getDoc().body;
-            }
-            element.scrollIntoView();
-            var win = this._getWin();
-            if (win && win.scrollBy) {
-                win.scrollBy(0, element.getBoundingClientRect().top - topOffset);
-                if (win.pageYOffset < 20) {
-                    win.scrollBy(0, -win.pageYOffset);
-                }
-            }
-        };
-        /**
-         * 滚动至顶部
-         *
-         * @param topOffset 偏移值，默认 `0`
-         */
-        ScrollService.prototype.scrollToTop = function (topOffset) {
-            if (topOffset === void 0) { topOffset = 0; }
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            this.scrollToElement(this._getDoc().body, topOffset);
-        };
-        return ScrollService;
-    }());
-    ScrollService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0__namespace.ɵɵinject(i1__namespace.DOCUMENT), i0__namespace.ɵɵinject(i2__namespace$1.Platform)); }, token: ScrollService, providedIn: "root" });
-    ScrollService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    ScrollService.ctorParameters = function () { return [
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] },
-        { type: i2$1.Platform }
-    ]; };
-
     var ALAIN_SETTING_KEYS = new i0.InjectionToken('ALAIN_SETTING_KEYS');
     var SettingsService = /** @class */ (function () {
         function SettingsService(platform, KEYS) {
@@ -883,12 +783,12 @@
         };
         return SettingsService;
     }());
-    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i2__namespace$1.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
     SettingsService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     SettingsService.ctorParameters = function () { return [
-        { type: i2$1.Platform },
+        { type: i1.Platform },
         { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
     ]; };
 
@@ -1034,7 +934,7 @@
         };
         return RTLService;
     }());
-    RTLService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0__namespace.ɵɵinject(i1__namespace$2.Directionality), i0__namespace.ɵɵinject(SettingsService), i0__namespace.ɵɵinject(i3__namespace.NzConfigService), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService), i0__namespace.ɵɵinject(i2__namespace$1.Platform), i0__namespace.ɵɵinject(i1__namespace.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    RTLService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0__namespace.ɵɵinject(i1__namespace$2.Directionality), i0__namespace.ɵɵinject(SettingsService), i0__namespace.ɵɵinject(i3__namespace.NzConfigService), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService), i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(i6__namespace.DOCUMENT)); }, token: RTLService, providedIn: "root" });
     RTLService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -1043,8 +943,8 @@
         { type: SettingsService },
         { type: i3.NzConfigService },
         { type: i1$1.AlainConfigService },
-        { type: i2$1.Platform },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+        { type: i1.Platform },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i6.DOCUMENT,] }] }
     ]; };
 
     var TitleService = /** @class */ (function () {
@@ -1167,7 +1067,7 @@
         };
         return TitleService;
     }());
-    TitleService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i1__namespace$3.Title), i0__namespace.ɵɵinject(MenuService), i0__namespace.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0__namespace.ɵɵinject(i1__namespace.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+    TitleService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0__namespace.ɵɵinject(i0__namespace.INJECTOR), i0__namespace.ɵɵinject(i1__namespace$3.Title), i0__namespace.ɵɵinject(MenuService), i0__namespace.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0__namespace.ɵɵinject(i6__namespace.DOCUMENT)); }, token: TitleService, providedIn: "root" });
     TitleService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -1176,7 +1076,7 @@
         { type: i1$3.Title },
         { type: MenuService },
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [i1.DOCUMENT,] }] }
+        { type: undefined, decorators: [{ type: i0.Inject, args: [i6.DOCUMENT,] }] }
     ]; };
 
     var DELON_LOCALE = new i0.InjectionToken('delon-locale');
@@ -2290,46 +2190,6 @@
             var modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
             return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions: modalOptions }));
         };
-        /**
-         * @deprecated Will be removed in 12.0.0, Pls used `create` instead
-         *
-         * 打开对话框
-         *
-         * @example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-         * this.nzModalRef.close(data);
-         * this.nzModalRef.close();
-         * // 关闭
-         * this.nzModalRef.destroy();
-         */
-        ModalHelper.prototype.open = function (comp, params, size, options) {
-            if (size === void 0) { size = 'lg'; }
-            return this.create(comp, params, {
-                size: size,
-                modalOptions: options,
-                exact: false
-            });
-        };
-        /**
-         * @deprecated Will be removed in 12.0.0, Pls used `createStatic` instead
-         *
-         * 静态框，点击蒙层不允许关闭
-         *
-         * @example
-         * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-         * // 对于组件的成功&关闭的处理说明
-         * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-         * this.nzModalRef.close(data);
-         * this.nzModalRef.close();
-         * // 关闭
-         * this.nzModalRef.destroy();
-         */
-        ModalHelper.prototype.static = function (comp, params, size, options) {
-            if (size === void 0) { size = 'lg'; }
-            return this.open(comp, params, size, Object.assign({ nzMaskClosable: false }, options));
-        };
         return ModalHelper;
     }());
     ModalHelper.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0__namespace.ɵɵinject(i1__namespace$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
@@ -2503,12 +2363,6 @@
         };
         _HttpClient.prototype.pop = function () {
             this.setCount(--this.lc);
-        };
-        /**
-         * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
-         */
-        _HttpClient.prototype.end = function () {
-            this.cleanLoading();
         };
         /**
          * Clean loading count
@@ -2810,27 +2664,6 @@
     ]; };
 
     /**
-     * @deprecated Will be removed in 12.0.0, Pls used [price](https://ng-alain.com/util/pipes-currency/en?#price) pipe instead
-     */
-    var CNCurrencyPipe = /** @class */ (function () {
-        function CNCurrencyPipe(locale) {
-            this.ngCurrencyPipe = new i1.CurrencyPipe(locale);
-        }
-        CNCurrencyPipe.prototype.transform = function (value, currencyCode, display, digits) {
-            if (currencyCode === void 0) { currencyCode = '￥'; }
-            if (display === void 0) { display = 'code'; }
-            return this.ngCurrencyPipe.transform(value, currencyCode, display, digits);
-        };
-        return CNCurrencyPipe;
-    }());
-    CNCurrencyPipe.decorators = [
-        { type: i0.Pipe, args: [{ name: '_currency' },] }
-    ];
-    CNCurrencyPipe.ctorParameters = function () { return [
-        { type: String, decorators: [{ type: i0.Inject, args: [i0.LOCALE_ID,] }] }
-    ]; };
-
-    /**
      * [Document](https://ng-alain.com/theme/keys)
      */
     var KeysPipe = /** @class */ (function () {
@@ -2937,7 +2770,7 @@
 
     // #region import
     var HELPERS = [ModalHelper, DrawerHelper];
-    var PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
+    var PIPES = [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
     var ICONS = [icons.BellOutline, icons.DeleteOutline, icons.PlusOutline, icons.InboxOutline];
     var ɵ0 = {
         layout: 'layout',
@@ -2965,7 +2798,7 @@
     }());
     AlainThemeModule.decorators = [
         { type: i0.NgModule, args: [{
-                    imports: [i1.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
+                    imports: [i6.CommonModule, router.RouterModule, overlay.OverlayModule, i18n.NzI18nModule],
                     declarations: __spreadArray([], __read(PIPES)),
                     providers: [
                         {
@@ -2995,7 +2828,6 @@
     exports.BaseHeaders = BaseHeaders;
     exports.BaseUrl = BaseUrl;
     exports.Body = Body;
-    exports.CNCurrencyPipe = CNCurrencyPipe;
     exports.DELETE = DELETE;
     exports.DELON_LOCALE = DELON_LOCALE;
     exports.DELON_LOCALE_SERVICE_PROVIDER = DELON_LOCALE_SERVICE_PROVIDER;
@@ -3029,12 +2861,10 @@
     exports.RTL_DIRECTION = RTL_DIRECTION;
     exports.RTL_NZ_COMPONENTS = RTL_NZ_COMPONENTS;
     exports.ResponsiveService = ResponsiveService;
-    exports.ScrollService = ScrollService;
     exports.SettingsService = SettingsService;
     exports.TitleService = TitleService;
     exports.URLPipe = URLPipe;
     exports.VERSION = VERSION;
-    exports.WINDOW = WINDOW;
     exports.YNPipe = YNPipe;
     exports._HttpClient = _HttpClient;
     exports.el_GR = elGR;

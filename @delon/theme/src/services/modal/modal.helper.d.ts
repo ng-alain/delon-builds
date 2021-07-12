@@ -52,34 +52,4 @@ export declare class ModalHelper {
      * this.nzModalRef.destroy();
      */
     createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<any>;
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `create` instead
-     *
-     * 打开对话框
-     *
-     * @example
-     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    open(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `createStatic` instead
-     *
-     * 静态框，点击蒙层不允许关闭
-     *
-     * @example
-     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    static(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number, options?: ModalOptions): Observable<any>;
 }

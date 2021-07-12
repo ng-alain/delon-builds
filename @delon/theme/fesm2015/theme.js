@@ -1,17 +1,17 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, LOCALE_ID, Version } from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
 import * as i2 from '@delon/acl';
 import { ACLService } from '@delon/acl';
-import * as i2$1 from '@angular/cdk/platform';
+import * as i1 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
-import * as i1 from '@angular/common';
-import { DOCUMENT, CurrencyPipe, CommonModule } from '@angular/common';
 import * as i1$1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$2 from '@angular/cdk/bidi';
 import { Directionality } from '@angular/cdk/bidi';
+import * as i6 from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i3 from 'ng-zorro-antd/core/config';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
 import * as i1$3 from '@angular/platform-browser';
@@ -30,17 +30,6 @@ import { toDate } from '@delon/util/date-time';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
-
-function WINDOW_FACTORY() {
-    return typeof window === 'object' && !!window ? window : null;
-}
-/**
- * @deprecated Will be removed in 12.0.0, Pls used `import { WINDOW } from '{AT}delon/util/token';` instead
- */
-const WINDOW = new InjectionToken('Window', {
-    providedIn: 'root',
-    factory: WINDOW_FACTORY
-});
 
 function preloaderFinished() {
     const body = document.querySelector('body');
@@ -342,92 +331,6 @@ MenuService.ctorParameters = () => [
     { type: ACLService, decorators: [{ type: Optional }] }
 ];
 
-/**
- * @deprecated Will be removed in 12.0.0, Pls used `import { ScrollService } from '{AT}delon/util/browser';` instead
- */
-class ScrollService {
-    constructor(_doc, platform) {
-        this._doc = _doc;
-        this.platform = platform;
-    }
-    _getDoc() {
-        return this._doc || document;
-    }
-    _getWin() {
-        const doc = this._getDoc();
-        return doc.defaultView || window;
-    }
-    /**
-     * 获取滚动条位置
-     *
-     * @param element 指定元素，默认 `window`
-     */
-    getScrollPosition(element) {
-        if (!this.platform.isBrowser) {
-            return [0, 0];
-        }
-        const win = this._getWin();
-        if (element && element !== win) {
-            return [element.scrollLeft, element.scrollTop];
-        }
-        else {
-            return [win.pageXOffset, win.pageYOffset];
-        }
-    }
-    /**
-     * 设置滚动条位置
-     *
-     * @param element 指定元素
-     */
-    scrollToPosition(element, position) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        (element || this._getWin()).scrollTo(position[0], position[1]);
-    }
-    /**
-     * 设置滚动条至指定元素
-     *
-     * @param element 指定元素，默认 `document.body`
-     * @param topOffset 偏移值，默认 `0`
-     */
-    scrollToElement(element, topOffset = 0) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        if (!element) {
-            element = this._getDoc().body;
-        }
-        element.scrollIntoView();
-        const win = this._getWin();
-        if (win && win.scrollBy) {
-            win.scrollBy(0, element.getBoundingClientRect().top - topOffset);
-            if (win.pageYOffset < 20) {
-                win.scrollBy(0, -win.pageYOffset);
-            }
-        }
-    }
-    /**
-     * 滚动至顶部
-     *
-     * @param topOffset 偏移值，默认 `0`
-     */
-    scrollToTop(topOffset = 0) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        this.scrollToElement(this._getDoc().body, topOffset);
-    }
-}
-ScrollService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ScrollService_Factory() { return new ScrollService(i0.ɵɵinject(i1.DOCUMENT), i0.ɵɵinject(i2$1.Platform)); }, token: ScrollService, providedIn: "root" });
-ScrollService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-ScrollService.ctorParameters = () => [
-    { type: undefined, decorators: [{ type: Inject, args: [DOCUMENT,] }] },
-    { type: Platform }
-];
-
 const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
 class SettingsService {
     constructor(platform, KEYS) {
@@ -496,7 +399,7 @@ class SettingsService {
         this.notify$.next({ type: 'user', value });
     }
 }
-SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -631,7 +534,7 @@ class RTLService {
         });
     }
 }
-RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i2$1.Platform), i0.ɵɵinject(i1.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i1.Platform), i0.ɵɵinject(i6.DOCUMENT)); }, token: RTLService, providedIn: "root" });
 RTLService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -745,7 +648,7 @@ class TitleService {
         this.i18n$.unsubscribe();
     }
 }
-TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i1.DOCUMENT)); }, token: TitleService, providedIn: "root" });
+TitleService.ɵprov = i0.ɵɵdefineInjectable({ factory: function TitleService_Factory() { return new TitleService(i0.ɵɵinject(i0.INJECTOR), i0.ɵɵinject(i1$3.Title), i0.ɵɵinject(MenuService), i0.ɵɵinject(ALAIN_I18N_TOKEN, 8), i0.ɵɵinject(i6.DOCUMENT)); }, token: TitleService, providedIn: "root" });
 TitleService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -1855,44 +1758,6 @@ class ModalHelper {
         const modalOptions = Object.assign({ nzMaskClosable: false }, (options && options.modalOptions));
         return this.create(comp, params, Object.assign(Object.assign({}, options), { modalOptions }));
     }
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `create` instead
-     *
-     * 打开对话框
-     *
-     * @example
-     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    open(comp, params, size = 'lg', options) {
-        return this.create(comp, params, {
-            size,
-            modalOptions: options,
-            exact: false
-        });
-    }
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `createStatic` instead
-     *
-     * 静态框，点击蒙层不允许关闭
-     *
-     * @example
-     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    static(comp, params, size = 'lg', options) {
-        return this.open(comp, params, size, Object.assign({ nzMaskClosable: false }, options));
-    }
 }
 ModalHelper.ɵprov = i0.ɵɵdefineInjectable({ factory: function ModalHelper_Factory() { return new ModalHelper(i0.ɵɵinject(i1$4.NzModalService)); }, token: ModalHelper, providedIn: "root" });
 ModalHelper.decorators = [
@@ -2053,12 +1918,6 @@ class _HttpClient {
     }
     pop() {
         this.setCount(--this.lc);
-    }
-    /**
-     * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
-     */
-    end() {
-        this.cleanLoading();
     }
     /**
      * Clean loading count
@@ -2344,24 +2203,6 @@ DatePipe.ctorParameters = () => [
 ];
 
 /**
- * @deprecated Will be removed in 12.0.0, Pls used [price](https://ng-alain.com/util/pipes-currency/en?#price) pipe instead
- */
-class CNCurrencyPipe {
-    constructor(locale) {
-        this.ngCurrencyPipe = new CurrencyPipe(locale);
-    }
-    transform(value, currencyCode = '￥', display = 'code', digits) {
-        return this.ngCurrencyPipe.transform(value, currencyCode, display, digits);
-    }
-}
-CNCurrencyPipe.decorators = [
-    { type: Pipe, args: [{ name: '_currency' },] }
-];
-CNCurrencyPipe.ctorParameters = () => [
-    { type: String, decorators: [{ type: Inject, args: [LOCALE_ID,] }] }
-];
-
-/**
  * [Document](https://ng-alain.com/theme/keys)
  */
 class KeysPipe {
@@ -2460,7 +2301,7 @@ I18nPipe.ctorParameters = () => [
 /* eslint-disable import/order */
 // #region import
 const HELPERS = [ModalHelper, DrawerHelper];
-const PIPES = [DatePipe, CNCurrencyPipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
+const PIPES = [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
 const ɵ0 = {
     layout: 'layout',
@@ -2502,11 +2343,11 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('11.10.4-9eb7ccad');
+const VERSION = new Version('11.10.4-ac65218d');
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CNCurrencyPipe, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, ScrollService, SettingsService, TitleService, URLPipe, VERSION, WINDOW, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
+export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

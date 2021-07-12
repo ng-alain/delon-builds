@@ -35,10 +35,6 @@ export declare class _HttpClient {
     private push;
     private pop;
     /**
-     * @deprecated Will be removed in 12.0.0, Pls used `cleanLoading` instead
-     */
-    end(): void;
-    /**
      * Clean loading count
      *
      * 清空加载中

@@ -18,7 +18,6 @@ class MockStatusError {
 }
 
 const MOCK_DEFULAT_CONFIG = {
-    data: null,
     delay: 300,
     force: false,
     log: true,
@@ -29,8 +28,7 @@ class MockService {
     constructor(cogSrv, options) {
         this.cached = [];
         this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
-        this.setData((options === null || options === void 0 ? void 0 : options.data) || this.config.data);
-        delete this.config.data;
+        this.setData(options === null || options === void 0 ? void 0 : options.data);
     }
     /**
      * Reset request data

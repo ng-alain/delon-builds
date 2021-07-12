@@ -391,9 +391,11 @@
             });
             return ret;
         };
-        XlsxService.prototype.import = function (fileOrUrl, _rABS) {
+        /**
+         * 导入Excel并输出JSON，支持 `<input type="file">`、URL 形式
+         */
+        XlsxService.prototype.import = function (fileOrUrl) {
             var _this = this;
-            if (_rABS === void 0) { _rABS = 'readAsBinaryString'; }
             return new Promise(function (resolve, reject) {
                 _this.init()
                     .then(function () {
