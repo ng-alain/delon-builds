@@ -25,7 +25,6 @@ class ThemeBtnComponent {
             { key: 'compact', text: 'Compact Theme' },
         ];
         this.devTips = `When the dark.css file can't be found, you need to run it once: npm run theme`;
-        this.deployUrl = '';
         this.destroy$ = new Subject();
         this.dir = 'ltr';
     }
@@ -64,7 +63,7 @@ class ThemeBtnComponent {
             el.type = 'text/css';
             el.rel = 'stylesheet';
             el.id = this.KEYS;
-            el.href = `${this.deployUrl}assets/style.${theme}.css`;
+            el.href = `assets/style.${theme}.css`;
             localStorage.setItem(this.KEYS, theme);
             this.doc.body.append(el);
         }
@@ -101,8 +100,7 @@ ThemeBtnComponent.ctorParameters = () => [
 ];
 ThemeBtnComponent.propDecorators = {
     types: [{ type: Input }],
-    devTips: [{ type: Input }],
-    deployUrl: [{ type: Input }]
+    devTips: [{ type: Input }]
 };
 
 const COMPONENTS = [ThemeBtnComponent];
