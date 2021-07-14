@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.v12Rule = void 0;
+const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const utils_1 = require("../../../utils");
@@ -63,31 +64,82 @@ function upgradeThirdVersion() {
 }
 function removeThird() {
     return (tree, context) => {
-        utils_1.removePackage(tree, ['ng-alain-codelyzer', `ngx-countdown`], 'dependencies');
-        utils_1.logStart(context, `Remove redundant dependencies: ng-alain-codelyzer, ngx-countdown`);
+        utils_1.removePackage(tree, [`ngx-countdown`], 'dependencies');
+        utils_1.removePackage(tree, ['nz-tslint-rules', 'ng-alain-codelyzer'], 'devDependencies');
+        utils_1.logStart(context, `Remove redundant dependencies: ngx-countdown, ng-alain-codelyzer, nz-tslint-rules`);
     };
 }
-function migrateESLint(context) {
-    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+function migrateESLint(tree, context) {
+    return workspace_1.updateWorkspace(_ => {
         utils_1.logStart(context, `Migrate to ESLint`);
         // 新增 .eslintignore, .eslintrc.js
+        ['.eslintignore', '.eslintrc.js'].forEach(f => {
+            utils_1.overwriteFile({
+                tree,
+                filePath: f,
+                content: utils_1.getFileContentInApplicationFiles(`root/${f}`),
+                overwrite: true,
+                contentIsString: true
+            });
+        });
         utils_1.logInfo(context, `Add .eslintignore, .eslintrc.js`);
         // 重命名 .prettierr -> .prettierr.js 并修正内容
-        utils_1.logInfo(context, `Rename .prettierr -> .prettierr.js`);
+        utils_1.tryDelFile(tree, '.prettierrc');
+        utils_1.overwriteFile({
+            tree,
+            filePath: '.prettierrc.js',
+            content: utils_1.getFileContentInApplicationFiles(`root/.prettierrc.js`),
+            overwrite: true,
+            contentIsString: true
+        });
+        utils_1.logInfo(context, `Rename .prettierrc -> .prettierrc.js`);
         // 更新 .vscode/settings 的 source.fixAll.tslint 为 source.fixAll.eslint
-        utils_1.logInfo(context, `Update .vscode/settings`);
+        const vscodeSettingFilePath = `.vscode/settings.json`;
+        if (tree.exists(vscodeSettingFilePath)) {
+            const vscodeSettingContent = utils_1.readContent(tree, vscodeSettingFilePath).replace(`source.fixAll.tslint`, `source.fixAll.eslint`);
+            utils_1.writeFile(tree, vscodeSettingFilePath, vscodeSettingContent);
+            utils_1.logInfo(context, `Update .vscode/settings`);
+        }
         // 移除 tslint.json
+        utils_1.tryDelFile(tree, 'tslint.json');
         utils_1.logInfo(context, `Remove tslint.json`);
-    }));
+    });
 }
-function fixPackageJson() {
+function upgradeHusky() {
     return (tree, context) => {
+        utils_1.logStart(context, `Upgrade husky to 6.0`);
         const packageJson = utils_1.readPackage(tree);
         delete packageJson.scripts['pretty-quick'];
         delete packageJson.scripts['tslint-check'];
         packageJson.scripts['prepare'] = 'husky install';
         delete packageJson.devDependencies['pretty-quick'];
-        utils_1.logStart(context, `Update package.json`);
+        delete packageJson['husky'];
+        packageJson['lint-staged'] = {
+            '(src)/**/*.{html,ts}': ['eslint --fix']
+        };
+        ['.husky/.gitignore', '.husky/pre-commit'].forEach(f => {
+            utils_1.overwriteFile({
+                tree,
+                filePath: f,
+                content: utils_1.getFileContentInApplicationFiles(`root/${f}`),
+                overwrite: true,
+                contentIsString: true
+            });
+        });
+        utils_1.writePackage(tree, packageJson);
+    };
+}
+function formatJson() {
+    return (tree) => {
+        const angularJson = `angular.json`;
+        const json = utils_1.readJSON(tree, angularJson);
+        utils_1.writeJSON(tree, angularJson, json);
+    };
+}
+function finished() {
+    return (_tree, context) => {
+        context.logger.warn(color_1.colors.yellow(`  ✓  After the upgrade is complete, you still need to execute \`ng lint --fix\` to fix the code format, Abort more detail please refer to upgrade guide https://ng-alain.com/docs/style-guide`));
+        context.logger.info(color_1.colors.green(`  ✓  Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2027`));
     };
 }
 function v12Rule() {
@@ -96,11 +148,13 @@ function v12Rule() {
         versions_1.UpgradeMainVersions(tree);
         return schematics_1.chain([
             fixAngularJson(context),
-            migrateESLint(context),
+            migrateESLint(tree, context),
             versions_1.addESLintRule(context),
             upgradeThirdVersion(),
             removeThird(),
-            fixPackageJson()
+            upgradeHusky(),
+            formatJson(),
+            finished()
         ]);
     });
 }
