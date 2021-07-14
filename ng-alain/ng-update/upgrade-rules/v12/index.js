@@ -14,6 +14,7 @@ const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const utils_1 = require("../../../utils");
+const code_style_1 = require("../../../utils/code-style");
 const versions_1 = require("../../../utils/versions");
 // 修正 angular.json 的格式
 function fixAngularJson(context) {
@@ -114,9 +115,7 @@ function upgradeHusky() {
         packageJson.scripts['prepare'] = 'husky install';
         delete packageJson.devDependencies['pretty-quick'];
         delete packageJson['husky'];
-        packageJson['lint-staged'] = {
-            '(src)/**/*.{html,ts}': ['eslint --fix']
-        };
+        packageJson[code_style_1.LINT_STAGED] = code_style_1.LINT_STAGED_CONFIG;
         ['.husky/.gitignore', '.husky/pre-commit'].forEach(f => {
             utils_1.overwriteFile({
                 tree,

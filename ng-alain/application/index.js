@@ -14,11 +14,9 @@ const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const workspace_1 = require("@schematics/angular/utility/workspace");
-const path = require("path");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
 const versions_1 = require("../utils/versions");
-const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project;
 const spinner = new spinner_1.Spinner();
 /** Remove files to be overwrite */
@@ -45,9 +43,13 @@ function removeOrginalFiles() {
 }
 function fixAngularJson(options) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+        var _a;
         const p = utils_1.getProjectFromWorkspace(workspace, options.project);
         // Add proxy.conf.json
-        utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD).proxyConfig = 'proxy.conf.json';
+        const serveTarget = (_a = p.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_SERVE);
+        if (serveTarget.options == null)
+            serveTarget.options = {};
+        serveTarget.options.proxyConfig = 'proxy.conf.json';
         // 调整budgets
         const budgets = utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production
             .budgets;
@@ -149,32 +151,32 @@ function addSchematics(options) {
         const schematics = p.extensions.schematics;
         schematics['ng-alain:module'] = {
             routing: true,
-            spec: false
+            skipTests: false
         };
         schematics['ng-alain:list'] = {
-            spec: false
+            skipTests: false
         };
         schematics['ng-alain:edit'] = {
-            spec: false,
+            skipTests: false,
             modal: true
         };
         schematics['ng-alain:view'] = {
-            spec: false,
+            skipTests: false,
             modal: true
         };
         schematics['ng-alain:curd'] = {
-            spec: false
+            skipTests: false
         };
         schematics['@schematics/angular:module'] = {
             routing: true,
-            spec: false
+            skipTests: false
         };
-        schematics['@schematics/angular:component'] = Object.assign({ spec: false, flat: false, inlineStyle: true, inlineTemplate: false }, schematics['@schematics/angular:component']);
+        schematics['@schematics/angular:component'] = Object.assign({ skipTests: false, flat: false, inlineStyle: true, inlineTemplate: false }, schematics['@schematics/angular:component']);
         schematics['@schematics/angular:directive'] = {
-            spec: false
+            skipTests: false
         };
         schematics['@schematics/angular:service'] = {
-            spec: false
+            skipTests: false
         };
     }));
 }
@@ -187,10 +189,10 @@ function addStyle() {
     return (tree) => {
         utils_1.addHeadStyle(tree, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
         utils_1.addHtmlToBody(tree, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`);
-        // add styles
-        [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
-            utils_1.overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
-        });
+        // // add styles
+        // [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
+        //   overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
+        // });
         return tree;
     };
 }
@@ -280,12 +282,8 @@ function fixVsCode() {
 }
 function install() {
     return (_host, context) => {
-        context.addTask(new tasks_1.NodePackageInstallTask());
-    };
-}
-function finished() {
-    return () => {
-        spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
+        const installId = context.addTask(new tasks_1.NodePackageInstallTask());
+        context.addTask(new tasks_1.RunSchematicTask('ng-add-finished', {}), [installId]);
     };
 }
 function default_1(options) {
@@ -313,8 +311,7 @@ function default_1(options) {
             fixLang(options),
             fixVsCode(),
             fixAngularJson(options),
-            install(),
-            finished()
+            install()
         ]);
     });
 }

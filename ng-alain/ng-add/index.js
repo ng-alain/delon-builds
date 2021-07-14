@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.finished = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
 const path_1 = require("path");
@@ -66,4 +67,10 @@ function default_1(options) {
     };
 }
 exports.default = default_1;
+function finished(context) {
+    context.logger.info('');
+    context.logger.info(`  ✓  Congratulations, NG-ALAIN scaffold generation complete. NG-ALAIN documentation site: https://ng-alain.com`);
+    context.logger.info('');
+}
+exports.finished = finished;
 //# sourceMappingURL=index.js.map

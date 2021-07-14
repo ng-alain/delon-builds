@@ -28,6 +28,7 @@ import {
   addHtmlToBody,
   addPackage,
   BUILD_TARGET_BUILD,
+  BUILD_TARGET_SERVE,
   getProject,
   getProjectFromWorkspace,
   getProjectTarget,
@@ -44,7 +45,6 @@ import {
 import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
 import { Schema as ApplicationOptions } from './schema';
 
-const overwriteDataFileRoot = path.join(__dirname, 'overwrites');
 let project: ProjectDefinition;
 const spinner = new Spinner();
 
@@ -75,7 +75,9 @@ function fixAngularJson(options: ApplicationOptions): Rule {
   return updateWorkspace(async workspace => {
     const p = getProjectFromWorkspace(workspace, options.project);
     // Add proxy.conf.json
-    getProjectTarget(p, BUILD_TARGET_BUILD).proxyConfig = 'proxy.conf.json';
+    const serveTarget = p.targets?.get(BUILD_TARGET_SERVE);
+    if (serveTarget.options == null) serveTarget.options = {};
+    serveTarget.options.proxyConfig = 'proxy.conf.json';
     // 调整budgets
     const budgets = (getProjectTarget(p, BUILD_TARGET_BUILD, 'configurations').production as JsonObject)
       .budgets as Array<{
@@ -185,38 +187,38 @@ function addSchematics(options: ApplicationOptions): Rule {
     const schematics = p.extensions.schematics;
     schematics['ng-alain:module'] = {
       routing: true,
-      spec: false
+      skipTests: false
     };
     schematics['ng-alain:list'] = {
-      spec: false
+      skipTests: false
     };
     schematics['ng-alain:edit'] = {
-      spec: false,
+      skipTests: false,
       modal: true
     };
     schematics['ng-alain:view'] = {
-      spec: false,
+      skipTests: false,
       modal: true
     };
     schematics['ng-alain:curd'] = {
-      spec: false
+      skipTests: false
     };
     schematics['@schematics/angular:module'] = {
       routing: true,
-      spec: false
+      skipTests: false
     };
     schematics['@schematics/angular:component'] = {
-      spec: false,
+      skipTests: false,
       flat: false,
       inlineStyle: true,
       inlineTemplate: false,
       ...schematics['@schematics/angular:component']
     };
     schematics['@schematics/angular:directive'] = {
-      spec: false
+      skipTests: false
     };
     schematics['@schematics/angular:service'] = {
-      spec: false
+      skipTests: false
     };
   });
 }
@@ -239,10 +241,10 @@ function addStyle(): Rule {
       project,
       `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`
     );
-    // add styles
-    [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
-      overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
-    });
+    // // add styles
+    // [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
+    //   overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
+    // });
 
     return tree;
   };
@@ -353,13 +355,8 @@ function fixVsCode(): Rule {
 
 function install(): Rule {
   return (_host: Tree, context: SchematicContext) => {
-    context.addTask(new NodePackageInstallTask());
-  };
-}
-
-function finished(): Rule {
-  return () => {
-    spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
+    const installId = context.addTask(new NodePackageInstallTask());
+    context.addTask(new RunSchematicTask('ng-add-finished', {}), [installId]);
   };
 }
 
@@ -388,8 +385,7 @@ export default function (options: ApplicationOptions): Rule {
       fixLang(options),
       fixVsCode(),
       fixAngularJson(options),
-      install(),
-      finished()
+      install()
     ]);
   };
 }
