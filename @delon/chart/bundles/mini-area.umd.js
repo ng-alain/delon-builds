@@ -378,7 +378,10 @@
             chart
                 .area()
                 .position('x*y')
-                .color(color)
+                .color('x*y', function (x, y) {
+                var colorItem = _this.data.find(function (w) { return w.x === x && w.y === y; });
+                return colorItem && colorItem.color ? colorItem.color : color;
+            })
                 .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); })
                 .shape('smooth');
             if (line) {

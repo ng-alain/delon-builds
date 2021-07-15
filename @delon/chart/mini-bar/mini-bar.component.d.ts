@@ -5,6 +5,7 @@ import { NumberInput } from '@delon/util/decorator';
 export interface G2MiniBarData {
     x: any;
     y: any;
+    color?: string | null;
     [key: string]: any;
 }
 export interface G2MiniBarClickItem {

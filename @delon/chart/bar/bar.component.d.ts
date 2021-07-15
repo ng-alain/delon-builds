@@ -5,7 +5,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export interface G2BarData {
     x: any;
     y: any;
-    color?: string;
+    color?: string | null;
     [key: string]: any;
 }
 export interface G2BarClickItem {
