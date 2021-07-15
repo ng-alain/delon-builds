@@ -41,7 +41,10 @@ class G2MiniBarComponent extends G2BaseComponent {
         chart
             .interval()
             .position('x*y')
-            .color(color)
+            .color('x*y', (x, y) => {
+            const colorItem = this.data.find(w => w.x === x && w.y === y);
+            return colorItem && colorItem.color ? colorItem.color : color;
+        })
             .size(borderWidth)
             .tooltip('x*y', (x, y) => ({ name: x, value: y + yTooltipSuffix }));
         chart.on(`interval:click`, (ev) => {
