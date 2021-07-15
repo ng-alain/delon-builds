@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
-import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
+import { InjectionToken, Injectable, Inject, inject, Injector, Optional, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { Subject, BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
 import * as i2 from '@delon/acl';
 import { ACLService } from '@delon/acl';
@@ -52,37 +52,145 @@ function preloaderFinished() {
     };
 }
 
-const ALAIN_I18N_TOKEN = new InjectionToken('alainTranslatorToken', {
-    providedIn: 'root',
-    factory: ALAIN_I18N_TOKEN_FACTORY
-});
-function ALAIN_I18N_TOKEN_FACTORY() {
-    return new AlainI18NServiceFake();
+const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
+class SettingsService {
+    constructor(platform, KEYS) {
+        this.platform = platform;
+        this.KEYS = KEYS;
+        this.notify$ = new Subject();
+        this._app = null;
+        this._user = null;
+        this._layout = null;
+    }
+    getData(key) {
+        if (!this.platform.isBrowser) {
+            return null;
+        }
+        return JSON.parse(localStorage.getItem(key) || 'null') || null;
+    }
+    setData(key, value) {
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+    get layout() {
+        if (!this._layout) {
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
+            this.setData(this.KEYS.layout, this._layout);
+        }
+        return this._layout;
+    }
+    get app() {
+        if (!this._app) {
+            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
+            this.setData(this.KEYS.app, this._app);
+        }
+        return this._app;
+    }
+    get user() {
+        if (!this._user) {
+            this._user = Object.assign({}, this.getData(this.KEYS.user));
+            this.setData(this.KEYS.user, this._user);
+        }
+        return this._user;
+    }
+    get notify() {
+        return this.notify$.asObservable();
+    }
+    setLayout(name, value) {
+        if (typeof name === 'string') {
+            this.layout[name] = value;
+        }
+        else {
+            this._layout = name;
+        }
+        this.setData(this.KEYS.layout, this._layout);
+        this.notify$.next({ type: 'layout', name, value });
+        return true;
+    }
+    setApp(value) {
+        this._app = value;
+        this.setData(this.KEYS.app, value);
+        this.notify$.next({ type: 'app', value });
+    }
+    setUser(value) {
+        this._user = value;
+        this.setData(this.KEYS.user, value);
+        this.notify$.next({ type: 'user', value });
+    }
 }
-class AlainI18NServiceFake {
-    constructor() {
-        this.change$ = new BehaviorSubject(null);
+SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+SettingsService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+SettingsService.ctorParameters = () => [
+    { type: Platform },
+    { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
+];
+
+const ALAIN_I18N_TOKEN = new InjectionToken('alainI18nToken', {
+    providedIn: 'root',
+    factory: () => new AlainI18NServiceFake(inject(Injector))
+});
+class AlainI18nBaseService {
+    constructor(injector) {
+        this.injector = injector;
+        this._change$ = new BehaviorSubject(null);
+        this._currentLang = '';
+        this._defaultLang = '';
+        this._data = {};
+        this._defaultLang = this.getDefaultLang();
     }
     get change() {
-        return this.change$.asObservable().pipe(filter(w => w != null));
+        return this._change$.asObservable().pipe(filter(w => w != null));
     }
     get defaultLang() {
-        return '';
+        return this._defaultLang;
     }
     get currentLang() {
-        return '';
+        return this._currentLang;
     }
-    use(lang) {
-        this.change$.next(lang);
+    get data() {
+        return this._data;
+    }
+    fanyi(path, params) {
+        let content = this._data[path] || '';
+        if (!content)
+            return path;
+        if (params) {
+            Object.keys(params).forEach(key => (content = content.replace(new RegExp(`{{${key}}}`, 'g'), `${params[key]}`)));
+        }
+        return content;
+    }
+    getDefaultLang() {
+        if (!this.injector.get(Platform).isBrowser) {
+            return '';
+        }
+        const settingsSrv = this.injector.get(SettingsService);
+        if (settingsSrv.layout.lang) {
+            return settingsSrv.layout.lang;
+        }
+        return (navigator.languages ? navigator.languages[0] : null) || navigator.language;
+    }
+}
+AlainI18nBaseService.decorators = [
+    { type: Injectable }
+];
+AlainI18nBaseService.ctorParameters = () => [
+    { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
+];
+class AlainI18NServiceFake extends AlainI18nBaseService {
+    use(lang, data) {
+        this._data = data;
+        this._currentLang = lang;
+        this._change$.next(lang);
     }
     getLangs() {
         return [];
     }
-    fanyi(key) {
-        return key;
-    }
 }
-AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(i0.ɵɵinject(i0.INJECTOR)); }, token: AlainI18NServiceFake, providedIn: "root" });
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -329,83 +437,6 @@ MenuService.decorators = [
 MenuService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ACLService, decorators: [{ type: Optional }] }
-];
-
-const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
-class SettingsService {
-    constructor(platform, KEYS) {
-        this.platform = platform;
-        this.KEYS = KEYS;
-        this.notify$ = new Subject();
-        this._app = null;
-        this._user = null;
-        this._layout = null;
-    }
-    getData(key) {
-        if (!this.platform.isBrowser) {
-            return null;
-        }
-        return JSON.parse(localStorage.getItem(key) || 'null') || null;
-    }
-    setData(key, value) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        localStorage.setItem(key, JSON.stringify(value));
-    }
-    get layout() {
-        if (!this._layout) {
-            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
-            this.setData(this.KEYS.layout, this._layout);
-        }
-        return this._layout;
-    }
-    get app() {
-        if (!this._app) {
-            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
-            this.setData(this.KEYS.app, this._app);
-        }
-        return this._app;
-    }
-    get user() {
-        if (!this._user) {
-            this._user = Object.assign({}, this.getData(this.KEYS.user));
-            this.setData(this.KEYS.user, this._user);
-        }
-        return this._user;
-    }
-    get notify() {
-        return this.notify$.asObservable();
-    }
-    setLayout(name, value) {
-        if (typeof name === 'string') {
-            this.layout[name] = value;
-        }
-        else {
-            this._layout = name;
-        }
-        this.setData(this.KEYS.layout, this._layout);
-        this.notify$.next({ type: 'layout', name, value });
-        return true;
-    }
-    setApp(value) {
-        this._app = value;
-        this.setData(this.KEYS.app, value);
-        this.notify$.next({ type: 'app', value });
-    }
-    setUser(value) {
-        this._user = value;
-        this.setData(this.KEYS.user, value);
-        this.notify$.next({ type: 'user', value });
-    }
-}
-SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
-SettingsService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-SettingsService.ctorParameters = () => [
-    { type: Platform },
-    { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
 ];
 
 const REP_MAX = 6;
@@ -2287,8 +2318,8 @@ class I18nPipe {
     constructor(i18n) {
         this.i18n = i18n;
     }
-    transform(key, interpolateParams, isSafe) {
-        return this.i18n.fanyi(key, interpolateParams, isSafe);
+    transform(key, params) {
+        return this.i18n.fanyi(key, params);
     }
 }
 I18nPipe.decorators = [
@@ -2343,11 +2374,11 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('12.0.0-beta.0-d01f32a1');
+const VERSION = new Version('12.0.0-beta.0-e68f26e9');
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_I18N_TOKEN_FACTORY, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW, I18nPipe as ɵa };
 //# sourceMappingURL=theme.js.map

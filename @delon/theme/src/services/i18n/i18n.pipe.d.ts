@@ -3,5 +3,5 @@ import { AlainI18NService } from './i18n';
 export declare class I18nPipe implements PipeTransform {
     private i18n;
     constructor(i18n: AlainI18NService);
-    transform(key: string, interpolateParams?: unknown, isSafe?: boolean): string;
+    transform(key: string, params?: Record<string, unknown>): string;
 }

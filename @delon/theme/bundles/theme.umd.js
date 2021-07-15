@@ -380,50 +380,184 @@
         return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
     }
 
-    var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainTranslatorToken', {
-        providedIn: 'root',
-        factory: ALAIN_I18N_TOKEN_FACTORY
-    });
-    function ALAIN_I18N_TOKEN_FACTORY() {
-        return new AlainI18NServiceFake();
-    }
-    var AlainI18NServiceFake = /** @class */ (function () {
-        function AlainI18NServiceFake() {
-            this.change$ = new rxjs.BehaviorSubject(null);
+    var ALAIN_SETTING_KEYS = new i0.InjectionToken('ALAIN_SETTING_KEYS');
+    var SettingsService = /** @class */ (function () {
+        function SettingsService(platform, KEYS) {
+            this.platform = platform;
+            this.KEYS = KEYS;
+            this.notify$ = new rxjs.Subject();
+            this._app = null;
+            this._user = null;
+            this._layout = null;
         }
-        Object.defineProperty(AlainI18NServiceFake.prototype, "change", {
+        SettingsService.prototype.getData = function (key) {
+            if (!this.platform.isBrowser) {
+                return null;
+            }
+            return JSON.parse(localStorage.getItem(key) || 'null') || null;
+        };
+        SettingsService.prototype.setData = function (key, value) {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            localStorage.setItem(key, JSON.stringify(value));
+        };
+        Object.defineProperty(SettingsService.prototype, "layout", {
             get: function () {
-                return this.change$.asObservable().pipe(operators.filter(function (w) { return w != null; }));
+                if (!this._layout) {
+                    this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
+                    this.setData(this.KEYS.layout, this._layout);
+                }
+                return this._layout;
             },
             enumerable: false,
             configurable: true
         });
-        Object.defineProperty(AlainI18NServiceFake.prototype, "defaultLang", {
+        Object.defineProperty(SettingsService.prototype, "app", {
             get: function () {
+                if (!this._app) {
+                    this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
+                    this.setData(this.KEYS.app, this._app);
+                }
+                return this._app;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SettingsService.prototype, "user", {
+            get: function () {
+                if (!this._user) {
+                    this._user = Object.assign({}, this.getData(this.KEYS.user));
+                    this.setData(this.KEYS.user, this._user);
+                }
+                return this._user;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(SettingsService.prototype, "notify", {
+            get: function () {
+                return this.notify$.asObservable();
+            },
+            enumerable: false,
+            configurable: true
+        });
+        SettingsService.prototype.setLayout = function (name, value) {
+            if (typeof name === 'string') {
+                this.layout[name] = value;
+            }
+            else {
+                this._layout = name;
+            }
+            this.setData(this.KEYS.layout, this._layout);
+            this.notify$.next({ type: 'layout', name: name, value: value });
+            return true;
+        };
+        SettingsService.prototype.setApp = function (value) {
+            this._app = value;
+            this.setData(this.KEYS.app, value);
+            this.notify$.next({ type: 'app', value: value });
+        };
+        SettingsService.prototype.setUser = function (value) {
+            this._user = value;
+            this.setData(this.KEYS.user, value);
+            this.notify$.next({ type: 'user', value: value });
+        };
+        return SettingsService;
+    }());
+    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+    SettingsService.decorators = [
+        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
+    ];
+    SettingsService.ctorParameters = function () { return [
+        { type: i1.Platform },
+        { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
+    ]; };
+
+    var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainI18nToken', {
+        providedIn: 'root',
+        factory: function () { return new AlainI18NServiceFake(i0.inject(i0.Injector)); }
+    });
+    var AlainI18nBaseService = /** @class */ (function () {
+        function AlainI18nBaseService(injector) {
+            this.injector = injector;
+            this._change$ = new rxjs.BehaviorSubject(null);
+            this._currentLang = '';
+            this._defaultLang = '';
+            this._data = {};
+            this._defaultLang = this.getDefaultLang();
+        }
+        Object.defineProperty(AlainI18nBaseService.prototype, "change", {
+            get: function () {
+                return this._change$.asObservable().pipe(operators.filter(function (w) { return w != null; }));
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(AlainI18nBaseService.prototype, "defaultLang", {
+            get: function () {
+                return this._defaultLang;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(AlainI18nBaseService.prototype, "currentLang", {
+            get: function () {
+                return this._currentLang;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(AlainI18nBaseService.prototype, "data", {
+            get: function () {
+                return this._data;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        AlainI18nBaseService.prototype.fanyi = function (path, params) {
+            var content = this._data[path] || '';
+            if (!content)
+                return path;
+            if (params) {
+                Object.keys(params).forEach(function (key) { return (content = content.replace(new RegExp("{{" + key + "}}", 'g'), "" + params[key])); });
+            }
+            return content;
+        };
+        AlainI18nBaseService.prototype.getDefaultLang = function () {
+            if (!this.injector.get(i1.Platform).isBrowser) {
                 return '';
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(AlainI18NServiceFake.prototype, "currentLang", {
-            get: function () {
-                return '';
-            },
-            enumerable: false,
-            configurable: true
-        });
-        AlainI18NServiceFake.prototype.use = function (lang) {
-            this.change$.next(lang);
+            }
+            var settingsSrv = this.injector.get(SettingsService);
+            if (settingsSrv.layout.lang) {
+                return settingsSrv.layout.lang;
+            }
+            return (navigator.languages ? navigator.languages[0] : null) || navigator.language;
+        };
+        return AlainI18nBaseService;
+    }());
+    AlainI18nBaseService.decorators = [
+        { type: i0.Injectable }
+    ];
+    AlainI18nBaseService.ctorParameters = function () { return [
+        { type: i0.Injector, decorators: [{ type: i0.Inject, args: [i0.Injector,] }] }
+    ]; };
+    var AlainI18NServiceFake = /** @class */ (function (_super) {
+        __extends(AlainI18NServiceFake, _super);
+        function AlainI18NServiceFake() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        AlainI18NServiceFake.prototype.use = function (lang, data) {
+            this._data = data;
+            this._currentLang = lang;
+            this._change$.next(lang);
         };
         AlainI18NServiceFake.prototype.getLangs = function () {
             return [];
         };
-        AlainI18NServiceFake.prototype.fanyi = function (key) {
-            return key;
-        };
         return AlainI18NServiceFake;
-    }());
-    AlainI18NServiceFake.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
+    }(AlainI18nBaseService));
+    AlainI18NServiceFake.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(i0__namespace.ɵɵinject(i0__namespace.INJECTOR)); }, token: AlainI18NServiceFake, providedIn: "root" });
     AlainI18NServiceFake.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -696,100 +830,6 @@
     MenuService.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [ALAIN_I18N_TOKEN,] }] },
         { type: i2.ACLService, decorators: [{ type: i0.Optional }] }
-    ]; };
-
-    var ALAIN_SETTING_KEYS = new i0.InjectionToken('ALAIN_SETTING_KEYS');
-    var SettingsService = /** @class */ (function () {
-        function SettingsService(platform, KEYS) {
-            this.platform = platform;
-            this.KEYS = KEYS;
-            this.notify$ = new rxjs.Subject();
-            this._app = null;
-            this._user = null;
-            this._layout = null;
-        }
-        SettingsService.prototype.getData = function (key) {
-            if (!this.platform.isBrowser) {
-                return null;
-            }
-            return JSON.parse(localStorage.getItem(key) || 'null') || null;
-        };
-        SettingsService.prototype.setData = function (key, value) {
-            if (!this.platform.isBrowser) {
-                return;
-            }
-            localStorage.setItem(key, JSON.stringify(value));
-        };
-        Object.defineProperty(SettingsService.prototype, "layout", {
-            get: function () {
-                if (!this._layout) {
-                    this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
-                    this.setData(this.KEYS.layout, this._layout);
-                }
-                return this._layout;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SettingsService.prototype, "app", {
-            get: function () {
-                if (!this._app) {
-                    this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
-                    this.setData(this.KEYS.app, this._app);
-                }
-                return this._app;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SettingsService.prototype, "user", {
-            get: function () {
-                if (!this._user) {
-                    this._user = Object.assign({}, this.getData(this.KEYS.user));
-                    this.setData(this.KEYS.user, this._user);
-                }
-                return this._user;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(SettingsService.prototype, "notify", {
-            get: function () {
-                return this.notify$.asObservable();
-            },
-            enumerable: false,
-            configurable: true
-        });
-        SettingsService.prototype.setLayout = function (name, value) {
-            if (typeof name === 'string') {
-                this.layout[name] = value;
-            }
-            else {
-                this._layout = name;
-            }
-            this.setData(this.KEYS.layout, this._layout);
-            this.notify$.next({ type: 'layout', name: name, value: value });
-            return true;
-        };
-        SettingsService.prototype.setApp = function (value) {
-            this._app = value;
-            this.setData(this.KEYS.app, value);
-            this.notify$.next({ type: 'app', value: value });
-        };
-        SettingsService.prototype.setUser = function (value) {
-            this._user = value;
-            this.setData(this.KEYS.user, value);
-            this.notify$.next({ type: 'user', value: value });
-        };
-        return SettingsService;
-    }());
-    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
-    SettingsService.decorators = [
-        { type: i0.Injectable, args: [{ providedIn: 'root' },] }
-    ];
-    SettingsService.ctorParameters = function () { return [
-        { type: i1.Platform },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
     ]; };
 
     var REP_MAX = 6;
@@ -2756,8 +2796,8 @@
         function I18nPipe(i18n) {
             this.i18n = i18n;
         }
-        I18nPipe.prototype.transform = function (key, interpolateParams, isSafe) {
-            return this.i18n.fanyi(key, interpolateParams, isSafe);
+        I18nPipe.prototype.transform = function (key, params) {
+            return this.i18n.fanyi(key, params);
         };
         return I18nPipe;
     }());
@@ -2820,9 +2860,9 @@
      */
 
     exports.ALAIN_I18N_TOKEN = ALAIN_I18N_TOKEN;
-    exports.ALAIN_I18N_TOKEN_FACTORY = ALAIN_I18N_TOKEN_FACTORY;
     exports.ALAIN_SETTING_KEYS = ALAIN_SETTING_KEYS;
     exports.AlainI18NServiceFake = AlainI18NServiceFake;
+    exports.AlainI18nBaseService = AlainI18nBaseService;
     exports.AlainThemeModule = AlainThemeModule;
     exports.BaseApi = BaseApi;
     exports.BaseHeaders = BaseHeaders;

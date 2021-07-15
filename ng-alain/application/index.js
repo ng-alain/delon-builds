@@ -67,13 +67,6 @@ function addDependenciesToPackageJson(options) {
         versions_1.UpgradeMainVersions(tree);
         // 3rd
         utils_1.addPackage(tree, ['screenfull@^5.1.0']);
-        // i18n
-        if (options.i18n) {
-            utils_1.addPackage(tree, [
-                `@ngx-translate/core@^13.0.0`,
-                `@ngx-translate/http-loader@^6.0.0`
-            ]);
-        }
         return tree;
     };
 }
@@ -232,30 +225,30 @@ function fixLang(options) {
 function fixLangInHtml(tree, p, langs) {
     let html = tree.get(p).content.toString('utf8');
     let matchCount = 0;
-    // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
-    // {{ (status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | translate }}
-    html = html.replace(/\{\{[ ]?\(status \? '([^']+)' : '([^']+)'\) \| translate \}\}/g, (_word, key1, key2) => {
+    // {{(status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | i18n }}
+    // {{ (status ? 'menu.fullscreen.exit' : 'menu.fullscreen') | i18n }}
+    html = html.replace(/\{\{[ ]?\(status \? '([^']+)' : '([^']+)'\) \| i18n \}\}/g, (_word, key1, key2) => {
         ++matchCount;
         return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
     });
-    // {{ 'app.register-result.msg' | translate: params }}
-    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| translate: [^ ]+ \}\}/g, (_word, key) => {
+    // {{ 'app.register-result.msg' | i18n: params }}
+    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| i18n: [^ ]+ \}\}/g, (_word, key) => {
         ++matchCount;
         return langs[key] || key;
     });
-    // {{ 'Please enter mobile number!' | translate }}
-    html = html.replace(/\{\{[ ]?'([^']+)' \| translate[ ]?\}\}/g, (_word, key) => {
+    // {{ 'Please enter mobile number!' | i18n }}
+    html = html.replace(/\{\{[ ]?'([^']+)' \| i18n[ ]?\}\}/g, (_word, key) => {
         ++matchCount;
         return langs[key] || key;
     });
-    // [nzTitle]="'app.login.tab-login-credentials' | translate"
-    html = html.replace(/'([^']+)' \| translate[ ]?/g, (_word, key) => {
+    // [nzTitle]="'app.login.tab-login-credentials' | i18n"
+    html = html.replace(/'([^']+)' \| i18n[ ]?/g, (_word, key) => {
         ++matchCount;
         const value = langs[key] || key;
         return `'${value}'`;
     });
-    // 'app.register.get-verification-code' | translate
-    html = html.replace(/'([^']+)' \| translate/g, (_word, key) => {
+    // 'app.register.get-verification-code' | i18n
+    html = html.replace(/'([^']+)' \| i18n/g, (_word, key) => {
         ++matchCount;
         return langs[key] || key;
     });

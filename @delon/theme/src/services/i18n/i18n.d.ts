@@ -1,5 +1,5 @@
-import { InjectionToken } from '@angular/core';
-import { Observable } from 'rxjs';
+import { InjectionToken, Injector } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainI18NService {
     [key: string]: NzSafeAny;
@@ -26,10 +26,9 @@ export interface AlainI18NService {
      *
      * 变更语言
      *
-     * @param lang 语言代码
-     * @param emit 是否触发 `change`，默认：true
+     * @param emit 是否触发 `change`，默认：true ; Should be removed, please use `change` event instead.
      */
-    use(lang: string, emit?: boolean): void;
+    use(lang: string, data: Record<string, string>): void;
     /**
      * Return to the current language list
      *
@@ -37,20 +36,31 @@ export interface AlainI18NService {
      */
     getLangs(): NzSafeAny[];
     /**
-     * 翻译
-     * - `params` 模板所需要的参数对象
-     * - `isSafe` 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`
+     * Translate 翻译
+     *
+     * @param params 模板所需要的参数对象
+     * @param isSafe 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`; Should be removed, If you need SafeHtml support, please use `| html` pipe instead.
      */
-    fanyi(key: string, params?: unknown, isSafe?: boolean): string;
+    fanyi(path: string, params?: unknown): string;
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
-export declare function ALAIN_I18N_TOKEN_FACTORY(): AlainI18NServiceFake;
-export declare class AlainI18NServiceFake implements AlainI18NService {
-    private change$;
+export declare abstract class AlainI18nBaseService implements AlainI18NService {
+    protected readonly injector: Injector;
+    protected _change$: BehaviorSubject<string | null>;
+    protected _currentLang: string;
+    protected _defaultLang: string;
+    protected _data: Record<string, string>;
     get change(): Observable<string>;
     get defaultLang(): string;
     get currentLang(): string;
-    use(lang: string): void;
+    get data(): Record<string, string>;
+    constructor(injector: Injector);
+    abstract use(lang: string, data: Record<string, string>): void;
+    abstract getLangs(): NzSafeAny[];
+    fanyi(path: string, params?: Record<string, unknown>): string;
+    protected getDefaultLang(): string;
+}
+export declare class AlainI18NServiceFake extends AlainI18nBaseService {
+    use(lang: string, data: Record<string, string>): void;
     getLangs(): NzSafeAny[];
-    fanyi(key: string): string;
 }
