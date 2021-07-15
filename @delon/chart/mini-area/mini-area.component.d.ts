@@ -5,7 +5,6 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export interface G2MiniAreaData {
     x: any;
     y: any;
-    color?: string | null;
     [key: string]: any;
 }
 export interface G2MiniAreaClickItem {

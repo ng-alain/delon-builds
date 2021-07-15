@@ -367,10 +367,7 @@
             chart
                 .interval()
                 .position('x*y')
-                .color('x*y', function (x, y) {
-                var colorItem = _this.data.find(function (w) { return w.x === x && w.y === y; });
-                return colorItem && colorItem.color ? colorItem.color : color;
-            })
+                .color(color)
                 .size(borderWidth)
                 .tooltip('x*y', function (x, y) { return ({ name: x, value: y + yTooltipSuffix }); });
             chart.on("interval:click", function (ev) {
