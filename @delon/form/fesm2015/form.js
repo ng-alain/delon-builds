@@ -483,7 +483,7 @@ class FormProperty {
                         const valueCheck = property.valueChanges.pipe(map(res => {
                             const vi = visibleIf[dependencyPath];
                             if (typeof vi === 'function') {
-                                return vi(res.value, property);
+                                return vi(res.value);
                             }
                             if (vi.indexOf('$ANY$') !== -1) {
                                 return res.value.length > 0;

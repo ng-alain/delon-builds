@@ -1,7 +1,6 @@
 import { NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { ACLCanType } from '@delon/acl';
 import { ErrorSchema } from '../errors';
-import type { FormProperty } from '../model/form.property';
 export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 export declare type SFTrigger = 'click' | 'focus' | 'hover';
 export declare type SFLSSize = 'large' | 'small';
@@ -144,10 +143,10 @@ export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema
      * 有效格式包括：
      * - `visibleIf: { shown: [ true ] }`：当 `shown: true` 时才显示当前属性
      * - `visibleIf: { shown: [ '$ANY$' ] }`：当 `shown` 包括任意值时
-     * - `visibleIf: { shown: (value: any, property: FormProperty) => value > 0 }`：复杂表达式
+     * - `visibleIf: { shown: (value: any) => value > 0 }`：复杂表达式
      */
     visibleIf?: {
-        [key: string]: any[] | ((value: any, property: FormProperty) => boolean);
+        [key: string]: any[] | ((value: any) => boolean);
     };
     /**
      * ACL 配置
