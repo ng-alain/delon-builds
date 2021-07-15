@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Inject, inject, Injector, Optional, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
-import { Subject, BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
 import * as i2 from '@delon/acl';
 import { ACLService } from '@delon/acl';
@@ -52,95 +52,16 @@ function preloaderFinished() {
     };
 }
 
-const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
-class SettingsService {
-    constructor(platform, KEYS) {
-        this.platform = platform;
-        this.KEYS = KEYS;
-        this.notify$ = new Subject();
-        this._app = null;
-        this._user = null;
-        this._layout = null;
-    }
-    getData(key) {
-        if (!this.platform.isBrowser) {
-            return null;
-        }
-        return JSON.parse(localStorage.getItem(key) || 'null') || null;
-    }
-    setData(key, value) {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        localStorage.setItem(key, JSON.stringify(value));
-    }
-    get layout() {
-        if (!this._layout) {
-            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
-            this.setData(this.KEYS.layout, this._layout);
-        }
-        return this._layout;
-    }
-    get app() {
-        if (!this._app) {
-            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
-            this.setData(this.KEYS.app, this._app);
-        }
-        return this._app;
-    }
-    get user() {
-        if (!this._user) {
-            this._user = Object.assign({}, this.getData(this.KEYS.user));
-            this.setData(this.KEYS.user, this._user);
-        }
-        return this._user;
-    }
-    get notify() {
-        return this.notify$.asObservable();
-    }
-    setLayout(name, value) {
-        if (typeof name === 'string') {
-            this.layout[name] = value;
-        }
-        else {
-            this._layout = name;
-        }
-        this.setData(this.KEYS.layout, this._layout);
-        this.notify$.next({ type: 'layout', name, value });
-        return true;
-    }
-    setApp(value) {
-        this._app = value;
-        this.setData(this.KEYS.app, value);
-        this.notify$.next({ type: 'app', value });
-    }
-    setUser(value) {
-        this._user = value;
-        this.setData(this.KEYS.user, value);
-        this.notify$.next({ type: 'user', value });
-    }
-}
-SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
-SettingsService.decorators = [
-    { type: Injectable, args: [{ providedIn: 'root' },] }
-];
-SettingsService.ctorParameters = () => [
-    { type: Platform },
-    { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
-];
-
 const ALAIN_I18N_TOKEN = new InjectionToken('alainI18nToken', {
     providedIn: 'root',
-    factory: () => new AlainI18NServiceFake(inject(Injector))
+    factory: () => new AlainI18NServiceFake()
 });
 class AlainI18nBaseService {
-    constructor(injector) {
-        this.injector = injector;
+    constructor() {
         this._change$ = new BehaviorSubject(null);
         this._currentLang = '';
         this._defaultLang = '';
         this._data = {};
-        this._defaultLang = this.getDefaultLang();
     }
     get change() {
         return this._change$.asObservable().pipe(filter(w => w != null));
@@ -163,22 +84,9 @@ class AlainI18nBaseService {
         }
         return content;
     }
-    getDefaultLang() {
-        if (!this.injector.get(Platform).isBrowser) {
-            return '';
-        }
-        const settingsSrv = this.injector.get(SettingsService);
-        if (settingsSrv.layout.lang) {
-            return settingsSrv.layout.lang;
-        }
-        return (navigator.languages ? navigator.languages[0] : null) || navigator.language;
-    }
 }
 AlainI18nBaseService.decorators = [
     { type: Injectable }
-];
-AlainI18nBaseService.ctorParameters = () => [
-    { type: Injector, decorators: [{ type: Inject, args: [Injector,] }] }
 ];
 class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang, data) {
@@ -190,7 +98,7 @@ class AlainI18NServiceFake extends AlainI18nBaseService {
         return [];
     }
 }
-AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(i0.ɵɵinject(i0.INJECTOR)); }, token: AlainI18NServiceFake, providedIn: "root" });
+AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -437,6 +345,83 @@ MenuService.decorators = [
 MenuService.ctorParameters = () => [
     { type: undefined, decorators: [{ type: Optional }, { type: Inject, args: [ALAIN_I18N_TOKEN,] }] },
     { type: ACLService, decorators: [{ type: Optional }] }
+];
+
+const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
+class SettingsService {
+    constructor(platform, KEYS) {
+        this.platform = platform;
+        this.KEYS = KEYS;
+        this.notify$ = new Subject();
+        this._app = null;
+        this._user = null;
+        this._layout = null;
+    }
+    getData(key) {
+        if (!this.platform.isBrowser) {
+            return null;
+        }
+        return JSON.parse(localStorage.getItem(key) || 'null') || null;
+    }
+    setData(key, value) {
+        if (!this.platform.isBrowser) {
+            return;
+        }
+        localStorage.setItem(key, JSON.stringify(value));
+    }
+    get layout() {
+        if (!this._layout) {
+            this._layout = Object.assign({ fixed: true, collapsed: false, boxed: false, lang: null }, this.getData(this.KEYS.layout));
+            this.setData(this.KEYS.layout, this._layout);
+        }
+        return this._layout;
+    }
+    get app() {
+        if (!this._app) {
+            this._app = Object.assign({ year: new Date().getFullYear() }, this.getData(this.KEYS.app));
+            this.setData(this.KEYS.app, this._app);
+        }
+        return this._app;
+    }
+    get user() {
+        if (!this._user) {
+            this._user = Object.assign({}, this.getData(this.KEYS.user));
+            this.setData(this.KEYS.user, this._user);
+        }
+        return this._user;
+    }
+    get notify() {
+        return this.notify$.asObservable();
+    }
+    setLayout(name, value) {
+        if (typeof name === 'string') {
+            this.layout[name] = value;
+        }
+        else {
+            this._layout = name;
+        }
+        this.setData(this.KEYS.layout, this._layout);
+        this.notify$.next({ type: 'layout', name, value });
+        return true;
+    }
+    setApp(value) {
+        this._app = value;
+        this.setData(this.KEYS.app, value);
+        this.notify$.next({ type: 'app', value });
+    }
+    setUser(value) {
+        this._user = value;
+        this.setData(this.KEYS.user, value);
+        this.notify$.next({ type: 'user', value });
+    }
+}
+SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+SettingsService.decorators = [
+    { type: Injectable, args: [{ providedIn: 'root' },] }
+];
+SettingsService.ctorParameters = () => [
+    { type: Platform },
+    { type: undefined, decorators: [{ type: Inject, args: [ALAIN_SETTING_KEYS,] }] }
 ];
 
 const REP_MAX = 6;
@@ -2374,7 +2359,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('12.0.0-beta.0-fb49278d');
+const VERSION = new Version('12.0.0-beta.0-e27e12be');
 
 /**
  * Generated bundle index. Do not edit.

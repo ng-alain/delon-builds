@@ -1,4 +1,4 @@
-import { InjectionToken, Injector } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainI18NService {
@@ -28,7 +28,7 @@ export interface AlainI18NService {
      *
      * @param emit 是否触发 `change`，默认：true ; Should be removed, please use `change` event instead.
      */
-    use(lang: string, data: Record<string, string>): void;
+    use(lang: string, data?: Record<string, string>): void;
     /**
      * Return to the current language list
      *
@@ -45,7 +45,6 @@ export interface AlainI18NService {
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 export declare abstract class AlainI18nBaseService implements AlainI18NService {
-    protected readonly injector: Injector;
     protected _change$: BehaviorSubject<string | null>;
     protected _currentLang: string;
     protected _defaultLang: string;
@@ -54,11 +53,9 @@ export declare abstract class AlainI18nBaseService implements AlainI18NService {
     get defaultLang(): string;
     get currentLang(): string;
     get data(): Record<string, string>;
-    constructor(injector: Injector);
-    abstract use(lang: string, data: Record<string, string>): void;
+    abstract use(lang: string, data?: Record<string, string>): void;
     abstract getLangs(): NzSafeAny[];
     fanyi(path: string, params?: Record<string, unknown>): string;
-    protected getDefaultLang(): string;
 }
 export declare class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang: string, data: Record<string, string>): void;
