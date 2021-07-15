@@ -829,12 +829,12 @@
                 var propertiesBinding = [];
                 var _loop_1 = function (dependencyPath) {
                     if (visibleIf.hasOwnProperty(dependencyPath)) {
-                        var property = this_1.searchProperty(dependencyPath);
-                        if (property) {
-                            var valueCheck = property.valueChanges.pipe(operators.map(function (res) {
+                        var property_1 = this_1.searchProperty(dependencyPath);
+                        if (property_1) {
+                            var valueCheck = property_1.valueChanges.pipe(operators.map(function (res) {
                                 var vi = visibleIf[dependencyPath];
                                 if (typeof vi === 'function') {
-                                    return vi(res.value);
+                                    return vi(res.value, property_1);
                                 }
                                 if (vi.indexOf('$ANY$') !== -1) {
                                     return res.value.length > 0;
@@ -843,7 +843,7 @@
                                     return vi.indexOf(res.value) !== -1;
                                 }
                             }));
-                            var visibilityCheck = property._visibilityChanges;
+                            var visibilityCheck = property_1._visibilityChanges;
                             var and = rxjs.combineLatest([valueCheck, visibilityCheck]).pipe(operators.map(function (results) { return results[0] && results[1]; }));
                             propertiesBinding.push(and);
                         }
