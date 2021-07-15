@@ -30907,9 +30907,6 @@ body {
 .sv__item-fixed .sv__detail {
   flex: 1 0 0;
 }
-.sv__item + .ant-divider {
-  margin: 0 0 8px 0;
-}
 .sv__title {
   display: block;
   float: none;
@@ -31058,9 +31055,6 @@ body {
   display: inline-block;
   content: '';
 }
-.se__item + .ant-divider {
-  margin: 0 0 16px 0;
-}
 .se__label {
   display: table-cell;
   flex: 0 0 auto;
@@ -31085,10 +31079,6 @@ body {
 .se__compact > .se__title,
 .se__compact > .se__item {
   margin-bottom: 8px;
-}
-.se__compact > .se__title + .ant-divider,
-.se__compact > .se__item + .ant-divider {
-  margin: 0 0 8px 0;
 }
 .se__compact .ant-form-item-extra {
   display: none;
