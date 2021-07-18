@@ -25,6 +25,12 @@ export interface Environment {
      * 定义在 `global-config.module.ts` 导入的模块列表
      */
     modules?: Array<Type<NzSafeAny> | ModuleWithProviders<NzSafeAny> | NzSafeAny[]>;
+    /**
+     * Other custom configuration for project about environment
+     *
+     * 为项目定义的其他与环境相关的自定义配置
+     */
+    config: any;
 }
 export interface ApiConfig {
     /**
