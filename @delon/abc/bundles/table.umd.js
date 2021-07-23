@@ -2138,7 +2138,10 @@
          */
         STComponent.prototype.export = function (newData, opt) {
             var _this = this;
-            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(newData || this._data)).subscribe(function (res) { return _this.exportSrv.export(Object.assign(Object.assign({ columens: _this._columns }, opt), { data: res })); });
+            var data = Array.isArray(newData)
+                ? this.dataSource.optimizeData({ columns: this._columns, result: newData })
+                : this._data;
+            (newData === true ? rxjs.from(this.filteredData) : rxjs.of(data)).subscribe(function (res) { return _this.exportSrv.export(Object.assign(Object.assign({ columens: _this._columns }, opt), { data: res })); });
         };
         // #endregion
         // #region resizable
