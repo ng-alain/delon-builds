@@ -1672,10 +1672,7 @@ class STComponent {
      * @param opt 额外参数
      */
     export(newData, opt) {
-        const data = Array.isArray(newData)
-            ? this.dataSource.optimizeData({ columns: this._columns, result: newData })
-            : this._data;
-        (newData === true ? from(this.filteredData) : of(data)).subscribe((res) => this.exportSrv.export(Object.assign(Object.assign({ columens: this._columns }, opt), { data: res })));
+        (newData === true ? from(this.filteredData) : of(newData || this._data)).subscribe((res) => this.exportSrv.export(Object.assign(Object.assign({ columens: this._columns }, opt), { data: res })));
     }
     // #endregion
     // #region resizable
