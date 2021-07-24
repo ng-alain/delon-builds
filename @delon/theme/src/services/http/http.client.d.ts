@@ -1,4 +1,4 @@
-import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
@@ -49,6 +49,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **GET Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
@@ -59,6 +60,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<T>>;
     /**
      * **GET Request** Return a `HttpResponse<any>` type / 返回一个 `HttpResponse<any>` 类型
@@ -69,6 +71,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<any>>;
     /**
      * **GET Request** Return a `HttpResponse<T>` type / 返回一个 `HttpResponse<T>` 类型
@@ -79,6 +82,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<T>>;
     /**
      * **GET Request** Return a `any` type / 返回一个 `any` 类型
@@ -89,6 +93,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * **GET Request** Return a generic type / 返回一个泛类型
@@ -99,6 +104,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **POST Request** Return a `string` type / 返回一个 `string` 类型
@@ -109,6 +115,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **POST Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
@@ -119,6 +126,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<T>>;
     /**
      * **POST Request** Return a `HttpResponse<any>` type / 返回一个 `HttpResponse<any>` 类型
@@ -129,6 +137,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<any>>;
     /**
      * **POST Request** Return a `any` type / 返回一个 `any` 类型
@@ -139,6 +148,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * **POST Request** Return a JSON type / 返回一个 `JSON` 类型
@@ -149,6 +159,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **DELETE Request** Return a `string` type / 返回一个 `string` 类型
@@ -159,6 +170,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **DELETE Request** Return a `JSON` type / 返回一个 `JSON` 类型
@@ -169,6 +181,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **DELETE Request** Return a `any` type / 返回一个 `any` 类型
@@ -179,6 +192,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * c返回一个泛类型
@@ -189,6 +203,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **JSONP Request**
@@ -205,6 +220,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **PATCH Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
@@ -215,6 +231,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **PATCH Request** Return a `any` type / 返回一个 `any` 类型
@@ -225,6 +242,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * **PATCH Request** Return a `JSON` type / 返回一个 `JSON` 类型
@@ -235,6 +253,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **PUT Request** Return a `string` type / 返回一个 `string` 类型
@@ -245,6 +264,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **PUT Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
@@ -255,6 +275,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **PUT Request** Return a `any` type / 返回一个 `any` 类型
@@ -265,6 +286,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * **PUT Request** Return a `JSON` type / 返回一个 `JSON` 类型
@@ -275,6 +297,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **Form Request** Return a `string` type / 返回一个 `string` 类型
@@ -285,6 +308,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **Form Request** Return a `HttpEvent<T>` type / 返回一个 `HttpEvent<T>` 类型
@@ -295,6 +319,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<T>>;
     /**
      * **Form Request** Return a `HttpResponse<JSON>` type / 返回一个 `HttpResponse<JSON>` 类型
@@ -305,6 +330,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<any>>;
     /**
      * **Form Request** Return a `any` type / 返回一个 `any` 类型
@@ -315,6 +341,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
     /**
      * **Form Request** Return a `JSON` type / 返回一个 `JSON` 类型
@@ -325,6 +352,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<T>;
     /**
      * **Request** Return a `ArrayBuffer` type / 返回一个 `ArrayBuffer` 类型
@@ -337,6 +365,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'arraybuffer';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<ArrayBuffer>;
     /**
      * **Request** Return a `Blob` type / 返回一个 `Blob` 类型
@@ -349,6 +378,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'blob';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<Blob>;
     /**
      * **Request** Return a `string` type / 返回一个 `string` 类型
@@ -361,6 +391,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<string>;
     /**
      * **Request** Return a `HttpEvent<ArrayBuffer>` type / 返回一个 `HttpEvent<ArrayBuffer>` 类型
@@ -373,6 +404,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'arraybuffer';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<ArrayBuffer>>;
     /**
      * **Request** Return a `HttpEvent<Blob>` type / 返回一个 `HttpEvent<Blob>` 类型
@@ -385,6 +417,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'blob';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<Blob>>;
     /**
      * **Request** Return a `HttpEvent<string>` type / 返回一个 `HttpEvent<string>` 类型
@@ -397,6 +430,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<string>>;
     /**
      * **Request** Return a `HttpEvent<any>` type / 返回一个 `HttpEvent<any>` 类型
@@ -409,6 +443,7 @@ export declare class _HttpClient {
         observe: 'events';
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<any>>;
     /**
      * **Request** Return a `HttpEvent<R>` type / 返回一个 `HttpEvent<R>` 类型
@@ -421,6 +456,7 @@ export declare class _HttpClient {
         observe: 'events';
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpEvent<R>>;
     /**
      * **Request** Return a `HttpResponse<ArrayBuffer>` type / 返回一个 `HttpResponse<ArrayBuffer>` 类型
@@ -433,6 +469,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'arraybuffer';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<ArrayBuffer>>;
     /**
      * **Request** Return a `HttpResponse<Blob>` type / 返回一个 `HttpResponse<Blob>` 类型
@@ -445,6 +482,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'blob';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<Blob>>;
     /**
      * **Request** Return a `HttpResponse<string>` type / 返回一个 `HttpResponse<string>` 类型
@@ -457,6 +495,7 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType: 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<string>>;
     /**
      * **Request** Return a `HttpResponse<Object>` type / 返回一个 `HttpResponse<Object>` 类型
@@ -469,6 +508,7 @@ export declare class _HttpClient {
         observe: 'response';
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<NzSafeAny>>;
     /**
      * **Request** Return a `HttpResponse<R>` type / 返回一个 `HttpResponse<R>` 类型
@@ -481,6 +521,7 @@ export declare class _HttpClient {
         observe: 'response';
         responseType?: 'json';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<HttpResponse<R>>;
     /**
      * **Request** Return a `HttpResponse<Object>` type / 返回一个 `HttpResponse<Object>` 类型
@@ -493,6 +534,7 @@ export declare class _HttpClient {
         responseType?: 'json';
         reportProgress?: boolean;
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<Record<string, unknown>>;
     /**
      * **Request** Return a `R` type / 返回一个 `R` 类型
@@ -505,6 +547,7 @@ export declare class _HttpClient {
         responseType?: 'json';
         reportProgress?: boolean;
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<R>;
     /**
      * **Request** Return a `any` type / 返回一个 `any` 类型
@@ -517,5 +560,6 @@ export declare class _HttpClient {
         reportProgress?: boolean;
         responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
         withCredentials?: boolean;
+        context?: HttpContext;
     }): Observable<any>;
 }
