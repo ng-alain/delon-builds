@@ -1,6 +1,7 @@
 import { ModuleWithProviders, Type } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface Environment {
+    [key: string]: NzSafeAny;
     /**
      * Whether production environment
      *
@@ -27,6 +28,7 @@ export interface Environment {
     modules?: Array<Type<NzSafeAny> | ModuleWithProviders<NzSafeAny> | NzSafeAny[]>;
 }
 export interface ApiConfig {
+    [key: string]: NzSafeAny;
     /**
      * Specify API prefix
      *
