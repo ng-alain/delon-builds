@@ -141,12 +141,11 @@ function finished() {
         context.logger.info(color_1.colors.green(`  ✓  Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2027`));
     };
 }
-function v12Rule() {
+function v12Rule(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        utils_1.logStart(context, `Upgrade @delon/* version number`);
+        utils_1.logStart(context, `Upgrade @delon/* version number ${JSON.stringify(options)}`);
         versions_1.UpgradeMainVersions(tree);
-        return schematics_1.chain([
-            fixAngularJson(context),
+        const rules = [
             migrateESLint(tree, context),
             versions_1.addESLintRule(context),
             upgradeThirdVersion(),
@@ -154,7 +153,11 @@ function v12Rule() {
             upgradeHusky(),
             formatJson(),
             finished()
-        ]);
+        ];
+        if (options.fixAngularJson !== false) {
+            rules.splice(0, 0, fixAngularJson(context));
+        }
+        return schematics_1.chain(rules);
     });
 }
 exports.v12Rule = v12Rule;

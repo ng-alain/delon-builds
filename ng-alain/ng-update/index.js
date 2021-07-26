@@ -17,8 +17,9 @@ function updateToV117() {
     return schematics_2.chain([v117_1.v117Rule]);
 }
 exports.updateToV117 = updateToV117;
-function updateToV12() {
-    return schematics_2.chain([v12_1.v12Rule, schematics_1.createMigrationSchematicRule(schematics_1.TargetVersion.V12, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
+function updateToV12(schema) {
+    const rule = v12_1.v12Rule(schema);
+    return schematics_2.chain([rule, schematics_1.createMigrationSchematicRule(schematics_1.TargetVersion.V12, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
 }
 exports.updateToV12 = updateToV12;
 /** Post-update schematic to be called when update is finished. */
