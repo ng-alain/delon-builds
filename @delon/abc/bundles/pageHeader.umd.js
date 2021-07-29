@@ -367,8 +367,8 @@
             settings.notify
                 .pipe(operators.takeUntil(this.destroy$), operators.filter(function (w) { return _this.affix && w.type === 'layout' && w.name === 'collapsed'; }))
                 .subscribe(function () { return _this.affix.updatePosition({}); });
-            rxjs.merge(menuSrv.change.pipe(operators.filter(function () { return _this.inited; })), router$1.events.pipe(operators.filter(function (ev) { return ev instanceof router.NavigationEnd; })), i18nSrv.change)
-                .pipe(operators.takeUntil(this.destroy$))
+            rxjs.merge(menuSrv.change, router$1.events.pipe(operators.filter(function (ev) { return ev instanceof router.NavigationEnd; })), i18nSrv.change)
+                .pipe(operators.filter(function () { return _this.inited; }), operators.takeUntil(this.destroy$))
                 .subscribe(function () { return _this.refresh(); });
         }
         Object.defineProperty(PageHeaderComponent.prototype, "menus", {

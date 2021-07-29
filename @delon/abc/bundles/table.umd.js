@@ -781,7 +781,6 @@
                 item._className = item.className || (item._isTruncate ? 'text-truncate' : null);
                 // width
                 if (typeof item.width === 'number') {
-                    item._width = item.width;
                     item.width = item.width + "px";
                 }
                 item._left = false;
@@ -1350,13 +1349,8 @@
             var dataLen = opt.data.length;
             var validColCount = 0;
             var loseCount = 0;
-            var columns = opt.columens;
-            if (columns.findIndex(function (w) { return w._width != null; }) !== -1) {
-                // wpx: width in screen pixels https://github.com/SheetJS/sheetjs#column-properties
-                sheet['!cols'] = columns.map(function (col) { return ({ wpx: col._width }); });
-            }
-            for (var colIdx = 0; colIdx < columns.length; colIdx++) {
-                var col = columns[colIdx];
+            for (var colIdx = 0; colIdx < opt.columens.length; colIdx++) {
+                var col = opt.columens[colIdx];
                 if (col.exported === false || !col.index || !(!col.buttons || col.buttons.length === 0)) {
                     ++loseCount;
                     continue;
