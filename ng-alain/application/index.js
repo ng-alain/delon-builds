@@ -275,8 +275,12 @@ function fixVsCode() {
 }
 function install() {
     return (_host, context) => {
-        const installId = context.addTask(new tasks_1.NodePackageInstallTask());
-        context.addTask(new tasks_1.RunSchematicTask('ng-add-finished', {}), [installId]);
+        context.addTask(new tasks_1.NodePackageInstallTask());
+    };
+}
+function finished() {
+    return () => {
+        spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
     };
 }
 function default_1(options) {
@@ -304,7 +308,8 @@ function default_1(options) {
             fixLang(options),
             fixVsCode(),
             fixAngularJson(options),
-            install()
+            install(),
+            finished()
         ]);
     });
 }
