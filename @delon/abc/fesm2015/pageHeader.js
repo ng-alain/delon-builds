@@ -55,8 +55,8 @@ class PageHeaderComponent {
         settings.notify
             .pipe(takeUntil(this.destroy$), filter(w => this.affix && w.type === 'layout' && w.name === 'collapsed'))
             .subscribe(() => this.affix.updatePosition({}));
-        merge(menuSrv.change, router.events.pipe(filter(ev => ev instanceof NavigationEnd)), i18nSrv.change)
-            .pipe(filter(() => this.inited), takeUntil(this.destroy$))
+        merge(menuSrv.change.pipe(filter(() => this.inited)), router.events.pipe(filter(ev => ev instanceof NavigationEnd)), i18nSrv.change)
+            .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.refresh());
     }
     get menus() {
