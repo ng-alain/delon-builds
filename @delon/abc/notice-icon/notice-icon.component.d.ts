@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { NgClassType } from 'ng-zorro-antd/core/types';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
@@ -14,12 +15,8 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     count: number;
     loading: boolean;
     popoverVisible: boolean;
-    btnClass?: string | string[] | Set<string> | {
-        [klass: string]: any;
-    };
-    btnIconClass?: string | string[] | Set<string> | {
-        [klass: string]: any;
-    };
+    btnClass?: NgClassType;
+    btnIconClass?: NgClassType;
     readonly select: EventEmitter<NoticeIconSelect>;
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;

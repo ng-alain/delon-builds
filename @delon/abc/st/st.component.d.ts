@@ -117,7 +117,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     virtualItemSize: number;
     virtualMaxBufferPx: number;
     virtualMinBufferPx: number;
-    customRequest?: (options: STCustomRequestOptions) => Observable<any>;
+    customRequest?: (options: STCustomRequestOptions) => Observable<NzSafeAny>;
     virtualForTrackBy: TrackByFunction<STData>;
     /**
      * Get the number of the current page
@@ -128,7 +128,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      */
     get list(): STData[];
     private get routerState();
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: any, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
     private setCog;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
@@ -203,7 +203,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         refreshSchema?: boolean;
         emitReload?: boolean;
     }): this;
-    sort(col: _STColumn, idx: number, value: any): void;
+    sort(col: _STColumn, idx: number, value: NzSafeAny): void;
     clearSort(): this;
     private handleFilter;
     _filterConfirm(col: _STColumn): void;

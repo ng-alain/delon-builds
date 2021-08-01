@@ -1867,6 +1867,7 @@ DrawerHelper.ctorParameters = () => [
     { type: NzDrawerService }
 ];
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 封装HttpClient，主要解决：
  * + 优化HttpClient在参数上便利性
@@ -2359,7 +2360,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('12.0.2-444f6c02');
+const VERSION = new Version('12.0.2-8cae43d9');
 
 /**
  * Generated bundle index. Do not edit.

@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface XlsxExportOptions {
     /**
      * worksheets in the workbook, e.g:
@@ -5,21 +6,21 @@ export interface XlsxExportOptions {
      * - `[['1'], [1]]`
      */
     sheets: {
-        [sheet: string]: any;
+        [sheet: string]: NzSafeAny;
     } | XlsxExportSheet[];
     /** save file name, default: `export.xlsx` */
     filename?: string;
-    opts?: any;
+    opts?: NzSafeAny;
     /** triggers when saveas */
-    callback?: (wb: any) => void;
+    callback?: (wb: NzSafeAny) => void;
 }
 export interface XlsxExportSheet {
     /** arrays to a worksheet */
-    data: any[][];
+    data: NzSafeAny[][];
     /** sheet name */
     name?: string;
 }
 export interface XlsxExportResult {
     filename: string;
-    wb: any;
+    wb: NzSafeAny;
 }

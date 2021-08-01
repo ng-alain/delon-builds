@@ -2311,6 +2311,7 @@
         { type: i1$5.NzDrawerService }
     ]; };
 
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     /**
      * 封装HttpClient，主要解决：
      * + 优化HttpClient在参数上便利性

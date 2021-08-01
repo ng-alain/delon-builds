@@ -1,11 +1,12 @@
 import { EventEmitter } from '@angular/core';
 import type { Event } from '@antv/g2';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NumberInput } from '@delon/util/decorator';
 export interface G2TagCloudData {
     value?: number;
     name?: string;
-    [key: string]: any;
+    [key: string]: NzSafeAny;
 }
 export interface G2TagCloudClickItem {
     item: G2TagCloudData;

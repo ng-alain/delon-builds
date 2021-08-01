@@ -1,6 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainI18NService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
@@ -49,7 +50,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     }>;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
-    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: any, platform: Platform);
+    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: NzSafeAny, platform: Platform);
     private genTit;
     private get curUrl();
     private genCurItem;
@@ -59,7 +60,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     contextMenuChange(res: ReuseContextCloseEvent): void;
     _to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
-    activate(instance: any): void;
+    activate(instance: NzSafeAny): void;
     ngOnInit(): void;
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;

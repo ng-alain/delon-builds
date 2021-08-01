@@ -1,6 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
 export interface OnboardingConfig {
     /**
@@ -77,10 +78,10 @@ export interface OnboardingItem {
      * Callback before entering, triggered when call `next` operates
      * - `number` indicate delay
      */
-    before?: Observable<any> | number;
+    before?: Observable<NzSafeAny> | number;
     /**
      * Callback after entering, triggered when call `prev` operates
      * - `number` indicate delay
      */
-    after?: Observable<any> | number;
+    after?: Observable<NzSafeAny> | number;
 }

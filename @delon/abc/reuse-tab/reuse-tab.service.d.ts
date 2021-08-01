@@ -144,7 +144,7 @@ export declare class ReuseTabService implements OnDestroy {
     /**
      * 刷新，触发一个 refresh 类型事件
      */
-    refresh(data?: any): void;
+    refresh(data?: NzSafeAny): void;
     private destroy;
     private di;
     constructor(injector: Injector, menuService: MenuService);
@@ -159,7 +159,7 @@ export declare class ReuseTabService implements OnDestroy {
     /**
      * 存储
      */
-    store(_snapshot: ActivatedRouteSnapshot, _handle: any): void;
+    store(_snapshot: ActivatedRouteSnapshot, _handle: NzSafeAny): void;
     /**
      * 决定是否允许应用缓存数据
      */

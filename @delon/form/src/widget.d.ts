@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { NgClassType, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LocaleData } from '@delon/theme';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
@@ -23,7 +23,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     schema: SFSchema;
     ui: UIT;
     firstVisual: boolean;
-    get cls(): string | string[];
+    get cls(): NgClassType;
     get disabled(): boolean;
     get l(): LocaleData;
     get oh(): SFOptionalHelp;

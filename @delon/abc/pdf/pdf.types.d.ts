@@ -1,16 +1,17 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type PdfChangeEventType = 'loaded' | 'load-progress' | 'pages-init' | 'page-rendered' | 'text-layer-rendered' | 'pi' | 'error';
 export declare type PdfZoomScale = 'page-height' | 'page-fit' | 'page-width';
 export interface PdfChangeEvent {
     type?: PdfChangeEventType;
     pi?: number;
     total?: number;
-    pdf?: any;
-    ev?: any;
+    pdf?: NzSafeAny;
+    ev?: NzSafeAny;
     progress?: {
         loaded: number;
         total: number;
     };
-    error?: any;
+    error?: NzSafeAny;
 }
 export declare enum PdfTextLayerMode {
     DISABLE = 0,

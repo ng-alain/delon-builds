@@ -1,11 +1,12 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import type { Event } from '@antv/g2';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export interface G2PieData {
-    x: any;
+    x: NzSafeAny;
     y: number;
-    [key: string]: any;
+    [key: string]: NzSafeAny;
 }
 export interface G2PieClickItem {
     item: G2PieData;
@@ -31,7 +32,7 @@ export declare class G2PieComponent extends G2BaseComponent {
     static ngAcceptInputType_blockMaxWidth: NumberInput;
     static ngAcceptInputType_select: BooleanInput;
     private percentColor;
-    legendData: any[];
+    legendData: NzSafeAny[];
     isPercent: boolean;
     animate: boolean;
     color: string;
@@ -48,7 +49,7 @@ export declare class G2PieComponent extends G2BaseComponent {
     select: boolean;
     valueFormat: (y: number) => string;
     data: G2PieData[];
-    colors: any[];
+    colors: string[];
     interaction: G2InteractionType;
     ratio: G2PieRatio;
     readonly clickItem: EventEmitter<G2PieClickItem>;

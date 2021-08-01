@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular/core';
-import { NzSafeAny, NzSizeLDSType } from 'ng-zorro-antd/core/types';
+import { NgStyleInterface, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { NumberInput } from '@delon/util/decorator';
 import { AvatarListItemComponent } from './avatar-list-item.component';
 export declare class AvatarListComponent implements AfterViewInit, OnChanges, OnDestroy {
@@ -17,9 +17,7 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges, On
     avatarSize: NzSizeLDSType;
     set size(value: 'large' | 'small' | 'mini' | 'default');
     maxLength: number;
-    excessItemsStyle: {
-        [klass: string]: NzSafeAny;
-    };
+    excessItemsStyle: NgStyleInterface;
     constructor(cdr: ChangeDetectorRef, directionality: Directionality);
     private gen;
     ngAfterViewInit(): void;

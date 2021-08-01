@@ -1,12 +1,13 @@
 import { HttpResponse } from '@angular/common/http';
 import { ElementRef, EventEmitter } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { _HttpClient } from '@delon/theme';
 export declare class DownFileDirective {
     private el;
     private _http;
     private isFileSaverSupported;
-    httpData: any;
-    httpBody: any;
+    httpData: NzSafeAny;
+    httpBody: NzSafeAny;
     httpMethod: string;
     httpUrl: string;
     fileName: string | ((rep: HttpResponse<Blob>) => string);

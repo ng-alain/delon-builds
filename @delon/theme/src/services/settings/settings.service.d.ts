@@ -1,6 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { App, Layout, SettingsNotify, User } from './types';
 export interface SettingsKeys {
     /** Layout data specifies the stored key,  default: `layout` */
@@ -19,13 +20,13 @@ export declare class SettingsService<L extends Layout = Layout, U extends User =
     private _user;
     private _layout;
     constructor(platform: Platform, KEYS: SettingsKeys);
-    getData(key: string): any;
-    setData(key: string, value: any): void;
+    getData(key: string): NzSafeAny;
+    setData(key: string, value: NzSafeAny): void;
     get layout(): L;
     get app(): A;
     get user(): U;
     get notify(): Observable<SettingsNotify>;
-    setLayout(name: string | L, value?: any): boolean;
+    setLayout(name: string | L, value?: NzSafeAny): boolean;
     setApp(value: A): void;
     setUser(value: U): void;
 }

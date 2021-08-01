@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     private el;
@@ -27,7 +28,7 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     fullWidthRecognition: boolean;
     tail: string;
     get linsWord(): string;
-    constructor(el: ElementRef, ngZone: NgZone, dom: DomSanitizer, doc: any, cdr: ChangeDetectorRef);
+    constructor(el: ElementRef, ngZone: NgZone, dom: DomSanitizer, doc: NzSafeAny, cdr: ChangeDetectorRef);
     private getStrFullLength;
     private cutStrByFullLength;
     private bisection;

@@ -1,6 +1,7 @@
 import { Direction } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
 export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     private el;
@@ -21,7 +22,7 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     get last(): boolean;
     private _getDoc;
     private _getWin;
-    constructor(el: ElementRef<HTMLElement>, doc: any, platform: Platform, cdr: ChangeDetectorRef);
+    constructor(el: ElementRef<HTMLElement>, doc: NzSafeAny, platform: Platform, cdr: ChangeDetectorRef);
     private getLightData;
     ngAfterViewInit(): void;
     private scroll;

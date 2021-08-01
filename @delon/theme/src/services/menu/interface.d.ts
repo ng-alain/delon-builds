@@ -1,3 +1,4 @@
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface MenuIcon {
     /** Type for icon */
     type: 'class' | 'icon' | 'iconfont' | 'img';
@@ -15,7 +16,7 @@ export interface MenuIcon {
     rotate?: number;
 }
 export interface Menu {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     /** Text of menu item, can be choose one of  `text` or `i18n` (Support HTML) */
     text?: string;
     /** I18n key of menu item, can be choose one of  `text` or `i18n` (Support HTML) */

@@ -1,12 +1,13 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import type { Event } from '@antv/g2';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 export interface G2RadarData {
     name: string;
     label: string;
     value: number;
-    [key: string]: any;
+    [key: string]: NzSafeAny;
 }
 export interface G2RadarClickItem {
     item: G2RadarData;
@@ -16,7 +17,7 @@ export declare class G2RadarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_hasLegend: BooleanInput;
     static ngAcceptInputType_tickCount: NumberInput;
-    legendData: any[];
+    legendData: NzSafeAny[];
     title: string | TemplateRef<void>;
     height: number;
     padding: number | number[] | 'auto';

@@ -108,6 +108,7 @@ function addValueToVariable(tree, filePath, variableName, text, needWrap = true)
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path '${filePath}'.`);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const arr = node.parent.initializer;
     const change = new change_1.InsertChange(filePath, arr.end - 1, `${arr.elements && arr.elements.length > 0 ? ',' : ''}${needWrap ? '\n  ' : ''}${text}`);
     const declarationRecorder = tree.beginUpdate(filePath);

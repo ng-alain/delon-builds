@@ -53,12 +53,12 @@ export declare class DrawerHelper {
     create(title: string | TemplateRef<NzSafeAny> | undefined | null, comp: TemplateRef<{
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
-    }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<any>;
+    }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
      */
     static(title: string | TemplateRef<NzSafeAny> | undefined | null, comp: TemplateRef<{
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
-    }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<any>;
+    }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
 }

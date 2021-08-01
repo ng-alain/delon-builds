@@ -1,5 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NumberInput } from '@delon/util/decorator';
 import { ChartEChartsService } from './echarts.service';
 import { ChartECharts, ChartEChartsEvent, ChartEChartsOption } from './echarts.types';
@@ -21,7 +22,7 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     set width(val: NumberInput);
     set height(val: NumberInput);
     set theme(value: string | Record<string, unknown> | null | undefined);
-    set initOpt(value: any);
+    set initOpt(value: NzSafeAny);
     set option(value: ChartEChartsOption);
     readonly events: EventEmitter<ChartEChartsEvent>;
     get chart(): ChartECharts | null;

@@ -1,6 +1,7 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { OnboardingConfig } from './onboarding.types';
@@ -27,7 +28,7 @@ export declare class OnboardingService implements OnDestroy {
      * 获取是否正在引导中
      */
     get running(): boolean;
-    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: any, configSrv: AlainConfigService, directionality: Directionality);
+    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality);
     private attach;
     private cancelRunning;
     private updateRunning;

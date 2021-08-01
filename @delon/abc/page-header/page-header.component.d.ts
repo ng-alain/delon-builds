@@ -2,6 +2,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -37,7 +38,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     _titleVal: string | null;
     paths: PageHeaderPath[];
     _title: string | null;
-    _titleTpl: TemplateRef<any>;
+    _titleTpl: TemplateRef<NzSafeAny>;
     set title(value: string | TemplateRef<void> | null);
     loading: boolean;
     wide: boolean;
@@ -49,7 +50,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     syncTitle: boolean;
     fixed: boolean;
     fixedOffsetTop: number;
-    breadcrumb?: TemplateRef<any> | null;
+    breadcrumb?: TemplateRef<NzSafeAny> | null;
     recursiveBreadcrumb: boolean;
     logo?: TemplateRef<void> | null;
     action?: TemplateRef<void> | null;

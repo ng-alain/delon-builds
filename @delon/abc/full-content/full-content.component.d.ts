@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { FullContentService } from './full-content.service';
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
@@ -22,7 +23,7 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     hideTitle: boolean;
     padding: number;
     readonly fullscreenChange: EventEmitter<boolean>;
-    constructor(el: ElementRef<HTMLElement>, cdr: ChangeDetectorRef, srv: FullContentService, router: Router, doc: any);
+    constructor(el: ElementRef<HTMLElement>, cdr: ChangeDetectorRef, srv: FullContentService, router: Router, doc: NzSafeAny);
     private updateCls;
     private update;
     private updateHeight;

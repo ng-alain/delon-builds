@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { XlsxExportOptions, XlsxExportResult } from './xlsx.types';
@@ -15,7 +16,7 @@ export declare class XlsxService {
      * 导入Excel并输出JSON，支持 `<input type="file">`、URL 形式
      */
     import(fileOrUrl: File | string): Promise<{
-        [key: string]: any[][];
+        [key: string]: NzSafeAny[][];
     }>;
     export(options: XlsxExportOptions): Promise<XlsxExportResult>;
     /**

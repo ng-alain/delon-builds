@@ -1,5 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
@@ -13,7 +14,7 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     dir: Direction;
     freq: number;
     offsetTop: number;
-    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: any, configSrv: AlainConfigService, directionality: Directionality);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality);
     private get errEls();
     private update;
     _click(): boolean;

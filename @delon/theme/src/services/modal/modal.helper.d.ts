@@ -51,5 +51,5 @@ export declare class ModalHelper {
      * // 关闭
      * this.nzModalRef.destroy();
      */
-    createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<any>;
+    createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<NzSafeAny>;
 }

@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.writeJSON = exports.readJSON = void 0;
 const jsonc_parser_1 = require("jsonc-parser");
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readJSON(tree, jsonFile, type) {
     if (!tree.exists(jsonFile))
         return null;
@@ -19,6 +20,7 @@ function readJSON(tree, jsonFile, type) {
     }
 }
 exports.readJSON = readJSON;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeJSON(tree, jsonFile, json) {
     tree.overwrite(jsonFile, JSON.stringify(json, null, 2));
 }

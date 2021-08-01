@@ -1,5 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Layout, SettingsService } from '@delon/theme';
 import { LazyService } from '@delon/util/other';
@@ -20,13 +21,13 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     isDev: boolean;
     collapse: boolean;
     get layout(): Layout;
-    data: any;
+    data: NzSafeAny;
     color: string;
     colors: {
         key: string;
         color: string;
     }[];
-    constructor(cdr: ChangeDetectorRef, msg: NzMessageService, settingSrv: SettingsService, lazy: LazyService, ngZone: NgZone, doc: any, directionality: Directionality);
+    constructor(cdr: ChangeDetectorRef, msg: NzMessageService, settingSrv: SettingsService, lazy: LazyService, ngZone: NgZone, doc: NzSafeAny, directionality: Directionality);
     private get cachedData();
     private get DEFAULT_PRIMARY();
     ngOnInit(): void;
@@ -35,7 +36,7 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     private runLess;
     toggle(): void;
     changeColor(color: string): void;
-    setLayout(name: string, value: any): void;
+    setLayout(name: string, value: NzSafeAny): void;
     private resetData;
     private get validKeys();
     apply(): void;

@@ -2,6 +2,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { Observable } from 'rxjs';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
 import { SettingsService } from '../settings/settings.service';
 export declare const HTML_DIR = "dir";
@@ -37,7 +38,7 @@ export declare class RTLService {
      * 订阅变更通知
      */
     get change(): Observable<Direction>;
-    constructor(d: Directionality, srv: SettingsService, nz: NzConfigService, delon: AlainConfigService, platform: Platform, doc: any);
+    constructor(d: Directionality, srv: SettingsService, nz: NzConfigService, delon: AlainConfigService, platform: Platform, doc: NzSafeAny);
     /**
      * Toggle text direction
      *
