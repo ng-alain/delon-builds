@@ -1,6 +1,6 @@
 {
   "name": "@delon/acl",
-  "version": "12.0.2-00ca28ca",
+  "version": "12.0.2-3f124ad8",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^12.0.2-00ca28ca",
+    "@delon/util": "^12.0.2-3f124ad8",
     "tslib": "^2.2.0"
   },
   "main": "bundles/acl.umd.js",
