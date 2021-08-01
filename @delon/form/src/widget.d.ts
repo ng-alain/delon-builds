@@ -1,5 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LocaleData } from '@delon/theme';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
@@ -31,7 +32,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
-    get value(): any;
+    get value(): NzSafeAny;
     detectChanges(onlySelf?: boolean): void;
     abstract reset(value: SFValue): void;
     abstract afterViewInit(): void;

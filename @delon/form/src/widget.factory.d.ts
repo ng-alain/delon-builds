@@ -1,4 +1,5 @@
 import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormProperty } from './model/form.property';
 import { SFUISchemaItem } from './schema/ui';
 import { Widget } from './widget';
@@ -8,8 +9,8 @@ export declare class WidgetRegistry {
     get widgets(): {
         [type: string]: Widget<FormProperty, SFUISchemaItem>;
     };
-    setDefault(widget: any): void;
-    register(type: string, widget: any): void;
+    setDefault(widget: NzSafeAny): void;
+    register(type: string, widget: NzSafeAny): void;
     has(type: string): boolean;
     getType(type: string): Widget<FormProperty, SFUISchemaItem>;
 }

@@ -1,5 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';
@@ -20,7 +21,7 @@ export declare class TokenService implements ITokenService, OnDestroy {
     get referrer(): AuthReferrer;
     get options(): AlainAuthConfig;
     set(data: ITokenModel): boolean;
-    get(type?: any): any;
+    get(type?: NzSafeAny): NzSafeAny;
     clear(options?: {
         onlyToken: boolean;
     }): void;

@@ -1,4 +1,5 @@
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from './interface';
 import { FormProperty, PropertyGroup } from './model/form.property';
 export declare const ERRORSDEFAULT: {
@@ -38,12 +39,12 @@ export declare const ERRORSDEFAULT: {
     if: string;
 };
 export interface ErrorData {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     keyword: string;
     dataPath?: string;
     schemaPath?: string;
     params?: {
-        [key: string]: any;
+        [key: string]: NzSafeAny;
     };
     message?: string;
 }

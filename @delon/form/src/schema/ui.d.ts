@@ -1,4 +1,4 @@
-import { NzSizeLDSType } from 'ng-zorro-antd/core/types';
+import { NzSafeAny, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { ACLCanType } from '@delon/acl';
 import { ErrorSchema } from '../errors';
 import type { FormProperty } from '../model/form.property';
@@ -119,7 +119,7 @@ export interface SFSchemaI18n {
 }
 /** 指定如何渲染 `Schema` */
 export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema, ErrorSchema, SFSchemaI18n {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     /** 是否开启调试模式，在数据变更、校验会打印出相信信息，不建议在生产环境中使用 */
     debug?: boolean;
     /**
@@ -147,7 +147,7 @@ export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema
      * - `visibleIf: { shown: (value: any, property: FormProperty) => value > 0 }`：复杂表达式
      */
     visibleIf?: {
-        [key: string]: any[] | ((value: any, property: FormProperty) => boolean);
+        [key: string]: NzSafeAny[] | ((value: NzSafeAny, property: FormProperty) => boolean);
     };
     /**
      * ACL 配置

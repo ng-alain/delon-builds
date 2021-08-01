@@ -1,6 +1,7 @@
 import { OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ITokenModel, ITokenService } from '../token/interface';
 export declare type SocialOpenType = 'href' | 'window';
 export declare class SocialService implements OnDestroy {
@@ -10,7 +11,7 @@ export declare class SocialService implements OnDestroy {
     private _win;
     private _winTime;
     private observer;
-    constructor(tokenService: ITokenService, doc: any, router: Router);
+    constructor(tokenService: ITokenService, doc: NzSafeAny, router: Router);
     /**
      * 使用窗体打开授权页，返回值是 `Observable<ITokenModel>` 用于订阅授权后返回的结果
      *

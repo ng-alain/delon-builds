@@ -1,4 +1,5 @@
 import { HttpRequest } from '@angular/common/http';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainAuthConfig } from '@delon/util/config';
 import { BaseInterceptor } from '../base.interceptor';
 /**
@@ -11,5 +12,5 @@ import { BaseInterceptor } from '../base.interceptor';
  */
 export declare class JWTInterceptor extends BaseInterceptor {
     isAuth(options: AlainAuthConfig): boolean;
-    setReq(req: HttpRequest<any>, _options: AlainAuthConfig): HttpRequest<any>;
+    setReq(req: HttpRequest<NzSafeAny>, _options: AlainAuthConfig): HttpRequest<NzSafeAny>;
 }

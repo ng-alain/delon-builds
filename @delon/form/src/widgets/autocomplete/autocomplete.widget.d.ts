@@ -1,11 +1,12 @@
 import { Observable } from 'rxjs';
 import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFAutoCompleteWidgetSchema } from './schema';
 export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWidgetSchema> {
-    i: any;
+    i: NzSafeAny;
     list: Observable<SFSchemaEnum[]>;
     typing: string;
     private ngModel;

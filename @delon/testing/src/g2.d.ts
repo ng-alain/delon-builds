@@ -10,7 +10,7 @@ export declare class PageG2<T> {
     constructor(fixture?: ComponentFixture<T> | null);
     get dl(): DebugElement;
     get context(): T;
-    get comp(): any;
+    get comp(): NzSafeAny;
     get chart(): Chart;
     genModule<M>(module: M, comp: Type<T>): this;
     genComp(comp: Type<T>, dc?: boolean): this;
@@ -21,15 +21,15 @@ export declare class PageG2<T> {
     dc(): this;
     end(): this;
     destroy(): void;
-    newData(data: any): this;
+    newData(data: NzSafeAny): this;
     getEls(cls: string): NodeListOf<HTMLElement>;
     getEl(cls: string): HTMLElement;
     getController(type: 'axis' | 'legend'): NzSafeAny;
     isCanvas(stauts?: boolean): this;
     isText(cls: string, value: string): this;
     isExists(cls: string, stauts?: boolean): this;
-    checkOptions(key: string, value: any): this;
-    checkAttrOptions(type: PageG2Type, key: string, value: any): this;
+    checkOptions(key: string, value: NzSafeAny): this;
+    checkAttrOptions(type: PageG2Type, key: string, value: NzSafeAny): this;
     isXScalesCount(num: number): this;
     isYScalesCount(num: number): this;
     isDataCount(type: PageG2Type, num: number): this;

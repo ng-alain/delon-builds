@@ -1,6 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
@@ -45,7 +46,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     _btn: SFButton;
     _schema: SFSchema;
     _ui: SFUISchema;
-    get btnGrid(): any;
+    get btnGrid(): NzSafeAny;
     /** 表单布局，等同 `nzLayout`，默认：horizontal */
     layout: SFLayout;
     /** JSON Schema */
@@ -53,7 +54,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** UI Schema */
     ui: SFUISchema;
     /** 表单默认值 */
-    formData: Record<string, unknown>;
+    formData: Record<string, NzSafeAny>;
     /**
      * 按钮
      * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器
@@ -102,7 +103,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * 表单值
      */
     get value(): {
-        [key: string]: any;
+        [key: string]: NzSafeAny;
     };
     /**
      * Get form element property based on [path](https://ng-alain.com/form/qa#path)
@@ -115,13 +116,13 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      *
      * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
      */
-    getValue(path: string): any;
+    getValue(path: string): NzSafeAny;
     /**
      * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
      *
      * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素属性值
      */
-    setValue(path: string, value: any): this;
+    setValue(path: string, value: NzSafeAny): this;
     onSubmit(e: Event): void;
     constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService, platform: Platform);
     protected fanyi(key: string): string;

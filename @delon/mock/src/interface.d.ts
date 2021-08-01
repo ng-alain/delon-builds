@@ -1,30 +1,31 @@
 import { HttpRequest } from '@angular/common/http';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class MockOptions {
-    data?: any;
+    data?: NzSafeAny;
 }
 export interface MockCachedRule {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     method: string;
     url: string;
     martcher: RegExp | null;
     segments: string[];
-    callback(req: MockRequest): any;
+    callback(req: MockRequest): NzSafeAny;
 }
 export interface MockRule {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     method: string;
     url: string;
     /** 路由参数 */
-    params?: any;
-    callback(req: MockRequest): any;
+    params?: NzSafeAny;
+    callback(req: MockRequest): NzSafeAny;
 }
 export interface MockRequest {
     /** 路由参数 */
-    params?: any;
+    params?: NzSafeAny;
     /** URL参数 */
-    queryString?: any;
-    headers?: any;
-    body?: any;
+    queryString?: NzSafeAny;
+    headers?: NzSafeAny;
+    body?: NzSafeAny;
     /** 原始 `HttpRequest` */
-    original: HttpRequest<any>;
+    original: HttpRequest<NzSafeAny>;
 }

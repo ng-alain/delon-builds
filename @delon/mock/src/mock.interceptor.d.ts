@@ -1,8 +1,9 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class MockInterceptor implements HttpInterceptor {
     private injector;
     constructor(injector: Injector);
-    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>;
+    intercept(req: HttpRequest<NzSafeAny>, next: HttpHandler): Observable<HttpEvent<NzSafeAny>>;
 }

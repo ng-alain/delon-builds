@@ -1,13 +1,14 @@
 import { Direction } from '@angular/cdk/bidi';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface App {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     /** Name for app */
     name?: string;
     /** Description for app */
     description?: string;
 }
 export interface User {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     /** Name for current user */
     name?: string;
     /** Avatar for current user */
@@ -16,7 +17,7 @@ export interface User {
     email?: string;
 }
 export interface Layout {
-    [key: string]: any;
+    [key: string]: NzSafeAny;
     /** Whether to fold menu */
     collapsed: boolean;
     /** Current language */
@@ -30,5 +31,5 @@ export interface SettingsNotify {
     type: 'layout' | 'app' | 'user';
     /** Update `key` name, limited `layout` type */
     name?: string;
-    value: any;
+    value: NzSafeAny;
 }

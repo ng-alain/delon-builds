@@ -22,7 +22,6 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     set img(value: string);
     set title(value: string);
     set desc(value: string);
-    backRouterLink: string | any[];
     checkContent(): void;
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality);
     ngOnInit(): void;

@@ -1,6 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
 export interface ThemeBtnType {
     key: string;
@@ -21,7 +22,7 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     deployUrl: string;
     private destroy$;
     dir: Direction;
-    constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: any, directionality: Directionality, KEYS: string);
+    constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: NzSafeAny, directionality: Directionality, KEYS: string);
     ngOnInit(): void;
     private initTheme;
     private updateChartTheme;

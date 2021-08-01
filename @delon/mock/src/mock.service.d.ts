@@ -1,4 +1,5 @@
 import { OnDestroy } from '@angular/core';
+import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService, AlainMockConfig } from '@delon/util/config';
 import { MockCachedRule, MockOptions, MockRule } from './interface';
 export declare class MockService implements OnDestroy {
@@ -10,7 +11,7 @@ export declare class MockService implements OnDestroy {
      *
      * 重新设置请求数据
      */
-    setData(data: any): void;
+    setData(data: NzSafeAny): void;
     private applyMock;
     private realApplyMock;
     private genRule;

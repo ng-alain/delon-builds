@@ -7,7 +7,12 @@ import { ControlUIWidget } from '../../widget';
 import { SFTransferWidgetSchema } from './schema';
 export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSchema> implements OnInit {
     list: SFSchemaEnum[];
-    i: any;
+    i: {
+        titles: string[];
+        operations: string[];
+        itemUnit: string;
+        itemsUnit: string;
+    };
     private _data;
     ngOnInit(): void;
     reset(value: SFValue): void;
