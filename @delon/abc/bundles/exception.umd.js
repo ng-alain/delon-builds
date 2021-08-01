@@ -21,6 +21,7 @@
             this._img = '';
             this._title = '';
             this._desc = '';
+            this.backRouterLink = '/';
         }
         Object.defineProperty(ExceptionComponent.prototype, "type", {
             set: function (value) {
@@ -95,7 +96,7 @@
         { type: core.Component, args: [{
                     selector: 'exception',
                     exportAs: 'exception',
-                    template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"['/']\" [nzType]=\"'primary'\">{{ locale.backToHome }}</button>\n  </div>\n</div>\n",
+                    template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content></ng-content>\n    </div>\n    <button *ngIf=\"!hasCon\" nz-button [routerLink]=\"backRouterLink\" [nzType]=\"'primary'\">\n      {{ locale.backToHome }}\n    </button>\n  </div>\n</div>\n",
                     host: {
                         '[class.exception]': 'true',
                         '[class.exception-rtl]': "dir === 'rtl'"
@@ -115,7 +116,8 @@
         type: [{ type: core.Input }],
         img: [{ type: core.Input }],
         title: [{ type: core.Input }],
-        desc: [{ type: core.Input }]
+        desc: [{ type: core.Input }],
+        backRouterLink: [{ type: core.Input }]
     };
 
     var COMPONENTS = [ExceptionComponent];
