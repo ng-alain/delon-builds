@@ -1,7 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
@@ -23,7 +22,6 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     set img(value: string);
     set title(value: string);
     set desc(value: string);
-    backRouterLink: string | NzSafeAny[];
     checkContent(): void;
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality);
     ngOnInit(): void;
