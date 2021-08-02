@@ -1,4 +1,4 @@
-import type { XlsxExportResult, XlsxService } from '@delon/abc/xlsx';
+import { XlsxExportResult, XlsxService } from '@delon/abc/xlsx';
 import { STExportOptions } from './st.interfaces';
 export declare class STExport {
     private xlsxSrv;
