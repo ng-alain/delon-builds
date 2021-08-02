@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { NgZone } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ZipSaveOptions } from './zip.types';
 export declare class ZipService {
     private http;

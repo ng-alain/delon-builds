@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainChartConfig {
     /**
      * [G2](https://g2.antv.vision/zh/docs/manual/getting-started) library path

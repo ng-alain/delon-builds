@@ -1,6 +1,6 @@
 import { OnDestroy } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService, AlainMockConfig } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MockCachedRule, MockOptions, MockRule } from './interface';
 export declare class MockService implements OnDestroy {
     private cached;

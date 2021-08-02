@@ -1,8 +1,8 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MenuService } from '@delon/theme';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
 export declare class ReuseTabService implements OnDestroy {
     private injector;

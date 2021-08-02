@@ -2,8 +2,8 @@ import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ElementRef, Renderer2, Inject, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
-import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { ErrorCollectModule } from '@delon/abc/error-collect';
+import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 const CLSBODY = 'footer-toolbar__body';
 class FooterToolbarComponent {

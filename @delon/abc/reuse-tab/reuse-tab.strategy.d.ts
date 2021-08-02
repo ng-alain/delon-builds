@@ -1,5 +1,5 @@
 import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabStrategy implements RouteReuseStrategy {
     private srv;

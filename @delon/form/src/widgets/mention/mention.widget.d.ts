@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';

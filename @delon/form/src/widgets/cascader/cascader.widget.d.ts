@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
 import { NzCascaderOption } from 'ng-zorro-antd/cascader';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';

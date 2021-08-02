@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectorRef, OnDestroy, TemplateRef } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { App, SettingsService } from '@delon/theme';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LayoutDefaultComponent } from './layout.component';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden, LayoutDefaultOptions } from './types';
 interface LayoutDefaultHeaderItem {

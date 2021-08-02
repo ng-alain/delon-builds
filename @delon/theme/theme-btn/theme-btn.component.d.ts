@@ -1,8 +1,8 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface ThemeBtnType {
     key: string;
     text: string;

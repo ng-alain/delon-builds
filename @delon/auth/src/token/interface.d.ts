@@ -1,7 +1,7 @@
 import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainAuthConfig } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare const DA_SERVICE_TOKEN: InjectionToken<ITokenService>;
 export interface ITokenModel {
     [key: string]: NzSafeAny;

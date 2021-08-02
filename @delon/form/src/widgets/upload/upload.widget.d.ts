@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';

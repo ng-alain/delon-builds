@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from './interface';
 import { FormProperty, PropertyGroup } from './model/form.property';
 export declare const ERRORSDEFAULT: {

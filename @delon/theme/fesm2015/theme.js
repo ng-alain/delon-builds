@@ -17,16 +17,16 @@ import { NzConfigService } from 'ng-zorro-antd/core/config';
 import * as i1$3 from '@angular/platform-browser';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { deepMerge } from '@delon/util/other';
 import * as i1$4 from 'ng-zorro-antd/modal';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/drawer';
 import { NzDrawerService } from 'ng-zorro-antd/drawer';
 import * as i1$6 from '@angular/common/http';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { formatDistanceToNow, format } from 'date-fns';
-import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { toDate } from '@delon/util/date-time';
+import { NzI18nService, NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import { NzIconService } from 'ng-zorro-antd/icon';
@@ -2360,7 +2360,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('12.0.3-46c50053');
+const VERSION = new Version('12.0.3-97f4e9e0');
 
 /**
  * Generated bundle index. Do not edit.

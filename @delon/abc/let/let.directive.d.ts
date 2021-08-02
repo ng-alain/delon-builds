@@ -1,5 +1,5 @@
 import { TemplateRef, ViewContainerRef } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class LetContext<T> {
     private readonly dir;
     constructor(dir: LetDirective<T>);

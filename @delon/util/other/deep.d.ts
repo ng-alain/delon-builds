@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * Gets the value at `path` of `object`, like `_.get` in lodash.
  *

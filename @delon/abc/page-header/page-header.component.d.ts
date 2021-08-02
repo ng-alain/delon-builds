@@ -2,11 +2,11 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 interface PageHeaderPath {
     title?: string;
     link?: string[];

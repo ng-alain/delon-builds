@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ChartEChartsService } from './echarts.service';
 import { ChartECharts, ChartEChartsEvent, ChartEChartsOption } from './echarts.types';
 export declare class ChartEChartsComponent implements OnInit, OnDestroy {

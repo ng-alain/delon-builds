@@ -1,7 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;

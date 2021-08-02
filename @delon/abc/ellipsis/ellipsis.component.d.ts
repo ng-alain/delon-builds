@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     private el;
     private ngZone;

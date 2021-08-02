@@ -2,9 +2,9 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface Nav extends MenuInner {
     _needIcon?: boolean;
     _text?: SafeHtml;

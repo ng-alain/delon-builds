@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare const PREFIX = "[@DELON]:";
 export declare const warn: (...args: NzSafeAny[]) => void;
 export declare const deprecation11: (comp: string, from: string, to?: string | undefined) => void;

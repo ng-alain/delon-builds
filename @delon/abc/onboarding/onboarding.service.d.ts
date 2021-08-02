@@ -1,9 +1,9 @@
 import { Directionality } from '@angular/cdk/bidi';
 import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { OnboardingConfig } from './onboarding.types';
 export declare class OnboardingService implements OnDestroy {
     private i18n;

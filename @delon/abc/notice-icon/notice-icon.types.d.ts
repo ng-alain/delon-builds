@@ -1,5 +1,5 @@
 import { TemplateRef } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface NoticeItem {
     [key: string]: NzSafeAny;
     title: string;

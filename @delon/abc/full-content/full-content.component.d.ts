@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FullContentService } from './full-content.service';
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     private el;

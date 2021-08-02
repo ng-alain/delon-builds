@@ -1,6 +1,6 @@
 import { TemplateRef, Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 export interface ModalHelperOptions {
     /** 大小；例如：lg、600，默认：`lg` */

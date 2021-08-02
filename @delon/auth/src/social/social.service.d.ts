@@ -1,7 +1,7 @@
 import { OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ITokenModel, ITokenService } from '../token/interface';
 export declare type SocialOpenType = 'href' | 'window';
 export declare class SocialService implements OnDestroy {

@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainACLConfig {
     /**
      * Router URL when guard fail, default: `/403`

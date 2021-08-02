@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainConfigService } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { CacheNotifyResult, ICacheStore } from './interface';
 export declare class CacheService implements OnDestroy {
     private store;

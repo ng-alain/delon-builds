@@ -1,6 +1,6 @@
 import { HttpRequest } from '@angular/common/http';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainAuthConfig } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BaseInterceptor } from '../base.interceptor';
 /**
  * Simple 拦截器

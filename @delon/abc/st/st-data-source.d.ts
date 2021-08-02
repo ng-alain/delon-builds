@@ -1,9 +1,9 @@
 import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import { CurrencyService } from '@delon/util/format';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
 import { _STColumn } from './st.types';
 export interface STDataSourceOptions {

@@ -2,7 +2,7 @@ import { Direction, Directionality } from '@angular/cdk/bidi';
 import { OnDestroy, OnInit, QueryList } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
 export declare class GlobalFooterComponent implements OnInit, OnDestroy {

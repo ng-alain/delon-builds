@@ -1,5 +1,5 @@
 import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormProperty } from './model/form.property';
 import { SFUISchemaItem } from './schema/ui';
 import { Widget } from './widget';

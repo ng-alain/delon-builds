@@ -1,4 +1,4 @@
-import { NzTSType } from 'ng-zorro-antd/core/types';
+import type { NzTSType } from 'ng-zorro-antd/core/types';
 export declare class SVValueComponent {
     prefix?: string;
     unit?: string;

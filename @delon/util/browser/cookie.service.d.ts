@@ -1,5 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface CookieOptions {
     path?: string;
     domain?: string;

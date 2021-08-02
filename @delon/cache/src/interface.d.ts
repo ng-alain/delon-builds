@@ -1,4 +1,4 @@
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface ICache {
     v: NzSafeAny;
     /** 过期时间戳，`0` 表示不过期 */

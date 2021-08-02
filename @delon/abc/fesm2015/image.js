@@ -3,10 +3,10 @@ import { Platform } from '@angular/cdk/platform';
 import { Directive, ElementRef, Input, NgModule } from '@angular/core';
 import { Subject, of, throwError, Observable } from 'rxjs';
 import { takeUntil, take, finalize, filter } from 'rxjs/operators';
-import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
+import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { CommonModule } from '@angular/common';
 
 /**

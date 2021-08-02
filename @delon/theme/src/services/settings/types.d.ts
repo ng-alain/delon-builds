@@ -1,5 +1,5 @@
 import { Direction } from '@angular/cdk/bidi';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface App {
     [key: string]: NzSafeAny;
     /** Name for app */

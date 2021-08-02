@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NgClassType, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LocaleData } from '@delon/theme';
+import { NgClassType, NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
 import { FormProperty } from './model/form.property';

@@ -3,9 +3,9 @@ import { Component, ViewChild, Input, ElementRef, Renderer2, Inject, ContentChil
 import { RouteConfigLoadStart, NavigationError, NavigationCancel, NavigationEnd, RouteConfigLoadEnd, Router, RouterModule } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, filter } from 'rxjs/operators';
-import { NzMessageService, NzMessageModule } from 'ng-zorro-antd/message';
 import { SettingsService, MenuService } from '@delon/theme';
 import { updateHostClass } from '@delon/util/browser';
+import { NzMessageService, NzMessageModule } from 'ng-zorro-antd/message';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';

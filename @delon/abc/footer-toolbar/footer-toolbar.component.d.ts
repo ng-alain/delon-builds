@@ -1,6 +1,6 @@
 import { ElementRef, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { BooleanInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class FooterToolbarComponent implements OnInit, OnDestroy {
     private el;
     private renderer;

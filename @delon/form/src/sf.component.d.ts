@@ -1,11 +1,11 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import { BooleanInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ErrorData } from './errors';
 import { SFButton, SFLayout, SFValueChange } from './interface';
 import { FormProperty } from './model/form.property';

@@ -1,7 +1,7 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { IStore } from '../store/interface';
 import { AuthReferrer, ITokenModel, ITokenService } from './interface';
 export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;

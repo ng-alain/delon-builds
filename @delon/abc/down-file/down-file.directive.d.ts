@@ -1,7 +1,7 @@
 import { HttpResponse } from '@angular/common/http';
 import { ElementRef, EventEmitter } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { _HttpClient } from '@delon/theme';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare class DownFileDirective {
     private el;
     private _http;

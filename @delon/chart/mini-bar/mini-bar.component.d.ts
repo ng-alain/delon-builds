@@ -1,8 +1,8 @@
 import { EventEmitter } from '@angular/core';
 import type { Event } from '@antv/g2';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NumberInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface G2MiniBarData {
     x: NzSafeAny;
     y: NzSafeAny;

@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@angular/common/http'), require('@delon/util')) :
-    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/util/config', '@angular/common/http', '@delon/util'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.config, global.ng.common.http, global.delon.util));
-}(this, (function (exports, common, i0, router, rxjs, operators, config, http, util) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('@angular/common/http')) :
+    typeof define === 'function' && define.amd ? define('@delon/auth', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/util/config', '@angular/common/http'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.auth = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.config, global.ng.common.http));
+}(this, (function (exports, common, i0, router, rxjs, operators, config, http) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -717,7 +717,7 @@
         }
         BaseInterceptor.prototype.intercept = function (req, next) {
             var e_1, _a;
-            var options = mergeConfig(this.injector.get(util.AlainConfigService));
+            var options = mergeConfig(this.injector.get(config.AlainConfigService));
             if (Array.isArray(options.ignores)) {
                 try {
                     for (var _b = __values(options.ignores), _c = _b.next(); !_c.done; _c = _b.next()) {

@@ -1,7 +1,7 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular/core';
-import { NgStyleInterface, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { NumberInput } from '@delon/util/decorator';
+import type { NgStyleInterface, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { AvatarListItemComponent } from './avatar-list-item.component';
 export declare class AvatarListComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;

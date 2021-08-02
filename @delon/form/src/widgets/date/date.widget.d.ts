@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
 import { SFDateWidgetSchema } from './schema';
