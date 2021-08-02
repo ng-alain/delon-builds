@@ -32485,6 +32485,9 @@ ellipsis {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.price {
+  display: inline-block;
+}
 g2-chart,
 g2-bar,
 g2-gauge,
