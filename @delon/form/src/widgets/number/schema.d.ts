@@ -26,10 +26,4 @@ export interface SFNumberWidgetSchema extends SFUISchemaItem {
      * 指定 `nz-number` 宽度
      */
     widgetWidth?: number;
-    /**
-     * Hide step icon
-     *
-     * 隐藏步数操作区
-     */
-    hideStep?: boolean;
 }

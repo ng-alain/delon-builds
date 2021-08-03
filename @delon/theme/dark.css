@@ -26925,14 +26925,6 @@ nz-button-group + nz-popconfirm {
 a:focus {
   text-decoration: none;
 }
-/**
-  * Hide step icon
-  *
-  * 隐藏步数操作区
-  */
-.ant-input-number__hide-step .ant-input-number-handler-wrap {
-  visibility: hidden;
-}
 .ant-card {
   margin-bottom: 16px;
 }
