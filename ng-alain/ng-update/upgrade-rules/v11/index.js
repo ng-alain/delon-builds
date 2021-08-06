@@ -27,11 +27,11 @@ function fixThirdVersion() {
     return (tree, context) => {
         // dependencies
         utils_1.addPackage(tree, [
-            `ng-zorro-antd@^12.0.0`,
+            `ng-zorro-antd@^12.0.1`,
             `ngx-ueditor@^12.0.0`,
             `ngx-tinymce@^12.0.0`,
             `ngx-countdown@^12.0.1`,
-            'ajv@^8.6.1'
+            'ajv@^8.6.2'
         ], 'dependencies');
         // dependencies
         utils_1.addPackage(tree, [`ng-alain-plugin-theme@^12.0.0`, `ng-alain-sts@^0.0.1`], 'devDependencies');
