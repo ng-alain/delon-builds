@@ -17,30 +17,30 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
-      `@angular-eslint/builder@~12.3.1`,
-      `@angular-eslint/eslint-plugin@~12.3.1`,
-      `@angular-eslint/eslint-plugin-template@~12.3.1`,
-      `@angular-eslint/schematics@~12.3.1`,
-      `@angular-eslint/template-parser@~12.3.1`,
-      `@typescript-eslint/eslint-plugin@~4.29.0`,
-      `@typescript-eslint/parser@~4.29.0`,
-      `eslint@^7.32.0`,
+      `@angular-eslint/builder@~12.2.2`,
+      `@angular-eslint/eslint-plugin@~12.2.2`,
+      `@angular-eslint/eslint-plugin-template@~12.2.2`,
+      `@angular-eslint/schematics@~12.2.2`,
+      `@angular-eslint/template-parser@~12.2.2`,
+      `@typescript-eslint/eslint-plugin@~4.23.0`,
+      `@typescript-eslint/parser@~4.23.0`,
+      `eslint@^7.26.0`,
       `eslint-config-prettier@^2.2.1`,
       `eslint-plugin-import@~2.23.4`,
-      `eslint-plugin-jsdoc@~36.0.6`,
-      `eslint-plugin-prefer-arrow@~1.2.3`,
+      `eslint-plugin-jsdoc@~36.0.2`,
+      `eslint-plugin-prefer-arrow@~1.2.2`,
       `eslint-plugin-prettier@^2.2.1`,
       `prettier@^2.2.1`,
       `husky@^6.0.0`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^12.0.0`,
-      `source-map-explorer@^2.5.2`,
-      `@angular/language-service@~12.2.0`,
+      `source-map-explorer@^2.5.1`,
+      `@angular/language-service@~12.1.1`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
   );
-  addPackage(tree, ['ajv@^8.6.2', 'ajv-formats@^2.1.0']);
+  addPackage(tree, ['ajv@^8.6.1', 'ajv-formats@^2.1.0']);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {

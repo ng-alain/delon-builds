@@ -1435,7 +1435,8 @@ class STComponent {
         this._data.filter(i => i !== item).forEach(i => (i.expand = false));
     }
     _rowClick(e, item, index) {
-        if (e.target.nodeName === 'INPUT')
+        const el = e.target;
+        if (el.nodeName === 'INPUT')
             return;
         const { expand, expandRowByClick, rowClickTime } = this;
         if (!!expand && item.showExpand !== false && expandRowByClick) {
@@ -1450,6 +1451,7 @@ class STComponent {
         setTimeout(() => {
             const data = { e, item, index };
             if (this.rowClickCount === 1) {
+                this._clickRowClassName(el, item, index);
                 this.changeEmit('click', data);
             }
             else {
@@ -1457,6 +1459,23 @@ class STComponent {
             }
             this.rowClickCount = 0;
         }, rowClickTime);
+    }
+    _clickRowClassName(el, item, index) {
+        const cr = this.clickRowClassName;
+        if (cr == null)
+            return;
+        const config = Object.assign({ exclusive: false }, (typeof cr === 'string' ? { fn: () => cr } : cr));
+        const className = config.fn(item, index);
+        const trEl = el.closest('tr');
+        if (config.exclusive) {
+            trEl.parentElement.querySelectorAll('tr').forEach((a) => a.classList.remove(className));
+        }
+        if (trEl.classList.contains(className)) {
+            trEl.classList.remove(className);
+        }
+        else {
+            trEl.classList.add(className);
+        }
     }
     _expandChange(item, expand) {
         item.expand = expand;
@@ -1867,6 +1886,7 @@ STComponent.propDecorators = {
     singleSort: [{ type: Input }],
     multiSort: [{ type: Input }],
     rowClassName: [{ type: Input }],
+    clickRowClassName: [{ type: Input }],
     widthMode: [{ type: Input }],
     widthConfig: [{ type: Input }],
     resizable: [{ type: Input }],
