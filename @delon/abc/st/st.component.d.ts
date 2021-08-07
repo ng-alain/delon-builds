@@ -12,7 +12,7 @@ import { NzTableComponent } from 'ng-zorro-antd/table';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -91,6 +91,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get multiSort(): NzSafeAny;
     set multiSort(value: NzSafeAny);
     rowClassName: STRowClassName;
+    clickRowClassName?: STClickRowClassName | null;
     set widthMode(value: STWidthMode);
     get widthMode(): STWidthMode;
     set widthConfig(val: string[]);
@@ -176,6 +177,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _click(e: Event, item: STData, col: STColumn): boolean;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
+    private _clickRowClassName;
     _expandChange(item: STData, expand: boolean): void;
     _stopPropagation(ev: Event): void;
     /**

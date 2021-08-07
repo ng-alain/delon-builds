@@ -1008,6 +1008,8 @@
          * 存储
          */
         ReuseTabService.prototype.store = function (_snapshot, _handle) {
+            var _this = this;
+            var _a;
             var url = this.getUrl(_snapshot);
             var idx = this.index(url);
             var isAdd = idx === -1;
@@ -1029,6 +1031,12 @@
                 this._cached.push(item);
             }
             else {
+                // Current handler is null when activate routes
+                // For better reliability, we need to wait for the component to be attached before call _onReuseInit
+                var cahcedComponentRef_1 = (_a = this._cached[idx]._handle) === null || _a === void 0 ? void 0 : _a.componentRef;
+                if (_handle == null && cahcedComponentRef_1 != null) {
+                    rxjs.timer(100).subscribe(function () { return _this.runHook('_onReuseInit', cahcedComponentRef_1); });
+                }
                 this._cached[idx] = item;
             }
             this.removeUrlBuffer = null;
@@ -1050,14 +1058,7 @@
             var data = this.get(url);
             var ret = !!(data && data._handle);
             this.di('#shouldAttach', ret, url);
-            if (ret) {
-                var compRef = data._handle.componentRef;
-                if (compRef) {
-                    this.componentRef = compRef;
-                    this.runHook('_onReuseInit', compRef);
-                }
-            }
-            else {
+            if (!ret) {
                 this._cachedChange.next({ active: 'add', url: url, list: this._cached });
             }
             return ret;
@@ -1156,7 +1157,7 @@
         };
         // #endregion
         ReuseTabService.prototype.ngOnDestroy = function () {
-            var _a = this, _cachedChange = _a._cachedChange, _router$ = _a._router$;
+            var _b = this, _cachedChange = _b._cachedChange, _router$ = _b._router$;
             this.clear();
             this._cached = [];
             _cachedChange.complete();

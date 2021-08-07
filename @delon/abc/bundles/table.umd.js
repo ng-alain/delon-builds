@@ -1896,7 +1896,8 @@
         };
         STComponent.prototype._rowClick = function (e, item, index) {
             var _this = this;
-            if (e.target.nodeName === 'INPUT')
+            var el = e.target;
+            if (el.nodeName === 'INPUT')
                 return;
             var _b = this, expand = _b.expand, expandRowByClick = _b.expandRowByClick, rowClickTime = _b.rowClickTime;
             if (!!expand && item.showExpand !== false && expandRowByClick) {
@@ -1911,6 +1912,7 @@
             setTimeout(function () {
                 var data = { e: e, item: item, index: index };
                 if (_this.rowClickCount === 1) {
+                    _this._clickRowClassName(el, item, index);
                     _this.changeEmit('click', data);
                 }
                 else {
@@ -1918,6 +1920,23 @@
                 }
                 _this.rowClickCount = 0;
             }, rowClickTime);
+        };
+        STComponent.prototype._clickRowClassName = function (el, item, index) {
+            var cr = this.clickRowClassName;
+            if (cr == null)
+                return;
+            var config = Object.assign({ exclusive: false }, (typeof cr === 'string' ? { fn: function () { return cr; } } : cr));
+            var className = config.fn(item, index);
+            var trEl = el.closest('tr');
+            if (config.exclusive) {
+                trEl.parentElement.querySelectorAll('tr').forEach(function (a) { return a.classList.remove(className); });
+            }
+            if (trEl.classList.contains(className)) {
+                trEl.classList.remove(className);
+            }
+            else {
+                trEl.classList.add(className);
+            }
         };
         STComponent.prototype._expandChange = function (item, expand) {
             item.expand = expand;
@@ -2340,6 +2359,7 @@
         singleSort: [{ type: i0.Input }],
         multiSort: [{ type: i0.Input }],
         rowClassName: [{ type: i0.Input }],
+        clickRowClassName: [{ type: i0.Input }],
         widthMode: [{ type: i0.Input }],
         widthConfig: [{ type: i0.Input }],
         resizable: [{ type: i0.Input }],
