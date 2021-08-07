@@ -2839,6 +2839,21 @@
         { type: icon.NzIconService }
     ]; };
 
+    /**
+     * 可选预加载模块，当需要对某些懒路由在第一次页面加载时也一并加载该资源时，可以在路由中配置：
+     *
+     * @example
+     */
+    var PreloadOptionalModules = /** @class */ (function () {
+        function PreloadOptionalModules() {
+        }
+        PreloadOptionalModules.prototype.preload = function (route, fn) {
+            var _a;
+            return ((_a = route.data) === null || _a === void 0 ? void 0 : _a.preload) === true ? fn().pipe(operators.catchError(function () { return rxjs.of(null); })) : rxjs.of(null);
+        };
+        return PreloadOptionalModules;
+    }());
+
     var VERSION = new i0.Version('12.1.0');
 
     /**
@@ -2879,6 +2894,7 @@
     exports.PUT = PUT;
     exports.Path = Path;
     exports.Payload = Payload;
+    exports.PreloadOptionalModules = PreloadOptionalModules;
     exports.Query = Query;
     exports.REP_MAX = REP_MAX;
     exports.RTL = RTL;
