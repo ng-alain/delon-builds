@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.0.3
+ * @license ng-alain(cipchk@qq.com) v12.1.0
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -2839,7 +2839,7 @@
         { type: icon.NzIconService }
     ]; };
 
-    var VERSION = new i0.Version('12.0.3');
+    var VERSION = new i0.Version('12.1.0');
 
     /**
      * Generated bundle index. Do not edit.
