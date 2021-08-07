@@ -2,7 +2,7 @@ import * as i0 from '@angular/core';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
 import * as i1 from '@delon/theme';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { Subject, Subscription, BehaviorSubject, timer } from 'rxjs';
+import { Subject, Subscription, BehaviorSubject } from 'rxjs';
 import { ConnectionPositionPair, Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { __decorate } from 'tslib';
@@ -607,7 +607,6 @@ class ReuseTabService {
      * 存储
      */
     store(_snapshot, _handle) {
-        var _a;
         const url = this.getUrl(_snapshot);
         const idx = this.index(url);
         const isAdd = idx === -1;
@@ -629,12 +628,6 @@ class ReuseTabService {
             this._cached.push(item);
         }
         else {
-            // Current handler is null when activate routes
-            // For better reliability, we need to wait for the component to be attached before call _onReuseInit
-            const cahcedComponentRef = (_a = this._cached[idx]._handle) === null || _a === void 0 ? void 0 : _a.componentRef;
-            if (_handle == null && cahcedComponentRef != null) {
-                timer(100).subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
-            }
             this._cached[idx] = item;
         }
         this.removeUrlBuffer = null;
@@ -656,7 +649,14 @@ class ReuseTabService {
         const data = this.get(url);
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
-        if (!ret) {
+        if (ret) {
+            const compRef = data._handle.componentRef;
+            if (compRef) {
+                this.componentRef = compRef;
+                this.runHook('_onReuseInit', compRef);
+            }
+        }
+        else {
             this._cachedChange.next({ active: 'add', url, list: this._cached });
         }
         return ret;
