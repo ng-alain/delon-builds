@@ -1411,7 +1411,6 @@ class STComponent {
             else {
                 (_a = el.querySelector('.ant-table-body, .ant-table-content')) === null || _a === void 0 ? void 0 : _a.scrollTo(0, 0);
             }
-            return;
         }
     }
     _change(type, options) {
