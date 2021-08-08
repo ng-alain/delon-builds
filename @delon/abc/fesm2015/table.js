@@ -1398,6 +1398,9 @@ class STComponent {
         if (!(enforce == null ? this.page.toTop : enforce))
             return;
         const el = this.el.nativeElement;
+        el.scrollIntoView();
+        // fix header height
+        this.doc.documentElement.scrollTop -= this.page.toTopOffset;
         if (this.scroll) {
             if (this.cdkVirtualScrollViewport) {
                 this.cdkVirtualScrollViewport.scrollTo({
@@ -1410,9 +1413,6 @@ class STComponent {
             }
             return;
         }
-        el.scrollIntoView();
-        // fix header height
-        this.doc.documentElement.scrollTop -= this.page.toTopOffset;
     }
     _change(type, options) {
         if (type === 'pi' || (type === 'ps' && this.pi <= Math.ceil(this.total / this.ps))) {

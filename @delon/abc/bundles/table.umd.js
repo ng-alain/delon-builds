@@ -1857,6 +1857,9 @@
             if (!(enforce == null ? this.page.toTop : enforce))
                 return;
             var el = this.el.nativeElement;
+            el.scrollIntoView();
+            // fix header height
+            this.doc.documentElement.scrollTop -= this.page.toTopOffset;
             if (this.scroll) {
                 if (this.cdkVirtualScrollViewport) {
                     this.cdkVirtualScrollViewport.scrollTo({
@@ -1869,9 +1872,6 @@
                 }
                 return;
             }
-            el.scrollIntoView();
-            // fix header height
-            this.doc.documentElement.scrollTop -= this.page.toTopOffset;
         };
         STComponent.prototype._change = function (type, options) {
             var _this = this;
