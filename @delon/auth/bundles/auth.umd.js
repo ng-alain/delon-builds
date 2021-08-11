@@ -336,7 +336,7 @@
      *
      * ```ts
      * // global-config.module.ts
-     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
      * ```
      */
     var CookieStorageStore = /** @class */ (function () {
