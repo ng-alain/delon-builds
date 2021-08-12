@@ -41,6 +41,7 @@ import { NzTreeSelectModule } from 'ng-zorro-antd/tree-select';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { format } from 'date-fns';
 import { toDate } from '@delon/util/date-time';
+import { ArrayService } from '@delon/util/array';
 
 const SF_DEFAULT_CONFIG = {
     formatMap: {
@@ -2428,7 +2429,7 @@ class SelectWidget extends ControlUIWidget {
     }
     getOrgData(values) {
         if (!Array.isArray(values)) {
-            return this.data.find(w => w.value === values);
+            return this.injector.get(ArrayService).findTree(this.data, item => item.value === values);
         }
         return values.map(value => {
             let item = null;
