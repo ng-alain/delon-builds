@@ -336,7 +336,7 @@
      *
      * ```ts
      * // global-config.module.ts
-     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
+     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
      * ```
      */
     var CookieStorageStore = /** @class */ (function () {
@@ -591,7 +591,7 @@
                     ar[i] = from[i];
                 }
             }
-        return to.concat(ar || from);
+        return to.concat(ar || Array.prototype.slice.call(from));
     }
     function __await(v) {
         return this instanceof __await ? (this.v = v, this) : new __await(v);

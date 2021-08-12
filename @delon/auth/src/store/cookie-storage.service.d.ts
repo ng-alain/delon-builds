@@ -6,7 +6,7 @@ import { IStore } from './interface';
  *
  * ```ts
  * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
  * ```
  */
 export declare class CookieStorageStore implements IStore {
