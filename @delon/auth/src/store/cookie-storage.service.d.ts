@@ -13,6 +13,6 @@ export declare class CookieStorageStore implements IStore {
     private srv;
     constructor(srv: CookieService);
     get(key: string): ITokenModel;
-    set(key: string, value: ITokenModel | null): boolean;
+    set(key: string, value: ITokenModel | null | undefined): boolean;
     remove(key: string): void;
 }
