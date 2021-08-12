@@ -3086,9 +3086,7 @@
     var StringWidget = /** @class */ (function (_super) {
         __extends(StringWidget, _super);
         function StringWidget() {
-            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
-            _this.change$ = null;
-            return _this;
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         StringWidget.prototype.ngOnInit = function () {
             var _this = this;
@@ -3108,31 +3106,14 @@
                     _this.injector.get(core.ElementRef).nativeElement.querySelector("#" + _this.id).focus();
                 }, 20);
             }
-            this.initChange();
         };
         StringWidget.prototype.reset = function (value) {
             if (!value && this.schema.format === 'color') {
                 this.setValue('#000000');
             }
         };
-        StringWidget.prototype.initChange = function () {
-            var dueTime = this.ui.changeDebounceTime;
-            var changeFn = this.ui.change;
-            if (dueTime == null || dueTime <= 0 || changeFn == null)
-                return;
-            this.change$ = new rxjs.BehaviorSubject(this.value);
-            var obs = this.change$.asObservable().pipe(operators.debounceTime(dueTime), operators.takeUntil(this.sfItemComp.unsubscribe$));
-            if (this.ui.changeMap != null) {
-                obs = obs.pipe(operators.switchMap(this.ui.changeMap));
-            }
-            obs.subscribe(function (val) { return changeFn(val); });
-        };
         StringWidget.prototype.change = function (val) {
             this.setValue(val);
-            if (this.change$ != null) {
-                this.change$.next(val);
-                return;
-            }
             if (this.ui.change)
                 this.ui.change(val);
         };
