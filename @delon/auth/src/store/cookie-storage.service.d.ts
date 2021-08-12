@@ -6,13 +6,13 @@ import { IStore } from './interface';
  *
  * ```ts
  * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
  * ```
  */
 export declare class CookieStorageStore implements IStore {
     private srv;
     constructor(srv: CookieService);
     get(key: string): ITokenModel;
-    set(key: string, value: ITokenModel | null | undefined): boolean;
+    set(key: string, value: ITokenModel | null): boolean;
     remove(key: string): void;
 }

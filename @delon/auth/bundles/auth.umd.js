@@ -336,7 +336,7 @@
      *
      * ```ts
      * // global-config.module.ts
-     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+     * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
      * ```
      */
     var CookieStorageStore = /** @class */ (function () {
@@ -347,7 +347,7 @@
             return JSON.parse(this.srv.get(key) || '{}') || {};
         };
         CookieStorageStore.prototype.set = function (key, value) {
-            this.srv.put(key, value != null ? JSON.stringify(value) : '{}');
+            this.srv.put(key, JSON.stringify(value));
             return true;
         };
         CookieStorageStore.prototype.remove = function (key) {

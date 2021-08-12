@@ -282,7 +282,7 @@ class SessionStorageStore {
  *
  * ```ts
  * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore }
+ * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
  * ```
  */
 class CookieStorageStore {
@@ -293,7 +293,7 @@ class CookieStorageStore {
         return JSON.parse(this.srv.get(key) || '{}') || {};
     }
     set(key, value) {
-        this.srv.put(key, value != null ? JSON.stringify(value) : '{}');
+        this.srv.put(key, JSON.stringify(value));
         return true;
     }
     remove(key) {
