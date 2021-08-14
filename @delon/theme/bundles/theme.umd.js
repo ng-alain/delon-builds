@@ -4,9 +4,9 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@delon/util/config'), require('@angular/cdk/platform'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('@delon/util/date-time'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
-    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@delon/util/config', '@angular/cdk/platform', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', '@delon/util/date-time', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.delon.util.config, global.ng.cdk.platform, global.ng.cdk.bidi, global.ng.common, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global.delon.util['date-time'], global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@angular/cdk/platform'), require('@delon/util/config'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('@delon/util/date-time'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
+    typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@angular/cdk/platform', '@delon/util/config', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', '@delon/util/date-time', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.ng.cdk.platform, global.delon.util.config, global.ng.cdk.bidi, global.ng.common, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global.delon.util['date-time'], global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
 }(this, (function (exports, i0, rxjs, operators, i2, i1, i1$1, i1$2, i6, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateFns, dateTime, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopNamespace(e) {
@@ -382,17 +382,14 @@
 
     var ALAIN_I18N_TOKEN = new i0.InjectionToken('alainI18nToken', {
         providedIn: 'root',
-        factory: function () { return new AlainI18NServiceFake(i0.inject(i1.AlainConfigService)); }
+        factory: function () { return new AlainI18NServiceFake(); }
     });
     var AlainI18nBaseService = /** @class */ (function () {
-        function AlainI18nBaseService(cogSrv) {
+        function AlainI18nBaseService() {
             this._change$ = new rxjs.BehaviorSubject(null);
             this._currentLang = '';
             this._defaultLang = '';
             this._data = {};
-            this.cog = cogSrv.merge('themeI18n', {
-                interpolation: ['{{', '}}']
-            });
         }
         Object.defineProperty(AlainI18nBaseService.prototype, "change", {
             get: function () {
@@ -427,8 +424,7 @@
             if (!content)
                 return path;
             if (params) {
-                var interpolation_1 = this.cog.interpolation;
-                Object.keys(params).forEach(function (key) { return (content = content.replace(new RegExp(interpolation_1[0] + "s?" + key + "s?" + interpolation_1[1], 'g'), "" + params[key])); });
+                Object.keys(params).forEach(function (key) { return (content = content.replace(new RegExp("{{" + key + "}}", 'g'), "" + params[key])); });
             }
             return content;
         };
@@ -437,9 +433,6 @@
     AlainI18nBaseService.decorators = [
         { type: i0.Injectable }
     ];
-    AlainI18nBaseService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService }
-    ]; };
     var AlainI18NServiceFake = /** @class */ (function (_super) {
         __extends(AlainI18NServiceFake, _super);
         function AlainI18NServiceFake() {
@@ -455,7 +448,7 @@
         };
         return AlainI18NServiceFake;
     }(AlainI18nBaseService));
-    AlainI18NServiceFake.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService)); }, token: AlainI18NServiceFake, providedIn: "root" });
+    AlainI18NServiceFake.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
     AlainI18NServiceFake.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -815,12 +808,12 @@
         };
         return SettingsService;
     }());
-    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i1__namespace$1.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+    SettingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
     SettingsService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     SettingsService.ctorParameters = function () { return [
-        { type: i1$1.Platform },
+        { type: i1.Platform },
         { type: undefined, decorators: [{ type: i0.Inject, args: [ALAIN_SETTING_KEYS,] }] }
     ]; };
 
@@ -861,12 +854,12 @@
         };
         return ResponsiveService;
     }());
-    ResponsiveService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0__namespace.ɵɵinject(i1__namespace.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+    ResponsiveService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
     ResponsiveService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     ResponsiveService.ctorParameters = function () { return [
-        { type: i1.AlainConfigService }
+        { type: i1$1.AlainConfigService }
     ]; };
 
     var HTML_DIR = 'dir';
@@ -966,7 +959,7 @@
         };
         return RTLService;
     }());
-    RTLService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0__namespace.ɵɵinject(i1__namespace$2.Directionality), i0__namespace.ɵɵinject(SettingsService), i0__namespace.ɵɵinject(i3__namespace.NzConfigService), i0__namespace.ɵɵinject(i1__namespace.AlainConfigService), i0__namespace.ɵɵinject(i1__namespace$1.Platform), i0__namespace.ɵɵinject(i6__namespace.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+    RTLService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0__namespace.ɵɵinject(i1__namespace$2.Directionality), i0__namespace.ɵɵinject(SettingsService), i0__namespace.ɵɵinject(i3__namespace.NzConfigService), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService), i0__namespace.ɵɵinject(i1__namespace.Platform), i0__namespace.ɵɵinject(i6__namespace.DOCUMENT)); }, token: RTLService, providedIn: "root" });
     RTLService.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
@@ -974,8 +967,8 @@
         { type: i1$2.Directionality },
         { type: SettingsService },
         { type: i3.NzConfigService },
-        { type: i1.AlainConfigService },
-        { type: i1$1.Platform },
+        { type: i1$1.AlainConfigService },
+        { type: i1.Platform },
         { type: undefined, decorators: [{ type: i0.Inject, args: [i6.DOCUMENT,] }] }
     ]; };
 
@@ -2456,13 +2449,13 @@
         };
         return _HttpClient;
     }());
-    _HttpClient.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0__namespace.ɵɵinject(i1__namespace$6.HttpClient), i0__namespace.ɵɵinject(i1__namespace.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+    _HttpClient.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0__namespace.ɵɵinject(i1__namespace$6.HttpClient), i0__namespace.ɵɵinject(i1__namespace$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
     _HttpClient.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     _HttpClient.ctorParameters = function () { return [
         { type: i1$6.HttpClient },
-        { type: i1.AlainConfigService }
+        { type: i1$1.AlainConfigService }
     ]; };
 
     /**

@@ -1,13 +1,13 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
+import { InjectionToken, Injectable, Optional, Inject, Injector, SkipSelf, NgModule, Pipe, Version } from '@angular/core';
 import { BehaviorSubject, Subject, Observable, of, throwError } from 'rxjs';
 import { filter, share, map, delay, tap, switchMap, finalize } from 'rxjs/operators';
 import * as i2 from '@delon/acl';
 import { ACLService } from '@delon/acl';
-import * as i1 from '@delon/util/config';
-import { AlainConfigService } from '@delon/util/config';
-import * as i1$1 from '@angular/cdk/platform';
+import * as i1 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
+import * as i1$1 from '@delon/util/config';
+import { AlainConfigService } from '@delon/util/config';
 import * as i1$2 from '@angular/cdk/bidi';
 import { Directionality } from '@angular/cdk/bidi';
 import * as i6 from '@angular/common';
@@ -54,17 +54,14 @@ function preloaderFinished() {
 
 const ALAIN_I18N_TOKEN = new InjectionToken('alainI18nToken', {
     providedIn: 'root',
-    factory: () => new AlainI18NServiceFake(inject(AlainConfigService))
+    factory: () => new AlainI18NServiceFake()
 });
 class AlainI18nBaseService {
-    constructor(cogSrv) {
+    constructor() {
         this._change$ = new BehaviorSubject(null);
         this._currentLang = '';
         this._defaultLang = '';
         this._data = {};
-        this.cog = cogSrv.merge('themeI18n', {
-            interpolation: ['{{', '}}']
-        });
     }
     get change() {
         return this._change$.asObservable().pipe(filter(w => w != null));
@@ -83,17 +80,13 @@ class AlainI18nBaseService {
         if (!content)
             return path;
         if (params) {
-            const interpolation = this.cog.interpolation;
-            Object.keys(params).forEach(key => (content = content.replace(new RegExp(`${interpolation[0]}\s?${key}\s?${interpolation[1]}`, 'g'), `${params[key]}`)));
+            Object.keys(params).forEach(key => (content = content.replace(new RegExp(`{{${key}}}`, 'g'), `${params[key]}`)));
         }
         return content;
     }
 }
 AlainI18nBaseService.decorators = [
     { type: Injectable }
-];
-AlainI18nBaseService.ctorParameters = () => [
-    { type: AlainConfigService }
 ];
 class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang, data) {
@@ -105,7 +98,7 @@ class AlainI18NServiceFake extends AlainI18nBaseService {
         return [];
     }
 }
-AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(i0.ɵɵinject(i1.AlainConfigService)); }, token: AlainI18NServiceFake, providedIn: "root" });
+AlainI18NServiceFake.ɵprov = i0.ɵɵdefineInjectable({ factory: function AlainI18NServiceFake_Factory() { return new AlainI18NServiceFake(); }, token: AlainI18NServiceFake, providedIn: "root" });
 AlainI18NServiceFake.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -422,7 +415,7 @@ class SettingsService {
         this.notify$.next({ type: 'user', value });
     }
 }
-SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1$1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
+SettingsService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SettingsService_Factory() { return new SettingsService(i0.ɵɵinject(i1.Platform), i0.ɵɵinject(ALAIN_SETTING_KEYS)); }, token: SettingsService, providedIn: "root" });
 SettingsService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -467,7 +460,7 @@ class ResponsiveService {
         return clsMap;
     }
 }
-ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
+ResponsiveService.ɵprov = i0.ɵɵdefineInjectable({ factory: function ResponsiveService_Factory() { return new ResponsiveService(i0.ɵɵinject(i1$1.AlainConfigService)); }, token: ResponsiveService, providedIn: "root" });
 ResponsiveService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -557,7 +550,7 @@ class RTLService {
         });
     }
 }
-RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1.AlainConfigService), i0.ɵɵinject(i1$1.Platform), i0.ɵɵinject(i6.DOCUMENT)); }, token: RTLService, providedIn: "root" });
+RTLService.ɵprov = i0.ɵɵdefineInjectable({ factory: function RTLService_Factory() { return new RTLService(i0.ɵɵinject(i1$2.Directionality), i0.ɵɵinject(SettingsService), i0.ɵɵinject(i3.NzConfigService), i0.ɵɵinject(i1$1.AlainConfigService), i0.ɵɵinject(i1.Platform), i0.ɵɵinject(i6.DOCUMENT)); }, token: RTLService, providedIn: "root" });
 RTLService.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -1995,7 +1988,7 @@ class _HttpClient {
         delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
 }
-_HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
+_HttpClient.ɵprov = i0.ɵɵdefineInjectable({ factory: function _HttpClient_Factory() { return new _HttpClient(i0.ɵɵinject(i1$6.HttpClient), i0.ɵɵinject(i1$1.AlainConfigService)); }, token: _HttpClient, providedIn: "root" });
 _HttpClient.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
@@ -2367,7 +2360,7 @@ AlainThemeModule.ctorParameters = () => [
     { type: NzIconService }
 ];
 
-const VERSION = new Version('12.1.1-ee809c28');
+const VERSION = new Version('12.1.1-f786014b');
 
 /**
  * Generated bundle index. Do not edit.

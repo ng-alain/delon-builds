@@ -1,6 +1,5 @@
 import { InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainI18NService {
     [key: string]: NzSafeAny;
@@ -46,7 +45,6 @@ export interface AlainI18NService {
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 export declare abstract class AlainI18nBaseService implements AlainI18NService {
-    private cog;
     protected _change$: BehaviorSubject<string | null>;
     protected _currentLang: string;
     protected _defaultLang: string;
@@ -55,7 +53,6 @@ export declare abstract class AlainI18nBaseService implements AlainI18NService {
     get defaultLang(): string;
     get currentLang(): string;
     get data(): Record<string, string>;
-    constructor(cogSrv: AlainConfigService);
     abstract use(lang: string, data?: Record<string, string>): void;
     abstract getLangs(): NzSafeAny[];
     fanyi(path: string, params?: Record<string, unknown>): string;
