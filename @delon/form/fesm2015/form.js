@@ -2429,19 +2429,14 @@ class SelectWidget extends ControlUIWidget {
     }
     getOrgData(values) {
         if (!Array.isArray(values)) {
-            return this.injector.get(ArrayService).findTree(this.data, (item) => item.value === values);
+            return this.injector.get(ArrayService).findTree(this.data, item => item.value === values);
         }
         return values.map(value => {
             let item = null;
-            if (this.hasGroup) {
-                this.data.forEach(list => {
-                    var _a;
-                    item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(w => w.value === value);
-                });
-            }
-            else {
-                item = this.data.find(w => w.value === value);
-            }
+            this.data.forEach(list => {
+                var _a;
+                item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(w => w.value === value);
+            });
             return item;
         });
     }

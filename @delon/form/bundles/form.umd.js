@@ -3012,15 +3012,10 @@
             }
             return values.map(function (value) {
                 var item = null;
-                if (_this.hasGroup) {
-                    _this.data.forEach(function (list) {
-                        var _a;
-                        item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(function (w) { return w.value === value; });
-                    });
-                }
-                else {
-                    item = _this.data.find(function (w) { return w.value === value; });
-                }
+                _this.data.forEach(function (list) {
+                    var _a;
+                    item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(function (w) { return w.value === value; });
+                });
                 return item;
             });
         };
