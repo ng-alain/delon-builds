@@ -47,7 +47,7 @@ function deepCopy(obj) {
 function deepMergeKey(original, arrayProcessMethod, ...objects) {
     if (Array.isArray(original) || typeof original !== 'object')
         return original;
-    const isObject = (v) => typeof v === 'object';
+    const isObject = (v) => typeof v === 'object' || typeof v === 'function';
     const merge = (target, obj) => {
         Object.keys(obj)
             .filter(key => key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key))
@@ -56,9 +56,6 @@ function deepMergeKey(original, arrayProcessMethod, ...objects) {
             const toValue = target[key];
             if (Array.isArray(toValue)) {
                 target[key] = arrayProcessMethod ? fromValue : [...toValue, ...fromValue];
-            }
-            else if (typeof fromValue === 'function') {
-                target[key] = fromValue;
             }
             else if (fromValue != null && isObject(fromValue) && toValue != null && isObject(toValue)) {
                 target[key] = merge(toValue, fromValue);

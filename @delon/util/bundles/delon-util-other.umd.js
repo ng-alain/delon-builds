@@ -398,7 +398,7 @@
         }
         if (Array.isArray(original) || typeof original !== 'object')
             return original;
-        var isObject = function (v) { return typeof v === 'object'; };
+        var isObject = function (v) { return typeof v === 'object' || typeof v === 'function'; };
         var merge = function (target, obj) {
             Object.keys(obj)
                 .filter(function (key) { return key !== '__proto__' && Object.prototype.hasOwnProperty.call(obj, key); })
@@ -407,9 +407,6 @@
                 var toValue = target[key];
                 if (Array.isArray(toValue)) {
                     target[key] = arrayProcessMethod ? fromValue : __spreadArray(__spreadArray([], __read(toValue)), __read(fromValue));
-                }
-                else if (typeof fromValue === 'function') {
-                    target[key] = fromValue;
                 }
                 else if (fromValue != null && isObject(fromValue) && toValue != null && isObject(toValue)) {
                     target[key] = merge(toValue, fromValue);
