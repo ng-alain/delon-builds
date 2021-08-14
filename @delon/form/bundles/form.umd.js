@@ -2961,7 +2961,7 @@
         };
         SelectWidget.prototype.ngOnInit = function () {
             var _this = this;
-            var _b = this.ui, autoClearSearchValue = _b.autoClearSearchValue, borderless = _b.borderless, autoFocus = _b.autoFocus, dropdownMatchSelectWidth = _b.dropdownMatchSelectWidth, serverSearch = _b.serverSearch, maxMultipleCount = _b.maxMultipleCount, mode = _b.mode, showSearch = _b.showSearch, tokenSeparators = _b.tokenSeparators, maxTagCount = _b.maxTagCount, compareWith = _b.compareWith, optionHeightPx = _b.optionHeightPx, optionOverflowSize = _b.optionOverflowSize, showArrow = _b.showArrow;
+            var _a = this.ui, autoClearSearchValue = _a.autoClearSearchValue, borderless = _a.borderless, autoFocus = _a.autoFocus, dropdownMatchSelectWidth = _a.dropdownMatchSelectWidth, serverSearch = _a.serverSearch, maxMultipleCount = _a.maxMultipleCount, mode = _a.mode, showSearch = _a.showSearch, tokenSeparators = _a.tokenSeparators, maxTagCount = _a.maxTagCount, compareWith = _a.compareWith, optionHeightPx = _a.optionHeightPx, optionOverflowSize = _a.optionOverflowSize, showArrow = _a.showArrow;
             this.i = {
                 autoClearSearchValue: toBool(autoClearSearchValue, true),
                 borderless: toBool(borderless, false),
@@ -3007,17 +3007,11 @@
         };
         SelectWidget.prototype.getOrgData = function (values) {
             var _this = this;
+            var srv = this.injector.get(array.ArrayService);
             if (!Array.isArray(values)) {
-                return this.injector.get(array.ArrayService).findTree(this.data, function (item) { return item.value === values; });
+                return srv.findTree(this.data, function (item) { return item.value === values; });
             }
-            return values.map(function (value) {
-                var item = null;
-                _this.data.forEach(function (list) {
-                    var _a;
-                    item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(function (w) { return w.value === value; });
-                });
-                return item;
-            });
+            return values.map(function (value) { return srv.findTree(_this.data, function (item) { return item.value === value; }); });
         };
         SelectWidget.prototype.openChange = function (status) {
             if (this.ui.openChange) {

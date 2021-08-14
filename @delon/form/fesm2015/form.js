@@ -2428,17 +2428,11 @@ class SelectWidget extends ControlUIWidget {
         this.setValue(values == null ? undefined : values);
     }
     getOrgData(values) {
+        const srv = this.injector.get(ArrayService);
         if (!Array.isArray(values)) {
-            return this.injector.get(ArrayService).findTree(this.data, item => item.value === values);
+            return srv.findTree(this.data, (item) => item.value === values);
         }
-        return values.map(value => {
-            let item = null;
-            this.data.forEach(list => {
-                var _a;
-                item = (_a = list.children) === null || _a === void 0 ? void 0 : _a.find(w => w.value === value);
-            });
-            return item;
-        });
+        return values.map(value => srv.findTree(this.data, (item) => item.value === value));
     }
     openChange(status) {
         if (this.ui.openChange) {
