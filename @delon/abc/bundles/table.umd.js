@@ -1100,7 +1100,7 @@
             var _loop_1 = function (i, len) {
                 result[i]._values = columns.map(function (c) {
                     if (Array.isArray(c.buttons) && c.buttons.length > 0) {
-                        return { buttons: _this.genButtons(c.buttons, result[i], c) };
+                        return { buttons: _this.genButtons(c.buttons, result[i], c), _text: '' };
                     }
                     return _this.get(result[i], c, i);
                 });
