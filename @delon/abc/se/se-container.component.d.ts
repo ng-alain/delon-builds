@@ -11,12 +11,10 @@ export declare class SEContainerComponent {
     static ngAcceptInputType_firstVisual: BooleanInput;
     static ngAcceptInputType_ingoreDirty: BooleanInput;
     static ngAcceptInputType_line: BooleanInput;
-    static ngAcceptInputType_noColon: BooleanInput;
     private errorNotify$;
     colInCon: REP_TYPE;
     col: REP_TYPE;
     labelWidth: number;
-    noColon: boolean;
     title?: string | TemplateRef<void> | null;
     get gutter(): number | string;
     set gutter(value: number | string);

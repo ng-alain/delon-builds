@@ -12,7 +12,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     static ngAcceptInputType_required: BooleanInput;
     static ngAcceptInputType_line: BooleanInput;
     static ngAcceptInputType_labelWidth: NumberInput;
-    static ngAcceptInputType_noColon: BooleanInput;
     private el;
     private unsubscribe$;
     private readonly ngModel;
@@ -25,7 +24,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     private isBindModel;
     invalid: boolean;
     _labelWidth: number | null;
-    _noColon: boolean | null;
     _error: string | TemplateRef<void>;
     optional?: string | TemplateRef<void> | null;
     optionalHelp?: string | TemplateRef<void> | null;
@@ -38,7 +36,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     controlClass?: string | null;
     line: boolean;
     labelWidth: number;
-    noColon: boolean;
     set id(value: string);
     _id: string;
     _autoId: boolean;

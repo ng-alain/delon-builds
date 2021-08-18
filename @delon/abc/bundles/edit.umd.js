@@ -330,7 +330,6 @@
     var SEContainerComponent = /** @class */ (function () {
         function SEContainerComponent(configSrv) {
             this.errorNotify$ = new rxjs.BehaviorSubject(null);
-            this.noColon = false;
             this.line = false;
             configSrv.attach(this, 'se', {
                 size: 'default',
@@ -431,7 +430,6 @@
         colInCon: [{ type: core.Input, args: ['se-container',] }],
         col: [{ type: core.Input }],
         labelWidth: [{ type: core.Input }],
-        noColon: [{ type: core.Input }],
         title: [{ type: core.Input }],
         gutter: [{ type: core.Input }],
         nzLayout: [{ type: core.Input }],
@@ -450,9 +448,6 @@
     __decorate([
         decorator.InputNumber(null)
     ], SEContainerComponent.prototype, "labelWidth", void 0);
-    __decorate([
-        decorator.InputBoolean()
-    ], SEContainerComponent.prototype, "noColon", void 0);
     __decorate([
         decorator.InputBoolean()
     ], SEContainerComponent.prototype, "firstVisual", void 0);
@@ -519,7 +514,6 @@
             this.isBindModel = false;
             this.invalid = false;
             this._labelWidth = null;
-            this._noColon = null;
             // #region fields
             this.optional = null;
             this.optionalHelp = null;
@@ -583,8 +577,7 @@
             configurable: true
         });
         SEComponent.prototype.setClass = function () {
-            var _c = this, el = _c.el, ren = _c.ren, clsMap = _c.clsMap, col = _c.col, parent = _c.parent, cdr = _c.cdr, line = _c.line, labelWidth = _c.labelWidth, rep = _c.rep, noColon = _c.noColon;
-            this._noColon = noColon != null ? noColon : parent.noColon;
+            var _c = this, el = _c.el, ren = _c.ren, clsMap = _c.clsMap, col = _c.col, parent = _c.parent, cdr = _c.cdr, line = _c.line, labelWidth = _c.labelWidth, rep = _c.rep;
             this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
             clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
@@ -680,7 +673,7 @@
         { type: core.Component, args: [{
                     selector: 'se',
                     exportAs: 'se',
-                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label\n    *ngIf=\"label\"\n    [attr.for]=\"_id\"\n    class=\"se__label\"\n    [ngClass]=\"{ 'ant-form-item-required': required, 'se__no-colon': _noColon }\"\n  >\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i\n        *ngIf=\"optionalHelp\"\n        nz-tooltip\n        [nzTooltipTitle]=\"optionalHelp\"\n        [nzTooltipColor]=\"optionalHelpColor\"\n        nz-icon\n        nzType=\"question-circle\"\n      ></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
+                    template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"!label\" [style.width.px]=\"_labelWidth\">\n  <label *ngIf=\"label\" [attr.for]=\"_id\" class=\"se__label\" [ngClass]=\"{ 'ant-form-item-required': required }\">\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i\n        *ngIf=\"optionalHelp\"\n        nz-tooltip\n        [nzTooltipTitle]=\"optionalHelp\"\n        [nzTooltipColor]=\"optionalHelpColor\"\n        nz-icon\n        nzType=\"question-circle\"\n      ></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div class=\"ant-form-item-explain ant-form-item-explain-error\" *ngIf=\"showErr\">\n    <div @helpMotion>\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue',
@@ -715,7 +708,6 @@
         controlClass: [{ type: core.Input }],
         line: [{ type: core.Input }],
         labelWidth: [{ type: core.Input }],
-        noColon: [{ type: core.Input }],
         id: [{ type: core.Input }]
     };
     __decorate([
@@ -730,9 +722,6 @@
     __decorate([
         decorator.InputNumber(null)
     ], SEComponent.prototype, "labelWidth", void 0);
-    __decorate([
-        decorator.InputBoolean(null)
-    ], SEComponent.prototype, "noColon", void 0);
 
     var COMPONENTS = [SEContainerComponent, SEComponent, SETitleComponent];
     var SEModule = /** @class */ (function () {
