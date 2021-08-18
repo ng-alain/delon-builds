@@ -26589,9 +26589,6 @@ a:focus {
 .ant-table-rep__hide-header-footer .ant-table-footer {
   display: none;
 }
-.ant-table-tbody > tr:nth-child(4n + 3) {
-  background: transparent;
-}
 [dir='rtl'] .ant-table td > img,
 [dir='rtl'] .ant-table td .img {
   margin-right: inherit;
