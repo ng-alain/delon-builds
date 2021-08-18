@@ -31611,6 +31611,9 @@ body {
 .sv__vertical .sv__detail {
   display: block;
 }
+.sv__no-colon::after {
+  content: ' ' !important;
+}
 .se__title {
   display: block;
   float: none;
@@ -31713,6 +31716,9 @@ body {
 }
 .se__inline > .se__item:last-child {
   margin-right: 0;
+}
+.se__no-colon::after {
+  content: ' ' !important;
 }
 @media (max-width: 767px) {
   .se__horizontal > .se__item {

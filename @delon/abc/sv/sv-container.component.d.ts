@@ -6,6 +6,7 @@ export declare class SVContainerComponent {
     static ngAcceptInputType_labelWidth: NumberInput;
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_default: BooleanInput;
+    static ngAcceptInputType_noColon: BooleanInput;
     title: string | TemplateRef<void>;
     size: 'small' | 'large';
     /** 列表项间距，单位为 `px` */
@@ -15,5 +16,6 @@ export declare class SVContainerComponent {
     /** 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定 */
     col: number;
     default: boolean;
+    noColon: boolean;
     constructor(configSrv: AlainConfigService);
 }
