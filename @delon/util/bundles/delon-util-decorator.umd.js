@@ -35,9 +35,9 @@
         }
         return propDecorator;
     }
-    function toBoolean(value, allowUndefined) {
-        if (allowUndefined === void 0) { allowUndefined = false; }
-        return allowUndefined && typeof value === 'undefined' ? undefined : value != null && "" + value !== 'false';
+    function toBoolean(value, defaultValue) {
+        if (defaultValue === void 0) { defaultValue = false; }
+        return value == null ? defaultValue : "" + value !== 'false';
     }
     /**
      * Input decorator that handle a prop to do get/set automatically with toBoolean
@@ -49,7 +49,7 @@
      */
     function InputBoolean(defaultValue) {
         if (defaultValue === void 0) { defaultValue = false; }
-        return propDecoratorFactory('InputNumber', toBoolean, defaultValue);
+        return propDecoratorFactory('InputBoolean', toBoolean, defaultValue);
     }
     function toNumber(value, fallbackValue) {
         if (fallbackValue === void 0) { fallbackValue = 0; }

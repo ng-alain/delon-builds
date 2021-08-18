@@ -1,7 +1,7 @@
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare type BooleanInput = boolean | string | undefined | null;
 export declare type NumberInput = number | string | undefined | null;
-export declare function toBoolean(value: unknown, allowUndefined?: boolean | null): boolean | undefined;
+export declare function toBoolean(value: unknown, defaultValue?: boolean | null | undefined): boolean | null | undefined;
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
  *

@@ -85,8 +85,7 @@ function isBlank(o) {
     return o == null;
 }
 function toBool(value, defaultValue) {
-    value = toBoolean(value, true);
-    return value == null ? defaultValue : value;
+    return toBoolean(value, defaultValue);
 }
 function di(ui, ...args) {
     if (ui.debug) {

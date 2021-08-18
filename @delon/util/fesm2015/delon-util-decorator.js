@@ -26,8 +26,8 @@ function propDecoratorFactory(name, fallback, defaultValue) {
     }
     return propDecorator;
 }
-function toBoolean(value, allowUndefined = false) {
-    return allowUndefined && typeof value === 'undefined' ? undefined : value != null && `${value}` !== 'false';
+function toBoolean(value, defaultValue = false) {
+    return value == null ? defaultValue : `${value}` !== 'false';
 }
 /**
  * Input decorator that handle a prop to do get/set automatically with toBoolean
@@ -38,7 +38,7 @@ function toBoolean(value, allowUndefined = false) {
  * ```
  */
 function InputBoolean(defaultValue = false) {
-    return propDecoratorFactory('InputNumber', toBoolean, defaultValue);
+    return propDecoratorFactory('InputBoolean', toBoolean, defaultValue);
 }
 function toNumber(value, fallbackValue = 0) {
     return !isNaN(parseFloat(value)) && !isNaN(Number(value)) ? Number(value) : fallbackValue;

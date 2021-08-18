@@ -374,8 +374,7 @@
         return o == null;
     }
     function toBool(value, defaultValue) {
-        value = decorator.toBoolean(value, true);
-        return value == null ? defaultValue : value;
+        return decorator.toBoolean(value, defaultValue);
     }
     function di(ui) {
         var args = [];
