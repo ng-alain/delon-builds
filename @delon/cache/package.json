@@ -1,6 +1,6 @@
 {
   "name": "@delon/cache",
-  "version": "12.1.1-c5d574d3",
+  "version": "12.1.1-27ba0efc",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^12.1.1-c5d574d3",
+    "@delon/util": "^12.1.1-27ba0efc",
     "tslib": "^2.2.0"
   },
   "main": "bundles/cache.umd.js",
