@@ -8,9 +8,11 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     private ren;
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_default: BooleanInput;
+    static ngAcceptInputType_noColon: BooleanInput;
     private conEl;
     private el;
     private clsMap;
+    _noColon: boolean;
     optional: string | TemplateRef<void>;
     optionalHelp: string | TemplateRef<void>;
     optionalHelpColor: string;
@@ -19,6 +21,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     col: number;
     default: boolean;
     type: 'primary' | 'success' | 'danger' | 'warning';
+    noColon: boolean;
     get paddingValue(): number;
     get labelWidth(): number | null;
     constructor(el: ElementRef, parent: SVContainerComponent, rep: ResponsiveService, ren: Renderer2);

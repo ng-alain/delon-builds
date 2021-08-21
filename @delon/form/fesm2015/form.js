@@ -2494,6 +2494,10 @@ SliderWidget.decorators = [
 ];
 
 class StringWidget extends ControlUIWidget {
+    constructor() {
+        super(...arguments);
+        this.change$ = null;
+    }
     ngOnInit() {
         const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon, autofocus } = this.ui;
         this.type = !!(addOnAfter ||
@@ -2511,14 +2515,31 @@ class StringWidget extends ControlUIWidget {
                 this.injector.get(ElementRef).nativeElement.querySelector(`#${this.id}`).focus();
             }, 20);
         }
+        this.initChange();
     }
     reset(value) {
         if (!value && this.schema.format === 'color') {
             this.setValue('#000000');
         }
     }
+    initChange() {
+        const dueTime = this.ui.changeDebounceTime;
+        const changeFn = this.ui.change;
+        if (dueTime == null || dueTime <= 0 || changeFn == null)
+            return;
+        this.change$ = new BehaviorSubject(this.value);
+        let obs = this.change$.asObservable().pipe(debounceTime(dueTime), takeUntil(this.sfItemComp.unsubscribe$));
+        if (this.ui.changeMap != null) {
+            obs = obs.pipe(switchMap(this.ui.changeMap));
+        }
+        obs.subscribe(val => changeFn(val));
+    }
     change(val) {
         this.setValue(val);
+        if (this.change$ != null) {
+            this.change$.next(val);
+            return;
+        }
         if (this.ui.change)
             this.ui.change(val);
     }

@@ -1,4 +1,6 @@
-import { SFUISchemaItem } from '../../schema/ui';
+import { Observable } from 'rxjs';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { SFUISchemaItem } from '../../schema/ui';
 export interface SFStringWidgetSchema extends SFUISchemaItem {
     /**
      * 指定 `input` 的 `type` 值，默认为：`text`
@@ -53,9 +55,21 @@ export interface SFStringWidgetSchema extends SFUISchemaItem {
      */
     borderless?: boolean;
     /**
+     * `change` event throttling and sequence control threshold
+     *
+     * `change` 事件节流与顺序控制的阀值
+     */
+    changeDebounceTime?: number;
+    /**
+     * Convert data, equivalent to `switchMap` operation
+     *
+     * 转换数据，相当于 `switchMap` 操作
+     */
+    changeMap?: (val: string) => Observable<NzSafeAny>;
+    /**
      * 内容变更事件
      */
-    change?: (val: string) => void;
+    change?: (val: NzSafeAny) => void;
     /**
      * 焦点事件
      */

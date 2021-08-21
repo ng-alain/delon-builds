@@ -329,6 +329,7 @@
 
     var SVContainerComponent = /** @class */ (function () {
         function SVContainerComponent(configSrv) {
+            this.noColon = false;
             configSrv.attach(this, 'sv', {
                 size: 'large',
                 gutter: 32,
@@ -367,7 +368,8 @@
         layout: [{ type: core.Input }],
         labelWidth: [{ type: core.Input }],
         col: [{ type: core.Input }],
-        default: [{ type: core.Input }]
+        default: [{ type: core.Input }],
+        noColon: [{ type: core.Input }]
     };
     __decorate([
         decorator.InputNumber()
@@ -381,6 +383,9 @@
     __decorate([
         decorator.InputBoolean()
     ], SVContainerComponent.prototype, "default", void 0);
+    __decorate([
+        decorator.InputBoolean()
+    ], SVContainerComponent.prototype, "noColon", void 0);
 
     var SVTitleComponent = /** @class */ (function () {
         function SVTitleComponent(el, parent, ren) {
@@ -456,6 +461,7 @@
             this.rep = rep;
             this.ren = ren;
             this.clsMap = [];
+            this._noColon = false;
             if (parent == null) {
                 throw new Error("[sv] must include 'sv-container' component");
             }
@@ -478,7 +484,8 @@
             configurable: true
         });
         SVComponent.prototype.setClass = function () {
-            var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep;
+            var _a = this, el = _a.el, ren = _a.ren, col = _a.col, clsMap = _a.clsMap, type = _a.type, rep = _a.rep, noColon = _a.noColon, parent = _a.parent;
+            this._noColon = noColon != null ? noColon : parent.noColon;
             clsMap.forEach(function (cls) { return ren.removeClass(el, cls); });
             clsMap.length = 0;
             clsMap.push.apply(clsMap, __spreadArray([], __read(rep.genCls(col != null ? col : this.parent.col))));
@@ -517,7 +524,7 @@
         { type: core.Component, args: [{
                     selector: 'sv, [sv]',
                     exportAs: 'sv',
-                    template: "<div\n  class=\"sv__label\"\n  [class.sv__label-empty]=\"!label\"\n  [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n  [style.width.px]=\"labelWidth\"\n>\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i\n      *ngIf=\"optionalHelp\"\n      nz-tooltip\n      [nzTooltipTitle]=\"optionalHelp\"\n      [nzTooltipColor]=\"optionalHelpColor\"\n      nz-icon\n      nzType=\"question-circle\"\n    ></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
+                    template: "<div\n  class=\"sv__label\"\n  [class.sv__label-empty]=\"!label\"\n  [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n  [class.sv__no-colon]=\"_noColon\"\n  [style.width.px]=\"labelWidth\"\n>\n  <span class=\"sv__label-text\">\n    <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n  </span>\n  <span *ngIf=\"optional || optionalHelp\" class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n    <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n    <i\n      *ngIf=\"optionalHelp\"\n      nz-tooltip\n      [nzTooltipTitle]=\"optionalHelp\"\n      [nzTooltipColor]=\"optionalHelpColor\"\n      nz-icon\n      nzType=\"question-circle\"\n    ></i>\n  </span>\n</div>\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content></ng-content>\n  </span>\n  <ng-container *ngIf=\"!!unit\">\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  </ng-container>\n</div>\n",
                     host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue'
@@ -542,7 +549,8 @@
         unit: [{ type: core.Input }],
         col: [{ type: core.Input }],
         default: [{ type: core.Input }],
-        type: [{ type: core.Input }]
+        type: [{ type: core.Input }],
+        noColon: [{ type: core.Input }]
     };
     __decorate([
         decorator.InputNumber(null)
@@ -550,6 +558,9 @@
     __decorate([
         decorator.InputBoolean(null)
     ], SVComponent.prototype, "default", void 0);
+    __decorate([
+        decorator.InputBoolean(null)
+    ], SVComponent.prototype, "noColon", void 0);
 
     var COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
     var SVModule = /** @class */ (function () {
