@@ -2846,6 +2846,30 @@
         { type: icon.NzIconService }
     ]; };
 
+    /**
+     * Optional pre-loading module, when it's necessary to load the resource at the first page load for some lazy routes, [example](https://github.com/ng-alain/ng-alain/blob/master/src/app/routes/routes-routing.module.ts).
+     *
+     * 可选预加载模块，当需要对某些懒路由在第一次页面加载时也一并加载该资源时，[示例](https://github.com/ng-alain/ng-alain/blob/master/src/app/routes/routes-routing.module.ts)。
+     *
+     * @example
+     * {AT}NgModule({
+     *  providers: [PreloadOptionalModules],
+     *  imports: [
+     *    RouterModule.forRoot([
+     *      { path: '', loadChildren: null, data: { preload: true } }
+     *    ], { preloadingStrategy: PreloadOptionalModules})]
+     * })
+     */
+    var PreloadOptionalModules = /** @class */ (function () {
+        function PreloadOptionalModules() {
+        }
+        PreloadOptionalModules.prototype.preload = function (route, fn) {
+            var _a;
+            return ((_a = route.data) === null || _a === void 0 ? void 0 : _a.preload) === true ? fn().pipe(operators.catchError(function () { return rxjs.of(null); })) : rxjs.of(null);
+        };
+        return PreloadOptionalModules;
+    }());
+
     var VERSION = new i0.Version('12.1.1');
 
     /**
@@ -2886,6 +2910,7 @@
     exports.PUT = PUT;
     exports.Path = Path;
     exports.Payload = Payload;
+    exports.PreloadOptionalModules = PreloadOptionalModules;
     exports.Query = Query;
     exports.REP_MAX = REP_MAX;
     exports.RTL = RTL;
