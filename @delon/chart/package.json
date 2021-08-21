@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "12.1.1-29302f54",
+  "version": "12.1.1-71d3ef6b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.1.23",
     "echarts": "^5.1.2",
-    "@delon/util": "^12.1.1-29302f54",
-    "@delon/theme": "^12.1.1-29302f54",
+    "@delon/util": "^12.1.1-71d3ef6b",
+    "@delon/theme": "^12.1.1-71d3ef6b",
     "tslib": "^2.2.0"
   },
   "main": "bundles/chart.umd.js",
