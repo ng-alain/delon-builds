@@ -26,12 +26,12 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular-eslint/eslint-plugin-template@~12.3.1`,
         `@angular-eslint/schematics@~12.3.1`,
         `@angular-eslint/template-parser@~12.3.1`,
-        `@typescript-eslint/eslint-plugin@~4.29.0`,
-        `@typescript-eslint/parser@~4.29.0`,
+        `@typescript-eslint/eslint-plugin@~4.29.2`,
+        `@typescript-eslint/parser@~4.29.2`,
         `eslint@^7.32.0`,
         `eslint-config-prettier@^2.2.1`,
-        `eslint-plugin-import@~2.23.4`,
-        `eslint-plugin-jsdoc@~36.0.6`,
+        `eslint-plugin-import@~2.24.1`,
+        `eslint-plugin-jsdoc@~36.0.7`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@^2.2.1`,
         `prettier@^2.2.1`,
@@ -42,7 +42,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular/language-service@~12.2.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    package_1.addPackage(tree, ['ajv@^8.6.2', 'ajv-formats@^2.1.0']);
+    package_1.addPackage(tree, ['ajv@^8.6.2', 'ajv-formats@^2.1.1']);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
