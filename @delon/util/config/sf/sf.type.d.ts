@@ -1,4 +1,3 @@
-import type { Options as AjvOptions } from 'ajv';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainSFConfigFormatMap {
     'date-time': {
@@ -57,9 +56,9 @@ export interface AlainSFConfig {
      */
     ingoreKeywords?: string[];
     /**
-     * [ajv](https://ajv.js.org/options.html) 参数
+     * [ajv](https://github.com/ajv-validator/ajv/blob/master/docs/api.md#options) 参数
      */
-    ajv?: AjvOptions;
+    ajv?: NzSafeAny;
     /**
      * 是否实时校验，默认：`true`
      * - `true` 每一次都校验
