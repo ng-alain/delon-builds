@@ -37,12 +37,11 @@ export interface SFGridSchema {
     xl?: number | SFGridSizeSchema;
     xxl?: number | SFGridSizeSchema;
 }
-export declare type SFBuiltInWidgets = 'text' | 'string' | 'number' | 'integer' | 'date' | 'time' | 'radio' | 'checkbox' | 'boolean' | 'textarea' | 'select' | 'tree-select' | 'tag' | 'upload' | 'transfer' | 'slider' | 'rate' | 'autocomplete' | 'cascader' | 'mention' | 'custom' | 'array' | 'object';
 export interface SFRenderSchema {
     /**
      * 指定采用什么小部件渲染，所有小部件名可[查阅文档](https://ng-alain.com/)
      */
-    widget?: SFBuiltInWidgets | (string & {});
+    widget?: string;
     /**
      * 自定义类，等同 `[ngClass]` 值
      */
