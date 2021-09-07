@@ -79,7 +79,6 @@ class ChartEChartsComponent {
         this._chart = null;
         this._width = '100%';
         this._height = '400px';
-        this.on = [];
         this.events = new EventEmitter();
         this.loaded = false;
         this.srv.notify
@@ -127,18 +126,9 @@ class ChartEChartsComponent {
     }
     install() {
         this.destroy();
-        const chart = (this._chart = window.echarts.init(this.node.nativeElement, this._theme, this._initOpt));
+        this._chart = window.echarts.init(this.node.nativeElement, this._theme, this._initOpt);
         this.emit('init');
         this.setOption(this._option);
-        // on
-        this.on.forEach(item => {
-            if (item.query != null) {
-                chart.on(item.eventName, item.query, event => item.handler({ event, chart }));
-            }
-            else {
-                chart.on(item.eventName, event => item.handler({ event, chart }));
-            }
-        });
         return this;
     }
     destroy() {
@@ -170,7 +160,6 @@ class ChartEChartsComponent {
             .subscribe(() => this._chart.resize());
     }
     ngOnDestroy() {
-        this.on.forEach(item => { var _a; return (_a = this._chart) === null || _a === void 0 ? void 0 : _a.off(item.eventName); });
         this.destroy$.next();
         this.destroy$.complete();
         this.destroy();
@@ -207,7 +196,6 @@ ChartEChartsComponent.propDecorators = {
     theme: [{ type: Input }],
     initOpt: [{ type: Input }],
     option: [{ type: Input }],
-    on: [{ type: Input }],
     events: [{ type: Output }]
 };
 __decorate([

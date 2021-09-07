@@ -429,7 +429,6 @@
             this._chart = null;
             this._width = '100%';
             this._height = '400px';
-            this.on = [];
             this.events = new i0.EventEmitter();
             this.loaded = false;
             this.srv.notify
@@ -502,18 +501,9 @@
         };
         ChartEChartsComponent.prototype.install = function () {
             this.destroy();
-            var chart = (this._chart = window.echarts.init(this.node.nativeElement, this._theme, this._initOpt));
+            this._chart = window.echarts.init(this.node.nativeElement, this._theme, this._initOpt);
             this.emit('init');
             this.setOption(this._option);
-            // on
-            this.on.forEach(function (item) {
-                if (item.query != null) {
-                    chart.on(item.eventName, item.query, function (event) { return item.handler({ event: event, chart: chart }); });
-                }
-                else {
-                    chart.on(item.eventName, function (event) { return item.handler({ event: event, chart: chart }); });
-                }
-            });
             return this;
         };
         ChartEChartsComponent.prototype.destroy = function () {
@@ -548,8 +538,6 @@
                 .subscribe(function () { return _this._chart.resize(); });
         };
         ChartEChartsComponent.prototype.ngOnDestroy = function () {
-            var _this = this;
-            this.on.forEach(function (item) { var _a; return (_a = _this._chart) === null || _a === void 0 ? void 0 : _a.off(item.eventName); });
             this.destroy$.next();
             this.destroy$.complete();
             this.destroy();
@@ -584,7 +572,6 @@
         theme: [{ type: i0.Input }],
         initOpt: [{ type: i0.Input }],
         option: [{ type: i0.Input }],
-        on: [{ type: i0.Input }],
         events: [{ type: i0.Output }]
     };
     __decorate([
