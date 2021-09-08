@@ -31404,11 +31404,14 @@ body {
 .st .nz-resizable-handle > i {
   width: 1px;
   height: 60%;
-  background: #303030;
+  background: #434343;
 }
 .st .nz-resizable-preview {
   border-width: 0;
   border-right-width: 1px;
+}
+.st .nz-resizable.ant-table-column-has-sorters .nz-resizable-handle {
+  margin-right: 8px;
 }
 .st .ant-table ~ nz-pagination > .ant-pagination {
   margin-bottom: 0;
