@@ -125,8 +125,9 @@
             configurable: true
         });
         TokenService.prototype.set = function (data) {
+            var res = this.store.set(this._options.store_key, data);
             this.change$.next(data);
-            return this.store.set(this._options.store_key, data);
+            return res;
         };
         TokenService.prototype.get = function (type) {
             var data = this.store.get(this._options.store_key);

@@ -82,8 +82,9 @@ class TokenService {
         return this._options;
     }
     set(data) {
+        const res = this.store.set(this._options.store_key, data);
         this.change$.next(data);
-        return this.store.set(this._options.store_key, data);
+        return res;
     }
     get(type) {
         const data = this.store.get(this._options.store_key);
