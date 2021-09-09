@@ -1,3 +1,4 @@
+import { Spinner } from '@angular-devkit/build-angular/src/utils/spinner';
 import { JsonObject, strings } from '@angular-devkit/core';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
@@ -14,6 +15,7 @@ import {
   Tree,
   url
 } from '@angular-devkit/schematics';
+import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 
 import { getLangData } from '../core/lang.config';
@@ -41,6 +43,7 @@ import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
 import { Schema as ApplicationOptions } from './schema';
 
 let project: ProjectDefinition;
+const spinner = new Spinner();
 
 /** Remove files to be overwrite */
 function removeOrginalFiles(): Rule {
@@ -272,12 +275,12 @@ function addFilesToRoot(options: ApplicationOptions): Rule {
 }
 
 function fixLang(options: ApplicationOptions): Rule {
-  return (tree: Tree, context: SchematicContext) => {
+  return (tree: Tree) => {
     if (options.i18n) return;
     const langs = getLangData(options.defaultLanguage!);
     if (!langs) return;
 
-    context.logger.info(`Translating template into ${options.defaultLanguage} language, please wait...`);
+    spinner.text = `Translating template into ${options.defaultLanguage} language, please wait...`;
 
     tree.visit(p => {
       if (~p.indexOf(`/node_modules/`)) return;
@@ -340,10 +343,22 @@ function fixVsCode(): Rule {
   };
 }
 
+function install(): Rule {
+  return (_host: Tree, context: SchematicContext) => {
+    context.addTask(new NodePackageInstallTask());
+  };
+}
+
+function finished(): Rule {
+  return () => {
+    spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
+  };
+}
+
 export default function (options: ApplicationOptions): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     project = (await getProject(tree, options.project)).project;
-    context.logger.info(`Generating NG-ALAIN scaffold...`);
+    spinner.start(`Generating NG-ALAIN scaffold...`);
     return chain([
       // @delon/* dependencies
       addDependenciesToPackageJson(options),
@@ -364,7 +379,9 @@ export default function (options: ApplicationOptions): Rule {
       addStyle(),
       fixLang(options),
       fixVsCode(),
-      fixAngularJson(options)
+      fixAngularJson(options),
+      install(),
+      finished()
     ]);
   };
 }

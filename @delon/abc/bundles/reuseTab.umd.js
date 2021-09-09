@@ -1258,7 +1258,7 @@
                 this.router.navigateByUrl(ls[toPos].url);
             }
             if (addCurrent) {
-                ls.push(this.genCurItem());
+                ls.splice(this.pos + 1, 0, this.genCurItem());
             }
             ls.forEach(function (item, index) { return (item.index = index); });
             if (ls.length === 1) {
