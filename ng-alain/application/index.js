@@ -9,16 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const spinner_1 = require("@angular-devkit/build-angular/src/utils/spinner");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
-const tasks_1 = require("@angular-devkit/schematics/tasks");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
 const versions_1 = require("../utils/versions");
 let project;
-const spinner = new spinner_1.Spinner();
 /** Remove files to be overwrite */
 function removeOrginalFiles() {
     return (tree) => {
@@ -208,13 +205,13 @@ function addFilesToRoot(options) {
     ]);
 }
 function fixLang(options) {
-    return (tree) => {
+    return (tree, context) => {
         if (options.i18n)
             return;
         const langs = lang_config_1.getLangData(options.defaultLanguage);
         if (!langs)
             return;
-        spinner.text = `Translating template into ${options.defaultLanguage} language, please wait...`;
+        context.logger.info(`Translating template into ${options.defaultLanguage} language, please wait...`);
         tree.visit(p => {
             if (~p.indexOf(`/node_modules/`))
                 return;
@@ -273,20 +270,10 @@ function fixVsCode() {
         utils_1.writeJSON(tree, filePath, json);
     };
 }
-function install() {
-    return (_host, context) => {
-        context.addTask(new tasks_1.NodePackageInstallTask());
-    };
-}
-function finished() {
-    return () => {
-        spinner.succeed(`Congratulations, NG-ALAIN scaffold generation complete.`);
-    };
-}
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         project = (yield utils_1.getProject(tree, options.project)).project;
-        spinner.start(`Generating NG-ALAIN scaffold...`);
+        context.logger.info(`Generating NG-ALAIN scaffold...`);
         return schematics_1.chain([
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
@@ -307,9 +294,7 @@ function default_1(options) {
             addStyle(),
             fixLang(options),
             fixVsCode(),
-            fixAngularJson(options),
-            install(),
-            finished()
+            fixAngularJson(options)
         ]);
     });
 }
