@@ -2339,7 +2339,6 @@
             _this.typing = '';
             _this.isAsync = false;
             _this.fixData = [];
-            _this.updateTyping = true;
             return _this;
         }
         AutoCompleteWidget.prototype.updateValue = function (item) {
@@ -2359,7 +2358,7 @@
         };
         AutoCompleteWidget.prototype.afterViewInit = function () {
             var _this = this;
-            var _c = this.ui, backfill = _c.backfill, defaultActiveFirstOption = _c.defaultActiveFirstOption, nzWidth = _c.nzWidth, filterOption = _c.filterOption, asyncData = _c.asyncData;
+            var _a = this.ui, backfill = _a.backfill, defaultActiveFirstOption = _a.defaultActiveFirstOption, nzWidth = _a.nzWidth, filterOption = _a.filterOption, asyncData = _a.asyncData;
             this.i = {
                 backfill: toBool(backfill, false),
                 defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
@@ -2373,21 +2372,10 @@
             this.isAsync = !!asyncData;
             var orgTime = +(this.ui.debounceTime || 0);
             var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) {
-                var _a, _b;
-                var data = getEnum(res, null, _this.schema.readOnly);
-                console.log('map', data);
-                if (_this.updateTyping) {
-                    _this.updateTyping = false;
-                    _this.typing = (_b = (_a = data.find(function (w) { return w.value === _this.value; })) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : '';
-                }
-                return data;
-            }));
+            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
         };
         AutoCompleteWidget.prototype.reset = function (value) {
-            this.typing = value;
-            console.log(value);
-            this.updateTyping = true;
+            this.typing = this.value;
             if (this.isAsync)
                 return;
             switch (this.ui.type) {
