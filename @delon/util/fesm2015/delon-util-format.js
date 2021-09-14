@@ -23,57 +23,25 @@ function format(str, obj, needDeepGet = false) {
  * Format mask
  *
  * 格式化掩码
- *
- * | 字符 | 描述 |
- * | --- | --- |
- * | `0` | 任意数字，若该位置字符不符合，则默认为 `0` 填充 |
- * | `9` | 任意数字 |
- * | `#` | 任意字符 |
- * | `U` | 转换大写 |
- * | `L` | 转换小写 |
- * | `*` | 转换为 `*` 字符 |
- *
  * ```ts
  * formatMask('123', '(###)') => (123)
- * formatMask('15900000000', '999****9999') => 159****0000
  * ```
  */
-function formatMask(value, option) {
+function formatMask(value, mask) {
     if (!value) {
         return '';
     }
-    const opt = Object.assign({}, (typeof option === 'string' ? { mask: option } : option));
-    const tokens = Object.assign({ '0': { pattern: /\d/, default: '0' }, '9': { pattern: /\d/ }, '#': { pattern: /[a-zA-Z0-9]/ }, U: {
-            pattern: /[a-zA-Z]/,
-            transform: char => char.toLocaleUpperCase()
-        }, L: {
-            pattern: /[a-zA-Z]/,
-            transform: char => char.toLocaleLowerCase()
-        }, '*': {
-            pattern: /.*/,
-            transform: _ => `*`
-        } }, opt.tokens);
     const splitValue = value.split('');
-    return opt.mask
+    return mask
         .split('')
         .reduce((res, cur) => {
-        var _a;
-        const token = tokens[cur];
-        if (!token) {
-            res.push(cur);
-            return res;
-        }
-        const value = (_a = splitValue.shift()) !== null && _a !== void 0 ? _a : '';
-        if (!token.pattern.test(value)) {
-            if (token.default)
-                res.push(token.default);
-            return res;
-        }
-        if (typeof token.transform === 'function') {
-            res.push(token.transform(value));
+        if (cur === '#') {
+            if (splitValue.length > 0) {
+                res.push(splitValue.shift());
+            }
         }
         else {
-            res.push(value);
+            res.push(cur);
         }
         return res;
     }, [])
