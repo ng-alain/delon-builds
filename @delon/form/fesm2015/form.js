@@ -1853,7 +1853,6 @@ class AutoCompleteWidget extends ControlUIWidget {
         this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), mergeMap(input => (this.isAsync ? asyncData(input) : this.filterData(input))), map(res => {
             var _a, _b;
             const data = getEnum(res, null, this.schema.readOnly);
-            console.log('map', data);
             if (this.updateTyping) {
                 this.updateTyping = false;
                 this.typing = (_b = (_a = data.find(w => w.value === this.value)) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : '';
@@ -1863,7 +1862,6 @@ class AutoCompleteWidget extends ControlUIWidget {
     }
     reset(value) {
         this.typing = value;
-        console.log(value);
         this.updateTyping = true;
         if (this.isAsync)
             return;
