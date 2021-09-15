@@ -3,7 +3,6 @@ import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { Injectable, NgZone, Directive, Input, NgModule } from '@angular/core';
-import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
 import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
@@ -79,11 +78,13 @@ class XlsxService {
             return new Promise((resolve, reject) => {
                 this.init()
                     .then(() => {
-                    const wb = XLSX.utils.book_new();
+                    options = Object.assign({ format: 'xlsx' }, options);
+                    const { writeFile, utils: { book_new, aoa_to_sheet, book_append_sheet } } = XLSX;
+                    const wb = book_new();
                     if (Array.isArray(options.sheets)) {
                         options.sheets.forEach((value, index) => {
-                            const ws = XLSX.utils.aoa_to_sheet(value.data);
-                            XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                            const ws = aoa_to_sheet(value.data);
+                            book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
                         });
                     }
                     else {
@@ -92,9 +93,8 @@ class XlsxService {
                     }
                     if (options.callback)
                         options.callback(wb);
-                    const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                    const filename = options.filename || 'export.xlsx';
-                    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                    const filename = options.filename || `export.${options.format}`;
+                    writeFile(wb, filename, Object.assign({ bookType: options.format, bookSST: false, type: 'array' }, options.opts));
                     resolve({ filename, wb });
                 })
                     .catch(err => reject(err));

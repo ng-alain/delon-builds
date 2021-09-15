@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('file-saver'), require('isutf8'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', 'file-saver', 'isutf8', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.saveAs, global.isUtf8, global.i3, global.decorator, global.i2, global.ng.common));
-}(this, (function (exports, i1, i0, fileSaver, isUtf8, i3, decorator, i2, common) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('isutf8'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/xlsx', ['exports', '@angular/common/http', '@angular/core', 'isutf8', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@angular/common'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.xlsx = {}), global.ng.common.http, global.ng.core, global.isUtf8, global.i3, global.decorator, global.i2, global.ng.common));
+}(this, (function (exports, i1, i0, isUtf8, i3, decorator, i2, common) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -425,11 +425,13 @@
                     return [2 /*return*/, new Promise(function (resolve, reject) {
                             _this.init()
                                 .then(function () {
-                                var wb = XLSX.utils.book_new();
+                                options = Object.assign({ format: 'xlsx' }, options);
+                                var writeFile = XLSX.writeFile, _b = XLSX.utils, book_new = _b.book_new, aoa_to_sheet = _b.aoa_to_sheet, book_append_sheet = _b.book_append_sheet;
+                                var wb = book_new();
                                 if (Array.isArray(options.sheets)) {
                                     options.sheets.forEach(function (value, index) {
-                                        var ws = XLSX.utils.aoa_to_sheet(value.data);
-                                        XLSX.utils.book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
+                                        var ws = aoa_to_sheet(value.data);
+                                        book_append_sheet(wb, ws, value.name || "Sheet" + (index + 1));
                                     });
                                 }
                                 else {
@@ -438,9 +440,8 @@
                                 }
                                 if (options.callback)
                                     options.callback(wb);
-                                var wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                                var filename = options.filename || 'export.xlsx';
-                                fileSaver.saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                                var filename = options.filename || "export." + options.format;
+                                writeFile(wb, filename, Object.assign({ bookType: options.format, bookSST: false, type: 'array' }, options.opts));
                                 resolve({ filename: filename, wb: wb });
                             })
                                 .catch(function (err) { return reject(err); });
