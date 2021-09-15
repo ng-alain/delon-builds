@@ -26,24 +26,22 @@ class XlsxService {
             ? Promise.resolve([])
             : this.lazy.load([this.cog.url].concat(this.cog.modules));
     }
-    read(data, options) {
+    read(data) {
+        const { read, utils: { sheet_to_json } } = XLSX;
         const ret = {};
-        if (options.type === 'binary') {
-            const buf = new Uint8Array(data);
-            if (!isUtf8(buf)) {
-                try {
-                    data = cptable.utils.decode(936, buf);
-                    options.type = 'string';
-                }
-                catch (_a) {
-                    options.type = 'array';
-                }
+        const buf = new Uint8Array(data);
+        let type = 'array';
+        if (!isUtf8(buf)) {
+            try {
+                data = cptable.utils.decode(936, buf);
+                type = 'string';
             }
+            catch (_a) { }
         }
-        const wb = XLSX.read(data, options);
+        const wb = read(data, { type });
         wb.SheetNames.forEach((name) => {
             const sheet = wb.Sheets[name];
-            ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            ret[name] = sheet_to_json(sheet, { header: 1 });
         });
         return ret;
     }
@@ -52,22 +50,18 @@ class XlsxService {
      */
     import(fileOrUrl) {
         return new Promise((resolve, reject) => {
+            const r = (data) => this.ngZone.run(() => resolve(this.read(data)));
             this.init()
                 .then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                        this.ngZone.run(() => resolve(this.read(new Uint8Array(res), { type: 'array' })));
-                    }, (err) => {
-                        reject(err);
-                    });
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => r(new Uint8Array(res)), (err) => reject(err));
                     return;
                 }
                 // from file
                 const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.ngZone.run(() => resolve(this.read(e.target.result, { type: 'binary' })));
-                };
+                reader.onload = (e) => r(e.target.result);
+                reader.onerror = (e) => reject(e);
                 reader.readAsArrayBuffer(fileOrUrl);
             })
                 .catch(() => reject(`Unable to load xlsx.js`));

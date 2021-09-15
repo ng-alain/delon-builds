@@ -370,24 +370,22 @@
                 ? Promise.resolve([])
                 : this.lazy.load([this.cog.url].concat(this.cog.modules));
         };
-        XlsxService.prototype.read = function (data, options) {
+        XlsxService.prototype.read = function (data) {
+            var read = XLSX.read, sheet_to_json = XLSX.utils.sheet_to_json;
             var ret = {};
-            if (options.type === 'binary') {
-                var buf = new Uint8Array(data);
-                if (!isUtf8__default['default'](buf)) {
-                    try {
-                        data = cptable.utils.decode(936, buf);
-                        options.type = 'string';
-                    }
-                    catch (_a) {
-                        options.type = 'array';
-                    }
+            var buf = new Uint8Array(data);
+            var type = 'array';
+            if (!isUtf8__default['default'](buf)) {
+                try {
+                    data = cptable.utils.decode(936, buf);
+                    type = 'string';
                 }
+                catch (_a) { }
             }
-            var wb = XLSX.read(data, options);
+            var wb = read(data, { type: type });
             wb.SheetNames.forEach(function (name) {
                 var sheet = wb.Sheets[name];
-                ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                ret[name] = sheet_to_json(sheet, { header: 1 });
             });
             return ret;
         };
@@ -397,22 +395,18 @@
         XlsxService.prototype.import = function (fileOrUrl) {
             var _this = this;
             return new Promise(function (resolve, reject) {
+                var r = function (data) { return _this.ngZone.run(function () { return resolve(_this.read(data)); }); };
                 _this.init()
                     .then(function () {
                     // from url
                     if (typeof fileOrUrl === 'string') {
-                        _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) {
-                            _this.ngZone.run(function () { return resolve(_this.read(new Uint8Array(res), { type: 'array' })); });
-                        }, function (err) {
-                            reject(err);
-                        });
+                        _this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe(function (res) { return r(new Uint8Array(res)); }, function (err) { return reject(err); });
                         return;
                     }
                     // from file
                     var reader = new FileReader();
-                    reader.onload = function (e) {
-                        _this.ngZone.run(function () { return resolve(_this.read(e.target.result, { type: 'binary' })); });
-                    };
+                    reader.onload = function (e) { return r(e.target.result); };
+                    reader.onerror = function (e) { return reject(e); };
                     reader.readAsArrayBuffer(fileOrUrl);
                 })
                     .catch(function () { return reject("Unable to load xlsx.js"); });
