@@ -2376,6 +2376,7 @@
             this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) {
                 var _a, _b;
                 var data = getEnum(res, null, _this.schema.readOnly);
+                console.log('map', data);
                 if (_this.updateTyping) {
                     _this.updateTyping = false;
                     _this.typing = (_b = (_a = data.find(function (w) { return w.value === _this.value; })) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : '';
@@ -2385,6 +2386,7 @@
         };
         AutoCompleteWidget.prototype.reset = function (value) {
             this.typing = value;
+            console.log(value);
             this.updateTyping = true;
             if (this.isAsync)
                 return;
