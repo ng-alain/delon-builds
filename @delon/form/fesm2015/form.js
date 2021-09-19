@@ -1104,9 +1104,9 @@ class SFComponent {
             Object.keys(schema.properties).forEach(key => {
                 const uiKey = `$${key}`;
                 const property = retrieveSchema(schema.properties[key], definitions);
-                const ui = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
+                const ui = deepCopy(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ widget: property.type }, (property.format && this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
                     ? { widget: 'select' }
-                    : null)), this._defUi), property.ui), uiSchema[uiKey]);
+                    : null)), this._defUi), property.ui), uiSchema[uiKey]));
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {

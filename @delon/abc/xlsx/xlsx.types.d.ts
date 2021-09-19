@@ -8,11 +8,8 @@ export interface XlsxExportOptions {
     sheets: {
         [sheet: string]: NzSafeAny;
     } | XlsxExportSheet[];
-    /** File format, default: `xlsx` */
-    format?: 'csv' | 'xlsx';
     /** save file name, default: `export.xlsx` */
     filename?: string;
-    /** See [Writing Options](https://github.com/SheetJS/sheetjs/blob/master/docbits/81_writeopts.md) */
     opts?: NzSafeAny;
     /** triggers when saveas */
     callback?: (wb: NzSafeAny) => void;
