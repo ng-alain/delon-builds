@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/browser'), require('@angular/common'), require('@angular/router'), require('ng-zorro-antd/button')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/exception', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/browser', '@angular/common', '@angular/router', 'ng-zorro-antd/button'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.ng.common, global.ng.router, global['ng-zorro-antd/button']));
-}(this, (function (exports, bidi, core, platformBrowser, rxjs, operators, theme, browser, common, router, button) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.exception = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.ng.common, global.ng.router, global["ng-zorro-antd/button"]));
+})(this, (function (exports, bidi, core, platformBrowser, rxjs, operators, theme, browser, common, router, button) { 'use strict';
 
     var ExceptionComponent = /** @class */ (function () {
         function ExceptionComponent(i18n, dom, directionality) {
@@ -143,5 +143,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=exception.umd.js.map

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global['ng-zorro-antd/dropdown'], global.ng.forms, global.delon.abc.let, global['ng-zorro-antd/badge'], global['ng-zorro-antd/checkbox'], global['ng-zorro-antd/divider'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/input'], global['ng-zorro-antd/menu'], global['ng-zorro-antd/popconfirm'], global['ng-zorro-antd/radio'], global.resizable, global['ng-zorro-antd/table'], global['ng-zorro-antd/tag'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, router, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global["ng-zorro-antd/dropdown"], global.ng.forms, global.delon.abc["let"], global["ng-zorro-antd/badge"], global["ng-zorro-antd/checkbox"], global["ng-zorro-antd/divider"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/input"], global["ng-zorro-antd/menu"], global["ng-zorro-antd/popconfirm"], global["ng-zorro-antd/radio"], global.resizable, global["ng-zorro-antd/table"], global["ng-zorro-antd/tag"], global["ng-zorro-antd/tooltip"]));
+})(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, router, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -2480,9 +2478,9 @@
     exports.STWidgetHostDirective = STWidgetHostDirective;
     exports.STWidgetRegistry = STWidgetRegistry;
     exports.ST_DEFAULT_CONFIG = ST_DEFAULT_CONFIG;
-    exports.ɵa = STRowSource;
+    exports["ɵa"] = STRowSource;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=table.umd.js.map

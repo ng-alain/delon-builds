@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/water-wave', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['water-wave'] = {}), global.ng.cdk.platform, global.ng.core, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet']));
-}(this, (function (exports, platform, core, rxjs, operators, decorator, common, outlet) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart["water-wave"] = {}), global.ng.cdk.platform, global.ng.core, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global["ng-zorro-antd/core/outlet"]));
+})(this, (function (exports, platform, core, rxjs, operators, decorator, common, outlet) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -583,5 +583,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=water-wave.umd.js.map

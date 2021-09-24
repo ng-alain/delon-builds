@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/modal'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/image', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/modal', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.image = {}), global.ng.cdk.platform, global.ng.core, global.rxjs, global.rxjs.operators, global.delon.theme, global.config, global.decorator, global.modal, global.ng.common));
-}(this, (function (exports, platform, core, rxjs, operators, theme, config, decorator, modal, common) { 'use strict';
+})(this, (function (exports, platform, core, rxjs, operators, theme, config, decorator, modal, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -478,5 +478,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=image.umd.js.map

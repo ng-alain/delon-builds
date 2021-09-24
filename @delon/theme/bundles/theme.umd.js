@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/acl'), require('@delon/util/config'), require('@angular/cdk/platform'), require('@angular/cdk/bidi'), require('@angular/common'), require('ng-zorro-antd/core/config'), require('@angular/platform-browser'), require('@angular/router'), require('@delon/util/other'), require('ng-zorro-antd/modal'), require('ng-zorro-antd/drawer'), require('@angular/common/http'), require('date-fns'), require('@delon/util/date-time'), require('ng-zorro-antd/i18n'), require('@angular/cdk/overlay'), require('@ant-design/icons-angular/icons'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/theme', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/acl', '@delon/util/config', '@angular/cdk/platform', '@angular/cdk/bidi', '@angular/common', 'ng-zorro-antd/core/config', '@angular/platform-browser', '@angular/router', '@delon/util/other', 'ng-zorro-antd/modal', 'ng-zorro-antd/drawer', '@angular/common/http', 'date-fns', '@delon/util/date-time', 'ng-zorro-antd/i18n', '@angular/cdk/overlay', '@ant-design/icons-angular/icons', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.delon.util.config, global.ng.cdk.platform, global.ng.cdk.bidi, global.ng.common, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global['ng-zorro-antd/modal'], global['ng-zorro-antd/drawer'], global.ng.common.http, global.DateFns, global.delon.util['date-time'], global['ng-zorro-antd/i18n'], global.ng.cdk.overlay, global.icons, global['ng-zorro-antd/icon']));
-}(this, (function (exports, i0, rxjs, operators, i2, i1, i1$1, i1$2, i6, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateFns, dateTime, i18n, overlay, icons, icon) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.acl, global.delon.util.config, global.ng.cdk.platform, global.ng.cdk.bidi, global.ng.common, global.i3, global.ng.platformBrowser, global.ng.router, global.delon.util.other, global["ng-zorro-antd/modal"], global["ng-zorro-antd/drawer"], global.ng.common.http, global.DateFns, global.delon.util["date-time"], global["ng-zorro-antd/i18n"], global.ng.cdk.overlay, global.icons, global["ng-zorro-antd/icon"]));
+})(this, (function (exports, i0, rxjs, operators, i2, i1, i1$1, i1$2, i6, i3, i1$3, router, other, i1$4, i1$5, i1$6, dateFns, dateTime, i18n, overlay, icons, icon) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -2870,7 +2868,7 @@
         return PreloadOptionalModules;
     }());
 
-    var VERSION = new i0.Version('12.2.2');
+    var VERSION = new i0.Version('12.2.3');
 
     /**
      * Generated bundle index. Do not edit.
@@ -2938,9 +2936,9 @@
     exports.tr_TR = trTR;
     exports.zh_CN = zhCN;
     exports.zh_TW = zhTW;
-    exports.ɵa = I18nPipe;
+    exports["ɵa"] = I18nPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=theme.umd.js.map

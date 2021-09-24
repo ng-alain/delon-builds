@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('@angular/common'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/browser'), require('@delon/util/decorator'), require('@delon/util/other'), require('ng-zorro-antd/message'), require('@angular/forms'), require('ng-zorro-antd/alert'), require('ng-zorro-antd/button'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/drawer'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/switch'), require('ng-zorro-antd/tabs'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/theme/setting-drawer', ['exports', '@angular/core', '@angular/cdk/bidi', '@angular/common', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/browser', '@delon/util/decorator', '@delon/util/other', 'ng-zorro-antd/message', '@angular/forms', 'ng-zorro-antd/alert', 'ng-zorro-antd/button', 'ng-zorro-antd/divider', 'ng-zorro-antd/drawer', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/switch', 'ng-zorro-antd/tabs', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['setting-drawer'] = {}), global.ng.core, global.ng.cdk.bidi, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.decorator, global.other, global.message, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
-}(this, (function (exports, core, bidi, common, rxjs, operators, theme, browser, decorator, other, message, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme["setting-drawer"] = {}), global.ng.core, global.ng.cdk.bidi, global.ng.common, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.decorator, global.other, global.message, global.ng.forms, global.alert, global.button, global.divider, global.drawer, global.icon, global.input, global.inputNumber, global._switch, global.tabs, global.tooltip));
+})(this, (function (exports, core, bidi, common, rxjs, operators, theme, browser, decorator, other, message, forms, alert, button, divider, drawer, icon, input, inputNumber, _switch, tabs, tooltip) { 'use strict';
 
     var SettingDrawerItemComponent = /** @class */ (function () {
         function SettingDrawerItemComponent() {
@@ -785,5 +785,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=setting-drawer.umd.js.map

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/cdk/bidi'), require('rxjs'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/avatar-list', ['exports', '@angular/core', '@angular/cdk/bidi', 'rxjs', 'rxjs/operators', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/avatar', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['avatar-list'] = {}), global.ng.core, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global['ng-zorro-antd/avatar'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, bidi, rxjs, operators, decorator, common, avatar, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc["avatar-list"] = {}), global.ng.core, global.ng.cdk.bidi, global.rxjs, global.rxjs.operators, global.decorator, global.ng.common, global["ng-zorro-antd/avatar"], global["ng-zorro-antd/tooltip"]));
+})(this, (function (exports, core, bidi, rxjs, operators, decorator, common, avatar, tooltip) { 'use strict';
 
     var AvatarListItemComponent = /** @class */ (function () {
         function AvatarListItemComponent() {
@@ -461,5 +461,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=avatarList.umd.js.map

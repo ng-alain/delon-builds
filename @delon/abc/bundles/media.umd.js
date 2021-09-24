@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('@delon/util/decorator'), require('rxjs'), require('@delon/util/config'), require('@delon/util/other'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/media', ['exports', '@angular/cdk/platform', '@angular/core', '@delon/util/decorator', 'rxjs', '@delon/util/config', '@delon/util/other', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.media = {}), global.ng.cdk.platform, global.ng.core, global.decorator, global.rxjs, global.i1, global.i2, global.ng.common));
-}(this, (function (exports, platform, i0, decorator, rxjs, i1, i2, common) { 'use strict';
+})(this, (function (exports, platform, i0, decorator, rxjs, i1, i2, common) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -534,5 +532,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=media.umd.js.map

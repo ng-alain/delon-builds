@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/theme'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/sg', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/theme', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sg = {}), global.ng.core, global.config, global.decorator, global.delon.theme, global.ng.common));
-}(this, (function (exports, core, config, decorator, theme, common) { 'use strict';
+})(this, (function (exports, core, config, decorator, theme, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -466,5 +466,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=grid.umd.js.map

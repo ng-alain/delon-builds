@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/core'), require('@angular/platform-browser'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/util/token'), require('@delon/util/decorator'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/global-footer', ['exports', '@angular/cdk/bidi', '@angular/core', '@angular/platform-browser', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/util/token', '@delon/util/decorator', '@angular/common'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['global-footer'] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.rxjs, global.rxjs.operators, global.token, global.decorator, global.ng.common));
-}(this, (function (exports, bidi, core, platformBrowser, router, rxjs, operators, token, decorator, common) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc["global-footer"] = {}), global.ng.cdk.bidi, global.ng.core, global.ng.platformBrowser, global.ng.router, global.rxjs, global.rxjs.operators, global.token, global.decorator, global.ng.common));
+})(this, (function (exports, bidi, core, platformBrowser, router, rxjs, operators, token, decorator, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -451,5 +451,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=globalFooter.umd.js.map

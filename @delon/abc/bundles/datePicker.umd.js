@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/forms'), require('ng-zorro-antd/date-picker'), require('@angular/platform-browser'), require('rxjs'), require('@delon/util/config'), require('@delon/util/date-time'), require('@delon/util/other')) :
   typeof define === 'function' && define.amd ? define('@delon/abc/date-picker', ['exports', '@angular/common', '@angular/core', '@angular/forms', 'ng-zorro-antd/date-picker', '@angular/platform-browser', 'rxjs', '@delon/util/config', '@delon/util/date-time', '@delon/util/other'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['date-picker'] = {}), global.ng.common, global.ng.core, global.ng.forms, global['ng-zorro-antd/date-picker'], global.ng.platformBrowser, global.rxjs, global.config, global.dateTime, global.other));
-}(this, (function (exports, common, core, forms, datePicker, platformBrowser, rxjs, config, dateTime, other) { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc["date-picker"] = {}), global.ng.common, global.ng.core, global.ng.forms, global["ng-zorro-antd/date-picker"], global.ng.platformBrowser, global.rxjs, global.config, global.dateTime, global.other));
+})(this, (function (exports, common, core, forms, datePicker, platformBrowser, rxjs, config, dateTime, other) { 'use strict';
 
   var RangePickerShortcutTplComponent = /** @class */ (function () {
       function RangePickerShortcutTplComponent() {
@@ -544,9 +544,9 @@
 
   exports.DatePickerModule = DatePickerModule;
   exports.RangePickerDirective = RangePickerDirective;
-  exports.ɵa = RangePickerShortcutTplComponent;
+  exports["ɵa"] = RangePickerShortcutTplComponent;
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=datePicker.umd.js.map

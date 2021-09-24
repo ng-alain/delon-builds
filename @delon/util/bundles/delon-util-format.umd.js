@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other'), require('@angular/common'), require('@angular/core'), require('@delon/util/config')) :
     typeof define === 'function' && define.amd ? define('@delon/util/format', ['exports', '@delon/util/other', '@angular/common', '@angular/core', '@delon/util/config'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.format = {}), global.delon.util.other, global.ng.common, global.ng.core, global.delon.util.config));
-}(this, (function (exports, other, common, i0, i1) { 'use strict';
+})(this, (function (exports, other, common, i0, i1) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -751,5 +749,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-format.umd.js.map

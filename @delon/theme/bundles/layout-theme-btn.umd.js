@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/cdk/platform'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/util/config'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/theme/theme-btn', ['exports', '@angular/cdk/bidi', '@angular/cdk/platform', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/util/config', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['theme-btn'] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.config, global.dropdown, global.tooltip));
-}(this, (function (exports, bidi, platform, common, core, rxjs, operators, config, dropdown, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme["theme-btn"] = {}), global.ng.cdk.bidi, global.ng.cdk.platform, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators, global.config, global.dropdown, global.tooltip));
+})(this, (function (exports, bidi, platform, common, core, rxjs, operators, config, dropdown, tooltip) { 'use strict';
 
     var ALAIN_THEME_BTN_KEYS = new core.InjectionToken('ALAIN_THEME_BTN_KEYS');
     var ThemeBtnComponent = /** @class */ (function () {
@@ -137,5 +137,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=layout-theme-btn.umd.js.map

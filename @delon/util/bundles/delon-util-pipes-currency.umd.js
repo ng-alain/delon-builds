@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/format')) :
     typeof define === 'function' && define.amd ? define('@delon/util/pipes/currency', ['exports', '@angular/core', '@delon/util/format'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.pipes = global.delon.util.pipes || {}, global.delon.util.pipes.currency = {}), global.ng.core, global.delon.util.format));
-}(this, (function (exports, core, format) { 'use strict';
+})(this, (function (exports, core, format) { 'use strict';
 
     var CurrencyMegaPipe = /** @class */ (function () {
         function CurrencyMegaPipe(srv, locale) {
@@ -100,9 +100,9 @@
     exports.CurrencyMegaPipe = CurrencyMegaPipe;
     exports.CurrencyPipeModule = CurrencyPipeModule;
     exports.CurrencyPricePipe = CurrencyPricePipe;
-    exports.ɵa = CurrencyCNYPipe;
+    exports["ɵa"] = CurrencyCNYPipe;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-pipes-currency.umd.js.map

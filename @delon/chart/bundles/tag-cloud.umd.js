@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/skeleton')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/tag-cloud', ['exports', '@angular/core', 'rxjs', 'rxjs/operators', '@delon/chart/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart['tag-cloud'] = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.chart.core, global.decorator, global.ng.common, global.skeleton));
-}(this, (function (exports, core, rxjs, operators, core$1, decorator, common, skeleton) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart["tag-cloud"] = {}), global.ng.core, global.rxjs, global.rxjs.operators, global.delon.chart.core, global.decorator, global.ng.common, global.skeleton));
+})(this, (function (exports, core, rxjs, operators, core$1, decorator, common, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -491,5 +491,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=tag-cloud.umd.js.map

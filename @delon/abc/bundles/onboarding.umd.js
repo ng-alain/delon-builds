@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/bidi'), require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/config'), require('@angular/cdk/platform'), require('ng-zorro-antd/button'), require('ng-zorro-antd/core/no-animation'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/popover')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/onboarding', ['exports', '@angular/cdk/bidi', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/config', '@angular/cdk/platform', 'ng-zorro-antd/button', 'ng-zorro-antd/core/no-animation', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/popover'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.delon.theme, global.i4, global.ng.cdk.platform, global['ng-zorro-antd/button'], global['ng-zorro-antd/core/no-animation'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/popover']));
-}(this, (function (exports, i5, i3, i0, i2, rxjs, operators, i1, i4, platform, button, noAnimation, outlet, popover) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.onboarding = {}), global.ng.cdk.bidi, global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.delon.theme, global.i4, global.ng.cdk.platform, global["ng-zorro-antd/button"], global["ng-zorro-antd/core/no-animation"], global["ng-zorro-antd/core/outlet"], global["ng-zorro-antd/popover"]));
+})(this, (function (exports, i5, i3, i0, i2, rxjs, operators, i1, i4, platform, button, noAnimation, outlet, popover) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -368,5 +366,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=onboarding.umd.js.map

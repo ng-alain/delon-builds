@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('extend'), require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/util/other', ['exports', 'extend', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.other = {}), global.extend, global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, extend, i1, i0, rxjs, operators) { 'use strict';
+})(this, (function (exports, extend, i1, i0, rxjs, operators) { 'use strict';
 
     function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -20,14 +20,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -377,7 +375,7 @@
      * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
      */
     function deepCopy(obj) {
-        var result = extend__default['default'](true, {}, { _: obj });
+        var result = extend__default["default"](true, {}, { _: obj });
         return result._;
     }
     /**
@@ -716,5 +714,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-other.umd.js.map

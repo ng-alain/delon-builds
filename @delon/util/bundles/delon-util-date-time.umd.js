@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('date-fns')) :
     typeof define === 'function' && define.amd ? define('@delon/util/date-time', ['exports', 'date-fns'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util['date-time'] = {}), global.dateFns));
-}(this, (function (exports, dateFns) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util["date-time"] = {}), global.dateFns));
+})(this, (function (exports, dateFns) { 'use strict';
 
     /**
      * Get the time range, return `[ Date, Date]` for the start and end dates
@@ -234,5 +234,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-date-time.umd.js.map

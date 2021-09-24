@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/router'), require('rxjs'), require('rxjs/operators'), require('@delon/theme'), require('@delon/util/browser'), require('ng-zorro-antd/message'), require('ng-zorro-antd/avatar'), require('ng-zorro-antd/dropdown'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip'), require('@angular/cdk/bidi'), require('@angular/platform-browser'), require('@delon/util/decorator'), require('@delon/util/token')) :
   typeof define === 'function' && define.amd ? define('@delon/theme/layout-default', ['exports', '@angular/common', '@angular/core', '@angular/router', 'rxjs', 'rxjs/operators', '@delon/theme', '@delon/util/browser', 'ng-zorro-antd/message', 'ng-zorro-antd/avatar', 'ng-zorro-antd/dropdown', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip', '@angular/cdk/bidi', '@angular/platform-browser', '@delon/util/decorator', '@delon/util/token'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme['layout-default'] = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.message, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator, global.token));
-}(this, (function (exports, common, core, router, rxjs, operators, theme, browser, message, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator, token) { 'use strict';
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.theme = global.delon.theme || {}, global.delon.theme["layout-default"] = {}), global.ng.common, global.ng.core, global.ng.router, global.rxjs, global.rxjs.operators, global.delon.theme, global.browser, global.message, global.avatar, global.dropdown, global.icon, global.tooltip, global.ng.cdk.bidi, global.ng.platformBrowser, global.decorator, global.token));
+})(this, (function (exports, common, core, router, rxjs, operators, theme, browser, message, avatar, dropdown, icon, tooltip, bidi, platformBrowser, decorator, token) { 'use strict';
 
   var LayoutDefaultHeaderItemComponent = /** @class */ (function () {
       function LayoutDefaultHeaderItemComponent() {
@@ -861,5 +861,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=layout-default.umd.js.map

@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/theme'), require('@delon/util/browser'), require('@angular/cdk/observers'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/sv', ['exports', '@angular/core', '@delon/util/config', '@delon/util/decorator', '@delon/theme', '@delon/util/browser', '@angular/cdk/observers', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.config, global.decorator, global.theme, global.browser, global.ng.cdk.observers, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon'], global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, core, config, decorator, theme, browser, observers, common, outlet, icon, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.sv = {}), global.ng.core, global.config, global.decorator, global.theme, global.browser, global.ng.cdk.observers, global.ng.common, global["ng-zorro-antd/core/outlet"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/tooltip"]));
+})(this, (function (exports, core, config, decorator, theme, browser, observers, common, outlet, icon, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -588,5 +588,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=view.umd.js.map

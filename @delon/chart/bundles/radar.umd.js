@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/chart/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/grid'), require('ng-zorro-antd/skeleton')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/radar', ['exports', '@angular/core', '@delon/chart/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/grid', 'ng-zorro-antd/skeleton'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.chart.core, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/grid'], global.skeleton));
-}(this, (function (exports, core, core$1, decorator, common, outlet, grid, skeleton) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.radar = {}), global.ng.core, global.delon.chart.core, global.decorator, global.ng.common, global["ng-zorro-antd/core/outlet"], global["ng-zorro-antd/grid"], global.skeleton));
+})(this, (function (exports, core, core$1, decorator, common, outlet, grid, skeleton) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -493,5 +493,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=radar.umd.js.map

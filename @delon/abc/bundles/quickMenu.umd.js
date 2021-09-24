@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/icon')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/quick-menu', ['exports', '@angular/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/icon'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc['quick-menu'] = {}), global.ng.core, global.decorator, global.ng.common, global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/icon']));
-}(this, (function (exports, core, decorator, common, outlet, icon) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc["quick-menu"] = {}), global.ng.core, global.decorator, global.ng.common, global["ng-zorro-antd/core/outlet"], global["ng-zorro-antd/icon"]));
+})(this, (function (exports, core, decorator, common, outlet, icon) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -438,5 +438,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=quickMenu.umd.js.map

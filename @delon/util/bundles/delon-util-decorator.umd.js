@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@delon/util/other')) :
     typeof define === 'function' && define.amd ? define('@delon/util/decorator', ['exports', '@delon/util/other'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.decorator = {}), global.delon.util.other));
-}(this, (function (exports, other) { 'use strict';
+})(this, (function (exports, other) { 'use strict';
 
     function propDecoratorFactory(name, fallback, defaultValue) {
         function propDecorator(target, propName, originalDescriptor) {
@@ -458,5 +458,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-decorator.umd.js.map

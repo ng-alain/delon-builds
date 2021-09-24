@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('rxjs'), require('rxjs/operators')) :
     typeof define === 'function' && define.amd ? define('@delon/util/token', ['exports', '@angular/common', '@angular/core', 'rxjs', 'rxjs/operators'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.util = global.delon.util || {}, global.delon.util.token = {}), global.ng.common, global.ng.core, global.rxjs, global.rxjs.operators));
-}(this, (function (exports, common, core, rxjs, operators) { 'use strict';
+})(this, (function (exports, common, core, rxjs, operators) { 'use strict';
 
     /**
      * Access to global `window` object
@@ -45,5 +45,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=delon-util-token.umd.js.map

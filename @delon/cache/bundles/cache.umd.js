@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common/http'), require('@angular/core'), require('rxjs'), require('rxjs/operators'), require('date-fns'), require('@delon/util/config'), require('@angular/cdk/platform')) :
     typeof define === 'function' && define.amd ? define('@delon/cache', ['exports', '@angular/common/http', '@angular/core', 'rxjs', 'rxjs/operators', 'date-fns', '@delon/util/config', '@angular/cdk/platform'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.cache = {}), global.ng.common.http, global.ng.core, global.rxjs, global.rxjs.operators, global.dateFns, global.i1, global.ng.cdk.platform));
-}(this, (function (exports, i3, i0, rxjs, operators, dateFns, i1, platform) { 'use strict';
+})(this, (function (exports, i3, i0, rxjs, operators, dateFns, i1, platform) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -18,14 +18,12 @@
                     var d = Object.getOwnPropertyDescriptor(e, k);
                     Object.defineProperty(n, k, d.get ? d : {
                         enumerable: true,
-                        get: function () {
-                            return e[k];
-                        }
+                        get: function () { return e[k]; }
                     });
                 }
             });
         }
-        n['default'] = e;
+        n["default"] = e;
         return Object.freeze(n);
     }
 
@@ -317,9 +315,9 @@
 
     exports.CacheService = CacheService;
     exports.DelonCacheModule = DelonCacheModule;
-    exports.ɵa = DC_STORE_STORAGE_TOKEN;
+    exports["ɵa"] = DC_STORE_STORAGE_TOKEN;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=cache.umd.js.map

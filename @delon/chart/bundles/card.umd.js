@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@delon/util/decorator'), require('@angular/common'), require('ng-zorro-antd/card'), require('ng-zorro-antd/core/outlet'), require('ng-zorro-antd/spin')) :
     typeof define === 'function' && define.amd ? define('@delon/chart/card', ['exports', '@angular/core', '@delon/util/decorator', '@angular/common', 'ng-zorro-antd/card', 'ng-zorro-antd/core/outlet', 'ng-zorro-antd/spin'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.card = {}), global.ng.core, global.decorator, global.ng.common, global['ng-zorro-antd/card'], global['ng-zorro-antd/core/outlet'], global['ng-zorro-antd/spin']));
-}(this, (function (exports, core, decorator, common, card, outlet, spin) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.chart = global.delon.chart || {}, global.delon.chart.card = {}), global.ng.core, global.decorator, global.ng.common, global["ng-zorro-antd/card"], global["ng-zorro-antd/core/outlet"], global["ng-zorro-antd/spin"]));
+})(this, (function (exports, core, decorator, common, card, outlet, spin) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -404,5 +404,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=card.umd.js.map

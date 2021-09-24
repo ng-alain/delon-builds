@@ -1,5 +1,5 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
@@ -7,7 +7,7 @@
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/cdk/platform'), require('@angular/core'), require('rxjs/operators'), require('@delon/util/config'), require('@delon/util/decorator'), require('@delon/util/other'), require('@angular/common')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/qr', ['exports', '@angular/cdk/platform', '@angular/core', 'rxjs/operators', '@delon/util/config', '@delon/util/decorator', '@delon/util/other', '@angular/common'], factory) :
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.qr = {}), global.ng.cdk.platform, global.ng.core, global.rxjs.operators, global.config, global.decorator, global.other, global.ng.common));
-}(this, (function (exports, platform, core, operators, config, decorator, other, common) { 'use strict';
+})(this, (function (exports, platform, core, operators, config, decorator, other, common) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -487,5 +487,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=qr.umd.js.map

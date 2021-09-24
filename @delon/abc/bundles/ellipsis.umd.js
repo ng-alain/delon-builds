@@ -1,13 +1,13 @@
 /**
- * @license ng-alain(cipchk@qq.com) v12.2.2
+ * @license ng-alain(cipchk@qq.com) v12.2.3
  * (c) 2020 cipchk https://ng-alain.com/
  * License: MIT
  */
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/common'), require('@angular/core'), require('@angular/platform-browser'), require('rxjs/operators'), require('@delon/util/decorator'), require('@angular/cdk/observers'), require('ng-zorro-antd/tooltip')) :
     typeof define === 'function' && define.amd ? define('@delon/abc/ellipsis', ['exports', '@angular/common', '@angular/core', '@angular/platform-browser', 'rxjs/operators', '@delon/util/decorator', '@angular/cdk/observers', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.rxjs.operators, global.decorator, global.ng.cdk.observers, global['ng-zorro-antd/tooltip']));
-}(this, (function (exports, common, core, platformBrowser, operators, decorator, observers, tooltip) { 'use strict';
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.ellipsis = {}), global.ng.common, global.ng.core, global.ng.platformBrowser, global.rxjs.operators, global.decorator, global.ng.cdk.observers, global["ng-zorro-antd/tooltip"]));
+})(this, (function (exports, common, core, platformBrowser, operators, decorator, observers, tooltip) { 'use strict';
 
     /*! *****************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -574,5 +574,5 @@
 
     Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=ellipsis.umd.js.map
