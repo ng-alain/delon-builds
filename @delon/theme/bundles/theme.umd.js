@@ -1661,8 +1661,8 @@
             }
         },
         onboarding: {
-            skip: "\u03A0\u03B1\u03C1\u03B1\u03BB\u03B5\u03AF\u03C0\u03C9",
-            prev: "\u03A0\u03C1\u03BF\u03B7\u03B3",
+            skip: "\u03A0\u03B1\u03C1\u03AC\u03BB\u03B5\u03B9\u03C8\u03B7",
+            prev: "\u03A0\u03C1\u03BF\u03B7\u03B3\u03BF\u03CD\u03BC\u03B5\u03BD\u03BF",
             next: "\u0395\u03C0\u03CC\u03BC\u03B5\u03BD\u03BF",
             done: "\u039F\u03BB\u03BF\u03BA\u03BB\u03B7\u03C1\u03CE\u03B8\u03B7\u03BA\u03B5"
         }
@@ -2126,6 +2126,89 @@
             prev: "Previo",
             next: "Siguiente",
             done: "Terminado"
+        }
+    };
+
+    var itIT = {
+        abbr: 'it-IT',
+        exception: {
+            403: "Spiacenti, non hai accesso a questa pagina",
+            404: "Spiacenti, la pagina che hai visitato non esiste",
+            500: "Spiacenti, il server sta riscontrando un errore",
+            backToHome: 'Torna alla Home'
+        },
+        noticeIcon: {
+            emptyText: 'Nessun dato',
+            clearText: 'Cancella memoria locale'
+        },
+        reuseTab: {
+            close: 'Chiudi la scheda',
+            closeOther: 'Chiudi le altre schede',
+            closeRight: 'Chiudi le schede a destra',
+            refresh: 'Aggiorna'
+        },
+        tagSelect: {
+            expand: 'Espandi',
+            collapse: 'Comprimi'
+        },
+        miniProgress: {
+            target: 'Obiettivo: '
+        },
+        st: {
+            total: '{{range[0]}} - {{range[1]}} di {{total}}',
+            filterConfirm: 'OK',
+            filterReset: 'Reimposta'
+        },
+        sf: {
+            submit: 'Invia',
+            reset: 'Reimposta',
+            search: 'Cerca',
+            edit: 'Salva',
+            addText: 'Aggiungi',
+            removeText: 'Rimuovi',
+            checkAllText: 'Seleziona tutto',
+            error: {
+                'false schema': "Lo schema booleano \u00E8 falso",
+                $ref: "Impossibile risolvere il riferimento {ref}",
+                additionalItems: "Non deve avere pi\u00F9 di {limit} elementi",
+                additionalProperties: "Non deve avere propriet\u00E0 aggiuntive",
+                anyOf: "Deve corrispondere a uno schema in \"anyOf\"",
+                dependencies: "Deve avere una propriet\u00E0 {deps} quando \u00E8 presente la propriet\u00E0 {property}",
+                enum: "Deve essere uguale a uno dei valori predefiniti",
+                format: "Deve corrispondere al formato \"{format}\"",
+                type: "Deve essere {type}",
+                required: "Obbligatorio",
+                maxLength: "Non deve essere superiore a {limit} caratteri",
+                minLength: "Non deve essere superiore a {limit} caratteri",
+                minimum: "Deve essere {comparison} {limit}",
+                formatMinimum: "Deve essere {comparison} {limit}",
+                maximum: "Deve essere {comparison} {limit}",
+                formatMaximum: "Deve essere {comparison} {limit}",
+                maxItems: "Non deve avere pi\u00F9 di {limit} elementi",
+                minItems: "Non deve avere meno di {limit} elementi",
+                maxProperties: "Non deve avere pi\u00F9 di {limit} propriet\u00E0",
+                minProperties: "Non deve avere meno di {limit} propriet\u00E0",
+                multipleOf: "Deve essere un multiplo di {multipleOf}",
+                not: "Non deve essere valido secondo lo schema in \"not\"",
+                oneOf: "Deve corrispondere esattamente a uno schema in \"oneOf\"",
+                pattern: "Deve corrispondere al modello \"{pattern}\"",
+                uniqueItems: "Non deve avere elementi duplicati (gli elementi ## {j} e {i} sono identici)",
+                custom: "Deve corrispondere al formato \"{format}\"",
+                propertyNames: "Il nome della propriet\u00E0 \"{propertyName}\" non \u00E8 valido",
+                patternRequired: "Deve avere una propriet\u00E0 corrispondete al modello \"{missingPattern}\"",
+                switch: "Deve superare la convalida della parola chiave \"switch\", il caso {caseIndex} non \u00E8 riuscito",
+                const: "Deve essere uguale alla costante",
+                contains: "Deve contenere un elemento valido",
+                formatExclusiveMaximum: "formatExclusiveMaximum deve essere booleano",
+                formatExclusiveMinimum: "formatExclusiveMaximum deve essere booleano",
+                if: "Deve corrispondere allo schema \"{failingKeyword}\""
+            }
+        },
+        onboarding: {
+            skip: "Salta",
+            prev: "Precedente",
+            next: "Successivo",
+            done: "Fatto"
         }
     };
 
@@ -2928,6 +3011,7 @@
     exports.es_ES = esES;
     exports.fr_FR = frFR;
     exports.hr_HR = hrHR;
+    exports.it_IT = itIT;
     exports.ja_JP = jaJP;
     exports.ko_KR = koKR;
     exports.pl_PL = plPL;
