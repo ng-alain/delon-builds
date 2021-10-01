@@ -3,7 +3,7 @@ import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit } from '@ang
 import { NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ChartEChartsService } from './echarts.service';
-import { ChartECharts, ChartEChartsEvent, ChartEChartsOption } from './echarts.types';
+import { ChartECharts, ChartEChartsEvent, ChartEChartsOn, ChartEChartsOption } from './echarts.types';
 export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     private srv;
     private cdr;
@@ -24,6 +24,7 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     set theme(value: string | Record<string, unknown> | null | undefined);
     set initOpt(value: NzSafeAny);
     set option(value: ChartEChartsOption);
+    on: ChartEChartsOn[];
     readonly events: EventEmitter<ChartEChartsEvent>;
     get chart(): ChartECharts | null;
     loaded: boolean;
