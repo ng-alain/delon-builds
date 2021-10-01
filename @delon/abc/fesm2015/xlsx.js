@@ -3,7 +3,6 @@ import * as i1 from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { Injectable, NgZone, Directive, Input, NgModule } from '@angular/core';
-import { saveAs } from 'file-saver';
 import isUtf8 from 'isutf8';
 import * as i3 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
@@ -27,24 +26,22 @@ class XlsxService {
             ? Promise.resolve([])
             : this.lazy.load([this.cog.url].concat(this.cog.modules));
     }
-    read(data, options) {
+    read(data) {
+        const { read, utils: { sheet_to_json } } = XLSX;
         const ret = {};
-        if (options.type === 'binary') {
-            const buf = new Uint8Array(data);
-            if (!isUtf8(buf)) {
-                try {
-                    data = cptable.utils.decode(936, buf);
-                    options.type = 'string';
-                }
-                catch (_a) {
-                    options.type = 'array';
-                }
+        const buf = new Uint8Array(data);
+        let type = 'array';
+        if (!isUtf8(buf)) {
+            try {
+                data = cptable.utils.decode(936, buf);
+                type = 'string';
             }
+            catch (_a) { }
         }
-        const wb = XLSX.read(data, options);
+        const wb = read(data, { type });
         wb.SheetNames.forEach((name) => {
             const sheet = wb.Sheets[name];
-            ret[name] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            ret[name] = sheet_to_json(sheet, { header: 1 });
         });
         return ret;
     }
@@ -53,22 +50,18 @@ class XlsxService {
      */
     import(fileOrUrl) {
         return new Promise((resolve, reject) => {
+            const r = (data) => this.ngZone.run(() => resolve(this.read(data)));
             this.init()
                 .then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                        this.ngZone.run(() => resolve(this.read(new Uint8Array(res), { type: 'array' })));
-                    }, (err) => {
-                        reject(err);
-                    });
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => r(new Uint8Array(res)), (err) => reject(err));
                     return;
                 }
                 // from file
                 const reader = new FileReader();
-                reader.onload = (e) => {
-                    this.ngZone.run(() => resolve(this.read(e.target.result, { type: 'binary' })));
-                };
+                reader.onload = (e) => r(e.target.result);
+                reader.onerror = (e) => reject(e);
                 reader.readAsArrayBuffer(fileOrUrl);
             })
                 .catch(() => reject(`Unable to load xlsx.js`));
@@ -79,11 +72,13 @@ class XlsxService {
             return new Promise((resolve, reject) => {
                 this.init()
                     .then(() => {
-                    const wb = XLSX.utils.book_new();
+                    options = Object.assign({ format: 'xlsx' }, options);
+                    const { writeFile, utils: { book_new, aoa_to_sheet, book_append_sheet } } = XLSX;
+                    const wb = book_new();
                     if (Array.isArray(options.sheets)) {
                         options.sheets.forEach((value, index) => {
-                            const ws = XLSX.utils.aoa_to_sheet(value.data);
-                            XLSX.utils.book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                            const ws = aoa_to_sheet(value.data);
+                            book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
                         });
                     }
                     else {
@@ -92,9 +87,8 @@ class XlsxService {
                     }
                     if (options.callback)
                         options.callback(wb);
-                    const wbout = XLSX.write(wb, Object.assign({ bookType: 'xlsx', bookSST: false, type: 'array' }, options.opts));
-                    const filename = options.filename || 'export.xlsx';
-                    saveAs(new Blob([wbout], { type: 'application/octet-stream' }), filename);
+                    const filename = options.filename || `export.${options.format}`;
+                    writeFile(wb, filename, Object.assign({ bookType: options.format, bookSST: false, type: 'array' }, options.opts));
                     resolve({ filename, wb });
                 })
                     .catch(err => reject(err));
