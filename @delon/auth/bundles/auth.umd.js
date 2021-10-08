@@ -690,11 +690,12 @@
         injector.get(DA_SERVICE_TOKEN).referrer.url = url || router$1.url;
         if (options.token_invalid_redirect === true) {
             setTimeout(function () {
-                if (/^https?:\/\//g.test(options.login_url)) {
-                    injector.get(common.DOCUMENT).location.href = options.login_url;
+                var url = typeof options.login_url === 'function' ? options.login_url(injector) : options.login_url;
+                if (/^https?:\/\//g.test(url)) {
+                    injector.get(common.DOCUMENT).location.href = url;
                 }
                 else {
-                    router$1.navigate([options.login_url]);
+                    router$1.navigate([url]);
                 }
             });
         }

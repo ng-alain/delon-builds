@@ -319,11 +319,12 @@ function ToLogin(options, injector, url) {
     injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
-            if (/^https?:\/\//g.test(options.login_url)) {
-                injector.get(DOCUMENT).location.href = options.login_url;
+            const url = typeof options.login_url === 'function' ? options.login_url(injector) : options.login_url;
+            if (/^https?:\/\//g.test(url)) {
+                injector.get(DOCUMENT).location.href = url;
             }
             else {
-                router.navigate([options.login_url]);
+                router.navigate([url]);
             }
         });
     }
