@@ -103,7 +103,8 @@
         });
         Object.defineProperty(TokenService.prototype, "login_url", {
             get: function () {
-                return this._options.login_url;
+                var _a;
+                return (_a = this._options.login_url) === null || _a === void 0 ? void 0 : _a.toString();
             },
             enumerable: false,
             configurable: true
@@ -149,7 +150,7 @@
         };
         TokenService.prototype.builderRefresh = function () {
             var _this = this;
-            var _a = this._options, refreshTime = _a.refreshTime, refreshOffset = _a.refreshOffset;
+            var _b = this._options, refreshTime = _b.refreshTime, refreshOffset = _b.refreshOffset;
             this.cleanRefresh();
             this.interval$ = rxjs.interval(refreshTime)
                 .pipe(operators.map(function () {

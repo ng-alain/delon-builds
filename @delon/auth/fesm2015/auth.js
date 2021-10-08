@@ -73,7 +73,8 @@ class TokenService {
         return this.refresh$.pipe(share());
     }
     get login_url() {
-        return this._options.login_url;
+        var _a;
+        return (_a = this._options.login_url) === null || _a === void 0 ? void 0 : _a.toString();
     }
     get referrer() {
         return this._referrer;
