@@ -103,8 +103,7 @@
         });
         Object.defineProperty(TokenService.prototype, "login_url", {
             get: function () {
-                var _a;
-                return (_a = this._options.login_url) === null || _a === void 0 ? void 0 : _a.toString();
+                return this._options.login_url;
             },
             enumerable: false,
             configurable: true
@@ -150,7 +149,7 @@
         };
         TokenService.prototype.builderRefresh = function () {
             var _this = this;
-            var _b = this._options, refreshTime = _b.refreshTime, refreshOffset = _b.refreshOffset;
+            var _a = this._options, refreshTime = _a.refreshTime, refreshOffset = _a.refreshOffset;
             this.cleanRefresh();
             this.interval$ = rxjs.interval(refreshTime)
                 .pipe(operators.map(function () {
@@ -691,12 +690,11 @@
         injector.get(DA_SERVICE_TOKEN).referrer.url = url || router$1.url;
         if (options.token_invalid_redirect === true) {
             setTimeout(function () {
-                var url = typeof options.login_url === 'function' ? options.login_url(injector) : options.login_url;
-                if (/^https?:\/\//g.test(url)) {
-                    injector.get(common.DOCUMENT).location.href = url;
+                if (/^https?:\/\//g.test(options.login_url)) {
+                    injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
-                    router$1.navigate([url]);
+                    router$1.navigate([options.login_url]);
                 }
             });
         }

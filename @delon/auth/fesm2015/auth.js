@@ -73,8 +73,7 @@ class TokenService {
         return this.refresh$.pipe(share());
     }
     get login_url() {
-        var _a;
-        return (_a = this._options.login_url) === null || _a === void 0 ? void 0 : _a.toString();
+        return this._options.login_url;
     }
     get referrer() {
         return this._referrer;
@@ -320,12 +319,11 @@ function ToLogin(options, injector, url) {
     injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
-            const url = typeof options.login_url === 'function' ? options.login_url(injector) : options.login_url;
-            if (/^https?:\/\//g.test(url)) {
-                injector.get(DOCUMENT).location.href = url;
+            if (/^https?:\/\//g.test(options.login_url)) {
+                injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
-                router.navigate([url]);
+                router.navigate([options.login_url]);
             }
         });
     }
