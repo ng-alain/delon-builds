@@ -105,6 +105,10 @@ function genProxy(config) {
             context.logger.info(color_1.colors.blue(`Start generating...`));
             swagger_typescript_api_1.generateApi(Object.assign({ name: `${config.name}.ts`, url: config.url, input: config.filePath, spec: config.spec, output,
                 templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true, hooks: {
+                    onInit: c => {
+                        c.httpClientType = config.httpClientType;
+                        return c;
+                    },
                     onPrepareConfig: c => {
                         var _a;
                         if (!config.responseDataField)
