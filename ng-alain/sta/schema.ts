@@ -5,7 +5,7 @@ export interface Schema {
   config?: string;
 
   /**
-   * Name for swagger project name, Default: `proxy`
+   * Name for swagger project name, Default: `sta`
    */
   name?: string;
 
@@ -17,6 +17,11 @@ export interface Schema {
    * Path to folder where will been located the created api module, Default: `/src/app/${name}`
    */
   output?: string;
+
+  /**
+   * The real data field of Response
+   */
+  responseDataField?: string;
 
   project?: string;
 }

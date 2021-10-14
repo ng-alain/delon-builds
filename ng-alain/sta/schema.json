@@ -12,8 +12,8 @@
     },
     "name": {
       "type": "string",
-      "description": "Name for swagger project name, Default: proxy",
-      "default": "proxy"
+      "description": "Name for swagger project name, Default: sta",
+      "default": "sta"
     },
     "url": {
       "type": "string",
@@ -26,6 +26,10 @@
     "output": {
       "type": "string",
       "description": "Path to folder where will been located the created api module, Default: /src/app/${name}"
+    },
+    "responseDataField": {
+      "type": "string",
+      "description": "The real data field of Response"
     }
   }
 }

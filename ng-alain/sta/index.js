@@ -37,8 +37,8 @@ function addPathInTsConfig(name) {
         if (!json.compilerOptions.paths)
             json.compilerOptions.paths = {};
         const paths = json.compilerOptions.paths;
-        paths[`@${name}`] = [`src/app/${name}/index`];
-        paths[`@${name}/*`] = [`src/app/${name}/*`];
+        paths[`@${name}`] = [`src/app/_${name}/index`];
+        paths[`@${name}/*`] = [`src/app/_${name}/*`];
         json_1.writeJSON(tree, 'tsconfig.json', json);
         return tree;
     };
@@ -66,16 +66,20 @@ function fix(output, res, tree, context) {
         const dtoTypeTpl = res.getTemplate({ name: 'dto-type', fileName: 'dto-type.eta' });
         const serviceTpl = res.getTemplate({ name: 'service', fileName: 'service.eta' });
         res.configuration.routes.combined.forEach(route => {
+            const routeIndex = [];
             // dto
             const dtoContent = res.formatTSContent(res.renderTemplate(dtoTypeTpl, Object.assign(Object.assign({}, res.configuration), { route })));
             if (dtoContent.trim().length > 10) {
-                tree.create(`${basePath}/${route.moduleName}.dtos.ts`, filePrefix + dtoContent);
-                indexList.push(`${route.moduleName}.dtos`);
+                tree.create(`${basePath}/${route.moduleName}/dtos.ts`, filePrefix + dtoContent);
+                routeIndex.push(`dtos`);
             }
             // service
             const serviceContent = res.renderTemplate(serviceTpl, Object.assign(Object.assign({}, res.configuration), { route }));
-            tree.create(`${basePath}/${route.moduleName}.service.ts`, filePrefix + res.formatTSContent(serviceContent));
-            indexList.push(`${route.moduleName}.service`);
+            tree.create(`${basePath}/${route.moduleName}/service.ts`, filePrefix + res.formatTSContent(serviceContent));
+            routeIndex.push(`service`);
+            // index.ts
+            tree.create(`${basePath}/${route.moduleName}/index.ts`, filePrefix + routeIndex.map(name => `export * from './${name}';`).join('\n'));
+            indexList.push(`${route.moduleName}/index`);
         });
         // Index
         tree.create(`${basePath}/index.ts`, filePrefix + indexList.map(name => `export * from './${name}';`).join('\n'));
@@ -88,7 +92,7 @@ function genProxy(config) {
     return (tree, context) => {
         var _a;
         context.logger.info(color_1.colors.blue(`- Name: ${config.name}`));
-        const output = (config.output = path_1.resolve(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/${config.name}`));
+        const output = (config.output = path_1.resolve(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/_${config.name}`));
         const templates = path_1.resolve(__dirname, './templates');
         if (config.url) {
             context.logger.info(color_1.colors.blue(`- Using url data: ${config.url}`));
@@ -100,7 +104,29 @@ function genProxy(config) {
         return new Promise(resolve => {
             context.logger.info(color_1.colors.blue(`Start generating...`));
             swagger_typescript_api_1.generateApi(Object.assign({ name: `${config.name}.ts`, url: config.url, input: config.filePath, spec: config.spec, output,
-                templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true }, config.generateApiParams
+                templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true, hooks: {
+                    onPrepareConfig: c => {
+                        var _a;
+                        if (!config.responseDataField)
+                            return c;
+                        (_a = c.routes.combined) === null || _a === void 0 ? void 0 : _a.forEach(moduleInfo => {
+                            moduleInfo.routes.forEach(routeInfo => {
+                                var _a, _b, _c, _d;
+                                const responseBodyContentFirstType = Object.keys((_a = routeInfo.responseBodySchema) === null || _a === void 0 ? void 0 : _a.content).pop();
+                                if (!responseBodyContentFirstType)
+                                    return;
+                                const responseBodyRef = c.utils.getComponentByRef(routeInfo.responseBodySchema.content[responseBodyContentFirstType].schema.$ref);
+                                if (!responseBodyRef)
+                                    return;
+                                const fieldProperty = (_c = (_b = responseBodyRef.typeData) === null || _b === void 0 ? void 0 : _b.properties) === null || _c === void 0 ? void 0 : _c[config.responseDataField];
+                                if (!fieldProperty)
+                                    return;
+                                routeInfo.response.type = (_d = fieldProperty.$parsed.content) !== null && _d !== void 0 ? _d : 'any';
+                            });
+                        });
+                        return c;
+                    }
+                } }, config.generateApiParams
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             ))
                 .then((res) => {
@@ -135,7 +161,7 @@ function tryLoadConfig(configPath) {
 function default_1(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
         project = (yield workspace_1.getProject(tree, options.project)).project;
-        const config = Object.assign(Object.assign({ name: 'proxy' }, tryLoadConfig(options.config)), options);
+        const config = Object.assign(Object.assign({ name: 'sta' }, tryLoadConfig(options.config)), options);
         return schematics_1.chain([addPathInTsConfig(config.name), genProxy(config), finished()]);
     });
 }

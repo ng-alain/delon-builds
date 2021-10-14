@@ -22,6 +22,8 @@ export interface STAConfig {
 
   output?: string;
 
+  responseDataField?: string;
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   generateApiParams?: any;
 
@@ -46,8 +48,8 @@ function addPathInTsConfig(name: string): Rule {
     if (!json.compilerOptions) json.compilerOptions = {};
     if (!json.compilerOptions.paths) json.compilerOptions.paths = {};
     const paths = json.compilerOptions.paths;
-    paths[`@${name}`] = [`src/app/${name}/index`];
-    paths[`@${name}/*`] = [`src/app/${name}/*`];
+    paths[`@${name}`] = [`src/app/_${name}/index`];
+    paths[`@${name}/*`] = [`src/app/_${name}/*`];
     writeJSON(tree, 'tsconfig.json', json);
     return tree;
   };
@@ -78,6 +80,7 @@ function fix(output: string, res: GenerateApiOutput, tree: Tree, context: Schema
     const dtoTypeTpl = res.getTemplate({ name: 'dto-type', fileName: 'dto-type.eta' });
     const serviceTpl = res.getTemplate({ name: 'service', fileName: 'service.eta' });
     res.configuration.routes.combined.forEach(route => {
+      const routeIndex: string[] = [];
       // dto
       const dtoContent = res.formatTSContent(
         res.renderTemplate(dtoTypeTpl, {
@@ -86,8 +89,8 @@ function fix(output: string, res: GenerateApiOutput, tree: Tree, context: Schema
         })
       );
       if (dtoContent.trim().length > 10) {
-        tree.create(`${basePath}/${route.moduleName}.dtos.ts`, filePrefix + dtoContent);
-        indexList.push(`${route.moduleName}.dtos`);
+        tree.create(`${basePath}/${route.moduleName}/dtos.ts`, filePrefix + dtoContent);
+        routeIndex.push(`dtos`);
       }
 
       // service
@@ -95,8 +98,15 @@ function fix(output: string, res: GenerateApiOutput, tree: Tree, context: Schema
         ...res.configuration,
         route
       });
-      tree.create(`${basePath}/${route.moduleName}.service.ts`, filePrefix + res.formatTSContent(serviceContent));
-      indexList.push(`${route.moduleName}.service`);
+      tree.create(`${basePath}/${route.moduleName}/service.ts`, filePrefix + res.formatTSContent(serviceContent));
+      routeIndex.push(`service`);
+
+      // index.ts
+      tree.create(
+        `${basePath}/${route.moduleName}/index.ts`,
+        filePrefix + routeIndex.map(name => `export * from './${name}';`).join('\n')
+      );
+      indexList.push(`${route.moduleName}/index`);
     });
     // Index
     tree.create(`${basePath}/index.ts`, filePrefix + indexList.map(name => `export * from './${name}';`).join('\n'));
@@ -108,7 +118,7 @@ function fix(output: string, res: GenerateApiOutput, tree: Tree, context: Schema
 function genProxy(config: STAConfig): Rule {
   return (tree: Tree, context: SchematicContext) => {
     context.logger.info(colors.blue(`- Name: ${config.name}`));
-    const output = (config.output = resolve(process.cwd(), config.output ?? `./src/app/${config.name}`));
+    const output = (config.output = resolve(process.cwd(), config.output ?? `./src/app/_${config.name}`));
     const templates = resolve(__dirname, './templates');
     if (config.url) {
       context.logger.info(colors.blue(`- Using url data: ${config.url}`));
@@ -138,6 +148,26 @@ function genProxy(config: STAConfig): Rule {
         silent: true,
         disableStrictSSL: true,
         moduleNameFirstTag: true,
+        hooks: {
+          onPrepareConfig: c => {
+            if (!config.responseDataField) return c;
+
+            c.routes.combined?.forEach(moduleInfo => {
+              moduleInfo.routes.forEach(routeInfo => {
+                const responseBodyContentFirstType = Object.keys(routeInfo.responseBodySchema?.content).pop();
+                if (!responseBodyContentFirstType) return;
+                const responseBodyRef = c.utils.getComponentByRef(
+                  routeInfo.responseBodySchema.content[responseBodyContentFirstType].schema.$ref
+                );
+                if (!responseBodyRef) return;
+                const fieldProperty = responseBodyRef.typeData?.properties?.[config.responseDataField];
+                if (!fieldProperty) return;
+                routeInfo.response.type = fieldProperty.$parsed.content ?? 'any';
+              });
+            });
+            return c;
+          }
+        },
         ...config.generateApiParams
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } as any)
@@ -176,7 +206,7 @@ export default function (options: Schema): Rule {
   return async (tree: Tree) => {
     project = (await getProject(tree, options.project)).project;
     const config: STAConfig = {
-      name: 'proxy',
+      name: 'sta',
       ...tryLoadConfig(options.config),
       ...options
     };
