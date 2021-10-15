@@ -31036,7 +31036,8 @@ body {
   margin-right: 8px;
   transition: font-size 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), margin 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
-.sidebar-nav__item-img {
+.sidebar-nav__item-img,
+.sidebar-nav__item-svg {
   width: 14px;
   height: 14px;
 }
