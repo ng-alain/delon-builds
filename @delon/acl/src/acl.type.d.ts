@@ -3,7 +3,10 @@
  * 当这里有变化时，请务必同步更新，涉及：`MenuService.acl`、`util.AlainACLType`
  * TODO: 尝试增加 `@delon/core` 类库用于处理这种通用型
  */
+import { Injector } from '@angular/core';
+import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { ACLService } from './acl.service';
 export interface ACLType {
     /**
      * 角色
@@ -26,3 +29,5 @@ export interface ACLType {
     [key: string]: NzSafeAny;
 }
 export declare type ACLCanType = number | number[] | string | string[] | ACLType;
+export declare type ACLGuardFunctionType = (srv: ACLService, injector: Injector) => Observable<ACLCanType>;
+export declare type ACLGuardType = ACLCanType | Observable<ACLCanType> | ACLGuardFunctionType;
