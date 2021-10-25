@@ -1,4 +1,3 @@
-import { Injector } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ACLService } from './acl.service';
@@ -16,8 +15,7 @@ import { ACLService } from './acl.service';
 export declare class ACLGuard implements CanActivate, CanActivateChild, CanLoad {
     private srv;
     private router;
-    private injector;
-    constructor(srv: ACLService, router: Router, injector: Injector);
+    constructor(srv: ACLService, router: Router);
     private process;
     canLoad(route: Route): Observable<boolean>;
     canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>;

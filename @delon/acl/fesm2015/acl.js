@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
+import { Injectable, Directive, TemplateRef, ViewContainerRef, Input, ElementRef, Renderer2, NgModule } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { filter, map, tap } from 'rxjs/operators';
@@ -339,16 +339,13 @@ ACLDirective.propDecorators = {
  * ```
  */
 class ACLGuard {
-    constructor(srv, router, injector) {
+    constructor(srv, router) {
         this.srv = srv;
         this.router = router;
-        this.injector = injector;
     }
     process(data) {
         data = Object.assign({ guard: null, guard_url: this.srv.guard_url }, data);
-        let guard = data.guard;
-        if (typeof guard === 'function')
-            guard = guard(this.srv, this.injector);
+        const guard = data.guard;
         return (guard && guard instanceof Observable ? guard : of(guard != null ? guard : null)).pipe(map(v => this.srv.can(v)), tap(v => {
             if (v)
                 return;
@@ -368,14 +365,13 @@ class ACLGuard {
         return this.process(route.data);
     }
 }
-ACLGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.ɵɵinject(ACLService), i0.ɵɵinject(i2.Router), i0.ɵɵinject(i0.INJECTOR)); }, token: ACLGuard, providedIn: "root" });
+ACLGuard.ɵprov = i0.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0.ɵɵinject(ACLService), i0.ɵɵinject(i2.Router)); }, token: ACLGuard, providedIn: "root" });
 ACLGuard.decorators = [
     { type: Injectable, args: [{ providedIn: 'root' },] }
 ];
 ACLGuard.ctorParameters = () => [
     { type: ACLService },
-    { type: Router },
-    { type: Injector }
+    { type: Router }
 ];
 
 const COMPONENTS = [ACLDirective, ACLIfDirective];

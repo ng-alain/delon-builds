@@ -761,17 +761,14 @@
      * ```
      */
     var ACLGuard = /** @class */ (function () {
-        function ACLGuard(srv, router, injector) {
+        function ACLGuard(srv, router) {
             this.srv = srv;
             this.router = router;
-            this.injector = injector;
         }
         ACLGuard.prototype.process = function (data) {
             var _this = this;
             data = Object.assign({ guard: null, guard_url: this.srv.guard_url }, data);
             var guard = data.guard;
-            if (typeof guard === 'function')
-                guard = guard(this.srv, this.injector);
             return (guard && guard instanceof rxjs.Observable ? guard : rxjs.of(guard != null ? guard : null)).pipe(operators.map(function (v) { return _this.srv.can(v); }), operators.tap(function (v) {
                 if (v)
                     return;
@@ -792,14 +789,13 @@
         };
         return ACLGuard;
     }());
-    ACLGuard.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0__namespace.ɵɵinject(ACLService), i0__namespace.ɵɵinject(i2__namespace.Router), i0__namespace.ɵɵinject(i0__namespace.INJECTOR)); }, token: ACLGuard, providedIn: "root" });
+    ACLGuard.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function ACLGuard_Factory() { return new ACLGuard(i0__namespace.ɵɵinject(ACLService), i0__namespace.ɵɵinject(i2__namespace.Router)); }, token: ACLGuard, providedIn: "root" });
     ACLGuard.decorators = [
         { type: i0.Injectable, args: [{ providedIn: 'root' },] }
     ];
     ACLGuard.ctorParameters = function () { return [
         { type: ACLService },
-        { type: i2.Router },
-        { type: i0.Injector }
+        { type: i2.Router }
     ]; };
 
     var COMPONENTS = [ACLDirective, ACLIfDirective];
