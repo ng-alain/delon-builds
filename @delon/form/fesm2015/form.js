@@ -2238,13 +2238,13 @@ class NumberWidget extends ControlUIWidget {
     }
     ngOnInit() {
         const { minimum, exclusiveMinimum, maximum, exclusiveMaximum, multipleOf, type } = this.schema;
+        this.step = multipleOf || 1;
         if (typeof minimum !== 'undefined') {
-            this.min = exclusiveMinimum ? minimum + 1 : minimum;
+            this.min = exclusiveMinimum ? minimum + this.step : minimum;
         }
         if (typeof maximum !== 'undefined') {
-            this.max = exclusiveMaximum ? maximum - 1 : maximum;
+            this.max = exclusiveMaximum ? maximum - this.step : maximum;
         }
-        this.step = multipleOf || 1;
         if (type === 'integer') {
             this.min = Math.trunc(this.min);
             this.max = Math.trunc(this.max);
@@ -2607,21 +2607,14 @@ TagWidget.decorators = [
 ];
 
 class TextWidget extends ControlUIWidget {
-    constructor() {
-        super(...arguments);
-        this.text = '';
-    }
     ngOnInit() {
         this.ui._required = false;
-    }
-    reset(value) {
-        this.text = value || this.ui.defaultText || '-';
     }
 }
 TextWidget.decorators = [
     { type: Component, args: [{
                 selector: 'sf-text',
-                template: "<sf-item-wrap\n  [id]=\"id\"\n  [schema]=\"schema\"\n  [ui]=\"ui\"\n  [showError]=\"showError\"\n  [error]=\"error\"\n  [showTitle]=\"schema.title\"\n  [class.sf__text-html]=\"ui.html\"\n>\n  <span *ngIf=\"ui.html\" [innerHTML]=\"text\"></span>\n  <span *ngIf=\"!ui.html\" [innerText]=\"text\"></span>\n</sf-item-wrap>\n",
+                template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
                 preserveWhitespaces: false,
                 encapsulation: ViewEncapsulation.None
             },] }
