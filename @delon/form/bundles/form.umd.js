@@ -2786,13 +2786,13 @@
         }
         NumberWidget.prototype.ngOnInit = function () {
             var _a = this.schema, minimum = _a.minimum, exclusiveMinimum = _a.exclusiveMinimum, maximum = _a.maximum, exclusiveMaximum = _a.exclusiveMaximum, multipleOf = _a.multipleOf, type = _a.type;
-            this.step = multipleOf || 1;
             if (typeof minimum !== 'undefined') {
-                this.min = exclusiveMinimum ? minimum + this.step : minimum;
+                this.min = exclusiveMinimum ? minimum + 1 : minimum;
             }
             if (typeof maximum !== 'undefined') {
-                this.max = exclusiveMaximum ? maximum - this.step : maximum;
+                this.max = exclusiveMaximum ? maximum - 1 : maximum;
             }
+            this.step = multipleOf || 1;
             if (type === 'integer') {
                 this.min = Math.trunc(this.min);
                 this.max = Math.trunc(this.max);
@@ -3202,17 +3202,22 @@
     var TextWidget = /** @class */ (function (_super) {
         __extends(TextWidget, _super);
         function TextWidget() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
+            _this.text = '';
+            return _this;
         }
         TextWidget.prototype.ngOnInit = function () {
             this.ui._required = false;
+        };
+        TextWidget.prototype.reset = function (value) {
+            this.text = value || this.ui.defaultText || '-';
         };
         return TextWidget;
     }(ControlUIWidget));
     TextWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-text',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap\n  [id]=\"id\"\n  [schema]=\"schema\"\n  [ui]=\"ui\"\n  [showError]=\"showError\"\n  [error]=\"error\"\n  [showTitle]=\"schema.title\"\n  [class.sf__text-html]=\"ui.html\"\n>\n  <span *ngIf=\"ui.html\" [innerHTML]=\"text\"></span>\n  <span *ngIf=\"!ui.html\" [innerText]=\"text\"></span>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
