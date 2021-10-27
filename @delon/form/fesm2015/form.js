@@ -2613,6 +2613,7 @@ class TextWidget extends ControlUIWidget {
     }
     ngOnInit() {
         this.ui._required = false;
+        this.ui.html = toBool(this.ui.html, true);
     }
     reset(value) {
         this.text = value || this.ui.defaultText || '-';

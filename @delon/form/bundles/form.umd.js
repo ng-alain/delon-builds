@@ -3208,6 +3208,7 @@
         }
         TextWidget.prototype.ngOnInit = function () {
             this.ui._required = false;
+            this.ui.html = toBool(this.ui.html, true);
         };
         TextWidget.prototype.reset = function (value) {
             this.text = value || this.ui.defaultText || '-';
