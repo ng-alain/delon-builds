@@ -3202,17 +3202,23 @@
     var TextWidget = /** @class */ (function (_super) {
         __extends(TextWidget, _super);
         function TextWidget() {
-            return _super !== null && _super.apply(this, arguments) || this;
+            var _this = _super.apply(this, __spreadArray([], __read(arguments))) || this;
+            _this.text = '';
+            return _this;
         }
         TextWidget.prototype.ngOnInit = function () {
             this.ui._required = false;
+            this.ui.html = toBool(this.ui.html, true);
+        };
+        TextWidget.prototype.reset = function (value) {
+            this.text = value || this.ui.defaultText || '-';
         };
         return TextWidget;
     }(ControlUIWidget));
     TextWidget.decorators = [
         { type: core.Component, args: [{
                     selector: 'sf-text',
-                    template: "<sf-item-wrap [id]=\"id\" [schema]=\"schema\" [ui]=\"ui\" [showError]=\"showError\" [error]=\"error\" [showTitle]=\"schema.title\">\n  {{ value || ui.defaultText || '-' }}\n</sf-item-wrap>\n",
+                    template: "<sf-item-wrap\n  [id]=\"id\"\n  [schema]=\"schema\"\n  [ui]=\"ui\"\n  [showError]=\"showError\"\n  [error]=\"error\"\n  [showTitle]=\"schema.title\"\n  [class.sf__text-html]=\"ui.html\"\n>\n  <span *ngIf=\"ui.html\" [innerHTML]=\"text\"></span>\n  <span *ngIf=\"!ui.html\" [innerText]=\"text\"></span>\n</sf-item-wrap>\n",
                     preserveWhitespaces: false,
                     encapsulation: core.ViewEncapsulation.None
                 },] }
