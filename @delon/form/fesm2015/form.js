@@ -2266,6 +2266,8 @@ class NumberWidget extends ControlUIWidget {
     }
     _setValue(val) {
         this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
+        if (this.ui.change)
+            this.ui.change(this.value);
     }
 }
 NumberWidget.decorators = [
