@@ -13,6 +13,7 @@ const color_1 = require("@angular/cli/utilities/color");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const fs_1 = require("fs");
+const jsonc_parser_1 = require("jsonc-parser");
 const path_1 = require("path");
 const swagger_typescript_api_1 = require("swagger-typescript-api");
 const json_1 = require("../utils/json");
@@ -181,7 +182,7 @@ function tryLoadConfig(context, configPath) {
         const configFile = path_1.resolve(process.cwd(), configPath);
         context.logger.info(color_1.colors.blue(`- Use config file: ${configFile}`));
         if (fs_1.existsSync(configFile)) {
-            return require(configFile);
+            return jsonc_parser_1.parse(fs_1.readFileSync(configFile).toString('utf8'));
         }
     }
     catch (err) {
