@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, ElementRef, Injectable, Directive, Injector, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, Injector, ChangeDetectorRef, Optional, Inject, ViewChild, NgModule } from '@angular/core';
 import * as i1 from '@delon/theme';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { Subject, Subscription, BehaviorSubject, timer } from 'rxjs';
@@ -67,7 +67,7 @@ class ReuseTabContextMenuComponent {
 ReuseTabContextMenuComponent.decorators = [
     { type: Component, args: [{
                 selector: 'reuse-tab-context-menu',
-                template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
+                template: "<ul nz-menu>\n  <li\n    *ngIf=\"item.active\"\n    nz-menu-item\n    (click)=\"click($event, 'refresh')\"\n    data-type=\"refresh\"\n    [innerHTML]=\"i18n.refresh\"\n  ></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
                 host: {
                     '(document:click)': 'closeMenu($event)',
                     '(document:contextmenu)': 'closeMenu($event)'
@@ -104,21 +104,12 @@ class ReuseTabContextService {
     open(context) {
         this.remove();
         const { event, item, customContextMenu } = context;
-        const fakeElement = new ElementRef({
-            getBoundingClientRect: () => ({
-                bottom: event.clientY,
-                height: 0,
-                left: event.clientX,
-                right: event.clientX,
-                top: event.clientY,
-                width: 0
-            })
-        });
+        const { x, y } = event;
         const positions = [
             new ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
             new ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })
         ];
-        const positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
+        const positionStrategy = this.overlay.position().flexibleConnectedTo({ x, y }).withPositions(positions);
         this.ref = this.overlay.create({
             positionStrategy,
             panelClass: 'reuse-tab__cm',
@@ -774,7 +765,7 @@ class ReuseTabComponent {
         this.i18nSrv = i18nSrv;
         this.doc = doc;
         this.platform = platform;
-        this.unsubscribe$ = new Subject();
+        this.destroy$ = new Subject();
         this.updatePos$ = new Subject();
         this.list = [];
         this.pos = 0;
@@ -922,7 +913,7 @@ class ReuseTabComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.updatePos$.pipe(takeUntil(this.unsubscribe$), debounceTime(50)).subscribe(() => {
+        this.updatePos$.pipe(takeUntil(this.destroy$), debounceTime(50)).subscribe(() => {
             const url = this.srv.getUrl(this.route.snapshot);
             const ls = this.list.filter(w => w.url === url || !this.srv.isExclude(w.url));
             if (ls.length === 0) {
@@ -940,7 +931,7 @@ class ReuseTabComponent {
             this.list = ls;
             this.cdr.detectChanges();
         });
-        this.srv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(res => {
+        this.srv.change.pipe(takeUntil(this.destroy$)).subscribe(res => {
             var _a;
             switch (res === null || res === void 0 ? void 0 : res.active) {
                 case 'title':
@@ -956,7 +947,7 @@ class ReuseTabComponent {
             this.genList(res);
         });
         this.i18nSrv.change
-            .pipe(filter(() => this.srv.inited), takeUntil(this.unsubscribe$), debounceTime(100))
+            .pipe(filter(() => this.srv.inited), takeUntil(this.destroy$), debounceTime(100))
             .subscribe(() => this.genList({ active: 'title' }));
         this.srv.init();
     }
@@ -980,7 +971,7 @@ class ReuseTabComponent {
         this.cdr.detectChanges();
     }
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
+        const { destroy$: unsubscribe$ } = this;
         unsubscribe$.next();
         unsubscribe$.complete();
     }

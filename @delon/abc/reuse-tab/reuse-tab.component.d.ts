@@ -21,7 +21,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     static ngAcceptInputType_keepingScroll: BooleanInput;
     static ngAcceptInputType_disabled: BooleanInput;
     private tabset;
-    private unsubscribe$;
+    private destroy$;
     private updatePos$;
     private _keepingScrollContainer;
     list: ReuseItem[];
