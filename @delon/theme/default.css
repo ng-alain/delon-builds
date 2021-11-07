@@ -30545,14 +30545,19 @@ body {
 .sidebar-nav__sub-arrow::after {
   transform: rotate(45deg) translateX(-2px);
 }
-.sidebar-nav .ant-badge {
+.sidebar-nav .badge {
   position: absolute;
-  top: 8px;
-  right: 8px;
+  right: 16px;
 }
-.sidebar-nav .ant-badge-dot {
-  top: 10px !important;
-  right: 16px !important;
+.sidebar-nav .badge:not(.badge-dot) {
+  top: 11px;
+  height: 16px;
+  padding: 0 4px;
+  overflow: hidden;
+  line-height: 16px;
+}
+.sidebar-nav .badge-dot {
+  top: 15px;
 }
 .sidebar-nav__depth1 .sidebar-nav__item-link {
   padding-left: 38px;

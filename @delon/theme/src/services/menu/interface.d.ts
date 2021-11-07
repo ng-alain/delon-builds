@@ -41,7 +41,7 @@ export interface Menu {
     /** Whether to display a red dot instead of `badge` value */
     badgeDot?: boolean;
     /** Badge [color](https://ng.ant.design/components/badge/en#nz-badge) */
-    badgeStatus?: 'success' | 'processing' | 'default' | 'error' | 'warning';
+    badgeStatus?: string;
     /** Whether disable for the menu item */
     disabled?: boolean;
     /** Whether hidden for the menu item */

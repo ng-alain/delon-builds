@@ -134,13 +134,21 @@
   }
 
   // Badge
-  .@{ant-prefix}-badge {
+  .badge {
     position: absolute;
-    top: @alain-default-aside-nav-padding-top-bottom;
-    right: @layout-gutter;
+    right: @layout-gutter * 2;
+    @badge-height: @layout-gutter * 2;
+
+    &:not(.badge-dot) {
+      top: ((@alain-default-aside-nav-item-height - @badge-height) / 2);
+      height: @badge-height;
+      padding: 0 4px;
+      overflow: hidden;
+      line-height: @badge-height;
+    }
+
     &-dot {
-      top: 10px !important;
-      right: @layout-gutter * 2 !important;
+      top: ((@alain-default-aside-nav-item-height - @layout-gutter) / 2);
     }
   }
 
