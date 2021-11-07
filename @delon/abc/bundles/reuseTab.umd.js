@@ -90,7 +90,7 @@
     ReuseTabContextMenuComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'reuse-tab-context-menu',
-                    template: "<ul nz-menu>\n  <li\n    *ngIf=\"item.active\"\n    nz-menu-item\n    (click)=\"click($event, 'refresh')\"\n    data-type=\"refresh\"\n    [innerHTML]=\"i18n.refresh\"\n  ></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
+                    template: "<ul nz-menu>\n  <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  <ng-container *ngIf=\"customContextMenu!.length > 0\">\n    <li nz-menu-divider></li>\n    <li\n      *ngFor=\"let i of customContextMenu\"\n      nz-menu-item\n      [attr.data-type]=\"i.id\"\n      [nzDisabled]=\"isDisabled(i)\"\n      (click)=\"click($event, 'custom', i)\"\n      [innerHTML]=\"i.title\"\n    ></li>\n  </ng-container>\n</ul>\n",
                     host: {
                         '(document:click)': 'closeMenu($event)',
                         '(document:contextmenu)': 'closeMenu($event)'
@@ -128,12 +128,21 @@
             var _this = this;
             this.remove();
             var event = context.event, item = context.item, customContextMenu = context.customContextMenu;
-            var x = event.x, y = event.y;
+            var fakeElement = new i0.ElementRef({
+                getBoundingClientRect: function () { return ({
+                    bottom: event.clientY,
+                    height: 0,
+                    left: event.clientX,
+                    right: event.clientX,
+                    top: event.clientY,
+                    width: 0
+                }); }
+            });
             var positions = [
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'bottom' }, { overlayX: 'start', overlayY: 'top' }),
                 new overlay.ConnectionPositionPair({ originX: 'start', originY: 'top' }, { overlayX: 'start', overlayY: 'bottom' })
             ];
-            var positionStrategy = this.overlay.position().flexibleConnectedTo({ x: x, y: y }).withPositions(positions);
+            var positionStrategy = this.overlay.position().flexibleConnectedTo(fakeElement).withPositions(positions);
             this.ref = this.overlay.create({
                 positionStrategy: positionStrategy,
                 panelClass: 'reuse-tab__cm',
@@ -1175,7 +1184,7 @@
             this.i18nSrv = i18nSrv;
             this.doc = doc;
             this.platform = platform;
-            this.destroy$ = new rxjs.Subject();
+            this.unsubscribe$ = new rxjs.Subject();
             this.updatePos$ = new rxjs.Subject();
             this.list = [];
             this.pos = 0;
@@ -1335,7 +1344,7 @@
             if (!this.platform.isBrowser) {
                 return;
             }
-            this.updatePos$.pipe(operators.takeUntil(this.destroy$), operators.debounceTime(50)).subscribe(function () {
+            this.updatePos$.pipe(operators.takeUntil(this.unsubscribe$), operators.debounceTime(50)).subscribe(function () {
                 var url = _this.srv.getUrl(_this.route.snapshot);
                 var ls = _this.list.filter(function (w) { return w.url === url || !_this.srv.isExclude(w.url); });
                 if (ls.length === 0) {
@@ -1353,7 +1362,7 @@
                 _this.list = ls;
                 _this.cdr.detectChanges();
             });
-            this.srv.change.pipe(operators.takeUntil(this.destroy$)).subscribe(function (res) {
+            this.srv.change.pipe(operators.takeUntil(this.unsubscribe$)).subscribe(function (res) {
                 var _a;
                 switch (res === null || res === void 0 ? void 0 : res.active) {
                     case 'title':
@@ -1369,7 +1378,7 @@
                 _this.genList(res);
             });
             this.i18nSrv.change
-                .pipe(operators.filter(function () { return _this.srv.inited; }), operators.takeUntil(this.destroy$), operators.debounceTime(100))
+                .pipe(operators.filter(function () { return _this.srv.inited; }), operators.takeUntil(this.unsubscribe$), operators.debounceTime(100))
                 .subscribe(function () { return _this.genList({ active: 'title' }); });
             this.srv.init();
         };
@@ -1393,7 +1402,7 @@
             this.cdr.detectChanges();
         };
         ReuseTabComponent.prototype.ngOnDestroy = function () {
-            var unsubscribe$ = this.destroy$;
+            var unsubscribe$ = this.unsubscribe$;
             unsubscribe$.next();
             unsubscribe$.complete();
         };
