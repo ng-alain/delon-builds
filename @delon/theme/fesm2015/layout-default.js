@@ -40,34 +40,36 @@ LayoutDefaultHeaderItemComponent.propDecorators = {
 
 class LayoutDefaultComponent {
     constructor(router, msgSrv, settings, el, renderer, doc) {
+        this.msgSrv = msgSrv;
         this.settings = settings;
         this.el = el;
         this.renderer = renderer;
         this.doc = doc;
         this.destroy$ = new Subject();
         this.isFetching = false;
-        router.events.pipe(takeUntil(this.destroy$)).subscribe(evt => {
-            var _a;
-            if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
-                this.isFetching = true;
+        router.events.pipe(takeUntil(this.destroy$)).subscribe(ev => this.processEv(ev));
+    }
+    processEv(ev) {
+        var _a;
+        if (!this.isFetching && ev instanceof RouteConfigLoadStart) {
+            this.isFetching = true;
+        }
+        if (ev instanceof NavigationError || ev instanceof NavigationCancel) {
+            this.isFetching = false;
+            const err = this.customError === null ? null : (_a = this.customError) !== null && _a !== void 0 ? _a : `Could not load ${ev.url} route`;
+            if (err && ev instanceof NavigationError) {
+                this.msgSrv.error(err, { nzDuration: 1000 * 3 });
             }
-            if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
+            return;
+        }
+        if (!(ev instanceof NavigationEnd || ev instanceof RouteConfigLoadEnd)) {
+            return;
+        }
+        if (this.isFetching) {
+            setTimeout(() => {
                 this.isFetching = false;
-                const err = this.customError == null ? null : (_a = this.customError) !== null && _a !== void 0 ? _a : `Could not load ${evt.url} route`;
-                if (err && evt instanceof NavigationError) {
-                    msgSrv.error(err, { nzDuration: 1000 * 3 });
-                }
-                return;
-            }
-            if (!(evt instanceof NavigationEnd || evt instanceof RouteConfigLoadEnd)) {
-                return;
-            }
-            if (this.isFetching) {
-                setTimeout(() => {
-                    this.isFetching = false;
-                }, 100);
-            }
-        });
+            }, 100);
+        }
     }
     setClass() {
         const { el, doc, renderer, settings } = this;

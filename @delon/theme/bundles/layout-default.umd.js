@@ -29,37 +29,40 @@
   };
 
   var LayoutDefaultComponent = /** @class */ (function () {
-      function LayoutDefaultComponent(router$1, msgSrv, settings, el, renderer, doc) {
+      function LayoutDefaultComponent(router, msgSrv, settings, el, renderer, doc) {
           var _this = this;
+          this.msgSrv = msgSrv;
           this.settings = settings;
           this.el = el;
           this.renderer = renderer;
           this.doc = doc;
           this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
-          router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (evt) {
-              var _a;
-              if (!_this.isFetching && evt instanceof router.RouteConfigLoadStart) {
-                  _this.isFetching = true;
-              }
-              if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
-                  _this.isFetching = false;
-                  var err = _this.customError == null ? null : (_a = _this.customError) !== null && _a !== void 0 ? _a : "Could not load " + evt.url + " route";
-                  if (err && evt instanceof router.NavigationError) {
-                      msgSrv.error(err, { nzDuration: 1000 * 3 });
-                  }
-                  return;
-              }
-              if (!(evt instanceof router.NavigationEnd || evt instanceof router.RouteConfigLoadEnd)) {
-                  return;
-              }
-              if (_this.isFetching) {
-                  setTimeout(function () {
-                      _this.isFetching = false;
-                  }, 100);
-              }
-          });
+          router.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (ev) { return _this.processEv(ev); });
       }
+      LayoutDefaultComponent.prototype.processEv = function (ev) {
+          var _this = this;
+          var _a;
+          if (!this.isFetching && ev instanceof router.RouteConfigLoadStart) {
+              this.isFetching = true;
+          }
+          if (ev instanceof router.NavigationError || ev instanceof router.NavigationCancel) {
+              this.isFetching = false;
+              var err = this.customError === null ? null : (_a = this.customError) !== null && _a !== void 0 ? _a : "Could not load " + ev.url + " route";
+              if (err && ev instanceof router.NavigationError) {
+                  this.msgSrv.error(err, { nzDuration: 1000 * 3 });
+              }
+              return;
+          }
+          if (!(ev instanceof router.NavigationEnd || ev instanceof router.RouteConfigLoadEnd)) {
+              return;
+          }
+          if (this.isFetching) {
+              setTimeout(function () {
+                  _this.isFetching = false;
+              }, 100);
+          }
+      };
       LayoutDefaultComponent.prototype.setClass = function () {
           var _b;
           var _c = this, el = _c.el, doc = _c.doc, renderer = _c.renderer, settings = _c.settings;
