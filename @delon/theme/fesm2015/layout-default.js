@@ -47,13 +47,14 @@ class LayoutDefaultComponent {
         this.destroy$ = new Subject();
         this.isFetching = false;
         router.events.pipe(takeUntil(this.destroy$)).subscribe(evt => {
+            var _a;
             if (!this.isFetching && evt instanceof RouteConfigLoadStart) {
                 this.isFetching = true;
             }
             if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
                 this.isFetching = false;
                 if (evt instanceof NavigationError) {
-                    msgSrv.error(`Could not load ${evt.url} route`, { nzDuration: 1000 * 3 });
+                    msgSrv.error((_a = this.customError) !== null && _a !== void 0 ? _a : `Could not load ${evt.url} route`, { nzDuration: 1000 * 3 });
                 }
                 return;
             }
@@ -123,7 +124,8 @@ LayoutDefaultComponent.propDecorators = {
     options: [{ type: Input }],
     asideUser: [{ type: Input }],
     nav: [{ type: Input }],
-    content: [{ type: Input }]
+    content: [{ type: Input }],
+    customError: [{ type: Input }]
 };
 
 class LayoutDefaultHeaderItemTriggerDirective {

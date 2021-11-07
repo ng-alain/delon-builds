@@ -38,13 +38,14 @@
           this.destroy$ = new rxjs.Subject();
           this.isFetching = false;
           router$1.events.pipe(operators.takeUntil(this.destroy$)).subscribe(function (evt) {
+              var _a;
               if (!_this.isFetching && evt instanceof router.RouteConfigLoadStart) {
                   _this.isFetching = true;
               }
               if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
                   _this.isFetching = false;
                   if (evt instanceof router.NavigationError) {
-                      msgSrv.error("Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
+                      msgSrv.error((_a = _this.customError) !== null && _a !== void 0 ? _a : "Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
                   }
                   return;
               }
@@ -59,21 +60,21 @@
           });
       }
       LayoutDefaultComponent.prototype.setClass = function () {
-          var _a;
-          var _b = this, el = _b.el, doc = _b.doc, renderer = _b.renderer, settings = _b.settings;
+          var _b;
+          var _c = this, el = _c.el, doc = _c.doc, renderer = _c.renderer, settings = _c.settings;
           var layout = settings.layout;
-          browser.updateHostClass(el.nativeElement, renderer, (_a = {},
-              _a['alain-default'] = true,
-              _a["alain-default__fixed"] = layout.fixed,
-              _a["alain-default__collapsed"] = layout.collapsed,
-              _a["alain-default__hide-aside"] = this.options.hideAside,
-              _a));
+          browser.updateHostClass(el.nativeElement, renderer, (_b = {},
+              _b['alain-default'] = true,
+              _b["alain-default__fixed"] = layout.fixed,
+              _b["alain-default__collapsed"] = layout.collapsed,
+              _b["alain-default__hide-aside"] = this.options.hideAside,
+              _b));
           doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
       };
       LayoutDefaultComponent.prototype.ngOnInit = function () {
           var _this = this;
           this.options = Object.assign({ logoExpanded: "./assets/logo-full.svg", logoCollapsed: "./assets/logo.svg", logoLink: "/", hideAside: false }, this.options);
-          var _a = this, settings = _a.settings, destroy$ = _a.destroy$;
+          var _b = this, settings = _b.settings, destroy$ = _b.destroy$;
           settings.notify.pipe(operators.takeUntil(destroy$)).subscribe(function () { return _this.setClass(); });
           this.setClass();
       };
@@ -103,7 +104,8 @@
       options: [{ type: core.Input }],
       asideUser: [{ type: core.Input }],
       nav: [{ type: core.Input }],
-      content: [{ type: core.Input }]
+      content: [{ type: core.Input }],
+      customError: [{ type: core.Input }]
   };
 
   var LayoutDefaultHeaderItemTriggerDirective = /** @class */ (function () {
