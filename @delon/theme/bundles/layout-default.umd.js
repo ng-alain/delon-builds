@@ -44,8 +44,9 @@
               }
               if (evt instanceof router.NavigationError || evt instanceof router.NavigationCancel) {
                   _this.isFetching = false;
-                  if (evt instanceof router.NavigationError) {
-                      msgSrv.error((_a = _this.customError) !== null && _a !== void 0 ? _a : "Could not load " + evt.url + " route", { nzDuration: 1000 * 3 });
+                  var err = _this.customError == null ? null : (_a = _this.customError) !== null && _a !== void 0 ? _a : "Could not load " + evt.url + " route";
+                  if (err && evt instanceof router.NavigationError) {
+                      msgSrv.error(err, { nzDuration: 1000 * 3 });
                   }
                   return;
               }

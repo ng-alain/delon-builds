@@ -15,7 +15,7 @@ export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     asideUser: TemplateRef<void>;
     nav: TemplateRef<void>;
     content: TemplateRef<void>;
-    customError?: string;
+    customError?: string | null;
     private destroy$;
     isFetching: boolean;
     constructor(router: Router, msgSrv: NzMessageService, settings: SettingsService, el: ElementRef, renderer: Renderer2, doc: NzSafeAny);

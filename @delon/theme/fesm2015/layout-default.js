@@ -53,8 +53,9 @@ class LayoutDefaultComponent {
             }
             if (evt instanceof NavigationError || evt instanceof NavigationCancel) {
                 this.isFetching = false;
-                if (evt instanceof NavigationError) {
-                    msgSrv.error((_a = this.customError) !== null && _a !== void 0 ? _a : `Could not load ${evt.url} route`, { nzDuration: 1000 * 3 });
+                const err = this.customError == null ? null : (_a = this.customError) !== null && _a !== void 0 ? _a : `Could not load ${evt.url} route`;
+                if (err && evt instanceof NavigationError) {
+                    msgSrv.error(err, { nzDuration: 1000 * 3 });
                 }
                 return;
             }
