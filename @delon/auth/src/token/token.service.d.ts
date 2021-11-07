@@ -1,5 +1,4 @@
 import { OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AlainAuthConfig, AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -11,15 +10,14 @@ export declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
  */
 export declare class TokenService implements ITokenService, OnDestroy {
     private store;
-    private router;
     private refresh$;
     private change$;
     private interval$;
     private _referrer;
     private _options;
-    constructor(configSrv: AlainConfigService, store: IStore, router: Router);
+    constructor(configSrv: AlainConfigService, store: IStore);
     get refresh(): Observable<ITokenModel>;
-    get login_url(): string;
+    get login_url(): string | undefined;
     get referrer(): AuthReferrer;
     get options(): AlainAuthConfig;
     set(data: ITokenModel): boolean;

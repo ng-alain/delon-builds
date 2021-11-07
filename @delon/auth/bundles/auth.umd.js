@@ -37,7 +37,6 @@
         token_send_template: '${token}',
         token_send_place: 'header',
         login_url: '/login',
-        keep_querystring: true,
         ignores: [/\/login/, /assets\//, /passport\//],
         allow_anonymous_key: "_allow_anonymous",
         executeOtherInterceptors: true,
@@ -81,15 +80,14 @@
     });
 
     function DA_SERVICE_TOKEN_FACTORY() {
-        return new TokenService(i0.inject(config.AlainConfigService), i0.inject(DA_STORE_TOKEN), i0.inject(router.Router));
+        return new TokenService(i0.inject(config.AlainConfigService), i0.inject(DA_STORE_TOKEN));
     }
     /**
      * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
      */
     var TokenService = /** @class */ (function () {
-        function TokenService(configSrv, store, router) {
+        function TokenService(configSrv, store) {
             this.store = store;
-            this.router = router;
             this.refresh$ = new rxjs.Subject();
             this.change$ = new rxjs.BehaviorSubject(null);
             this._referrer = {};
@@ -105,14 +103,7 @@
         });
         Object.defineProperty(TokenService.prototype, "login_url", {
             get: function () {
-                var url = this._options.login_url;
-                if (this._options.keep_querystring !== false) {
-                    console.log(this.router);
-                    // this.router.createUrlTree()
-                    // this.router.parseUrl(url)
-                    // this.router.url
-                }
-                return url;
+                return this._options.login_url;
             },
             enumerable: false,
             configurable: true
@@ -187,8 +178,7 @@
     ];
     TokenService.ctorParameters = function () { return [
         { type: config.AlainConfigService },
-        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] },
-        { type: router.Router }
+        { type: undefined, decorators: [{ type: i0.Inject, args: [DA_STORE_TOKEN,] }] }
     ]; };
 
     var DA_SERVICE_TOKEN = new i0.InjectionToken('DA_SERVICE_TOKEN', {
@@ -697,16 +687,14 @@
     }
     function ToLogin(options, injector, url) {
         var router$1 = injector.get(router.Router);
-        var srv = injector.get(DA_SERVICE_TOKEN);
-        srv.referrer.url = url || router$1.url;
+        injector.get(DA_SERVICE_TOKEN).referrer.url = url || router$1.url;
         if (options.token_invalid_redirect === true) {
             setTimeout(function () {
-                var loginUrl = srv.login_url;
-                if (/^https?:\/\//g.test(loginUrl)) {
-                    injector.get(common.DOCUMENT).location.href = loginUrl;
+                if (/^https?:\/\//g.test(options.login_url)) {
+                    injector.get(common.DOCUMENT).location.href = options.login_url;
                 }
                 else {
-                    router$1.navigate([loginUrl]);
+                    router$1.navigate([options.login_url]);
                 }
             });
         }

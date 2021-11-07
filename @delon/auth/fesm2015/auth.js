@@ -15,7 +15,6 @@ const AUTH_DEFAULT_CONFIG = {
     token_send_template: '${token}',
     token_send_place: 'header',
     login_url: '/login',
-    keep_querystring: true,
     ignores: [/\/login/, /assets\//, /passport\//],
     allow_anonymous_key: `_allow_anonymous`,
     executeOtherInterceptors: true,
@@ -56,15 +55,14 @@ const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
 });
 
 function DA_SERVICE_TOKEN_FACTORY() {
-    return new TokenService(inject(AlainConfigService), inject(DA_STORE_TOKEN), inject(Router));
+    return new TokenService(inject(AlainConfigService), inject(DA_STORE_TOKEN));
 }
 /**
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
  */
 class TokenService {
-    constructor(configSrv, store, router) {
+    constructor(configSrv, store) {
         this.store = store;
-        this.router = router;
         this.refresh$ = new Subject();
         this.change$ = new BehaviorSubject(null);
         this._referrer = {};
@@ -75,14 +73,7 @@ class TokenService {
         return this.refresh$.pipe(share());
     }
     get login_url() {
-        const url = this._options.login_url;
-        if (this._options.keep_querystring !== false) {
-            console.log(this.router);
-            // this.router.createUrlTree()
-            // this.router.parseUrl(url)
-            // this.router.url
-        }
-        return url;
+        return this._options.login_url;
     }
     get referrer() {
         return this._referrer;
@@ -143,8 +134,7 @@ TokenService.decorators = [
 ];
 TokenService.ctorParameters = () => [
     { type: AlainConfigService },
-    { type: undefined, decorators: [{ type: Inject, args: [DA_STORE_TOKEN,] }] },
-    { type: Router }
+    { type: undefined, decorators: [{ type: Inject, args: [DA_STORE_TOKEN,] }] }
 ];
 
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
@@ -326,16 +316,14 @@ function CheckJwt(model, offset) {
 }
 function ToLogin(options, injector, url) {
     const router = injector.get(Router);
-    const srv = injector.get(DA_SERVICE_TOKEN);
-    srv.referrer.url = url || router.url;
+    injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
-            const loginUrl = srv.login_url;
-            if (/^https?:\/\//g.test(loginUrl)) {
-                injector.get(DOCUMENT).location.href = loginUrl;
+            if (/^https?:\/\//g.test(options.login_url)) {
+                injector.get(DOCUMENT).location.href = options.login_url;
             }
             else {
-                router.navigate([loginUrl]);
+                router.navigate([options.login_url]);
             }
         });
     }
