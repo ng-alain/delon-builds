@@ -42,11 +42,11 @@ function fixAngularJson(options) {
     return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         var _a;
         const p = utils_1.getProjectFromWorkspace(workspace, options.project);
-        // Add proxy.conf.json
+        // Add proxy.conf.js
         const serveTarget = (_a = p.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_SERVE);
         if (serveTarget.options == null)
             serveTarget.options = {};
-        serveTarget.options.proxyConfig = 'proxy.conf.json';
+        serveTarget.options.proxyConfig = 'proxy.conf.js';
         // 调整budgets
         const budgets = utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production
             .budgets;

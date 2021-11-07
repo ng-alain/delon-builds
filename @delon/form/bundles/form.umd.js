@@ -2814,6 +2814,8 @@
         };
         NumberWidget.prototype._setValue = function (val) {
             this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
+            if (this.ui.change)
+                this.ui.change(this.value);
         };
         return NumberWidget;
     }(ControlUIWidget));
