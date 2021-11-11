@@ -420,6 +420,53 @@
             enumerable: false,
             configurable: true
         });
+        /**
+         * Flattened data source
+         *
+         * @example
+         * {
+         *   "name": "Name",
+         *   "sys": {
+         *     "": "System",
+         *     "title": "Title"
+         *   }
+         * }
+         * =>
+         * {
+         *   "name": "Name",
+         *   "sys": "System",
+         *   "sys.title": "Title"
+         * }
+         */
+        AlainI18nBaseService.prototype.flatData = function (data, parentKey) {
+            var e_1, _a;
+            var res = {};
+            var _loop_1 = function (key) {
+                var value = data[key];
+                if (typeof value === 'object') {
+                    var child_1 = this_1.flatData(value, parentKey.concat(key));
+                    Object.keys(child_1).forEach(function (childKey) { return (res[childKey] = child_1[childKey]); });
+                }
+                else {
+                    res[(key ? parentKey.concat(key) : parentKey).join('.')] = "" + value;
+                }
+            };
+            var this_1 = this;
+            try {
+                for (var _b = __values(Object.keys(data)), _c = _b.next(); !_c.done; _c = _b.next()) {
+                    var key = _c.value;
+                    _loop_1(key);
+                }
+            }
+            catch (e_1_1) { e_1 = { error: e_1_1 }; }
+            finally {
+                try {
+                    if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                }
+                finally { if (e_1) throw e_1.error; }
+            }
+            return res;
+        };
         AlainI18nBaseService.prototype.fanyi = function (path, params) {
             var content = this._data[path] || '';
             if (!content)
@@ -444,7 +491,7 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         AlainI18NServiceFake.prototype.use = function (lang, data) {
-            this._data = data;
+            this._data = this.flatData(data, []);
             this._currentLang = lang;
             this._change$.next(lang);
         };

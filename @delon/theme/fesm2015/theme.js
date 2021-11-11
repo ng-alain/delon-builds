@@ -78,6 +78,38 @@ class AlainI18nBaseService {
     get data() {
         return this._data;
     }
+    /**
+     * Flattened data source
+     *
+     * @example
+     * {
+     *   "name": "Name",
+     *   "sys": {
+     *     "": "System",
+     *     "title": "Title"
+     *   }
+     * }
+     * =>
+     * {
+     *   "name": "Name",
+     *   "sys": "System",
+     *   "sys.title": "Title"
+     * }
+     */
+    flatData(data, parentKey) {
+        const res = {};
+        for (const key of Object.keys(data)) {
+            const value = data[key];
+            if (typeof value === 'object') {
+                const child = this.flatData(value, parentKey.concat(key));
+                Object.keys(child).forEach(childKey => (res[childKey] = child[childKey]));
+            }
+            else {
+                res[(key ? parentKey.concat(key) : parentKey).join('.')] = `${value}`;
+            }
+        }
+        return res;
+    }
     fanyi(path, params) {
         let content = this._data[path] || '';
         if (!content)
@@ -97,7 +129,7 @@ AlainI18nBaseService.ctorParameters = () => [
 ];
 class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang, data) {
-        this._data = data;
+        this._data = this.flatData(data, []);
         this._currentLang = lang;
         this._change$.next(lang);
     }
@@ -2471,7 +2503,7 @@ class PreloadOptionalModules {
     }
 }
 
-const VERSION = new Version('12.3.0-0703d201');
+const VERSION = new Version('12.3.0-75d76d3a');
 
 /**
  * Generated bundle index. Do not edit.

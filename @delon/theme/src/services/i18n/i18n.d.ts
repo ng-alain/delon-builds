@@ -29,7 +29,7 @@ export interface AlainI18NService {
      *
      * @param emit 是否触发 `change`，默认：true ; Should be removed, please use `change` event instead.
      */
-    use(lang: string, data?: Record<string, string>): void;
+    use(lang: string, data?: Record<string, unknown>): void;
     /**
      * Return to the current language list
      *
@@ -56,11 +56,30 @@ export declare abstract class AlainI18nBaseService implements AlainI18NService {
     get currentLang(): string;
     get data(): Record<string, string>;
     constructor(cogSrv: AlainConfigService);
-    abstract use(lang: string, data?: Record<string, string>): void;
+    /**
+     * Flattened data source
+     *
+     * @example
+     * {
+     *   "name": "Name",
+     *   "sys": {
+     *     "": "System",
+     *     "title": "Title"
+     *   }
+     * }
+     * =>
+     * {
+     *   "name": "Name",
+     *   "sys": "System",
+     *   "sys.title": "Title"
+     * }
+     */
+    flatData(data: Record<string, unknown>, parentKey: string[]): Record<string, string>;
+    abstract use(lang: string, data?: Record<string, unknown>): void;
     abstract getLangs(): NzSafeAny[];
     fanyi(path: string, params?: Record<string, unknown>): string;
 }
 export declare class AlainI18NServiceFake extends AlainI18nBaseService {
-    use(lang: string, data: Record<string, string>): void;
+    use(lang: string, data: Record<string, unknown>): void;
     getLangs(): NzSafeAny[];
 }
