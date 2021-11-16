@@ -27170,8 +27170,12 @@ a:focus {
     display: block;
   }
   .ant-table-rep .ant-table table {
-    width: 100% !important;
     table-layout: auto !important;
+  }
+  .ant-table-rep .ant-table table,
+  .ant-table-rep .ant-table col {
+    width: 100% !important;
+    min-width: auto !important;
   }
   .ant-table-rep .ant-table-thead {
     display: none;
