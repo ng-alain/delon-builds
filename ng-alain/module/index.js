@@ -76,8 +76,10 @@ function addRoutingModuleToTop(options) {
 }
 function default_1(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const proj = yield utils_1.getProject(tree, schema.project);
-        utils_1.refreshPathRoot(proj.project, schema, proj.alainProject);
+        const project = (yield utils_1.getProject(tree, schema.project)).project;
+        if (schema.path === undefined) {
+            schema.path = `/${project.sourceRoot}/app/routes`;
+        }
         if (schema.module) {
             schema.module = find_module_1.findModuleFromOptions(tree, schema);
         }

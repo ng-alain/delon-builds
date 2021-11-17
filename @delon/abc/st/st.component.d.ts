@@ -12,7 +12,7 @@ import { NzTableComponent } from 'ng-zorro-antd/table';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnFilter, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -213,6 +213,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _filterClear(col: _STColumn): void;
     clearFilter(): this;
     _filterClick($event: MouseEvent): void;
+    _filterMultipleNotify(f: STColumnFilter): void;
+    _filterNotify(value?: unknown): void;
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;

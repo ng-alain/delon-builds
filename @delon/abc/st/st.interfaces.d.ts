@@ -885,7 +885,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand' | 'resize';
+export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**
  * 回调数据
  */
@@ -942,6 +942,10 @@ export interface STChange<T extends STData = any> {
      * `resize` 参数
      */
     resize?: STColumn;
+    /**
+     * `filterChange` 参数，支持 `keyword`、`radio`、`checkbox` 三种类型的数据
+     */
+    filterChange?: unknown;
 }
 /** 行单击参数 */
 export interface STChangeSort {
