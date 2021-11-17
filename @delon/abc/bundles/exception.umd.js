@@ -10,10 +10,11 @@
 })(this, (function (exports, bidi, core, platformBrowser, rxjs, operators, theme, browser, common, router, button) { 'use strict';
 
     var ExceptionComponent = /** @class */ (function () {
-        function ExceptionComponent(i18n, dom, directionality) {
+        function ExceptionComponent(i18n, dom, directionality, cdr) {
             this.i18n = i18n;
             this.dom = dom;
             this.directionality = directionality;
+            this.cdr = cdr;
             this.destroy$ = new rxjs.Subject();
             this.locale = {};
             this.hasCon = false;
@@ -75,6 +76,7 @@
         });
         ExceptionComponent.prototype.checkContent = function () {
             this.hasCon = !browser.isEmpty(this.conTpl.nativeElement);
+            this.cdr.detectChanges();
         };
         ExceptionComponent.prototype.ngOnInit = function () {
             var _this = this;
@@ -109,7 +111,8 @@
     ExceptionComponent.ctorParameters = function () { return [
         { type: theme.DelonLocaleService },
         { type: platformBrowser.DomSanitizer },
-        { type: bidi.Directionality, decorators: [{ type: core.Optional }] }
+        { type: bidi.Directionality, decorators: [{ type: core.Optional }] },
+        { type: core.ChangeDetectorRef }
     ]; };
     ExceptionComponent.propDecorators = {
         conTpl: [{ type: core.ViewChild, args: ['conTpl', { static: true },] }],

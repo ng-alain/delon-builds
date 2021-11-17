@@ -1,5 +1,5 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -8,6 +8,7 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
     private dom;
     private directionality;
+    private cdr;
     static ngAcceptInputType_type: ExceptionType | string;
     private destroy$;
     private conTpl;
@@ -25,7 +26,7 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     set desc(value: string);
     backRouterLink: string | NzSafeAny[];
     checkContent(): void;
-    constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality);
+    constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     ngOnDestroy(): void;
 }
