@@ -55,9 +55,12 @@ function createAlainApp(ngAddOptions) {
     });
 }
 exports.createAlainApp = createAlainApp;
-function createAlainAndModuleApp(name = 'trade', ngAddOptions) {
+function createAlainAndModuleApp(name = 'trade', ngAddOptions, alainData) {
     return __awaiter(this, void 0, void 0, function* () {
         const res = yield createAlainApp(ngAddOptions);
+        if (alainData != null) {
+            res.tree.create('ng-alain.json', JSON.stringify(alainData));
+        }
         res.tree = yield res.runner
             .runSchematicAsync('module', { name, project: exports.APPNAME, routing: true }, res.tree)
             .toPromise();
