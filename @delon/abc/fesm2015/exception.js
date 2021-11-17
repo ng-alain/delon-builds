@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
+import { ObserversModule } from '@angular/cdk/observers';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NzButtonModule } from 'ng-zorro-antd/button';
@@ -110,7 +111,7 @@ class ExceptionModule {
 }
 ExceptionModule.decorators = [
     { type: NgModule, args: [{
-                imports: [CommonModule, RouterModule, DelonLocaleModule, NzButtonModule],
+                imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule],
                 declarations: COMPONENTS,
                 exports: COMPONENTS
             },] }
