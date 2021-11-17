@@ -31523,6 +31523,7 @@ body {
   padding-bottom: 16px;
   color: rgba(255, 255, 255, 0.85);
   line-height: 22px;
+  vertical-align: top;
   word-break: break-all;
 }
 .sv__type-primary .sv__detail {

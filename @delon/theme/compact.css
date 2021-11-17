@@ -30960,6 +30960,7 @@ body {
   padding-bottom: 8px;
   color: rgba(0, 0, 0, 0.85);
   line-height: 22px;
+  vertical-align: top;
   word-break: break-all;
 }
 .sv__type-primary .sv__detail {
