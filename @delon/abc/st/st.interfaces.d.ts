@@ -1,6 +1,7 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { ElementRef, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
+import type { ThemeType } from '@ant-design/icons-angular';
 import type { ACLCanType } from '@delon/acl';
 import type { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
 import type { CurrencyFormatOptions } from '@delon/util/format';
@@ -467,8 +468,9 @@ export interface STColumnFilter<T extends STData = any> {
      * 搜索方式
      * - `defualt` 默认形式
      * - `keyword` 文本框形式
+     * - `custom` 自定义模式
      */
-    type?: 'default' | 'keyword';
+    type?: 'default' | 'keyword' | 'custom';
     /**
      * 表头的筛选菜单项，至少一项才会生效
      * - 当 `type='keyword'` 时可为空
@@ -512,6 +514,13 @@ export interface STColumnFilter<T extends STData = any> {
      * @return 返回为 Object 对象
      */
     reName?: (list: STColumnFilterMenu[], col: STColumn) => Record<string, unknown>;
+    /**
+     * 自定义过滤器
+     */
+    custom?: TemplateRef<{
+        $implicit: STColumnFilter;
+        col: STColumn;
+    }>;
 }
 export interface STColumnFilterMenu {
     /**
@@ -577,7 +586,7 @@ export interface STIcon {
     /** 图标类型 */
     type: string;
     /** 图标主题风格，默认：`outline` */
-    theme?: 'outline' | 'twotone' | 'fill';
+    theme?: ThemeType;
     /** 是否有旋转动画，默认：`false` */
     spin?: boolean;
     /** 仅适用双色图标，设置双色图标的主要颜色，仅对当前 icon 生效 */
@@ -885,7 +894,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'click' | 'dblClick' | 'expand' | 'resize';
+export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**
  * 回调数据
  */
@@ -942,6 +951,10 @@ export interface STChange<T extends STData = any> {
      * `resize` 参数
      */
     resize?: STColumn;
+    /**
+     * `filterChange` 参数，支持 `keyword`、`radio`、`checkbox` 三种类型的数据
+     */
+    filterChange?: unknown;
 }
 /** 行单击参数 */
 export interface STChangeSort {

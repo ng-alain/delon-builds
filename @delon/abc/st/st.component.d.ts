@@ -12,7 +12,7 @@ import { NzTableComponent } from 'ng-zorro-antd/table';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnFilterMenu, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
@@ -207,12 +207,9 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     }): this;
     sort(col: _STColumn, idx: number, value: NzSafeAny): void;
     clearSort(): this;
-    private handleFilter;
-    _filterConfirm(col: _STColumn): void;
-    _filterRadio(col: _STColumn, item: STColumnFilterMenu, checked: boolean): void;
-    _filterClear(col: _STColumn): void;
+    _handleFilter(col: _STColumn, confirm: boolean): void;
+    handleFilterNotify(value?: unknown): void;
     clearFilter(): this;
-    _filterClick($event: MouseEvent): void;
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;
