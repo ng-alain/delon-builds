@@ -9,13 +9,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
+const json_1 = require("./json");
 exports.BUILD_TARGET_BUILD = 'build';
 exports.BUILD_TARGET_TEST = 'test';
 exports.BUILD_TARGET_SERVE = 'serve';
 exports.BUILD_TARGET_LINT = 'lint';
+exports.NG_ALAIN_JSON = `ng-alain.json`;
 function getProjectName(workspace, name) {
     if (name && workspace.projects.has(name)) {
         return name;
@@ -29,7 +31,14 @@ function getProjectName(workspace, name) {
     }
     return null;
 }
+function getNgAlainJson(tree) {
+    if (!tree.exists(exports.NG_ALAIN_JSON))
+        return undefined;
+    return json_1.readJSON(tree, exports.NG_ALAIN_JSON);
+}
+exports.getNgAlainJson = getNgAlainJson;
 function getProject(tree, projectName) {
+    var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
         const workspace = yield workspace_1.getWorkspace(tree);
         projectName = getProjectName(workspace, projectName);
@@ -37,7 +46,8 @@ function getProject(tree, projectName) {
             throw new schematics_1.SchematicsException(`No project named "${projectName}" exists.`);
         }
         const project = getProjectFromWorkspace(workspace, projectName);
-        return { project, name: projectName };
+        const alainProject = (_c = ((_b = (_a = getNgAlainJson(tree)) === null || _a === void 0 ? void 0 : _a.projects) !== null && _b !== void 0 ? _b : {})[projectName]) !== null && _c !== void 0 ? _c : {};
+        return { project, name: projectName, alainProject };
     });
 }
 exports.getProject = getProject;

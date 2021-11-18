@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = void 0;
+exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = exports.refreshPathRoot = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -54,15 +54,20 @@ function buildComponentName(schema, _projectPrefix) {
     ret.push(`Component`);
     return core_1.strings.classify(ret.join('-'));
 }
-function resolveSchema(tree, project, schema) {
+function refreshPathRoot(project, schema, alainProject) {
+    var _a;
+    if (schema.path === undefined) {
+        schema.path = `/${path.join(project.sourceRoot, (_a = alainProject === null || alainProject === void 0 ? void 0 : alainProject.routesRoot) !== null && _a !== void 0 ? _a : 'app/routes')}`;
+    }
+}
+exports.refreshPathRoot = refreshPathRoot;
+function resolveSchema(tree, project, schema, alainProject) {
     // module name
     if (!schema.module) {
         throw new schematics_1.SchematicsException(`Must specify module name. (e.g: ng g ng-alain:list <list name> -m=<module name>)`);
     }
     // path
-    if (schema.path === undefined) {
-        schema.path = `/${project.sourceRoot}/app/routes`;
-    }
+    refreshPathRoot(project, schema, alainProject);
     schema.path += `/${schema.module}`;
     const parsedPath = parse_name_1.parseName(schema.path, schema.name);
     schema.name = parsedPath.name;
@@ -141,10 +146,10 @@ function buildAlain(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
         const res = yield workspace_1.getProject(tree, schema.project);
         if (schema.project && res.name !== schema.project) {
-            throw new Error(`The specified project does not match '${schema.project}', current: ${res.name}`);
+            throw new schematics_1.SchematicsException(`The specified project does not match '${schema.project}', current: ${res.name}`);
         }
         const project = res.project;
-        resolveSchema(tree, project, schema);
+        resolveSchema(tree, project, schema, res.alainProject);
         schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;

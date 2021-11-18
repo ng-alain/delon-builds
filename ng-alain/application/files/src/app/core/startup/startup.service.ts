@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Injector, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
@@ -28,7 +28,7 @@ export class StartupService {
     private titleService: TitleService,
     @Inject(DA_SERVICE_TOKEN) private tokenService: ITokenService,
     private httpClient: HttpClient,
-    private router: Router
+    private injector: Injector
   ) {
     iconSrv.addIcon(...ICONS_AUTO, ...ICONS);
   }
@@ -39,7 +39,6 @@ export class StartupService {
       return zip(this.i18n.loadLangData(defaultLang), this.httpClient.get('assets/tmp/app-data.json')).pipe(
         catchError((res: NzSafeAny) => {
           console.warn(`StartupService.load: Network request failed`, res);
-          setTimeout(() => this.router.navigateByUrl(`/exception/500`));
           return [];
         }),
         map(([langData, appData]: [Record<string, string>, NzSafeAny]) => {
@@ -65,7 +64,6 @@ export class StartupService {
       return this.httpClient.get('assets/tmp/app-data.json').pipe(
         catchError((res: NzSafeAny) => {
           console.warn(`StartupService.load: Network request failed`, res);
-          setTimeout(() => this.router.navigateByUrl(`/exception/500`));
           return of({});
         }),
         map((res: NzSafeAny) => {
@@ -99,7 +97,7 @@ export class StartupService {
   private viaMock(): Observable<void> {
     // const tokenData = this.tokenService.get();
     // if (!tokenData.token) {
-    //   this.router.navigateByUrl(this.tokenService.login_url!);
+    //   this.injector.get(Router).navigateByUrl('/passport/login');
     //   return;
     // }
     // mock
