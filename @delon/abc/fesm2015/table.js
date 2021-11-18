@@ -18,9 +18,11 @@ import { FormsModule } from '@angular/forms';
 import { LetModule } from '@delon/abc/let';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
@@ -220,14 +222,32 @@ class STColumnSource {
         }
         let res = item.filter;
         res.type = res.type || 'default';
+        res.showOPArea = res.showOPArea !== false;
         let icon = 'filter';
         let iconTheme = 'fill';
-        if (res.type === 'keyword') {
-            if (res.menus == null || res.menus.length === 0) {
-                res.menus = [{ value: '' }];
-            }
-            icon = 'search';
-            iconTheme = 'outline';
+        let fixMenus = true;
+        let value = undefined;
+        switch (res.type) {
+            case 'keyword':
+                icon = 'search';
+                iconTheme = 'outline';
+                break;
+            case 'number':
+                icon = 'search';
+                iconTheme = 'outline';
+                res.number = Object.assign({ step: 1, min: -Infinity, max: Infinity }, res.number);
+                break;
+            case 'date':
+                icon = 'calendar';
+                iconTheme = 'outline';
+                res.date = Object.assign({ range: false, mode: 'date', showToday: true, showNow: false }, res.date);
+                break;
+            default:
+                fixMenus = false;
+                break;
+        }
+        if (fixMenus && (res.menus == null || res.menus.length === 0)) {
+            res.menus = [{ value }];
         }
         if (res.menus.length === 0) {
             return null;
@@ -726,9 +746,9 @@ class STDataSource {
                 }
                 return this.get(result[i], c, i);
             });
-            if (rowClassName) {
-                result[i]._rowClassName = rowClassName(result[i], i);
-            }
+            result[i]._rowClassName = [rowClassName ? rowClassName(result[i], i) : null, result[i].className]
+                .filter(w => !!w)
+                .join(' ');
         }
         return result;
     }
@@ -1941,12 +1961,49 @@ STFilterComponent.decorators = [
             <input
               type="text"
               nz-input
-              [attr.placeholder]="f.menus![0]!.text"
+              [attr.placeholder]="f.placeholder"
               [(ngModel)]="f.menus![0]!.value"
               (ngModelChange)="n.emit($event)"
               (keyup.enter)="confirm()"
             />
           </div>
+          <div *ngSwitchCase="'number'" class="p-sm st__filter-number">
+            <nz-input-number
+              [(ngModel)]="f.menus![0]!.value"
+              (ngModelChange)="n.emit($event)"
+              [nzMin]="f.number!.min!"
+              [nzMax]="f.number!.max!"
+              [nzStep]="f.number!.step!"
+              [nzPrecision]="f.number!.precision"
+              [nzPlaceHolder]="f.placeholder!"
+              class="width-100"
+            ></nz-input-number>
+          </div>
+          <div *ngSwitchCase="'date'" class="p-sm st__filter-date">
+            <nz-date-picker
+              *ngIf="!f.date!.range"
+              nzInline
+              [nzMode]="f.date!.mode"
+              [(ngModel)]="f.menus![0]!.value"
+              (ngModelChange)="n.emit($event)"
+              [nzShowNow]="f.date!.showNow"
+              [nzShowToday]="f.date!.showToday"
+              [nzDisabledDate]="f.date!.disabledDate"
+              [nzDisabledTime]="f.date!.disabledTime"
+            ></nz-date-picker>
+            <nz-range-picker
+              *ngIf="f.date!.range"
+              nzInline
+              [nzMode]="f.date!.mode"
+              [(ngModel)]="f.menus![0]!.value"
+              (ngModelChange)="n.emit($event)"
+              [nzShowNow]="f.date!.showNow"
+              [nzShowToday]="f.date!.showToday"
+              [nzDisabledDate]="f.date!.disabledDate"
+              [nzDisabledTime]="f.date!.disabledTime"
+            ></nz-range-picker>
+          </div>
+          <div *ngSwitchCase="'time'" class="p-sm st__filter-time"> </div>
           <div *ngSwitchCase="'custom'" class="st__filter-custom">
             <ng-template
               [ngTemplateOutlet]="f.custom!"
@@ -1970,7 +2027,7 @@ STFilterComponent.decorators = [
             </ng-container>
           </ul>
         </ng-container>
-        <div class="ant-table-filter-dropdown-btns">
+        <div *ngIf="f.showOPArea" class="ant-table-filter-dropdown-btns">
           <a class="ant-table-filter-dropdown-link confirm" (click)="visible = false">
             <span (click)="confirm()">{{ f.confirmText || locale.filterConfirm }}</span>
           </a>
@@ -2247,7 +2304,9 @@ STModule.decorators = [
                     NzTagModule,
                     NzInputModule,
                     NzToolTipModule,
-                    NzResizableModule
+                    NzResizableModule,
+                    NzInputNumberModule,
+                    NzDatePickerModule
                 ],
                 declarations: [...COMPONENTS, STFilterComponent, STTdComponent],
                 exports: COMPONENTS

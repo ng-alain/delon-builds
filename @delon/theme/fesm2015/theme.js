@@ -2503,7 +2503,7 @@ class PreloadOptionalModules {
     }
 }
 
-const VERSION = new Version('12.3.0-16095818');
+const VERSION = new Version('12.3.0-2f13281c');
 
 /**
  * Generated bundle index. Do not edit.

@@ -30857,6 +30857,12 @@ body {
 .st__filter-keyword {
   padding: 8px;
 }
+.st__filter-date .ant-picker-panel-container {
+  box-shadow: none;
+}
+.st__filter-date .ant-picker-panel-container .ant-picker-panel {
+  border: none;
+}
 .st .ant-table-column-title {
   display: flex;
   align-items: center;

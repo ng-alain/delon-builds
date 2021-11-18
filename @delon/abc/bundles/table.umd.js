@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip'), require('@angular/router')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip', '@angular/router'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.config, global.decorator, global["ng-zorro-antd/dropdown"], global.ng.forms, global.delon.abc["let"], global["ng-zorro-antd/badge"], global["ng-zorro-antd/checkbox"], global["ng-zorro-antd/divider"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/input"], global["ng-zorro-antd/menu"], global["ng-zorro-antd/popconfirm"], global["ng-zorro-antd/radio"], global.resizable, global["ng-zorro-antd/table"], global["ng-zorro-antd/tag"], global["ng-zorro-antd/tooltip"], global.ng.router));
-})(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip, router) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/date-picker'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/input-number'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip'), require('@angular/router')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/date-picker', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/input-number', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip', '@angular/router'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.config, global.decorator, global["ng-zorro-antd/dropdown"], global.ng.forms, global.delon.abc["let"], global["ng-zorro-antd/badge"], global["ng-zorro-antd/checkbox"], global.datePicker, global["ng-zorro-antd/divider"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/input"], global.inputNumber, global["ng-zorro-antd/menu"], global["ng-zorro-antd/popconfirm"], global["ng-zorro-antd/radio"], global.resizable, global["ng-zorro-antd/table"], global["ng-zorro-antd/tag"], global["ng-zorro-antd/tooltip"], global.ng.router));
+})(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, config, decorator, dropdown, forms, _let, badge, checkbox, datePicker, divider, icon, input, inputNumber, menu, popconfirm, radio, resizable, table, tag, tooltip, router) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -567,14 +567,32 @@
             }
             var res = item.filter;
             res.type = res.type || 'default';
+            res.showOPArea = res.showOPArea !== false;
             var icon = 'filter';
             var iconTheme = 'fill';
-            if (res.type === 'keyword') {
-                if (res.menus == null || res.menus.length === 0) {
-                    res.menus = [{ value: '' }];
-                }
-                icon = 'search';
-                iconTheme = 'outline';
+            var fixMenus = true;
+            var value = undefined;
+            switch (res.type) {
+                case 'keyword':
+                    icon = 'search';
+                    iconTheme = 'outline';
+                    break;
+                case 'number':
+                    icon = 'search';
+                    iconTheme = 'outline';
+                    res.number = Object.assign({ step: 1, min: -Infinity, max: Infinity }, res.number);
+                    break;
+                case 'date':
+                    icon = 'calendar';
+                    iconTheme = 'outline';
+                    res.date = Object.assign({ range: false, mode: 'date', showToday: true, showNow: false }, res.date);
+                    break;
+                default:
+                    fixMenus = false;
+                    break;
+            }
+            if (fixMenus && (res.menus == null || res.menus.length === 0)) {
+                res.menus = [{ value: value }];
             }
             if (res.menus.length === 0) {
                 return null;
@@ -1105,9 +1123,9 @@
                     }
                     return _this.get(result[i], c, i);
                 });
-                if (rowClassName) {
-                    result[i]._rowClassName = rowClassName(result[i], i);
-                }
+                result[i]._rowClassName = [rowClassName ? rowClassName(result[i], i) : null, result[i].className]
+                    .filter(function (w) { return !!w; })
+                    .join(' ');
             };
             for (var i = 0, len = result.length; i < len; i++) {
                 _loop_1(i, len);
@@ -2390,7 +2408,7 @@
     STFilterComponent.decorators = [
         { type: i0.Component, args: [{
                     selector: 'st-filter',
-                    template: "\n    <span\n      class=\"ant-table-filter-trigger\"\n      [class.active]=\"visible || f.default\"\n      nz-dropdown\n      [nzDropdownMenu]=\"filterMenu\"\n      nzTrigger=\"click\"\n      [nzClickHide]=\"false\"\n      [(nzVisible)]=\"visible\"\n      nzOverlayClassName=\"st__filter-wrap\"\n      (click)=\"show($event)\"\n    >\n      <i nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme!\"></i>\n    </span>\n    <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n      <div class=\"ant-table-filter-dropdown\">\n        <ng-container [ngSwitch]=\"f.type\">\n          <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n            <input\n              type=\"text\"\n              nz-input\n              [attr.placeholder]=\"f.menus![0]!.text\"\n              [(ngModel)]=\"f.menus![0]!.value\"\n              (ngModelChange)=\"n.emit($event)\"\n              (keyup.enter)=\"confirm()\"\n            />\n          </div>\n          <div *ngSwitchCase=\"'custom'\" class=\"st__filter-custom\">\n            <ng-template\n              [ngTemplateOutlet]=\"f.custom!\"\n              [ngTemplateOutletContext]=\"{ $implicit: f, col: col }\"\n            ></ng-template>\n          </div>\n          <ul *ngSwitchDefault nz-menu>\n            <ng-container *ngIf=\"f.multiple\">\n              <li nz-menu-item *ngFor=\"let filter of f.menus\">\n                <label nz-checkbox [(ngModel)]=\"filter.checked\" (ngModelChange)=\"checkboxChange()\">\n                  {{ filter.text }}\n                </label>\n              </li>\n            </ng-container>\n            <ng-container *ngIf=\"!f.multiple\">\n              <li nz-menu-item *ngFor=\"let filter of f.menus\">\n                <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"radioChange(filter)\">\n                  {{ filter.text }}\n                </label>\n              </li>\n            </ng-container>\n          </ul>\n        </ng-container>\n        <div class=\"ant-table-filter-dropdown-btns\">\n          <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"visible = false\">\n            <span (click)=\"confirm()\">{{ f.confirmText || locale.filterConfirm }}</span>\n          </a>\n          <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"visible = false\">\n            <span (click)=\"reset()\">{{ f.clearText || locale.filterReset }}</span>\n          </a>\n        </div>\n      </div>\n    </nz-dropdown-menu>\n  ",
+                    template: "\n    <span\n      class=\"ant-table-filter-trigger\"\n      [class.active]=\"visible || f.default\"\n      nz-dropdown\n      [nzDropdownMenu]=\"filterMenu\"\n      nzTrigger=\"click\"\n      [nzClickHide]=\"false\"\n      [(nzVisible)]=\"visible\"\n      nzOverlayClassName=\"st__filter-wrap\"\n      (click)=\"show($event)\"\n    >\n      <i nz-icon [nzType]=\"icon.type\" [nzTheme]=\"icon.theme!\"></i>\n    </span>\n    <nz-dropdown-menu #filterMenu=\"nzDropdownMenu\">\n      <div class=\"ant-table-filter-dropdown\">\n        <ng-container [ngSwitch]=\"f.type\">\n          <div *ngSwitchCase=\"'keyword'\" class=\"st__filter-keyword\">\n            <input\n              type=\"text\"\n              nz-input\n              [attr.placeholder]=\"f.placeholder\"\n              [(ngModel)]=\"f.menus![0]!.value\"\n              (ngModelChange)=\"n.emit($event)\"\n              (keyup.enter)=\"confirm()\"\n            />\n          </div>\n          <div *ngSwitchCase=\"'number'\" class=\"p-sm st__filter-number\">\n            <nz-input-number\n              [(ngModel)]=\"f.menus![0]!.value\"\n              (ngModelChange)=\"n.emit($event)\"\n              [nzMin]=\"f.number!.min!\"\n              [nzMax]=\"f.number!.max!\"\n              [nzStep]=\"f.number!.step!\"\n              [nzPrecision]=\"f.number!.precision\"\n              [nzPlaceHolder]=\"f.placeholder!\"\n              class=\"width-100\"\n            ></nz-input-number>\n          </div>\n          <div *ngSwitchCase=\"'date'\" class=\"p-sm st__filter-date\">\n            <nz-date-picker\n              *ngIf=\"!f.date!.range\"\n              nzInline\n              [nzMode]=\"f.date!.mode\"\n              [(ngModel)]=\"f.menus![0]!.value\"\n              (ngModelChange)=\"n.emit($event)\"\n              [nzShowNow]=\"f.date!.showNow\"\n              [nzShowToday]=\"f.date!.showToday\"\n              [nzDisabledDate]=\"f.date!.disabledDate\"\n              [nzDisabledTime]=\"f.date!.disabledTime\"\n            ></nz-date-picker>\n            <nz-range-picker\n              *ngIf=\"f.date!.range\"\n              nzInline\n              [nzMode]=\"f.date!.mode\"\n              [(ngModel)]=\"f.menus![0]!.value\"\n              (ngModelChange)=\"n.emit($event)\"\n              [nzShowNow]=\"f.date!.showNow\"\n              [nzShowToday]=\"f.date!.showToday\"\n              [nzDisabledDate]=\"f.date!.disabledDate\"\n              [nzDisabledTime]=\"f.date!.disabledTime\"\n            ></nz-range-picker>\n          </div>\n          <div *ngSwitchCase=\"'time'\" class=\"p-sm st__filter-time\"> </div>\n          <div *ngSwitchCase=\"'custom'\" class=\"st__filter-custom\">\n            <ng-template\n              [ngTemplateOutlet]=\"f.custom!\"\n              [ngTemplateOutletContext]=\"{ $implicit: f, col: col }\"\n            ></ng-template>\n          </div>\n          <ul *ngSwitchDefault nz-menu>\n            <ng-container *ngIf=\"f.multiple\">\n              <li nz-menu-item *ngFor=\"let filter of f.menus\">\n                <label nz-checkbox [(ngModel)]=\"filter.checked\" (ngModelChange)=\"checkboxChange()\">\n                  {{ filter.text }}\n                </label>\n              </li>\n            </ng-container>\n            <ng-container *ngIf=\"!f.multiple\">\n              <li nz-menu-item *ngFor=\"let filter of f.menus\">\n                <label nz-radio [ngModel]=\"filter.checked\" (ngModelChange)=\"radioChange(filter)\">\n                  {{ filter.text }}\n                </label>\n              </li>\n            </ng-container>\n          </ul>\n        </ng-container>\n        <div *ngIf=\"f.showOPArea\" class=\"ant-table-filter-dropdown-btns\">\n          <a class=\"ant-table-filter-dropdown-link confirm\" (click)=\"visible = false\">\n            <span (click)=\"confirm()\">{{ f.confirmText || locale.filterConfirm }}</span>\n          </a>\n          <a class=\"ant-table-filter-dropdown-link clear\" (click)=\"visible = false\">\n            <span (click)=\"reset()\">{{ f.clearText || locale.filterReset }}</span>\n          </a>\n        </div>\n      </div>\n    </nz-dropdown-menu>\n  ",
                     host: {
                         '[class.ant-table-filter-trigger-container]': "true",
                         '[class.st__filter]': "true",
@@ -2550,7 +2568,9 @@
                         tag.NzTagModule,
                         input.NzInputModule,
                         tooltip.NzToolTipModule,
-                        resizable.NzResizableModule
+                        resizable.NzResizableModule,
+                        inputNumber.NzInputNumberModule,
+                        datePicker.NzDatePickerModule
                     ],
                     declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), [STFilterComponent, STTdComponent]),
                     exports: COMPONENTS
