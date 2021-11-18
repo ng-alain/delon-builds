@@ -1,8 +1,7 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -12,15 +11,12 @@ import { NzTableComponent } from 'ng-zorro-antd/table';
 import { STColumnSource } from './st-column-source';
 import { STDataSource } from './st-data-source';
 import { STExport } from './st-export';
-import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
-import { _STColumn, _STHeader } from './st.types';
+import { STChange, STClickRowClassName, STColumn, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import { _STColumn, _STHeader, _STTdNotify } from './st.types';
 export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
-    private router;
     private el;
     private exportSrv;
-    private modalHelper;
-    private drawerHelper;
     private doc;
     private columnSource;
     private dataSource;
@@ -128,8 +124,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * Get the data of the current page
      */
     get list(): STData[];
-    private get routerState();
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, router: Router, el: ElementRef, exportSrv: STExport, modalHelper: ModalHelper, drawerHelper: DrawerHelper, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
+    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, el: ElementRef, exportSrv: STExport, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
     private setCog;
     cd(): this;
     renderTotal(total: string, range: string[]): string;
@@ -174,7 +169,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     reset(extraParams?: NzSafeAny, options?: STLoadOptions): this;
     private _toTop;
     _change(type: 'pi' | 'ps', options?: STLoadOptions): void;
-    _click(e: Event, item: STData, col: STColumn): boolean;
     private closeOtherExpand;
     _rowClick(e: Event, item: STData, index: number): void;
     private _clickRowClassName;
@@ -214,14 +208,11 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     clearCheck(): this;
     private _refCheck;
     _checkAll(checked?: boolean): this;
-    _checkSelection(i: STData, value: boolean): this;
     _rowSelection(row: STColumnSelection): this;
     _checkNotify(): this;
     /** 清除所有 `radio` */
     clearRadio(): this;
-    _refRadio(checked: boolean, item: STData): this;
-    _btnClick(record: STData, btn: STColumnButton, ev?: Event): void;
-    private btnCallback;
+    _handleTd(ev: _STTdNotify): void;
     /**
      * 导出当前页，确保已经注册 `XlsxModule`
      *

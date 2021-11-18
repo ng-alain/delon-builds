@@ -4,10 +4,10 @@
  * License: MIT
  */
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@angular/router'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip')) :
-    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@angular/router', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.ng.router, global.config, global.decorator, global["ng-zorro-antd/dropdown"], global.ng.forms, global.delon.abc["let"], global["ng-zorro-antd/badge"], global["ng-zorro-antd/checkbox"], global["ng-zorro-antd/divider"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/input"], global["ng-zorro-antd/menu"], global["ng-zorro-antd/popconfirm"], global["ng-zorro-antd/radio"], global.resizable, global["ng-zorro-antd/table"], global["ng-zorro-antd/tag"], global["ng-zorro-antd/tooltip"]));
-})(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, router, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/platform-browser'), require('@delon/acl'), require('@delon/theme'), require('@delon/util/other'), require('@angular/common'), require('@angular/common/http'), require('rxjs'), require('rxjs/operators'), require('@delon/util/format'), require('@delon/abc/xlsx'), require('@delon/util/config'), require('@delon/util/decorator'), require('ng-zorro-antd/dropdown'), require('@angular/forms'), require('@delon/abc/let'), require('ng-zorro-antd/badge'), require('ng-zorro-antd/checkbox'), require('ng-zorro-antd/divider'), require('ng-zorro-antd/icon'), require('ng-zorro-antd/input'), require('ng-zorro-antd/menu'), require('ng-zorro-antd/popconfirm'), require('ng-zorro-antd/radio'), require('ng-zorro-antd/resizable'), require('ng-zorro-antd/table'), require('ng-zorro-antd/tag'), require('ng-zorro-antd/tooltip'), require('@angular/router')) :
+    typeof define === 'function' && define.amd ? define('@delon/abc/st', ['exports', '@angular/core', '@angular/platform-browser', '@delon/acl', '@delon/theme', '@delon/util/other', '@angular/common', '@angular/common/http', 'rxjs', 'rxjs/operators', '@delon/util/format', '@delon/abc/xlsx', '@delon/util/config', '@delon/util/decorator', 'ng-zorro-antd/dropdown', '@angular/forms', '@delon/abc/let', 'ng-zorro-antd/badge', 'ng-zorro-antd/checkbox', 'ng-zorro-antd/divider', 'ng-zorro-antd/icon', 'ng-zorro-antd/input', 'ng-zorro-antd/menu', 'ng-zorro-antd/popconfirm', 'ng-zorro-antd/radio', 'ng-zorro-antd/resizable', 'ng-zorro-antd/table', 'ng-zorro-antd/tag', 'ng-zorro-antd/tooltip', '@angular/router'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.delon = global.delon || {}, global.delon.abc = global.delon.abc || {}, global.delon.abc.st = {}), global.ng.core, global.ng.platformBrowser, global.delon.acl, global.delon.theme, global.other, global.ng.common, global.ng.common.http, global.rxjs, global.rxjs.operators, global.format, global.delon.abc.xlsx, global.config, global.decorator, global["ng-zorro-antd/dropdown"], global.ng.forms, global.delon.abc["let"], global["ng-zorro-antd/badge"], global["ng-zorro-antd/checkbox"], global["ng-zorro-antd/divider"], global["ng-zorro-antd/icon"], global["ng-zorro-antd/input"], global["ng-zorro-antd/menu"], global["ng-zorro-antd/popconfirm"], global["ng-zorro-antd/radio"], global.resizable, global["ng-zorro-antd/table"], global["ng-zorro-antd/tag"], global["ng-zorro-antd/tooltip"], global.ng.router));
+})(this, (function (exports, i0, platformBrowser, acl, theme, other, common, http, rxjs, operators, format, xlsx, config, decorator, dropdown, forms, _let, badge, checkbox, divider, icon, input, menu, popconfirm, radio, resizable, table, tag, tooltip, router) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -1514,14 +1514,11 @@
     };
 
     var STComponent = /** @class */ (function () {
-        function STComponent(i18nSrv, cdr, router, el, exportSrv, modalHelper, drawerHelper, doc, columnSource, dataSource, delonI18n, configSrv, cms) {
+        function STComponent(i18nSrv, cdr, el, exportSrv, doc, columnSource, dataSource, delonI18n, configSrv, cms) {
             var _this = this;
             this.cdr = cdr;
-            this.router = router;
             this.el = el;
             this.exportSrv = exportSrv;
-            this.modalHelper = modalHelper;
-            this.drawerHelper = drawerHelper;
             this.doc = doc;
             this.columnSource = columnSource;
             this.dataSource = dataSource;
@@ -1668,14 +1665,6 @@
              */
             get: function () {
                 return this._data;
-            },
-            enumerable: false,
-            configurable: true
-        });
-        Object.defineProperty(STComponent.prototype, "routerState", {
-            get: function () {
-                var _b = this, pi = _b.pi, ps = _b.ps, total = _b.total;
-                return { pi: pi, ps: ps, total: total };
             },
             enumerable: false,
             configurable: true
@@ -1886,15 +1875,6 @@
             }
             this.changeEmit(type);
         };
-        STComponent.prototype._click = function (e, item, col) {
-            e.preventDefault();
-            e.stopPropagation();
-            var res = col.click(item, this);
-            if (typeof res === 'string') {
-                this.router.navigateByUrl(res, { state: this.routerState });
-            }
-            return false;
-        };
         STComponent.prototype.closeOtherExpand = function (item) {
             if (this.expandAccordion === false)
                 return;
@@ -2072,10 +2052,6 @@
             this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = checked); });
             return this._refCheck()._checkNotify();
         };
-        STComponent.prototype._checkSelection = function (i, value) {
-            i.checked = value;
-            return this._refCheck()._checkNotify();
-        };
         STComponent.prototype._rowSelection = function (row) {
             row.select(this._data);
             return this._refCheck()._checkNotify();
@@ -2093,65 +2069,17 @@
             this.changeEmit('radio', null);
             return this;
         };
-        STComponent.prototype._refRadio = function (checked, item) {
-            // if (item.disabled === true) return;
-            this._data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
-            item.checked = checked;
-            this.changeEmit('radio', item);
-            return this;
-        };
         // #endregion
-        // #region buttons
-        STComponent.prototype._btnClick = function (record, btn, ev) {
-            var _b, _c;
-            var _this = this;
-            if (ev) {
-                ev.stopPropagation();
-            }
-            if (btn.type === 'modal' || btn.type === 'static') {
-                var modal = btn.modal;
-                var obj = (_b = {}, _b[modal.paramsName] = record, _b);
-                this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'](modal.component, Object.assign(Object.assign({}, obj), (modal.params && modal.params(record))), other.deepMergeKey({}, true, this.cog.modal, modal))
-                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
-                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
-                return;
-            }
-            else if (btn.type === 'drawer') {
-                var drawer = btn.drawer;
-                var obj = (_c = {}, _c[drawer.paramsName] = record, _c);
-                this.drawerHelper
-                    .create(drawer.title, drawer.component, Object.assign(Object.assign({}, obj), (drawer.params && drawer.params(record))), other.deepMergeKey({}, true, this.cog.drawer, drawer))
-                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
-                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
-                return;
-            }
-            else if (btn.type === 'link') {
-                var clickRes = this.btnCallback(record, btn);
-                if (typeof clickRes === 'string') {
-                    this.router.navigateByUrl(clickRes, { state: this.routerState });
-                }
-                return;
-            }
-            this.btnCallback(record, btn);
-        };
-        STComponent.prototype.btnCallback = function (record, btn, modal) {
-            if (!btn.click)
-                return;
-            if (typeof btn.click === 'string') {
-                switch (btn.click) {
-                    case 'load':
-                        this.load();
-                        break;
-                    case 'reload':
-                        this.reload();
-                        break;
-                }
-            }
-            else {
-                return btn.click(record, modal, this);
+        STComponent.prototype._handleTd = function (ev) {
+            switch (ev.type) {
+                case 'checkbox':
+                    this._refCheck()._checkNotify();
+                    break;
+                case 'radio':
+                    this.changeEmit('radio', ev.item);
+                    break;
             }
         };
-        // #endregion
         // #region export
         /**
          * 导出当前页，确保已经注册 `XlsxModule`
@@ -2306,7 +2234,7 @@
         { type: i0.Component, args: [{
                     selector: 'st',
                     exportAs: 'st',
-                    template: "<ng-template #btnTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"!btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </ng-container>\n  <span *ngIf=\"btn.tooltip\" nz-tooltip [nzTooltipTitle]=\"btn.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i let-btn=\"btn\">\n  <a\n    *ngIf=\"btn.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"btn.pop.title\"\n    [nzIcon]=\"btn.pop.icon\"\n    [nzCondition]=\"btn.pop.condition(i)\"\n    [nzCancelText]=\"btn.pop.cancelText\"\n    [nzOkText]=\"btn.pop.okText\"\n    [nzOkType]=\"btn.pop.okType\"\n    (nzOnConfirm)=\"_btnClick(i, btn)\"\n    class=\"st__btn-text\"\n    [ngClass]=\"btn.className\"\n    (click)=\"_stopPropagation($event)\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n  <a *ngIf=\"!btn.pop\" (click)=\"_btnClick(i, btn, $event)\" class=\"st__btn-text\" [ngClass]=\"btn.className\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\"></ng-template>\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i let-btn=\"btn\">\n  <ng-container *ngIf=\"btn.icon\">\n    <i\n      *ngIf=\"!btn.icon.iconfont\"\n      nz-icon\n      [nzType]=\"btn.icon.type\"\n      [nzTheme]=\"btn.icon.theme\"\n      [nzSpin]=\"btn.icon.spin\"\n      [nzTwotoneColor]=\"btn.icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"btn.icon.iconfont\" nz-icon [nzIconfont]=\"btn.icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"btn._text\" [ngClass]=\"{ 'pl-xs': btn.icon }\"></span>\n</ng-template>\n<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i\n    *ngIf=\"i.optionalHelp\"\n    class=\"st__head-tip\"\n    nz-tooltip\n    [nzTooltipTitle]=\"i.optionalHelp\"\n    nz-icon\n    nzType=\"question-circle\"\n  ></i>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label\n    nz-checkbox\n    class=\"st__checkall\"\n    [nzDisabled]=\"_allCheckedDisabled\"\n    [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\"\n    (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"\n  ></label>\n</ng-template>\n<nz-table\n  #table\n  [nzData]=\"_data\"\n  [(nzPageIndex)]=\"pi\"\n  (nzPageIndexChange)=\"_change('pi')\"\n  [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\"\n  [nzTotal]=\"total\"\n  [nzShowPagination]=\"_isPagination\"\n  [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\"\n  [nzSize]=\"size\"\n  [nzLoading]=\"_loading\"\n  [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\"\n  [nzTitle]=\"header!\"\n  [nzFooter]=\"footer!\"\n  [nzScroll]=\"scroll\"\n  [nzVirtualItemSize]=\"virtualItemSize\"\n  [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\"\n  [nzVirtualForTrackBy]=\"virtualForTrackBy\"\n  [nzNoResult]=\"noResult!\"\n  [nzPageSizeOptions]=\"page.pageSizes!\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\"\n  [nzShowSizeChanger]=\"page.showSize\"\n  [nzPaginationPosition]=\"page.position!\"\n  [nzPaginationType]=\"page.type!\"\n  [nzItemRender]=\"page.itemRender!\"\n  [nzSimple]=\"page.simple\"\n  [nzShowTotal]=\"totalTpl\"\n  [nzWidthConfig]=\"_widthConfig\"\n  (contextmenu)=\"onContextmenu($event)\"\n>\n  <thead *ngIf=\"showHeader\">\n    <tr *ngFor=\"let row of _headers; let rowFirst = first\">\n      <th *ngIf=\"rowFirst && expand\" nzWidth=\"50px\" [rowSpan]=\"_headers.length\"></th>\n      <ng-container *ngFor=\"let h of row; let index = index; let last = last\">\n        <th\n          *let=\"h.column as _c\"\n          [colSpan]=\"h.colSpan\"\n          [rowSpan]=\"h.rowSpan\"\n          [nzWidth]=\"$any(_c).width\"\n          [nzLeft]=\"_c._left!\"\n          [nzRight]=\"_c._right!\"\n          [ngClass]=\"_c.className!\"\n          [attr.data-col]=\"_c.indexKey\"\n          [attr.data-col-index]=\"index\"\n          [nzShowSort]=\"_c._sort.enabled\"\n          [nzSortOrder]=\"$any(_c)._sort.default\"\n          (nzSortOrderChange)=\"sort(_c, index, $event)\"\n          [nzCustomFilter]=\"$any(_c).filter\"\n          nz-resizable\n          [nzDisabled]=\"last || $any(_c).resizable.disabled\"\n          [nzMaxWidth]=\"$any(_c).resizable.maxWidth\"\n          [nzMinWidth]=\"$any(_c).resizable.minWidth\"\n          [nzBounds]=\"$any(_c).resizable.bounds\"\n          [nzPreview]=\"$any(_c).resizable.preview\"\n          (nzResizeEnd)=\"colResize($event, _c)\"\n        >\n          <nz-resize-handle *ngIf=\"$any(!last && !$any(_c).resizable.disabled)\" nzDirection=\"right\">\n            <i></i>\n          </nz-resize-handle>\n          <ng-template\n            #renderTitle\n            [ngTemplateOutlet]=\"_c.__renderTitle!\"\n            [ngTemplateOutletContext]=\"{ $implicit: h.column, index: index }\"\n          ></ng-template>\n          <ng-container *ngIf=\"!_c.__renderTitle; else renderTitle\">\n            <ng-container [ngSwitch]=\"_c.type\">\n              <ng-container *ngSwitchCase=\"'checkbox'\">\n                <ng-container *ngIf=\"_c.selections!.length === 0\">\n                  <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: false }\">\n                  </ng-template>\n                </ng-container>\n                <div *ngIf=\"_c.selections!.length > 0\" class=\"ant-table-selection\">\n                  <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: true }\">\n                  </ng-template>\n                  <div *ngIf=\"_c.selections!.length\" class=\"ant-table-selection-extra\">\n                    <div\n                      nz-dropdown\n                      nzPlacement=\"bottomLeft\"\n                      [nzDropdownMenu]=\"selectionMenu\"\n                      class=\"ant-table-selection-down st__checkall-selection\"\n                    >\n                      <i nz-icon nzType=\"down\"></i>\n                    </div>\n                  </div>\n                  <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                    <ul nz-menu class=\"ant-table-selection-menu\">\n                      <li\n                        nz-menu-item\n                        *ngFor=\"let rw of _c.selections\"\n                        (click)=\"_rowSelection(rw)\"\n                        [innerHTML]=\"rw.text\"\n                      ></li>\n                    </ul>\n                  </nz-dropdown-menu>\n                </div>\n              </ng-container>\n              <ng-container *ngSwitchDefault>\n                <ng-template\n                  [ngTemplateOutlet]=\"titleTpl\"\n                  [ngTemplateOutletContext]=\"{ $implicit: _c.title }\"\n                ></ng-template>\n              </ng-container>\n            </ng-container>\n          </ng-container>\n          <ng-container *ngIf=\"_c.filter\">\n            <st-filter\n              nz-th-extra\n              [col]=\"h.column\"\n              [f]=\"_c.filter\"\n              [locale]=\"locale\"\n              (n)=\"handleFilterNotify($event)\"\n              (handle)=\"_handleFilter(_c, $event)\"\n            ></st-filter>\n          </ng-container>\n        </th>\n      </ng-container>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template\n        [ngTemplateOutlet]=\"bodyHeader!\"\n        [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"\n      ></ng-template>\n    </ng-container>\n    <ng-template #bodyTpl let-i let-index=\"index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [ngClass]=\"i._rowClassName\">\n        <td\n          *ngIf=\"expand\"\n          [nzShowExpand]=\"expand && i.showExpand !== false\"\n          [nzExpand]=\"i.expand\"\n          (nzExpandChange)=\"_expandChange(i, $event)\"\n          (click)=\"_stopPropagation($event)\"\n          nzWidth=\"50px\"\n        ></td>\n        <td\n          *ngFor=\"let c of _columns; let cIdx = index\"\n          [nzLeft]=\"!!c._left\"\n          [nzRight]=\"!!c._right\"\n          [attr.data-col-index]=\"cIdx\"\n          [ngClass]=\"c._className!\"\n          [attr.colspan]=\"c.colSpan\"\n        >\n          <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n            <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: c.title }\"></ng-template>\n          </span>\n          <span>\n            <ng-template\n              #render\n              [ngTemplateOutlet]=\"c.__render!\"\n              [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n            ></ng-template>\n            <ng-container *ngIf=\"!c.__render; else render\">\n              <ng-container [ngSwitch]=\"c.type\">\n                <label\n                  *ngSwitchCase=\"'checkbox'\"\n                  nz-checkbox\n                  [nzDisabled]=\"i.disabled\"\n                  [ngModel]=\"i.checked\"\n                  (ngModelChange)=\"_checkSelection(i, $event)\"\n                ></label>\n                <label\n                  *ngSwitchCase=\"'radio'\"\n                  nz-radio\n                  [nzDisabled]=\"i.disabled\"\n                  [ngModel]=\"i.checked\"\n                  (ngModelChange)=\"_refRadio($event, i)\"\n                ></label>\n                <a\n                  *ngSwitchCase=\"'link'\"\n                  (click)=\"_click($event, i, c)\"\n                  [innerHTML]=\"i._values[cIdx]._text\"\n                  [attr.title]=\"i._values[cIdx].text\"\n                ></a>\n                <ng-container *ngIf=\"i._values[cIdx].text\">\n                  <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n                    <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n                  </nz-tag>\n                  <nz-badge\n                    *ngSwitchCase=\"'badge'\"\n                    [nzStatus]=\"i._values[cIdx].color\"\n                    [nzText]=\"i._values[cIdx].text\"\n                  ></nz-badge>\n                </ng-container>\n                <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\"></ng-template>\n                <ng-container *ngSwitchDefault>\n                  <span\n                    *ngIf=\"c.safeType !== 'text'\"\n                    [innerHTML]=\"i._values[cIdx]._text\"\n                    [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n                  ></span>\n                  <span\n                    *ngIf=\"c.safeType === 'text'\"\n                    [innerText]=\"i._values[cIdx]._text\"\n                    [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n                  ></span>\n                </ng-container>\n              </ng-container>\n              <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n                <a\n                  *ngIf=\"btn.children!.length > 0\"\n                  nz-dropdown\n                  [nzDropdownMenu]=\"btnMenu\"\n                  nzOverlayClassName=\"st__btn-sub\"\n                >\n                  <span [innerHTML]=\"btn._text\"></span>\n                  <i nz-icon nzType=\"down\"></i>\n                </a>\n                <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n                  <ul nz-menu>\n                    <ng-container *ngFor=\"let subBtn of btn.children!\">\n                      <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                        <ng-template\n                          [ngTemplateOutlet]=\"btnTpl\"\n                          [ngTemplateOutletContext]=\"{ $implicit: i, btn: subBtn }\"\n                        >\n                        </ng-template>\n                      </li>\n                      <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n                    </ng-container>\n                  </ul>\n                </nz-dropdown-menu>\n                <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n                  <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, btn: btn }\">\n                  </ng-template>\n                </span>\n                <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n              </ng-container>\n            </ng-container>\n          </span>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <ng-template\n          [ngTemplateOutlet]=\"expand\"\n          [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"\n        ></ng-template>\n      </tr>\n    </ng-template>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index = index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\">\n        </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\">\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body!\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n<nz-dropdown-menu #contextmenuTpl=\"nzDropdownMenu\">\n  <ul nz-menu class=\"st__contextmenu\">\n    <ng-container *ngFor=\"let i of contextmenuList\">\n      <li nz-menu-item *ngIf=\"i.children!.length === 0\" (click)=\"i.fn!(i)\" [innerHTML]=\"i.text\"></li>\n      <li nz-submenu *ngIf=\"i.children!.length > 0\" [nzTitle]=\"i.text\">\n        <ul>\n          <li nz-menu-item *ngFor=\"let ci of i.children\" (click)=\"ci.fn!(ci)\" [innerHTML]=\"ci.text\"></li>\n        </ul>\n      </li>\n    </ng-container>\n  </ul>\n</nz-dropdown-menu>\n",
+                    template: "<ng-template #titleTpl let-i>\n  <span [innerHTML]=\"i._text\"></span>\n  <small *ngIf=\"i.optional\" class=\"st__head-optional\" [innerHTML]=\"i.optional\"></small>\n  <i\n    *ngIf=\"i.optionalHelp\"\n    class=\"st__head-tip\"\n    nz-tooltip\n    [nzTooltipTitle]=\"i.optionalHelp\"\n    nz-icon\n    nzType=\"question-circle\"\n  ></i>\n</ng-template>\n<ng-template #chkAllTpl let-custom>\n  <label\n    nz-checkbox\n    class=\"st__checkall\"\n    [nzDisabled]=\"_allCheckedDisabled\"\n    [(ngModel)]=\"_allChecked\"\n    [nzIndeterminate]=\"_indeterminate\"\n    (ngModelChange)=\"_checkAll()\"\n    [class.ant-table-selection-select-all-custom]=\"custom\"\n  ></label>\n</ng-template>\n<nz-table\n  #table\n  [nzData]=\"_data\"\n  [(nzPageIndex)]=\"pi\"\n  (nzPageIndexChange)=\"_change('pi')\"\n  [(nzPageSize)]=\"ps\"\n  (nzPageSizeChange)=\"_change('ps')\"\n  [nzTotal]=\"total\"\n  [nzShowPagination]=\"_isPagination\"\n  [nzFrontPagination]=\"false\"\n  [nzBordered]=\"bordered\"\n  [nzSize]=\"size\"\n  [nzLoading]=\"_loading\"\n  [nzLoadingDelay]=\"loadingDelay\"\n  [nzLoadingIndicator]=\"loadingIndicator\"\n  [nzTitle]=\"header!\"\n  [nzFooter]=\"footer!\"\n  [nzScroll]=\"scroll\"\n  [nzVirtualItemSize]=\"virtualItemSize\"\n  [nzVirtualMaxBufferPx]=\"virtualMaxBufferPx\"\n  [nzVirtualMinBufferPx]=\"virtualMinBufferPx\"\n  [nzVirtualForTrackBy]=\"virtualForTrackBy\"\n  [nzNoResult]=\"noResult!\"\n  [nzPageSizeOptions]=\"page.pageSizes!\"\n  [nzShowQuickJumper]=\"page.showQuickJumper\"\n  [nzShowSizeChanger]=\"page.showSize\"\n  [nzPaginationPosition]=\"page.position!\"\n  [nzPaginationType]=\"page.type!\"\n  [nzItemRender]=\"page.itemRender!\"\n  [nzSimple]=\"page.simple\"\n  [nzShowTotal]=\"totalTpl\"\n  [nzWidthConfig]=\"_widthConfig\"\n  (contextmenu)=\"onContextmenu($event)\"\n>\n  <thead *ngIf=\"showHeader\">\n    <tr *ngFor=\"let row of _headers; let rowFirst = first\">\n      <th *ngIf=\"rowFirst && expand\" nzWidth=\"50px\" [rowSpan]=\"_headers.length\"></th>\n      <ng-container *ngFor=\"let h of row; let index = index; let last = last\">\n        <th\n          *let=\"h.column as _c\"\n          [colSpan]=\"h.colSpan\"\n          [rowSpan]=\"h.rowSpan\"\n          [nzWidth]=\"$any(_c).width\"\n          [nzLeft]=\"_c._left!\"\n          [nzRight]=\"_c._right!\"\n          [ngClass]=\"_c.className!\"\n          [attr.data-col]=\"_c.indexKey\"\n          [attr.data-col-index]=\"index\"\n          [nzShowSort]=\"_c._sort.enabled\"\n          [nzSortOrder]=\"$any(_c)._sort.default\"\n          (nzSortOrderChange)=\"sort(_c, index, $event)\"\n          [nzCustomFilter]=\"$any(_c).filter\"\n          nz-resizable\n          [nzDisabled]=\"last || $any(_c).resizable.disabled\"\n          [nzMaxWidth]=\"$any(_c).resizable.maxWidth\"\n          [nzMinWidth]=\"$any(_c).resizable.minWidth\"\n          [nzBounds]=\"$any(_c).resizable.bounds\"\n          [nzPreview]=\"$any(_c).resizable.preview\"\n          (nzResizeEnd)=\"colResize($event, _c)\"\n        >\n          <nz-resize-handle *ngIf=\"$any(!last && !$any(_c).resizable.disabled)\" nzDirection=\"right\">\n            <i></i>\n          </nz-resize-handle>\n          <ng-template\n            #renderTitle\n            [ngTemplateOutlet]=\"_c.__renderTitle!\"\n            [ngTemplateOutletContext]=\"{ $implicit: h.column, index: index }\"\n          ></ng-template>\n          <ng-container *ngIf=\"!_c.__renderTitle; else renderTitle\">\n            <ng-container [ngSwitch]=\"_c.type\">\n              <ng-container *ngSwitchCase=\"'checkbox'\">\n                <ng-container *ngIf=\"_c.selections!.length === 0\">\n                  <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: false }\">\n                  </ng-template>\n                </ng-container>\n                <div *ngIf=\"_c.selections!.length > 0\" class=\"ant-table-selection\">\n                  <ng-template [ngTemplateOutlet]=\"chkAllTpl\" [ngTemplateOutletContext]=\"{ $implicit: true }\">\n                  </ng-template>\n                  <div *ngIf=\"_c.selections!.length\" class=\"ant-table-selection-extra\">\n                    <div\n                      nz-dropdown\n                      nzPlacement=\"bottomLeft\"\n                      [nzDropdownMenu]=\"selectionMenu\"\n                      class=\"ant-table-selection-down st__checkall-selection\"\n                    >\n                      <i nz-icon nzType=\"down\"></i>\n                    </div>\n                  </div>\n                  <nz-dropdown-menu #selectionMenu=\"nzDropdownMenu\">\n                    <ul nz-menu class=\"ant-table-selection-menu\">\n                      <li\n                        nz-menu-item\n                        *ngFor=\"let rw of _c.selections\"\n                        (click)=\"_rowSelection(rw)\"\n                        [innerHTML]=\"rw.text\"\n                      ></li>\n                    </ul>\n                  </nz-dropdown-menu>\n                </div>\n              </ng-container>\n              <ng-container *ngSwitchDefault>\n                <ng-template\n                  [ngTemplateOutlet]=\"titleTpl\"\n                  [ngTemplateOutletContext]=\"{ $implicit: _c.title }\"\n                ></ng-template>\n              </ng-container>\n            </ng-container>\n          </ng-container>\n          <ng-container *ngIf=\"_c.filter\">\n            <st-filter\n              nz-th-extra\n              [col]=\"h.column\"\n              [f]=\"_c.filter\"\n              [locale]=\"locale\"\n              (n)=\"handleFilterNotify($event)\"\n              (handle)=\"_handleFilter(_c, $event)\"\n            ></st-filter>\n          </ng-container>\n        </th>\n      </ng-container>\n    </tr>\n  </thead>\n  <tbody class=\"st__body\">\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template\n        [ngTemplateOutlet]=\"bodyHeader!\"\n        [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"\n      ></ng-template>\n    </ng-container>\n    <ng-template #bodyTpl let-i let-index=\"index\">\n      <tr [attr.data-index]=\"index\" (click)=\"_rowClick($event, i, index)\" [ngClass]=\"i._rowClassName\">\n        <td\n          *ngIf=\"expand\"\n          [nzShowExpand]=\"expand && i.showExpand !== false\"\n          [nzExpand]=\"i.expand\"\n          (nzExpandChange)=\"_expandChange(i, $event)\"\n          (click)=\"_stopPropagation($event)\"\n          nzWidth=\"50px\"\n        ></td>\n        <td\n          *ngFor=\"let c of _columns; let cIdx = index\"\n          [nzLeft]=\"!!c._left\"\n          [nzRight]=\"!!c._right\"\n          [attr.data-col-index]=\"cIdx\"\n          [ngClass]=\"c._className!\"\n          [attr.colspan]=\"c.colSpan\"\n        >\n          <span *ngIf=\"responsive\" class=\"ant-table-rep__title\">\n            <ng-template [ngTemplateOutlet]=\"titleTpl\" [ngTemplateOutletContext]=\"{ $implicit: c.title }\"></ng-template>\n          </span>\n          <st-td [data]=\"_data\" [i]=\"i\" [index]=\"index\" [c]=\"c\" [cIdx]=\"cIdx\" (n)=\"_handleTd($event)\"></st-td>\n        </td>\n      </tr>\n      <tr [nzExpand]=\"i.expand\">\n        <ng-template\n          [ngTemplateOutlet]=\"expand\"\n          [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\"\n        ></ng-template>\n      </tr>\n    </ng-template>\n    <ng-container *ngIf=\"!virtualScroll\">\n      <ng-container *ngFor=\"let i of _data; let index = index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\">\n        </ng-template>\n      </ng-container>\n    </ng-container>\n    <ng-container *ngIf=\"virtualScroll\">\n      <ng-template nz-virtual-scroll let-i let-index=\"index\">\n        <ng-template [ngTemplateOutlet]=\"bodyTpl\" [ngTemplateOutletContext]=\"{ $implicit: i, index: index }\">\n        </ng-template>\n      </ng-template>\n    </ng-container>\n    <ng-container *ngIf=\"!_loading\">\n      <ng-template [ngTemplateOutlet]=\"body!\" [ngTemplateOutletContext]=\"{ $implicit: _statistical }\"></ng-template>\n    </ng-container>\n  </tbody>\n  <ng-template #totalTpl let-range=\"range\" let-total>{{ renderTotal(total, range) }}</ng-template>\n</nz-table>\n<nz-dropdown-menu #contextmenuTpl=\"nzDropdownMenu\">\n  <ul nz-menu class=\"st__contextmenu\">\n    <ng-container *ngFor=\"let i of contextmenuList\">\n      <li nz-menu-item *ngIf=\"i.children!.length === 0\" (click)=\"i.fn!(i)\" [innerHTML]=\"i.text\"></li>\n      <li nz-submenu *ngIf=\"i.children!.length > 0\" [nzTitle]=\"i.text\">\n        <ul>\n          <li nz-menu-item *ngFor=\"let ci of i.children\" (click)=\"ci.fn!(ci)\" [innerHTML]=\"ci.text\"></li>\n        </ul>\n      </li>\n    </ng-container>\n  </ul>\n</nz-dropdown-menu>\n",
                     providers: [STDataSource, STRowSource, STColumnSource, STExport, theme.DatePipe, theme.YNPipe, common.DecimalPipe],
                     host: {
                         '[class.st]': "true",
@@ -2324,11 +2252,8 @@
     STComponent.ctorParameters = function () { return [
         { type: undefined, decorators: [{ type: i0.Optional }, { type: i0.Inject, args: [theme.ALAIN_I18N_TOKEN,] }] },
         { type: i0.ChangeDetectorRef },
-        { type: router.Router },
         { type: i0.ElementRef },
         { type: STExport },
-        { type: theme.ModalHelper },
-        { type: theme.DrawerHelper },
         { type: undefined, decorators: [{ type: i0.Inject, args: [common.DOCUMENT,] }] },
         { type: STColumnSource },
         { type: STDataSource },
@@ -2484,6 +2409,122 @@
         handle: [{ type: i0.Output }]
     };
 
+    var STTdComponent = /** @class */ (function () {
+        function STTdComponent(stComp, router, modalHelper, drawerHelper) {
+            this.stComp = stComp;
+            this.router = router;
+            this.modalHelper = modalHelper;
+            this.drawerHelper = drawerHelper;
+            this.n = new i0.EventEmitter();
+        }
+        Object.defineProperty(STTdComponent.prototype, "routerState", {
+            get: function () {
+                var _a = this.stComp, pi = _a.pi, ps = _a.ps, total = _a.total;
+                return { pi: pi, ps: ps, total: total };
+            },
+            enumerable: false,
+            configurable: true
+        });
+        STTdComponent.prototype.report = function (type) {
+            this.n.emit({ type: type, item: this.i, col: this.c });
+        };
+        STTdComponent.prototype._checkbox = function (value) {
+            this.i.checked = value;
+            this.report('checkbox');
+        };
+        STTdComponent.prototype._radio = function (checked) {
+            this.data.filter(function (w) { return !w.disabled; }).forEach(function (i) { return (i.checked = false); });
+            this.i.checked = checked;
+            this.report('radio');
+        };
+        STTdComponent.prototype._link = function (e) {
+            this._stopPropagation(e);
+            var res = this.c.click(this.i, this.stComp);
+            if (typeof res === 'string') {
+                this.router.navigateByUrl(res, { state: this.routerState });
+            }
+            return false;
+        };
+        STTdComponent.prototype._stopPropagation = function (ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+        };
+        STTdComponent.prototype._btn = function (btn, ev) {
+            var _a, _b;
+            var _this = this;
+            if (ev) {
+                ev.stopPropagation();
+            }
+            var record = this.i;
+            if (btn.type === 'modal' || btn.type === 'static') {
+                var modal = btn.modal;
+                var obj = (_a = {}, _a[modal.paramsName] = record, _a);
+                this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'](modal.component, Object.assign(Object.assign({}, obj), (modal.params && modal.params(record))), other.deepMergeKey({}, true, this.stComp['cog'].modal, modal))
+                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
+                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
+                return;
+            }
+            else if (btn.type === 'drawer') {
+                var drawer = btn.drawer;
+                var obj = (_b = {}, _b[drawer.paramsName] = record, _b);
+                this.drawerHelper
+                    .create(drawer.title, drawer.component, Object.assign(Object.assign({}, obj), (drawer.params && drawer.params(record))), other.deepMergeKey({}, true, this.stComp['cog'].drawer, drawer))
+                    .pipe(operators.filter(function (w) { return typeof w !== 'undefined'; }))
+                    .subscribe(function (res) { return _this.btnCallback(record, btn, res); });
+                return;
+            }
+            else if (btn.type === 'link') {
+                var clickRes = this.btnCallback(record, btn);
+                if (typeof clickRes === 'string') {
+                    this.router.navigateByUrl(clickRes, { state: this.routerState });
+                }
+                return;
+            }
+            this.btnCallback(record, btn);
+        };
+        STTdComponent.prototype.btnCallback = function (record, btn, modal) {
+            if (!btn.click)
+                return;
+            if (typeof btn.click === 'string') {
+                switch (btn.click) {
+                    case 'load':
+                        this.stComp.load();
+                        break;
+                    case 'reload':
+                        this.stComp.reload();
+                        break;
+                }
+            }
+            else {
+                return btn.click(record, modal, this.stComp);
+            }
+        };
+        return STTdComponent;
+    }());
+    STTdComponent.decorators = [
+        { type: i0.Component, args: [{
+                    selector: 'st-td',
+                    template: "\n    <ng-template #btnTpl let-i>\n      <ng-container *ngIf=\"!i.tooltip\">\n        <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\"></ng-template>\n      </ng-container>\n      <span *ngIf=\"i.tooltip\" nz-tooltip [nzTooltipTitle]=\"i.tooltip\">\n        <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\"></ng-template>\n      </span>\n    </ng-template>\n    <ng-template #btnItemTpl let-i>\n      <a\n        *ngIf=\"i.pop\"\n        nz-popconfirm\n        [nzPopconfirmTitle]=\"i.pop.title\"\n        [nzIcon]=\"i.pop.icon\"\n        [nzCondition]=\"i.pop.condition(i)\"\n        [nzCancelText]=\"i.pop.cancelText\"\n        [nzOkText]=\"i.pop.okText\"\n        [nzOkType]=\"i.pop.okType\"\n        (nzOnConfirm)=\"_btn(i)\"\n        class=\"st__btn-text\"\n        [ngClass]=\"i.className\"\n        (click)=\"_stopPropagation($event)\"\n      >\n        <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\"></ng-template>\n      </a>\n      <a *ngIf=\"!i.pop\" (click)=\"_btn(i, $event)\" class=\"st__btn-text\" [ngClass]=\"i.className\">\n        <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\"></ng-template>\n      </a>\n    </ng-template>\n    <ng-template #btnTextTpl let-i>\n      <ng-container *ngIf=\"i.icon\">\n        <i\n          *ngIf=\"!i.icon.iconfont\"\n          nz-icon\n          [nzType]=\"i.icon.type\"\n          [nzTheme]=\"i.icon.theme\"\n          [nzSpin]=\"i.icon.spin\"\n          [nzTwotoneColor]=\"i.icon.twoToneColor\"\n        ></i>\n        <i *ngIf=\"i.icon.iconfont\" nz-icon [nzIconfont]=\"i.icon.iconfont\"></i>\n      </ng-container>\n      <span [innerHTML]=\"i._text\" [ngClass]=\"{ 'pl-xs': i.icon }\"></span>\n    </ng-template>\n    <ng-template\n      #render\n      [ngTemplateOutlet]=\"c.__render!\"\n      [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n    ></ng-template>\n    <ng-container *ngIf=\"!c.__render; else render\">\n      <ng-container [ngSwitch]=\"c.type\">\n        <label\n          *ngSwitchCase=\"'checkbox'\"\n          nz-checkbox\n          [nzDisabled]=\"i.disabled\"\n          [ngModel]=\"i.checked\"\n          (ngModelChange)=\"_checkbox($event)\"\n        ></label>\n        <label\n          *ngSwitchCase=\"'radio'\"\n          nz-radio\n          [nzDisabled]=\"i.disabled\"\n          [ngModel]=\"i.checked\"\n          (ngModelChange)=\"_radio($event)\"\n        ></label>\n        <a\n          *ngSwitchCase=\"'link'\"\n          (click)=\"_link($event)\"\n          [innerHTML]=\"i._values[cIdx]._text\"\n          [attr.title]=\"i._values[cIdx].text\"\n        ></a>\n        <ng-container *ngIf=\"i._values[cIdx].text\">\n          <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\">\n            <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n          </nz-tag>\n          <nz-badge\n            *ngSwitchCase=\"'badge'\"\n            [nzStatus]=\"i._values[cIdx].color\"\n            [nzText]=\"i._values[cIdx].text\"\n          ></nz-badge>\n        </ng-container>\n        <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\"></ng-template\n        ><ng-container *ngSwitchDefault>\n          <span\n            *ngIf=\"c.safeType !== 'text'\"\n            [innerHTML]=\"i._values[cIdx]._text\"\n            [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n          ></span>\n          <span\n            *ngIf=\"c.safeType === 'text'\"\n            [innerText]=\"i._values[cIdx]._text\"\n            [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n          ></span>\n        </ng-container>\n      </ng-container>\n      <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n        <a *ngIf=\"btn.children!.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n          <span [innerHTML]=\"btn._text\"></span>\n          <i nz-icon nzType=\"down\"></i>\n        </a>\n        <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n          <ul nz-menu>\n            <ng-container *ngFor=\"let subBtn of btn.children!\">\n              <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n                <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: subBtn }\">\n                </ng-template>\n              </li>\n              <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n            </ng-container>\n          </ul>\n        </nz-dropdown-menu>\n        <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n          <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: btn }\"> </ng-template>\n        </span>\n        <nz-divider *ngIf=\"!last\" nzType=\"vertical\"></nz-divider>\n      </ng-container>\n    </ng-container>\n  ",
+                    preserveWhitespaces: false,
+                    changeDetection: i0.ChangeDetectionStrategy.OnPush,
+                    encapsulation: i0.ViewEncapsulation.None
+                },] }
+    ];
+    STTdComponent.ctorParameters = function () { return [
+        { type: STComponent, decorators: [{ type: i0.Host }] },
+        { type: router.Router },
+        { type: theme.ModalHelper },
+        { type: theme.DrawerHelper }
+    ]; };
+    STTdComponent.propDecorators = {
+        c: [{ type: i0.Input }],
+        cIdx: [{ type: i0.Input }],
+        data: [{ type: i0.Input }],
+        i: [{ type: i0.Input }],
+        index: [{ type: i0.Input }],
+        n: [{ type: i0.Output }]
+    };
+
     var COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
     var STModule = /** @class */ (function () {
         function STModule() {
@@ -2511,7 +2552,7 @@
                         tooltip.NzToolTipModule,
                         resizable.NzResizableModule
                     ],
-                    declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), [STFilterComponent]),
+                    declarations: __spreadArray(__spreadArray([], __read(COMPONENTS)), [STFilterComponent, STTdComponent]),
                     exports: COMPONENTS
                 },] }
     ];
@@ -2531,6 +2572,7 @@
     exports.ST_DEFAULT_CONFIG = ST_DEFAULT_CONFIG;
     exports["ɵa"] = STRowSource;
     exports["ɵb"] = STFilterComponent;
+    exports["ɵc"] = STTdComponent;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

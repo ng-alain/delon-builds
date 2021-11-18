@@ -1,6 +1,12 @@
 import { TemplateRef } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { STColumn, STColumnButton, STColumnSafeType, STData, STSortMap } from './st.interfaces';
+export declare type _STTdNotifyType = 'checkbox' | 'radio';
+export interface _STTdNotify {
+    type: _STTdNotifyType;
+    item: STData;
+    col: _STColumn;
+}
 export interface _STColumn extends STColumn {
     children?: _STColumn[];
     indexKey?: string;

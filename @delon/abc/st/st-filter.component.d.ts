@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { LocaleData } from '@delon/theme';
-import { _STColumn } from '.';
 import { STColumnFilter, STColumnFilterMenu, STIcon } from './st.interfaces';
+import { _STColumn } from './st.types';
 export declare class STFilterComponent {
     visible: boolean;
     col: _STColumn;
