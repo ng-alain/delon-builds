@@ -80,7 +80,7 @@ ATTRIBUTE_NAMES.forEach(key => {
 function findIcons(html: string): string[] {
   const res: string[] = [];
   const doc = parseFragment(html);
-  const visitNodes = (nodes: Element[]): void => {
+  const visitNodes = (nodes: Element[]) => {
     nodes.forEach(node => {
       if (node.attrs) {
         const classIcon = genByClass(node);

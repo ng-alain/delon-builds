@@ -94,14 +94,17 @@ function notRecorded(...args) {
     }
 }
 function consoleCommonBehavior(consoleFunc, ...args) {
-    if ((typeof ngDevMode === 'undefined' || ngDevMode) && notRecorded(...args)) {
+    if (ngDevMode && notRecorded(...args)) {
         consoleFunc(...args);
     }
 }
 // Warning should only be printed in dev mode and only once.
 const warn = (...args) => consoleCommonBehavior((...arg) => console.warn(PREFIX, ...arg), ...args);
+const deprecation11 = (comp, from, to) => {
+    warnDeprecation(`${comp} => '${from}' is going to be removed in 11.0.0${to ? `, Please use '${to}' instead` : ``}.`);
+};
 const warnDeprecation = (...args) => {
-    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+    if (ngDevMode) {
         return () => { };
     }
     const stack = new Error().stack;
@@ -109,7 +112,7 @@ const warnDeprecation = (...args) => {
 };
 // Log should only be printed in dev mode.
 const log = (...args) => {
-    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+    if (ngDevMode) {
         console.log(PREFIX, ...args);
     }
 };
@@ -296,5 +299,5 @@ function assertObservable(obj, msg) {
  * Generated bundle index. Do not edit.
  */
 
-export { LazyService, PREFIX, assert, assertArray, assertEmpty, assertNumber, assertObservable, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, log, warn, warnDeprecation };
+export { LazyService, PREFIX, assert, assertArray, assertEmpty, assertNumber, assertObservable, assertString, deepCopy, deepGet, deepMerge, deepMergeKey, deprecation11, log, warn, warnDeprecation };
 //# sourceMappingURL=delon-util-other.js.map

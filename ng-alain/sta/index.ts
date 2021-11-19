@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { colors } from '@angular/cli/utilities/color';
 
 import { normalize } from '@angular-devkit/core';
@@ -40,14 +39,14 @@ function addPathInTsConfig(name: string): Rule {
   };
 }
 
-function cleanOutput(p: string): void {
+function cleanOutput(p: string) {
   try {
     rmdirSync(p, { recursive: true });
     mkdirSync(p);
   } catch (e) {}
 }
 
-function fix(output: string, res: GenerateApiOutput, tree: Tree, context: SchematicContext): void {
+function fix(output: string, res: GenerateApiOutput, tree: Tree, context: SchematicContext) {
   const indexList = [`models`, `_base.service`];
   const basePath = normalize(join(project.root, output.replace(process.cwd(), '')));
   try {
@@ -143,7 +142,8 @@ function genProxy(config: STAConfig): Rule {
           onPrepareConfig: c => {
             if (!config.responseDataField) return c;
 
-            const getDeepDataType = (ref: string): any => {
+            const getDeepDataType = (ref: string) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               let typeData = c.utils.getComponentByRef(ref)?.typeData as any;
               while (typeData != null && Array.isArray(typeData.allOf) && typeData.allOf.length > 0) {
                 typeData = c.utils.getComponentByRef(typeData.allOf[0].$ref)?.typeData;
@@ -152,6 +152,7 @@ function genProxy(config: STAConfig): Rule {
             };
 
             c.routes.combined?.forEach(moduleInfo => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               moduleInfo.routes.forEach((routeInfo: any) => {
                 if (!routeInfo.responseBodySchema) return;
                 try {
@@ -180,6 +181,7 @@ function genProxy(config: STAConfig): Rule {
             return formattedModelName;
           }
         },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ...(config.generateApiOptions as any)
       } as GenerateApiParams;
       generateApi(options)
