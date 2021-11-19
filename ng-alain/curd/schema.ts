@@ -6,11 +6,7 @@ export interface Schema extends ComponentSchema {
    */
   target?: string;
   /**
-   * 指定选择器名不加前缀 (Without prefix to selectors), Default: `false`
+   * 指定组件名不加前缀 (Without prefix to selectors)
    */
   withoutPrefix?: boolean;
-  /**
-   * 组件名不加模块名前缀 (Without prefix to component name), Default: `false`
-   */
-  withoutModulePrefixInComponentName?: boolean;
 }

@@ -40,7 +40,6 @@ export interface CommonSchema extends ComponentSchema {
   routerModulePath?: string;
   selector?: string;
   withoutPrefix?: boolean;
-  withoutModulePrefixInComponentName?: boolean;
   skipTests?: boolean;
   flat?: boolean;
   modal?: boolean;
@@ -69,7 +68,7 @@ function buildSelector(schema: CommonSchema, projectPrefix: string): string {
 }
 
 function buildComponentName(schema: CommonSchema, _projectPrefix: string): string {
-  const ret: string[] = schema.withoutModulePrefixInComponentName === true ? [] : [schema.module!];
+  const ret: string[] = [schema.module!];
   if (schema.target && schema.target.length > 0) {
     ret.push(...schema.target.split('/'));
   }

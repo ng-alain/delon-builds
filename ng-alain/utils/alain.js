@@ -46,7 +46,7 @@ function buildSelector(schema, projectPrefix) {
     return ret.join('-');
 }
 function buildComponentName(schema, _projectPrefix) {
-    const ret = schema.withoutModulePrefixInComponentName === true ? [] : [schema.module];
+    const ret = [schema.module];
     if (schema.target && schema.target.length > 0) {
         ret.push(...schema.target.split('/'));
     }
