@@ -1913,13 +1913,13 @@
             ++this.rowClickCount;
             if (this.rowClickCount !== 1)
                 return;
+            var data = { e: e, item: item, index: index };
+            if (this.rowClickCount === 1) {
+                this._clickRowClassName(el, item, index);
+                this.changeEmit('click', data);
+            }
             setTimeout(function () {
-                var data = { e: e, item: item, index: index };
-                if (_this.rowClickCount === 1) {
-                    _this._clickRowClassName(el, item, index);
-                    _this.changeEmit('click', data);
-                }
-                else {
+                if (_this.rowClickCount !== 1) {
                     _this.changeEmit('dblClick', data);
                 }
                 _this.rowClickCount = 0;

@@ -1460,13 +1460,13 @@ class STComponent {
         ++this.rowClickCount;
         if (this.rowClickCount !== 1)
             return;
+        const data = { e, item, index };
+        if (this.rowClickCount === 1) {
+            this._clickRowClassName(el, item, index);
+            this.changeEmit('click', data);
+        }
         setTimeout(() => {
-            const data = { e, item, index };
-            if (this.rowClickCount === 1) {
-                this._clickRowClassName(el, item, index);
-                this.changeEmit('click', data);
-            }
-            else {
+            if (this.rowClickCount !== 1) {
                 this.changeEmit('dblClick', data);
             }
             this.rowClickCount = 0;
