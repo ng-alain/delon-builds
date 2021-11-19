@@ -29,6 +29,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_bordered: BooleanInput;
     static ngAcceptInputType_expandRowByClick: BooleanInput;
     static ngAcceptInputType_expandAccordion: BooleanInput;
+    static ngAcceptInputType_rowClickTime: NumberInput;
     static ngAcceptInputType_responsive: BooleanInput;
     static ngAcceptInputType_responsiveHideHeaderFooter: BooleanInput;
     static ngAcceptInputType_virtualScroll: BooleanInput;
@@ -39,6 +40,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private data$;
     private totalTpl;
     private cog;
+    private rowClickCount;
     private _req;
     private _res;
     private _page;
@@ -103,6 +105,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         column: STColumn;
     }>;
     noResult?: string | TemplateRef<void> | null;
+    rowClickTime: number;
     responsive: boolean;
     responsiveHideHeaderFooter: boolean;
     readonly error: EventEmitter<STError>;
@@ -167,7 +170,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _toTop;
     _change(type: 'pi' | 'ps', options?: STLoadOptions): void;
     private closeOtherExpand;
-    _rowClick(e: Event, item: STData, index: number, dbl: boolean): void;
+    _rowClick(e: Event, item: STData, index: number): void;
     private _clickRowClassName;
     _expandChange(item: STData, expand: boolean): void;
     _stopPropagation(ev: Event): void;
