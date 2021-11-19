@@ -19,9 +19,8 @@ describe('NgAlainSchematic: application', () => {
       expect(packageJson.dependencies['@delon/cache']).toBeDefined();
       expect(packageJson.dependencies['@delon/mock']).toBeDefined();
     });
-    it('should be add vscode extensions config', () => {
+    it('should be add vscode extensions confir', () => {
       const filePath = '.vscode/extensions.json';
-      // eslint-disable-next-line deprecation/deprecation
       expect(tree.exists(filePath)).toBe(true, `Not found [${filePath}]`);
       const json = JSON.parse(tree.readContent(filePath));
       expect(json != null).toBe(true);
