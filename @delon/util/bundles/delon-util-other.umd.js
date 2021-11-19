@@ -455,7 +455,7 @@
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        if (ngDevMode && notRecorded.apply(void 0, __spreadArray([], __read(args)))) {
+        if ((typeof ngDevMode === 'undefined' || ngDevMode) && notRecorded.apply(void 0, __spreadArray([], __read(args)))) {
             consoleFunc.apply(void 0, __spreadArray([], __read(args)));
         }
     }
@@ -473,15 +473,12 @@
                 return console.warn.apply(console, __spreadArray([PREFIX], __read(arg)));
             }], __read(args)));
     };
-    var deprecation11 = function (comp, from, to) {
-        warnDeprecation(comp + " => '" + from + "' is going to be removed in 11.0.0" + (to ? ", Please use '" + to + "' instead" : "") + ".");
-    };
     var warnDeprecation = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (ngDevMode) {
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
             return function () { };
         }
         var stack = new Error().stack;
@@ -499,7 +496,7 @@
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
         }
-        if (ngDevMode) {
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
             console.log.apply(console, __spreadArray([PREFIX], __read(args)));
         }
     };
@@ -707,7 +704,6 @@
     exports.deepGet = deepGet;
     exports.deepMerge = deepMerge;
     exports.deepMergeKey = deepMergeKey;
-    exports.deprecation11 = deprecation11;
     exports.log = log;
     exports.warn = warn;
     exports.warnDeprecation = warnDeprecation;

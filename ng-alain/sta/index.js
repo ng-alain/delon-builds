@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const color_1 = require("@angular/cli/utilities/color");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
@@ -116,7 +117,6 @@ function genProxy(config) {
                             return c;
                         const getDeepDataType = (ref) => {
                             var _a, _b;
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             let typeData = (_a = c.utils.getComponentByRef(ref)) === null || _a === void 0 ? void 0 : _a.typeData;
                             while (typeData != null && Array.isArray(typeData.allOf) && typeData.allOf.length > 0) {
                                 typeData = (_b = c.utils.getComponentByRef(typeData.allOf[0].$ref)) === null || _b === void 0 ? void 0 : _b.typeData;
@@ -124,7 +124,6 @@ function genProxy(config) {
                             return typeData;
                         };
                         (_a = c.routes.combined) === null || _a === void 0 ? void 0 : _a.forEach(moduleInfo => {
-                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             moduleInfo.routes.forEach((routeInfo) => {
                                 var _a, _b, _c;
                                 if (!routeInfo.responseBodySchema)
