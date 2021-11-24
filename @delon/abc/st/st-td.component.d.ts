@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { DrawerHelper, ModalHelper } from '@delon/theme';
-import { STComponent } from '.';
+import { STComponent } from './st.component';
 import { STColumnButton, STData } from './st.interfaces';
 import { _STColumn, _STTdNotify } from './st.types';
 export declare class STTdComponent {
@@ -19,7 +19,7 @@ export declare class STTdComponent {
     constructor(stComp: STComponent, router: Router, modalHelper: ModalHelper, drawerHelper: DrawerHelper);
     private report;
     _checkbox(value: boolean): void;
-    _radio(checked: boolean): void;
+    _radio(): void;
     _link(e: Event): boolean;
     _stopPropagation(ev: Event): void;
     _btn(btn: STColumnButton, ev?: Event): void;

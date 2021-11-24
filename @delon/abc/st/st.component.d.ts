@@ -124,6 +124,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, el: ElementRef, exportSrv: STExport, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
     private setCog;
     cd(): this;
+    private refreshData;
     renderTotal(total: string, range: string[]): string;
     private changeEmit;
     /**
@@ -204,7 +205,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;
-    _checkAll(checked?: boolean): this;
+    checkAll(checked?: boolean): this;
     _rowSelection(row: STColumnSelection): this;
     _checkNotify(): this;
     /** 清除所有 `radio` */
