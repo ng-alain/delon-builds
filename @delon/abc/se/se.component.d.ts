@@ -13,7 +13,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     static ngAcceptInputType_line: BooleanInput;
     static ngAcceptInputType_labelWidth: NumberInput;
     static ngAcceptInputType_noColon: BooleanInput;
-    static ngAcceptInputType_hideLabel: BooleanInput;
     private el;
     private unsubscribe$;
     private readonly ngModel;
@@ -40,7 +39,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     line: boolean;
     labelWidth: number;
     noColon: boolean;
-    hideLabel: boolean;
     set id(value: string);
     _id: string;
     _autoId: boolean;
