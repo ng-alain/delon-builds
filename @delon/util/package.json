@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "12.4.2-3abea81d",
+  "version": "12.4.2-320f87a7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -20,6 +20,7 @@
     "angular"
   ],
   "dependencies": {
+    "@angular/cdk": "^12.2.13",
     "extend": "^3.0.2",
     "tslib": "^2.2.0"
   },
