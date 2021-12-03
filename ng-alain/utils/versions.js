@@ -20,7 +20,11 @@ const workspace_2 = require("./workspace");
  */
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     package_1.addPackage(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
-    package_1.addPackage(tree, [`ng-zorro-antd@^12.1.0`, `@angular/cdk@^12.2.13`]);
+    package_1.addPackage(tree, [
+        `ng-zorro-antd@^12.1.0`,
+        `@angular/cdk@^12.2.13`,
+        'ajv@^8.6.2'
+    ]);
     package_1.addPackage(tree, [
         `@angular-eslint/builder@~12.3.1`,
         `@angular-eslint/eslint-plugin@~12.3.1`,
@@ -43,7 +47,6 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular/language-service@~12.2.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    package_1.addPackage(tree, ['ajv@^8.6.2']);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {

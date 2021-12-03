@@ -14,7 +14,11 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     tree,
     ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`)
   );
-  addPackage(tree, [`ng-zorro-antd@^12.1.0`, `@angular/cdk@^12.2.13`]);
+  addPackage(tree, [
+    `ng-zorro-antd@^12.1.0`,
+    `@angular/cdk@^12.2.13`,
+    'ajv@^8.6.2'
+  ]);
   addPackage(
     tree,
     [
@@ -41,7 +45,6 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, ['ajv@^8.6.2']);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {
