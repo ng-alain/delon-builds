@@ -10,7 +10,7 @@ import { LazyService } from '@delon/util/other';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 const PDF_DEFULAT_CONFIG = {
-    lib: `https://cdn.jsdelivr.net/npm/pdfjs-dist@2.x/`,
+    lib: `https://cdn.jsdelivr.net/npm/pdfjs-dist@2.5.207/`,
     showAll: true,
     renderText: true,
     showBorders: false,

@@ -356,7 +356,7 @@
             this.lazy = lazy;
             this.ngZone = ngZone;
             this.cog = configSrv.merge('zip', {
-                url: 'https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js',
+                url: '//cdn.bootcss.com/jszip/3.3.0/jszip.min.js',
                 utils: []
             });
         }
