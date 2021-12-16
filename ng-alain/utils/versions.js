@@ -21,11 +21,6 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     package_1.addPackage(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     package_1.addPackage(tree, [
-        `ng-zorro-antd@^12.1.0`,
-        `@angular/cdk@^12.2.13`,
-        'ajv@^8.6.2'
-    ]);
-    package_1.addPackage(tree, [
         `@angular-eslint/builder@~12.3.1`,
         `@angular-eslint/eslint-plugin@~12.3.1`,
         `@angular-eslint/eslint-plugin-template@~12.3.1`,
@@ -34,11 +29,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@typescript-eslint/eslint-plugin@~4.29.2`,
         `@typescript-eslint/parser@~4.29.2`,
         `eslint@^7.32.0`,
-        `eslint-config-prettier@~8.3.0`,
+        `eslint-config-prettier@^2.2.1`,
         `eslint-plugin-import@~2.24.1`,
         `eslint-plugin-jsdoc@~36.0.7`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
-        `eslint-plugin-prettier@~3.4.1`,
+        `eslint-plugin-prettier@^2.2.1`,
         `prettier@^2.2.1`,
         `husky@^6.0.0`,
         `ng-alain@${version}`,
@@ -47,6 +42,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular/language-service@~12.2.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
+    package_1.addPackage(tree, ['ajv@^8.6.2', 'ajv-formats@^2.1.1']);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
