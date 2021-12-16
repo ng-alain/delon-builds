@@ -1,12 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getNodeMajorVersion = void 0;
 const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const fs_1 = require("fs");
 const path_1 = require("path");
 const utils_1 = require("../utils");
+const node_1 = require("../utils/node");
 const V = 12;
 function genRules(options) {
     return () => {
@@ -61,16 +61,12 @@ NG-ALAIN documentation site: https://ng-alain.com
 `));
     };
 }
-function getNodeMajorVersion() {
-    return +process.version.match(/^v(\d+)/)[1];
-}
-exports.getNodeMajorVersion = getNodeMajorVersion;
 function default_1(options) {
     return (tree, context) => {
         if (isUseCNPM()) {
             throw new schematics_1.SchematicsException(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
-        const nodeVersion = getNodeMajorVersion();
+        const nodeVersion = node_1.getNodeMajorVersion();
         const allowNodeVersions = [12, 14];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
             const versions = allowNodeVersions.join(', ');
