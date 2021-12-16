@@ -2339,6 +2339,7 @@
             _this.typing = '';
             _this.isAsync = false;
             _this.fixData = [];
+            _this.updateTyping = true;
             return _this;
         }
         AutoCompleteWidget.prototype.updateValue = function (item) {
@@ -2372,20 +2373,21 @@
             this.isAsync = !!asyncData;
             var orgTime = +(this.ui.debounceTime || 0);
             var time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
-            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }));
+            this.list = this.ngModel.valueChanges.pipe(operators.debounceTime(time), operators.startWith(''), operators.mergeMap(function (input) { return (_this.isAsync ? asyncData(input) : _this.filterData(input)); }), operators.map(function (res) {
+                var _a, _b;
+                var data = getEnum(res, null, _this.schema.readOnly);
+                if (_this.updateTyping) {
+                    _this.updateTyping = false;
+                    _this.typing = (_b = (_a = data.find(function (w) { return w.value === _this.value; })) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : '';
+                }
+                return data;
+            }));
         };
         AutoCompleteWidget.prototype.reset = function (value) {
-            var _this = this;
-            if (this.isAsync) {
-                this.ui.asyncData(value)
-                    .pipe(operators.takeUntil(this.sfItemComp.unsubscribe$), operators.map(function (res) { return getEnum(res, null, _this.schema.readOnly); }))
-                    .subscribe(function (data) {
-                    var _a, _b;
-                    _this.typing = (_b = (_a = data.find(function (w) { return w.value === _this.value; })) === null || _a === void 0 ? void 0 : _a.label) !== null && _b !== void 0 ? _b : '';
-                });
-                return;
-            }
             this.typing = value;
+            this.updateTyping = true;
+            if (this.isAsync)
+                return;
             switch (this.ui.type) {
                 case 'email':
                     this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);

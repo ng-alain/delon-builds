@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "12.4.2-7a81de7a",
+  "version": "12.4.2-f9d49d62",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "mockjs": "^1.1.0",
     "@types/mockjs": "^1.0.4",
-    "@delon/util": "^12.4.2-7a81de7a",
+    "@delon/util": "^12.4.2-f9d49d62",
     "tslib": "^2.2.0"
   },
   "main": "bundles/mock.umd.js",
