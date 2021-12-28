@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/lodop.umd.js",
-  "module": "../fesm2015/lodop.js",
-  "es2015": "../fesm2015/lodop.js",
-  "esm2015": "../esm2015/lodop/lodop.js",
-  "fesm2015": "../fesm2015/lodop.js",
+  "module": "../fesm2015/lodop.mjs",
+  "es2020": "../fesm2020/lodop.mjs",
+  "esm2020": "../esm2020/lodop/lodop.mjs",
+  "fesm2020": "../fesm2020/lodop.mjs",
+  "fesm2015": "../fesm2015/lodop.mjs",
   "typings": "lodop.d.ts",
-  "metadata": "lodop.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/lodop"
 }

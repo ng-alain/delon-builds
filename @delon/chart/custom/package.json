@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/g2Custom.umd.js",
-  "module": "../fesm2015/g2Custom.js",
-  "es2015": "../fesm2015/g2Custom.js",
-  "esm2015": "../esm2015/custom/g2Custom.js",
-  "fesm2015": "../fesm2015/g2Custom.js",
-  "typings": "g2Custom.d.ts",
-  "metadata": "g2Custom.metadata.json",
+  "module": "../fesm2015/delon-chart-custom.mjs",
+  "es2020": "../fesm2020/delon-chart-custom.mjs",
+  "esm2020": "../esm2020/custom/delon-chart-custom.mjs",
+  "fesm2020": "../fesm2020/delon-chart-custom.mjs",
+  "fesm2015": "../fesm2015/delon-chart-custom.mjs",
+  "typings": "delon-chart-custom.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/custom"
 }

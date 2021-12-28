@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/gauge.umd.js",
-  "module": "../fesm2015/gauge.js",
-  "es2015": "../fesm2015/gauge.js",
-  "esm2015": "../esm2015/gauge/gauge.js",
-  "fesm2015": "../fesm2015/gauge.js",
-  "typings": "gauge.d.ts",
-  "metadata": "gauge.metadata.json",
+  "module": "../fesm2015/delon-chart-gauge.mjs",
+  "es2020": "../fesm2020/delon-chart-gauge.mjs",
+  "esm2020": "../esm2020/gauge/delon-chart-gauge.mjs",
+  "fesm2020": "../fesm2020/delon-chart-gauge.mjs",
+  "fesm2015": "../fesm2015/delon-chart-gauge.mjs",
+  "typings": "delon-chart-gauge.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/gauge"
 }

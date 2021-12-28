@@ -3,6 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { AlainConfigService, AlainDateRangePickerShortcut } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
+import * as i0 from "@angular/core";
 export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     private dom;
     private nativeComp;
@@ -28,4 +29,6 @@ export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     ngAfterViewInit(): void;
     private destoryShortcut;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RangePickerDirective, [null, null, { optional: true; host: true; }, null, null]>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<RangePickerDirective, "nz-range-picker[extend]", ["extendRangePicker"], { "shortcut": "shortcut"; "ngModelEnd": "ngModelEnd"; }, { "ngModelEndChange": "ngModelEndChange"; }, never>;
 }

@@ -3,6 +3,7 @@ import type { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export interface G2RadarData {
     name: string;
     label: string;
@@ -32,4 +33,6 @@ export declare class G2RadarComponent extends G2BaseComponent {
     private genLegend;
     _click(i: number): void;
     onChanges(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2RadarComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2RadarComponent, "g2-radar", ["g2Radar"], { "title": "title"; "height": "height"; "padding": "padding"; "hasLegend": "hasLegend"; "tickCount": "tickCount"; "data": "data"; "colors": "colors"; }, { "clickItem": "clickItem"; }, never, never>;
 }

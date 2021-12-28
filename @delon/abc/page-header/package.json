@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/pageHeader.umd.js",
-  "module": "../fesm2015/pageHeader.js",
-  "es2015": "../fesm2015/pageHeader.js",
-  "esm2015": "../esm2015/page-header/pageHeader.js",
-  "fesm2015": "../fesm2015/pageHeader.js",
+  "module": "../fesm2015/pageHeader.mjs",
+  "es2020": "../fesm2020/pageHeader.mjs",
+  "esm2020": "../esm2020/page-header/pageHeader.mjs",
+  "fesm2020": "../fesm2020/pageHeader.mjs",
+  "fesm2015": "../fesm2015/pageHeader.mjs",
   "typings": "pageHeader.d.ts",
-  "metadata": "pageHeader.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/page-header"
 }

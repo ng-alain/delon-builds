@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/view.umd.js",
-  "module": "../fesm2015/view.js",
-  "es2015": "../fesm2015/view.js",
-  "esm2015": "../esm2015/sv/view.js",
-  "fesm2015": "../fesm2015/view.js",
+  "module": "../fesm2015/view.mjs",
+  "es2020": "../fesm2020/view.mjs",
+  "esm2020": "../esm2020/sv/view.mjs",
+  "fesm2020": "../fesm2020/view.mjs",
+  "fesm2015": "../fesm2015/view.mjs",
   "typings": "view.d.ts",
-  "metadata": "view.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/sv"
 }

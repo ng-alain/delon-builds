@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "12.4.2-f7b95aa8",
+  "version": "12.4.2-67f52c9d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,17 +21,61 @@
     "component"
   ],
   "dependencies": {
-    "ng-zorro-antd": "^12.0.1",
-    "@delon/acl": "^12.4.2-f7b95aa8",
-    "@delon/util": "^12.4.2-f7b95aa8",
-    "tslib": "^2.2.0"
+    "ng-zorro-antd": "^13.0.0-beta.1",
+    "@delon/acl": "^12.4.2-67f52c9d",
+    "@delon/util": "^12.4.2-67f52c9d",
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/theme.umd.js",
-  "module": "fesm2015/theme.js",
-  "es2015": "fesm2015/theme.js",
-  "esm2015": "esm2015/theme.js",
-  "fesm2015": "fesm2015/theme.js",
+  "module": "fesm2015/theme.mjs",
+  "es2020": "fesm2020/theme.mjs",
+  "esm2020": "esm2020/theme.mjs",
+  "fesm2020": "fesm2020/theme.mjs",
+  "fesm2015": "fesm2015/theme.mjs",
   "typings": "theme.d.ts",
-  "metadata": "theme.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./theme.d.ts",
+      "esm2020": "./esm2020/theme.mjs",
+      "es2020": "./fesm2020/theme.mjs",
+      "es2015": "./fesm2015/theme.mjs",
+      "node": "./fesm2015/theme.mjs",
+      "default": "./fesm2020/theme.mjs"
+    },
+    "./layout-blank": {
+      "types": "./layout-blank/layout-blank.d.ts",
+      "esm2020": "./esm2020/layout-blank/layout-blank.mjs",
+      "es2020": "./fesm2020/layout-blank.mjs",
+      "es2015": "./fesm2015/layout-blank.mjs",
+      "node": "./fesm2015/layout-blank.mjs",
+      "default": "./fesm2020/layout-blank.mjs"
+    },
+    "./layout-default": {
+      "types": "./layout-default/layout-blank.d.ts",
+      "esm2020": "./esm2020/layout-default/layout-blank.mjs",
+      "es2020": "./fesm2020/layout-blank.mjs",
+      "es2015": "./fesm2015/layout-blank.mjs",
+      "node": "./fesm2015/layout-blank.mjs",
+      "default": "./fesm2020/layout-blank.mjs"
+    },
+    "./setting-drawer": {
+      "types": "./setting-drawer/layout-blank.d.ts",
+      "esm2020": "./esm2020/setting-drawer/layout-blank.mjs",
+      "es2020": "./fesm2020/layout-blank.mjs",
+      "es2015": "./fesm2015/layout-blank.mjs",
+      "node": "./fesm2015/layout-blank.mjs",
+      "default": "./fesm2020/layout-blank.mjs"
+    },
+    "./theme-btn": {
+      "types": "./theme-btn/layout-blank.d.ts",
+      "esm2020": "./esm2020/theme-btn/layout-blank.mjs",
+      "es2020": "./fesm2020/layout-blank.mjs",
+      "es2015": "./fesm2015/layout-blank.mjs",
+      "node": "./fesm2015/layout-blank.mjs",
+      "default": "./fesm2020/layout-blank.mjs"
+    }
+  },
   "sideEffects": false
 }

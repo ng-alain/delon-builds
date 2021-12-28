@@ -1,6 +1,0 @@
-/**
- * Generated bundle index. Do not edit.
- */
-export * from './public_api';
-export { I18nPipe as ɵa } from './src/services/i18n/i18n.pipe';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidGhlbWUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi9wYWNrYWdlcy90aGVtZS90aGVtZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7R0FFRztBQUVILGNBQWMsY0FBYyxDQUFDO0FBRTdCLE9BQU8sRUFBQyxRQUFRLElBQUksRUFBRSxFQUFDLE1BQU0sK0JBQStCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEdlbmVyYXRlZCBidW5kbGUgaW5kZXguIERvIG5vdCBlZGl0LlxuICovXG5cbmV4cG9ydCAqIGZyb20gJy4vcHVibGljX2FwaSc7XG5cbmV4cG9ydCB7STE4blBpcGUgYXMgybVhfSBmcm9tICcuL3NyYy9zZXJ2aWNlcy9pMThuL2kxOG4ucGlwZSc7Il19

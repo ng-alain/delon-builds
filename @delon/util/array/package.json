@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/delon-util-array.umd.js",
-  "module": "../fesm2015/delon-util-array.js",
-  "es2015": "../fesm2015/delon-util-array.js",
-  "esm2015": "../esm2015/array/delon-util-array.js",
-  "fesm2015": "../fesm2015/delon-util-array.js",
+  "module": "../fesm2015/delon-util-array.mjs",
+  "es2020": "../fesm2020/delon-util-array.mjs",
+  "esm2020": "../esm2020/array/delon-util-array.mjs",
+  "fesm2020": "../fesm2020/delon-util-array.mjs",
+  "fesm2015": "../fesm2015/delon-util-array.mjs",
   "typings": "delon-util-array.d.ts",
-  "metadata": "delon-util-array.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/array"
 }

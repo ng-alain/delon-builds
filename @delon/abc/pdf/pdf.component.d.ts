@@ -5,6 +5,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { PdfChangeEvent, PdfExternalLinkTarget, PdfTextLayerMode, PdfZoomScale } from './pdf.types';
+import * as i0 from "@angular/core";
 export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy {
     private ngZone;
     private lazySrv;
@@ -86,4 +87,6 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
         [p in keyof PdfComponent]?: SimpleChange;
     }): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<PdfComponent, [null, null, null, null, null, { optional: true; }, null]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": "src"; "pi": "pi"; "showAll": "showAll"; "renderText": "renderText"; "textLayerMode": "textLayerMode"; "showBorders": "showBorders"; "stickToPage": "stickToPage"; "originalSize": "originalSize"; "fitToPage": "fitToPage"; "zoom": "zoom"; "zoomScale": "zoomScale"; "rotation": "rotation"; "autoReSize": "autoReSize"; "externalLinkTarget": "externalLinkTarget"; "delay": "delay"; }, { "change": "change"; }, never, never>;
 }

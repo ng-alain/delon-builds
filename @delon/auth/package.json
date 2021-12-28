@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "12.4.2-f7b95aa8",
+  "version": "12.4.2-67f52c9d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,15 +25,27 @@
     "ng-zorro-antd"
   ],
   "dependencies": {
-    "@delon/util": "^12.4.2-f7b95aa8",
-    "tslib": "^2.2.0"
+    "@delon/util": "^12.4.2-67f52c9d",
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/auth.umd.js",
-  "module": "fesm2015/auth.js",
-  "es2015": "fesm2015/auth.js",
-  "esm2015": "esm2015/auth.js",
-  "fesm2015": "fesm2015/auth.js",
+  "module": "fesm2015/auth.mjs",
+  "es2020": "fesm2020/auth.mjs",
+  "esm2020": "esm2020/auth.mjs",
+  "fesm2020": "fesm2020/auth.mjs",
+  "fesm2015": "fesm2015/auth.mjs",
   "typings": "auth.d.ts",
-  "metadata": "auth.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./auth.d.ts",
+      "esm2020": "./esm2020/auth.mjs",
+      "es2020": "./fesm2020/auth.mjs",
+      "es2015": "./fesm2015/auth.mjs",
+      "node": "./fesm2015/auth.mjs",
+      "default": "./fesm2020/auth.mjs"
+    }
+  },
   "sideEffects": false
 }
