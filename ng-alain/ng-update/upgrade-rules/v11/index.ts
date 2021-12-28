@@ -34,7 +34,7 @@ function fixThirdVersion(): Rule {
     // dependencies
     addPackage(
       tree,
-      [`ng-alain-plugin-theme@^13.0.0`, `ng-alain-sts@^0.0.1`],
+      [`ng-alain-plugin-theme@^13.0.1`, `ng-alain-sts@^0.0.1`],
       'devDependencies'
     );
     logStart(context, `Upgrade third libs version number`);

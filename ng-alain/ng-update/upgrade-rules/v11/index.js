@@ -34,7 +34,7 @@ function fixThirdVersion() {
             'ajv@^8.8.2'
         ], 'dependencies');
         // dependencies
-        (0, utils_1.addPackage)(tree, [`ng-alain-plugin-theme@^13.0.0`, `ng-alain-sts@^0.0.1`], 'devDependencies');
+        (0, utils_1.addPackage)(tree, [`ng-alain-plugin-theme@^13.0.1`, `ng-alain-sts@^0.0.1`], 'devDependencies');
         (0, utils_1.logStart)(context, `Upgrade third libs version number`);
     };
 }

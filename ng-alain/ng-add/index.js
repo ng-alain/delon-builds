@@ -67,7 +67,7 @@ function default_1(options) {
             throw new schematics_1.SchematicsException(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
         }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
-        const allowNodeVersions = [12, 14];
+        const allowNodeVersions = [12, 14, 16];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
             const versions = allowNodeVersions.join(', ');
             throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3`);
