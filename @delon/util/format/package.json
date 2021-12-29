@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/delon-util-format.umd.js",
-  "module": "../fesm2015/delon-util-format.js",
-  "es2015": "../fesm2015/delon-util-format.js",
-  "esm2015": "../esm2015/format/delon-util-format.js",
-  "fesm2015": "../fesm2015/delon-util-format.js",
+  "module": "../fesm2015/delon-util-format.mjs",
+  "es2020": "../fesm2020/delon-util-format.mjs",
+  "esm2020": "../esm2020/format/delon-util-format.mjs",
+  "fesm2020": "../fesm2020/delon-util-format.mjs",
+  "fesm2015": "../fesm2015/delon-util-format.mjs",
   "typings": "delon-util-format.d.ts",
-  "metadata": "delon-util-format.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/format"
 }

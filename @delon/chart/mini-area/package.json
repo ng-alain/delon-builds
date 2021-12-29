@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/mini-area.umd.js",
-  "module": "../fesm2015/mini-area.js",
-  "es2015": "../fesm2015/mini-area.js",
-  "esm2015": "../esm2015/mini-area/mini-area.js",
-  "fesm2015": "../fesm2015/mini-area.js",
-  "typings": "mini-area.d.ts",
-  "metadata": "mini-area.metadata.json",
+  "module": "../fesm2015/delon-chart-mini-area.mjs",
+  "es2020": "../fesm2020/delon-chart-mini-area.mjs",
+  "esm2020": "../esm2020/mini-area/delon-chart-mini-area.mjs",
+  "fesm2020": "../fesm2020/delon-chart-mini-area.mjs",
+  "fesm2015": "../fesm2015/delon-chart-mini-area.mjs",
+  "typings": "delon-chart-mini-area.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/mini-area"
 }

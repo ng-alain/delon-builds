@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { MenuService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
+import * as i0 from "@angular/core";
 export declare class ReuseTabService implements OnDestroy {
     private injector;
     private menuService;
@@ -184,4 +185,6 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
 }

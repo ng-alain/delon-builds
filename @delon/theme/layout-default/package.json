@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/layout-default.umd.js",
-  "module": "../fesm2015/layout-default.js",
-  "es2015": "../fesm2015/layout-default.js",
-  "esm2015": "../esm2015/layout-default/layout-default.js",
-  "fesm2015": "../fesm2015/layout-default.js",
-  "typings": "layout-default.d.ts",
-  "metadata": "layout-default.metadata.json",
+  "module": "../fesm2015/layout-blank.mjs",
+  "es2020": "../fesm2020/layout-blank.mjs",
+  "esm2020": "../esm2020/layout-default/layout-blank.mjs",
+  "fesm2020": "../fesm2020/layout-blank.mjs",
+  "fesm2015": "../fesm2015/layout-blank.mjs",
+  "typings": "layout-blank.d.ts",
   "sideEffects": false,
   "name": "@delon/theme/layout-default"
 }

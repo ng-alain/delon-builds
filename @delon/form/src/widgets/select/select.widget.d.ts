@@ -4,6 +4,7 @@ import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
 import { SFSelectWidgetSchema } from './schema';
+import * as i0 from "@angular/core";
 export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> implements OnInit {
     private search$;
     i: SFSelectWidgetSchema;
@@ -19,4 +20,6 @@ export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> 
     openChange(status: boolean): void;
     scrollToBottom(): void;
     onSearch(value: string): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SelectWidget, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never>;
 }

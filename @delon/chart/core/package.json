@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/delon-chart-core.umd.js",
-  "module": "../fesm2015/delon-chart-core.js",
-  "es2015": "../fesm2015/delon-chart-core.js",
-  "esm2015": "../esm2015/core/delon-chart-core.js",
-  "fesm2015": "../fesm2015/delon-chart-core.js",
+  "module": "../fesm2015/delon-chart-core.mjs",
+  "es2020": "../fesm2020/delon-chart-core.mjs",
+  "esm2020": "../esm2020/core/delon-chart-core.mjs",
+  "fesm2020": "../fesm2020/delon-chart-core.mjs",
+  "fesm2015": "../fesm2015/delon-chart-core.mjs",
   "typings": "delon-chart-core.d.ts",
-  "metadata": "delon-chart-core.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/core"
 }

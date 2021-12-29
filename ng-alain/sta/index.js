@@ -31,7 +31,7 @@ const filePrefix = `/* eslint-disable */
 `;
 function addPathInTsConfig(name) {
     return (tree) => {
-        const json = json_1.readJSON(tree, 'tsconfig.json', 'compilerOptions');
+        const json = (0, json_1.readJSON)(tree, 'tsconfig.json', 'compilerOptions');
         if (json == null)
             return tree;
         if (!json.compilerOptions)
@@ -41,20 +41,20 @@ function addPathInTsConfig(name) {
         const paths = json.compilerOptions.paths;
         paths[`@${name}`] = [`src/app/_${name}/index`];
         paths[`@${name}/*`] = [`src/app/_${name}/*`];
-        json_1.writeJSON(tree, 'tsconfig.json', json);
+        (0, json_1.writeJSON)(tree, 'tsconfig.json', json);
         return tree;
     };
 }
 function cleanOutput(p) {
     try {
-        fs_1.rmdirSync(p, { recursive: true });
-        fs_1.mkdirSync(p);
+        (0, fs_1.rmdirSync)(p, { recursive: true });
+        (0, fs_1.mkdirSync)(p);
     }
     catch (e) { }
 }
 function fix(output, res, tree, context) {
     const indexList = [`models`, `_base.service`];
-    const basePath = core_1.normalize(path_1.join(project.root, output.replace(process.cwd(), '')));
+    const basePath = (0, core_1.normalize)((0, path_1.join)(project.root, output.replace(process.cwd(), '')));
     try {
         // definitions
         const dataTpl = res.getTemplate({ name: 'dataContracts', fileName: 'data-contracts.eta' });
@@ -94,8 +94,8 @@ function genProxy(config) {
     return (tree, context) => {
         var _a;
         context.logger.info(color_1.colors.blue(`- Name: ${config.name}`));
-        const output = (config.output = path_1.resolve(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/_${config.name}`));
-        const templates = path_1.resolve(__dirname, './templates');
+        const output = (config.output = (0, path_1.resolve)(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/_${config.name}`));
+        const templates = (0, path_1.resolve)(__dirname, './templates');
         if (config.url) {
             context.logger.info(color_1.colors.blue(`- Using url data: ${config.url}`));
         }
@@ -157,7 +157,7 @@ function genProxy(config) {
                         return formattedModelName;
                     }
                 } }, config.generateApiOptions);
-            swagger_typescript_api_1.generateApi(options)
+            (0, swagger_typescript_api_1.generateApi)(options)
                 .then((res) => {
                 cleanOutput(output);
                 fix(output, res, tree, context);
@@ -178,10 +178,10 @@ function tryLoadConfig(context, configPath) {
     if (!configPath || configPath.length <= 0)
         return null;
     try {
-        const configFile = path_1.resolve(process.cwd(), configPath);
+        const configFile = (0, path_1.resolve)(process.cwd(), configPath);
         context.logger.info(color_1.colors.blue(`- Use config file: ${configFile}`));
-        if (fs_1.existsSync(configFile)) {
-            return jsonc_parser_1.parse(fs_1.readFileSync(configFile).toString('utf8'));
+        if ((0, fs_1.existsSync)(configFile)) {
+            return (0, jsonc_parser_1.parse)((0, fs_1.readFileSync)(configFile).toString('utf8'));
         }
     }
     catch (err) {
@@ -191,7 +191,7 @@ function tryLoadConfig(context, configPath) {
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         context.logger.info(color_1.colors.yellow(`The ng g ng-alain:sta is currently in testing status and may change before the major version of '13'`));
-        project = (yield workspace_1.getProject(tree, options.project)).project;
+        project = (yield (0, workspace_1.getProject)(tree, options.project)).project;
         const config = Object.assign(Object.assign({ name: 'sta' }, options), tryLoadConfig(context, options.config));
         if (typeof config.generateApiOptions === 'string') {
             try {
@@ -201,7 +201,7 @@ function default_1(options) {
                 throw new schematics_1.SchematicsException(`Parse generateApiParams error: '${config.generateApiOptions}' => ${ex}`);
             }
         }
-        return schematics_1.chain([addPathInTsConfig(config.name), genProxy(config), finished()]);
+        return (0, schematics_1.chain)([addPathInTsConfig(config.name), genProxy(config), finished()]);
     });
 }
 exports.default = default_1;

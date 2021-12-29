@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/xlsx.umd.js",
-  "module": "../fesm2015/xlsx.js",
-  "es2015": "../fesm2015/xlsx.js",
-  "esm2015": "../esm2015/xlsx/xlsx.js",
-  "fesm2015": "../fesm2015/xlsx.js",
+  "module": "../fesm2015/xlsx.mjs",
+  "es2020": "../fesm2020/xlsx.mjs",
+  "esm2020": "../esm2020/xlsx/xlsx.mjs",
+  "fesm2020": "../fesm2020/xlsx.mjs",
+  "fesm2015": "../fesm2015/xlsx.mjs",
   "typings": "xlsx.d.ts",
-  "metadata": "xlsx.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/xlsx"
 }

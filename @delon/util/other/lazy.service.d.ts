@@ -1,5 +1,6 @@
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export interface LazyResult {
     path: string;
     status: 'ok' | 'error' | 'loading';
@@ -19,4 +20,6 @@ export declare class LazyService {
     load(paths: string | string[]): Promise<LazyResult[]>;
     loadScript(path: string, innerContent?: string): Promise<LazyResult>;
     loadStyle(path: string, rel?: string, innerContent?: string): Promise<LazyResult>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LazyService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LazyService>;
 }

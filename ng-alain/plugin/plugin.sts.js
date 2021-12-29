@@ -10,7 +10,7 @@ function fixPackage(options) {
     };
 }
 function fixFiles() {
-    return schematics_1.chain([schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/sts'), [schematics_1.move('/_cli-tpl')]), schematics_1.MergeStrategy.Overwrite)]);
+    return (0, schematics_1.chain)([(0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/sts'), [(0, schematics_1.move)('/_cli-tpl')]), schematics_1.MergeStrategy.Overwrite)]);
 }
 function installPackages() {
     return (_tree, context) => {

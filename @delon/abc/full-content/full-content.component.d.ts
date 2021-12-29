@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FullContentService } from './full-content.service';
+import * as i0 from "@angular/core";
 export declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
     private el;
     private cdr;
@@ -33,4 +34,6 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FullContentComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "fullscreen": "fullscreen"; "hideTitle": "hideTitle"; "padding": "padding"; }, { "fullscreenChange": "fullscreenChange"; }, never, ["*"]>;
 }

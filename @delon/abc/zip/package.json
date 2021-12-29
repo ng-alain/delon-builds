@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/zip.umd.js",
-  "module": "../fesm2015/zip.js",
-  "es2015": "../fesm2015/zip.js",
-  "esm2015": "../esm2015/zip/zip.js",
-  "fesm2015": "../fesm2015/zip.js",
+  "module": "../fesm2015/zip.mjs",
+  "es2020": "../fesm2020/zip.mjs",
+  "esm2020": "../esm2020/zip/zip.mjs",
+  "fesm2020": "../fesm2020/zip.mjs",
+  "fesm2015": "../fesm2015/zip.mjs",
   "typings": "zip.d.ts",
-  "metadata": "zip.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/zip"
 }

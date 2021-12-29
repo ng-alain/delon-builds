@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "12.4.2-2b4de4cf",
+  "version": "12.4.2-e067b33d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,19 +28,31 @@
     "component"
   ],
   "dependencies": {
-    "ajv": "^8.6.2",
+    "ajv": "^8.8.2",
     "ajv-formats": "^2.1.1",
-    "@delon/theme": "^12.4.2-2b4de4cf",
-    "@delon/acl": "^12.4.2-2b4de4cf",
-    "@delon/util": "^12.4.2-2b4de4cf",
-    "tslib": "^2.2.0"
+    "@delon/theme": "^12.4.2-e067b33d",
+    "@delon/acl": "^12.4.2-e067b33d",
+    "@delon/util": "^12.4.2-e067b33d",
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/form.umd.js",
-  "module": "fesm2015/form.js",
-  "es2015": "fesm2015/form.js",
-  "esm2015": "esm2015/form.js",
-  "fesm2015": "fesm2015/form.js",
+  "module": "fesm2015/form.mjs",
+  "es2020": "fesm2020/form.mjs",
+  "esm2020": "esm2020/form.mjs",
+  "fesm2020": "fesm2020/form.mjs",
+  "fesm2015": "fesm2015/form.mjs",
   "typings": "form.d.ts",
-  "metadata": "form.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./form.d.ts",
+      "esm2020": "./esm2020/form.mjs",
+      "es2020": "./fesm2020/form.mjs",
+      "es2015": "./fesm2015/form.mjs",
+      "node": "./fesm2015/form.mjs",
+      "default": "./fesm2020/form.mjs"
+    }
+  },
   "sideEffects": false
 }
