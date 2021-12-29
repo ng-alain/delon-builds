@@ -2,9 +2,11 @@ import { colors } from '@angular/cli/utilities/color';
 
 import { chain, Rule, schematic, Tree, SchematicContext, SchematicsException } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
+import { readdirSync, statSync } from 'fs';
+import { join } from 'path';
 
 import { Schema as ApplicationOptions } from '../application/schema';
-import { readJSON, readPackage } from '../utils';
+import { readPackage } from '../utils';
 import { getNodeMajorVersion } from '../utils/node';
 import { Schema as NgAddOptions } from './schema';
 
@@ -55,8 +57,16 @@ function genRules(options: NgAddOptions): Rule {
   };
 }
 
-function isYarn(tree: Tree): boolean {
-  return readJSON(tree, '/angular.json')?.cli?.packageManager === 'yarn';
+function getFiles(): string[] {
+  const nodeModulesPath = join(process.cwd(), 'node_modules');
+  if (!statSync(nodeModulesPath).isDirectory()) return [];
+  return readdirSync(nodeModulesPath) || [];
+}
+
+function isUseCNPM(): boolean {
+  const names = getFiles();
+  const res = ['_@angular', '_ng-zorro-antd'].every(prefix => names.findIndex(w => w.startsWith(prefix)) !== -1);
+  return res;
 }
 
 function finished(): Rule {
@@ -75,8 +85,10 @@ NG-ALAIN documentation site: https://ng-alain.com
 
 export default function (options: NgAddOptions): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    if (!isYarn(tree)) {
-      context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
+    if (isUseCNPM()) {
+      throw new SchematicsException(
+        `Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`
+      );
     }
 
     const nodeVersion = getNodeMajorVersion();
