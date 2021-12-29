@@ -23,7 +23,7 @@ function fixThirdVersion(): Rule {
     addPackage(
       tree,
       [
-        `ng-zorro-antd@^13.0.0`,
+        `ng-zorro-antd@^13.0.0-beta.1`,
         `ngx-ueditor@^13.0.0`,
         `ngx-tinymce@^13.0.0`,
         `ngx-countdown@^13.0.0`,
