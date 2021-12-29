@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/edit.umd.js",
-  "module": "../fesm2015/edit.js",
-  "es2015": "../fesm2015/edit.js",
-  "esm2015": "../esm2015/se/edit.js",
-  "fesm2015": "../fesm2015/edit.js",
+  "module": "../fesm2015/edit.mjs",
+  "es2020": "../fesm2020/edit.mjs",
+  "esm2020": "../esm2020/se/edit.mjs",
+  "fesm2020": "../fesm2020/edit.mjs",
+  "fesm2015": "../fesm2015/edit.mjs",
   "typings": "edit.d.ts",
-  "metadata": "edit.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/se"
 }

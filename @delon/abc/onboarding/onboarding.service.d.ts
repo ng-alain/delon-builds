@@ -5,6 +5,7 @@ import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { OnboardingConfig } from './onboarding.types';
+import * as i0 from "@angular/core";
 export declare class OnboardingService implements OnDestroy {
     private i18n;
     private appRef;
@@ -59,4 +60,6 @@ export declare class OnboardingService implements OnDestroy {
      */
     done(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, [null, null, null, null, null, null, null, { optional: true; }]>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<OnboardingService>;
 }

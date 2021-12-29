@@ -1,5 +1,6 @@
 import { PipeTransform } from '@angular/core';
 import { FormatMaskOption } from '@delon/util/format';
+import * as i0 from "@angular/core";
 export declare class FormatMaskPipe implements PipeTransform {
     /**
      * Format mask
@@ -21,4 +22,6 @@ export declare class FormatMaskPipe implements PipeTransform {
      * ```
      */
     transform(value: string, mask: string | FormatMaskOption): string;
+    static ɵfac: i0.ɵɵFactoryDeclaration<FormatMaskPipe, never>;
+    static ɵpipe: i0.ɵɵPipeDeclaration<FormatMaskPipe, "mask">;
 }

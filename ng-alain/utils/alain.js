@@ -69,14 +69,14 @@ function resolveSchema(tree, project, schema, alainProject) {
     // path
     refreshPathRoot(project, schema, alainProject);
     schema.path += `/${schema.module}`;
-    const parsedPath = parse_name_1.parseName(schema.path, schema.name);
+    const parsedPath = (0, parse_name_1.parseName)(schema.path, schema.name);
     schema.name = parsedPath.name;
     schema.path = parsedPath.path;
     const fullPath = path.join(process.cwd(), schema.path, schema.name);
     if (fs.existsSync(fullPath) && fs.readdirSync(fullPath).length > 0) {
         throw new schematics_1.SchematicsException(`The directory (${fullPath}) already exists`);
     }
-    schema.importModulePath = find_module_1.findModuleFromOptions(tree, schema);
+    schema.importModulePath = (0, find_module_1.findModuleFromOptions)(tree, schema);
     if (!schema._filesPath) {
         // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
         if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName)) {
@@ -96,20 +96,19 @@ function resolveSchema(tree, project, schema, alainProject) {
     schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     // html selector
     schema.selector = schema.selector || buildSelector(schema, project.prefix);
-    validation_1.validateName(schema.name);
-    validation_1.validateHtmlSelector(schema.selector);
+    (0, validation_1.validateHtmlSelector)(schema.selector);
 }
 function addImportToModule(tree, filePath, symbolName, fileName) {
-    const source = ast_1.getSourceFile(tree, filePath);
-    const change = ast_utils_1.insertImport(source, filePath, symbolName, fileName);
+    const source = (0, ast_1.getSourceFile)(tree, filePath);
+    const change = (0, ast_utils_1.insertImport)(source, filePath, symbolName, fileName);
     const declarationRecorder = tree.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     tree.commitUpdate(declarationRecorder);
 }
 exports.addImportToModule = addImportToModule;
 function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
-    const source = ast_1.getSourceFile(tree, filePath);
-    const node = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, variableName);
+    const source = (0, ast_1.getSourceFile)(tree, filePath);
+    const node = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, variableName);
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path '${filePath}'.`);
     }
@@ -123,7 +122,7 @@ function addValueToVariable(tree, filePath, variableName, text, needWrap = true)
 exports.addValueToVariable = addValueToVariable;
 function getRelativePath(filePath, schema) {
     const importPath = `/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.component`;
-    return find_module_1.buildRelativePath(filePath, importPath);
+    return (0, find_module_1.buildRelativePath)(filePath, importPath);
 }
 function addDeclaration(schema) {
     return (tree) => {
@@ -144,7 +143,7 @@ function addDeclaration(schema) {
 }
 function buildAlain(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const res = yield workspace_1.getProject(tree, schema.project);
+        const res = yield (0, workspace_1.getProject)(tree, schema.project);
         if (schema.project && res.name !== schema.project) {
             throw new schematics_1.SchematicsException(`The specified project does not match '${schema.project}', current: ${res.name}`);
         }
@@ -153,18 +152,18 @@ function buildAlain(schema) {
         schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;
-        const templateSource = schematics_1.apply(schematics_1.url(schema._filesPath), [
-            schematics_1.filter(filePath => !filePath.endsWith('.DS_Store')),
-            schema.skipTests ? schematics_1.filter(filePath => !filePath.endsWith('.spec.ts.template')) : schematics_1.noop(),
-            schema.inlineStyle ? schematics_1.filter(filePath => !filePath.endsWith('.__style__.template')) : schematics_1.noop(),
-            schema.inlineTemplate ? schematics_1.filter(filePath => !filePath.endsWith('.html.template')) : schematics_1.noop(),
+        const templateSource = (0, schematics_1.apply)((0, schematics_1.url)(schema._filesPath), [
+            (0, schematics_1.filter)(filePath => !filePath.endsWith('.DS_Store')),
+            schema.skipTests ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.spec.ts.template')) : (0, schematics_1.noop)(),
+            schema.inlineStyle ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.__style__.template')) : (0, schematics_1.noop)(),
+            schema.inlineTemplate ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.html.template')) : (0, schematics_1.noop)(),
             // schema.spec ? noop() : filter(filePath => !filePath.endsWith('.spec.ts')),
             // schema.inlineStyle ? filter(filePath => !filePath.endsWith('.__styleext__')) : noop(),
             // schema.inlineTemplate ? filter(filePath => !filePath.endsWith('.html')) : noop(),
-            schematics_1.applyTemplates(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
-            schematics_1.move(null, `${schema.path}/`)
+            (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
+            (0, schematics_1.move)(null, `${schema.path}/`)
         ]);
-        return schematics_1.chain([schematics_1.branchAndMerge(schematics_1.chain([addDeclaration(schema), schematics_1.mergeWith(templateSource)]))]);
+        return (0, schematics_1.chain)([(0, schematics_1.branchAndMerge)((0, schematics_1.chain)([addDeclaration(schema), (0, schematics_1.mergeWith)(templateSource)]))]);
     });
 }
 exports.buildAlain = buildAlain;

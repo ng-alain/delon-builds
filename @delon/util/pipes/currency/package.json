@@ -1,11 +1,10 @@
 {
-  "main": "../../bundles/delon-util-pipes-currency.umd.js",
-  "module": "../../fesm2015/delon-util-pipes-currency.js",
-  "es2015": "../../fesm2015/delon-util-pipes-currency.js",
-  "esm2015": "../../esm2015/pipes/currency/delon-util-pipes-currency.js",
-  "fesm2015": "../../fesm2015/delon-util-pipes-currency.js",
+  "module": "../../fesm2015/delon-util-pipes-currency.mjs",
+  "es2020": "../../fesm2020/delon-util-pipes-currency.mjs",
+  "esm2020": "../../esm2020/pipes/currency/delon-util-pipes-currency.mjs",
+  "fesm2020": "../../fesm2020/delon-util-pipes-currency.mjs",
+  "fesm2015": "../../fesm2015/delon-util-pipes-currency.mjs",
   "typings": "delon-util-pipes-currency.d.ts",
-  "metadata": "delon-util-pipes-currency.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/pipes/currency"
 }

@@ -9,8 +9,8 @@ function default_1(options) {
         { name: 'list', options: { name, modal: false } },
         { name: 'edit', options: { name: 'edit', modal: true, target: name } },
         { name: 'view', options: { name: 'view', modal: true, target: name } }
-    ].forEach(item => rules.push(schematics_1.schematic(item.name, Object.assign(Object.assign({}, options), item.options))));
-    return schematics_1.chain(rules);
+    ].forEach(item => rules.push((0, schematics_1.schematic)(item.name, Object.assign(Object.assign({}, options), item.options))));
+    return (0, schematics_1.chain)(rules);
 }
 exports.default = default_1;
 //# sourceMappingURL=index.js.map

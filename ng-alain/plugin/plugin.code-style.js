@@ -5,7 +5,7 @@ const utils_1 = require("../utils");
 const code_style_1 = require("../utils/code-style");
 function pluginCodeStyle(options) {
     return (tree) => {
-        const json = utils_1.readPackage(tree);
+        const json = (0, utils_1.readPackage)(tree);
         if (json == null)
             return;
         if (options.type === 'add') {
@@ -14,7 +14,7 @@ function pluginCodeStyle(options) {
         else {
             delete json[code_style_1.LINT_STAGED];
         }
-        utils_1.writePackage(tree, json);
+        (0, utils_1.writePackage)(tree, json);
     };
 }
 exports.pluginCodeStyle = pluginCodeStyle;

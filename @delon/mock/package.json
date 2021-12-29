@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "12.4.2-22cacb4e",
+  "version": "12.4.2-97c7c6db",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,15 +28,27 @@
   "dependencies": {
     "mockjs": "^1.1.0",
     "@types/mockjs": "^1.0.4",
-    "@delon/util": "^12.4.2-22cacb4e",
-    "tslib": "^2.2.0"
+    "@delon/util": "^12.4.2-97c7c6db",
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/mock.umd.js",
-  "module": "fesm2015/mock.js",
-  "es2015": "fesm2015/mock.js",
-  "esm2015": "esm2015/mock.js",
-  "fesm2015": "fesm2015/mock.js",
+  "module": "fesm2015/mock.mjs",
+  "es2020": "fesm2020/mock.mjs",
+  "esm2020": "esm2020/mock.mjs",
+  "fesm2020": "fesm2020/mock.mjs",
+  "fesm2015": "fesm2015/mock.mjs",
   "typings": "mock.d.ts",
-  "metadata": "mock.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./mock.d.ts",
+      "esm2020": "./esm2020/mock.mjs",
+      "es2020": "./fesm2020/mock.mjs",
+      "es2015": "./fesm2015/mock.mjs",
+      "node": "./fesm2015/mock.mjs",
+      "default": "./fesm2020/mock.mjs"
+    }
+  },
   "sideEffects": false
 }

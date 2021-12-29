@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/delon-chart-chart-echarts.umd.js",
-  "module": "../fesm2015/delon-chart-chart-echarts.js",
-  "es2015": "../fesm2015/delon-chart-chart-echarts.js",
-  "esm2015": "../esm2015/chart-echarts/delon-chart-chart-echarts.js",
-  "fesm2015": "../fesm2015/delon-chart-chart-echarts.js",
+  "module": "../fesm2015/delon-chart-chart-echarts.mjs",
+  "es2020": "../fesm2020/delon-chart-chart-echarts.mjs",
+  "esm2020": "../esm2020/chart-echarts/delon-chart-chart-echarts.mjs",
+  "fesm2020": "../fesm2020/delon-chart-chart-echarts.mjs",
+  "fesm2015": "../fesm2015/delon-chart-chart-echarts.mjs",
   "typings": "delon-chart-chart-echarts.d.ts",
-  "metadata": "delon-chart-chart-echarts.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/chart-echarts"
 }

@@ -3,6 +3,7 @@ import type { Event } from '@antv/g2';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export interface G2PieData {
     x: NzSafeAny;
     y: number;
@@ -60,4 +61,6 @@ export declare class G2PieComponent extends G2BaseComponent {
     private genLegend;
     _click(i: number): void;
     onChanges(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2PieComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": "animate"; "color": "color"; "subTitle": "subTitle"; "total": "total"; "height": "height"; "hasLegend": "hasLegend"; "inner": "inner"; "padding": "padding"; "percent": "percent"; "tooltip": "tooltip"; "lineWidth": "lineWidth"; "blockMaxWidth": "blockMaxWidth"; "select": "select"; "valueFormat": "valueFormat"; "data": "data"; "colors": "colors"; "interaction": "interaction"; "ratio": "ratio"; }, { "clickItem": "clickItem"; }, never, never>;
 }

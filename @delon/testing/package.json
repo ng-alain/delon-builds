@@ -1,6 +1,6 @@
 {
   "name": "@delon/testing",
-  "version": "12.4.2-22cacb4e",
+  "version": "12.4.2-97c7c6db",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -17,15 +17,27 @@
     "angular",
     "testing"
   ],
-  "main": "bundles/testing.umd.js",
-  "module": "fesm2015/testing.js",
-  "es2015": "fesm2015/testing.js",
-  "esm2015": "esm2015/testing.js",
-  "fesm2015": "fesm2015/testing.js",
+  "module": "fesm2015/testing.mjs",
+  "es2020": "fesm2020/testing.mjs",
+  "esm2020": "esm2020/testing.mjs",
+  "fesm2020": "fesm2020/testing.mjs",
+  "fesm2015": "fesm2015/testing.mjs",
   "typings": "testing.d.ts",
-  "metadata": "testing.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./testing.d.ts",
+      "esm2020": "./esm2020/testing.mjs",
+      "es2020": "./fesm2020/testing.mjs",
+      "es2015": "./fesm2015/testing.mjs",
+      "node": "./fesm2015/testing.mjs",
+      "default": "./fesm2020/testing.mjs"
+    }
+  },
   "sideEffects": false,
   "dependencies": {
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   }
 }

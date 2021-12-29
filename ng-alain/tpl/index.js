@@ -26,7 +26,7 @@ function parseExtraArgs(options) {
     }
     options.extraArgs = {};
     org.forEach(val => {
-        const argArr = val.substr(2).split('=');
+        const argArr = val.substring(2).split('=');
         if (argArr.length === 2) {
             options.extraArgs[argArr[0]] = argArr[1];
         }
@@ -48,7 +48,7 @@ function runFixJS(options) {
 function default_1(options) {
     genFiles(options);
     return () => {
-        return runFixJS(options).then(() => utils_1.buildAlain(Object.assign({ schematicName: 'tpl' }, options)));
+        return runFixJS(options).then(() => (0, utils_1.buildAlain)(Object.assign({ schematicName: 'tpl' }, options)));
     };
 }
 exports.default = default_1;
