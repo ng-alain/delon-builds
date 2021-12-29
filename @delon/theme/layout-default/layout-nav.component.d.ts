@@ -49,7 +49,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     to(item: Menu): void;
     toggleOpen(item: Nav): void;
     _click(): void;
-    _docClick(): void;
+    closeSubMenu(): void;
     private openedByUrl;
     ngOnInit(): void;
     ngOnDestroy(): void;
