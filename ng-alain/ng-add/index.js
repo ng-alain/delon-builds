@@ -3,8 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
-const fs_1 = require("fs");
-const path_1 = require("path");
 const utils_1 = require("../utils");
 const node_1 = require("../utils/node");
 const V = 13;
@@ -40,16 +38,9 @@ function genRules(options) {
         return (0, schematics_1.chain)(rules);
     };
 }
-function getFiles() {
-    const nodeModulesPath = (0, path_1.join)(process.cwd(), 'node_modules');
-    if (!(0, fs_1.statSync)(nodeModulesPath).isDirectory())
-        return [];
-    return (0, fs_1.readdirSync)(nodeModulesPath) || [];
-}
-function isUseCNPM() {
-    const names = getFiles();
-    const res = ['_@angular', '_ng-zorro-antd'].every(prefix => names.findIndex(w => w.startsWith(prefix)) !== -1);
-    return res;
+function isYarn(tree) {
+    var _a, _b;
+    return ((_b = (_a = (0, utils_1.readJSON)(tree, '/angular.json')) === null || _a === void 0 ? void 0 : _a.cli) === null || _b === void 0 ? void 0 : _b.packageManager) === 'yarn';
 }
 function finished() {
     return (_, context) => {
@@ -63,8 +54,8 @@ NG-ALAIN documentation site: https://ng-alain.com
 }
 function default_1(options) {
     return (tree, context) => {
-        if (isUseCNPM()) {
-            throw new schematics_1.SchematicsException(`Sorry, Don't use cnpm to install dependencies, pls refer to: https://ng-alain.com/docs/faq#Installation`);
+        if (!isYarn(tree)) {
+            context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
         }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
         const allowNodeVersions = [12, 14, 16];
