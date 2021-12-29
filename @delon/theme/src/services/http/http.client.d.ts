@@ -2,6 +2,7 @@ import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpParams, HttpRespon
 import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export declare type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
@@ -562,4 +563,6 @@ export declare class _HttpClient {
         withCredentials?: boolean;
         context?: HttpContext;
     }): Observable<any>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<_HttpClient, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<_HttpClient>;
 }

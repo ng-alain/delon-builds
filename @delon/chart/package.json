@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "12.4.2-3ec8d067",
+  "version": "12.4.2-13ed1493",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,18 +26,166 @@
   ],
   "dependencies": {
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.1.24",
-    "echarts": "^5.1.2",
-    "@delon/util": "^12.4.2-3ec8d067",
-    "@delon/theme": "^12.4.2-3ec8d067",
-    "tslib": "^2.2.0"
+    "@antv/g2": "^4.1.35",
+    "echarts": "^5.2.2",
+    "@delon/util": "^12.4.2-13ed1493",
+    "@delon/theme": "^12.4.2-13ed1493",
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/chart.umd.js",
-  "module": "fesm2015/chart.js",
-  "es2015": "fesm2015/chart.js",
-  "esm2015": "esm2015/chart.js",
-  "fesm2015": "fesm2015/chart.js",
+  "module": "fesm2015/chart.mjs",
+  "es2020": "fesm2020/chart.mjs",
+  "esm2020": "esm2020/chart.mjs",
+  "fesm2020": "fesm2020/chart.mjs",
+  "fesm2015": "fesm2015/chart.mjs",
   "typings": "chart.d.ts",
-  "metadata": "chart.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./chart.d.ts",
+      "esm2020": "./esm2020/chart.mjs",
+      "es2020": "./fesm2020/chart.mjs",
+      "es2015": "./fesm2015/chart.mjs",
+      "node": "./fesm2015/chart.mjs",
+      "default": "./fesm2020/chart.mjs"
+    },
+    "./bar": {
+      "types": "./bar/bar.d.ts",
+      "esm2020": "./esm2020/bar/bar.mjs",
+      "es2020": "./fesm2020/bar.mjs",
+      "es2015": "./fesm2015/bar.mjs",
+      "node": "./fesm2015/bar.mjs",
+      "default": "./fesm2020/bar.mjs"
+    },
+    "./card": {
+      "types": "./card/card.d.ts",
+      "esm2020": "./esm2020/card/card.mjs",
+      "es2020": "./fesm2020/card.mjs",
+      "es2015": "./fesm2015/card.mjs",
+      "node": "./fesm2015/card.mjs",
+      "default": "./fesm2020/card.mjs"
+    },
+    "./chart-echarts": {
+      "types": "./chart-echarts/delon-chart-chart-echarts.d.ts",
+      "esm2020": "./esm2020/chart-echarts/delon-chart-chart-echarts.mjs",
+      "es2020": "./fesm2020/delon-chart-chart-echarts.mjs",
+      "es2015": "./fesm2015/delon-chart-chart-echarts.mjs",
+      "node": "./fesm2015/delon-chart-chart-echarts.mjs",
+      "default": "./fesm2020/delon-chart-chart-echarts.mjs"
+    },
+    "./core": {
+      "types": "./core/delon-chart-core.d.ts",
+      "esm2020": "./esm2020/core/delon-chart-core.mjs",
+      "es2020": "./fesm2020/delon-chart-core.mjs",
+      "es2015": "./fesm2015/delon-chart-core.mjs",
+      "node": "./fesm2015/delon-chart-core.mjs",
+      "default": "./fesm2020/delon-chart-core.mjs"
+    },
+    "./custom": {
+      "types": "./custom/delon-chart-custom.d.ts",
+      "esm2020": "./esm2020/custom/delon-chart-custom.mjs",
+      "es2020": "./fesm2020/delon-chart-custom.mjs",
+      "es2015": "./fesm2015/delon-chart-custom.mjs",
+      "node": "./fesm2015/delon-chart-custom.mjs",
+      "default": "./fesm2020/delon-chart-custom.mjs"
+    },
+    "./gauge": {
+      "types": "./gauge/delon-chart-gauge.d.ts",
+      "esm2020": "./esm2020/gauge/delon-chart-gauge.mjs",
+      "es2020": "./fesm2020/delon-chart-gauge.mjs",
+      "es2015": "./fesm2015/delon-chart-gauge.mjs",
+      "node": "./fesm2015/delon-chart-gauge.mjs",
+      "default": "./fesm2020/delon-chart-gauge.mjs"
+    },
+    "./mini-area": {
+      "types": "./mini-area/delon-chart-mini-area.d.ts",
+      "esm2020": "./esm2020/mini-area/delon-chart-mini-area.mjs",
+      "es2020": "./fesm2020/delon-chart-mini-area.mjs",
+      "es2015": "./fesm2015/delon-chart-mini-area.mjs",
+      "node": "./fesm2015/delon-chart-mini-area.mjs",
+      "default": "./fesm2020/delon-chart-mini-area.mjs"
+    },
+    "./mini-bar": {
+      "types": "./mini-bar/delon-chart-mini-bar.d.ts",
+      "esm2020": "./esm2020/mini-bar/delon-chart-mini-bar.mjs",
+      "es2020": "./fesm2020/delon-chart-mini-bar.mjs",
+      "es2015": "./fesm2015/delon-chart-mini-bar.mjs",
+      "node": "./fesm2015/delon-chart-mini-bar.mjs",
+      "default": "./fesm2020/delon-chart-mini-bar.mjs"
+    },
+    "./mini-progress": {
+      "types": "./mini-progress/delon-chart-mini-progress.d.ts",
+      "esm2020": "./esm2020/mini-progress/delon-chart-mini-progress.mjs",
+      "es2020": "./fesm2020/delon-chart-mini-progress.mjs",
+      "es2015": "./fesm2015/delon-chart-mini-progress.mjs",
+      "node": "./fesm2015/delon-chart-mini-progress.mjs",
+      "default": "./fesm2020/delon-chart-mini-progress.mjs"
+    },
+    "./number-info": {
+      "types": "./number-info/delon-chart-number-info.d.ts",
+      "esm2020": "./esm2020/number-info/delon-chart-number-info.mjs",
+      "es2020": "./fesm2020/delon-chart-number-info.mjs",
+      "es2015": "./fesm2015/delon-chart-number-info.mjs",
+      "node": "./fesm2015/delon-chart-number-info.mjs",
+      "default": "./fesm2020/delon-chart-number-info.mjs"
+    },
+    "./pie": {
+      "types": "./pie/delon-chart-pie.d.ts",
+      "esm2020": "./esm2020/pie/delon-chart-pie.mjs",
+      "es2020": "./fesm2020/delon-chart-pie.mjs",
+      "es2015": "./fesm2015/delon-chart-pie.mjs",
+      "node": "./fesm2015/delon-chart-pie.mjs",
+      "default": "./fesm2020/delon-chart-pie.mjs"
+    },
+    "./radar": {
+      "types": "./radar/delon-chart-radar.d.ts",
+      "esm2020": "./esm2020/radar/delon-chart-radar.mjs",
+      "es2020": "./fesm2020/delon-chart-radar.mjs",
+      "es2015": "./fesm2015/delon-chart-radar.mjs",
+      "node": "./fesm2015/delon-chart-radar.mjs",
+      "default": "./fesm2020/delon-chart-radar.mjs"
+    },
+    "./single-bar": {
+      "types": "./single-bar/delon-chart-single-bar.d.ts",
+      "esm2020": "./esm2020/single-bar/delon-chart-single-bar.mjs",
+      "es2020": "./fesm2020/delon-chart-single-bar.mjs",
+      "es2015": "./fesm2015/delon-chart-single-bar.mjs",
+      "node": "./fesm2015/delon-chart-single-bar.mjs",
+      "default": "./fesm2020/delon-chart-single-bar.mjs"
+    },
+    "./tag-cloud": {
+      "types": "./tag-cloud/delon-chart-tag-cloud.d.ts",
+      "esm2020": "./esm2020/tag-cloud/delon-chart-tag-cloud.mjs",
+      "es2020": "./fesm2020/delon-chart-tag-cloud.mjs",
+      "es2015": "./fesm2015/delon-chart-tag-cloud.mjs",
+      "node": "./fesm2015/delon-chart-tag-cloud.mjs",
+      "default": "./fesm2020/delon-chart-tag-cloud.mjs"
+    },
+    "./timeline": {
+      "types": "./timeline/delon-chart-timeline.d.ts",
+      "esm2020": "./esm2020/timeline/delon-chart-timeline.mjs",
+      "es2020": "./fesm2020/delon-chart-timeline.mjs",
+      "es2015": "./fesm2015/delon-chart-timeline.mjs",
+      "node": "./fesm2015/delon-chart-timeline.mjs",
+      "default": "./fesm2020/delon-chart-timeline.mjs"
+    },
+    "./trend": {
+      "types": "./trend/delon-chart-trend.d.ts",
+      "esm2020": "./esm2020/trend/delon-chart-trend.mjs",
+      "es2020": "./fesm2020/delon-chart-trend.mjs",
+      "es2015": "./fesm2015/delon-chart-trend.mjs",
+      "node": "./fesm2015/delon-chart-trend.mjs",
+      "default": "./fesm2020/delon-chart-trend.mjs"
+    },
+    "./water-wave": {
+      "types": "./water-wave/delon-chart-water-wave.d.ts",
+      "esm2020": "./esm2020/water-wave/delon-chart-water-wave.mjs",
+      "es2020": "./fesm2020/delon-chart-water-wave.mjs",
+      "es2015": "./fesm2015/delon-chart-water-wave.mjs",
+      "node": "./fesm2015/delon-chart-water-wave.mjs",
+      "default": "./fesm2020/delon-chart-water-wave.mjs"
+    }
+  },
   "sideEffects": false
 }

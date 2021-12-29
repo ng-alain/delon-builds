@@ -75,7 +75,7 @@ ATTRIBUTE_NAMES.forEach(key => {
 });
 function findIcons(html) {
     const res = [];
-    const doc = parse5_1.parseFragment(html);
+    const doc = (0, parse5_1.parseFragment)(html);
     const visitNodes = (nodes) => {
         nodes.forEach(node => {
             if (node.attrs) {
@@ -149,9 +149,9 @@ function getNgValue(attr) {
     // type="{{value ? 'icon' : 'icon' }}"
     // type="align-{{value ? 'icon' : 'icon' }}"
     if (!attr.name.startsWith('[')) {
-        const prefix = templatVarIndex > 0 ? str.substr(0, templatVarIndex) : '';
+        const prefix = templatVarIndex > 0 ? str.substring(0, templatVarIndex) : '';
         if (templatVarIndex !== -1) {
-            return fixValue(str.substr(templatVarIndex), prefix);
+            return fixValue(str.substring(templatVarIndex), prefix);
         }
         return [str];
     }
@@ -171,8 +171,8 @@ function fixValue(str, prefix) {
     return null;
 }
 function fixTs(tree, path) {
-    const source = utils_1.getSourceFile(tree, path);
-    const nodes = ast_utils_1.getDecoratorMetadata(source, 'Component', '@angular/core');
+    const source = (0, utils_1.getSourceFile)(tree, path);
+    const nodes = (0, ast_utils_1.getDecoratorMetadata)(source, 'Component', '@angular/core');
     if (nodes.length === 0) {
         return [];
     }
@@ -250,9 +250,9 @@ export const ICONS = [ ];
 `);
         return;
     }
-    const source = utils_1.getSourceFile(tree, path);
+    const source = (0, utils_1.getSourceFile)(tree, path);
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const allImports = ast_utils_1.findNodes(source, ts.SyntaxKind.ImportDeclaration);
+    const allImports = (0, ast_utils_1.findNodes)(source, ts.SyntaxKind.ImportDeclaration);
     const iconImport = allImports.find((w) => w.moduleSpecifier.getText().includes('@ant-design/icons-angular/icons'));
     if (!iconImport)
         return;

@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/errorCollect.umd.js",
-  "module": "../fesm2015/errorCollect.js",
-  "es2015": "../fesm2015/errorCollect.js",
-  "esm2015": "../esm2015/error-collect/errorCollect.js",
-  "fesm2015": "../fesm2015/errorCollect.js",
+  "module": "../fesm2015/errorCollect.mjs",
+  "es2020": "../fesm2020/errorCollect.mjs",
+  "esm2020": "../esm2020/error-collect/errorCollect.mjs",
+  "fesm2020": "../fesm2020/errorCollect.mjs",
+  "fesm2015": "../fesm2015/errorCollect.mjs",
   "typings": "errorCollect.d.ts",
-  "metadata": "errorCollect.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/error-collect"
 }

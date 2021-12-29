@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/number-info.umd.js",
-  "module": "../fesm2015/number-info.js",
-  "es2015": "../fesm2015/number-info.js",
-  "esm2015": "../esm2015/number-info/number-info.js",
-  "fesm2015": "../fesm2015/number-info.js",
-  "typings": "number-info.d.ts",
-  "metadata": "number-info.metadata.json",
+  "module": "../fesm2015/delon-chart-number-info.mjs",
+  "es2020": "../fesm2020/delon-chart-number-info.mjs",
+  "esm2020": "../esm2020/number-info/delon-chart-number-info.mjs",
+  "fesm2020": "../fesm2020/delon-chart-number-info.mjs",
+  "fesm2015": "../fesm2015/delon-chart-number-info.mjs",
+  "typings": "delon-chart-number-info.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/number-info"
 }

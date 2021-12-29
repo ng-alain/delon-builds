@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "12.4.2-3ec8d067",
+  "version": "12.4.2-13ed1493",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,14 +21,138 @@
   ],
   "dependencies": {
     "extend": "^3.0.2",
-    "tslib": "^2.2.0"
+    "tslib": "^2.3.0"
   },
-  "main": "bundles/delon-util.umd.js",
-  "module": "fesm2015/delon-util.js",
-  "es2015": "fesm2015/delon-util.js",
-  "esm2015": "esm2015/delon-util.js",
-  "fesm2015": "fesm2015/delon-util.js",
+  "module": "fesm2015/delon-util.mjs",
+  "es2020": "fesm2020/delon-util.mjs",
+  "esm2020": "esm2020/delon-util.mjs",
+  "fesm2020": "fesm2020/delon-util.mjs",
+  "fesm2015": "fesm2015/delon-util.mjs",
   "typings": "delon-util.d.ts",
-  "metadata": "delon-util.metadata.json",
+  "exports": {
+    "./package.json": {
+      "default": "./package.json"
+    },
+    ".": {
+      "types": "./delon-util.d.ts",
+      "esm2020": "./esm2020/delon-util.mjs",
+      "es2020": "./fesm2020/delon-util.mjs",
+      "es2015": "./fesm2015/delon-util.mjs",
+      "node": "./fesm2015/delon-util.mjs",
+      "default": "./fesm2020/delon-util.mjs"
+    },
+    "./array": {
+      "types": "./array/delon-util-array.d.ts",
+      "esm2020": "./esm2020/array/delon-util-array.mjs",
+      "es2020": "./fesm2020/delon-util-array.mjs",
+      "es2015": "./fesm2015/delon-util-array.mjs",
+      "node": "./fesm2015/delon-util-array.mjs",
+      "default": "./fesm2020/delon-util-array.mjs"
+    },
+    "./browser": {
+      "types": "./browser/delon-util-browser.d.ts",
+      "esm2020": "./esm2020/browser/delon-util-browser.mjs",
+      "es2020": "./fesm2020/delon-util-browser.mjs",
+      "es2015": "./fesm2015/delon-util-browser.mjs",
+      "node": "./fesm2015/delon-util-browser.mjs",
+      "default": "./fesm2020/delon-util-browser.mjs"
+    },
+    "./config": {
+      "types": "./config/delon-util-config.d.ts",
+      "esm2020": "./esm2020/config/delon-util-config.mjs",
+      "es2020": "./fesm2020/delon-util-config.mjs",
+      "es2015": "./fesm2015/delon-util-config.mjs",
+      "node": "./fesm2015/delon-util-config.mjs",
+      "default": "./fesm2020/delon-util-config.mjs"
+    },
+    "./date-time": {
+      "types": "./date-time/delon-util-date-time.d.ts",
+      "esm2020": "./esm2020/date-time/delon-util-date-time.mjs",
+      "es2020": "./fesm2020/delon-util-date-time.mjs",
+      "es2015": "./fesm2015/delon-util-date-time.mjs",
+      "node": "./fesm2015/delon-util-date-time.mjs",
+      "default": "./fesm2020/delon-util-date-time.mjs"
+    },
+    "./decorator": {
+      "types": "./decorator/delon-util-decorator.d.ts",
+      "esm2020": "./esm2020/decorator/delon-util-decorator.mjs",
+      "es2020": "./fesm2020/delon-util-decorator.mjs",
+      "es2015": "./fesm2015/delon-util-decorator.mjs",
+      "node": "./fesm2015/delon-util-decorator.mjs",
+      "default": "./fesm2020/delon-util-decorator.mjs"
+    },
+    "./form": {
+      "types": "./form/delon-util-form.d.ts",
+      "esm2020": "./esm2020/form/delon-util-form.mjs",
+      "es2020": "./fesm2020/delon-util-form.mjs",
+      "es2015": "./fesm2015/delon-util-form.mjs",
+      "node": "./fesm2015/delon-util-form.mjs",
+      "default": "./fesm2020/delon-util-form.mjs"
+    },
+    "./format": {
+      "types": "./format/delon-util-format.d.ts",
+      "esm2020": "./esm2020/format/delon-util-format.mjs",
+      "es2020": "./fesm2020/delon-util-format.mjs",
+      "es2015": "./fesm2015/delon-util-format.mjs",
+      "node": "./fesm2015/delon-util-format.mjs",
+      "default": "./fesm2020/delon-util-format.mjs"
+    },
+    "./math": {
+      "types": "./math/delon-util-math.d.ts",
+      "esm2020": "./esm2020/math/delon-util-math.mjs",
+      "es2020": "./fesm2020/delon-util-math.mjs",
+      "es2015": "./fesm2015/delon-util-math.mjs",
+      "node": "./fesm2015/delon-util-math.mjs",
+      "default": "./fesm2020/delon-util-math.mjs"
+    },
+    "./other": {
+      "types": "./other/delon-util-other.d.ts",
+      "esm2020": "./esm2020/other/delon-util-other.mjs",
+      "es2020": "./fesm2020/delon-util-other.mjs",
+      "es2015": "./fesm2015/delon-util-other.mjs",
+      "node": "./fesm2015/delon-util-other.mjs",
+      "default": "./fesm2020/delon-util-other.mjs"
+    },
+    "./pipes/currency": {
+      "types": "./pipes/currency/delon-util-pipes-currency.d.ts",
+      "esm2020": "./esm2020/pipes/currency/delon-util-pipes-currency.mjs",
+      "es2020": "./fesm2020/delon-util-pipes-currency.mjs",
+      "es2015": "./fesm2015/delon-util-pipes-currency.mjs",
+      "node": "./fesm2015/delon-util-pipes-currency.mjs",
+      "default": "./fesm2020/delon-util-pipes-currency.mjs"
+    },
+    "./pipes/filter": {
+      "types": "./pipes/filter/delon-util-pipes-filter.d.ts",
+      "esm2020": "./esm2020/pipes/filter/delon-util-pipes-filter.mjs",
+      "es2020": "./fesm2020/delon-util-pipes-filter.mjs",
+      "es2015": "./fesm2015/delon-util-pipes-filter.mjs",
+      "node": "./fesm2015/delon-util-pipes-filter.mjs",
+      "default": "./fesm2020/delon-util-pipes-filter.mjs"
+    },
+    "./pipes/format": {
+      "types": "./pipes/format/delon-util-pipes-format.d.ts",
+      "esm2020": "./esm2020/pipes/format/delon-util-pipes-format.mjs",
+      "es2020": "./fesm2020/delon-util-pipes-format.mjs",
+      "es2015": "./fesm2015/delon-util-pipes-format.mjs",
+      "node": "./fesm2015/delon-util-pipes-format.mjs",
+      "default": "./fesm2020/delon-util-pipes-format.mjs"
+    },
+    "./pipes": {
+      "types": "./pipes/delon-util-pipes.d.ts",
+      "esm2020": "./esm2020/pipes/delon-util-pipes.mjs",
+      "es2020": "./fesm2020/delon-util-pipes.mjs",
+      "es2015": "./fesm2015/delon-util-pipes.mjs",
+      "node": "./fesm2015/delon-util-pipes.mjs",
+      "default": "./fesm2020/delon-util-pipes.mjs"
+    },
+    "./token": {
+      "types": "./token/delon-util-token.d.ts",
+      "esm2020": "./esm2020/token/delon-util-token.mjs",
+      "es2020": "./fesm2020/delon-util-token.mjs",
+      "es2015": "./fesm2015/delon-util-token.mjs",
+      "node": "./fesm2015/delon-util-token.mjs",
+      "default": "./fesm2020/delon-util-token.mjs"
+    }
+  },
   "sideEffects": false
 }

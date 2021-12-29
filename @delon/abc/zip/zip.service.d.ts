@@ -4,6 +4,7 @@ import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ZipSaveOptions } from './zip.types';
+import * as i0 from "@angular/core";
 export declare class ZipService {
     private http;
     private lazy;
@@ -31,4 +32,6 @@ export declare class ZipService {
      * @param options 额外参数，
      */
     save(zip: NzSafeAny, options?: ZipSaveOptions): Promise<void>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ZipService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<ZipService>;
 }

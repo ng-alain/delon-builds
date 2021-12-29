@@ -9,7 +9,7 @@ class SrcToNzImageRule extends schematics_1.Migration {
     }
     visitTemplate(template) {
         const deprecatedComponent = (deprecated) => {
-            schematics_1.findInputsOnElementWithAttr(template.content, '_src', [deprecated]).forEach(offset => {
+            (0, schematics_1.findInputsOnElementWithAttr)(template.content, '_src', [deprecated]).forEach(offset => {
                 this.failures.push({
                     filePath: template.filePath,
                     position: template.getCharacterAndLineOfPosition(offset),

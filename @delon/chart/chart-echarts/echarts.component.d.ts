@@ -4,6 +4,7 @@ import { NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ChartEChartsService } from './echarts.service';
 import { ChartECharts, ChartEChartsEvent, ChartEChartsOn, ChartEChartsOption } from './echarts.types';
+import * as i0 from "@angular/core";
 export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     private srv;
     private cdr;
@@ -36,4 +37,6 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     setOption(option: ChartEChartsOption, notMerge?: boolean, lazyUpdate?: boolean): this;
     ngOnInit(): void;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChartEChartsComponent, "chart-echarts, [chart-echarts]", ["chartECharts"], { "width": "width"; "height": "height"; "theme": "theme"; "initOpt": "initOpt"; "option": "option"; "on": "on"; }, { "events": "events"; }, never, never>;
 }

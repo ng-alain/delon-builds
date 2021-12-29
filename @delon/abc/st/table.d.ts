@@ -1,7 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
+/// <amd-module name="@delon/abc/st" />
 export * from './public_api';
-export { STFilterComponent as ɵb } from './st-filter.component';
-export { STRowSource as ɵa } from './st-row.directive';
-export { STTdComponent as ɵc } from './st-td.component';

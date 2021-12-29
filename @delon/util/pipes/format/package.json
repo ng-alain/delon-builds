@@ -1,11 +1,10 @@
 {
-  "main": "../../bundles/delon-util-pipes-format.umd.js",
-  "module": "../../fesm2015/delon-util-pipes-format.js",
-  "es2015": "../../fesm2015/delon-util-pipes-format.js",
-  "esm2015": "../../esm2015/pipes/format/delon-util-pipes-format.js",
-  "fesm2015": "../../fesm2015/delon-util-pipes-format.js",
+  "module": "../../fesm2015/delon-util-pipes-format.mjs",
+  "es2020": "../../fesm2020/delon-util-pipes-format.mjs",
+  "esm2020": "../../esm2020/pipes/format/delon-util-pipes-format.mjs",
+  "fesm2020": "../../fesm2020/delon-util-pipes-format.mjs",
+  "fesm2015": "../../fesm2015/delon-util-pipes-format.mjs",
   "typings": "delon-util-pipes-format.d.ts",
-  "metadata": "delon-util-pipes-format.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/pipes/format"
 }

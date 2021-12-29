@@ -10,17 +10,17 @@ const v117_1 = require("./upgrade-rules/v117");
 const v12_1 = require("./upgrade-rules/v12");
 const migrations = [_src_to_nz_image_rule_1.SrcToNzImageRule];
 function updateToV11() {
-    return schematics_2.chain([v11_1.v11Rule]);
+    return (0, schematics_2.chain)([v11_1.v11Rule]);
 }
 exports.updateToV11 = updateToV11;
 function updateToV117() {
-    return schematics_2.chain([v117_1.v117Rule]);
+    return (0, schematics_2.chain)([v117_1.v117Rule]);
 }
 exports.updateToV117 = updateToV117;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function updateToV12(schema) {
-    const rule = v12_1.v12Rule(schema);
-    return schematics_2.chain([rule, schematics_1.createMigrationSchematicRule(schematics_1.TargetVersion.V12, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
+    const rule = (0, v12_1.v12Rule)(schema);
+    return (0, schematics_2.chain)([rule, (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V12, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
 }
 exports.updateToV12 = updateToV12;
 /** Post-update schematic to be called when update is finished. */

@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/card.umd.js",
-  "module": "../fesm2015/card.js",
-  "es2015": "../fesm2015/card.js",
-  "esm2015": "../esm2015/card/card.js",
-  "fesm2015": "../fesm2015/card.js",
+  "module": "../fesm2015/card.mjs",
+  "es2020": "../fesm2020/card.mjs",
+  "esm2020": "../esm2020/card/card.mjs",
+  "fesm2020": "../fesm2020/card.mjs",
+  "fesm2015": "../fesm2015/card.mjs",
   "typings": "card.d.ts",
-  "metadata": "card.metadata.json",
   "sideEffects": false,
   "name": "@delon/chart/card"
 }

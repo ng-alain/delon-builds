@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/trend.umd.js",
-  "module": "../fesm2015/trend.js",
-  "es2015": "../fesm2015/trend.js",
-  "esm2015": "../esm2015/trend/trend.js",
-  "fesm2015": "../fesm2015/trend.js",
-  "typings": "trend.d.ts",
-  "metadata": "trend.metadata.json",
+  "module": "../fesm2015/delon-chart-trend.mjs",
+  "es2020": "../fesm2020/delon-chart-trend.mjs",
+  "esm2020": "../esm2020/trend/delon-chart-trend.mjs",
+  "fesm2020": "../fesm2020/delon-chart-trend.mjs",
+  "fesm2015": "../fesm2015/delon-chart-trend.mjs",
+  "typings": "delon-chart-trend.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/trend"
 }

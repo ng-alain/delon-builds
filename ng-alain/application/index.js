@@ -39,16 +39,16 @@ function removeOrginalFiles() {
     };
 }
 function fixAngularJson(options) {
-    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
         var _a;
-        const p = utils_1.getProjectFromWorkspace(workspace, options.project);
+        const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
         // Add proxy.conf.js
         const serveTarget = (_a = p.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_SERVE);
         if (serveTarget.options == null)
             serveTarget.options = {};
         serveTarget.options.proxyConfig = 'proxy.conf.js';
         // 调整budgets
-        const budgets = utils_1.getProjectTarget(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production
+        const budgets = (0, utils_1.getProjectTarget)(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production
             .budgets;
         if (budgets && budgets.length > 0) {
             const initial = budgets.find(w => w.type === 'initial');
@@ -61,15 +61,15 @@ function fixAngularJson(options) {
 }
 function addDependenciesToPackageJson(options) {
     return (tree) => {
-        versions_1.UpgradeMainVersions(tree);
+        (0, versions_1.UpgradeMainVersions)(tree);
         // 3rd
-        utils_1.addPackage(tree, ['screenfull@^5.1.0']);
+        (0, utils_1.addPackage)(tree, ['screenfull@^6.0.0']);
         return tree;
     };
 }
 function addRunScriptToPackageJson() {
     return (tree) => {
-        const json = utils_1.readPackage(tree, 'scripts');
+        const json = (0, utils_1.readPackage)(tree, 'scripts');
         if (json == null)
             return tree;
         json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
@@ -83,13 +83,13 @@ function addRunScriptToPackageJson() {
         json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
         json.scripts.icon = `ng g ng-alain:plugin icon`;
         json.scripts.prepare = `husky install`;
-        utils_1.writePackage(tree, json);
+        (0, utils_1.writePackage)(tree, json);
         return tree;
     };
 }
 function addPathsToTsConfig() {
     return (tree) => {
-        const json = utils_1.readJSON(tree, 'tsconfig.json', 'compilerOptions');
+        const json = (0, utils_1.readJSON)(tree, 'tsconfig.json', 'compilerOptions');
         if (json == null)
             return tree;
         if (!json.compilerOptions)
@@ -100,44 +100,44 @@ function addPathsToTsConfig() {
         paths['@shared'] = ['src/app/shared/index'];
         paths['@core'] = ['src/app/core/index'];
         paths['@env/*'] = ['src/environments/*'];
-        utils_1.writeJSON(tree, 'tsconfig.json', json);
+        (0, utils_1.writeJSON)(tree, 'tsconfig.json', json);
         return tree;
     };
 }
 function addCodeStylesToPackageJson() {
     return (tree) => {
-        const json = utils_1.readPackage(tree);
+        const json = (0, utils_1.readPackage)(tree);
         if (json == null)
             return tree;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
         json.scripts['lint:ts'] = `ng lint --fix`;
         json.scripts['lint:style'] = `stylelint \"src/**/*.less\" --syntax less --fix`;
         json.scripts['prepare'] = 'husky install';
-        utils_1.writePackage(tree, json);
+        (0, utils_1.writePackage)(tree, json);
         // fix polyfills.ts
         const polyfillsPath = `${project.sourceRoot}/polyfills.ts`;
         if (tree.exists(polyfillsPath)) {
-            const polyfillsContent = `/* eslint-disable import/no-unassigned-import */\n${utils_1.readContent(tree, polyfillsPath)}`;
-            utils_1.writeFile(tree, polyfillsPath, polyfillsContent);
+            const polyfillsContent = `/* eslint-disable import/no-unassigned-import */\n${(0, utils_1.readContent)(tree, polyfillsPath)}`;
+            (0, utils_1.writeFile)(tree, polyfillsPath, polyfillsContent);
         }
         // dependencies
-        utils_1.addPackage(tree, [
+        (0, utils_1.addPackage)(tree, [
             `husky@^6.0.0`,
-            `lint-staged@^11.1.2`,
-            `prettier@^2.2.1`,
-            `stylelint@^13.13.1`,
-            `stylelint-config-prettier@^8.0.2`,
+            `lint-staged@^12.1.4`,
+            `prettier@^2.5.1`,
+            `stylelint@^14.2.0`,
+            `stylelint-config-prettier@^9.0.3`,
             `stylelint-config-rational-order@^0.1.2`,
-            `stylelint-config-standard@^22.0.0`,
-            `stylelint-declaration-block-no-ignored-properties@^2.4.0`,
-            `stylelint-order@^4.1.0`
+            `stylelint-config-standard@^24.0.0`,
+            `stylelint-declaration-block-no-ignored-properties@^2.5.0`,
+            `stylelint-order@^5.0.0`
         ], 'devDependencies');
         return tree;
     };
 }
 function addSchematics(options) {
-    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const p = utils_1.getProjectFromWorkspace(workspace, options.project);
+    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+        const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
         const schematics = p.extensions.schematics;
         schematics['ng-alain:module'] = {
             routing: true,
@@ -172,13 +172,13 @@ function addSchematics(options) {
 }
 function forceLess() {
     return () => {
-        utils_1.addAssetsToTarget([{ type: 'style', value: 'src/styles.less' }], 'add', [utils_1.BUILD_TARGET_BUILD], null, true);
+        (0, utils_1.addAssetsToTarget)([{ type: 'style', value: 'src/styles.less' }], 'add', [utils_1.BUILD_TARGET_BUILD], null, true);
     };
 }
 function addStyle() {
     return (tree) => {
-        utils_1.addHeadStyle(tree, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
-        utils_1.addHtmlToBody(tree, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`);
+        (0, utils_1.addHeadStyle)(tree, project, `  <style type="text/css">.preloader{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;background:#49a9ee;z-index:9999;transition:opacity .65s}.preloader-hidden-add{opacity:1;display:block}.preloader-hidden-add-active{opacity:0}.preloader-hidden{display:none}.cs-loader{position:absolute;top:0;left:0;height:100%;width:100%}.cs-loader-inner{transform:translateY(-50%);top:50%;position:absolute;width:100%;color:#fff;text-align:center}.cs-loader-inner label{font-size:20px;opacity:0;display:inline-block}@keyframes lol{0%{opacity:0;transform:translateX(-300px)}33%{opacity:1;transform:translateX(0)}66%{opacity:1;transform:translateX(0)}100%{opacity:0;transform:translateX(300px)}}.cs-loader-inner label:nth-child(6){animation:lol 3s infinite ease-in-out}.cs-loader-inner label:nth-child(5){animation:lol 3s .1s infinite ease-in-out}.cs-loader-inner label:nth-child(4){animation:lol 3s .2s infinite ease-in-out}.cs-loader-inner label:nth-child(3){animation:lol 3s .3s infinite ease-in-out}.cs-loader-inner label:nth-child(2){animation:lol 3s .4s infinite ease-in-out}.cs-loader-inner label:nth-child(1){animation:lol 3s .5s infinite ease-in-out}</style>`);
+        (0, utils_1.addHtmlToBody)(tree, project, `  <div class="preloader"><div class="cs-loader"><div class="cs-loader-inner"><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label><label>	●</label></div></div></div>\n`);
         // // add styles
         // [`${project.sourceRoot}/styles/index.less`, `${project.sourceRoot}/styles/theme.less`].forEach(p => {
         //   overwriteFile({ tree, filePath: p, content: path.join(overwriteDataFileRoot, p), overwrite: true });
@@ -187,18 +187,18 @@ function addStyle() {
     };
 }
 function addFilesToRoot(options) {
-    return schematics_1.chain([
-        schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/src'), [
-            options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
-            options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
+    return (0, schematics_1.chain)([
+        (0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/src'), [
+            options.i18n ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('i18n') === -1),
+            options.form ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('json-schema') === -1),
+            (0, schematics_1.template)(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
                 ZORROVERSION: utils_1.ZORROVERSION })),
-            schematics_1.move(project.sourceRoot)
+            (0, schematics_1.move)(project.sourceRoot)
         ])),
-        schematics_1.mergeWith(schematics_1.apply(schematics_1.url('./files/root'), [
-            options.i18n ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('i18n') === -1),
-            options.form ? schematics_1.noop() : schematics_1.filter(p => p.indexOf('json-schema') === -1),
-            schematics_1.template(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
+        (0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/root'), [
+            options.i18n ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('i18n') === -1),
+            options.form ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('json-schema') === -1),
+            (0, schematics_1.template)(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
                 ZORROVERSION: utils_1.ZORROVERSION }))
             // move('/')
         ]), schematics_1.MergeStrategy.Overwrite)
@@ -208,7 +208,7 @@ function fixLang(options) {
     return (tree, context) => {
         if (options.i18n)
             return;
-        const langs = lang_config_1.getLangData(options.defaultLanguage);
+        const langs = (0, lang_config_1.getLangData)(options.defaultLanguage);
         if (!langs)
             return;
         context.logger.info(`Translating template into ${options.defaultLanguage} language, please wait...`);
@@ -261,32 +261,32 @@ function fixLangInHtml(tree, p, langs) {
 function fixVsCode() {
     return (tree) => {
         const filePath = '.vscode/extensions.json';
-        let json = utils_1.readJSON(tree, filePath);
+        let json = (0, utils_1.readJSON)(tree, filePath);
         if (json == null) {
             tree.create(filePath, '');
             json = {};
         }
         json.recommendations = ['cipchk.ng-alain-extension-pack'];
-        utils_1.writeJSON(tree, filePath, json);
+        (0, utils_1.writeJSON)(tree, filePath, json);
     };
 }
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        project = (yield utils_1.getProject(tree, options.project)).project;
+        project = (yield (0, utils_1.getProject)(tree, options.project)).project;
         context.logger.info(`Generating NG-ALAIN scaffold...`);
-        return schematics_1.chain([
+        return (0, schematics_1.chain)([
             // @delon/* dependencies
             addDependenciesToPackageJson(options),
             // Configuring CommonJS dependencies
             // https://angular.io/guide/build#configuring-commonjs-dependencies
-            utils_1.addAllowedCommonJsDependencies([]),
+            (0, utils_1.addAllowedCommonJsDependencies)([]),
             // ci
             addRunScriptToPackageJson(),
             addPathsToTsConfig(),
             // code style
             addCodeStylesToPackageJson(),
             addSchematics(options),
-            versions_1.addESLintRule(context, false),
+            (0, versions_1.addESLintRule)(context, false),
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),

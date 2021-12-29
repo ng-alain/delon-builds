@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/layout-theme-btn.umd.js",
-  "module": "../fesm2015/layout-theme-btn.js",
-  "es2015": "../fesm2015/layout-theme-btn.js",
-  "esm2015": "../esm2015/theme-btn/layout-theme-btn.js",
-  "fesm2015": "../fesm2015/layout-theme-btn.js",
-  "typings": "layout-theme-btn.d.ts",
-  "metadata": "layout-theme-btn.metadata.json",
+  "module": "../fesm2015/layout-blank.mjs",
+  "es2020": "../fesm2020/layout-blank.mjs",
+  "esm2020": "../esm2020/theme-btn/layout-blank.mjs",
+  "fesm2020": "../fesm2020/layout-blank.mjs",
+  "fesm2015": "../fesm2015/layout-blank.mjs",
+  "typings": "layout-blank.d.ts",
   "sideEffects": false,
   "name": "@delon/theme/theme-btn"
 }

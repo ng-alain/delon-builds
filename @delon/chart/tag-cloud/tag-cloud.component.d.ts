@@ -3,6 +3,7 @@ import type { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
 import { NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export interface G2TagCloudData {
     value?: number;
     name?: string;
@@ -25,4 +26,6 @@ export declare class G2TagCloudComponent extends G2BaseComponent {
     changeData(): void;
     private installResizeEvent;
     onInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2TagCloudComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2TagCloudComponent, "g2-tag-cloud", ["g2TagCloud"], { "width": "width"; "height": "height"; "padding": "padding"; "data": "data"; }, { "clickItem": "clickItem"; }, never, never>;
 }

@@ -3,6 +3,7 @@ import type { Event } from '@antv/g2';
 import { G2BaseComponent, G2Time } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i0 from "@angular/core";
 export interface G2TimelineData {
     /**
      * 时间值
@@ -58,4 +59,6 @@ export declare class G2TimelineComponent extends G2BaseComponent {
     onlyChangeData: (changes: SimpleChanges) => boolean;
     install(): void;
     changeData(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2TimelineComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2TimelineComponent, "g2-timeline", ["g2Timeline"], { "title": "title"; "maxAxis": "maxAxis"; "data": "data"; "titleMap": "titleMap"; "colorMap": "colorMap"; "mask": "mask"; "maskSlider": "maskSlider"; "position": "position"; "height": "height"; "padding": "padding"; "borderWidth": "borderWidth"; "slider": "slider"; }, { "clickItem": "clickItem"; }, never, never>;
 }

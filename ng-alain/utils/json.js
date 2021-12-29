@@ -8,7 +8,7 @@ function readJSON(tree, jsonFile, type) {
         return null;
     const sourceText = tree.read(jsonFile).toString('utf-8');
     try {
-        const json = jsonc_parser_1.parse(sourceText);
+        const json = (0, jsonc_parser_1.parse)(sourceText);
         if (type && !json[type]) {
             json[type] = {};
         }

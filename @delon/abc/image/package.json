@@ -1,11 +1,10 @@
 {
-  "main": "../bundles/image.umd.js",
-  "module": "../fesm2015/image.js",
-  "es2015": "../fesm2015/image.js",
-  "esm2015": "../esm2015/image/image.js",
-  "fesm2015": "../fesm2015/image.js",
+  "module": "../fesm2015/image.mjs",
+  "es2020": "../fesm2020/image.mjs",
+  "esm2020": "../esm2020/image/image.mjs",
+  "fesm2020": "../fesm2020/image.mjs",
+  "fesm2015": "../fesm2015/image.mjs",
   "typings": "image.d.ts",
-  "metadata": "image.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/image"
 }

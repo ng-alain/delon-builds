@@ -4,6 +4,7 @@ import { Subject, Subscription } from 'rxjs';
 import type { Chart, Types } from '@antv/g2';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { G2Service } from './g2.servicce';
+import * as i0 from "@angular/core";
 export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDestroy {
     protected srv: G2Service;
     protected el: ElementRef<HTMLElement>;
@@ -36,4 +37,6 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     ngOnChanges(changes: SimpleChanges): void;
     protected destroyChart(): this;
     ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<G2BaseComponent, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<G2BaseComponent, never, never, { "repaint": "repaint"; "delay": "delay"; "theme": "theme"; }, {}, never>;
 }
