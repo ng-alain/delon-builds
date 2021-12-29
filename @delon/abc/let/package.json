@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/let.mjs",
-  "es2020": "../fesm2020/let.mjs",
-  "esm2020": "../esm2020/let/let.mjs",
-  "fesm2020": "../fesm2020/let.mjs",
-  "fesm2015": "../fesm2015/let.mjs",
+  "main": "../bundles/let.umd.js",
+  "module": "../fesm2015/let.js",
+  "es2015": "../fesm2015/let.js",
+  "esm2015": "../esm2015/let/let.js",
+  "fesm2015": "../fesm2015/let.js",
   "typings": "let.d.ts",
+  "metadata": "let.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/let"
 }

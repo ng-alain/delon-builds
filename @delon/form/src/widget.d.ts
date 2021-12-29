@@ -11,7 +11,6 @@ import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
 import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
-import * as i0 from "@angular/core";
 export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
@@ -37,32 +36,22 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     detectChanges(onlySelf?: boolean): void;
     abstract reset(value: SFValue): void;
     abstract afterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<Widget<any, any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<Widget<any, any>, never, never, {}, {}, never>;
 }
 export declare class ControlWidget extends Widget<FormProperty, SFUISchemaItem> {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ControlWidget, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ControlWidget, never, never, {}, {}, never>;
 }
 export declare class ControlUIWidget<UIT extends SFUISchemaItem> extends Widget<FormProperty, UIT> {
     reset(_value: SFValue): void;
     afterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ControlUIWidget<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ControlUIWidget<any>, never, never, {}, {}, never>;
 }
 export declare class ArrayLayoutWidget extends Widget<ArrayProperty, SFArrayWidgetSchema> implements AfterViewInit {
     reset(_value: SFValue): void;
     afterViewInit(): void;
     ngAfterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ArrayLayoutWidget, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ArrayLayoutWidget, never, never, {}, {}, never>;
 }
 export declare class ObjectLayoutWidget extends Widget<ObjectProperty, SFObjectWidgetSchema> implements AfterViewInit {
     reset(_value: SFValue): void;
     afterViewInit(): void;
     ngAfterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ObjectLayoutWidget, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ObjectLayoutWidget, never, never, {}, {}, never>;
 }

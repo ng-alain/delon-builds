@@ -6,15 +6,14 @@ import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import { BooleanInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import type { ErrorData } from './errors';
+import { ErrorData } from './errors';
 import { SFButton, SFLayout, SFValueChange } from './interface';
 import { FormProperty } from './model/form.property';
 import { FormPropertyFactory } from './model/form.property.factory';
-import type { SFSchema } from './schema/index';
-import type { SFUISchema } from './schema/ui';
+import { SFSchema } from './schema/index';
+import { SFUISchema } from './schema/ui';
 import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
-import * as i0 from "@angular/core";
 export declare function useFactory(schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
 export declare type SFMode = 'default' | 'search' | 'edit';
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
@@ -172,6 +171,4 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     reset(emit?: boolean): this;
     private cleanRootSub;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, [null, null, null, null, null, { optional: true; }, { optional: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": "layout"; "schema": "schema"; "ui": "ui"; "formData": "formData"; "button": "button"; "liveValidate": "liveValidate"; "autocomplete": "autocomplete"; "firstVisual": "firstVisual"; "onlyVisual": "onlyVisual"; "compact": "compact"; "mode": "mode"; "loading": "loading"; "disabled": "disabled"; "noColon": "noColon"; "cleanValue": "cleanValue"; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"]>;
 }

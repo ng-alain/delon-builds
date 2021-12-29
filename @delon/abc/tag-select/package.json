@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/tagSelect.mjs",
-  "es2020": "../fesm2020/tagSelect.mjs",
-  "esm2020": "../esm2020/tag-select/tagSelect.mjs",
-  "fesm2020": "../fesm2020/tagSelect.mjs",
-  "fesm2015": "../fesm2015/tagSelect.mjs",
+  "main": "../bundles/tagSelect.umd.js",
+  "module": "../fesm2015/tagSelect.js",
+  "es2015": "../fesm2015/tagSelect.js",
+  "esm2015": "../esm2015/tag-select/tagSelect.js",
+  "fesm2015": "../fesm2015/tagSelect.js",
   "typings": "tagSelect.d.ts",
+  "metadata": "tagSelect.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/tag-select"
 }

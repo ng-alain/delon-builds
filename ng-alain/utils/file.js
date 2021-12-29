@@ -22,7 +22,7 @@ function readContent(tree, filePath) {
 }
 exports.readContent = readContent;
 function getFileContentInApplicationFiles(fileName) {
-    const filePath = (0, path_1.join)(__dirname, `../application/files/${fileName}`);
+    const filePath = path_1.join(__dirname, `../application/files/${fileName}`);
     if (fs.existsSync(filePath)) {
         return fs.readFileSync(filePath).toString('utf-8');
     }
@@ -66,7 +66,7 @@ function overwriteFile(options) {
 }
 exports.overwriteFile = overwriteFile;
 function overwriteIfExists(tree) {
-    return (0, schematics_1.forEach)(fileEntry => {
+    return schematics_1.forEach(fileEntry => {
         if (tree.exists(fileEntry.path)) {
             tree.overwrite(fileEntry.path, fileEntry.content);
             return null;

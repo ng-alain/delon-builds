@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, OnChanges } from '@angular/core';
 import { DelonLocaleService } from '@delon/theme';
 import { NumberInput } from '@delon/util/decorator';
-import * as i0 from "@angular/core";
 export declare class G2MiniProgressComponent implements OnChanges {
     i18n: DelonLocaleService;
     private cdr;
@@ -15,6 +14,4 @@ export declare class G2MiniProgressComponent implements OnChanges {
     constructor(i18n: DelonLocaleService, cdr: ChangeDetectorRef);
     private fixNum;
     ngOnChanges(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<G2MiniProgressComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniProgressComponent, "g2-mini-progress", ["g2MiniProgress"], { "color": "color"; "target": "target"; "percent": "percent"; "strokeWidth": "strokeWidth"; }, {}, never, never>;
 }

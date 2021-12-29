@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/grid.mjs",
-  "es2020": "../fesm2020/grid.mjs",
-  "esm2020": "../esm2020/sg/grid.mjs",
-  "fesm2020": "../fesm2020/grid.mjs",
-  "fesm2015": "../fesm2015/grid.mjs",
+  "main": "../bundles/grid.umd.js",
+  "module": "../fesm2015/grid.js",
+  "es2015": "../fesm2015/grid.js",
+  "esm2015": "../esm2015/sg/grid.js",
+  "fesm2015": "../fesm2015/grid.js",
   "typings": "grid.d.ts",
+  "metadata": "grid.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/sg"
 }

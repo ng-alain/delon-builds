@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/pdf.mjs",
-  "es2020": "../fesm2020/pdf.mjs",
-  "esm2020": "../esm2020/pdf/pdf.mjs",
-  "fesm2020": "../fesm2020/pdf.mjs",
-  "fesm2015": "../fesm2015/pdf.mjs",
+  "main": "../bundles/pdf.umd.js",
+  "module": "../fesm2015/pdf.js",
+  "es2015": "../fesm2015/pdf.js",
+  "esm2015": "../esm2015/pdf/pdf.js",
+  "fesm2015": "../fesm2015/pdf.js",
   "typings": "pdf.d.ts",
+  "metadata": "pdf.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/pdf"
 }

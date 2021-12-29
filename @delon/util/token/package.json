@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/delon-util-token.mjs",
-  "es2020": "../fesm2020/delon-util-token.mjs",
-  "esm2020": "../esm2020/token/delon-util-token.mjs",
-  "fesm2020": "../fesm2020/delon-util-token.mjs",
-  "fesm2015": "../fesm2015/delon-util-token.mjs",
+  "main": "../bundles/delon-util-token.umd.js",
+  "module": "../fesm2015/delon-util-token.js",
+  "es2015": "../fesm2015/delon-util-token.js",
+  "esm2015": "../esm2015/token/delon-util-token.js",
+  "fesm2015": "../fesm2015/delon-util-token.js",
   "typings": "delon-util-token.d.ts",
+  "metadata": "delon-util-token.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/token"
 }

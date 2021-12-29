@@ -13,13 +13,13 @@ exports.createTestApp = exports.createAlainAndModuleApp = exports.createAlainApp
 const testing_1 = require("@angular-devkit/schematics/testing");
 const path_1 = require("path");
 /** Path to the collection file for the Material schematics */
-exports.collectionPath = (0, path_1.join)(__dirname, '..', 'collection.json');
+exports.collectionPath = path_1.join(__dirname, '..', 'collection.json');
 /** Path to the migration file for the Material update schematics */
-exports.migrationCollection = (0, path_1.join)(__dirname, '..', 'migration.json');
+exports.migrationCollection = path_1.join(__dirname, '..', 'migration.json');
 exports.APPNAME = 'foo';
 exports.FILE_PREFIX = `/projects/${exports.APPNAME}`;
 function createNgRunner() {
-    return new testing_1.SchematicTestRunner('schematics', (0, path_1.join)('./node_modules/@schematics/angular/collection.json'));
+    return new testing_1.SchematicTestRunner('schematics', path_1.join('./node_modules/@schematics/angular/collection.json'));
 }
 exports.createNgRunner = createNgRunner;
 function createAlainRunner() {
