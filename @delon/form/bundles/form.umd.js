@@ -1998,7 +1998,7 @@
             var widgetEl = this.el.querySelector('.ant-row') || this.el;
             this.render.addClass(widgetEl, 'sf__fixed');
             var labelEl = widgetEl.querySelector('.ant-form-item-label');
-            var controlEl = widgetEl.querySelector('.ant-form-item-control');
+            var controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper,.ant-form-item-control');
             var unit = this.num + "px";
             if (labelEl) {
                 this.render.setStyle(labelEl, 'flex', "0 0 " + unit);
