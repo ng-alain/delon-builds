@@ -38,7 +38,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
     private destroy$;
-    private data$;
+    private data$?;
     private totalTpl;
     private cog;
     private _req;
@@ -75,23 +75,23 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     total: number;
     loading: boolean | null;
     loadingDelay: number;
-    loadingIndicator: TemplateRef<void>;
+    loadingIndicator: TemplateRef<void> | null;
     bordered: boolean;
     size: 'small' | 'middle' | 'default';
     scroll: {
-        y?: string;
-        x?: string;
+        x?: string | null;
+        y?: string | null;
     };
-    singleSort: STSingleSort;
+    singleSort?: STSingleSort;
     private _multiSort?;
     get multiSort(): NzSafeAny;
     set multiSort(value: NzSafeAny);
-    rowClassName: STRowClassName;
+    rowClassName?: STRowClassName;
     clickRowClassName?: STClickRowClassName | null;
     set widthMode(value: STWidthMode);
     get widthMode(): STWidthMode;
     set widthConfig(val: string[]);
-    private _resizable;
+    private _resizable?;
     set resizable(val: STResizable | boolean | string);
     header?: string | TemplateRef<void> | null;
     showHeader: boolean;
@@ -103,10 +103,10 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     expand: TemplateRef<{
         $implicit: NzSafeAny;
         column: STColumn;
-    }>;
+    }> | null;
     noResult?: string | TemplateRef<void> | null;
     responsive: boolean;
-    responsiveHideHeaderFooter: boolean;
+    responsiveHideHeaderFooter?: boolean;
     readonly error: EventEmitter<STError>;
     readonly change: EventEmitter<STChange<any>>;
     virtualScroll: boolean;

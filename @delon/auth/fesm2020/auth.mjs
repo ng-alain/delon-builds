@@ -152,6 +152,7 @@ class SocialService {
         this.tokenService = tokenService;
         this.doc = doc;
         this.router = router;
+        this._win = null;
     }
     /**
      * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`

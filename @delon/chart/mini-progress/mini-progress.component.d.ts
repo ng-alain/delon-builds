@@ -9,9 +9,9 @@ export declare class G2MiniProgressComponent implements OnChanges {
     static ngAcceptInputType_percent: NumberInput;
     static ngAcceptInputType_strokeWidth: NumberInput;
     color: string;
-    target: number;
-    percent: number;
-    strokeWidth: number;
+    target?: number | null;
+    percent?: number | null;
+    strokeWidth?: number | null;
     constructor(i18n: DelonLocaleService, cdr: ChangeDetectorRef);
     private fixNum;
     ngOnChanges(): void;

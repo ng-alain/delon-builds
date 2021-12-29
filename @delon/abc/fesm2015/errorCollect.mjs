@@ -16,6 +16,7 @@ class ErrorCollectComponent {
         this.cdr = cdr;
         this.doc = doc;
         this.directionality = directionality;
+        this.formEl = null;
         this.destroy$ = new Subject();
         this._hiden = true;
         this.count = 0;

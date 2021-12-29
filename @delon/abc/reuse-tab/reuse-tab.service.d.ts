@@ -15,10 +15,10 @@ export declare class ReuseTabService implements OnDestroy {
     private _cached;
     private _titleCached;
     private _closableCached;
-    private _router$;
+    private _router$?;
     private removeUrlBuffer;
     private positionBuffer;
-    componentRef: ReuseComponentRef;
+    componentRef?: ReuseComponentRef;
     debug: boolean;
     routeParamMatchMode: ReuseTabRouteParamMatchMode;
     mode: ReuseTabMatchMode;
@@ -43,7 +43,7 @@ export declare class ReuseTabService implements OnDestroy {
     set max(value: number);
     set keepingScroll(value: boolean);
     get keepingScroll(): boolean;
-    keepingScrollContainer: Element;
+    keepingScrollContainer?: Element;
     /** 获取已缓存的路由 */
     get items(): ReuseTabCached[];
     /** 获取当前缓存的路由总数 */
@@ -151,7 +151,7 @@ export declare class ReuseTabService implements OnDestroy {
     constructor(injector: Injector, menuService: MenuService);
     init(): void;
     private getMenu;
-    runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number, type?: ReuseHookOnReuseInitType): void;
+    runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number | undefined, type?: ReuseHookOnReuseInitType): void;
     private hasInValidRoute;
     /**
      * 决定是否允许路由复用，若 `true` 会触发 `store`

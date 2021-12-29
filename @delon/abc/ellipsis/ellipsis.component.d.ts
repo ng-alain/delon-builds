@@ -24,8 +24,8 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     text: string;
     targetCount: number;
     tooltip: boolean;
-    length: number;
-    lines: number;
+    length?: number;
+    lines?: number;
     fullWidthRecognition: boolean;
     tail: string;
     get linsWord(): string;

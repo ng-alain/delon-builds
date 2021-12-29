@@ -9,7 +9,7 @@ export declare class LoadingService implements OnDestroy {
     private overlay;
     private configSrv;
     private directionality;
-    private _overlayRef;
+    private _overlayRef?;
     private compRef;
     private opt;
     private cog;

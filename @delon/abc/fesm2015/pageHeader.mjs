@@ -42,6 +42,9 @@ class PageHeaderComponent {
         this.dir = 'ltr';
         this._titleVal = '';
         this.paths = [];
+        // #region fields
+        this._title = null;
+        this._titleTpl = null;
         this.loading = false;
         this.wide = false;
         this.breadcrumb = null;

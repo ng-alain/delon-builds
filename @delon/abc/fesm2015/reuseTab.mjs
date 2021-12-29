@@ -93,6 +93,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
 class ReuseTabContextService {
     constructor(overlay) {
         this.overlay = overlay;
+        this.ref = null;
         this.show = new Subject();
         this.close = new Subject();
     }
@@ -243,6 +244,7 @@ class ReuseTabService {
         this._cached = [];
         this._titleCached = {};
         this._closableCached = {};
+        this.removeUrlBuffer = null;
         this.positionBuffer = {};
         this.debug = false;
         this.routeParamMatchMode = 'strict';
@@ -569,10 +571,10 @@ class ReuseTabService {
             const item = this._cached[comp];
             comp = item._handle.componentRef;
         }
-        const compThis = comp.instance;
-        if (comp == null || !compThis) {
+        if (comp == null || !comp.instance) {
             return;
         }
+        const compThis = comp.instance;
         const fn = compThis[method];
         if (typeof fn !== 'function') {
             return;
@@ -774,6 +776,7 @@ class ReuseTabComponent {
         this.allowClose = true;
         this.keepingScroll = false;
         this.customContextMenu = [];
+        this.tabBarStyle = null;
         this.tabType = 'line';
         this.routeParamMatchMode = 'strict';
         this.disabled = false;
@@ -971,9 +974,9 @@ class ReuseTabComponent {
         this.cdr.detectChanges();
     }
     ngOnDestroy() {
-        const { destroy$: unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
 }
 ReuseTabComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: ReuseTabComponent, deps: [{ token: ReuseTabService }, { token: i0.ChangeDetectorRef }, { token: i2$1.Router }, { token: i2$1.ActivatedRoute }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: DOCUMENT }, { token: i3.Platform }], target: i0.ɵɵFactoryTarget.Component });

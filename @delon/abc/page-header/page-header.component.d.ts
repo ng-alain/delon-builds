@@ -39,7 +39,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     _titleVal: string | null;
     paths: PageHeaderPath[];
     _title: string | null;
-    _titleTpl: TemplateRef<NzSafeAny>;
+    _titleTpl: TemplateRef<NzSafeAny> | null;
     set title(value: string | TemplateRef<void> | null);
     loading: boolean;
     wide: boolean;

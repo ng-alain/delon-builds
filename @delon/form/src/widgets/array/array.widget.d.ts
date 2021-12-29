@@ -6,7 +6,7 @@ import * as i0 from "@angular/core";
 export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     addTitle: SafeHtml;
     addType: NzButtonType;
-    removeTitle: string | null;
+    removeTitle?: string | null;
     arraySpan: number;
     get addDisabled(): boolean;
     get showRemove(): boolean;

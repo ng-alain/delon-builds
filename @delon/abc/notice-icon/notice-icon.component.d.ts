@@ -13,7 +13,7 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     private i18n$;
     locale: LocaleData;
     data: NoticeItem[];
-    count: number;
+    count?: number;
     loading: boolean;
     popoverVisible: boolean;
     btnClass?: NgClassType;

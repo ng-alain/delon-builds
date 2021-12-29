@@ -3,11 +3,11 @@ import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import * as i0 from "@angular/core";
 export declare class SFItemWrapComponent {
     _showTitle: boolean;
-    id: string;
+    id?: string;
     schema: SFSchema;
     ui: SFUISchemaItem;
-    showError: boolean;
-    error: string;
+    showError?: boolean;
+    error?: string;
     set showTitle(val: boolean | string | null | undefined);
     title: string | null;
     get t(): string;

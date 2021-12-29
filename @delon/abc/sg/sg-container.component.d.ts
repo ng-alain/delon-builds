@@ -7,7 +7,7 @@ export declare class SGContainerComponent {
     static ngAcceptInputType_colInCon: NumberInput;
     static ngAcceptInputType_col: NumberInput;
     gutter: number;
-    colInCon: REP_TYPE;
+    colInCon?: REP_TYPE;
     col: REP_TYPE;
     get marginValue(): number;
     constructor(configSrv: AlainConfigService);

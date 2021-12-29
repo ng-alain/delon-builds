@@ -239,7 +239,7 @@ class MockInterceptor {
             console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
             console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
         }
-        const res$ = res instanceof HttpErrorResponse ? throwError(res) : of(res);
+        const res$ = res instanceof HttpErrorResponse ? throwError(() => res) : of(res);
         if (config.executeOtherInterceptors) {
             const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
             const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);

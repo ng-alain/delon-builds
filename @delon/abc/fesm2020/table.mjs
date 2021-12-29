@@ -1477,10 +1477,13 @@ class STComponent {
         this.total = 0;
         this.loading = null;
         this.loadingDelay = 0;
+        this.loadingIndicator = null;
         this.bordered = false;
+        this.scroll = { x: null, y: null };
         this.showHeader = true;
         this.expandRowByClick = false;
         this.expandAccordion = false;
+        this.expand = null;
         this.responsive = true;
         this.error = new EventEmitter();
         this.change = new EventEmitter();

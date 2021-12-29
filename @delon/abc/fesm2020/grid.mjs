@@ -61,6 +61,7 @@ class SGComponent {
         this.rep = rep;
         this.clsMap = [];
         this.inited = false;
+        this.col = null;
         if (parent == null) {
             throw new Error(`[sg] must include 'sg-container' component`);
         }

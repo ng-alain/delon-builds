@@ -15,12 +15,12 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     static ngAcceptInputType_padding: NumberInput;
     private bodyEl;
     private inited;
-    private srv$;
-    private route$;
+    private srv$?;
+    private route$?;
     private id;
     private scroll$;
     _height: number;
-    fullscreen: boolean;
+    fullscreen?: boolean;
     hideTitle: boolean;
     padding: number;
     readonly fullscreenChange: EventEmitter<boolean>;

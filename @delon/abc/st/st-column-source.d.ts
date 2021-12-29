@@ -9,7 +9,7 @@ import { _STColumn, _STHeader } from './st.types';
 import * as i0 from "@angular/core";
 export interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
-    resizable: STResizable;
+    resizable?: STResizable;
     safeType: STColumnSafeType;
 }
 export declare class STColumnSource {

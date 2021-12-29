@@ -5,7 +5,7 @@ import * as i0 from "@angular/core";
 export declare class G2CustomComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_resizeTime: NumberInput;
-    height: number;
+    height?: number;
     resizeTime: number;
     readonly render: EventEmitter<ElementRef<any>>;
     readonly resize: EventEmitter<ElementRef<any>>;

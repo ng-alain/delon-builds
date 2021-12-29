@@ -7,7 +7,7 @@ export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
     grid: NzSafeAny;
     type: SFObjectWidgetRenderType;
     list: NzSafeAny[];
-    title: string;
+    title?: string;
     showExpand: boolean;
     expand: boolean;
     ngOnInit(): void;

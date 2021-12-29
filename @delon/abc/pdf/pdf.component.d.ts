@@ -27,7 +27,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private _pdf;
     private loadingTask;
     private _src;
-    private lastSrc;
+    private lastSrc?;
     private _pi;
     private _total;
     private _showAll;
@@ -55,7 +55,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     set rotation(val: number);
     autoReSize: boolean;
     externalLinkTarget: PdfExternalLinkTarget;
-    delay: number;
+    delay?: number;
     readonly change: EventEmitter<PdfChangeEvent>;
     get loading(): boolean;
     get pdf(): NzSafeAny;

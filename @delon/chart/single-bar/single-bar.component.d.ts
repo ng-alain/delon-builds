@@ -18,7 +18,7 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     max: number;
     value: number;
     line: boolean;
-    format: (value: number, item: NzSafeAny, index: number) => string;
+    format?: (value: number, item: NzSafeAny, index: number) => string;
     padding: number | number[] | 'auto';
     textStyle: {
         [key: string]: NzSafeAny;

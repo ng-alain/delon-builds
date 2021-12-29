@@ -2297,11 +2297,11 @@ function makeMethod(method) {
                 if (options.acl) {
                     const aclSrv = injector.get(ACLService, null);
                     if (aclSrv && !aclSrv.can(options.acl)) {
-                        return throwError({
+                        return throwError(() => ({
                             url: requestUrl,
                             status: 401,
                             statusText: `From Http Decorator`
-                        });
+                        }));
                     }
                     delete options.acl;
                 }

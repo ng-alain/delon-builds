@@ -7,9 +7,9 @@ export declare class ResultComponent implements OnInit, OnDestroy {
     _type: string;
     _icon: string;
     set type(value: string);
-    title: string | TemplateRef<void>;
-    description: string | TemplateRef<void>;
-    extra: string | TemplateRef<void>;
+    title?: string | TemplateRef<void>;
+    description?: string | TemplateRef<void>;
+    extra?: string | TemplateRef<void>;
     dir: Direction;
     constructor(directionality: Directionality);
     ngOnInit(): void;

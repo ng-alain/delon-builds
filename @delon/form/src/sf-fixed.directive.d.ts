@@ -4,7 +4,7 @@ export declare class SFFixedDirective implements AfterViewInit, OnChanges {
     private render;
     private el;
     private _inited;
-    num: number;
+    num?: number | null;
     private init;
     constructor(er: ElementRef, render: Renderer2);
     ngAfterViewInit(): void;

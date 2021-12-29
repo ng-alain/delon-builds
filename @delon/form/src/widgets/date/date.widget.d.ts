@@ -6,7 +6,7 @@ import { SFDateWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements OnInit {
     private startFormat;
-    private endFormat;
+    private endFormat?;
     private flatRange;
     mode: string;
     displayValue: Date | Date[] | null;

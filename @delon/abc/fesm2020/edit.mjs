@@ -280,12 +280,12 @@ class SEComponent {
         }
     }
     updateStatus(invalid) {
-        if (this.ngControl.disabled || this.ngControl.isDisabled) {
+        if (this.ngControl?.disabled || this.ngControl?.isDisabled) {
             return;
         }
         this.invalid =
-            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
-        const errors = this.ngControl.errors;
+            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl?.dirty ? false : invalid;
+        const errors = this.ngControl?.errors;
         if (errors != null && Object.keys(errors).length > 0) {
             const key = Object.keys(errors)[0] || '';
             const err = this.errorData[key];
@@ -317,7 +317,7 @@ class SEComponent {
         this.inited = true;
         if (this.onceFlag) {
             Promise.resolve().then(() => {
-                this.updateStatus(this.ngControl.invalid);
+                this.updateStatus(this.ngControl?.invalid);
                 this.onceFlag = false;
             });
         }

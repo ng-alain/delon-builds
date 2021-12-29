@@ -13,7 +13,7 @@ export declare class TokenService implements ITokenService, OnDestroy {
     private store;
     private refresh$;
     private change$;
-    private interval$;
+    private interval$?;
     private _referrer;
     private _options;
     constructor(configSrv: AlainConfigService, store: IStore);

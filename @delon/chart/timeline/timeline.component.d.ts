@@ -43,10 +43,10 @@ export declare class G2TimelineComponent extends G2BaseComponent {
     static ngAcceptInputType_maxAxis: NumberInput;
     static ngAcceptInputType_borderWidth: NumberInput;
     static ngAcceptInputType_slider: BooleanInput;
-    title: string | TemplateRef<void>;
+    title?: string | TemplateRef<void> | null;
     maxAxis: number;
     data: G2TimelineData[];
-    titleMap: G2TimelineMap;
+    titleMap?: G2TimelineMap | null;
     colorMap: G2TimelineMap;
     mask: string;
     maskSlider: string;

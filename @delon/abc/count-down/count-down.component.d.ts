@@ -3,7 +3,7 @@ import { CountdownComponent, CountdownConfig, CountdownEvent } from 'ngx-countdo
 import * as i0 from "@angular/core";
 export declare class CountDownComponent {
     readonly instance: CountdownComponent;
-    config: CountdownConfig;
+    config?: CountdownConfig;
     /**
      * 目标时间
      */

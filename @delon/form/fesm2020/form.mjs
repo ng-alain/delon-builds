@@ -2577,6 +2577,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
 class SliderWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
+        this.marks = null;
         this._formatter = (value) => {
             const { formatter } = this.ui;
             if (formatter)
@@ -2677,6 +2678,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
         }] });
 
 class TagWidget extends ControlUIWidget {
+    constructor() {
+        super(...arguments);
+        this.data = [];
+    }
     reset(value) {
         getData(this.schema, this.ui, value).subscribe(list => {
             this.data = list;

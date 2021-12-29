@@ -111,10 +111,11 @@ class FullContentComponent {
             this.update();
     }
     ngOnDestroy() {
+        var _a, _b;
         this.removeInBody();
         this.scroll$.unsubscribe();
-        this.srv$.unsubscribe();
-        this.route$.unsubscribe();
+        (_a = this.srv$) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+        (_b = this.route$) === null || _b === void 0 ? void 0 : _b.unsubscribe();
     }
 }
 FullContentComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: FullContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FullContentService }, { token: i2.Router }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component });

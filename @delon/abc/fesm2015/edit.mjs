@@ -283,12 +283,13 @@ class SEComponent {
         }
     }
     updateStatus(invalid) {
-        if (this.ngControl.disabled || this.ngControl.isDisabled) {
+        var _a, _b, _c, _d;
+        if (((_a = this.ngControl) === null || _a === void 0 ? void 0 : _a.disabled) || ((_b = this.ngControl) === null || _b === void 0 ? void 0 : _b.isDisabled)) {
             return;
         }
         this.invalid =
-            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl.dirty ? false : invalid;
-        const errors = this.ngControl.errors;
+            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !((_c = this.ngControl) === null || _c === void 0 ? void 0 : _c.dirty) ? false : invalid;
+        const errors = (_d = this.ngControl) === null || _d === void 0 ? void 0 : _d.errors;
         if (errors != null && Object.keys(errors).length > 0) {
             const key = Object.keys(errors)[0] || '';
             const err = this.errorData[key];
@@ -320,7 +321,8 @@ class SEComponent {
         this.inited = true;
         if (this.onceFlag) {
             Promise.resolve().then(() => {
-                this.updateStatus(this.ngControl.invalid);
+                var _a;
+                this.updateStatus((_a = this.ngControl) === null || _a === void 0 ? void 0 : _a.invalid);
                 this.onceFlag = false;
             });
         }

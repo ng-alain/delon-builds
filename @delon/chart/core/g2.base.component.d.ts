@@ -17,7 +17,7 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     static ngAcceptInputType_delay: NumberInput;
     repaint: boolean;
     protected node: ElementRef;
-    protected resize$: Subscription;
+    protected resize$?: Subscription;
     protected destroy$: Subject<void>;
     protected _chart: Chart;
     loaded: boolean;

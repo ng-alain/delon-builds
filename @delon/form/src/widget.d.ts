@@ -18,7 +18,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     readonly sfItemComp?: SFItemComponent | undefined;
     readonly sfComp?: SFComponent | undefined;
     formProperty: T;
-    error: string;
+    error?: string;
     showError: boolean;
     id: string;
     schema: SFSchema;

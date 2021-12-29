@@ -7,14 +7,14 @@ export declare class G2CardComponent implements OnChanges {
     static ngAcceptInputType_loading: BooleanInput;
     /** 是否显示边框 */
     bordered: boolean;
-    avatar: string | TemplateRef<void>;
-    title: string | TemplateRef<void>;
-    action: string | TemplateRef<void>;
+    avatar?: string | TemplateRef<void> | null;
+    title?: string | TemplateRef<void> | null;
+    action?: string | TemplateRef<void> | null;
     total: string;
     _height: string;
     _orgHeight: number | string;
     set contentHeight(value: number | string);
-    footer: string | TemplateRef<void>;
+    footer?: string | TemplateRef<void> | null;
     /** 是否显示Loading */
     loading: boolean;
     constructor(cdr: ChangeDetectorRef);

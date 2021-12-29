@@ -17,7 +17,7 @@ export interface G2BarClickItem {
 export declare class G2BarComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_autoLabel: BooleanInput;
-    title: string | TemplateRef<void>;
+    title?: string | TemplateRef<void>;
     color: string;
     height: number;
     padding: number | number[] | 'auto';

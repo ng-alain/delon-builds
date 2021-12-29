@@ -34,10 +34,13 @@ class ZipService {
             this.init().then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => {
-                        JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
-                    }, (err) => {
-                        reject(err);
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe({
+                        next: (res) => {
+                            JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
+                        },
+                        error: (err) => {
+                            reject(err);
+                        }
                     });
                     return;
                 }
@@ -69,11 +72,14 @@ class ZipService {
     pushUrl(zip, path, url) {
         this.check(zip);
         return new Promise((resolve, reject) => {
-            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe((res) => {
-                zip.file(path, res);
-                resolve();
-            }, (error) => {
-                reject({ url, error });
+            this.http.request('GET', url, { responseType: 'arraybuffer' }).subscribe({
+                next: (res) => {
+                    zip.file(path, res);
+                    resolve();
+                },
+                error: (error) => {
+                    reject({ url, error });
+                }
             });
         });
     }

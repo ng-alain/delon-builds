@@ -6,6 +6,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SEErrorRefresh, SELayout } from './se.types';
 import * as i0 from "@angular/core";
 export declare class SEContainerComponent {
+    static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_colInCon: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;
@@ -14,13 +15,13 @@ export declare class SEContainerComponent {
     static ngAcceptInputType_line: BooleanInput;
     static ngAcceptInputType_noColon: BooleanInput;
     private errorNotify$;
-    colInCon: REP_TYPE;
+    colInCon?: REP_TYPE;
     col: REP_TYPE;
     labelWidth: number;
     noColon: boolean;
     title?: string | TemplateRef<void> | null;
-    get gutter(): number | string;
-    set gutter(value: number | string);
+    get gutter(): number;
+    set gutter(value: number);
     private _gutter;
     get nzLayout(): SELayout;
     set nzLayout(value: SELayout);

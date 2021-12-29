@@ -11,8 +11,8 @@ export declare class DownFileDirective {
     httpBody: NzSafeAny;
     httpMethod: string;
     httpUrl: string;
-    fileName: string | ((rep: HttpResponse<Blob>) => string);
-    pre: (ev: MouseEvent) => Promise<boolean>;
+    fileName?: string | ((rep: HttpResponse<Blob>) => string);
+    pre?: (ev: MouseEvent) => Promise<boolean>;
     readonly success: EventEmitter<HttpResponse<Blob>>;
     readonly error: EventEmitter<any>;
     private getDisposition;

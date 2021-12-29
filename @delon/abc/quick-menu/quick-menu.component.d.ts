@@ -10,13 +10,13 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     static ngAcceptInputType_expand: BooleanInput;
     constructor(cdr: ChangeDetectorRef, el: ElementRef, render: Renderer2);
     ctrlStyle: {
-        [key: string]: string;
+        [key: string]: string | undefined;
     };
     icon: string | TemplateRef<void>;
     top: number;
     width: number;
-    bgColor: string;
-    borderColor: string;
+    bgColor?: string;
+    borderColor?: string;
     expand: boolean;
     readonly expandChange: EventEmitter<boolean>;
     private show;

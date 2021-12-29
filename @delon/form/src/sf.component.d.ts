@@ -55,7 +55,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     /** UI Schema */
     ui: SFUISchema;
     /** 表单默认值 */
-    formData: Record<string, NzSafeAny>;
+    formData?: Record<string, NzSafeAny>;
     /**
      * 按钮
      * - 值为 `null` 或 `undefined` 表示手动添加按钮，但保留容器

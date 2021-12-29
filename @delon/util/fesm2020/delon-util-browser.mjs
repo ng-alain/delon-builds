@@ -156,7 +156,7 @@ class ScrollService {
             return [element.scrollLeft, element.scrollTop];
         }
         else {
-            return [win.pageXOffset, win.pageYOffset];
+            return [win.scrollX, win.scrollY];
         }
     }
     /**
@@ -187,8 +187,8 @@ class ScrollService {
         const win = this._getWin();
         if (win && win.scrollBy) {
             win.scrollBy(0, element.getBoundingClientRect().top - topOffset);
-            if (win.pageYOffset < 20) {
-                win.scrollBy(0, -win.pageYOffset);
+            if (win.scrollY < 20) {
+                win.scrollBy(0, -win.scrollY);
             }
         }
     }

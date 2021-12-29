@@ -16,6 +16,7 @@ class G2PieComponent extends G2BaseComponent {
     constructor() {
         super(...arguments);
         this.legendData = [];
+        this.isPercent = false;
         // #region fields
         this.animate = true;
         this.color = 'rgba(24, 144, 255, 0.85)';

@@ -19,7 +19,7 @@ export declare class G2RadarComponent extends G2BaseComponent {
     static ngAcceptInputType_hasLegend: BooleanInput;
     static ngAcceptInputType_tickCount: NumberInput;
     legendData: NzSafeAny[];
-    title: string | TemplateRef<void>;
+    title?: string | TemplateRef<void> | null;
     height: number;
     padding: number | number[] | 'auto';
     hasLegend: boolean;

@@ -12,7 +12,7 @@ export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSche
     showInput: boolean;
     triggerAction: string[];
     data: SFSchemaEnum[];
-    loadData: (node: NzCascaderOption, index: number) => PromiseLike<NzSafeAny>;
+    loadData?: (node: NzCascaderOption, index: number) => PromiseLike<NzSafeAny>;
     ngOnInit(): void;
     reset(value: SFValue): void;
     _visibleChange(status: boolean): void;

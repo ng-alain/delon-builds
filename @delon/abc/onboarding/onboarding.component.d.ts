@@ -10,7 +10,7 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     private platform;
     private cdr;
     private time;
-    private prevSelectorEl;
+    private prevSelectorEl?;
     config: OnboardingConfig;
     item: OnboardingItem;
     active: number;

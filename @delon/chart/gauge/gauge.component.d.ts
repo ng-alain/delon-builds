@@ -5,12 +5,12 @@ import * as i0 from "@angular/core";
 export declare class G2GaugeComponent extends G2BaseComponent {
     static ngAcceptInputType_height: NumberInput;
     static ngAcceptInputType_percent: NumberInput;
-    title: string;
-    height: number;
+    title?: string;
+    height?: number;
     color: string;
-    bgColor: string;
-    format: (text: string, item: NzSafeAny, index: number) => string;
-    percent: number;
+    bgColor?: string;
+    format?: (text: string, item: NzSafeAny, index: number) => string;
+    percent?: number;
     padding: number | number[] | 'auto';
     install(): void;
     changeData(): void;

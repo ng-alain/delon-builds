@@ -8,7 +8,7 @@ export declare class FooterToolbarComponent implements OnInit, OnDestroy {
     private doc;
     static ngAcceptInputType_errorCollect: BooleanInput;
     errorCollect: boolean;
-    extra: string | TemplateRef<void>;
+    extra?: string | TemplateRef<void>;
     constructor(el: ElementRef, renderer: Renderer2, doc: NzSafeAny);
     private get bodyCls();
     ngOnInit(): void;

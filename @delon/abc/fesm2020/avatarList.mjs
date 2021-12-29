@@ -48,6 +48,7 @@ class AvatarListComponent {
         this.cls = '';
         this.avatarSize = 'default';
         this.maxLength = 0;
+        this.excessItemsStyle = null;
     }
     set size(value) {
         this.cls = `avatar-list__item${value === 'default' ? '' : ` avatar-list__${value}`}`;

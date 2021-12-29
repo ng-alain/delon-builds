@@ -17,7 +17,7 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     private time;
     private notify$;
     type: PlyrMediaType;
-    source: string | PlyrMediaSource;
+    source?: string | PlyrMediaSource;
     options: NzSafeAny;
     delay: number;
     readonly ready: EventEmitter<any>;

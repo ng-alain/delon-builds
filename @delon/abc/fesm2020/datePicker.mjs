@@ -54,6 +54,7 @@ class RangePickerDirective {
         this.nativeComp = nativeComp;
         this.resolver = resolver;
         this.injector = injector;
+        this._shortcut = null;
         this.destroy$ = new Subject();
         this.shortcutFactory = null;
         this.start = null;

@@ -52,7 +52,10 @@ class XlsxService {
                 .then(() => {
                 // from url
                 if (typeof fileOrUrl === 'string') {
-                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe((res) => r(new Uint8Array(res)), (err) => reject(err));
+                    this.http.request('GET', fileOrUrl, { responseType: 'arraybuffer' }).subscribe({
+                        next: (res) => r(new Uint8Array(res)),
+                        error: (err) => reject(err)
+                    });
                     return;
                 }
                 // from file

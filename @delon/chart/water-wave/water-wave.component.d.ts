@@ -17,10 +17,10 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     private timer;
     animate: boolean;
     delay: number;
-    title: string | TemplateRef<void>;
+    title?: string | TemplateRef<void> | null;
     color: string;
     height: number;
-    percent: number;
+    percent?: number;
     constructor(el: ElementRef, renderer: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef, platform: Platform);
     private renderChart;
     private updateRadio;

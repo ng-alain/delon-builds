@@ -113,8 +113,8 @@ class FullContentComponent {
     ngOnDestroy() {
         this.removeInBody();
         this.scroll$.unsubscribe();
-        this.srv$.unsubscribe();
-        this.route$.unsubscribe();
+        this.srv$?.unsubscribe();
+        this.route$?.unsubscribe();
     }
 }
 FullContentComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: FullContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FullContentService }, { token: i2.Router }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component });
