@@ -15,7 +15,7 @@ const workspace_1 = require("@schematics/angular/utility/workspace");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
 function removeAjvLib(context) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         workspace.projects.forEach(project => {
             [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_TEST].forEach(targetName => {
                 var _a, _b;
@@ -44,11 +44,11 @@ function removeAjvLib(context) {
                 }
             });
         });
-        (0, utils_1.logInfo)(context, `Remove ajv lib`);
+        utils_1.logInfo(context, `Remove ajv lib`);
     }));
 }
 function removeQriousLib(context) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         workspace.projects.forEach(project => {
             [utils_1.BUILD_TARGET_BUILD, utils_1.BUILD_TARGET_TEST].forEach(targetName => {
                 var _a, _b;
@@ -67,15 +67,15 @@ function removeQriousLib(context) {
                 }
             });
         });
-        (0, utils_1.logInfo)(context, `Remove qrious lib`);
+        utils_1.logInfo(context, `Remove qrious lib`);
     }));
 }
 function v117Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        (0, versions_1.UpgradeMainVersions)(tree);
-        (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
-        (0, utils_1.removePackage)(tree, ['qrious'], 'dependencies');
-        return (0, schematics_1.chain)([removeAjvLib(context), removeQriousLib(context)]);
+        versions_1.UpgradeMainVersions(tree);
+        utils_1.logStart(context, `Upgrade @delon/* version number`);
+        utils_1.removePackage(tree, ['qrious'], 'dependencies');
+        return schematics_1.chain([removeAjvLib(context), removeQriousLib(context)]);
     });
 }
 exports.v117Rule = v117Rule;

@@ -2,7 +2,6 @@ import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlainChartConfig, AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import * as i0 from "@angular/core";
 export declare class ChartEChartsService implements OnDestroy {
     private cogSrv;
     private lazySrv;
@@ -16,6 +15,4 @@ export declare class ChartEChartsService implements OnDestroy {
     libLoad(): this;
     get notify(): Observable<void>;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ChartEChartsService>;
 }

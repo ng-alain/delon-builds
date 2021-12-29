@@ -7,7 +7,6 @@
 
 @{sf-prefix} {
   display: block;
-
   &__optional {
     margin-left: @sf-optional-margin;
     color: @sf-optional-color;
@@ -16,7 +15,6 @@
   &__fixed {
     display: flex;
   }
-
   &__title {
     margin-bottom: 8px;
     padding: 0 16px;
@@ -32,7 +30,6 @@
       @{sf-prefix}__fixed {
         flex-wrap: wrap;
       }
-
       &-fold {
         .@{ant-prefix}-card-body {
           display: none;
@@ -45,15 +42,12 @@
     > .@{ant-prefix}-form-item {
       margin-bottom: 8px;
     }
-
     &-add {
       margin-right: 16px;
     }
-
     &-container {
       .@{ant-prefix}-card {
         margin: 0 16px 16px 0;
-
         &-body {
           padding-bottom: 0;
         }
@@ -70,12 +64,10 @@
           background: @sf-widget-array-type-card-remove-bg;
           border-radius: 50%;
           cursor: pointer;
-
           i {
             color: #fff;
           }
         }
-
         &:hover {
           @{sf-prefix}__array-remove {
             display: block;
@@ -109,7 +101,6 @@
       }
     }
   }
-
   &__checkbox-list {
     display: block;
     width: 100%;
@@ -131,7 +122,6 @@
   .@{ant-prefix}-transfer {
     &-list {
       background: @sf-widget-array-transfer-bg;
-
       &-header {
         label {
           position: unset;
@@ -142,13 +132,11 @@
       margin-left: 0;
     }
   }
-
   &__no-error {
     .@{ant-prefix}-form-item {
       margin-bottom: 8px;
     }
   }
-
   &__inline {
     @{sf-prefix}__item {
       display: inline-block;
@@ -173,7 +161,6 @@
         }
         .@{ant-prefix}-card {
           margin: 0;
-
           &-body {
             padding: 8px 0 0 8px;
             > @{sf-prefix}__item {
@@ -182,7 +169,6 @@
           }
         }
       }
-
       &-btns {
         margin-right: 0;
       }
@@ -204,7 +190,6 @@
       }
     }
   }
-
   &__horizontal {
     .@{ant-prefix}-form-item-label > label {
       display: flex;
@@ -220,7 +205,6 @@
       }
     }
   }
-
   &__no-colon {
     .@{ant-prefix}-form-item-label {
       label {
@@ -230,7 +214,6 @@
       }
     }
   }
-
   &__compact {
     .@{ant-prefix}-form-item {
       margin-bottom: 8px;
@@ -241,7 +224,6 @@
           margin: 0 8px 8px 0;
         }
       }
-
       &-item {
         .@{ant-prefix}-card-body {
           padding: 8px;

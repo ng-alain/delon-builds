@@ -2,7 +2,6 @@ import { TemplateRef, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
-import * as i0 from "@angular/core";
 export interface ModalHelperOptions {
     /** 大小；例如：lg、600，默认：`lg` */
     size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number;
@@ -53,6 +52,4 @@ export declare class ModalHelper {
      * this.nzModalRef.destroy();
      */
     createStatic(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<NzSafeAny>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ModalHelper, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ModalHelper>;
 }

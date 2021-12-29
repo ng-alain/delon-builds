@@ -4,7 +4,6 @@ import { NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MediaService } from './media.service';
 import { PlyrMediaSource, PlyrMediaType } from './plyr.types';
-import * as i0 from "@angular/core";
 export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestroy {
     private el;
     private renderer;
@@ -33,6 +32,4 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
         [p in keyof MediaComponent]?: SimpleChange;
     }): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MediaComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MediaComponent, "media", ["mediaComponent"], { "type": "type"; "source": "source"; "options": "options"; "delay": "delay"; }, { "ready": "ready"; }, never, ["*"]>;
 }

@@ -1,0 +1,23 @@
+import { of } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+/**
+ * Optional pre-loading module, when it's necessary to load the resource at the first page load for some lazy routes, [example](https://github.com/ng-alain/ng-alain/blob/master/src/app/routes/routes-routing.module.ts).
+ *
+ * 可选预加载模块，当需要对某些懒路由在第一次页面加载时也一并加载该资源时，[示例](https://github.com/ng-alain/ng-alain/blob/master/src/app/routes/routes-routing.module.ts)。
+ *
+ * @example
+ * {AT}NgModule({
+ *  providers: [PreloadOptionalModules],
+ *  imports: [
+ *    RouterModule.forRoot([
+ *      { path: '', loadChildren: null, data: { preload: true } }
+ *    ], { preloadingStrategy: PreloadOptionalModules})]
+ * })
+ */
+export class PreloadOptionalModules {
+    preload(route, fn) {
+        var _a;
+        return ((_a = route.data) === null || _a === void 0 ? void 0 : _a.preload) === true ? fn().pipe(catchError(() => of(null))) : of(null);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoib3B0aW9uYWwtcHJlbG9hZGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvdGhlbWUvc3JjL3JvdXRlci9vcHRpb25hbC1wcmVsb2FkZXIudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0EsT0FBTyxFQUFjLEVBQUUsRUFBRSxNQUFNLE1BQU0sQ0FBQztBQUN0QyxPQUFPLEVBQUUsVUFBVSxFQUFFLE1BQU0sZ0JBQWdCLENBQUM7QUFJNUM7Ozs7Ozs7Ozs7Ozs7R0FhRztBQUNILE1BQU0sT0FBTyxzQkFBc0I7SUFDakMsT0FBTyxDQUFDLEtBQVksRUFBRSxFQUErQjs7UUFDbkQsT0FBTyxDQUFBLE1BQUEsS0FBSyxDQUFDLElBQUksMENBQUUsT0FBTyxNQUFLLElBQUksQ0FBQyxDQUFDLENBQUMsRUFBRSxFQUFFLENBQUMsSUFBSSxDQUFDLFVBQVUsQ0FBQyxHQUFHLEVBQUUsQ0FBQyxFQUFFLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFFLENBQUMsSUFBSSxDQUFDLENBQUM7SUFDekYsQ0FBQztDQUNGIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUHJlbG9hZGluZ1N0cmF0ZWd5LCBSb3V0ZSB9IGZyb20gJ0Bhbmd1bGFyL3JvdXRlcic7XG5pbXBvcnQgeyBPYnNlcnZhYmxlLCBvZiB9IGZyb20gJ3J4anMnO1xuaW1wb3J0IHsgY2F0Y2hFcnJvciB9IGZyb20gJ3J4anMvb3BlcmF0b3JzJztcblxuaW1wb3J0IHR5cGUgeyBOelNhZmVBbnkgfSBmcm9tICduZy16b3Jyby1hbnRkL2NvcmUvdHlwZXMnO1xuXG4vKipcbiAqIE9wdGlvbmFsIHByZS1sb2FkaW5nIG1vZHVsZSwgd2hlbiBpdCdzIG5lY2Vzc2FyeSB0byBsb2FkIHRoZSByZXNvdXJjZSBhdCB0aGUgZmlyc3QgcGFnZSBsb2FkIGZvciBzb21lIGxhenkgcm91dGVzLCBbZXhhbXBsZV0oaHR0cHM6Ly9naXRodWIuY29tL25nLWFsYWluL25nLWFsYWluL2Jsb2IvbWFzdGVyL3NyYy9hcHAvcm91dGVzL3JvdXRlcy1yb3V0aW5nLm1vZHVsZS50cykuXG4gKlxuICog5Y+v6YCJ6aKE5Yqg6L295qih5Z2X77yM5b2T6ZyA6KaB5a+55p+Q5Lqb5oeS6Lev55Sx5Zyo56ys5LiA5qyh6aG16Z2i5Yqg6L295pe25Lmf5LiA5bm25Yqg6L296K+l6LWE5rqQ5pe277yMW+ekuuS+i10oaHR0cHM6Ly9naXRodWIuY29tL25nLWFsYWluL25nLWFsYWluL2Jsb2IvbWFzdGVyL3NyYy9hcHAvcm91dGVzL3JvdXRlcy1yb3V0aW5nLm1vZHVsZS50cynjgIJcbiAqXG4gKiBAZXhhbXBsZVxuICoge0FUfU5nTW9kdWxlKHtcbiAqICBwcm92aWRlcnM6IFtQcmVsb2FkT3B0aW9uYWxNb2R1bGVzXSxcbiAqICBpbXBvcnRzOiBbXG4gKiAgICBSb3V0ZXJNb2R1bGUuZm9yUm9vdChbXG4gKiAgICAgIHsgcGF0aDogJycsIGxvYWRDaGlsZHJlbjogbnVsbCwgZGF0YTogeyBwcmVsb2FkOiB0cnVlIH0gfVxuICogICAgXSwgeyBwcmVsb2FkaW5nU3RyYXRlZ3k6IFByZWxvYWRPcHRpb25hbE1vZHVsZXN9KV1cbiAqIH0pXG4gKi9cbmV4cG9ydCBjbGFzcyBQcmVsb2FkT3B0aW9uYWxNb2R1bGVzIGltcGxlbWVudHMgUHJlbG9hZGluZ1N0cmF0ZWd5IHtcbiAgcHJlbG9hZChyb3V0ZTogUm91dGUsIGZuOiAoKSA9PiBPYnNlcnZhYmxlPE56U2FmZUFueT4pOiBPYnNlcnZhYmxlPE56U2FmZUFueT4ge1xuICAgIHJldHVybiByb3V0ZS5kYXRhPy5wcmVsb2FkID09PSB0cnVlID8gZm4oKS5waXBlKGNhdGNoRXJyb3IoKCkgPT4gb2YobnVsbCkpKSA6IG9mKG51bGwpO1xuICB9XG59XG4iXX0=

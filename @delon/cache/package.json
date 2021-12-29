@@ -1,6 +1,6 @@
 {
   "name": "@delon/cache",
-  "version": "12.4.2-8ae50d9a",
+  "version": "12.4.2-3ec8d067",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,27 +25,15 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^12.4.2-8ae50d9a",
-    "tslib": "^2.3.0"
+    "@delon/util": "^12.4.2-3ec8d067",
+    "tslib": "^2.2.0"
   },
-  "module": "fesm2015/cache.mjs",
-  "es2020": "fesm2020/cache.mjs",
-  "esm2020": "esm2020/cache.mjs",
-  "fesm2020": "fesm2020/cache.mjs",
-  "fesm2015": "fesm2015/cache.mjs",
+  "main": "bundles/cache.umd.js",
+  "module": "fesm2015/cache.js",
+  "es2015": "fesm2015/cache.js",
+  "esm2015": "esm2015/cache.js",
+  "fesm2015": "fesm2015/cache.js",
   "typings": "cache.d.ts",
-  "exports": {
-    "./package.json": {
-      "default": "./package.json"
-    },
-    ".": {
-      "types": "./cache.d.ts",
-      "esm2020": "./esm2020/cache.mjs",
-      "es2020": "./fesm2020/cache.mjs",
-      "es2015": "./fesm2015/cache.mjs",
-      "node": "./fesm2015/cache.mjs",
-      "default": "./fesm2020/cache.mjs"
-    }
-  },
+  "metadata": "cache.metadata.json",
   "sideEffects": false
 }

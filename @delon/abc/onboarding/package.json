@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/onboarding.mjs",
-  "es2020": "../fesm2020/onboarding.mjs",
-  "esm2020": "../esm2020/onboarding/onboarding.mjs",
-  "fesm2020": "../fesm2020/onboarding.mjs",
-  "fesm2015": "../fesm2015/onboarding.mjs",
+  "main": "../bundles/onboarding.umd.js",
+  "module": "../fesm2015/onboarding.js",
+  "es2015": "../fesm2015/onboarding.js",
+  "esm2015": "../esm2015/onboarding/onboarding.js",
+  "fesm2015": "../fesm2015/onboarding.js",
   "typings": "onboarding.d.ts",
+  "metadata": "onboarding.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/onboarding"
 }

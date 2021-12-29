@@ -4,7 +4,6 @@ import { _HttpClient } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
-import * as i0 from "@angular/core";
 /**
  * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
  */
@@ -35,6 +34,4 @@ export declare class ImageDirective implements OnChanges, OnInit, OnDestroy {
     private setError;
     open(ev: Event): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ImageDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ImageDirective, "[_src]", ["_src"], { "src": "_src"; "size": "size"; "error": "error"; "useHttp": "useHttp"; "previewSrc": "previewSrc"; "previewModalOptions": "previewModalOptions"; }, {}, never>;
 }

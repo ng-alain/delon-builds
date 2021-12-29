@@ -4,11 +4,11 @@ exports.removePackage = exports.addPackage = exports.writePackage = exports.read
 const json_1 = require("./json");
 exports.PACCKAGE_PATH = 'package.json';
 function readPackage(tree, type) {
-    return (0, json_1.readJSON)(tree, exports.PACCKAGE_PATH, type);
+    return json_1.readJSON(tree, exports.PACCKAGE_PATH, type);
 }
 exports.readPackage = readPackage;
 function writePackage(tree, json) {
-    return (0, json_1.writeJSON)(tree, exports.PACCKAGE_PATH, json);
+    return json_1.writeJSON(tree, exports.PACCKAGE_PATH, json);
 }
 exports.writePackage = writePackage;
 /**
@@ -28,7 +28,7 @@ function addPackage(tree, pkg, type = 'dependencies') {
     pkg.forEach(p => {
         if (!json[type][p]) {
             const pos = p.lastIndexOf('@');
-            json[type][p.substring(0, pos)] = p.substring(pos + 1);
+            json[type][p.substr(0, pos)] = p.substr(pos + 1);
         }
     });
     writePackage(tree, json);
@@ -49,7 +49,7 @@ function removePackage(tree, pkg, type = 'dependencies') {
         return tree;
     if (!Array.isArray(pkg))
         pkg = [pkg];
-    pkg.forEach(p => delete json[type][p.indexOf('@') !== -1 ? p.substring(0, p.lastIndexOf('@')) : p]);
+    pkg.forEach(p => delete json[type][p.indexOf('@') !== -1 ? p.substr(0, p.lastIndexOf('@')) : p]);
     writePackage(tree, json);
     return tree;
 }

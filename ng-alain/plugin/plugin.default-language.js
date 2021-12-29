@@ -21,7 +21,7 @@ function pluginDefaultLanguage(options) {
         if (options.defaultLanguage == null) {
             throw new schematics_1.SchematicsException(`Must be specified the "defaultLanguage" parameter`);
         }
-        const project = (yield (0, utils_1.getProject)(tree, options.project)).project;
+        const project = (yield utils_1.getProject(tree, options.project)).project;
         const modulePath = `${project.sourceRoot}/app/app.module.ts`;
         if (!tree.exists(modulePath)) {
             throw new schematics_1.SchematicsException(`AppModule file (${modulePath}) not found`);
@@ -37,7 +37,7 @@ function pluginDefaultLanguage(options) {
         if (oldLang === options.defaultLanguage) {
             return;
         }
-        const targetLang = (0, lang_config_1.getLangConfig)(options.defaultLanguage);
+        const targetLang = lang_config_1.getLangConfig(options.defaultLanguage);
         if (targetLang == null) {
             console.warn(`Target language not supported, refer to https://ng-alain.com/cli/plugin#defaultLanguage`);
             return;

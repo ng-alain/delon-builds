@@ -1,6 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Injector } from '@angular/core';
-import * as i0 from "@angular/core";
 /**
  * Every http decorator must be based on `BaseAPI`, Like this:
  * ```ts
@@ -11,8 +10,6 @@ import * as i0 from "@angular/core";
 export declare abstract class BaseApi {
     protected injector: Injector;
     constructor(injector: Injector);
-    static ɵfac: i0.ɵɵFactoryDeclaration<BaseApi, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<BaseApi>;
 }
 export interface HttpOptions {
     /** ACL配置，若导入 `@delon/acl` 时自动有效，等同于 `ACLService.can(roleOrAbility: ACLCanType)` 参数值 */

@@ -1,10 +1,11 @@
 {
-  "module": "../../fesm2015/delon-util-pipes-filter.mjs",
-  "es2020": "../../fesm2020/delon-util-pipes-filter.mjs",
-  "esm2020": "../../esm2020/pipes/filter/delon-util-pipes-filter.mjs",
-  "fesm2020": "../../fesm2020/delon-util-pipes-filter.mjs",
-  "fesm2015": "../../fesm2015/delon-util-pipes-filter.mjs",
+  "main": "../../bundles/delon-util-pipes-filter.umd.js",
+  "module": "../../fesm2015/delon-util-pipes-filter.js",
+  "es2015": "../../fesm2015/delon-util-pipes-filter.js",
+  "esm2015": "../../esm2015/pipes/filter/delon-util-pipes-filter.js",
+  "fesm2015": "../../fesm2015/delon-util-pipes-filter.js",
   "typings": "delon-util-pipes-filter.d.ts",
+  "metadata": "delon-util-pipes-filter.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/pipes/filter"
 }

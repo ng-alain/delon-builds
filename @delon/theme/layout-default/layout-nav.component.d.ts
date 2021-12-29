@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as i0 from "@angular/core";
 export interface Nav extends MenuInner {
     _needIcon?: boolean;
     _text?: SafeHtml;
@@ -57,6 +56,4 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private get isPad();
     private underPad;
     private openAside;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": "disabledAcl"; "autoCloseUnderPad": "autoCloseUnderPad"; "recursivePath": "recursivePath"; "openStrictly": "openStrictly"; "maxLevelIcon": "maxLevelIcon"; }, { "select": "select"; }, never, never>;
 }

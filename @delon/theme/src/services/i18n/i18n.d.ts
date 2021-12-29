@@ -2,7 +2,6 @@ import { InjectionToken } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as i0 from "@angular/core";
 export interface AlainI18NService {
     [key: string]: NzSafeAny;
     /**
@@ -79,12 +78,8 @@ export declare abstract class AlainI18nBaseService implements AlainI18NService {
     abstract use(lang: string, data?: Record<string, unknown>): void;
     abstract getLangs(): NzSafeAny[];
     fanyi(path: string, params?: Record<string, unknown>): string;
-    static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18nBaseService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18nBaseService>;
 }
 export declare class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang: string, data: Record<string, unknown>): void;
     getLangs(): NzSafeAny[];
-    static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18NServiceFake, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18NServiceFake>;
 }

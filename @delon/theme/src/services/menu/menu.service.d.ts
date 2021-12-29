@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService } from '../i18n/i18n';
 import { Menu } from './interface';
-import * as i0 from "@angular/core";
 /**
  * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
  */
@@ -57,6 +56,4 @@ export declare class MenuService implements OnDestroy {
      */
     setItem(key: string, value: Menu): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, [{ optional: true; }, { optional: true; }]>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<MenuService>;
 }

@@ -3,7 +3,6 @@ import { Title } from '@angular/platform-browser';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainI18NService } from '../i18n/i18n';
 import { MenuService } from '../menu/menu.service';
-import * as i0 from "@angular/core";
 export declare class TitleService implements OnDestroy {
     private injector;
     private title;
@@ -40,6 +39,4 @@ export declare class TitleService implements OnDestroy {
      */
     setTitleByI18n(key: string, params?: unknown): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TitleService, [null, null, null, { optional: true; }, null]>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<TitleService>;
 }

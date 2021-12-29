@@ -18,7 +18,7 @@ const code_style_1 = require("../../../utils/code-style");
 const versions_1 = require("../../../utils/versions");
 // 修正 angular.json 的格式
 function fixAngularJson(context) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         workspace.projects.forEach((project, name) => {
             const removeKeys = [
                 'aot',
@@ -54,62 +54,62 @@ function fixAngularJson(context) {
             };
             serve.defaultConfiguration = 'development';
         });
-        (0, utils_1.logStart)(context, `Fix angular.json`);
+        utils_1.logStart(context, `Fix angular.json`);
     }));
 }
 function upgradeThirdVersion() {
     return (tree, context) => {
-        (0, utils_1.addPackage)(tree, [`tslib@^2.2.0`, `ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
-        (0, utils_1.logStart)(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
+        utils_1.addPackage(tree, [`tslib@^2.2.0`, `ngx-ueditor@^12.0.0`, `ngx-tinymce@^12.0.0`], 'dependencies');
+        utils_1.logStart(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
     };
 }
 function removeThird() {
     return (tree, context) => {
-        (0, utils_1.removePackage)(tree, [`ngx-countdown`], 'dependencies');
-        (0, utils_1.removePackage)(tree, ['nz-tslint-rules', 'ng-alain-codelyzer'], 'devDependencies');
-        (0, utils_1.logStart)(context, `Remove redundant dependencies: ngx-countdown, ng-alain-codelyzer, nz-tslint-rules`);
+        utils_1.removePackage(tree, [`ngx-countdown`], 'dependencies');
+        utils_1.removePackage(tree, ['nz-tslint-rules', 'ng-alain-codelyzer'], 'devDependencies');
+        utils_1.logStart(context, `Remove redundant dependencies: ngx-countdown, ng-alain-codelyzer, nz-tslint-rules`);
     };
 }
 function migrateESLint(tree, context) {
-    return (0, workspace_1.updateWorkspace)(_ => {
-        (0, utils_1.logStart)(context, `Migrate to ESLint`);
+    return workspace_1.updateWorkspace(_ => {
+        utils_1.logStart(context, `Migrate to ESLint`);
         // 新增 .eslintignore, .eslintrc.js
         ['.eslintignore', '.eslintrc.js'].forEach(f => {
-            (0, utils_1.overwriteFile)({
+            utils_1.overwriteFile({
                 tree,
                 filePath: f,
-                content: (0, utils_1.getFileContentInApplicationFiles)(`root/${f}`),
+                content: utils_1.getFileContentInApplicationFiles(`root/${f}`),
                 overwrite: true,
                 contentIsString: true
             });
         });
-        (0, utils_1.logInfo)(context, `Add .eslintignore, .eslintrc.js`);
+        utils_1.logInfo(context, `Add .eslintignore, .eslintrc.js`);
         // 重命名 .prettierr -> .prettierr.js 并修正内容
-        (0, utils_1.tryDelFile)(tree, '.prettierrc');
-        (0, utils_1.overwriteFile)({
+        utils_1.tryDelFile(tree, '.prettierrc');
+        utils_1.overwriteFile({
             tree,
             filePath: '.prettierrc.js',
-            content: (0, utils_1.getFileContentInApplicationFiles)(`root/.prettierrc.js`),
+            content: utils_1.getFileContentInApplicationFiles(`root/.prettierrc.js`),
             overwrite: true,
             contentIsString: true
         });
-        (0, utils_1.logInfo)(context, `Rename .prettierrc -> .prettierrc.js`);
+        utils_1.logInfo(context, `Rename .prettierrc -> .prettierrc.js`);
         // 更新 .vscode/settings 的 source.fixAll.tslint 为 source.fixAll.eslint
         const vscodeSettingFilePath = `.vscode/settings.json`;
         if (tree.exists(vscodeSettingFilePath)) {
-            const vscodeSettingContent = (0, utils_1.readContent)(tree, vscodeSettingFilePath).replace(`source.fixAll.tslint`, `source.fixAll.eslint`);
-            (0, utils_1.writeFile)(tree, vscodeSettingFilePath, vscodeSettingContent);
-            (0, utils_1.logInfo)(context, `Update .vscode/settings`);
+            const vscodeSettingContent = utils_1.readContent(tree, vscodeSettingFilePath).replace(`source.fixAll.tslint`, `source.fixAll.eslint`);
+            utils_1.writeFile(tree, vscodeSettingFilePath, vscodeSettingContent);
+            utils_1.logInfo(context, `Update .vscode/settings`);
         }
         // 移除 tslint.json
-        (0, utils_1.tryDelFile)(tree, 'tslint.json');
-        (0, utils_1.logInfo)(context, `Remove tslint.json`);
+        utils_1.tryDelFile(tree, 'tslint.json');
+        utils_1.logInfo(context, `Remove tslint.json`);
     });
 }
 function upgradeHusky() {
     return (tree, context) => {
-        (0, utils_1.logStart)(context, `Upgrade husky to 6.0`);
-        const packageJson = (0, utils_1.readPackage)(tree);
+        utils_1.logStart(context, `Upgrade husky to 6.0`);
+        const packageJson = utils_1.readPackage(tree);
         delete packageJson.scripts['pretty-quick'];
         delete packageJson.scripts['tslint-check'];
         packageJson.scripts['prepare'] = 'husky install';
@@ -117,22 +117,22 @@ function upgradeHusky() {
         delete packageJson['husky'];
         packageJson[code_style_1.LINT_STAGED] = code_style_1.LINT_STAGED_CONFIG;
         ['.husky/.gitignore', '.husky/pre-commit'].forEach(f => {
-            (0, utils_1.overwriteFile)({
+            utils_1.overwriteFile({
                 tree,
                 filePath: f,
-                content: (0, utils_1.getFileContentInApplicationFiles)(`root/${f}`),
+                content: utils_1.getFileContentInApplicationFiles(`root/${f}`),
                 overwrite: true,
                 contentIsString: true
             });
         });
-        (0, utils_1.writePackage)(tree, packageJson);
+        utils_1.writePackage(tree, packageJson);
     };
 }
 function formatJson() {
     return (tree) => {
         const angularJson = `angular.json`;
-        const json = (0, utils_1.readJSON)(tree, angularJson);
-        (0, utils_1.writeJSON)(tree, angularJson, json);
+        const json = utils_1.readJSON(tree, angularJson);
+        utils_1.writeJSON(tree, angularJson, json);
     };
 }
 function finished() {
@@ -143,11 +143,11 @@ function finished() {
 }
 function v12Rule(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        (0, utils_1.logStart)(context, `Upgrade @delon/* version number ${JSON.stringify(options)}`);
-        (0, versions_1.UpgradeMainVersions)(tree);
+        utils_1.logStart(context, `Upgrade @delon/* version number ${JSON.stringify(options)}`);
+        versions_1.UpgradeMainVersions(tree);
         const rules = [
             migrateESLint(tree, context),
-            (0, versions_1.addESLintRule)(context),
+            versions_1.addESLintRule(context),
             upgradeThirdVersion(),
             removeThird(),
             upgradeHusky(),
@@ -157,7 +157,7 @@ function v12Rule(options) {
         if (options.fixAngularJson !== false) {
             rules.splice(0, 0, fixAngularJson(context));
         }
-        return (0, schematics_1.chain)(rules);
+        return schematics_1.chain(rules);
     });
 }
 exports.v12Rule = v12Rule;
