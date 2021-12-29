@@ -6,7 +6,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 import * as i0 from "@angular/core";
 /**
- * @deprecated Will be removed in 13.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
+ * @deprecated Will be removed in 14.0.0, Pls used [nz-image](https://ng.ant.design/components/image/en) instead, for examples:
  */
 export declare class ImageDirective implements OnChanges, OnInit, OnDestroy {
     private http;

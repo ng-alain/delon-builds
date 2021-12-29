@@ -108,7 +108,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
  * 复制字符串文档至剪贴板
  */
 function copy(value) {
-    return navigator.clipboard.writeText(value).then(() => Promise.resolve(value));
+    return navigator.clipboard.writeText(value);
 }
 
 /**
