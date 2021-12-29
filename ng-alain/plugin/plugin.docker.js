@@ -5,7 +5,7 @@ const utils_1 = require("../utils");
 function setIgnore(tree, options) {
     const filePath = `${options.root}/.dockerignore`;
     if (options.type === 'add') {
-        (0, utils_1.tryAddFile)(tree, filePath, `node_modules
+        utils_1.tryAddFile(tree, filePath, `node_modules
 npm-debug.log
 Dockerfile*
 docker-compose*
@@ -17,13 +17,13 @@ LICENSE
 .vscode`);
     }
     else {
-        (0, utils_1.tryDelFile)(tree, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
 function setCompose(tree, options) {
     const filePath = `${options.root}/docker-compose.yml`;
     if (options.type === 'add') {
-        (0, utils_1.tryAddFile)(tree, filePath, `version: '2.1'
+        utils_1.tryAddFile(tree, filePath, `version: '2.1'
 
 services:
   ${options.name}:
@@ -36,13 +36,13 @@ services:
 `);
     }
     else {
-        (0, utils_1.tryDelFile)(tree, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
 function setDockerfile(tree, options) {
     const filePath = `${options.root}/Dockerfile`;
     if (options.type === 'add') {
-        (0, utils_1.tryAddFile)(tree, filePath, `# STEP 1: Build
+        utils_1.tryAddFile(tree, filePath, `# STEP 1: Build
 FROM node:10 as builder
 
 LABEL authors="cipchk <cipchk@qq.com>"
@@ -72,7 +72,7 @@ CMD [ "nginx", "-g", "daemon off;"]
 `);
     }
     else {
-        (0, utils_1.tryDelFile)(tree, filePath);
+        utils_1.tryDelFile(tree, filePath);
     }
 }
 function setNginx(tree, options) {

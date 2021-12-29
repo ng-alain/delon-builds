@@ -3,7 +3,6 @@ import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as i0 from "@angular/core";
 export declare type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
@@ -30,6 +29,4 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, directionality: Directionality, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ExceptionComponent, [null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": "type"; "img": "img"; "title": "title"; "desc": "desc"; "backRouterLink": "backRouterLink"; }, {}, never, ["*"]>;
 }

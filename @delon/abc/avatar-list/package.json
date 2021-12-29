@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/avatarList.mjs",
-  "es2020": "../fesm2020/avatarList.mjs",
-  "esm2020": "../esm2020/avatar-list/avatarList.mjs",
-  "fesm2020": "../fesm2020/avatarList.mjs",
-  "fesm2015": "../fesm2015/avatarList.mjs",
+  "main": "../bundles/avatarList.umd.js",
+  "module": "../fesm2015/avatarList.js",
+  "es2015": "../fesm2015/avatarList.js",
+  "esm2015": "../esm2015/avatar-list/avatarList.js",
+  "fesm2015": "../fesm2015/avatarList.js",
   "typings": "avatarList.d.ts",
+  "metadata": "avatarList.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/avatar-list"
 }

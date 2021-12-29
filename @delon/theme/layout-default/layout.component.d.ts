@@ -5,7 +5,6 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
 import { LayoutDefaultOptions } from './types';
-import * as i0 from "@angular/core";
 export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     private msgSrv;
     private settings;
@@ -25,6 +24,4 @@ export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     private setClass;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": "options"; "asideUser": "asideUser"; "nav": "nav"; "content": "content"; "customError": "customError"; }, {}, ["headerItems"], ["*"]>;
 }

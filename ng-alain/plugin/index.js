@@ -28,7 +28,7 @@ function installPackages() {
 }
 function default_1(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const res = yield (0, utils_1.getProject)(tree, options.project);
+        const res = yield utils_1.getProject(tree, options.project);
         const project = res.project;
         const pluginOptions = {
             type: options.type,
@@ -41,36 +41,36 @@ function default_1(options) {
         const rules = [];
         switch (options.name) {
             case 'codeStyle':
-                rules.push((0, plugin_code_style_1.pluginCodeStyle)(pluginOptions), installPackages());
+                rules.push(plugin_code_style_1.pluginCodeStyle(pluginOptions), installPackages());
                 break;
             case 'networkEnv':
-                rules.push((0, plugin_network_env_1.pluginNetworkEnv)(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
+                rules.push(plugin_network_env_1.pluginNetworkEnv(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
                 break;
             case 'docker':
-                rules.push((0, plugin_docker_1.pluginDocker)(pluginOptions));
+                rules.push(plugin_docker_1.pluginDocker(pluginOptions));
                 break;
             case 'defaultLanguage':
-                rules.push((0, plugin_default_language_1.pluginDefaultLanguage)(Object.assign(Object.assign({}, pluginOptions), { defaultLanguage: options.defaultLanguage })));
+                rules.push(plugin_default_language_1.pluginDefaultLanguage(Object.assign(Object.assign({}, pluginOptions), { defaultLanguage: options.defaultLanguage })));
                 break;
             case 'icon':
-                rules.push((0, plugin_icon_1.pluginIcon)(pluginOptions));
+                rules.push(plugin_icon_1.pluginIcon(pluginOptions));
                 break;
             case 'sts':
-                rules.push(...(0, plugin_sts_1.pluginSTS)(pluginOptions));
+                rules.push(...plugin_sts_1.pluginSTS(pluginOptions));
                 break;
             case 'ie':
-                rules.push((0, plugin_ie_1.pluginIE)(pluginOptions));
+                rules.push(plugin_ie_1.pluginIE(pluginOptions));
                 break;
             case 'rtl':
-                rules.push((0, plugin_rtl_1.pluginRTL)(pluginOptions));
+                rules.push(plugin_rtl_1.pluginRTL(pluginOptions));
                 break;
             case 'asdf':
-                rules.push((0, plugin_asdf_1.pluginAsdf)());
+                rules.push(plugin_asdf_1.pluginAsdf());
                 break;
             default:
                 throw new schematics_1.SchematicsException(`Could not find plugin name: ${options.name}`);
         }
-        return (0, schematics_1.chain)(rules);
+        return schematics_1.chain(rules);
     });
 }
 exports.default = default_1;

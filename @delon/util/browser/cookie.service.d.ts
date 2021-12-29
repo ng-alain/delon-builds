@@ -1,6 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as i0 from "@angular/core";
 export interface CookieOptions {
     path?: string;
     domain?: string;
@@ -62,6 +61,4 @@ export declare class CookieService {
      * 移除所有 Cookies
      */
     removeAll(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<CookieService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<CookieService>;
 }

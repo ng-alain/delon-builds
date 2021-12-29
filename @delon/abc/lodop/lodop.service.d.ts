@@ -4,7 +4,6 @@ import { AlainConfigService, AlainLodopConfig } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LodopPrintResult, LodopResult } from './lodop.types';
-import * as i0 from "@angular/core";
 export declare class LodopService implements OnDestroy {
     private scriptSrv;
     private defaultConfig;
@@ -70,6 +69,4 @@ export declare class LodopService implements OnDestroy {
      */
     print(code: string, contextObj: NzSafeAny, parser?: RegExp): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LodopService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<LodopService>;
 }

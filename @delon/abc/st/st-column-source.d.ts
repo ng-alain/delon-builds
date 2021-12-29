@@ -6,7 +6,6 @@ import { STRowSource } from './st-row.directive';
 import { STWidgetRegistry } from './st-widget';
 import { STColumn, STColumnFilter, STColumnSafeType, STResizable, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader } from './st.types';
-import * as i0 from "@angular/core";
 export interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
     resizable: STResizable;
@@ -40,6 +39,4 @@ export declare class STColumnSource {
     restoreAllRender(columns: _STColumn[]): void;
     updateDefault(filter: STColumnFilter): this;
     cleanFilter(col: _STColumn): this;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STColumnSource, [null, { host: true; }, { optional: true; }, { optional: true; }, null]>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<STColumnSource>;
 }

@@ -23,18 +23,18 @@ function fixThirdVersion(): Rule {
     addPackage(
       tree,
       [
-        `ng-zorro-antd@^13.0.0-beta.1`,
-        `ngx-ueditor@^13.0.0`,
-        `ngx-tinymce@^13.0.0`,
-        `ngx-countdown@^13.0.0`,
-        'ajv@^8.8.2'
+        `ng-zorro-antd@^12.0.1`,
+        `ngx-ueditor@^12.0.0`,
+        `ngx-tinymce@^12.0.0`,
+        `ngx-countdown@^12.0.1`,
+        'ajv@^8.6.2'
       ],
       'dependencies'
     );
     // dependencies
     addPackage(
       tree,
-      [`ng-alain-plugin-theme@^13.0.1`, `ng-alain-sts@^0.0.1`],
+      [`ng-alain-plugin-theme@^12.0.0`, `ng-alain-sts@^0.0.1`],
       'devDependencies'
     );
     logStart(context, `Upgrade third libs version number`);

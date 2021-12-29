@@ -1,9 +1,8 @@
-import { ComponentRef, ViewContainerRef } from '@angular/core';
+import { ComponentFactoryResolver, ComponentRef, ViewContainerRef } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { FormProperty } from './model/form.property';
 import { SFUISchemaItem } from './schema/ui';
-import type { Widget } from './widget';
-import * as i0 from "@angular/core";
+import { Widget } from './widget';
 export declare class WidgetRegistry {
     private _widgets;
     private defaultWidget;
@@ -17,8 +16,7 @@ export declare class WidgetRegistry {
 }
 export declare class WidgetFactory {
     private registry;
-    constructor(registry: WidgetRegistry);
+    private resolver;
+    constructor(registry: WidgetRegistry, resolver: ComponentFactoryResolver);
     createWidget(container: ViewContainerRef, type: string): ComponentRef<Widget<FormProperty, SFUISchemaItem>>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<WidgetFactory, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<WidgetFactory>;
 }

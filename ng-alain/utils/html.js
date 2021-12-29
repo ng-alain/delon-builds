@@ -7,7 +7,7 @@ const parse5 = require("parse5");
 const workspace_1 = require("./workspace");
 /** Gets the app index.html file */
 function getIndexHtmlPath(_host, project) {
-    const targetOptions = (0, workspace_1.getProjectTarget)(project, workspace_1.BUILD_TARGET_BUILD);
+    const targetOptions = workspace_1.getProjectTarget(project, workspace_1.BUILD_TARGET_BUILD);
     if (typeof targetOptions.index === 'string' && targetOptions.index.endsWith('index.html')) {
         return targetOptions.index;
     }

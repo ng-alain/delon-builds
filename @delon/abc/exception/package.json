@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/exception.mjs",
-  "es2020": "../fesm2020/exception.mjs",
-  "esm2020": "../esm2020/exception/exception.mjs",
-  "fesm2020": "../fesm2020/exception.mjs",
-  "fesm2015": "../fesm2015/exception.mjs",
+  "main": "../bundles/exception.umd.js",
+  "module": "../fesm2015/exception.js",
+  "es2015": "../fesm2015/exception.js",
+  "esm2015": "../esm2015/exception/exception.js",
+  "fesm2015": "../fesm2015/exception.js",
   "typings": "exception.d.ts",
+  "metadata": "exception.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/exception"
 }

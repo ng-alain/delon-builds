@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
-import * as i0 from "@angular/core";
 export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     private router;
     private win;
@@ -21,6 +20,4 @@ export declare class GlobalFooterComponent implements OnInit, OnDestroy {
     to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterComponent, [null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": "links"; }, {}, ["items"], ["*"]>;
 }

@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/datePicker.mjs",
-  "es2020": "../fesm2020/datePicker.mjs",
-  "esm2020": "../esm2020/date-picker/datePicker.mjs",
-  "fesm2020": "../fesm2020/datePicker.mjs",
-  "fesm2015": "../fesm2015/datePicker.mjs",
+  "main": "../bundles/datePicker.umd.js",
+  "module": "../fesm2015/datePicker.js",
+  "es2015": "../fesm2015/datePicker.js",
+  "esm2015": "../esm2015/date-picker/datePicker.js",
+  "fesm2015": "../fesm2015/datePicker.js",
   "typings": "datePicker.d.ts",
+  "metadata": "datePicker.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/date-picker"
 }

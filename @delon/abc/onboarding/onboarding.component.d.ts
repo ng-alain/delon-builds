@@ -3,7 +3,6 @@ import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
-import * as i0 from "@angular/core";
 export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     private el;
     private doc;
@@ -33,6 +32,4 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     to(type: OnboardingOpType): void;
     handleMask(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingComponent, [null, { optional: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<OnboardingComponent, "onboarding", never, {}, {}, never, never>;
 }

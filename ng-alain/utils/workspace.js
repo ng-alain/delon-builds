@@ -34,13 +34,13 @@ function getProjectName(workspace, name) {
 function getNgAlainJson(tree) {
     if (!tree.exists(exports.NG_ALAIN_JSON))
         return undefined;
-    return (0, json_1.readJSON)(tree, exports.NG_ALAIN_JSON);
+    return json_1.readJSON(tree, exports.NG_ALAIN_JSON);
 }
 exports.getNgAlainJson = getNgAlainJson;
 function getProject(tree, projectName) {
     var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
-        const workspace = yield (0, workspace_1.getWorkspace)(tree);
+        const workspace = yield workspace_1.getWorkspace(tree);
         projectName = getProjectName(workspace, projectName);
         if (!projectName || !workspace.projects.has(projectName)) {
             throw new schematics_1.SchematicsException(`No project named "${projectName}" exists.`);
@@ -52,7 +52,7 @@ function getProject(tree, projectName) {
 }
 exports.getProject = getProject;
 function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BUILD, exports.BUILD_TARGET_TEST], projectName, clean = false) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
         types.forEach(buildTarget => {
             const targetOptions = getProjectTarget(project, buildTarget);
@@ -78,7 +78,7 @@ function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BU
 }
 exports.addAssetsToTarget = addAssetsToTarget;
 function addAllowedCommonJsDependencies(items, projectName) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
         const targetOptions = getProjectTarget(project, exports.BUILD_TARGET_BUILD);
         let list = targetOptions.allowedCommonJsDependencies;
@@ -95,7 +95,7 @@ function addAllowedCommonJsDependencies(items, projectName) {
 }
 exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
 function removeAllowedCommonJsDependencies(key, projectName) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
         const targetOptions = getProjectTarget(project, exports.BUILD_TARGET_BUILD);
         const list = targetOptions.allowedCommonJsDependencies;

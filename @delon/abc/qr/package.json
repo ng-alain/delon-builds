@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/qr.mjs",
-  "es2020": "../fesm2020/qr.mjs",
-  "esm2020": "../esm2020/qr/qr.mjs",
-  "fesm2020": "../fesm2020/qr.mjs",
-  "fesm2015": "../fesm2015/qr.mjs",
+  "main": "../bundles/qr.umd.js",
+  "module": "../fesm2015/qr.js",
+  "es2015": "../fesm2015/qr.js",
+  "esm2015": "../esm2015/qr/qr.js",
+  "fesm2015": "../fesm2015/qr.js",
   "typings": "qr.d.ts",
+  "metadata": "qr.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/qr"
 }

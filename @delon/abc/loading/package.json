@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/loading.mjs",
-  "es2020": "../fesm2020/loading.mjs",
-  "esm2020": "../esm2020/loading/loading.mjs",
-  "fesm2020": "../fesm2020/loading.mjs",
-  "fesm2015": "../fesm2015/loading.mjs",
+  "main": "../bundles/loading.umd.js",
+  "module": "../fesm2015/loading.js",
+  "es2015": "../fesm2015/loading.js",
+  "esm2015": "../esm2015/loading/loading.js",
+  "fesm2015": "../fesm2015/loading.js",
   "typings": "loading.d.ts",
+  "metadata": "loading.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/loading"
 }

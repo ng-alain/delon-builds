@@ -18,8 +18,8 @@ const tsconfig_es5_app_1 = require("./files/ie/tsconfig-es5.app");
 const tsconfig_es5_spec_1 = require("./files/ie/tsconfig-es5.spec");
 let project;
 function setAngularJson(options) {
-    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
-        const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
+    return workspace_1.updateWorkspace((workspace) => __awaiter(this, void 0, void 0, function* () {
+        const p = utils_1.getProjectFromWorkspace(workspace, options.project);
         if (options.type === 'add') {
             p.targets.get(utils_1.BUILD_TARGET_BUILD).configurations.es5 = { tsConfig: './tsconfig-es5.app.json' };
             p.targets.get(utils_1.BUILD_TARGET_SERVE).configurations.es5 = {
@@ -42,14 +42,14 @@ function setAngularJson(options) {
 function setBrowserslist(options) {
     return (tree) => {
         const filePath = `${options.root}/.browserslistrc`;
-        let content = (0, utils_1.readContent)(tree, filePath);
+        let content = utils_1.readContent(tree, filePath);
         if (options.type === 'add') {
             content = content.replace(`not IE 11`, `IE 11`);
         }
         else {
             content = content.replace(`IE 11`, `not IE 11`);
         }
-        (0, utils_1.overwriteFile)({ tree, filePath, content, overwrite: true, contentIsString: true });
+        utils_1.overwriteFile({ tree, filePath, content, overwrite: true, contentIsString: true });
     };
 }
 function setPackage(options) {
@@ -73,7 +73,7 @@ import 'zone.js';`;
         else {
             content = `import 'zone.js';`;
         }
-        (0, utils_1.overwriteFile)({ tree, filePath, content, overwrite: true, contentIsString: true });
+        utils_1.overwriteFile({ tree, filePath, content, overwrite: true, contentIsString: true });
     };
 }
 function setTsConfig(options) {
@@ -83,7 +83,7 @@ function setTsConfig(options) {
             tree.delete(buildFilePath);
         }
         if (options.type === 'add') {
-            (0, utils_1.overwriteFile)({
+            utils_1.overwriteFile({
                 tree,
                 filePath: buildFilePath,
                 content: JSON.stringify(tsconfig_es5_app_1.default, null, 2),
@@ -96,7 +96,7 @@ function setTsConfig(options) {
         if (tree.exists(specFilePath))
             tree.delete(specFilePath);
         if (options.type === 'add') {
-            (0, utils_1.overwriteFile)({
+            utils_1.overwriteFile({
                 tree,
                 filePath: specFilePath,
                 content: JSON.stringify(tsconfig_es5_spec_1.default, null, 2),
@@ -113,8 +113,8 @@ function finished() {
 }
 function pluginIE(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        project = (yield (0, utils_1.getProject)(tree, options.project)).project;
-        return (0, schematics_1.chain)([
+        project = (yield utils_1.getProject(tree, options.project)).project;
+        return schematics_1.chain([
             setAngularJson(options),
             setBrowserslist(options),
             setPackage(options),

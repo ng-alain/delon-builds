@@ -22,17 +22,17 @@ function addDeclarationToNgModule(options) {
         if (!options.module) {
             return tree;
         }
-        const modulePath = (0, core_1.normalize)(`/${options.module}`);
+        const modulePath = core_1.normalize(`/${options.module}`);
         const text = tree.read(modulePath);
         if (text === null) {
             throw new schematics_1.SchematicsException(`File ${modulePath} does not exist.`);
         }
         const sourceText = text.toString('utf-8');
         const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-        const importModulePath = (0, core_1.normalize)(`/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}${core_1.strings.dasherize(options.name)}.module`);
-        const relativeDir = (0, core_1.relative)((0, core_1.dirname)(modulePath), (0, core_1.dirname)(importModulePath));
-        const relativePath = `${relativeDir.startsWith('.') ? relativeDir : `./${relativeDir}`}/${(0, core_1.basename)(importModulePath)}`;
-        const changes = (0, ast_utils_1.addImportToModule)(source, modulePath, core_1.strings.classify(`${options.name}Module`), relativePath);
+        const importModulePath = core_1.normalize(`/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}${core_1.strings.dasherize(options.name)}.module`);
+        const relativeDir = core_1.relative(core_1.dirname(modulePath), core_1.dirname(importModulePath));
+        const relativePath = `${relativeDir.startsWith('.') ? relativeDir : `./${relativeDir}`}/${core_1.basename(importModulePath)}`;
+        const changes = ast_utils_1.addImportToModule(source, modulePath, core_1.strings.classify(`${options.name}Module`), relativePath);
         const recorder = tree.beginUpdate(modulePath);
         for (const change of changes) {
             if (change instanceof change_1.InsertChange) {
@@ -45,13 +45,13 @@ function addDeclarationToNgModule(options) {
 }
 function addRoutingModuleToTop(options) {
     return (tree) => {
-        const modulePath = (0, core_1.normalize)(`${options.path}/routes-routing.module.ts`);
+        const modulePath = core_1.normalize(`${options.path}/routes-routing.module.ts`);
         if (!tree.exists(modulePath)) {
             return tree;
         }
         const sourceText = tree.read(modulePath).toString('utf-8');
         const source = ts.createSourceFile(modulePath, sourceText, ts.ScriptTarget.Latest, true);
-        const routesNode = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, 'routes');
+        const routesNode = ast_utils_1.findNode(source, ts.SyntaxKind.Identifier, 'routes');
         if (routesNode == null || routesNode.parent == null) {
             return tree;
         }
@@ -60,7 +60,7 @@ function addRoutingModuleToTop(options) {
             parentNode.initializer.getChildCount() === 0) {
             return tree;
         }
-        const childrenNode = (0, ast_utils_1.findNode)(parentNode.initializer, ts.SyntaxKind.Identifier, 'children');
+        const childrenNode = ast_utils_1.findNode(parentNode.initializer, ts.SyntaxKind.Identifier, 'children');
         if (childrenNode == null || childrenNode.parent == null) {
             return tree;
         }
@@ -76,23 +76,23 @@ function addRoutingModuleToTop(options) {
 }
 function default_1(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
-        const proj = yield (0, utils_1.getProject)(tree, schema.project);
-        (0, utils_1.refreshPathRoot)(proj.project, schema, proj.alainProject);
+        const proj = yield utils_1.getProject(tree, schema.project);
+        utils_1.refreshPathRoot(proj.project, schema, proj.alainProject);
         if (schema.module) {
-            schema.module = (0, find_module_1.findModuleFromOptions)(tree, schema);
+            schema.module = find_module_1.findModuleFromOptions(tree, schema);
         }
-        const parsedPath = (0, parse_name_1.parseName)(schema.path, schema.name);
+        const parsedPath = parse_name_1.parseName(schema.path, schema.name);
         schema.name = parsedPath.name;
         schema.path = parsedPath.path;
         schema.routing = true;
         schema.flat = false;
-        const templateSource = (0, schematics_1.apply)((0, schematics_1.url)('./files'), [
-            schema.routing ? (0, schematics_1.noop)() : (0, schematics_1.filter)(path => !path.endsWith('-routing.module.ts')),
-            (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
-            (0, schematics_1.move)(parsedPath.path)
+        const templateSource = schematics_1.apply(schematics_1.url('./files'), [
+            schema.routing ? schematics_1.noop() : schematics_1.filter(path => !path.endsWith('-routing.module.ts')),
+            schematics_1.applyTemplates(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
+            schematics_1.move(parsedPath.path)
         ]);
-        return (0, schematics_1.chain)([
-            (0, schematics_1.branchAndMerge)((0, schematics_1.chain)([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), (0, schematics_1.mergeWith)(templateSource)]))
+        return schematics_1.chain([
+            schematics_1.branchAndMerge(schematics_1.chain([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), schematics_1.mergeWith(templateSource)]))
         ]);
     });
 }

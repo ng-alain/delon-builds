@@ -3,7 +3,6 @@ import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy } from '@angular
 import { NumberInput } from '@delon/util/decorator';
 import type { NgStyleInterface, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { AvatarListItemComponent } from './avatar-list-item.component';
-import * as i0 from "@angular/core";
 export declare class AvatarListComponent implements AfterViewInit, OnChanges, OnDestroy {
     private cdr;
     private directionality;
@@ -24,6 +23,4 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges, On
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<AvatarListComponent, [null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarListComponent, "avatar-list", ["avatarList"], { "size": "size"; "maxLength": "maxLength"; "excessItemsStyle": "excessItemsStyle"; }, {}, ["_items"], never>;
 }

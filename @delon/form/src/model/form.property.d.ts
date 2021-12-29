@@ -5,7 +5,7 @@ import { SFFormValueChange, SFUpdateValueAndValidity, SFValue } from '../interfa
 import { SFSchema, SFSchemaType } from '../schema';
 import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
-import type { Widget } from '../widget';
+import { Widget } from '../widget';
 export declare abstract class FormProperty {
     private _options;
     private _errors;

@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/downFile.mjs",
-  "es2020": "../fesm2020/downFile.mjs",
-  "esm2020": "../esm2020/down-file/downFile.mjs",
-  "fesm2020": "../fesm2020/downFile.mjs",
-  "fesm2015": "../fesm2015/downFile.mjs",
+  "main": "../bundles/downFile.umd.js",
+  "module": "../fesm2015/downFile.js",
+  "es2015": "../fesm2015/downFile.js",
+  "esm2015": "../esm2015/down-file/downFile.js",
+  "fesm2015": "../fesm2015/downFile.js",
   "typings": "downFile.d.ts",
+  "metadata": "downFile.metadata.json",
   "sideEffects": false,
   "name": "@delon/abc/down-file"
 }

@@ -1,10 +1,11 @@
 {
-  "module": "../fesm2015/delon-util-date-time.mjs",
-  "es2020": "../fesm2020/delon-util-date-time.mjs",
-  "esm2020": "../esm2020/date-time/delon-util-date-time.mjs",
-  "fesm2020": "../fesm2020/delon-util-date-time.mjs",
-  "fesm2015": "../fesm2015/delon-util-date-time.mjs",
+  "main": "../bundles/delon-util-date-time.umd.js",
+  "module": "../fesm2015/delon-util-date-time.js",
+  "es2015": "../fesm2015/delon-util-date-time.js",
+  "esm2015": "../esm2015/date-time/delon-util-date-time.js",
+  "fesm2015": "../fesm2015/delon-util-date-time.js",
   "typings": "delon-util-date-time.d.ts",
+  "metadata": "delon-util-date-time.metadata.json",
   "sideEffects": false,
   "name": "@delon/util/date-time"
 }
