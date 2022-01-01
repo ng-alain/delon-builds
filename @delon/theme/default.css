@@ -31777,7 +31777,8 @@ ellipsis {
 }
 .ellipsis__line-clamp {
   position: relative;
-  display: box;
+  /* stylelint-disable-next-line value-no-vendor-prefix */
+  display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
 }

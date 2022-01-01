@@ -3,8 +3,8 @@ import { warn } from '@delon/util/other';
 function propDecoratorFactory(name, fallback, defaultValue) {
     function propDecorator(target, propName, originalDescriptor) {
         const privatePropName = `$$__${propName}`;
-        if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+            if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
                 warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
             }
         }

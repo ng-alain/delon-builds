@@ -119,8 +119,8 @@ function toBool(value, defaultValue) {
     return toBoolean(value, defaultValue);
 }
 function di(ui, ...args) {
-    if (ui.debug) {
-        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+        if (ui.debug) {
             console.warn(...args);
         }
     }
@@ -901,10 +901,10 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
                 this.ngZone.runOutsideAngular(() => this.ajv.validate(schema, value));
             }
             catch (e) {
-                // swallow errors thrown in ajv due to invalid schemas, these
-                // still get displayed
-                if (extraOptions.debug) {
-                    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                    // swallow errors thrown in ajv due to invalid schemas, these
+                    // still get displayed
+                    if (extraOptions.debug) {
                         console.warn(e);
                     }
                 }

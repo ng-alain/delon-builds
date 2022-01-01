@@ -552,9 +552,9 @@ class ReuseTabService {
             _handle.componentRef.destroy();
     }
     di(...args) {
-        if (!this.debug)
-            return;
         if (typeof ngDevMode === 'undefined' || ngDevMode) {
+            if (!this.debug)
+                return;
             console.warn(...args);
         }
     }
