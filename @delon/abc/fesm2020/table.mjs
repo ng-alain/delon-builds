@@ -163,7 +163,9 @@ class STColumnSource {
             }
             if (item.type === 'modal' || item.type === 'static') {
                 if (item.modal == null || item.modal.component == null) {
-                    console.warn(`[st] Should specify modal parameter when type is modal or static`);
+                    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                        console.warn(`[st] Should specify modal parameter when type is modal or static`);
+                    }
                     item.type = 'none';
                 }
                 else {
@@ -172,7 +174,9 @@ class STColumnSource {
             }
             if (item.type === 'drawer') {
                 if (item.drawer == null || item.drawer.component == null) {
-                    console.warn(`[st] Should specify drawer parameter when type is drawer`);
+                    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                        console.warn(`[st] Should specify drawer parameter when type is drawer`);
+                    }
                     item.type = 'none';
                 }
                 else {
@@ -340,7 +344,9 @@ class STColumnSource {
             return;
         if (item.widget == null || !this.stWidgetRegistry.has(item.widget.type)) {
             delete item.type;
-            warn(`st: No widget for type "${item.widget?.type}"`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                warn(`st: No widget for type "${item.widget?.type}"`);
+            }
         }
     }
     genHeaders(rootColumns) {
@@ -649,7 +655,9 @@ class STDataSource {
                         return;
                     const onFilter = filter.fn;
                     if (typeof onFilter !== 'function') {
-                        console.warn(`[st] Muse provide the fn function in filter`);
+                        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                            console.warn(`[st] Muse provide the fn function in filter`);
+                        }
                         return;
                     }
                     result = result.filter(record => values.some(v => onFilter(v, record)));
@@ -860,7 +868,9 @@ class STDataSource {
             return;
         }
         if (typeof sortItem.compare !== 'function') {
-            console.warn(`[st] Muse provide the compare function in sort`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                console.warn(`[st] Muse provide the compare function in sort`);
+            }
             return;
         }
         return (a, b) => {
@@ -1658,7 +1668,9 @@ class STComponent {
                 .subscribe({
                 next: result => resolvePromise(result),
                 error: error => {
-                    console.warn('st.loadDate', error);
+                    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                        console.warn('st.loadDate', error);
+                    }
                     rejectPromise(error);
                 }
             });

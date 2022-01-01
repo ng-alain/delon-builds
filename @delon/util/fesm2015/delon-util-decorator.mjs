@@ -4,7 +4,9 @@ function propDecoratorFactory(name, fallback, defaultValue) {
     function propDecorator(target, propName, originalDescriptor) {
         const privatePropName = `$$__${propName}`;
         if (Object.prototype.hasOwnProperty.call(target, privatePropName)) {
-            warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                warn(`The prop "${privatePropName}" is already exist, it will be overrided by ${name} decorator.`);
+            }
         }
         Object.defineProperty(target, privatePropName, {
             configurable: true,
@@ -62,7 +64,9 @@ function makeFn(type, options) {
             const that = this;
             const ngZone = that[(options === null || options === void 0 ? void 0 : options.ngZoneName) || 'ngZone'];
             if (!ngZone) {
-                warn(`ZoneOutside: Decorator should have 'ngZone' property with 'NgZone' class.`);
+                if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                    warn(`ZoneOutside: Decorator should have 'ngZone' property with 'NgZone' class.`);
+                }
                 return source.call(this, ...data);
             }
             let res;

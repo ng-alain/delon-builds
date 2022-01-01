@@ -59,7 +59,7 @@ function fixAngularJson(context) {
 }
 function upgradeThirdVersion() {
     return (tree, context) => {
-        (0, utils_1.addPackage)(tree, [`ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
+        (0, utils_1.addPackage)(tree, [`tslib@^2.2.0`, `ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
         (0, utils_1.logStart)(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
     };
 }

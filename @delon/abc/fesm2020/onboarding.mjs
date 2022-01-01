@@ -93,7 +93,9 @@ class OnboardingComponent {
         }
         const pos = this.getLightData();
         if (pos == null) {
-            console.warn(`Did not matches selectors [${this.item.selectors}]`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                console.warn(`Did not matches selectors [${this.item.selectors}]`);
+            }
             return;
         }
         const lightStyle = this.el.nativeElement.querySelector('.onboarding__light').style;

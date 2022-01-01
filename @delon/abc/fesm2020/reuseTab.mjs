@@ -557,7 +557,9 @@ class ReuseTabService {
     di(...args) {
         if (!this.debug)
             return;
-        console.warn(...args);
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+            console.warn(...args);
+        }
     }
     init() {
         this.initScroll();

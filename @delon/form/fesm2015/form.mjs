@@ -120,7 +120,9 @@ function toBool(value, defaultValue) {
 }
 function di(ui, ...args) {
     if (ui.debug) {
-        console.warn(...args);
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+            console.warn(...args);
+        }
     }
 }
 /** 根据 `$ref` 查找 `definitions` */
@@ -528,7 +530,9 @@ class FormProperty {
                         propertiesBinding.push(and);
                     }
                     else {
-                        console.warn(`Can't find property ${dependencyPath} for visibility check of ${this.path}`);
+                        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                            console.warn(`Can't find property ${dependencyPath} for visibility check of ${this.path}`);
+                        }
                     }
                 }
             }
@@ -900,7 +904,9 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
                 // swallow errors thrown in ajv due to invalid schemas, these
                 // still get displayed
                 if (extraOptions.debug) {
-                    console.warn(e);
+                    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                        console.warn(e);
+                    }
                 }
             }
             let errors = this.ajv.errors;
@@ -951,7 +957,9 @@ class WidgetFactory {
     }
     createWidget(container, type) {
         if (!this.registry.has(type)) {
-            console.warn(`No widget for type "${type}"`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                console.warn(`No widget for type "${type}"`);
+            }
         }
         const componentClass = this.registry.getType(type);
         return container.createComponent(componentClass);
@@ -1397,7 +1405,9 @@ class SFComponent {
             return;
         }
         if (this._renders.has(path)) {
-            console.warn(`Duplicate definition "${path}" custom widget`);
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                console.warn(`Duplicate definition "${path}" custom widget`);
+            }
             return;
         }
         this._renders.set(path, templateRef);
