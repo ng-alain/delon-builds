@@ -21,6 +21,7 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
+        `ng-zorro-antd@^13.0.0`,
         `@angular-eslint/builder@~13.0.1`,
         `@angular-eslint/eslint-plugin@~13.0.1`,
         `@angular-eslint/eslint-plugin-template@~13.0.1`,

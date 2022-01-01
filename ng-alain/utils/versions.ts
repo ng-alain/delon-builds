@@ -17,6 +17,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
+      `ng-zorro-antd@^13.0.0`,
       `@angular-eslint/builder@~13.0.1`,
       `@angular-eslint/eslint-plugin@~13.0.1`,
       `@angular-eslint/eslint-plugin-template@~13.0.1`,
