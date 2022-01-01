@@ -17,6 +17,7 @@ const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
 const plugin_docker_1 = require("./plugin.docker");
 const plugin_icon_1 = require("./plugin.icon");
+const plugin_ie_1 = require("./plugin.ie");
 const plugin_network_env_1 = require("./plugin.network-env");
 const plugin_rtl_1 = require("./plugin.rtl");
 const plugin_sts_1 = require("./plugin.sts");
@@ -56,6 +57,9 @@ function default_1(options) {
                 break;
             case 'sts':
                 rules.push(...(0, plugin_sts_1.pluginSTS)(pluginOptions));
+                break;
+            case 'ie':
+                rules.push((0, plugin_ie_1.pluginIE)(pluginOptions));
                 break;
             case 'rtl':
                 rules.push((0, plugin_rtl_1.pluginRTL)(pluginOptions));
