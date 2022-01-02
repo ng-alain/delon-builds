@@ -55,6 +55,20 @@ function addYarn(context) {
         (0, utils_1.logStart)(context, `Configuration optimization using Yarn to install dependencies`);
     }));
 }
+function upgradeKarmaCoverage() {
+    return (tree, context) => {
+        const karmaConfJs = 'karma.conf.js';
+        const pkg = (0, utils_1.readPackage)(tree);
+        if (!pkg.devDependencies || !pkg.devDependencies['karma-coverage-istanbul-reporter'] || !tree.exists(karmaConfJs))
+            return;
+        delete pkg.devDependencies['karma-coverage-istanbul-reporter'];
+        (0, utils_1.writePackage)(tree, pkg);
+        // update karma.conf.js
+        const content = (0, utils_1.readContent)(tree, karmaConfJs).replace(`karma-coverage-istanbul-reporter`, 'karma-coverage');
+        tree.overwrite(karmaConfJs, content);
+        (0, utils_1.logStart)(context, `karma-coverage instead of karma-coverage-istanbul-reporter`);
+    };
+}
 function upgradeThirdVersion() {
     return (tree, context) => {
         (0, utils_1.addPackage)(tree, [`ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
@@ -75,6 +89,7 @@ function v13Rule() {
             removeIE(),
             addStylePreprocessorOptions(),
             fixLessResolver(),
+            upgradeKarmaCoverage(),
             upgradeThirdVersion(),
             addYarn(context),
             finished()

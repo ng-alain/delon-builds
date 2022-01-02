@@ -17,7 +17,6 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
-      `ng-zorro-antd@^13.0.0`,
       `@angular-eslint/builder@~13.0.1`,
       `@angular-eslint/eslint-plugin@~13.0.1`,
       `@angular-eslint/eslint-plugin-template@~13.0.1`,
@@ -41,7 +40,11 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, ['ajv@^8.8.2', 'ajv-formats@^2.1.1']);
+  addPackage(tree, [
+    `ng-zorro-antd@^13.0.0`,
+    'ajv@^8.8.2',
+    'ajv-formats@^2.1.1'
+  ]);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {
