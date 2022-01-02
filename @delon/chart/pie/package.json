@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-pie.mjs",
-  "es2020": "../fesm2020/delon-chart-pie.mjs",
-  "esm2020": "../esm2020/pie/delon-chart-pie.mjs",
-  "fesm2020": "../fesm2020/delon-chart-pie.mjs",
-  "fesm2015": "../fesm2015/delon-chart-pie.mjs",
-  "typings": "delon-chart-pie.d.ts",
+  "module": "../fesm2015/pie.mjs",
+  "es2020": "../fesm2020/pie.mjs",
+  "esm2020": "../esm2020/pie/pie.mjs",
+  "fesm2020": "../fesm2020/pie.mjs",
+  "fesm2015": "../fesm2015/pie.mjs",
+  "typings": "pie.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/pie"
 }

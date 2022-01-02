@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-util-decorator.mjs",
-  "es2020": "../fesm2020/delon-util-decorator.mjs",
-  "esm2020": "../esm2020/decorator/delon-util-decorator.mjs",
-  "fesm2020": "../fesm2020/delon-util-decorator.mjs",
-  "fesm2015": "../fesm2015/delon-util-decorator.mjs",
-  "typings": "delon-util-decorator.d.ts",
+  "module": "../fesm2015/decorator.mjs",
+  "es2020": "../fesm2020/decorator.mjs",
+  "esm2020": "../esm2020/decorator/decorator.mjs",
+  "fesm2020": "../fesm2020/decorator.mjs",
+  "fesm2015": "../fesm2015/decorator.mjs",
+  "typings": "decorator.d.ts",
   "sideEffects": false,
   "name": "@delon/util/decorator"
 }

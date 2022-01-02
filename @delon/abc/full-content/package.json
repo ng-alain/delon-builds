@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/fullContent.mjs",
-  "es2020": "../fesm2020/fullContent.mjs",
-  "esm2020": "../esm2020/full-content/fullContent.mjs",
-  "fesm2020": "../fesm2020/fullContent.mjs",
-  "fesm2015": "../fesm2015/fullContent.mjs",
-  "typings": "fullContent.d.ts",
+  "module": "../fesm2015/full-content.mjs",
+  "es2020": "../fesm2020/full-content.mjs",
+  "esm2020": "../esm2020/full-content/full-content.mjs",
+  "fesm2020": "../fesm2020/full-content.mjs",
+  "fesm2015": "../fesm2015/full-content.mjs",
+  "typings": "full-content.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/full-content"
 }

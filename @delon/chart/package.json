@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "13.0.0-beta.2",
+  "version": "13.0.0-beta.2-5a0c1462",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.1.35",
     "echarts": "^5.2.2",
-    "@delon/util": "^13.0.0-beta.2",
-    "@delon/theme": "^13.0.0-beta.2",
+    "@delon/util": "^13.0.0-beta.2-5a0c1462",
+    "@delon/theme": "^13.0.0-beta.2-5a0c1462",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/chart.mjs",
@@ -67,124 +67,124 @@
       "default": "./fesm2020/card.mjs"
     },
     "./chart-echarts": {
-      "types": "./chart-echarts/delon-chart-chart-echarts.d.ts",
-      "esm2020": "./esm2020/chart-echarts/delon-chart-chart-echarts.mjs",
-      "es2020": "./fesm2020/delon-chart-chart-echarts.mjs",
-      "es2015": "./fesm2015/delon-chart-chart-echarts.mjs",
-      "node": "./fesm2015/delon-chart-chart-echarts.mjs",
-      "default": "./fesm2020/delon-chart-chart-echarts.mjs"
+      "types": "./chart-echarts/chart-echarts.d.ts",
+      "esm2020": "./esm2020/chart-echarts/chart-echarts.mjs",
+      "es2020": "./fesm2020/chart-echarts.mjs",
+      "es2015": "./fesm2015/chart-echarts.mjs",
+      "node": "./fesm2015/chart-echarts.mjs",
+      "default": "./fesm2020/chart-echarts.mjs"
     },
     "./core": {
-      "types": "./core/delon-chart-core.d.ts",
-      "esm2020": "./esm2020/core/delon-chart-core.mjs",
-      "es2020": "./fesm2020/delon-chart-core.mjs",
-      "es2015": "./fesm2015/delon-chart-core.mjs",
-      "node": "./fesm2015/delon-chart-core.mjs",
-      "default": "./fesm2020/delon-chart-core.mjs"
+      "types": "./core/core.d.ts",
+      "esm2020": "./esm2020/core/core.mjs",
+      "es2020": "./fesm2020/core.mjs",
+      "es2015": "./fesm2015/core.mjs",
+      "node": "./fesm2015/core.mjs",
+      "default": "./fesm2020/core.mjs"
     },
     "./custom": {
-      "types": "./custom/delon-chart-custom.d.ts",
-      "esm2020": "./esm2020/custom/delon-chart-custom.mjs",
-      "es2020": "./fesm2020/delon-chart-custom.mjs",
-      "es2015": "./fesm2015/delon-chart-custom.mjs",
-      "node": "./fesm2015/delon-chart-custom.mjs",
-      "default": "./fesm2020/delon-chart-custom.mjs"
+      "types": "./custom/custom.d.ts",
+      "esm2020": "./esm2020/custom/custom.mjs",
+      "es2020": "./fesm2020/custom.mjs",
+      "es2015": "./fesm2015/custom.mjs",
+      "node": "./fesm2015/custom.mjs",
+      "default": "./fesm2020/custom.mjs"
     },
     "./gauge": {
-      "types": "./gauge/delon-chart-gauge.d.ts",
-      "esm2020": "./esm2020/gauge/delon-chart-gauge.mjs",
-      "es2020": "./fesm2020/delon-chart-gauge.mjs",
-      "es2015": "./fesm2015/delon-chart-gauge.mjs",
-      "node": "./fesm2015/delon-chart-gauge.mjs",
-      "default": "./fesm2020/delon-chart-gauge.mjs"
+      "types": "./gauge/gauge.d.ts",
+      "esm2020": "./esm2020/gauge/gauge.mjs",
+      "es2020": "./fesm2020/gauge.mjs",
+      "es2015": "./fesm2015/gauge.mjs",
+      "node": "./fesm2015/gauge.mjs",
+      "default": "./fesm2020/gauge.mjs"
     },
     "./mini-area": {
-      "types": "./mini-area/delon-chart-mini-area.d.ts",
-      "esm2020": "./esm2020/mini-area/delon-chart-mini-area.mjs",
-      "es2020": "./fesm2020/delon-chart-mini-area.mjs",
-      "es2015": "./fesm2015/delon-chart-mini-area.mjs",
-      "node": "./fesm2015/delon-chart-mini-area.mjs",
-      "default": "./fesm2020/delon-chart-mini-area.mjs"
+      "types": "./mini-area/mini-area.d.ts",
+      "esm2020": "./esm2020/mini-area/mini-area.mjs",
+      "es2020": "./fesm2020/mini-area.mjs",
+      "es2015": "./fesm2015/mini-area.mjs",
+      "node": "./fesm2015/mini-area.mjs",
+      "default": "./fesm2020/mini-area.mjs"
     },
     "./mini-bar": {
-      "types": "./mini-bar/delon-chart-mini-bar.d.ts",
-      "esm2020": "./esm2020/mini-bar/delon-chart-mini-bar.mjs",
-      "es2020": "./fesm2020/delon-chart-mini-bar.mjs",
-      "es2015": "./fesm2015/delon-chart-mini-bar.mjs",
-      "node": "./fesm2015/delon-chart-mini-bar.mjs",
-      "default": "./fesm2020/delon-chart-mini-bar.mjs"
+      "types": "./mini-bar/mini-bar.d.ts",
+      "esm2020": "./esm2020/mini-bar/mini-bar.mjs",
+      "es2020": "./fesm2020/mini-bar.mjs",
+      "es2015": "./fesm2015/mini-bar.mjs",
+      "node": "./fesm2015/mini-bar.mjs",
+      "default": "./fesm2020/mini-bar.mjs"
     },
     "./mini-progress": {
-      "types": "./mini-progress/delon-chart-mini-progress.d.ts",
-      "esm2020": "./esm2020/mini-progress/delon-chart-mini-progress.mjs",
-      "es2020": "./fesm2020/delon-chart-mini-progress.mjs",
-      "es2015": "./fesm2015/delon-chart-mini-progress.mjs",
-      "node": "./fesm2015/delon-chart-mini-progress.mjs",
-      "default": "./fesm2020/delon-chart-mini-progress.mjs"
+      "types": "./mini-progress/mini-progress.d.ts",
+      "esm2020": "./esm2020/mini-progress/mini-progress.mjs",
+      "es2020": "./fesm2020/mini-progress.mjs",
+      "es2015": "./fesm2015/mini-progress.mjs",
+      "node": "./fesm2015/mini-progress.mjs",
+      "default": "./fesm2020/mini-progress.mjs"
     },
     "./number-info": {
-      "types": "./number-info/delon-chart-number-info.d.ts",
-      "esm2020": "./esm2020/number-info/delon-chart-number-info.mjs",
-      "es2020": "./fesm2020/delon-chart-number-info.mjs",
-      "es2015": "./fesm2015/delon-chart-number-info.mjs",
-      "node": "./fesm2015/delon-chart-number-info.mjs",
-      "default": "./fesm2020/delon-chart-number-info.mjs"
+      "types": "./number-info/number-info.d.ts",
+      "esm2020": "./esm2020/number-info/number-info.mjs",
+      "es2020": "./fesm2020/number-info.mjs",
+      "es2015": "./fesm2015/number-info.mjs",
+      "node": "./fesm2015/number-info.mjs",
+      "default": "./fesm2020/number-info.mjs"
     },
     "./pie": {
-      "types": "./pie/delon-chart-pie.d.ts",
-      "esm2020": "./esm2020/pie/delon-chart-pie.mjs",
-      "es2020": "./fesm2020/delon-chart-pie.mjs",
-      "es2015": "./fesm2015/delon-chart-pie.mjs",
-      "node": "./fesm2015/delon-chart-pie.mjs",
-      "default": "./fesm2020/delon-chart-pie.mjs"
+      "types": "./pie/pie.d.ts",
+      "esm2020": "./esm2020/pie/pie.mjs",
+      "es2020": "./fesm2020/pie.mjs",
+      "es2015": "./fesm2015/pie.mjs",
+      "node": "./fesm2015/pie.mjs",
+      "default": "./fesm2020/pie.mjs"
     },
     "./radar": {
-      "types": "./radar/delon-chart-radar.d.ts",
-      "esm2020": "./esm2020/radar/delon-chart-radar.mjs",
-      "es2020": "./fesm2020/delon-chart-radar.mjs",
-      "es2015": "./fesm2015/delon-chart-radar.mjs",
-      "node": "./fesm2015/delon-chart-radar.mjs",
-      "default": "./fesm2020/delon-chart-radar.mjs"
+      "types": "./radar/radar.d.ts",
+      "esm2020": "./esm2020/radar/radar.mjs",
+      "es2020": "./fesm2020/radar.mjs",
+      "es2015": "./fesm2015/radar.mjs",
+      "node": "./fesm2015/radar.mjs",
+      "default": "./fesm2020/radar.mjs"
     },
     "./single-bar": {
-      "types": "./single-bar/delon-chart-single-bar.d.ts",
-      "esm2020": "./esm2020/single-bar/delon-chart-single-bar.mjs",
-      "es2020": "./fesm2020/delon-chart-single-bar.mjs",
-      "es2015": "./fesm2015/delon-chart-single-bar.mjs",
-      "node": "./fesm2015/delon-chart-single-bar.mjs",
-      "default": "./fesm2020/delon-chart-single-bar.mjs"
+      "types": "./single-bar/single-bar.d.ts",
+      "esm2020": "./esm2020/single-bar/single-bar.mjs",
+      "es2020": "./fesm2020/single-bar.mjs",
+      "es2015": "./fesm2015/single-bar.mjs",
+      "node": "./fesm2015/single-bar.mjs",
+      "default": "./fesm2020/single-bar.mjs"
     },
     "./tag-cloud": {
-      "types": "./tag-cloud/delon-chart-tag-cloud.d.ts",
-      "esm2020": "./esm2020/tag-cloud/delon-chart-tag-cloud.mjs",
-      "es2020": "./fesm2020/delon-chart-tag-cloud.mjs",
-      "es2015": "./fesm2015/delon-chart-tag-cloud.mjs",
-      "node": "./fesm2015/delon-chart-tag-cloud.mjs",
-      "default": "./fesm2020/delon-chart-tag-cloud.mjs"
+      "types": "./tag-cloud/tag-cloud.d.ts",
+      "esm2020": "./esm2020/tag-cloud/tag-cloud.mjs",
+      "es2020": "./fesm2020/tag-cloud.mjs",
+      "es2015": "./fesm2015/tag-cloud.mjs",
+      "node": "./fesm2015/tag-cloud.mjs",
+      "default": "./fesm2020/tag-cloud.mjs"
     },
     "./timeline": {
-      "types": "./timeline/delon-chart-timeline.d.ts",
-      "esm2020": "./esm2020/timeline/delon-chart-timeline.mjs",
-      "es2020": "./fesm2020/delon-chart-timeline.mjs",
-      "es2015": "./fesm2015/delon-chart-timeline.mjs",
-      "node": "./fesm2015/delon-chart-timeline.mjs",
-      "default": "./fesm2020/delon-chart-timeline.mjs"
+      "types": "./timeline/timeline.d.ts",
+      "esm2020": "./esm2020/timeline/timeline.mjs",
+      "es2020": "./fesm2020/timeline.mjs",
+      "es2015": "./fesm2015/timeline.mjs",
+      "node": "./fesm2015/timeline.mjs",
+      "default": "./fesm2020/timeline.mjs"
     },
     "./trend": {
-      "types": "./trend/delon-chart-trend.d.ts",
-      "esm2020": "./esm2020/trend/delon-chart-trend.mjs",
-      "es2020": "./fesm2020/delon-chart-trend.mjs",
-      "es2015": "./fesm2015/delon-chart-trend.mjs",
-      "node": "./fesm2015/delon-chart-trend.mjs",
-      "default": "./fesm2020/delon-chart-trend.mjs"
+      "types": "./trend/trend.d.ts",
+      "esm2020": "./esm2020/trend/trend.mjs",
+      "es2020": "./fesm2020/trend.mjs",
+      "es2015": "./fesm2015/trend.mjs",
+      "node": "./fesm2015/trend.mjs",
+      "default": "./fesm2020/trend.mjs"
     },
     "./water-wave": {
-      "types": "./water-wave/delon-chart-water-wave.d.ts",
-      "esm2020": "./esm2020/water-wave/delon-chart-water-wave.mjs",
-      "es2020": "./fesm2020/delon-chart-water-wave.mjs",
-      "es2015": "./fesm2015/delon-chart-water-wave.mjs",
-      "node": "./fesm2015/delon-chart-water-wave.mjs",
-      "default": "./fesm2020/delon-chart-water-wave.mjs"
+      "types": "./water-wave/water-wave.d.ts",
+      "esm2020": "./esm2020/water-wave/water-wave.mjs",
+      "es2020": "./fesm2020/water-wave.mjs",
+      "es2015": "./fesm2015/water-wave.mjs",
+      "node": "./fesm2015/water-wave.mjs",
+      "default": "./fesm2020/water-wave.mjs"
     }
   },
   "sideEffects": false

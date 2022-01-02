@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/quickMenu.mjs",
-  "es2020": "../fesm2020/quickMenu.mjs",
-  "esm2020": "../esm2020/quick-menu/quickMenu.mjs",
-  "fesm2020": "../fesm2020/quickMenu.mjs",
-  "fesm2015": "../fesm2015/quickMenu.mjs",
-  "typings": "quickMenu.d.ts",
+  "module": "../fesm2015/quick-menu.mjs",
+  "es2020": "../fesm2020/quick-menu.mjs",
+  "esm2020": "../esm2020/quick-menu/quick-menu.mjs",
+  "fesm2020": "../fesm2020/quick-menu.mjs",
+  "fesm2015": "../fesm2015/quick-menu.mjs",
+  "typings": "quick-menu.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/quick-menu"
 }

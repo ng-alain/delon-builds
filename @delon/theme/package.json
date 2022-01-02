@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "13.0.0-beta.2",
+  "version": "13.0.0-beta.2-5a0c1462",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^13.0.0",
-    "@delon/acl": "^13.0.0-beta.2",
-    "@delon/util": "^13.0.0-beta.2",
+    "@delon/acl": "^13.0.0-beta.2-5a0c1462",
+    "@delon/util": "^13.0.0-beta.2-5a0c1462",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/theme.mjs",
@@ -53,28 +53,28 @@
       "default": "./fesm2020/layout-blank.mjs"
     },
     "./layout-default": {
-      "types": "./layout-default/layout-blank.d.ts",
-      "esm2020": "./esm2020/layout-default/layout-blank.mjs",
-      "es2020": "./fesm2020/layout-blank.mjs",
-      "es2015": "./fesm2015/layout-blank.mjs",
-      "node": "./fesm2015/layout-blank.mjs",
-      "default": "./fesm2020/layout-blank.mjs"
+      "types": "./layout-default/layout-default.d.ts",
+      "esm2020": "./esm2020/layout-default/layout-default.mjs",
+      "es2020": "./fesm2020/layout-default.mjs",
+      "es2015": "./fesm2015/layout-default.mjs",
+      "node": "./fesm2015/layout-default.mjs",
+      "default": "./fesm2020/layout-default.mjs"
     },
     "./setting-drawer": {
-      "types": "./setting-drawer/layout-blank.d.ts",
-      "esm2020": "./esm2020/setting-drawer/layout-blank.mjs",
-      "es2020": "./fesm2020/layout-blank.mjs",
-      "es2015": "./fesm2015/layout-blank.mjs",
-      "node": "./fesm2015/layout-blank.mjs",
-      "default": "./fesm2020/layout-blank.mjs"
+      "types": "./setting-drawer/setting-drawer.d.ts",
+      "esm2020": "./esm2020/setting-drawer/setting-drawer.mjs",
+      "es2020": "./fesm2020/setting-drawer.mjs",
+      "es2015": "./fesm2015/setting-drawer.mjs",
+      "node": "./fesm2015/setting-drawer.mjs",
+      "default": "./fesm2020/setting-drawer.mjs"
     },
     "./theme-btn": {
-      "types": "./theme-btn/layout-blank.d.ts",
-      "esm2020": "./esm2020/theme-btn/layout-blank.mjs",
-      "es2020": "./fesm2020/layout-blank.mjs",
-      "es2015": "./fesm2015/layout-blank.mjs",
-      "node": "./fesm2015/layout-blank.mjs",
-      "default": "./fesm2020/layout-blank.mjs"
+      "types": "./theme-btn/theme-btn.d.ts",
+      "esm2020": "./esm2020/theme-btn/theme-btn.mjs",
+      "es2020": "./fesm2020/theme-btn.mjs",
+      "es2015": "./fesm2015/theme-btn.mjs",
+      "node": "./fesm2015/theme-btn.mjs",
+      "default": "./fesm2020/theme-btn.mjs"
     }
   },
   "sideEffects": false

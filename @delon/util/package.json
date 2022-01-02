@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "13.0.0-beta.2",
+  "version": "13.0.0-beta.2-5a0c1462",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -42,116 +42,116 @@
       "default": "./fesm2020/delon-util.mjs"
     },
     "./array": {
-      "types": "./array/delon-util-array.d.ts",
-      "esm2020": "./esm2020/array/delon-util-array.mjs",
-      "es2020": "./fesm2020/delon-util-array.mjs",
-      "es2015": "./fesm2015/delon-util-array.mjs",
-      "node": "./fesm2015/delon-util-array.mjs",
-      "default": "./fesm2020/delon-util-array.mjs"
+      "types": "./array/array.d.ts",
+      "esm2020": "./esm2020/array/array.mjs",
+      "es2020": "./fesm2020/array.mjs",
+      "es2015": "./fesm2015/array.mjs",
+      "node": "./fesm2015/array.mjs",
+      "default": "./fesm2020/array.mjs"
     },
     "./browser": {
-      "types": "./browser/delon-util-browser.d.ts",
-      "esm2020": "./esm2020/browser/delon-util-browser.mjs",
-      "es2020": "./fesm2020/delon-util-browser.mjs",
-      "es2015": "./fesm2015/delon-util-browser.mjs",
-      "node": "./fesm2015/delon-util-browser.mjs",
-      "default": "./fesm2020/delon-util-browser.mjs"
+      "types": "./browser/browser.d.ts",
+      "esm2020": "./esm2020/browser/browser.mjs",
+      "es2020": "./fesm2020/browser.mjs",
+      "es2015": "./fesm2015/browser.mjs",
+      "node": "./fesm2015/browser.mjs",
+      "default": "./fesm2020/browser.mjs"
     },
     "./config": {
-      "types": "./config/delon-util-config.d.ts",
-      "esm2020": "./esm2020/config/delon-util-config.mjs",
-      "es2020": "./fesm2020/delon-util-config.mjs",
-      "es2015": "./fesm2015/delon-util-config.mjs",
-      "node": "./fesm2015/delon-util-config.mjs",
-      "default": "./fesm2020/delon-util-config.mjs"
+      "types": "./config/config.d.ts",
+      "esm2020": "./esm2020/config/config.mjs",
+      "es2020": "./fesm2020/config.mjs",
+      "es2015": "./fesm2015/config.mjs",
+      "node": "./fesm2015/config.mjs",
+      "default": "./fesm2020/config.mjs"
     },
     "./date-time": {
-      "types": "./date-time/delon-util-date-time.d.ts",
-      "esm2020": "./esm2020/date-time/delon-util-date-time.mjs",
-      "es2020": "./fesm2020/delon-util-date-time.mjs",
-      "es2015": "./fesm2015/delon-util-date-time.mjs",
-      "node": "./fesm2015/delon-util-date-time.mjs",
-      "default": "./fesm2020/delon-util-date-time.mjs"
+      "types": "./date-time/date-time.d.ts",
+      "esm2020": "./esm2020/date-time/date-time.mjs",
+      "es2020": "./fesm2020/date-time.mjs",
+      "es2015": "./fesm2015/date-time.mjs",
+      "node": "./fesm2015/date-time.mjs",
+      "default": "./fesm2020/date-time.mjs"
     },
     "./decorator": {
-      "types": "./decorator/delon-util-decorator.d.ts",
-      "esm2020": "./esm2020/decorator/delon-util-decorator.mjs",
-      "es2020": "./fesm2020/delon-util-decorator.mjs",
-      "es2015": "./fesm2015/delon-util-decorator.mjs",
-      "node": "./fesm2015/delon-util-decorator.mjs",
-      "default": "./fesm2020/delon-util-decorator.mjs"
+      "types": "./decorator/decorator.d.ts",
+      "esm2020": "./esm2020/decorator/decorator.mjs",
+      "es2020": "./fesm2020/decorator.mjs",
+      "es2015": "./fesm2015/decorator.mjs",
+      "node": "./fesm2015/decorator.mjs",
+      "default": "./fesm2020/decorator.mjs"
     },
     "./form": {
-      "types": "./form/delon-util-form.d.ts",
-      "esm2020": "./esm2020/form/delon-util-form.mjs",
-      "es2020": "./fesm2020/delon-util-form.mjs",
-      "es2015": "./fesm2015/delon-util-form.mjs",
-      "node": "./fesm2015/delon-util-form.mjs",
-      "default": "./fesm2020/delon-util-form.mjs"
+      "types": "./form/form.d.ts",
+      "esm2020": "./esm2020/form/form.mjs",
+      "es2020": "./fesm2020/form.mjs",
+      "es2015": "./fesm2015/form.mjs",
+      "node": "./fesm2015/form.mjs",
+      "default": "./fesm2020/form.mjs"
     },
     "./format": {
-      "types": "./format/delon-util-format.d.ts",
-      "esm2020": "./esm2020/format/delon-util-format.mjs",
-      "es2020": "./fesm2020/delon-util-format.mjs",
-      "es2015": "./fesm2015/delon-util-format.mjs",
-      "node": "./fesm2015/delon-util-format.mjs",
-      "default": "./fesm2020/delon-util-format.mjs"
+      "types": "./format/format.d.ts",
+      "esm2020": "./esm2020/format/format.mjs",
+      "es2020": "./fesm2020/format.mjs",
+      "es2015": "./fesm2015/format.mjs",
+      "node": "./fesm2015/format.mjs",
+      "default": "./fesm2020/format.mjs"
     },
     "./math": {
-      "types": "./math/delon-util-math.d.ts",
-      "esm2020": "./esm2020/math/delon-util-math.mjs",
-      "es2020": "./fesm2020/delon-util-math.mjs",
-      "es2015": "./fesm2015/delon-util-math.mjs",
-      "node": "./fesm2015/delon-util-math.mjs",
-      "default": "./fesm2020/delon-util-math.mjs"
+      "types": "./math/math.d.ts",
+      "esm2020": "./esm2020/math/math.mjs",
+      "es2020": "./fesm2020/math.mjs",
+      "es2015": "./fesm2015/math.mjs",
+      "node": "./fesm2015/math.mjs",
+      "default": "./fesm2020/math.mjs"
     },
     "./other": {
-      "types": "./other/delon-util-other.d.ts",
-      "esm2020": "./esm2020/other/delon-util-other.mjs",
-      "es2020": "./fesm2020/delon-util-other.mjs",
-      "es2015": "./fesm2015/delon-util-other.mjs",
-      "node": "./fesm2015/delon-util-other.mjs",
-      "default": "./fesm2020/delon-util-other.mjs"
+      "types": "./other/other.d.ts",
+      "esm2020": "./esm2020/other/other.mjs",
+      "es2020": "./fesm2020/other.mjs",
+      "es2015": "./fesm2015/other.mjs",
+      "node": "./fesm2015/other.mjs",
+      "default": "./fesm2020/other.mjs"
     },
     "./pipes/currency": {
-      "types": "./pipes/currency/delon-util-pipes-currency.d.ts",
-      "esm2020": "./esm2020/pipes/currency/delon-util-pipes-currency.mjs",
-      "es2020": "./fesm2020/delon-util-pipes-currency.mjs",
-      "es2015": "./fesm2015/delon-util-pipes-currency.mjs",
-      "node": "./fesm2015/delon-util-pipes-currency.mjs",
-      "default": "./fesm2020/delon-util-pipes-currency.mjs"
+      "types": "./pipes/currency/pipe-currency.d.ts",
+      "esm2020": "./esm2020/pipes/currency/pipe-currency.mjs",
+      "es2020": "./fesm2020/pipe-currency.mjs",
+      "es2015": "./fesm2015/pipe-currency.mjs",
+      "node": "./fesm2015/pipe-currency.mjs",
+      "default": "./fesm2020/pipe-currency.mjs"
     },
     "./pipes/filter": {
-      "types": "./pipes/filter/delon-util-pipes-filter.d.ts",
-      "esm2020": "./esm2020/pipes/filter/delon-util-pipes-filter.mjs",
-      "es2020": "./fesm2020/delon-util-pipes-filter.mjs",
-      "es2015": "./fesm2015/delon-util-pipes-filter.mjs",
-      "node": "./fesm2015/delon-util-pipes-filter.mjs",
-      "default": "./fesm2020/delon-util-pipes-filter.mjs"
+      "types": "./pipes/filter/pipe-filter.d.ts",
+      "esm2020": "./esm2020/pipes/filter/pipe-filter.mjs",
+      "es2020": "./fesm2020/pipe-filter.mjs",
+      "es2015": "./fesm2015/pipe-filter.mjs",
+      "node": "./fesm2015/pipe-filter.mjs",
+      "default": "./fesm2020/pipe-filter.mjs"
     },
     "./pipes/format": {
-      "types": "./pipes/format/delon-util-pipes-format.d.ts",
-      "esm2020": "./esm2020/pipes/format/delon-util-pipes-format.mjs",
-      "es2020": "./fesm2020/delon-util-pipes-format.mjs",
-      "es2015": "./fesm2015/delon-util-pipes-format.mjs",
-      "node": "./fesm2015/delon-util-pipes-format.mjs",
-      "default": "./fesm2020/delon-util-pipes-format.mjs"
+      "types": "./pipes/format/pipe-format.d.ts",
+      "esm2020": "./esm2020/pipes/format/pipe-format.mjs",
+      "es2020": "./fesm2020/pipe-format.mjs",
+      "es2015": "./fesm2015/pipe-format.mjs",
+      "node": "./fesm2015/pipe-format.mjs",
+      "default": "./fesm2020/pipe-format.mjs"
     },
     "./pipes": {
-      "types": "./pipes/delon-util-pipes.d.ts",
-      "esm2020": "./esm2020/pipes/delon-util-pipes.mjs",
-      "es2020": "./fesm2020/delon-util-pipes.mjs",
-      "es2015": "./fesm2015/delon-util-pipes.mjs",
-      "node": "./fesm2015/delon-util-pipes.mjs",
-      "default": "./fesm2020/delon-util-pipes.mjs"
+      "types": "./pipes/pipes.d.ts",
+      "esm2020": "./esm2020/pipes/pipes.mjs",
+      "es2020": "./fesm2020/pipes.mjs",
+      "es2015": "./fesm2015/pipes.mjs",
+      "node": "./fesm2015/pipes.mjs",
+      "default": "./fesm2020/pipes.mjs"
     },
     "./token": {
-      "types": "./token/delon-util-token.d.ts",
-      "esm2020": "./esm2020/token/delon-util-token.mjs",
-      "es2020": "./fesm2020/delon-util-token.mjs",
-      "es2015": "./fesm2015/delon-util-token.mjs",
-      "node": "./fesm2015/delon-util-token.mjs",
-      "default": "./fesm2020/delon-util-token.mjs"
+      "types": "./token/token.d.ts",
+      "esm2020": "./esm2020/token/token.mjs",
+      "es2020": "./fesm2020/token.mjs",
+      "es2015": "./fesm2015/token.mjs",
+      "node": "./fesm2015/token.mjs",
+      "default": "./fesm2020/token.mjs"
     }
   },
   "sideEffects": false

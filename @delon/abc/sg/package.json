@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/grid.mjs",
-  "es2020": "../fesm2020/grid.mjs",
-  "esm2020": "../esm2020/sg/grid.mjs",
-  "fesm2020": "../fesm2020/grid.mjs",
-  "fesm2015": "../fesm2015/grid.mjs",
-  "typings": "grid.d.ts",
+  "module": "../fesm2015/sg.mjs",
+  "es2020": "../fesm2020/sg.mjs",
+  "esm2020": "../esm2020/sg/sg.mjs",
+  "fesm2020": "../fesm2020/sg.mjs",
+  "fesm2015": "../fesm2015/sg.mjs",
+  "typings": "sg.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/sg"
 }

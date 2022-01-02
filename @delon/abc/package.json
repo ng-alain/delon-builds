@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "13.0.0-beta.2",
+  "version": "13.0.0-beta.2-5a0c1462",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,9 +26,9 @@
     "jszip": "^3.7.1",
     "xlsx": "^0.17.4",
     "ngx-countdown": "^13.0.0",
-    "@delon/theme": "^13.0.0-beta.2",
-    "@delon/util": "^13.0.0-beta.2",
-    "@delon/acl": "^13.0.0-beta.2",
+    "@delon/theme": "^13.0.0-beta.2-5a0c1462",
+    "@delon/util": "^13.0.0-beta.2-5a0c1462",
+    "@delon/acl": "^13.0.0-beta.2-5a0c1462",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -50,20 +50,20 @@
       "default": "./fesm2020/abc.mjs"
     },
     "./auto-focus": {
-      "types": "./auto-focus/autoFocus.d.ts",
-      "esm2020": "./esm2020/auto-focus/autoFocus.mjs",
-      "es2020": "./fesm2020/autoFocus.mjs",
-      "es2015": "./fesm2015/autoFocus.mjs",
-      "node": "./fesm2015/autoFocus.mjs",
-      "default": "./fesm2020/autoFocus.mjs"
+      "types": "./auto-focus/auto-focus.d.ts",
+      "esm2020": "./esm2020/auto-focus/auto-focus.mjs",
+      "es2020": "./fesm2020/auto-focus.mjs",
+      "es2015": "./fesm2015/auto-focus.mjs",
+      "node": "./fesm2015/auto-focus.mjs",
+      "default": "./fesm2020/auto-focus.mjs"
     },
     "./avatar-list": {
-      "types": "./avatar-list/avatarList.d.ts",
-      "esm2020": "./esm2020/avatar-list/avatarList.mjs",
-      "es2020": "./fesm2020/avatarList.mjs",
-      "es2015": "./fesm2015/avatarList.mjs",
-      "node": "./fesm2015/avatarList.mjs",
-      "default": "./fesm2020/avatarList.mjs"
+      "types": "./avatar-list/avatar-list.d.ts",
+      "esm2020": "./esm2020/avatar-list/avatar-list.mjs",
+      "es2020": "./fesm2020/avatar-list.mjs",
+      "es2015": "./fesm2015/avatar-list.mjs",
+      "node": "./fesm2015/avatar-list.mjs",
+      "default": "./fesm2020/avatar-list.mjs"
     },
     "./count-down": {
       "types": "./count-down/count-down.d.ts",
@@ -74,20 +74,20 @@
       "default": "./fesm2020/count-down.mjs"
     },
     "./date-picker": {
-      "types": "./date-picker/datePicker.d.ts",
-      "esm2020": "./esm2020/date-picker/datePicker.mjs",
-      "es2020": "./fesm2020/datePicker.mjs",
-      "es2015": "./fesm2015/datePicker.mjs",
-      "node": "./fesm2015/datePicker.mjs",
-      "default": "./fesm2020/datePicker.mjs"
+      "types": "./date-picker/date-picker.d.ts",
+      "esm2020": "./esm2020/date-picker/date-picker.mjs",
+      "es2020": "./fesm2020/date-picker.mjs",
+      "es2015": "./fesm2015/date-picker.mjs",
+      "node": "./fesm2015/date-picker.mjs",
+      "default": "./fesm2020/date-picker.mjs"
     },
     "./down-file": {
-      "types": "./down-file/downFile.d.ts",
-      "esm2020": "./esm2020/down-file/downFile.mjs",
-      "es2020": "./fesm2020/downFile.mjs",
-      "es2015": "./fesm2015/downFile.mjs",
-      "node": "./fesm2015/downFile.mjs",
-      "default": "./fesm2020/downFile.mjs"
+      "types": "./down-file/down-file.d.ts",
+      "esm2020": "./esm2020/down-file/down-file.mjs",
+      "es2020": "./fesm2020/down-file.mjs",
+      "es2015": "./fesm2015/down-file.mjs",
+      "node": "./fesm2015/down-file.mjs",
+      "default": "./fesm2020/down-file.mjs"
     },
     "./ellipsis": {
       "types": "./ellipsis/ellipsis.d.ts",
@@ -98,12 +98,12 @@
       "default": "./fesm2020/ellipsis.mjs"
     },
     "./error-collect": {
-      "types": "./error-collect/errorCollect.d.ts",
-      "esm2020": "./esm2020/error-collect/errorCollect.mjs",
-      "es2020": "./fesm2020/errorCollect.mjs",
-      "es2015": "./fesm2015/errorCollect.mjs",
-      "node": "./fesm2015/errorCollect.mjs",
-      "default": "./fesm2020/errorCollect.mjs"
+      "types": "./error-collect/error-collect.d.ts",
+      "esm2020": "./esm2020/error-collect/error-collect.mjs",
+      "es2020": "./fesm2020/error-collect.mjs",
+      "es2015": "./fesm2015/error-collect.mjs",
+      "node": "./fesm2015/error-collect.mjs",
+      "default": "./fesm2020/error-collect.mjs"
     },
     "./exception": {
       "types": "./exception/exception.d.ts",
@@ -114,28 +114,28 @@
       "default": "./fesm2020/exception.mjs"
     },
     "./footer-toolbar": {
-      "types": "./footer-toolbar/footerToolbar.d.ts",
-      "esm2020": "./esm2020/footer-toolbar/footerToolbar.mjs",
-      "es2020": "./fesm2020/footerToolbar.mjs",
-      "es2015": "./fesm2015/footerToolbar.mjs",
-      "node": "./fesm2015/footerToolbar.mjs",
-      "default": "./fesm2020/footerToolbar.mjs"
+      "types": "./footer-toolbar/footer-toolbar.d.ts",
+      "esm2020": "./esm2020/footer-toolbar/footer-toolbar.mjs",
+      "es2020": "./fesm2020/footer-toolbar.mjs",
+      "es2015": "./fesm2015/footer-toolbar.mjs",
+      "node": "./fesm2015/footer-toolbar.mjs",
+      "default": "./fesm2020/footer-toolbar.mjs"
     },
     "./full-content": {
-      "types": "./full-content/fullContent.d.ts",
-      "esm2020": "./esm2020/full-content/fullContent.mjs",
-      "es2020": "./fesm2020/fullContent.mjs",
-      "es2015": "./fesm2015/fullContent.mjs",
-      "node": "./fesm2015/fullContent.mjs",
-      "default": "./fesm2020/fullContent.mjs"
+      "types": "./full-content/full-content.d.ts",
+      "esm2020": "./esm2020/full-content/full-content.mjs",
+      "es2020": "./fesm2020/full-content.mjs",
+      "es2015": "./fesm2015/full-content.mjs",
+      "node": "./fesm2015/full-content.mjs",
+      "default": "./fesm2020/full-content.mjs"
     },
     "./global-footer": {
-      "types": "./global-footer/globalFooter.d.ts",
-      "esm2020": "./esm2020/global-footer/globalFooter.mjs",
-      "es2020": "./fesm2020/globalFooter.mjs",
-      "es2015": "./fesm2015/globalFooter.mjs",
-      "node": "./fesm2015/globalFooter.mjs",
-      "default": "./fesm2020/globalFooter.mjs"
+      "types": "./global-footer/global-footer.d.ts",
+      "esm2020": "./esm2020/global-footer/global-footer.mjs",
+      "es2020": "./fesm2020/global-footer.mjs",
+      "es2015": "./fesm2015/global-footer.mjs",
+      "node": "./fesm2015/global-footer.mjs",
+      "default": "./fesm2020/global-footer.mjs"
     },
     "./image": {
       "types": "./image/image.d.ts",
@@ -178,12 +178,12 @@
       "default": "./fesm2020/media.mjs"
     },
     "./notice-icon": {
-      "types": "./notice-icon/noticeIcon.d.ts",
-      "esm2020": "./esm2020/notice-icon/noticeIcon.mjs",
-      "es2020": "./fesm2020/noticeIcon.mjs",
-      "es2015": "./fesm2015/noticeIcon.mjs",
-      "node": "./fesm2015/noticeIcon.mjs",
-      "default": "./fesm2020/noticeIcon.mjs"
+      "types": "./notice-icon/notice-icon.d.ts",
+      "esm2020": "./esm2020/notice-icon/notice-icon.mjs",
+      "es2020": "./fesm2020/notice-icon.mjs",
+      "es2015": "./fesm2015/notice-icon.mjs",
+      "node": "./fesm2015/notice-icon.mjs",
+      "default": "./fesm2020/notice-icon.mjs"
     },
     "./onboarding": {
       "types": "./onboarding/onboarding.d.ts",
@@ -194,12 +194,12 @@
       "default": "./fesm2020/onboarding.mjs"
     },
     "./page-header": {
-      "types": "./page-header/pageHeader.d.ts",
-      "esm2020": "./esm2020/page-header/pageHeader.mjs",
-      "es2020": "./fesm2020/pageHeader.mjs",
-      "es2015": "./fesm2015/pageHeader.mjs",
-      "node": "./fesm2015/pageHeader.mjs",
-      "default": "./fesm2020/pageHeader.mjs"
+      "types": "./page-header/page-header.d.ts",
+      "esm2020": "./esm2020/page-header/page-header.mjs",
+      "es2020": "./fesm2020/page-header.mjs",
+      "es2015": "./fesm2015/page-header.mjs",
+      "node": "./fesm2015/page-header.mjs",
+      "default": "./fesm2020/page-header.mjs"
     },
     "./pdf": {
       "types": "./pdf/pdf.d.ts",
@@ -218,12 +218,12 @@
       "default": "./fesm2020/qr.mjs"
     },
     "./quick-menu": {
-      "types": "./quick-menu/quickMenu.d.ts",
-      "esm2020": "./esm2020/quick-menu/quickMenu.mjs",
-      "es2020": "./fesm2020/quickMenu.mjs",
-      "es2015": "./fesm2015/quickMenu.mjs",
-      "node": "./fesm2015/quickMenu.mjs",
-      "default": "./fesm2020/quickMenu.mjs"
+      "types": "./quick-menu/quick-menu.d.ts",
+      "esm2020": "./esm2020/quick-menu/quick-menu.mjs",
+      "es2020": "./fesm2020/quick-menu.mjs",
+      "es2015": "./fesm2015/quick-menu.mjs",
+      "node": "./fesm2015/quick-menu.mjs",
+      "default": "./fesm2020/quick-menu.mjs"
     },
     "./result": {
       "types": "./result/result.d.ts",
@@ -234,52 +234,52 @@
       "default": "./fesm2020/result.mjs"
     },
     "./reuse-tab": {
-      "types": "./reuse-tab/reuseTab.d.ts",
-      "esm2020": "./esm2020/reuse-tab/reuseTab.mjs",
-      "es2020": "./fesm2020/reuseTab.mjs",
-      "es2015": "./fesm2015/reuseTab.mjs",
-      "node": "./fesm2015/reuseTab.mjs",
-      "default": "./fesm2020/reuseTab.mjs"
+      "types": "./reuse-tab/reuse-tab.d.ts",
+      "esm2020": "./esm2020/reuse-tab/reuse-tab.mjs",
+      "es2020": "./fesm2020/reuse-tab.mjs",
+      "es2015": "./fesm2015/reuse-tab.mjs",
+      "node": "./fesm2015/reuse-tab.mjs",
+      "default": "./fesm2020/reuse-tab.mjs"
     },
     "./se": {
-      "types": "./se/edit.d.ts",
-      "esm2020": "./esm2020/se/edit.mjs",
-      "es2020": "./fesm2020/edit.mjs",
-      "es2015": "./fesm2015/edit.mjs",
-      "node": "./fesm2015/edit.mjs",
-      "default": "./fesm2020/edit.mjs"
+      "types": "./se/se.d.ts",
+      "esm2020": "./esm2020/se/se.mjs",
+      "es2020": "./fesm2020/se.mjs",
+      "es2015": "./fesm2015/se.mjs",
+      "node": "./fesm2015/se.mjs",
+      "default": "./fesm2020/se.mjs"
     },
     "./sg": {
-      "types": "./sg/grid.d.ts",
-      "esm2020": "./esm2020/sg/grid.mjs",
-      "es2020": "./fesm2020/grid.mjs",
-      "es2015": "./fesm2015/grid.mjs",
-      "node": "./fesm2015/grid.mjs",
-      "default": "./fesm2020/grid.mjs"
+      "types": "./sg/sg.d.ts",
+      "esm2020": "./esm2020/sg/sg.mjs",
+      "es2020": "./fesm2020/sg.mjs",
+      "es2015": "./fesm2015/sg.mjs",
+      "node": "./fesm2015/sg.mjs",
+      "default": "./fesm2020/sg.mjs"
     },
     "./st": {
-      "types": "./st/table.d.ts",
-      "esm2020": "./esm2020/st/table.mjs",
-      "es2020": "./fesm2020/table.mjs",
-      "es2015": "./fesm2015/table.mjs",
-      "node": "./fesm2015/table.mjs",
-      "default": "./fesm2020/table.mjs"
+      "types": "./st/st.d.ts",
+      "esm2020": "./esm2020/st/st.mjs",
+      "es2020": "./fesm2020/st.mjs",
+      "es2015": "./fesm2015/st.mjs",
+      "node": "./fesm2015/st.mjs",
+      "default": "./fesm2020/st.mjs"
     },
     "./sv": {
-      "types": "./sv/view.d.ts",
-      "esm2020": "./esm2020/sv/view.mjs",
-      "es2020": "./fesm2020/view.mjs",
-      "es2015": "./fesm2015/view.mjs",
-      "node": "./fesm2015/view.mjs",
-      "default": "./fesm2020/view.mjs"
+      "types": "./sv/sv.d.ts",
+      "esm2020": "./esm2020/sv/sv.mjs",
+      "es2020": "./fesm2020/sv.mjs",
+      "es2015": "./fesm2015/sv.mjs",
+      "node": "./fesm2015/sv.mjs",
+      "default": "./fesm2020/sv.mjs"
     },
     "./tag-select": {
-      "types": "./tag-select/tagSelect.d.ts",
-      "esm2020": "./esm2020/tag-select/tagSelect.mjs",
-      "es2020": "./fesm2020/tagSelect.mjs",
-      "es2015": "./fesm2015/tagSelect.mjs",
-      "node": "./fesm2015/tagSelect.mjs",
-      "default": "./fesm2020/tagSelect.mjs"
+      "types": "./tag-select/tag-select.d.ts",
+      "esm2020": "./esm2020/tag-select/tag-select.mjs",
+      "es2020": "./fesm2020/tag-select.mjs",
+      "es2015": "./fesm2015/tag-select.mjs",
+      "node": "./fesm2015/tag-select.mjs",
+      "default": "./fesm2020/tag-select.mjs"
     },
     "./xlsx": {
       "types": "./xlsx/xlsx.d.ts",

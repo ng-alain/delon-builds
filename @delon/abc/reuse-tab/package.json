@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/reuseTab.mjs",
-  "es2020": "../fesm2020/reuseTab.mjs",
-  "esm2020": "../esm2020/reuse-tab/reuseTab.mjs",
-  "fesm2020": "../fesm2020/reuseTab.mjs",
-  "fesm2015": "../fesm2015/reuseTab.mjs",
-  "typings": "reuseTab.d.ts",
+  "module": "../fesm2015/reuse-tab.mjs",
+  "es2020": "../fesm2020/reuse-tab.mjs",
+  "esm2020": "../esm2020/reuse-tab/reuse-tab.mjs",
+  "fesm2020": "../fesm2020/reuse-tab.mjs",
+  "fesm2015": "../fesm2015/reuse-tab.mjs",
+  "typings": "reuse-tab.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/reuse-tab"
 }

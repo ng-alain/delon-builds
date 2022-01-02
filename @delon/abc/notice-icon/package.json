@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/noticeIcon.mjs",
-  "es2020": "../fesm2020/noticeIcon.mjs",
-  "esm2020": "../esm2020/notice-icon/noticeIcon.mjs",
-  "fesm2020": "../fesm2020/noticeIcon.mjs",
-  "fesm2015": "../fesm2015/noticeIcon.mjs",
-  "typings": "noticeIcon.d.ts",
+  "module": "../fesm2015/notice-icon.mjs",
+  "es2020": "../fesm2020/notice-icon.mjs",
+  "esm2020": "../esm2020/notice-icon/notice-icon.mjs",
+  "fesm2020": "../fesm2020/notice-icon.mjs",
+  "fesm2015": "../fesm2015/notice-icon.mjs",
+  "typings": "notice-icon.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/notice-icon"
 }

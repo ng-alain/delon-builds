@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-mini-progress.mjs",
-  "es2020": "../fesm2020/delon-chart-mini-progress.mjs",
-  "esm2020": "../esm2020/mini-progress/delon-chart-mini-progress.mjs",
-  "fesm2020": "../fesm2020/delon-chart-mini-progress.mjs",
-  "fesm2015": "../fesm2015/delon-chart-mini-progress.mjs",
-  "typings": "delon-chart-mini-progress.d.ts",
+  "module": "../fesm2015/mini-progress.mjs",
+  "es2020": "../fesm2020/mini-progress.mjs",
+  "esm2020": "../esm2020/mini-progress/mini-progress.mjs",
+  "fesm2020": "../fesm2020/mini-progress.mjs",
+  "fesm2015": "../fesm2015/mini-progress.mjs",
+  "typings": "mini-progress.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/mini-progress"
 }

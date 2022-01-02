@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-util-config.mjs",
-  "es2020": "../fesm2020/delon-util-config.mjs",
-  "esm2020": "../esm2020/config/delon-util-config.mjs",
-  "fesm2020": "../fesm2020/delon-util-config.mjs",
-  "fesm2015": "../fesm2015/delon-util-config.mjs",
-  "typings": "delon-util-config.d.ts",
+  "module": "../fesm2015/config.mjs",
+  "es2020": "../fesm2020/config.mjs",
+  "esm2020": "../esm2020/config/config.mjs",
+  "fesm2020": "../fesm2020/config.mjs",
+  "fesm2015": "../fesm2015/config.mjs",
+  "typings": "config.d.ts",
   "sideEffects": false,
   "name": "@delon/util/config"
 }

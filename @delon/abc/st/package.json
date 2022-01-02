@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/table.mjs",
-  "es2020": "../fesm2020/table.mjs",
-  "esm2020": "../esm2020/st/table.mjs",
-  "fesm2020": "../fesm2020/table.mjs",
-  "fesm2015": "../fesm2015/table.mjs",
-  "typings": "table.d.ts",
+  "module": "../fesm2015/st.mjs",
+  "es2020": "../fesm2020/st.mjs",
+  "esm2020": "../esm2020/st/st.mjs",
+  "fesm2020": "../fesm2020/st.mjs",
+  "fesm2015": "../fesm2015/st.mjs",
+  "typings": "st.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/st"
 }

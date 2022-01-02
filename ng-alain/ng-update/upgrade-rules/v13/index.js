@@ -12,9 +12,30 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.v13Rule = void 0;
 const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
+const tasks_1 = require("@angular-devkit/schematics/tasks");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
+function addStylePreprocessorOptions() {
+    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+        (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
+    }));
+}
+// Using ~ is deprecated and can be removed from your code
+function fixLessResolver() {
+    return (tree, context) => {
+        (0, utils_1.logStart)(context, `Removed deprecated ~ in less file, pls refer to https://github.com/webpack-contrib/less-loader#imports`);
+        tree.visit(path => {
+            if (!path.endsWith(`.less`))
+                return;
+            const content = tree
+                .read(path)
+                .toString('utf8')
+                .replace(/^(@import ['"]{1})~/gm, '$1');
+            tree.overwrite(path, content);
+        });
+    };
+}
 function removeIE() {
     return (tree, context) => {
         const pkg = (0, utils_1.readPackage)(tree);
@@ -42,14 +63,22 @@ function upgradeThirdVersion() {
 }
 function finished() {
     return (_tree, context) => {
-        context.logger.info(color_1.colors.green(`  ✓  Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2174`));
+        context.addTask(new tasks_1.NodePackageInstallTask());
+        context.logger.info(color_1.colors.green(`  ✓ Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2174`));
     };
 }
 function v13Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
-        return (0, schematics_1.chain)([removeIE(), upgradeThirdVersion(), addYarn(context), finished()]);
+        return (0, schematics_1.chain)([
+            removeIE(),
+            addStylePreprocessorOptions(),
+            fixLessResolver(),
+            upgradeThirdVersion(),
+            addYarn(context),
+            finished()
+        ]);
     });
 }
 exports.v13Rule = v13Rule;

@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-water-wave.mjs",
-  "es2020": "../fesm2020/delon-chart-water-wave.mjs",
-  "esm2020": "../esm2020/water-wave/delon-chart-water-wave.mjs",
-  "fesm2020": "../fesm2020/delon-chart-water-wave.mjs",
-  "fesm2015": "../fesm2015/delon-chart-water-wave.mjs",
-  "typings": "delon-chart-water-wave.d.ts",
+  "module": "../fesm2015/water-wave.mjs",
+  "es2020": "../fesm2020/water-wave.mjs",
+  "esm2020": "../esm2020/water-wave/water-wave.mjs",
+  "fesm2020": "../fesm2020/water-wave.mjs",
+  "fesm2015": "../fesm2015/water-wave.mjs",
+  "typings": "water-wave.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/water-wave"
 }

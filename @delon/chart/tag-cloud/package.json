@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-tag-cloud.mjs",
-  "es2020": "../fesm2020/delon-chart-tag-cloud.mjs",
-  "esm2020": "../esm2020/tag-cloud/delon-chart-tag-cloud.mjs",
-  "fesm2020": "../fesm2020/delon-chart-tag-cloud.mjs",
-  "fesm2015": "../fesm2015/delon-chart-tag-cloud.mjs",
-  "typings": "delon-chart-tag-cloud.d.ts",
+  "module": "../fesm2015/tag-cloud.mjs",
+  "es2020": "../fesm2020/tag-cloud.mjs",
+  "esm2020": "../esm2020/tag-cloud/tag-cloud.mjs",
+  "fesm2020": "../fesm2020/tag-cloud.mjs",
+  "fesm2015": "../fesm2015/tag-cloud.mjs",
+  "typings": "tag-cloud.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/tag-cloud"
 }

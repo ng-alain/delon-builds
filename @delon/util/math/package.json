@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-util-math.mjs",
-  "es2020": "../fesm2020/delon-util-math.mjs",
-  "esm2020": "../esm2020/math/delon-util-math.mjs",
-  "fesm2020": "../fesm2020/delon-util-math.mjs",
-  "fesm2015": "../fesm2015/delon-util-math.mjs",
-  "typings": "delon-util-math.d.ts",
+  "module": "../fesm2015/math.mjs",
+  "es2020": "../fesm2020/math.mjs",
+  "esm2020": "../esm2020/math/math.mjs",
+  "fesm2020": "../fesm2020/math.mjs",
+  "fesm2015": "../fesm2015/math.mjs",
+  "typings": "math.d.ts",
   "sideEffects": false,
   "name": "@delon/util/math"
 }

@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/pageHeader.mjs",
-  "es2020": "../fesm2020/pageHeader.mjs",
-  "esm2020": "../esm2020/page-header/pageHeader.mjs",
-  "fesm2020": "../fesm2020/pageHeader.mjs",
-  "fesm2015": "../fesm2015/pageHeader.mjs",
-  "typings": "pageHeader.d.ts",
+  "module": "../fesm2015/page-header.mjs",
+  "es2020": "../fesm2020/page-header.mjs",
+  "esm2020": "../esm2020/page-header/page-header.mjs",
+  "fesm2020": "../fesm2020/page-header.mjs",
+  "fesm2015": "../fesm2015/page-header.mjs",
+  "typings": "page-header.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/page-header"
 }

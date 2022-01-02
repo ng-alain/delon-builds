@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-timeline.mjs",
-  "es2020": "../fesm2020/delon-chart-timeline.mjs",
-  "esm2020": "../esm2020/timeline/delon-chart-timeline.mjs",
-  "fesm2020": "../fesm2020/delon-chart-timeline.mjs",
-  "fesm2015": "../fesm2015/delon-chart-timeline.mjs",
-  "typings": "delon-chart-timeline.d.ts",
+  "module": "../fesm2015/timeline.mjs",
+  "es2020": "../fesm2020/timeline.mjs",
+  "esm2020": "../esm2020/timeline/timeline.mjs",
+  "fesm2020": "../fesm2020/timeline.mjs",
+  "fesm2015": "../fesm2015/timeline.mjs",
+  "typings": "timeline.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/timeline"
 }

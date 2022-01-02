@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-mini-area.mjs",
-  "es2020": "../fesm2020/delon-chart-mini-area.mjs",
-  "esm2020": "../esm2020/mini-area/delon-chart-mini-area.mjs",
-  "fesm2020": "../fesm2020/delon-chart-mini-area.mjs",
-  "fesm2015": "../fesm2015/delon-chart-mini-area.mjs",
-  "typings": "delon-chart-mini-area.d.ts",
+  "module": "../fesm2015/mini-area.mjs",
+  "es2020": "../fesm2020/mini-area.mjs",
+  "esm2020": "../esm2020/mini-area/mini-area.mjs",
+  "fesm2020": "../fesm2020/mini-area.mjs",
+  "fesm2015": "../fesm2015/mini-area.mjs",
+  "typings": "mini-area.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/mini-area"
 }

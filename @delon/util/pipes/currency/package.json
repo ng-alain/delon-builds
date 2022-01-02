@@ -1,10 +1,10 @@
 {
-  "module": "../../fesm2015/delon-util-pipes-currency.mjs",
-  "es2020": "../../fesm2020/delon-util-pipes-currency.mjs",
-  "esm2020": "../../esm2020/pipes/currency/delon-util-pipes-currency.mjs",
-  "fesm2020": "../../fesm2020/delon-util-pipes-currency.mjs",
-  "fesm2015": "../../fesm2015/delon-util-pipes-currency.mjs",
-  "typings": "delon-util-pipes-currency.d.ts",
+  "module": "../../fesm2015/pipe-currency.mjs",
+  "es2020": "../../fesm2020/pipe-currency.mjs",
+  "esm2020": "../../esm2020/pipes/currency/pipe-currency.mjs",
+  "fesm2020": "../../fesm2020/pipe-currency.mjs",
+  "fesm2015": "../../fesm2015/pipe-currency.mjs",
+  "typings": "pipe-currency.d.ts",
   "sideEffects": false,
   "name": "@delon/util/pipes/currency"
 }

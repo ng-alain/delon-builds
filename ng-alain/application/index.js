@@ -57,6 +57,7 @@ function fixAngularJson(options) {
                 initial.maximumError = '3mb';
             }
         }
+        (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
     }));
 }
 function addDependenciesToPackageJson(options) {

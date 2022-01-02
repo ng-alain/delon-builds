@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/view.mjs",
-  "es2020": "../fesm2020/view.mjs",
-  "esm2020": "../esm2020/sv/view.mjs",
-  "fesm2020": "../fesm2020/view.mjs",
-  "fesm2015": "../fesm2015/view.mjs",
-  "typings": "view.d.ts",
+  "module": "../fesm2015/sv.mjs",
+  "es2020": "../fesm2020/sv.mjs",
+  "esm2020": "../esm2020/sv/sv.mjs",
+  "fesm2020": "../fesm2020/sv.mjs",
+  "fesm2015": "../fesm2015/sv.mjs",
+  "typings": "sv.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/sv"
 }

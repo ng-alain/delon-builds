@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/globalFooter.mjs",
-  "es2020": "../fesm2020/globalFooter.mjs",
-  "esm2020": "../esm2020/global-footer/globalFooter.mjs",
-  "fesm2020": "../fesm2020/globalFooter.mjs",
-  "fesm2015": "../fesm2015/globalFooter.mjs",
-  "typings": "globalFooter.d.ts",
+  "module": "../fesm2015/global-footer.mjs",
+  "es2020": "../fesm2020/global-footer.mjs",
+  "esm2020": "../esm2020/global-footer/global-footer.mjs",
+  "fesm2020": "../fesm2020/global-footer.mjs",
+  "fesm2015": "../fesm2015/global-footer.mjs",
+  "typings": "global-footer.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/global-footer"
 }

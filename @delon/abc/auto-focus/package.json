@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/autoFocus.mjs",
-  "es2020": "../fesm2020/autoFocus.mjs",
-  "esm2020": "../esm2020/auto-focus/autoFocus.mjs",
-  "fesm2020": "../fesm2020/autoFocus.mjs",
-  "fesm2015": "../fesm2015/autoFocus.mjs",
-  "typings": "autoFocus.d.ts",
+  "module": "../fesm2015/auto-focus.mjs",
+  "es2020": "../fesm2020/auto-focus.mjs",
+  "esm2020": "../esm2020/auto-focus/auto-focus.mjs",
+  "fesm2020": "../fesm2020/auto-focus.mjs",
+  "fesm2015": "../fesm2015/auto-focus.mjs",
+  "typings": "auto-focus.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/auto-focus"
 }

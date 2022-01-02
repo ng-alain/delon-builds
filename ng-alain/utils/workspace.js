@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -127,4 +127,23 @@ function getProjectTarget(project, buildTarget, type = 'options') {
     return options;
 }
 exports.getProjectTarget = getProjectTarget;
+function addStylePreprocessorOptionsToAllProject(workspace) {
+    workspace.projects.forEach(project => {
+        var _a;
+        const build = project.targets.get(exports.BUILD_TARGET_BUILD);
+        if (build == null || build.options == null)
+            return;
+        if (build.options.stylePreprocessorOptions == null) {
+            build.options.stylePreprocessorOptions = {};
+        }
+        let includePaths = (_a = build.options.stylePreprocessorOptions['includePaths']) !== null && _a !== void 0 ? _a : [];
+        if (!Array.isArray(includePaths))
+            includePaths = [];
+        if (includePaths.includes(`node_modules/`))
+            return;
+        includePaths.push(`node_modules/`);
+        build.options.stylePreprocessorOptions['includePaths'] = includePaths;
+    });
+}
+exports.addStylePreprocessorOptionsToAllProject = addStylePreprocessorOptionsToAllProject;
 //# sourceMappingURL=workspace.js.map

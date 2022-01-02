@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-radar.mjs",
-  "es2020": "../fesm2020/delon-chart-radar.mjs",
-  "esm2020": "../esm2020/radar/delon-chart-radar.mjs",
-  "fesm2020": "../fesm2020/delon-chart-radar.mjs",
-  "fesm2015": "../fesm2015/delon-chart-radar.mjs",
-  "typings": "delon-chart-radar.d.ts",
+  "module": "../fesm2015/radar.mjs",
+  "es2020": "../fesm2020/radar.mjs",
+  "esm2020": "../esm2020/radar/radar.mjs",
+  "fesm2020": "../fesm2020/radar.mjs",
+  "fesm2015": "../fesm2015/radar.mjs",
+  "typings": "radar.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/radar"
 }

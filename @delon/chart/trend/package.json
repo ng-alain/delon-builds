@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-trend.mjs",
-  "es2020": "../fesm2020/delon-chart-trend.mjs",
-  "esm2020": "../esm2020/trend/delon-chart-trend.mjs",
-  "fesm2020": "../fesm2020/delon-chart-trend.mjs",
-  "fesm2015": "../fesm2015/delon-chart-trend.mjs",
-  "typings": "delon-chart-trend.d.ts",
+  "module": "../fesm2015/trend.mjs",
+  "es2020": "../fesm2020/trend.mjs",
+  "esm2020": "../esm2020/trend/trend.mjs",
+  "fesm2020": "../fesm2020/trend.mjs",
+  "fesm2015": "../fesm2015/trend.mjs",
+  "typings": "trend.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/trend"
 }

@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/layout-blank.mjs",
-  "es2020": "../fesm2020/layout-blank.mjs",
-  "esm2020": "../esm2020/theme-btn/layout-blank.mjs",
-  "fesm2020": "../fesm2020/layout-blank.mjs",
-  "fesm2015": "../fesm2015/layout-blank.mjs",
-  "typings": "layout-blank.d.ts",
+  "module": "../fesm2015/theme-btn.mjs",
+  "es2020": "../fesm2020/theme-btn.mjs",
+  "esm2020": "../esm2020/theme-btn/theme-btn.mjs",
+  "fesm2020": "../fesm2020/theme-btn.mjs",
+  "fesm2015": "../fesm2015/theme-btn.mjs",
+  "typings": "theme-btn.d.ts",
   "sideEffects": false,
   "name": "@delon/theme/theme-btn"
 }

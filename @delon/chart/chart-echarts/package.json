@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/delon-chart-chart-echarts.mjs",
-  "es2020": "../fesm2020/delon-chart-chart-echarts.mjs",
-  "esm2020": "../esm2020/chart-echarts/delon-chart-chart-echarts.mjs",
-  "fesm2020": "../fesm2020/delon-chart-chart-echarts.mjs",
-  "fesm2015": "../fesm2015/delon-chart-chart-echarts.mjs",
-  "typings": "delon-chart-chart-echarts.d.ts",
+  "module": "../fesm2015/chart-echarts.mjs",
+  "es2020": "../fesm2020/chart-echarts.mjs",
+  "esm2020": "../esm2020/chart-echarts/chart-echarts.mjs",
+  "fesm2020": "../fesm2020/chart-echarts.mjs",
+  "fesm2015": "../fesm2015/chart-echarts.mjs",
+  "typings": "chart-echarts.d.ts",
   "sideEffects": false,
   "name": "@delon/chart/chart-echarts"
 }

@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/errorCollect.mjs",
-  "es2020": "../fesm2020/errorCollect.mjs",
-  "esm2020": "../esm2020/error-collect/errorCollect.mjs",
-  "fesm2020": "../fesm2020/errorCollect.mjs",
-  "fesm2015": "../fesm2015/errorCollect.mjs",
-  "typings": "errorCollect.d.ts",
+  "module": "../fesm2015/error-collect.mjs",
+  "es2020": "../fesm2020/error-collect.mjs",
+  "esm2020": "../esm2020/error-collect/error-collect.mjs",
+  "fesm2020": "../fesm2020/error-collect.mjs",
+  "fesm2015": "../fesm2015/error-collect.mjs",
+  "typings": "error-collect.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/error-collect"
 }

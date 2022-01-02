@@ -1,10 +1,10 @@
 {
-  "module": "../fesm2015/tagSelect.mjs",
-  "es2020": "../fesm2020/tagSelect.mjs",
-  "esm2020": "../esm2020/tag-select/tagSelect.mjs",
-  "fesm2020": "../fesm2020/tagSelect.mjs",
-  "fesm2015": "../fesm2015/tagSelect.mjs",
-  "typings": "tagSelect.d.ts",
+  "module": "../fesm2015/tag-select.mjs",
+  "es2020": "../fesm2020/tag-select.mjs",
+  "esm2020": "../esm2020/tag-select/tag-select.mjs",
+  "fesm2020": "../fesm2020/tag-select.mjs",
+  "fesm2015": "../fesm2015/tag-select.mjs",
+  "typings": "tag-select.d.ts",
   "sideEffects": false,
   "name": "@delon/abc/tag-select"
 }
