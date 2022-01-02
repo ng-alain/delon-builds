@@ -12,15 +12,27 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.v13Rule = void 0;
 const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
+const workspace_1 = require("@schematics/angular/utility/workspace");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
 function removeIE() {
     return (tree, context) => {
         const pkg = (0, utils_1.readPackage)(tree);
-        if (!pkg.scripts['ie:start'])
+        if (pkg.scripts && !pkg.scripts['ie:start'])
             return;
         context.logger.warn(color_1.colors.yellow(`TIPS: Starting from NG-ALAIN 13 will no longer support IE`));
     };
+}
+function addYarn(context) {
+    return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
+        const cli = workspace.extensions.cli;
+        if (cli && cli.packageManager)
+            return;
+        if (cli == null)
+            workspace.extensions.cli = {};
+        workspace.extensions.cli['packageManager'] = 'yarn';
+        (0, utils_1.logStart)(context, `Configuration optimization using Yarn to install dependencies`);
+    }));
 }
 function upgradeThirdVersion() {
     return (tree, context) => {
@@ -37,7 +49,7 @@ function v13Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
-        return (0, schematics_1.chain)([removeIE(), upgradeThirdVersion(), finished()]);
+        return (0, schematics_1.chain)([removeIE(), upgradeThirdVersion(), addYarn(context), finished()]);
     });
 }
 exports.v13Rule = v13Rule;
