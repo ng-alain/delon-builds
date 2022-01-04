@@ -31455,12 +31455,6 @@ body {
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  -ms-scroll-chaining: chained;
-  -ms-overflow-style: none;
-  -ms-content-zooming: zoom;
-  -ms-scroll-rails: none;
-  -ms-content-zoom-limit-min: 100%;
-  -ms-content-zoom-limit-max: 500%;
   scroll-snap-type: proximity;
   scroll-snap-points-x: snaplist(100%, 200%, 300%, 400%, 500%);
   scrollbar-width: none;
