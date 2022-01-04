@@ -214,6 +214,9 @@ class MenuService {
         // acl
         item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
     }
+    /**
+     * 重置菜单，可能I18N、用户权限变动时需要调用刷新
+     */
     resume(callback) {
         let i = 1;
         const shortcuts = [];
@@ -449,24 +452,15 @@ class SettingsService {
         this.notify$.next({ type: 'layout', name, value });
         return true;
     }
-    getLayout() {
-        return this._layout;
-    }
     setApp(value) {
         this._app = value;
         this.setData(this.KEYS.app, value);
         this.notify$.next({ type: 'app', value });
     }
-    getApp() {
-        return this._app;
-    }
     setUser(value) {
         this._user = value;
         this.setData(this.KEYS.user, value);
         this.notify$.next({ type: 'user', value });
-    }
-    getUser() {
-        return this._user;
     }
 }
 SettingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.1", ngImport: i0, type: SettingsService, deps: [{ token: i1$2.Platform }, { token: ALAIN_SETTING_KEYS }], target: i0.ɵɵFactoryTarget.Injectable });
