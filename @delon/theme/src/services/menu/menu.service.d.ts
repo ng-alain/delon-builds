@@ -15,14 +15,12 @@ export declare class MenuService implements OnDestroy {
     private data;
     constructor(i18nSrv: AlainI18NService, aclService: ACLService);
     get change(): Observable<Menu[]>;
-    visit<T extends Menu = Menu>(data: T[], callback: (item: T, parentMenum: T | null, depth?: number) => void): void;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
     private fixItem;
     /**
      * 重置菜单，可能I18N、用户权限变动时需要调用刷新
      */
-    resume<T extends Menu = Menu>(callback?: (item: T, parentMenum: T | null, depth?: number) => void): void;
     resume(callback?: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     /**
      * 加载快捷菜单，加载位置规则如下：

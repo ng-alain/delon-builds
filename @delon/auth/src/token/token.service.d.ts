@@ -23,7 +23,6 @@ export declare class TokenService implements ITokenService, OnDestroy {
     get options(): AlainAuthConfig;
     set(data: ITokenModel): boolean;
     get(type?: NzSafeAny): NzSafeAny;
-    get<T extends ITokenModel>(type?: new () => T): T;
     clear(options?: {
         onlyToken: boolean;
     }): void;
