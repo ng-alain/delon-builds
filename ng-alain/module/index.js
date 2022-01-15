@@ -74,18 +74,6 @@ function addRoutingModuleToTop(options) {
         return tree;
     };
 }
-function addServiceToNgModule(options) {
-    return (tree) => {
-        if (options.service !== 'none')
-            return tree;
-        const basePath = `/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}${core_1.strings.dasherize(options.name)}`;
-        const servicePath = (0, core_1.normalize)(`${basePath}.service`);
-        const importModulePath = (0, core_1.normalize)(`${basePath}.module`);
-        const importServicePath = (0, find_module_1.buildRelativePath)(importModulePath, servicePath);
-        (0, utils_1.addProviderToModule)(tree, `${importModulePath}.ts`, core_1.strings.classify(`${options.name}Service`), importServicePath);
-        return tree;
-    };
-}
 function default_1(schema) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
         const proj = yield (0, utils_1.getProject)(tree, schema.project);
@@ -99,18 +87,12 @@ function default_1(schema) {
         schema.routing = true;
         schema.flat = false;
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)('./files'), [
-            schema.service === 'ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.routing ? (0, schematics_1.noop)() : (0, schematics_1.filter)(path => !path.endsWith('-routing.module.ts')),
             (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             (0, schematics_1.move)(parsedPath.path)
         ]);
         return (0, schematics_1.chain)([
-            (0, schematics_1.branchAndMerge)((0, schematics_1.chain)([
-                addDeclarationToNgModule(schema),
-                addRoutingModuleToTop(schema),
-                (0, schematics_1.mergeWith)(templateSource),
-                addServiceToNgModule(schema)
-            ]))
+            (0, schematics_1.branchAndMerge)((0, schematics_1.chain)([addDeclarationToNgModule(schema), addRoutingModuleToTop(schema), (0, schematics_1.mergeWith)(templateSource)]))
         ]);
     });
 }

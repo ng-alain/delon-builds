@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildAlain = exports.addValueToVariable = exports.addProviderToModule = exports.addImportToModule = exports.refreshPathRoot = void 0;
+exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = exports.refreshPathRoot = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -45,17 +45,13 @@ function buildSelector(schema, projectPrefix) {
     ret.push(core_1.strings.dasherize(schema.name));
     return ret.join('-');
 }
-function buildName(schema, prefix) {
+function buildComponentName(schema, _projectPrefix) {
     const ret = schema.withoutModulePrefixInComponentName === true ? [] : [schema.module];
     if (schema.target && schema.target.length > 0) {
         ret.push(...schema.target.split('/'));
     }
     ret.push(schema.name);
-    // 服务类自动过滤 list, empty 两个页面的后缀
-    if (prefix === 'Service' && ['list', 'empty'].includes(schema.name)) {
-        ret.pop();
-    }
-    ret.push(prefix);
+    ret.push(`Component`);
     return core_1.strings.classify(ret.join('-'));
 }
 function refreshPathRoot(project, schema, alainProject) {
@@ -105,27 +101,11 @@ function resolveSchema(tree, project, schema, alainProject) {
 function addImportToModule(tree, filePath, symbolName, fileName) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
     const change = (0, ast_utils_1.insertImport)(source, filePath, symbolName, fileName);
-    if (change.path == null)
-        return;
     const declarationRecorder = tree.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     tree.commitUpdate(declarationRecorder);
 }
 exports.addImportToModule = addImportToModule;
-function addProviderToModule(tree, filePath, serviceName, importPath) {
-    const source = (0, ast_1.getSourceFile)(tree, filePath);
-    const changes = (0, ast_utils_1.addProviderToModule)(source, filePath, serviceName, importPath);
-    const declarationRecorder = tree.beginUpdate(filePath);
-    changes.forEach(change => {
-        if (change.path == null)
-            return;
-        if (change instanceof change_1.InsertChange) {
-            declarationRecorder.insertLeft(change.pos, change.toAdd);
-        }
-    });
-    tree.commitUpdate(declarationRecorder);
-}
-exports.addProviderToModule = addProviderToModule;
 function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
     const node = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, variableName);
@@ -140,8 +120,8 @@ function addValueToVariable(tree, filePath, variableName, text, needWrap = true)
     tree.commitUpdate(declarationRecorder);
 }
 exports.addValueToVariable = addValueToVariable;
-function getRelativePath(filePath, schema, prefix) {
-    const importPath = `/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.${prefix}`;
+function getRelativePath(filePath, schema) {
+    const importPath = `/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.component`;
     return (0, find_module_1.buildRelativePath)(filePath, importPath);
 }
 function addDeclaration(schema) {
@@ -150,17 +130,13 @@ function addDeclaration(schema) {
             return tree;
         }
         // imports
-        addImportToModule(tree, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema, 'component'));
+        addImportToModule(tree, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema));
         addValueToVariable(tree, schema.importModulePath, 'COMPONENTS', schema.componentName);
         // component
         if (schema.modal !== true) {
             // routing
-            addImportToModule(tree, schema.routerModulePath, schema.componentName, getRelativePath(schema.routerModulePath, schema, 'component'));
+            addImportToModule(tree, schema.routerModulePath, schema.componentName, getRelativePath(schema.routerModulePath, schema));
             addValueToVariable(tree, schema.routerModulePath, 'routes', `{ path: '${schema.name}', component: ${schema.componentName} }`);
-        }
-        // service
-        if (schema.service === 'none') {
-            addProviderToModule(tree, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
         }
         return tree;
     };
@@ -173,13 +149,11 @@ function buildAlain(schema) {
         }
         const project = res.project;
         resolveSchema(tree, project, schema, res.alainProject);
-        schema.componentName = buildName(schema, 'Component');
-        schema.serviceName = buildName(schema, 'Service');
+        schema.componentName = buildComponentName(schema, project.prefix);
         // Don't support inline
         schema.inlineTemplate = false;
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)(schema._filesPath), [
             (0, schematics_1.filter)(filePath => !filePath.endsWith('.DS_Store')),
-            schema.service === 'ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.skipTests ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.spec.ts.template')) : (0, schematics_1.noop)(),
             schema.inlineStyle ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.__style__.template')) : (0, schematics_1.noop)(),
             schema.inlineTemplate ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.html.template')) : (0, schematics_1.noop)(),

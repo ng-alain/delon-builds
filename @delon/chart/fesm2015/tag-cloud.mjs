@@ -81,6 +81,7 @@ class G2TagCloudComponent extends G2BaseComponent {
         chart.on('tag-cloud-text:click', (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
         });
+        this.ready.next(chart);
         this.changeData();
         chart.render();
     }
