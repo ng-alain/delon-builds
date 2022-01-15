@@ -45,6 +45,7 @@ function addDeclarationToNgModule(options) {
 }
 function addRoutingModuleToTop(options) {
     return (tree) => {
+        var _a;
         const modulePath = (0, core_1.normalize)(`${options.path}/routes-routing.module.ts`);
         if (!tree.exists(modulePath)) {
             return tree;
@@ -66,10 +67,17 @@ function addRoutingModuleToTop(options) {
         }
         const recorder = tree.beginUpdate(modulePath);
         const moduleName = core_1.strings.classify(`${options.name}Module`);
-        const code = `{ path: '${options.name}', loadChildren: () => import('./${options.name}/${options.name}.module').then((m) => m.${moduleName}) },`;
         let pos = childrenNode.parent.end;
+        const validLines = childrenNode.parent
+            .getText()
+            .trim()
+            .split('\n')
+            .map(v => v.trim())
+            .filter(v => v.length > 1 && !v.startsWith('//'));
+        const comma = ((_a = validLines.pop()) === null || _a === void 0 ? void 0 : _a.endsWith(',')) === false ? ', ' : '';
+        const code = `${comma} { path: '${options.name}', loadChildren: () => import('./${options.name}/${options.name}.module').then((m) => m.${moduleName}) }`;
         // Insert it just before the `]`.
-        recorder.insertRight(--pos, code);
+        recorder.insertRight(pos - 1, code);
         tree.commitUpdate(recorder);
         return tree;
     };
