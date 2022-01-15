@@ -45,13 +45,13 @@ function buildSelector(schema, projectPrefix) {
     ret.push(core_1.strings.dasherize(schema.name));
     return ret.join('-');
 }
-function buildComponentName(schema, _projectPrefix) {
+function buildName(schema, prefix) {
     const ret = schema.withoutModulePrefixInComponentName === true ? [] : [schema.module];
     if (schema.target && schema.target.length > 0) {
         ret.push(...schema.target.split('/'));
     }
     ret.push(schema.name);
-    ret.push(`Component`);
+    ret.push(prefix);
     return core_1.strings.classify(ret.join('-'));
 }
 function refreshPathRoot(project, schema, alainProject) {
@@ -149,11 +149,13 @@ function buildAlain(schema) {
         }
         const project = res.project;
         resolveSchema(tree, project, schema, res.alainProject);
-        schema.componentName = buildComponentName(schema, project.prefix);
+        schema.componentName = buildName(schema, 'Component');
+        schema.serviceName = buildName(schema, 'Service');
         // Don't support inline
         schema.inlineTemplate = false;
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)(schema._filesPath), [
             (0, schematics_1.filter)(filePath => !filePath.endsWith('.DS_Store')),
+            schema.service === 'Ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.skipTests ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.spec.ts.template')) : (0, schematics_1.noop)(),
             schema.inlineStyle ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.__style__.template')) : (0, schematics_1.noop)(),
             schema.inlineTemplate ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.html.template')) : (0, schematics_1.noop)(),

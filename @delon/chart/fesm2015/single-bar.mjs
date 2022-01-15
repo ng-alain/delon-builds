@@ -57,7 +57,6 @@ class G2SingleBarComponent extends G2BaseComponent {
                 }
             });
         }
-        this.ready.next(chart);
         this.changeData();
         chart.render();
     }

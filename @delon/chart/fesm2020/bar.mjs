@@ -70,7 +70,6 @@ class G2BarComponent extends G2BaseComponent {
         chart.on(`interval:click`, (ev) => {
             this.ngZone.run(() => this.clickItem.emit({ item: ev.data?.data, ev }));
         });
-        this.ready.next(chart);
         this.changeData();
         chart.render();
         this.installResizeEvent();

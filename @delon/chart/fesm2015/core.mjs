@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Directive, Input, ViewChild, Output } from '@angular/core';
+import { Injectable, Directive, Input, ViewChild } from '@angular/core';
 import { Subject } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
@@ -68,7 +68,6 @@ class G2BaseComponent {
         this.destroy$ = new Subject();
         this.loaded = false;
         this.delay = 0;
-        this.ready = new EventEmitter();
         this.theme = srv.cog.theme;
         this.srv.notify
             .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
@@ -133,7 +132,7 @@ class G2BaseComponent {
     }
 }
 G2BaseComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: G2BaseComponent, deps: [{ token: G2Service }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: i2$1.Platform }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
-G2BaseComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: G2BaseComponent, inputs: { repaint: "repaint", delay: "delay", theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
+G2BaseComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: G2BaseComponent, inputs: { repaint: "repaint", delay: "delay", theme: "theme" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
 __decorate([
     InputBoolean()
 ], G2BaseComponent.prototype, "repaint", void 0);
@@ -157,8 +156,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImpor
                 type: Input
             }], theme: [{
                 type: Input
-            }], ready: [{
-                type: Output
             }], load: [], destroyChart: [] } });
 
 function genMiniTooltipOptions(type, options) {

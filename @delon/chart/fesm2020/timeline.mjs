@@ -80,7 +80,6 @@ class G2TimelineComponent extends G2BaseComponent {
                 line.changeVisible(!item.unchecked);
             }
         });
-        this.ready.next(chart);
         this.changeData();
         chart.render();
     }
