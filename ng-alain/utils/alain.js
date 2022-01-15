@@ -51,6 +51,10 @@ function buildName(schema, prefix) {
         ret.push(...schema.target.split('/'));
     }
     ret.push(schema.name);
+    // 服务类自动过滤 list, empty 两个页面的后缀
+    if (prefix === 'Service' && ['list', 'empty'].includes(schema.name)) {
+        ret.pop();
+    }
     ret.push(prefix);
     return core_1.strings.classify(ret.join('-'));
 }
@@ -101,6 +105,8 @@ function resolveSchema(tree, project, schema, alainProject) {
 function addImportToModule(tree, filePath, symbolName, fileName) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
     const change = (0, ast_utils_1.insertImport)(source, filePath, symbolName, fileName);
+    if (change.path == null)
+        return;
     const declarationRecorder = tree.beginUpdate(filePath);
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     tree.commitUpdate(declarationRecorder);
@@ -111,6 +117,8 @@ function addProviderToModule(tree, filePath, serviceName, importPath) {
     const changes = (0, ast_utils_1.addProviderToModule)(source, filePath, serviceName, importPath);
     const declarationRecorder = tree.beginUpdate(filePath);
     changes.forEach(change => {
+        if (change.path == null)
+            return;
         if (change instanceof change_1.InsertChange) {
             declarationRecorder.insertLeft(change.pos, change.toAdd);
         }
@@ -151,7 +159,7 @@ function addDeclaration(schema) {
             addValueToVariable(tree, schema.routerModulePath, 'routes', `{ path: '${schema.name}', component: ${schema.componentName} }`);
         }
         // service
-        if (schema.service === 'None') {
+        if (schema.service === 'none') {
             addProviderToModule(tree, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
         }
         return tree;
@@ -171,7 +179,7 @@ function buildAlain(schema) {
         schema.inlineTemplate = false;
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)(schema._filesPath), [
             (0, schematics_1.filter)(filePath => !filePath.endsWith('.DS_Store')),
-            schema.service === 'Ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
+            schema.service === 'ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.skipTests ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.spec.ts.template')) : (0, schematics_1.noop)(),
             schema.inlineStyle ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.__style__.template')) : (0, schematics_1.noop)(),
             schema.inlineTemplate ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.html.template')) : (0, schematics_1.noop)(),
