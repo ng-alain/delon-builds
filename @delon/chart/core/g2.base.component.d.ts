@@ -37,7 +37,6 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     ngOnInit(): void;
     ngOnChanges(changes: SimpleChanges): void;
     protected destroyChart(): this;
-    protected fixDark(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2BaseComponent, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<G2BaseComponent, never, never, { "repaint": "repaint"; "delay": "delay"; "theme": "theme"; }, { "ready": "ready"; }, never>;

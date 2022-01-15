@@ -38,7 +38,6 @@ class G2BarComponent extends G2BaseComponent {
             padding,
             theme
         }));
-        this.fixDark();
         this.updatelabel();
         chart.axis('y', {
             title: null,

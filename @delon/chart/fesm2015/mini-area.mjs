@@ -32,7 +32,6 @@ class G2MiniAreaComponent extends G2BaseComponent {
             padding,
             theme
         }));
-        this.fixDark();
         chart.animate(animate);
         if (!xAxis && !yAxis) {
             chart.axis(false);

@@ -123,15 +123,6 @@ class G2BaseComponent {
         }
         return this;
     }
-    fixDark() {
-        if (this.theme !== 'dark')
-            return;
-        this._chart.theme({
-            styleSheet: {
-                backgroundColor: 'transparent'
-            }
-        });
-    }
     ngOnDestroy() {
         if (this.resize$) {
             this.resize$.unsubscribe();

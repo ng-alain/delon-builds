@@ -37,7 +37,6 @@ class G2RadarComponent extends G2BaseComponent {
             padding,
             theme
         }));
-        this.fixDark();
         chart.coordinate('polar');
         chart.legend(false);
         chart.axis('label', {
