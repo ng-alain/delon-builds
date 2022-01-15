@@ -32,6 +32,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
             padding,
             theme
         }));
+        this.fixDark();
         chart.animate(animate);
         if (!xAxis && !yAxis) {
             chart.axis(false);
@@ -63,6 +64,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
             const records = this._chart.getSnapRecords({ x: ev.x, y: ev.y });
             this.ngZone.run(() => this.clickItem.emit({ item: records[0]._origin, ev }));
         });
+        this.ready.next(chart);
         this.changeData();
         chart.render();
     }

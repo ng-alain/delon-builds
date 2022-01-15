@@ -33,6 +33,7 @@ class G2SingleBarComponent extends G2BaseComponent {
             padding,
             theme
         }));
+        this.fixDark();
         chart.legend(false);
         chart.axis(false);
         chart.scale({ value: { max, min } });
@@ -57,6 +58,7 @@ class G2SingleBarComponent extends G2BaseComponent {
                 }
             });
         }
+        this.ready.next(chart);
         this.changeData();
         chart.render();
     }
