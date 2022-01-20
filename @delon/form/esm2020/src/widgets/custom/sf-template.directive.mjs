@@ -11,9 +11,9 @@ export class SFTemplateDirective {
         this.table._addTpl(this.path.startsWith(SF_SEQ) ? this.path : SF_SEQ + this.path, this.templateRef);
     }
 }
-SFTemplateDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: SFTemplateDirective, deps: [{ token: i0.TemplateRef }, { token: i1.SFComponent }], target: i0.ɵɵFactoryTarget.Directive });
-SFTemplateDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.2", type: SFTemplateDirective, selector: "[sf-template]", inputs: { path: ["sf-template", "path"] }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.2", ngImport: i0, type: SFTemplateDirective, decorators: [{
+SFTemplateDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: SFTemplateDirective, deps: [{ token: i0.TemplateRef }, { token: i1.SFComponent }], target: i0.ɵɵFactoryTarget.Directive });
+SFTemplateDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.1.3", type: SFTemplateDirective, selector: "[sf-template]", inputs: { path: ["sf-template", "path"] }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: SFTemplateDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[sf-template]'
