@@ -31599,6 +31599,9 @@ body {
   font-size: 14px;
   line-height: 1.5715;
 }
+.se__item {
+  transition: none;
+}
 .se__item:last-child {
   margin-bottom: 0;
   padding-bottom: 0;
