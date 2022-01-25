@@ -29,6 +29,7 @@ export declare class CacheService implements OnDestroy {
     set<T>(key: string, data: Observable<T>, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<T>;
     /**
      * Persistent cached `Observable` object, for example:
@@ -38,6 +39,7 @@ export declare class CacheService implements OnDestroy {
     set(key: string, data: Observable<NzSafeAny>, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<NzSafeAny>;
     /**
      * Persistent cached simple object, for example:
@@ -47,6 +49,7 @@ export declare class CacheService implements OnDestroy {
     set(key: string, data: unknown, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): void;
     /**
      * Persistent cached simple object and specify storage type, for example caching in memory:
@@ -56,6 +59,7 @@ export declare class CacheService implements OnDestroy {
     set(key: string, data: unknown, options: {
         type: 'm' | 's';
         expire?: number;
+        emitNotify?: boolean;
     }): void;
     private save;
     /** 获取缓存数据，若 `key` 不存在则 `key` 作为HTTP请求缓存后返回 */
@@ -63,18 +67,21 @@ export declare class CacheService implements OnDestroy {
         mode: 'promise';
         type?: 'm' | 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<T>;
     /** 获取缓存数据，若 `key` 不存在则 `key` 作为HTTP请求缓存后返回 */
     get(key: string, options?: {
         mode: 'promise';
         type?: 'm' | 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<NzSafeAny>;
     /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
     get(key: string, options: {
         mode: 'none';
         type?: 'm' | 's';
         expire?: number;
+        emitNotify?: boolean;
     }): NzSafeAny;
     /** 获取缓存数据，若 `key` 不存在或已过期则返回 null */
     getNone<T>(key: string): T;
@@ -84,6 +91,7 @@ export declare class CacheService implements OnDestroy {
     tryGet<T>(key: string, data: Observable<T>, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<T>;
     /**
      * 获取缓存，若不存在则设置持久化缓存 `Observable` 对象
@@ -91,6 +99,7 @@ export declare class CacheService implements OnDestroy {
     tryGet(key: string, data: Observable<NzSafeAny>, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): Observable<NzSafeAny>;
     /**
      * 获取缓存，若不存在则设置持久化缓存基础对象
@@ -98,6 +107,7 @@ export declare class CacheService implements OnDestroy {
     tryGet(key: string, data: unknown, options?: {
         type?: 's';
         expire?: number;
+        emitNotify?: boolean;
     }): NzSafeAny;
     /**
      * 获取缓存，若不存在则设置指定缓存类型进行缓存对象
@@ -105,6 +115,7 @@ export declare class CacheService implements OnDestroy {
     tryGet(key: string, data: unknown, options: {
         type: 'm' | 's';
         expire?: number;
+        emitNotify?: boolean;
     }): NzSafeAny;
     /** 是否缓存 `key` */
     has(key: string): boolean;

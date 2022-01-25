@@ -100,15 +100,16 @@ class CacheService {
         if (options.expire) {
             e = addSeconds(new Date(), options.expire).valueOf();
         }
+        const emitNotify = options.emitNotify !== false;
         if (!(data instanceof Observable)) {
-            this.save(options.type, key, { v: data, e });
+            this.save(options.type, key, { v: data, e }, emitNotify);
             return;
         }
         return data.pipe(tap((v) => {
-            this.save(options.type, key, { v, e });
+            this.save(options.type, key, { v, e }, emitNotify);
         }));
     }
-    save(type, key, value) {
+    save(type, key, value, emitNotify = true) {
         if (type === 'm') {
             this.memory.set(key, value);
         }
@@ -116,14 +117,20 @@ class CacheService {
             this.store.set(this.cog.prefix + key, value);
             this.pushMeta(key);
         }
-        this.runNotify(key, 'set');
+        if (emitNotify) {
+            this.runNotify(key, 'set');
+        }
     }
     get(key, options = {}) {
         const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => this.deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, { type: options.type, expire: options.expire })));
+                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => this.deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, {
+                    type: options.type,
+                    expire: options.expire,
+                    emitNotify: options.emitNotify
+                })));
             }
             return null;
         }
