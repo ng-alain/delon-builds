@@ -685,7 +685,7 @@ class ArrayProperty extends PropertyGroup {
         this._value = value;
     }
     addProperty(formData) {
-        const newProperty = this.formPropertyFactory.createProperty(this.schema.items, this.ui.$items, formData, this);
+        const newProperty = this.formPropertyFactory.createProperty(deepCopy(this.schema.items), deepCopy(this.ui.$items), formData, this);
         this.properties.push(newProperty);
         return newProperty;
     }
