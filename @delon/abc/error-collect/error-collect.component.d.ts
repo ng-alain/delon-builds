@@ -1,4 +1,5 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
+import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -8,6 +9,7 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private cdr;
     private doc;
     private directionality;
+    private platform;
     private formEl;
     private destroy$;
     _hiden: boolean;
@@ -15,7 +17,7 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     dir: Direction;
     freq: number;
     offsetTop: number;
-    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality);
+    constructor(el: ElementRef, cdr: ChangeDetectorRef, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality, platform: Platform);
     private get errEls();
     private update;
     _click(): boolean;
@@ -23,6 +25,6 @@ export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private findParent;
     ngOnInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ErrorCollectComponent, [null, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ErrorCollectComponent, [null, null, null, null, { optional: true; }, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ErrorCollectComponent, "error-collect, [error-collect]", ["errorCollect"], { "freq": "freq"; "offsetTop": "offsetTop"; }, {}, never, never>;
 }
