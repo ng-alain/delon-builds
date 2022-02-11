@@ -262,9 +262,9 @@ class CacheService {
         this.clearNotify();
     }
 }
-CacheService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }, { token: DC_STORE_STORAGE_TOKEN }, { token: i2.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
-CacheService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, decorators: [{
+CacheService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }, { token: DC_STORE_STORAGE_TOKEN }, { token: i2.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
+CacheService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: CacheService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: CacheService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
@@ -274,10 +274,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
 
 class DelonCacheModule {
 }
-DelonCacheModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonCacheModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: DelonCacheModule });
-DelonCacheModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: DelonCacheModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: DelonCacheModule, decorators: [{
+DelonCacheModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonCacheModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: DelonCacheModule });
+DelonCacheModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: DelonCacheModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: DelonCacheModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });

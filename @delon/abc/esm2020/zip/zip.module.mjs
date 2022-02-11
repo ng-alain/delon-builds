@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import * as i0 from "@angular/core";
 export class ZipModule {
 }
-ZipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ZipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ZipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ZipModule, imports: [CommonModule] });
-ZipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ZipModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ZipModule, decorators: [{
+ZipModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: ZipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ZipModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: ZipModule, imports: [CommonModule] });
+ZipModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: ZipModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: ZipModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule]
