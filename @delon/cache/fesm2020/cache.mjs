@@ -3,7 +3,6 @@ import { InjectionToken, inject, Injectable, Inject, NgModule } from '@angular/c
 import { Observable, of, BehaviorSubject } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { addSeconds } from 'date-fns';
-import * as i3 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@angular/common/http';
@@ -38,10 +37,9 @@ class LocalStorageCacheService {
 }
 
 class CacheService {
-    constructor(cogSrv, store, http, platform) {
+    constructor(cogSrv, store, http) {
         this.store = store;
         this.http = http;
-        this.platform = platform;
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
@@ -52,8 +50,6 @@ class CacheService {
             prefix: '',
             meta_key: '__cache_meta'
         });
-        if (!platform.isBrowser)
-            return;
         this.loadMeta();
         this.startExpireNotify();
     }
@@ -97,8 +93,6 @@ class CacheService {
      * 缓存对象
      */
     set(key, data, options = {}) {
-        if (!this.platform.isBrowser)
-            return;
         let e = 0;
         const { type, expire } = this.cog;
         options = {
@@ -131,8 +125,6 @@ class CacheService {
         }
     }
     get(key, options = {}) {
-        if (!this.platform.isBrowser)
-            return null;
         const isPromise = options.mode !== 'none' && this.cog.mode === 'promise';
         const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
@@ -155,8 +147,6 @@ class CacheService {
      * 获取缓存，若不存在则设置缓存对象
      */
     tryGet(key, data, options = {}) {
-        if (!this.platform.isBrowser)
-            return null;
         const ret = this.getNone(key);
         if (ret === null) {
             if (!(data instanceof Observable)) {
@@ -187,14 +177,10 @@ class CacheService {
     }
     /** 移除缓存 */
     remove(key) {
-        if (!this.platform.isBrowser)
-            return;
         this._remove(key, true);
     }
     /** 清空所有缓存 */
     clear() {
-        if (!this.platform.isBrowser)
-            return;
         this.notifyBuffer.forEach((_v, k) => this.runNotify(k, 'remove'));
         this.memory.clear();
         this.meta.forEach(key => this.store.remove(this.cog.prefix + key));
@@ -276,7 +262,7 @@ class CacheService {
         this.clearNotify();
     }
 }
-CacheService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }, { token: DC_STORE_STORAGE_TOKEN }, { token: i2.HttpClient }, { token: i3.Platform }], target: i0.ɵɵFactoryTarget.Injectable });
+CacheService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }, { token: DC_STORE_STORAGE_TOKEN }, { token: i2.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
 CacheService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, providedIn: 'root' });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: CacheService, decorators: [{
             type: Injectable,
@@ -284,7 +270,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DC_STORE_STORAGE_TOKEN]
-                }] }, { type: i2.HttpClient }, { type: i3.Platform }]; } });
+                }] }, { type: i2.HttpClient }]; } });
 
 class DelonCacheModule {
 }

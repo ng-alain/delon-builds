@@ -33,9 +33,6 @@ class EllipsisComponent {
         return ((targetCount > 0 ? text.substring(0, targetCount) : '') +
             (targetCount > 0 && targetCount < text.length ? tail : ''));
     }
-    get win() {
-        return this.doc.defaultView || window;
-    }
     getStrFullLength(str) {
         return str.split('').reduce((pre, cur) => {
             const charCode = cur.charCodeAt(0);
@@ -137,7 +134,7 @@ class EllipsisComponent {
             const { shadowOrgEl, shadowTextEl } = this;
             const orgNode = shadowOrgEl.nativeElement;
             const lineText = orgNode.innerText || orgNode.textContent;
-            const lineHeight = parseInt(this.win.getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
+            const lineHeight = parseInt(getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
             const targetHeight = lines * lineHeight;
             this.getEl('.ellipsis__handle').style.height = `${targetHeight}px`;
             if (orgNode.offsetHeight <= targetHeight) {

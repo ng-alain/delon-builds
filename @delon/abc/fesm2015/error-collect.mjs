@@ -7,17 +7,15 @@ import { takeUntil } from 'rxjs/operators';
 import { InputNumber } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@angular/cdk/bidi';
-import * as i3 from '@angular/cdk/platform';
-import * as i4 from 'ng-zorro-antd/icon';
+import * as i3 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 class ErrorCollectComponent {
-    constructor(el, cdr, doc, configSrv, directionality, platform) {
+    constructor(el, cdr, doc, configSrv, directionality) {
         this.el = el;
         this.cdr = cdr;
         this.doc = doc;
         this.directionality = directionality;
-        this.platform = platform;
         this.formEl = null;
         this.destroy$ = new Subject();
         this._hiden = true;
@@ -70,8 +68,6 @@ class ErrorCollectComponent {
         return retEl;
     }
     ngOnInit() {
-        if (!this.platform.isBrowser)
-            return;
         this.formEl = this.findParent(this.el.nativeElement, 'form');
         if (this.formEl === null)
             throw new Error('No found form element');
@@ -82,11 +78,11 @@ class ErrorCollectComponent {
         this.destroy$.complete();
     }
 }
-ErrorCollectComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: DOCUMENT }, { token: i1.AlainConfigService }, { token: i2.Directionality, optional: true }, { token: i3.Platform }], target: i0.ɵɵFactoryTarget.Component });
+ErrorCollectComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: DOCUMENT }, { token: i1.AlainConfigService }, { token: i2.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Component });
 ErrorCollectComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.2.2", type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: { freq: "freq", offsetTop: "offsetTop" }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir === 'rtl'", "class.d-none": "_hiden" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
     <i nz-icon nzType="exclamation-circle"></i>
     <span class="error-collect__count">{{ count }}</span>
-  `, isInline: true, directives: [{ type: i4.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, directives: [{ type: i3.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 __decorate([
     InputNumber()
 ], ErrorCollectComponent.prototype, "freq", void 0);
@@ -118,7 +114,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                         args: [DOCUMENT]
                     }] }, { type: i1.AlainConfigService }, { type: i2.Directionality, decorators: [{
                         type: Optional
-                    }] }, { type: i3.Platform }];
+                    }] }];
     }, propDecorators: { freq: [{
                 type: Input
             }], offsetTop: [{

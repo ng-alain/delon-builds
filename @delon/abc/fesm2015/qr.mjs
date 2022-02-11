@@ -73,7 +73,7 @@ class QRComponent {
             mime: this.mime,
             padding: this.padding,
             size: this.size,
-            value: this.toUtf8ByteArray(this.value)
+            value: typeof this.value === 'function' ? this.value() : this.toUtf8ByteArray(this.value)
         };
         this.option = option;
         this.init();

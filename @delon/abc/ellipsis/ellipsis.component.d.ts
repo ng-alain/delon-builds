@@ -29,7 +29,6 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     fullWidthRecognition: boolean;
     tail: string;
     get linsWord(): string;
-    private get win();
     constructor(el: ElementRef, ngZone: NgZone, dom: DomSanitizer, doc: NzSafeAny, cdr: ChangeDetectorRef);
     private getStrFullLength;
     private cutStrByFullLength;
