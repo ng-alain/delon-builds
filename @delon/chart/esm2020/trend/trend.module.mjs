@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [TrendComponent];
 export class TrendModule {
 }
-TrendModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: TrendModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-TrendModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: TrendModule, declarations: [TrendComponent], imports: [CommonModule, NzIconModule], exports: [TrendComponent] });
-TrendModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: TrendModule, imports: [[CommonModule, NzIconModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.3", ngImport: i0, type: TrendModule, decorators: [{
+TrendModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: TrendModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+TrendModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: TrendModule, declarations: [TrendComponent], imports: [CommonModule, NzIconModule], exports: [TrendComponent] });
+TrendModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: TrendModule, imports: [[CommonModule, NzIconModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: TrendModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzIconModule],
