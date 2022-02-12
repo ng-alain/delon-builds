@@ -37,10 +37,8 @@ class G2PieComponent extends G2BaseComponent {
             inverseColor: '#F0F2F5'
         };
         this.clickItem = new EventEmitter();
-    }
-    // #endregion
-    get block() {
-        return this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
+        // #endregion
+        this.block = false;
     }
     fixData() {
         const { percent, color } = this;
@@ -62,6 +60,10 @@ class G2PieComponent extends G2BaseComponent {
                 y: 100 - percent
             }
         ];
+    }
+    updateBlock() {
+        this.block = this._chart && this.hasLegend && this.el.nativeElement.clientWidth <= this.blockMaxWidth;
+        this.cdr.detectChanges();
     }
     install() {
         const { node, height, padding, tooltip, inner, hasLegend, interaction, theme, animate, lineWidth, isPercent, percentColor, colors } = this;
@@ -104,8 +106,12 @@ class G2PieComponent extends G2BaseComponent {
                 range: [0, 1]
             }
         });
-        chart.on(`interval:click`, (ev) => {
+        chart
+            .on(`interval:click`, (ev) => {
             this.ngZone.run(() => { var _a; return this.clickItem.emit({ item: (_a = ev.data) === null || _a === void 0 ? void 0 : _a.data, ev }); });
+        })
+            .on('afterrender', () => {
+            this.ngZone.run(() => this.updateBlock());
         });
         this.ready.next(chart);
         this.changeData();

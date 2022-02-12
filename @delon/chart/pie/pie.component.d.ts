@@ -54,8 +54,9 @@ export declare class G2PieComponent extends G2BaseComponent {
     interaction: G2InteractionType;
     ratio: G2PieRatio;
     readonly clickItem: EventEmitter<G2PieClickItem>;
-    get block(): boolean;
+    block: boolean;
     private fixData;
+    private updateBlock;
     install(): void;
     changeData(): void;
     private genLegend;
