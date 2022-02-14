@@ -302,7 +302,15 @@ class CookieStorageStore {
         this.srv = srv;
     }
     get(key) {
-        return JSON.parse(this.srv.get(key) || '{}') || {};
+        try {
+            return JSON.parse(this.srv.get(key) || '{}');
+        }
+        catch (ex) {
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                console.error(`CookieStorageStore: Invalid key-value format ${key}`, ex);
+            }
+            return {};
+        }
     }
     set(key, value) {
         this.srv.put(key, value != null ? JSON.stringify(value) : '{}');

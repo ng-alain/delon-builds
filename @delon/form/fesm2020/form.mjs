@@ -991,7 +991,7 @@ class SFItemComponent {
     constructor(widgetFactory, terminator) {
         this.widgetFactory = widgetFactory;
         this.terminator = terminator;
-        this.unsubscribe$ = new Subject();
+        this.destroy$ = new Subject();
         this.widget = null;
         this.footer = null;
     }
@@ -1015,9 +1015,9 @@ class SFItemComponent {
         this.onWidgetInstanciated(this.ref.instance);
     }
     ngOnDestroy() {
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
         this.ref.destroy();
     }
 }
@@ -1105,7 +1105,7 @@ class SFComponent {
         this.aclSrv = aclSrv;
         this.i18nSrv = i18nSrv;
         this.platform = platform;
-        this.unsubscribe$ = new Subject();
+        this.destroy$ = new Subject();
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
@@ -1148,7 +1148,7 @@ class SFComponent {
         this.liveValidate = this.options.liveValidate;
         this.firstVisual = this.options.firstVisual;
         this.autocomplete = this.options.autocomplete;
-        this.localeSrv.change.pipe(takeUntil(this.unsubscribe$)).subscribe(() => {
+        this.localeSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
                 this.validator({ emitError: false, onlyRoot: false });
@@ -1162,7 +1162,7 @@ class SFComponent {
         ].filter(o => o != null);
         if (refSchemas.length > 0) {
             merge(...refSchemas)
-                .pipe(filter(() => this._inited), takeUntil(this.unsubscribe$))
+                .pipe(filter(() => this._inited), takeUntil(this.destroy$))
                 .subscribe(() => this.refreshSchema());
         }
     }
@@ -1600,9 +1600,9 @@ class SFComponent {
     ngOnDestroy() {
         this.cleanRootSub();
         this.terminator.destroy();
-        const { unsubscribe$ } = this;
-        unsubscribe$.next();
-        unsubscribe$.complete();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
 }
 SFComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SFComponent, deps: [{ token: FormPropertyFactory }, { token: TerminatorService }, { token: i3$1.DomSanitizer }, { token: i0.ChangeDetectorRef }, { token: i4.DelonLocaleService }, { token: i5.ACLService, optional: true }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: i6.AlainConfigService }, { token: i7.Platform }], target: i0.ɵɵFactoryTarget.Component });
@@ -1798,7 +1798,7 @@ class Widget {
     }
     ngAfterViewInit() {
         this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
+            .pipe(takeUntil(this.sfItemComp.destroy$))
             .subscribe((errors) => {
             if (errors == null)
                 return;
@@ -1871,9 +1871,7 @@ class ArrayLayoutWidget extends Widget {
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(() => this.cd.detectChanges());
+        this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp.destroy$)).subscribe(() => this.cd.detectChanges());
     }
 }
 ArrayLayoutWidget.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ArrayLayoutWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1885,9 +1883,7 @@ class ObjectLayoutWidget extends Widget {
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {
-        this.formProperty.errorsChanges
-            .pipe(takeUntil(this.sfItemComp.unsubscribe$))
-            .subscribe(() => this.cd.detectChanges());
+        this.formProperty.errorsChanges.pipe(takeUntil(this.sfItemComp.destroy$)).subscribe(() => this.cd.detectChanges());
     }
 }
 ObjectLayoutWidget.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: ObjectLayoutWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1985,7 +1981,7 @@ class AutoCompleteWidget extends ControlUIWidget {
     reset(value) {
         if (this.isAsync) {
             this.ui.asyncData(value)
-                .pipe(takeUntil(this.sfItemComp.unsubscribe$), map(res => getEnum(res, null, this.schema.readOnly)))
+                .pipe(takeUntil(this.sfItemComp.destroy$), map(res => getEnum(res, null, this.schema.readOnly)))
                 .subscribe(data => {
                 this.typing = data.find(w => w.value === this.value)?.label ?? '';
             });
@@ -2539,7 +2535,7 @@ class SelectWidget extends ControlUIWidget {
         const onSearch = this.ui.onSearch;
         if (onSearch) {
             this.search$
-                .pipe(takeUntil(this.sfItemComp.unsubscribe$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime || 300), switchMap(text => onSearch(text)), catchError(() => []))
+                .pipe(takeUntil(this.sfItemComp.destroy$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime || 300), switchMap(text => onSearch(text)), catchError(() => []))
                 .subscribe(list => {
                 this.data = list;
                 this.checkGroup(list);
@@ -2661,7 +2657,7 @@ class StringWidget extends ControlUIWidget {
         if (dueTime == null || dueTime <= 0 || changeFn == null)
             return;
         this.change$ = new BehaviorSubject(this.value);
-        let obs = this.change$.asObservable().pipe(debounceTime(dueTime), takeUntil(this.sfItemComp.unsubscribe$));
+        let obs = this.change$.asObservable().pipe(debounceTime(dueTime), takeUntil(this.sfItemComp.destroy$));
         if (this.ui.changeMap != null) {
             obs = obs.pipe(switchMap(this.ui.changeMap));
         }
