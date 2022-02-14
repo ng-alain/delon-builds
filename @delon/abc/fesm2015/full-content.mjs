@@ -4,8 +4,8 @@ import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import * as i2 from '@angular/router';
 import { ActivationStart, ActivationEnd } from '@angular/router';
-import { BehaviorSubject, Subject, fromEvent } from 'rxjs';
-import { share, takeUntil, debounceTime, filter } from 'rxjs/operators';
+import { BehaviorSubject, fromEvent } from 'rxjs';
+import { share, debounceTime, filter } from 'rxjs/operators';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 class FullContentService {
@@ -39,7 +39,7 @@ class FullContentComponent {
         this.doc = doc;
         this.inited = false;
         this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
-        this.destroy$ = new Subject();
+        this.scroll$ = null;
         this._height = 0;
         this.hideTitle = true;
         this.padding = 24;
@@ -80,16 +80,14 @@ class FullContentComponent {
         this.el.nativeElement.id = this.id;
         this.updateCls();
         // when window resize
-        fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), debounceTime(200))
+        this.scroll$ = fromEvent(window, 'resize')
+            .pipe(debounceTime(200))
             .subscribe(() => this.updateHeight());
         // when servier changed
-        this.srv.change
-            .pipe(takeUntil(this.destroy$), filter(res => res !== null))
-            .subscribe(() => this.toggle());
+        this.srv$ = this.srv.change.pipe(filter(res => res !== null)).subscribe(() => this.toggle());
         // when router changed
-        this.router.events
-            .pipe(takeUntil(this.destroy$), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
+        this.route$ = this.router.events
+            .pipe(filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
             .subscribe(() => {
             if (!!this.doc.querySelector(`#${this.id}`)) {
                 this.bodyEl.classList.add(wrapCls);
@@ -113,10 +111,11 @@ class FullContentComponent {
             this.update();
     }
     ngOnDestroy() {
+        var _a, _b;
         this.removeInBody();
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
+        this.scroll$.unsubscribe();
+        (_a = this.srv$) === null || _a === void 0 ? void 0 : _a.unsubscribe();
+        (_b = this.route$) === null || _b === void 0 ? void 0 : _b.unsubscribe();
     }
 }
 FullContentComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: FullContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FullContentService }, { token: i2.Router }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component });

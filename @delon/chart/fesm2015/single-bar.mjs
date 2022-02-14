@@ -26,7 +26,7 @@ class G2SingleBarComponent extends G2BaseComponent {
     // #endregion
     install() {
         const { el, height, padding, textStyle, line, format, theme, min, max, plusColor, minusColor, barSize } = this;
-        const chart = (this._chart = new this.winG2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,

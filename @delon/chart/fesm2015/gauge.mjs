@@ -17,7 +17,7 @@ class G2GaugeComponent extends G2BaseComponent {
     // #endregion
     install() {
         // 自定义Shape 部分
-        this.winG2.registerShape('point', 'pointer', {
+        window.G2.registerShape('point', 'pointer', {
             draw(cfg, container) {
                 const group = container.addGroup({});
                 // 获取极坐标系下画布中心点
@@ -48,7 +48,7 @@ class G2GaugeComponent extends G2BaseComponent {
             }
         });
         const { el, height, padding, format, theme } = this;
-        const chart = (this._chart = new this.winG2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,

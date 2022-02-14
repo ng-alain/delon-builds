@@ -3,7 +3,6 @@ import { ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestr
 import { Subject, Subscription } from 'rxjs';
 import type { Chart, Types } from '@antv/g2';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { G2Service } from './g2.servicce';
 import * as i0 from "@angular/core";
 export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDestroy {
@@ -13,7 +12,6 @@ export declare abstract class G2BaseComponent implements OnInit, OnChanges, OnDe
     protected platform: Platform;
     protected cdr: ChangeDetectorRef;
     get chart(): Chart;
-    get winG2(): NzSafeAny;
     constructor(srv: G2Service, el: ElementRef<HTMLElement>, ngZone: NgZone, platform: Platform, cdr: ChangeDetectorRef);
     static ngAcceptInputType_repaint: BooleanInput;
     static ngAcceptInputType_delay: NumberInput;

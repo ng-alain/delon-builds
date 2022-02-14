@@ -2,19 +2,17 @@ import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Directive, Input, NgModule } from '@angular/core';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
-import * as i1 from '@angular/cdk/platform';
 
 class AutoFocusDirective {
-    constructor(el, cdr, platform) {
+    constructor(el, cdr) {
         this.el = el;
         this.cdr = cdr;
-        this.platform = platform;
         this.enabled = true;
         this.delay = 300;
     }
     ngAfterViewInit() {
         const el = this.el.nativeElement;
-        if (!this.platform.isBrowser || !(el instanceof HTMLElement) || !this.enabled) {
+        if (!(el instanceof HTMLElement) || !this.enabled) {
             return;
         }
         this._focusoutTimeout = setTimeout(() => {
@@ -29,7 +27,7 @@ class AutoFocusDirective {
         }
     }
 }
-AutoFocusDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: AutoFocusDirective, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Directive });
+AutoFocusDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: AutoFocusDirective, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
 AutoFocusDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.2.2", type: AutoFocusDirective, selector: "[auto-focus], input[autofocus=\"autofocus\"], textarea[autofocus=\"autofocus\"]", inputs: { enabled: "enabled", delay: "delay" }, exportAs: ["autoFocus"], ngImport: i0 });
 __decorate([
     InputBoolean()
@@ -43,7 +41,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.2", ngImpor
                     selector: '[auto-focus], input[autofocus="autofocus"], textarea[autofocus="autofocus"]',
                     exportAs: 'autoFocus'
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i1.Platform }]; }, propDecorators: { enabled: [{
+        }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { enabled: [{
                 type: Input
             }], delay: [{
                 type: Input

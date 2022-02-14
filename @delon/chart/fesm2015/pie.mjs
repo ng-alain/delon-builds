@@ -67,7 +67,7 @@ class G2PieComponent extends G2BaseComponent {
     }
     install() {
         const { node, height, padding, tooltip, inner, hasLegend, interaction, theme, animate, lineWidth, isPercent, percentColor, colors } = this;
-        const chart = (this._chart = new this.winG2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height,

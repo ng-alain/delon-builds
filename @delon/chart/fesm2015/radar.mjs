@@ -30,7 +30,7 @@ class G2RadarComponent extends G2BaseComponent {
     }
     install() {
         const { node, padding, theme, tickCount } = this;
-        const chart = (this._chart = new this.winG2.Chart({
+        const chart = (this._chart = new window.G2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height: this.getHeight(),
