@@ -27622,6 +27622,15 @@ fieldset {
     max-width: 100%;
   }
 }
+.sf__checkbox-list {
+  display: block;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .sf__checkbox-list .ant-col {
+    margin-top: 8px;
+  }
+}
 .sf .ant-upload-select-picture-card i {
   color: #999;
   font-size: 32px;
@@ -27667,7 +27676,6 @@ fieldset {
   margin-bottom: 0;
 }
 .sf__inline .sf-btns {
-  display: inline-block;
   margin-right: 0;
 }
 @media (max-width: 767px) {

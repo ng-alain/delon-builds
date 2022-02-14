@@ -34,7 +34,7 @@ class G2TimelineComponent extends G2BaseComponent {
     }
     install() {
         const { node, height, padding, slider, maxAxis, theme, maskSlider } = this;
-        const chart = (this._chart = new window.G2.Chart({
+        const chart = (this._chart = new this.winG2.Chart({
             container: node.nativeElement,
             autoFit: true,
             height,

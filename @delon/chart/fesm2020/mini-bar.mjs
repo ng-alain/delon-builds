@@ -21,7 +21,7 @@ class G2MiniBarComponent extends G2BaseComponent {
     // #endregion
     install() {
         const { el, height, padding, yTooltipSuffix, tooltipType, theme, color, borderWidth } = this;
-        const chart = (this._chart = new window.G2.Chart({
+        const chart = (this._chart = new this.winG2.Chart({
             container: el.nativeElement,
             autoFit: true,
             height,

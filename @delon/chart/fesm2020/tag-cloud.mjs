@@ -22,7 +22,8 @@ class G2TagCloudComponent extends G2BaseComponent {
     }
     // #endregion
     initTagCloud() {
-        window.G2.registerShape('point', 'cloud', {
+        const winG2 = this.winG2;
+        winG2.registerShape('point', 'cloud', {
             draw(cfg, container) {
                 const data = cfg.data;
                 const textShape = container.addShape({
@@ -41,7 +42,7 @@ class G2TagCloudComponent extends G2BaseComponent {
                     }
                 });
                 if (data.rotate) {
-                    window.G2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
+                    winG2.Util.rotate(textShape, (data.rotate * Math.PI) / 180);
                 }
                 return textShape;
             }
@@ -56,7 +57,7 @@ class G2TagCloudComponent extends G2BaseComponent {
         if (this.width === 0) {
             this.width = this.el.nativeElement.clientWidth;
         }
-        const chart = (this._chart = new window.G2.Chart({
+        const chart = (this._chart = new this.winG2.Chart({
             container: el.nativeElement,
             autoFit: false,
             padding,

@@ -31,7 +31,7 @@ class G2BarComponent extends G2BaseComponent {
     install() {
         const { node, padding, interaction, theme } = this;
         const container = node.nativeElement;
-        const chart = (this._chart = new window.G2.Chart({
+        const chart = (this._chart = new this.winG2.Chart({
             container,
             autoFit: true,
             height: this.getHeight(),
