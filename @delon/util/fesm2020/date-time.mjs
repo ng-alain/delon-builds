@@ -7,15 +7,14 @@ import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMont
  *
  * @param type 类型，带 `-` 表示过去一个时间，若指定 `number` 表示天数
  * @param time 开始时间
- * @param ignoreMaxTime 忽略追加结束日期的最大时间值
  */
-function getTimeDistance(type, time, options) {
+function getTimeDistance(type, time) {
     time = time
         ? typeof time === 'string'
             ? parse(time, 'yyyy-MM-dd HH:mm:ss', new Date())
             : new Date(time)
         : new Date();
-    const opt = { weekStartsOn: 1 };
+    const options = { weekStartsOn: 1 };
     let res;
     switch (type) {
         case 'today':
@@ -28,10 +27,10 @@ function getTimeDistance(type, time, options) {
             res = [addDays(time, -1), addDays(time, -1)];
             break;
         case 'week':
-            res = [startOfWeek(time, opt), endOfWeek(time, opt)];
+            res = [startOfWeek(time, options), endOfWeek(time, options)];
             break;
         case '-week':
-            res = [startOfWeek(subWeeks(time, 1), opt), endOfWeek(subWeeks(time, 1), opt)];
+            res = [startOfWeek(subWeeks(time, 1), options), endOfWeek(subWeeks(time, 1), options)];
             break;
         case 'month':
             res = [startOfMonth(time), endOfMonth(time)];
@@ -49,7 +48,7 @@ function getTimeDistance(type, time, options) {
             res = type > 0 ? [time, addDays(time, type)] : [addDays(time, type), time];
             break;
     }
-    return options?.ignoreMaxTime ? res : fixEndTimeOfRange(res);
+    return fixEndTimeOfRange(res);
 }
 /**
  * fix time is the most, big value

@@ -190,7 +190,7 @@ class SEComponent {
         this.rep = rep;
         this.ren = ren;
         this.cdr = cdr;
-        this.destroy$ = new Subject();
+        this.unsubscribe$ = new Subject();
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
@@ -212,7 +212,7 @@ class SEComponent {
         }
         this.el = el.nativeElement;
         parent.errorNotify
-            .pipe(takeUntil(this.destroy$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
+            .pipe(takeUntil(this.unsubscribe$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
             .subscribe(item => {
             this.error = item.error;
             this.updateStatus(this.ngControl.invalid);
@@ -257,7 +257,9 @@ class SEComponent {
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
-        this.ngControl.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(res => this.updateStatus(res === 'INVALID'));
+        this.ngControl
+            .statusChanges.pipe(takeUntil(this.unsubscribe$))
+            .subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
             const control = (controlAccessor?.elementRef || controlAccessor?._elementRef)?.nativeElement;
@@ -321,9 +323,9 @@ class SEComponent {
         }
     }
     ngOnDestroy() {
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
     }
 }
 SEComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.2", ngImport: i0, type: SEComponent, deps: [{ token: i0.ElementRef }, { token: SEContainerComponent, host: true, optional: true }, { token: i2.ResponsiveService }, { token: i0.Renderer2 }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });

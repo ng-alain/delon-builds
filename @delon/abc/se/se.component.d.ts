@@ -16,7 +16,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     static ngAcceptInputType_noColon: BooleanInput;
     static ngAcceptInputType_hideLabel: BooleanInput;
     private el;
-    private destroy$;
+    private unsubscribe$;
     private readonly ngModel?;
     private readonly formControlName?;
     private readonly contentElement;

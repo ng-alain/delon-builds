@@ -48,7 +48,7 @@ class PdfComponent {
         this.doc = doc;
         this.cdr = cdr;
         this.inited = false;
-        this.destroy$ = new Subject();
+        this.unsubscribe$ = new Subject();
         this.lib = '';
         this._pi = 1;
         this._total = 0;
@@ -353,7 +353,7 @@ class PdfComponent {
     }
     initResize() {
         fromEvent(this.win, 'resize')
-            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), takeUntil(this.destroy$))
+            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), takeUntil(this.unsubscribe$))
             .subscribe(() => this.updateSize());
     }
     ngOnChanges(changes) {
@@ -362,9 +362,9 @@ class PdfComponent {
         }
     }
     ngOnDestroy() {
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
+        const { unsubscribe$ } = this;
+        unsubscribe$.next();
+        unsubscribe$.complete();
         this.destroy();
     }
 }
