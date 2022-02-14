@@ -10,7 +10,7 @@ export declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     private widgetFactory;
     private terminator;
     private ref;
-    readonly unsubscribe$: Subject<void>;
+    readonly destroy$: Subject<void>;
     widget: Widget<FormProperty, SFUISchemaItem> | null;
     formProperty: FormProperty;
     container: ViewContainerRef;
