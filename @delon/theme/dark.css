@@ -32022,7 +32022,7 @@ body {
 .sv__label {
   display: table-cell;
   padding-bottom: 16px;
-  color: rgba(179, 179, 179, 0.85);
+  color: rgba(255, 255, 255, 0.5);
   line-height: 22px;
   white-space: nowrap;
 }
@@ -32034,7 +32034,7 @@ body {
 }
 .sv__label-optional {
   margin-left: 2px;
-  color: rgba(128, 128, 128, 0.85);
+  color: rgba(255, 255, 255, 0.35);
 }
 .sv__label-optional-no-text {
   margin-left: 0;
@@ -32091,7 +32091,7 @@ body {
 }
 .sv__value-prefix,
 .sv__value-unit {
-  color: rgba(179, 179, 179, 0.85);
+  color: rgba(255, 255, 255, 0.5);
   font-size: 12px;
   font-style: normal;
 }
@@ -32113,7 +32113,7 @@ body {
   position: absolute;
   left: 0;
   width: 6px;
-  color: rgba(179, 179, 179, 0.85);
+  color: rgba(255, 255, 255, 0.5);
   content: '/';
 }
 .sv__value-small .sv__value-text {
