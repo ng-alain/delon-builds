@@ -1,8 +1,9 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { Subject, timer } from 'rxjs';
+import { share, takeUntil, take } from 'rxjs/operators';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
-import { Subject } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import * as i2$1 from '@angular/cdk/platform';
@@ -39,7 +40,7 @@ class MediaService {
         return this;
     }
     notify() {
-        return this.notify$.asObservable();
+        return this.notify$.asObservable().pipe(share());
     }
 }
 MediaService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: MediaService, deps: [{ token: i1.AlainConfigService }, { token: i2.LazyService }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -56,24 +57,27 @@ class MediaComponent {
         this.srv = srv;
         this.ngZone = ngZone;
         this.platform = platform;
+        this.destroy$ = new Subject();
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
-        this.notify$ = this.srv.notify().subscribe(() => this.initDelay());
     }
     get player() {
         return this._p;
     }
     initDelay() {
-        this.time = setTimeout(() => this.init(), this.delay);
+        timer(this.delay)
+            .pipe(takeUntil(this.destroy$))
+            .subscribe(() => this.ngZone.runOutsideAngular(() => this.init()));
     }
     init() {
-        if (!window.Plyr) {
+        const winPlyr = window.Plyr;
+        if (!winPlyr) {
             throw new Error(`No window.Plyr found, please make sure that cdn or local path exists, the current referenced path is: ${JSON.stringify(this.srv.cog.urls)}`);
         }
         this.ensureElement();
-        const player = (this._p = new Plyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
-        player.on('ready', () => this.ready.next(player));
+        const player = (this._p = new winPlyr(this.videoEl, Object.assign({}, this.srv.cog.options)));
+        player.on('ready', () => this.ngZone.run(() => this.ready.next(player)));
         this.uploadSource();
     }
     ensureElement() {
@@ -92,26 +96,33 @@ class MediaComponent {
         }
     }
     uploadSource() {
+        if (this._p == null)
+            return;
         const { source, type } = this;
-        this._p.source = typeof source === 'string' ? { type, sources: [{ src: source }] } : source;
+        this._p.source = (typeof source === 'string' ? { type, sources: [{ src: source }] } : source);
     }
     ngAfterViewInit() {
         if (!this.platform.isBrowser) {
             return;
         }
+        this.srv
+            .notify()
+            .pipe(takeUntil(this.destroy$), take(1))
+            .subscribe(() => this.initDelay());
         this.srv.load();
     }
     ngOnChanges(changes) {
         this.srv.cog = { options: this.options };
-        if (changes.source && this._p) {
+        if (changes.source) {
             this.uploadSource();
         }
     }
     ngOnDestroy() {
-        clearTimeout(this.time);
         this.destroy();
         this._p = null;
-        this.notify$.unsubscribe();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
 }
 MediaComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: MediaComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: MediaService }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component });

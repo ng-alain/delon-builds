@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "13.2.0-bf012e66",
+  "version": "13.2.0-600ae1d5",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "ng-zorro-antd"
   ],
   "dependencies": {
-    "@delon/util": "^13.2.0-bf012e66",
+    "@delon/util": "^13.2.0-600ae1d5",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/auth.mjs",
