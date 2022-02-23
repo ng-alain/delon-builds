@@ -33026,8 +33026,8 @@ ellipsis {
   direction: rtl;
 }
 .pdf-container {
-  position: relative;
-  display: block;
+  position: absolute;
+  width: 100%;
   height: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
