@@ -74,7 +74,6 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private resetDoc;
     private cleanDoc;
     private render;
-    private timeExec;
     private updateSize;
     private getScale;
     private destroy;
