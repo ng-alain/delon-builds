@@ -1,9 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { Subject, timer } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { Subject } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import * as i2$1 from '@angular/cdk/platform';
@@ -57,22 +56,16 @@ class MediaComponent {
         this.srv = srv;
         this.ngZone = ngZone;
         this.platform = platform;
-        this.destroy$ = new Subject();
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
-        this.srv
-            .notify()
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => this.initDelay());
+        this.notify$ = this.srv.notify().subscribe(() => this.initDelay());
     }
     get player() {
         return this._p;
     }
     initDelay() {
-        timer(this.delay)
-            .pipe(takeUntil(this.destroy$))
-            .subscribe(() => this.ngZone.runOutsideAngular(() => this.init()));
+        this.time = setTimeout(() => this.init(), this.delay);
     }
     init() {
         if (!window.Plyr) {
@@ -82,12 +75,10 @@ class MediaComponent {
         const player = (this._p = new Plyr(this.videoEl, {
             ...this.srv.cog.options
         }));
-        player.on('ready', () => this.ngZone.run(() => this.ready.next(player)));
+        player.on('ready', () => this.ready.next(player));
         this.uploadSource();
     }
     ensureElement() {
-        if (this.videoEl != null)
-            return;
         const { type } = this;
         let el = this.el.nativeElement.querySelector(type);
         if (!el) {
@@ -119,11 +110,10 @@ class MediaComponent {
         }
     }
     ngOnDestroy() {
+        clearTimeout(this.time);
         this.destroy();
         this._p = null;
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
+        this.notify$.unsubscribe();
     }
 }
 MediaComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: MediaComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: MediaService }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component });
