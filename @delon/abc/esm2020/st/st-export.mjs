@@ -79,9 +79,9 @@ export class STExport {
         });
     }
 }
-STExport.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: STExport, deps: [{ token: i1.XlsxService, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-STExport.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: STExport });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.3", ngImport: i0, type: STExport, decorators: [{
+STExport.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.4", ngImport: i0, type: STExport, deps: [{ token: i1.XlsxService, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+STExport.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.4", ngImport: i0, type: STExport });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.4", ngImport: i0, type: STExport, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i1.XlsxService, decorators: [{
                     type: Optional
