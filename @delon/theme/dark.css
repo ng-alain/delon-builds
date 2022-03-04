@@ -6784,6 +6784,9 @@ _:-ms-fullscreen .ant-picker-range-wrapper .ant-picker-year-panel .ant-picker-ce
 .ant-picker-inline .ant-picker-range-arrow {
   display: none !important;
 }
+.ant-picker-inline .ant-picker-dropdown {
+  z-index: auto;
+}
 .ant-descriptions-header {
   display: flex;
   align-items: center;
@@ -13843,7 +13846,6 @@ textarea.nz-textarea-autosize-measuring {
   height: auto !important;
   overflow: hidden !important;
   padding: 2px 0 !important;
-  box-sizing: content-box !important;
 }
 .ant-input-search-rtl.ant-input-search-enter-button + .ant-input-group-addon .ant-input-search-button.ant-btn-icon-only,
 .ant-input-search-rtl.ant-input-search-enter-button input + .ant-input-group-addon .ant-input-search-button.ant-btn-icon-only {

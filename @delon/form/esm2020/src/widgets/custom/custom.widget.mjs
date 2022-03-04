@@ -5,8 +5,8 @@ import * as i1 from "../../sf-item-wrap.component";
 import * as i2 from "@angular/common";
 export class CustomWidget extends ControlUIWidget {
 }
-CustomWidget.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.4", ngImport: i0, type: CustomWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-CustomWidget.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.2.4", type: CustomWidget, selector: "sf-custom", usesInheritance: true, ngImport: i0, template: `
+CustomWidget.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: CustomWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
+CustomWidget.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.2.5", type: CustomWidget, selector: "sf-custom", usesInheritance: true, ngImport: i0, template: `
     <sf-item-wrap
       [id]="id"
       [schema]="schema"
@@ -21,7 +21,7 @@ CustomWidget.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: 
       ></ng-template>
     </sf-item-wrap>
   `, isInline: true, components: [{ type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], directives: [{ type: i2.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet"] }], encapsulation: i0.ViewEncapsulation.None });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.4", ngImport: i0, type: CustomWidget, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: CustomWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-custom',
