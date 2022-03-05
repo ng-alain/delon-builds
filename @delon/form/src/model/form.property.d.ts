@@ -1,10 +1,9 @@
 import { BehaviorSubject } from 'rxjs';
 import { AlainSFConfig } from '@delon/util/config';
-import type { NzFormControlStatusType } from 'ng-zorro-antd/form';
-import type { ErrorData } from '../errors';
-import type { SFFormValueChange, SFUpdateValueAndValidity, SFValue } from '../interface';
-import type { SFSchema, SFSchemaType } from '../schema';
-import type { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
+import { ErrorData } from '../errors';
+import { SFFormValueChange, SFUpdateValueAndValidity, SFValue } from '../interface';
+import { SFSchema, SFSchemaType } from '../schema';
+import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
 import type { Widget } from '../widget';
 export declare abstract class FormProperty {
@@ -26,7 +25,6 @@ export declare abstract class FormProperty {
     _value: SFValue;
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
-    propertyId?: string;
     constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: Record<string, unknown>, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
     get valueChanges(): BehaviorSubject<SFFormValueChange>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
@@ -69,12 +67,6 @@ export declare abstract class FormProperty {
      */
     setVisible(visible: boolean): void;
     _bindVisibility(): void;
-    /**
-     * Update the feedback status of the widget
-     *
-     * 更新小部件的反馈状态
-     */
-    updateFeedback(status?: NzFormControlStatusType, icon?: string | null): void;
 }
 export declare abstract class PropertyGroup extends FormProperty {
     properties: {
