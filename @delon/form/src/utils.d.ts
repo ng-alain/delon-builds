@@ -1,8 +1,8 @@
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
-import { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
-import { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
+import type { SFSchema, SFSchemaDefinition, SFSchemaEnum } from './schema';
+import type { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from './schema/ui';
 export declare function isBlank(o: NzSafeAny): boolean;
 export declare function toBool(value: NzSafeAny, defaultValue: boolean): boolean;
 export declare function di(ui: SFUISchema, ...args: NzSafeAny[]): void;
