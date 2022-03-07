@@ -67,7 +67,7 @@ export declare abstract class FormProperty {
      * Set the hide or display of widget
      * 设置小部件的隐藏或显示
      */
-    setVisible(visible: boolean): void;
+    setVisible(visible: boolean): this;
     _bindVisibility(): void;
     updateFeedback(status?: NzFormControlStatusType, icon?: string | null): void;
 }

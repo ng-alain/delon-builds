@@ -508,6 +508,7 @@ class FormProperty {
         if (visible) {
             this.resetValue(this.value, true);
         }
+        return this;
     }
     _bindVisibility() {
         const visibleIf = this.ui.visibleIf;
