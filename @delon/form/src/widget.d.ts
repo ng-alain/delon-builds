@@ -2,15 +2,15 @@ import { AfterViewInit, ChangeDetectorRef, Injector } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { LocaleData } from '@delon/theme';
 import { NgClassType, NzSafeAny } from 'ng-zorro-antd/core/types';
-import type { SFValue } from './interface';
+import { SFValue } from './interface';
 import { ArrayProperty } from './model/array.property';
 import { FormProperty } from './model/form.property';
 import { ObjectProperty } from './model/object.property';
-import type { SFSchema } from './schema';
-import type { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
+import { SFSchema } from './schema';
+import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import { SFItemComponent } from './sf-item.component';
 import { SFComponent } from './sf.component';
-import type { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
+import { SFArrayWidgetSchema, SFObjectWidgetSchema } from './widgets';
 import * as i0 from "@angular/core";
 export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
@@ -23,6 +23,7 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     id: string;
     schema: SFSchema;
     ui: UIT;
+    firstVisual: boolean;
     get cls(): NgClassType;
     get disabled(): boolean;
     get l(): LocaleData;

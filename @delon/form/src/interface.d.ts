@@ -3,7 +3,6 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFHorizontalLayoutSchema, SFRenderSchema } from './schema/ui';
 export declare type SFValue = NzSafeAny;
 export declare type SFLayout = 'horizontal' | 'vertical' | 'inline';
-export declare type SFMode = 'default' | 'search' | 'edit';
 export interface SFFormValueChange {
     path: string | null;
     pathValue: SFValue;

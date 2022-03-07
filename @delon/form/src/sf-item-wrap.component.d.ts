@@ -1,5 +1,5 @@
-import type { SFSchema } from './schema/index';
-import type { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
+import { SFSchema } from './schema/index';
+import { SFOptionalHelp, SFUISchemaItem } from './schema/ui';
 import * as i0 from "@angular/core";
 export declare class SFItemWrapComponent {
     _showTitle: boolean;

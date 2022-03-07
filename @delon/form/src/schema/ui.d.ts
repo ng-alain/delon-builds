@@ -1,7 +1,6 @@
 import type { ACLCanType } from '@delon/acl';
 import type { NgClassType, NgStyleInterface, NzSafeAny, NzSizeLDSType } from 'ng-zorro-antd/core/types';
-import type { ErrorSchema } from '../errors';
-import type { SFValue } from '../interface';
+import { ErrorSchema } from '../errors';
 import type { FormProperty } from '../model/form.property';
 export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
 export declare type SFTrigger = 'click' | 'focus' | 'hover';
@@ -117,13 +116,6 @@ export interface SFSchemaI18n {
      */
     descriptionI18n?: string;
 }
-export interface SFVisibleIfReturn {
-    show?: boolean;
-    required?: boolean;
-}
-export interface SFVisibleIf {
-    [key: string]: NzSafeAny[] | ((value: SFValue, property: FormProperty) => boolean | SFVisibleIfReturn | null);
-}
 /** 指定如何渲染 `Schema` */
 export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema, ErrorSchema, SFSchemaI18n {
     [key: string]: NzSafeAny;
@@ -153,11 +145,13 @@ export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema
      * - `visibleIf: { shown: [ '$ANY$' ] }`：当 `shown` 包括任意值时
      * - `visibleIf: { shown: (value: any, property: FormProperty) => value > 0 }`：复杂表达式
      */
-    visibleIf?: SFVisibleIf;
+    visibleIf?: {
+        [key: string]: NzSafeAny[] | ((value: NzSafeAny, property: FormProperty) => boolean);
+    };
     /**
      * ACL 配置
      */
-    acl?: ACLCanType | null;
+    acl?: ACLCanType;
 }
 /**
  * UI Schema，KEY名**务必**是 `$` 开头（例如：`$name`、`$id`），以便能区分KEY值还是UI选项
