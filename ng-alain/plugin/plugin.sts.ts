@@ -18,7 +18,7 @@ function fixPackage(options: PluginOptions): Rule {
   return (tree: Tree) => {
     (options.type === 'add' ? addPackage : removePackage)(
       tree,
-      ['ng-alain-sts@^0.0.1'],
+      ['ng-alain-sts@^0.0.2'],
       'devDependencies'
     );
   };
