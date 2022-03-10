@@ -145,9 +145,9 @@ export class _HttpClient {
         delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
 }
-_HttpClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: _HttpClient, deps: [{ token: i1.HttpClient }, { token: i2.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
-_HttpClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: _HttpClient, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: _HttpClient, decorators: [{
+_HttpClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: _HttpClient, deps: [{ token: i1.HttpClient }, { token: i2.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+_HttpClient.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: _HttpClient, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: _HttpClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.HttpClient }, { type: i2.AlainConfigService }]; } });

@@ -7,10 +7,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [NumberInfoComponent];
 export class NumberInfoModule {
 }
-NumberInfoModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: NumberInfoModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-NumberInfoModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: NumberInfoModule, declarations: [NumberInfoComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [NumberInfoComponent] });
-NumberInfoModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: NumberInfoModule, imports: [[CommonModule, NzIconModule, NzOutletModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.5", ngImport: i0, type: NumberInfoModule, decorators: [{
+NumberInfoModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: NumberInfoModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+NumberInfoModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: NumberInfoModule, declarations: [NumberInfoComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [NumberInfoComponent] });
+NumberInfoModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: NumberInfoModule, imports: [[CommonModule, NzIconModule, NzOutletModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: NumberInfoModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzIconModule, NzOutletModule],
