@@ -1705,7 +1705,7 @@ class STComponent {
         }
         catch (error) {
             this.setLoading(false);
-            if (!this.destroy$.isStopped) {
+            if (!this.destroy$.closed) {
                 this.cdr.detectChanges();
                 this.error.emit({ type: 'req', error });
             }
