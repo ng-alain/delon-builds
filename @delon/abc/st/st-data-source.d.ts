@@ -17,9 +17,9 @@ export interface STDataSourceOptions {
     res: STRes;
     page: STPage;
     columns: _STColumn[];
-    singleSort?: STSingleSort;
+    singleSort?: STSingleSort | null;
     multiSort?: STMultiSort;
-    rowClassName?: STRowClassName;
+    rowClassName?: STRowClassName | null;
     customRequest?: (options: STCustomRequestOptions) => Observable<NzSafeAny>;
 }
 export interface STDataSourceResult {
@@ -51,14 +51,14 @@ export declare class STDataSource {
     optimizeData(options: {
         columns: _STColumn[];
         result: STData[];
-        rowClassName?: STRowClassName;
+        rowClassName?: STRowClassName | null;
     }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;
     private getValidSort;
     private getSorterFn;
     get nextSortTick(): number;
-    getReqSortMap(singleSort: STSingleSort | undefined, multiSort: STMultiSort | undefined, columns: _STColumn[]): STMultiSortResultType;
+    getReqSortMap(singleSort: STSingleSort | undefined | null, multiSort: STMultiSort | undefined, columns: _STColumn[]): STMultiSortResultType;
     private getFilteredData;
     private getReqFilterMap;
     private genStatistical;

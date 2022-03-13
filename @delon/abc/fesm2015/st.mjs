@@ -1796,6 +1796,31 @@ class STComponent {
     _stopPropagation(ev) {
         ev.stopPropagation();
     }
+    _refColAndData() {
+        this._columns
+            .filter(w => w.type === 'no')
+            .forEach(c => this._data.forEach((i, idx) => {
+            const text = `${this.dataSource.getNoIndex(i, c, idx)}`;
+            i._values[c.__point] = { text, _text: text, org: idx, safeType: 'text' };
+        }));
+        return this.refreshData();
+    }
+    /**
+     * Add a rows in the table, like this:
+     *
+     * ```
+     * this.st.addRow(stDataItem)
+     * ```
+     *
+     * **TIPS:** Don't change the `total` value, it is recommended to use the `reload` method if needed
+     */
+    addRow(data, options) {
+        var _a;
+        if (!Array.isArray(data))
+            data = [data];
+        this._data.splice((_a = options === null || options === void 0 ? void 0 : options.index) !== null && _a !== void 0 ? _a : 0, 0, ...data);
+        return this.optimizeData()._refColAndData();
+    }
     /**
      * Remove a row in the table, like this:
      *
@@ -1803,6 +1828,8 @@ class STComponent {
      * this.st.removeRow(0)
      * this.st.removeRow(stDataItem)
      * ```
+     *
+     * **TIPS:** Don't change the `total` value, it is recommended to use the `reload` method if needed
      */
     removeRow(data) {
         if (typeof data === 'number') {
@@ -1817,14 +1844,7 @@ class STComponent {
                 .filter(pos => pos !== -1)
                 .forEach(pos => this._data.splice(pos, 1));
         }
-        // recalculate no
-        this._columns
-            .filter(w => w.type === 'no')
-            .forEach(c => this._data.forEach((i, idx) => {
-            const text = `${this.dataSource.getNoIndex(i, c, idx)}`;
-            i._values[c.__point] = { text, _text: text, org: idx, safeType: 'text' };
-        }));
-        return this.refreshData();
+        return this._refColAndData();
     }
     /**
      * Sets the row value for the `index` in the table, like this:
@@ -2047,6 +2067,7 @@ class STComponent {
             result: this._data,
             rowClassName: this.rowClassName
         });
+        return this;
     }
     /**
      * Return pure data, `st` internally maintains a set of data for caching, this part of data may affect the backend

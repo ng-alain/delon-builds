@@ -69,7 +69,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     set page(value: STPage);
     data: string | STData[] | Observable<STData[]>;
     columns: STColumn[];
-    contextmenu?: STContextmenuFn;
+    contextmenu?: STContextmenuFn | null;
     ps: number;
     pi: number;
     total: number;
@@ -82,11 +82,11 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
         x?: string | null;
         y?: string | null;
     };
-    singleSort?: STSingleSort;
+    singleSort?: STSingleSort | null;
     private _multiSort?;
     get multiSort(): NzSafeAny;
     set multiSort(value: NzSafeAny);
-    rowClassName?: STRowClassName;
+    rowClassName?: STRowClassName | null;
     clickRowClassName?: STClickRowClassName | null;
     set widthMode(value: STWidthMode);
     get widthMode(): STWidthMode;
@@ -174,6 +174,19 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private _clickRowClassName;
     _expandChange(item: STData, expand: boolean): void;
     _stopPropagation(ev: Event): void;
+    private _refColAndData;
+    /**
+     * Add a rows in the table, like this:
+     *
+     * ```
+     * this.st.addRow(stDataItem)
+     * ```
+     *
+     * **TIPS:** Don't change the `total` value, it is recommended to use the `reload` method if needed
+     */
+    addRow(data: STData | STData[], options?: {
+        index?: number;
+    }): this;
     /**
      * Remove a row in the table, like this:
      *
@@ -181,6 +194,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * this.st.removeRow(0)
      * this.st.removeRow(stDataItem)
      * ```
+     *
+     * **TIPS:** Don't change the `total` value, it is recommended to use the `reload` method if needed
      */
     removeRow(data: STData | STData[] | number): this;
     /**
