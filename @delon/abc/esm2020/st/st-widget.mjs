@@ -17,9 +17,9 @@ export class STWidgetRegistry {
         return this._widgets[type];
     }
 }
-STWidgetRegistry.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: STWidgetRegistry, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-STWidgetRegistry.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: STWidgetRegistry, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.6", ngImport: i0, type: STWidgetRegistry, decorators: [{
+STWidgetRegistry.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: STWidgetRegistry, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+STWidgetRegistry.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: STWidgetRegistry, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: STWidgetRegistry, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }] });
