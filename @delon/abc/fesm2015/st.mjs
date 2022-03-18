@@ -1839,12 +1839,14 @@ class STComponent {
             if (!Array.isArray(data)) {
                 data = [data];
             }
-            data
-                .map(item => this._data.indexOf(item))
-                .filter(pos => pos !== -1)
-                .forEach(pos => this._data.splice(pos, 1));
+            const curData = this._data;
+            for (var i = curData.length; i--;) {
+                if (data.indexOf(curData[i]) !== -1) {
+                    curData.splice(i, 1);
+                }
+            }
         }
-        return this._refColAndData();
+        return this._refCheck()._refColAndData();
     }
     /**
      * Sets the row value for the `index` in the table, like this:
