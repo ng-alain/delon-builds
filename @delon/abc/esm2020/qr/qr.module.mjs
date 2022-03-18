@@ -5,10 +5,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [QRComponent];
 export class QRModule {
 }
-QRModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: QRModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-QRModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: QRModule, declarations: [QRComponent], imports: [CommonModule], exports: [QRComponent] });
-QRModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: QRModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.2.7", ngImport: i0, type: QRModule, decorators: [{
+QRModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.0", ngImport: i0, type: QRModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+QRModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.0", ngImport: i0, type: QRModule, declarations: [QRComponent], imports: [CommonModule], exports: [QRComponent] });
+QRModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.0", ngImport: i0, type: QRModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.0", ngImport: i0, type: QRModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],
