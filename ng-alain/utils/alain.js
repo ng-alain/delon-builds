@@ -76,7 +76,8 @@ function resolveSchema(tree, project, schema, alainProject) {
     const parsedPath = (0, parse_name_1.parseName)(schema.path, schema.name);
     schema.name = parsedPath.name;
     schema.path = parsedPath.path;
-    const fullPath = path.join(process.cwd(), schema.path, schema.name);
+    const rootPath = path.resolve(__dirname, '../../..');
+    const fullPath = path.join(rootPath, schema.path, schema.name);
     if (fs.existsSync(fullPath) && fs.readdirSync(fullPath).length > 0) {
         throw new schematics_1.SchematicsException(`The directory (${fullPath}) already exists`);
     }
@@ -88,7 +89,7 @@ function resolveSchema(tree, project, schema, alainProject) {
             const overridePath = `${overrideDir}/__path__/__name@dasherize@if-flat__/__name@dasherize__.component.ts`;
             if (tree.exists(overridePath) || tree.exists(`${overridePath}.template`)) {
                 // 所在目录与命令目录同属一个目录结构，因此无须特殊处理
-                schema._filesPath = path.relative(__dirname, process.cwd()) + overrideDir;
+                schema._filesPath = path.relative(__dirname, rootPath) + overrideDir;
             }
         }
         schema._filesPath = schema._filesPath || './files';
