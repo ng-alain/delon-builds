@@ -28118,6 +28118,9 @@ fieldset {
 .sf__fixed {
   display: flex;
 }
+.sf__fixed .ant-form-item-control-wrapper {
+  flex: 1;
+}
 .sf__title {
   margin-bottom: 8px;
   padding: 0 16px;
