@@ -30928,6 +30928,17 @@ body {
   right: inherit;
   left: 0;
 }
+@media (max-width: 767px) {
+  [dir='rtl'] .alain-default__content {
+    transform: translate3d(-200px, 0, 0);
+  }
+  [dir='rtl'] .alain-default__collapsed .alain-default__aside {
+    transform: translate3d(100%, 0, 0);
+  }
+  [dir='rtl'] .alain-default__collapsed .alain-default__content {
+    transform: translateZ(0);
+  }
+}
 .alain-default__progress-bar {
   position: fixed;
   z-index: 29;
@@ -31240,6 +31251,14 @@ body {
     width: initial;
     margin-top: 52px;
   }
+}
+[dir='rtl'] .alain-default__fixed .reuse-tab {
+  right: 224px;
+  left: 24px;
+}
+[dir='rtl'] .alain-default__collapsed .reuse-tab {
+  right: 88px;
+  left: 0;
 }
 .alain-default__nav-item .ant-badge-count {
   top: 6px;
@@ -32332,6 +32351,9 @@ ellipsis {
 }
 .reuse-tab__cm .ant-menu {
   border: 1px solid #e9e9e9;
+}
+.reuse-tab-rtl {
+  direction: rtl;
 }
 .tag-select {
   position: relative;

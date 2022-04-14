@@ -1,3 +1,4 @@
+import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -15,6 +16,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private i18nSrv;
     private doc;
     private platform;
+    private directionality;
     static ngAcceptInputType_debug: BooleanInput;
     static ngAcceptInputType_max: NumberInput;
     static ngAcceptInputType_tabMaxWidth: NumberInput;
@@ -27,6 +29,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     list: ReuseItem[];
     item?: ReuseItem;
     pos: number;
+    dir: Direction;
     mode: ReuseTabMatchMode;
     i18n?: ReuseContextI18n;
     debug: boolean;
@@ -50,7 +53,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     }>;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
-    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: NzSafeAny, platform: Platform);
+    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: NzSafeAny, platform: Platform, directionality: Directionality);
     private genTit;
     private get curUrl();
     private genCurItem;
@@ -67,6 +70,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, [null, null, null, null, { optional: true; }, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, [null, null, null, null, { optional: true; }, null, null, { optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": "mode"; "i18n": "i18n"; "debug": "debug"; "max": "max"; "tabMaxWidth": "tabMaxWidth"; "excludes": "excludes"; "allowClose": "allowClose"; "keepingScroll": "keepingScroll"; "keepingScrollContainer": "keepingScrollContainer"; "customContextMenu": "customContextMenu"; "tabBarExtraContent": "tabBarExtraContent"; "tabBarGutter": "tabBarGutter"; "tabBarStyle": "tabBarStyle"; "tabType": "tabType"; "routeParamMatchMode": "routeParamMatchMode"; "disabled": "disabled"; "titleRender": "titleRender"; }, { "change": "change"; "close": "close"; }, never, never>;
 }
