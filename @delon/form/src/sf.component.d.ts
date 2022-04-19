@@ -34,6 +34,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     static ngAcceptInputType_disabled: BooleanInput;
     static ngAcceptInputType_noColon: BooleanInput;
     static ngAcceptInputType_cleanValue: BooleanInput;
+    static ngAcceptInputType_delay: BooleanInput;
     private destroy$;
     private _renders;
     private _item;
@@ -87,6 +88,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     disabled: boolean;
     noColon: boolean;
     cleanValue: boolean;
+    delay: boolean;
     readonly formValueChange: EventEmitter<SFValueChange>;
     readonly formChange: EventEmitter<Record<string, unknown>>;
     readonly formSubmit: EventEmitter<Record<string, unknown>>;
@@ -111,7 +113,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      *
      * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
      */
-    getProperty(path: string): FormProperty | null;
+    getProperty(path: string): FormProperty | null | undefined;
     /**
      * Get element value based on [path](https://ng-alain.com/form/qa#path)
      *
@@ -186,5 +188,5 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private cleanRootSub;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, [null, null, null, null, null, { optional: true; }, { optional: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": "layout"; "schema": "schema"; "ui": "ui"; "formData": "formData"; "button": "button"; "liveValidate": "liveValidate"; "autocomplete": "autocomplete"; "firstVisual": "firstVisual"; "onlyVisual": "onlyVisual"; "compact": "compact"; "mode": "mode"; "loading": "loading"; "disabled": "disabled"; "noColon": "noColon"; "cleanValue": "cleanValue"; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": "layout"; "schema": "schema"; "ui": "ui"; "formData": "formData"; "button": "button"; "liveValidate": "liveValidate"; "autocomplete": "autocomplete"; "firstVisual": "firstVisual"; "onlyVisual": "onlyVisual"; "compact": "compact"; "mode": "mode"; "loading": "loading"; "disabled": "disabled"; "noColon": "noColon"; "cleanValue": "cleanValue"; "delay": "delay"; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"]>;
 }

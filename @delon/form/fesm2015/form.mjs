@@ -104,7 +104,8 @@ const SF_DEFAULT_CONFIG = {
     uiDateNumberFormat: 'T',
     uiTimeStringFormat: 'HH:mm:ss',
     uiTimeNumberFormat: 'T',
-    uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com']
+    uiEmailSuffixes: ['qq.com', '163.com', 'gmail.com', '126.com', 'aliyun.com'],
+    delay: false
 };
 function mergeConfig(srv) {
     return srv.merge('sf', SF_DEFAULT_CONFIG);
@@ -1158,6 +1159,7 @@ class SFComponent {
         this.disabled = false;
         this.noColon = false;
         this.cleanValue = false;
+        this.delay = false;
         this.formValueChange = new EventEmitter();
         this.formChange = new EventEmitter();
         this.formSubmit = new EventEmitter();
@@ -1167,6 +1169,7 @@ class SFComponent {
         this.liveValidate = this.options.liveValidate;
         this.firstVisual = this.options.firstVisual;
         this.autocomplete = this.options.autocomplete;
+        this.delay = this.options.delay;
         this.localeSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
@@ -1236,7 +1239,8 @@ class SFComponent {
      * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素属性
      */
     getProperty(path) {
-        return this.rootProperty.searchProperty(path);
+        var _a;
+        return (_a = this.rootProperty) === null || _a === void 0 ? void 0 : _a.searchProperty(path);
     }
     /**
      * Get element value based on [path](https://ng-alain.com/form/qa#path)
@@ -1244,7 +1248,8 @@ class SFComponent {
      * 根据[路径](https://ng-alain.com/form/qa#path)获取表单元素值
      */
     getValue(path) {
-        return this.getProperty(path).value;
+        var _a;
+        return (_a = this.getProperty(path)) === null || _a === void 0 ? void 0 : _a.value;
     }
     /**
      * Set form element new value based on [path](https://ng-alain.com/form/qa#path)
@@ -1457,7 +1462,9 @@ class SFComponent {
             this.cdr.detectChanges();
             return;
         }
-        this.refreshSchema();
+        if (!this.delay) {
+            this.refreshSchema();
+        }
     }
     /** @internal */
     _addTpl(path, templateRef) {
@@ -1475,7 +1482,8 @@ class SFComponent {
     }
     attachCustomRender() {
         this._renders.forEach((tpl, path) => {
-            const property = this.rootProperty.searchProperty(path);
+            var _a;
+            const property = (_a = this.rootProperty) === null || _a === void 0 ? void 0 : _a.searchProperty(path);
             if (property == null) {
                 return;
             }
@@ -1490,7 +1498,7 @@ class SFComponent {
      * - `onlyRoot` 只对根进行检验，不进行向下逐个递归，根已经包含整个 Json Schema，默认：`true`
      */
     validator(options = { emitError: true, onlyRoot: true }) {
-        if (!this.platform.isBrowser) {
+        if (this.rootProperty == null || !this.platform.isBrowser) {
             return false;
         }
         const fn = (property) => {
@@ -1580,7 +1588,7 @@ class SFComponent {
      * @param [emit] 是否触发 `formReset` 事件，默认：`false`
      */
     reset(emit = false) {
-        if (!this.platform.isBrowser) {
+        if (this.rootProperty == null || !this.platform.isBrowser) {
             return this;
         }
         this.rootProperty.resetValue(this.formData, false);
@@ -1605,7 +1613,7 @@ class SFComponent {
     }
 }
 SFComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SFComponent, deps: [{ token: FormPropertyFactory }, { token: TerminatorService }, { token: i3$1.DomSanitizer }, { token: i0.ChangeDetectorRef }, { token: i4.DelonLocaleService }, { token: i5.ACLService, optional: true }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: i6.AlainConfigService }, { token: i7.Platform }], target: i0.ɵɵFactoryTarget.Component });
-SFComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.3", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: "liveValidate", autocomplete: "autocomplete", firstVisual: "firstVisual", onlyVisual: "onlyVisual", compact: "compact", mode: "mode", loading: "loading", disabled: "disabled", noColon: "noColon", cleanValue: "cleanValue" }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
+SFComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.3.3", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: "liveValidate", autocomplete: "autocomplete", firstVisual: "firstVisual", onlyVisual: "onlyVisual", compact: "compact", mode: "mode", loading: "loading", disabled: "disabled", noColon: "noColon", cleanValue: "cleanValue", delay: "delay" }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
         WidgetFactory,
         {
             provide: FormPropertyFactory,
@@ -1638,6 +1646,9 @@ __decorate([
 __decorate([
     InputBoolean()
 ], SFComponent.prototype, "cleanValue", void 0);
+__decorate([
+    InputBoolean()
+], SFComponent.prototype, "delay", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: SFComponent, decorators: [{
             type: Component,
             args: [{ selector: 'sf, [sf]', exportAs: 'sf', providers: [
@@ -1696,6 +1707,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImpor
             }], noColon: [{
                 type: Input
             }], cleanValue: [{
+                type: Input
+            }], delay: [{
                 type: Input
             }], formValueChange: [{
                 type: Output
