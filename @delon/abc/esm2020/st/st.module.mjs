@@ -26,8 +26,8 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
 export class STModule {
 }
-STModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
+STModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
         FormsModule,
         DelonACLModule,
         LetModule,
@@ -46,7 +46,7 @@ STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3
         NzResizableModule,
         NzInputNumberModule,
         NzDatePickerModule], exports: [STComponent, STRowDirective, STWidgetHostDirective] });
-STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: STModule, imports: [[
+STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: STModule, imports: [[
             CommonModule,
             FormsModule,
             DelonACLModule,
@@ -67,7 +67,7 @@ STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3
             NzInputNumberModule,
             NzDatePickerModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: STModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: STModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -111,15 +111,15 @@ export class ImageDirective {
         this.destroy$.complete();
     }
 }
-ImageDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ImageDirective, deps: [{ token: i0.ElementRef }, { token: i1.AlainConfigService }, { token: i2._HttpClient }, { token: i3.Platform }, { token: i4.NzModalService }], target: i0.ɵɵFactoryTarget.Directive });
-ImageDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.3", type: ImageDirective, selector: "[_src]", inputs: { src: ["_src", "src"], size: "size", error: "error", useHttp: "useHttp", previewSrc: "previewSrc", previewModalOptions: "previewModalOptions" }, host: { listeners: { "click": "open($event)" }, properties: { "class.point": "previewSrc" } }, exportAs: ["_src"], usesOnChanges: true, ngImport: i0 });
+ImageDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: ImageDirective, deps: [{ token: i0.ElementRef }, { token: i1.AlainConfigService }, { token: i2._HttpClient }, { token: i3.Platform }, { token: i4.NzModalService }], target: i0.ɵɵFactoryTarget.Directive });
+ImageDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.4", type: ImageDirective, selector: "[_src]", inputs: { src: ["_src", "src"], size: "size", error: "error", useHttp: "useHttp", previewSrc: "previewSrc", previewModalOptions: "previewModalOptions" }, host: { listeners: { "click": "open($event)" }, properties: { "class.point": "previewSrc" } }, exportAs: ["_src"], usesOnChanges: true, ngImport: i0 });
 __decorate([
     InputNumber()
 ], ImageDirective.prototype, "size", void 0);
 __decorate([
     InputBoolean()
 ], ImageDirective.prototype, "useHttp", void 0);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.3", ngImport: i0, type: ImageDirective, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.4", ngImport: i0, type: ImageDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[_src]',
