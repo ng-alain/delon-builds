@@ -19,11 +19,13 @@ export declare class STColumnSource {
     private i18nSrv;
     private stWidgetRegistry;
     private cog;
+    private voidIIf;
     constructor(dom: DomSanitizer, rowSource: STRowSource, acl: ACLService, i18nSrv: AlainI18NService, stWidgetRegistry: STWidgetRegistry);
     setCog(val: AlainSTConfig): void;
     private fixPop;
     private btnCoerce;
     private btnCoerceIf;
+    private fixMaxMultiple;
     private fixedCoerce;
     private sortCoerce;
     private fixSortCoerce;

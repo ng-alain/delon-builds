@@ -128,6 +128,7 @@ class STColumnSource {
         this.acl = acl;
         this.i18nSrv = i18nSrv;
         this.stWidgetRegistry = stWidgetRegistry;
+        this.voidIIf = () => true;
     }
     setCog(val) {
         this.cog = val;
@@ -201,7 +202,7 @@ class STColumnSource {
     btnCoerceIf(list) {
         for (const item of list) {
             if (!item.iif)
-                item.iif = () => true;
+                item.iif = this.voidIIf;
             item.iifBehavior = item.iifBehavior || this.cog.iifBehavior;
             if (item.children && item.children.length > 0) {
                 this.btnCoerceIf(item.children);
@@ -210,6 +211,18 @@ class STColumnSource {
                 item.children = [];
             }
         }
+    }
+    fixMaxMultiple(col) {
+        const curCog = col.maxMultipleButton;
+        const btns = col.buttons;
+        const btnSize = btns.length;
+        if (curCog == null || btnSize <= 0)
+            return;
+        const cog = Object.assign({ count: 2, text: '更多' }, (typeof curCog === 'number' ? { count: curCog } : curCog));
+        if (cog.count >= btnSize)
+            return;
+        col.buttons = btns.slice(0, cog.count);
+        col.buttons.push({ text: cog.text, children: btns.slice(cog.count), iif: this.voidIIf });
     }
     fixedCoerce(list) {
         const countReduce = (a, b) => a + +b.width.toString().replace('px', '');
@@ -485,6 +498,7 @@ class STColumnSource {
             item.filter = this.filterCoerce(item);
             // buttons
             item.buttons = this.btnCoerce(item.buttons);
+            this.fixMaxMultiple(item);
             // widget
             this.widgetCoerce(item);
             // restore custom row
