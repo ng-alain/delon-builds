@@ -218,7 +218,7 @@ class STColumnSource {
         const btnSize = btns.length;
         if (curCog == null || btnSize <= 0)
             return;
-        const cog = Object.assign({ count: 2, text: '更多' }, (typeof curCog === 'number' ? { count: curCog } : curCog));
+        const cog = Object.assign(Object.assign({}, this.cog.maxMultipleButton), (typeof curCog === 'number' ? { count: curCog } : curCog));
         if (cog.count >= btnSize)
             return;
         col.buttons = btns.slice(0, cog.count);
@@ -1182,6 +1182,10 @@ const ST_DEFAULT_CONFIG = {
         truth: true,
         yes: '是',
         mode: 'icon'
+    },
+    maxMultipleButton: {
+        text: '更多',
+        count: 2
     }
 };
 

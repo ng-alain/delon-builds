@@ -225,8 +225,7 @@ class STColumnSource {
         if (curCog == null || btnSize <= 0)
             return;
         const cog = {
-            count: 2,
-            text: '更多',
+            ...this.cog.maxMultipleButton,
             ...(typeof curCog === 'number' ? { count: curCog } : curCog)
         };
         if (cog.count >= btnSize)
@@ -1221,6 +1220,10 @@ const ST_DEFAULT_CONFIG = {
         truth: true,
         yes: '是',
         mode: 'icon'
+    },
+    maxMultipleButton: {
+        text: '更多',
+        count: 2
     }
 };
 
