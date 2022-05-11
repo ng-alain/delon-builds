@@ -314,7 +314,7 @@ class STColumnSource {
                 fixMenus = false;
                 break;
         }
-        if (fixMenus && res.menus?.length === 0) {
+        if (fixMenus && (res.menus == null || res.menus.length === 0)) {
             res.menus = [{ value }];
         }
         if (res.menus?.length === 0) {
