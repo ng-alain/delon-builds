@@ -60,8 +60,20 @@ export declare abstract class FormProperty {
     findRoot(): PropertyGroup;
     private isEmptyData;
     private setCustomErrors;
-    private mergeErrors;
-    protected setErrors(errors: ErrorData[], emitFormat?: boolean): void;
+    /**
+     * Set the current error message
+     *
+     * 设置当前错误消息
+     *
+     * @param emitFormat 若提供的消息带有 `{xx}` 会自动根据参数进行转化，包含自定义函数
+     *
+     * @example
+     *
+     * this.sf.getProperty('/name')?.setErrors({ keyword: 'required' });
+     * this.sf.getProperty('/name')?.setErrors({ message: 'Please input your username!' });
+     * this.sf.getProperty('/name')?.setErrors([]); // Clean error
+     */
+    setErrors(errors: ErrorData | ErrorData[], emitFormat?: boolean): void;
     setParentAndPlatErrors(errors: ErrorData[], path: string): void;
     /**
      * Set the hide or display of widget
