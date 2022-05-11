@@ -442,7 +442,7 @@ class FormProperty {
                 if (!err.message) {
                     throw new Error(`The custom validator must contain a 'message' attribute to viewed error text`);
                 }
-                err.keyword = null;
+                err._custom = true;
             });
         }
         this._errors = this.mergeErrors(errors, list);
@@ -459,32 +459,18 @@ class FormProperty {
         }
         return errors;
     }
-    /**
-     * Set the current error message
-     *
-     * 设置当前错误消息
-     *
-     * @param emitFormat 若提供的消息带有 `{xx}` 会自动根据参数进行转化，包含自定义函数
-     *
-     * @example
-     *
-     * this.sf.getProperty('/name')?.setErrors({ keyword: 'required' });
-     * this.sf.getProperty('/name')?.setErrors({ message: 'Please input your username!' });
-     * this.sf.getProperty('/name')?.setErrors([]); // Clean error
-     */
     setErrors(errors, emitFormat = true) {
-        let arrErrs = Array.isArray(errors) ? errors : [errors];
-        if (emitFormat && arrErrs && !this.ui.onlyVisual) {
+        if (emitFormat && errors && !this.ui.onlyVisual) {
             const l = (this.widget && this.widget.l.error) || {};
-            arrErrs = arrErrs.map((err) => {
-                let message = err.keyword == null && err.message
+            errors = errors.map((err) => {
+                let message = err._custom === true && err.message
                     ? err.message
                     : (this.ui.errors || {})[err.keyword] || this._options.errors[err.keyword] || l[err.keyword] || ``;
                 if (message && typeof message === 'function') {
                     message = message(err);
                 }
                 if (message) {
-                    if (~message.indexOf('{') && err.params) {
+                    if (~message.indexOf('{')) {
                         message = message.replace(/{([\.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] || '');
                     }
                     err.message = message;
@@ -492,11 +478,11 @@ class FormProperty {
                 return err;
             });
         }
-        this._errors = arrErrs;
-        this._errorsChanges.next(arrErrs);
+        this._errors = errors;
+        this._errorsChanges.next(errors);
         // Should send errors to parent field
         if (this._parent) {
-            this._parent.setParentAndPlatErrors(arrErrs, this.path);
+            this._parent.setParentAndPlatErrors(errors, this.path);
         }
     }
     setParentAndPlatErrors(errors, path) {
