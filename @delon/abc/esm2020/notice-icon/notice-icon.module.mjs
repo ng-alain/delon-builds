@@ -15,8 +15,8 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [NoticeIconComponent];
 export class NoticeIconModule {
 }
-NoticeIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-NoticeIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: NoticeIconModule, declarations: [NoticeIconComponent, NoticeIconTabComponent], imports: [CommonModule,
+NoticeIconModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+NoticeIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: NoticeIconModule, declarations: [NoticeIconComponent, NoticeIconTabComponent], imports: [CommonModule,
         DelonLocaleModule,
         NzBadgeModule,
         NzDropDownModule,
@@ -26,7 +26,7 @@ NoticeIconModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", versio
         NzTabsModule,
         NzTagModule,
         NzOutletModule], exports: [NoticeIconComponent] });
-NoticeIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: NoticeIconModule, imports: [[
+NoticeIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: NoticeIconModule, imports: [[
             CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
@@ -38,7 +38,7 @@ NoticeIconModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", versio
             NzTagModule,
             NzOutletModule
         ]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.5", ngImport: i0, type: NoticeIconModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: NoticeIconModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
