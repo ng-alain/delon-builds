@@ -2,6 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { DatePipe, YNPipe, _HttpClient } from '@delon/theme';
+import type { AlainSTConfig } from '@delon/util/config';
 import { CurrencyService } from '@delon/util/format';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
@@ -43,8 +44,10 @@ export declare class STDataSource {
     private numberPipe;
     private currencySrv;
     private dom;
+    private cog;
     private sortTick;
     constructor(http: _HttpClient, datePipe: DatePipe, ynPipe: YNPipe, numberPipe: DecimalPipe, currencySrv: CurrencyService, dom: DomSanitizer);
+    setCog(val: AlainSTConfig): void;
     process(options: STDataSourceOptions): Observable<STDataSourceResult>;
     private get;
     private getByRemote;
@@ -55,6 +58,7 @@ export declare class STDataSource {
     }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;
+    private fixMaxMultiple;
     private getValidSort;
     private getSorterFn;
     get nextSortTick(): number;
