@@ -262,6 +262,7 @@ class STColumnSource {
         return res;
     }
     filterCoerce(item) {
+        var _a, _b, _c, _d;
         if (item.filter == null) {
             return null;
         }
@@ -291,10 +292,10 @@ class STColumnSource {
                 fixMenus = false;
                 break;
         }
-        if (fixMenus && (res.menus == null || res.menus.length === 0)) {
+        if (fixMenus && ((_a = res.menus) === null || _a === void 0 ? void 0 : _a.length) === 0) {
             res.menus = [{ value }];
         }
-        if (res.menus.length === 0) {
+        if (((_b = res.menus) === null || _b === void 0 ? void 0 : _b.length) === 0) {
             return null;
         }
         if (typeof res.multiple === 'undefined') {
@@ -313,12 +314,9 @@ class STColumnSource {
         }
         this.updateDefault(res);
         if (this.acl) {
-            res.menus = res.menus.filter(w => this.acl.can(w.acl));
+            res.menus = (_c = res.menus) === null || _c === void 0 ? void 0 : _c.filter(w => this.acl.can(w.acl));
         }
-        if (res.menus.length <= 0) {
-            res = null;
-        }
-        return res;
+        return ((_d = res.menus) === null || _d === void 0 ? void 0 : _d.length) === 0 ? null : res;
     }
     restoreRender(item) {
         if (item.renderTitle) {
@@ -531,6 +529,8 @@ class STColumnSource {
         columns.forEach(i => this.restoreRender(i));
     }
     updateDefault(filter) {
+        if (filter.menus == null)
+            return this;
         if (filter.type === 'default') {
             filter.default = filter.menus.findIndex(w => w.checked) !== -1;
         }
