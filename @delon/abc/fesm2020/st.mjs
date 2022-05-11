@@ -831,7 +831,7 @@ class STDataSource {
     genButtons(_btns, item, col) {
         const fn = (btns) => {
             return deepCopy(btns).filter(btn => {
-                const result = typeof item.iif === 'function' ? btn.iif(item, btn, col) : true;
+                const result = typeof btn.iif === 'function' ? btn.iif(item, btn, col) : true;
                 const isRenderDisabled = btn.iifBehavior === 'disabled';
                 btn._result = result;
                 btn._disabled = !result && isRenderDisabled;
