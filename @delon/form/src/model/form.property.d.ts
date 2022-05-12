@@ -71,9 +71,9 @@ export declare abstract class FormProperty {
      *
      * this.sf.getProperty('/name')?.setErrors({ keyword: 'required' });
      * this.sf.getProperty('/name')?.setErrors({ message: 'Please input your username!' });
-     * this.sf.getProperty('/name')?.setErrors([]); // Clean error
+     * this.sf.getProperty('/name')?.setErrors(); // Clean error
      */
-    setErrors(errors: ErrorData | ErrorData[], emitFormat?: boolean): void;
+    setErrors(errors?: ErrorData | ErrorData[], emitFormat?: boolean): void;
     setParentAndPlatErrors(errors: ErrorData[], path: string): void;
     /**
      * Set the hide or display of widget
