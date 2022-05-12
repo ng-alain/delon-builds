@@ -428,7 +428,7 @@ class FormProperty {
         this.setErrors(this._errors);
     }
     setCustomErrors(errors, list) {
-        const hasCustomError = list != null && list.length > 0;
+        const hasCustomError = Array.isArray(list) && list.length > 0;
         if (hasCustomError) {
             list.forEach(err => {
                 if (!err.message) {
@@ -437,7 +437,7 @@ class FormProperty {
                 err.keyword = null;
             });
         }
-        this._errors = list && Array.isArray(list) ? errors.concat(...list) : errors;
+        this._errors = hasCustomError ? errors.concat(...list) : errors;
         this.setErrors(this._errors);
     }
     /**
