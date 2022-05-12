@@ -18,9 +18,9 @@ class CurrencyMegaPipe {
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
 }
-CurrencyMegaPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyMegaPipe, deps: [{ token: i1.CurrencyService }, { token: LOCALE_ID }], target: i0.ɵɵFactoryTarget.Pipe });
-CurrencyMegaPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyMegaPipe, name: "mega" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
+CurrencyMegaPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyMegaPipe, deps: [{ token: i1.CurrencyService }, { token: LOCALE_ID }], target: i0.ɵɵFactoryTarget.Pipe });
+CurrencyMegaPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyMegaPipe, name: "mega" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'mega' }]
         }], ctorParameters: function () {
@@ -47,9 +47,9 @@ class CurrencyPricePipe {
         return this.srv.format(value, options);
     }
 }
-CurrencyPricePipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPricePipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
-CurrencyPricePipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPricePipe, name: "price" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPricePipe, decorators: [{
+CurrencyPricePipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPricePipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
+CurrencyPricePipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPricePipe, name: "price" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPricePipe, decorators: [{
             type: Pipe,
             args: [{ name: 'price' }]
         }], ctorParameters: function () { return [{ type: i1.CurrencyService }]; } });
@@ -67,9 +67,9 @@ class CurrencyCNYPipe {
         return this.srv.cny(value, options);
     }
 }
-CurrencyCNYPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
-CurrencyCNYPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyCNYPipe, name: "cny" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
+CurrencyCNYPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
+CurrencyCNYPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyCNYPipe, name: "cny" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'cny' }]
         }], ctorParameters: function () { return [{ type: i1.CurrencyService }]; } });
@@ -77,10 +77,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImpor
 const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
 }
-CurrencyPipeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPipeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CurrencyPipeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPipeModule, declarations: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe], exports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe] });
-CurrencyPipeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPipeModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: CurrencyPipeModule, decorators: [{
+CurrencyPipeModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPipeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CurrencyPipeModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPipeModule, declarations: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe], exports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe] });
+CurrencyPipeModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPipeModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: CurrencyPipeModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: PIPES,

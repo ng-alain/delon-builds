@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [G2WaterWaveComponent];
 export class G2WaterWaveModule {
 }
-G2WaterWaveModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2WaterWaveModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-G2WaterWaveModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2WaterWaveModule, declarations: [G2WaterWaveComponent], imports: [CommonModule, NzOutletModule], exports: [G2WaterWaveComponent] });
-G2WaterWaveModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2WaterWaveModule, imports: [[CommonModule, NzOutletModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2WaterWaveModule, decorators: [{
+G2WaterWaveModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2WaterWaveModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+G2WaterWaveModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2WaterWaveModule, declarations: [G2WaterWaveComponent], imports: [CommonModule, NzOutletModule], exports: [G2WaterWaveComponent] });
+G2WaterWaveModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2WaterWaveModule, imports: [[CommonModule, NzOutletModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2WaterWaveModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzOutletModule],

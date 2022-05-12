@@ -151,9 +151,9 @@ class MockService {
         this.clearCache();
     }
 }
-MockService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: MockOptions }], target: i0.ɵɵFactoryTarget.Injectable });
-MockService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockService, decorators: [{
+MockService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: MockOptions }], target: i0.ɵɵFactoryTarget.Injectable });
+MockService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: MockOptions }]; } });
@@ -253,9 +253,9 @@ class MockInterceptor {
         return res$.pipe(delay(config.delay));
     }
 }
-MockInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
-MockInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockInterceptor });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: MockInterceptor, decorators: [{
+MockInterceptor.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
+MockInterceptor.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockInterceptor });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: MockInterceptor, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i0.Injector }]; } });
 
@@ -276,10 +276,10 @@ class DelonMockModule {
         };
     }
 }
-DelonMockModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonMockModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: DelonMockModule });
-DelonMockModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: DelonMockModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: DelonMockModule, decorators: [{
+DelonMockModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonMockModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonMockModule });
+DelonMockModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonMockModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonMockModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });

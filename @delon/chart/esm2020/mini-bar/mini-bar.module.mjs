@@ -5,10 +5,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [G2MiniBarComponent];
 export class G2MiniBarModule {
 }
-G2MiniBarModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2MiniBarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-G2MiniBarModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2MiniBarModule, declarations: [G2MiniBarComponent], imports: [CommonModule], exports: [G2MiniBarComponent] });
-G2MiniBarModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2MiniBarModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.6", ngImport: i0, type: G2MiniBarModule, decorators: [{
+G2MiniBarModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2MiniBarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+G2MiniBarModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2MiniBarModule, declarations: [G2MiniBarComponent], imports: [CommonModule], exports: [G2MiniBarComponent] });
+G2MiniBarModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2MiniBarModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: G2MiniBarModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],
