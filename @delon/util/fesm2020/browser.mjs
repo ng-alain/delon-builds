@@ -81,7 +81,7 @@ class CookieService {
      * 移除指定 Cookie
      */
     remove(key, options) {
-        this.put(key, undefined, options);
+        this.put(key, '', options);
     }
     /**
      * Remove all cookies

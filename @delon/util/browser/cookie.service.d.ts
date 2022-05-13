@@ -49,7 +49,7 @@ export declare class CookieService {
      *
      * 设置指定 Cookie 键的值
      */
-    put(key: string, value: string | undefined, options?: CookieOptions): void;
+    put(key: string, value: string, options?: CookieOptions): void;
     /**
      * Remove given cookie
      *
