@@ -166,7 +166,6 @@ export declare class _HttpClient {
      * **DELETE Request** Return a `string` type / 返回一个 `string` 类型
      */
     delete(url: string, params: any, options: {
-        body?: any;
         headers?: _HttpHeaders;
         observe?: 'body';
         reportProgress?: boolean;
@@ -178,7 +177,6 @@ export declare class _HttpClient {
      * **DELETE Request** Return a `JSON` type / 返回一个 `JSON` 类型
      */
     delete(url: string, params: any, options: {
-        body?: any;
         headers?: _HttpHeaders;
         observe: 'response';
         reportProgress?: boolean;
@@ -190,7 +188,6 @@ export declare class _HttpClient {
      * **DELETE Request** Return a `any` type / 返回一个 `any` 类型
      */
     delete(url: string, params?: any, options?: {
-        body?: any;
         headers?: _HttpHeaders;
         observe?: 'body' | 'events' | 'response';
         reportProgress?: boolean;
@@ -202,7 +199,6 @@ export declare class _HttpClient {
      * c返回一个泛类型
      */
     delete<T>(url: string, params?: any, options?: {
-        body?: any;
         headers?: _HttpHeaders;
         observe?: 'body' | 'events' | 'response';
         reportProgress?: boolean;

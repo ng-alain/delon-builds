@@ -2361,7 +2361,7 @@ function makeMethod(method) {
                     headers['content-type'] = 'application/x-www-form-urlencoded';
                 }
                 const payload = getValidArgs(data, 'payload', args);
-                const supportedBody = ['POST', 'PUT', 'PATCH', 'DELETE'].some(v => v === method);
+                const supportedBody = method === 'POST' || method === 'PUT';
                 return http.request(method, requestUrl, {
                     body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null,
                     params: !supportedBody ? { ...params, ...payload } : params,
