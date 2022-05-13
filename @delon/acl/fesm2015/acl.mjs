@@ -194,9 +194,9 @@ class ACLService {
         return this.can(this.parseAbility(value));
     }
 }
-ACLService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
-ACLService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLService, decorators: [{
+ACLService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+ACLService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLService, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }]; } });
 
@@ -257,9 +257,9 @@ class ACLIfDirective {
         this._change$.unsubscribe();
     }
 }
-ACLIfDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLIfDirective, deps: [{ token: i0.TemplateRef }, { token: ACLService }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
-ACLIfDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.7", type: ACLIfDirective, selector: "[aclIf]", inputs: { aclIf: "aclIf", aclIfThen: "aclIfThen", aclIfElse: "aclIfElse", except: "except" }, exportAs: ["aclIf"], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLIfDirective, decorators: [{
+ACLIfDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLIfDirective, deps: [{ token: i0.TemplateRef }, { token: ACLService }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
+ACLIfDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.8", type: ACLIfDirective, selector: "[aclIf]", inputs: { aclIf: "aclIf", aclIfThen: "aclIfThen", aclIfElse: "aclIfElse", except: "except" }, exportAs: ["aclIf"], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLIfDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[aclIf]',
@@ -303,9 +303,9 @@ class ACLDirective {
         this.change$.unsubscribe();
     }
 }
-ACLDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: ACLService }], target: i0.ɵɵFactoryTarget.Directive });
-ACLDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.7", type: ACLDirective, selector: "[acl]", inputs: { acl: "acl", ability: ["acl-ability", "ability"] }, exportAs: ["acl"], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLDirective, decorators: [{
+ACLDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: ACLService }], target: i0.ɵɵFactoryTarget.Directive });
+ACLDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.8", type: ACLDirective, selector: "[acl]", inputs: { acl: "acl", ability: ["acl-ability", "ability"] }, exportAs: ["acl"], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[acl]',
@@ -360,9 +360,9 @@ class ACLGuard {
         return this.process(route.data);
     }
 }
-ACLGuard.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLGuard, deps: [{ token: ACLService }, { token: i2.Router }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
-ACLGuard.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLGuard, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ACLGuard, decorators: [{
+ACLGuard.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLGuard, deps: [{ token: ACLService }, { token: i2.Router }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable });
+ACLGuard.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLGuard, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ACLGuard, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: ACLService }, { type: i2.Router }, { type: i0.Injector }]; } });
@@ -376,10 +376,10 @@ class DelonACLModule {
         };
     }
 }
-DelonACLModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonACLModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonACLModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonACLModule, declarations: [ACLDirective, ACLIfDirective], imports: [CommonModule], exports: [ACLDirective, ACLIfDirective] });
-DelonACLModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonACLModule, imports: [[CommonModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: DelonACLModule, decorators: [{
+DelonACLModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: DelonACLModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonACLModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: DelonACLModule, declarations: [ACLDirective, ACLIfDirective], imports: [CommonModule], exports: [ACLDirective, ACLIfDirective] });
+DelonACLModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: DelonACLModule, imports: [[CommonModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: DelonACLModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],

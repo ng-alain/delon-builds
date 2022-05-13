@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [ErrorCollectComponent];
 export class ErrorCollectModule {
 }
-ErrorCollectModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ErrorCollectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ErrorCollectModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ErrorCollectModule, declarations: [ErrorCollectComponent], imports: [CommonModule, NzIconModule], exports: [ErrorCollectComponent] });
-ErrorCollectModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ErrorCollectModule, imports: [[CommonModule, NzIconModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.7", ngImport: i0, type: ErrorCollectModule, decorators: [{
+ErrorCollectModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ErrorCollectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ErrorCollectModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ErrorCollectModule, declarations: [ErrorCollectComponent], imports: [CommonModule, NzIconModule], exports: [ErrorCollectComponent] });
+ErrorCollectModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ErrorCollectModule, imports: [[CommonModule, NzIconModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.8", ngImport: i0, type: ErrorCollectModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzIconModule],
