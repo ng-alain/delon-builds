@@ -1,8 +1,7 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
-import { fromEvent } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { fromEvent, debounceTime } from 'rxjs';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import * as i1 from '@angular/cdk/platform';
 import * as i2 from '@angular/common';

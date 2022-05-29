@@ -1,8 +1,7 @@
 import { __rest, __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, Injector, HostBinding, ElementRef, NgZone, NgModule } from '@angular/core';
-import { of, BehaviorSubject, Observable, combineLatest, Subject, merge } from 'rxjs';
-import { map, distinctUntilChanged, takeUntil, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs/operators';
+import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, takeUntil, merge, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import * as i6 from '@delon/util/config';

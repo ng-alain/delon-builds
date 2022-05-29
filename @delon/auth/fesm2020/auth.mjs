@@ -1,8 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, Optional, NgModule } from '@angular/core';
-import { Subject, BehaviorSubject, interval, Observable } from 'rxjs';
-import { share, map, filter } from 'rxjs/operators';
+import { Subject, BehaviorSubject, share, interval, map, filter, Observable } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
