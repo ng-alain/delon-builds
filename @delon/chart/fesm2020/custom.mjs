@@ -1,7 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { fromEvent, takeUntil, debounceTime } from 'rxjs';
+import { fromEvent } from 'rxjs';
+import { takeUntil, debounceTime } from 'rxjs/operators';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
 import * as i1 from 'ng-zorro-antd/skeleton';

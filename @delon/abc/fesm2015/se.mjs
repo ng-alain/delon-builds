@@ -1,7 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, TemplateRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { BehaviorSubject, filter, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i3 from '@angular/common';

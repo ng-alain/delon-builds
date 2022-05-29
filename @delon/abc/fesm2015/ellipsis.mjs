@@ -3,7 +3,7 @@ import * as i3 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, ViewChild, Input, NgModule } from '@angular/core';
-import { take } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import * as i1 from '@angular/platform-browser';
 import * as i2 from '@angular/cdk/observers';

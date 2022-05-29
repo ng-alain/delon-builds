@@ -1,6 +1,7 @@
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { WINDOW } from '@delon/util/token';
 import { __decorate } from 'tslib';
 import { InputBoolean } from '@delon/util/decorator';

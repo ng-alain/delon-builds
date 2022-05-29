@@ -2,7 +2,8 @@ import extend from 'extend';
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
-import { BehaviorSubject, share, filter, isObservable } from 'rxjs';
+import { BehaviorSubject, isObservable } from 'rxjs';
+import { share, filter } from 'rxjs/operators';
 
 /**
  * Gets the value at `path` of `object`, like `_.get` in lodash.

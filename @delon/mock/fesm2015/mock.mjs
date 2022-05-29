@@ -2,7 +2,8 @@ import * as i0 from '@angular/core';
 import { Injectable, NgModule } from '@angular/core';
 import * as i1 from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { throwError, of, delay } from 'rxjs';
+import { throwError, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
 import { deepCopy } from '@delon/util/other';
 
 class MockOptions {

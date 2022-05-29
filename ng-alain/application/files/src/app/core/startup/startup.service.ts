@@ -5,7 +5,8 @@ import { DA_SERVICE_TOKEN, ITokenService } from '@delon/auth';
 import { ALAIN_I18N_TOKEN, MenuService, SettingsService, TitleService } from '@delon/theme';
 import { ACLService } from '@delon/acl';<% if (i18n) { %>
 import { I18NService } from '../i18n/i18n.service';<% } %>
-import { Observable, zip, of, catchError, map } from 'rxjs';
+import { Observable, zip, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzIconService } from 'ng-zorro-antd/icon';
 

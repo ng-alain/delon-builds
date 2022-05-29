@@ -1,7 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { Subject, share, timer, takeUntil, take } from 'rxjs';
+import { Subject, timer } from 'rxjs';
+import { share, takeUntil, take } from 'rxjs/operators';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';

@@ -1,7 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input, Output, NgModule } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { InputBoolean } from '@delon/util/decorator';
 import * as i1 from '@delon/theme';
 import { DelonLocaleModule } from '@delon/theme';

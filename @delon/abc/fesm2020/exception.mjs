@@ -1,6 +1,7 @@
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { isEmpty } from '@delon/util/browser';
 import * as i1 from '@delon/theme';
 import { DelonLocaleModule } from '@delon/theme';
