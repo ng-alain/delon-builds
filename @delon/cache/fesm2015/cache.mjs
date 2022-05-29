@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, NgModule } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
-import { tap, map } from 'rxjs/operators';
+import { Observable, tap, map, of, BehaviorSubject } from 'rxjs';
 import { addSeconds } from 'date-fns';
 import * as i3 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';

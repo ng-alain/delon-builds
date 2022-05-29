@@ -1,8 +1,7 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Directive, Input, NgModule } from '@angular/core';
-import { Subject, of, throwError, Observable } from 'rxjs';
-import { takeUntil, take, finalize, filter } from 'rxjs/operators';
+import { Subject, takeUntil, take, of, throwError, Observable, finalize, filter } from 'rxjs';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/theme';

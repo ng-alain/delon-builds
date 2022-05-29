@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { EventEmitter, Directive, Input, Output, NgModule } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { finalize } from 'rxjs';
 import { saveAs } from 'file-saver';
 import * as i1 from '@delon/theme';
 import { AlainThemeModule } from '@delon/theme';

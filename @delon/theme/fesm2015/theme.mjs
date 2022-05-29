@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Optional, Inject, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
-import { BehaviorSubject, Subject, of, Observable, throwError } from 'rxjs';
-import { filter, share, map, delay, tap, switchMap, finalize, catchError } from 'rxjs/operators';
+import { BehaviorSubject, filter, share, Subject, map, of, Observable, delay, tap, switchMap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';

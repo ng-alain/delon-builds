@@ -1,8 +1,7 @@
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Optional, ContentChildren, NgModule } from '@angular/core';
 import { __decorate } from 'tslib';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Subject, takeUntil } from 'rxjs';
 import { InputNumber } from '@delon/util/decorator';
 import * as i1 from '@angular/cdk/bidi';
 import * as i2 from 'ng-zorro-antd/avatar';
