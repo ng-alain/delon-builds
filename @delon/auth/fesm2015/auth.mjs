@@ -7,7 +7,7 @@ import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
 import { Router } from '@angular/router';
-import { HttpContextToken, HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const AUTH_DEFAULT_CONFIG = {
     store_key: `_token`,
@@ -321,20 +321,6 @@ class CookieStorageStore {
     }
 }
 
-/**
- * Whether to allow anonymous login
- *
- * 是否允许匿名登录
- *
- * @example
- * this.http.post(`login`, {
- *  name: 'cipchk', pwd: '123456'
- * }, {
- *  context: new HttpContext().set(ALLOW_ANONYMOUS, true)
- * })
- */
-const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
-
 function CheckSimple(model) {
     return model != null && typeof model.token === 'string' && model.token.length > 0;
 }
@@ -385,8 +371,6 @@ class BaseInterceptor {
                     return next.handle(req);
             }
         }
-        if (req.context.get(ALLOW_ANONYMOUS))
-            return next.handle(req);
         const ingoreKey = options.allow_anonymous_key;
         let ingored = false;
         let params = req.params;
@@ -414,15 +398,11 @@ class BaseInterceptor {
             ToLogin(options, this.injector);
             // Interrupt Http request, so need to generate a new Observable
             const err$ = new Observable((observer) => {
-                let statusText = '';
-                if (typeof ngDevMode === 'undefined' || ngDevMode) {
-                    statusText = `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`;
-                }
                 const res = new HttpErrorResponse({
                     url: req.url,
                     headers: req.headers,
                     status: 401,
-                    statusText
+                    statusText: `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`
                 });
                 observer.error(res);
             });
@@ -747,5 +727,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.10", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
+export { AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
 //# sourceMappingURL=auth.mjs.map

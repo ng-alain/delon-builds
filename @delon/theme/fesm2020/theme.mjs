@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Optional, Inject, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
-import { BehaviorSubject, Subject, of, Observable, throwError } from 'rxjs';
-import { filter, share, map, delay, tap, switchMap, finalize, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Subject, takeUntil, of, delay, map as map$1, isObservable, switchMap, Observable, throwError } from 'rxjs';
+import { filter, share, map, delay as delay$1, tap, switchMap as switchMap$1, finalize, catchError } from 'rxjs/operators';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';
@@ -16,7 +16,7 @@ import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/modal';
 import * as i1$6 from 'ng-zorro-antd/drawer';
 import * as i1$7 from '@angular/common/http';
-import { HttpParams, HttpContextToken } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 import { formatDistanceToNow, format } from 'date-fns';
 import { toDate } from '@delon/util/date-time';
 import * as i1$8 from 'ng-zorro-antd/i18n';
@@ -625,40 +625,64 @@ class TitleService {
         this._suffix = '';
         this._separator = ' - ';
         this._reverse = false;
+        this.destroy$ = new Subject();
         this.DELAY_TIME = 25;
-        /** 设置默认标题名 */
+        /**
+         * Set default title name
+         *
+         * 设置默认标题名
+         */
         this.default = `Not Page Name`;
-        this.i18n$ = this.i18nSrv.change.pipe(filter(() => !!this.i18n$)).subscribe(() => this.setTitle());
+        this.i18nSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.setTitle());
     }
-    /** 设置分隔符 */
+    /**
+     * Set separator
+     *
+     * 设置分隔符
+     */
     set separator(value) {
         this._separator = value;
     }
-    /** 设置前缀 */
+    /**
+     * Set prefix
+     *
+     * 设置前缀
+     */
     set prefix(value) {
         this._prefix = value;
     }
-    /** 设置后缀 */
+    /**
+     * Set suffix
+     *
+     * 设置后缀
+     */
     set suffix(value) {
         this._suffix = value;
     }
-    /** 设置是否反转 */
+    /**
+     * Set whether to reverse
+     *
+     * 设置是否反转
+     */
     set reverse(value) {
         this._reverse = value;
     }
     getByElement() {
-        const el = (this.doc.querySelector('.alain-default__content-title h1') ||
-            this.doc.querySelector('.page-header__title'));
-        if (el) {
-            let text = '';
-            el.childNodes.forEach(val => {
-                if (!text && val.nodeType === 3) {
-                    text = val.textContent.trim();
-                }
-            });
-            return text || el.firstChild.textContent.trim();
-        }
-        return '';
+        return of('').pipe(delay(this.DELAY_TIME), map$1(() => {
+            const el = ((this.selector != null ? this.doc.querySelector(this.selector) : null) ||
+                this.doc.querySelector('.alain-default__content-title h1') ||
+                this.doc.querySelector('.page-header__title'));
+            if (el) {
+                let text = '';
+                el.childNodes.forEach(val => {
+                    if (!text && val.nodeType === 3) {
+                        text = val.textContent.trim();
+                    }
+                });
+                return text || el.firstChild.textContent.trim();
+            }
+            return '';
+        }));
     }
     getByRoute() {
         let next = this.injector.get(ActivatedRoute);
@@ -667,43 +691,39 @@ class TitleService {
         const data = (next.snapshot && next.snapshot.data) || {};
         if (data.titleI18n && this.i18nSrv)
             data.title = this.i18nSrv.fanyi(data.titleI18n);
-        return data.title;
+        return isObservable(data.title) ? data.title : of(data.title);
     }
     getByMenu() {
         const menus = this.menuSrv.getPathByUrl(this.injector.get(Router).url);
         if (!menus || menus.length <= 0)
-            return '';
+            return of('');
         const item = menus[menus.length - 1];
         let title;
         if (item.i18n && this.i18nSrv)
             title = this.i18nSrv.fanyi(item.i18n);
-        return title || item.text;
-    }
-    _setTitle(title) {
-        if (!title) {
-            title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
-        }
-        if (title && !Array.isArray(title)) {
-            title = [title];
-        }
-        let newTitles = [];
-        if (this._prefix) {
-            newTitles.push(this._prefix);
-        }
-        newTitles.push(...title);
-        if (this._suffix) {
-            newTitles.push(this._suffix);
-        }
-        if (this._reverse) {
-            newTitles = newTitles.reverse();
-        }
-        this.title.setTitle(newTitles.join(this._separator));
+        return of(title || item.text);
     }
     /**
-     * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
+     * Set the document title
      */
     setTitle(title) {
-        setTimeout(() => this._setTitle(title), this.DELAY_TIME);
+        this.tit$?.unsubscribe();
+        this.tit$ = of(title)
+            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map$1(tit => tit || this.default), map$1(title => (!Array.isArray(title) ? [title] : title)), takeUntil(this.destroy$))
+            .subscribe(titles => {
+            let newTitles = [];
+            if (this._prefix) {
+                newTitles.push(this._prefix);
+            }
+            newTitles.push(...titles);
+            if (this._suffix) {
+                newTitles.push(this._suffix);
+            }
+            if (this._reverse) {
+                newTitles = newTitles.reverse();
+            }
+            this.title.setTitle(newTitles.join(this._separator));
+        });
     }
     /**
      * Set i18n key of the document title
@@ -712,7 +732,9 @@ class TitleService {
         this.setTitle(this.i18nSrv.fanyi(key, params));
     }
     ngOnDestroy() {
-        this.i18n$.unsubscribe();
+        this.tit$?.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
 }
 TitleService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.10", ngImport: i0, type: TitleService, deps: [{ token: i0.Injector }, { token: i1$4.Title }, { token: MenuService }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -2168,7 +2190,7 @@ class _HttpClient {
     jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
         return of(null).pipe(
         // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
-        delay(0), tap(() => this.push()), switchMap(() => this.http.jsonp(this.appliedUrl(url, params), callbackParam)), finalize(() => this.pop()));
+        delay$1(0), tap(() => this.push()), switchMap$1(() => this.http.jsonp(this.appliedUrl(url, params), callbackParam)), finalize(() => this.pop()));
     }
     patch(url, body, params, options = {}) {
         return this.request('PATCH', url, {
@@ -2199,7 +2221,7 @@ class _HttpClient {
             options.params = this.parseParams(options.params);
         return of(null).pipe(
         // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
-        delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
+        delay$1(0), tap(() => this.push()), switchMap$1(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
 }
 _HttpClient.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.10", ngImport: i0, type: _HttpClient, deps: [{ token: i1$7.HttpClient }, { token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -2419,37 +2441,6 @@ const JSONP = makeMethod('JSONP');
  */
 const FORM = makeMethod('FORM');
 
-/**
- * Whether to customize the handling of exception messages
- *
- * 是否自定义处理异常消息
- *
- * @example
- * this.http.post(`login`, {
- *  name: 'cipchk', pwd: '123456'
- * }, {
- *  context: new HttpContext()
- *              .set(ALLOW_ANONYMOUS, true)
- *              .set(CUSTOM_ERROR, true)
- * }).subscribe({
- *  next: console.log,
- *  error: console.log
- * });
- */
-const CUSTOM_ERROR = new HttpContextToken(() => false);
-/**
- * Whether to ignore API prefixes
- *
- * 是否忽略API前缀
- *
- * @example
- * // When environment.api.baseUrl set '/api'
- *
- * this.http.get(`/path`) // Request Url: /api/path
- * this.http.get(`/path`, { context: new HttpContext().set(IGNORE_BASE_URL, true) }) // Request Url: /path
- */
-const IGNORE_BASE_URL = new HttpContextToken(() => false);
-
 class DatePipe {
     constructor(nzI18n) {
         this.nzI18n = nzI18n;
@@ -2633,5 +2624,5 @@ const VERSION = new Version('13.5.0');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
