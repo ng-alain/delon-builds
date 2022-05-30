@@ -1,0 +1,10 @@
+{
+  "module": "../fesm2015/image.mjs",
+  "es2020": "../fesm2020/image.mjs",
+  "esm2020": "../esm2020/image/image.mjs",
+  "fesm2020": "../fesm2020/image.mjs",
+  "fesm2015": "../fesm2015/image.mjs",
+  "typings": "image.d.ts",
+  "sideEffects": false,
+  "name": "@delon/abc/image"
+}
