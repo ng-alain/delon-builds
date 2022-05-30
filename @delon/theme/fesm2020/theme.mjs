@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Optional, Inject, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
-import { BehaviorSubject, filter, share, Subject, map, takeUntil, of, delay, isObservable, switchMap, Observable, tap, finalize, throwError, catchError } from 'rxjs';
+import { BehaviorSubject, filter, share, Subject, map, of, Observable, delay, tap, switchMap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';
@@ -624,64 +624,40 @@ class TitleService {
         this._suffix = '';
         this._separator = ' - ';
         this._reverse = false;
-        this.destroy$ = new Subject();
         this.DELAY_TIME = 25;
-        /**
-         * Set default title name
-         *
-         * 设置默认标题名
-         */
+        /** 设置默认标题名 */
         this.default = `Not Page Name`;
-        this.i18nSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.setTitle());
+        this.i18n$ = this.i18nSrv.change.pipe(filter(() => !!this.i18n$)).subscribe(() => this.setTitle());
     }
-    /**
-     * Set separator
-     *
-     * 设置分隔符
-     */
+    /** 设置分隔符 */
     set separator(value) {
         this._separator = value;
     }
-    /**
-     * Set prefix
-     *
-     * 设置前缀
-     */
+    /** 设置前缀 */
     set prefix(value) {
         this._prefix = value;
     }
-    /**
-     * Set suffix
-     *
-     * 设置后缀
-     */
+    /** 设置后缀 */
     set suffix(value) {
         this._suffix = value;
     }
-    /**
-     * Set whether to reverse
-     *
-     * 设置是否反转
-     */
+    /** 设置是否反转 */
     set reverse(value) {
         this._reverse = value;
     }
     getByElement() {
-        return of('').pipe(delay(this.DELAY_TIME), map(() => {
-            const el = ((this.selector != null ? this.doc.querySelector(this.selector) : null) ||
-                this.doc.querySelector('.alain-default__content-title h1') ||
-                this.doc.querySelector('.page-header__title'));
-            if (el) {
-                let text = '';
-                el.childNodes.forEach(val => {
-                    if (!text && val.nodeType === 3) {
-                        text = val.textContent.trim();
-                    }
-                });
-                return text || el.firstChild.textContent.trim();
-            }
-            return '';
-        }));
+        const el = (this.doc.querySelector('.alain-default__content-title h1') ||
+            this.doc.querySelector('.page-header__title'));
+        if (el) {
+            let text = '';
+            el.childNodes.forEach(val => {
+                if (!text && val.nodeType === 3) {
+                    text = val.textContent.trim();
+                }
+            });
+            return text || el.firstChild.textContent.trim();
+        }
+        return '';
     }
     getByRoute() {
         let next = this.injector.get(ActivatedRoute);
@@ -690,39 +666,43 @@ class TitleService {
         const data = (next.snapshot && next.snapshot.data) || {};
         if (data.titleI18n && this.i18nSrv)
             data.title = this.i18nSrv.fanyi(data.titleI18n);
-        return isObservable(data.title) ? data.title : of(data.title);
+        return data.title;
     }
     getByMenu() {
         const menus = this.menuSrv.getPathByUrl(this.injector.get(Router).url);
         if (!menus || menus.length <= 0)
-            return of('');
+            return '';
         const item = menus[menus.length - 1];
         let title;
         if (item.i18n && this.i18nSrv)
             title = this.i18nSrv.fanyi(item.i18n);
-        return of(title || item.text);
+        return title || item.text;
+    }
+    _setTitle(title) {
+        if (!title) {
+            title = this.getByRoute() || this.getByMenu() || this.getByElement() || this.default;
+        }
+        if (title && !Array.isArray(title)) {
+            title = [title];
+        }
+        let newTitles = [];
+        if (this._prefix) {
+            newTitles.push(this._prefix);
+        }
+        newTitles.push(...title);
+        if (this._suffix) {
+            newTitles.push(this._suffix);
+        }
+        if (this._reverse) {
+            newTitles = newTitles.reverse();
+        }
+        this.title.setTitle(newTitles.join(this._separator));
     }
     /**
-     * Set the document title
+     * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
      */
     setTitle(title) {
-        this.tit$?.unsubscribe();
-        this.tit$ = of(title)
-            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map(tit => tit || this.default), map(title => (!Array.isArray(title) ? [title] : title)), takeUntil(this.destroy$))
-            .subscribe(titles => {
-            let newTitles = [];
-            if (this._prefix) {
-                newTitles.push(this._prefix);
-            }
-            newTitles.push(...titles);
-            if (this._suffix) {
-                newTitles.push(this._suffix);
-            }
-            if (this._reverse) {
-                newTitles = newTitles.reverse();
-            }
-            this.title.setTitle(newTitles.join(this._separator));
-        });
+        setTimeout(() => this._setTitle(title), this.DELAY_TIME);
     }
     /**
      * Set i18n key of the document title
@@ -731,9 +711,7 @@ class TitleService {
         this.setTitle(this.i18nSrv.fanyi(key, params));
     }
     ngOnDestroy() {
-        this.tit$?.unsubscribe();
-        this.destroy$.next();
-        this.destroy$.complete();
+        this.i18n$.unsubscribe();
     }
 }
 TitleService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.10", ngImport: i0, type: TitleService, deps: [{ token: i0.Injector }, { token: i1$4.Title }, { token: MenuService }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
