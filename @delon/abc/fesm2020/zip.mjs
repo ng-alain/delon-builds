@@ -38,7 +38,7 @@ class ZipService {
                         next: (res) => {
                             JSZip.loadAsync(res, options).then((ret) => resolveCallback(ret));
                         },
-                        error: err => {
+                        error: (err) => {
                             reject(err);
                         }
                     });
@@ -56,12 +56,10 @@ class ZipService {
     /** 创建 Zip 实例，用于创建压缩文件 */
     create() {
         return new Promise(resolve => {
-            this.init()
-                .then(() => {
+            this.init().then(() => {
                 const zipFile = new JSZip();
                 resolve(zipFile);
-            })
-                .catch(() => resolve(null));
+            });
         });
     }
     /**
@@ -79,7 +77,7 @@ class ZipService {
                     zip.file(path, res);
                     resolve();
                 },
-                error: error => {
+                error: (error) => {
                     reject({ url, error });
                 }
             });
@@ -93,14 +91,14 @@ class ZipService {
      */
     save(zip, options) {
         this.check(zip);
-        const opt = { filename: 'download.zip', ...options };
+        const opt = { ...options };
         return new Promise((resolve, reject) => {
-            zip.generateAsync({ type: 'blob', ...opt.options }, opt.update).then(data => {
+            zip.generateAsync({ type: 'blob', ...opt.options }, opt.update).then((data) => {
                 if (opt.callback)
                     opt.callback(data);
-                saveAs(data, opt.filename);
+                saveAs(data, opt.filename || 'download.zip');
                 resolve();
-            }, err => {
+            }, (err) => {
                 reject(err);
             });
         });

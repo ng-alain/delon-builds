@@ -118,6 +118,9 @@ class PdfComponent {
     get linkService() {
         return this._showAll ? this.multiPageLinkService : this.singlePageLinkService;
     }
+    get eventBus() {
+        return this._eventBus;
+    }
     get _textLayerMode() {
         return this._renderText ? this.textLayerMode : PdfTextLayerMode.DISABLE;
     }
@@ -172,7 +175,7 @@ class PdfComponent {
         const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
         loadingTask.onProgress = (progress) => this.emit('load-progress', { progress });
         loadingTask.promise
-            .then((pdf) => {
+            .then(pdf => {
             this._pdf = pdf;
             this.lastSrc = _src;
             this._total = pdf.numPages;
@@ -182,7 +185,7 @@ class PdfComponent {
             }
             this.resetDoc();
             this.render();
-        }, (error) => this.emit('error', { error }))
+        }, error => this.emit('error', { error }))
             .then(() => this.setLoading(false));
     }
     resetDoc() {
@@ -311,7 +314,7 @@ class PdfComponent {
     }
     setupMultiPageViewer() {
         const VIEWER = this.win.pdfjsViewer;
-        const eventBus = this.createEventBus();
+        const eventBus = (this._eventBus = this.createEventBus());
         const linkService = (this.multiPageLinkService = new VIEWER.PDFLinkService({
             eventBus
         }));
@@ -367,7 +370,7 @@ class PdfComponent {
     }
     initResize() {
         fromEvent(this.win, 'resize')
-            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), takeUntil(this.destroy$))
+            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf != null), takeUntil(this.destroy$))
             .subscribe(() => this.updateSize());
     }
     ngOnChanges(changes) {

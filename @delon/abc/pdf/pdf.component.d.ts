@@ -1,5 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
+import { EventBus } from 'pdfjs-dist/types/web/interfaces';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
@@ -24,8 +26,8 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     inited: boolean;
     private destroy$;
     private lib;
-    private _pdf;
-    private loadingTask;
+    private _pdf?;
+    private loadingTask?;
     private _src;
     private lastSrc?;
     private _pi;
@@ -41,6 +43,7 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     private singlePageViewer;
     private singlePageLinkService;
     private singlePageFindController;
+    private _eventBus?;
     set src(dataOrBuffer: NzSafeAny);
     set pi(val: number);
     set showAll(val: boolean);
@@ -58,10 +61,11 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     delay?: number;
     readonly change: EventEmitter<PdfChangeEvent>;
     get loading(): boolean;
-    get pdf(): NzSafeAny;
+    get pdf(): PDFDocumentProxy | undefined | null;
     get findController(): NzSafeAny;
     get pageViewer(): NzSafeAny;
     get linkService(): NzSafeAny;
+    get eventBus(): EventBus | undefined;
     private get _textLayerMode();
     private get win();
     private get el();
