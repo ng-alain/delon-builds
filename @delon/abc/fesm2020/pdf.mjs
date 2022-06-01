@@ -76,7 +76,7 @@ class PdfComponent {
     }
     set pi(val) {
         this._pi = this.getValidPi(val);
-        if (this.pageViewer) {
+        if (this._pdf) {
             this.pageViewer.scrollPageIntoView({ pageNumber: this._pi });
         }
     }
@@ -86,7 +86,7 @@ class PdfComponent {
     }
     set renderText(val) {
         this._renderText = val;
-        if (this.pageViewer) {
+        if (this._pdf) {
             this.pageViewer.textLayerMode = this._textLayerMode;
             this.resetDoc();
         }
@@ -117,9 +117,6 @@ class PdfComponent {
     }
     get linkService() {
         return this._showAll ? this.multiPageLinkService : this.singlePageLinkService;
-    }
-    get eventBus() {
-        return this._eventBus;
     }
     get _textLayerMode() {
         return this._renderText ? this.textLayerMode : PdfTextLayerMode.DISABLE;
@@ -180,7 +177,7 @@ class PdfComponent {
         const loadingTask = (this.loadingTask = this.win.pdfjsLib.getDocument(_src));
         loadingTask.onProgress = (progress) => this.emit('load-progress', { progress });
         loadingTask.promise
-            .then(pdf => {
+            .then((pdf) => {
             this._pdf = pdf;
             this.lastSrc = _src;
             this._total = pdf.numPages;
@@ -190,7 +187,7 @@ class PdfComponent {
             }
             this.resetDoc();
             this.render();
-        }, error => this.emit('error', { error }))
+        }, (error) => this.emit('error', { error }))
             .then(() => this.setLoading(false));
     }
     resetDoc() {
@@ -239,7 +236,7 @@ class PdfComponent {
         const currentViewer = this.pageViewer;
         if (!currentViewer)
             return;
-        this._pdf.getPage(currentViewer.currentPageNumber).then(page => {
+        this._pdf.getPage(currentViewer.currentPageNumber).then((page) => {
             const { _rotation, _zoom } = this;
             const rotation = _rotation || page.rotate;
             const viewportWidth = page.getViewport({
@@ -319,7 +316,7 @@ class PdfComponent {
     }
     setupMultiPageViewer() {
         const VIEWER = this.win.pdfjsViewer;
-        const eventBus = (this._eventBus = this.createEventBus());
+        const eventBus = this.createEventBus();
         const linkService = (this.multiPageLinkService = new VIEWER.PDFLinkService({
             eventBus
         }));
@@ -375,7 +372,7 @@ class PdfComponent {
     }
     initResize() {
         fromEvent(this.win, 'resize')
-            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf != null), takeUntil(this.destroy$))
+            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf), takeUntil(this.destroy$))
             .subscribe(() => this.updateSize());
     }
     ngOnChanges(changes) {
