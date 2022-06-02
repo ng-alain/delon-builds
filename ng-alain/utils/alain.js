@@ -96,7 +96,7 @@ function resolveSchema(tree, project, schema, alainProject) {
     }
     // fill target
     if (schema.target) {
-        schema.path += `/${schema.target}`;
+        schema.path += core_1.strings.dasherize(`/${schema.target}`);
     }
     schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
     // html selector
