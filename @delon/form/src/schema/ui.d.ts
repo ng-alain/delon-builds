@@ -127,16 +127,12 @@ export interface SFVisibleIf {
 /** 指定如何渲染 `Schema` */
 export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema, ErrorSchema, SFSchemaI18n {
     [key: string]: NzSafeAny;
-    /**
-     * Whether to enable the debug mode, the trust information will be printed out when the data is changed and verified, it is not recommended to use it in the production environment
-     *
-     * 是否开启调试模式，在数据变更、校验会打印出相信信息，不建议在生产环境中使用
-     */
+    /** 是否开启调试模式，在数据变更、校验会打印出相信信息，不建议在生产环境中使用 */
     debug?: boolean;
     /**
-     * Order of property
+     * 属性顺序
      *
-     * 属性顺序，当你只想某几个属性靠前时，则允许使用通配符 `*` 来表示剩余部分，且只允许出现一次
+     * 当你只想某几个属性靠前时，则允许使用通配符 `*` 来表示剩余部分，且只允许出现一次
      *
      * @example
      *
@@ -144,15 +140,11 @@ export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema
      */
     order?: string[];
     /**
-     * Whether to hide
-     *
      * 是否隐藏
      */
     hidden?: boolean;
     /**
-     * Is visible with conditions (When there are multiple, you can specify logic vis `visibleIfLogical`)
-     *
-     * 指定条件时才显示（当多个时可以通过 `visibleIfLogical` 来指定处理逻辑），但需要**注意**：
+     * 指定条件时才显示，但需要**注意**：
      * - 键值表示监听对象属性名
      * - JSON Schema 校验是各属性独立运行，监听对象属性每一次值变化都会重新做一次整个JSON结构计算
      *
@@ -162,12 +154,6 @@ export interface SFUISchemaItem extends SFRenderSchema, SFHorizontalLayoutSchema
      * - `visibleIf: { shown: (value: any, property: FormProperty) => value > 0 }`：复杂表达式
      */
     visibleIf?: SFVisibleIf;
-    /**
-     * The logical used when specifying multiple `visibleIf`, default: `or`
-     *
-     * 指定多个 `visibleIf` 时采用的逻辑关系，默认：`or`
-     */
-    visibleIfLogical?: 'or' | 'and';
     /**
      * ACL 配置
      */
@@ -182,7 +168,7 @@ export interface SFUISchema {
     [key: string]: SFUISchemaItem | SFUISchemaItemRun;
 }
 /**
- * @inner
+ * 内部运行时使用
  */
 export interface SFUISchemaItemRun extends SFUISchemaItem {
 }
