@@ -42,7 +42,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular/language-service@~13.3.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`ng-zorro-antd@^13.1.1`]);
+    (0, package_1.addPackage)(tree, [
+        `ng-zorro-antd@^13.1.1`,
+        'ajv@^8.10.0',
+        'ajv-formats@^2.1.1'
+    ]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
