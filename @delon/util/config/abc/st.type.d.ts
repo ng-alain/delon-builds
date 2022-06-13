@@ -77,6 +77,7 @@ export interface AlainSTConfig {
         } | ((result: NzSafeAny, options: {
             pi: number;
             ps: number;
+            total: number;
         }) => {
             total: number;
             list: NzSafeAny[];

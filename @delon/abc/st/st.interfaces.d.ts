@@ -103,6 +103,7 @@ export interface STRes<T extends STData = any> {
     reName?: STResReNameType | ((result: any, options: {
         pi: number;
         ps: number;
+        total: number;
     }) => {
         total: number;
         list: T[];
