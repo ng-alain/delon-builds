@@ -612,14 +612,22 @@ class STDataSource {
                     showPage = false;
                 }
                 else {
-                    // list
-                    ret = deepGet(result, res.reName.list, []);
-                    if (ret == null || !Array.isArray(ret)) {
-                        ret = [];
+                    const reName = res.reName;
+                    if (typeof reName === 'function') {
+                        const fnRes = reName(result, { pi, ps });
+                        ret = fnRes.list;
+                        retTotal = fnRes.total;
                     }
-                    // total
-                    const resultTotal = res.reName.total && deepGet(result, res.reName.total, null);
-                    retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    else {
+                        // list
+                        ret = deepGet(result, reName.list, []);
+                        if (ret == null || !Array.isArray(ret)) {
+                            ret = [];
+                        }
+                        // total
+                        const resultTotal = reName.total && deepGet(result, reName.total, null);
+                        retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    }
                 }
                 return deepCopy(ret);
             }));
