@@ -41,7 +41,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     'devDependencies'
   );
   addPackage(tree, [
-    `ng-zorro-antd@^13.1.1`,
+    `ng-zorro-antd@^13.3.2`,
     'ajv@^8.10.0',
     'ajv-formats@^2.1.1'
   ]);

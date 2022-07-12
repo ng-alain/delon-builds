@@ -43,7 +43,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@delon/testing@${version}`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [
-        `ng-zorro-antd@^13.1.1`,
+        `ng-zorro-antd@^13.3.2`,
         'ajv@^8.10.0',
         'ajv-formats@^2.1.1'
     ]);
