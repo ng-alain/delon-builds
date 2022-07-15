@@ -2,9 +2,9 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { TemplateRef, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import type { NzDrawerOptions } from 'ng-zorro-antd/drawer';
-import type { ModalOptions } from 'ng-zorro-antd/modal';
-import type { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
+import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
+import { ModalOptions } from 'ng-zorro-antd/modal';
+import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 export interface AlainSTConfig {
     /**
      * 起始页码，默认为：`1`

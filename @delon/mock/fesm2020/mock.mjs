@@ -8,7 +8,6 @@ import { deepCopy } from '@delon/util/other';
 class MockOptions {
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class MockStatusError {
     constructor(status, error) {
         this.status = status;
@@ -23,7 +22,6 @@ const MOCK_DEFULAT_CONFIG = {
     executeOtherInterceptors: true
 };
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class MockService {
     constructor(cogSrv, options) {
         this.cached = [];
@@ -159,7 +157,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: MockOptions }]; } });
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class HttpMockInterceptorHandler {
     constructor(next, interceptor) {
         this.next = next;

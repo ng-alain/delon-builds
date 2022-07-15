@@ -1,4 +1,4 @@
-import type { ModalOptions } from 'ng-zorro-antd/modal';
+import { ModalOptions } from 'ng-zorro-antd/modal';
 export interface AlainImageConfig {
     /**
      * 默认大小，默认值：`64`，单位：px

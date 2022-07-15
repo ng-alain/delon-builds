@@ -5,6 +5,7 @@
  */
 import { Injector } from '@angular/core';
 import { Observable } from 'rxjs';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { ACLService } from './acl.service';
 export interface ACLType {
     /**
@@ -25,7 +26,7 @@ export interface ACLType {
      * 是否取反，即结果为 `true` 时表示未授权
      */
     except?: boolean;
-    [key: string]: any;
+    [key: string]: NzSafeAny;
 }
 export declare type ACLCanType = number | number[] | string | string[] | ACLType;
 export declare type ACLGuardFunctionType = (srv: ACLService, injector: Injector) => Observable<ACLCanType>;
