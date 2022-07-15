@@ -130,7 +130,7 @@ class CacheService {
         const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, {
+                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => deepGet(ret, this.cog.reName, ret)), tap(v => this.set(key, v, {
                     type: options.type,
                     expire: options.expire,
                     emitNotify: options.emitNotify
