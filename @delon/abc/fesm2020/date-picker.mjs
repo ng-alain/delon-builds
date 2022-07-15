@@ -49,11 +49,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
             }] } });
 
 class RangePickerDirective {
-    constructor(dom, configSrv, nativeComp, resolver, injector) {
+    constructor(dom, configSrv, nativeComp, vcr) {
         this.dom = dom;
         this.nativeComp = nativeComp;
-        this.resolver = resolver;
-        this.injector = injector;
+        this.vcr = vcr;
         this._shortcut = null;
         this.destroy$ = new Subject();
         this.shortcutFactory = null;
@@ -162,8 +161,7 @@ class RangePickerDirective {
         }
         else {
             if (!this.shortcutFactory) {
-                const factory = this.resolver.resolveComponentFactory(RangePickerShortcutTplComponent);
-                this.shortcutFactory = factory.create(this.injector);
+                this.shortcutFactory = this.vcr.createComponent(RangePickerShortcutTplComponent);
             }
             const { instance } = this.shortcutFactory;
             instance.list = list;
@@ -193,7 +191,7 @@ class RangePickerDirective {
         this.destroy$.complete();
     }
 }
-RangePickerDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RangePickerDirective, deps: [{ token: i1$1.DomSanitizer }, { token: i2.AlainConfigService }, { token: i3.NzRangePickerComponent, host: true, optional: true }, { token: i0.ComponentFactoryResolver }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Directive });
+RangePickerDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RangePickerDirective, deps: [{ token: i1$1.DomSanitizer }, { token: i2.AlainConfigService }, { token: i3.NzRangePickerComponent, host: true, optional: true }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
 RangePickerDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "12.0.0", version: "13.3.11", type: RangePickerDirective, selector: "nz-range-picker[extend]", inputs: { shortcut: "shortcut", ngModelEnd: "ngModelEnd" }, outputs: { ngModelEndChange: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RangePickerDirective, decorators: [{
             type: Directive,
@@ -205,7 +203,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
                     type: Host
                 }, {
                     type: Optional
-                }] }, { type: i0.ComponentFactoryResolver }, { type: i0.Injector }]; }, propDecorators: { shortcut: [{
+                }] }, { type: i0.ViewContainerRef }]; }, propDecorators: { shortcut: [{
                 type: Input
             }], ngModelEnd: [{
                 type: Input

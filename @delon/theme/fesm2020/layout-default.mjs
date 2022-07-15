@@ -335,34 +335,29 @@ class LayoutDefaultNavComponent {
             this.hideAll();
         }
     }
-    refOpen(item) {
-        const { menuSrv, openStrictly } = this;
-        menuSrv.visit(this.menuSrv.menus, (i) => {
+    openedByUrl(url) {
+        const { menuSrv, recursivePath, openStrictly } = this;
+        let findItem = menuSrv.getHit(this.menuSrv.menus, url, recursivePath, (i) => {
             i._selected = false;
             if (!openStrictly) {
                 i._open = false;
             }
         });
-        if (item == null)
+        if (findItem == null)
             return;
         do {
-            item._selected = true;
+            findItem._selected = true;
             if (!openStrictly) {
-                item._open = true;
+                findItem._open = true;
             }
-            item = item._parent;
-        } while (item);
-    }
-    // private openByKey(key: string): void {
-    //   this.refOpen(this.menuSrv.getItem(key));
-    // }
-    openByUrl(url) {
-        const { menuSrv, recursivePath } = this;
-        this.refOpen(menuSrv.find({ url, recursive: recursivePath }));
+            findItem = findItem._parent;
+        } while (findItem);
     }
     ngOnInit() {
         const { doc, router, destroy$, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
+        this.openedByUrl(router.url);
+        this.ngZone.runOutsideAngular(() => this.genFloating());
         menuSrv.change.pipe(takeUntil(destroy$)).subscribe(data => {
             menuSrv.visit(data, (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml(i.text);
@@ -375,19 +370,20 @@ class LayoutDefaultNavComponent {
                         i._hidden = true;
                     }
                 }
-                i._open = i.open != null ? i.open : false;
+                if (this.openStrictly) {
+                    i._open = i.open != null ? i.open : false;
+                }
                 const icon = i.icon;
                 if (icon && icon.type === 'svg' && typeof icon.value === 'string') {
                     icon.value = this.sanitizer.bypassSecurityTrustHtml(icon.value);
                 }
             });
             this.list = menuSrv.menus.filter((w) => w._hidden !== true);
-            console.log(this.list);
             cdr.detectChanges();
         });
         router.events.pipe(takeUntil(destroy$)).subscribe(e => {
             if (e instanceof NavigationEnd) {
-                this.openByUrl(e.urlAfterRedirects);
+                this.openedByUrl(e.urlAfterRedirects);
                 this.underPad();
                 this.cdr.detectChanges();
             }
@@ -400,8 +396,6 @@ class LayoutDefaultNavComponent {
         this.directionality.change?.pipe(takeUntil(destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
-        this.openByUrl(router.url);
-        this.ngZone.runOutsideAngular(() => this.genFloating());
     }
     ngOnDestroy() {
         this.destroy$.next();

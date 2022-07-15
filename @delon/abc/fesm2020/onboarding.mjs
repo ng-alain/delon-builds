@@ -144,7 +144,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
             }] } });
 
 class OnboardingService {
-    constructor(i18n, appRef, resolver, router, injector, doc, configSrv, directionality) {
+    constructor(i18n, appRef, 
+    // TODO: Tracking https://github.com/angular/angular/issues/45263
+    resolver, router, injector, doc, configSrv, directionality) {
         this.i18n = i18n;
         this.appRef = appRef;
         this.resolver = resolver;
@@ -307,10 +309,9 @@ class OnboardingService {
     }
 }
 OnboardingService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingService, deps: [{ token: i1$1.DelonLocaleService }, { token: i0.ApplicationRef }, { token: i0.ComponentFactoryResolver }, { token: i2$1.Router }, { token: i0.Injector }, { token: DOCUMENT }, { token: i3$1.AlainConfigService }, { token: i4$1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-OnboardingService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingService, providedIn: 'root' });
+OnboardingService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingService, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
+            type: Injectable
         }], ctorParameters: function () { return [{ type: i1$1.DelonLocaleService }, { type: i0.ApplicationRef }, { type: i0.ComponentFactoryResolver }, { type: i2$1.Router }, { type: i0.Injector }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DOCUMENT]
@@ -323,12 +324,13 @@ class OnboardingModule {
 }
 OnboardingModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
 OnboardingModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingModule, declarations: [OnboardingComponent], imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule], exports: [OnboardingComponent] });
-OnboardingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingModule, imports: [[CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule]] });
+OnboardingModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingModule, providers: [OnboardingService], imports: [[CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule]] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: OnboardingModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, NzNoAnimationModule],
                     declarations: COMPONENTS,
+                    providers: [OnboardingService],
                     entryComponents: COMPONENTS,
                     exports: COMPONENTS
                 }]
