@@ -51,7 +51,8 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     toggleOpen(item: Nav): void;
     _click(): void;
     closeSubMenu(): void;
-    private openedByUrl;
+    private refOpen;
+    private openByUrl;
     ngOnInit(): void;
     ngOnDestroy(): void;
     private get isPad();

@@ -15,6 +15,7 @@ export declare class MenuService implements OnDestroy {
     private data;
     constructor(i18nSrv: AlainI18NService, aclService: ACLService);
     get change(): Observable<Menu[]>;
+    get menus(): Menu[];
     visit<T extends Menu = Menu>(data: T[], callback: (item: T, parentMenum: T | null, depth?: number) => void): void;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
@@ -32,13 +33,34 @@ export declare class MenuService implements OnDestroy {
      *      3、否则放在0节点位置
      */
     private loadShortcut;
-    get menus(): Menu[];
     /**
      * 清空菜单
      */
     clear(): void;
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
+     */
     getHit(data: Menu[], url: string, recursive?: boolean, cb?: ((i: Menu) => void) | null): Menu | null;
     /**
+     * Use `url` or `key` to find menus
+     *
+     * 利用 `url` 或 `key` 查找菜单
+     */
+    find(options: {
+        key?: string | null;
+        url?: string | null;
+        recursive?: boolean | null;
+        cb?: ((i: Menu) => void) | null;
+        /**
+         * Use the current menu data by default
+         *
+         * 默认使用当前菜单数据
+         */
+        data?: Menu[] | null;
+    }): Menu | null;
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
+     *
      * 根据URL设置菜单 `_open` 属性
      * - 若 `recursive: true` 则会自动向上递归查找
      *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项

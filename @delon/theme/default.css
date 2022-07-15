@@ -27633,58 +27633,6 @@ a:focus {
     width: 100% !important;
   }
 }
-@media (min-height: 200px) {
-  .ant-drawer-top .drawer-sm,
-  .ant-drawer-bottom .drawer-sm {
-    height: auto !important;
-    max-height: 200px;
-  }
-}
-@media (max-height: 199px) {
-  .ant-drawer-top .drawer-sm,
-  .ant-drawer-bottom .drawer-sm {
-    height: 100% !important;
-  }
-}
-@media (min-height: 400px) {
-  .ant-drawer-top .drawer-md,
-  .ant-drawer-bottom .drawer-md {
-    height: auto !important;
-    max-height: 400px;
-  }
-}
-@media (max-height: 399px) {
-  .ant-drawer-top .drawer-md,
-  .ant-drawer-bottom .drawer-md {
-    height: 100% !important;
-  }
-}
-@media (min-height: 600px) {
-  .ant-drawer-top .drawer-lg,
-  .ant-drawer-bottom .drawer-lg {
-    height: auto !important;
-    max-height: 600px;
-  }
-}
-@media (max-height: 599px) {
-  .ant-drawer-top .drawer-lg,
-  .ant-drawer-bottom .drawer-lg {
-    height: 100% !important;
-  }
-}
-@media (min-height: 800px) {
-  .ant-drawer-top .drawer-xl,
-  .ant-drawer-bottom .drawer-xl {
-    height: auto !important;
-    max-height: 800px;
-  }
-}
-@media (max-height: 799px) {
-  .ant-drawer-top .drawer-xl,
-  .ant-drawer-bottom .drawer-xl {
-    height: 100% !important;
-  }
-}
 .drawer-footer {
   /**
       * Drawer bottom area for use in drawer target components

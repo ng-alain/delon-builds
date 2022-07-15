@@ -150,6 +150,9 @@ class MenuService {
     get change() {
         return this._change$.pipe(share());
     }
+    get menus() {
+        return this.data;
+    }
     visit(data, callback) {
         const inFn = (list, parentMenu, depth) => {
             for (const item of list) {
@@ -270,9 +273,6 @@ class MenuService {
             return i;
         });
     }
-    get menus() {
-        return this.data;
-    }
     /**
      * 清空菜单
      */
@@ -280,6 +280,9 @@ class MenuService {
         this.data = [];
         this._change$.next(this.data);
     }
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
+     */
     getHit(data, url, recursive = false, cb = null) {
         let item = null;
         while (!item && url) {
@@ -303,6 +306,40 @@ class MenuService {
         return item;
     }
     /**
+     * Use `url` or `key` to find menus
+     *
+     * 利用 `url` 或 `key` 查找菜单
+     */
+    find(options) {
+        const opt = { recursive: false, ...options };
+        if (opt.key != null) {
+            return this.getItem(opt.key);
+        }
+        let url = opt.url;
+        let item = null;
+        while (!item && url) {
+            this.visit(opt.data ?? this.data, i => {
+                if (opt.cb) {
+                    opt.cb(i);
+                }
+                if (i.link != null && i.link === url) {
+                    item = i;
+                }
+            });
+            if (!opt.recursive)
+                break;
+            if (/[?;]/g.test(url)) {
+                url = url.split(/[?;]/g)[0];
+            }
+            else {
+                url = url.split('/').slice(0, -1).join('/');
+            }
+        }
+        return item;
+    }
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
+     *
      * 根据URL设置菜单 `_open` 属性
      * - 若 `recursive: true` 则会自动向上递归查找
      *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
@@ -329,7 +366,7 @@ class MenuService {
      */
     getPathByUrl(url, recursive = false) {
         const ret = [];
-        let item = this.getHit(this.data, url, recursive);
+        let item = this.find({ url, recursive });
         if (!item)
             return ret;
         do {
