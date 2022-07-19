@@ -586,14 +586,22 @@ class STDataSource {
                     showPage = false;
                 }
                 else {
-                    // list
-                    ret = deepGet(result, res.reName.list, []);
-                    if (ret == null || !Array.isArray(ret)) {
-                        ret = [];
+                    const reName = res.reName;
+                    if (typeof reName === 'function') {
+                        const fnRes = reName(result, { pi, ps, total });
+                        ret = fnRes.list;
+                        retTotal = fnRes.total;
                     }
-                    // total
-                    const resultTotal = res.reName.total && deepGet(result, res.reName.total, null);
-                    retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    else {
+                        // list
+                        ret = deepGet(result, reName.list, []);
+                        if (ret == null || !Array.isArray(ret)) {
+                            ret = [];
+                        }
+                        // total
+                        const resultTotal = reName.total && deepGet(result, reName.total, null);
+                        retTotal = resultTotal == null ? total || 0 : +resultTotal;
+                    }
                 }
                 return deepCopy(ret);
             }));
@@ -1510,10 +1518,12 @@ class STComponent {
     set res(value) {
         const item = (this._res = deepMergeKey({}, true, this.cog.res, value));
         const reName = item.reName;
-        if (!Array.isArray(reName.list))
-            reName.list = reName.list.split('.');
-        if (!Array.isArray(reName.total))
-            reName.total = reName.total.split('.');
+        if (typeof reName !== 'function') {
+            if (!Array.isArray(reName.list))
+                reName.list = reName.list.split('.');
+            if (!Array.isArray(reName.total))
+                reName.total = reName.total.split('.');
+        }
         this._res = item;
     }
     get page() {
