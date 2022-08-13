@@ -100,14 +100,7 @@ export interface STRes<T extends STData = any> {
      * 重命名返回参数 `total`、`list`
      * - `{ total: 'Total' }` => Total 会被当作 `total`
      */
-    reName?: STResReNameType | ((result: any, options: {
-        pi: number;
-        ps: number;
-        total: number;
-    }) => {
-        total: number;
-        list: T[];
-    });
+    reName?: STResReNameType;
     /**
      * 数据预处理
      */

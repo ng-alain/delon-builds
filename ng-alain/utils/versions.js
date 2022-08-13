@@ -40,6 +40,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `ng-alain-plugin-theme@^13.0.3`,
         `source-map-explorer@^2.5.2`,
         `@angular/language-service@~13.3.0`,
+        `rxjs@~7.5.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [
