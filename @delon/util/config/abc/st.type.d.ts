@@ -74,7 +74,14 @@ export interface AlainSTConfig {
         reName?: {
             total?: string | string[];
             list?: string | string[];
-        };
+        } | ((result: NzSafeAny, options: {
+            pi: number;
+            ps: number;
+            total: number;
+        }) => {
+            total: number;
+            list: NzSafeAny[];
+        });
         /**
          * 数据预处理
          */
