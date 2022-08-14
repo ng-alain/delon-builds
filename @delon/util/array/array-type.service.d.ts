@@ -1,4 +1,4 @@
-import { NzTreeNode } from 'ng-zorro-antd/core/tree';
+import type { NzTreeNode } from 'ng-zorro-antd/core/tree';
 export interface ArrayServiceTreeToArrOptions<T extends object = any> {
     /** 深度项名，默认：`'deep'` */
     deepMapName?: string;

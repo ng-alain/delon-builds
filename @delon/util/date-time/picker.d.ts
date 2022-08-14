@@ -1,4 +1,4 @@
-import { DisabledDateFn, DisabledTimeFn } from 'ng-zorro-antd/date-picker';
+import type { DisabledDateFn, DisabledTimeFn } from 'ng-zorro-antd/date-picker';
 export declare class DateTimePickerUtil {
     /**
      * Current local time

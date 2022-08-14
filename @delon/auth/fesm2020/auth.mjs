@@ -139,11 +139,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.1.2", ngImpor
                     args: [DA_STORE_TOKEN]
                 }] }]; } });
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
     providedIn: 'root',
     factory: DA_SERVICE_TOKEN_FACTORY
 });
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const OPENTYPE = '_delonAuthSocialType';
 const HREFCALLBACK = '_delonAuthSocialCallbackByHref';
 class SocialService {
@@ -349,6 +351,7 @@ function ToLogin(options, injector, url) {
     }
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class HttpAuthInterceptorHandler {
     constructor(next, interceptor) {
         this.next = next;
@@ -454,6 +457,7 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let bc = 0, bs, buffer, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -527,6 +531,7 @@ class JWTInterceptor extends BaseInterceptor {
         this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
         return CheckJwt(this.model, options.token_exp_offset);
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     setReq(req, _options) {
         return req.clone({
             setHeaders: {

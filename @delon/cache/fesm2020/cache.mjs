@@ -2,10 +2,13 @@ import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, NgModule } from '@angular/core';
 import { Observable, tap, map, of, BehaviorSubject } from 'rxjs';
 import { addSeconds } from 'date-fns';
+import { deepGet } from '@delon/util/other';
 import * as i3 from '@angular/cdk/platform';
 import { Platform } from '@angular/cdk/platform';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@angular/common/http';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
     providedIn: 'root',
@@ -55,15 +58,6 @@ class CacheService {
             return;
         this.loadMeta();
         this.startExpireNotify();
-    }
-    deepGet(obj, path, defaultValue) {
-        if (!obj)
-            return defaultValue;
-        if (path.length <= 1) {
-            const checkObj = path.length ? obj[path[0]] : obj;
-            return typeof checkObj === 'undefined' ? defaultValue : checkObj;
-        }
-        return path.reduce((o, k) => o[k], obj) || defaultValue;
     }
     // #region meta
     pushMeta(key) {
@@ -136,7 +130,7 @@ class CacheService {
         const value = this.memory.has(key) ? this.memory.get(key) : this.store.get(this.cog.prefix + key);
         if (!value || (value.e && value.e > 0 && value.e < new Date().valueOf())) {
             if (isPromise) {
-                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => this.deepGet(ret, this.cog.reName, null)), tap(v => this.set(key, v, {
+                return (this.cog.request ? this.cog.request(key) : this.http.get(key)).pipe(map((ret) => deepGet(ret, this.cog.reName, ret)), tap(v => this.set(key, v, {
                     type: options.type,
                     expire: options.expire,
                     emitNotify: options.emitNotify
