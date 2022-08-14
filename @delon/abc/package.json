@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "13.5.2-1a6b1075",
+  "version": "13.5.2-6204cb8c",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.2",
     "pdfjs-dist": "^2.15.349",
     "ngx-countdown": "^14.0.0",
-    "@delon/theme": "^13.5.2-1a6b1075",
-    "@delon/util": "^13.5.2-1a6b1075",
-    "@delon/acl": "^13.5.2-1a6b1075",
+    "@delon/theme": "^13.5.2-6204cb8c",
+    "@delon/util": "^13.5.2-6204cb8c",
+    "@delon/acl": "^13.5.2-6204cb8c",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -138,14 +138,6 @@
       "es2015": "./fesm2015/global-footer.mjs",
       "node": "./fesm2015/global-footer.mjs",
       "default": "./fesm2020/global-footer.mjs"
-    },
-    "./image": {
-      "types": "./image/index.d.ts",
-      "esm2020": "./esm2020/image/image.mjs",
-      "es2020": "./fesm2020/image.mjs",
-      "es2015": "./fesm2015/image.mjs",
-      "node": "./fesm2015/image.mjs",
-      "default": "./fesm2020/image.mjs"
     },
     "./let": {
       "types": "./let/index.d.ts",
