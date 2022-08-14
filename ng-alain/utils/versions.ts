@@ -41,11 +41,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [
-    `ng-zorro-antd@^14.0.0-beta.0`,
-    'ajv@^8.11.0',
-    'ajv-formats@^2.1.1'
-  ]);
+  addPackage(tree, [`ng-zorro-antd@^14.0.0-beta.0`]);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {

@@ -83,7 +83,7 @@ function addAllowedCommonJsDependencies(items, projectName) {
             list = [...list, ...items];
         }
         const result = new Set(...list);
-        ['@antv/g2', 'file-saver', 'ajv', 'ajv-formats', 'date-fns'].forEach(key => result.add(key));
+        ['ajv', 'ajv-formats'].forEach(key => result.add(key));
         targetOptions.allowedCommonJsDependencies = Array.from(result).sort();
     }));
 }
