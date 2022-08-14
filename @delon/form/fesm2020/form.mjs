@@ -1962,12 +1962,7 @@ class ArrayWidget extends ArrayLayoutWidget {
             (this.schema.maxItems != null && this.formProperty.properties.length >= this.schema.maxItems));
     }
     get showRemove() {
-        if (this.disabled || !this.removeTitle)
-            return false;
-        if (this.schema.minItems != null &&
-            this.formProperty.properties.length <= this.schema.minItems)
-            return false;
-        return true;
+        return !this.disabled && !!this.removeTitle;
     }
     ngOnInit() {
         const { grid, addTitle, addType, removable, removeTitle } = this.ui;
