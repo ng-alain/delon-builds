@@ -26,5 +26,5 @@ export declare class LayoutDefaultComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": "options"; "asideUser": "asideUser"; "nav": "nav"; "content": "content"; "customError": "customError"; }, {}, ["headerItems"], ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": "options"; "asideUser": "asideUser"; "nav": "nav"; "content": "content"; "customError": "customError"; }, {}, ["headerItems"], ["*"], false>;
 }

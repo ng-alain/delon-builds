@@ -11,5 +11,5 @@ export declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> 
     ngOnInit(): void;
     _setValue(val: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NumberWidget, "sf-number", never, {}, {}, never, never, false>;
 }

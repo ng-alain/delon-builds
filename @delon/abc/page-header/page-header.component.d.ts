@@ -68,6 +68,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PageHeaderComponent, [null, null, null, null, { optional: true; }, { optional: true; }, { optional: true; }, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": "title"; "loading": "loading"; "wide": "wide"; "home": "home"; "homeLink": "homeLink"; "homeI18n": "homeI18n"; "autoBreadcrumb": "autoBreadcrumb"; "autoTitle": "autoTitle"; "syncTitle": "syncTitle"; "fixed": "fixed"; "fixedOffsetTop": "fixedOffsetTop"; "breadcrumb": "breadcrumb"; "recursiveBreadcrumb": "recursiveBreadcrumb"; "logo": "logo"; "action": "action"; "content": "content"; "extra": "extra"; "tab": "tab"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": "title"; "loading": "loading"; "wide": "wide"; "home": "home"; "homeLink": "homeLink"; "homeI18n": "homeI18n"; "autoBreadcrumb": "autoBreadcrumb"; "autoTitle": "autoTitle"; "syncTitle": "syncTitle"; "fixed": "fixed"; "fixedOffsetTop": "fixedOffsetTop"; "breadcrumb": "breadcrumb"; "recursiveBreadcrumb": "recursiveBreadcrumb"; "logo": "logo"; "action": "action"; "content": "content"; "extra": "extra"; "tab": "tab"; }, {}, never, ["*"], false>;
 }
 export {};

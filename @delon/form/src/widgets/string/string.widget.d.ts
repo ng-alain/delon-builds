@@ -14,5 +14,5 @@ export declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> 
     blur(e: FocusEvent): void;
     enter(e: Event): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<StringWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<StringWidget, "sf-string", never, {}, {}, never, never, false>;
 }

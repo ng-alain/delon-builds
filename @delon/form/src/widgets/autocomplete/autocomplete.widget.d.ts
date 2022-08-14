@@ -21,5 +21,5 @@ export declare class AutoCompleteWidget extends ControlUIWidget<SFAutoCompleteWi
     private filterData;
     private addEmailSuffix;
     static ɵfac: i0.ɵɵFactoryDeclaration<AutoCompleteWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AutoCompleteWidget, "sf-autocomplete", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AutoCompleteWidget, "sf-autocomplete", never, {}, {}, never, never, false>;
 }

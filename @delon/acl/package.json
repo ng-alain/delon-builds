@@ -1,6 +1,6 @@
 {
   "name": "@delon/acl",
-  "version": "13.5.2-afdb5e18",
+  "version": "13.5.2-5e67e742",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^13.5.2-afdb5e18",
+    "@delon/util": "^13.5.2-5e67e742",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/acl.mjs",
@@ -34,13 +34,13 @@
   "esm2020": "esm2020/acl.mjs",
   "fesm2020": "fesm2020/acl.mjs",
   "fesm2015": "fesm2015/acl.mjs",
-  "typings": "acl.d.ts",
+  "typings": "index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./acl.d.ts",
+      "types": "./index.d.ts",
       "esm2020": "./esm2020/acl.mjs",
       "es2020": "./fesm2020/acl.mjs",
       "es2015": "./fesm2015/acl.mjs",

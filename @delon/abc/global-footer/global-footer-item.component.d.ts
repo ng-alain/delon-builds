@@ -7,5 +7,5 @@ export declare class GlobalFooterItemComponent {
     href?: string;
     blankTarget?: boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterItemComponent, "global-footer-item", ["globalFooterItem"], { "href": "href"; "blankTarget": "blankTarget"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterItemComponent, "global-footer-item", ["globalFooterItem"], { "href": "href"; "blankTarget": "blankTarget"; }, {}, never, ["*"], false>;
 }

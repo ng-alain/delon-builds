@@ -20,5 +20,5 @@ export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSche
     _selectionChange(options: NzCascaderOption[]): void;
     _clear(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CascaderWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CascaderWidget, "sf-cascader", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CascaderWidget, "sf-cascader", never, {}, {}, never, never, false>;
 }

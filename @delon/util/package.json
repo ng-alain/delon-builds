@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "13.5.2-afdb5e18",
+  "version": "13.5.2-5e67e742",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,13 +28,13 @@
   "esm2020": "esm2020/delon-util.mjs",
   "fesm2020": "fesm2020/delon-util.mjs",
   "fesm2015": "fesm2015/delon-util.mjs",
-  "typings": "delon-util.d.ts",
+  "typings": "index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./delon-util.d.ts",
+      "types": "./index.d.ts",
       "esm2020": "./esm2020/delon-util.mjs",
       "es2020": "./fesm2020/delon-util.mjs",
       "es2015": "./fesm2015/delon-util.mjs",
@@ -42,7 +42,7 @@
       "default": "./fesm2020/delon-util.mjs"
     },
     "./array": {
-      "types": "./array/array.d.ts",
+      "types": "./array/index.d.ts",
       "esm2020": "./esm2020/array/array.mjs",
       "es2020": "./fesm2020/array.mjs",
       "es2015": "./fesm2015/array.mjs",
@@ -50,7 +50,7 @@
       "default": "./fesm2020/array.mjs"
     },
     "./browser": {
-      "types": "./browser/browser.d.ts",
+      "types": "./browser/index.d.ts",
       "esm2020": "./esm2020/browser/browser.mjs",
       "es2020": "./fesm2020/browser.mjs",
       "es2015": "./fesm2015/browser.mjs",
@@ -58,7 +58,7 @@
       "default": "./fesm2020/browser.mjs"
     },
     "./config": {
-      "types": "./config/config.d.ts",
+      "types": "./config/index.d.ts",
       "esm2020": "./esm2020/config/config.mjs",
       "es2020": "./fesm2020/config.mjs",
       "es2015": "./fesm2015/config.mjs",
@@ -66,7 +66,7 @@
       "default": "./fesm2020/config.mjs"
     },
     "./date-time": {
-      "types": "./date-time/date-time.d.ts",
+      "types": "./date-time/index.d.ts",
       "esm2020": "./esm2020/date-time/date-time.mjs",
       "es2020": "./fesm2020/date-time.mjs",
       "es2015": "./fesm2015/date-time.mjs",
@@ -74,7 +74,7 @@
       "default": "./fesm2020/date-time.mjs"
     },
     "./decorator": {
-      "types": "./decorator/decorator.d.ts",
+      "types": "./decorator/index.d.ts",
       "esm2020": "./esm2020/decorator/decorator.mjs",
       "es2020": "./fesm2020/decorator.mjs",
       "es2015": "./fesm2015/decorator.mjs",
@@ -82,7 +82,7 @@
       "default": "./fesm2020/decorator.mjs"
     },
     "./form": {
-      "types": "./form/form.d.ts",
+      "types": "./form/index.d.ts",
       "esm2020": "./esm2020/form/form.mjs",
       "es2020": "./fesm2020/form.mjs",
       "es2015": "./fesm2015/form.mjs",
@@ -90,7 +90,7 @@
       "default": "./fesm2020/form.mjs"
     },
     "./format": {
-      "types": "./format/format.d.ts",
+      "types": "./format/index.d.ts",
       "esm2020": "./esm2020/format/format.mjs",
       "es2020": "./fesm2020/format.mjs",
       "es2015": "./fesm2015/format.mjs",
@@ -98,7 +98,7 @@
       "default": "./fesm2020/format.mjs"
     },
     "./math": {
-      "types": "./math/math.d.ts",
+      "types": "./math/index.d.ts",
       "esm2020": "./esm2020/math/math.mjs",
       "es2020": "./fesm2020/math.mjs",
       "es2015": "./fesm2015/math.mjs",
@@ -106,7 +106,7 @@
       "default": "./fesm2020/math.mjs"
     },
     "./other": {
-      "types": "./other/other.d.ts",
+      "types": "./other/index.d.ts",
       "esm2020": "./esm2020/other/other.mjs",
       "es2020": "./fesm2020/other.mjs",
       "es2015": "./fesm2015/other.mjs",
@@ -114,7 +114,7 @@
       "default": "./fesm2020/other.mjs"
     },
     "./pipes/currency": {
-      "types": "./pipes/currency/pipe-currency.d.ts",
+      "types": "./pipes/currency/index.d.ts",
       "esm2020": "./esm2020/pipes/currency/pipe-currency.mjs",
       "es2020": "./fesm2020/pipe-currency.mjs",
       "es2015": "./fesm2015/pipe-currency.mjs",
@@ -122,7 +122,7 @@
       "default": "./fesm2020/pipe-currency.mjs"
     },
     "./pipes/filter": {
-      "types": "./pipes/filter/pipe-filter.d.ts",
+      "types": "./pipes/filter/index.d.ts",
       "esm2020": "./esm2020/pipes/filter/pipe-filter.mjs",
       "es2020": "./fesm2020/pipe-filter.mjs",
       "es2015": "./fesm2015/pipe-filter.mjs",
@@ -130,7 +130,7 @@
       "default": "./fesm2020/pipe-filter.mjs"
     },
     "./pipes/format": {
-      "types": "./pipes/format/pipe-format.d.ts",
+      "types": "./pipes/format/index.d.ts",
       "esm2020": "./esm2020/pipes/format/pipe-format.mjs",
       "es2020": "./fesm2020/pipe-format.mjs",
       "es2015": "./fesm2015/pipe-format.mjs",
@@ -138,7 +138,7 @@
       "default": "./fesm2020/pipe-format.mjs"
     },
     "./pipes": {
-      "types": "./pipes/pipes.d.ts",
+      "types": "./pipes/index.d.ts",
       "esm2020": "./esm2020/pipes/pipes.mjs",
       "es2020": "./fesm2020/pipes.mjs",
       "es2015": "./fesm2015/pipes.mjs",
@@ -146,7 +146,7 @@
       "default": "./fesm2020/pipes.mjs"
     },
     "./token": {
-      "types": "./token/token.d.ts",
+      "types": "./token/index.d.ts",
       "esm2020": "./esm2020/token/token.mjs",
       "es2020": "./fesm2020/token.mjs",
       "es2015": "./fesm2015/token.mjs",

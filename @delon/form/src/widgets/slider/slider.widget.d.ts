@@ -13,5 +13,5 @@ export declare class SliderWidget extends ControlUIWidget<SFSliderWidgetSchema> 
     _formatter: (value: number) => string;
     _afterChange(value: NzSliderValue): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SliderWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SliderWidget, "sf-slider", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SliderWidget, "sf-slider", never, {}, {}, never, never, false>;
 }

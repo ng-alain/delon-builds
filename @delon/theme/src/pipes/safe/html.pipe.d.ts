@@ -6,5 +6,5 @@ export declare class HTMLPipe implements PipeTransform {
     constructor(dom: DomSanitizer);
     transform(html: string): string | SafeHtml;
     static ɵfac: i0.ɵɵFactoryDeclaration<HTMLPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<HTMLPipe, "html">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<HTMLPipe, "html", false>;
 }

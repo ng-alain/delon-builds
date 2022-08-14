@@ -58,5 +58,5 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private underPad;
     private openAside;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": "disabledAcl"; "autoCloseUnderPad": "autoCloseUnderPad"; "recursivePath": "recursivePath"; "openStrictly": "openStrictly"; "maxLevelIcon": "maxLevelIcon"; }, { "select": "select"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": "disabledAcl"; "autoCloseUnderPad": "autoCloseUnderPad"; "recursivePath": "recursivePath"; "openStrictly": "openStrictly"; "maxLevelIcon": "maxLevelIcon"; }, { "select": "select"; }, never, never, false>;
 }

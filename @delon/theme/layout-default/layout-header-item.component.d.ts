@@ -6,5 +6,5 @@ export declare class LayoutDefaultHeaderItemComponent {
     hidden: LayoutDefaultHeaderItemHidden;
     direction: LayoutDefaultHeaderItemDirection;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderItemComponent, "layout-default-header-item", never, { "hidden": "hidden"; "direction": "direction"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderItemComponent, "layout-default-header-item", never, { "hidden": "hidden"; "direction": "direction"; }, {}, never, ["*"], false>;
 }

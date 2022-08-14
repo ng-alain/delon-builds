@@ -31,5 +31,5 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     ngOnChanges(): void;
     checkContent(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SVComponent, [null, { optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; "noColon": "noColon"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; "noColon": "noColon"; }, {}, never, ["*"], false>;
 }

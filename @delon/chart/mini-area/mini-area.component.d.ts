@@ -36,5 +36,5 @@ export declare class G2MiniAreaComponent extends G2BaseComponent {
     install(): void;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2MiniAreaComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniAreaComponent, "g2-mini-area", ["g2MiniArea"], { "color": "color"; "borderColor": "borderColor"; "borderWidth": "borderWidth"; "height": "height"; "fit": "fit"; "line": "line"; "animate": "animate"; "xAxis": "xAxis"; "yAxis": "yAxis"; "padding": "padding"; "data": "data"; "yTooltipSuffix": "yTooltipSuffix"; "tooltipType": "tooltipType"; }, { "clickItem": "clickItem"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniAreaComponent, "g2-mini-area", ["g2MiniArea"], { "color": "color"; "borderColor": "borderColor"; "borderWidth": "borderWidth"; "height": "height"; "fit": "fit"; "line": "line"; "animate": "animate"; "xAxis": "xAxis"; "yAxis": "yAxis"; "padding": "padding"; "data": "data"; "yTooltipSuffix": "yTooltipSuffix"; "tooltipType": "tooltipType"; }, { "clickItem": "clickItem"; }, never, never, false>;
 }

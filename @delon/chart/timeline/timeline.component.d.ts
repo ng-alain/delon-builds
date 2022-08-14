@@ -60,5 +60,5 @@ export declare class G2TimelineComponent extends G2BaseComponent {
     install(): void;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2TimelineComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2TimelineComponent, "g2-timeline", ["g2Timeline"], { "title": "title"; "maxAxis": "maxAxis"; "data": "data"; "titleMap": "titleMap"; "colorMap": "colorMap"; "mask": "mask"; "maskSlider": "maskSlider"; "position": "position"; "height": "height"; "padding": "padding"; "borderWidth": "borderWidth"; "slider": "slider"; }, { "clickItem": "clickItem"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2TimelineComponent, "g2-timeline", ["g2Timeline"], { "title": "title"; "maxAxis": "maxAxis"; "data": "data"; "titleMap": "titleMap"; "colorMap": "colorMap"; "mask": "mask"; "maskSlider": "maskSlider"; "position": "position"; "height": "height"; "padding": "padding"; "borderWidth": "borderWidth"; "slider": "slider"; }, { "clickItem": "clickItem"; }, never, never, false>;
 }

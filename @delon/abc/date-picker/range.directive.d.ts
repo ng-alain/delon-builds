@@ -30,5 +30,5 @@ export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     private destoryShortcut;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RangePickerDirective, [null, null, { optional: true; host: true; }, null, null]>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<RangePickerDirective, "nz-range-picker[extend]", ["extendRangePicker"], { "shortcut": "shortcut"; "ngModelEnd": "ngModelEnd"; }, { "ngModelEndChange": "ngModelEndChange"; }, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<RangePickerDirective, "nz-range-picker[extend]", ["extendRangePicker"], { "shortcut": "shortcut"; "ngModelEnd": "ngModelEnd"; }, { "ngModelEndChange": "ngModelEndChange"; }, never, never, false>;
 }

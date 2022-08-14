@@ -36,5 +36,5 @@ export declare class ImageDirective implements OnChanges, OnInit, OnDestroy {
     open(ev: Event): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ImageDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ImageDirective, "[_src]", ["_src"], { "src": "_src"; "size": "size"; "error": "error"; "useHttp": "useHttp"; "previewSrc": "previewSrc"; "previewModalOptions": "previewModalOptions"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ImageDirective, "[_src]", ["_src"], { "src": "_src"; "size": "size"; "error": "error"; "useHttp": "useHttp"; "previewSrc": "previewSrc"; "previewModalOptions": "previewModalOptions"; }, {}, never, never, false>;
 }

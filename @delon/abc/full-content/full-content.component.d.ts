@@ -33,5 +33,5 @@ export declare class FullContentComponent implements AfterViewInit, OnInit, OnCh
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "fullscreen": "fullscreen"; "hideTitle": "hideTitle"; "padding": "padding"; }, { "fullscreenChange": "fullscreenChange"; }, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "fullscreen": "fullscreen"; "hideTitle": "hideTitle"; "padding": "padding"; }, { "fullscreenChange": "fullscreenChange"; }, never, ["*"], false>;
 }

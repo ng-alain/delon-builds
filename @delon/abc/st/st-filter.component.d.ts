@@ -17,5 +17,5 @@ export declare class STFilterComponent {
     confirm(): void;
     reset(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STFilterComponent, "st-filter", never, { "col": "col"; "locale": "locale"; "f": "f"; }, { "n": "n"; "handle": "handle"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STFilterComponent, "st-filter", never, { "col": "col"; "locale": "locale"; "f": "f"; }, { "n": "n"; "handle": "handle"; }, never, never, false>;
 }

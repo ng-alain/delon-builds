@@ -13,5 +13,5 @@ export declare class TimeWidget extends ControlUIWidget<SFTimeWidgetSchema> impl
     _change(value: Date | null): void;
     _openChange(status: boolean): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TimeWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TimeWidget, "sf-time", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TimeWidget, "sf-time", never, {}, {}, never, never, false>;
 }

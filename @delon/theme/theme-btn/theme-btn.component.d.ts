@@ -31,5 +31,5 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     onThemeChange(theme: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnComponent, [null, null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ThemeBtnComponent, "theme-btn", never, { "types": "types"; "devTips": "devTips"; "deployUrl": "deployUrl"; }, { "themeChange": "themeChange"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ThemeBtnComponent, "theme-btn", never, { "types": "types"; "devTips": "devTips"; "deployUrl": "deployUrl"; }, { "themeChange": "themeChange"; }, never, never, false>;
 }

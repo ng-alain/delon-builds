@@ -16,5 +16,5 @@ export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema
     _select(options: NzSafeAny): void;
     _search(option: MentionOnSearchTypes): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MentionWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MentionWidget, "sf-mention", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MentionWidget, "sf-mention", never, {}, {}, never, never, false>;
 }

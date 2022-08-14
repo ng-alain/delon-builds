@@ -63,5 +63,5 @@ export declare class G2PieComponent extends G2BaseComponent {
     _click(i: number): void;
     onChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2PieComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": "animate"; "color": "color"; "subTitle": "subTitle"; "total": "total"; "height": "height"; "hasLegend": "hasLegend"; "inner": "inner"; "padding": "padding"; "percent": "percent"; "tooltip": "tooltip"; "lineWidth": "lineWidth"; "blockMaxWidth": "blockMaxWidth"; "select": "select"; "valueFormat": "valueFormat"; "data": "data"; "colors": "colors"; "interaction": "interaction"; "ratio": "ratio"; }, { "clickItem": "clickItem"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": "animate"; "color": "color"; "subTitle": "subTitle"; "total": "total"; "height": "height"; "hasLegend": "hasLegend"; "inner": "inner"; "padding": "padding"; "percent": "percent"; "tooltip": "tooltip"; "lineWidth": "lineWidth"; "blockMaxWidth": "blockMaxWidth"; "select": "select"; "valueFormat": "valueFormat"; "data": "data"; "colors": "colors"; "interaction": "interaction"; "ratio": "ratio"; }, { "clickItem": "clickItem"; }, never, never, false>;
 }

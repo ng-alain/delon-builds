@@ -15,5 +15,5 @@ export declare class ArrayWidget extends ArrayLayoutWidget implements OnInit {
     addItem(): void;
     removeItem(index: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ArrayWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ArrayWidget, "sf-array", never, {}, {}, never, never, false>;
 }

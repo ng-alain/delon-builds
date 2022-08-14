@@ -19,5 +19,5 @@ export declare class ReuseTabContextMenuComponent implements OnInit {
     isDisabled(custom: ReuseCustomContextMenu): boolean;
     closeMenu(event: MouseEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextMenuComponent, "reuse-tab-context-menu", never, { "i18n": "i18n"; "item": "item"; "event": "event"; "customContextMenu": "customContextMenu"; }, { "close": "close"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextMenuComponent, "reuse-tab-context-menu", never, { "i18n": "i18n"; "item": "item"; "event": "event"; "customContextMenu": "customContextMenu"; }, { "close": "close"; }, never, never, false>;
 }

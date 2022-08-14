@@ -18,5 +18,5 @@ export declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> 
     handleRemove: () => boolean;
     handlePreview: (file: NzUploadFile) => void;
     static ɵfac: i0.ɵɵFactoryDeclaration<UploadWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<UploadWidget, "sf-upload", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<UploadWidget, "sf-upload", never, {}, {}, never, never, false>;
 }

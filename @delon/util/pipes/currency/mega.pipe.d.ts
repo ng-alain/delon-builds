@@ -12,5 +12,5 @@ export declare class CurrencyMegaPipe implements PipeTransform {
      */
     transform(value: number | string, options?: CurrencyMegaOptions): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CurrencyMegaPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyMegaPipe, "mega">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyMegaPipe, "mega", false>;
 }

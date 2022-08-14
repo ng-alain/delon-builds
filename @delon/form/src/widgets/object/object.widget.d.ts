@@ -13,5 +13,5 @@ export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
     ngOnInit(): void;
     changeExpand(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ObjectWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ObjectWidget, "sf-object", never, {}, {}, never, never, false>;
 }

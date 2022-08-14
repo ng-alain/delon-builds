@@ -36,5 +36,5 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     private toUtf8ByteArray;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<QRComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<QRComponent, "qr", ["qr"], { "background": "background"; "backgroundAlpha": "backgroundAlpha"; "foreground": "foreground"; "foregroundAlpha": "foregroundAlpha"; "level": "level"; "mime": "mime"; "padding": "padding"; "size": "size"; "value": "value"; "delay": "delay"; }, { "change": "change"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<QRComponent, "qr", ["qr"], { "background": "background"; "backgroundAlpha": "backgroundAlpha"; "foreground": "foreground"; "foregroundAlpha": "foregroundAlpha"; "level": "level"; "mime": "mime"; "padding": "padding"; "size": "size"; "value": "value"; "delay": "delay"; }, { "change": "change"; }, never, never, false>;
 }

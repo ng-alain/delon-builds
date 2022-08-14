@@ -13,5 +13,5 @@ export declare class G2CustomComponent extends G2BaseComponent {
     install(): void;
     private installResizeEvent;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2CustomComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2CustomComponent, "g2,g2-custom", ["g2Custom"], { "height": "height"; "resizeTime": "resizeTime"; }, { "render": "render"; "resize": "resize"; "destroy": "destroy"; }, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2CustomComponent, "g2,g2-custom", ["g2Custom"], { "height": "height"; "resizeTime": "resizeTime"; }, { "render": "render"; "resize": "resize"; "destroy": "destroy"; }, never, ["*"], false>;
 }

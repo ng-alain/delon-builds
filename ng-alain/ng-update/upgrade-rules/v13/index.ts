@@ -1,8 +1,7 @@
-import { colors } from '@angular/cli/utilities/color';
-
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
+import * as colors from 'ansi-colors';
 
 import {
   addPackage,
@@ -77,7 +76,7 @@ function upgradeKarmaCoverage(): Rule {
 
 function upgradeThirdVersion(): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    addPackage(tree, [`ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
+    addPackage(tree, [`ngx-ueditor@^14.0.0`, `ngx-tinymce@^14.0.0`], 'dependencies');
     logStart(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
   };
 }

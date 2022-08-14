@@ -9,5 +9,5 @@ export declare class FilterPipe implements PipeTransform {
      */
     transform<T>(array: readonly T[], matcher: (item: T, ...args: NzSafeAny[]) => boolean, ...args: NzSafeAny[]): T[];
     static ɵfac: i0.ɵɵFactoryDeclaration<FilterPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<FilterPipe, "filter">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<FilterPipe, "filter", false>;
 }

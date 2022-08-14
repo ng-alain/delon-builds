@@ -25,5 +25,5 @@ export declare class AvatarListComponent implements AfterViewInit, OnChanges, On
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<AvatarListComponent, [null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarListComponent, "avatar-list", ["avatarList"], { "size": "size"; "maxLength": "maxLength"; "excessItemsStyle": "excessItemsStyle"; }, {}, ["_items"], never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarListComponent, "avatar-list", ["avatarList"], { "size": "size"; "maxLength": "maxLength"; "excessItemsStyle": "excessItemsStyle"; }, {}, ["_items"], never, false>;
 }

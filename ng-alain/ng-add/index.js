@@ -1,11 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
+const colors = require("ansi-colors");
 const utils_1 = require("../utils");
 const node_1 = require("../utils/node");
-const V = 13;
+const V = 14;
 function genRules(options) {
     return () => {
         const rules = [];
@@ -45,7 +45,7 @@ function isYarn(tree) {
 function finished() {
     return (_, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
-        context.logger.info(color_1.colors.green(`
+        context.logger.info(colors.green(`
 ✓  Congratulations, NG-ALAIN scaffold generation complete 🎉.
 
 NG-ALAIN documentation site: https://ng-alain.com

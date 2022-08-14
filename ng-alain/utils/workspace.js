@@ -19,17 +19,11 @@ exports.BUILD_TARGET_SERVE = 'serve';
 exports.BUILD_TARGET_LINT = 'lint';
 exports.NG_ALAIN_JSON = `ng-alain.json`;
 function getProjectName(workspace, name) {
+    var _a;
     if (name && workspace.projects.has(name)) {
         return name;
     }
-    if (workspace.projects.size === 1) {
-        return Array.from(workspace.projects.keys())[0];
-    }
-    const defaultProject = workspace.extensions.defaultProject;
-    if (defaultProject && typeof defaultProject === 'string') {
-        return defaultProject;
-    }
-    return null;
+    return (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : null;
 }
 function getNgAlainJson(tree) {
     if (!tree.exists(exports.NG_ALAIN_JSON))
@@ -110,7 +104,11 @@ function removeAllowedCommonJsDependencies(key, projectName) {
     }));
 }
 exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
-function getProjectFromWorkspace(workspace, projectName = workspace.extensions.defaultProject) {
+function getProjectFromWorkspace(workspace, projectName) {
+    var _a;
+    if (!projectName) {
+        projectName = (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : null;
+    }
     const project = workspace.projects.get(projectName);
     if (!project) {
         throw new schematics_1.SchematicsException(`Could not find project in workspace: ${projectName}`);

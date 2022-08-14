@@ -1,4 +1,5 @@
 "use strict";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -9,10 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const color_1 = require("@angular/cli/utilities/color");
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
+const colors = require("ansi-colors");
 const fs_1 = require("fs");
 const jsonc_parser_1 = require("jsonc-parser");
 const path_1 = require("path");
@@ -93,18 +93,18 @@ function fix(output, res, tree, context) {
 function genProxy(config) {
     return (tree, context) => {
         var _a;
-        context.logger.info(color_1.colors.blue(`- Name: ${config.name}`));
+        context.logger.info(colors.blue(`- Name: ${config.name}`));
         const output = (config.output = (0, path_1.resolve)(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/_${config.name}`));
         const templates = (0, path_1.resolve)(__dirname, './templates');
         if (config.url) {
-            context.logger.info(color_1.colors.blue(`- Using url data: ${config.url}`));
+            context.logger.info(colors.blue(`- Using url data: ${config.url}`));
         }
         else if (config.filePath) {
-            context.logger.info(color_1.colors.blue(`- Using file data: ${config.filePath}`));
+            context.logger.info(colors.blue(`- Using file data: ${config.filePath}`));
         }
-        context.logger.info(color_1.colors.blue(`- Output: ${output}`));
+        context.logger.info(colors.blue(`- Output: ${output}`));
         return new Promise(resolve => {
-            context.logger.info(color_1.colors.blue(`Start generating...`));
+            context.logger.info(colors.blue(`Start generating...`));
             const options = Object.assign({ name: `${config.name}.ts`, url: config.url, input: config.filePath, spec: config.spec, output,
                 templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true, defaultResponseType: 'any', typePrefix: config.modelTypePrefix, hooks: {
                     onInit: (c) => {
@@ -171,7 +171,7 @@ function genProxy(config) {
 }
 function finished() {
     return (_, context) => {
-        context.logger.info(color_1.colors.green(`✓  Finished, refer to: https://ng-alain.com/cli/sta`));
+        context.logger.info(colors.green(`✓  Finished, refer to: https://ng-alain.com/cli/sta`));
     };
 }
 function tryLoadConfig(context, configPath) {
@@ -179,7 +179,7 @@ function tryLoadConfig(context, configPath) {
         return null;
     try {
         const configFile = (0, path_1.resolve)(process.cwd(), configPath);
-        context.logger.info(color_1.colors.blue(`- Use config file: ${configFile}`));
+        context.logger.info(colors.blue(`- Use config file: ${configFile}`));
         if ((0, fs_1.existsSync)(configFile)) {
             return (0, jsonc_parser_1.parse)((0, fs_1.readFileSync)(configFile).toString('utf8'));
         }
@@ -190,7 +190,7 @@ function tryLoadConfig(context, configPath) {
 }
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        context.logger.info(color_1.colors.yellow(`The ng g ng-alain:sta is currently in testing status and may change before the major version of '13'`));
+        context.logger.info(colors.yellow(`The ng g ng-alain:sta is currently in testing status and may change before the major version of '13'`));
         project = (yield (0, workspace_1.getProject)(tree, options.project)).project;
         const config = Object.assign(Object.assign({ name: 'sta' }, options), tryLoadConfig(context, options.config));
         if (typeof config.generateApiOptions === 'string') {

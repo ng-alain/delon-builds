@@ -16,5 +16,5 @@ export declare class G2MiniProgressComponent implements OnChanges {
     private fixNum;
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2MiniProgressComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniProgressComponent, "g2-mini-progress", ["g2MiniProgress"], { "color": "color"; "target": "target"; "percent": "percent"; "strokeWidth": "strokeWidth"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniProgressComponent, "g2-mini-progress", ["g2MiniProgress"], { "color": "color"; "target": "target"; "percent": "percent"; "strokeWidth": "strokeWidth"; }, {}, never, never, false>;
 }

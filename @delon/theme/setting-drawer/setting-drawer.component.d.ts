@@ -45,5 +45,5 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     copyVar(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SettingDrawerComponent, [null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": "autoApplyColor"; "compilingText": "compilingText"; "devTips": "devTips"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": "autoApplyColor"; "compilingText": "compilingText"; "devTips": "devTips"; }, {}, never, never, false>;
 }

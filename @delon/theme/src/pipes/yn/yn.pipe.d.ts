@@ -7,5 +7,5 @@ export declare class YNPipe implements PipeTransform {
     constructor(dom: DomSanitizer);
     transform(value: boolean, yes?: string, no?: string, mode?: YNMode, isSafeHtml?: boolean): SafeHtml;
     static ɵfac: i0.ɵɵFactoryDeclaration<YNPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<YNPipe, "yn">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<YNPipe, "yn", false>;
 }

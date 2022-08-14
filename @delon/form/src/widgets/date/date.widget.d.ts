@@ -23,5 +23,5 @@ export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> impl
     private get endProperty();
     private setEnd;
     static ɵfac: i0.ɵɵFactoryDeclaration<DateWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<DateWidget, "sf-date", never, {}, {}, never, never, false>;
 }

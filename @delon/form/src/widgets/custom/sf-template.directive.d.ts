@@ -8,5 +8,5 @@ export declare class SFTemplateDirective implements OnInit {
     constructor(templateRef: TemplateRef<void>, table: SFComponent);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFTemplateDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SFTemplateDirective, "[sf-template]", never, { "path": "sf-template"; }, {}, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SFTemplateDirective, "[sf-template]", never, { "path": "sf-template"; }, {}, never, never, false>;
 }

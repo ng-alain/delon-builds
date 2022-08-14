@@ -5,5 +5,5 @@ export declare class AvatarListItemComponent {
     icon?: string;
     tips?: string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AvatarListItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarListItemComponent, "avatar-list-item, [avatar-list-item]", ["avatarListItem"], { "src": "src"; "text": "text"; "icon": "icon"; "tips": "tips"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<AvatarListItemComponent, "avatar-list-item, [avatar-list-item]", ["avatarListItem"], { "src": "src"; "text": "text"; "icon": "icon"; "tips": "tips"; }, {}, never, ["*"], false>;
 }

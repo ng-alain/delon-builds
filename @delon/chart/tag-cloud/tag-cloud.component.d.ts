@@ -27,5 +27,5 @@ export declare class G2TagCloudComponent extends G2BaseComponent {
     private installResizeEvent;
     onInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2TagCloudComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2TagCloudComponent, "g2-tag-cloud", ["g2TagCloud"], { "width": "width"; "height": "height"; "padding": "padding"; "data": "data"; }, { "clickItem": "clickItem"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2TagCloudComponent, "g2-tag-cloud", ["g2TagCloud"], { "width": "width"; "height": "height"; "padding": "padding"; "data": "data"; }, { "clickItem": "clickItem"; }, never, never, false>;
 }

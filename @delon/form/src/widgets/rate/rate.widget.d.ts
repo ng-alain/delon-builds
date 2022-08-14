@@ -11,5 +11,5 @@ export declare class RateWidget extends ControlUIWidget<SFRateWidgetSchema> impl
     get text(): string;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RateWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<RateWidget, "sf-rate", never, {}, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RateWidget, "sf-rate", never, {}, {}, never, never, false>;
 }

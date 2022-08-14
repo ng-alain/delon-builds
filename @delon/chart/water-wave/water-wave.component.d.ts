@@ -30,5 +30,5 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2WaterWaveComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2WaterWaveComponent, "g2-water-wave", ["g2WaterWave"], { "animate": "animate"; "delay": "delay"; "title": "title"; "color": "color"; "height": "height"; "percent": "percent"; }, {}, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2WaterWaveComponent, "g2-water-wave", ["g2WaterWave"], { "animate": "animate"; "delay": "delay"; "title": "title"; "color": "color"; "height": "height"; "percent": "percent"; }, {}, never, never, false>;
 }

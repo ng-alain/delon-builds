@@ -89,5 +89,5 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     }): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PdfComponent, [null, null, null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": "src"; "pi": "pi"; "showAll": "showAll"; "renderText": "renderText"; "textLayerMode": "textLayerMode"; "showBorders": "showBorders"; "stickToPage": "stickToPage"; "originalSize": "originalSize"; "fitToPage": "fitToPage"; "zoom": "zoom"; "zoomScale": "zoomScale"; "rotation": "rotation"; "autoReSize": "autoReSize"; "externalLinkTarget": "externalLinkTarget"; "delay": "delay"; }, { "change": "change"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": "src"; "pi": "pi"; "showAll": "showAll"; "renderText": "renderText"; "textLayerMode": "textLayerMode"; "showBorders": "showBorders"; "stickToPage": "stickToPage"; "originalSize": "originalSize"; "fitToPage": "fitToPage"; "zoom": "zoom"; "zoomScale": "zoomScale"; "rotation": "rotation"; "autoReSize": "autoReSize"; "externalLinkTarget": "externalLinkTarget"; "delay": "delay"; }, { "change": "change"; }, never, never, false>;
 }

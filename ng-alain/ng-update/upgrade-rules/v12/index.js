@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.v12Rule = void 0;
-const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
+const colors = require("ansi-colors");
 const utils_1 = require("../../../utils");
 const code_style_1 = require("../../../utils/code-style");
 const versions_1 = require("../../../utils/versions");
@@ -59,7 +59,7 @@ function fixAngularJson(context) {
 }
 function upgradeThirdVersion() {
     return (tree, context) => {
-        (0, utils_1.addPackage)(tree, [`ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
+        (0, utils_1.addPackage)(tree, [`ngx-ueditor@^14.0.0`, `ngx-tinymce@^14.0.0`], 'dependencies');
         (0, utils_1.logStart)(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
     };
 }
@@ -137,8 +137,8 @@ function formatJson() {
 }
 function finished() {
     return (_tree, context) => {
-        context.logger.warn(color_1.colors.yellow(`  ✓  After the upgrade is complete, you still need to execute \`ng lint --fix\` to fix the code format, Abort more detail please refer to upgrade guide https://ng-alain.com/docs/style-guide`));
-        context.logger.info(color_1.colors.green(`  ✓  Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2027`));
+        context.logger.warn(colors.yellow(`  ✓  After the upgrade is complete, you still need to execute \`ng lint --fix\` to fix the code format, Abort more detail please refer to upgrade guide https://ng-alain.com/docs/style-guide`));
+        context.logger.info(colors.green(`  ✓  Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2027`));
     };
 }
 function v12Rule(options) {

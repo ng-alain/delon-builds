@@ -10,10 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.v13Rule = void 0;
-const color_1 = require("@angular/cli/utilities/color");
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const workspace_1 = require("@schematics/angular/utility/workspace");
+const colors = require("ansi-colors");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
 function addStylePreprocessorOptions() {
@@ -41,7 +41,7 @@ function removeIE() {
         const pkg = (0, utils_1.readPackage)(tree);
         if (pkg.scripts && !pkg.scripts['ie:start'])
             return;
-        context.logger.warn(color_1.colors.yellow(`TIPS: Starting from NG-ALAIN 13 will no longer support IE`));
+        context.logger.warn(colors.yellow(`TIPS: Starting from NG-ALAIN 13 will no longer support IE`));
     };
 }
 function addYarn(context) {
@@ -71,14 +71,14 @@ function upgradeKarmaCoverage() {
 }
 function upgradeThirdVersion() {
     return (tree, context) => {
-        (0, utils_1.addPackage)(tree, [`ngx-ueditor@^13.0.0`, `ngx-tinymce@^13.0.0`], 'dependencies');
+        (0, utils_1.addPackage)(tree, [`ngx-ueditor@^14.0.0`, `ngx-tinymce@^14.0.0`], 'dependencies');
         (0, utils_1.logStart)(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
     };
 }
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
-        context.logger.info(color_1.colors.green(`  ✓ Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2174`));
+        context.logger.info(colors.green(`  ✓ Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2174`));
     };
 }
 function v13Rule() {

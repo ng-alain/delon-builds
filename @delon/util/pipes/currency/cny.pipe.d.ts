@@ -11,5 +11,5 @@ export declare class CurrencyCNYPipe implements PipeTransform {
      */
     transform(value: number | string, options?: CurrencyCNYOptions): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CurrencyCNYPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyCNYPipe, "cny">;
+    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyCNYPipe, "cny", false>;
 }

@@ -64,7 +64,7 @@ function addDependenciesToPackageJson(options) {
     return (tree) => {
         (0, versions_1.UpgradeMainVersions)(tree);
         // 3rd
-        (0, utils_1.addPackage)(tree, ['screenfull@^6.0.1']);
+        (0, utils_1.addPackage)(tree, ['screenfull@^6.0.2']);
         return tree;
     };
 }
@@ -124,12 +124,12 @@ function addCodeStylesToPackageJson() {
         // dependencies
         (0, utils_1.addPackage)(tree, [
             `husky@^7.0.4`,
-            `lint-staged@^12.3.7`,
-            `prettier@^2.6.0`,
-            `stylelint@^14.6.0`,
+            `lint-staged@^13.0.3`,
+            `prettier@^2.7.1`,
+            `stylelint@^14.10.0`,
             `stylelint-config-prettier@^9.0.3`,
             `stylelint-config-rational-order@^0.1.2`,
-            `stylelint-config-standard@^25.0.0`,
+            `stylelint-config-standard@^27.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.5.0`,
             `stylelint-order@^5.0.0`
         ], 'devDependencies');

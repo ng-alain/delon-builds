@@ -15,5 +15,5 @@ export declare class ResultComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ResultComponent, [{ optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ResultComponent, "result", ["result"], { "type": "type"; "title": "title"; "description": "description"; "extra": "extra"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ResultComponent, "result", ["result"], { "type": "type"; "title": "title"; "description": "description"; "extra": "extra"; }, {}, never, ["*"], false>;
 }

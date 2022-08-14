@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "13.5.2-afdb5e18",
+  "version": "13.5.2-5e67e742",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,10 +26,10 @@
   ],
   "dependencies": {
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.1.47",
-    "echarts": "^5.3.1",
-    "@delon/util": "^13.5.2-afdb5e18",
-    "@delon/theme": "^13.5.2-afdb5e18",
+    "@antv/g2": "^4.2.6",
+    "echarts": "^5.3.3",
+    "@delon/util": "^13.5.2-5e67e742",
+    "@delon/theme": "^13.5.2-5e67e742",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/chart.mjs",
@@ -37,13 +37,13 @@
   "esm2020": "esm2020/chart.mjs",
   "fesm2020": "fesm2020/chart.mjs",
   "fesm2015": "fesm2015/chart.mjs",
-  "typings": "chart.d.ts",
+  "typings": "index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./chart.d.ts",
+      "types": "./index.d.ts",
       "esm2020": "./esm2020/chart.mjs",
       "es2020": "./fesm2020/chart.mjs",
       "es2015": "./fesm2015/chart.mjs",
@@ -51,7 +51,7 @@
       "default": "./fesm2020/chart.mjs"
     },
     "./bar": {
-      "types": "./bar/bar.d.ts",
+      "types": "./bar/index.d.ts",
       "esm2020": "./esm2020/bar/bar.mjs",
       "es2020": "./fesm2020/bar.mjs",
       "es2015": "./fesm2015/bar.mjs",
@@ -59,7 +59,7 @@
       "default": "./fesm2020/bar.mjs"
     },
     "./card": {
-      "types": "./card/card.d.ts",
+      "types": "./card/index.d.ts",
       "esm2020": "./esm2020/card/card.mjs",
       "es2020": "./fesm2020/card.mjs",
       "es2015": "./fesm2015/card.mjs",
@@ -67,7 +67,7 @@
       "default": "./fesm2020/card.mjs"
     },
     "./chart-echarts": {
-      "types": "./chart-echarts/chart-echarts.d.ts",
+      "types": "./chart-echarts/index.d.ts",
       "esm2020": "./esm2020/chart-echarts/chart-echarts.mjs",
       "es2020": "./fesm2020/chart-echarts.mjs",
       "es2015": "./fesm2015/chart-echarts.mjs",
@@ -75,7 +75,7 @@
       "default": "./fesm2020/chart-echarts.mjs"
     },
     "./core": {
-      "types": "./core/core.d.ts",
+      "types": "./core/index.d.ts",
       "esm2020": "./esm2020/core/core.mjs",
       "es2020": "./fesm2020/core.mjs",
       "es2015": "./fesm2015/core.mjs",
@@ -83,7 +83,7 @@
       "default": "./fesm2020/core.mjs"
     },
     "./custom": {
-      "types": "./custom/custom.d.ts",
+      "types": "./custom/index.d.ts",
       "esm2020": "./esm2020/custom/custom.mjs",
       "es2020": "./fesm2020/custom.mjs",
       "es2015": "./fesm2015/custom.mjs",
@@ -91,7 +91,7 @@
       "default": "./fesm2020/custom.mjs"
     },
     "./gauge": {
-      "types": "./gauge/gauge.d.ts",
+      "types": "./gauge/index.d.ts",
       "esm2020": "./esm2020/gauge/gauge.mjs",
       "es2020": "./fesm2020/gauge.mjs",
       "es2015": "./fesm2015/gauge.mjs",
@@ -99,7 +99,7 @@
       "default": "./fesm2020/gauge.mjs"
     },
     "./mini-area": {
-      "types": "./mini-area/mini-area.d.ts",
+      "types": "./mini-area/index.d.ts",
       "esm2020": "./esm2020/mini-area/mini-area.mjs",
       "es2020": "./fesm2020/mini-area.mjs",
       "es2015": "./fesm2015/mini-area.mjs",
@@ -107,7 +107,7 @@
       "default": "./fesm2020/mini-area.mjs"
     },
     "./mini-bar": {
-      "types": "./mini-bar/mini-bar.d.ts",
+      "types": "./mini-bar/index.d.ts",
       "esm2020": "./esm2020/mini-bar/mini-bar.mjs",
       "es2020": "./fesm2020/mini-bar.mjs",
       "es2015": "./fesm2015/mini-bar.mjs",
@@ -115,7 +115,7 @@
       "default": "./fesm2020/mini-bar.mjs"
     },
     "./mini-progress": {
-      "types": "./mini-progress/mini-progress.d.ts",
+      "types": "./mini-progress/index.d.ts",
       "esm2020": "./esm2020/mini-progress/mini-progress.mjs",
       "es2020": "./fesm2020/mini-progress.mjs",
       "es2015": "./fesm2015/mini-progress.mjs",
@@ -123,7 +123,7 @@
       "default": "./fesm2020/mini-progress.mjs"
     },
     "./number-info": {
-      "types": "./number-info/number-info.d.ts",
+      "types": "./number-info/index.d.ts",
       "esm2020": "./esm2020/number-info/number-info.mjs",
       "es2020": "./fesm2020/number-info.mjs",
       "es2015": "./fesm2015/number-info.mjs",
@@ -131,7 +131,7 @@
       "default": "./fesm2020/number-info.mjs"
     },
     "./pie": {
-      "types": "./pie/pie.d.ts",
+      "types": "./pie/index.d.ts",
       "esm2020": "./esm2020/pie/pie.mjs",
       "es2020": "./fesm2020/pie.mjs",
       "es2015": "./fesm2015/pie.mjs",
@@ -139,7 +139,7 @@
       "default": "./fesm2020/pie.mjs"
     },
     "./radar": {
-      "types": "./radar/radar.d.ts",
+      "types": "./radar/index.d.ts",
       "esm2020": "./esm2020/radar/radar.mjs",
       "es2020": "./fesm2020/radar.mjs",
       "es2015": "./fesm2015/radar.mjs",
@@ -147,7 +147,7 @@
       "default": "./fesm2020/radar.mjs"
     },
     "./single-bar": {
-      "types": "./single-bar/single-bar.d.ts",
+      "types": "./single-bar/index.d.ts",
       "esm2020": "./esm2020/single-bar/single-bar.mjs",
       "es2020": "./fesm2020/single-bar.mjs",
       "es2015": "./fesm2015/single-bar.mjs",
@@ -155,7 +155,7 @@
       "default": "./fesm2020/single-bar.mjs"
     },
     "./tag-cloud": {
-      "types": "./tag-cloud/tag-cloud.d.ts",
+      "types": "./tag-cloud/index.d.ts",
       "esm2020": "./esm2020/tag-cloud/tag-cloud.mjs",
       "es2020": "./fesm2020/tag-cloud.mjs",
       "es2015": "./fesm2015/tag-cloud.mjs",
@@ -163,7 +163,7 @@
       "default": "./fesm2020/tag-cloud.mjs"
     },
     "./timeline": {
-      "types": "./timeline/timeline.d.ts",
+      "types": "./timeline/index.d.ts",
       "esm2020": "./esm2020/timeline/timeline.mjs",
       "es2020": "./fesm2020/timeline.mjs",
       "es2015": "./fesm2015/timeline.mjs",
@@ -171,7 +171,7 @@
       "default": "./fesm2020/timeline.mjs"
     },
     "./trend": {
-      "types": "./trend/trend.d.ts",
+      "types": "./trend/index.d.ts",
       "esm2020": "./esm2020/trend/trend.mjs",
       "es2020": "./fesm2020/trend.mjs",
       "es2015": "./fesm2015/trend.mjs",
@@ -179,7 +179,7 @@
       "default": "./fesm2020/trend.mjs"
     },
     "./water-wave": {
-      "types": "./water-wave/water-wave.d.ts",
+      "types": "./water-wave/index.d.ts",
       "esm2020": "./esm2020/water-wave/water-wave.mjs",
       "es2020": "./fesm2020/water-wave.mjs",
       "es2015": "./fesm2015/water-wave.mjs",

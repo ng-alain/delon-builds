@@ -6,5 +6,5 @@ export declare class SVValueComponent {
     tooltip?: NzTSType | null;
     size: 'large' | 'small' | 'default';
     static ɵfac: i0.ɵɵFactoryDeclaration<SVValueComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVValueComponent, "sv-value, [sv-value]", ["svValue"], { "prefix": "prefix"; "unit": "unit"; "tooltip": "tooltip"; "size": "size"; }, {}, never, ["*"]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVValueComponent, "sv-value, [sv-value]", ["svValue"], { "prefix": "prefix"; "unit": "unit"; "tooltip": "tooltip"; "size": "size"; }, {}, never, ["*"], false>;
 }

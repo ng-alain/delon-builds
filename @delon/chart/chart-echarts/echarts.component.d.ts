@@ -38,5 +38,5 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ChartEChartsComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ChartEChartsComponent, "chart-echarts, [chart-echarts]", ["chartECharts"], { "width": "width"; "height": "height"; "theme": "theme"; "initOpt": "initOpt"; "option": "option"; "on": "on"; }, { "events": "events"; }, never, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ChartEChartsComponent, "chart-echarts, [chart-echarts]", ["chartECharts"], { "width": "width"; "height": "height"; "theme": "theme"; "initOpt": "initOpt"; "option": "option"; "on": "on"; }, { "events": "events"; }, never, never, false>;
 }
