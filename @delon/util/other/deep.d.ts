@@ -1,4 +1,3 @@
-import rfdc from 'rfdc';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * Gets the value at `path` of `object`, like `_.get` in lodash.
@@ -7,19 +6,13 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
  */
 export declare function deepGet(obj: NzSafeAny, path: string | string[] | null | undefined, defaultValue?: unknown): NzSafeAny;
 /**
- * Base on [rfdc](https://github.com/davidmarkclements/rfdc) deep copy.
+ * Base on [extend](https://github.com/justmoon/node-extend) deep copy.
  *
- * 基于 [rfdc](https://github.com/davidmarkclements/rfdc) 的深度拷贝
+ * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
  */
-export declare function deepCopy<T>(obj: T | null | undefined): T;
-/**
- * Base on [rfdc](https://github.com/davidmarkclements/rfdc) deep copy.
- *
- * 基于 [rfdc](https://github.com/davidmarkclements/rfdc) 的深度拷贝
- *
- * - [options](https://github.com/davidmarkclements/rfdc#requirerfdcopts---proto-false-circles-false---cloneobj--obj2) 参数文档
- */
-export declare function deepCopy<T>(obj: T | null | undefined, options?: rfdc.Options): T;
+export declare function deepCopy<T extends {
+    [key: string]: NzSafeAny;
+} = NzSafeAny>(obj: T | null | undefined): T;
 /**
  * Deep merge object.
  *

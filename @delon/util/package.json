@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "13.5.2-260f2e1a",
+  "version": "13.5.2-33beb5f0",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -20,7 +20,7 @@
     "angular"
   ],
   "dependencies": {
-    "extend": "undefined",
+    "extend": "^3.0.2",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/delon-util.mjs",

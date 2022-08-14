@@ -1,4 +1,4 @@
-import rfdc from 'rfdc';
+import extend from 'extend';
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
@@ -22,10 +22,14 @@ function deepGet(obj, path, defaultValue) {
     const res = path.reduce((o, k) => (o || {})[k], obj);
     return typeof res === 'undefined' ? defaultValue : res;
 }
-function deepCopy(obj, options) {
-    if (obj == null)
-        return obj;
-    return rfdc(options)(obj);
+/**
+ * Base on [extend](https://github.com/justmoon/node-extend) deep copy.
+ *
+ * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
+ */
+function deepCopy(obj) {
+    const result = extend(true, {}, { _: obj });
+    return result._;
 }
 /**
  * Deep merge object.
