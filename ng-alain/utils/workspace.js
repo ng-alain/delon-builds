@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -144,20 +144,4 @@ function addStylePreprocessorOptionsToAllProject(workspace) {
     });
 }
 exports.addStylePreprocessorOptionsToAllProject = addStylePreprocessorOptionsToAllProject;
-function addSchematicCollections(workspace) {
-    const cli = workspace.extensions.cli;
-    if (cli && cli.schematicCollections)
-        return;
-    if (cli == null)
-        workspace.extensions.cli = {};
-    let schematicCollections = workspace.extensions.cli['schematicCollections'];
-    if (!Array.isArray(schematicCollections))
-        schematicCollections = [];
-    if (!schematicCollections.includes(`@schematics/angular`))
-        schematicCollections.push(`@schematics/angular`);
-    if (!schematicCollections.includes(`ng-alain`))
-        schematicCollections.push(`ng-alain`);
-    workspace.extensions.cli['schematicCollections'] = schematicCollections;
-}
-exports.addSchematicCollections = addSchematicCollections;
 //# sourceMappingURL=workspace.js.map
