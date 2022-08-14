@@ -34,6 +34,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint-plugin-jsdoc@~39.3.6`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@^2.7.1`,
+        `eslint-plugin-deprecation@~1.3.2`,
         `prettier@^2.7.1`,
         `husky@^7.0.4`,
         `ng-alain@${version}`,
