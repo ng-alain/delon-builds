@@ -566,7 +566,7 @@ class FormProperty {
                 }
             }
             combineLatest(propertiesBinding)
-                .pipe(map(values => values.indexOf(true) !== -1), distinctUntilChanged())
+                .pipe(map(values => (this.ui.visibleIfLogical === 'and' ? values.every(v => v) : values.some(v => v))), distinctUntilChanged())
                 .subscribe(visible => this.setVisible(visible));
         }
     }
