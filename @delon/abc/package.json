@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "13.5.2-94f29864",
+  "version": "13.5.2-8bebd30e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.2",
     "pdfjs-dist": "^2.15.349",
     "ngx-countdown": "^14.0.0",
-    "@delon/theme": "^13.5.2-94f29864",
-    "@delon/util": "^13.5.2-94f29864",
-    "@delon/acl": "^13.5.2-94f29864",
+    "@delon/theme": "^13.5.2-8bebd30e",
+    "@delon/util": "^13.5.2-8bebd30e",
+    "@delon/acl": "^13.5.2-8bebd30e",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -178,6 +178,14 @@
       "es2015": "./fesm2015/notice-icon.mjs",
       "node": "./fesm2015/notice-icon.mjs",
       "default": "./fesm2020/notice-icon.mjs"
+    },
+    "./observers": {
+      "types": "./observers/index.d.ts",
+      "esm2020": "./esm2020/observers/chart-observer-size.mjs",
+      "es2020": "./fesm2020/chart-observer-size.mjs",
+      "es2015": "./fesm2015/chart-observer-size.mjs",
+      "node": "./fesm2015/chart-observer-size.mjs",
+      "default": "./fesm2020/chart-observer-size.mjs"
     },
     "./onboarding": {
       "types": "./onboarding/index.d.ts",
