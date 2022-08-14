@@ -33407,7 +33407,8 @@ ellipsis {
 }
 .page-header__action,
 .page-header__extra {
-  text-align: right;
+  display: flex;
+  justify-content: end;
 }
 .page-header__extra {
   min-width: 242px;
@@ -33429,8 +33430,8 @@ ellipsis {
   }
   .page-header__action,
   .page-header__extra {
+    justify-content: start;
     margin-left: 0;
-    text-align: left;
   }
 }
 @media screen and (max-width: 576px) {
