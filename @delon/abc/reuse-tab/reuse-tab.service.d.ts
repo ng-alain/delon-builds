@@ -4,13 +4,10 @@ import { Observable } from 'rxjs';
 import { MenuService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
-import { ReuseTabStorageState } from './reuse-tab.state';
 import * as i0 from "@angular/core";
 export declare class ReuseTabService implements OnDestroy {
     private injector;
     private menuService;
-    private stateKey;
-    private stateSrv;
     private _inited;
     private _max;
     private _keepingScroll;
@@ -27,7 +24,6 @@ export declare class ReuseTabService implements OnDestroy {
     mode: ReuseTabMatchMode;
     /** 排除规则，限 `mode=URL` */
     excludes: RegExp[];
-    storageState: boolean;
     private get snapshot();
     /**
      * Get init status
@@ -152,9 +148,8 @@ export declare class ReuseTabService implements OnDestroy {
     refresh(data?: NzSafeAny): void;
     private destroy;
     private di;
-    constructor(injector: Injector, menuService: MenuService, stateKey: string, stateSrv: ReuseTabStorageState);
+    constructor(injector: Injector, menuService: MenuService);
     init(): void;
-    private loadState;
     private getMenu;
     runHook(method: ReuseHookTypes, comp: ReuseComponentRef | number | undefined, type?: ReuseHookOnReuseInitType): void;
     private hasInValidRoute;
@@ -190,6 +185,6 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, [null, null, { optional: true; }, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
 }

@@ -7,7 +7,6 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomContextMenu, ReuseItem, ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 import { ReuseTabService } from './reuse-tab.service';
-import { ReuseTabStorageState } from './reuse-tab.state';
 import * as i0 from "@angular/core";
 export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
@@ -18,15 +17,12 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private doc;
     private platform;
     private directionality;
-    private stateKey;
-    private stateSrv;
     static ngAcceptInputType_debug: BooleanInput;
     static ngAcceptInputType_max: NumberInput;
     static ngAcceptInputType_tabMaxWidth: NumberInput;
     static ngAcceptInputType_allowClose: BooleanInput;
     static ngAcceptInputType_keepingScroll: BooleanInput;
     static ngAcceptInputType_disabled: BooleanInput;
-    static ngAcceptInputType_storageState: BooleanInput;
     private tabset;
     private destroy$;
     private _keepingScrollContainer?;
@@ -42,7 +38,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     excludes?: RegExp[];
     allowClose: boolean;
     keepingScroll: boolean;
-    storageState: boolean;
     set keepingScrollContainer(value: string | Element);
     customContextMenu: ReuseCustomContextMenu[];
     tabBarExtraContent?: TemplateRef<void>;
@@ -58,14 +53,13 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     }>;
     readonly change: EventEmitter<ReuseItem>;
     readonly close: EventEmitter<ReuseItem | null>;
-    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: NzSafeAny, platform: Platform, directionality: Directionality, stateKey: string, stateSrv: ReuseTabStorageState);
+    constructor(srv: ReuseTabService, cdr: ChangeDetectorRef, router: Router, route: ActivatedRoute, i18nSrv: AlainI18NService, doc: NzSafeAny, platform: Platform, directionality: Directionality);
     private genTit;
     private get curUrl();
     private genCurItem;
     private genList;
     private updateTitle;
     private refresh;
-    private saveState;
     contextMenuChange(res: ReuseContextCloseEvent): void;
     _to(index: number, cb?: () => void): void;
     _close(e: Event | null, idx: number, includeNonCloseable: boolean): boolean;
@@ -76,6 +70,6 @@ export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, [null, null, null, null, { optional: true; }, null, null, { optional: true; }, { optional: true; }, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": "mode"; "i18n": "i18n"; "debug": "debug"; "max": "max"; "tabMaxWidth": "tabMaxWidth"; "excludes": "excludes"; "allowClose": "allowClose"; "keepingScroll": "keepingScroll"; "storageState": "storageState"; "keepingScrollContainer": "keepingScrollContainer"; "customContextMenu": "customContextMenu"; "tabBarExtraContent": "tabBarExtraContent"; "tabBarGutter": "tabBarGutter"; "tabBarStyle": "tabBarStyle"; "tabType": "tabType"; "routeParamMatchMode": "routeParamMatchMode"; "disabled": "disabled"; "titleRender": "titleRender"; }, { "change": "change"; "close": "close"; }, never, never, false>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, [null, null, null, null, { optional: true; }, null, null, { optional: true; }]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": "mode"; "i18n": "i18n"; "debug": "debug"; "max": "max"; "tabMaxWidth": "tabMaxWidth"; "excludes": "excludes"; "allowClose": "allowClose"; "keepingScroll": "keepingScroll"; "keepingScrollContainer": "keepingScrollContainer"; "customContextMenu": "customContextMenu"; "tabBarExtraContent": "tabBarExtraContent"; "tabBarGutter": "tabBarGutter"; "tabBarStyle": "tabBarStyle"; "tabType": "tabType"; "routeParamMatchMode": "routeParamMatchMode"; "disabled": "disabled"; "titleRender": "titleRender"; }, { "change": "change"; "close": "close"; }, never, never, false>;
 }

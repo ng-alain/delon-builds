@@ -44,12 +44,12 @@ export interface ReuseTabCached {
     closable?: boolean;
     /** 当前滚动条位置 */
     position?: [number, number] | null;
-    _snapshot?: ActivatedRouteSnapshot;
-    _handle?: ReuseComponentHandle;
+    _snapshot: ActivatedRouteSnapshot;
+    _handle: ReuseComponentHandle;
 }
 export interface ReuseTabNotify {
     /** 事件类型 */
-    active: 'add' | 'override' | 'title' | 'clear' | 'closable' | 'close' | 'closeRight' | 'move' | 'refresh' | 'loadState';
+    active: 'add' | 'override' | 'title' | 'clear' | 'closable' | 'close' | 'closeRight' | 'move' | 'refresh';
     url?: string;
     title?: ReuseTitle;
     item?: ReuseTabCached;
@@ -63,8 +63,6 @@ export interface ReuseItem {
     index: number;
     active: boolean;
     last: boolean;
-    /** 当前滚动条位置 */
-    position?: [number, number] | null;
 }
 export interface ReuseContextEvent {
     event: MouseEvent;
