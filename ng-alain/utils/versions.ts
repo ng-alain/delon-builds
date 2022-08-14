@@ -36,6 +36,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `ng-alain-plugin-theme@^13.0.3`,
       `source-map-explorer@^2.5.2`,
       `@angular/language-service@^14.1.0`,
+      `rxjs@~7.5.0`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
