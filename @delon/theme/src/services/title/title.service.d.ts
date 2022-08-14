@@ -1,9 +1,14 @@
 import { Injector, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { AlainI18NService } from '../i18n/i18n';
 import { MenuService } from '../menu/menu.service';
 import * as i0 from "@angular/core";
+export interface RouteTitle {
+    title?: string | Observable<string>;
+    titleI18n?: string;
+}
 export declare class TitleService implements OnDestroy {
     private injector;
     private title;
@@ -14,25 +19,51 @@ export declare class TitleService implements OnDestroy {
     private _suffix;
     private _separator;
     private _reverse;
-    private i18n$;
+    private destroy$;
+    private tit$?;
     readonly DELAY_TIME = 25;
     constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: NzSafeAny);
-    /** 设置分隔符 */
+    /**
+     * Set separator
+     *
+     * 设置分隔符
+     */
     set separator(value: string);
-    /** 设置前缀 */
+    /**
+     * Set prefix
+     *
+     * 设置前缀
+     */
     set prefix(value: string);
-    /** 设置后缀 */
+    /**
+     * Set suffix
+     *
+     * 设置后缀
+     */
     set suffix(value: string);
-    /** 设置是否反转 */
+    /**
+     * Set whether to reverse
+     *
+     * 设置是否反转
+     */
     set reverse(value: boolean);
-    /** 设置默认标题名 */
+    /**
+     * Set the default CSS selector string
+     *
+     * 设置默认CSS选择器字符串
+     */
+    selector?: string | null;
+    /**
+     * Set default title name
+     *
+     * 设置默认标题名
+     */
     default: string;
     private getByElement;
     private getByRoute;
     private getByMenu;
-    private _setTitle;
     /**
-     * Set the document title, will be delay `25ms`, pls refer to [#1261](https://github.com/ng-alain/ng-alain/issues/1261)
+     * Set the document title
      */
     setTitle(title?: string | string[]): void;
     /**
