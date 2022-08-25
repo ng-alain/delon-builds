@@ -58,6 +58,7 @@ function fixAngularJson(options) {
             }
         }
         (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
+        (0, utils_1.addSchematicCollections)(workspace);
     }));
 }
 function addDependenciesToPackageJson(options) {
