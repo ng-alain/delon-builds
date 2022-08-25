@@ -145,10 +145,17 @@ class MenuService {
         this.aclService = aclService;
         this._change$ = new BehaviorSubject([]);
         this.data = [];
+        /**
+         * 是否完全受控菜单打开状态，默认：`false`
+         */
+        this.openStrictly = false;
         this.i18n$ = this.i18nSrv.change.subscribe(() => this.resume());
     }
     get change() {
         return this._change$.pipe(share());
+    }
+    get menus() {
+        return this.data;
     }
     visit(data, callback) {
         const inFn = (list, parentMenu, depth) => {
@@ -212,6 +219,7 @@ class MenuService {
         item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
         // acl
         item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
+        item.open = item.open != null ? item.open : false;
     }
     resume(callback) {
         let i = 1;
@@ -270,9 +278,6 @@ class MenuService {
             return i;
         });
     }
-    get menus() {
-        return this.data;
-    }
     /**
      * 清空菜单
      */
@@ -280,18 +285,29 @@ class MenuService {
         this.data = [];
         this._change$.next(this.data);
     }
-    getHit(data, url, recursive = false, cb = null) {
+    /**
+     * Use `url` or `key` to find menus
+     *
+     * 利用 `url` 或 `key` 查找菜单
+     */
+    find(options) {
+        var _a;
+        const opt = Object.assign({ recursive: false }, options);
+        if (opt.key != null) {
+            return this.getItem(opt.key);
+        }
+        let url = opt.url;
         let item = null;
         while (!item && url) {
-            this.visit(data, i => {
-                if (cb) {
-                    cb(i);
+            this.visit((_a = opt.data) !== null && _a !== void 0 ? _a : this.data, i => {
+                if (opt.cb) {
+                    opt.cb(i);
                 }
                 if (i.link != null && i.link === url) {
                     item = i;
                 }
             });
-            if (!recursive)
+            if (!opt.recursive)
                 break;
             if (/[?;]/g.test(url)) {
                 url = url.split(/[?;]/g)[0];
@@ -303,33 +319,13 @@ class MenuService {
         return item;
     }
     /**
-     * 根据URL设置菜单 `_open` 属性
-     * - 若 `recursive: true` 则会自动向上递归查找
-     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-     */
-    openedByUrl(url, recursive = false) {
-        if (!url)
-            return;
-        let findItem = this.getHit(this.data, url, recursive, (i) => {
-            i._selected = false;
-            i._open = false;
-        });
-        if (findItem == null)
-            return;
-        do {
-            findItem._selected = true;
-            findItem._open = true;
-            findItem = findItem._parent;
-        } while (findItem);
-    }
-    /**
      * 根据url获取菜单列表
      * - 若 `recursive: true` 则会自动向上递归查找
      *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
      */
     getPathByUrl(url, recursive = false) {
         const ret = [];
-        let item = this.getHit(this.data, url, recursive);
+        let item = this.find({ url, recursive });
         if (!item)
             return ret;
         do {
@@ -353,19 +349,115 @@ class MenuService {
     /**
      * Set menu based on `key`
      */
-    setItem(key, value) {
-        const item = this.getItem(key);
+    setItem(key, value, options) {
+        const item = typeof key === 'string' ? this.getItem(key) : key;
         if (item == null)
             return;
         Object.keys(value).forEach(k => {
             item[k] = value[k];
         });
         this.fixItem(item);
-        this._change$.next(this.data);
+        if ((options === null || options === void 0 ? void 0 : options.emit) !== false)
+            this._change$.next(this.data);
+    }
+    /**
+     * Open menu based on `key` or menu object
+     */
+    open(keyOrItem, options) {
+        let item = typeof keyOrItem === 'string' ? this.find({ key: keyOrItem }) : keyOrItem;
+        if (item == null)
+            return;
+        this.visit(this.menus, (i) => {
+            i._selected = false;
+            if (!this.openStrictly)
+                i.open = false;
+        });
+        do {
+            item._selected = true;
+            item.open = true;
+            item = item._parent;
+        } while (item);
+        if ((options === null || options === void 0 ? void 0 : options.emit) !== false)
+            this._change$.next(this.data);
+    }
+    openAll(status) {
+        this.toggleOpen(null, { allStatus: status });
+    }
+    toggleOpen(keyOrItem, options) {
+        let item = typeof keyOrItem === 'string' ? this.find({ key: keyOrItem }) : keyOrItem;
+        if (item == null) {
+            this.visit(this.menus, (i) => {
+                i._selected = false;
+                i.open = (options === null || options === void 0 ? void 0 : options.allStatus) === true;
+            });
+        }
+        else {
+            if (!this.openStrictly) {
+                this.visit(this.menus, (i) => {
+                    if (i !== item)
+                        i.open = false;
+                });
+                let pItem = item._parent;
+                while (pItem) {
+                    pItem.open = true;
+                    pItem = pItem._parent;
+                }
+            }
+            item.open = !item.open;
+        }
+        if ((options === null || options === void 0 ? void 0 : options.emit) !== false)
+            this._change$.next(this.data);
     }
     ngOnDestroy() {
         this._change$.unsubscribe();
         this.i18n$.unsubscribe();
+    }
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
+     */
+    getHit(data, url, recursive = false, cb = null) {
+        let item = null;
+        while (!item && url) {
+            this.visit(data, i => {
+                if (cb) {
+                    cb(i);
+                }
+                if (i.link != null && i.link === url) {
+                    item = i;
+                }
+            });
+            if (!recursive)
+                break;
+            if (/[?;]/g.test(url)) {
+                url = url.split(/[?;]/g)[0];
+            }
+            else {
+                url = url.split('/').slice(0, -1).join('/');
+            }
+        }
+        return item;
+    }
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
+     *
+     * 根据URL设置菜单 `_open` 属性
+     * - 若 `recursive: true` 则会自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     */
+    openedByUrl(url, recursive = false) {
+        if (!url)
+            return;
+        let findItem = this.getHit(this.data, url, recursive, (i) => {
+            i._selected = false;
+            i._open = false;
+        });
+        if (findItem == null)
+            return;
+        do {
+            findItem._selected = true;
+            findItem._open = true;
+            findItem = findItem._parent;
+        } while (findItem);
     }
 }
 MenuService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: MenuService, deps: [{ token: ALAIN_I18N_TOKEN, optional: true }, { token: i1$1.ACLService, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });

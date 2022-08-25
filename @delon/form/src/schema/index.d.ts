@@ -25,12 +25,6 @@ export interface SFSchemaEnum {
      * - `children` 为子项
      */
     group?: boolean;
-    /**
-     * Whether to hide item
-     *
-     * 是否隐藏项
-     */
-    hide?: boolean;
     isLeaf?: boolean;
     /** 组对应的子类 */
     children?: SFSchemaEnum[];

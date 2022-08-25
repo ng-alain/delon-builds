@@ -34,7 +34,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
     recursivePath: boolean;
-    openStrictly: boolean;
+    set openStrictly(value: boolean);
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
@@ -51,7 +51,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     toggleOpen(item: Nav): void;
     _click(): void;
     closeSubMenu(): void;
-    private openedByUrl;
+    private openByUrl;
     ngOnInit(): void;
     ngOnDestroy(): void;
     private get isPad();
