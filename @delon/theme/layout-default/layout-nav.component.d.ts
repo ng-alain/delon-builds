@@ -53,6 +53,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     closeSubMenu(): void;
     private openByUrl;
     ngOnInit(): void;
+    private fixHide;
     ngOnDestroy(): void;
     private get isPad();
     private underPad;

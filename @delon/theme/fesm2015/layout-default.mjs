@@ -78,7 +78,6 @@ class LayoutDefaultNavComponent {
         this.select = new EventEmitter();
     }
     set openStrictly(value) {
-        this.openStrictly = value;
         this.menuSrv.openStrictly = value;
     }
     get collapsed() {
@@ -232,7 +231,8 @@ class LayoutDefaultNavComponent {
                     icon.value = this.sanitizer.bypassSecurityTrustHtml(icon.value);
                 }
             });
-            this.list = menuSrv.menus.filter((w) => w._hidden !== true);
+            this.fixHide(data);
+            this.list = data.filter((w) => w._hidden !== true);
             cdr.detectChanges();
         });
         router.events.pipe(takeUntil(destroy$)).subscribe(e => {
@@ -252,6 +252,19 @@ class LayoutDefaultNavComponent {
         });
         this.openByUrl(router.url);
         this.ngZone.runOutsideAngular(() => this.genFloating());
+    }
+    fixHide(ls) {
+        const inFn = (list) => {
+            for (const item of list) {
+                if (item.children && item.children.length > 0) {
+                    inFn(item.children);
+                    if (!item._hidden) {
+                        item._hidden = item.children.every((v) => v._hidden);
+                    }
+                }
+            }
+        };
+        inFn(ls);
     }
     ngOnDestroy() {
         this.destroy$.next();
