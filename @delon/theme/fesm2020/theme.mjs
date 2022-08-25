@@ -15,7 +15,7 @@ import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/modal';
 import * as i1$6 from 'ng-zorro-antd/drawer';
 import * as i1$7 from '@angular/common/http';
-import { HttpParams } from '@angular/common/http';
+import { HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDistanceToNow, format } from 'date-fns';
 import { toDate } from '@delon/util/date-time';
 import * as i1$8 from 'ng-zorro-antd/i18n';
@@ -2440,6 +2440,37 @@ const JSONP = makeMethod('JSONP');
  */
 const FORM = makeMethod('FORM');
 
+/**
+ * Whether to customize the handling of exception messages
+ *
+ * 是否自定义处理异常消息
+ *
+ * @example
+ * this.http.post(`login`, {
+ *  name: 'cipchk', pwd: '123456'
+ * }, {
+ *  context: new HttpContext()
+ *              .set(ALLOW_ANONYMOUS, true)
+ *              .set(CUSTOM_ERROR, true)
+ * }).subscribe({
+ *  next: console.log,
+ *  error: console.log
+ * });
+ */
+const CUSTOM_ERROR = new HttpContextToken(() => false);
+/**
+ * Whether to ignore API prefixes
+ *
+ * 是否忽略API前缀
+ *
+ * @example
+ * // When environment.api.baseUrl set '/api'
+ *
+ * this.http.get(`/path`) // Request Url: /api/path
+ * this.http.get(`/path`, { context: new HttpContext().set(IGNORE_BASE_URL, true) }) // Request Url: /path
+ */
+const IGNORE_BASE_URL = new HttpContextToken(() => false);
+
 class DatePipe {
     constructor(nzI18n) {
         this.nzI18n = nzI18n;
@@ -2623,5 +2654,5 @@ const VERSION = new Version('13.5.2');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
