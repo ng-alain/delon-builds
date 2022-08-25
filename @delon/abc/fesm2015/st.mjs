@@ -748,6 +748,7 @@ class STDataSource {
     getByRemote(url, options) {
         const { req, page, paginator, pi, ps, singleSort, multiSort, columns } = options;
         const method = (req.method || 'GET').toUpperCase();
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let params = {};
         const reName = req.reName;
         if (paginator) {
@@ -765,6 +766,12 @@ class STDataSource {
             }
         }
         params = Object.assign(Object.assign(Object.assign(Object.assign({}, params), req.params), this.getReqSortMap(singleSort, multiSort, columns)), this.getReqFilterMap(columns));
+        if (options.req.ignoreParamNull == true) {
+            Object.keys(params).forEach(key => {
+                if (params[key] == null)
+                    delete params[key];
+            });
+        }
         let reqOptions = {
             params,
             body: req.body,
@@ -1129,6 +1136,7 @@ const ST_DEFAULT_CONFIG = {
         method: 'GET',
         allInBody: false,
         lazyLoad: false,
+        ignoreParamNull: false,
         reName: { pi: 'pi', ps: 'ps', skip: 'skip', limit: 'limit' }
     },
     res: {
