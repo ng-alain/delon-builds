@@ -13,8 +13,13 @@ export declare class MenuService implements OnDestroy {
     private _change$;
     private i18n$;
     private data;
+    /**
+     * 是否完全受控菜单打开状态，默认：`false`
+     */
+    openStrictly: boolean;
     constructor(i18nSrv: AlainI18NService, aclService: ACLService);
     get change(): Observable<Menu[]>;
+    get menus(): Menu[];
     visit<T extends Menu = Menu>(data: T[], callback: (item: T, parentMenum: T | null, depth?: number) => void): void;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
@@ -32,18 +37,27 @@ export declare class MenuService implements OnDestroy {
      *      3、否则放在0节点位置
      */
     private loadShortcut;
-    get menus(): Menu[];
     /**
      * 清空菜单
      */
     clear(): void;
-    getHit(data: Menu[], url: string, recursive?: boolean, cb?: ((i: Menu) => void) | null): Menu | null;
     /**
-     * 根据URL设置菜单 `_open` 属性
-     * - 若 `recursive: true` 则会自动向上递归查找
-     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     * Use `url` or `key` to find menus
+     *
+     * 利用 `url` 或 `key` 查找菜单
      */
-    openedByUrl(url: string | null, recursive?: boolean): void;
+    find(options: {
+        key?: string | null;
+        url?: string | null;
+        recursive?: boolean | null;
+        cb?: ((i: Menu) => void) | null;
+        /**
+         * Use the current menu data by default
+         *
+         * 默认使用当前菜单数据
+         */
+        data?: Menu[] | null;
+    }): Menu | null;
     /**
      * 根据url获取菜单列表
      * - 若 `recursive: true` 则会自动向上递归查找
@@ -57,8 +71,33 @@ export declare class MenuService implements OnDestroy {
     /**
      * Set menu based on `key`
      */
-    setItem(key: string, value: Menu): void;
+    setItem(key: string | Menu, value: Menu, options?: {
+        emit?: boolean;
+    }): void;
+    /**
+     * Open menu based on `key` or menu object
+     */
+    open(keyOrItem: string | Menu | null, options?: {
+        emit?: boolean;
+    }): void;
+    openAll(status?: boolean): void;
+    toggleOpen(keyOrItem: string | Menu | null, options?: {
+        allStatus?: boolean;
+        emit?: boolean;
+    }): void;
     ngOnDestroy(): void;
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
+     */
+    getHit(data: Menu[], url: string, recursive?: boolean, cb?: ((i: Menu) => void) | null): Menu | null;
+    /**
+     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
+     *
+     * 根据URL设置菜单 `_open` 属性
+     * - 若 `recursive: true` 则会自动向上递归查找
+     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
+     */
+    openedByUrl(url: string | null, recursive?: boolean): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, [{ optional: true; }, { optional: true; }]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MenuService>;
 }
