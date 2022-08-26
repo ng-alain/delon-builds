@@ -1,11 +1,13 @@
 import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import { NzFormStatusService } from 'ng-zorro-antd/core/form';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
 import * as i0 from "@angular/core";
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
     private parent;
+    private statusSrv;
     private rep;
     private ren;
     private cdr;
@@ -49,7 +51,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     get showErr(): boolean;
     get compact(): boolean;
     private get ngControl();
-    constructor(el: ElementRef, parent: SEContainerComponent, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
+    constructor(el: ElementRef, parent: SEContainerComponent, statusSrv: NzFormStatusService, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
     private setClass;
     private bindModel;
     private updateStatus;
@@ -58,6 +60,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngOnChanges(): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, [null, { optional: true; host: true; }, null, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, [null, { optional: true; host: true; }, null, null, null, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "error": "error"; "extra": "extra"; "label": "label"; "col": "col"; "required": "required"; "controlClass": "controlClass"; "line": "line"; "labelWidth": "labelWidth"; "noColon": "noColon"; "hideLabel": "hideLabel"; "id": "id"; }, {}, ["ngModel", "formControlName"], ["*"], false>;
 }
