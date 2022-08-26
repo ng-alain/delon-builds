@@ -1,6 +1,6 @@
 {
   "name": "ng-alain",
-  "version": "13.5.2-65a5d72f",
+  "version": "13.5.2-d335d551",
   "description": "Schematics specific to ng-alain",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
@@ -22,7 +22,7 @@
   ],
   "schematics": "./collection.json",
   "dependencies": {
-    "swagger-typescript-api": "^9.3.1"
+    "swagger-typescript-api": "^10.0.1"
   },
   "ng-update": {
     "migrations": "./migration.json",

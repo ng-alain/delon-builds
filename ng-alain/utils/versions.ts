@@ -42,7 +42,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [`ng-zorro-antd@^14.0.0-beta.0`]);
+  addPackage(tree, [`ng-zorro-antd@^14.0.0`]);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {

@@ -44,7 +44,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `rxjs@~7.5.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`ng-zorro-antd@^14.0.0-beta.0`]);
+    (0, package_1.addPackage)(tree, [`ng-zorro-antd@^14.0.0`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
