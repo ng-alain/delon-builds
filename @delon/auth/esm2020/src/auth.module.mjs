@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import * as i0 from "@angular/core";
 export class DelonAuthModule {
 }
-DelonAuthModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonAuthModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.1.3", ngImport: i0, type: DelonAuthModule });
-DelonAuthModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DelonAuthModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DelonAuthModule, decorators: [{
+DelonAuthModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonAuthModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.0", ngImport: i0, type: DelonAuthModule });
+DelonAuthModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DelonAuthModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DelonAuthModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });

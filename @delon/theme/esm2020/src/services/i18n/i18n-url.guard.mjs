@@ -22,9 +22,9 @@ export class AlainI18NGuard {
         return this.resolve(route);
     }
 }
-AlainI18NGuard.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: AlainI18NGuard, deps: [{ token: ALAIN_I18N_TOKEN, optional: true }, { token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
-AlainI18NGuard.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: AlainI18NGuard, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: AlainI18NGuard, decorators: [{
+AlainI18NGuard.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: AlainI18NGuard, deps: [{ token: ALAIN_I18N_TOKEN, optional: true }, { token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+AlainI18NGuard.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: AlainI18NGuard, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: AlainI18NGuard, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{

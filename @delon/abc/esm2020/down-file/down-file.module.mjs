@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const DIRECTIVES = [DownFileDirective];
 export class DownFileModule {
 }
-DownFileModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DownFileModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.1.3", ngImport: i0, type: DownFileModule, declarations: [DownFileDirective], imports: [CommonModule, AlainThemeModule], exports: [DownFileDirective] });
-DownFileModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.1.3", ngImport: i0, type: DownFileModule, decorators: [{
+DownFileModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DownFileModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DownFileModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.0", ngImport: i0, type: DownFileModule, declarations: [DownFileDirective], imports: [CommonModule, AlainThemeModule], exports: [DownFileDirective] });
+DownFileModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DownFileModule, imports: [CommonModule, AlainThemeModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: DownFileModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, AlainThemeModule],
