@@ -36,7 +36,7 @@ function addEslintPluginDeprecation() {
         }
         tree.overwrite(path, content);
         // add deprecation
-        (0, utils_1.addPackage)(tree, `eslint-plugin-prettier@^2.7.1`, 'devDependencies');
+        (0, utils_1.addPackage)(tree, `eslint-plugin-prettier@~4.2.1`, 'devDependencies');
         (0, utils_1.logStart)(context, `Add deprecation warn of eslint`);
     };
 }

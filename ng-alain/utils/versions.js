@@ -29,11 +29,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@typescript-eslint/eslint-plugin@~5.35.1`,
         `@typescript-eslint/parser@~5.35.1`,
         `eslint@^8.23.0`,
-        `eslint-config-prettier@^2.7.1`,
+        `eslint-config-prettier@~8.5.0`,
         `eslint-plugin-import@~2.26.0`,
         `eslint-plugin-jsdoc@~39.3.6`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
-        `eslint-plugin-prettier@^2.7.1`,
+        `eslint-plugin-prettier@~4.2.1`,
         `eslint-plugin-deprecation@~1.3.2`,
         `prettier@^2.7.1`,
         `husky@^7.0.4`,
@@ -41,10 +41,9 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `ng-alain-plugin-theme@^13.0.3`,
         `source-map-explorer@^2.5.2`,
         `@angular/language-service@^14.2.0`,
-        `rxjs@~7.5.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`ng-zorro-antd@^14.0.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.5.0`, `ng-zorro-antd@^14.0.0`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
