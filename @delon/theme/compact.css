@@ -32844,7 +32844,7 @@ ellipsis {
 .page-header__action,
 .page-header__extra {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 .page-header__extra {
   min-width: 242px;

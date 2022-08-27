@@ -50,7 +50,14 @@ function v14Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
-        return (0, schematics_1.chain)([fixSchematicCollections(context), addEslintPluginDeprecation(), finished()]);
+        return (0, schematics_1.chain)([
+            // Configuring CommonJS dependencies
+            // https://angular.io/guide/build#configuring-commonjs-dependencies
+            (0, utils_1.addAllowedCommonJsDependencies)([]),
+            fixSchematicCollections(context),
+            addEslintPluginDeprecation(),
+            finished()
+        ]);
     });
 }
 exports.v14Rule = v14Rule;

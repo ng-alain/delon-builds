@@ -83,7 +83,7 @@ function addAllowedCommonJsDependencies(items, projectName) {
             list = [...list, ...items];
         }
         const result = new Set(...list);
-        ['ajv', 'ajv-formats'].forEach(key => result.add(key));
+        ['ajv', 'ajv-formats', 'mockjs', 'file-saver', 'extend'].forEach(key => result.add(key));
         targetOptions.allowedCommonJsDependencies = Array.from(result).sort();
     }));
 }
