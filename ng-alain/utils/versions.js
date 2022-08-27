@@ -21,14 +21,14 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `@angular-eslint/builder@~14.0.2`,
-        `@angular-eslint/eslint-plugin@~14.0.2`,
-        `@angular-eslint/eslint-plugin-template@~14.0.2`,
-        `@angular-eslint/schematics@~14.0.2`,
-        `@angular-eslint/template-parser@~14.0.2`,
-        `@typescript-eslint/eslint-plugin@~5.33.0`,
-        `@typescript-eslint/parser@~5.33.0`,
-        `eslint@^8.21.0`,
+        `@angular-eslint/builder@~14.0.3`,
+        `@angular-eslint/eslint-plugin@~14.0.3`,
+        `@angular-eslint/eslint-plugin-template@~14.0.3`,
+        `@angular-eslint/schematics@~14.0.3`,
+        `@angular-eslint/template-parser@~14.0.3`,
+        `@typescript-eslint/eslint-plugin@~5.35.1`,
+        `@typescript-eslint/parser@~5.35.1`,
+        `eslint@^8.23.0`,
         `eslint-config-prettier@^2.7.1`,
         `eslint-plugin-import@~2.26.0`,
         `eslint-plugin-jsdoc@~39.3.6`,
@@ -40,7 +40,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^13.0.3`,
         `source-map-explorer@^2.5.2`,
-        `@angular/language-service@^14.1.0`,
+        `@angular/language-service@^14.2.0`,
         `rxjs@~7.5.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');

@@ -130,7 +130,7 @@ function addCodeStylesToPackageJson() {
             `stylelint@^14.10.0`,
             `stylelint-config-prettier@^9.0.3`,
             `stylelint-config-rational-order@^0.1.2`,
-            `stylelint-config-standard@^27.0.0`,
+            `stylelint-config-standard@^28.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.5.0`,
             `stylelint-order@^5.0.0`
         ], 'devDependencies');
