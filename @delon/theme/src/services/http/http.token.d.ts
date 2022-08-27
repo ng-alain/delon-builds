@@ -29,3 +29,9 @@ export declare const CUSTOM_ERROR: HttpContextToken<boolean>;
  * this.http.get(`/path`, { context: new HttpContext().set(IGNORE_BASE_URL, true) }) // Request Url: /path
  */
 export declare const IGNORE_BASE_URL: HttpContextToken<boolean>;
+/**
+ * Whether to return raw response body
+ *
+ * 是否原样返回请求Body
+ */
+export declare const RAW_BODY: HttpContextToken<boolean>;
