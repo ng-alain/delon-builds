@@ -95,12 +95,12 @@ class ZipService {
         this.check(zip);
         const opt = { filename: 'download.zip', ...options };
         return new Promise((resolve, reject) => {
-            zip.generateAsync({ type: 'blob', ...opt.options }, opt.update).then((data) => {
+            zip.generateAsync({ type: 'blob', ...opt.options }, opt.update).then(data => {
                 if (opt.callback)
                     opt.callback(data);
                 saveAs(data, opt.filename);
                 resolve();
-            }, (err) => {
+            }, err => {
                 reject(err);
             });
         });

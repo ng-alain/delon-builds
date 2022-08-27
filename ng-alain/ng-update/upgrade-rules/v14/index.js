@@ -51,6 +51,7 @@ function v14Rule() {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
         return (0, schematics_1.chain)([
+            (0, utils_1.addAllowSyntheticDefaultImports)(),
             // Configuring CommonJS dependencies
             // https://angular.io/guide/build#configuring-commonjs-dependencies
             (0, utils_1.addAllowedCommonJsDependencies)([]),

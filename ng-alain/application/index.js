@@ -282,6 +282,7 @@ function default_1(options) {
             // Configuring CommonJS dependencies
             // https://angular.io/guide/build#configuring-commonjs-dependencies
             (0, utils_1.addAllowedCommonJsDependencies)([]),
+            (0, utils_1.addAllowSyntheticDefaultImports)(),
             // ci
             addRunScriptToPackageJson(),
             addPathsToTsConfig(),

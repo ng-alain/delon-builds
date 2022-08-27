@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -104,6 +104,19 @@ function removeAllowedCommonJsDependencies(key, projectName) {
     }));
 }
 exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
+function addAllowSyntheticDefaultImports(value = true) {
+    return (tree) => {
+        const json = (0, json_1.readJSON)(tree, 'tsconfig.json', 'compilerOptions');
+        if (json == null)
+            return tree;
+        if (!json.compilerOptions)
+            json.compilerOptions = {};
+        json.compilerOptions['allowSyntheticDefaultImports'] = value;
+        (0, json_1.writeJSON)(tree, 'tsconfig.json', json);
+        return tree;
+    };
+}
+exports.addAllowSyntheticDefaultImports = addAllowSyntheticDefaultImports;
 function getProjectFromWorkspace(workspace, projectName) {
     var _a;
     if (!projectName) {
