@@ -4,10 +4,10 @@ import * as i0 from "@angular/core";
 const DIRECTIVES = [LetDirective];
 export class LetModule {
 }
-LetModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: LetModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-LetModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.0", ngImport: i0, type: LetModule, declarations: [LetDirective], exports: [LetDirective] });
-LetModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: LetModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: LetModule, decorators: [{
+LetModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: LetModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+LetModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.1", ngImport: i0, type: LetModule, declarations: [LetDirective], exports: [LetDirective] });
+LetModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: LetModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: LetModule, decorators: [{
             type: NgModule,
             args: [{
                     declarations: DIRECTIVES,

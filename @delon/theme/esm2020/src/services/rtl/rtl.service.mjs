@@ -89,9 +89,9 @@ export class RTLService {
         });
     }
 }
-RTLService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: RTLService, deps: [{ token: i1.Directionality }, { token: i2.SettingsService }, { token: i3.NzConfigService }, { token: i4.AlainConfigService }, { token: i5.Platform }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
-RTLService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: RTLService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.0", ngImport: i0, type: RTLService, decorators: [{
+RTLService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: RTLService, deps: [{ token: i1.Directionality }, { token: i2.SettingsService }, { token: i3.NzConfigService }, { token: i4.AlainConfigService }, { token: i5.Platform }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable });
+RTLService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: RTLService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: RTLService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.Directionality }, { type: i2.SettingsService }, { type: i3.NzConfigService }, { type: i4.AlainConfigService }, { type: i5.Platform }, { type: undefined, decorators: [{
