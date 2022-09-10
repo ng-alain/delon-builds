@@ -32,6 +32,7 @@ export declare class STColumnSource {
     private widgetCoerce;
     private genHeaders;
     private cleanCond;
+    private mergeClass;
     process(list: STColumn[], options: STColumnSourceProcessOptions): {
         columns: _STColumn[];
         headers: _STHeader[][];
