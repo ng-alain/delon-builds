@@ -272,8 +272,6 @@ class STColumnSource {
                 iconTheme = 'outline';
                 res.date = Object.assign({ range: false, mode: 'date', showToday: true, showNow: false }, res.date);
                 break;
-            case 'custom':
-                break;
             default:
                 fixMenus = false;
                 break;
@@ -417,6 +415,7 @@ class STColumnSource {
         const arrayClassNames = rawClassNameIsArray ? Array.from(rawClassName) : [rawClassName];
         arrayClassNames.splice(0, 0, ...builtInClassNames);
         item._className = [...new Set(arrayClassNames)].filter(w => !!w);
+        console.log(arrayClassNames);
     }
     process(list, options) {
         if (!list || list.length === 0)
@@ -1226,8 +1225,7 @@ const ST_DEFAULT_CONFIG = {
 };
 
 class STFilterComponent {
-    constructor(cdr) {
-        this.cdr = cdr;
+    constructor() {
         this.visible = false;
         this.locale = {};
         this.n = new EventEmitter();
@@ -1236,7 +1234,7 @@ class STFilterComponent {
     get icon() {
         return this.f.icon;
     }
-    stopPropagation($event) {
+    show($event) {
         $event.stopPropagation();
     }
     checkboxChange() {
@@ -1248,10 +1246,6 @@ class STFilterComponent {
         item.checked = !item.checked;
         this.n.emit(item);
     }
-    close() {
-        this.visible = false;
-        this.cdr.detectChanges();
-    }
     confirm() {
         this.handle.emit(true);
     }
@@ -1259,7 +1253,7 @@ class STFilterComponent {
         this.handle.emit(false);
     }
 }
-STFilterComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: STFilterComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
+STFilterComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: STFilterComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
 STFilterComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.1", type: STFilterComponent, selector: "st-filter", inputs: { col: "col", locale: "locale", f: "f" }, outputs: { n: "n", handle: "handle" }, host: { properties: { "class.ant-table-filter-trigger-container": "true", "class.st__filter": "true", "class.ant-table-filter-trigger-container-open": "visible" } }, ngImport: i0, template: `
     <span
       class="ant-table-filter-trigger"
@@ -1270,7 +1264,7 @@ STFilterComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", vers
       [nzClickHide]="false"
       [(nzVisible)]="visible"
       nzOverlayClassName="st__filter-wrap"
-      (click)="stopPropagation($event)"
+      (click)="show($event)"
     >
       <i nz-icon [nzType]="icon.type" [nzTheme]="icon.theme!"></i>
     </span>
@@ -1327,7 +1321,7 @@ STFilterComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", vers
           <div *ngSwitchCase="'custom'" class="st__filter-custom">
             <ng-template
               [ngTemplateOutlet]="f.custom!"
-              [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
+              [ngTemplateOutletContext]="{ $implicit: f, col: col }"
             ></ng-template>
           </div>
           <ul *ngSwitchDefault nz-menu>
@@ -1348,11 +1342,11 @@ STFilterComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", vers
           </ul>
         </ng-container>
         <div *ngIf="f.showOPArea" class="ant-table-filter-dropdown-btns">
-          <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
-            <span>{{ f.confirmText || locale.filterConfirm }}</span>
+          <a class="ant-table-filter-dropdown-link confirm" (click)="visible = false">
+            <span (click)="confirm()">{{ f.confirmText || locale.filterConfirm }}</span>
           </a>
-          <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
-            <span>{{ f.clearText || locale.filterReset }}</span>
+          <a class="ant-table-filter-dropdown-link clear" (click)="visible = false">
+            <span (click)="reset()">{{ f.clearText || locale.filterReset }}</span>
           </a>
         </div>
       </div>
@@ -1372,7 +1366,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImpor
       [nzClickHide]="false"
       [(nzVisible)]="visible"
       nzOverlayClassName="st__filter-wrap"
-      (click)="stopPropagation($event)"
+      (click)="show($event)"
     >
       <i nz-icon [nzType]="icon.type" [nzTheme]="icon.theme!"></i>
     </span>
@@ -1429,7 +1423,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImpor
           <div *ngSwitchCase="'custom'" class="st__filter-custom">
             <ng-template
               [ngTemplateOutlet]="f.custom!"
-              [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
+              [ngTemplateOutletContext]="{ $implicit: f, col: col }"
             ></ng-template>
           </div>
           <ul *ngSwitchDefault nz-menu>
@@ -1450,11 +1444,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImpor
           </ul>
         </ng-container>
         <div *ngIf="f.showOPArea" class="ant-table-filter-dropdown-btns">
-          <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
-            <span>{{ f.confirmText || locale.filterConfirm }}</span>
+          <a class="ant-table-filter-dropdown-link confirm" (click)="visible = false">
+            <span (click)="confirm()">{{ f.confirmText || locale.filterConfirm }}</span>
           </a>
-          <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
-            <span>{{ f.clearText || locale.filterReset }}</span>
+          <a class="ant-table-filter-dropdown-link clear" (click)="visible = false">
+            <span (click)="reset()">{{ f.clearText || locale.filterReset }}</span>
           </a>
         </div>
       </div>
@@ -1469,7 +1463,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImpor
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i0.ChangeDetectorRef }]; }, propDecorators: { col: [{
+        }], propDecorators: { col: [{
                 type: Input
             }], locale: [{
                 type: Input
