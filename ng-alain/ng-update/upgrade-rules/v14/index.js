@@ -40,6 +40,20 @@ function addEslintPluginDeprecation() {
         (0, utils_1.logStart)(context, `Add deprecation warn of eslint`);
     };
 }
+function fixReuseTabActiviteInHtml() {
+    return (tree, context) => {
+        const layoutPath = (0, utils_1.findFile)(tree, 'basic/basic.component.ts');
+        if (!tree.exists(layoutPath))
+            return;
+        let layoutContent = tree.get(layoutPath).content.toString('utf8');
+        const checkHtml = `<router-outlet (activate)="reuseTab.activate($event)"></router-outlet>`;
+        if (!layoutContent.includes(checkHtml))
+            return;
+        layoutContent = layoutContent.replace(checkHtml, `<router-outlet (activate)="reuseTab.activate($event)" (attach)="reuseTab.activate($event)"></router-outlet>`);
+        tree.overwrite(layoutPath, layoutContent);
+        (0, utils_1.logStart)(context, `Fix can't refresh current item in resut-tab (https://github.com/ng-alain/ng-alain/issues/2302)`);
+    };
+}
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -56,6 +70,7 @@ function v14Rule() {
             // https://angular.io/guide/build#configuring-commonjs-dependencies
             (0, utils_1.addAllowedCommonJsDependencies)([]),
             fixSchematicCollections(context),
+            fixReuseTabActiviteInHtml(),
             addEslintPluginDeprecation(),
             finished()
         ]);

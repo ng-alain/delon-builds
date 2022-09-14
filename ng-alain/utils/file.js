@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeFile = exports.overwriteIfExists = exports.overwriteFile = exports.getFileContentInApplicationFiles = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
+exports.writeFile = exports.overwriteIfExists = exports.overwriteFile = exports.getFileContentInApplicationFiles = exports.findFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path_1 = require("path");
@@ -21,6 +21,16 @@ function readContent(tree, filePath) {
     return tree.read(filePath).toString('utf-8');
 }
 exports.readContent = readContent;
+function findFile(tree, fileName) {
+    let res = undefined;
+    tree.visit(path => {
+        if (res == null && path.endsWith(fileName)) {
+            res = path;
+        }
+    });
+    return res;
+}
+exports.findFile = findFile;
 function getFileContentInApplicationFiles(fileName) {
     const filePath = (0, path_1.join)(__dirname, `../application/files/${fileName}`);
     if (fs.existsSync(filePath)) {
