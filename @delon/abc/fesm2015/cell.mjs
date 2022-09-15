@@ -9,7 +9,7 @@ import { yn } from '@delon/theme';
 import { formatDate } from '@delon/util/date-time';
 import * as i3 from '@delon/util/format';
 import { formatMask } from '@delon/util/format';
-import { deepMerge } from '@delon/util/other';
+import { deepMerge, warn } from '@delon/util/other';
 import * as i1 from '@delon/util/config';
 import * as i2 from 'ng-zorro-antd/i18n';
 import * as i4 from '@angular/platform-browser';
@@ -76,9 +76,6 @@ class CellService {
             img: { size: 32, big: true }
         });
     }
-    registerFu(key, fn) {
-        this.widgets[key] = { type: 'fn', ref: fn };
-    }
     registerWidget(key, widget) {
         this.widgets[key] = { type: 'widget', ref: widget };
     }
@@ -97,14 +94,12 @@ class CellService {
         // Auto detection
         if (options.widget != null)
             return 'widget';
-        else if (typeOf === 'number')
-            return 'number';
         else if (options.mega != null)
             return 'mega';
         else if (options.currency != null)
             return 'currency';
-        else if (typeOf === 'boolean' || options.boolean != null)
-            return 'boolean';
+        else if (options.cny != null)
+            return 'cny';
         else if (options.img != null)
             return 'img';
         else if (options.link != null)
@@ -115,6 +110,10 @@ class CellService {
             return 'badge';
         else if (options.tag != null)
             return 'tag';
+        else if (typeOf === 'number')
+            return 'number';
+        else if (typeOf === 'boolean' || options.boolean != null)
+            return 'boolean';
         else
             return 'string';
     }
@@ -134,16 +133,18 @@ class CellService {
             res.result = widget.ref(value, opt);
         }
         return (typeof value === 'function' ? value(value, opt) : of(res.result)).pipe(map(text => {
-            var _a, _b, _c;
+            var _a, _b, _c, _d, _e;
             res.result = text;
             res.type = type;
             switch (type) {
                 case 'badge':
+                    res.result = Object.assign({ color: 'default' }, ((_b = (_a = opt.badge) === null || _a === void 0 ? void 0 : _a.data) !== null && _b !== void 0 ? _b : {})[value]);
+                    break;
                 case 'tag':
-                    res.result = ((_b = (_a = (type === 'badge' ? opt.badge : opt.tag)) === null || _a === void 0 ? void 0 : _a.data) !== null && _b !== void 0 ? _b : {})[value];
+                    res.result = ((_d = (_c = opt.tag) === null || _c === void 0 ? void 0 : _c.data) !== null && _d !== void 0 ? _d : {})[value];
                     break;
                 case 'html':
-                    res.safeHtml = (_c = opt.html) === null || _c === void 0 ? void 0 : _c.safe;
+                    res.safeHtml = (_e = opt.html) === null || _e === void 0 ? void 0 : _e.safe;
                     break;
             }
             if (opt.mask != null) {
@@ -170,6 +171,9 @@ class CellHostDirective {
         const widget = this.data.options.widget;
         const componentType = (_a = this.srv.getWidget(widget.key)) === null || _a === void 0 ? void 0 : _a.ref;
         if (componentType == null) {
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                warn(`cell: No widget for type "${widget.key}"`);
+            }
             return;
         }
         this.viewContainerRef.clear();
@@ -225,10 +229,10 @@ class CellComponent {
         const { el, renderer } = this;
         updateHostClass(el.nativeElement, renderer, {
             [`cell`]: true,
-            [`cell__default`]: this.showDefault,
             [`cell__${this.type}`]: this.type != null,
             [`cell__${this.size}`]: this.size != null,
-            [`cell__has-unit`]: this._unit
+            [`cell__has-unit`]: this._unit,
+            [`cell__has-default`]: this.showDefault
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
     }
@@ -246,13 +250,13 @@ class CellComponent {
                 this.setClass();
             });
         }
-    }
-    _stopPropagation(ev) {
-        ev.preventDefault();
-        ev.stopPropagation();
+        else {
+            this.setClass();
+        }
     }
     _link(e) {
-        this._stopPropagation(e);
+        e.preventDefault();
+        e.stopPropagation();
         const link = this.safeOpt.link;
         const url = link === null || link === void 0 ? void 0 : link.url;
         if (url == null)
@@ -266,7 +270,7 @@ class CellComponent {
     }
     _showImg(img) {
         const config = this.safeOpt.img;
-        if (config == null || config.big == null)
+        if (config == null || config.big === false)
             return;
         let idx = -1;
         const list = this._text.map((p, index) => {

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { CurrencyService } from '@delon/util/format';
 import { NzI18nService } from 'ng-zorro-antd/i18n';
-import type { CellOptions, CellTextResult, CellWidget, CellWidgetFn } from './cell.types';
+import type { CellOptions, CellTextResult, CellWidget } from './cell.types';
 import * as i0 from "@angular/core";
 export declare class CellService {
     private nzI18n;
@@ -13,7 +13,6 @@ export declare class CellService {
     private globalOptions;
     private widgets;
     constructor(configSrv: AlainConfigService, nzI18n: NzI18nService, currency: CurrencyService, dom: DomSanitizer);
-    registerFu(key: string, fn: CellWidgetFn): void;
     registerWidget(key: string, widget: Type<unknown>): void;
     getWidget(key: string): CellWidget | undefined;
     private genType;

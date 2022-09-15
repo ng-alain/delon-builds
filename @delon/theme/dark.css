@@ -33793,7 +33793,7 @@ ellipsis {
 .cell__has-unit {
   align-items: baseline;
 }
-.cell__default {
+.cell__has-default {
   color: rgba(255, 255, 255, 0.45);
 }
 .cell__primary {

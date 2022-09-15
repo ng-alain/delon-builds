@@ -9,7 +9,7 @@ import { yn } from '@delon/theme';
 import { formatDate } from '@delon/util/date-time';
 import * as i3 from '@delon/util/format';
 import { formatMask } from '@delon/util/format';
-import { deepMerge } from '@delon/util/other';
+import { deepMerge, warn } from '@delon/util/other';
 import * as i1 from '@delon/util/config';
 import * as i2 from 'ng-zorro-antd/i18n';
 import * as i4 from '@angular/platform-browser';
@@ -76,9 +76,6 @@ class CellService {
             img: { size: 32, big: true }
         });
     }
-    registerFu(key, fn) {
-        this.widgets[key] = { type: 'fn', ref: fn };
-    }
     registerWidget(key, widget) {
         this.widgets[key] = { type: 'widget', ref: widget };
     }
@@ -97,14 +94,12 @@ class CellService {
         // Auto detection
         if (options.widget != null)
             return 'widget';
-        else if (typeOf === 'number')
-            return 'number';
         else if (options.mega != null)
             return 'mega';
         else if (options.currency != null)
             return 'currency';
-        else if (typeOf === 'boolean' || options.boolean != null)
-            return 'boolean';
+        else if (options.cny != null)
+            return 'cny';
         else if (options.img != null)
             return 'img';
         else if (options.link != null)
@@ -115,6 +110,10 @@ class CellService {
             return 'badge';
         else if (options.tag != null)
             return 'tag';
+        else if (typeOf === 'number')
+            return 'number';
+        else if (typeOf === 'boolean' || options.boolean != null)
+            return 'boolean';
         else
             return 'string';
     }
@@ -138,8 +137,10 @@ class CellService {
             res.type = type;
             switch (type) {
                 case 'badge':
+                    res.result = { color: 'default', ...(opt.badge?.data ?? {})[value] };
+                    break;
                 case 'tag':
-                    res.result = ((type === 'badge' ? opt.badge : opt.tag)?.data ?? {})[value];
+                    res.result = (opt.tag?.data ?? {})[value];
                     break;
                 case 'html':
                     res.safeHtml = opt.html?.safe;
@@ -168,6 +169,9 @@ class CellHostDirective {
         const widget = this.data.options.widget;
         const componentType = this.srv.getWidget(widget.key)?.ref;
         if (componentType == null) {
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                warn(`cell: No widget for type "${widget.key}"`);
+            }
             return;
         }
         this.viewContainerRef.clear();
@@ -221,10 +225,10 @@ class CellComponent {
         const { el, renderer } = this;
         updateHostClass(el.nativeElement, renderer, {
             [`cell`]: true,
-            [`cell__default`]: this.showDefault,
             [`cell__${this.type}`]: this.type != null,
             [`cell__${this.size}`]: this.size != null,
-            [`cell__has-unit`]: this._unit
+            [`cell__has-unit`]: this._unit,
+            [`cell__has-default`]: this.showDefault
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
     }
@@ -240,13 +244,13 @@ class CellComponent {
                 this.setClass();
             });
         }
-    }
-    _stopPropagation(ev) {
-        ev.preventDefault();
-        ev.stopPropagation();
+        else {
+            this.setClass();
+        }
     }
     _link(e) {
-        this._stopPropagation(e);
+        e.preventDefault();
+        e.stopPropagation();
         const link = this.safeOpt.link;
         const url = link?.url;
         if (url == null)
@@ -260,7 +264,7 @@ class CellComponent {
     }
     _showImg(img) {
         const config = this.safeOpt.img;
-        if (config == null || config.big == null)
+        if (config == null || config.big === false)
             return;
         let idx = -1;
         const list = this._text.map((p, index) => {

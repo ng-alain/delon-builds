@@ -37,7 +37,6 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     ngOnChanges(changes: {
         [p in keyof CellComponent]?: SimpleChange;
     }): void;
-    private _stopPropagation;
     _link(e: Event): void;
     _showImg(img: string): void;
     ngOnDestroy(): void;
