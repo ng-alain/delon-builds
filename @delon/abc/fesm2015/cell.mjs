@@ -241,11 +241,11 @@ class CellComponent {
         if (changes.value) {
             (_a = this.destroy$) === null || _a === void 0 ? void 0 : _a.unsubscribe();
             this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
-                var _a, _b, _c, _d;
+                var _a;
                 this.res = res;
                 this.showDefault = this.value == this.defaultCondition;
-                this._text = (_c = (_b = (_a = res === null || res === void 0 ? void 0 : res.result) === null || _a === void 0 ? void 0 : _a.text) !== null && _b !== void 0 ? _b : this.default) !== null && _c !== void 0 ? _c : '';
-                this._unit = (_d = res === null || res === void 0 ? void 0 : res.result) === null || _d === void 0 ? void 0 : _d.unit;
+                this._text = (_a = res.result.text) !== null && _a !== void 0 ? _a : '';
+                this._unit = res.result.unit;
                 this.cdr.detectChanges();
                 this.setClass();
             });
