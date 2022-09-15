@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "14.0.0-a6c6ac75",
+  "version": "14.0.0-df7db85c",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,10 +27,10 @@
     "xlsx": "^0.18.5",
     "plyr": "^3.7.2",
     "pdfjs-dist": "^2.15.349",
-    "ngx-countdown": "^14.0.0-a6c6ac75",
-    "@delon/theme": "^14.0.0-a6c6ac75",
-    "@delon/util": "^14.0.0-a6c6ac75",
-    "@delon/acl": "^14.0.0-a6c6ac75",
+    "ngx-countdown": "^14.0.0-df7db85c",
+    "@delon/theme": "^14.0.0-df7db85c",
+    "@delon/util": "^14.0.0-df7db85c",
+    "@delon/acl": "^14.0.0-df7db85c",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -66,6 +66,14 @@
       "es2015": "./fesm2015/avatar-list.mjs",
       "node": "./fesm2015/avatar-list.mjs",
       "default": "./fesm2020/avatar-list.mjs"
+    },
+    "./cell": {
+      "types": "./cell/index.d.ts",
+      "esm2020": "./esm2020/cell/cell.mjs",
+      "es2020": "./fesm2020/cell.mjs",
+      "es2015": "./fesm2015/cell.mjs",
+      "node": "./fesm2015/cell.mjs",
+      "default": "./fesm2020/cell.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",

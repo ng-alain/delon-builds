@@ -1,0 +1,46 @@
+import { ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { BooleanInput } from '@delon/util/decorator';
+import { NzImageService } from 'ng-zorro-antd/image';
+import { CellService } from './cell.service';
+import type { CellOptions, CellTextResult, CellWidgetData } from './cell.types';
+import * as i0 from "@angular/core";
+export declare class CellComponent implements OnChanges, OnDestroy {
+    private srv;
+    private router;
+    private cdr;
+    private el;
+    private renderer;
+    private imgSrv;
+    private win;
+    static ngAcceptInputType_truncate: BooleanInput;
+    static ngAcceptInputType_loading: BooleanInput;
+    private destroy$?;
+    _text: string | SafeHtml;
+    _unit?: string;
+    res?: CellTextResult;
+    showDefault: boolean;
+    value?: unknown;
+    default: string;
+    defaultCondition?: unknown;
+    options?: CellOptions;
+    truncate: boolean;
+    loading: boolean;
+    type?: 'primary' | 'success' | 'danger' | 'warning';
+    size?: 'large' | 'small';
+    get safeOpt(): CellOptions;
+    get isText(): boolean;
+    get hostData(): CellWidgetData;
+    constructor(srv: CellService, router: Router, cdr: ChangeDetectorRef, el: ElementRef<HTMLElement>, renderer: Renderer2, imgSrv: NzImageService, win: any);
+    private setClass;
+    ngOnChanges(changes: {
+        [p in keyof CellComponent]?: SimpleChange;
+    }): void;
+    private _stopPropagation;
+    _link(e: Event): void;
+    _showImg(img: string): void;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "[cell]", ["cell"], { "value": "value"; "default": "default"; "defaultCondition": "defaultCondition"; "options": "options"; "truncate": "truncate"; "loading": "loading"; "type": "type"; "size": "size"; }, {}, never, never, false>;
+}

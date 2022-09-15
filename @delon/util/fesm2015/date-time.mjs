@@ -1,4 +1,4 @@
-import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMonths, endOfMonth, startOfWeek, subWeeks, endOfWeek, startOfDay, endOfDay, parseISO, format, differenceInCalendarDays, addSeconds } from 'date-fns';
+import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMonths, endOfMonth, startOfWeek, subWeeks, endOfWeek, startOfDay, endOfDay, parseISO, formatDistanceToNow, format, differenceInCalendarDays, addSeconds } from 'date-fns';
 
 /**
  * Get the time range, return `[ Date, Date]` for the start and end dates
@@ -82,6 +82,13 @@ function toDate(value, options) {
         tryDate = parse(value, formatString, new Date());
     }
     return isNaN(tryDate) ? defaultValue : tryDate;
+}
+function formatDate(value, formatString, dateLocale) {
+    value = toDate(value);
+    if (isNaN(value))
+        return '';
+    const langOpt = { locale: dateLocale };
+    return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
 }
 
 // TODO: timezone process
@@ -203,5 +210,5 @@ const dateTimePickerUtil = new DateTimePickerUtil();
  * Generated bundle index. Do not edit.
  */
 
-export { DateTimePickerUtil, dateTimePickerUtil, fixEndTimeOfRange, getTimeDistance, toDate };
+export { DateTimePickerUtil, dateTimePickerUtil, fixEndTimeOfRange, formatDate, getTimeDistance, toDate };
 //# sourceMappingURL=date-time.mjs.map

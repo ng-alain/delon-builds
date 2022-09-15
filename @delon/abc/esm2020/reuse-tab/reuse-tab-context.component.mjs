@@ -17,9 +17,9 @@ export class ReuseTabContextComponent {
         this.sub$.unsubscribe();
     }
 }
-ReuseTabContextComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: ReuseTabContextComponent, deps: [{ token: i1.ReuseTabContextService }], target: i0.ɵɵFactoryTarget.Component });
-ReuseTabContextComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.1", type: ReuseTabContextComponent, selector: "reuse-tab-context", inputs: { i18n: "i18n" }, outputs: { change: "change" }, ngImport: i0, template: ``, isInline: true });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: ReuseTabContextComponent, decorators: [{
+ReuseTabContextComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: ReuseTabContextComponent, deps: [{ token: i1.ReuseTabContextService }], target: i0.ɵɵFactoryTarget.Component });
+ReuseTabContextComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.2", type: ReuseTabContextComponent, selector: "reuse-tab-context", inputs: { i18n: "i18n" }, outputs: { change: "change" }, ngImport: i0, template: ``, isInline: true });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: ReuseTabContextComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'reuse-tab-context',

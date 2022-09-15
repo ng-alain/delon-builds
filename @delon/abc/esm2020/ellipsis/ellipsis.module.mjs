@@ -7,10 +7,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [EllipsisComponent];
 export class EllipsisModule {
 }
-EllipsisModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: EllipsisModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-EllipsisModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.1", ngImport: i0, type: EllipsisModule, declarations: [EllipsisComponent], imports: [CommonModule, ObserversModule, NzToolTipModule], exports: [EllipsisComponent] });
-EllipsisModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzToolTipModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.1", ngImport: i0, type: EllipsisModule, decorators: [{
+EllipsisModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: EllipsisModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+EllipsisModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.2", ngImport: i0, type: EllipsisModule, declarations: [EllipsisComponent], imports: [CommonModule, ObserversModule, NzToolTipModule], exports: [EllipsisComponent] });
+EllipsisModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: EllipsisModule, imports: [CommonModule, ObserversModule, NzToolTipModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: EllipsisModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ObserversModule, NzToolTipModule],

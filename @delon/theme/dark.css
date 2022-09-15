@@ -33787,6 +33787,45 @@ ellipsis {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
+.cell {
+  display: inline-flex;
+}
+.cell__has-unit {
+  align-items: baseline;
+}
+.cell__default {
+  color: rgba(255, 255, 255, 0.45);
+}
+.cell__primary {
+  color: #177ddc;
+}
+.cell__success {
+  color: #49aa19;
+}
+.cell__danger {
+  color: #a61d24;
+}
+.cell__warning {
+  color: #d89614;
+}
+.cell__large {
+  font-size: 18px;
+}
+.cell__small {
+  font-size: 12px;
+}
+.cell[data-type="img"] .img:not(:last-child) {
+  margin-right: 4px;
+}
+.cell .img {
+  vertical-align: middle;
+  border-radius: 4px;
+}
+.cell .unit {
+  margin-left: 2px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 12px;
+}
 g2-chart,
 g2-bar,
 g2-gauge,
