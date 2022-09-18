@@ -4,7 +4,7 @@ import type { Observable } from 'rxjs';
 import type { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, FormatMaskOption } from '@delon/util/format';
 import type { NzImagePreviewOptions } from 'ng-zorro-antd/image';
 export interface CellTextUnit {
-    text?: string | SafeHtml | string[];
+    text?: string | SafeHtml | string[] | number;
     color?: string;
     unit?: string;
 }

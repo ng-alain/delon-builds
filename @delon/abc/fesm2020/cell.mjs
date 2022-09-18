@@ -206,6 +206,32 @@ class CellComponent {
         this.truncate = false;
         this.loading = false;
     }
+    /**
+     * 货币快捷项
+     *
+     * @example
+     * <cell [currency]="1000"></cell>
+     * 等同于
+     * <cell [value]="1000" [options]="{type: 'currency'}"></cell>
+     */
+    set currency(value) {
+        this.value = value;
+        this.options = { type: 'currency' };
+        this.updateValue();
+    }
+    /**
+     * 日期快捷项
+     *
+     * @example
+     * <cell [date]="1000"></cell>
+     * 等同于
+     * <cell [value]="1000" [options]="{type: 'date'}"></cell>
+     */
+    set date(value) {
+        this.value = value;
+        this.options = { type: 'date' };
+        this.updateValue();
+    }
     get safeOpt() {
         return this.res?.options;
     }
@@ -221,6 +247,17 @@ class CellComponent {
             truncate: this.truncate
         };
     }
+    updateValue() {
+        this.destroy$?.unsubscribe();
+        this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
+            this.res = res;
+            this.showDefault = this.value == this.defaultCondition;
+            this._text = res.result?.text ?? '';
+            this._unit = res.result?.unit ?? this.unit;
+            this.cdr.detectChanges();
+            this.setClass();
+        });
+    }
     setClass() {
         const { el, renderer } = this;
         updateHostClass(el.nativeElement, renderer, {
@@ -232,21 +269,8 @@ class CellComponent {
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
     }
-    ngOnChanges(changes) {
-        if (changes.value) {
-            this.destroy$?.unsubscribe();
-            this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
-                this.res = res;
-                this.showDefault = this.value == this.defaultCondition;
-                this._text = res.result.text ?? '';
-                this._unit = res.result.unit;
-                this.cdr.detectChanges();
-                this.setClass();
-            });
-        }
-        else {
-            this.setClass();
-        }
+    ngOnChanges() {
+        this.updateValue();
     }
     _link(e) {
         e.preventDefault();
@@ -281,7 +305,7 @@ class CellComponent {
     }
 }
 CellComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component });
-CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.2", type: CellComponent, selector: "[cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", truncate: "truncate", loading: "loading", type: "type", size: "size" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
+CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.2", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", type: "type", size: "size", currency: "currency", date: "date" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
       <ng-container [ngSwitch]="res?.type">
         <a
@@ -333,7 +357,7 @@ __decorate([
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: CellComponent, decorators: [{
             type: Component,
             args: [{
-                    selector: '[cell]',
+                    selector: 'cell, [cell]',
                     template: `
     <ng-template #text>
       <ng-container [ngSwitch]="res?.type">
@@ -393,6 +417,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImpor
                 type: Input
             }], options: [{
                 type: Input
+            }], unit: [{
+                type: Input
             }], truncate: [{
                 type: Input
             }], loading: [{
@@ -400,6 +426,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImpor
             }], type: [{
                 type: Input
             }], size: [{
+                type: Input
+            }], currency: [{
+                type: Input
+            }], date: [{
                 type: Input
             }] } });
 
