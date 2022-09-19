@@ -219,19 +219,6 @@ class CellComponent {
         this.options = { type: 'currency' };
         this.updateValue();
     }
-    /**
-     * 日期快捷项
-     *
-     * @example
-     * <cell [date]="1000"></cell>
-     * 等同于
-     * <cell [value]="1000" [options]="{type: 'date'}"></cell>
-     */
-    set date(value) {
-        this.value = value;
-        this.options = { type: 'date' };
-        this.updateValue();
-    }
     get safeOpt() {
         return this.res?.options;
     }
@@ -305,7 +292,7 @@ class CellComponent {
     }
 }
 CellComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.2", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component });
-CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.2", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", type: "type", size: "size", currency: "currency", date: "date" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
+CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.2", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", type: "type", size: "size", currency: "currency" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
       <ng-container [ngSwitch]="res?.type">
         <a
@@ -428,8 +415,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.2", ngImpor
             }], size: [{
                 type: Input
             }], currency: [{
-                type: Input
-            }], date: [{
                 type: Input
             }] } });
 

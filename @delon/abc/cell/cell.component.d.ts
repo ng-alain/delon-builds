@@ -39,15 +39,6 @@ export declare class CellComponent implements OnChanges, OnDestroy {
      * <cell [value]="1000" [options]="{type: 'currency'}"></cell>
      */
     set currency(value: number);
-    /**
-     * 日期快捷项
-     *
-     * @example
-     * <cell [date]="1000"></cell>
-     * 等同于
-     * <cell [value]="1000" [options]="{type: 'date'}"></cell>
-     */
-    set date(value: number | string | Date);
     get safeOpt(): CellOptions;
     get isText(): boolean;
     get hostData(): CellWidgetData;
@@ -59,5 +50,5 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     _showImg(img: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": "value"; "default": "default"; "defaultCondition": "defaultCondition"; "options": "options"; "unit": "unit"; "truncate": "truncate"; "loading": "loading"; "type": "type"; "size": "size"; "currency": "currency"; "date": "date"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": "value"; "default": "default"; "defaultCondition": "defaultCondition"; "options": "options"; "unit": "unit"; "truncate": "truncate"; "loading": "loading"; "type": "type"; "size": "size"; "currency": "currency"; }, {}, never, never, false>;
 }
