@@ -67,8 +67,8 @@ function fixAngularJson(context: SchematicContext): Rule {
 
 function upgradeThirdVersion(): Rule {
   return (tree: Tree, context: SchematicContext) => {
-    addPackage(tree, [`ngx-ueditor@^14.0.0`, `ngx-tinymce@^14.0.0`], 'dependencies');
-    logStart(context, `Upgrade third libs (ngx-ueditor, ngx-tinymce) version number`);
+    addPackage(tree, [`ngx-tinymce@^14.0.0`], 'dependencies');
+    logStart(context, `Upgrade third libs (ngx-tinymce) version number`);
   };
 }
 
