@@ -32654,6 +32654,7 @@ body {
   text-align: center;
 }
 .st__btn-sub .st__btn-text {
+  width: 100%;
   color: inherit;
 }
 .st__btn-disabled .st__btn-text {
