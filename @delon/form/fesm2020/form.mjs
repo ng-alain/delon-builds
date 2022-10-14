@@ -573,17 +573,8 @@ class FormProperty {
         }
     }
     // #endregion
-    updateFeedback(status = '', icon) {
+    updateFeedback(status = '') {
         this.ui.feedback = status;
-        this.ui.feedbackIcon =
-            icon ||
-                {
-                    '': '',
-                    error: 'close-circle-fill',
-                    validating: 'loading',
-                    success: 'check-circle-fill',
-                    warning: 'exclamation-circle-fill'
-                }[status];
         this.widget.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
         this.widget.detectChanges();
     }
@@ -1294,8 +1285,8 @@ class SFComponent {
      * this.sf.updateFeedback('/name');
      * ```
      */
-    updateFeedback(path, status = '', icon) {
-        this.getProperty(path)?.updateFeedback(status, icon);
+    updateFeedback(path, status = '') {
+        this.getProperty(path)?.updateFeedback(status);
         return this;
     }
     onSubmit(e) {
