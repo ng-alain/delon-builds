@@ -81,7 +81,7 @@ export declare abstract class FormProperty {
      */
     setVisible(visible: boolean): this;
     _bindVisibility(): void;
-    updateFeedback(status?: NzFormControlStatusType, icon?: string | null): void;
+    updateFeedback(status?: NzFormControlStatusType): void;
 }
 export declare abstract class PropertyGroup extends FormProperty {
     properties: {
