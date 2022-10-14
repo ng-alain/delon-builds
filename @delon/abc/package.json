@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "14.1.0-67c39294",
+  "version": "14.1.0",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.2",
     "pdfjs-dist": "^2.15.349",
     "ngx-countdown": "^14.0.0",
-    "@delon/theme": "^14.1.0-67c39294",
-    "@delon/util": "^14.1.0-67c39294",
-    "@delon/acl": "^14.1.0-67c39294",
+    "@delon/theme": "^14.1.0",
+    "@delon/util": "^14.1.0",
+    "@delon/acl": "^14.1.0",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -138,14 +138,6 @@
       "es2015": "./fesm2015/global-footer.mjs",
       "node": "./fesm2015/global-footer.mjs",
       "default": "./fesm2020/global-footer.mjs"
-    },
-    "./hotkey": {
-      "types": "./hotkey/index.d.ts",
-      "esm2020": "./esm2020/hotkey/hotkey.mjs",
-      "es2020": "./fesm2020/hotkey.mjs",
-      "es2015": "./fesm2015/hotkey.mjs",
-      "node": "./fesm2015/hotkey.mjs",
-      "default": "./fesm2020/hotkey.mjs"
     },
     "./let": {
       "types": "./let/index.d.ts",

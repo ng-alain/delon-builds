@@ -611,9 +611,6 @@ class PropertyGroup extends FormProperty {
     forEachChildRecursive(fn) {
         this.forEachChild(child => {
             fn(child);
-            if (child instanceof PropertyGroup) {
-                child.forEachChildRecursive(fn);
-            }
         });
     }
     _bindVisibility() {
@@ -900,7 +897,9 @@ class FormPropertyFactory {
     }
     initializeRoot(rootProperty) {
         // rootProperty.init();
-        rootProperty._bindVisibility();
+        if (rootProperty.isRoot()) {
+            rootProperty._bindVisibility();
+        }
     }
 }
 
