@@ -20,6 +20,8 @@ class HotkeyDirective {
         this.ngZone.runOutsideAngular(() => install(this.el.nativeElement, key));
     }
     ngOnDestroy() {
+        if (!this.platform.isBrowser)
+            return;
         this.ngZone.runOutsideAngular(() => uninstall(this.el.nativeElement));
     }
 }
