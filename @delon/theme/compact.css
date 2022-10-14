@@ -6857,6 +6857,12 @@ _:-ms-fullscreen .ant-picker-range-wrapper .ant-picker-year-panel .ant-picker-ce
   top: unset;
   left: unset;
 }
+.ant-picker-panel-container.ant-picker-week-number .ant-picker-date-panel .ant-picker-content {
+  width: 100%;
+}
+.ant-picker-panel-container.ant-picker-week-number .ant-picker-date-panel .ant-picker-content th {
+  width: inherit;
+}
 .ant-descriptions-header {
   display: flex;
   align-items: center;
@@ -20263,6 +20269,11 @@ span.ant-radio + * {
 }
 .ant-select-dropdown .full-width .cdk-virtual-scroll-content-wrapper {
   position: static;
+}
+.ant-select-dropdown .full-width .cdk-virtual-scroll-spacer {
+  position: absolute;
+  top: 0;
+  width: 1px;
 }
 .segmented-disabled-item,
 .segmented-disabled-item:hover,

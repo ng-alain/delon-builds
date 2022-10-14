@@ -9,9 +9,9 @@ export class XlsxDirective {
         this.srv.export(this.data);
     }
 }
-XlsxDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.5", ngImport: i0, type: XlsxDirective, deps: [{ token: i1.XlsxService }], target: i0.ɵɵFactoryTarget.Directive });
-XlsxDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.2.5", type: XlsxDirective, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.5", ngImport: i0, type: XlsxDirective, decorators: [{
+XlsxDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: XlsxDirective, deps: [{ token: i1.XlsxService }], target: i0.ɵɵFactoryTarget.Directive });
+XlsxDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.2.6", type: XlsxDirective, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: XlsxDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[xlsx]',
