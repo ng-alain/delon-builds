@@ -138,7 +138,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      * this.sf.updateFeedback('/name');
      * ```
      */
-    updateFeedback(path: string, status?: NzFormControlStatusType): this;
+    updateFeedback(path: string, status?: NzFormControlStatusType, icon?: string | null): this;
     onSubmit(e: Event): void;
     constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService, platform: Platform);
     protected fanyi(key: string): string;
