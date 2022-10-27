@@ -14,9 +14,9 @@ export class CurrencyCNYPipe {
         return this.srv.cny(value, options);
     }
 }
-CurrencyCNYPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
-CurrencyCNYPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.2.6", ngImport: i0, type: CurrencyCNYPipe, name: "cny" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
+CurrencyCNYPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe });
+CurrencyCNYPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.2.8", ngImport: i0, type: CurrencyCNYPipe, name: "cny" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'cny' }]
         }], ctorParameters: function () { return [{ type: i1.CurrencyService }]; } });

@@ -26,8 +26,8 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
 export class STModule {
 }
-STModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.6", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
+STModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.8", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
         FormsModule,
         DelonACLModule,
         LetModule,
@@ -46,7 +46,7 @@ STModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2
         NzResizableModule,
         NzInputNumberModule,
         NzDatePickerModule], exports: [STComponent, STRowDirective, STWidgetHostDirective] });
-STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: STModule, imports: [CommonModule,
+STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: STModule, imports: [CommonModule,
         FormsModule,
         DelonACLModule,
         LetModule,
@@ -65,7 +65,7 @@ STModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2
         NzResizableModule,
         NzInputNumberModule,
         NzDatePickerModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: STModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: STModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

@@ -7,10 +7,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [FooterToolbarComponent];
 export class FooterToolbarModule {
 }
-FooterToolbarModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: FooterToolbarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-FooterToolbarModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.6", ngImport: i0, type: FooterToolbarModule, declarations: [FooterToolbarComponent], imports: [CommonModule, ErrorCollectModule, NzOutletModule], exports: [FooterToolbarComponent] });
-FooterToolbarModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: FooterToolbarModule, imports: [CommonModule, ErrorCollectModule, NzOutletModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.6", ngImport: i0, type: FooterToolbarModule, decorators: [{
+FooterToolbarModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: FooterToolbarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+FooterToolbarModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.8", ngImport: i0, type: FooterToolbarModule, declarations: [FooterToolbarComponent], imports: [CommonModule, ErrorCollectModule, NzOutletModule], exports: [FooterToolbarComponent] });
+FooterToolbarModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: FooterToolbarModule, imports: [CommonModule, ErrorCollectModule, NzOutletModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: FooterToolbarModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ErrorCollectModule, NzOutletModule],
