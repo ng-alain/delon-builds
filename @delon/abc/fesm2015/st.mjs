@@ -1705,17 +1705,16 @@ class STComponent {
             try {
                 const result = yield this.loadData();
                 this.setLoading(false);
-                const undefinedString = 'undefined';
-                if (typeof result.pi !== undefinedString) {
+                if (typeof result.pi !== 'undefined') {
                     this.pi = result.pi;
                 }
-                if (typeof result.ps !== undefinedString) {
+                if (typeof result.ps !== 'undefined') {
                     this.ps = result.ps;
                 }
-                if (typeof result.total !== undefinedString) {
+                if (typeof result.total !== 'undefined') {
                     this.total = result.total;
                 }
-                if (typeof result.pageShow !== undefinedString) {
+                if (typeof result.pageShow !== 'undefined') {
                     this._isPagination = result.pageShow;
                 }
                 this._data = result.list;
@@ -2151,7 +2150,7 @@ class STComponent {
             return null;
         }
         const copyItem = deepCopy(itemOrIndex);
-        ['_values', '_rowClassName'].forEach(key => delete copyItem[key]);
+        delete copyItem._values;
         return copyItem;
     }
     ngAfterViewInit() {
@@ -2364,28 +2363,23 @@ class STTdComponent {
         ev.stopPropagation();
     }
     _btn(btn, ev) {
-        ev === null || ev === void 0 ? void 0 : ev.stopPropagation();
-        const cog = this.stComp.cog;
-        let record = this.i;
+        if (ev) {
+            ev.stopPropagation();
+        }
+        const record = this.i;
         if (btn.type === 'modal' || btn.type === 'static') {
-            if (cog.modal.pureRecoard === true) {
-                record = this.stComp.pureItem(record);
-            }
-            const modal = btn.modal;
+            const { modal } = btn;
             const obj = { [modal.paramsName]: record };
-            this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'](modal.component, Object.assign(Object.assign({}, obj), (modal.params && modal.params(record))), deepMergeKey({}, true, cog.modal, modal))
+            this.modalHelper[btn.type === 'modal' ? 'create' : 'createStatic'](modal.component, Object.assign(Object.assign({}, obj), (modal.params && modal.params(record))), deepMergeKey({}, true, this.stComp['cog'].modal, modal))
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe((res) => this.btnCallback(record, btn, res));
             return;
         }
         else if (btn.type === 'drawer') {
-            if (cog.drawer.pureRecoard === true) {
-                record = this.stComp.pureItem(record);
-            }
-            const drawer = btn.drawer;
+            const { drawer } = btn;
             const obj = { [drawer.paramsName]: record };
             this.drawerHelper
-                .create(drawer.title, drawer.component, Object.assign(Object.assign({}, obj), (drawer.params && drawer.params(record))), deepMergeKey({}, true, cog.drawer, drawer))
+                .create(drawer.title, drawer.component, Object.assign(Object.assign({}, obj), (drawer.params && drawer.params(record))), deepMergeKey({}, true, this.stComp['cog'].drawer, drawer))
                 .pipe(filter(w => typeof w !== 'undefined'))
                 .subscribe(res => this.btnCallback(record, btn, res));
             return;

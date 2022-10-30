@@ -207,10 +207,6 @@ export interface AlainSTConfig {
      */
     modal?: {
         /**
-         * 是否只传递纯净数据
-         */
-        pureRecoard?: boolean;
-        /**
          * 指定模态框目标组件的接收参数名，默认：`record`
          */
         paramsName?: string;
@@ -225,10 +221,6 @@ export interface AlainSTConfig {
      * 按钮抽屉配置
      */
     drawer?: {
-        /**
-         * 是否只传递纯净数据
-         */
-        pureRecoard?: boolean;
         /**
          * 抽屉目标组件的接收参数名，默认：`record`
          */
