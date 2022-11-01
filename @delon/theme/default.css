@@ -32138,9 +32138,17 @@ body {
 .st__filter-date .ant-picker-panel-container .ant-picker-panel {
   border: none;
 }
-.st .ant-table-column-title {
+.st__has-filter.ant-table-column-has-sorters .ant-table-column-sorters {
+  padding-right: 16px;
+}
+.st__has-filter.ant-table-column-has-sorters .st__filter {
+  position: absolute;
+  top: 0;
+  right: -32px;
+  bottom: 0;
   display: flex;
   align-items: center;
+  justify-items: center;
 }
 .st__head-optional,
 .st__head-tip {
@@ -32699,8 +32707,15 @@ ellipsis {
 .notice-icon .ant-tabs-bar {
   margin-bottom: 4px;
 }
-.notice-icon__tab-left .ant-tabs-nav-list .ant-tabs-tab:first-child {
-  margin-left: 32px;
+.notice-icon .ant-tabs-nav .ant-tabs-tab {
+  margin-right: 32px;
+  padding: 12px 16px;
+}
+.notice-icon .ant-tabs-nav .ant-tabs-tab:last-child {
+  margin-right: 0;
+}
+.notice-icon .ant-tabs-nav-scroll {
+  text-align: center;
 }
 .notice-icon .ant-list {
   max-height: 400px;
