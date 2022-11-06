@@ -5,10 +5,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [XlsxDirective];
 export class XlsxModule {
 }
-XlsxModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: XlsxModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-XlsxModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.8", ngImport: i0, type: XlsxModule, declarations: [XlsxDirective], imports: [CommonModule], exports: [XlsxDirective] });
-XlsxModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: XlsxModule, imports: [CommonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.8", ngImport: i0, type: XlsxModule, decorators: [{
+XlsxModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.9", ngImport: i0, type: XlsxModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+XlsxModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.9", ngImport: i0, type: XlsxModule, declarations: [XlsxDirective], imports: [CommonModule], exports: [XlsxDirective] });
+XlsxModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.9", ngImport: i0, type: XlsxModule, imports: [CommonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.9", ngImport: i0, type: XlsxModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],
