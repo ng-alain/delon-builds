@@ -113,8 +113,6 @@ const log = (...args) => {
 };
 
 /**
- * `LazyService` delay loading JS or CSS files.
- *
  * 延迟加载资源（js 或 css）服务
  */
 class LazyService {
@@ -131,29 +129,17 @@ class LazyService {
         this.list = {};
         this.cached = {};
     }
-    attachAttributes(el, attributes) {
-        if (attributes == null)
-            return;
-        Object.entries(attributes).forEach(([key, value]) => {
-            el.setAttribute(key, value);
-        });
-    }
-    /**
-     * Load script or style files
-     */
     load(paths) {
         if (!Array.isArray(paths)) {
             paths = [paths];
         }
         const promises = [];
-        paths
-            .map(v => (typeof v !== 'object' ? { path: v } : v))
-            .forEach(item => {
-            if (item.path.endsWith('.js')) {
-                promises.push(this.loadScript(item.path, item.options));
+        paths.forEach(path => {
+            if (path.endsWith('.js')) {
+                promises.push(this.loadScript(path));
             }
             else {
-                promises.push(this.loadStyle(item.path, item.options));
+                promises.push(this.loadStyle(path));
             }
         });
         return Promise.all(promises).then(res => {
@@ -161,13 +147,7 @@ class LazyService {
             return Promise.resolve(res);
         });
     }
-    loadScript(path, innerContent, attributes) {
-        const options = typeof innerContent === 'object'
-            ? innerContent
-            : {
-                innerContent,
-                attributes
-            };
+    loadScript(path, innerContent) {
         return new Promise(resolve => {
             if (this.list[path] === true) {
                 resolve({ ...this.cached[path], status: 'loading' });
@@ -182,9 +162,8 @@ class LazyService {
             const node = this.doc.createElement('script');
             node.type = 'text/javascript';
             node.src = path;
-            this.attachAttributes(node, options.attributes);
-            if (options.innerContent) {
-                node.innerHTML = options.innerContent;
+            if (innerContent) {
+                node.innerHTML = innerContent;
             }
             node.onload = () => onSuccess({
                 path,
@@ -198,14 +177,7 @@ class LazyService {
             this.doc.getElementsByTagName('head')[0].appendChild(node);
         });
     }
-    loadStyle(path, rel, innerContent, attributes) {
-        const options = typeof rel === 'object'
-            ? rel
-            : {
-                rel,
-                innerContent,
-                attributes
-            };
+    loadStyle(path, rel = 'stylesheet', innerContent) {
         return new Promise(resolve => {
             if (this.list[path] === true) {
                 resolve(this.cached[path]);
@@ -213,12 +185,11 @@ class LazyService {
             }
             this.list[path] = true;
             const node = this.doc.createElement('link');
-            node.rel = options.rel ?? 'stylesheet';
+            node.rel = rel;
             node.type = 'text/css';
             node.href = path;
-            this.attachAttributes(node, options.attributes);
-            if (options.innerContent) {
-                node.innerHTML = options.innerContent;
+            if (innerContent) {
+                node.innerHTML = innerContent;
             }
             this.doc.getElementsByTagName('head')[0].appendChild(node);
             const item = {
