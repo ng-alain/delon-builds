@@ -32707,15 +32707,8 @@ ellipsis {
 .notice-icon .ant-tabs-bar {
   margin-bottom: 4px;
 }
-.notice-icon .ant-tabs-nav .ant-tabs-tab {
-  margin-right: 32px;
-  padding: 12px 16px;
-}
-.notice-icon .ant-tabs-nav .ant-tabs-tab:last-child {
-  margin-right: 0;
-}
-.notice-icon .ant-tabs-nav-scroll {
-  text-align: center;
+.notice-icon__tab-left .ant-tabs-nav-list .ant-tabs-tab:first-child {
+  margin-left: 32px;
 }
 .notice-icon .ant-list {
   max-height: 400px;
