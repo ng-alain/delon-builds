@@ -6,7 +6,20 @@ export interface LazyResult {
     status: 'ok' | 'error' | 'loading';
     error?: NzSafeAny;
 }
+export interface LazyLoadItem {
+    path: string;
+    options?: LazyLoadOptions;
+}
+export interface LazyLoadOptions {
+    innerContent?: string;
+    attributes?: {
+        [qualifiedName: string]: string;
+    };
+    rel?: string;
+}
 /**
+ * `LazyService` delay loading JS or CSS files.
+ *
  * 延迟加载资源（js 或 css）服务
  */
 export declare class LazyService {
@@ -17,9 +30,31 @@ export declare class LazyService {
     constructor(doc: NzSafeAny);
     get change(): Observable<LazyResult[]>;
     clear(): void;
-    load(paths: string | string[]): Promise<LazyResult[]>;
-    loadScript(path: string, innerContent?: string): Promise<LazyResult>;
-    loadStyle(path: string, rel?: string, innerContent?: string): Promise<LazyResult>;
+    private attachAttributes;
+    /**
+     * Load script or style files
+     */
+    load(paths: string | LazyLoadItem | Array<string | LazyLoadItem>): Promise<LazyResult[]>;
+    /**
+     * @deprecated Will be removed in 15.0.0, Please use `loadScript(path, options)` instead
+     */
+    loadScript(path: string, innerContent: string, attributes?: {
+        [qualifiedName: string]: string;
+    }): Promise<LazyResult>;
+    /**
+     * Load a script file
+     */
+    loadScript(path: string, options?: LazyLoadOptions): Promise<LazyResult>;
+    /**
+     * @deprecated Will be removed in 15.0.0, Please use `loadStyle(path, options)` instead
+     */
+    loadStyle(path: string, rel: string, innerContent?: string, attributes?: {
+        [qualifiedName: string]: string;
+    }): Promise<LazyResult>;
+    /**
+     * Load a style file
+     */
+    loadStyle(path: string, options?: LazyLoadOptions): Promise<LazyResult>;
     static ɵfac: i0.ɵɵFactoryDeclaration<LazyService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<LazyService>;
 }
