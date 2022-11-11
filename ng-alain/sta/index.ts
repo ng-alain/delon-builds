@@ -47,22 +47,7 @@ function cleanOutput(p: string): void {
   } catch (e) {}
 }
 
-function tagsMapping(res: GenerateApiOutput, config: STAConfig): void {
-  if (config.tagsMapping != null && Object.keys(config.tagsMapping).length <= 0) return;
-
-  res.configuration.routes.combined?.forEach(v => {
-    const newModuleName = config.tagsMapping[v.moduleName];
-    if (newModuleName != null) {
-      v.moduleName = newModuleName;
-      v.routes.forEach(route => {
-        route.raw.moduleName = newModuleName;
-      });
-    }
-  });
-}
-
-function fix(output: string, res: GenerateApiOutput, tree: Tree, context: SchematicContext, config: STAConfig): void {
-  tagsMapping(res, config);
+function fix(output: string, res: GenerateApiOutput, tree: Tree, context: SchematicContext): void {
   const indexList = [`models`, `_base.service`];
   const basePath = normalize(join(project.root, output.replace(process.cwd(), '')));
   try {
@@ -200,7 +185,7 @@ function genProxy(config: STAConfig): Rule {
       generateApi(options)
         .then((res: GenerateApiOutput) => {
           cleanOutput(output);
-          fix(output, res, tree, context, config);
+          fix(output, res, tree, context);
           resolve();
         })
         .catch(ex => {
@@ -232,6 +217,12 @@ function tryLoadConfig(context: SchematicContext, configPath?: string): STAConfi
 
 export default function (options: Schema): Rule {
   return async (tree: Tree, context: SchematicContext) => {
+    context.logger.info(
+      colors.yellow(
+        `The ng g ng-alain:sta is currently in testing status and may change before the major version of '13'`
+      )
+    );
+
     project = (await getProject(tree, options.project)).project;
     const config: STAConfig = {
       name: 'sta',

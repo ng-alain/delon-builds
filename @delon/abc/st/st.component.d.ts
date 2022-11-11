@@ -3,7 +3,7 @@ import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, 
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
+import { AlainConfigService, AlainSTConfig } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
@@ -40,7 +40,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     private destroy$;
     private data$?;
     private totalTpl;
-    private cog;
+    cog: AlainSTConfig;
     private _req;
     private _res;
     private _page;

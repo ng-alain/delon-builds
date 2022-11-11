@@ -52,22 +52,7 @@ function cleanOutput(p) {
     }
     catch (e) { }
 }
-function tagsMapping(res, config) {
-    var _a;
-    if (config.tagsMapping != null && Object.keys(config.tagsMapping).length <= 0)
-        return;
-    (_a = res.configuration.routes.combined) === null || _a === void 0 ? void 0 : _a.forEach(v => {
-        const newModuleName = config.tagsMapping[v.moduleName];
-        if (newModuleName != null) {
-            v.moduleName = newModuleName;
-            v.routes.forEach(route => {
-                route.raw.moduleName = newModuleName;
-            });
-        }
-    });
-}
-function fix(output, res, tree, context, config) {
-    tagsMapping(res, config);
+function fix(output, res, tree, context) {
     const indexList = [`models`, `_base.service`];
     const basePath = (0, core_1.normalize)((0, path_1.join)(project.root, output.replace(process.cwd(), '')));
     try {
@@ -175,7 +160,7 @@ function genProxy(config) {
             (0, swagger_typescript_api_1.generateApi)(options)
                 .then((res) => {
                 cleanOutput(output);
-                fix(output, res, tree, context, config);
+                fix(output, res, tree, context);
                 resolve();
             })
                 .catch(ex => {
@@ -205,6 +190,7 @@ function tryLoadConfig(context, configPath) {
 }
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
+        context.logger.info(colors.yellow(`The ng g ng-alain:sta is currently in testing status and may change before the major version of '13'`));
         project = (yield (0, workspace_1.getProject)(tree, options.project)).project;
         const config = Object.assign(Object.assign({ name: 'sta' }, options), tryLoadConfig(context, options.config));
         if (typeof config.generateApiOptions === 'string') {
