@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { AlainDateRangePickerConfig, AlainErrorCollectConfig, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainQRConfig, AlainSEConfig, AlainSGConfig, AlainSTConfig, AlainSVConfig, AlainXlsxConfig, AlainZipConfig } from './abc/index';
+import { AlainDateRangePickerConfig, AlainErrorCollectConfig, AlainExceptionType, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainQRConfig, AlainSEConfig, AlainSGConfig, AlainSTConfig, AlainSVConfig, AlainXlsxConfig, AlainZipConfig } from './abc/index';
 import { AlainACLConfig } from './acl/acl.type';
 import { AlainAuthConfig } from './auth/auth.type';
 import { AlainCacheConfig } from './cache/cache.type';
@@ -11,6 +11,7 @@ import { AlainUtilArrayConfig } from './util/array.type';
 import { AlainUtilCurrencyConfig } from './util/currency.type';
 export interface AlainConfig {
     dataRange?: AlainDateRangePickerConfig;
+    exception?: AlainExceptionType;
     errorCollect?: AlainErrorCollectConfig;
     image?: AlainImageConfig;
     loading?: AlainLoadingConfig;
