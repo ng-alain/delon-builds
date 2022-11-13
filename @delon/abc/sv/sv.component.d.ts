@@ -10,6 +10,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     static ngAcceptInputType_col: NumberInput;
     static ngAcceptInputType_default: BooleanInput;
     static ngAcceptInputType_noColon: BooleanInput;
+    static ngAcceptInputType_hideLabel: BooleanInput;
     private conEl;
     private el;
     private clsMap;
@@ -23,6 +24,7 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     default?: boolean | null;
     type?: 'primary' | 'success' | 'danger' | 'warning';
     noColon?: boolean | null;
+    hideLabel: boolean;
     get paddingValue(): number;
     get labelWidth(): number | null | undefined;
     constructor(el: ElementRef, parent: SVContainerComponent, rep: ResponsiveService, ren: Renderer2);
@@ -31,5 +33,5 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     ngOnChanges(): void;
     checkContent(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SVComponent, [null, { optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; "noColon": "noColon"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; "noColon": "noColon"; "hideLabel": "hideLabel"; }, {}, never, ["*"], false>;
 }
