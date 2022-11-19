@@ -656,7 +656,6 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].setValue(value[propertyId], true);
             }
         }
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -667,7 +666,6 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
         }
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     _hasValue() {
@@ -704,7 +702,6 @@ class ArrayProperty extends PropertyGroup {
         this.properties = [];
         this.clearErrors();
         this.resetProperties(value);
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -766,7 +763,6 @@ class ArrayProperty extends PropertyGroup {
 class AtomicProperty extends FormProperty {
     setValue(value, onlySelf) {
         this._value = value;
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -775,10 +771,8 @@ class AtomicProperty extends FormProperty {
         }
         this._value = value;
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-        if (this.widget) {
+        if (this.widget)
             this.widget.reset(value);
-            this.widget.detectChanges(onlySelf);
-        }
     }
     _hasValue() {
         return this.fallbackValue() !== this.value;
@@ -806,7 +800,6 @@ class NumberProperty extends AtomicProperty {
             }
         }
         this._value = value;
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
 }
@@ -817,7 +810,6 @@ class StringProperty extends AtomicProperty {
     }
     setValue(value, onlySelf) {
         this._value = value == null ? '' : value;
-        this.widget.detectChanges(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
 }
