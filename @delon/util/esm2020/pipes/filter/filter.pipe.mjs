@@ -10,9 +10,9 @@ export class FilterPipe {
         return array.filter(i => matcher(i, ...args));
     }
 }
-FilterPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.10", ngImport: i0, type: FilterPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-FilterPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.2.10", ngImport: i0, type: FilterPipe, name: "filter" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.10", ngImport: i0, type: FilterPipe, decorators: [{
+FilterPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.11", ngImport: i0, type: FilterPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+FilterPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "14.2.11", ngImport: i0, type: FilterPipe, name: "filter" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.11", ngImport: i0, type: FilterPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'filter' }]
         }] });

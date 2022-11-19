@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "14.2.0-2691520e",
+  "version": "14.2.0-ec123c80",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,9 +29,9 @@
     "pdfjs-dist": "^2.15.349",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^14.0.0",
-    "@delon/theme": "^14.2.0-2691520e",
-    "@delon/util": "^14.2.0-2691520e",
-    "@delon/acl": "^14.2.0-2691520e",
+    "@delon/theme": "^14.2.0-ec123c80",
+    "@delon/util": "^14.2.0-ec123c80",
+    "@delon/acl": "^14.2.0-ec123c80",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/abc.mjs",
@@ -67,14 +67,6 @@
       "es2015": "./fesm2015/avatar-list.mjs",
       "node": "./fesm2015/avatar-list.mjs",
       "default": "./fesm2020/avatar-list.mjs"
-    },
-    "./cell": {
-      "types": "./cell/index.d.ts",
-      "esm2020": "./esm2020/cell/cell.mjs",
-      "es2020": "./fesm2020/cell.mjs",
-      "es2015": "./fesm2015/cell.mjs",
-      "node": "./fesm2015/cell.mjs",
-      "default": "./fesm2020/cell.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",

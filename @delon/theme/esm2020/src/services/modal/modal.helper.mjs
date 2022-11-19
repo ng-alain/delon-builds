@@ -97,9 +97,9 @@ export class ModalHelper {
         return this.create(comp, params, { ...options, modalOptions });
     }
 }
-ModalHelper.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.10", ngImport: i0, type: ModalHelper, deps: [{ token: i1.NzModalService }], target: i0.ɵɵFactoryTarget.Injectable });
-ModalHelper.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.10", ngImport: i0, type: ModalHelper, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.10", ngImport: i0, type: ModalHelper, decorators: [{
+ModalHelper.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.11", ngImport: i0, type: ModalHelper, deps: [{ token: i1.NzModalService }], target: i0.ɵɵFactoryTarget.Injectable });
+ModalHelper.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.2.11", ngImport: i0, type: ModalHelper, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.11", ngImport: i0, type: ModalHelper, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.NzModalService }]; } });
