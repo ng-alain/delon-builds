@@ -338,7 +338,7 @@ class FormProperty {
     get options() {
         return this._options;
     }
-    cd(onlySelf) {
+    cd(onlySelf = false) {
         this.widget?.detectChanges(onlySelf);
     }
     /**
@@ -428,7 +428,7 @@ class FormProperty {
             if (customErrors instanceof Observable) {
                 customErrors.subscribe(res => {
                     this.setCustomErrors(errors, res);
-                    this.widget?.detectChanges();
+                    this.cd(false);
                 });
                 return;
             }
@@ -579,7 +579,7 @@ class FormProperty {
     updateFeedback(status = '') {
         this.ui.feedback = status;
         this.widget?.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
-        this.widget?.detectChanges();
+        this.cd(true);
     }
 }
 class PropertyGroup extends FormProperty {

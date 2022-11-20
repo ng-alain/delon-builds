@@ -50,7 +50,7 @@ export declare abstract class FormProperty {
      * @param onlySelf `true` 只对当前字段更新值和校验；`false` 包含上级字段
      */
     abstract resetValue(value: SFValue, onlySelf: boolean): void;
-    cd(onlySelf: boolean): void;
+    cd(onlySelf?: boolean): void;
     /**
      * 更新值且校验数据
      */

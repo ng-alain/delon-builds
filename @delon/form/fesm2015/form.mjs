@@ -338,7 +338,7 @@ class FormProperty {
     get options() {
         return this._options;
     }
-    cd(onlySelf) {
+    cd(onlySelf = false) {
         var _a;
         (_a = this.widget) === null || _a === void 0 ? void 0 : _a.detectChanges(onlySelf);
     }
@@ -421,9 +421,8 @@ class FormProperty {
             const customErrors = customValidator(this.value, this, this.findRoot());
             if (customErrors instanceof Observable) {
                 customErrors.subscribe(res => {
-                    var _a;
                     this.setCustomErrors(errors, res);
-                    (_a = this.widget) === null || _a === void 0 ? void 0 : _a.detectChanges();
+                    this.cd(false);
                 });
                 return;
             }
@@ -573,10 +572,10 @@ class FormProperty {
     }
     // #endregion
     updateFeedback(status = '') {
-        var _a, _b;
+        var _a;
         this.ui.feedback = status;
         (_a = this.widget) === null || _a === void 0 ? void 0 : _a.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
-        (_b = this.widget) === null || _b === void 0 ? void 0 : _b.detectChanges();
+        this.cd(true);
     }
 }
 class PropertyGroup extends FormProperty {
