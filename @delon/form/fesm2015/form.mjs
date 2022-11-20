@@ -338,6 +338,10 @@ class FormProperty {
     get options() {
         return this._options;
     }
+    cd(onlySelf) {
+        var _a;
+        (_a = this.widget) === null || _a === void 0 ? void 0 : _a.detectChanges(onlySelf);
+    }
     /**
      * 更新值且校验数据
      */
@@ -417,8 +421,9 @@ class FormProperty {
             const customErrors = customValidator(this.value, this, this.findRoot());
             if (customErrors instanceof Observable) {
                 customErrors.subscribe(res => {
+                    var _a;
                     this.setCustomErrors(errors, res);
-                    this.widget.detectChanges();
+                    (_a = this.widget) === null || _a === void 0 ? void 0 : _a.detectChanges();
                 });
                 return;
             }
@@ -568,9 +573,10 @@ class FormProperty {
     }
     // #endregion
     updateFeedback(status = '') {
+        var _a, _b;
         this.ui.feedback = status;
-        this.widget.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
-        this.widget.detectChanges();
+        (_a = this.widget) === null || _a === void 0 ? void 0 : _a.injector.get(NzFormStatusService).formStatusChanges.next({ status, hasFeedback: !!status });
+        (_b = this.widget) === null || _b === void 0 ? void 0 : _b.detectChanges();
     }
 }
 class PropertyGroup extends FormProperty {
@@ -650,6 +656,7 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].setValue(value[propertyId], true);
             }
         }
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -660,6 +667,7 @@ class ObjectProperty extends PropertyGroup {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
         }
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     _hasValue() {
@@ -696,6 +704,7 @@ class ArrayProperty extends PropertyGroup {
         this.properties = [];
         this.clearErrors();
         this.resetProperties(value);
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -758,6 +767,7 @@ class ArrayProperty extends PropertyGroup {
 class AtomicProperty extends FormProperty {
     setValue(value, onlySelf) {
         this._value = value;
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
@@ -766,8 +776,10 @@ class AtomicProperty extends FormProperty {
         }
         this._value = value;
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
-        if (this.widget)
+        if (this.widget) {
             this.widget.reset(value);
+            this.cd(onlySelf);
+        }
     }
     _hasValue() {
         return this.fallbackValue() !== this.value;
@@ -795,6 +807,7 @@ class NumberProperty extends AtomicProperty {
             }
         }
         this._value = value;
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
 }
@@ -805,6 +818,7 @@ class StringProperty extends AtomicProperty {
     }
     setValue(value, onlySelf) {
         this._value = value == null ? '' : value;
+        this.cd(onlySelf);
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
 }
@@ -1839,11 +1853,12 @@ class Widget {
         return this.formProperty.value;
     }
     detectChanges(onlySelf = false) {
+        var _a;
         if (onlySelf) {
             this.cd.markForCheck();
         }
         else {
-            this.formProperty.root.widget.cd.markForCheck();
+            (_a = this.formProperty.root.widget) === null || _a === void 0 ? void 0 : _a.cd.markForCheck();
         }
     }
 }
