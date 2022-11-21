@@ -1875,6 +1875,9 @@ nz-affix {
 nz-alert {
   display: block;
 }
+.ant-alert-icon {
+  line-height: 1;
+}
 .ant-anchor {
   box-sizing: border-box;
   margin: 0;
@@ -6862,6 +6865,9 @@ _:-ms-fullscreen .ant-picker-range-wrapper .ant-picker-year-panel .ant-picker-ce
 }
 .ant-picker-panel-container.ant-picker-week-number .ant-picker-date-panel .ant-picker-content th {
   width: inherit;
+}
+.ant-picker-range-arrow {
+  margin-right: 10.5px;
 }
 .ant-descriptions-header {
   display: flex;
@@ -27534,6 +27540,105 @@ nz-space-item {
 }
 .cdk-overlay-backdrop.ant-image-preview-mask {
   opacity: 1;
+}
+.ant-cron-expression {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.ant-cron-expression-content {
+  width: 100%;
+}
+.ant-cron-expression-content .ant-cron-expression-input-group-error {
+  border-color: #ff4d4f;
+  box-shadow: none;
+}
+.ant-cron-expression-content .ant-cron-expression-input-group-error:hover {
+  border-color: #ff4d4f;
+  box-shadow: none;
+}
+.ant-cron-expression-content .ant-cron-expression-input-group-error-focus {
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+.ant-cron-expression-content .ant-cron-expression-input-group-error-focus:hover {
+  box-shadow: 0 0 0 2px rgba(255, 77, 79, 0.2);
+}
+.ant-cron-expression nz-cron-expression-input {
+  width: 20%;
+}
+.ant-cron-expression-input-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  padding: 0px 8px;
+  border-radius: 2px;
+}
+.ant-cron-expression-input-group:hover {
+  border-color: #1890ff;
+}
+.ant-cron-expression-input-group input {
+  border: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  outline: none;
+  padding: 0;
+  border-radius: 0;
+}
+.ant-cron-expression-input-group-lg {
+  padding: 6.5px 8px;
+  font-size: 14px;
+}
+.ant-cron-expression-input-group-sm {
+  padding: 0 8px;
+}
+.ant-cron-expression-input-group-focus {
+  border-color: #1890ff;
+  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  border-right-width: 1px;
+  outline: 0;
+}
+.ant-cron-expression nz-cron-expression-label {
+  width: 20%;
+}
+.ant-cron-expression-label-group {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  padding: 0 8px;
+}
+.ant-cron-expression-label-foucs {
+  color: #1890ff;
+}
+.ant-cron-expression-map {
+  margin-left: 8px;
+}
+.ant-cron-expression-preview-date {
+  overflow-y: scroll;
+  height: 132px;
+  margin: 0;
+  padding: 0;
+}
+.ant-cron-expression-preview-date li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ant-cron-expression-error {
+  color: #ff4d4f;
+}
+.ant-cron-expression-hint p {
+  display: flex;
+}
+.ant-cron-expression-hint span {
+  display: inline-block;
+  min-width: 40px;
+}
+.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 8px;
+}
+.ant-collapse-content > .ant-collapse-content-box {
+  padding: 8px 24px;
 }
 sf + st {
   margin-top: 16px;
