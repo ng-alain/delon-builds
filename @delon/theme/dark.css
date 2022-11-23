@@ -32842,12 +32842,12 @@ body {
 .st .ant-table-tbody > tr .ant-table-wrapper:only-child .ant-table {
   margin: 0;
 }
-.st .ant-table-cell-fix-left-first::after,
-.st .ant-table-cell-fix-left-last::after {
+.st .text-truncate.ant-table-cell-fix-left-first::after,
+.st .text-truncate.ant-table-cell-fix-left-last::after {
   transform: translateX(80%);
 }
-.st .ant-table-cell-fix-right-first::after,
-.st .ant-table-cell-fix-right-last::after {
+.st .text-truncate.ant-table-cell-fix-right-first::after,
+.st .text-truncate.ant-table-cell-fix-right-last::after {
   transform: translateX(-80%);
 }
 @media screen and (min-width: 768px) {
