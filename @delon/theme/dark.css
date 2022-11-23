@@ -32806,23 +32806,17 @@ body {
 .st__filter-date .ant-picker-panel-container .ant-picker-panel {
   border: none;
 }
-.st__has-filter .ant-table-column-sorters {
+.st__has-filter.ant-table-column-has-sorters .ant-table-column-sorters {
   padding-right: 16px;
 }
-.st__has-filter .st__filter {
+.st__has-filter.ant-table-column-has-sorters .st__filter {
   position: absolute;
   top: 0;
-  right: 0;
+  right: -32px;
   bottom: 0;
   display: flex;
   align-items: center;
   justify-items: center;
-}
-.st__has-filter .ant-table-filter-trigger {
-  height: 100%;
-}
-.st__has-filter.ant-table-column-has-sorters .st__filter {
-  right: -32px;
 }
 .st__head-optional,
 .st__head-tip {
@@ -32842,12 +32836,12 @@ body {
 .st .ant-table-tbody > tr .ant-table-wrapper:only-child .ant-table {
   margin: 0;
 }
-.st .ant-table-cell-fix-left-first::after,
-.st .ant-table-cell-fix-left-last::after {
+.st .text-truncate.ant-table-cell-fix-left-first::after,
+.st .text-truncate.ant-table-cell-fix-left-last::after {
   transform: translateX(80%);
 }
-.st .ant-table-cell-fix-right-first::after,
-.st .ant-table-cell-fix-right-last::after {
+.st .text-truncate.ant-table-cell-fix-right-first::after,
+.st .text-truncate.ant-table-cell-fix-right-last::after {
   transform: translateX(-80%);
 }
 @media screen and (min-width: 768px) {
