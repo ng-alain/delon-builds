@@ -68,7 +68,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     get page(): STPage;
     set page(value: STPage);
     data: string | STData[] | Observable<STData[]>;
-    columns: STColumn[];
+    columns?: STColumn[] | null;
     contextmenu?: STContextmenuFn | null;
     ps: number;
     pi: number;
@@ -123,6 +123,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * Get the data of the current page
      */
     get list(): STData[];
+    get noColumns(): boolean;
     constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, el: ElementRef, exportSrv: STExport, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
     private setCog;
     cd(): this;
