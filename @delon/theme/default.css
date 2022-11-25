@@ -32287,6 +32287,12 @@ body {
 .st .text-truncate.ant-table-cell-fix-right-last::after {
   transform: translateX(-80%);
 }
+.st__no-column .ant-table {
+  height: 100px;
+}
+.st__no-column .ant-table-content {
+  display: none;
+}
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-content > table,
   .st__width-strict .ant-table-body > table {
