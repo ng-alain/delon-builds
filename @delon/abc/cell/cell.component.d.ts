@@ -1,7 +1,8 @@
-import { ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BooleanInput } from '@delon/util/decorator';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { CellService } from './cell.service';
 import type { CellOptions, CellTextResult, CellWidgetData } from './cell.types';
@@ -16,18 +17,21 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     private win;
     static ngAcceptInputType_truncate: BooleanInput;
     static ngAcceptInputType_loading: BooleanInput;
+    static ngAcceptInputType_disabled: BooleanInput;
     private destroy$?;
     _text: string | SafeHtml;
     _unit?: string;
     res?: CellTextResult;
     showDefault: boolean;
     value?: unknown;
+    readonly valueChange: EventEmitter<any>;
     default: string;
     defaultCondition?: unknown;
     options?: CellOptions;
     unit?: string;
     truncate: boolean;
     loading: boolean;
+    disabled: boolean;
     type?: 'primary' | 'success' | 'danger' | 'warning';
     size?: 'large' | 'small';
     /**
@@ -46,9 +50,10 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     private updateValue;
     private setClass;
     ngOnChanges(): void;
+    change(value: NzSafeAny): void;
     _link(e: Event): void;
     _showImg(img: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": "value"; "default": "default"; "defaultCondition": "defaultCondition"; "options": "options"; "unit": "unit"; "truncate": "truncate"; "loading": "loading"; "type": "type"; "size": "size"; "currency": "currency"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": "value"; "default": "default"; "defaultCondition": "defaultCondition"; "options": "options"; "unit": "unit"; "truncate": "truncate"; "loading": "loading"; "disabled": "disabled"; "type": "type"; "size": "size"; "currency": "currency"; }, { "valueChange": "valueChange"; }, never, never, false>;
 }

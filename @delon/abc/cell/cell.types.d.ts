@@ -10,7 +10,6 @@ export interface CellTextUnit {
 }
 export declare type CellTextType = string | CellTextUnit | undefined | null;
 export interface CellTextResult {
-    type: CellType;
     result: CellTextUnit;
     safeHtml?: 'text' | 'html' | 'safeHtml';
     options: CellOptions;
@@ -21,7 +20,7 @@ export interface CellWidget {
     type: 'fn' | 'widget';
     ref: Type<unknown> | CellWidgetFn;
 }
-export declare type CellType = 'string' | 'number' | 'mega' | 'currency' | 'cny' | 'boolean' | 'date' | 'img' | 'link' | 'html' | 'badge' | 'tag' | 'widget';
+export declare type CellType = 'string' | 'number' | 'mega' | 'currency' | 'cny' | 'boolean' | 'date' | 'img' | 'link' | 'html' | 'badge' | 'tag' | 'checkbox' | 'radio' | 'widget';
 export interface CellOptions {
     /**
      * 指定渲染类型，若不指定则根据 `value` 类型自动转换
@@ -88,6 +87,8 @@ export interface CellOptions {
         previewOptions?: NzImagePreviewOptions;
     };
     /**
+     * Link, if it starts with `/`, it means routing jump
+     *
      * 链接，若指定URL是以 `/` 开头视为路由跳转
      */
     link?: {
@@ -95,22 +96,44 @@ export interface CellOptions {
         target?: '_blank' | '_self' | '_parent' | '_top';
     };
     /**
+     * HTML config
+     *
      * HTML 配置
      */
     html?: {
         safe?: 'text' | 'html' | 'safeHtml';
     };
     /**
+     * Badge config
+     *
      * 徽章配置
      */
     badge?: {
         data?: CellBadge;
     };
     /**
+     * Tag config
+     *
      * 标签配置
      */
     tag?: {
         data?: CellTag;
+    };
+    /**
+     * Checkbox config
+     *
+     * 复选框配置
+     */
+    checkbox?: {
+        label?: string;
+    };
+    /**
+     * Radio config
+     *
+     * 单选框配置
+     */
+    radio?: {
+        label?: string;
     };
 }
 /**

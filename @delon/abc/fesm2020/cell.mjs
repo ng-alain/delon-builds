@@ -1,6 +1,6 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Injectable, Directive, Input, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, NgModule } from '@angular/core';
+import { Injectable, Directive, Input, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Output, NgModule } from '@angular/core';
 import { updateHostClass } from '@delon/util/browser';
 import { InputBoolean } from '@delon/util/decorator';
 import { WINDOW } from '@delon/util/token';
@@ -17,13 +17,19 @@ import * as i2$1 from '@angular/router';
 import * as i3$1 from 'ng-zorro-antd/image';
 import * as i4$1 from '@angular/common';
 import { CommonModule } from '@angular/common';
-import * as i5 from 'ng-zorro-antd/badge';
+import * as i5 from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import * as i6 from 'ng-zorro-antd/checkbox';
+import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import * as i7 from 'ng-zorro-antd/radio';
+import { NzRadioModule } from 'ng-zorro-antd/radio';
+import * as i8 from 'ng-zorro-antd/badge';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
-import * as i6 from 'ng-zorro-antd/tag';
+import * as i9 from 'ng-zorro-antd/tag';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import * as i7 from 'ng-zorro-antd/tooltip';
+import * as i10 from 'ng-zorro-antd/tooltip';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import * as i8 from 'ng-zorro-antd/icon';
+import * as i11 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzImageModule } from 'ng-zorro-antd/experimental/image';
 
@@ -110,6 +116,10 @@ class CellService {
             return 'badge';
         else if (options.tag != null)
             return 'tag';
+        else if (options.checkbox != null)
+            return 'checkbox';
+        else if (options.radio != null)
+            return 'radio';
         else if (typeOf === 'number')
             return 'number';
         else if (typeOf === 'boolean' || options.boolean != null)
@@ -123,8 +133,8 @@ class CellService {
     get(value, options) {
         const type = this.genType(value, { ...options });
         const opt = this.fixOptions(options);
+        opt.type = type;
         let res = {
-            type: 'string',
             result: typeof value === 'object' ? value : { text: value == null ? '' : `${value}` },
             options: opt
         };
@@ -134,7 +144,6 @@ class CellService {
         }
         return (typeof value === 'function' ? value(value, opt) : of(res.result)).pipe(map(text => {
             res.result = text;
-            res.type = type;
             switch (type) {
                 case 'badge':
                     res.result = { color: 'default', ...(opt.badge?.data ?? {})[value] };
@@ -184,7 +193,9 @@ CellHostDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versio
 CellHostDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "14.2.12", type: CellHostDirective, selector: "[cell-widget-host]", inputs: { data: "data" }, ngImport: i0 });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellHostDirective, decorators: [{
             type: Directive,
-            args: [{ selector: '[cell-widget-host]' }]
+            args: [{
+                    selector: '[cell-widget-host]'
+                }]
         }], ctorParameters: function () { return [{ type: CellService }, { type: i0.ViewContainerRef }]; }, propDecorators: { data: [{
                 type: Input
             }] } });
@@ -201,10 +212,12 @@ class CellComponent {
         this.imgSrv = imgSrv;
         this.win = win;
         this.showDefault = false;
+        this.valueChange = new EventEmitter();
         this.default = '-';
         this.defaultCondition = null;
         this.truncate = false;
         this.loading = false;
+        this.disabled = false;
     }
     /**
      * 货币快捷项
@@ -238,6 +251,7 @@ class CellComponent {
         this.destroy$?.unsubscribe();
         this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
             this.res = res;
+            console.log(res);
             this.showDefault = this.value == this.defaultCondition;
             this._text = res.result?.text ?? '';
             this._unit = res.result?.unit ?? this.unit;
@@ -252,16 +266,24 @@ class CellComponent {
             [`cell__${this.type}`]: this.type != null,
             [`cell__${this.size}`]: this.size != null,
             [`cell__has-unit`]: this._unit,
-            [`cell__has-default`]: this.showDefault
+            [`cell__has-default`]: this.showDefault,
+            [`cell__disabled`]: this.disabled
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
+        console.log(this.safeOpt);
     }
     ngOnChanges() {
         this.updateValue();
     }
+    change(value) {
+        this.value = value;
+        this.valueChange.emit(value);
+    }
     _link(e) {
         e.preventDefault();
         e.stopPropagation();
+        if (this.disabled)
+            return;
         const link = this.safeOpt.link;
         const url = link?.url;
         if (url == null)
@@ -292,15 +314,31 @@ class CellComponent {
     }
 }
 CellComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component });
-CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.12", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", type: "type", size: "size", currency: "currency" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
+CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.12", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", disabled: "disabled", type: "type", size: "size", currency: "currency" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
-      <ng-container [ngSwitch]="res?.type">
+      <ng-container [ngSwitch]="safeOpt.type">
+        <label
+          *ngSwitchCase="'checkbox'"
+          nz-checkbox
+          [nzDisabled]="disabled"
+          [ngModel]="value"
+          (ngModelChange)="change($event)"
+          >{{ safeOpt.checkbox?.label }}</label
+        >
+        <label
+          *ngSwitchCase="'radio'"
+          nz-radio
+          [nzDisabled]="disabled"
+          [ngModel]="value"
+          (ngModelChange)="change($event)"
+          >{{ safeOpt.radio?.label }}</label
+        >
         <a
           *ngSwitchCase="'link'"
           (click)="_link($event)"
           [attr.target]="safeOpt.link?.target"
-          [innerHTML]="_text"
           [attr.title]="truncate ? value : null"
+          [innerHTML]="_text"
         ></a>
         <nz-tag *ngSwitchCase="'tag'" [nzColor]="res?.result?.color">
           <span [innerHTML]="_text"></span>
@@ -334,26 +372,45 @@ CellComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version:
       </ng-container>
     </ng-template>
     <span *ngIf="loading; else textWrap" nz-icon nzType="loading"></span>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i4$1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4$1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i4$1.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i4$1.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i4$1.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "component", type: i5.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "component", type: i6.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "directive", type: i7.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i8.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i4$1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4$1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i4$1.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i4$1.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i4$1.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "directive", type: i5.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i5.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i6.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i7.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "component", type: i8.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "component", type: i9.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "directive", type: i10.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 __decorate([
     InputBoolean()
 ], CellComponent.prototype, "truncate", void 0);
 __decorate([
     InputBoolean()
 ], CellComponent.prototype, "loading", void 0);
+__decorate([
+    InputBoolean()
+], CellComponent.prototype, "disabled", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'cell, [cell]',
                     template: `
     <ng-template #text>
-      <ng-container [ngSwitch]="res?.type">
+      <ng-container [ngSwitch]="safeOpt.type">
+        <label
+          *ngSwitchCase="'checkbox'"
+          nz-checkbox
+          [nzDisabled]="disabled"
+          [ngModel]="value"
+          (ngModelChange)="change($event)"
+          >{{ safeOpt.checkbox?.label }}</label
+        >
+        <label
+          *ngSwitchCase="'radio'"
+          nz-radio
+          [nzDisabled]="disabled"
+          [ngModel]="value"
+          (ngModelChange)="change($event)"
+          >{{ safeOpt.radio?.label }}</label
+        >
         <a
           *ngSwitchCase="'link'"
           (click)="_link($event)"
           [attr.target]="safeOpt.link?.target"
-          [innerHTML]="_text"
           [attr.title]="truncate ? value : null"
+          [innerHTML]="_text"
         ></a>
         <nz-tag *ngSwitchCase="'tag'" [nzColor]="res?.result?.color">
           <span [innerHTML]="_text"></span>
@@ -398,6 +455,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
                     args: [WINDOW]
                 }] }]; }, propDecorators: { value: [{
                 type: Input
+            }], valueChange: [{
+                type: Output
             }], default: [{
                 type: Input
             }], defaultCondition: [{
@@ -409,6 +468,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
             }], truncate: [{
                 type: Input
             }], loading: [{
+                type: Input
+            }], disabled: [{
                 type: Input
             }], type: [{
                 type: Input
@@ -422,12 +483,38 @@ const COMPS = [CellComponent];
 class CellModule {
 }
 CellModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CellModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.12", ngImport: i0, type: CellModule, declarations: [CellComponent, CellHostDirective], imports: [CommonModule, NzBadgeModule, NzTagModule, NzToolTipModule, NzIconModule, NzImageModule], exports: [CellComponent] });
-CellModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellModule, imports: [CommonModule, NzBadgeModule, NzTagModule, NzToolTipModule, NzIconModule, NzImageModule] });
+CellModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.2.12", ngImport: i0, type: CellModule, declarations: [CellComponent, CellHostDirective], imports: [CommonModule,
+        FormsModule,
+        NzCheckboxModule,
+        NzRadioModule,
+        NzBadgeModule,
+        NzTagModule,
+        NzToolTipModule,
+        NzIconModule,
+        NzImageModule], exports: [CellComponent] });
+CellModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellModule, imports: [CommonModule,
+        FormsModule,
+        NzCheckboxModule,
+        NzRadioModule,
+        NzBadgeModule,
+        NzTagModule,
+        NzToolTipModule,
+        NzIconModule,
+        NzImageModule] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: CellModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, NzBadgeModule, NzTagModule, NzToolTipModule, NzIconModule, NzImageModule],
+                    imports: [
+                        CommonModule,
+                        FormsModule,
+                        NzCheckboxModule,
+                        NzRadioModule,
+                        NzBadgeModule,
+                        NzTagModule,
+                        NzToolTipModule,
+                        NzIconModule,
+                        NzImageModule
+                    ],
                     declarations: [...COMPS, CellHostDirective],
                     exports: COMPS
                 }]

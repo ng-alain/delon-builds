@@ -33956,6 +33956,12 @@ ellipsis {
   color: rgba(255, 255, 255, 0.45);
   font-size: 12px;
 }
+.cell__disabled[data-type="link"] {
+  pointer-events: none;
+}
+.cell__disabled[data-type="link"] > a {
+  color: rgba(255, 255, 255, 0.85);
+}
 g2-chart,
 g2-bar,
 g2-gauge,
