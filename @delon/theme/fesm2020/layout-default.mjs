@@ -4,7 +4,7 @@ import * as i0 from '@angular/core';
 import { Component, ViewChild, Input, Injectable, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, Inject, Optional, Output, ContentChildren, Directive, NgModule } from '@angular/core';
 import * as i2 from '@angular/router';
 import { NavigationEnd, RouteConfigLoadStart, NavigationError, NavigationCancel, RouteConfigLoadEnd, RouterModule } from '@angular/router';
-import { BehaviorSubject, distinctUntilChanged, Subject, takeUntil, filter, combineLatest } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil, filter } from 'rxjs';
 import { updateHostClass } from '@delon/util/browser';
 import * as i2$1 from 'ng-zorro-antd/message';
 import { NzMessageModule } from 'ng-zorro-antd/message';
@@ -54,15 +54,26 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
                 type: Input
             }] } });
 
+const DEFAULT = {
+    logoExpanded: `./assets/logo-full.svg`,
+    logoCollapsed: `./assets/logo.svg`,
+    logoLink: `/`,
+    showHeaderCollapse: true,
+    showSiderCollapse: false,
+    hideAside: false,
+    hideHeader: false
+};
 class LayoutDefaultService {
     constructor(settings) {
         this.settings = settings;
-        this._options$ = new BehaviorSubject({});
-        this.options$ = this._options$.pipe(distinctUntilChanged());
-        this._options = {};
+        this._options$ = new BehaviorSubject(DEFAULT);
+        this._options = DEFAULT;
     }
     get options() {
         return this._options;
+    }
+    get options$() {
+        return this._options$.asObservable();
     }
     get collapsedIcon() {
         const collapsed = this.settings.layout.collapsed;
@@ -72,6 +83,9 @@ class LayoutDefaultService {
         }
         return `menu-${type}`;
     }
+    notify() {
+        this._options$.next(this._options);
+    }
     /**
      * Set layout configuration
      *
@@ -79,14 +93,10 @@ class LayoutDefaultService {
      */
     setOptions(options) {
         this._options = {
-            logoExpanded: `./assets/logo-full.svg`,
-            logoCollapsed: `./assets/logo.svg`,
-            logoLink: `/`,
-            showHeaderCollapse: true,
-            hideAside: false,
+            ...DEFAULT,
             ...options
         };
-        this._options$.next(this._options);
+        this.notify();
     }
     /**
      * Toggle the collapsed state of the sidebar menu bar
@@ -94,7 +104,8 @@ class LayoutDefaultService {
      * 切换侧边栏菜单栏折叠状态
      */
     toggleCollapsed(status) {
-        this.settings.setLayout('collapsed', status ?? !this.settings.layout.collapsed);
+        this.settings.setLayout('collapsed', status != null ? status : !this.settings.layout.collapsed);
+        this.notify();
     }
 }
 LayoutDefaultService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LayoutDefaultService, deps: [{ token: i1.SettingsService }], target: i0.ɵɵFactoryTarget.Injectable });
@@ -392,6 +403,9 @@ class LayoutDefaultHeaderComponent {
         this.middle = [];
         this.right = [];
     }
+    get opt() {
+        return this.srv.options;
+    }
     get app() {
         return this.settings.app;
     }
@@ -410,6 +424,7 @@ class LayoutDefaultHeaderComponent {
     }
     ngAfterViewInit() {
         this.items.changes.pipe(takeUntil(this.destroy$)).subscribe(() => this.refresh());
+        this.srv.options$.pipe(takeUntil(this.destroy$)).subscribe(() => this.cdr.detectChanges());
         this.refresh();
     }
     toggleCollapsed() {
@@ -421,23 +436,23 @@ class LayoutDefaultHeaderComponent {
     }
 }
 LayoutDefaultHeaderComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LayoutDefaultHeaderComponent, deps: [{ token: LayoutDefaultService }, { token: i1.SettingsService }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component });
-LayoutDefaultHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.12", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: { items: "items", options: "options" }, host: { properties: { "class.alain-default__header": "true" } }, ngImport: i0, template: `
+LayoutDefaultHeaderComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.12", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: { items: "items" }, host: { properties: { "class.alain-default__header": "true" } }, ngImport: i0, template: `
     <ng-template #render let-ls>
       <li *ngFor="let i of ls" [class.hidden-mobile]="i.hidden === 'mobile'" [class.hidden-pc]="i.hidden === 'pc'">
         <ng-container *ngTemplateOutlet="i.host"></ng-container>
       </li>
     </ng-template>
-    <div class="alain-default__header-logo" [style.width.px]="options.logoFixWidth">
-      <ng-container *ngIf="!options.logo; else options.logo!">
-        <a [routerLink]="options.logoLink" class="alain-default__header-logo-link">
-          <img class="alain-default__header-logo-expanded" [attr.src]="options.logoExpanded" [attr.alt]="app.name" />
-          <img class="alain-default__header-logo-collapsed" [attr.src]="options.logoCollapsed" [attr.alt]="app.name" />
+    <div class="alain-default__header-logo" [style.width.px]="opt.logoFixWidth">
+      <ng-container *ngIf="!opt.logo; else opt.logo!">
+        <a [routerLink]="opt.logoLink" class="alain-default__header-logo-link">
+          <img class="alain-default__header-logo-expanded" [attr.src]="opt.logoExpanded" [attr.alt]="app.name" />
+          <img class="alain-default__header-logo-collapsed" [attr.src]="opt.logoCollapsed" [attr.alt]="app.name" />
         </a>
       </ng-container>
     </div>
     <div class="alain-default__nav-wrap">
       <ul class="alain-default__nav">
-        <li *ngIf="!options.hideAside && options.showHeaderCollapse">
+        <li *ngIf="!opt.hideAside && opt.showHeaderCollapse">
           <div class="alain-default__nav-item alain-default__nav-item--collapse" (click)="toggleCollapsed()">
             <span nz-icon [nzType]="collapsedIcon"></span>
           </div>
@@ -462,17 +477,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
         <ng-container *ngTemplateOutlet="i.host"></ng-container>
       </li>
     </ng-template>
-    <div class="alain-default__header-logo" [style.width.px]="options.logoFixWidth">
-      <ng-container *ngIf="!options.logo; else options.logo!">
-        <a [routerLink]="options.logoLink" class="alain-default__header-logo-link">
-          <img class="alain-default__header-logo-expanded" [attr.src]="options.logoExpanded" [attr.alt]="app.name" />
-          <img class="alain-default__header-logo-collapsed" [attr.src]="options.logoCollapsed" [attr.alt]="app.name" />
+    <div class="alain-default__header-logo" [style.width.px]="opt.logoFixWidth">
+      <ng-container *ngIf="!opt.logo; else opt.logo!">
+        <a [routerLink]="opt.logoLink" class="alain-default__header-logo-link">
+          <img class="alain-default__header-logo-expanded" [attr.src]="opt.logoExpanded" [attr.alt]="app.name" />
+          <img class="alain-default__header-logo-collapsed" [attr.src]="opt.logoCollapsed" [attr.alt]="app.name" />
         </a>
       </ng-container>
     </div>
     <div class="alain-default__nav-wrap">
       <ul class="alain-default__nav">
-        <li *ngIf="!options.hideAside && options.showHeaderCollapse">
+        <li *ngIf="!opt.hideAside && opt.showHeaderCollapse">
           <div class="alain-default__nav-item alain-default__nav-item--collapse" (click)="toggleCollapsed()">
             <span nz-icon [nzType]="collapsedIcon"></span>
           </div>
@@ -494,8 +509,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
                 }]
         }], ctorParameters: function () { return [{ type: LayoutDefaultService }, { type: i1.SettingsService }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { items: [{
                 type: Input
-            }], options: [{
-                type: Input
             }] } });
 
 class LayoutDefaultComponent {
@@ -514,12 +527,11 @@ class LayoutDefaultComponent {
         this.isFetching = false;
         router.events.pipe(takeUntil(this.destroy$)).subscribe(ev => this.processEv(ev));
         const { destroy$ } = this;
-        combineLatest([this.srv.options$, settings.notify])
-            .pipe(takeUntil(destroy$))
-            .subscribe(([options]) => {
-            this._opt = options;
-            this.setClass();
-        });
+        this.srv.options$.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
+        this.settings.notify.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
+    }
+    get opt() {
+        return this.srv.options;
     }
     set options(value) {
         this.srv.setOptions(value);
@@ -561,8 +573,8 @@ class LayoutDefaultComponent {
             ['alain-default']: true,
             [`alain-default__fixed`]: layout.fixed,
             [`alain-default__collapsed`]: layout.collapsed,
-            [`alain-default__hide-aside`]: this._opt.hideAside,
-            [`alain-default__hide-header`]: this._opt.hideHeader
+            [`alain-default__hide-aside`]: this.opt.hideAside,
+            [`alain-default__hide-header`]: this.opt.hideHeader
         });
         doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
     }
@@ -574,15 +586,15 @@ class LayoutDefaultComponent {
 LayoutDefaultComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LayoutDefaultComponent, deps: [{ token: i2.Router }, { token: i2$1.NzMessageService }, { token: i1.SettingsService }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: DOCUMENT }, { token: LayoutDefaultService }], target: i0.ɵɵFactoryTarget.Component });
 LayoutDefaultComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "14.2.12", type: LayoutDefaultComponent, selector: "layout-default", inputs: { options: "options", asideUser: "asideUser", asideBottom: "asideBottom", nav: "nav", content: "content", customError: "customError" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent }], exportAs: ["layoutDefault"], ngImport: i0, template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
-    <layout-default-header *ngIf="!_opt.hideHeader" [options]="_opt" [items]="headerItems"></layout-default-header>
-    <div *ngIf="!_opt.hideAside" class="alain-default__aside">
+    <layout-default-header *ngIf="!opt.hideHeader" [items]="headerItems"></layout-default-header>
+    <div *ngIf="!opt.hideAside" class="alain-default__aside">
       <div class="alain-default__aside-wrap">
         <div class="alain-default__aside-inner">
           <ng-container *ngTemplateOutlet="asideUser"></ng-container>
           <ng-container *ngTemplateOutlet="nav"></ng-container>
           <layout-default-nav *ngIf="!nav"></layout-default-nav>
         </div>
-        <div *ngIf="_opt.showSiderCollapse" class="alain-default__aside-link">
+        <div *ngIf="opt.showSiderCollapse" class="alain-default__aside-link">
           <ng-container *ngIf="asideBottom === null; else asideBottom">
             <div class="alain-default__aside-link-collapsed" (click)="toggleCollapsed()">
               <span nz-icon [nzType]="collapsedIcon"></span>
@@ -595,7 +607,7 @@ LayoutDefaultComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0",
       <ng-container *ngTemplateOutlet="content"></ng-container>
       <ng-content></ng-content>
     </section>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: ["disabledAcl", "autoCloseUnderPad", "recursivePath", "openStrictly", "maxLevelIcon"], outputs: ["select"] }, { kind: "component", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: ["items", "options"] }] });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: ["disabledAcl", "autoCloseUnderPad", "recursivePath", "openStrictly", "maxLevelIcon"], outputs: ["select"] }, { kind: "component", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: ["items"] }] });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: LayoutDefaultComponent, decorators: [{
             type: Component,
             args: [{
@@ -603,15 +615,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.2.12", ngImpo
                     exportAs: 'layoutDefault',
                     template: `
     <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
-    <layout-default-header *ngIf="!_opt.hideHeader" [options]="_opt" [items]="headerItems"></layout-default-header>
-    <div *ngIf="!_opt.hideAside" class="alain-default__aside">
+    <layout-default-header *ngIf="!opt.hideHeader" [items]="headerItems"></layout-default-header>
+    <div *ngIf="!opt.hideAside" class="alain-default__aside">
       <div class="alain-default__aside-wrap">
         <div class="alain-default__aside-inner">
           <ng-container *ngTemplateOutlet="asideUser"></ng-container>
           <ng-container *ngTemplateOutlet="nav"></ng-container>
           <layout-default-nav *ngIf="!nav"></layout-default-nav>
         </div>
-        <div *ngIf="_opt.showSiderCollapse" class="alain-default__aside-link">
+        <div *ngIf="opt.showSiderCollapse" class="alain-default__aside-link">
           <ng-container *ngIf="asideBottom === null; else asideBottom">
             <div class="alain-default__aside-link-collapsed" (click)="toggleCollapsed()">
               <span nz-icon [nzType]="collapsedIcon"></span>

@@ -15,7 +15,7 @@ export declare class LayoutDefaultComponent implements OnDestroy {
     private doc;
     private srv;
     headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
-    _opt: LayoutDefaultOptions;
+    get opt(): LayoutDefaultOptions;
     set options(value: LayoutDefaultOptions | null | undefined);
     asideUser: TemplateRef<void> | null;
     asideBottom: TemplateRef<NzSafeAny> | null;

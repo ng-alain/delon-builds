@@ -16,10 +16,10 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     private cdr;
     private destroy$;
     items: QueryList<LayoutDefaultHeaderItemComponent>;
-    options: LayoutDefaultOptions;
     left: LayoutDefaultHeaderItem[];
     middle: LayoutDefaultHeaderItem[];
     right: LayoutDefaultHeaderItem[];
+    get opt(): LayoutDefaultOptions;
     get app(): App;
     get collapsed(): boolean;
     get collapsedIcon(): string;
@@ -29,6 +29,6 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     toggleCollapsed(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": "items"; "options": "options"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": "items"; }, {}, never, never, false>;
 }
 export {};
