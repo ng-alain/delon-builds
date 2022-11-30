@@ -31509,6 +31509,9 @@ body {
   margin-left: 24px !important;
   transform: none !important;
 }
+.alain-default__hide-header .alain-default__aside {
+  margin-top: 0;
+}
 @media (min-width: 768px) {
   .alain-default__content {
     margin-left: 224px;
@@ -31721,8 +31724,13 @@ body {
   border-right: 1px solid #efe3e5;
   content: '';
 }
-.alain-default__aside-inner {
+.alain-default__aside-wrap {
+  display: flex;
+  flex-direction: column;
   height: 100%;
+}
+.alain-default__aside-inner {
+  flex: 1 1 0%;
   overflow-x: hidden;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -31739,6 +31747,15 @@ body {
 }
 .alain-default__aside-inner::-webkit-scrollbar-thumb {
   background-color: transparent;
+}
+.alain-default__aside-link {
+  border-top: 1px solid #efe3e5;
+}
+.alain-default__aside-link-collapsed {
+  padding: 8px 0;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
 }
 @media (min-width: 768px) {
   .alain-default__collapsed .alain-default__aside {
@@ -31981,7 +31998,7 @@ body {
   .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item-link {
     display: flex;
     justify-content: center;
-    padding: 24px 0;
+    padding: 16px 0;
   }
   .alain-default__collapsed .sidebar-nav:not(.sidebar-nav__sub) .sidebar-nav__item-link .sidebar-nav__item-icon {
     margin-right: 0;
@@ -32074,6 +32091,9 @@ body {
 }
 .alain-default__hide-aside .reuse-tab {
   left: 24px;
+}
+.alain-default__hide-header .reuse-tab {
+  top: 0;
 }
 @media (min-width: 768px) {
   .alain-default__fixed .reuse-tab + router-outlet {
@@ -32177,7 +32197,7 @@ body {
 .alain-default__fixed .alain-default__aside {
   position: fixed;
 }
-.alain-default__fixed .alain-default__content {
+.alain-default__fixed:not(.alain-default__hide-header) .alain-default__content {
   margin-top: 64px;
 }
 .alain-blank {
@@ -33353,51 +33373,6 @@ ellipsis {
   height: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-}
-.cell {
-  display: inline-flex;
-}
-.cell__has-unit {
-  align-items: baseline;
-}
-.cell__has-default {
-  color: rgba(0, 0, 0, 0.45);
-}
-.cell__primary {
-  color: #1890ff;
-}
-.cell__success {
-  color: #52c41a;
-}
-.cell__danger {
-  color: #ff4d4f;
-}
-.cell__warning {
-  color: #faad14;
-}
-.cell__large {
-  font-size: 18px;
-}
-.cell__small {
-  font-size: 12px;
-}
-.cell[data-type="img"] .img:not(:last-child) {
-  margin-right: 4px;
-}
-.cell .img {
-  vertical-align: middle;
-  border-radius: 4px;
-}
-.cell .unit {
-  margin-left: 2px;
-  color: rgba(0, 0, 0, 0.45);
-  font-size: 12px;
-}
-.cell__disabled[data-type="link"] {
-  pointer-events: none;
-}
-.cell__disabled[data-type="link"] > a {
-  color: rgba(0, 0, 0, 0.85);
 }
 g2-chart,
 g2-bar,

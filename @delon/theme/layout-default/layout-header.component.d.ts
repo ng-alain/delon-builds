@@ -2,6 +2,7 @@ import { AfterViewInit, ChangeDetectorRef, OnDestroy, QueryList, TemplateRef } f
 import { App, SettingsService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
+import { LayoutDefaultService } from './layout.service';
 import { LayoutDefaultHeaderItemDirection, LayoutDefaultHeaderItemHidden, LayoutDefaultOptions } from './types';
 import * as i0 from "@angular/core";
 interface LayoutDefaultHeaderItem {
@@ -10,6 +11,7 @@ interface LayoutDefaultHeaderItem {
     direction?: LayoutDefaultHeaderItemDirection;
 }
 export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDestroy {
+    private srv;
     private settings;
     private cdr;
     private destroy$;
@@ -21,7 +23,7 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     get app(): App;
     get collapsed(): boolean;
     get collapsedIcon(): string;
-    constructor(settings: SettingsService, cdr: ChangeDetectorRef);
+    constructor(srv: LayoutDefaultService, settings: SettingsService, cdr: ChangeDetectorRef);
     private refresh;
     ngAfterViewInit(): void;
     toggleCollapsed(): void;

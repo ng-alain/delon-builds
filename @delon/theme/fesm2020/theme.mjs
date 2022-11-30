@@ -16,7 +16,8 @@ import * as i1$5 from 'ng-zorro-antd/modal';
 import * as i1$6 from 'ng-zorro-antd/drawer';
 import * as i1$7 from '@angular/common/http';
 import { HttpParams, HttpContextToken } from '@angular/common/http';
-import { formatDate } from '@delon/util/date-time';
+import { formatDistanceToNow, format } from 'date-fns';
+import { toDate } from '@delon/util/date-time';
 import * as i1$8 from 'ng-zorro-antd/i18n';
 import { NzI18nModule } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
@@ -2572,7 +2573,11 @@ class DatePipe {
         this.nzI18n = nzI18n;
     }
     transform(value, formatString = 'yyyy-MM-dd HH:mm') {
-        return formatDate(value, formatString, this.nzI18n.getDateLocale());
+        value = toDate(value);
+        if (isNaN(value))
+            return '';
+        const langOpt = { locale: this.nzI18n.getDateLocale() };
+        return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
     }
 }
 DatePipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.2.12", ngImport: i0, type: DatePipe, deps: [{ token: i1$8.NzI18nService }], target: i0.ɵɵFactoryTarget.Pipe });
@@ -2605,32 +2610,27 @@ const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" h
 const ICON_NO = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M563.8 512l262.5-312.9c4.4-5.2.7-13.1-6.1-13.1h-79.8c-4.7 0-9.2 2.1-12.3 5.7L511.6 449.8 295.1 191.7c-3-3.6-7.5-5.7-12.3-5.7H203c-6.8 0-10.5 7.9-6.1 13.1L459.4 512 196.9 824.9A7.95 7.95 0 0 0 203 838h79.8c4.7 0 9.2-2.1 12.3-5.7l216.5-258.1 216.5 258.1c3 3.6 7.5 5.7 12.3 5.7h79.8c6.8 0 10.5-7.9 6.1-13.1L563.8 512z"></path></svg>`;
 const CLS_YES = `class="yn__yes"`;
 const CLS_NO = `class="yn__no"`;
-function yn(value, opt) {
-    let html = '';
-    let { yes, no, mode } = { ...opt };
-    yes = yes || '是';
-    no = no || '否';
-    switch (mode) {
-        case 'full':
-            html = value
-                ? `<i ${CLS_YES}>${ICON_YES}<span>${yes}</span></i>`
-                : `<i ${CLS_NO}>${ICON_NO}<span>${no}</span></i>`;
-            break;
-        case 'text':
-            html = value ? `<i ${CLS_YES}>${yes}</i>` : `<i ${CLS_NO}>${no}</i>`;
-            break;
-        default:
-            html = value ? `<i ${CLS_YES} title="${yes}">${ICON_YES}</i>` : `<i ${CLS_NO} title="${no}">${ICON_NO}</i>`;
-            break;
-    }
-    return html;
-}
 class YNPipe {
     constructor(dom) {
         this.dom = dom;
     }
     transform(value, yes, no, mode, isSafeHtml = true) {
-        const html = yn(value, { yes, no, mode });
+        let html = '';
+        yes = yes || '是';
+        no = no || '否';
+        switch (mode) {
+            case 'full':
+                html = value
+                    ? `<i ${CLS_YES}>${ICON_YES}<span>${yes}</span></i>`
+                    : `<i ${CLS_NO}>${ICON_NO}<span>${no}</span></i>`;
+                break;
+            case 'text':
+                html = value ? `<i ${CLS_YES}>${yes}</i>` : `<i ${CLS_NO}>${no}</i>`;
+                break;
+            default:
+                html = value ? `<i ${CLS_YES} title="${yes}">${ICON_YES}</i>` : `<i ${CLS_NO} title="${no}">${ICON_NO}</i>`;
+                break;
+        }
         return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     }
 }
@@ -2751,5 +2751,5 @@ const VERSION = new Version('14.2.0');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, yn, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
