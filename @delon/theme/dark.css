@@ -14121,6 +14121,10 @@ nz-form-item-feedback-icon.ant-input-suffix {
 .ant-input-status-success.ant-input-has-feedback {
   padding-right: 28px;
 }
+.ant-input-textarea-show-count {
+  display: block;
+  position: relative;
+}
 .ant-input-number-affix-wrapper {
   display: inline-block;
   width: 100%;
@@ -28116,14 +28120,7 @@ nz-space-item {
   border-color: #a61d24;
   box-shadow: none;
 }
-.ant-cron-expression-content .ant-cron-expression-input-group-error:hover {
-  border-color: #a61d24;
-  box-shadow: none;
-}
 .ant-cron-expression-content .ant-cron-expression-input-group-error-focus {
-  box-shadow: 0 0 0 2px rgba(166, 29, 36, 0.2);
-}
-.ant-cron-expression-content .ant-cron-expression-input-group-error-focus:hover {
   box-shadow: 0 0 0 2px rgba(166, 29, 36, 0.2);
 }
 .ant-cron-expression nz-cron-expression-input {
@@ -28133,12 +28130,6 @@ nz-space-item {
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  border: 1px solid #434343;
-  padding: 4px 12px;
-  border-radius: 2px;
-}
-.ant-cron-expression-input-group:hover {
-  border-color: #177ddc;
 }
 .ant-cron-expression-input-group input {
   border: none !important;
@@ -28148,17 +28139,9 @@ nz-space-item {
   padding: 0;
   border-radius: 0;
 }
-.ant-cron-expression-input-group-lg {
-  padding: 6.5px 12px;
-  font-size: 16px;
-}
-.ant-cron-expression-input-group-sm {
-  padding: 0 12px;
-}
 .ant-cron-expression-input-group-focus {
   border-color: #177ddc;
   box-shadow: 0 0 0 2px rgba(23, 125, 220, 0.2);
-  border-right-width: 1px;
   outline: 0;
 }
 .ant-cron-expression nz-cron-expression-label {
@@ -28169,6 +28152,10 @@ nz-space-item {
   width: 100%;
   flex-wrap: nowrap;
   justify-content: space-around;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+.ant-cron-expression-label-group-default {
   padding: 0 12px;
 }
 .ant-cron-expression-label-foucs {
@@ -28177,16 +28164,45 @@ nz-space-item {
 .ant-cron-expression-map {
   margin-left: 12px;
 }
-.ant-cron-expression-preview-date {
-  overflow-y: scroll;
-  height: 132px;
-  margin: 0;
-  padding: 0;
+.ant-cron-expression-preview {
+  display: flex;
+  padding: 12px;
 }
-.ant-cron-expression-preview-date li {
+.ant-cron-expression-preview-dateTime {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+}
+.ant-cron-expression-preview-dateTime-center {
+  justify-content: center;
+}
+.ant-cron-expression-preview-content {
+  flex: 0 0 220px;
+  display: flex;
+  align-items: center;
+  padding-left: 16px;
+}
+.ant-cron-expression-preview-content-date {
+  flex: 1 1 auto;
+}
+.ant-cron-expression-preview-list,
+.ant-cron-expression-preview-icon {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.ant-cron-expression-preview-list li,
+.ant-cron-expression-preview-icon li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.ant-cron-expression-preview-list {
+  overflow-y: scroll;
+  height: 132px;
+}
+.ant-cron-expression-preview-icon {
+  height: 100%;
 }
 .ant-cron-expression-error {
   color: #a61d24;
@@ -28197,12 +28213,6 @@ nz-space-item {
 .ant-cron-expression-hint span {
   display: inline-block;
   min-width: 40px;
-}
-.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  padding: 12px;
-}
-.ant-collapse-content > .ant-collapse-content-box {
-  padding: 16px 36px;
 }
 sf + st {
   margin-top: 16px;
