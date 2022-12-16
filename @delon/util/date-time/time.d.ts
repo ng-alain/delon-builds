@@ -1,4 +1,5 @@
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { DateLocale } from 'ng-zorro-antd/i18n';
 /**
  * Get the time range, return `[ Date, Date]` for the start and end dates
  *
@@ -27,3 +28,4 @@ export declare type ToDateOptions = string | {
  * @param defaultValue If parsing fails returned default value, default: `new Date(NaN)`
  */
 export declare function toDate(value?: Date | string | number | null, options?: ToDateOptions): Date;
+export declare function formatDate(value: Date | string | number, formatString: string, dateLocale?: DateLocale): string;
