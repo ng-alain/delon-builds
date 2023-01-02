@@ -8,5 +8,5 @@ export declare class ReuseTabContextDirective {
     constructor(srv: ReuseTabContextService);
     _onContextMenu(event: MouseEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ReuseTabContextDirective, "[reuse-tab-context-menu]", ["reuseTabContextMenu"], { "item": "reuse-tab-context-menu"; "customContextMenu": "customContextMenu"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ReuseTabContextDirective, "[reuse-tab-context-menu]", ["reuseTabContextMenu"], { "item": "reuse-tab-context-menu"; "customContextMenu": "customContextMenu"; }, {}, never, never, false, never>;
 }

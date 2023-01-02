@@ -21,5 +21,5 @@ export declare class SFItemComponent implements OnInit, OnChanges, OnDestroy {
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemComponent, "sf-item", ["sfItem"], { "formProperty": "formProperty"; "footer": "footer"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemComponent, "sf-item", ["sfItem"], { "formProperty": "formProperty"; "footer": "footer"; }, {}, never, never, false, never>;
 }

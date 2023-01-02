@@ -18,5 +18,5 @@ export declare class SGComponent implements OnChanges, AfterViewInit {
     ngOnChanges(): void;
     ngAfterViewInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SGComponent, [null, null, { optional: true; host: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SGComponent, "sg", ["sg"], { "col": "col"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SGComponent, "sg", ["sg"], { "col": "col"; }, {}, never, ["*"], false, never>;
 }

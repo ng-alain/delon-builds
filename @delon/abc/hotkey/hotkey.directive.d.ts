@@ -14,5 +14,5 @@ export declare class HotkeyDirective implements OnDestroy {
     constructor(el: ElementRef<HTMLElement>, ngZone: NgZone, platform: Platform);
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<HotkeyDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<HotkeyDirective, "[hotkey]", never, { "hotkey": "hotkey"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<HotkeyDirective, "[hotkey]", never, { "hotkey": "hotkey"; }, {}, never, never, false, never>;
 }

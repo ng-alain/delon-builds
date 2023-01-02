@@ -1,28 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postUpdate = exports.updateToV14 = exports.updateToV13 = exports.updateToV12 = void 0;
+exports.postUpdate = exports.updateToV15 = void 0;
 const schematics_1 = require("@angular/cdk/schematics");
 const schematics_2 = require("@angular-devkit/schematics");
 const upgrade_data_1 = require("./upgrade-data");
-const _src_to_nz_image_rule_1 = require("./upgrade-rules/checks/_src-to-nz-image-rule");
-const v12_1 = require("./upgrade-rules/v12");
-const v13_1 = require("./upgrade-rules/v13");
-const v14_1 = require("./upgrade-rules/v14");
-const migrations = [_src_to_nz_image_rule_1.SrcToNzImageRule];
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function updateToV12(schema) {
-    const rule = (0, v12_1.v12Rule)(schema);
-    return (0, schematics_2.chain)([rule, (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V12, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
+const v15_1 = require("./upgrade-rules/v15");
+const migrations = [];
+function updateToV15() {
+    return (0, schematics_2.chain)([(0, v15_1.v15Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V15, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
 }
-exports.updateToV12 = updateToV12;
-function updateToV13() {
-    return (0, schematics_2.chain)([(0, v13_1.v13Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V13, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
-}
-exports.updateToV13 = updateToV13;
-function updateToV14() {
-    return (0, schematics_2.chain)([(0, v14_1.v14Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V14, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
-}
-exports.updateToV14 = updateToV14;
+exports.updateToV15 = updateToV15;
 /** Post-update schematic to be called when update is finished. */
 function postUpdate(context, targetVersion, hasFailures) {
     context.logger.info('');

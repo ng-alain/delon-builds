@@ -12,5 +12,5 @@ export declare class SGContainerComponent {
     get marginValue(): number;
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SGContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SGContainerComponent, "sg-container, [sg-container]", ["sgContainer"], { "gutter": "gutter"; "colInCon": "sg-container"; "col": "col"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SGContainerComponent, "sg-container, [sg-container]", ["sgContainer"], { "gutter": "gutter"; "colInCon": "sg-container"; "col": "col"; }, {}, never, ["*"], false, never>;
 }

@@ -34,5 +34,5 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     handleMask(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingComponent, [null, { optional: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<OnboardingComponent, "onboarding", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<OnboardingComponent, "onboarding", never, {}, {}, never, never, false, never>;
 }

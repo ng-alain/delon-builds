@@ -32,5 +32,5 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NoticeIconComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": "data"; "count": "count"; "loading": "loading"; "popoverVisible": "popoverVisible"; "btnClass": "btnClass"; "btnIconClass": "btnIconClass"; "centered": "centered"; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": "data"; "count": "count"; "loading": "loading"; "popoverVisible": "popoverVisible"; "btnClass": "btnClass"; "btnIconClass": "btnIconClass"; "centered": "centered"; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never, false, never>;
 }

@@ -18,5 +18,5 @@ export declare class SFItemWrapComponent implements OnChanges {
     constructor(statusSrv: NzFormStatusService);
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFItemWrapComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemWrapComponent, "sf-item-wrap", never, { "id": "id"; "schema": "schema"; "ui": "ui"; "showError": "showError"; "error": "error"; "showTitle": "showTitle"; "title": "title"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SFItemWrapComponent, "sf-item-wrap", never, { "id": "id"; "schema": "schema"; "ui": "ui"; "showError": "showError"; "error": "error"; "showTitle": "showTitle"; "title": "title"; }, {}, never, ["*"], false, never>;
 }

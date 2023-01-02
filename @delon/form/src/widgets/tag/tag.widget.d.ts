@@ -10,5 +10,5 @@ export declare class TagWidget extends ControlUIWidget<SFTagWidgetSchema> {
     _close(e: MouseEvent): void;
     private updateValue;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TagWidget, "sf-tag", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TagWidget, "sf-tag", never, {}, {}, never, never, false, never>;
 }

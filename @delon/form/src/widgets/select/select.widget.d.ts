@@ -21,5 +21,5 @@ export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> 
     scrollToBottom(): void;
     onSearch(value: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SelectWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SelectWidget, "sf-select", never, {}, {}, never, never, false, never>;
 }

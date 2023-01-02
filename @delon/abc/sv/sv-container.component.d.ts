@@ -20,7 +20,7 @@ export declare class SVContainerComponent {
     noColon: boolean;
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "title": "title"; "size": "size"; "gutter": "gutter"; "layout": "layout"; "labelWidth": "labelWidth"; "col": "col"; "default": "default"; "noColon": "noColon"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "title": "title"; "size": "size"; "gutter": "gutter"; "layout": "layout"; "labelWidth": "labelWidth"; "col": "col"; "default": "default"; "noColon": "noColon"; }, {}, never, ["*"], false, never>;
 }
 export declare class SVTitleComponent implements OnInit {
     private parent;
@@ -30,5 +30,5 @@ export declare class SVTitleComponent implements OnInit {
     private setClass;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, [null, { optional: true; host: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], false, never>;
 }

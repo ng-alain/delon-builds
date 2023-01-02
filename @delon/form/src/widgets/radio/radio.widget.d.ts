@@ -9,5 +9,5 @@ export declare class RadioWidget extends ControlUIWidget<SFRadioWidgetSchema> {
     reset(value: SFValue): void;
     _setValue(value: SFValue): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RadioWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RadioWidget, "sf-radio", never, {}, {}, never, never, false, never>;
 }

@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
 import type { PDFDocumentProxy } from 'pdfjs-dist';
-import type { EventBus } from 'pdfjs-dist/types/web/interfaces';
+import type { EventBus } from 'pdfjs-dist/types/web/event_utils';
 import type { PDFFindController } from 'pdfjs-dist/types/web/pdf_find_controller';
 import type { PDFLinkService } from 'pdfjs-dist/types/web/pdf_link_service';
 import type { PDFViewer } from 'pdfjs-dist/types/web/pdf_viewer';
@@ -96,5 +96,5 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     }): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PdfComponent, [null, null, null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": "src"; "pi": "pi"; "showAll": "showAll"; "renderText": "renderText"; "textLayerMode": "textLayerMode"; "showBorders": "showBorders"; "stickToPage": "stickToPage"; "originalSize": "originalSize"; "fitToPage": "fitToPage"; "zoom": "zoom"; "zoomScale": "zoomScale"; "rotation": "rotation"; "autoReSize": "autoReSize"; "externalLinkTarget": "externalLinkTarget"; "delay": "delay"; }, { "change": "change"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": "src"; "pi": "pi"; "showAll": "showAll"; "renderText": "renderText"; "textLayerMode": "textLayerMode"; "showBorders": "showBorders"; "stickToPage": "stickToPage"; "originalSize": "originalSize"; "fitToPage": "fitToPage"; "zoom": "zoom"; "zoomScale": "zoomScale"; "rotation": "rotation"; "autoReSize": "autoReSize"; "externalLinkTarget": "externalLinkTarget"; "delay": "delay"; }, { "change": "change"; }, never, never, false, never>;
 }

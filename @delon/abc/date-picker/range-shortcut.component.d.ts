@@ -6,5 +6,5 @@ export declare class RangePickerShortcutTplComponent {
     list: AlainDateRangePickerShortcutItem[];
     click(_: AlainDateRangePickerShortcutItem): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<RangePickerShortcutTplComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<RangePickerShortcutTplComponent, "ng-component", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<RangePickerShortcutTplComponent, "ng-component", never, {}, {}, never, never, false, never>;
 }

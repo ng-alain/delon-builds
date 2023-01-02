@@ -61,5 +61,5 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, [null, { optional: true; host: true; }, null, null, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "error": "error"; "extra": "extra"; "label": "label"; "col": "col"; "required": "required"; "controlClass": "controlClass"; "line": "line"; "labelWidth": "labelWidth"; "noColon": "noColon"; "hideLabel": "hideLabel"; "id": "id"; }, {}, ["ngModel", "formControlName"], ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "error": "error"; "extra": "extra"; "label": "label"; "col": "col"; "required": "required"; "controlClass": "controlClass"; "line": "line"; "labelWidth": "labelWidth"; "noColon": "noColon"; "hideLabel": "hideLabel"; "id": "id"; }, {}, ["ngModel", "formControlName"], ["*"], false, never>;
 }

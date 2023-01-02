@@ -24,6 +24,7 @@ const WHITE_ICONS = [
     'CloseCircleOutline',
     'CloseOutline',
     'CopyOutline',
+    'DeleteOutline',
     'DoubleLeftOutline',
     'DoubleRightOutline',
     'DownOutline',

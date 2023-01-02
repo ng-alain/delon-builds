@@ -20,5 +20,5 @@ export declare class TagSelectComponent implements OnInit, OnDestroy {
     trigger(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagSelectComponent, [null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TagSelectComponent, "tag-select", ["tagSelect"], { "expandable": "expandable"; }, { "change": "change"; }, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TagSelectComponent, "tag-select", ["tagSelect"], { "expandable": "expandable"; }, { "change": "change"; }, never, ["*"], false, never>;
 }

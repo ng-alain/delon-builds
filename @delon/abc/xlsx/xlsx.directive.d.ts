@@ -7,5 +7,5 @@ export declare class XlsxDirective {
     constructor(srv: XlsxService);
     _click(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<XlsxDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<XlsxDirective, "[xlsx]", ["xlsx"], { "data": "xlsx"; }, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<XlsxDirective, "[xlsx]", ["xlsx"], { "data": "xlsx"; }, {}, never, never, false, never>;
 }

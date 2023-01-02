@@ -7,5 +7,5 @@ export declare class LoadingDefaultComponent {
     get icon(): LoadingIcon;
     get custom(): LoadingCustom;
     static ɵfac: i0.ɵɵFactoryDeclaration<LoadingDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LoadingDefaultComponent, "loading-default", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LoadingDefaultComponent, "loading-default", never, {}, {}, never, never, false, never>;
 }

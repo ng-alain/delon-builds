@@ -8,5 +8,5 @@ export declare class TextWidget extends ControlUIWidget<SFTextWidgetSchema> impl
     ngOnInit(): void;
     reset(value: SFValue): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextWidget, "sf-text", never, {}, {}, never, never, false, never>;
 }

@@ -15,5 +15,5 @@ export declare class G2GaugeComponent extends G2BaseComponent {
     install(): void;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2GaugeComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2GaugeComponent, "g2-gauge", ["g2Gauge"], { "title": "title"; "height": "height"; "color": "color"; "bgColor": "bgColor"; "format": "format"; "percent": "percent"; "padding": "padding"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2GaugeComponent, "g2-gauge", ["g2Gauge"], { "title": "title"; "height": "height"; "color": "color"; "bgColor": "bgColor"; "format": "format"; "percent": "percent"; "padding": "padding"; }, {}, never, never, false, never>;
 }

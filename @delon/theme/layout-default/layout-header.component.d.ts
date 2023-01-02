@@ -29,6 +29,6 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     toggleCollapsed(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": "items"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": "items"; }, {}, never, never, false, never>;
 }
 export {};

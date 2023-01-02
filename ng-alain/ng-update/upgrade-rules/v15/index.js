@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.v14Rule = void 0;
+exports.v15Rule = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const workspace_1 = require("@schematics/angular/utility/workspace");
@@ -60,7 +60,7 @@ function finished() {
         context.logger.info(colors.green(`  ✓ Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2285`));
     };
 }
-function v14Rule() {
+function v15Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
@@ -76,5 +76,5 @@ function v14Rule() {
         ]);
     });
 }
-exports.v14Rule = v14Rule;
+exports.v15Rule = v15Rule;
 //# sourceMappingURL=index.js.map

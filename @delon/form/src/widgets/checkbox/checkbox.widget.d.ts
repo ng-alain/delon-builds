@@ -18,5 +18,5 @@ export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSche
     updateAllChecked(): this;
     private notifyChange;
     static ɵfac: i0.ɵɵFactoryDeclaration<CheckboxWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CheckboxWidget, "sf-checkbox", never, {}, {}, never, never, false, never>;
 }

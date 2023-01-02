@@ -10,5 +10,5 @@ export declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSche
     focus(e: FocusEvent): void;
     blur(e: FocusEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TextareaWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TextareaWidget, "sf-textarea", never, {}, {}, never, never, false, never>;
 }

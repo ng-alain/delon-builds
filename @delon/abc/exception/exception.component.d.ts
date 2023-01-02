@@ -33,5 +33,5 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ExceptionComponent, [null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": "type"; "img": "img"; "title": "title"; "desc": "desc"; "backRouterLink": "backRouterLink"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": "type"; "img": "img"; "title": "title"; "desc": "desc"; "backRouterLink": "backRouterLink"; }, {}, never, ["*"], false, never>;
 }

@@ -36,7 +36,7 @@ export declare class SEContainerComponent {
     constructor(configSrv: AlainConfigService);
     setErrors(errors: SEErrorRefresh[]): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": "se-container"; "col": "col"; "labelWidth": "labelWidth"; "noColon": "noColon"; "title": "title"; "gutter": "gutter"; "nzLayout": "nzLayout"; "size": "size"; "firstVisual": "firstVisual"; "ingoreDirty": "ingoreDirty"; "line": "line"; "errors": "errors"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": "se-container"; "col": "col"; "labelWidth": "labelWidth"; "noColon": "noColon"; "title": "title"; "gutter": "gutter"; "nzLayout": "nzLayout"; "size": "size"; "firstVisual": "firstVisual"; "ingoreDirty": "ingoreDirty"; "line": "line"; "errors": "errors"; }, {}, never, ["*"], false, never>;
 }
 export declare class SETitleComponent implements OnInit {
     private parent;
@@ -46,5 +46,5 @@ export declare class SETitleComponent implements OnInit {
     private setClass;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SETitleComponent, [{ optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], false, never>;
 }

@@ -5,5 +5,5 @@ export declare class FullContentToggleDirective {
     constructor(parent: FullContentComponent);
     _click(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentToggleDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<FullContentToggleDirective, "[full-toggle]", ["fullToggle"], {}, {}, never, never, false>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<FullContentToggleDirective, "[full-toggle]", ["fullToggle"], {}, {}, never, never, false, never>;
 }

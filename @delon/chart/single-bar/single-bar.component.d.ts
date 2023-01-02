@@ -27,5 +27,5 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     onlyChangeData: (changes: SimpleChanges) => boolean;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2SingleBarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2SingleBarComponent, "g2-single-bar", ["g2SingleBar"], { "plusColor": "plusColor"; "minusColor": "minusColor"; "height": "height"; "barSize": "barSize"; "min": "min"; "max": "max"; "value": "value"; "line": "line"; "format": "format"; "padding": "padding"; "textStyle": "textStyle"; }, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2SingleBarComponent, "g2-single-bar", ["g2SingleBar"], { "plusColor": "plusColor"; "minusColor": "minusColor"; "height": "height"; "barSize": "barSize"; "min": "min"; "max": "max"; "value": "value"; "line": "line"; "format": "format"; "padding": "padding"; "textStyle": "textStyle"; }, {}, never, never, false, never>;
 }

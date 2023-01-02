@@ -34,5 +34,5 @@ export declare class G2RadarComponent extends G2BaseComponent {
     _click(i: number): void;
     onChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2RadarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2RadarComponent, "g2-radar", ["g2Radar"], { "title": "title"; "height": "height"; "padding": "padding"; "hasLegend": "hasLegend"; "tickCount": "tickCount"; "data": "data"; "colors": "colors"; }, { "clickItem": "clickItem"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2RadarComponent, "g2-radar", ["g2Radar"], { "title": "title"; "height": "height"; "padding": "padding"; "hasLegend": "hasLegend"; "tickCount": "tickCount"; "data": "data"; "colors": "colors"; }, { "clickItem": "clickItem"; }, never, never, false, never>;
 }

@@ -20,5 +20,5 @@ export declare class G2CardComponent implements OnChanges {
     constructor(cdr: ChangeDetectorRef);
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2CardComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2CardComponent, "g2-card", ["g2Card"], { "bordered": "bordered"; "avatar": "avatar"; "title": "title"; "action": "action"; "total": "total"; "contentHeight": "contentHeight"; "footer": "footer"; "loading": "loading"; }, {}, never, ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2CardComponent, "g2-card", ["g2Card"], { "bordered": "bordered"; "avatar": "avatar"; "title": "title"; "action": "action"; "total": "total"; "contentHeight": "contentHeight"; "footer": "footer"; "loading": "loading"; }, {}, never, ["*"], false, never>;
 }

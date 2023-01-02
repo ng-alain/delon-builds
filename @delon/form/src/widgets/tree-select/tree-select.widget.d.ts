@@ -14,5 +14,5 @@ export declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidget
     change(value: string[] | string): void;
     expandChange(e: NzFormatEmitEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TreeSelectWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TreeSelectWidget, "sf-tree-select", never, {}, {}, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TreeSelectWidget, "sf-tree-select", never, {}, {}, never, never, false, never>;
 }

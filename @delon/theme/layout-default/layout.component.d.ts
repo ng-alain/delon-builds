@@ -32,5 +32,5 @@ export declare class LayoutDefaultComponent implements OnDestroy {
     private setClass;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": "options"; "asideUser": "asideUser"; "asideBottom": "asideBottom"; "nav": "nav"; "content": "content"; "customError": "customError"; }, {}, ["headerItems"], ["*"], false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": "options"; "asideUser": "asideUser"; "asideBottom": "asideBottom"; "nav": "nav"; "content": "content"; "customError": "customError"; }, {}, ["headerItems"], ["*"], false, never>;
 }

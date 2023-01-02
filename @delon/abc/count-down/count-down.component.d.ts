@@ -11,5 +11,5 @@ export declare class CountDownComponent {
     readonly event: EventEmitter<CountdownEvent>;
     handleEvent(e: CountdownEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CountDownComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CountDownComponent, "count-down", ["countDown"], { "config": "config"; "target": "target"; }, { "event": "event"; }, never, never, false>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CountDownComponent, "count-down", ["countDown"], { "config": "config"; "target": "target"; }, { "event": "event"; }, never, never, false, never>;
 }
