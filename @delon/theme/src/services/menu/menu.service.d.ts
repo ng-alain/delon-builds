@@ -86,18 +86,6 @@ export declare class MenuService implements OnDestroy {
         emit?: boolean;
     }): void;
     ngOnDestroy(): void;
-    /**
-     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
-     */
-    getHit(data: Menu[], url: string, recursive?: boolean, cb?: ((i: Menu) => void) | null): Menu | null;
-    /**
-     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
-     *
-     * 根据URL设置菜单 `_open` 属性
-     * - 若 `recursive: true` 则会自动向上递归查找
-     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-     */
-    openedByUrl(url: string | null, recursive?: boolean): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, [{ optional: true; }, { optional: true; }]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MenuService>;
 }

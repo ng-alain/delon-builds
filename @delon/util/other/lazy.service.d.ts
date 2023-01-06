@@ -36,21 +36,9 @@ export declare class LazyService {
      */
     load(paths: string | LazyLoadItem | Array<string | LazyLoadItem>): Promise<LazyResult[]>;
     /**
-     * @deprecated Will be removed in 15.0.0, Please use `loadScript(path, options)` instead
-     */
-    loadScript(path: string, innerContent: string, attributes?: {
-        [qualifiedName: string]: string;
-    }): Promise<LazyResult>;
-    /**
      * Load a script file
      */
     loadScript(path: string, options?: LazyLoadOptions): Promise<LazyResult>;
-    /**
-     * @deprecated Will be removed in 15.0.0, Please use `loadStyle(path, options)` instead
-     */
-    loadStyle(path: string, rel: string, innerContent?: string, attributes?: {
-        [qualifiedName: string]: string;
-    }): Promise<LazyResult>;
     /**
      * Load a style file
      */

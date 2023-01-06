@@ -6,7 +6,7 @@ import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
 import { Router } from '@angular/router';
-import { HttpContextToken, HttpParams, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpContextToken, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 const AUTH_DEFAULT_CONFIG = {
     store_key: `_token`,
@@ -17,7 +17,6 @@ const AUTH_DEFAULT_CONFIG = {
     token_send_place: 'header',
     login_url: '/login',
     ignores: [/\/login/, /assets\//, /passport\//],
-    allow_anonymous_key: `_allow_anonymous`,
     executeOtherInterceptors: true,
     refreshTime: 3000,
     refreshOffset: 6000
@@ -388,26 +387,6 @@ class BaseInterceptor {
                 if (item.test(req.url))
                     return next.handle(req);
             }
-        }
-        const ingoreKey = options.allow_anonymous_key;
-        let ingored = false;
-        let params = req.params;
-        let url = req.url;
-        if (req.params.has(ingoreKey)) {
-            params = req.params.delete(ingoreKey);
-            ingored = true;
-        }
-        const urlArr = req.url.split('?');
-        if (urlArr.length > 1) {
-            const queryStringParams = new HttpParams({ fromString: urlArr[1] });
-            if (queryStringParams.has(ingoreKey)) {
-                const queryString = queryStringParams.delete(ingoreKey).toString();
-                url = queryString.length > 0 ? `${urlArr[0]}?${queryString}` : urlArr[0];
-                ingored = true;
-            }
-        }
-        if (ingored) {
-            return next.handle(req.clone({ params, url }));
         }
         if (this.isAuth(options)) {
             req = this.setReq(req, options);

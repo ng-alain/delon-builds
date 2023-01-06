@@ -411,53 +411,6 @@ class MenuService {
         this._change$.unsubscribe();
         this.i18n$.unsubscribe();
     }
-    /**
-     * @deprecated Will be removed in 15.0.0, Pls used `find` instead
-     */
-    getHit(data, url, recursive = false, cb = null) {
-        let item = null;
-        while (!item && url) {
-            this.visit(data, i => {
-                if (cb) {
-                    cb(i);
-                }
-                if (i.link != null && i.link === url) {
-                    item = i;
-                }
-            });
-            if (!recursive)
-                break;
-            if (/[?;]/g.test(url)) {
-                url = url.split(/[?;]/g)[0];
-            }
-            else {
-                url = url.split('/').slice(0, -1).join('/');
-            }
-        }
-        return item;
-    }
-    /**
-     * @deprecated Will be removed in 15.0.0, Pls used `find` and `setItem` instead
-     *
-     * 根据URL设置菜单 `_open` 属性
-     * - 若 `recursive: true` 则会自动向上递归查找
-     *  - 菜单数据源包含 `/ware`，则 `/ware/1` 也视为 `/ware` 项
-     */
-    openedByUrl(url, recursive = false) {
-        if (!url)
-            return;
-        let findItem = this.getHit(this.data, url, recursive, (i) => {
-            i._selected = false;
-            i._open = false;
-        });
-        if (findItem == null)
-            return;
-        do {
-            findItem._selected = true;
-            findItem._open = true;
-            findItem = findItem._parent;
-        } while (findItem);
-    }
 }
 MenuService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: MenuService, deps: [{ token: ALAIN_I18N_TOKEN, optional: true }, { token: i1$1.ACLService, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
 MenuService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: MenuService, providedIn: 'root' });
