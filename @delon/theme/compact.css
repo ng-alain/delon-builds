@@ -31580,6 +31580,9 @@ body {
   margin: 0;
   padding: 0;
 }
+.alain-default__nav:first-child {
+  margin-right: 16px;
+}
 .alain-default__nav-middle {
   flex: 1;
 }
@@ -31609,12 +31612,27 @@ body {
 }
 .alain-default__nav-item:hover {
   color: #fff;
-  background-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .alain-default__nav-item > i,
 .alain-default__nav-item-icon {
   font-size: 16px !important;
   transform: none !important;
+}
+.alain-default__top-menu-item {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 8px;
+  border-radius: 0;
+}
+.alain-default__top-menu-item-selected {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.alain-default__top-menu-item-disabled {
+  opacity: 0.5;
+  pointer-events: none;
 }
 .alain-default__search {
   position: relative;

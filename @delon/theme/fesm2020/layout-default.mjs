@@ -672,12 +672,48 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImpor
                 }]
         }] });
 
+class LayoutDefaultTopMenuItemComponent {
+    constructor() {
+        this.selected = false;
+        this.disabled = false;
+    }
+}
+LayoutDefaultTopMenuItemComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+LayoutDefaultTopMenuItemComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "15.0.4", type: LayoutDefaultTopMenuItemComponent, selector: "layout-default-top-menu-item", inputs: { selected: "selected", disabled: "disabled" }, host: { properties: { "class.alain-default__nav-item": "true", "class.alain-default__top-menu-item": "true", "class.alain-default__top-menu-item-selected": "selected", "class.alain-default__top-menu-item-disabled": "disabled" } }, ngImport: i0, template: `<ng-content></ng-content>`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+__decorate([
+    InputBoolean()
+], LayoutDefaultTopMenuItemComponent.prototype, "selected", void 0);
+__decorate([
+    InputBoolean()
+], LayoutDefaultTopMenuItemComponent.prototype, "disabled", void 0);
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultTopMenuItemComponent, decorators: [{
+            type: Component,
+            args: [{
+                    selector: 'layout-default-top-menu-item',
+                    template: `<ng-content></ng-content>`,
+                    host: {
+                        '[class.alain-default__nav-item]': `true`,
+                        '[class.alain-default__top-menu-item]': `true`,
+                        '[class.alain-default__top-menu-item-selected]': `selected`,
+                        '[class.alain-default__top-menu-item-disabled]': `disabled`
+                    },
+                    preserveWhitespaces: false,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None
+                }]
+        }], propDecorators: { selected: [{
+                type: Input
+            }], disabled: [{
+                type: Input
+            }] } });
+
 const COMPONENTS = [
     LayoutDefaultComponent,
     LayoutDefaultNavComponent,
     LayoutDefaultHeaderComponent,
     LayoutDefaultHeaderItemComponent,
-    LayoutDefaultHeaderItemTriggerDirective
+    LayoutDefaultHeaderItemTriggerDirective,
+    LayoutDefaultTopMenuItemComponent
 ];
 class LayoutDefaultModule {
 }
@@ -686,7 +722,8 @@ LayoutDefaultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", ver
         LayoutDefaultNavComponent,
         LayoutDefaultHeaderComponent,
         LayoutDefaultHeaderItemComponent,
-        LayoutDefaultHeaderItemTriggerDirective], imports: [CommonModule,
+        LayoutDefaultHeaderItemTriggerDirective,
+        LayoutDefaultTopMenuItemComponent], imports: [CommonModule,
         RouterModule,
         NzToolTipModule,
         NzIconModule,
@@ -697,7 +734,8 @@ LayoutDefaultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", ver
         LayoutDefaultNavComponent,
         LayoutDefaultHeaderComponent,
         LayoutDefaultHeaderItemComponent,
-        LayoutDefaultHeaderItemTriggerDirective] });
+        LayoutDefaultHeaderItemTriggerDirective,
+        LayoutDefaultTopMenuItemComponent] });
 LayoutDefaultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
         RouterModule,
         NzToolTipModule,
@@ -728,5 +766,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent, LayoutDefaultService };
+export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent, LayoutDefaultService, LayoutDefaultTopMenuItemComponent };
 //# sourceMappingURL=layout-default.mjs.map
