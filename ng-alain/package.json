@@ -24,7 +24,7 @@
   "dependencies": {
     "swagger-typescript-api": "^12.0.2",
     "ng-alain-sts": "^0.0.2",
-    "ng-alain-plugin-theme": "^14.0.2"
+    "ng-alain-plugin-theme": "^15.0.1"
   },
   "ng-update": {
     "migrations": "./migration.json",
