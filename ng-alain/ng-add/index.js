@@ -58,7 +58,7 @@ function default_1(options) {
             context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
         }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
-        const allowNodeVersions = [12, 14, 16];
+        const allowNodeVersions = [14, 16, 18];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
             const versions = allowNodeVersions.join(', ');
             throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3`);
