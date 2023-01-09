@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addImportNotation = void 0;
 const json_1 = require("./json");
-function addImportNotation(value = true) {
+function addImportNotation() {
     return (tree) => {
         const filePath = '.stylelintrc';
         const json = (0, json_1.readJSON)(tree, filePath);
