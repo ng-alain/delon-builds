@@ -14,6 +14,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
+const less_1 = require("../utils/less");
 const versions_1 = require("../utils/versions");
 let project;
 /** Remove files to be overwrite */
@@ -290,6 +291,7 @@ function default_1(options) {
             addCodeStylesToPackageJson(),
             addSchematics(options),
             (0, versions_1.addESLintRule)(context, false),
+            (0, less_1.addImportNotation)(),
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
