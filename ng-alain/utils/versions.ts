@@ -41,7 +41,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.5.0`, `ng-zorro-antd@^15.0.0`]);
+  addPackage(tree, [`rxjs@~7.5.0`, `ng-zorro-antd@^15.0.1`]);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {
