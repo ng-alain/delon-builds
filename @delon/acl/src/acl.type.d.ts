@@ -27,6 +27,6 @@ export interface ACLType {
     except?: boolean;
     [key: string]: any;
 }
-export declare type ACLCanType = number | number[] | string | string[] | ACLType;
-export declare type ACLGuardFunctionType = (srv: ACLService, injector: Injector) => Observable<ACLCanType>;
-export declare type ACLGuardType = ACLCanType | Observable<ACLCanType> | ACLGuardFunctionType;
+export type ACLCanType = number | number[] | string | string[] | ACLType;
+export type ACLGuardFunctionType = (srv: ACLService, injector: Injector) => Observable<ACLCanType>;
+export type ACLGuardType = ACLCanType | Observable<ACLCanType> | ACLGuardFunctionType;

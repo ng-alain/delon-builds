@@ -62,7 +62,7 @@ export declare const Headers: (key?: string) => (target: BaseApi, propertyKey: s
  * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
  */
 export declare const Payload: (target: BaseApi, propertyKey: string, index: number) => void;
-export declare type METHOD_TYPE = 'OPTIONS' | 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD' | 'PATCH' | 'JSONP' | 'FORM';
+export type METHOD_TYPE = 'OPTIONS' | 'GET' | 'POST' | 'DELETE' | 'PUT' | 'HEAD' | 'PATCH' | 'JSONP' | 'FORM';
 /**
  * `OPTIONS` 请求
  * - 有效范围：方法

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ITokenModel, ITokenService } from '../token/interface';
 import * as i0 from "@angular/core";
-export declare type SocialOpenType = 'href' | 'window';
+export type SocialOpenType = 'href' | 'window';
 export declare class SocialService implements OnDestroy {
     private tokenService;
     private doc;

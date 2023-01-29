@@ -12,7 +12,7 @@ import type { ModalOptions } from 'ng-zorro-antd/modal';
 import type { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import type { NzTablePaginationType } from 'ng-zorro-antd/table';
 import type { STComponent } from './st.component';
-export declare type STColumnSafeType = 'text' | 'html' | 'safeHtml';
+export type STColumnSafeType = 'text' | 'html' | 'safeHtml';
 export interface STWidthMode {
     /**
      * 宽度类型
@@ -445,8 +445,8 @@ export interface STColumnTitle {
      */
     optionalHelp?: string;
 }
-export declare type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
-export declare type STStatisticalFn<T extends STData = any> = (values: number[], col: STColumn, list: T[], rawData?: any) => STStatisticalResult;
+export type STStatisticalType = 'count' | 'distinctCount' | 'sum' | 'average' | 'max' | 'min';
+export type STStatisticalFn<T extends STData = any> = (values: number[], col: STColumn, list: T[], rawData?: any) => STStatisticalResult;
 export interface STStatistical<T extends STData = any> {
     type: STStatisticalType | STStatisticalFn<T>;
     /**
@@ -764,7 +764,7 @@ export interface STColumnMaxMultipleButton {
      */
     count?: number;
 }
-export declare type IifBehaviorType = 'hide' | 'disabled';
+export type IifBehaviorType = 'hide' | 'disabled';
 export interface STColumnButtonModal<T extends STData = any> extends ModalHelperOptions {
     /**
      * 对话框组件对象
@@ -987,7 +987,7 @@ export interface STColumnTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
-export declare type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
+export type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**
  * 回调数据
  */
@@ -1067,8 +1067,8 @@ export interface STError {
     type?: 'req';
     error?: any;
 }
-export declare type STRowClassName<T extends STData = any> = (record: T, index: number) => string;
-export declare type STClickRowClassName<T extends STData = any> = string | STClickRowClassNameType<T>;
+export type STRowClassName<T extends STData = any> = (record: T, index: number) => string;
+export type STClickRowClassName<T extends STData = any> = string | STClickRowClassNameType<T>;
 export interface STClickRowClassNameType<T extends STData = any> {
     fn: (record: T, index: number) => string;
     /**
@@ -1108,7 +1108,7 @@ export interface STResizable {
      */
     preview?: boolean;
 }
-export declare type STContextmenuFn<T extends STData = any> = (options: STContextmenuOptions<T>) => Observable<STContextmenuItem[]> | STContextmenuItem[];
+export type STContextmenuFn<T extends STData = any> = (options: STContextmenuOptions<T>) => Observable<STContextmenuItem[]> | STContextmenuItem[];
 export interface STContextmenuOptions<T extends STData = any> {
     event: MouseEvent;
     /**

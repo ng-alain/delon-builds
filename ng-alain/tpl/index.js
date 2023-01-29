@@ -33,10 +33,11 @@ function parseExtraArgs(options) {
     });
 }
 function runFixJS(options) {
+    var _a;
     parseExtraArgs(options);
     const fixScriptPath = path.join(options._tplDir, '_fix.js');
     if (fs.existsSync(fixScriptPath)) {
-        return Promise.resolve().then(() => require(path.relative(__dirname, fixScriptPath))).then(a => {
+        return (_a = path.relative(__dirname, fixScriptPath), Promise.resolve().then(() => require(_a))).then(a => {
             if (a.fix) {
                 return a.fix(options);
             }

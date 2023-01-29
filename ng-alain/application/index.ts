@@ -1,4 +1,4 @@
-import { JsonObject, strings } from '@angular-devkit/core';
+import { strings } from '@angular-devkit/core';
 import { ProjectDefinition } from '@angular-devkit/core/src/workspace';
 import {
   apply,
@@ -14,8 +14,9 @@ import {
   Tree,
   url
 } from '@angular-devkit/schematics';
-import { updateWorkspace } from '@schematics/angular/utility/workspace';
+import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 
+import { Schema as ApplicationOptions } from './schema';
 import { getLangData } from '../core/lang.config';
 import {
   addAllowedCommonJsDependencies,
@@ -28,9 +29,10 @@ import {
   addStylePreprocessorOptionsToAllProject,
   BUILD_TARGET_BUILD,
   BUILD_TARGET_SERVE,
+  DEFAULT_WORKSPACE_PATH,
   getProject,
   getProjectFromWorkspace,
-  getProjectTarget,
+  getProjectName,
   readContent,
   readJSON,
   readPackage,
@@ -42,7 +44,6 @@ import {
 } from '../utils';
 import { addImportNotation } from '../utils/less';
 import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
-import { Schema as ApplicationOptions } from './schema';
 
 let project: ProjectDefinition;
 
@@ -75,9 +76,35 @@ function fixAngularJson(options: ApplicationOptions): Rule {
     const serveTarget = p.targets?.get(BUILD_TARGET_SERVE);
     if (serveTarget.options == null) serveTarget.options = {};
     serveTarget.options.proxyConfig = 'proxy.conf.js';
-    // 调整budgets
-    const budgets = (getProjectTarget(p, BUILD_TARGET_BUILD, 'configurations').production as JsonObject)
-      .budgets as Array<{
+
+    // // 调整budgets, error in angular 15.1
+    // const budgets = (getProjectTarget(p, BUILD_TARGET_BUILD, 'configurations').production as JsonObject)
+    //   .budgets as Array<{
+    //   type: string;
+    //   maximumWarning: string;
+    //   maximumError: string;
+    // }>;
+    // if (budgets && budgets.length > 0) {
+    //   const initial = budgets.find(w => w.type === 'initial');
+    //   if (initial) {
+    //     initial.maximumWarning = '2mb';
+    //     initial.maximumError = '3mb';
+    //   }
+    // }
+
+    addStylePreprocessorOptionsToAllProject(workspace);
+    addSchematicCollections(workspace);
+  });
+}
+
+/**
+ * Fix https://github.com/ng-alain/ng-alain/issues/2359
+ */
+function fixBrowserBuilderBudgets(options: ApplicationOptions): Rule {
+  return async (tree: Tree) => {
+    const projectName = getProjectName(await getWorkspace(tree), options.project);
+    const json = readJSON(tree, DEFAULT_WORKSPACE_PATH);
+    const budgets = json.projects[projectName].architect.build.configurations.production.budgets as Array<{
       type: string;
       maximumWarning: string;
       maximumError: string;
@@ -87,12 +114,10 @@ function fixAngularJson(options: ApplicationOptions): Rule {
       if (initial) {
         initial.maximumWarning = '2mb';
         initial.maximumError = '3mb';
+        writeJSON(tree, DEFAULT_WORKSPACE_PATH, json);
       }
     }
-
-    addStylePreprocessorOptionsToAllProject(workspace);
-    addSchematicCollections(workspace);
-  });
+  };
 }
 
 function addDependenciesToPackageJson(options: ApplicationOptions): Rule {
@@ -160,13 +185,13 @@ function addCodeStylesToPackageJson(): Rule {
       [
         `husky@^7.0.4`,
         `lint-staged@^13.1.0`,
-        `prettier@^2.8.1`,
+        `prettier@^2.8.3`,
         `stylelint@^14.16.1`,
         `stylelint-config-prettier@^9.0.4`,
         `stylelint-config-rational-order@^0.1.2`,
         `stylelint-config-standard@^29.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^2.6.0`,
-        `stylelint-order@^5.0.0`
+        `stylelint-order@^6.0.1`
       ],
       'devDependencies'
     );
@@ -372,7 +397,8 @@ export default function (options: ApplicationOptions): Rule {
       addStyle(),
       fixLang(options),
       fixVsCode(),
-      fixAngularJson(options)
+      fixAngularJson(options),
+      fixBrowserBuilderBudgets(options)
     ]);
   };
 }

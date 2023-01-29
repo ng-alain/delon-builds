@@ -1,9 +1,9 @@
 import { NzButtonType } from 'ng-zorro-antd/button';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFHorizontalLayoutSchema, SFRenderSchema } from './schema/ui';
-export declare type SFValue = NzSafeAny;
-export declare type SFLayout = 'horizontal' | 'vertical' | 'inline';
-export declare type SFMode = 'default' | 'search' | 'edit';
+export type SFValue = NzSafeAny;
+export type SFLayout = 'horizontal' | 'vertical' | 'inline';
+export type SFMode = 'default' | 'search' | 'edit';
 export interface SFFormValueChange {
     path: string | null;
     pathValue: SFValue;

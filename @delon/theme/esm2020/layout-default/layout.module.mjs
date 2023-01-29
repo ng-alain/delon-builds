@@ -24,8 +24,8 @@ const COMPONENTS = [
 ];
 export class LayoutDefaultModule {
 }
-LayoutDefaultModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-LayoutDefaultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultModule, declarations: [LayoutDefaultComponent,
+LayoutDefaultModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: LayoutDefaultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+LayoutDefaultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.1.2", ngImport: i0, type: LayoutDefaultModule, declarations: [LayoutDefaultComponent,
         LayoutDefaultNavComponent,
         LayoutDefaultHeaderComponent,
         LayoutDefaultHeaderItemComponent,
@@ -43,7 +43,7 @@ LayoutDefaultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", ver
         LayoutDefaultHeaderItemComponent,
         LayoutDefaultHeaderItemTriggerDirective,
         LayoutDefaultTopMenuItemComponent] });
-LayoutDefaultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
+LayoutDefaultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule,
         RouterModule,
         NzToolTipModule,
         NzIconModule,
@@ -51,7 +51,7 @@ LayoutDefaultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", ver
         NzDropDownModule,
         NzMessageModule,
         NzBadgeModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: LayoutDefaultModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: LayoutDefaultModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [

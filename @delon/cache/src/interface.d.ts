@@ -8,7 +8,7 @@ export interface ICacheStore {
     set(key: string, value: ICache): boolean;
     remove(key: string): void;
 }
-export declare type CacheNotifyType = 'set' | 'remove' | 'expire';
+export type CacheNotifyType = 'set' | 'remove' | 'expire';
 export interface CacheNotifyResult {
     type: CacheNotifyType;
     value?: any;

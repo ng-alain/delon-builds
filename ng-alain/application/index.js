@@ -47,19 +47,41 @@ function fixAngularJson(options) {
         if (serveTarget.options == null)
             serveTarget.options = {};
         serveTarget.options.proxyConfig = 'proxy.conf.js';
-        // 调整budgets
-        const budgets = (0, utils_1.getProjectTarget)(p, utils_1.BUILD_TARGET_BUILD, 'configurations').production
-            .budgets;
+        // // 调整budgets, error in angular 15.1
+        // const budgets = (getProjectTarget(p, BUILD_TARGET_BUILD, 'configurations').production as JsonObject)
+        //   .budgets as Array<{
+        //   type: string;
+        //   maximumWarning: string;
+        //   maximumError: string;
+        // }>;
+        // if (budgets && budgets.length > 0) {
+        //   const initial = budgets.find(w => w.type === 'initial');
+        //   if (initial) {
+        //     initial.maximumWarning = '2mb';
+        //     initial.maximumError = '3mb';
+        //   }
+        // }
+        (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
+        (0, utils_1.addSchematicCollections)(workspace);
+    }));
+}
+/**
+ * Fix https://github.com/ng-alain/ng-alain/issues/2359
+ */
+function fixBrowserBuilderBudgets(options) {
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
+        const projectName = (0, utils_1.getProjectName)(yield (0, workspace_1.getWorkspace)(tree), options.project);
+        const json = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH);
+        const budgets = json.projects[projectName].architect.build.configurations.production.budgets;
         if (budgets && budgets.length > 0) {
             const initial = budgets.find(w => w.type === 'initial');
             if (initial) {
                 initial.maximumWarning = '2mb';
                 initial.maximumError = '3mb';
+                (0, utils_1.writeJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH, json);
             }
         }
-        (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
-        (0, utils_1.addSchematicCollections)(workspace);
-    }));
+    });
 }
 function addDependenciesToPackageJson(options) {
     return (tree) => {
@@ -126,13 +148,13 @@ function addCodeStylesToPackageJson() {
         (0, utils_1.addPackage)(tree, [
             `husky@^7.0.4`,
             `lint-staged@^13.1.0`,
-            `prettier@^2.8.1`,
+            `prettier@^2.8.3`,
             `stylelint@^14.16.1`,
             `stylelint-config-prettier@^9.0.4`,
             `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^29.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.6.0`,
-            `stylelint-order@^5.0.0`
+            `stylelint-order@^6.0.1`
         ], 'devDependencies');
         return tree;
     };
@@ -298,7 +320,8 @@ function default_1(options) {
             addStyle(),
             fixLang(options),
             fixVsCode(),
-            fixAngularJson(options)
+            fixAngularJson(options),
+            fixBrowserBuilderBudgets(options)
         ]);
     });
 }

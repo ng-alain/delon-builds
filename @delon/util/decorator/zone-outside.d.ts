@@ -1,7 +1,7 @@
 export interface ZoneOptions {
     ngZoneName?: string;
 }
-declare type DecoratorType = (target: unknown, fn: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
+type DecoratorType = (target: unknown, fn: string, descriptor: PropertyDescriptor) => PropertyDescriptor;
 /**
  * The decoration method runs in `runOutsideAngular`
  *

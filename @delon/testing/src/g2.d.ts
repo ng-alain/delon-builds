@@ -2,7 +2,7 @@ import { DebugElement, Type } from '@angular/core';
 import { ComponentFixture } from '@angular/core/testing';
 import { Chart } from '@antv/g2';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-export declare type PageG2Type = 'geometries' | 'views';
+export type PageG2Type = 'geometries' | 'views';
 export declare const PageG2DataCount = 2;
 export declare const PageG2Height = 100;
 export declare class PageG2<T> {

@@ -40,7 +40,7 @@ function genRules(options) {
 }
 function isYarn(tree) {
     var _a, _b;
-    return ((_b = (_a = (0, utils_1.readJSON)(tree, '/angular.json')) === null || _a === void 0 ? void 0 : _a.cli) === null || _b === void 0 ? void 0 : _b.packageManager) === 'yarn';
+    return ((_b = (_a = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH)) === null || _a === void 0 ? void 0 : _a.cli) === null || _b === void 0 ? void 0 : _b.packageManager) === 'yarn';
 }
 function finished() {
     return (_, context) => {

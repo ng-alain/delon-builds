@@ -5,7 +5,7 @@ import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
-export declare type ExceptionType = 403 | 404 | 500;
+export type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit, OnDestroy {
     private i18n;
     private dom;

@@ -8,14 +8,6 @@ import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from '@angular/cdk/platform';
 
 class G2Service {
-    constructor(cogSrv, lazySrv) {
-        this.cogSrv = cogSrv;
-        this.lazySrv = lazySrv;
-        this.loading = false;
-        this.loaded = false;
-        this.notify$ = new Subject();
-        this.cog = { theme: '' };
-    }
     get cog() {
         return this._cog;
     }
@@ -27,6 +19,14 @@ class G2Service {
                 'https://gw.alipayobjects.com/os/lib/antv/data-set/0.11.8/dist/data-set.js'
             ]
         }, val);
+    }
+    constructor(cogSrv, lazySrv) {
+        this.cogSrv = cogSrv;
+        this.lazySrv = lazySrv;
+        this.loading = false;
+        this.loaded = false;
+        this.notify$ = new Subject();
+        this.cog = { theme: '' };
     }
     libLoad() {
         if (this.loading) {
@@ -49,14 +49,20 @@ class G2Service {
         this.notify$.unsubscribe();
     }
 }
-G2Service.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: G2Service, deps: [{ token: i1.AlainConfigService }, { token: i2.LazyService }], target: i0.ɵɵFactoryTarget.Injectable });
-G2Service.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: G2Service, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: G2Service, decorators: [{
+G2Service.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: G2Service, deps: [{ token: i1.AlainConfigService }, { token: i2.LazyService }], target: i0.ɵɵFactoryTarget.Injectable });
+G2Service.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: G2Service, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: G2Service, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: i2.LazyService }]; } });
 
 class G2BaseComponent {
+    get chart() {
+        return this._chart;
+    }
+    get winG2() {
+        return window.G2;
+    }
     constructor(srv, el, ngZone, platform, cdr) {
         this.srv = srv;
         this.el = el;
@@ -72,12 +78,6 @@ class G2BaseComponent {
         this.srv.notify
             .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
             .subscribe(() => this.load());
-    }
-    get chart() {
-        return this._chart;
-    }
-    get winG2() {
-        return window.G2;
     }
     /** G2数据变更 */
     changeData() { }
@@ -134,8 +134,8 @@ class G2BaseComponent {
         this.destroyChart();
     }
 }
-G2BaseComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: G2BaseComponent, deps: [{ token: G2Service }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: i2$1.Platform }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
-G2BaseComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.0.4", type: G2BaseComponent, inputs: { repaint: "repaint", delay: "delay", theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
+G2BaseComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: G2BaseComponent, deps: [{ token: G2Service }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: i2$1.Platform }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive });
+G2BaseComponent.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.1.2", type: G2BaseComponent, inputs: { repaint: "repaint", delay: "delay", theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
 __decorate([
     InputBoolean()
 ], G2BaseComponent.prototype, "repaint", void 0);
@@ -148,7 +148,7 @@ __decorate([
 __decorate([
     ZoneOutside()
 ], G2BaseComponent.prototype, "destroyChart", null);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: G2BaseComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: G2BaseComponent, decorators: [{
             type: Directive
         }], ctorParameters: function () { return [{ type: G2Service }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: i2$1.Platform }, { type: i0.ChangeDetectorRef }]; }, propDecorators: { repaint: [{
                 type: Input

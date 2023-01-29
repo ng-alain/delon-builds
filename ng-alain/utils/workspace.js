@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -18,6 +18,7 @@ exports.BUILD_TARGET_TEST = 'test';
 exports.BUILD_TARGET_SERVE = 'serve';
 exports.BUILD_TARGET_LINT = 'lint';
 exports.NG_ALAIN_JSON = `ng-alain.json`;
+exports.DEFAULT_WORKSPACE_PATH = `/angular.json`;
 function getProjectName(workspace, name) {
     var _a;
     if (name && workspace.projects.has(name)) {
@@ -25,6 +26,7 @@ function getProjectName(workspace, name) {
     }
     return (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : null;
 }
+exports.getProjectName = getProjectName;
 function getNgAlainJson(tree) {
     if (!tree.exists(exports.NG_ALAIN_JSON))
         return undefined;

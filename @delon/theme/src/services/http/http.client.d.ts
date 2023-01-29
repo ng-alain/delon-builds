@@ -3,10 +3,10 @@ import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
-export declare type _HttpHeaders = HttpHeaders | {
+export type _HttpHeaders = HttpHeaders | {
     [header: string]: string | string[];
 };
-export declare type HttpObserve = 'body' | 'events' | 'response';
+export type HttpObserve = 'body' | 'events' | 'response';
 /**
  * 封装HttpClient，主要解决：
  * + 优化HttpClient在参数上便利性

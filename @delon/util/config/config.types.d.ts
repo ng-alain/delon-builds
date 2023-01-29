@@ -39,6 +39,6 @@ export interface AlainConfig {
     themeResponsive?: AlainThemeResponsiveConfig;
     themeI18n?: AlainThemeI18nConfig;
 }
-export declare type AlainConfigKey = keyof AlainConfig;
+export type AlainConfigKey = keyof AlainConfig;
 export declare const ALAIN_CONFIG: InjectionToken<AlainConfig>;
 export declare function ALAIN_CONFIG_FACTORY(): AlainConfig;

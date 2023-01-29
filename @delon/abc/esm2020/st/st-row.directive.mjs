@@ -15,9 +15,9 @@ export class STRowSource {
         return this.rows[path];
     }
 }
-STRowSource.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: STRowSource, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-STRowSource.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: STRowSource });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: STRowSource, decorators: [{
+STRowSource.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: STRowSource, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+STRowSource.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: STRowSource });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: STRowSource, decorators: [{
             type: Injectable
         }] });
 export class STRowDirective {
@@ -29,9 +29,9 @@ export class STRowDirective {
         this.source.add(this.type, this.id, this.ref);
     }
 }
-STRowDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: STRowDirective, deps: [{ token: i0.TemplateRef }, { token: STRowSource, host: true }], target: i0.ɵɵFactoryTarget.Directive });
-STRowDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.0.4", type: STRowDirective, selector: "[st-row]", inputs: { id: ["st-row", "id"], type: "type" }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: STRowDirective, decorators: [{
+STRowDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: STRowDirective, deps: [{ token: i0.TemplateRef }, { token: STRowSource, host: true }], target: i0.ɵɵFactoryTarget.Directive });
+STRowDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.1.2", type: STRowDirective, selector: "[st-row]", inputs: { id: ["st-row", "id"], type: "type" }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: STRowDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[st-row]' }]
         }], ctorParameters: function () { return [{ type: i0.TemplateRef }, { type: STRowSource, decorators: [{

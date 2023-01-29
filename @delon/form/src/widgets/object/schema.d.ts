@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { SFUISchemaItem } from '../../schema/ui';
-export declare type SFObjectWidgetRenderType = 'card' | 'default';
+export type SFObjectWidgetRenderType = 'card' | 'default';
 export interface SFObjectWidgetSchema extends SFUISchemaItem {
     /**
      * 是否显示扩展，点击隐藏内容，默认：`true`

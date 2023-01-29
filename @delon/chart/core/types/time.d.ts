@@ -1,1 +1,1 @@
-export declare type G2Time = Date | string | number;
+export type G2Time = Date | string | number;

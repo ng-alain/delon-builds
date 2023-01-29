@@ -9,10 +9,6 @@ import * as i1 from '@angular/cdk/platform';
  * 一组简单的 Cookie 操作类。
  */
 class CookieService {
-    constructor(_doc, platform) {
-        this._doc = _doc;
-        this.platform = platform;
-    }
     get doc() {
         return this._doc || document;
     }
@@ -23,6 +19,10 @@ class CookieService {
      */
     get cookie() {
         return this.platform.isBrowser ? this.doc.cookie : '';
+    }
+    constructor(_doc, platform) {
+        this._doc = _doc;
+        this.platform = platform;
     }
     /**
      * Get all cookie key-value pairs
@@ -92,9 +92,9 @@ class CookieService {
         this.doc.cookie = '';
     }
 }
-CookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: CookieService, deps: [{ token: DOCUMENT }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Injectable });
-CookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: CookieService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: CookieService, decorators: [{
+CookieService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: CookieService, deps: [{ token: DOCUMENT }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Injectable });
+CookieService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: CookieService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: CookieService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{
@@ -150,16 +150,16 @@ function isEmpty(element) {
 }
 
 class ScrollService {
-    constructor(_doc, platform) {
-        this._doc = _doc;
-        this.platform = platform;
-    }
     _getDoc() {
         return this._doc || document;
     }
     _getWin() {
         const doc = this._getDoc();
         return doc.defaultView || window;
+    }
+    constructor(_doc, platform) {
+        this._doc = _doc;
+        this.platform = platform;
     }
     /**
      * 获取滚动条位置
@@ -223,9 +223,9 @@ class ScrollService {
         this.scrollToElement(this._getDoc().body, topOffset);
     }
 }
-ScrollService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: ScrollService, deps: [{ token: DOCUMENT }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Injectable });
-ScrollService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: ScrollService, providedIn: 'root' });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.0.4", ngImport: i0, type: ScrollService, decorators: [{
+ScrollService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: ScrollService, deps: [{ token: DOCUMENT }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Injectable });
+ScrollService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: ScrollService, providedIn: 'root' });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: ScrollService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{

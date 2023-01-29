@@ -35,8 +35,8 @@ export interface SFSchemaEnum {
     /** 组对应的子类 */
     children?: SFSchemaEnum[];
 }
-export declare type SFSchemaType = 'number' | 'integer' | 'string' | 'boolean' | 'object' | 'array';
-export declare type SFSchemaEnumType = SFSchemaEnum | number | string | boolean;
+export type SFSchemaType = 'number' | 'integer' | 'string' | 'boolean' | 'object' | 'array';
+export type SFSchemaEnumType = SFSchemaEnum | number | string | boolean;
 /**
  * JSON Schema Form 结构体
  *

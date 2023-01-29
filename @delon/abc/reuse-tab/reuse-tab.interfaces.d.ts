@@ -33,7 +33,7 @@ export declare enum ReuseTabMatchMode {
      */
     URL = 2
 }
-export declare type ReuseTabRouteParamMatchMode = 'strict' | 'loose';
+export type ReuseTabRouteParamMatchMode = 'strict' | 'loose';
 export interface ReuseTitle {
     text?: string;
     i18n?: string;
@@ -73,7 +73,7 @@ export interface ReuseContextEvent {
     comp?: ReuseTabContextComponent;
     customContextMenu?: ReuseCustomContextMenu[];
 }
-export declare type CloseType = 'close' | 'closeOther' | 'closeRight' | 'custom' | 'refresh' | null;
+export type CloseType = 'close' | 'closeOther' | 'closeRight' | 'custom' | 'refresh' | null;
 export interface ReuseContextCloseEvent {
     type: CloseType;
     item: ReuseItem;
@@ -97,14 +97,14 @@ export interface ReuseComponentHandle {
 export interface ReuseComponentRef {
     instance: ReuseComponentInstance;
 }
-export declare type ReuseHookTypes = '_onReuseInit' | '_onReuseDestroy';
-export declare type ReuseHookOnReuseInitType = 'init' | 'refresh';
+export type ReuseHookTypes = '_onReuseInit' | '_onReuseDestroy';
+export type ReuseHookOnReuseInitType = 'init' | 'refresh';
 export interface ReuseComponentInstance {
     _onReuseInit: (type: ReuseHookOnReuseInitType) => void;
     _onReuseDestroy: () => void;
     destroy: () => void;
 }
-export declare type ReuseCanClose = (options: {
+export type ReuseCanClose = (options: {
     item: ReuseItem;
     includeNonCloseable: boolean;
 }) => Observable<boolean>;

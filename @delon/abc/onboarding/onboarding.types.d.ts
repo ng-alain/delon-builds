@@ -2,7 +2,7 @@ import { TemplateRef } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-export declare type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
+export type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
 export interface OnboardingConfig {
     /**
      * Onboarding items

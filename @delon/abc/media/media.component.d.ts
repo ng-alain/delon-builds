@@ -4,7 +4,7 @@ import type Plyr from 'plyr';
 import { NumberInput } from '@delon/util/decorator';
 import { MediaService } from './media.service';
 import * as i0 from "@angular/core";
-export declare type MediaType = 'html5' | 'youtube' | 'video' | 'audio';
+export type MediaType = 'html5' | 'youtube' | 'video' | 'audio';
 export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestroy {
     private el;
     private renderer;

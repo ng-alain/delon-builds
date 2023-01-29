@@ -4,7 +4,7 @@ import { STColumn, STColumnButton, STColumnSafeType, STData, STSortMap } from '.
 /**
  * @inner
  */
-export declare type _STTdNotifyType = 'checkbox' | 'radio';
+export type _STTdNotifyType = 'checkbox' | 'radio';
 /**
  * @inner
  */

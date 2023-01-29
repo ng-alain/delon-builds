@@ -1,4 +1,4 @@
-export declare type CurrencyStartingUnit = 'yuan' | 'cent';
+export type CurrencyStartingUnit = 'yuan' | 'cent';
 export interface CurrencyStartingUnitOptions {
     /**
      * The starting unit of the value, `yuan` means 元, `cent` means 分, default: `yuan`

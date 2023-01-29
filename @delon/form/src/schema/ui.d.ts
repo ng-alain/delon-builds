@@ -3,10 +3,10 @@ import type { NgClassType, NgStyleInterface, NzSafeAny, NzSizeLDSType } from 'ng
 import type { ErrorSchema } from '../errors';
 import type { SFValue } from '../interface';
 import type { FormProperty } from '../model/form.property';
-export declare type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
-export declare type SFTrigger = 'click' | 'focus' | 'hover';
-export declare type SFLSSize = 'large' | 'small';
-export declare type SFDLSSize = NzSizeLDSType;
+export type SFPlacement = 'top' | 'left' | 'right' | 'bottom' | 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight' | 'leftTop' | 'leftBottom' | 'rightTop' | 'rightBottom';
+export type SFTrigger = 'click' | 'focus' | 'hover';
+export type SFLSSize = 'large' | 'small';
+export type SFDLSSize = NzSizeLDSType;
 export interface SFGridSizeSchema {
     span?: number | null;
     order?: number | null;
@@ -38,7 +38,7 @@ export interface SFGridSchema {
     xl?: number | SFGridSizeSchema;
     xxl?: number | SFGridSizeSchema;
 }
-export declare type SFBuiltInWidgets = 'text' | 'string' | 'number' | 'integer' | 'date' | 'time' | 'radio' | 'checkbox' | 'boolean' | 'textarea' | 'select' | 'tree-select' | 'tag' | 'upload' | 'transfer' | 'slider' | 'rate' | 'autocomplete' | 'cascader' | 'mention' | 'custom' | 'array' | 'object';
+export type SFBuiltInWidgets = 'text' | 'string' | 'number' | 'integer' | 'date' | 'time' | 'radio' | 'checkbox' | 'boolean' | 'textarea' | 'select' | 'tree-select' | 'tag' | 'upload' | 'transfer' | 'slider' | 'rate' | 'autocomplete' | 'cascader' | 'mention' | 'custom' | 'array' | 'object';
 export interface SFRenderSchema {
     /**
      * 指定采用什么小部件渲染，所有小部件名可[查阅文档](https://ng-alain.com/)

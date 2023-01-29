@@ -15,7 +15,7 @@ export declare function getTimeDistance(type: 'today' | '-today' | 'yesterday' |
  * fix time is the most, big value
  */
 export declare function fixEndTimeOfRange(dates: [Date, Date]): [Date, Date];
-export declare type ToDateOptions = string | {
+export type ToDateOptions = string | {
     formatString?: string;
     defaultValue?: NzSafeAny;
 };

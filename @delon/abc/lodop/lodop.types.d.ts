@@ -168,7 +168,7 @@ export interface Lodop extends CLodop {
     SET_LICENSES(strCompanyName: string, strLicense: string, strLicenseA?: string, strLicenseB?: string): void;
     webskt: WebSocket;
 }
-export declare type LodopStyleValue = 'FontName' | 'FontSize' | 'FontColor' | 'Bold' | 'Italic' | 'Underline' | 'Alignment' | 'Angle' | 'ItemType' | 'HOrient' | 'VOrient' | 'PenWidth' | 'PenStyle' | 'Stretch' | 'PreviewOnly' | 'ReadOnly';
+export type LodopStyleValue = 'FontName' | 'FontSize' | 'FontColor' | 'Bold' | 'Italic' | 'Underline' | 'Alignment' | 'Angle' | 'ItemType' | 'HOrient' | 'VOrient' | 'PenWidth' | 'PenStyle' | 'Stretch' | 'PreviewOnly' | 'ReadOnly';
 export interface LodopResult {
     /** 是否成功 */
     ok: boolean;

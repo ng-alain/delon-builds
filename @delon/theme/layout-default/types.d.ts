@@ -1,7 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-export declare type LayoutDefaultHeaderItemHidden = 'pc' | 'mobile' | 'none';
-export declare type LayoutDefaultHeaderItemDirection = 'left' | 'middle' | 'right';
+export type LayoutDefaultHeaderItemHidden = 'pc' | 'mobile' | 'none';
+export type LayoutDefaultHeaderItemDirection = 'left' | 'middle' | 'right';
 export interface LayoutDefaultOptions {
     /**
      * Custom Logo Area

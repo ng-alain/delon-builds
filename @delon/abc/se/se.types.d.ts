@@ -1,7 +1,7 @@
 import { TemplateRef } from '@angular/core';
-export declare type SELayout = 'horizontal' | 'vertical' | 'inline';
-export declare type SESize = 'default' | 'compact';
-export declare type SEErrorType = string | TemplateRef<void> | SEError;
+export type SELayout = 'horizontal' | 'vertical' | 'inline';
+export type SESize = 'default' | 'compact';
+export type SEErrorType = string | TemplateRef<void> | SEError;
 export interface SEError {
     [key: string]: string | TemplateRef<void>;
 }

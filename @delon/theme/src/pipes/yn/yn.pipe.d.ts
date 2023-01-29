@@ -1,7 +1,7 @@
 import { PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import * as i0 from "@angular/core";
-export declare type YNMode = 'full' | 'icon' | 'text';
+export type YNMode = 'full' | 'icon' | 'text';
 export declare class YNPipe implements PipeTransform {
     private dom;
     constructor(dom: DomSanitizer);
