@@ -8,7 +8,6 @@ export declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> 
     step: number;
     formatter: (value: number) => string | number;
     parser: (value: string) => string;
-    width: string;
     ngOnInit(): void;
     _setValue(val: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberWidget, never>;
