@@ -1141,11 +1141,7 @@ class SFComponent {
     get btnGrid() {
         return this._btn.render.grid;
     }
-    /**
-     * Form default mode, will force override `layout`, `firstVisual`, `liveValidate` parameters
-     *
-     * 表单预设模式，会强制覆盖 `layout`，`firstVisual`，`liveValidate` 参数
-     */
+    /** 表单模式 */
     set mode(value) {
         switch (value) {
             case 'search':
@@ -1272,17 +1268,9 @@ class SFComponent {
          * - `false` 提交时校验
          */
         this.liveValidate = true;
-        /**
-         * Whether to display error visuals immediately
-         *
-         * 是否立即显示错误视觉
-         */
+        /** 立即显示错误视觉 */
         this.firstVisual = true;
-        /**
-         * Whether to only display error visuals but not error text
-         *
-         * 是否只展示错误视觉不显示错误文本
-         */
+        /** 是否只展示错误视觉不显示错误文本 */
         this.onlyVisual = false;
         this.compact = false;
         /**
@@ -1337,6 +1325,10 @@ class SFComponent {
             Object.keys(schema.properties).forEach(key => {
                 const uiKey = `$${key}`;
                 const property = retrieveSchema(schema.properties[key], definitions);
+                const curSetUi = deepCopy({
+                    ...property.ui,
+                    ...uiSchema[uiKey]
+                });
                 const ui = deepCopy({
                     widget: property.type,
                     ...(property.format && this.options.formatMap[property.format]),
@@ -1345,13 +1337,13 @@ class SFComponent {
                         ? { widget: 'select' }
                         : null),
                     ...this._defUi,
-                    ...property.ui,
-                    ...uiSchema[uiKey]
+                    ...parentUiSchema,
+                    ...curSetUi
                 });
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
-                        if (!ui.spanLabelFixed) {
+                        if (!curSetUi.spanLabelFixed) {
                             ui.spanLabelFixed = parentUiSchema.spanLabelFixed;
                         }
                     }
@@ -1804,7 +1796,7 @@ class SFItemWrapComponent {
     }
     ngOnChanges() {
         const hasError = !!this.error;
-        this.statusSrv.formStatusChanges.next({ status: hasError ? 'error' : '', hasFeedback: !!this.ui.feedback });
+        this.statusSrv.formStatusChanges.next({ status: hasError ? 'error' : '', hasFeedback: hasError });
     }
 }
 SFItemWrapComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.2", ngImport: i0, type: SFItemWrapComponent, deps: [{ token: i1$1.NzFormStatusService }], target: i0.ɵɵFactoryTarget.Component });

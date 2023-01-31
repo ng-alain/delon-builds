@@ -72,24 +72,12 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     liveValidate: boolean;
     /** 指定表单 `autocomplete` 值 */
     autocomplete: 'on' | 'off';
-    /**
-     * Whether to display error visuals immediately
-     *
-     * 是否立即显示错误视觉
-     */
+    /** 立即显示错误视觉 */
     firstVisual: boolean;
-    /**
-     * Whether to only display error visuals but not error text
-     *
-     * 是否只展示错误视觉不显示错误文本
-     */
+    /** 是否只展示错误视觉不显示错误文本 */
     onlyVisual: boolean;
     compact: boolean;
-    /**
-     * Form default mode, will force override `layout`, `firstVisual`, `liveValidate` parameters
-     *
-     * 表单预设模式，会强制覆盖 `layout`，`firstVisual`，`liveValidate` 参数
-     */
+    /** 表单模式 */
     set mode(value: SFMode);
     get mode(): SFMode;
     private _mode;
