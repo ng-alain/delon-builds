@@ -24,7 +24,7 @@ export interface SFGridSchema {
      */
     span?: number | null;
     /**
-     * 数组索引栅格占位格数，为 `0` 时相当于 `display: none`，限 `type: 'array'` 时有效
+     * 数据栅格占位格数，为 `0` 时相当于 `display: none`
      */
     arraySpan?: number | null;
     /**
