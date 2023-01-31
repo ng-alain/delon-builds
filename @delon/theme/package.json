@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "15.0.1-43e6e7c9",
+  "version": "15.0.1-067d1476",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^15.0.3",
-    "@delon/acl": "^15.0.1-43e6e7c9",
-    "@delon/util": "^15.0.1-43e6e7c9",
+    "@delon/acl": "^15.0.1-067d1476",
+    "@delon/util": "^15.0.1-067d1476",
     "tslib": "^2.3.0"
   },
   "module": "fesm2015/theme.mjs",
