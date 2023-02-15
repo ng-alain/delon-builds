@@ -1,7 +1,8 @@
 import { Observable } from 'rxjs';
 import { NzAutocompleteOptionComponent } from 'ng-zorro-antd/auto-complete';
-import { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
-import { SFUISchemaItem } from '../../schema/ui';
+import type { CompareWith } from 'ng-zorro-antd/core/types';
+import type { SFSchemaEnum, SFSchemaEnumType } from '../../schema';
+import type { SFUISchemaItem } from '../../schema/ui';
 export interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源
@@ -40,4 +41,18 @@ export interface SFAutoCompleteWidgetSchema extends SFUISchemaItem {
      * 变更回调
      */
     change?: (item: NzAutocompleteOptionComponent, orgData: SFSchemaEnum) => void;
+    /**
+     * 下拉根元素的类名称
+     */
+    overlayClassName?: string;
+    /**
+     * 下拉根元素的样式
+     */
+    overlayStyle?: {
+        [key: string]: string;
+    };
+    /**
+     * 与 [SelectControlValueAccessor](https://angular.io/api/forms/SelectControlValueAccessor#caveat-option-selection) 相同
+     */
+    compareWith?: CompareWith;
 }

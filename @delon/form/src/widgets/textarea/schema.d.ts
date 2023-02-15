@@ -16,6 +16,14 @@ export interface SFTextareaWidgetSchema extends SFUISchemaItem {
      */
     borderless?: boolean;
     /**
+     * `textarea` maximum character count displayed
+     */
+    maxCharacterCount?: number;
+    /**
+     * Customized `characterCount` computation function | `(v: string) => number`
+     */
+    computeCharacterCount?: (v: string) => number;
+    /**
      * 内容变更事件
      */
     change?: (val: string) => void;
