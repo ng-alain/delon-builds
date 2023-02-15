@@ -1637,7 +1637,6 @@ class STComponent {
         this.virtualMaxBufferPx = 200;
         this.virtualMinBufferPx = 100;
         this.virtualForTrackBy = index => index;
-        this.setCog(configSrv.merge('st', ST_DEFAULT_CONFIG));
         this.delonI18n.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.locale = this.delonI18n.getData('st');
             if (this._columns.length > 0) {
@@ -1648,6 +1647,7 @@ class STComponent {
         i18nSrv.change
             .pipe(takeUntil(this.destroy$), filter(() => this._columns.length > 0))
             .subscribe(() => this.refreshColumns());
+        this.setCog(configSrv.merge('st', ST_DEFAULT_CONFIG));
     }
     setCog(cog) {
         const copyMultiSort = { ...cog.multiSort };
