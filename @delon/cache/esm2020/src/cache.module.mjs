@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import * as i0 from "@angular/core";
 export class DelonCacheModule {
 }
-DelonCacheModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.4", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonCacheModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.1.4", ngImport: i0, type: DelonCacheModule });
-DelonCacheModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.1.4", ngImport: i0, type: DelonCacheModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.4", ngImport: i0, type: DelonCacheModule, decorators: [{
+DelonCacheModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonCacheModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.1.5", ngImport: i0, type: DelonCacheModule });
+DelonCacheModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: DelonCacheModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: DelonCacheModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });
