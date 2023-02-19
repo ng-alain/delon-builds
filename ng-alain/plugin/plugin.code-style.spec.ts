@@ -17,7 +17,7 @@ describe('NgAlainSchematic: plugin: codeStyle', () => {
   });
 
   describe('when remove', () => {
-    beforeEach(async () => runner.runSchematic('plugin', { name: 'codeStyle', type: 'remove' }, tree));
+    beforeEach(async () => runner.runSchematicAsync('plugin', { name: 'codeStyle', type: 'remove' }, tree).toPromise());
 
     it(`should remove precommit`, () => {
       const json = JSON.parse(tree.readContent('package.json'));

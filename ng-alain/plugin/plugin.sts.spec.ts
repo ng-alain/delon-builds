@@ -8,7 +8,7 @@ describe('NgAlainSchematic: plugin: sts', () => {
 
   beforeEach(async () => {
     ({ runner, tree } = await createAlainApp());
-    tree = await runner.runSchematic('plugin', { name: 'sts', type: 'add' }, tree);
+    tree = await runner.runSchematicAsync('plugin', { name: 'sts', type: 'add' }, tree).toPromise();
   });
 
   describe('when add', () => {
@@ -30,7 +30,9 @@ describe('NgAlainSchematic: plugin: sts', () => {
   });
 
   describe('when remove', () => {
-    beforeEach(async () => (tree = await runner.runSchematic('plugin', { name: 'sts', type: 'remove' }, tree)));
+    beforeEach(
+      async () => (tree = await runner.runSchematicAsync('plugin', { name: 'sts', type: 'remove' }, tree).toPromise())
+    );
     it(`should add fiels`, () => {
       const json = JSON.parse(tree.readContent('package.json'));
       expect(json.devDependencies['ng-alain-sts']).not.toBeDefined();

@@ -20,7 +20,9 @@ describe('NgAlainSchematic: plugin: networkEnv', () => {
 
     describe('when remove', () => {
       beforeEach(async () =>
-        runner.runSchematic('plugin', { name: 'networkEnv', type: 'remove', packageManager: 'npm' }, tree)
+        runner
+          .runSchematicAsync('plugin', { name: 'networkEnv', type: 'remove', packageManager: 'npm' }, tree)
+          .toPromise()
       );
 
       it(`should remove .npmrc`, () => {
@@ -43,7 +45,9 @@ describe('NgAlainSchematic: plugin: networkEnv', () => {
 
     describe('when remove', () => {
       beforeEach(async () =>
-        runner.runSchematic('plugin', { name: 'networkEnv', type: 'remove', packageManager: 'yarn' }, tree)
+        runner
+          .runSchematicAsync('plugin', { name: 'networkEnv', type: 'remove', packageManager: 'yarn' }, tree)
+          .toPromise()
       );
 
       it(`should remove .yarnrc`, () => {

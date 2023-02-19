@@ -27,16 +27,20 @@ const COMPONENTS = [Components...];
 
   describe('#withoutModulePrefixInComponentName', () => {
     it('with true', async () => {
-      tree = await runner.runSchematic(
-        'empty',
-        { name: 'list', module: 'trade', withoutModulePrefixInComponentName: true } as CommonSchema,
-        tree
-      );
+      tree = await runner
+        .runSchematicAsync(
+          'empty',
+          { name: 'list', module: 'trade', withoutModulePrefixInComponentName: true } as CommonSchema,
+          tree
+        )
+        .toPromise();
       const listTsCon = tree.readContent(`/projects/foo/src/app/routes/trade/list/list.component.ts`);
       expect(listTsCon).toContain(`ListComponent`);
     });
     it('with false', async () => {
-      tree = await runner.runSchematic('empty', { name: 'list', module: 'trade' } as CommonSchema, tree);
+      tree = await runner
+        .runSchematicAsync('empty', { name: 'list', module: 'trade' } as CommonSchema, tree)
+        .toPromise();
       const listTsCon = tree.readContent(`/projects/foo/src/app/routes/trade/list/list.component.ts`);
       expect(listTsCon).toContain(`TradeListComponent`);
     });
