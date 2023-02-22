@@ -357,7 +357,7 @@ class ACLGuard {
         }));
     }
     // lazy loading
-    canLoad(route) {
+    canMatch(route) {
         return this.process(route.data);
     }
     // all children route

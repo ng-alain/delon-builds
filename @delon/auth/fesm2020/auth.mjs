@@ -578,7 +578,7 @@ class JWTGuard {
         return res;
     }
     // lazy loading
-    canLoad(route, _segments) {
+    canMatch(route) {
         this.url = route.path;
         return this.process();
     }
@@ -685,7 +685,7 @@ class SimpleGuard {
         return res;
     }
     // lazy loading
-    canLoad(route, _segments) {
+    canMatch(route) {
         this.url = route.path;
         return this.process();
     }
