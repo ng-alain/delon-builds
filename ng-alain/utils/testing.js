@@ -29,12 +29,15 @@ exports.createAlainRunner = createAlainRunner;
 function createAlainApp(ngAddOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         const baseRunner = createNgRunner();
-        const workspaceTree = yield baseRunner.runSchematic('workspace', {
+        const workspaceTree = yield baseRunner
+            .runSchematicAsync('workspace', {
             name: 'workspace',
             newProjectRoot: 'projects',
             version: '8.0.0'
-        });
-        const appTree = yield baseRunner.runSchematic('application', {
+        })
+            .toPromise();
+        const appTree = yield baseRunner
+            .runSchematicAsync('application', {
             name: exports.APPNAME,
             inlineStyle: false,
             inlineTemplate: false,
@@ -42,9 +45,12 @@ function createAlainApp(ngAddOptions) {
             style: 'css',
             skipTests: false,
             skipPackageJson: false
-        }, workspaceTree);
+        }, workspaceTree)
+            .toPromise();
         const alainRunner = createAlainRunner();
-        const tree = yield alainRunner.runSchematic('ng-add', Object.assign({ skipPackageJson: false }, ngAddOptions), appTree);
+        const tree = yield alainRunner
+            .runSchematicAsync('ng-add', Object.assign({ skipPackageJson: false }, ngAddOptions), appTree)
+            .toPromise();
         return { runner: alainRunner, tree };
     });
 }
@@ -55,7 +61,9 @@ function createAlainAndModuleApp(name = 'trade', ngAddOptions, alainData) {
         if (alainData != null) {
             res.tree.create('ng-alain.json', JSON.stringify(alainData));
         }
-        res.tree = yield res.runner.runSchematic('module', { name, project: exports.APPNAME, routing: true }, res.tree);
+        res.tree = yield res.runner
+            .runSchematicAsync('module', { name, project: exports.APPNAME, routing: true }, res.tree)
+            .toPromise();
         return res;
     });
 }
@@ -63,12 +71,15 @@ exports.createAlainAndModuleApp = createAlainAndModuleApp;
 function createTestApp() {
     return __awaiter(this, void 0, void 0, function* () {
         const runner = yield createNgRunner();
-        const workspaceTree = yield runner.runSchematic('workspace', {
+        const workspaceTree = yield runner
+            .runSchematicAsync('workspace', {
             name: 'workspace',
             newProjectRoot: 'projects',
             version: '8.0.0'
-        });
-        const appTree = yield runner.runSchematic('application', {
+        })
+            .toPromise();
+        const appTree = yield runner
+            .runSchematicAsync('application', {
             name: exports.APPNAME,
             inlineStyle: false,
             inlineTemplate: false,
@@ -76,7 +87,8 @@ function createTestApp() {
             style: 'css',
             skipTests: false,
             skipPackageJson: false
-        }, workspaceTree);
+        }, workspaceTree)
+            .toPromise();
         return { runner, tree: appTree };
     });
 }

@@ -12,7 +12,7 @@ describe('Schematic: edit', () => {
 
   beforeEach(async () => {
     ({ runner, tree } = await createAlainAndModuleApp());
-    tree = await runner.runSchematic('edit', { name: 'edit', module: 'trade' }, tree);
+    tree = await runner.runSchematicAsync('edit', { name: 'edit', module: 'trade' }, tree).toPromise();
   });
 
   it('should be generate list page', () => {

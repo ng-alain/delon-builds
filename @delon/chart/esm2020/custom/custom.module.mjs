@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [G2CustomComponent];
 export class G2CustomModule {
 }
-G2CustomModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: G2CustomModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-G2CustomModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.1.5", ngImport: i0, type: G2CustomModule, declarations: [G2CustomComponent], imports: [CommonModule, NzSkeletonModule], exports: [G2CustomComponent] });
-G2CustomModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: G2CustomModule, imports: [CommonModule, NzSkeletonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.1.5", ngImport: i0, type: G2CustomModule, decorators: [{
+G2CustomModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: G2CustomModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+G2CustomModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.1", ngImport: i0, type: G2CustomModule, declarations: [G2CustomComponent], imports: [CommonModule, NzSkeletonModule], exports: [G2CustomComponent] });
+G2CustomModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: G2CustomModule, imports: [CommonModule, NzSkeletonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: G2CustomModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzSkeletonModule],

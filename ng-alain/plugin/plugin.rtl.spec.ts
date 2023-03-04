@@ -8,7 +8,7 @@ describe('NgAlainSchematic: plugin: rtl', () => {
 
   beforeEach(async () => {
     ({ runner, tree } = await createAlainApp());
-    tree = await runner.runSchematic('plugin', { name: 'rtl', type: 'add' }, tree);
+    tree = await runner.runSchematicAsync('plugin', { name: 'rtl', type: 'add' }, tree).toPromise();
   });
 
   it(`should be working`, () => {

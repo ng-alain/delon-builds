@@ -8,7 +8,7 @@ describe('Schematic: curd', () => {
 
   beforeEach(async () => {
     ({ runner, tree } = await createAlainAndModuleApp());
-    tree = await runner.runSchematic('curd', { name: 'list', module: 'trade' }, tree);
+    tree = await runner.runSchematicAsync('curd', { name: 'list', module: 'trade' }, tree).toPromise();
   });
 
   it('should be generate list page', () => {
