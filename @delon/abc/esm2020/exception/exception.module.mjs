@@ -9,10 +9,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [ExceptionComponent];
 export class ExceptionModule {
 }
-ExceptionModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: ExceptionModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ExceptionModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.1", ngImport: i0, type: ExceptionModule, declarations: [ExceptionComponent], imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule], exports: [ExceptionComponent] });
-ExceptionModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: ExceptionModule, imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: ExceptionModule, decorators: [{
+ExceptionModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ExceptionModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ExceptionModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.3", ngImport: i0, type: ExceptionModule, declarations: [ExceptionComponent], imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule], exports: [ExceptionComponent] });
+ExceptionModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ExceptionModule, imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ExceptionModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, ObserversModule, RouterModule, DelonLocaleModule, NzButtonModule],

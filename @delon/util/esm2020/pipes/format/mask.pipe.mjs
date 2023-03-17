@@ -25,9 +25,9 @@ export class FormatMaskPipe {
         return formatMask(value, mask);
     }
 }
-FormatMaskPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: FormatMaskPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
-FormatMaskPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "15.2.1", ngImport: i0, type: FormatMaskPipe, name: "mask" });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.1", ngImport: i0, type: FormatMaskPipe, decorators: [{
+FormatMaskPipe.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: FormatMaskPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe });
+FormatMaskPipe.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "15.2.3", ngImport: i0, type: FormatMaskPipe, name: "mask" });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: FormatMaskPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'mask' }]
         }] });
