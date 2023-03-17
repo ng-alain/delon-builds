@@ -50,24 +50,13 @@ export declare class MenuService implements OnDestroy {
         key?: string | null;
         url?: string | null;
         recursive?: boolean | null;
-        /**
-         * When the callback returns a Boolean type, it means the custom validation result
-         *
-         * 当回调返回一个布尔类型时，表示自定义校验结果
-         */
-        cb?: ((i: Menu) => boolean | null) | null;
+        cb?: ((i: Menu) => void) | null;
         /**
          * Use the current menu data by default
          *
          * 默认使用当前菜单数据
          */
         data?: Menu[] | null;
-        /**
-         * Whether to ignore hide items, default: `false`
-         *
-         * 是否忽略隐藏的项，默认：`false`
-         */
-        ignoreHide?: boolean;
     }): Menu | null;
     /**
      * 根据url获取菜单列表

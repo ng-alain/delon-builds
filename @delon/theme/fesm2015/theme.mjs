@@ -292,7 +292,7 @@ class MenuService {
      */
     find(options) {
         var _a;
-        const opt = Object.assign({ recursive: false, ignoreHide: false }, options);
+        const opt = Object.assign({ recursive: false }, options);
         if (opt.key != null) {
             return this.getItem(opt.key);
         }
@@ -300,14 +300,8 @@ class MenuService {
         let item = null;
         while (!item && url) {
             this.visit((_a = opt.data) !== null && _a !== void 0 ? _a : this.data, i => {
-                if (opt.ignoreHide && i.hide) {
-                    return;
-                }
                 if (opt.cb) {
-                    const res = opt.cb(i);
-                    if (!item && typeof res === 'boolean' && res) {
-                        item = i;
-                    }
+                    opt.cb(i);
                 }
                 if (i.link != null && i.link === url) {
                     item = i;
