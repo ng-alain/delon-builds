@@ -7,10 +7,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [ResultComponent];
 export class ResultModule {
 }
-ResultModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ResultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ResultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.3", ngImport: i0, type: ResultModule, declarations: [ResultComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [ResultComponent] });
-ResultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ResultModule, imports: [CommonModule, NzIconModule, NzOutletModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.3", ngImport: i0, type: ResultModule, decorators: [{
+ResultModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ResultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ResultModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.5", ngImport: i0, type: ResultModule, declarations: [ResultComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [ResultComponent] });
+ResultModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ResultModule, imports: [CommonModule, NzIconModule, NzOutletModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ResultModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzIconModule, NzOutletModule],
