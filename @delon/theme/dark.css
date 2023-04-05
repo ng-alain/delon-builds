@@ -29073,9 +29073,6 @@ fieldset {
 .sf .ant-upload.ant-upload-drag {
   height: 180px;
 }
-.sf .ant-transfer-list {
-  background: inherit;
-}
 .sf .ant-transfer-list-header label {
   position: unset;
 }
