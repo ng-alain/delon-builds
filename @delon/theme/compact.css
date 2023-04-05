@@ -28509,9 +28509,6 @@ fieldset {
 .sf .ant-upload.ant-upload-drag {
   height: 180px;
 }
-.sf .ant-transfer-list {
-  background: #fff;
-}
 .sf .ant-transfer-list-header label {
   position: unset;
 }
