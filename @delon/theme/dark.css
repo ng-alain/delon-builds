@@ -29073,6 +29073,9 @@ fieldset {
 .sf .ant-upload.ant-upload-drag {
   height: 180px;
 }
+.sf .ant-transfer-list {
+  background: inherit;
+}
 .sf .ant-transfer-list-header label {
   position: unset;
 }
@@ -32933,6 +32936,10 @@ body {
 }
 .st__no-column .ant-table-content {
   display: none;
+}
+.st__row-class .ant-table-cell-fix-left,
+.st__row-class .ant-table-cell-fix-right {
+  background: inherit;
 }
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-content > table,
