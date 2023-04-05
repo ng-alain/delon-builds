@@ -32373,10 +32373,6 @@ body {
 .st__no-column .ant-table-content {
   display: none;
 }
-.st__row-class .ant-table-cell-fix-left,
-.st__row-class .ant-table-cell-fix-right {
-  background: inherit;
-}
 @media screen and (min-width: 768px) {
   .st__width-strict .ant-table-content > table,
   .st__width-strict .ant-table-body > table {
