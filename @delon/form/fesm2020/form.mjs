@@ -522,7 +522,7 @@ class FormProperty {
         if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
             this.setVisible(false);
         }
-        else if (visibleIf !== undefined) {
+        else if (visibleIf != null) {
             const propertiesBinding = [];
             for (const dependencyPath in visibleIf) {
                 if (visibleIf.hasOwnProperty(dependencyPath)) {
