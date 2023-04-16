@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [CountDownComponent];
 export class CountDownModule {
 }
-CountDownModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: CountDownModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CountDownModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.5", ngImport: i0, type: CountDownModule, declarations: [CountDownComponent], imports: [CommonModule, CountdownModule], exports: [CountDownComponent] });
-CountDownModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: CountDownModule, decorators: [{
+CountDownModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: CountDownModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CountDownModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.7", ngImport: i0, type: CountDownModule, declarations: [CountDownComponent], imports: [CommonModule, CountdownModule], exports: [CountDownComponent] });
+CountDownModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: CountDownModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, CountdownModule],

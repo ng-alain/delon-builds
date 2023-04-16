@@ -6,10 +6,10 @@ import * as i0 from "@angular/core";
 const COMPONENTS = [ChartEChartsComponent];
 export class ChartEChartsModule {
 }
-ChartEChartsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ChartEChartsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-ChartEChartsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.5", ngImport: i0, type: ChartEChartsModule, declarations: [ChartEChartsComponent], imports: [CommonModule, NzSkeletonModule], exports: [ChartEChartsComponent] });
-ChartEChartsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: ChartEChartsModule, decorators: [{
+ChartEChartsModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: ChartEChartsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+ChartEChartsModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.7", ngImport: i0, type: ChartEChartsModule, declarations: [ChartEChartsComponent], imports: [CommonModule, NzSkeletonModule], exports: [ChartEChartsComponent] });
+ChartEChartsModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: ChartEChartsModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzSkeletonModule],

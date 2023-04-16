@@ -18,9 +18,9 @@ export class STWidgetHostDirective {
         });
     }
 }
-STWidgetHostDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: STWidgetHostDirective, deps: [{ token: i1.STWidgetRegistry }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
-STWidgetHostDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.2.5", type: STWidgetHostDirective, selector: "[st-widget-host]", inputs: { record: "record", column: "column" }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.5", ngImport: i0, type: STWidgetHostDirective, decorators: [{
+STWidgetHostDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: STWidgetHostDirective, deps: [{ token: i1.STWidgetRegistry }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive });
+STWidgetHostDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.2.7", type: STWidgetHostDirective, selector: "[st-widget-host]", inputs: { record: "record", column: "column" }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: STWidgetHostDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[st-widget-host]' }]
         }], ctorParameters: function () { return [{ type: i1.STWidgetRegistry }, { type: i0.ViewContainerRef }]; }, propDecorators: { record: [{
