@@ -9,6 +9,8 @@ export declare function deepGet(obj: NzSafeAny, path: string | string[] | null |
  * Base on [extend](https://github.com/justmoon/node-extend) deep copy.
  *
  * 基于 [extend](https://github.com/justmoon/node-extend) 的深度拷贝
+ *
+ * NOTE: Don't a lot of recursion, maybe performance issues
  */
 export declare function deepCopy<T extends {
     [key: string]: NzSafeAny;

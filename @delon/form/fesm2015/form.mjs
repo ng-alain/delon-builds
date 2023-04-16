@@ -516,7 +516,7 @@ class FormProperty {
         if (typeof visibleIf === 'object' && Object.keys(visibleIf).length === 0) {
             this.setVisible(false);
         }
-        else if (visibleIf != null) {
+        else if (visibleIf !== undefined) {
             const propertiesBinding = [];
             for (const dependencyPath in visibleIf) {
                 if (visibleIf.hasOwnProperty(dependencyPath)) {
@@ -1328,16 +1328,14 @@ class SFComponent {
             Object.keys(schema.properties).forEach(key => {
                 const uiKey = `$${key}`;
                 const property = retrieveSchema(schema.properties[key], definitions);
-                const curUi = deepCopy(Object.assign(Object.assign({}, property.ui), uiSchema[uiKey]));
-                const ui = deepCopy(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, this._defUi), parentUiSchema), { 
-                    // 忽略部分会引起呈现的属性
-                    visibleIf: undefined, hidden: undefined, widget: property.type }), (property.format && this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
+                const curSetUi = Object.assign(Object.assign({}, property.ui), uiSchema[uiKey]);
+                const ui = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, this._defUi), parentUiSchema), { widget: property.type }), (property.format && this.options.formatMap[property.format])), (typeof property.ui === 'string' ? { widget: property.ui } : null)), (!property.format && !property.ui && Array.isArray(property.enum) && property.enum.length > 0
                     ? { widget: 'select' }
-                    : null)), curUi));
+                    : null)), curSetUi);
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {
-                        if (!curUi.spanLabelFixed) {
+                        if (!curSetUi.spanLabelFixed) {
                             ui.spanLabelFixed = parentUiSchema.spanLabelFixed;
                         }
                     }
