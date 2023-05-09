@@ -24,9 +24,9 @@ export class HotkeyDirective {
         this.ngZone.runOutsideAngular(() => uninstall(this.el.nativeElement));
     }
 }
-HotkeyDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: HotkeyDirective, deps: [{ token: i0.ElementRef }, { token: i0.NgZone }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Directive });
-HotkeyDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.2.7", type: HotkeyDirective, selector: "[hotkey]", inputs: { hotkey: "hotkey" }, ngImport: i0 });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: HotkeyDirective, decorators: [{
+HotkeyDirective.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: HotkeyDirective, deps: [{ token: i0.ElementRef }, { token: i0.NgZone }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Directive });
+HotkeyDirective.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "15.2.9", type: HotkeyDirective, selector: "[hotkey]", inputs: { hotkey: "hotkey" }, ngImport: i0 });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: HotkeyDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[hotkey]' }]
         }], ctorParameters: function () { return [{ type: i0.ElementRef }, { type: i0.NgZone }, { type: i1.Platform }]; }, propDecorators: { hotkey: [{

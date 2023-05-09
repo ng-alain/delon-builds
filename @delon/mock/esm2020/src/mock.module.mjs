@@ -20,10 +20,10 @@ export class DelonMockModule {
         };
     }
 }
-DelonMockModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-DelonMockModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.7", ngImport: i0, type: DelonMockModule });
-DelonMockModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: DelonMockModule });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.7", ngImport: i0, type: DelonMockModule, decorators: [{
+DelonMockModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+DelonMockModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "15.2.9", ngImport: i0, type: DelonMockModule });
+DelonMockModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: DelonMockModule });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "15.2.9", ngImport: i0, type: DelonMockModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });
