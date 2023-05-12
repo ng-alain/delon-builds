@@ -2846,8 +2846,8 @@ class TextareaWidget extends ControlUIWidget {
         this.autosize = true;
     }
     ngOnInit() {
-        if (this.autosize != null) {
-            this.autosize = this.autosize;
+        if (this.ui.autosize != null) {
+            this.autosize = this.ui.autosize;
         }
         if (this.ui.computeCharacterCount == null) {
             this.ui.computeCharacterCount = v => v.length;

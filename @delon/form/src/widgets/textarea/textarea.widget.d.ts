@@ -1,10 +1,10 @@
 import { OnInit } from '@angular/core';
-import { AutoSizeType } from 'ng-zorro-antd/input';
+import type { AutoSizeType } from 'ng-zorro-antd/input';
 import { ControlUIWidget } from '../../widget';
 import { SFTextareaWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSchema> implements OnInit {
-    autosize: boolean | AutoSizeType;
+    autosize: string | boolean | AutoSizeType;
     ngOnInit(): void;
     change(val: string): void;
     focus(e: FocusEvent): void;
