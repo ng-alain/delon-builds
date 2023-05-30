@@ -36,5 +36,5 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     private toUtf8ByteArray;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<QRComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<QRComponent, "qr", ["qr"], { "background": "background"; "backgroundAlpha": "backgroundAlpha"; "foreground": "foreground"; "foregroundAlpha": "foregroundAlpha"; "level": "level"; "mime": "mime"; "padding": "padding"; "size": "size"; "value": "value"; "delay": "delay"; }, { "change": "change"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<QRComponent, "qr", ["qr"], { "background": { "alias": "background"; "required": false; }; "backgroundAlpha": { "alias": "backgroundAlpha"; "required": false; }; "foreground": { "alias": "foreground"; "required": false; }; "foregroundAlpha": { "alias": "foregroundAlpha"; "required": false; }; "level": { "alias": "level"; "required": false; }; "mime": { "alias": "mime"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "size": { "alias": "size"; "required": false; }; "value": { "alias": "value"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "change": "change"; }, never, never, false, never>;
 }

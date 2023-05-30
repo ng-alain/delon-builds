@@ -10,5 +10,5 @@ export declare class SFFixedDirective implements AfterViewInit, OnChanges {
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFFixedDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<SFFixedDirective, "[fixed-label]", never, { "num": "fixed-label"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<SFFixedDirective, "[fixed-label]", never, { "num": { "alias": "fixed-label"; "required": false; }; }, {}, never, never, false, never>;
 }

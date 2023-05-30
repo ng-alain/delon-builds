@@ -28,5 +28,5 @@ export declare class G2MiniBarComponent extends G2BaseComponent {
     install(): void;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2MiniBarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniBarComponent, "g2-mini-bar", ["g2MiniBar"], { "color": "color"; "height": "height"; "borderWidth": "borderWidth"; "padding": "padding"; "data": "data"; "yTooltipSuffix": "yTooltipSuffix"; "tooltipType": "tooltipType"; }, { "clickItem": "clickItem"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniBarComponent, "g2-mini-bar", ["g2MiniBar"], { "color": { "alias": "color"; "required": false; }; "height": { "alias": "height"; "required": false; }; "borderWidth": { "alias": "borderWidth"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "data": { "alias": "data"; "required": false; }; "yTooltipSuffix": { "alias": "yTooltipSuffix"; "required": false; }; "tooltipType": { "alias": "tooltipType"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, false, never>;
 }

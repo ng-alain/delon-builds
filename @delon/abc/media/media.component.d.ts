@@ -33,5 +33,5 @@ export declare class MediaComponent implements OnChanges, AfterViewInit, OnDestr
     }): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MediaComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MediaComponent, "media", ["mediaComponent"], { "type": "type"; "source": "source"; "options": "options"; "delay": "delay"; }, { "ready": "ready"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MediaComponent, "media", ["mediaComponent"], { "type": { "alias": "type"; "required": false; }; "source": { "alias": "source"; "required": false; }; "options": { "alias": "options"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "ready": "ready"; }, never, ["*"], false, never>;
 }

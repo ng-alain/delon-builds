@@ -20,7 +20,7 @@ export declare class SVContainerComponent {
     noColon: boolean;
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "title": "title"; "size": "size"; "gutter": "gutter"; "layout": "layout"; "labelWidth": "labelWidth"; "col": "col"; "default": "default"; "noColon": "noColon"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 export declare class SVTitleComponent implements OnInit {
     private parent;

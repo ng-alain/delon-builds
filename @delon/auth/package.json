@@ -1,6 +1,6 @@
 {
   "name": "@delon/auth",
-  "version": "15.2.1",
+  "version": "15.2.1-7b05689f",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,14 +25,10 @@
     "ng-zorro-antd"
   ],
   "dependencies": {
-    "@delon/util": "^15.2.1",
+    "@delon/util": "^15.2.1-7b05689f",
     "tslib": "^2.3.0"
   },
-  "module": "fesm2015/auth.mjs",
-  "es2020": "fesm2020/auth.mjs",
-  "esm2020": "esm2020/auth.mjs",
-  "fesm2020": "fesm2020/auth.mjs",
-  "fesm2015": "fesm2015/auth.mjs",
+  "module": "fesm2022/auth.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -40,11 +36,9 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/auth.mjs",
-      "es2020": "./fesm2020/auth.mjs",
-      "es2015": "./fesm2015/auth.mjs",
-      "node": "./fesm2015/auth.mjs",
-      "default": "./fesm2020/auth.mjs"
+      "esm2022": "./esm2022/auth.mjs",
+      "esm": "./esm2022/auth.mjs",
+      "default": "./fesm2022/auth.mjs"
     }
   },
   "sideEffects": false

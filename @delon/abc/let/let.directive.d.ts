@@ -12,5 +12,5 @@ export declare class LetDirective<T> {
     constructor(vc: ViewContainerRef, ref: TemplateRef<LetContext<T>>);
     static ngTemplateContextGuard<T>(_dir: LetDirective<T>, _ctx: NzSafeAny): _ctx is LetDirective<T>;
     static ɵfac: i0.ɵɵFactoryDeclaration<LetDirective<any>, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<LetDirective<any>, "[let]", never, { "let": "let"; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<LetDirective<any>, "[let]", never, { "let": { "alias": "let"; "required": true; }; }, {}, never, never, false, never>;
 }

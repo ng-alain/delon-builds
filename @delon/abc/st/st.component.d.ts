@@ -96,13 +96,17 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     header?: string | TemplateRef<void> | null;
     showHeader: boolean;
     footer?: string | TemplateRef<void> | null;
-    bodyHeader?: TemplateRef<STStatisticalResults> | null;
-    body?: TemplateRef<STStatisticalResults> | null;
+    bodyHeader?: TemplateRef<{
+        $implicit: STStatisticalResults;
+    }> | null;
+    body?: TemplateRef<{
+        $implicit: STStatisticalResults;
+    }> | null;
     expandRowByClick: boolean;
     expandAccordion: boolean;
     expand: TemplateRef<{
         $implicit: NzSafeAny;
-        column: STColumn;
+        index: number;
     }> | null;
     noResult?: string | TemplateRef<void> | null;
     responsive: boolean;
@@ -254,7 +258,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     } & SimpleChanges): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STComponent, [{ optional: true; }, null, null, null, null, null, null, null, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": "req"; "res": "res"; "page": "page"; "data": "data"; "columns": "columns"; "contextmenu": "contextmenu"; "ps": "ps"; "pi": "pi"; "total": "total"; "loading": "loading"; "loadingDelay": "loadingDelay"; "loadingIndicator": "loadingIndicator"; "bordered": "bordered"; "size": "size"; "scroll": "scroll"; "singleSort": "singleSort"; "multiSort": "multiSort"; "rowClassName": "rowClassName"; "clickRowClassName": "clickRowClassName"; "widthMode": "widthMode"; "widthConfig": "widthConfig"; "resizable": "resizable"; "header": "header"; "showHeader": "showHeader"; "footer": "footer"; "bodyHeader": "bodyHeader"; "body": "body"; "expandRowByClick": "expandRowByClick"; "expandAccordion": "expandAccordion"; "expand": "expand"; "noResult": "noResult"; "responsive": "responsive"; "responsiveHideHeaderFooter": "responsiveHideHeaderFooter"; "virtualScroll": "virtualScroll"; "virtualItemSize": "virtualItemSize"; "virtualMaxBufferPx": "virtualMaxBufferPx"; "virtualMinBufferPx": "virtualMinBufferPx"; "customRequest": "customRequest"; "virtualForTrackBy": "virtualForTrackBy"; }, { "error": "error"; "change": "change"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": { "alias": "req"; "required": false; }; "res": { "alias": "res"; "required": false; }; "page": { "alias": "page"; "required": false; }; "data": { "alias": "data"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "contextmenu": { "alias": "contextmenu"; "required": false; }; "ps": { "alias": "ps"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "total": { "alias": "total"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "loadingDelay": { "alias": "loadingDelay"; "required": false; }; "loadingIndicator": { "alias": "loadingIndicator"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; "size": { "alias": "size"; "required": false; }; "scroll": { "alias": "scroll"; "required": false; }; "singleSort": { "alias": "singleSort"; "required": false; }; "multiSort": { "alias": "multiSort"; "required": false; }; "rowClassName": { "alias": "rowClassName"; "required": false; }; "clickRowClassName": { "alias": "clickRowClassName"; "required": false; }; "widthMode": { "alias": "widthMode"; "required": false; }; "widthConfig": { "alias": "widthConfig"; "required": false; }; "resizable": { "alias": "resizable"; "required": false; }; "header": { "alias": "header"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "bodyHeader": { "alias": "bodyHeader"; "required": false; }; "body": { "alias": "body"; "required": false; }; "expandRowByClick": { "alias": "expandRowByClick"; "required": false; }; "expandAccordion": { "alias": "expandAccordion"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; "noResult": { "alias": "noResult"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "responsiveHideHeaderFooter": { "alias": "responsiveHideHeaderFooter"; "required": false; }; "virtualScroll": { "alias": "virtualScroll"; "required": false; }; "virtualItemSize": { "alias": "virtualItemSize"; "required": false; }; "virtualMaxBufferPx": { "alias": "virtualMaxBufferPx"; "required": false; }; "virtualMinBufferPx": { "alias": "virtualMinBufferPx"; "required": false; }; "customRequest": { "alias": "customRequest"; "required": false; }; "virtualForTrackBy": { "alias": "virtualForTrackBy"; "required": false; }; }, { "error": "error"; "change": "change"; }, never, never, false, never>;
 }
 export declare class STTdComponent {
     private stComp;
@@ -277,5 +281,5 @@ export declare class STTdComponent {
     _btn(btn: STColumnButton, ev?: Event): void;
     private btnCallback;
     static ɵfac: i0.ɵɵFactoryDeclaration<STTdComponent, [{ host: true; }, null, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STTdComponent, "st-td", never, { "c": "c"; "cIdx": "cIdx"; "data": "data"; "i": "i"; "index": "index"; }, { "n": "n"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STTdComponent, "st-td", never, { "c": { "alias": "c"; "required": false; }; "cIdx": { "alias": "cIdx"; "required": false; }; "data": { "alias": "data"; "required": false; }; "i": { "alias": "i"; "required": false; }; "index": { "alias": "index"; "required": false; }; }, { "n": "n"; }, never, never, false, never>;
 }

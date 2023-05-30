@@ -20,5 +20,5 @@ export declare class STFilterComponent {
     confirm(): this;
     reset(): this;
     static ɵfac: i0.ɵɵFactoryDeclaration<STFilterComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STFilterComponent, "st-filter", never, { "col": "col"; "locale": "locale"; "f": "f"; }, { "n": "n"; "handle": "handle"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STFilterComponent, "st-filter", never, { "col": { "alias": "col"; "required": false; }; "locale": { "alias": "locale"; "required": false; }; "f": { "alias": "f"; "required": false; }; }, { "n": "n"; "handle": "handle"; }, never, never, false, never>;
 }

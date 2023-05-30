@@ -31,5 +31,5 @@ export declare class G2BarComponent extends G2BaseComponent {
     private updatelabel;
     private installResizeEvent;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2BarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2BarComponent, "g2-bar", ["g2Bar"], { "title": "title"; "color": "color"; "height": "height"; "padding": "padding"; "data": "data"; "autoLabel": "autoLabel"; "interaction": "interaction"; }, { "clickItem": "clickItem"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2BarComponent, "g2-bar", ["g2Bar"], { "title": { "alias": "title"; "required": false; }; "color": { "alias": "color"; "required": false; }; "height": { "alias": "height"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "data": { "alias": "data"; "required": false; }; "autoLabel": { "alias": "autoLabel"; "required": false; }; "interaction": { "alias": "interaction"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, false, never>;
 }

@@ -17,31 +17,31 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
-      `@angular-eslint/builder@~15.2.0`,
-      `@angular-eslint/eslint-plugin@~15.2.0`,
-      `@angular-eslint/eslint-plugin-template@~15.2.0`,
-      `@angular-eslint/schematics@~15.2.0`,
-      `@angular-eslint/template-parser@~15.2.0`,
-      `@typescript-eslint/eslint-plugin@~5.49.0`,
-      `@typescript-eslint/parser@~5.49.0`,
-      `eslint@^8.33.0`,
-      `eslint-config-prettier@~8.6.0`,
-      `eslint-plugin-import@~2.26.0`,
-      `eslint-plugin-jsdoc@~39.7.4`,
+      `@angular-eslint/builder@~16.0.3`,
+      `@angular-eslint/eslint-plugin@~16.0.3`,
+      `@angular-eslint/eslint-plugin-template@~16.0.3`,
+      `@angular-eslint/schematics@~16.0.3`,
+      `@angular-eslint/template-parser@~16.0.3`,
+      `@typescript-eslint/eslint-plugin@~5.59.8`,
+      `@typescript-eslint/parser@~5.59.8`,
+      `eslint@^8.41.0`,
+      `eslint-config-prettier@~8.8.0`,
+      `eslint-plugin-import@~2.25.3`,
+      `eslint-plugin-jsdoc@~45.0.0`,
       `eslint-plugin-prefer-arrow@~1.2.3`,
       `eslint-plugin-prettier@~4.2.1`,
-      `eslint-plugin-deprecation@~1.3.3`,
-      `prettier@^2.8.3`,
+      `eslint-plugin-deprecation@~1.4.1`,
+      `prettier@^2.8.8`,
       `husky@^7.0.4`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^15.0.1`,
       `source-map-explorer@^2.5.3`,
-      `@angular/language-service@^15.1.0`,
+      `@angular/language-service@^16.0.3`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^15.1.0`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^16.0.0-beta.0`]);
 }
 
 export function addESLintRule(context: SchematicContext, showLog: Boolean = true): Rule {

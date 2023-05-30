@@ -33,5 +33,5 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     ngOnChanges(): void;
     checkContent(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SVComponent, [null, { optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": "optional"; "optionalHelp": "optionalHelp"; "optionalHelpColor": "optionalHelpColor"; "label": "label"; "unit": "unit"; "col": "col"; "default": "default"; "type": "type"; "noColon": "noColon"; "hideLabel": "hideLabel"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVComponent, "sv, [sv]", ["sv"], { "optional": { "alias": "optional"; "required": false; }; "optionalHelp": { "alias": "optionalHelp"; "required": false; }; "optionalHelpColor": { "alias": "optionalHelpColor"; "required": false; }; "label": { "alias": "label"; "required": false; }; "unit": { "alias": "unit"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "type": { "alias": "type"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "hideLabel": { "alias": "hideLabel"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

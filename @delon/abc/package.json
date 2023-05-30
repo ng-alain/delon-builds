@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "15.2.1",
+  "version": "15.2.1-7b05689f",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,20 +25,16 @@
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "xlsx": "^0.18.5",
-    "plyr": "^3.7.3",
+    "plyr": "^3.7.8",
     "pdfjs-dist": "^2.0.0 || ^3.0.0",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^15.0.0",
-    "@delon/theme": "^15.2.1",
-    "@delon/util": "^15.2.1",
-    "@delon/acl": "^15.2.1",
+    "@delon/theme": "^15.2.1-7b05689f",
+    "@delon/util": "^15.2.1-7b05689f",
+    "@delon/acl": "^15.2.1-7b05689f",
     "tslib": "^2.3.0"
   },
-  "module": "fesm2015/abc.mjs",
-  "es2020": "fesm2020/abc.mjs",
-  "esm2020": "esm2020/abc.mjs",
-  "fesm2020": "fesm2020/abc.mjs",
-  "fesm2015": "fesm2015/abc.mjs",
+  "module": "fesm2022/abc.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -46,267 +42,201 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/abc.mjs",
-      "es2020": "./fesm2020/abc.mjs",
-      "es2015": "./fesm2015/abc.mjs",
-      "node": "./fesm2015/abc.mjs",
-      "default": "./fesm2020/abc.mjs"
+      "esm2022": "./esm2022/abc.mjs",
+      "esm": "./esm2022/abc.mjs",
+      "default": "./fesm2022/abc.mjs"
     },
     "./auto-focus": {
       "types": "./auto-focus/index.d.ts",
-      "esm2020": "./esm2020/auto-focus/auto-focus.mjs",
-      "es2020": "./fesm2020/auto-focus.mjs",
-      "es2015": "./fesm2015/auto-focus.mjs",
-      "node": "./fesm2015/auto-focus.mjs",
-      "default": "./fesm2020/auto-focus.mjs"
+      "esm2022": "./esm2022/auto-focus/auto-focus.mjs",
+      "esm": "./esm2022/auto-focus/auto-focus.mjs",
+      "default": "./fesm2022/auto-focus.mjs"
     },
     "./avatar-list": {
       "types": "./avatar-list/index.d.ts",
-      "esm2020": "./esm2020/avatar-list/avatar-list.mjs",
-      "es2020": "./fesm2020/avatar-list.mjs",
-      "es2015": "./fesm2015/avatar-list.mjs",
-      "node": "./fesm2015/avatar-list.mjs",
-      "default": "./fesm2020/avatar-list.mjs"
+      "esm2022": "./esm2022/avatar-list/avatar-list.mjs",
+      "esm": "./esm2022/avatar-list/avatar-list.mjs",
+      "default": "./fesm2022/avatar-list.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",
-      "esm2020": "./esm2020/count-down/count-down.mjs",
-      "es2020": "./fesm2020/count-down.mjs",
-      "es2015": "./fesm2015/count-down.mjs",
-      "node": "./fesm2015/count-down.mjs",
-      "default": "./fesm2020/count-down.mjs"
+      "esm2022": "./esm2022/count-down/count-down.mjs",
+      "esm": "./esm2022/count-down/count-down.mjs",
+      "default": "./fesm2022/count-down.mjs"
     },
     "./date-picker": {
       "types": "./date-picker/index.d.ts",
-      "esm2020": "./esm2020/date-picker/date-picker.mjs",
-      "es2020": "./fesm2020/date-picker.mjs",
-      "es2015": "./fesm2015/date-picker.mjs",
-      "node": "./fesm2015/date-picker.mjs",
-      "default": "./fesm2020/date-picker.mjs"
+      "esm2022": "./esm2022/date-picker/date-picker.mjs",
+      "esm": "./esm2022/date-picker/date-picker.mjs",
+      "default": "./fesm2022/date-picker.mjs"
     },
     "./down-file": {
       "types": "./down-file/index.d.ts",
-      "esm2020": "./esm2020/down-file/down-file.mjs",
-      "es2020": "./fesm2020/down-file.mjs",
-      "es2015": "./fesm2015/down-file.mjs",
-      "node": "./fesm2015/down-file.mjs",
-      "default": "./fesm2020/down-file.mjs"
+      "esm2022": "./esm2022/down-file/down-file.mjs",
+      "esm": "./esm2022/down-file/down-file.mjs",
+      "default": "./fesm2022/down-file.mjs"
     },
     "./ellipsis": {
       "types": "./ellipsis/index.d.ts",
-      "esm2020": "./esm2020/ellipsis/ellipsis.mjs",
-      "es2020": "./fesm2020/ellipsis.mjs",
-      "es2015": "./fesm2015/ellipsis.mjs",
-      "node": "./fesm2015/ellipsis.mjs",
-      "default": "./fesm2020/ellipsis.mjs"
+      "esm2022": "./esm2022/ellipsis/ellipsis.mjs",
+      "esm": "./esm2022/ellipsis/ellipsis.mjs",
+      "default": "./fesm2022/ellipsis.mjs"
     },
     "./error-collect": {
       "types": "./error-collect/index.d.ts",
-      "esm2020": "./esm2020/error-collect/error-collect.mjs",
-      "es2020": "./fesm2020/error-collect.mjs",
-      "es2015": "./fesm2015/error-collect.mjs",
-      "node": "./fesm2015/error-collect.mjs",
-      "default": "./fesm2020/error-collect.mjs"
+      "esm2022": "./esm2022/error-collect/error-collect.mjs",
+      "esm": "./esm2022/error-collect/error-collect.mjs",
+      "default": "./fesm2022/error-collect.mjs"
     },
     "./exception": {
       "types": "./exception/index.d.ts",
-      "esm2020": "./esm2020/exception/exception.mjs",
-      "es2020": "./fesm2020/exception.mjs",
-      "es2015": "./fesm2015/exception.mjs",
-      "node": "./fesm2015/exception.mjs",
-      "default": "./fesm2020/exception.mjs"
+      "esm2022": "./esm2022/exception/exception.mjs",
+      "esm": "./esm2022/exception/exception.mjs",
+      "default": "./fesm2022/exception.mjs"
     },
     "./footer-toolbar": {
       "types": "./footer-toolbar/index.d.ts",
-      "esm2020": "./esm2020/footer-toolbar/footer-toolbar.mjs",
-      "es2020": "./fesm2020/footer-toolbar.mjs",
-      "es2015": "./fesm2015/footer-toolbar.mjs",
-      "node": "./fesm2015/footer-toolbar.mjs",
-      "default": "./fesm2020/footer-toolbar.mjs"
+      "esm2022": "./esm2022/footer-toolbar/footer-toolbar.mjs",
+      "esm": "./esm2022/footer-toolbar/footer-toolbar.mjs",
+      "default": "./fesm2022/footer-toolbar.mjs"
     },
     "./full-content": {
       "types": "./full-content/index.d.ts",
-      "esm2020": "./esm2020/full-content/full-content.mjs",
-      "es2020": "./fesm2020/full-content.mjs",
-      "es2015": "./fesm2015/full-content.mjs",
-      "node": "./fesm2015/full-content.mjs",
-      "default": "./fesm2020/full-content.mjs"
+      "esm2022": "./esm2022/full-content/full-content.mjs",
+      "esm": "./esm2022/full-content/full-content.mjs",
+      "default": "./fesm2022/full-content.mjs"
     },
     "./global-footer": {
       "types": "./global-footer/index.d.ts",
-      "esm2020": "./esm2020/global-footer/global-footer.mjs",
-      "es2020": "./fesm2020/global-footer.mjs",
-      "es2015": "./fesm2015/global-footer.mjs",
-      "node": "./fesm2015/global-footer.mjs",
-      "default": "./fesm2020/global-footer.mjs"
+      "esm2022": "./esm2022/global-footer/global-footer.mjs",
+      "esm": "./esm2022/global-footer/global-footer.mjs",
+      "default": "./fesm2022/global-footer.mjs"
     },
     "./hotkey": {
       "types": "./hotkey/index.d.ts",
-      "esm2020": "./esm2020/hotkey/hotkey.mjs",
-      "es2020": "./fesm2020/hotkey.mjs",
-      "es2015": "./fesm2015/hotkey.mjs",
-      "node": "./fesm2015/hotkey.mjs",
-      "default": "./fesm2020/hotkey.mjs"
+      "esm2022": "./esm2022/hotkey/hotkey.mjs",
+      "esm": "./esm2022/hotkey/hotkey.mjs",
+      "default": "./fesm2022/hotkey.mjs"
     },
     "./let": {
       "types": "./let/index.d.ts",
-      "esm2020": "./esm2020/let/let.mjs",
-      "es2020": "./fesm2020/let.mjs",
-      "es2015": "./fesm2015/let.mjs",
-      "node": "./fesm2015/let.mjs",
-      "default": "./fesm2020/let.mjs"
+      "esm2022": "./esm2022/let/let.mjs",
+      "esm": "./esm2022/let/let.mjs",
+      "default": "./fesm2022/let.mjs"
     },
     "./loading": {
       "types": "./loading/index.d.ts",
-      "esm2020": "./esm2020/loading/loading.mjs",
-      "es2020": "./fesm2020/loading.mjs",
-      "es2015": "./fesm2015/loading.mjs",
-      "node": "./fesm2015/loading.mjs",
-      "default": "./fesm2020/loading.mjs"
+      "esm2022": "./esm2022/loading/loading.mjs",
+      "esm": "./esm2022/loading/loading.mjs",
+      "default": "./fesm2022/loading.mjs"
     },
     "./lodop": {
       "types": "./lodop/index.d.ts",
-      "esm2020": "./esm2020/lodop/lodop.mjs",
-      "es2020": "./fesm2020/lodop.mjs",
-      "es2015": "./fesm2015/lodop.mjs",
-      "node": "./fesm2015/lodop.mjs",
-      "default": "./fesm2020/lodop.mjs"
+      "esm2022": "./esm2022/lodop/lodop.mjs",
+      "esm": "./esm2022/lodop/lodop.mjs",
+      "default": "./fesm2022/lodop.mjs"
     },
     "./media": {
       "types": "./media/index.d.ts",
-      "esm2020": "./esm2020/media/media.mjs",
-      "es2020": "./fesm2020/media.mjs",
-      "es2015": "./fesm2015/media.mjs",
-      "node": "./fesm2015/media.mjs",
-      "default": "./fesm2020/media.mjs"
+      "esm2022": "./esm2022/media/media.mjs",
+      "esm": "./esm2022/media/media.mjs",
+      "default": "./fesm2022/media.mjs"
     },
     "./notice-icon": {
       "types": "./notice-icon/index.d.ts",
-      "esm2020": "./esm2020/notice-icon/notice-icon.mjs",
-      "es2020": "./fesm2020/notice-icon.mjs",
-      "es2015": "./fesm2015/notice-icon.mjs",
-      "node": "./fesm2015/notice-icon.mjs",
-      "default": "./fesm2020/notice-icon.mjs"
+      "esm2022": "./esm2022/notice-icon/notice-icon.mjs",
+      "esm": "./esm2022/notice-icon/notice-icon.mjs",
+      "default": "./fesm2022/notice-icon.mjs"
     },
     "./observers": {
       "types": "./observers/index.d.ts",
-      "esm2020": "./esm2020/observers/chart-observer-size.mjs",
-      "es2020": "./fesm2020/chart-observer-size.mjs",
-      "es2015": "./fesm2015/chart-observer-size.mjs",
-      "node": "./fesm2015/chart-observer-size.mjs",
-      "default": "./fesm2020/chart-observer-size.mjs"
+      "esm2022": "./esm2022/observers/chart-observer-size.mjs",
+      "esm": "./esm2022/observers/chart-observer-size.mjs",
+      "default": "./fesm2022/chart-observer-size.mjs"
     },
     "./onboarding": {
       "types": "./onboarding/index.d.ts",
-      "esm2020": "./esm2020/onboarding/onboarding.mjs",
-      "es2020": "./fesm2020/onboarding.mjs",
-      "es2015": "./fesm2015/onboarding.mjs",
-      "node": "./fesm2015/onboarding.mjs",
-      "default": "./fesm2020/onboarding.mjs"
+      "esm2022": "./esm2022/onboarding/onboarding.mjs",
+      "esm": "./esm2022/onboarding/onboarding.mjs",
+      "default": "./fesm2022/onboarding.mjs"
     },
     "./page-header": {
       "types": "./page-header/index.d.ts",
-      "esm2020": "./esm2020/page-header/page-header.mjs",
-      "es2020": "./fesm2020/page-header.mjs",
-      "es2015": "./fesm2015/page-header.mjs",
-      "node": "./fesm2015/page-header.mjs",
-      "default": "./fesm2020/page-header.mjs"
+      "esm2022": "./esm2022/page-header/page-header.mjs",
+      "esm": "./esm2022/page-header/page-header.mjs",
+      "default": "./fesm2022/page-header.mjs"
     },
     "./pdf": {
       "types": "./pdf/index.d.ts",
-      "esm2020": "./esm2020/pdf/pdf.mjs",
-      "es2020": "./fesm2020/pdf.mjs",
-      "es2015": "./fesm2015/pdf.mjs",
-      "node": "./fesm2015/pdf.mjs",
-      "default": "./fesm2020/pdf.mjs"
+      "esm2022": "./esm2022/pdf/pdf.mjs",
+      "esm": "./esm2022/pdf/pdf.mjs",
+      "default": "./fesm2022/pdf.mjs"
     },
     "./qr": {
       "types": "./qr/index.d.ts",
-      "esm2020": "./esm2020/qr/qr.mjs",
-      "es2020": "./fesm2020/qr.mjs",
-      "es2015": "./fesm2015/qr.mjs",
-      "node": "./fesm2015/qr.mjs",
-      "default": "./fesm2020/qr.mjs"
+      "esm2022": "./esm2022/qr/qr.mjs",
+      "esm": "./esm2022/qr/qr.mjs",
+      "default": "./fesm2022/qr.mjs"
     },
     "./quick-menu": {
       "types": "./quick-menu/index.d.ts",
-      "esm2020": "./esm2020/quick-menu/quick-menu.mjs",
-      "es2020": "./fesm2020/quick-menu.mjs",
-      "es2015": "./fesm2015/quick-menu.mjs",
-      "node": "./fesm2015/quick-menu.mjs",
-      "default": "./fesm2020/quick-menu.mjs"
+      "esm2022": "./esm2022/quick-menu/quick-menu.mjs",
+      "esm": "./esm2022/quick-menu/quick-menu.mjs",
+      "default": "./fesm2022/quick-menu.mjs"
     },
     "./result": {
       "types": "./result/index.d.ts",
-      "esm2020": "./esm2020/result/result.mjs",
-      "es2020": "./fesm2020/result.mjs",
-      "es2015": "./fesm2015/result.mjs",
-      "node": "./fesm2015/result.mjs",
-      "default": "./fesm2020/result.mjs"
+      "esm2022": "./esm2022/result/result.mjs",
+      "esm": "./esm2022/result/result.mjs",
+      "default": "./fesm2022/result.mjs"
     },
     "./reuse-tab": {
       "types": "./reuse-tab/index.d.ts",
-      "esm2020": "./esm2020/reuse-tab/reuse-tab.mjs",
-      "es2020": "./fesm2020/reuse-tab.mjs",
-      "es2015": "./fesm2015/reuse-tab.mjs",
-      "node": "./fesm2015/reuse-tab.mjs",
-      "default": "./fesm2020/reuse-tab.mjs"
+      "esm2022": "./esm2022/reuse-tab/reuse-tab.mjs",
+      "esm": "./esm2022/reuse-tab/reuse-tab.mjs",
+      "default": "./fesm2022/reuse-tab.mjs"
     },
     "./se": {
       "types": "./se/index.d.ts",
-      "esm2020": "./esm2020/se/se.mjs",
-      "es2020": "./fesm2020/se.mjs",
-      "es2015": "./fesm2015/se.mjs",
-      "node": "./fesm2015/se.mjs",
-      "default": "./fesm2020/se.mjs"
+      "esm2022": "./esm2022/se/se.mjs",
+      "esm": "./esm2022/se/se.mjs",
+      "default": "./fesm2022/se.mjs"
     },
     "./sg": {
       "types": "./sg/index.d.ts",
-      "esm2020": "./esm2020/sg/sg.mjs",
-      "es2020": "./fesm2020/sg.mjs",
-      "es2015": "./fesm2015/sg.mjs",
-      "node": "./fesm2015/sg.mjs",
-      "default": "./fesm2020/sg.mjs"
+      "esm2022": "./esm2022/sg/sg.mjs",
+      "esm": "./esm2022/sg/sg.mjs",
+      "default": "./fesm2022/sg.mjs"
     },
     "./st": {
       "types": "./st/index.d.ts",
-      "esm2020": "./esm2020/st/st.mjs",
-      "es2020": "./fesm2020/st.mjs",
-      "es2015": "./fesm2015/st.mjs",
-      "node": "./fesm2015/st.mjs",
-      "default": "./fesm2020/st.mjs"
+      "esm2022": "./esm2022/st/st.mjs",
+      "esm": "./esm2022/st/st.mjs",
+      "default": "./fesm2022/st.mjs"
     },
     "./sv": {
       "types": "./sv/index.d.ts",
-      "esm2020": "./esm2020/sv/sv.mjs",
-      "es2020": "./fesm2020/sv.mjs",
-      "es2015": "./fesm2015/sv.mjs",
-      "node": "./fesm2015/sv.mjs",
-      "default": "./fesm2020/sv.mjs"
+      "esm2022": "./esm2022/sv/sv.mjs",
+      "esm": "./esm2022/sv/sv.mjs",
+      "default": "./fesm2022/sv.mjs"
     },
     "./tag-select": {
       "types": "./tag-select/index.d.ts",
-      "esm2020": "./esm2020/tag-select/tag-select.mjs",
-      "es2020": "./fesm2020/tag-select.mjs",
-      "es2015": "./fesm2015/tag-select.mjs",
-      "node": "./fesm2015/tag-select.mjs",
-      "default": "./fesm2020/tag-select.mjs"
+      "esm2022": "./esm2022/tag-select/tag-select.mjs",
+      "esm": "./esm2022/tag-select/tag-select.mjs",
+      "default": "./fesm2022/tag-select.mjs"
     },
     "./xlsx": {
       "types": "./xlsx/index.d.ts",
-      "esm2020": "./esm2020/xlsx/xlsx.mjs",
-      "es2020": "./fesm2020/xlsx.mjs",
-      "es2015": "./fesm2015/xlsx.mjs",
-      "node": "./fesm2015/xlsx.mjs",
-      "default": "./fesm2020/xlsx.mjs"
+      "esm2022": "./esm2022/xlsx/xlsx.mjs",
+      "esm": "./esm2022/xlsx/xlsx.mjs",
+      "default": "./fesm2022/xlsx.mjs"
     },
     "./zip": {
       "types": "./zip/index.d.ts",
-      "esm2020": "./esm2020/zip/zip.mjs",
-      "es2020": "./fesm2020/zip.mjs",
-      "es2015": "./fesm2015/zip.mjs",
-      "node": "./fesm2015/zip.mjs",
-      "default": "./fesm2020/zip.mjs"
+      "esm2022": "./esm2022/zip/zip.mjs",
+      "esm": "./esm2022/zip/zip.mjs",
+      "default": "./fesm2022/zip.mjs"
     }
   },
   "sideEffects": false

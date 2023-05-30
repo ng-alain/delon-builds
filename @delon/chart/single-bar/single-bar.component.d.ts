@@ -27,5 +27,5 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     onlyChangeData: (changes: SimpleChanges) => boolean;
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2SingleBarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2SingleBarComponent, "g2-single-bar", ["g2SingleBar"], { "plusColor": "plusColor"; "minusColor": "minusColor"; "height": "height"; "barSize": "barSize"; "min": "min"; "max": "max"; "value": "value"; "line": "line"; "format": "format"; "padding": "padding"; "textStyle": "textStyle"; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2SingleBarComponent, "g2-single-bar", ["g2SingleBar"], { "plusColor": { "alias": "plusColor"; "required": false; }; "minusColor": { "alias": "minusColor"; "required": false; }; "height": { "alias": "height"; "required": false; }; "barSize": { "alias": "barSize"; "required": false; }; "min": { "alias": "min"; "required": false; }; "max": { "alias": "max"; "required": false; }; "value": { "alias": "value"; "required": false; }; "line": { "alias": "line"; "required": false; }; "format": { "alias": "format"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "textStyle": { "alias": "textStyle"; "required": false; }; }, {}, never, never, false, never>;
 }

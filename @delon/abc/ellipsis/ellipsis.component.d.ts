@@ -42,5 +42,5 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<EllipsisComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<EllipsisComponent, "ellipsis", ["ellipsis"], { "tooltip": "tooltip"; "length": "length"; "lines": "lines"; "fullWidthRecognition": "fullWidthRecognition"; "tail": "tail"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<EllipsisComponent, "ellipsis", ["ellipsis"], { "tooltip": { "alias": "tooltip"; "required": false; }; "length": { "alias": "length"; "required": false; }; "lines": { "alias": "lines"; "required": false; }; "fullWidthRecognition": { "alias": "fullWidthRecognition"; "required": false; }; "tail": { "alias": "tail"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

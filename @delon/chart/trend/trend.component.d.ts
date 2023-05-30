@@ -10,5 +10,5 @@ export declare class TrendComponent {
     /** 颜色反转 */
     reverseColor: boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<TrendComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TrendComponent, "trend", ["trend"], { "flag": "flag"; "colorful": "colorful"; "reverseColor": "reverseColor"; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TrendComponent, "trend", ["trend"], { "flag": { "alias": "flag"; "required": false; }; "colorful": { "alias": "colorful"; "required": false; }; "reverseColor": { "alias": "reverseColor"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

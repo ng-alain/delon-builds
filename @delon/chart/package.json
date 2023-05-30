@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "15.2.1",
+  "version": "15.2.1-7b05689f",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,17 +26,13 @@
   ],
   "dependencies": {
     "@antv/data-set": "^0.11.8",
-    "@antv/g2": "^4.2.8",
-    "echarts": "^5.4.1",
-    "@delon/util": "^15.2.1",
-    "@delon/theme": "^15.2.1",
+    "@antv/g2": "^4.2.10",
+    "echarts": "^5.4.2",
+    "@delon/util": "^15.2.1-7b05689f",
+    "@delon/theme": "^15.2.1-7b05689f",
     "tslib": "^2.3.0"
   },
-  "module": "fesm2015/chart.mjs",
-  "es2020": "fesm2020/chart.mjs",
-  "esm2020": "esm2020/chart.mjs",
-  "fesm2020": "fesm2020/chart.mjs",
-  "fesm2015": "fesm2015/chart.mjs",
+  "module": "fesm2022/chart.mjs",
   "typings": "index.d.ts",
   "exports": {
     "./package.json": {
@@ -44,147 +40,111 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2020": "./esm2020/chart.mjs",
-      "es2020": "./fesm2020/chart.mjs",
-      "es2015": "./fesm2015/chart.mjs",
-      "node": "./fesm2015/chart.mjs",
-      "default": "./fesm2020/chart.mjs"
+      "esm2022": "./esm2022/chart.mjs",
+      "esm": "./esm2022/chart.mjs",
+      "default": "./fesm2022/chart.mjs"
     },
     "./bar": {
       "types": "./bar/index.d.ts",
-      "esm2020": "./esm2020/bar/bar.mjs",
-      "es2020": "./fesm2020/bar.mjs",
-      "es2015": "./fesm2015/bar.mjs",
-      "node": "./fesm2015/bar.mjs",
-      "default": "./fesm2020/bar.mjs"
+      "esm2022": "./esm2022/bar/bar.mjs",
+      "esm": "./esm2022/bar/bar.mjs",
+      "default": "./fesm2022/bar.mjs"
     },
     "./card": {
       "types": "./card/index.d.ts",
-      "esm2020": "./esm2020/card/card.mjs",
-      "es2020": "./fesm2020/card.mjs",
-      "es2015": "./fesm2015/card.mjs",
-      "node": "./fesm2015/card.mjs",
-      "default": "./fesm2020/card.mjs"
+      "esm2022": "./esm2022/card/card.mjs",
+      "esm": "./esm2022/card/card.mjs",
+      "default": "./fesm2022/card.mjs"
     },
     "./chart-echarts": {
       "types": "./chart-echarts/index.d.ts",
-      "esm2020": "./esm2020/chart-echarts/chart-echarts.mjs",
-      "es2020": "./fesm2020/chart-echarts.mjs",
-      "es2015": "./fesm2015/chart-echarts.mjs",
-      "node": "./fesm2015/chart-echarts.mjs",
-      "default": "./fesm2020/chart-echarts.mjs"
+      "esm2022": "./esm2022/chart-echarts/chart-echarts.mjs",
+      "esm": "./esm2022/chart-echarts/chart-echarts.mjs",
+      "default": "./fesm2022/chart-echarts.mjs"
     },
     "./core": {
       "types": "./core/index.d.ts",
-      "esm2020": "./esm2020/core/core.mjs",
-      "es2020": "./fesm2020/core.mjs",
-      "es2015": "./fesm2015/core.mjs",
-      "node": "./fesm2015/core.mjs",
-      "default": "./fesm2020/core.mjs"
+      "esm2022": "./esm2022/core/core.mjs",
+      "esm": "./esm2022/core/core.mjs",
+      "default": "./fesm2022/core.mjs"
     },
     "./custom": {
       "types": "./custom/index.d.ts",
-      "esm2020": "./esm2020/custom/custom.mjs",
-      "es2020": "./fesm2020/custom.mjs",
-      "es2015": "./fesm2015/custom.mjs",
-      "node": "./fesm2015/custom.mjs",
-      "default": "./fesm2020/custom.mjs"
+      "esm2022": "./esm2022/custom/custom.mjs",
+      "esm": "./esm2022/custom/custom.mjs",
+      "default": "./fesm2022/custom.mjs"
     },
     "./gauge": {
       "types": "./gauge/index.d.ts",
-      "esm2020": "./esm2020/gauge/gauge.mjs",
-      "es2020": "./fesm2020/gauge.mjs",
-      "es2015": "./fesm2015/gauge.mjs",
-      "node": "./fesm2015/gauge.mjs",
-      "default": "./fesm2020/gauge.mjs"
+      "esm2022": "./esm2022/gauge/gauge.mjs",
+      "esm": "./esm2022/gauge/gauge.mjs",
+      "default": "./fesm2022/gauge.mjs"
     },
     "./mini-area": {
       "types": "./mini-area/index.d.ts",
-      "esm2020": "./esm2020/mini-area/mini-area.mjs",
-      "es2020": "./fesm2020/mini-area.mjs",
-      "es2015": "./fesm2015/mini-area.mjs",
-      "node": "./fesm2015/mini-area.mjs",
-      "default": "./fesm2020/mini-area.mjs"
+      "esm2022": "./esm2022/mini-area/mini-area.mjs",
+      "esm": "./esm2022/mini-area/mini-area.mjs",
+      "default": "./fesm2022/mini-area.mjs"
     },
     "./mini-bar": {
       "types": "./mini-bar/index.d.ts",
-      "esm2020": "./esm2020/mini-bar/mini-bar.mjs",
-      "es2020": "./fesm2020/mini-bar.mjs",
-      "es2015": "./fesm2015/mini-bar.mjs",
-      "node": "./fesm2015/mini-bar.mjs",
-      "default": "./fesm2020/mini-bar.mjs"
+      "esm2022": "./esm2022/mini-bar/mini-bar.mjs",
+      "esm": "./esm2022/mini-bar/mini-bar.mjs",
+      "default": "./fesm2022/mini-bar.mjs"
     },
     "./mini-progress": {
       "types": "./mini-progress/index.d.ts",
-      "esm2020": "./esm2020/mini-progress/mini-progress.mjs",
-      "es2020": "./fesm2020/mini-progress.mjs",
-      "es2015": "./fesm2015/mini-progress.mjs",
-      "node": "./fesm2015/mini-progress.mjs",
-      "default": "./fesm2020/mini-progress.mjs"
+      "esm2022": "./esm2022/mini-progress/mini-progress.mjs",
+      "esm": "./esm2022/mini-progress/mini-progress.mjs",
+      "default": "./fesm2022/mini-progress.mjs"
     },
     "./number-info": {
       "types": "./number-info/index.d.ts",
-      "esm2020": "./esm2020/number-info/number-info.mjs",
-      "es2020": "./fesm2020/number-info.mjs",
-      "es2015": "./fesm2015/number-info.mjs",
-      "node": "./fesm2015/number-info.mjs",
-      "default": "./fesm2020/number-info.mjs"
+      "esm2022": "./esm2022/number-info/number-info.mjs",
+      "esm": "./esm2022/number-info/number-info.mjs",
+      "default": "./fesm2022/number-info.mjs"
     },
     "./pie": {
       "types": "./pie/index.d.ts",
-      "esm2020": "./esm2020/pie/pie.mjs",
-      "es2020": "./fesm2020/pie.mjs",
-      "es2015": "./fesm2015/pie.mjs",
-      "node": "./fesm2015/pie.mjs",
-      "default": "./fesm2020/pie.mjs"
+      "esm2022": "./esm2022/pie/pie.mjs",
+      "esm": "./esm2022/pie/pie.mjs",
+      "default": "./fesm2022/pie.mjs"
     },
     "./radar": {
       "types": "./radar/index.d.ts",
-      "esm2020": "./esm2020/radar/radar.mjs",
-      "es2020": "./fesm2020/radar.mjs",
-      "es2015": "./fesm2015/radar.mjs",
-      "node": "./fesm2015/radar.mjs",
-      "default": "./fesm2020/radar.mjs"
+      "esm2022": "./esm2022/radar/radar.mjs",
+      "esm": "./esm2022/radar/radar.mjs",
+      "default": "./fesm2022/radar.mjs"
     },
     "./single-bar": {
       "types": "./single-bar/index.d.ts",
-      "esm2020": "./esm2020/single-bar/single-bar.mjs",
-      "es2020": "./fesm2020/single-bar.mjs",
-      "es2015": "./fesm2015/single-bar.mjs",
-      "node": "./fesm2015/single-bar.mjs",
-      "default": "./fesm2020/single-bar.mjs"
+      "esm2022": "./esm2022/single-bar/single-bar.mjs",
+      "esm": "./esm2022/single-bar/single-bar.mjs",
+      "default": "./fesm2022/single-bar.mjs"
     },
     "./tag-cloud": {
       "types": "./tag-cloud/index.d.ts",
-      "esm2020": "./esm2020/tag-cloud/tag-cloud.mjs",
-      "es2020": "./fesm2020/tag-cloud.mjs",
-      "es2015": "./fesm2015/tag-cloud.mjs",
-      "node": "./fesm2015/tag-cloud.mjs",
-      "default": "./fesm2020/tag-cloud.mjs"
+      "esm2022": "./esm2022/tag-cloud/tag-cloud.mjs",
+      "esm": "./esm2022/tag-cloud/tag-cloud.mjs",
+      "default": "./fesm2022/tag-cloud.mjs"
     },
     "./timeline": {
       "types": "./timeline/index.d.ts",
-      "esm2020": "./esm2020/timeline/timeline.mjs",
-      "es2020": "./fesm2020/timeline.mjs",
-      "es2015": "./fesm2015/timeline.mjs",
-      "node": "./fesm2015/timeline.mjs",
-      "default": "./fesm2020/timeline.mjs"
+      "esm2022": "./esm2022/timeline/timeline.mjs",
+      "esm": "./esm2022/timeline/timeline.mjs",
+      "default": "./fesm2022/timeline.mjs"
     },
     "./trend": {
       "types": "./trend/index.d.ts",
-      "esm2020": "./esm2020/trend/trend.mjs",
-      "es2020": "./fesm2020/trend.mjs",
-      "es2015": "./fesm2015/trend.mjs",
-      "node": "./fesm2015/trend.mjs",
-      "default": "./fesm2020/trend.mjs"
+      "esm2022": "./esm2022/trend/trend.mjs",
+      "esm": "./esm2022/trend/trend.mjs",
+      "default": "./fesm2022/trend.mjs"
     },
     "./water-wave": {
       "types": "./water-wave/index.d.ts",
-      "esm2020": "./esm2020/water-wave/water-wave.mjs",
-      "es2020": "./fesm2020/water-wave.mjs",
-      "es2015": "./fesm2015/water-wave.mjs",
-      "node": "./fesm2015/water-wave.mjs",
-      "default": "./fesm2020/water-wave.mjs"
+      "esm2022": "./esm2022/water-wave/water-wave.mjs",
+      "esm": "./esm2022/water-wave/water-wave.mjs",
+      "default": "./fesm2022/water-wave.mjs"
     }
   },
   "sideEffects": false

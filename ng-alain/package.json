@@ -1,6 +1,6 @@
 {
   "name": "ng-alain",
-  "version": "15.2.1",
+  "version": "15.2.1-7b05689f",
   "description": "Schematics specific to ng-alain",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
@@ -22,7 +22,7 @@
   ],
   "schematics": "./collection.json",
   "dependencies": {
-    "swagger-typescript-api": "^12.0.2",
+    "swagger-typescript-api": "^12.0.4",
     "ng-alain-sts": "^0.0.2",
     "ng-alain-plugin-theme": "^15.0.1"
   },

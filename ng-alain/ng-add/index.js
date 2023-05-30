@@ -5,7 +5,7 @@ const tasks_1 = require("@angular-devkit/schematics/tasks");
 const colors = require("ansi-colors");
 const utils_1 = require("../utils");
 const node_1 = require("../utils/node");
-const V = 15;
+const V = 16;
 function genRules(options) {
     return () => {
         const rules = [];

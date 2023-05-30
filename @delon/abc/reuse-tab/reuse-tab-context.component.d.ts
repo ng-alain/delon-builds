@@ -10,5 +10,5 @@ export declare class ReuseTabContextComponent implements OnDestroy {
     constructor(srv: ReuseTabContextService);
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextComponent, "reuse-tab-context", never, { "i18n": "i18n"; }, { "change": "change"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextComponent, "reuse-tab-context", never, { "i18n": { "alias": "i18n"; "required": false; }; }, { "change": "change"; }, never, never, false, never>;
 }
