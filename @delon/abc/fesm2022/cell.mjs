@@ -215,7 +215,7 @@ class CellComponent {
         this.updateValue();
     }
     get safeOpt() {
-        return this.res?.options;
+        return this.res?.options ?? {};
     }
     get isText() {
         return this.res?.safeHtml === 'text';
@@ -251,7 +251,6 @@ class CellComponent {
         this.destroy$?.unsubscribe();
         this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
             this.res = res;
-            console.log(res);
             this.showDefault = this.value == this.defaultCondition;
             this._text = res.result?.text ?? '';
             this._unit = res.result?.unit ?? this.unit;
@@ -270,7 +269,6 @@ class CellComponent {
             [`cell__disabled`]: this.disabled
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
-        console.log(this.safeOpt);
     }
     ngOnChanges() {
         this.updateValue();
@@ -288,11 +286,11 @@ class CellComponent {
         const url = link?.url;
         if (url == null)
             return;
-        if (url.startsWith('/')) {
-            this.router.navigateByUrl(url);
+        if (/https?:\/\//g.test(url)) {
+            this.win.open(url, link?.target);
         }
         else {
-            this.win.open(url, link?.target);
+            this.router.navigateByUrl(url);
         }
     }
     _showImg(img) {
