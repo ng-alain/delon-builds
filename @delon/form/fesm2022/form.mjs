@@ -1335,7 +1335,8 @@ class SFComponent {
             if (!Array.isArray(schema.required))
                 schema.required = [];
             Object.keys(schema.properties).forEach(key => {
-                const uiKey = `$${key}`;
+                const uiKeyPrefix = '$';
+                const uiKey = uiKeyPrefix + key;
                 const property = retrieveSchema(schema.properties[key], definitions);
                 const curUi = {
                     ...property.ui,
@@ -1355,6 +1356,9 @@ class SFComponent {
                         : null),
                     ...curUi
                 };
+                Object.keys(ui)
+                    .filter(key => key.startsWith(uiKeyPrefix))
+                    .forEach(key => delete ui[key]);
                 // 继承父节点布局属性
                 if (isHorizontal) {
                     if (parentUiSchema.spanLabelFixed) {

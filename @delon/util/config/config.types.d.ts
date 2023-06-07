@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { AlainCellConfig, AlainDateRangePickerConfig, AlainErrorCollectConfig, AlainExceptionType, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainQRConfig, AlainSEConfig, AlainSGConfig, AlainSTConfig, AlainSVConfig, AlainXlsxConfig, AlainZipConfig } from './abc/index';
+import { AlainDateRangePickerConfig, AlainErrorCollectConfig, AlainExceptionType, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainQRConfig, AlainSEConfig, AlainSGConfig, AlainSTConfig, AlainSVConfig, AlainXlsxConfig, AlainZipConfig } from './abc/index';
 import { AlainACLConfig } from './acl/acl.type';
 import { AlainAuthConfig } from './auth/auth.type';
 import { AlainCacheConfig } from './cache/cache.type';
@@ -24,7 +24,6 @@ export interface AlainConfig {
     sv?: AlainSVConfig;
     st?: AlainSTConfig;
     sf?: AlainSFConfig;
-    cell?: AlainCellConfig;
     xlsx?: AlainXlsxConfig;
     zip?: AlainZipConfig;
     pdf?: AlainPdfConfig;
