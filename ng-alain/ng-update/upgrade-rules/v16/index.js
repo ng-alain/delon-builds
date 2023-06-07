@@ -14,7 +14,6 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const colors = require("ansi-colors");
 const utils_1 = require("../../../utils");
-const less_1 = require("../../../utils/less");
 const versions_1 = require("../../../utils/versions");
 function finished() {
     return (_tree, context) => {
@@ -26,7 +25,7 @@ function v16Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
-        return (0, schematics_1.chain)([(0, less_1.addImportNotation)(), finished()]);
+        return (0, schematics_1.chain)([finished()]);
     });
 }
 exports.v16Rule = v16Rule;
