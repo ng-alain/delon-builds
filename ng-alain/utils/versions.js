@@ -43,7 +43,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@angular/language-service@^16.0.3`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^16.0.0-beta.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^16.0.0`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(context, showLog = true) {
