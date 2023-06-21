@@ -27686,13 +27686,13 @@ nz-space-item {
 sf + st {
   margin-top: 16px;
 }
-.ant-btn + .ant-btn,
-.ant-btn + nz-popconfirm,
+.ant-btn:not(.ant-btn-link) + .ant-btn,
+.ant-btn:not(.ant-btn-link) + nz-popconfirm,
 nz-popconfirm + .ant-btn,
 nz-popconfirm + nz-popconfirm,
-.ant-btn + nz-button-group,
+.ant-btn:not(.ant-btn-link) + nz-button-group,
 nz-button-group + .ant-btn,
-.ant-btn + nz-dropdown,
+.ant-btn:not(.ant-btn-link) + nz-dropdown,
 nz-dropdown + .ant-btn,
 nz-popconfirm + nz-button-group,
 nz-button-group + nz-popconfirm {
