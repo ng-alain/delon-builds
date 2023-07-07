@@ -150,7 +150,6 @@ function addCodeStylesToPackageJson() {
             `lint-staged@^13.2.2`,
             `prettier@^2.8.8`,
             `stylelint@^15.6.2`,
-            `stylelint-config-prettier@^9.0.5`,
             `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^33.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
