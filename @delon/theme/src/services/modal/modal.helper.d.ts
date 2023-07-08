@@ -1,3 +1,4 @@
+import { DragDrop } from '@angular/cdk/drag-drop';
 import { TemplateRef, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -12,13 +13,27 @@ export interface ModalHelperOptions {
     exact?: boolean;
     /** 是否包裹标签页，修复模态包含标签间距问题 */
     includeTabs?: boolean;
+    /**
+     * 是否支持拖动，默认是通过标题来触发
+     */
+    drag?: ModalHelperDragOptions | boolean;
+}
+export interface ModalHelperDragOptions {
+    /**
+     * 指定拖地区域的类名，若指定为 `null` 时表示整个对话框，默认：`.modal-header, .ant-modal-title`
+     */
+    handleCls?: string | null;
 }
 /**
  * 对话框辅助类
  */
 export declare class ModalHelper {
     private srv;
-    constructor(srv: NzModalService);
+    private drag;
+    private document;
+    private dragClsPrefix;
+    constructor(srv: NzModalService, drag: DragDrop, doc: NzSafeAny);
+    private createDragRef;
     /**
      * 构建一个对话框
      *
