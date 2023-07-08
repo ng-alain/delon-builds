@@ -5,7 +5,6 @@ import { Component, ViewChild, EventEmitter, Directive, Host, Optional, Input, O
 import { FormsModule } from '@angular/forms';
 import * as i3 from 'ng-zorro-antd/date-picker';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import { Subject } from 'rxjs';
 import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
 import { deepMergeKey, assert } from '@delon/util/other';
 import * as i1$1 from '@angular/platform-browser';
@@ -74,7 +73,6 @@ class RangePickerDirective {
         this.nativeComp = nativeComp;
         this.vcr = vcr;
         this._shortcut = null;
-        this.destroy$ = new Subject();
         this.shortcutFactory = null;
         this.start = null;
         this.end = null;
@@ -187,8 +185,6 @@ class RangePickerDirective {
     }
     ngOnDestroy() {
         this.destoryShortcut();
-        this.destroy$.next();
-        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: RangePickerDirective, deps: [{ token: i1$1.DomSanitizer }, { token: i2.AlainConfigService }, { token: i3.NzRangePickerComponent, host: true, optional: true }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "16.1.4", type: RangePickerDirective, selector: "nz-range-picker[extend]", inputs: { shortcut: "shortcut", ngModelEnd: "ngModelEnd" }, outputs: { ngModelEndChange: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 }); }

@@ -11,7 +11,6 @@ export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     static ngAcceptInputType_shortcut: AlainDateRangePickerShortcut | string | null;
     private defaultShortcuts;
     private _shortcut;
-    private destroy$;
     private shortcutFactory;
     start: Date | null;
     end: Date | null;

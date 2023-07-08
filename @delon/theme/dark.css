@@ -28548,9 +28548,6 @@ a:focus {
 .modal-body-nopadding .ant-modal-body {
   padding: 0 !important;
 }
-.MODAL-DRAG-HANDLE {
-  cursor: move;
-}
 .ant-table td > img,
 .ant-table td .img {
   max-width: 32px;
