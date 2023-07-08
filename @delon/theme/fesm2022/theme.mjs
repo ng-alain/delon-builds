@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Optional, Inject, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
-import { filter, BehaviorSubject, share, Subject, map, takeUntil, of, delay, isObservable, switchMap, Observable, tap, finalize, throwError, catchError } from 'rxjs';
+import { filter, BehaviorSubject, share, Subject, map, takeUntil, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';
@@ -13,6 +13,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import * as i1$4 from '@angular/platform-browser';
 import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/modal';
+import * as i2 from '@angular/cdk/drag-drop';
 import * as i1$6 from 'ng-zorro-antd/drawer';
 import * as i1$7 from '@angular/common/http';
 import { HttpParams, HttpContextToken } from '@angular/common/http';
@@ -1950,8 +1951,24 @@ var itIT = {
  * 对话框辅助类
  */
 class ModalHelper {
-    constructor(srv) {
+    constructor(srv, drag, doc) {
         this.srv = srv;
+        this.drag = drag;
+        this.dragClsPrefix = 'MODAL-DRAG';
+        this.document = doc;
+    }
+    createDragRef(options, wrapCls) {
+        const wrapEl = this.document.querySelector(wrapCls);
+        const modalEl = wrapEl.firstChild;
+        const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
+        if (handelEl) {
+            handelEl.classList.add(`${this.dragClsPrefix}-HANDLE`);
+        }
+        return this.drag
+            .createDrag(handelEl ?? modalEl)
+            .withHandles([handelEl ?? modalEl])
+            .withBoundaryElement(wrapEl)
+            .withRootElement(modalEl);
     }
     /**
      * 构建一个对话框
@@ -1976,7 +1993,7 @@ class ModalHelper {
             includeTabs: false
         }, options);
         return new Observable((observer) => {
-            const { size, includeTabs, modalOptions } = options;
+            const { size, includeTabs, modalOptions, drag } = options;
             let cls = '';
             let width = '';
             if (size) {
@@ -1994,6 +2011,16 @@ class ModalHelper {
                 cls += ` ${modalOptions.nzWrapClassName}`;
                 delete modalOptions.nzWrapClassName;
             }
+            let dragOptions;
+            let dragWrapCls = `${this.dragClsPrefix}-${+new Date()}`;
+            let dragRef;
+            if (drag != null && drag !== false) {
+                dragOptions = {
+                    handleCls: `.modal-header, .ant-modal-title`,
+                    ...(typeof drag === 'object' ? drag : {})
+                };
+                cls += ` ${this.dragClsPrefix} ${dragWrapCls}`;
+            }
             const defaultOptions = {
                 nzWrapClassName: cls,
                 nzContent: comp,
@@ -2002,7 +2029,12 @@ class ModalHelper {
                 nzComponentParams: params
             };
             const subject = this.srv.create({ ...defaultOptions, ...modalOptions });
-            const afterClose$ = subject.afterClose.subscribe((res) => {
+            subject.afterOpen
+                .pipe(take(1), filter(() => dragOptions != null))
+                .subscribe(() => {
+                dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
+            });
+            subject.afterClose.pipe(take(1)).subscribe((res) => {
                 if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);
@@ -2012,7 +2044,7 @@ class ModalHelper {
                     observer.next(res);
                 }
                 observer.complete();
-                afterClose$.unsubscribe();
+                dragRef?.dispose();
             });
         });
     }
@@ -2039,13 +2071,16 @@ class ModalHelper {
         };
         return this.create(comp, params, { ...options, modalOptions });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: ModalHelper, deps: [{ token: i1$5.NzModalService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: ModalHelper, deps: [{ token: i1$5.NzModalService }, { token: i2.DragDrop }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: ModalHelper, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: ModalHelper, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: function () { return [{ type: i1$5.NzModalService }]; } });
+        }], ctorParameters: function () { return [{ type: i1$5.NzModalService }, { type: i2.DragDrop }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [DOCUMENT]
+                }] }]; } });
 
 /**
  * 抽屉辅助类
