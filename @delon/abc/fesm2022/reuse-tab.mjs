@@ -310,6 +310,8 @@ class ReuseTabService {
     }
     /** 自定义当前标题 */
     set title(value) {
+        if (this.cached == null)
+            return;
         const url = this.curUrl;
         if (typeof value === 'string')
             value = { text: value };
