@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Optional, Inject, ViewChild, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Inject, Optional, ViewChild, NgModule } from '@angular/core';
 import * as i1 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import * as i5 from '@angular/common';
@@ -250,6 +250,15 @@ class ReuseTabLocalStorageState {
     }
 }
 
+const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER');
+class ReuseTabCachedManagerFactory {
+    constructor() {
+        this.list = [];
+        this.title = {};
+        this.closable = {};
+    }
+}
+
 class ReuseTabService {
     get snapshot() {
         return this.injector.get(ActivatedRoute).snapshot;
@@ -276,8 +285,8 @@ class ReuseTabService {
      */
     set max(value) {
         this._max = Math.min(Math.max(value, 2), 100);
-        for (let i = this._cached.length; i > this._max; i--) {
-            this._cached.pop();
+        for (let i = this.cached.list.length; i > this._max; i--) {
+            this.cached.list.pop();
         }
     }
     set keepingScroll(value) {
@@ -289,11 +298,11 @@ class ReuseTabService {
     }
     /** 获取已缓存的路由 */
     get items() {
-        return this._cached;
+        return this.cached.list;
     }
     /** 获取当前缓存的路由总数 */
     get count() {
-        return this._cached.length;
+        return this.cached.list.length;
     }
     /** 订阅缓存变更通知 */
     get change() {
@@ -304,18 +313,18 @@ class ReuseTabService {
         const url = this.curUrl;
         if (typeof value === 'string')
             value = { text: value };
-        this._titleCached[url] = value;
+        this.cached.title[url] = value;
         this.di('update current tag title: ', value);
         this._cachedChange.next({
             active: 'title',
             url,
             title: value,
-            list: this._cached
+            list: this.cached.list
         });
     }
     /** 获取指定路径缓存所在位置，`-1` 表示无缓存 */
     index(url) {
-        return this._cached.findIndex(w => w.url === url);
+        return this.cached.list.findIndex(w => w.url === url);
     }
     /** 获取指定路径缓存是否存在 */
     exists(url) {
@@ -323,16 +332,16 @@ class ReuseTabService {
     }
     /** 获取指定路径缓存 */
     get(url) {
-        return url ? this._cached.find(w => w.url === url) || null : null;
+        return url ? this.cached.list.find(w => w.url === url) || null : null;
     }
     remove(url, includeNonCloseable) {
         const idx = typeof url === 'string' ? this.index(url) : url;
-        const item = idx !== -1 ? this._cached[idx] : null;
+        const item = idx !== -1 ? this.cached.list[idx] : null;
         if (!item || (!includeNonCloseable && !item.closable))
             return false;
         this.destroy(item._handle);
-        this._cached.splice(idx, 1);
-        delete this._titleCached[url];
+        this.cached.list.splice(idx, 1);
+        delete this.cached.title[url];
         return true;
     }
     /**
@@ -343,7 +352,7 @@ class ReuseTabService {
     close(url, includeNonCloseable = false) {
         this.removeUrlBuffer = url;
         this.remove(url, includeNonCloseable);
-        this._cachedChange.next({ active: 'close', url, list: this._cached });
+        this._cachedChange.next({ active: 'close', url, list: this.cached.list });
         this.di('close tag', url);
         return true;
     }
@@ -358,7 +367,7 @@ class ReuseTabService {
             this.remove(i, includeNonCloseable);
         }
         this.removeUrlBuffer = null;
-        this._cachedChange.next({ active: 'closeRight', url, list: this._cached });
+        this._cachedChange.next({ active: 'closeRight', url, list: this.cached.list });
         this.di('close right tages', url);
         return true;
     }
@@ -368,13 +377,13 @@ class ReuseTabService {
      * @param [includeNonCloseable=false] 是否强制包含不可关闭
      */
     clear(includeNonCloseable = false) {
-        this._cached.forEach(w => {
+        this.cached.list.forEach(w => {
             if (!includeNonCloseable && w.closable)
                 this.destroy(w._handle);
         });
-        this._cached = this._cached.filter(w => !includeNonCloseable && !w.closable);
+        this.cached.list = this.cached.list.filter(w => !includeNonCloseable && !w.closable);
         this.removeUrlBuffer = null;
-        this._cachedChange.next({ active: 'clear', list: this._cached });
+        this._cachedChange.next({ active: 'clear', list: this.cached.list });
         this.di('clear all catch');
     }
     /**
@@ -396,17 +405,17 @@ class ReuseTabService {
      * ```
      */
     move(url, position) {
-        const start = this._cached.findIndex(w => w.url === url);
+        const start = this.cached.list.findIndex(w => w.url === url);
         if (start === -1)
             return;
-        const data = this._cached.slice();
+        const data = this.cached.list.slice();
         data.splice(position < 0 ? data.length + position : position, 0, data.splice(start, 1)[0]);
-        this._cached = data;
+        this.cached.list = data;
         this._cachedChange.next({
             active: 'move',
             url,
             position,
-            list: this._cached
+            list: this.cached.list
         });
     }
     /**
@@ -433,8 +442,8 @@ class ReuseTabService {
      * @param route 指定路由快照
      */
     getTitle(url, route) {
-        if (this._titleCached[url]) {
-            return this._titleCached[url];
+        if (this.cached.title[url]) {
+            return this.cached.title[url];
         }
         if (route && route.data && (route.data.titleI18n || route.data.title)) {
             return {
@@ -449,17 +458,17 @@ class ReuseTabService {
      * 清除标题缓存
      */
     clearTitleCached() {
-        this._titleCached = {};
+        this.cached.title = {};
     }
     /** 自定义当前 `closable` 状态 */
     set closable(value) {
         const url = this.curUrl;
-        this._closableCached[url] = value;
+        this.cached.closable[url] = value;
         this.di('update current tag closable: ', value);
         this._cachedChange.next({
             active: 'closable',
             closable: value,
-            list: this._cached
+            list: this.cached.list
         });
     }
     /**
@@ -473,8 +482,8 @@ class ReuseTabService {
      * @param route 指定路由快照
      */
     getClosable(url, route) {
-        if (typeof this._closableCached[url] !== 'undefined')
-            return this._closableCached[url];
+        if (typeof this.cached.closable[url] !== 'undefined')
+            return this.cached.closable[url];
         if (route && route.data && typeof route.data.reuseClosable === 'boolean')
             return route.data.reuseClosable;
         const menu = this.mode !== ReuseTabMatchMode.URL ? this.getMenu(url) : null;
@@ -486,7 +495,7 @@ class ReuseTabService {
      * 清空 `closable` 缓存
      */
     clearClosableCached() {
-        this._closableCached = {};
+        this.cached.closable = {};
     }
     getTruthRoute(route) {
         let next = route;
@@ -558,18 +567,16 @@ class ReuseTabService {
         }
     }
     // #endregion
-    constructor(injector, menuService, stateKey, stateSrv) {
+    constructor(injector, menuService, cached, stateKey, stateSrv) {
         this.injector = injector;
         this.menuService = menuService;
+        this.cached = cached;
         this.stateKey = stateKey;
         this.stateSrv = stateSrv;
         this._inited = false;
         this._max = 10;
         this._keepingScroll = false;
         this._cachedChange = new BehaviorSubject(null);
-        this._cached = [];
-        this._titleCached = {};
-        this._closableCached = {};
         this.removeUrlBuffer = null;
         this.positionBuffer = {};
         this.debug = false;
@@ -587,7 +594,7 @@ class ReuseTabService {
     loadState() {
         if (!this.storageState)
             return;
-        this._cached = this.stateSrv.get(this.stateKey).map(v => ({
+        this.cached.list = this.stateSrv.get(this.stateKey).map(v => ({
             title: { text: v.title },
             url: v.url,
             position: v.position
@@ -602,7 +609,7 @@ class ReuseTabService {
     }
     runHook(method, comp, type = 'init') {
         if (typeof comp === 'number') {
-            const item = this._cached[comp];
+            const item = this.cached.list[comp];
             comp = item._handle?.componentRef;
         }
         if (comp == null || !comp.instance) {
@@ -650,20 +657,20 @@ class ReuseTabService {
         if (isAdd) {
             if (this.count >= this._max) {
                 // Get the oldest closable location
-                const closeIdx = this._cached.findIndex(w => w.closable);
+                const closeIdx = this.cached.list.findIndex(w => w.closable);
                 if (closeIdx !== -1)
                     this.remove(closeIdx, false);
             }
-            this._cached.push(item);
+            this.cached.list.push(item);
         }
         else {
             // Current handler is null when activate routes
             // For better reliability, we need to wait for the component to be attached before call _onReuseInit
-            const cahcedComponentRef = this._cached[idx]._handle?.componentRef;
+            const cahcedComponentRef = this.cached.list[idx]._handle?.componentRef;
             if (_handle == null && cahcedComponentRef != null) {
                 timer(100).subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
             }
-            this._cached[idx] = item;
+            this.cached.list[idx] = item;
         }
         this.removeUrlBuffer = null;
         this.di('#store', isAdd ? '[new]' : '[override]', url);
@@ -671,7 +678,7 @@ class ReuseTabService {
             this.runHook('_onReuseDestroy', _handle.componentRef);
         }
         if (!isAdd) {
-            this._cachedChange.next({ active: 'override', item, list: this._cached });
+            this._cachedChange.next({ active: 'override', item, list: this.cached.list });
         }
     }
     /**
@@ -685,7 +692,7 @@ class ReuseTabService {
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
         if (!ret) {
-            this._cachedChange.next({ active: 'add', url, list: this._cached });
+            this._cachedChange.next({ active: 'add', url, list: this.cached.list });
         }
         return ret;
     }
@@ -776,19 +783,22 @@ class ReuseTabService {
     ngOnDestroy() {
         const { _cachedChange, _router$ } = this;
         this.clear();
-        this._cached = [];
+        this.cached.list = [];
         _cachedChange.complete();
         if (_router$) {
             _router$.unsubscribe();
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: ReuseTabService, deps: [{ token: i0.Injector }, { token: i1.MenuService }, { token: REUSE_TAB_STORAGE_KEY, optional: true }, { token: REUSE_TAB_STORAGE_STATE, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: ReuseTabService, deps: [{ token: i0.Injector }, { token: i1.MenuService }, { token: REUSE_TAB_CACHED_MANAGER }, { token: REUSE_TAB_STORAGE_KEY, optional: true }, { token: REUSE_TAB_STORAGE_STATE, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: ReuseTabService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: ReuseTabService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: i0.Injector }, { type: i1.MenuService }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [REUSE_TAB_CACHED_MANAGER]
+                }] }, { type: undefined, decorators: [{
                     type: Optional
                 }, {
                     type: Inject,
@@ -1182,6 +1192,10 @@ class ReuseTabModule {
             {
                 provide: REUSE_TAB_STORAGE_STATE,
                 useFactory: () => new ReuseTabLocalStorageState()
+            },
+            {
+                provide: REUSE_TAB_CACHED_MANAGER,
+                useFactory: () => new ReuseTabCachedManagerFactory()
             }
         ], imports: [CommonModule, RouterModule, DelonLocaleModule, NzMenuModule, NzTabsModule, NzIconModule, OverlayModule] }); }
 }
@@ -1198,6 +1212,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImpor
                         {
                             provide: REUSE_TAB_STORAGE_STATE,
                             useFactory: () => new ReuseTabLocalStorageState()
+                        },
+                        {
+                            provide: REUSE_TAB_CACHED_MANAGER,
+                            useFactory: () => new ReuseTabCachedManagerFactory()
                         }
                     ],
                     exports: COMPONENTS
