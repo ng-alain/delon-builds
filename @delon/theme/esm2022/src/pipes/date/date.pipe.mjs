@@ -14,11 +14,11 @@ class DatePipe {
         const langOpt = { locale: this.nzI18n.getDateLocale() };
         return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: DatePipe, deps: [{ token: i1.NzI18nService }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.1.4", ngImport: i0, type: DatePipe, name: "_date" }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: DatePipe, deps: [{ token: i1.NzI18nService }], target: i0.ɵɵFactoryTarget.Pipe }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.1.5", ngImport: i0, type: DatePipe, name: "_date" }); }
 }
 export { DatePipe };
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.4", ngImport: i0, type: DatePipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: DatePipe, decorators: [{
             type: Pipe,
             args: [{ name: '_date' }]
         }], ctorParameters: function () { return [{ type: i1.NzI18nService }]; } });
