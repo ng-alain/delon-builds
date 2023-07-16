@@ -250,6 +250,9 @@ class ReuseTabLocalStorageState {
     }
 }
 
+/**
+ * Storage manager that can change rules by implementing `get`, `set` accessors
+ */
 const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER');
 class ReuseTabCachedManagerFactory {
     constructor() {
