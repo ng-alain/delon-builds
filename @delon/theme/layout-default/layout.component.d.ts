@@ -1,7 +1,6 @@
 import { ElementRef, OnDestroy, QueryList, Renderer2, TemplateRef } from '@angular/core';
 import { Router, Event } from '@angular/router';
 import { SettingsService } from '@delon/theme';
-import { BooleanInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
@@ -15,8 +14,6 @@ export declare class LayoutDefaultComponent implements OnDestroy {
     private renderer;
     private doc;
     private srv;
-    static ngAcceptInputType_fetchingStrictly: BooleanInput;
-    static ngAcceptInputType_fetching: BooleanInput;
     headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
     get opt(): LayoutDefaultOptions;
     set options(value: LayoutDefaultOptions | null | undefined);
@@ -25,11 +22,8 @@ export declare class LayoutDefaultComponent implements OnDestroy {
     nav: TemplateRef<void> | null;
     content: TemplateRef<void> | null;
     customError?: string | null;
-    fetchingStrictly: boolean;
-    fetching: boolean;
     private destroy$;
-    private isFetching;
-    get showFetching(): boolean;
+    isFetching: boolean;
     get collapsed(): boolean;
     get collapsedIcon(): string;
     toggleCollapsed(): void;
@@ -38,5 +32,5 @@ export declare class LayoutDefaultComponent implements OnDestroy {
     private setClass;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": { "alias": "options"; "required": false; }; "asideUser": { "alias": "asideUser"; "required": false; }; "asideBottom": { "alias": "asideBottom"; "required": false; }; "nav": { "alias": "nav"; "required": false; }; "content": { "alias": "content"; "required": false; }; "customError": { "alias": "customError"; "required": false; }; "fetchingStrictly": { "alias": "fetchingStrictly"; "required": false; }; "fetching": { "alias": "fetching"; "required": false; }; }, {}, ["headerItems"], ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": { "alias": "options"; "required": false; }; "asideUser": { "alias": "asideUser"; "required": false; }; "asideBottom": { "alias": "asideBottom"; "required": false; }; "nav": { "alias": "nav"; "required": false; }; "content": { "alias": "content"; "required": false; }; "customError": { "alias": "customError"; "required": false; }; }, {}, ["headerItems"], ["*"], false, never>;
 }

@@ -1,4 +1,3 @@
-import { __decorate } from 'tslib';
 import * as i5 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
@@ -7,12 +6,13 @@ import * as i2 from '@angular/router';
 import { NavigationEnd, RouteConfigLoadStart, NavigationError, NavigationCancel, RouteConfigLoadEnd, RouterModule } from '@angular/router';
 import { BehaviorSubject, Subject, takeUntil, filter } from 'rxjs';
 import { updateHostClass } from '@delon/util/browser';
-import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from 'ng-zorro-antd/message';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import * as i1 from '@delon/theme';
 import * as i7 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { __decorate } from 'tslib';
+import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import { WINDOW } from '@delon/util/token';
 import * as i3 from '@angular/platform-browser';
 import * as i4 from '@angular/cdk/bidi';
@@ -518,11 +518,6 @@ class LayoutDefaultComponent {
     set options(value) {
         this.srv.setOptions(value);
     }
-    get showFetching() {
-        if (this.fetchingStrictly)
-            return this.fetching;
-        return this.isFetching;
-    }
     get collapsed() {
         return this.settings.layout.collapsed;
     }
@@ -543,14 +538,10 @@ class LayoutDefaultComponent {
         this.asideBottom = null;
         this.nav = null;
         this.content = null;
-        this.fetchingStrictly = false;
-        this.fetching = false;
         this.destroy$ = new Subject();
         this.isFetching = false;
+        router.events.pipe(takeUntil(this.destroy$)).subscribe(ev => this.processEv(ev));
         const { destroy$ } = this;
-        router.events
-            .pipe(takeUntil(destroy$), filter(() => !this.fetchingStrictly))
-            .subscribe(ev => this.processEv(ev));
         this.srv.options$.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
         this.settings.notify.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
     }
@@ -592,8 +583,8 @@ class LayoutDefaultComponent {
         this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: LayoutDefaultComponent, deps: [{ token: i2.Router }, { token: i2$1.NzMessageService }, { token: i1.SettingsService }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: DOCUMENT }, { token: LayoutDefaultService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.5", type: LayoutDefaultComponent, selector: "layout-default", inputs: { options: "options", asideUser: "asideUser", asideBottom: "asideBottom", nav: "nav", content: "content", customError: "customError", fetchingStrictly: "fetchingStrictly", fetching: "fetching" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent }], exportAs: ["layoutDefault"], ngImport: i0, template: `
-    <div class="alain-default__progress-bar" *ngIf="showFetching"></div>
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.5", type: LayoutDefaultComponent, selector: "layout-default", inputs: { options: "options", asideUser: "asideUser", asideBottom: "asideBottom", nav: "nav", content: "content", customError: "customError" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent }], exportAs: ["layoutDefault"], ngImport: i0, template: `
+    <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header *ngIf="!opt.hideHeader" [items]="headerItems"></layout-default-header>
     <div *ngIf="!opt.hideAside" class="alain-default__aside">
       <div class="alain-default__aside-wrap">
@@ -617,19 +608,13 @@ class LayoutDefaultComponent {
     </section>
   `, isInline: true, dependencies: [{ kind: "directive", type: i5.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: LayoutDefaultNavComponent, selector: "layout-default-nav", inputs: ["disabledAcl", "autoCloseUnderPad", "recursivePath", "openStrictly", "maxLevelIcon"], outputs: ["select"] }, { kind: "component", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: ["items"] }] }); }
 }
-__decorate([
-    InputBoolean()
-], LayoutDefaultComponent.prototype, "fetchingStrictly", void 0);
-__decorate([
-    InputBoolean()
-], LayoutDefaultComponent.prototype, "fetching", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: LayoutDefaultComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'layout-default',
                     exportAs: 'layoutDefault',
                     template: `
-    <div class="alain-default__progress-bar" *ngIf="showFetching"></div>
+    <div class="alain-default__progress-bar" *ngIf="isFetching"></div>
     <layout-default-header *ngIf="!opt.hideHeader" [items]="headerItems"></layout-default-header>
     <div *ngIf="!opt.hideAside" class="alain-default__aside">
       <div class="alain-default__aside-wrap">
@@ -670,10 +655,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImpor
             }], content: [{
                 type: Input
             }], customError: [{
-                type: Input
-            }], fetchingStrictly: [{
-                type: Input
-            }], fetching: [{
                 type: Input
             }] } });
 
