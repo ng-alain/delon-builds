@@ -1993,7 +1993,7 @@ class ModalHelper {
             includeTabs: false
         }, options);
         return new Observable((observer) => {
-            const { size, includeTabs, modalOptions, drag } = options;
+            const { size, includeTabs, modalOptions, drag, useNzData } = options;
             let cls = '';
             let width = '';
             if (size) {
@@ -2026,9 +2026,13 @@ class ModalHelper {
                 nzContent: comp,
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
-                nzComponentParams: params
+                nzData: params
             };
             const subject = this.srv.create({ ...defaultOptions, ...modalOptions });
+            // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
+            if (useNzData !== true) {
+                Object.assign(subject.componentInstance, params);
+            }
             subject.afterOpen
                 .pipe(take(1), filter(() => dragOptions != null))
                 .subscribe(() => {
