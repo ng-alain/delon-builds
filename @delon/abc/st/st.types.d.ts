@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
-import { STColumn, STColumnButton, STColumnSafeType, STData, STSortMap } from './st.interfaces';
+import { STColumn, STColumnButton, STColumnSafeType, STData, STOnCellResult, STSortMap } from './st.interfaces';
 /**
  * @inner
  */
@@ -67,4 +67,5 @@ export interface _STDataValue {
     color?: string;
     safeType: STColumnSafeType;
     buttons?: _STColumnButton[];
+    props?: STOnCellResult | null;
 }
