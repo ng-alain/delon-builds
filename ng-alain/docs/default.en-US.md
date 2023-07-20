@@ -13,36 +13,38 @@ However, parameters can be preset via `angular.json`.
 {
   "schematics": {
     "ng-alain:module": {
-      "routing": true
+      "routing": true,
+      "spec": false
     },
     "ng-alain:list": {
-      "skipTests": false
+      "spec": false
     },
     "ng-alain:edit": {
-      "skipTests": false,
+      "spec": false,
       "modal": true
     },
     "ng-alain:view": {
-      "skipTests": false,
+      "spec": false,
       "modal": true
     },
     "ng-alain:curd": {
-      "skipTests": false
+      "spec": false
     },
     "@schematics/angular:module": {
-      "routing": true
+      "routing": true,
+      "spec": false
     },
     "@schematics/angular:component": {
-      "skipTests": false,
+      "spec": false,
       "flat": false,
       "inlineStyle": true,
       "inlineTemplate": false
     },
     "@schematics/angular:directive": {
-      "skipTests": false
+      "spec": false
     },
     "@schematics/angular:service": {
-      "skipTests": false
+      "spec": false
     }
   }
 }

@@ -203,7 +203,8 @@ function addSchematics(options: ApplicationOptions): Rule {
     const p = getProjectFromWorkspace(workspace, options.project);
     const schematics = p.extensions.schematics;
     schematics['ng-alain:module'] = {
-      routing: true
+      routing: true,
+      skipTests: false
     };
     schematics['ng-alain:list'] = {
       skipTests: false
@@ -220,7 +221,8 @@ function addSchematics(options: ApplicationOptions): Rule {
       skipTests: false
     };
     schematics['@schematics/angular:module'] = {
-      routing: true
+      routing: true,
+      skipTests: false
     };
     schematics['@schematics/angular:component'] = {
       skipTests: false,

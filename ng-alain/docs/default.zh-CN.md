@@ -15,36 +15,38 @@ ng-alain 提供诸多生成模块、页模板，但实际上继承了原生 Angu
 {
   "schematics": {
     "ng-alain:module": {
-      "routing": true
+      "routing": true,
+      "spec": false
     },
     "ng-alain:list": {
-      "skipTests": false
+      "spec": false
     },
     "ng-alain:edit": {
-      "skipTests": false,
+      "spec": false,
       "modal": true
     },
     "ng-alain:view": {
-      "skipTests": false,
+      "spec": false,
       "modal": true
     },
     "ng-alain:curd": {
-      "skipTests": false
+      "spec": false
     },
     "@schematics/angular:module": {
-      "routing": true
+      "routing": true,
+      "spec": false
     },
     "@schematics/angular:component": {
-      "skipTests": false,
+      "spec": false,
       "flat": false,
       "inlineStyle": true,
       "inlineTemplate": false
     },
     "@schematics/angular:directive": {
-      "skipTests": false
+      "spec": false
     },
     "@schematics/angular:service": {
-      "skipTests": false
+      "spec": false
     }
   }
 }

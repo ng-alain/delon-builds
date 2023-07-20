@@ -163,7 +163,8 @@ function addSchematics(options) {
         const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
         const schematics = p.extensions.schematics;
         schematics['ng-alain:module'] = {
-            routing: true
+            routing: true,
+            skipTests: false
         };
         schematics['ng-alain:list'] = {
             skipTests: false
@@ -180,7 +181,8 @@ function addSchematics(options) {
             skipTests: false
         };
         schematics['@schematics/angular:module'] = {
-            routing: true
+            routing: true,
+            skipTests: false
         };
         schematics['@schematics/angular:component'] = Object.assign({ skipTests: false, flat: false, inlineStyle: true, inlineTemplate: false }, schematics['@schematics/angular:component']);
         schematics['@schematics/angular:directive'] = {
