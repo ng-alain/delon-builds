@@ -5,7 +5,7 @@ import { DatePipe, YNPipe, _HttpClient } from '@delon/theme';
 import type { AlainSTConfig } from '@delon/util/config';
 import { CurrencyService } from '@delon/util/format';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { STColumn, STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STOnCellResult, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
+import type { STColumn, STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STOnCellResult, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
 import { _STColumn } from './st.types';
 import * as i0 from "@angular/core";
 export interface STDataSourceOptions {

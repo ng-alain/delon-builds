@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "16.1.1-83b08c95",
+  "version": "16.1.1-0ac985e7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.10",
     "echarts": "^5.4.2",
-    "@delon/util": "^16.1.1-83b08c95",
-    "@delon/theme": "^16.1.1-83b08c95",
+    "@delon/util": "^16.1.1-0ac985e7",
+    "@delon/theme": "^16.1.1-0ac985e7",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -98,17 +98,17 @@
       "esm": "./esm2022/mini-progress/mini-progress.mjs",
       "default": "./fesm2022/mini-progress.mjs"
     },
-    "./pie": {
-      "types": "./pie/index.d.ts",
-      "esm2022": "./esm2022/pie/pie.mjs",
-      "esm": "./esm2022/pie/pie.mjs",
-      "default": "./fesm2022/pie.mjs"
-    },
     "./number-info": {
       "types": "./number-info/index.d.ts",
       "esm2022": "./esm2022/number-info/number-info.mjs",
       "esm": "./esm2022/number-info/number-info.mjs",
       "default": "./fesm2022/number-info.mjs"
+    },
+    "./pie": {
+      "types": "./pie/index.d.ts",
+      "esm2022": "./esm2022/pie/pie.mjs",
+      "esm": "./esm2022/pie/pie.mjs",
+      "default": "./fesm2022/pie.mjs"
     },
     "./radar": {
       "types": "./radar/index.d.ts",
