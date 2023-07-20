@@ -337,11 +337,9 @@ export interface STColumn<T extends STData = any> {
      */
     className?: NgClassType;
     /**
-     * Table cell supports `colSpan` and `rowSpan`. When each of them is set to 0, the cell will not be rendered.
-     *
-     * 表格支持行/列合并，若返回的 `colSpan` 或者 `rowSpan` 设值为 0 时表示不会渲染
+     * 合并列
      */
-    onCell?: (item: T, index: number) => STOnCellResult;
+    colSpan?: number;
     /**
      * 数字格式，`type=number` 有效
      */
@@ -413,7 +411,6 @@ export interface STColumn<T extends STData = any> {
      * 分组表头
      */
     children?: Array<STColumn<T>>;
-    colSpan?: number;
     rowSpan?: number;
     /**
      * 调整表头配置
@@ -1152,8 +1149,4 @@ export interface STCustomRequestOptions {
     method: string;
     url: string;
     options: STRequestOptions;
-}
-export interface STOnCellResult {
-    rowSpan?: number | null;
-    colSpan?: number | null;
 }
