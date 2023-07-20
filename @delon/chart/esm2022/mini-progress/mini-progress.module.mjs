@@ -6,12 +6,12 @@ import { G2MiniProgressComponent } from './mini-progress.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [G2MiniProgressComponent];
 class G2MiniProgressModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: G2MiniProgressModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.1.5", ngImport: i0, type: G2MiniProgressModule, declarations: [G2MiniProgressComponent], imports: [CommonModule, DelonLocaleModule, NzToolTipModule], exports: [G2MiniProgressComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: G2MiniProgressModule, imports: [CommonModule, DelonLocaleModule, NzToolTipModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: G2MiniProgressModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.1.6", ngImport: i0, type: G2MiniProgressModule, declarations: [G2MiniProgressComponent], imports: [CommonModule, DelonLocaleModule, NzToolTipModule], exports: [G2MiniProgressComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: G2MiniProgressModule, imports: [CommonModule, DelonLocaleModule, NzToolTipModule] }); }
 }
 export { G2MiniProgressModule };
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.5", ngImport: i0, type: G2MiniProgressModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: G2MiniProgressModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, DelonLocaleModule, NzToolTipModule],
