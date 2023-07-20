@@ -1,4 +1,4 @@
-import { REP_TYPE } from '@delon/theme';
+import type { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { NumberInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";

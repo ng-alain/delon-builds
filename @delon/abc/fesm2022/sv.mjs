@@ -28,7 +28,7 @@ class SVContainerComponent {
         });
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: SVContainerComponent, selector: "sv-container, [sv-container]", inputs: { title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default", noColon: "noColon" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: SVContainerComponent, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon"], title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default", noColon: "noColon" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
     <div class="ant-row" [ngStyle]="{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }">
       <sv-title *ngIf="title">
         <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
@@ -37,6 +37,9 @@ class SVContainerComponent {
     </div>
   `, isInline: true, dependencies: [{ kind: "directive", type: i0.forwardRef(function () { return i2.NgIf; }), selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i0.forwardRef(function () { return i2.NgStyle; }), selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: i0.forwardRef(function () { return i3.NzStringTemplateOutletDirective; }), selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i0.forwardRef(function () { return SVTitleComponent; }), selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
+__decorate([
+    InputNumber(null)
+], SVContainerComponent.prototype, "colInCon", void 0);
 __decorate([
     InputNumber()
 ], SVContainerComponent.prototype, "gutter", void 0);
@@ -77,7 +80,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: function () { return [{ type: i1.AlainConfigService }]; }, propDecorators: { title: [{
+        }], ctorParameters: function () { return [{ type: i1.AlainConfigService }]; }, propDecorators: { colInCon: [{
+                type: Input,
+                args: ['sv-container']
+            }], title: [{
                 type: Input
             }], size: [{
                 type: Input
@@ -201,7 +207,8 @@ class SVComponent {
         this._noColon = noColon != null ? noColon : parent.noColon;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        clsMap.push(...rep.genCls(col != null ? col : this.parent.col));
+        const parentCol = parent.colInCon || parent.col;
+        clsMap.push(...rep.genCls(col != null ? col : parentCol, parentCol));
         clsMap.push(`${prefixCls}__item`);
         if (this.parent.labelWidth)
             clsMap.push(`${prefixCls}__item-fixed`);

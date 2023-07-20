@@ -530,6 +530,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
                 }] }]; } });
 
 const REP_MAX = 6;
+const SPAN_MAX = 24;
 class ResponsiveService {
     constructor(cogSrv) {
         this.cog = cogSrv.merge('themeResponsive', {
@@ -548,20 +549,26 @@ class ResponsiveService {
             throw new Error(`[theme] the responseive rule index value range must be 1-${REP_MAX}`);
         }
     }
-    genCls(count) {
-        const rule = this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)];
+    genCls(count, defaultCol = 1) {
+        const rule = { ...this.cog.rules[count > REP_MAX ? REP_MAX : Math.max(count, 1)] };
         const antColClass = 'ant-col';
-        const clsMap = [`${antColClass}-xs-${rule.xs}`];
+        const itemMaxSpan = SPAN_MAX / defaultCol;
+        const paddingSpan = (value) => {
+            if (value == null || defaultCol <= 1 || count >= defaultCol)
+                return value;
+            return Math.max(value, count * itemMaxSpan);
+        };
+        const clsMap = [`${antColClass}-xs-${paddingSpan(rule.xs)}`];
         if (rule.sm)
-            clsMap.push(`${antColClass}-sm-${rule.sm}`);
+            clsMap.push(`${antColClass}-sm-${paddingSpan(rule.sm)}`);
         if (rule.md)
-            clsMap.push(`${antColClass}-md-${rule.md}`);
+            clsMap.push(`${antColClass}-md-${paddingSpan(rule.md)}`);
         if (rule.lg)
-            clsMap.push(`${antColClass}-lg-${rule.lg}`);
+            clsMap.push(`${antColClass}-lg-${paddingSpan(rule.lg)}`);
         if (rule.xl)
-            clsMap.push(`${antColClass}-xl-${rule.xl}`);
+            clsMap.push(`${antColClass}-xl-${paddingSpan(rule.xl)}`);
         if (rule.xxl)
-            clsMap.push(`${antColClass}-xxl-${rule.xxl}`);
+            clsMap.push(`${antColClass}-xxl-${paddingSpan(rule.xxl)}`);
         return clsMap;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ResponsiveService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
@@ -2749,5 +2756,5 @@ const VERSION = new Version('16.1.1');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuard, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, trTR as tr_TR, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
