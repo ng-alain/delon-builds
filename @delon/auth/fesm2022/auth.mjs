@@ -546,63 +546,65 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             type: Injectable
         }] });
 
-/**
- * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
- *
- * ```ts
- * data: {
- *  path: 'home',
- *  canActivate: [ JWTGuard ]
- * },
- * {
- *   path: 'my',
- *   canActivateChild: [JWTGuard],
- *   children: [
- *     { path: 'profile', component: MockComponent }
- *   ],
- * },
- * ```
- */
-class JWTGuard {
-    get cog() {
-        return this.srv.options;
-    }
+class AuthJWTGuardService {
     constructor(srv, injector) {
         this.srv = srv;
         this.injector = injector;
     }
-    process() {
-        const res = CheckJwt(this.srv.get(JWTTokenModel), this.cog.token_exp_offset);
+    process(url) {
+        const cog = this.srv.options;
+        const res = CheckJwt(this.srv.get(JWTTokenModel), cog.token_exp_offset);
         if (!res) {
-            ToLogin(this.cog, this.injector, this.url);
+            ToLogin(cog, this.injector, url);
         }
         return res;
     }
-    // lazy loading
-    canMatch(route) {
-        this.url = route.path;
-        return this.process();
-    }
-    // all children route
-    canActivateChild(_childRoute, state) {
-        this.url = state.url;
-        return this.process();
-    }
-    // route
-    canActivate(_route, state) {
-        this.url = state.url;
-        return this.process();
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: JWTGuard, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: JWTGuard, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthJWTGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: JWTGuard, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthJWTGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_SERVICE_TOKEN]
                 }] }, { type: i0.Injector }]; } });
+/**
+ * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ authJWTCanActivate ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authJWTCanActivate = (_, state) => inject(AuthJWTGuardService).process(state.url);
+/**
+ * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivateChild: [ authJWTCanActivateChild ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authJWTCanActivateChild = (_, state) => inject(AuthJWTGuardService).process(state.url);
+/**
+ * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canMatch: [ authJWTCanMatch ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authJWTCanMatch = route => inject(AuthJWTGuardService).process(route.path);
 
 class SimpleTokenModel {
 }
@@ -653,63 +655,64 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             type: Injectable
         }] });
 
-/**
- * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
- *
- * ```ts
- * data: {
- *  path: 'home',
- *  canActivate: [ SimpleGuard ]
- * },
- * {
- *   path: 'my',
- *   canActivateChild: [SimpleGuard],
- *   children: [
- *     { path: 'profile', component: MockComponent }
- *   ],
- * },
- * ```
- */
-class SimpleGuard {
-    get cog() {
-        return this.srv.options;
-    }
+class AuthSimpleGuardService {
     constructor(srv, injector) {
         this.srv = srv;
         this.injector = injector;
     }
-    process() {
+    process(url) {
         const res = CheckSimple(this.srv.get());
         if (!res) {
-            ToLogin(this.cog, this.injector, this.url);
+            ToLogin(this.srv.options, this.injector, url);
         }
         return res;
     }
-    // lazy loading
-    canMatch(route) {
-        this.url = route.path;
-        return this.process();
-    }
-    // all children route
-    canActivateChild(_childRoute, state) {
-        this.url = state.url;
-        return this.process();
-    }
-    // route
-    canActivate(_route, state) {
-        this.url = state.url;
-        return this.process();
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SimpleGuard, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SimpleGuard, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthSimpleGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SimpleGuard, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: AuthSimpleGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_SERVICE_TOKEN]
                 }] }, { type: i0.Injector }]; } });
+/**
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ authSimpleCanActivate ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authSimpleCanActivate = (_, state) => inject(AuthSimpleGuardService).process(state.url);
+/**
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivateChild: [ authSimpleCanActivateChild ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authSimpleCanActivateChild = (_, state) => inject(AuthSimpleGuardService).process(state.url);
+/**
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canMatch: [ authSimpleCanMatch ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const authSimpleCanMatch = route => inject(AuthSimpleGuardService).process(route.path);
 
 class DelonAuthModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
@@ -725,5 +728,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTGuard, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleGuard, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, mergeConfig, urlBase64Decode };
+export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthJWTGuardService, AuthSimpleGuardService, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, urlBase64Decode };
 //# sourceMappingURL=auth.mjs.map
