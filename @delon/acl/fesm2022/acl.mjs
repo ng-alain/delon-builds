@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Directive, Input, NgModule } from '@angular/core';
+import { Injectable, Directive, Input, inject, NgModule } from '@angular/core';
 import { BehaviorSubject, filter, Observable, of, map, tap } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@angular/router';
@@ -324,18 +324,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
  * TODO: 尝试增加 `@delon/core` 类库用于处理这种通用型
  */
 
-/**
- * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
- *
- * ```ts
- * data: {
- *  path: 'home',
- *  canActivate: [ ACLGuard ],
- *  data: { guard: 'user1' }
- * }
- * ```
- */
-class ACLGuard {
+class ACLGuardService {
     constructor(srv, router, injector) {
         this.srv = srv;
         this.router = router;
@@ -356,32 +345,55 @@ class ACLGuard {
             this.router.navigateByUrl(data.guard_url);
         }));
     }
-    // lazy loading
-    canMatch(route) {
-        return this.process(route.data);
-    }
-    // all children route
-    canActivateChild(childRoute, state) {
-        return this.canActivate(childRoute, state);
-    }
-    // route
-    canActivate(route, _state) {
-        return this.process(route.data);
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuard, deps: [{ token: ACLService }, { token: i2.Router }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuard, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuardService, deps: [{ token: ACLService }, { token: i2.Router }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuardService }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuard, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: ACLGuardService, decorators: [{
+            type: Injectable
         }], ctorParameters: function () { return [{ type: ACLService }, { type: i2.Router }, { type: i0.Injector }]; } });
+/**
+ * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivate: [ aclCanActivate ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const aclCanActivate = route => inject(ACLGuardService).process(route.data);
+/**
+ * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canActivateChild: [ aclCanActivateChild ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const aclCanActivateChild = route => inject(ACLGuardService).process(route.data);
+/**
+ * Routing guard prevent unauthorized users visit the page, [ACL Document](https://ng-alain.com/acl).
+ *
+ * ```ts
+ * data: {
+ *  path: 'home',
+ *  canMatch: [ aclCanMatch ],
+ *  data: { guard: 'user1' }
+ * }
+ * ```
+ */
+const aclCanMatch = route => inject(ACLGuardService).process(route.data);
 
 const COMPONENTS = [ACLDirective, ACLIfDirective];
 class DelonACLModule {
     static forRoot() {
         return {
             ngModule: DelonACLModule,
-            providers: [ACLService]
+            providers: [ACLService, ACLGuardService]
         };
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DelonACLModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
@@ -401,5 +413,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ACLDirective, ACLGuard, ACLIfDirective, ACLService, ACL_DEFAULT_CONFIG, DelonACLModule };
+export { ACLDirective, ACLGuardService, ACLIfDirective, ACLService, ACL_DEFAULT_CONFIG, DelonACLModule, aclCanActivate, aclCanActivateChild, aclCanMatch };
 //# sourceMappingURL=acl.mjs.map
