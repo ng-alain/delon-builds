@@ -1,7 +1,7 @@
 import * as i2 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, ViewChild, Injectable, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, ViewChild, createComponent, Injectable, NgModule } from '@angular/core';
 import { of, switchMap, delay, pipe } from 'rxjs';
 import * as i1 from '@angular/cdk/platform';
 import * as i3 from 'ng-zorro-antd/popover';
@@ -155,14 +155,10 @@ class OnboardingService {
     get running() {
         return this._running;
     }
-    constructor(i18n, appRef, 
-    // TODO: Tracking https://github.com/angular/angular/issues/45263
-    resolver, router, injector, doc, configSrv, directionality) {
+    constructor(i18n, appRef, router, doc, configSrv, directionality) {
         this.i18n = i18n;
         this.appRef = appRef;
-        this.resolver = resolver;
         this.router = router;
-        this.injector = injector;
         this.doc = doc;
         this.configSrv = configSrv;
         this.directionality = directionality;
@@ -172,7 +168,10 @@ class OnboardingService {
         this.type = null;
     }
     attach() {
-        const compRef = (this.compRef = this.resolver.resolveComponentFactory(OnboardingComponent).create(this.injector));
+        const compRef = createComponent(OnboardingComponent, {
+            environmentInjector: this.appRef.injector
+        });
+        this.compRef = compRef;
         this.appRef.attachView(compRef.hostView);
         const compNode = compRef.hostView.rootNodes[0];
         const doc = this._getDoc();
@@ -307,12 +306,12 @@ class OnboardingService {
     ngOnDestroy() {
         this.destroy();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: OnboardingService, deps: [{ token: i1$1.DelonLocaleService }, { token: i0.ApplicationRef }, { token: i0.ComponentFactoryResolver }, { token: i2$1.Router }, { token: i0.Injector }, { token: DOCUMENT }, { token: i3$1.AlainConfigService }, { token: i4$1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: OnboardingService, deps: [{ token: i1$1.DelonLocaleService }, { token: i0.ApplicationRef }, { token: i2$1.Router }, { token: DOCUMENT }, { token: i3$1.AlainConfigService }, { token: i4$1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: OnboardingService }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: OnboardingService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () { return [{ type: i1$1.DelonLocaleService }, { type: i0.ApplicationRef }, { type: i0.ComponentFactoryResolver }, { type: i2$1.Router }, { type: i0.Injector }, { type: undefined, decorators: [{
+        }], ctorParameters: function () { return [{ type: i1$1.DelonLocaleService }, { type: i0.ApplicationRef }, { type: i2$1.Router }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DOCUMENT]
                 }] }, { type: i3$1.AlainConfigService }, { type: i4$1.Directionality, decorators: [{

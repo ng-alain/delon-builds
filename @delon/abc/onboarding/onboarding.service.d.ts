@@ -1,5 +1,5 @@
 import { Directionality } from '@angular/cdk/bidi';
-import { ApplicationRef, ComponentFactoryResolver, Injector, OnDestroy } from '@angular/core';
+import { ApplicationRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
@@ -9,9 +9,7 @@ import * as i0 from "@angular/core";
 export declare class OnboardingService implements OnDestroy {
     private i18n;
     private appRef;
-    private resolver;
     private router;
-    private injector;
     private doc;
     private configSrv;
     private directionality;
@@ -29,7 +27,7 @@ export declare class OnboardingService implements OnDestroy {
      * 获取是否正在引导中
      */
     get running(): boolean;
-    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, resolver: ComponentFactoryResolver, router: Router, injector: Injector, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality);
+    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, router: Router, doc: NzSafeAny, configSrv: AlainConfigService, directionality: Directionality);
     private attach;
     private cancelRunning;
     private updateRunning;
@@ -60,6 +58,6 @@ export declare class OnboardingService implements OnDestroy {
      */
     done(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, [null, null, null, null, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, [null, null, null, null, null, { optional: true; }]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<OnboardingService>;
 }
