@@ -47,7 +47,7 @@ function addPathInTsConfig(name) {
 }
 function cleanOutput(p) {
     try {
-        (0, fs_1.rmdirSync)(p, { recursive: true });
+        (0, fs_1.rmSync)(p, { recursive: true });
         (0, fs_1.mkdirSync)(p);
     }
     catch (e) { }
@@ -67,43 +67,45 @@ function tagsMapping(res, config) {
     });
 }
 function fix(output, res, tree, context, config) {
-    tagsMapping(res, config);
-    const indexList = [`models`, `_base.service`];
-    const basePath = (0, core_1.normalize)((0, path_1.join)(project.root, output.replace(process.cwd(), '')));
-    try {
-        // definitions
-        const dataTpl = res.getTemplate({ name: 'dataContracts', fileName: 'data-contracts.eta' });
-        const dataContent = res.renderTemplate(dataTpl, Object.assign({}, res.configuration));
-        tree.create(`${basePath}/models.ts`, filePrefix + res.formatTSContent(dataContent));
-        // Base Service
-        const baseServiceTpl = res.getTemplate({ name: 'baseService', fileName: 'base.service.eta' });
-        const baseServiceContent = res.renderTemplate(baseServiceTpl, Object.assign({}, res.configuration));
-        tree.create(`${basePath}/_base.service.ts`, filePrefix + res.formatTSContent(baseServiceContent));
-        // Tag Service
-        const dtoTypeTpl = res.getTemplate({ name: 'dto-type', fileName: 'dto-type.eta' });
-        const serviceTpl = res.getTemplate({ name: 'service', fileName: 'service.eta' });
-        res.configuration.routes.combined.forEach(route => {
-            const routeIndex = [];
-            // dto
-            const dtoContent = res.formatTSContent(res.renderTemplate(dtoTypeTpl, Object.assign(Object.assign({}, res.configuration), { route })));
-            if (dtoContent.trim().length > 10) {
-                tree.create(`${basePath}/${route.moduleName}/dtos.ts`, filePrefix + dtoContent);
-                routeIndex.push(`dtos`);
-            }
-            // service
-            const serviceContent = res.renderTemplate(serviceTpl, Object.assign(Object.assign({}, res.configuration), { route }));
-            tree.create(`${basePath}/${route.moduleName}/service.ts`, filePrefix + res.formatTSContent(serviceContent));
-            routeIndex.push(`service`);
-            // index.ts
-            tree.create(`${basePath}/${route.moduleName}/index.ts`, filePrefix + routeIndex.map(name => `export * from './${name}';`).join('\n'));
-            indexList.push(`${route.moduleName}/index`);
-        });
-        // Index
-        tree.create(`${basePath}/index.ts`, filePrefix + indexList.map(name => `export * from './${name}';`).join('\n'));
-    }
-    catch (ex) {
-        throw new schematics_1.SchematicsException(`Parse error: ${ex}`);
-    }
+    return __awaiter(this, void 0, void 0, function* () {
+        tagsMapping(res, config);
+        const indexList = [`models`, `_base.service`];
+        const basePath = (0, core_1.normalize)((0, path_1.join)(project.root, output.replace(process.cwd(), '')));
+        try {
+            // definitions
+            const dataTpl = res.getTemplate({ name: 'dataContracts', fileName: 'data-contracts.eta' });
+            const dataContent = res.renderTemplate(dataTpl, Object.assign({}, res.configuration));
+            tree.create(`${basePath}/models.ts`, filePrefix + (yield res.formatTSContent(dataContent)));
+            // Base Service
+            const baseServiceTpl = res.getTemplate({ name: 'baseService', fileName: 'base.service.eta' });
+            const baseServiceContent = res.renderTemplate(baseServiceTpl, Object.assign({}, res.configuration));
+            tree.create(`${basePath}/_base.service.ts`, filePrefix + (yield res.formatTSContent(baseServiceContent)));
+            // Tag Service
+            const dtoTypeTpl = res.getTemplate({ name: 'dto-type', fileName: 'dto-type.eta' });
+            const serviceTpl = res.getTemplate({ name: 'service', fileName: 'service.eta' });
+            res.configuration.routes.combined.forEach((route) => __awaiter(this, void 0, void 0, function* () {
+                const routeIndex = [];
+                // dto
+                const dtoContent = yield res.formatTSContent(res.renderTemplate(dtoTypeTpl, Object.assign(Object.assign({}, res.configuration), { route })));
+                if (dtoContent.trim().length > 10) {
+                    tree.create(`${basePath}/${route.moduleName}/dtos.ts`, filePrefix + dtoContent);
+                    routeIndex.push(`dtos`);
+                }
+                // service
+                const serviceContent = res.renderTemplate(serviceTpl, Object.assign(Object.assign({}, res.configuration), { route }));
+                tree.create(`${basePath}/${route.moduleName}/service.ts`, filePrefix + (yield res.formatTSContent(serviceContent)));
+                routeIndex.push(`service`);
+                // index.ts
+                tree.create(`${basePath}/${route.moduleName}/index.ts`, filePrefix + routeIndex.map(name => `export * from './${name}';`).join('\n'));
+                indexList.push(`${route.moduleName}/index`);
+            }));
+            // Index
+            tree.create(`${basePath}/index.ts`, filePrefix + indexList.map(name => `export * from './${name}';`).join('\n'));
+        }
+        catch (ex) {
+            throw new schematics_1.SchematicsException(`Parse error: ${ex}`);
+        }
+    });
 }
 function genProxy(config) {
     return (tree, context) => {
@@ -175,8 +177,7 @@ function genProxy(config) {
             (0, swagger_typescript_api_1.generateApi)(options)
                 .then((res) => {
                 cleanOutput(output);
-                fix(output, res, tree, context, config);
-                resolve();
+                return fix(output, res, tree, context, config);
             })
                 .catch(ex => {
                 throw new schematics_1.SchematicsException(`Generate error: ${ex}`);
