@@ -2023,8 +2023,11 @@ class ModalHelper {
                 if (typeof size === 'number') {
                     width = `${size}px`;
                 }
-                else {
+                else if (['sm', 'md', 'lg', 'xl'].includes(size)) {
                     cls = `modal-${size}`;
+                }
+                else {
+                    width = size;
                 }
             }
             if (includeTabs) {
