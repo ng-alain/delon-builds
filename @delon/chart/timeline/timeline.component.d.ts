@@ -4,6 +4,11 @@ import { G2BaseComponent, G2Time } from '@delon/chart/core';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
+/**
+ * 数据
+ *
+ * 注：根据 `maxAxis` 值传递指标数据
+ */
 export interface G2TimelineData {
     /**
      * 时间值
@@ -12,7 +17,7 @@ export interface G2TimelineData {
     /** 指标1数据 */
     y1: number;
     /** 指标2数据 */
-    y2: number;
+    y2?: number;
     /** 指标3数据 */
     y3?: number;
     /** 指标4数据 */
@@ -25,7 +30,7 @@ export interface G2TimelineMap {
     /** 指标1 */
     y1: string;
     /** 指标 */
-    y2: string;
+    y2?: string;
     /** 指标3 */
     y3?: string;
     /** 指标4 */
