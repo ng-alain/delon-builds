@@ -25,10 +25,10 @@ export declare class SVContainerComponent {
     static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 export declare class SVTitleComponent implements OnInit {
+    private el;
     private parent;
     private ren;
-    private el;
-    constructor(el: ElementRef, parent: SVContainerComponent, ren: Renderer2);
+    constructor(el: ElementRef<HTMLElement>, parent: SVContainerComponent, ren: Renderer2);
     private setClass;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, [null, { optional: true; host: true; }, null]>;

@@ -102,16 +102,16 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             }] } });
 class SVTitleComponent {
     constructor(el, parent, ren) {
+        this.el = el;
         this.parent = parent;
         this.ren = ren;
         if (parent == null) {
             throw new Error(`[sv-title] must include 'sv-container' component`);
         }
-        this.el = el.nativeElement;
     }
     setClass() {
-        const { gutter } = this.parent;
-        const { el } = this;
+        const gutter = this.parent.gutter;
+        const el = this.el.nativeElement;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }

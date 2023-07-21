@@ -1094,7 +1094,8 @@ class SFFixedDirective {
     init() {
         if (!this._inited || this.num == null || this.num <= 0)
             return;
-        const widgetEl = this.el.querySelector('.ant-row') || this.el;
+        const el = this.el.nativeElement;
+        const widgetEl = el.querySelector('.ant-row') || el;
         this.render.addClass(widgetEl, 'sf__fixed');
         const labelEl = widgetEl.querySelector('.ant-form-item-label');
         const controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper,.ant-form-item-control');
@@ -1107,10 +1108,10 @@ class SFFixedDirective {
             this.render.setStyle(controlEl, 'margin-left', unit);
         }
     }
-    constructor(er, render) {
+    constructor(el, render) {
+        this.el = el;
         this.render = render;
         this._inited = false;
-        this.el = er.nativeElement;
     }
     ngAfterViewInit() {
         this._inited = true;
