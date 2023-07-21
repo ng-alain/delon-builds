@@ -2023,11 +2023,8 @@ class ModalHelper {
                 if (typeof size === 'number') {
                     width = `${size}px`;
                 }
-                else if (['sm', 'md', 'lg', 'xl'].includes(size)) {
-                    cls = `modal-${size}`;
-                }
                 else {
-                    width = size;
+                    cls = `modal-${size}`;
                 }
             }
             if (includeTabs) {
@@ -2047,14 +2044,14 @@ class ModalHelper {
                 };
                 cls += ` ${this.dragClsPrefix} ${dragWrapCls}`;
             }
-            const subject = this.srv.create({
+            const defaultOptions = {
                 nzWrapClassName: cls,
                 nzContent: comp,
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
-                nzData: params,
-                ...modalOptions
-            });
+                nzData: params
+            };
+            const subject = this.srv.create({ ...defaultOptions, ...modalOptions });
             // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
             if (useNzData !== true) {
                 Object.assign(subject.componentInstance, params);
@@ -2128,8 +2125,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
  * this.NzDrawerRef.close(false);
  */
 class DrawerHelper {
-    constructor(srv) {
+    get openDrawers() {
+        return this.parentDrawer ? this.parentDrawer.openDrawers : this.openDrawersAtThisLevel;
+    }
+    constructor(srv, parentDrawer) {
         this.srv = srv;
+        this.parentDrawer = parentDrawer;
+        this.openDrawersAtThisLevel = [];
     }
     /**
      * 构建一个抽屉
@@ -2165,8 +2167,9 @@ class DrawerHelper {
                     'padding-bottom.px': footerHeight + 24
                 };
             }
-            const subject = this.srv.create({ ...defaultOptions, ...drawerOptions });
-            const afterClose$ = subject.afterClose.subscribe((res) => {
+            const ref = this.srv.create({ ...defaultOptions, ...drawerOptions });
+            this.openDrawers.push(ref);
+            const afterClose$ = ref.afterClose.subscribe((res) => {
                 if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);
@@ -2177,8 +2180,21 @@ class DrawerHelper {
                 }
                 observer.complete();
                 afterClose$.unsubscribe();
+                this.close(ref);
             });
         });
+    }
+    close(ref) {
+        const idx = this.openDrawers.indexOf(ref);
+        if (idx === -1)
+            return;
+        this.openDrawers.splice(idx, 1);
+    }
+    closeAll() {
+        let i = this.openDrawers.length;
+        while (i--) {
+            this.openDrawers[i].close();
+        }
     }
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
@@ -2190,13 +2206,17 @@ class DrawerHelper {
         };
         return this.create(title, comp, params, { ...options, drawerOptions });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DrawerHelper, deps: [{ token: i1$6.NzDrawerService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DrawerHelper, deps: [{ token: i1$6.NzDrawerService }, { token: DrawerHelper, optional: true, skipSelf: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DrawerHelper, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: DrawerHelper, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: function () { return [{ type: i1$6.NzDrawerService }]; } });
+        }], ctorParameters: function () { return [{ type: i1$6.NzDrawerService }, { type: DrawerHelper, decorators: [{
+                    type: Optional
+                }, {
+                    type: SkipSelf
+                }] }]; } });
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /**

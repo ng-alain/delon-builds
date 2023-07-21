@@ -5,8 +5,8 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
 import * as i0 from "@angular/core";
 export interface ModalHelperOptions {
-    /** 大小；例如：lg、600、80%，默认：`lg` */
-    size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number | string;
+    /** 大小；例如：lg、600，默认：`lg` */
+    size?: 'sm' | 'md' | 'lg' | 'xl' | '' | number;
     /** 对话框 [ModalOptions](https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/modal/modal-types.ts) 参数 */
     modalOptions?: ModalOptions;
     /** 是否精准（默认：`true`），若返回值非空值（`null`或`undefined`）视为成功，否则视为错误 */
