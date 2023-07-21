@@ -47,10 +47,7 @@ export interface DrawerHelperOptions {
  */
 export declare class DrawerHelper {
     private srv;
-    private parentDrawer;
-    private openDrawersAtThisLevel;
-    get openDrawers(): NzDrawerRef[];
-    constructor(srv: NzDrawerService, parentDrawer: DrawerHelper);
+    constructor(srv: NzDrawerService);
     /**
      * 构建一个抽屉
      */
@@ -58,8 +55,6 @@ export declare class DrawerHelper {
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
-    private close;
-    closeAll(): void;
     /**
      * 构建一个抽屉，点击蒙层不允许关闭
      */
@@ -67,6 +62,6 @@ export declare class DrawerHelper {
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<DrawerHelper, [null, { optional: true; skipSelf: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DrawerHelper, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DrawerHelper>;
 }
