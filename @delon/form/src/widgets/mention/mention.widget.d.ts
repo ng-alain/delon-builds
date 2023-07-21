@@ -1,10 +1,10 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
+import { SFMentionWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
-import { SFMentionWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> implements OnInit {
     private mentionChild;

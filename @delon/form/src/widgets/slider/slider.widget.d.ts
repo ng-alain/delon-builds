@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import { NzMarks, NzSliderValue } from 'ng-zorro-antd/slider';
-import { ControlUIWidget } from '../../widget';
 import { SFSliderWidgetSchema } from './schema';
+import { ControlUIWidget } from '../../widget';
 import * as i0 from "@angular/core";
 export declare class SliderWidget extends ControlUIWidget<SFSliderWidgetSchema> implements OnInit {
     min: number;

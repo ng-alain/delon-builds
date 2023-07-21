@@ -1,10 +1,10 @@
 import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TransferCanMove, TransferChange, TransferItem, TransferSearchChange, TransferSelectChange } from 'ng-zorro-antd/transfer';
+import { SFTransferWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
-import { SFTransferWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSchema> implements OnInit {
     list: SFSchemaEnum[];

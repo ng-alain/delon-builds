@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
+import { SFStringWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
-import { SFStringWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class StringWidget extends ControlUIWidget<SFStringWidgetSchema> implements OnInit {
     type: string;

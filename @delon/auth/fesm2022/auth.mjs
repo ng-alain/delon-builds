@@ -321,20 +321,6 @@ class CookieStorageStore {
     }
 }
 
-/**
- * Whether to allow anonymous login
- *
- * 是否允许匿名登录
- *
- * @example
- * this.http.post(`login`, {
- *  name: 'cipchk', pwd: '123456'
- * }, {
- *  context: new HttpContext().set(ALLOW_ANONYMOUS, true)
- * })
- */
-const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
-
 function CheckSimple(model) {
     return model != null && typeof model.token === 'string' && model.token.length > 0;
 }
@@ -363,6 +349,20 @@ function ToLogin(options, injector, url) {
         });
     }
 }
+
+/**
+ * Whether to allow anonymous login
+ *
+ * 是否允许匿名登录
+ *
+ * @example
+ * this.http.post(`login`, {
+ *  name: 'cipchk', pwd: '123456'
+ * }, {
+ *  context: new HttpContext().set(ALLOW_ANONYMOUS, true)
+ * })
+ */
+const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class HttpAuthInterceptorHandler {
@@ -482,6 +482,7 @@ function b64DecodeUnicode(str) {
         .join(''));
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class JWTTokenModel {
     /**
      * 获取载荷信息

@@ -1,8 +1,8 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ACLService } from '@delon/acl';
-import { AlainI18NService } from '../i18n/i18n';
 import { Menu } from './interface';
+import { AlainI18NService } from '../i18n/i18n';
 import * as i0 from "@angular/core";
 /**
  * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)

@@ -1,10 +1,10 @@
 import { AlainSFConfig } from '@delon/util/config';
+import { FormProperty, PropertyGroup } from './form.property';
+import { FormPropertyFactory } from './form.property.factory';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
-import { FormProperty, PropertyGroup } from './form.property';
-import { FormPropertyFactory } from './form.property.factory';
 export declare class ArrayProperty extends PropertyGroup {
     private formPropertyFactory;
     constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: Record<string, unknown>, parent: PropertyGroup | null, path: string, options: AlainSFConfig);

@@ -1,9 +1,9 @@
 import { OnInit } from '@angular/core';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/core/tree';
+import { SFTreeSelectWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
-import { SFTreeSelectWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidgetSchema> implements OnInit {
     i: SFTreeSelectWidgetSchema;

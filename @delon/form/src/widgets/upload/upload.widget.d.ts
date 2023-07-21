@@ -1,9 +1,9 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+import { SFUploadWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
-import { SFUploadWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class UploadWidget extends ControlUIWidget<SFUploadWidgetSchema> implements OnInit {
     i: NzSafeAny;

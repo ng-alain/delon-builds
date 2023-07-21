@@ -1,8 +1,8 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { SFTimeWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
-import { SFTimeWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class TimeWidget extends ControlUIWidget<SFTimeWidgetSchema> implements OnInit {
     private valueFormat;

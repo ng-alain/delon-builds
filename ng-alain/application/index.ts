@@ -16,6 +16,7 @@ import {
 } from '@angular-devkit/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 
+import { Schema as ApplicationOptions } from './schema';
 import { getLangData } from '../core/lang.config';
 import {
   addAllowedCommonJsDependencies,
@@ -43,7 +44,6 @@ import {
 } from '../utils';
 import { addImportNotation } from '../utils/less';
 import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
-import { Schema as ApplicationOptions } from './schema';
 
 let project: ProjectDefinition;
 
@@ -184,11 +184,11 @@ function addCodeStylesToPackageJson(): Rule {
       tree,
       [
         `husky@^7.0.4`,
-        `lint-staged@^13.2.2`,
-        `prettier@^2.8.8`,
-        `stylelint@^15.6.2`,
+        `lint-staged@^13.2.3`,
+        `prettier@^3.0.0`,
+        `stylelint@^15.10.2`,
         `stylelint-config-rational-order@^0.1.2`,
-        `stylelint-config-standard@^33.0.0`,
+        `stylelint-config-standard@^34.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
         `stylelint-order@^6.0.3`
       ],
