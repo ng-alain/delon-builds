@@ -3,6 +3,8 @@ import type { SafeValue } from '@angular/platform-browser';
 import type { Observable } from 'rxjs';
 import type { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, FormatMaskOption } from '@delon/util/format';
 import type { NzImagePreviewOptions } from 'ng-zorro-antd/image';
+export type CellRenderType = 'primary' | 'success' | 'danger' | 'warning';
+export type CellSize = 'large' | 'small';
 export type CellBaseValue = string | number | boolean | Date | null | undefined | SafeValue;
 export interface CellTextUnit {
     text?: string | SafeValue | string[] | number;
@@ -28,6 +30,30 @@ export interface CellOptions {
      */
     type?: CellType;
     tooltip?: string;
+    /**
+     * Render Type
+     *
+     * 渲染类型
+     */
+    renderType?: CellRenderType;
+    /**
+     * Size
+     *
+     * 大小
+     */
+    size?: CellSize;
+    /**
+     * Default Text
+     *
+     * 默认文本
+     */
+    default?: CellDefaultText;
+    /**
+     * Unit
+     *
+     * 单位
+     */
+    unit?: string;
     /**
      * Format mask, [Document](https://ng-alain.com/util/format/en#formatMask)
      *
@@ -84,7 +110,7 @@ export interface CellOptions {
         /**
          * 点击查看大图，若 `true` 表示直接使用当前作为大图
          */
-        big?: boolean | ((value: unknown) => string);
+        big?: true | ((value: unknown) => string);
         previewOptions?: NzImagePreviewOptions;
     };
     /**
@@ -93,7 +119,17 @@ export interface CellOptions {
      * 链接，若指定URL是以 `/` 开头视为路由跳转
      */
     link?: {
+        /**
+         * Link, if it starts with `/`, it means routing jump
+         *
+         * 链接，若指定URL是以 `/` 开头视为路由跳转
+         */
         url?: string;
+        /**
+         * Open type of the external link
+         *
+         * 外链的打开方式
+         */
         target?: '_blank' | '_self' | '_parent' | '_top';
     };
     /**
@@ -177,10 +213,11 @@ export interface CellTagValue {
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
 }
+export interface CellDefaultText {
+    text?: string;
+    condition?: unknown;
+}
 export interface CellWidgetData {
     value?: unknown;
-    default?: unknown;
-    defaultCondition?: unknown;
     options?: CellOptions;
-    truncate?: boolean;
 }

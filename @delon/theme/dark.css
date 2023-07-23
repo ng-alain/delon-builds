@@ -34020,9 +34020,6 @@ ellipsis {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
-.cell {
-  display: inline-flex;
-}
 .cell__has-unit {
   align-items: baseline;
 }

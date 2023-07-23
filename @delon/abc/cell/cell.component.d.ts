@@ -15,7 +15,6 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     private renderer;
     private imgSrv;
     private win;
-    static ngAcceptInputType_truncate: BooleanInput;
     static ngAcceptInputType_loading: BooleanInput;
     static ngAcceptInputType_disabled: BooleanInput;
     private destroy$?;
@@ -25,15 +24,9 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     showDefault: boolean;
     value?: CellValue;
     readonly valueChange: EventEmitter<any>;
-    default: string;
-    defaultCondition?: unknown;
     options?: CellOptions;
-    unit?: string;
-    truncate: boolean;
     loading: boolean;
     disabled: boolean;
-    type?: 'primary' | 'success' | 'danger' | 'warning';
-    size?: 'large' | 'small' | null;
     /**
      * 货币快捷项
      *
@@ -57,5 +50,5 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     _showImg(img: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "default": { "alias": "default"; "required": false; }; "defaultCondition": { "alias": "defaultCondition"; "required": false; }; "options": { "alias": "options"; "required": false; }; "unit": { "alias": "unit"; "required": false; }; "truncate": { "alias": "truncate"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "type": { "alias": "type"; "required": false; }; "size": { "alias": "size"; "required": false; }; "currency": { "alias": "currency"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "options": { "alias": "options"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "currency": { "alias": "currency"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
 }

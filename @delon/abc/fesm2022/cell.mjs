@@ -79,7 +79,8 @@ class CellService {
         };
         this.globalOptions = configSrv.merge('cell', {
             date: { format: 'yyyy-MM-dd HH:mm:ss' },
-            img: { size: 32, big: true }
+            img: { size: 32 },
+            default: { text: '-' }
         });
     }
     registerWidget(key, widget) {
@@ -237,10 +238,7 @@ class CellComponent {
     get hostData() {
         return {
             value: this.value,
-            default: this.default,
-            defaultCondition: this.defaultCondition,
-            options: this.srv.fixOptions(this.options),
-            truncate: this.truncate
+            options: this.srv.fixOptions(this.options)
         };
     }
     constructor(srv, router, cdr, el, renderer, imgSrv, 
@@ -255,9 +253,6 @@ class CellComponent {
         this.win = win;
         this.showDefault = false;
         this.valueChange = new EventEmitter();
-        this.default = '-';
-        this.defaultCondition = null;
-        this.truncate = false;
         this.loading = false;
         this.disabled = false;
     }
@@ -265,19 +260,20 @@ class CellComponent {
         this.destroy$?.unsubscribe();
         this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
             this.res = res;
-            this.showDefault = this.value == this.defaultCondition;
+            this.showDefault = this.value == this.safeOpt.default.condition;
             this._text = res.result?.text ?? '';
-            this._unit = res.result?.unit ?? this.unit;
+            this._unit = res.result?.unit ?? this.safeOpt?.unit;
             this.cdr.detectChanges();
             this.setClass();
         });
     }
     setClass() {
         const { el, renderer } = this;
+        const { renderType, size } = this.safeOpt;
         updateHostClass(el.nativeElement, renderer, {
             [`cell`]: true,
-            [`cell__${this.type}`]: this.type != null,
-            [`cell__${this.size}`]: this.size != null,
+            [`cell__${renderType}`]: renderType != null,
+            [`cell__${size}`]: size != null,
             [`cell__has-unit`]: this._unit,
             [`cell__has-default`]: this.showDefault,
             [`cell__disabled`]: this.disabled
@@ -285,8 +281,8 @@ class CellComponent {
         el.nativeElement.dataset.type = this.safeOpt.type;
     }
     ngOnChanges(changes) {
-        // Do not call updateValue when only updating loading, disabled, size
-        if (Object.keys(changes).every(k => ['loading', 'disabled', 'size'].includes(k))) {
+        // Do not call updateValue when only updating loading, disabled
+        if (Object.keys(changes).every(k => ['loading', 'disabled'].includes(k))) {
             this.setClass();
         }
         else {
@@ -315,7 +311,7 @@ class CellComponent {
     }
     _showImg(img) {
         const config = this.safeOpt.img;
-        if (config == null || config.big === false)
+        if (config == null || config.big == null)
             return;
         let idx = -1;
         const list = this._text.map((p, index) => {
@@ -331,7 +327,7 @@ class CellComponent {
         this.destroy$?.unsubscribe();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", default: "default", defaultCondition: "defaultCondition", options: "options", unit: "unit", truncate: "truncate", loading: "loading", disabled: "disabled", type: "type", size: "size", currency: "currency" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", options: "options", loading: "loading", disabled: "disabled", currency: "currency" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
       <ng-container [ngSwitch]="safeOpt.type">
         <label
@@ -356,7 +352,7 @@ class CellComponent {
           *ngSwitchCase="'link'"
           (click)="_link($event)"
           [attr.target]="safeOpt.link?.target"
-          [attr.title]="truncate ? value : null"
+          [attr.title]="value"
           [innerHTML]="_text"
         ></a>
         <nz-tag *ngSwitchCase="'tag'" [nzColor]="res?.result?.color">
@@ -376,14 +372,14 @@ class CellComponent {
           />
         </ng-container>
         <ng-container *ngSwitchDefault>
-          <span *ngIf="!isText" [innerHTML]="_text" [attr.title]="truncate ? value : null"></span>
-          <span *ngIf="isText" [innerText]="_text" [attr.title]="truncate ? value : null"></span>
+          <span *ngIf="!isText" [innerHTML]="_text" [attr.title]="value"></span>
+          <span *ngIf="isText" [innerText]="_text" [attr.title]="value"></span>
           <span *ngIf="_unit" class="unit">{{ _unit }}</span>
         </ng-container>
       </ng-container>
     </ng-template>
     <ng-template #textWrap>
-      <ng-container *ngIf="showDefault">{{ default }}</ng-container>
+      <ng-container *ngIf="showDefault">{{ safeOpt.default?.text }}</ng-container>
       <ng-container *ngIf="!showDefault">
         <span *ngIf="safeOpt?.tooltip; else text" nz-tooltip [nzTooltipTitle]="safeOpt.tooltip">
           <ng-template [ngTemplateOutlet]="text"></ng-template>
@@ -393,9 +389,6 @@ class CellComponent {
     <span *ngIf="loading; else textWrap" nz-icon nzType="loading"></span>
   `, isInline: true, dependencies: [{ kind: "directive", type: i4$1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i4$1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4$1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i4$1.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i4$1.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i4$1.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "directive", type: i5.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i5.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i6.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i7.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "component", type: i8.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "component", type: i9.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "directive", type: i10.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputBoolean()
-], CellComponent.prototype, "truncate", void 0);
 __decorate([
     InputBoolean()
 ], CellComponent.prototype, "loading", void 0);
@@ -431,7 +424,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
           *ngSwitchCase="'link'"
           (click)="_link($event)"
           [attr.target]="safeOpt.link?.target"
-          [attr.title]="truncate ? value : null"
+          [attr.title]="value"
           [innerHTML]="_text"
         ></a>
         <nz-tag *ngSwitchCase="'tag'" [nzColor]="res?.result?.color">
@@ -451,14 +444,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
           />
         </ng-container>
         <ng-container *ngSwitchDefault>
-          <span *ngIf="!isText" [innerHTML]="_text" [attr.title]="truncate ? value : null"></span>
-          <span *ngIf="isText" [innerText]="_text" [attr.title]="truncate ? value : null"></span>
+          <span *ngIf="!isText" [innerHTML]="_text" [attr.title]="value"></span>
+          <span *ngIf="isText" [innerText]="_text" [attr.title]="value"></span>
           <span *ngIf="_unit" class="unit">{{ _unit }}</span>
         </ng-container>
       </ng-container>
     </ng-template>
     <ng-template #textWrap>
-      <ng-container *ngIf="showDefault">{{ default }}</ng-container>
+      <ng-container *ngIf="showDefault">{{ safeOpt.default?.text }}</ng-container>
       <ng-container *ngIf="!showDefault">
         <span *ngIf="safeOpt?.tooltip; else text" nz-tooltip [nzTooltipTitle]="safeOpt.tooltip">
           <ng-template [ngTemplateOutlet]="text"></ng-template>
@@ -479,23 +472,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
                 type: Input
             }], valueChange: [{
                 type: Output
-            }], default: [{
-                type: Input
-            }], defaultCondition: [{
-                type: Input
             }], options: [{
-                type: Input
-            }], unit: [{
-                type: Input
-            }], truncate: [{
                 type: Input
             }], loading: [{
                 type: Input
             }], disabled: [{
-                type: Input
-            }], type: [{
-                type: Input
-            }], size: [{
                 type: Input
             }], currency: [{
                 type: Input
