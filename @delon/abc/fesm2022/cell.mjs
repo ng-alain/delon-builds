@@ -216,19 +216,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             }] } });
 
 class CellComponent {
-    /**
-     * 货币快捷项
-     *
-     * @example
-     * <cell [currency]="1000"></cell>
-     * 等同于
-     * <cell [value]="1000" [options]="{type: 'currency'}"></cell>
-     */
-    set currency(value) {
-        this.value = value;
-        this.options = { type: 'currency' };
-        this.updateValue();
-    }
     get safeOpt() {
         return this.res?.options ?? {};
     }
@@ -327,7 +314,7 @@ class CellComponent {
         this.destroy$?.unsubscribe();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", options: "options", loading: "loading", disabled: "disabled", currency: "currency" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: CellComponent, selector: "cell, [cell]", inputs: { value: "value", options: "options", loading: "loading", disabled: "disabled" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
       <ng-container [ngSwitch]="safeOpt.type">
         <label
@@ -477,8 +464,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             }], loading: [{
                 type: Input
             }], disabled: [{
-                type: Input
-            }], currency: [{
                 type: Input
             }] } });
 

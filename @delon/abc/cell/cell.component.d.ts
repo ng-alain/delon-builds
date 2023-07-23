@@ -27,15 +27,6 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     options?: CellOptions;
     loading: boolean;
     disabled: boolean;
-    /**
-     * 货币快捷项
-     *
-     * @example
-     * <cell [currency]="1000"></cell>
-     * 等同于
-     * <cell [value]="1000" [options]="{type: 'currency'}"></cell>
-     */
-    set currency(value: number);
     get safeOpt(): CellOptions;
     get isText(): boolean;
     get hostData(): CellWidgetData;
@@ -50,5 +41,5 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     _showImg(img: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "options": { "alias": "options"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "currency": { "alias": "currency"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "options": { "alias": "options"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
 }
