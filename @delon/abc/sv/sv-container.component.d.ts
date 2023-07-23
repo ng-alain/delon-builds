@@ -10,10 +10,9 @@ export declare class SVContainerComponent {
     static ngAcceptInputType_colInCon: NumberInput;
     static ngAcceptInputType_default: BooleanInput;
     static ngAcceptInputType_noColon: BooleanInput;
-    static ngAcceptInputType_bordered: BooleanInput;
     colInCon?: REP_TYPE;
     title?: string | TemplateRef<void>;
-    size?: 'small' | 'large' | 'default';
+    size: 'small' | 'large';
     /** 列表项间距，单位为 `px` */
     gutter: number;
     layout: 'horizontal' | 'vertical';
@@ -22,13 +21,9 @@ export declare class SVContainerComponent {
     col: number;
     default: boolean;
     noColon: boolean;
-    bordered: boolean;
-    get margin(): {
-        [k: string]: number;
-    };
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 export declare class SVTitleComponent implements OnInit {
     private el;

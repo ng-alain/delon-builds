@@ -17,12 +17,8 @@ import * as i6 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 
 class SVContainerComponent {
-    get margin() {
-        return this.bordered ? {} : { 'margin-left.px': -(this.gutter / 2), 'margin-right.px': -(this.gutter / 2) };
-    }
     constructor(configSrv) {
         this.noColon = false;
-        this.bordered = false;
         configSrv.attach(this, 'sv', {
             size: 'large',
             gutter: 32,
@@ -32,8 +28,8 @@ class SVContainerComponent {
         });
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: SVContainerComponent, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon"], title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default", noColon: "noColon", bordered: "bordered" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
-    <div class="ant-row" [ngStyle]="margin">
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.6", type: SVContainerComponent, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon"], title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default", noColon: "noColon" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
+    <div class="ant-row" [ngStyle]="{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }">
       <sv-title *ngIf="title">
         <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
       </sv-title>
@@ -59,16 +55,13 @@ __decorate([
 __decorate([
     InputBoolean()
 ], SVContainerComponent.prototype, "noColon", void 0);
-__decorate([
-    InputBoolean()
-], SVContainerComponent.prototype, "bordered", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImport: i0, type: SVContainerComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'sv-container, [sv-container]',
                     exportAs: 'svContainer',
                     template: `
-    <div class="ant-row" [ngStyle]="margin">
+    <div class="ant-row" [ngStyle]="{ 'margin-left.px': -(gutter / 2), 'margin-right.px': -(gutter / 2) }">
       <sv-title *ngIf="title">
         <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
       </sv-title>
@@ -81,7 +74,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
                         '[class.sv__vertical]': `layout === 'vertical'`,
                         '[class.sv__small]': `size === 'small'`,
                         '[class.sv__large]': `size === 'large'`,
-                        '[class.sv__bordered]': `bordered`,
                         '[class.clearfix]': `true`
                     },
                     preserveWhitespaces: false,
@@ -106,8 +98,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
             }], default: [{
                 type: Input
             }], noColon: [{
-                type: Input
-            }], bordered: [{
                 type: Input
             }] } });
 class SVTitleComponent {
@@ -194,16 +184,13 @@ const prefixCls = `sv`;
 class SVComponent {
     // #endregion
     get paddingValue() {
-        if (this.parent.bordered)
-            return null;
-        return this.parent.gutter / 2;
+        return this.parent && this.parent.gutter / 2;
     }
     get labelWidth() {
         const { labelWidth, layout } = this.parent;
         return layout === 'horizontal' ? labelWidth : null;
     }
     constructor(el, parent, rep, ren) {
-        this.el = el;
         this.parent = parent;
         this.rep = rep;
         this.ren = ren;
@@ -213,11 +200,11 @@ class SVComponent {
         if (parent == null) {
             throw new Error(`[sv] must include 'sv-container' component`);
         }
+        this.el = el.nativeElement;
     }
     setClass() {
-        const { ren, col, clsMap, type, rep, noColon, parent } = this;
-        const el = this.el.nativeElement;
-        this._noColon = parent.bordered ? true : noColon != null ? noColon : parent.noColon;
+        const { el, ren, col, clsMap, type, rep, noColon, parent } = this;
+        this._noColon = noColon != null ? noColon : parent.noColon;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         const parentCol = parent.colInCon || parent.col;
