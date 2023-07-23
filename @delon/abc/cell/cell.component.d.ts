@@ -1,11 +1,11 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2 } from '@angular/core';
-import { SafeHtml } from '@angular/platform-browser';
+import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, Renderer2, SimpleChange } from '@angular/core';
+import type { SafeValue } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BooleanInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { CellService } from './cell.service';
-import type { CellOptions, CellTextResult, CellWidgetData } from './cell.types';
+import type { CellOptions, CellTextResult, CellValue, CellWidgetData } from './cell.types';
 import * as i0 from "@angular/core";
 export declare class CellComponent implements OnChanges, OnDestroy {
     private srv;
@@ -19,11 +19,11 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     static ngAcceptInputType_loading: BooleanInput;
     static ngAcceptInputType_disabled: BooleanInput;
     private destroy$?;
-    _text: string | SafeHtml;
+    _text: string | SafeValue | string[] | number;
     _unit?: string;
     res?: CellTextResult;
     showDefault: boolean;
-    value?: unknown;
+    value?: CellValue;
     readonly valueChange: EventEmitter<any>;
     default: string;
     defaultCondition?: unknown;
@@ -33,7 +33,7 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     loading: boolean;
     disabled: boolean;
     type?: 'primary' | 'success' | 'danger' | 'warning';
-    size?: 'large' | 'small';
+    size?: 'large' | 'small' | null;
     /**
      * 货币快捷项
      *
@@ -49,7 +49,9 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     constructor(srv: CellService, router: Router, cdr: ChangeDetectorRef, el: ElementRef<HTMLElement>, renderer: Renderer2, imgSrv: NzImageService, win: any);
     private updateValue;
     private setClass;
-    ngOnChanges(): void;
+    ngOnChanges(changes: {
+        [p in keyof CellComponent]?: SimpleChange;
+    }): void;
     change(value: NzSafeAny): void;
     _link(e: Event): void;
     _showImg(img: string): void;

@@ -134,8 +134,13 @@ class CellService {
         const type = this.genType(value, { ...options });
         const opt = this.fixOptions(options);
         opt.type = type;
+        const isSafeHtml = typeof value === 'object' &&
+            typeof value?.getTypeName === 'function' &&
+            value?.getTypeName() != null;
         let res = {
-            result: typeof value === 'object' ? value : { text: value == null ? '' : `${value}` },
+            result: typeof value === 'object' && !isSafeHtml
+                ? value
+                : { text: value == null ? '' : isSafeHtml ? value : `${value}` },
             options: opt
         };
         const widget = this.widgets[type];
@@ -153,6 +158,10 @@ class CellService {
                     break;
                 case 'html':
                     res.safeHtml = opt.html?.safe;
+                    break;
+                case 'string':
+                    if (isSafeHtml)
+                        res.safeHtml = 'safeHtml';
                     break;
             }
             if (opt.mask != null) {
@@ -270,8 +279,14 @@ class CellComponent {
         });
         el.nativeElement.dataset.type = this.safeOpt.type;
     }
-    ngOnChanges() {
-        this.updateValue();
+    ngOnChanges(changes) {
+        // Do not call updateValue when only updating loading, disabled, size
+        if (Object.keys(changes).every(k => ['loading', 'disabled', 'size'].includes(k))) {
+            this.setClass();
+        }
+        else {
+            this.updateValue();
+        }
     }
     change(value) {
         this.value = value;
@@ -320,16 +335,18 @@ class CellComponent {
           [nzDisabled]="disabled"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          >{{ safeOpt.checkbox?.label }}</label
         >
+          {{ safeOpt.checkbox?.label }}
+        </label>
         <label
           *ngSwitchCase="'radio'"
           nz-radio
           [nzDisabled]="disabled"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          >{{ safeOpt.radio?.label }}</label
         >
+          {{ safeOpt.radio?.label }}
+        </label>
         <a
           *ngSwitchCase="'link'"
           (click)="_link($event)"
@@ -393,16 +410,18 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.6", ngImpor
           [nzDisabled]="disabled"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          >{{ safeOpt.checkbox?.label }}</label
         >
+          {{ safeOpt.checkbox?.label }}
+        </label>
         <label
           *ngSwitchCase="'radio'"
           nz-radio
           [nzDisabled]="disabled"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          >{{ safeOpt.radio?.label }}</label
         >
+          {{ safeOpt.radio?.label }}
+        </label>
         <a
           *ngSwitchCase="'link'"
           (click)="_link($event)"
