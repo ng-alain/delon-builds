@@ -120,6 +120,8 @@ class CellService {
             return 'checkbox';
         else if (options.radio != null)
             return 'radio';
+        else if (options.enum != null)
+            return 'enum';
         else if (typeOf === 'number')
             return 'number';
         else if (typeOf === 'boolean' || options.boolean != null)
@@ -155,6 +157,9 @@ class CellService {
                     break;
                 case 'tag':
                     res.result = (opt.tag?.data ?? {})[value];
+                    break;
+                case 'enum':
+                    res.result = { text: (opt.enum ?? {})[value] };
                     break;
                 case 'html':
                     res.safeHtml = opt.html?.safe;

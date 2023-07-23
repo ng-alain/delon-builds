@@ -21,7 +21,7 @@ export interface CellWidget {
     type: 'fn' | 'widget';
     ref: Type<unknown> | CellWidgetFn;
 }
-export type CellType = 'string' | 'number' | 'mega' | 'currency' | 'cny' | 'boolean' | 'date' | 'img' | 'link' | 'html' | 'badge' | 'tag' | 'checkbox' | 'radio' | 'widget';
+export type CellType = 'string' | 'number' | 'mega' | 'currency' | 'cny' | 'boolean' | 'date' | 'img' | 'link' | 'html' | 'badge' | 'tag' | 'checkbox' | 'radio' | 'enum' | 'widget';
 export interface CellOptions {
     /**
      * 指定渲染类型，若不指定则根据 `value` 类型自动转换
@@ -135,6 +135,10 @@ export interface CellOptions {
      */
     radio?: {
         label?: string;
+    };
+    enum?: {
+        [key: string]: string;
+        [key: number]: string;
     };
 }
 /**
