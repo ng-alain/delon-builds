@@ -261,7 +261,9 @@ export interface STColumn<T extends STData = any> {
      */
     type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'cell' | 'widget';
     /**
-     * 使用 `cell` 组件渲染单元格
+     * `cell` component options
+     *
+     * `cell` 组件配置项
      */
     cell?: CellOptions | ((record: T, column: STColumn) => CellOptions);
     /**
