@@ -1,8 +1,7 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Injectable, inject, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subject, share, timer, take } from 'rxjs';
+import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { Subject, share, timer, takeUntil, take } from 'rxjs';
 import { InputNumber, ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
@@ -60,14 +59,14 @@ class MediaComponent {
         this.srv = srv;
         this.ngZone = ngZone;
         this.platform = platform;
-        this.destroy$ = inject(DestroyRef);
+        this.destroy$ = new Subject();
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
     }
     initDelay() {
         timer(this.delay)
-            .pipe(takeUntilDestroyed(this.destroy$))
+            .pipe(takeUntil(this.destroy$))
             .subscribe(() => this.ngZone.runOutsideAngular(() => this.init()));
     }
     init() {
@@ -109,7 +108,7 @@ class MediaComponent {
         }
         this.srv
             .notify()
-            .pipe(takeUntilDestroyed(this.destroy$), take(1))
+            .pipe(takeUntil(this.destroy$), take(1))
             .subscribe(() => this.initDelay());
         this.srv.load();
     }
@@ -122,6 +121,9 @@ class MediaComponent {
     ngOnDestroy() {
         this.destroy();
         this._p = null;
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: MediaComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: MediaService }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: MediaComponent, selector: "media", inputs: { type: "type", source: "source", options: "options", delay: "delay" }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content></ng-content>`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }

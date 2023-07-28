@@ -1,10 +1,10 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, ElementRef, OnInit } from '@angular/core';
+import { ChangeDetectorRef, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
-export declare class ErrorCollectComponent implements OnInit {
+export declare class ErrorCollectComponent implements OnInit, OnDestroy {
     private el;
     private cdr;
     private doc;
@@ -24,6 +24,7 @@ export declare class ErrorCollectComponent implements OnInit {
     private install;
     private findParent;
     ngOnInit(): void;
+    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ErrorCollectComponent, [null, null, null, null, { optional: true; }, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ErrorCollectComponent, "error-collect, [error-collect]", ["errorCollect"], { "freq": { "alias": "freq"; "required": false; }; "offsetTop": { "alias": "offsetTop"; "required": false; }; }, {}, never, never, false, never>;
 }

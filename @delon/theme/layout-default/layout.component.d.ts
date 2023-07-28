@@ -1,4 +1,4 @@
-import { ElementRef, QueryList, Renderer2, TemplateRef } from '@angular/core';
+import { ElementRef, OnDestroy, QueryList, Renderer2, TemplateRef } from '@angular/core';
 import { Router, Event } from '@angular/router';
 import { SettingsService } from '@delon/theme';
 import { BooleanInput } from '@delon/util/decorator';
@@ -8,7 +8,7 @@ import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component
 import { LayoutDefaultService } from './layout.service';
 import { LayoutDefaultOptions } from './types';
 import * as i0 from "@angular/core";
-export declare class LayoutDefaultComponent {
+export declare class LayoutDefaultComponent implements OnDestroy {
     private msgSrv;
     private settings;
     private el;
@@ -27,6 +27,7 @@ export declare class LayoutDefaultComponent {
     customError?: string | null;
     fetchingStrictly: boolean;
     fetching: boolean;
+    private destroy$;
     private isFetching;
     get showFetching(): boolean;
     get collapsed(): boolean;
@@ -35,6 +36,7 @@ export declare class LayoutDefaultComponent {
     constructor(router: Router, msgSrv: NzMessageService, settings: SettingsService, el: ElementRef, renderer: Renderer2, doc: NzSafeAny, srv: LayoutDefaultService);
     processEv(ev: Event): void;
     private setClass;
+    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": { "alias": "options"; "required": false; }; "asideUser": { "alias": "asideUser"; "required": false; }; "asideBottom": { "alias": "asideBottom"; "required": false; }; "nav": { "alias": "nav"; "required": false; }; "content": { "alias": "content"; "required": false; }; "customError": { "alias": "customError"; "required": false; }; "fetchingStrictly": { "alias": "fetchingStrictly"; "required": false; }; "fetching": { "alias": "fetching"; "required": false; }; }, {}, ["headerItems"], ["*"], false, never>;
 }
