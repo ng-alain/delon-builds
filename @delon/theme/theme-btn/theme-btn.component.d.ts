@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { EventEmitter, InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, InjectionToken, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
@@ -16,6 +16,7 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private doc;
     private directionality;
     private KEYS;
+    private cdr;
     private theme;
     isDev: boolean;
     types: ThemeBtnType[];
@@ -24,12 +25,12 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     readonly themeChange: EventEmitter<string>;
     private destroy$;
     dir: Direction;
-    constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: NzSafeAny, directionality: Directionality, KEYS: string);
+    constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: NzSafeAny, directionality: Directionality, KEYS: string, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     private initTheme;
     private updateChartTheme;
     onThemeChange(theme: string): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnComponent, [null, null, null, null, { optional: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnComponent, [null, null, null, null, { optional: true; }, null, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ThemeBtnComponent, "theme-btn", never, { "types": { "alias": "types"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "deployUrl": { "alias": "deployUrl"; "required": false; }; }, { "themeChange": "themeChange"; }, never, never, false, never>;
 }

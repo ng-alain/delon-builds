@@ -1,11 +1,11 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
 import { Layout, SettingsService } from '@delon/theme';
 import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import * as i0 from "@angular/core";
-export declare class SettingDrawerComponent implements OnInit, OnDestroy {
+export declare class SettingDrawerComponent implements OnInit {
     private cdr;
     private msg;
     private settingSrv;
@@ -44,7 +44,6 @@ export declare class SettingDrawerComponent implements OnInit, OnDestroy {
     apply(): void;
     reset(): void;
     copyVar(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SettingDrawerComponent, [null, null, null, null, null, null, { optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": { "alias": "autoApplyColor"; "required": false; }; "compilingText": { "alias": "compilingText"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "lessJs": { "alias": "lessJs"; "required": false; }; }, {}, never, never, false, never>;
 }

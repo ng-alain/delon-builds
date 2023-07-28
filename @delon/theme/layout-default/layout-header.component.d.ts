@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, OnDestroy, QueryList, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, QueryList, TemplateRef } from '@angular/core';
 import { App, SettingsService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { LayoutDefaultHeaderItemComponent } from './layout-header-item.component';
@@ -10,7 +10,7 @@ interface LayoutDefaultHeaderItem {
     hidden?: LayoutDefaultHeaderItemHidden;
     direction?: LayoutDefaultHeaderItemDirection;
 }
-export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDestroy {
+export declare class LayoutDefaultHeaderComponent implements AfterViewInit {
     private srv;
     private settings;
     private cdr;
@@ -27,7 +27,6 @@ export declare class LayoutDefaultHeaderComponent implements AfterViewInit, OnDe
     private refresh;
     ngAfterViewInit(): void;
     toggleCollapsed(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": { "alias": "items"; "required": false; }; }, {}, never, never, false, never>;
 }
