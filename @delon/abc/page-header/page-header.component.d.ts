@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { AfterViewInit, ChangeDetectorRef, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
 import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
@@ -12,7 +12,7 @@ interface PageHeaderPath {
     title?: string;
     link?: string[];
 }
-export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy {
+export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     private renderer;
     private router;
     private menuSrv;
@@ -29,7 +29,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     static ngAcceptInputType_fixed: BooleanInput;
     static ngAcceptInputType_fixedOffsetTop: NumberInput;
     static ngAcceptInputType_recursiveBreadcrumb: BooleanInput;
-    private destroy$;
+    private dir$;
     private conTpl;
     private affix;
     inited: boolean;
@@ -66,7 +66,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PageHeaderComponent, [null, null, null, null, { optional: true; }, { optional: true; }, { optional: true; }, null, null, null, { optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": { "alias": "title"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "wide": { "alias": "wide"; "required": false; }; "home": { "alias": "home"; "required": false; }; "homeLink": { "alias": "homeLink"; "required": false; }; "homeI18n": { "alias": "homeI18n"; "required": false; }; "autoBreadcrumb": { "alias": "autoBreadcrumb"; "required": false; }; "autoTitle": { "alias": "autoTitle"; "required": false; }; "syncTitle": { "alias": "syncTitle"; "required": false; }; "fixed": { "alias": "fixed"; "required": false; }; "fixedOffsetTop": { "alias": "fixedOffsetTop"; "required": false; }; "breadcrumb": { "alias": "breadcrumb"; "required": false; }; "recursiveBreadcrumb": { "alias": "recursiveBreadcrumb"; "required": false; }; "logo": { "alias": "logo"; "required": false; }; "action": { "alias": "action"; "required": false; }; "content": { "alias": "content"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "tab": { "alias": "tab"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

@@ -35,7 +35,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     static ngAcceptInputType_noColon: BooleanInput;
     static ngAcceptInputType_cleanValue: BooleanInput;
     static ngAcceptInputType_delay: BooleanInput;
-    private destroy$;
     private _renders;
     private _item;
     private _valid;

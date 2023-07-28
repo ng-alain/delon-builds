@@ -1,7 +1,7 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input, Output, NgModule } from '@angular/core';
-import { Subject, takeUntil } from 'rxjs';
+import { inject, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input, Output, NgModule } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { InputBoolean } from '@delon/util/decorator';
 import * as i1 from '@delon/theme';
 import { DelonLocaleModule } from '@delon/theme';
@@ -16,7 +16,7 @@ class TagSelectComponent {
         this.i18n = i18n;
         this.directionality = directionality;
         this.cdr = cdr;
-        this.destroy$ = new Subject();
+        this.destroy$ = inject(DestroyRef);
         this.locale = {};
         this.expand = false;
         this.dir = 'ltr';
@@ -26,10 +26,10 @@ class TagSelectComponent {
     }
     ngOnInit() {
         this.dir = this.directionality.value;
-        this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        this.directionality.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
         });
-        this.i18n.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
+        this.i18n.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => {
             this.locale = this.i18n.getData('tagSelect');
             this.cdr.detectChanges();
         });
@@ -37,10 +37,6 @@ class TagSelectComponent {
     trigger() {
         this.expand = !this.expand;
         this.change.emit(this.expand);
-    }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: TagSelectComponent, deps: [{ token: i1.DelonLocaleService }, { token: i2.Directionality, optional: true }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: TagSelectComponent, selector: "tag-select", inputs: { expandable: "expandable" }, outputs: { change: "change" }, host: { properties: { "class.tag-select": "true", "class.tag-select-rtl": "dir === 'rtl'", "class.tag-select-rtl__has-expand": "dir === 'rtl' && expandable", "class.tag-select__has-expand": "expandable", "class.tag-select__expanded": "expand" } }, exportAs: ["tagSelect"], ngImport: i0, template: "<ng-content></ng-content>\n<a *ngIf=\"expandable\" class=\"ant-tag ant-tag-checkable tag-select__trigger\" (click)=\"trigger()\">\n  {{ expand ? locale.collapse : locale.expand }}\n  <i nz-icon nzType=\"down\" [style.transform]=\"expand ? 'rotate(-180deg)' : null\"></i>\n</a>\n", dependencies: [{ kind: "directive", type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i4.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }

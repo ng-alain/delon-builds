@@ -1,11 +1,11 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, OnDestroy, Renderer2, TemplateRef } from '@angular/core';
+import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
 import { ResponsiveService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { NzFormStatusService } from 'ng-zorro-antd/core/form';
 import { SEContainerComponent } from './se-container.component';
 import { SEErrorType } from './se.types';
 import * as i0 from "@angular/core";
-export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit, OnDestroy {
+export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit {
     private parent;
     private statusSrv;
     private rep;
@@ -59,7 +59,6 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngAfterContentInit(): void;
     ngOnChanges(): void;
     ngAfterViewInit(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, [null, { optional: true; host: true; }, null, null, null, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": { "alias": "optional"; "required": false; }; "optionalHelp": { "alias": "optionalHelp"; "required": false; }; "optionalHelpColor": { "alias": "optionalHelpColor"; "required": false; }; "error": { "alias": "error"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "label": { "alias": "label"; "required": false; }; "col": { "alias": "col"; "required": false; }; "required": { "alias": "required"; "required": false; }; "controlClass": { "alias": "controlClass"; "required": false; }; "line": { "alias": "line"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "hideLabel": { "alias": "hideLabel"; "required": false; }; "id": { "alias": "id"; "required": false; }; }, {}, ["ngModel", "formControlName"], ["*"], false, never>;
 }

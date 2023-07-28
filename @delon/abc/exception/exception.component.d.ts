@@ -1,12 +1,12 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export type ExceptionType = 403 | 404 | 500;
-export declare class ExceptionComponent implements OnInit, OnDestroy {
+export declare class ExceptionComponent implements OnInit {
     private i18n;
     private dom;
     private directionality;
@@ -31,7 +31,6 @@ export declare class ExceptionComponent implements OnInit, OnDestroy {
     checkContent(): void;
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, configSrv: AlainConfigService, directionality: Directionality, cdr: ChangeDetectorRef);
     ngOnInit(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ExceptionComponent, [null, null, null, { optional: true; }, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": { "alias": "type"; "required": false; }; "img": { "alias": "img"; "required": false; }; "title": { "alias": "title"; "required": false; }; "desc": { "alias": "desc"; "required": false; }; "backRouterLink": { "alias": "backRouterLink"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
