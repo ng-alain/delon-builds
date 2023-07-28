@@ -2,7 +2,6 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { ElementRef, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { ThemeType } from '@ant-design/icons-angular';
-import type { CellOptions } from '@delon/abc/cell';
 import type { ACLCanType } from '@delon/acl';
 import type { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
 import type { CurrencyFormatOptions } from '@delon/util/format';
@@ -235,7 +234,7 @@ export interface STColumn<T extends STData = any> {
     title?: string | STColumnTitle;
     /**
      * 列数据在数据项中对应的 key，支持 `a.b.c` 的嵌套写法，例如：
-     * - `id`
+     * - `id` (需要指定类型才能智能提示)
      * - `price.market`
      * - `[ 'price', 'market' ]`
      */
@@ -256,16 +255,9 @@ export interface STColumn<T extends STData = any> {
      * - `currency` 货币且居右(若 `className` 存在则优先)
      * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
      * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
-     * - `cell` 使用 `cell` 组件渲染 [document](https://ng-alain.com/components/cell)
      * - `widget` 使用自定义小部件动态创建
      */
-    type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'cell' | 'widget';
-    /**
-     * `cell` component options
-     *
-     * `cell` 组件配置项
-     */
-    cell?: CellOptions | ((record: T, column: STColumn) => CellOptions);
+    type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'widget';
     /**
      * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
      */
