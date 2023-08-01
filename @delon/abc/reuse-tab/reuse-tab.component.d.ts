@@ -1,6 +1,6 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlainI18NService } from '@delon/theme';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
@@ -9,7 +9,7 @@ import { ReuseCanClose, ReuseContextCloseEvent, ReuseContextI18n, ReuseCustomCon
 import { ReuseTabService } from './reuse-tab.service';
 import { ReuseTabStorageState } from './reuse-tab.state';
 import * as i0 from "@angular/core";
-export declare class ReuseTabComponent implements OnInit, OnChanges {
+export declare class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private srv;
     private cdr;
     private router;
@@ -83,6 +83,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges {
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
+    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, [null, null, null, null, { optional: true; }, null, null, { optional: true; }, { optional: true; }, { optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": { "alias": "mode"; "required": false; }; "i18n": { "alias": "i18n"; "required": false; }; "debug": { "alias": "debug"; "required": false; }; "max": { "alias": "max"; "required": false; }; "tabMaxWidth": { "alias": "tabMaxWidth"; "required": false; }; "excludes": { "alias": "excludes"; "required": false; }; "allowClose": { "alias": "allowClose"; "required": false; }; "keepingScroll": { "alias": "keepingScroll"; "required": false; }; "storageState": { "alias": "storageState"; "required": false; }; "keepingScrollContainer": { "alias": "keepingScrollContainer"; "required": false; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; }; "tabBarExtraContent": { "alias": "tabBarExtraContent"; "required": false; }; "tabBarGutter": { "alias": "tabBarGutter"; "required": false; }; "tabBarStyle": { "alias": "tabBarStyle"; "required": false; }; "tabType": { "alias": "tabType"; "required": false; }; "routeParamMatchMode": { "alias": "routeParamMatchMode"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "titleRender": { "alias": "titleRender"; "required": false; }; "canClose": { "alias": "canClose"; "required": false; }; }, { "change": "change"; "close": "close"; }, never, never, false, never>;
 }

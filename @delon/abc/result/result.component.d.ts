@@ -1,10 +1,9 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, OnInit, TemplateRef } from '@angular/core';
+import { OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
-export declare class ResultComponent implements OnInit {
+export declare class ResultComponent implements OnInit, OnDestroy {
     private directionality;
-    private cdr;
-    private dir$;
+    private destroy$;
     _type: string;
     _icon: string;
     set type(value: string);
@@ -12,8 +11,9 @@ export declare class ResultComponent implements OnInit {
     description?: string | TemplateRef<void>;
     extra?: string | TemplateRef<void>;
     dir: Direction;
-    constructor(directionality: Directionality, cdr: ChangeDetectorRef);
+    constructor(directionality: Directionality);
     ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ResultComponent, [{ optional: true; }, null]>;
+    ngOnDestroy(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ResultComponent, [{ optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ResultComponent, "result", ["result"], { "type": { "alias": "type"; "required": false; }; "title": { "alias": "title"; "required": false; }; "description": { "alias": "description"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; }, {}, never, ["*"], false, never>;
 }

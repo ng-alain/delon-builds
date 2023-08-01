@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
-import { filter, BehaviorSubject, share, Subject, map, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
+import { InjectionToken, inject, Injectable, Optional, Inject, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
+import { filter, BehaviorSubject, share, Subject, map, takeUntil, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';
@@ -9,7 +9,6 @@ import * as i1$2 from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i1$3 from '@angular/cdk/bidi';
 import * as i3 from 'ng-zorro-antd/core/config';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import * as i1$4 from '@angular/platform-browser';
 import { deepMerge } from '@delon/util/other';
@@ -679,11 +678,11 @@ class TitleService {
         this.menuSrv = menuSrv;
         this.i18nSrv = i18nSrv;
         this.doc = doc;
-        this.destroy$ = inject(DestroyRef);
         this._prefix = '';
         this._suffix = '';
         this._separator = ' - ';
         this._reverse = false;
+        this.destroy$ = new Subject();
         this.DELAY_TIME = 25;
         /**
          * Set default title name
@@ -691,7 +690,7 @@ class TitleService {
          * 设置默认标题名
          */
         this.default = `Not Page Name`;
-        i18nSrv.change.pipe(takeUntilDestroyed()).subscribe(() => this.setTitle());
+        this.i18nSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => this.setTitle());
     }
     /**
      * Set separator
@@ -767,7 +766,7 @@ class TitleService {
     setTitle(title) {
         this.tit$?.unsubscribe();
         this.tit$ = of(title)
-            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map(tit => tit || this.default), map(title => (!Array.isArray(title) ? [title] : title)), takeUntilDestroyed(this.destroy$))
+            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map(tit => tit || this.default), map(title => (!Array.isArray(title) ? [title] : title)), takeUntil(this.destroy$))
             .subscribe(titles => {
             let newTitles = [];
             if (this._prefix) {
@@ -791,6 +790,8 @@ class TitleService {
     }
     ngOnDestroy() {
         this.tit$?.unsubscribe();
+        this.destroy$.next();
+        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: TitleService, deps: [{ token: i0.Injector }, { token: i1$4.Title }, { token: MenuService }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: TitleService, providedIn: 'root' }); }

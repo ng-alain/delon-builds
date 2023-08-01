@@ -970,6 +970,12 @@ export interface STColumnBadgeValue {
      * 徽标颜色值
      */
     color?: 'success' | 'processing' | 'default' | 'error' | 'warning';
+    /**
+     * Text popup tip
+     *
+     * 文字提示
+     */
+    tooltip?: string;
 }
 /**
  * 标签信息
@@ -989,6 +995,12 @@ export interface STColumnTagValue {
      * - 色值：#f50,#ff0
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
+    /**
+     * Text popup tip
+     *
+     * 文字提示
+     */
+    tooltip?: string;
 }
 export type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**

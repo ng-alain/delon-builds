@@ -2,11 +2,10 @@ import { __decorate } from 'tslib';
 import * as i5 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ViewChild, Input, Injectable, inject, DestroyRef, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, Inject, Optional, Output, ContentChildren, Directive, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Component, ViewChild, Input, Injectable, EventEmitter, ChangeDetectionStrategy, ViewEncapsulation, Inject, Optional, Output, ContentChildren, Directive, NgModule } from '@angular/core';
 import * as i2 from '@angular/router';
 import { NavigationEnd, RouteConfigLoadStart, NavigationError, NavigationCancel, RouteConfigLoadEnd, RouterModule } from '@angular/router';
-import { BehaviorSubject, filter } from 'rxjs';
+import { BehaviorSubject, Subject, takeUntil, filter } from 'rxjs';
 import { updateHostClass } from '@delon/util/browser';
 import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from 'ng-zorro-antd/message';
@@ -136,7 +135,7 @@ class LayoutDefaultNavComponent {
         this.doc = doc;
         this.win = win;
         this.directionality = directionality;
-        this.destroy$ = inject(DestroyRef);
+        this.destroy$ = new Subject();
         this.dir = 'ltr';
         this.list = [];
         this.disabledAcl = false;
@@ -273,9 +272,9 @@ class LayoutDefaultNavComponent {
         this.menuSrv.open(menuSrv.find({ url, recursive: recursivePath }));
     }
     ngOnInit() {
-        const { doc, router, menuSrv, settings, cdr } = this;
+        const { doc, router, destroy$, menuSrv, settings, cdr } = this;
         this.bodyEl = doc.querySelector('body');
-        menuSrv.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(data => {
+        menuSrv.change.pipe(takeUntil(destroy$)).subscribe(data => {
             menuSrv.visit(data, (i, _p, depth) => {
                 i._text = this.sanitizer.bypassSecurityTrustHtml(i.text);
                 i._needIcon = depth <= this.maxLevelIcon && !!i.icon;
@@ -296,7 +295,7 @@ class LayoutDefaultNavComponent {
             this.list = data.filter((w) => w._hidden !== true);
             cdr.detectChanges();
         });
-        router.events.pipe(takeUntilDestroyed(this.destroy$)).subscribe(e => {
+        router.events.pipe(takeUntil(destroy$)).subscribe(e => {
             if (e instanceof NavigationEnd) {
                 this.openByUrl(e.urlAfterRedirects);
                 this.underPad();
@@ -304,13 +303,12 @@ class LayoutDefaultNavComponent {
             }
         });
         settings.notify
-            .pipe(takeUntilDestroyed(this.destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
+            .pipe(takeUntil(destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
             .subscribe(() => this.clearFloating());
         this.underPad();
         this.dir = this.directionality.value;
-        this.directionality.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
+        this.directionality.change?.pipe(takeUntil(destroy$)).subscribe((direction) => {
             this.dir = direction;
-            this.cdr.detectChanges();
         });
         this.openByUrl(router.url);
         this.ngZone.runOutsideAngular(() => this.genFloating());
@@ -329,6 +327,8 @@ class LayoutDefaultNavComponent {
         inFn(ls);
     }
     ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
         this.clearFloating();
     }
     // #region Under pad
@@ -410,7 +410,7 @@ class LayoutDefaultHeaderComponent {
         this.srv = srv;
         this.settings = settings;
         this.cdr = cdr;
-        this.destroy$ = inject(DestroyRef);
+        this.destroy$ = new Subject();
         this.left = [];
         this.middle = [];
         this.right = [];
@@ -423,12 +423,16 @@ class LayoutDefaultHeaderComponent {
         this.cdr.detectChanges();
     }
     ngAfterViewInit() {
-        this.items.changes.pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => this.refresh());
-        this.srv.options$.pipe(takeUntilDestroyed(this.destroy$)).subscribe(() => this.cdr.detectChanges());
+        this.items.changes.pipe(takeUntil(this.destroy$)).subscribe(() => this.refresh());
+        this.srv.options$.pipe(takeUntil(this.destroy$)).subscribe(() => this.cdr.detectChanges());
         this.refresh();
     }
     toggleCollapsed() {
         this.srv.toggleCollapsed();
+    }
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: LayoutDefaultHeaderComponent, deps: [{ token: LayoutDefaultService }, { token: i1.SettingsService }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: LayoutDefaultHeaderComponent, selector: "layout-default-header", inputs: { items: "items" }, host: { properties: { "class.alain-default__header": "true" } }, ngImport: i0, template: `
@@ -541,12 +545,14 @@ class LayoutDefaultComponent {
         this.content = null;
         this.fetchingStrictly = false;
         this.fetching = false;
+        this.destroy$ = new Subject();
         this.isFetching = false;
+        const { destroy$ } = this;
         router.events
-            .pipe(takeUntilDestroyed(), filter(() => !this.fetchingStrictly))
+            .pipe(takeUntil(destroy$), filter(() => !this.fetchingStrictly))
             .subscribe(ev => this.processEv(ev));
-        this.srv.options$.pipe(takeUntilDestroyed()).subscribe(() => this.setClass());
-        this.settings.notify.pipe(takeUntilDestroyed()).subscribe(() => this.setClass());
+        this.srv.options$.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
+        this.settings.notify.pipe(takeUntil(destroy$)).subscribe(() => this.setClass());
     }
     processEv(ev) {
         if (!this.isFetching && ev instanceof RouteConfigLoadStart) {
@@ -580,6 +586,10 @@ class LayoutDefaultComponent {
             [`alain-default__hide-header`]: this.opt.hideHeader
         });
         doc.body.classList[layout.colorWeak ? 'add' : 'remove']('color-weak');
+    }
+    ngOnDestroy() {
+        this.destroy$.next();
+        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: LayoutDefaultComponent, deps: [{ token: i2.Router }, { token: i2$1.NzMessageService }, { token: i1.SettingsService }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: DOCUMENT }, { token: LayoutDefaultService }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: LayoutDefaultComponent, selector: "layout-default", inputs: { options: "options", asideUser: "asideUser", asideBottom: "asideBottom", nav: "nav", content: "content", customError: "customError", fetchingStrictly: "fetchingStrictly", fetching: "fetching" }, queries: [{ propertyName: "headerItems", predicate: LayoutDefaultHeaderItemComponent }], exportAs: ["layoutDefault"], ngImport: i0, template: `

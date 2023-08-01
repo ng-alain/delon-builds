@@ -38,7 +38,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
     private destroy$;
-    private isDestroy;
     private data$?;
     private totalTpl;
     cog: AlainSTConfig;

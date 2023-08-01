@@ -1,11 +1,10 @@
 import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Injectable, inject, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Input, Output, Directive, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Input, Output, Directive, NgModule } from '@angular/core';
 import * as i2 from '@angular/router';
 import { ActivationStart, ActivationEnd } from '@angular/router';
-import { BehaviorSubject, share, fromEvent, debounceTime, filter } from 'rxjs';
+import { BehaviorSubject, share, Subject, fromEvent, takeUntil, debounceTime, filter } from 'rxjs';
 import { InputBoolean, InputNumber } from '@delon/util/decorator';
 
 class FullContentService {
@@ -39,7 +38,7 @@ class FullContentComponent {
         this.doc = doc;
         this.inited = false;
         this.id = `_full-content-${Math.random().toString(36).substring(2)}`;
-        this.destroy$ = inject(DestroyRef);
+        this.destroy$ = new Subject();
         this._height = 0;
         this.hideTitle = true;
         this.padding = 24;
@@ -81,15 +80,15 @@ class FullContentComponent {
         this.updateCls();
         // when window resize
         fromEvent(window, 'resize')
-            .pipe(takeUntilDestroyed(this.destroy$), debounceTime(200))
+            .pipe(takeUntil(this.destroy$), debounceTime(200))
             .subscribe(() => this.updateHeight());
         // when servier changed
         this.srv.change
-            .pipe(takeUntilDestroyed(this.destroy$), filter(res => res !== null))
+            .pipe(takeUntil(this.destroy$), filter(res => res !== null))
             .subscribe(() => this.toggle());
         // when router changed
         this.router.events
-            .pipe(takeUntilDestroyed(this.destroy$), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
+            .pipe(takeUntil(this.destroy$), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
             .subscribe(() => {
             if (!!this.doc.querySelector(`#${this.id}`)) {
                 this.bodyEl.classList.add(wrapCls);
@@ -114,6 +113,9 @@ class FullContentComponent {
     }
     ngOnDestroy() {
         this.removeInBody();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: FullContentComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: FullContentService }, { token: i2.Router }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: FullContentComponent, selector: "full-content", inputs: { fullscreen: "fullscreen", hideTitle: "hideTitle", padding: "padding" }, outputs: { fullscreenChange: "fullscreenChange" }, host: { properties: { "class.full-content": "true", "style.height.px": "_height" } }, exportAs: ["fullContent"], usesOnChanges: true, ngImport: i0, template: ` <ng-content></ng-content> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
