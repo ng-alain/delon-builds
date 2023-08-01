@@ -1,8 +1,7 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, Injector, HostBinding, ElementRef, NgZone, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, merge, filter, takeUntil, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs';
+import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, takeUntil, merge, filter, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import * as i6 from '@delon/util/config';
@@ -1252,6 +1251,7 @@ class SFComponent {
         this.aclSrv = aclSrv;
         this.i18nSrv = i18nSrv;
         this.platform = platform;
+        this.destroy$ = new Subject();
         this._renders = new Map();
         this._valid = true;
         this._inited = false;
@@ -1304,7 +1304,7 @@ class SFComponent {
         this.firstVisual = this.options.firstVisual;
         this.autocomplete = this.options.autocomplete;
         this.delay = this.options.delay;
-        this.localeSrv.change.pipe(takeUntilDestroyed()).subscribe(() => {
+        this.localeSrv.change.pipe(takeUntil(this.destroy$)).subscribe(() => {
             this.locale = this.localeSrv.getData('sf');
             if (this._inited) {
                 this.validator({ emitError: false, onlyRoot: false });
@@ -1318,7 +1318,7 @@ class SFComponent {
         ].filter(o => o != null);
         if (refSchemas.length > 0) {
             merge(...refSchemas)
-                .pipe(filter(() => this._inited), takeUntilDestroyed())
+                .pipe(filter(() => this._inited), takeUntil(this.destroy$))
                 .subscribe(() => this.refreshSchema());
         }
     }
@@ -1686,6 +1686,9 @@ class SFComponent {
     ngOnDestroy() {
         this.cleanRootSub();
         this.terminator.destroy();
+        const { destroy$ } = this;
+        destroy$.next();
+        destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: SFComponent, deps: [{ token: FormPropertyFactory }, { token: TerminatorService }, { token: i3.DomSanitizer }, { token: i0.ChangeDetectorRef }, { token: i4.DelonLocaleService }, { token: i5.ACLService, optional: true }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: i6.AlainConfigService }, { token: i7.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: "liveValidate", autocomplete: "autocomplete", firstVisual: "firstVisual", onlyVisual: "onlyVisual", compact: "compact", mode: "mode", loading: "loading", disabled: "disabled", noColon: "noColon", cleanValue: "cleanValue", delay: "delay" }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
