@@ -2,8 +2,9 @@ import { __decorate } from 'tslib';
 import * as i4 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, Input, Output, NgModule } from '@angular/core';
-import { Subject, timer, takeUntil, fromEvent, debounceTime, filter } from 'rxjs';
+import { inject, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, Input, Output, NgModule } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { timer, fromEvent, debounceTime, filter } from 'rxjs';
 import { InputNumber, InputBoolean, ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
@@ -106,7 +107,7 @@ class PdfComponent {
         this.doc = doc;
         this.cdr = cdr;
         this.inited = false;
-        this.destroy$ = new Subject();
+        this.destroy$ = inject(DestroyRef);
         this.lib = '';
         this._pi = 1;
         this._total = 0;
@@ -152,7 +153,7 @@ class PdfComponent {
         this.cdr.detectChanges();
         this.win.pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.lib}build/pdf.worker.min.js`;
         timer(this.delay ?? 0)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed(this.destroy$))
             .subscribe(() => this.load());
     }
     setLoading(status) {
@@ -230,7 +231,7 @@ class PdfComponent {
     timeExec(fn) {
         this.ngZone.runOutsideAngular(() => {
             timer(0)
-                .pipe(takeUntil(this.destroy$))
+                .pipe(takeUntilDestroyed(this.destroy$))
                 .subscribe(() => this.ngZone.runOutsideAngular(() => fn()));
         });
     }
@@ -372,7 +373,7 @@ class PdfComponent {
     }
     initResize() {
         fromEvent(this.win, 'resize')
-            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf != null), takeUntil(this.destroy$))
+            .pipe(debounceTime(100), filter(() => this.autoReSize && this._pdf != null), takeUntilDestroyed(this.destroy$))
             .subscribe(() => this.updateSize());
     }
     ngOnChanges(changes) {
@@ -381,9 +382,6 @@ class PdfComponent {
         }
     }
     ngOnDestroy() {
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
         this.destroy();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: PdfComponent, deps: [{ token: i0.NgZone }, { token: i1.AlainConfigService }, { token: i2.LazyService }, { token: i3.Platform }, { token: i0.ElementRef }, { token: DOCUMENT, optional: true }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }

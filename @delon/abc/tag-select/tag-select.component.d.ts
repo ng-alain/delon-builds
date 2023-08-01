@@ -1,9 +1,9 @@
 import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, EventEmitter, OnInit } from '@angular/core';
 import { DelonLocaleService, LocaleData } from '@delon/theme';
 import { BooleanInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";
-export declare class TagSelectComponent implements OnInit, OnDestroy {
+export declare class TagSelectComponent implements OnInit {
     private i18n;
     private directionality;
     private cdr;
@@ -18,7 +18,6 @@ export declare class TagSelectComponent implements OnInit, OnDestroy {
     constructor(i18n: DelonLocaleService, directionality: Directionality, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     trigger(): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagSelectComponent, [null, { optional: true; }, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<TagSelectComponent, "tag-select", ["tagSelect"], { "expandable": { "alias": "expandable"; "required": false; }; }, { "change": "change"; }, never, ["*"], false, never>;
 }

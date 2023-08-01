@@ -15,11 +15,11 @@ export declare class TitleService implements OnDestroy {
     private menuSrv;
     private i18nSrv;
     private doc;
+    private destroy$;
     private _prefix;
     private _suffix;
     private _separator;
     private _reverse;
-    private destroy$;
     private tit$?;
     readonly DELAY_TIME = 25;
     constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: NzSafeAny);

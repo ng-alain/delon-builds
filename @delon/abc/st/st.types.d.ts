@@ -71,7 +71,6 @@ export interface _STDataValue {
     _text: SafeHtml;
     org?: any;
     color?: string;
-    tooltip?: string;
     safeType: STColumnSafeType;
     buttons?: _STColumnButton[];
     props?: STOnCellResult | null;
