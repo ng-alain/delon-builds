@@ -1,9 +1,10 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
-import { Subject, takeUntil, filter, fromEvent, debounceTime } from 'rxjs';
+import { Injectable, inject, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { Subject, filter, fromEvent, debounceTime } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import { __decorate } from 'tslib';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from '@angular/cdk/platform';
 import * as i3 from '@angular/common';
@@ -99,7 +100,7 @@ class ChartEChartsComponent {
         this.cdr = cdr;
         this.ngZone = ngZone;
         this.platform = platform;
-        this.destroy$ = new Subject();
+        this.destroy$ = inject(DestroyRef);
         this._chart = null;
         this._width = '100%';
         this._height = '400px';
@@ -107,7 +108,7 @@ class ChartEChartsComponent {
         this.events = new EventEmitter();
         this.loaded = false;
         this.srv.notify
-            .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
+            .pipe(takeUntilDestroyed(), filter(() => !this.loaded))
             .subscribe(() => this.load());
         this.theme = srv.cog.echartsTheme;
     }
@@ -163,13 +164,11 @@ class ChartEChartsComponent {
             this.srv.libLoad();
         }
         fromEvent(window, 'resize')
-            .pipe(takeUntil(this.destroy$), filter(() => !!this._chart), debounceTime(200))
+            .pipe(takeUntilDestroyed(this.destroy$), filter(() => !!this._chart), debounceTime(200))
             .subscribe(() => this._chart.resize());
     }
     ngOnDestroy() {
         this.on.forEach(item => this._chart?.off(item.eventName));
-        this.destroy$.next();
-        this.destroy$.complete();
         this.destroy();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: ChartEChartsComponent, deps: [{ token: ChartEChartsService }, { token: i0.ChangeDetectorRef }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component }); }

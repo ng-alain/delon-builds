@@ -1,13 +1,14 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, TemplateRef, ContentChild, ViewChild, NgModule } from '@angular/core';
-import { filter, BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Host, Optional, TemplateRef, inject, DestroyRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { filter, BehaviorSubject } from 'rxjs';
 import { toNumber, InputNumber, InputBoolean } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i4 from '@angular/common';
 import { CommonModule } from '@angular/common';
 import * as i3 from 'ng-zorro-antd/core/outlet';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { isEmpty } from '@delon/util/browser';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
@@ -212,7 +213,7 @@ class SEComponent {
         this.rep = rep;
         this.ren = ren;
         this.cdr = cdr;
-        this.destroy$ = new Subject();
+        this.destroy$ = inject(DestroyRef);
         this.clsMap = [];
         this.inited = false;
         this.onceFlag = false;
@@ -234,7 +235,7 @@ class SEComponent {
         }
         this.el = el.nativeElement;
         parent.errorNotify
-            .pipe(takeUntil(this.destroy$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
+            .pipe(takeUntilDestroyed(this.destroy$), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
             .subscribe(item => {
             this.error = item.error;
             this.updateStatus(this.ngControl.invalid);
@@ -260,7 +261,9 @@ class SEComponent {
         if (!this.ngControl || this.isBindModel)
             return;
         this.isBindModel = true;
-        this.ngControl.statusChanges.pipe(takeUntil(this.destroy$)).subscribe(res => this.updateStatus(res === 'INVALID'));
+        this.ngControl
+            .statusChanges.pipe(takeUntilDestroyed(this.destroy$))
+            .subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
             const control = (controlAccessor?.elementRef || controlAccessor?._elementRef)?.nativeElement;
@@ -323,11 +326,6 @@ class SEComponent {
                 this.onceFlag = false;
             });
         }
-    }
-    ngOnDestroy() {
-        const { destroy$ } = this;
-        destroy$.next();
-        destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: SEComponent, deps: [{ token: i0.ElementRef }, { token: SEContainerComponent, host: true, optional: true }, { token: i2.NzFormStatusService }, { token: i3$1.ResponsiveService }, { token: i0.Renderer2 }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: SEComponent, selector: "se", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", error: "error", extra: "extra", label: "label", col: "col", required: "required", controlClass: "controlClass", line: "line", labelWidth: "labelWidth", noColon: "noColon", hideLabel: "hideLabel", id: "id" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue", "class.se__hide-label": "hideLabel", "class.ant-form-item-has-error": "invalid", "class.ant-form-item-with-help": "showErr" } }, providers: [NzFormStatusService], queries: [{ propertyName: "ngModel", first: true, predicate: NgModel, descendants: true, static: true }, { propertyName: "formControlName", first: true, predicate: FormControlName, descendants: true, static: true }], viewQueries: [{ propertyName: "contentElement", first: true, predicate: ["contentElement"], descendants: true, static: true }], exportAs: ["se"], usesOnChanges: true, ngImport: i0, template: "<div class=\"ant-form-item-label\" [class.se__nolabel]=\"hideLabel || !label\" [style.width.px]=\"_labelWidth\">\n  <label\n    *ngIf=\"label\"\n    [attr.for]=\"_id\"\n    class=\"se__label\"\n    [ngClass]=\"{ 'ant-form-item-required': required, 'se__no-colon': _noColon }\"\n  >\n    <span class=\"se__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    <span *ngIf=\"optional || optionalHelp\" class=\"se__label-optional\" [class.se__label-optional-no-text]=\"!optional\">\n      <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n      <i\n        *ngIf=\"optionalHelp\"\n        nz-tooltip\n        [nzTooltipTitle]=\"optionalHelp\"\n        [nzTooltipColor]=\"optionalHelpColor\"\n        nz-icon\n        nzType=\"question-circle\"\n      ></i>\n    </span>\n  </label>\n</div>\n<div class=\"ant-form-item-control se__control\">\n  <div class=\"ant-form-item-control-input {{ controlClass }}\">\n    <div class=\"ant-form-item-control-input-content\" (cdkObserveContent)=\"checkContent()\" #contentElement>\n      <ng-content></ng-content>\n    </div>\n  </div>\n  <div @helpMotion class=\"ant-form-item-explain ant-form-item-explain-connected\" *ngIf=\"showErr\">\n    <div role=\"alert\" class=\"ant-form-item-explain-error\">\n      <ng-container *nzStringTemplateOutlet=\"_error\">{{ _error }}</ng-container>\n    </div>\n  </div>\n  <div *ngIf=\"extra && !compact\" class=\"ant-form-item-extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n</div>\n", dependencies: [{ kind: "directive", type: i4.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i4.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i5.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i6.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: i3.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], animations: [helpMotion], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }

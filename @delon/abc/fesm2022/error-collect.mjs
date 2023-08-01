@@ -1,8 +1,9 @@
 import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Optional, Input, NgModule } from '@angular/core';
-import { Subject, takeUntil, interval } from 'rxjs';
+import { inject, DestroyRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Optional, Input, NgModule } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { interval } from 'rxjs';
 import { InputNumber } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@angular/cdk/bidi';
@@ -18,7 +19,7 @@ class ErrorCollectComponent {
         this.directionality = directionality;
         this.platform = platform;
         this.formEl = null;
-        this.destroy$ = new Subject();
+        this.destroy$ = inject(DestroyRef);
         this._hiden = true;
         this.count = 0;
         this.dir = 'ltr';
@@ -48,11 +49,12 @@ class ErrorCollectComponent {
     }
     install() {
         this.dir = this.directionality.value;
-        this.directionality.change?.pipe(takeUntil(this.destroy$)).subscribe((direction) => {
+        this.directionality.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
+            this.cdr.detectChanges();
         });
         interval(this.freq)
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntilDestroyed(this.destroy$))
             .subscribe(() => this.update());
         this.update();
     }
@@ -74,10 +76,6 @@ class ErrorCollectComponent {
         if (this.formEl === null)
             throw new Error('No found form element');
         this.install();
-    }
-    ngOnDestroy() {
-        this.destroy$.next();
-        this.destroy$.complete();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.7", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: DOCUMENT }, { token: i1.AlainConfigService }, { token: i2.Directionality, optional: true }, { token: i3.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.1.7", type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: { freq: "freq", offsetTop: "offsetTop" }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir === 'rtl'", "class.d-none": "_hiden" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
