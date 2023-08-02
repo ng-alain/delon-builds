@@ -98,7 +98,7 @@ class G2BarComponent extends G2BaseComponent {
     <ng-container *nzStringTemplateOutlet="title">
       <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded"></nz-skeleton>
+    <nz-skeleton *ngIf="!loaded" />
     <div #container></div>
   `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i2.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i3.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
@@ -117,7 +117,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.1.7", ngImpor
     <ng-container *nzStringTemplateOutlet="title">
       <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded"></nz-skeleton>
+    <nz-skeleton *ngIf="!loaded" />
     <div #container></div>
   `,
                     host: {
