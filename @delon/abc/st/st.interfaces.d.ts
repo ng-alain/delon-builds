@@ -2,6 +2,7 @@ import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { ElementRef, TemplateRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { ThemeType } from '@ant-design/icons-angular';
+import type { CellOptions } from '@delon/abc/cell';
 import type { ACLCanType } from '@delon/acl';
 import type { DrawerHelperOptions, ModalHelperOptions, YNMode } from '@delon/theme';
 import type { CurrencyFormatOptions } from '@delon/util/format';
@@ -255,9 +256,16 @@ export interface STColumn<T extends STData = any> {
      * - `currency` 货币且居右(若 `className` 存在则优先)
      * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
      * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
+     * - `cell` 使用 `cell` 组件渲染 [document](https://ng-alain.com/components/cell)
      * - `widget` 使用自定义小部件动态创建
      */
-    type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'widget';
+    type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'cell' | 'widget';
+    /**
+     * `cell` component options
+     *
+     * `cell` 组件配置项
+     */
+    cell?: CellOptions | ((record: T, column: STColumn) => CellOptions);
     /**
      * 链接回调，若返回一个字符串表示导航URL会自动触发 `router.navigateByUrl`
      */
@@ -970,12 +978,6 @@ export interface STColumnBadgeValue {
      * 徽标颜色值
      */
     color?: 'success' | 'processing' | 'default' | 'error' | 'warning';
-    /**
-     * Text popup tip
-     *
-     * 文字提示
-     */
-    tooltip?: string;
 }
 /**
  * 标签信息
@@ -995,12 +997,6 @@ export interface STColumnTagValue {
      * - 色值：#f50,#ff0
      */
     color?: 'geekblue' | 'blue' | 'purple' | 'success' | 'red' | 'volcano' | 'orange' | 'gold' | 'lime' | 'green' | 'cyan' | string;
-    /**
-     * Text popup tip
-     *
-     * 文字提示
-     */
-    tooltip?: string;
 }
 export type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**
