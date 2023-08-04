@@ -57,7 +57,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     _headers: _STHeader[][];
     _columns: _STColumn[];
     contextmenuList: STContextmenuItem[];
-    readonly orgTable?: NzTableComponent<STData>;
+    readonly orgTable: NzTableComponent<STData>;
     readonly contextmenuTpl: NzDropdownMenuComponent;
     get req(): STReq;
     set req(value: STReq);
@@ -242,7 +242,8 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     colResize({ width }: NzResizeEvent, column: _STColumn): void;
     onContextmenu(event: MouseEvent): void;
     get cdkVirtualScrollViewport(): CdkVirtualScrollViewport | undefined;
-    resetColumns(options?: STResetColumnsOption): Observable<this>;
+    private _resetColumns;
+    resetColumns(options?: STResetColumnsOption): Promise<this>;
     private refreshColumns;
     private optimizeData;
     /**

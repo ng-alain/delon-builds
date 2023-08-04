@@ -7,7 +7,7 @@ import * as i1 from '@angular/platform-browser';
 import * as i3 from '@delon/acl';
 import { DelonACLModule } from '@delon/acl';
 import { HttpParams } from '@angular/common/http';
-import { map, of, filter, finalize, catchError, throwError, from, isObservable } from 'rxjs';
+import { map, of, filter, finalize, catchError, throwError, isObservable, lastValueFrom } from 'rxjs';
 import * as i7 from '@angular/common';
 import { DOCUMENT, DecimalPipe, CommonModule } from '@angular/common';
 import * as i3$1 from '@delon/util/format';
@@ -2092,7 +2092,7 @@ class STComponent {
         const data = Array.isArray(newData)
             ? this.dataSource.optimizeData({ columns: this._columns, result: newData })
             : this._data;
-        (newData === true ? from(this.filteredData) : of(data)).subscribe((res) => this.exportSrv.export({
+        (newData === true ? this.filteredData : of(data)).subscribe((res) => this.exportSrv.export({
             columens: this._columns,
             ...opt,
             data: res
@@ -2144,7 +2144,7 @@ class STComponent {
     get cdkVirtualScrollViewport() {
         return this.orgTable?.cdkVirtualScrollViewport;
     }
-    resetColumns(options) {
+    _resetColumns(options) {
         options = { emitReload: true, preClearData: false, ...options };
         if (typeof options.columns !== 'undefined') {
             this.columns = options.columns;
@@ -2170,6 +2170,9 @@ class STComponent {
             this.cd();
             return of(this);
         }
+    }
+    resetColumns(options) {
+        return lastValueFrom(this._resetColumns(options));
     }
     refreshColumns() {
         const res = this.columnSource.process(this.columns, {
