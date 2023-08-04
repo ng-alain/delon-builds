@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "16.2.0-dcf89f91e",
+  "version": "16.2.0-096facd38",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -29,9 +29,9 @@
     "pdfjs-dist": "~3.6.172",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^16.0.0",
-    "@delon/theme": "^16.2.0-dcf89f91e",
-    "@delon/util": "^16.2.0-dcf89f91e",
-    "@delon/acl": "^16.2.0-dcf89f91e",
+    "@delon/theme": "^16.2.0-096facd38",
+    "@delon/util": "^16.2.0-096facd38",
+    "@delon/acl": "^16.2.0-096facd38",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -57,12 +57,6 @@
       "esm2022": "./esm2022/avatar-list/avatar-list.mjs",
       "esm": "./esm2022/avatar-list/avatar-list.mjs",
       "default": "./fesm2022/avatar-list.mjs"
-    },
-    "./cell": {
-      "types": "./cell/index.d.ts",
-      "esm2022": "./esm2022/cell/cell.mjs",
-      "esm": "./esm2022/cell/cell.mjs",
-      "default": "./fesm2022/cell.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",

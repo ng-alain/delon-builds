@@ -1,5 +1,5 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnDestroy, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
@@ -15,7 +15,7 @@ import { STExport } from './st-export';
 import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import { _STColumn, _STHeader, _STTdNotify } from './st.types';
 import * as i0 from "@angular/core";
-export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy {
+export declare class STComponent implements AfterViewInit, OnChanges {
     private cdr;
     private el;
     private exportSrv;
@@ -38,8 +38,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
     private destroy$;
-    private isDestroy;
-    private data$?;
     private totalTpl;
     cog: AlainSTConfig;
     private _req;
@@ -59,7 +57,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     _headers: _STHeader[][];
     _columns: _STColumn[];
     contextmenuList: STContextmenuItem[];
-    readonly orgTable: NzTableComponent<STData>;
+    readonly orgTable?: NzTableComponent<STData>;
     readonly contextmenuTpl: NzDropdownMenuComponent;
     get req(): STReq;
     set req(value: STReq);
@@ -68,7 +66,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     set res(value: STRes);
     get page(): STPage;
     set page(value: STPage);
-    data: string | STData[] | Observable<STData[]>;
+    data?: string | STData[] | Observable<STData[]>;
     columns?: STColumn[] | null;
     contextmenu?: STContextmenuFn | null;
     ps: number;
@@ -140,7 +138,7 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
      * - 本地数据：包含排序、过滤后不分页数据
      * - 远程数据：不传递 `pi`、`ps` 两个参数
      */
-    get filteredData(): Promise<STData[]>;
+    get filteredData(): Observable<STData[]>;
     private updateTotalTpl;
     private setLoading;
     private loadData;
@@ -243,8 +241,8 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     export(newData?: STData[] | true, opt?: STExportOptions): void;
     colResize({ width }: NzResizeEvent, column: _STColumn): void;
     onContextmenu(event: MouseEvent): void;
-    get cdkVirtualScrollViewport(): CdkVirtualScrollViewport;
-    resetColumns(options?: STResetColumnsOption): Promise<this>;
+    get cdkVirtualScrollViewport(): CdkVirtualScrollViewport | undefined;
+    resetColumns(options?: STResetColumnsOption): Observable<this>;
     private refreshColumns;
     private optimizeData;
     /**
@@ -257,7 +255,6 @@ export declare class STComponent implements AfterViewInit, OnChanges, OnDestroy 
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
-    ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STComponent, [{ optional: true; }, null, null, null, null, null, null, null, null, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": { "alias": "req"; "required": false; }; "res": { "alias": "res"; "required": false; }; "page": { "alias": "page"; "required": false; }; "data": { "alias": "data"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "contextmenu": { "alias": "contextmenu"; "required": false; }; "ps": { "alias": "ps"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "total": { "alias": "total"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "loadingDelay": { "alias": "loadingDelay"; "required": false; }; "loadingIndicator": { "alias": "loadingIndicator"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; "size": { "alias": "size"; "required": false; }; "scroll": { "alias": "scroll"; "required": false; }; "singleSort": { "alias": "singleSort"; "required": false; }; "multiSort": { "alias": "multiSort"; "required": false; }; "rowClassName": { "alias": "rowClassName"; "required": false; }; "clickRowClassName": { "alias": "clickRowClassName"; "required": false; }; "widthMode": { "alias": "widthMode"; "required": false; }; "widthConfig": { "alias": "widthConfig"; "required": false; }; "resizable": { "alias": "resizable"; "required": false; }; "header": { "alias": "header"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "bodyHeader": { "alias": "bodyHeader"; "required": false; }; "body": { "alias": "body"; "required": false; }; "expandRowByClick": { "alias": "expandRowByClick"; "required": false; }; "expandAccordion": { "alias": "expandAccordion"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; "noResult": { "alias": "noResult"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "responsiveHideHeaderFooter": { "alias": "responsiveHideHeaderFooter"; "required": false; }; "virtualScroll": { "alias": "virtualScroll"; "required": false; }; "virtualItemSize": { "alias": "virtualItemSize"; "required": false; }; "virtualMaxBufferPx": { "alias": "virtualMaxBufferPx"; "required": false; }; "virtualMinBufferPx": { "alias": "virtualMinBufferPx"; "required": false; }; "customRequest": { "alias": "customRequest"; "required": false; }; "virtualForTrackBy": { "alias": "virtualForTrackBy"; "required": false; }; }, { "error": "error"; "change": "change"; }, never, never, false, never>;
 }
