@@ -1617,6 +1617,7 @@ class STComponent {
         this.cms = cms;
         this.destroy$ = inject(DestroyRef);
         this.totalTpl = ``;
+        this.inied = false;
         this.customWidthConfig = false;
         this._widthConfig = [];
         this.locale = {};
@@ -1768,13 +1769,13 @@ class STComponent {
             }
             this._data = result.list ?? [];
             this._statistical = result.statistical;
-            this.changeEmit('loaded', result.list);
             // Should be re-render in next tike when using virtual scroll
             // https://github.com/ng-alain/ng-alain/issues/1836
             if (this.cdkVirtualScrollViewport != null) {
                 Promise.resolve().then(() => this.cdkVirtualScrollViewport?.checkViewportSize());
             }
             this._refCheck();
+            this.changeEmit('loaded', result.list);
             return this;
         }));
     }
@@ -2212,18 +2213,22 @@ class STComponent {
         return copyItem;
     }
     ngAfterViewInit() {
-        this.columnSource.restoreAllRender(this._columns);
+        this.refreshColumns();
+        if (!this.req.lazyLoad)
+            this.loadPageData().subscribe();
+        this.inied = true;
     }
     ngOnChanges(changes) {
+        if (changes.loading) {
+            this._loading = changes.loading.currentValue;
+        }
+        if (!this.inied)
+            return;
         if (changes.columns) {
             this.refreshColumns().optimizeData();
         }
-        const changeData = changes.data;
-        if (changeData && changeData.currentValue && !(this.req.lazyLoad && changeData.firstChange)) {
+        if (changes.data) {
             this.loadPageData().subscribe();
-        }
-        if (changes.loading) {
-            this._loading = changes.loading.currentValue;
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.1.8", ngImport: i0, type: STComponent, deps: [{ token: ALAIN_I18N_TOKEN, optional: true }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: STExport }, { token: DOCUMENT }, { token: STColumnSource }, { token: STDataSource }, { token: i1$1.DelonLocaleService }, { token: i5.AlainConfigService }, { token: i6.NzContextMenuService }], target: i0.ɵɵFactoryTarget.Component }); }

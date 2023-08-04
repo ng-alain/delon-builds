@@ -39,6 +39,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     static ngAcceptInputType_virtualMinBufferPx: NumberInput;
     private destroy$;
     private totalTpl;
+    private inied;
     cog: AlainSTConfig;
     private _req;
     private _res;
