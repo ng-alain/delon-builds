@@ -12,7 +12,7 @@ export interface STDataSourceOptions {
     pi: number;
     ps: number;
     paginator: boolean;
-    data?: string | STData[] | Observable<STData[]>;
+    data: string | STData[] | Observable<STData[]>;
     total: number;
     req: STReq;
     res: STRes;
