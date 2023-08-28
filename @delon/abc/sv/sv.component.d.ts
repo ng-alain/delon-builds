@@ -4,6 +4,7 @@ import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SVContainerComponent } from './sv-container.component';
 import * as i0 from "@angular/core";
 export declare class SVComponent implements AfterViewInit, OnChanges {
+    private el;
     parent: SVContainerComponent;
     private rep;
     private ren;
@@ -12,7 +13,6 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     static ngAcceptInputType_noColon: BooleanInput;
     static ngAcceptInputType_hideLabel: BooleanInput;
     private conEl;
-    private el;
     private clsMap;
     _noColon: boolean;
     optional?: string | TemplateRef<void> | null;
@@ -25,9 +25,9 @@ export declare class SVComponent implements AfterViewInit, OnChanges {
     type?: 'primary' | 'success' | 'danger' | 'warning';
     noColon?: boolean | null;
     hideLabel: boolean;
-    get paddingValue(): number;
+    get paddingValue(): number | null;
     get labelWidth(): number | null | undefined;
-    constructor(el: ElementRef, parent: SVContainerComponent, rep: ResponsiveService, ren: Renderer2);
+    constructor(el: ElementRef<HTMLElement>, parent: SVContainerComponent, rep: ResponsiveService, ren: Renderer2);
     private setClass;
     ngAfterViewInit(): void;
     ngOnChanges(): void;

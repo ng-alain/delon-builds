@@ -33137,6 +33137,32 @@ body {
 .sv__no-colon::after {
   content: ' ' !important;
 }
+.sv__bordered {
+  overflow: hidden;
+  border-top: 1px solid #303030;
+  border-bottom: 1px solid #303030;
+  border-left: 1px solid #303030;
+}
+.sv__bordered .sv__item {
+  border-right: 1px solid #303030;
+  border-bottom: 1px solid #303030;
+}
+.sv__bordered .sv__label {
+  background-color: rgba(255, 255, 255, 0.04);
+  border-right: 1px solid #303030;
+}
+.sv__bordered .sv__label,
+.sv__bordered .sv__detail {
+  padding: 12px 24px;
+}
+.sv__bordered.sv__large .sv__label,
+.sv__bordered.sv__large .sv__detail {
+  padding: 16px 24px;
+}
+.sv__bordered.sv__small .sv__label,
+.sv__bordered.sv__small .sv__detail {
+  padding: 8px 16px;
+}
 .se__title {
   display: block;
   float: none;
