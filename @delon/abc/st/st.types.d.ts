@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
+import type { CellOptions } from '@delon/abc/cell';
 import type { NgClassType } from 'ng-zorro-antd/core/types';
 import type { STColumn, STColumnButton, STColumnSafeType, STData, STIcon, STOnCellResult, STSortMap } from './st.interfaces';
 /**
@@ -75,4 +76,5 @@ export interface _STDataValue {
     safeType: STColumnSafeType;
     buttons?: _STColumnButton[];
     props?: STOnCellResult | null;
+    cell?: CellOptions;
 }
