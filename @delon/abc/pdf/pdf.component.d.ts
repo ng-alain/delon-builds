@@ -1,16 +1,16 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, NgZone, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
-import type { PDFDocumentProxy } from 'pdfjs-dist';
-import type { EventBus } from 'pdfjs-dist/types/web/event_utils';
-import type { PDFFindController } from 'pdfjs-dist/types/web/pdf_find_controller';
-import type { PDFLinkService } from 'pdfjs-dist/types/web/pdf_link_service';
-import type { PDFViewer } from 'pdfjs-dist/types/web/pdf_viewer';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { PdfChangeEvent, PdfExternalLinkTarget, PdfTextLayerMode, PdfZoomScale } from './pdf.types';
 import * as i0 from "@angular/core";
+type PDFDocumentProxy = NzSafeAny;
+type EventBus = NzSafeAny;
+type PDFFindController = NzSafeAny;
+type PDFLinkService = NzSafeAny;
+type PDFViewer = NzSafeAny;
 export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy {
     private ngZone;
     private lazySrv;
@@ -98,3 +98,4 @@ export declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy
     static ɵfac: i0.ɵɵFactoryDeclaration<PdfComponent, [null, null, null, null, null, { optional: true; }, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<PdfComponent, "pdf", ["pdf"], { "src": { "alias": "src"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "showAll": { "alias": "showAll"; "required": false; }; "renderText": { "alias": "renderText"; "required": false; }; "textLayerMode": { "alias": "textLayerMode"; "required": false; }; "showBorders": { "alias": "showBorders"; "required": false; }; "stickToPage": { "alias": "stickToPage"; "required": false; }; "originalSize": { "alias": "originalSize"; "required": false; }; "fitToPage": { "alias": "fitToPage"; "required": false; }; "zoom": { "alias": "zoom"; "required": false; }; "zoomScale": { "alias": "zoomScale"; "required": false; }; "rotation": { "alias": "rotation"; "required": false; }; "autoReSize": { "alias": "autoReSize"; "required": false; }; "externalLinkTarget": { "alias": "externalLinkTarget"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "change": "change"; }, never, never, false, never>;
 }
+export {};

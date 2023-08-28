@@ -22,6 +22,7 @@ const PDF_DEFULAT_CONFIG = {
     autoReSize: true
 };
 
+// import type { PDFDocumentProxy } from 'pdfjs-dist';
 var PdfTextLayerMode;
 (function (PdfTextLayerMode) {
     PdfTextLayerMode[PdfTextLayerMode["DISABLE"] = 0] = "DISABLE";
@@ -239,7 +240,7 @@ class PdfComponent {
         const currentViewer = this.pageViewer;
         if (!currentViewer)
             return;
-        this._pdf.getPage(currentViewer.currentPageNumber).then(page => {
+        this._pdf.getPage(currentViewer.currentPageNumber).then((page) => {
             const { _rotation, _zoom } = this;
             const rotation = _rotation || page.rotate;
             const viewportWidth = page.getViewport({

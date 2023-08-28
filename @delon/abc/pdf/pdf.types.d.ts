@@ -1,5 +1,5 @@
-import type { PDFDocumentProxy } from 'pdfjs-dist';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+type PDFDocumentProxy = NzSafeAny;
 export type PdfChangeEventType = 'loaded' | 'load-progress' | 'pages-init' | 'page-rendered' | 'text-layer-rendered' | 'pi' | 'error';
 export type PdfZoomScale = 'page-height' | 'page-fit' | 'page-width';
 export interface PdfChangeEvent {
@@ -26,3 +26,4 @@ export declare enum PdfExternalLinkTarget {
     PARENT = 3,
     TOP = 4
 }
+export {};

@@ -1,4 +1,4 @@
-import { HttpHeaders, HttpContext } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injector } from '@angular/core';
 import { ACLCanType } from '@delon/acl';
 import * as i0 from "@angular/core";
@@ -22,7 +22,6 @@ export interface HttpOptions {
     responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
     reportProgress?: boolean;
     withCredentials?: boolean;
-    content?: HttpContext;
 }
 /**
  * 默认基准URL
