@@ -33645,6 +33645,7 @@ ellipsis {
 }
 .page-header__title small {
   padding-left: 8px;
+  color: rgba(255, 255, 255, 0.4);
   font-weight: normal;
   font-size: 14px;
 }
