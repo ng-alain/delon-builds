@@ -4,11 +4,11 @@ import { G2MiniAreaComponent } from './mini-area.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [G2MiniAreaComponent];
 export class G2MiniAreaModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.2", ngImport: i0, type: G2MiniAreaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.2", ngImport: i0, type: G2MiniAreaModule, declarations: [G2MiniAreaComponent], imports: [CommonModule], exports: [G2MiniAreaComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.2", ngImport: i0, type: G2MiniAreaModule, imports: [CommonModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.3", ngImport: i0, type: G2MiniAreaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.3", ngImport: i0, type: G2MiniAreaModule, declarations: [G2MiniAreaComponent], imports: [CommonModule], exports: [G2MiniAreaComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.3", ngImport: i0, type: G2MiniAreaModule, imports: [CommonModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.2", ngImport: i0, type: G2MiniAreaModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.3", ngImport: i0, type: G2MiniAreaModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],

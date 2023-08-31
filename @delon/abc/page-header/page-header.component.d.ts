@@ -41,6 +41,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     _title: string | null;
     _titleTpl: TemplateRef<NzSafeAny> | null;
     set title(value: string | TemplateRef<void> | null);
+    titleSub?: string | TemplateRef<void> | null;
     loading: boolean;
     wide: boolean;
     home?: string;
@@ -67,6 +68,6 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngAfterViewInit(): void;
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<PageHeaderComponent, [null, null, null, null, { optional: true; }, { optional: true; }, { optional: true; }, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": { "alias": "title"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "wide": { "alias": "wide"; "required": false; }; "home": { "alias": "home"; "required": false; }; "homeLink": { "alias": "homeLink"; "required": false; }; "homeI18n": { "alias": "homeI18n"; "required": false; }; "autoBreadcrumb": { "alias": "autoBreadcrumb"; "required": false; }; "autoTitle": { "alias": "autoTitle"; "required": false; }; "syncTitle": { "alias": "syncTitle"; "required": false; }; "fixed": { "alias": "fixed"; "required": false; }; "fixedOffsetTop": { "alias": "fixedOffsetTop"; "required": false; }; "breadcrumb": { "alias": "breadcrumb"; "required": false; }; "recursiveBreadcrumb": { "alias": "recursiveBreadcrumb"; "required": false; }; "logo": { "alias": "logo"; "required": false; }; "action": { "alias": "action"; "required": false; }; "content": { "alias": "content"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "tab": { "alias": "tab"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": { "alias": "title"; "required": false; }; "titleSub": { "alias": "titleSub"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "wide": { "alias": "wide"; "required": false; }; "home": { "alias": "home"; "required": false; }; "homeLink": { "alias": "homeLink"; "required": false; }; "homeI18n": { "alias": "homeI18n"; "required": false; }; "autoBreadcrumb": { "alias": "autoBreadcrumb"; "required": false; }; "autoTitle": { "alias": "autoTitle"; "required": false; }; "syncTitle": { "alias": "syncTitle"; "required": false; }; "fixed": { "alias": "fixed"; "required": false; }; "fixedOffsetTop": { "alias": "fixedOffsetTop"; "required": false; }; "breadcrumb": { "alias": "breadcrumb"; "required": false; }; "recursiveBreadcrumb": { "alias": "recursiveBreadcrumb"; "required": false; }; "logo": { "alias": "logo"; "required": false; }; "action": { "alias": "action"; "required": false; }; "content": { "alias": "content"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "tab": { "alias": "tab"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 export {};
