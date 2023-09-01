@@ -2605,6 +2605,7 @@ class SelectWidget extends ControlUIWidget {
     constructor() {
         super(...arguments);
         this.search$ = new Subject();
+        this.data = [];
         this.hasGroup = false;
         this.loading = false;
     }
