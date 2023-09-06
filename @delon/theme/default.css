@@ -28093,17 +28093,6 @@ a:focus {
   background: #fff;
   border-style: dashed;
 }
-/**
-  * Corrected `ng-tag` list line wrapping spacing
-  *
-  * 纠正 `ng-tag` 列表换行间距问题
-  */
-.tag-wrap-list-spacing {
-  margin-top: -8px;
-}
-.tag-wrap-list-spacing .ant-tag {
-  margin-top: 8px;
-}
 .h1 small,
 .h2 small,
 .h3 small,
