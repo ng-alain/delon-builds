@@ -850,9 +850,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.4", ngImpor
                     args: [ALAIN_I18N_TOKEN]
                 }] }, { type: i1.AlainConfigService }]; } });
 /**
- * Internationalization guard, automatically recognizes the language in Url and triggers the `ALAIN_I18N_TOKEN.use` method
- *
- * 国际化守卫，自动识别Url中的语言，并触发 `ALAIN_I18N_TOKEN.use` 方法
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
  * ```ts
  * data: {
@@ -863,9 +861,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.4", ngImpor
  */
 const alainI18nCanActivate = childRoute => inject(AlainI18NGuardService).process(childRoute);
 /**
- * Internationalization guard, automatically recognizes the language in Url and triggers the `ALAIN_I18N_TOKEN.use` method
- *
- * 国际化守卫，自动识别Url中的语言，并触发 `ALAIN_I18N_TOKEN.use` 方法
+ * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
  * ```ts
  * data: {
