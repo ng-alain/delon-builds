@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "16.3.0-4b9c93ccf",
+  "version": "16.3.0-b36c7f392",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^16.0.0",
-    "@delon/theme": "^16.3.0-4b9c93ccf",
-    "@delon/util": "^16.3.0-4b9c93ccf",
-    "@delon/acl": "^16.3.0-4b9c93ccf",
+    "@delon/theme": "^16.3.0-b36c7f392",
+    "@delon/util": "^16.3.0-b36c7f392",
+    "@delon/acl": "^16.3.0-b36c7f392",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -177,17 +177,17 @@
       "esm": "./esm2022/pdf/pdf.mjs",
       "default": "./fesm2022/pdf.mjs"
     },
-    "./quick-menu": {
-      "types": "./quick-menu/index.d.ts",
-      "esm2022": "./esm2022/quick-menu/quick-menu.mjs",
-      "esm": "./esm2022/quick-menu/quick-menu.mjs",
-      "default": "./fesm2022/quick-menu.mjs"
-    },
     "./qr": {
       "types": "./qr/index.d.ts",
       "esm2022": "./esm2022/qr/qr.mjs",
       "esm": "./esm2022/qr/qr.mjs",
       "default": "./fesm2022/qr.mjs"
+    },
+    "./quick-menu": {
+      "types": "./quick-menu/index.d.ts",
+      "esm2022": "./esm2022/quick-menu/quick-menu.mjs",
+      "esm": "./esm2022/quick-menu/quick-menu.mjs",
+      "default": "./fesm2022/quick-menu.mjs"
     },
     "./result": {
       "types": "./result/index.d.ts",

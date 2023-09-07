@@ -12,7 +12,9 @@ export declare class AlainI18NGuardService {
     static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18NGuardService>;
 }
 /**
- * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ * Internationalization guard, automatically recognizes the language in Url and triggers the `ALAIN_I18N_TOKEN.use` method
+ *
+ * 国际化守卫，自动识别Url中的语言，并触发 `ALAIN_I18N_TOKEN.use` 方法
  *
  * ```ts
  * data: {
@@ -23,7 +25,9 @@ export declare class AlainI18NGuardService {
  */
 export declare const alainI18nCanActivate: CanActivateFn;
 /**
- * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
+ * Internationalization guard, automatically recognizes the language in Url and triggers the `ALAIN_I18N_TOKEN.use` method
+ *
+ * 国际化守卫，自动识别Url中的语言，并触发 `ALAIN_I18N_TOKEN.use` 方法
  *
  * ```ts
  * data: {
