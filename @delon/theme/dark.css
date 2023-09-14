@@ -34014,7 +34014,7 @@ ellipsis {
 .onboarding__light {
   position: absolute;
   z-index: 99999;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #141414;
   animation: 2500ms cubic-bezier(0.55, 0.05, 0.6, 0.2) 0s infinite normal none running onboardingAnt;
   pointer-events: none;
 }

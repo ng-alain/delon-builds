@@ -5,6 +5,14 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
 export interface OnboardingConfig {
     /**
+     * Storage identification Key
+     */
+    key?: string;
+    /**
+     * Current version
+     */
+    keyVersion?: unknown;
+    /**
      * Onboarding items
      */
     items?: OnboardingItem[];
