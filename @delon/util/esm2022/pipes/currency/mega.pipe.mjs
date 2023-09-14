@@ -16,10 +16,10 @@ export class CurrencyMegaPipe {
         const res = this.srv.mega(value, options);
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.4", ngImport: i0, type: CurrencyMegaPipe, deps: [{ token: i1.CurrencyService }, { token: LOCALE_ID }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.4", ngImport: i0, type: CurrencyMegaPipe, name: "mega" }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: CurrencyMegaPipe, deps: [{ token: i1.CurrencyService }, { token: LOCALE_ID }], target: i0.ɵɵFactoryTarget.Pipe }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "16.2.5", ngImport: i0, type: CurrencyMegaPipe, name: "mega" }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.4", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.5", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'mega' }]
         }], ctorParameters: function () { return [{ type: i1.CurrencyService }, { type: undefined, decorators: [{
