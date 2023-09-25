@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import { AlainSFConfig } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { PropertyGroup } from './form.property';
@@ -10,7 +11,7 @@ export declare class ObjectProperty extends PropertyGroup {
     private formPropertyFactory;
     private _propertiesId;
     get propertiesId(): string[];
-    constructor(formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: NzSafeAny, parent: PropertyGroup | null, path: string, options: AlainSFConfig);
+    constructor(injector: Injector, formPropertyFactory: FormPropertyFactory, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: NzSafeAny, parent: PropertyGroup | null, path: string, options: AlainSFConfig);
     private createProperties;
     setValue(value: SFValue, onlySelf: boolean): void;
     resetValue(value: SFValue, onlySelf: boolean): void;
