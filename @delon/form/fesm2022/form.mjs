@@ -1,8 +1,8 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, Injector, HostBinding, ElementRef, NgZone, NgModule } from '@angular/core';
+import { NgZone, Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, ElementRef, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { map, of, BehaviorSubject, Observable, combineLatest, distinctUntilChanged, Subject, merge, filter, takeUntil, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs';
+import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, merge, filter, takeUntil, debounceTime, startWith, mergeMap, tap, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import * as i6 from '@delon/util/config';
@@ -284,7 +284,8 @@ function isDateFns(srv) {
 }
 
 class FormProperty {
-    constructor(schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
+    constructor(injector, schemaValidatorFactory, schema, ui, formData, parent, path, _options) {
+        this.injector = injector;
         this._options = _options;
         this._errors = null;
         this._valueChanges = new BehaviorSubject({ path: null, pathValue: null, value: null });
@@ -514,7 +515,12 @@ class FormProperty {
         this._visibilityChanges.next(visible);
         // 渲染时需要重新触发 reset
         if (visible) {
-            this.resetValue(this.value, true);
+            this.injector
+                .get(NgZone)
+                .onStable.pipe(take(1))
+                .subscribe(() => {
+                this.resetValue(this.value, true);
+            });
         }
         return this;
     }
@@ -632,8 +638,8 @@ class ObjectProperty extends PropertyGroup {
     get propertiesId() {
         return this._propertiesId;
     }
-    constructor(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-        super(schemaValidatorFactory, schema, ui, formData, parent, path, options);
+    constructor(injector, formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
+        super(injector, schemaValidatorFactory, schema, ui, formData, parent, path, options);
         this.formPropertyFactory = formPropertyFactory;
         this._propertiesId = [];
         this.createProperties();
@@ -689,8 +695,8 @@ class ObjectProperty extends PropertyGroup {
 }
 
 class ArrayProperty extends PropertyGroup {
-    constructor(formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
-        super(schemaValidatorFactory, schema, ui, formData, parent, path, options);
+    constructor(injector, formPropertyFactory, schemaValidatorFactory, schema, ui, formData, parent, path, options) {
+        super(injector, schemaValidatorFactory, schema, ui, formData, parent, path, options);
         this.formPropertyFactory = formPropertyFactory;
         this.properties = [];
     }
@@ -827,7 +833,8 @@ class StringProperty extends AtomicProperty {
 }
 
 class FormPropertyFactory {
-    constructor(schemaValidatorFactory, cogSrv) {
+    constructor(injector, schemaValidatorFactory, cogSrv) {
+        this.injector = injector;
         this.schemaValidatorFactory = schemaValidatorFactory;
         this.options = mergeConfig(cogSrv);
     }
@@ -880,19 +887,19 @@ class FormPropertyFactory {
             switch (schema.type) {
                 case 'integer':
                 case 'number':
-                    newProperty = new NumberProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                    newProperty = new NumberProperty(this.injector, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
                     break;
                 case 'string':
-                    newProperty = new StringProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                    newProperty = new StringProperty(this.injector, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
                     break;
                 case 'boolean':
-                    newProperty = new BooleanProperty(this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                    newProperty = new BooleanProperty(this.injector, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
                     break;
                 case 'object':
-                    newProperty = new ObjectProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                    newProperty = new ObjectProperty(this.injector, this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
                     break;
                 case 'array':
-                    newProperty = new ArrayProperty(this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
+                    newProperty = new ArrayProperty(this.injector, this, this.schemaValidatorFactory, schema, ui, formData, parent, path, this.options);
                     break;
                 default:
                     throw new TypeError(`Undefined type ${schema.type}`);
@@ -1136,8 +1143,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImpor
                 args: ['fixed-label']
             }] } });
 
-function useFactory(schemaValidatorFactory, cogSrv) {
-    return new FormPropertyFactory(schemaValidatorFactory, cogSrv);
+function useFactory(injector, schemaValidatorFactory, cogSrv) {
+    return new FormPropertyFactory(injector, schemaValidatorFactory, cogSrv);
 }
 class SFComponent {
     get btnGrid() {
@@ -1693,7 +1700,7 @@ class SFComponent {
             {
                 provide: FormPropertyFactory,
                 useFactory,
-                deps: [SchemaValidatorFactory, AlainConfigService]
+                deps: [Injector, SchemaValidatorFactory, AlainConfigService]
             },
             TerminatorService
         ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  <ng-container *ngIf=\"button !== 'none'; else con\">\n    <nz-form-item\n      *ngIf=\"_btn && _btn.render\"\n      [ngClass]=\"_btn.render!.class!\"\n      class=\"sf-btns\"\n      [fixed-label]=\"_btn.render!.spanLabelFixed!\"\n    >\n      <div\n        nz-col\n        class=\"ant-form-item-control\"\n        [nzSpan]=\"btnGrid.span\"\n        [nzOffset]=\"btnGrid.offset\"\n        [nzXs]=\"btnGrid.xs\"\n        [nzSm]=\"btnGrid.sm\"\n        [nzMd]=\"btnGrid.md\"\n        [nzLg]=\"btnGrid.lg\"\n        [nzXl]=\"btnGrid.xl\"\n        [nzXXl]=\"btnGrid.xxl\"\n      >\n        <div class=\"ant-form-item-control-input\">\n          <div class=\"ant-form-item-control-input-content\">\n            <ng-container *ngIf=\"button; else con\">\n              <button\n                type=\"submit\"\n                nz-button\n                data-type=\"submit\"\n                [nzType]=\"_btn.submit_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [nzLoading]=\"loading\"\n                [disabled]=\"liveValidate && !valid\"\n              >\n                <i\n                  *ngIf=\"_btn.submit_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.submit_icon.type!\"\n                  [nzTheme]=\"_btn.submit_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                ></i>\n                {{ _btn.submit }}\n              </button>\n              <button\n                *ngIf=\"_btn.reset\"\n                type=\"button\"\n                nz-button\n                data-type=\"reset\"\n                [nzType]=\"_btn.reset_type!\"\n                [nzSize]=\"_btn.render!.size!\"\n                [disabled]=\"loading\"\n                (click)=\"reset(true)\"\n              >\n                <i\n                  *ngIf=\"_btn.reset_icon\"\n                  nz-icon\n                  [nzType]=\"_btn.reset_icon.type!\"\n                  [nzTheme]=\"_btn.reset_icon.theme!\"\n                  [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor!\"\n                  [nzIconfont]=\"_btn.reset_icon.iconfont!\"\n                ></i>\n                {{ _btn.reset }}\n              </button>\n            </ng-container>\n          </div>\n        </div>\n      </div>\n    </nz-form-item>\n  </ng-container>\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  <sf-item *ngIf=\"rootProperty\" [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i2.NgForm, selector: "form:not([ngNoForm]):not([formGroup]),ng-form,[ngForm]", inputs: ["ngFormOptions"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "component", type: i2$1.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i3$1.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i4$1.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i4$2.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i4$2.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: i14.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap"], exportAs: ["nzForm"] }, { kind: "component", type: i14.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i6$1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
@@ -1732,7 +1739,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImpor
                         {
                             provide: FormPropertyFactory,
                             useFactory,
-                            deps: [SchemaValidatorFactory, AlainConfigService]
+                            deps: [Injector, SchemaValidatorFactory, AlainConfigService]
                         },
                         TerminatorService
                     ], host: {

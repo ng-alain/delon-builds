@@ -1,3 +1,4 @@
+import { Injector } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AlainSFConfig } from '@delon/util/config';
 import type { NzFormControlStatusType } from 'ng-zorro-antd/form';
@@ -8,6 +9,7 @@ import type { SFUISchema, SFUISchemaItem, SFUISchemaItemRun } from '../schema/ui
 import { SchemaValidatorFactory } from '../validator.factory';
 import type { Widget } from '../widget';
 export declare abstract class FormProperty {
+    private injector;
     private _options;
     private _errors;
     private _valueChanges;
@@ -27,7 +29,7 @@ export declare abstract class FormProperty {
     widget: Widget<FormProperty, SFUISchemaItem>;
     path: string;
     propertyId?: string;
-    constructor(schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: Record<string, unknown>, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
+    constructor(injector: Injector, schemaValidatorFactory: SchemaValidatorFactory, schema: SFSchema, ui: SFUISchema | SFUISchemaItem, formData: Record<string, unknown>, parent: PropertyGroup | null, path: string, _options: AlainSFConfig);
     get valueChanges(): BehaviorSubject<SFFormValueChange>;
     get errorsChanges(): BehaviorSubject<ErrorData[] | null>;
     get type(): SFSchemaType;
