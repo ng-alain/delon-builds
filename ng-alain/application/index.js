@@ -63,6 +63,7 @@ function fixAngularJson(options) {
         // }
         (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
         (0, utils_1.addSchematicCollections)(workspace);
+        (0, utils_1.addFileReplacements)(workspace);
     }));
 }
 /**

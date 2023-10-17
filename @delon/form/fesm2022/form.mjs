@@ -1460,12 +1460,13 @@ class SFComponent {
                     }
                 }
                 if (property.items) {
+                    const uiSchemaInArr = (uiSchema[uiKey] || {}).$items || {};
                     ui.$items = {
                         ...property.items.ui,
-                        ...uiSchema[uiKey],
+                        ...uiSchemaInArr[uiKey],
                         ...ui.$items
                     };
-                    inFn(property.items, property.items, uiSchema[uiKey]?.$items ?? {}, ui.$items, ui.$items);
+                    inFn(property.items, property.items, uiSchemaInArr, ui.$items, ui.$items);
                 }
                 if (property.properties && Object.keys(property.properties).length) {
                     inFn(property, schema, uiSchema[uiKey] || {}, ui, ui);
