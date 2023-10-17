@@ -22,7 +22,6 @@ import {
   addAllowedCommonJsDependencies,
   addAllowSyntheticDefaultImports,
   addAssetsToTarget,
-  addFileReplacements,
   addHeadStyle,
   addHtmlToBody,
   addPackage,
@@ -95,7 +94,6 @@ function fixAngularJson(options: ApplicationOptions): Rule {
 
     addStylePreprocessorOptionsToAllProject(workspace);
     addSchematicCollections(workspace);
-    addFileReplacements(workspace);
   });
 }
 
