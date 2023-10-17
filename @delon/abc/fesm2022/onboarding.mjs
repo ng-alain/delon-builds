@@ -1,7 +1,7 @@
 import * as i2 from '@angular/common';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, ViewChild, createComponent, Injectable, NgModule } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Inject, ViewChild, InjectionToken, createComponent, Injectable, NgModule } from '@angular/core';
 import { of, switchMap, delay, pipe } from 'rxjs';
 import * as i1 from '@angular/cdk/platform';
 import * as i3 from 'ng-zorro-antd/popover';
@@ -143,6 +143,22 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImpor
                 args: ['popover', { static: false }]
             }] } });
 
+const ONBOARDING_STORE_TOKEN = new InjectionToken('ONBOARDING_STORE_TOKEN', {
+    providedIn: 'root',
+    factory: ONBOARDING_STORE_TOKEN_FACTORY
+});
+function ONBOARDING_STORE_TOKEN_FACTORY() {
+    return new LocalStorageStore();
+}
+class LocalStorageStore {
+    get(key) {
+        return localStorage.getItem(key);
+    }
+    set(key, version) {
+        localStorage.setItem(key, `${version}`);
+    }
+}
+
 class OnboardingService {
     _getDoc() {
         return this.doc;
@@ -155,12 +171,13 @@ class OnboardingService {
     get running() {
         return this._running;
     }
-    constructor(i18n, appRef, router, doc, configSrv, directionality) {
+    constructor(i18n, appRef, router, doc, configSrv, keyStoreSrv, directionality) {
         this.i18n = i18n;
         this.appRef = appRef;
         this.router = router;
         this.doc = doc;
         this.configSrv = configSrv;
+        this.keyStoreSrv = keyStoreSrv;
         this.directionality = directionality;
         this.active = 0;
         this.running$ = null;
@@ -209,6 +226,10 @@ class OnboardingService {
         return this;
     }
     destroy() {
+        const storeKey = this.config?.key;
+        if (storeKey != null) {
+            this.keyStoreSrv.set(storeKey, this.config?.keyVersion);
+        }
         this.cancelRunning();
         if (this.compRef) {
             this.appRef.detachView(this.compRef.hostView);
@@ -217,7 +238,7 @@ class OnboardingService {
         }
     }
     showItem(isStart = false) {
-        const items = this.config.items;
+        const items = this.config?.items;
         const item = {
             position: 'bottomLeft',
             before: of(true),
@@ -251,17 +272,23 @@ class OnboardingService {
      * 开启新的用户引导流程
      */
     start(config) {
-        if (this.running) {
-            return;
-        }
-        this.destroy();
-        this.config = {
+        const cog = {
+            keyVersion: '',
             items: [],
             mask: true,
             maskClosable: true,
             showTotal: false,
             ...config
         };
+        const storeKey = cog?.key;
+        if (storeKey != null && this.keyStoreSrv.get(storeKey) === cog.keyVersion) {
+            return;
+        }
+        if (this.running) {
+            return;
+        }
+        this.destroy();
+        this.config = cog;
         this.active = 0;
         this.type = null;
         this.attach();
@@ -306,7 +333,7 @@ class OnboardingService {
     ngOnDestroy() {
         this.destroy();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.9", ngImport: i0, type: OnboardingService, deps: [{ token: i1$1.DelonLocaleService }, { token: i0.ApplicationRef }, { token: i2$1.Router }, { token: DOCUMENT }, { token: i3$1.AlainConfigService }, { token: i4$1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.9", ngImport: i0, type: OnboardingService, deps: [{ token: i1$1.DelonLocaleService }, { token: i0.ApplicationRef }, { token: i2$1.Router }, { token: DOCUMENT }, { token: i3$1.AlainConfigService }, { token: ONBOARDING_STORE_TOKEN }, { token: i4$1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.9", ngImport: i0, type: OnboardingService }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImport: i0, type: OnboardingService, decorators: [{
@@ -314,7 +341,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImpor
         }], ctorParameters: function () { return [{ type: i1$1.DelonLocaleService }, { type: i0.ApplicationRef }, { type: i2$1.Router }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DOCUMENT]
-                }] }, { type: i3$1.AlainConfigService }, { type: i4$1.Directionality, decorators: [{
+                }] }, { type: i3$1.AlainConfigService }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [ONBOARDING_STORE_TOKEN]
+                }] }, { type: i4$1.Directionality, decorators: [{
                     type: Optional
                 }] }]; } });
 
@@ -338,5 +368,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.9", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { OnboardingComponent, OnboardingModule, OnboardingService };
+export { LocalStorageStore, ONBOARDING_STORE_TOKEN, ONBOARDING_STORE_TOKEN_FACTORY, OnboardingComponent, OnboardingModule, OnboardingService };
 //# sourceMappingURL=onboarding.mjs.map
