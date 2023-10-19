@@ -2649,16 +2649,13 @@ class SelectWidget extends ControlUIWidget {
         }
     }
     reset(value) {
-        const onSearch = this.ui.onSearch;
         getData(this.schema, this.ui, value).subscribe(list => {
             this._value = value;
-            if (onSearch == null)
+            if (this.ui.onSearch == null)
                 this.data = list;
             this.checkGroup(list);
             this.detectChanges();
         });
-        if (value && onSearch != null)
-            this.search$.next(value);
     }
     change(values) {
         if (this.ui.change) {
