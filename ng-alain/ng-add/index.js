@@ -42,6 +42,10 @@ function isYarn(tree) {
     var _a, _b;
     return ((_b = (_a = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH)) === null || _a === void 0 ? void 0 : _a.cli) === null || _b === void 0 ? void 0 : _b.packageManager) === 'yarn';
 }
+function isValidProjectName(tree, name) {
+    var _a, _b;
+    return Object.keys((_b = (_a = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH)) === null || _a === void 0 ? void 0 : _a.projects) !== null && _b !== void 0 ? _b : {}).indexOf(name) !== -1;
+}
 function finished() {
     return (_, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -55,7 +59,7 @@ NG-ALAIN documentation site: https://ng-alain.com
 function default_1(options) {
     return (tree, context) => {
         if (!isYarn(tree)) {
-            context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
+            context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies, Pls refer to https://ng-alain.com/docs/getting-started/en#Installation`);
         }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
         const allowNodeVersions = [14, 16, 18];
@@ -64,8 +68,18 @@ function default_1(options) {
             throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3`);
         }
         const pkg = (0, utils_1.readPackage)(tree);
-        if (pkg.devDependencies['ng-alain']) {
-            throw new schematics_1.SchematicsException(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
+        if (options.project) {
+            if (!isValidProjectName(tree, options.project)) {
+                throw new schematics_1.SchematicsException(`Not found under the projects node of angular.json: ${options.project}`);
+            }
+        }
+        else {
+            if (pkg.devDependencies['ng-alain']) {
+                throw new schematics_1.SchematicsException(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
+            }
+            if (!tree.exists('src/index.html')) {
+                throw new schematics_1.SchematicsException(`NG-ALAIN must be attached to a new Angular project, so you need to use 'ng new projectName' to build a new Angular project, or specify the project name to be attached`);
+            }
         }
         let ngCoreVersion = pkg.dependencies['@angular/core'];
         if (/^[\^|\~]/g.test(ngCoreVersion)) {
