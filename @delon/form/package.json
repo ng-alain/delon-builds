@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "16.4.1-5521a98e3",
+  "version": "16.4.1-24a93979a",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
   "dependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "@delon/theme": "^16.4.1-5521a98e3",
-    "@delon/acl": "^16.4.1-5521a98e3",
-    "@delon/util": "^16.4.1-5521a98e3",
+    "@delon/theme": "^16.4.1-24a93979a",
+    "@delon/acl": "^16.4.1-24a93979a",
+    "@delon/util": "^16.4.1-24a93979a",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/form.mjs",
@@ -58,6 +58,12 @@
       "esm2022": "./esm2022/widgets/cascader/widgets-cascader.mjs",
       "esm": "./esm2022/widgets/cascader/widgets-cascader.mjs",
       "default": "./fesm2022/widgets-cascader.mjs"
+    },
+    "./widgets/color": {
+      "types": "./widgets/color/index.d.ts",
+      "esm2022": "./esm2022/widgets/color/widgets-color.mjs",
+      "esm": "./esm2022/widgets/color/widgets-color.mjs",
+      "default": "./fesm2022/widgets-color.mjs"
     },
     "./widgets/mention": {
       "types": "./widgets/mention/index.d.ts",
