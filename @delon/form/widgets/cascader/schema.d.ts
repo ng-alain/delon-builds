@@ -1,7 +1,7 @@
+import { SFUISchemaItem } from '@delon/form';
 import { NzCascaderExpandTrigger, NzCascaderOption, NzShowSearchOptions } from 'ng-zorro-antd/cascader';
 import { NgStyleInterface, NzSafeAny } from 'ng-zorro-antd/core/types';
-import { CascaderWidget } from './cascader.widget';
-import { SFUISchemaItem } from '../../schema/ui';
+import type { CascaderWidget } from './widget';
 export interface SFCascaderWidgetSchema extends SFUISchemaItem {
     /**
      * 异步静态数据源

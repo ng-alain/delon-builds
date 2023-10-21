@@ -1,12 +1,11 @@
 import { OnInit } from '@angular/core';
+import { ControlUIWidget, SFSchemaEnum, SFValue } from '@delon/form';
 import { NzCascaderOption } from 'ng-zorro-antd/cascader';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { SFCascaderWidgetSchema } from './schema';
-import { SFValue } from '../../interface';
-import { SFSchemaEnum } from '../../schema';
-import { ControlUIWidget } from '../../widget';
+import type { SFCascaderWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class CascaderWidget extends ControlUIWidget<SFCascaderWidgetSchema> implements OnInit {
+    static readonly KEY = "cascader";
     clearText: string;
     showArrow: boolean;
     showInput: boolean;

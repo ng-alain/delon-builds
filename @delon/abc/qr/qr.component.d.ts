@@ -4,10 +4,6 @@ import { AlainConfigService } from '@delon/util/config';
 import { NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import * as i0 from "@angular/core";
-/**
- * Will be removed in 18.0.0, please use [nz-qrcode](https://ng.ant.design/components/qr-code) instead.
- * @deprecated
- */
 export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy {
     private cdr;
     private lazySrv;
