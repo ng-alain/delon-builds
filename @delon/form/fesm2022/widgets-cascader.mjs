@@ -150,4 +150,4 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.10", ngImpo
  */
 
 export { CascaderWidget, CascaderWidgetModule };
-//# sourceMappingURL=widget-cascader.mjs.map
+//# sourceMappingURL=widgets-cascader.mjs.map

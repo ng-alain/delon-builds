@@ -41,6 +41,8 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `ng-alain-plugin-theme@^15.0.1`,
         `source-map-explorer@^2.5.3`,
         `@angular/language-service@^16.2.0`,
+        `ngx-tinymce@^16.0.0`,
+        `@ng-util/monaco-editor@^16.0.1`,
         `@delon/testing@${version}`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@16.2.0`]);
