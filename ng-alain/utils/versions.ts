@@ -37,8 +37,6 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `ng-alain-plugin-theme@^15.0.1`,
       `source-map-explorer@^2.5.3`,
       `@angular/language-service@^16.2.0`,
-      `ngx-tinymce@^16.0.0`,
-      `@ng-util/monaco-editor@^16.0.1`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
