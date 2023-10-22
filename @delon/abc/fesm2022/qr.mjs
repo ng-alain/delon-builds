@@ -22,6 +22,9 @@ const QR_DEFULAT_CONFIG = {
     delay: 0
 };
 
+/**
+ * @deprecated Will be removed in 18.0.0, please use [nz-qrcode](https://ng.ant.design/components/qr-code) instead.
+ */
 class QRComponent {
     constructor(cdr, configSrv, lazySrv, platform) {
         this.cdr = cdr;
@@ -149,6 +152,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.10", ngImpo
             }] } });
 
 const COMPONENTS = [QRComponent];
+/**
+ * @deprecated Will be removed in 18.0.0, please use [nz-qrcode](https://ng.ant.design/components/qr-code) instead.
+ */
 class QRModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.10", ngImport: i0, type: QRModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.10", ngImport: i0, type: QRModule, declarations: [QRComponent], imports: [CommonModule], exports: [QRComponent] }); }
