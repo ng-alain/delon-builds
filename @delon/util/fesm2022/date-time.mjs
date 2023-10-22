@@ -1,4 +1,6 @@
+import { inject } from '@angular/core';
 import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMonths, endOfMonth, startOfWeek, subWeeks, endOfWeek, startOfDay, endOfDay, parseISO, formatDistanceToNow, format, differenceInCalendarDays, addSeconds } from 'date-fns';
+import { NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 
 /**
  * Get the time range, return `[ Date, Date]` for the start and end dates
@@ -58,19 +60,15 @@ function fixEndTimeOfRange(dates) {
     return [startOfDay(dates[0]), endOfDay(dates[1])];
 }
 /**
- * Return the date parsed from string using the given format string
- * - If the argument is a number, it is treated as a timestamp.
+ * Convert to `Date` format
  *
- * @param formatString If parsing fails try to parse the date by pressing `formatString`
- * @param defaultValue If parsing fails returned default value, default: `new Date(NaN)`
+ * @param value When is a number, it is treated as a timestamp (Support seconds and milliseconds timestamp).
  */
 function toDate(value, options) {
-    if (typeof options === 'string')
-        options = { formatString: options };
     const { formatString, defaultValue } = {
         formatString: 'yyyy-MM-dd HH:mm:ss',
         defaultValue: new Date(NaN),
-        ...options
+        ...(typeof options === 'string' ? { formatString: options } : options)
     };
     if (value == null) {
         return defaultValue;
@@ -79,7 +77,8 @@ function toDate(value, options) {
         return value;
     }
     if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
-        return new Date(+value);
+        const valueNumber = +value;
+        return new Date(`${value}`.length === 10 ? valueNumber * 1000 : valueNumber);
     }
     let tryDate = parseISO(value);
     if (isNaN(tryDate)) {
@@ -87,11 +86,18 @@ function toDate(value, options) {
     }
     return isNaN(tryDate) ? defaultValue : tryDate;
 }
+/**
+ * Format date, supports `Date, number, string` types
+ *
+ * @param value When is a number, it is treated as a timestamp (Support seconds and milliseconds timestamp).
+ * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
+ * @param dateLocale `dateLocale` uses `NZ_DATE_LOCALE` by default to be consistent with NG-ZORRO
+ */
 function formatDate(value, formatString, dateLocale) {
     value = toDate(value);
     if (isNaN(value))
         return '';
-    const langOpt = { locale: dateLocale };
+    const langOpt = { locale: dateLocale ?? inject(NZ_DATE_LOCALE, { optional: true }) ?? undefined };
     return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
 }
 
