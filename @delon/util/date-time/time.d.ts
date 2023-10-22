@@ -33,6 +33,6 @@ export declare function toDate(value?: Date | string | number | null, options?: 
  *
  * @param value When is a number, it is treated as a timestamp (Support seconds and milliseconds timestamp).
  * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
- * @param dateLocale `dateLocale` uses `NZ_DATE_LOCALE` by default to be consistent with NG-ZORRO
+ * @param dateLocale Recommended to be consistent with NG-ZORRO by using `inject(NZ_DATE_LOCALE)`
  */
 export declare function formatDate(value: Date | string | number, formatString: string, dateLocale?: DateLocale): string;

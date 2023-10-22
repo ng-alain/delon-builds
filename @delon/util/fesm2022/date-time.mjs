@@ -1,6 +1,4 @@
-import { inject } from '@angular/core';
 import { parse, addDays, startOfYear, subYears, endOfYear, startOfMonth, subMonths, endOfMonth, startOfWeek, subWeeks, endOfWeek, startOfDay, endOfDay, parseISO, formatDistanceToNow, format, differenceInCalendarDays, addSeconds } from 'date-fns';
-import { NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 
 /**
  * Get the time range, return `[ Date, Date]` for the start and end dates
@@ -91,13 +89,13 @@ function toDate(value, options) {
  *
  * @param value When is a number, it is treated as a timestamp (Support seconds and milliseconds timestamp).
  * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
- * @param dateLocale `dateLocale` uses `NZ_DATE_LOCALE` by default to be consistent with NG-ZORRO
+ * @param dateLocale Recommended to be consistent with NG-ZORRO by using `inject(NZ_DATE_LOCALE)`
  */
 function formatDate(value, formatString, dateLocale) {
     value = toDate(value);
     if (isNaN(value))
         return '';
-    const langOpt = { locale: dateLocale ?? inject(NZ_DATE_LOCALE, { optional: true }) ?? undefined };
+    const langOpt = { locale: dateLocale };
     return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
 }
 
