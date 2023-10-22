@@ -1972,7 +1972,6 @@ var itIT = {
     }
 };
 
-const CLS_DRAG = 'MODAL-DRAG';
 /**
  * 对话框辅助类
  */
@@ -1980,6 +1979,7 @@ class ModalHelper {
     constructor(srv, drag, doc) {
         this.srv = srv;
         this.drag = drag;
+        this.dragClsPrefix = 'MODAL-DRAG';
         this.document = doc;
     }
     createDragRef(options, wrapCls) {
@@ -1987,7 +1987,7 @@ class ModalHelper {
         const modalEl = wrapEl.firstChild;
         const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
         if (handelEl) {
-            handelEl.classList.add(`${CLS_DRAG}-HANDLE`);
+            handelEl.classList.add(`${this.dragClsPrefix}-HANDLE`);
         }
         return this.drag
             .createDrag(handelEl ?? modalEl)
@@ -2019,38 +2019,38 @@ class ModalHelper {
         }, options);
         return new Observable((observer) => {
             const { size, includeTabs, modalOptions, drag, useNzData } = options;
-            let cls = [];
+            let cls = '';
             let width = '';
             if (size) {
                 if (typeof size === 'number') {
                     width = `${size}px`;
                 }
                 else if (['sm', 'md', 'lg', 'xl'].includes(size)) {
-                    cls.push(`modal-${size}`);
+                    cls = `modal-${size}`;
                 }
                 else {
                     width = size;
                 }
             }
             if (includeTabs) {
-                cls.push(`modal-include-tabs`);
+                cls += ' modal-include-tabs';
             }
             if (modalOptions && modalOptions.nzWrapClassName) {
-                cls.push(modalOptions.nzWrapClassName);
+                cls += ` ${modalOptions.nzWrapClassName}`;
                 delete modalOptions.nzWrapClassName;
             }
             let dragOptions;
-            let dragWrapCls = `${CLS_DRAG}-${+new Date()}`;
+            let dragWrapCls = `${this.dragClsPrefix}-${+new Date()}`;
             let dragRef;
             if (drag != null && drag !== false) {
                 dragOptions = {
                     handleCls: `.modal-header, .ant-modal-title`,
                     ...(typeof drag === 'object' ? drag : {})
                 };
-                cls.push(CLS_DRAG, dragWrapCls);
+                cls += ` ${this.dragClsPrefix} ${dragWrapCls}`;
             }
             const subject = this.srv.create({
-                nzWrapClassName: cls.join(' '),
+                nzWrapClassName: cls,
                 nzContent: comp,
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
@@ -2260,16 +2260,18 @@ class _HttpClient {
         if (params instanceof HttpParams) {
             return params;
         }
+        const { nullValueHandling, dateValueHandling } = this.cog;
         Object.keys(params).forEach(key => {
-            let _data = params[key];
+            let paramValue = params[key];
             // 忽略空值
-            if (this.cog.nullValueHandling === 'ignore' && _data == null)
+            if (nullValueHandling === 'ignore' && paramValue == null)
                 return;
             // 将时间转化为：时间戳 (秒)
-            if (this.cog.dateValueHandling === 'timestamp' && _data instanceof Date) {
-                _data = _data.valueOf();
+            if (paramValue instanceof Date &&
+                (dateValueHandling === 'timestamp' || dateValueHandling === 'timestampSecond')) {
+                paramValue = dateValueHandling === 'timestamp' ? paramValue.valueOf() : Math.trunc(paramValue.valueOf() / 1000);
             }
-            newParams[key] = _data;
+            newParams[key] = paramValue;
         });
         return new HttpParams({ fromObject: newParams });
     }
