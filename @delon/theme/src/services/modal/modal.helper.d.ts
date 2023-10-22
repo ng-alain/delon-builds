@@ -35,7 +35,6 @@ export declare class ModalHelper {
     private srv;
     private drag;
     private document;
-    private dragClsPrefix;
     constructor(srv: NzModalService, drag: DragDrop, doc: NzSafeAny);
     private createDragRef;
     /**
