@@ -16,8 +16,8 @@ import { SettingDrawerComponent } from './setting-drawer.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [SettingDrawerItemComponent, SettingDrawerComponent];
 export class SettingDrawerModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.10", ngImport: i0, type: SettingDrawerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.10", ngImport: i0, type: SettingDrawerModule, declarations: [SettingDrawerItemComponent, SettingDrawerComponent], imports: [CommonModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.11", ngImport: i0, type: SettingDrawerModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.11", ngImport: i0, type: SettingDrawerModule, declarations: [SettingDrawerItemComponent, SettingDrawerComponent], imports: [CommonModule,
             FormsModule,
             NzDrawerModule,
             NzToolTipModule,
@@ -29,7 +29,7 @@ export class SettingDrawerModule {
             NzInputModule,
             NzInputNumberModule,
             NzButtonModule], exports: [SettingDrawerItemComponent, SettingDrawerComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.10", ngImport: i0, type: SettingDrawerModule, imports: [CommonModule,
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.11", ngImport: i0, type: SettingDrawerModule, imports: [CommonModule,
             FormsModule,
             NzDrawerModule,
             NzToolTipModule,
@@ -42,7 +42,7 @@ export class SettingDrawerModule {
             NzInputNumberModule,
             NzButtonModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.10", ngImport: i0, type: SettingDrawerModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.11", ngImport: i0, type: SettingDrawerModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
