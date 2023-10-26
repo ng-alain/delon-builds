@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "16.4.1-7fb8b6318",
+  "version": "16.4.1-5a7bdd422",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^16.0.0",
-    "@delon/theme": "^16.4.1-7fb8b6318",
-    "@delon/util": "^16.4.1-7fb8b6318",
-    "@delon/acl": "^16.4.1-7fb8b6318",
+    "@delon/theme": "^16.4.1-5a7bdd422",
+    "@delon/util": "^16.4.1-5a7bdd422",
+    "@delon/acl": "^16.4.1-5a7bdd422",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -111,17 +111,17 @@
       "esm": "./esm2022/full-content/full-content.mjs",
       "default": "./fesm2022/full-content.mjs"
     },
-    "./hotkey": {
-      "types": "./hotkey/index.d.ts",
-      "esm2022": "./esm2022/hotkey/hotkey.mjs",
-      "esm": "./esm2022/hotkey/hotkey.mjs",
-      "default": "./fesm2022/hotkey.mjs"
-    },
     "./global-footer": {
       "types": "./global-footer/index.d.ts",
       "esm2022": "./esm2022/global-footer/global-footer.mjs",
       "esm": "./esm2022/global-footer/global-footer.mjs",
       "default": "./fesm2022/global-footer.mjs"
+    },
+    "./hotkey": {
+      "types": "./hotkey/index.d.ts",
+      "esm2022": "./esm2022/hotkey/hotkey.mjs",
+      "esm": "./esm2022/hotkey/hotkey.mjs",
+      "default": "./fesm2022/hotkey.mjs"
     },
     "./let": {
       "types": "./let/index.d.ts",
