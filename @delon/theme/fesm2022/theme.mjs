@@ -2260,18 +2260,16 @@ class _HttpClient {
         if (params instanceof HttpParams) {
             return params;
         }
-        const { nullValueHandling, dateValueHandling } = this.cog;
         Object.keys(params).forEach(key => {
-            let paramValue = params[key];
+            let _data = params[key];
             // 忽略空值
-            if (nullValueHandling === 'ignore' && paramValue == null)
+            if (this.cog.nullValueHandling === 'ignore' && _data == null)
                 return;
             // 将时间转化为：时间戳 (秒)
-            if (paramValue instanceof Date &&
-                (dateValueHandling === 'timestamp' || dateValueHandling === 'timestampSecond')) {
-                paramValue = dateValueHandling === 'timestamp' ? paramValue.valueOf() : Math.trunc(paramValue.valueOf() / 1000);
+            if (this.cog.dateValueHandling === 'timestamp' && _data instanceof Date) {
+                _data = _data.valueOf();
             }
-            newParams[key] = paramValue;
+            newParams[key] = _data;
         });
         return new HttpParams({ fromObject: newParams });
     }

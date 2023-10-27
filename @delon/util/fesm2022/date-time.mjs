@@ -58,16 +58,19 @@ function fixEndTimeOfRange(dates) {
     return [startOfDay(dates[0]), endOfDay(dates[1])];
 }
 /**
- * Convert to `Date` format
+ * Return the date parsed from string using the given format string
+ * - If the argument is a number, it is treated as a timestamp.
  *
- * @param value When is a number, it's treated as a timestamp; If it's seconds, you need to provide the `options.timestampSecond` parameter.
+ * @param formatString If parsing fails try to parse the date by pressing `formatString`
+ * @param defaultValue If parsing fails returned default value, default: `new Date(NaN)`
  */
 function toDate(value, options) {
-    const { formatString, defaultValue, timestampSecond } = {
+    if (typeof options === 'string')
+        options = { formatString: options };
+    const { formatString, defaultValue } = {
         formatString: 'yyyy-MM-dd HH:mm:ss',
         defaultValue: new Date(NaN),
-        timestampSecond: false,
-        ...(typeof options === 'string' ? { formatString: options } : options)
+        ...options
     };
     if (value == null) {
         return defaultValue;
@@ -75,9 +78,8 @@ function toDate(value, options) {
     if (value instanceof Date) {
         return value;
     }
-    if (typeof value === 'number' || (typeof value === 'string' && /^[0-9]+$/.test(value))) {
-        const valueNumber = +value;
-        return new Date(timestampSecond ? valueNumber * 1000 : valueNumber);
+    if (typeof value === 'number' || (typeof value === 'string' && /[0-9]{10,13}/.test(value))) {
+        return new Date(+value);
     }
     let tryDate = parseISO(value);
     if (isNaN(tryDate)) {
@@ -85,13 +87,6 @@ function toDate(value, options) {
     }
     return isNaN(tryDate) ? defaultValue : tryDate;
 }
-/**
- * Format date, supports `Date, number, string` types
- *
- * @param value When is a number, it is treated as a timestamp (Support seconds and milliseconds timestamp).
- * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
- * @param dateLocale Recommended to be consistent with NG-ZORRO by using `inject(NZ_DATE_LOCALE)`
- */
 function formatDate(value, formatString, dateLocale) {
     value = toDate(value);
     if (isNaN(value))
