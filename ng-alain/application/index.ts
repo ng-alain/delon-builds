@@ -43,7 +43,6 @@ import {
   writePackage,
   ZORROVERSION
 } from '../utils';
-import { addImportNotation } from '../utils/less';
 import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
 
 let project: ProjectDefinition;
@@ -189,10 +188,9 @@ function addCodeStylesToPackageJson(): Rule {
         `lint-staged@^14.0.1`,
         `prettier@^3.0.2`,
         `stylelint@^15.10.3`,
-        `stylelint-config-rational-order@^0.1.2`,
         `stylelint-config-standard@^34.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
-        `stylelint-order@^6.0.3`
+        `stylelint-config-clean-order@^5.2.0`
       ],
       'devDependencies'
     );
@@ -388,7 +386,6 @@ export default function (options: ApplicationOptions): Rule {
       addCodeStylesToPackageJson(),
       addSchematics(options),
       addESLintRule(context, false),
-      addImportNotation(),
       // files
       removeOrginalFiles(),
       addFilesToRoot(options),

@@ -14,7 +14,6 @@ const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
-const less_1 = require("../utils/less");
 const versions_1 = require("../utils/versions");
 let project;
 /** Remove files to be overwrite */
@@ -151,10 +150,9 @@ function addCodeStylesToPackageJson() {
             `lint-staged@^14.0.1`,
             `prettier@^3.0.2`,
             `stylelint@^15.10.3`,
-            `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^34.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
-            `stylelint-order@^6.0.3`
+            `stylelint-config-clean-order@^5.2.0`
         ], 'devDependencies');
         return tree;
     };
@@ -310,7 +308,6 @@ function default_1(options) {
             addCodeStylesToPackageJson(),
             addSchematics(options),
             (0, versions_1.addESLintRule)(context, false),
-            (0, less_1.addImportNotation)(),
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
