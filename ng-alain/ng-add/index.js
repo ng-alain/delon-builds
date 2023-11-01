@@ -21,27 +21,12 @@ function genRules(options) {
                 defaultLanguage: options.defaultLanguage
             }));
         }
-        if (options.npm) {
-            rules.push((0, schematics_1.schematic)('plugin', {
-                name: 'networkEnv',
-                type: 'add',
-                packageManager: 'npm'
-            }));
-        }
-        if (options.yarn) {
-            rules.push((0, schematics_1.schematic)('plugin', {
-                name: 'networkEnv',
-                type: 'add',
-                packageManager: 'yarn'
-            }));
-        }
         return (0, schematics_1.chain)(rules);
     };
 }
-function isYarn(tree) {
-    var _a, _b;
-    return ((_b = (_a = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH)) === null || _a === void 0 ? void 0 : _a.cli) === null || _b === void 0 ? void 0 : _b.packageManager) === 'yarn';
-}
+// function isYarn(tree: Tree): boolean {
+//   return readJSON(tree, DEFAULT_WORKSPACE_PATH)?.cli?.packageManager === 'yarn';
+// }
 function finished() {
     return (_, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -54,9 +39,9 @@ NG-ALAIN documentation site: https://ng-alain.com
 }
 function default_1(options) {
     return (tree, context) => {
-        if (!isYarn(tree)) {
-            context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
-        }
+        // if (!isYarn(tree)) {
+        //   context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
+        // }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
         const allowNodeVersions = [14, 16, 18];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
@@ -72,7 +57,7 @@ function default_1(options) {
             ngCoreVersion = ngCoreVersion.substring(1);
         }
         if (!ngCoreVersion.startsWith(`${V}.`)) {
-            throw new schematics_1.SchematicsException(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [yarn global add @angular/cli@${V}] (or via npm: [npm install -g @angular/cli@${V}])`);
+            throw new schematics_1.SchematicsException(`Sorry, the current version only supports angular ${V}.x, pls downgrade the global Anguar-cli version: [npm install -g @angular/cli@${V}]`);
         }
         return (0, schematics_1.chain)([genRules(options), finished()])(tree, context);
     };
