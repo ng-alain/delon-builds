@@ -4,7 +4,7 @@ import * as colors from 'ansi-colors';
 
 import { Schema as NgAddOptions } from './schema';
 import { Schema as ApplicationOptions } from '../application/schema';
-import { DEFAULT_WORKSPACE_PATH, readJSON, readPackage } from '../utils';
+import { readPackage } from '../utils';
 import { getNodeMajorVersion } from '../utils/node';
 
 const V = 16;
@@ -38,10 +38,6 @@ function genRules(options: NgAddOptions): Rule {
 //   return readJSON(tree, DEFAULT_WORKSPACE_PATH)?.cli?.packageManager === 'yarn';
 // }
 
-function isValidProjectName(tree: Tree, name: string): boolean {
-  return Object.keys(readJSON(tree, DEFAULT_WORKSPACE_PATH)?.projects ?? {}).indexOf(name) !== -1;
-}
-
 function finished(): Rule {
   return (_: Tree, context: SchematicContext) => {
     context.addTask(new NodePackageInstallTask());
@@ -63,24 +59,18 @@ export default function (options: NgAddOptions): Rule {
     // }
 
     const nodeVersion = getNodeMajorVersion();
-    const allowNodeVersions = [16, 18];
+    const allowNodeVersions = [14, 16, 18];
     if (!allowNodeVersions.some(v => nodeVersion === v)) {
       const versions = allowNodeVersions.join(', ');
       throw new SchematicsException(
-        `Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://angular.io/guide/versions`
+        `Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://gist.github.com/LayZeeDK/c822cc812f75bb07b7c55d07ba2719b3`
       );
     }
 
     const pkg = readPackage(tree);
 
-    if (options.project) {
-      if (!isValidProjectName(tree, options.project)) {
-        throw new SchematicsException(`Not found under the projects node of angular.json: ${options.project}`);
-      }
-    } else {
-      if (pkg.devDependencies['ng-alain']) {
-        throw new SchematicsException(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
-      }
+    if (pkg.devDependencies['ng-alain']) {
+      throw new SchematicsException(`Already an NG-ALAIN project and can't be executed again: ng add ng-alain`);
     }
 
     let ngCoreVersion = pkg.dependencies['@angular/core'] as string;
