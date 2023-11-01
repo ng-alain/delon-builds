@@ -16,6 +16,7 @@ const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
 const plugin_docker_1 = require("./plugin.docker");
 const plugin_icon_1 = require("./plugin.icon");
+const plugin_network_env_1 = require("./plugin.network-env");
 const plugin_rtl_1 = require("./plugin.rtl");
 const plugin_sts_1 = require("./plugin.sts");
 const utils_1 = require("../utils");
@@ -40,6 +41,9 @@ function default_1(options) {
         switch (options.name) {
             case 'codeStyle':
                 rules.push((0, plugin_code_style_1.pluginCodeStyle)(pluginOptions), installPackages());
+                break;
+            case 'networkEnv':
+                rules.push((0, plugin_network_env_1.pluginNetworkEnv)(Object.assign(Object.assign({}, pluginOptions), { packageManager: options.packageManager })));
                 break;
             case 'docker':
                 rules.push((0, plugin_docker_1.pluginDocker)(pluginOptions));
