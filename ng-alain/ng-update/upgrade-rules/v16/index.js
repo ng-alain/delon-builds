@@ -15,6 +15,7 @@ const tasks_1 = require("@angular-devkit/schematics/tasks");
 const colors = require("ansi-colors");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
+const base_1 = require("../base");
 function removeStylelintConfigPrettier() {
     return (tree, context) => {
         const key = `stylelint-config-prettier`;
@@ -50,7 +51,7 @@ function v16Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, utils_1.logStart)(context, `Upgrade @delon/* version number`);
         (0, versions_1.UpgradeMainVersions)(tree);
-        return (0, schematics_1.chain)([removeStylelintConfigPrettier(), finished()]);
+        return (0, schematics_1.chain)([removeStylelintConfigPrettier(), (0, base_1.updateMockPath)(), finished()]);
     });
 }
 exports.v16Rule = v16Rule;

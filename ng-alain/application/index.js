@@ -124,6 +124,7 @@ function addPathsToTsConfig() {
         paths['@shared'] = ['src/app/shared/index'];
         paths['@core'] = ['src/app/core/index'];
         paths['@env/*'] = ['src/environments/*'];
+        paths['@_mock'] = ['_mock/index'];
         (0, utils_1.writeJSON)(tree, 'tsconfig.json', json);
         return tree;
     };
