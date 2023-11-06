@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "16.4.2-3815bc4e9",
+  "version": "16.4.2-66e612dd0",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^2.0.1",
     "ngx-countdown": "^16.0.0",
-    "@delon/theme": "^16.4.2-3815bc4e9",
-    "@delon/util": "^16.4.2-3815bc4e9",
-    "@delon/acl": "^16.4.2-3815bc4e9",
+    "@delon/theme": "^16.4.2-66e612dd0",
+    "@delon/util": "^16.4.2-66e612dd0",
+    "@delon/acl": "^16.4.2-66e612dd0",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -129,17 +129,17 @@
       "esm": "./esm2022/let/let.mjs",
       "default": "./fesm2022/let.mjs"
     },
-    "./loading": {
-      "types": "./loading/index.d.ts",
-      "esm2022": "./esm2022/loading/loading.mjs",
-      "esm": "./esm2022/loading/loading.mjs",
-      "default": "./fesm2022/loading.mjs"
-    },
     "./lodop": {
       "types": "./lodop/index.d.ts",
       "esm2022": "./esm2022/lodop/lodop.mjs",
       "esm": "./esm2022/lodop/lodop.mjs",
       "default": "./fesm2022/lodop.mjs"
+    },
+    "./loading": {
+      "types": "./loading/index.d.ts",
+      "esm2022": "./esm2022/loading/loading.mjs",
+      "esm": "./esm2022/loading/loading.mjs",
+      "default": "./fesm2022/loading.mjs"
     },
     "./media": {
       "types": "./media/index.d.ts",
