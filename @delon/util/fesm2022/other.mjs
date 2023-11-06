@@ -243,7 +243,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImpo
                 }] }]; } });
 
 function throwError(msg, actual, expected, comparison) {
-    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+    if (ngDevMode) {
         throw new Error(`ASSERTION ERROR: ${msg}${comparison == null ? '' : ` [Expected=> ${expected} ${comparison} ${actual} <=Actual]`}`);
     }
 }

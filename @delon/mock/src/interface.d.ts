@@ -1,4 +1,5 @@
-import { HttpRequest } from '@angular/common/http';
+import type { HttpRequest } from '@angular/common/http';
+import type { Observable } from 'rxjs';
 export declare class MockOptions {
     data?: any;
 }
@@ -16,7 +17,7 @@ export interface MockRule {
     url: string;
     /** 路由参数 */
     params?: any;
-    callback(req: MockRequest): any;
+    callback(req: MockRequest): any | Observable<any> | Promise<any>;
 }
 export interface MockRequest {
     /** 路由参数 */
