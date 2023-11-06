@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "16.4.2-705823ee3",
+  "version": "16.4.2-042d89c5b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -101,17 +101,17 @@
       "esm": "./esm2022/token/token.mjs",
       "default": "./fesm2022/token.mjs"
     },
-    "./pipes/filter": {
-      "types": "./pipes/filter/index.d.ts",
-      "esm2022": "./esm2022/pipes/filter/pipe-filter.mjs",
-      "esm": "./esm2022/pipes/filter/pipe-filter.mjs",
-      "default": "./fesm2022/pipe-filter.mjs"
-    },
     "./pipes/currency": {
       "types": "./pipes/currency/index.d.ts",
       "esm2022": "./esm2022/pipes/currency/pipe-currency.mjs",
       "esm": "./esm2022/pipes/currency/pipe-currency.mjs",
       "default": "./fesm2022/pipe-currency.mjs"
+    },
+    "./pipes/filter": {
+      "types": "./pipes/filter/index.d.ts",
+      "esm2022": "./esm2022/pipes/filter/pipe-filter.mjs",
+      "esm": "./esm2022/pipes/filter/pipe-filter.mjs",
+      "default": "./fesm2022/pipe-filter.mjs"
     },
     "./pipes/format": {
       "types": "./pipes/format/index.d.ts",
