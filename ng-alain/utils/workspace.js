@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFileReplacements = exports.addSchematicCollections = exports.addStylePreprocessorOptionsToAllProject = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addFileReplacements = exports.addSchematicCollections = exports.addStylePreprocessorOptions = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.isMulitProject = exports.writeNgAlainJson = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -33,6 +33,15 @@ function getNgAlainJson(tree) {
     return (0, json_1.readJSON)(tree, exports.NG_ALAIN_JSON);
 }
 exports.getNgAlainJson = getNgAlainJson;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function writeNgAlainJson(tree, json) {
+    return (0, json_1.writeJSON)(tree, exports.NG_ALAIN_JSON, json);
+}
+exports.writeNgAlainJson = writeNgAlainJson;
+function isMulitProject(tree) {
+    return !tree.exists('src/main.ts');
+}
+exports.isMulitProject = isMulitProject;
 function getProject(tree, projectName) {
     var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
@@ -60,7 +69,9 @@ function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BU
                     list.length = 0;
                 }
                 if (behavior === 'add') {
-                    list.push(item.value);
+                    if (!list.includes(item.value)) {
+                        list.push(item.value);
+                    }
                 }
                 else {
                     const idx = list.indexOf(item.value);
@@ -140,25 +151,26 @@ function getProjectTarget(project, buildTarget, type = 'options') {
     return options;
 }
 exports.getProjectTarget = getProjectTarget;
-function addStylePreprocessorOptionsToAllProject(workspace) {
-    workspace.projects.forEach(project => {
-        var _a;
-        const build = project.targets.get(exports.BUILD_TARGET_BUILD);
-        if (build == null || build.options == null)
-            return;
-        if (build.options.stylePreprocessorOptions == null) {
-            build.options.stylePreprocessorOptions = {};
-        }
-        let includePaths = (_a = build.options.stylePreprocessorOptions['includePaths']) !== null && _a !== void 0 ? _a : [];
-        if (!Array.isArray(includePaths))
-            includePaths = [];
-        if (includePaths.includes(`node_modules/`))
-            return;
-        includePaths.push(`node_modules/`);
-        build.options.stylePreprocessorOptions['includePaths'] = includePaths;
-    });
+function addStylePreprocessorOptions(workspace, projectName) {
+    var _a;
+    const project = getProjectFromWorkspace(workspace, projectName);
+    if (project == null)
+        return;
+    const build = project.targets.get(exports.BUILD_TARGET_BUILD);
+    if (build == null || build.options == null)
+        return;
+    if (build.options.stylePreprocessorOptions == null) {
+        build.options.stylePreprocessorOptions = {};
+    }
+    let includePaths = (_a = build.options.stylePreprocessorOptions['includePaths']) !== null && _a !== void 0 ? _a : [];
+    if (!Array.isArray(includePaths))
+        includePaths = [];
+    if (includePaths.includes(`node_modules/`))
+        return;
+    includePaths.push(`node_modules/`);
+    build.options.stylePreprocessorOptions['includePaths'] = includePaths;
 }
-exports.addStylePreprocessorOptionsToAllProject = addStylePreprocessorOptionsToAllProject;
+exports.addStylePreprocessorOptions = addStylePreprocessorOptions;
 function addSchematicCollections(workspace) {
     const cli = workspace.extensions.cli;
     if (cli && cli.schematicCollections)
@@ -175,21 +187,22 @@ function addSchematicCollections(workspace) {
     workspace.extensions.cli['schematicCollections'] = schematicCollections;
 }
 exports.addSchematicCollections = addSchematicCollections;
-function addFileReplacements(workspace) {
-    workspace.projects.forEach(project => {
-        const build = project.targets.get(exports.BUILD_TARGET_BUILD);
-        if (build == null || build.options == null)
-            return;
-        if (build.configurations == null)
-            build.configurations = {};
-        if (build.configurations.production == null)
-            build.configurations.production = {};
-        if (!Array.isArray(build.configurations.production.fileReplacements))
-            build.configurations.production.fileReplacements = [];
-        build.configurations.production.fileReplacements.push({
-            replace: 'src/environments/environment.ts',
-            with: 'src/environments/environment.prod.ts'
-        });
+function addFileReplacements(workspace, projectName) {
+    const project = getProjectFromWorkspace(workspace, projectName);
+    if (project == null)
+        return;
+    const build = project.targets.get(exports.BUILD_TARGET_BUILD);
+    if (build == null || build.options == null)
+        return;
+    if (build.configurations == null)
+        build.configurations = {};
+    if (build.configurations.production == null)
+        build.configurations.production = {};
+    if (!Array.isArray(build.configurations.production.fileReplacements))
+        build.configurations.production.fileReplacements = [];
+    build.configurations.production.fileReplacements.push({
+        replace: 'src/environments/environment.ts',
+        with: 'src/environments/environment.prod.ts'
     });
 }
 exports.addFileReplacements = addFileReplacements;

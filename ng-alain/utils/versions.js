@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.addESLintRule = exports.UpgradeMainVersions = void 0;
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const lib_versions_1 = require("./lib-versions");
-const log_1 = require("./log");
 const package_1 = require("./package");
 const workspace_2 = require("./workspace");
 /**
@@ -38,7 +37,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `prettier@^3.0.2`,
         `husky@^8.0.3`,
         `ng-alain@${version}`,
-        `ng-alain-plugin-theme@^15.0.1`,
+        `ng-alain-plugin-theme@^16.0.0`,
         `source-map-explorer@^2.5.3`,
         `@angular/language-service@^16.2.0`,
         `ngx-tinymce@^16.0.0`,
@@ -48,22 +47,20 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^16.2.2`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
-function addESLintRule(context, showLog = true) {
+function addESLintRule(projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
-        workspace.projects.forEach(project => {
-            if (project.targets.has(workspace_2.BUILD_TARGET_LINT)) {
-                project.targets.delete(workspace_2.BUILD_TARGET_LINT);
-            }
-            project.targets.set(workspace_2.BUILD_TARGET_LINT, {
-                builder: '@angular-eslint/builder:lint',
-                options: {
-                    lintFilePatterns: ['src/**/*.ts', 'src/**/*.html']
-                }
-            });
-        });
-        if (showLog) {
-            (0, log_1.logInfo)(context, `Update 'lint' node in angular.json`);
+        const project = (0, workspace_2.getProjectFromWorkspace)(workspace, projectName);
+        if (project == null)
+            return;
+        if (project.targets.has(workspace_2.BUILD_TARGET_LINT)) {
+            project.targets.delete(workspace_2.BUILD_TARGET_LINT);
         }
+        project.targets.set(workspace_2.BUILD_TARGET_LINT, {
+            builder: '@angular-eslint/builder:lint',
+            options: {
+                lintFilePatterns: ['src/**/*.ts', 'src/**/*.html']
+            }
+        });
     }));
 }
 exports.addESLintRule = addESLintRule;
