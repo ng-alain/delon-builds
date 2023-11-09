@@ -146,8 +146,8 @@ function addCodeStylesToPackageJson() {
         (0, utils_1.addPackage)(tree, [
             `husky@^8.0.3`,
             `lint-staged@^14.0.1`,
-            `prettier@^3.0.2`,
-            `stylelint@^15.10.3`,
+            `prettier@^3.0.3`,
+            `stylelint@^15.11.0`,
             `stylelint-config-standard@^34.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
             `stylelint-config-clean-order@^5.2.0`

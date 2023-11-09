@@ -67,8 +67,8 @@ class TransferWidget extends ControlUIWidget {
             this.ui.selectChange(options);
         this.detectChanges();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "16.2.12", type: TransferWidget, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.1", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.1", type: TransferWidget, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -94,7 +94,7 @@ class TransferWidget extends ControlUIWidget {
     />
   </sf-item-wrap> `, isInline: true, dependencies: [{ kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: i2.NzTransferComponent, selector: "nz-transfer", inputs: ["nzDisabled", "nzDataSource", "nzTitles", "nzOperations", "nzListStyle", "nzShowSelectAll", "nzItemUnit", "nzItemsUnit", "nzCanMove", "nzRenderList", "nzRender", "nzFooter", "nzShowSearch", "nzFilterOption", "nzSearchPlaceholder", "nzNotFoundContent", "nzTargetKeys", "nzSelectedKeys", "nzStatus"], outputs: ["nzChange", "nzSearchChange", "nzSelectChange"], exportAs: ["nzTransfer"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TransferWidget, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.1", ngImport: i0, type: TransferWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-transfer',
@@ -132,17 +132,17 @@ class TransferWidgetModule {
     constructor(widgetRegistry) {
         widgetRegistry.register(TransferWidget.KEY, TransferWidget);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TransferWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: TransferWidgetModule, declarations: [TransferWidget], imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TransferWidgetModule, imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.1", ngImport: i0, type: TransferWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.1", ngImport: i0, type: TransferWidgetModule, declarations: [TransferWidget], imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.1", ngImport: i0, type: TransferWidgetModule, imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TransferWidgetModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.1", ngImport: i0, type: TransferWidgetModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [FormsModule, DelonFormModule, NzTransferModule],
                     declarations: [TransferWidget]
                 }]
-        }], ctorParameters: function () { return [{ type: i1.WidgetRegistry }]; } });
+        }], ctorParameters: () => [{ type: i1.WidgetRegistry }] });
 
 /**
  * Generated bundle index. Do not edit.
