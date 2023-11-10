@@ -48,7 +48,7 @@ const PASSPORT = [
     CommonModule,
     FormsModule,
     RouterModule,<% if (i18n) { %>
-    AlainThemeModule,<% } %>
+    AlainThemeModule.forChild(),<% } %>
     ThemeBtnModule,
     SettingDrawerModule,
     LayoutDefaultModule,

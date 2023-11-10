@@ -6,5 +6,5 @@ export declare class DatePipe implements PipeTransform {
     constructor(nzI18n: NzI18nService);
     transform(value: Date | string | number, formatString?: string): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<DatePipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<DatePipe, "_date", true>;
+    static ɵpipe: i0.ɵɵPipeDeclaration<DatePipe, "_date", false>;
 }

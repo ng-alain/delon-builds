@@ -1,6 +1,4 @@
-import type { HttpRequest } from '@angular/common/http';
-import type { Observable } from 'rxjs';
-export type MockCallback = any | Observable<any> | Promise<any>;
+import { HttpRequest } from '@angular/common/http';
 export declare class MockOptions {
     data?: any;
 }
@@ -10,7 +8,7 @@ export interface MockCachedRule {
     url: string;
     martcher: RegExp | null;
     segments: string[];
-    callback(req: MockRequest): MockCallback;
+    callback(req: MockRequest): any;
 }
 export interface MockRule {
     [key: string]: any;
@@ -18,7 +16,7 @@ export interface MockRule {
     url: string;
     /** 路由参数 */
     params?: any;
-    callback(req: MockRequest): MockCallback;
+    callback(req: MockRequest): any;
 }
 export interface MockRequest {
     /** 路由参数 */

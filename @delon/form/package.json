@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "16.4.2-f09c324de",
+  "version": "16.4.2",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
   "dependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "@delon/theme": "^16.4.2-f09c324de",
-    "@delon/acl": "^16.4.2-f09c324de",
-    "@delon/util": "^16.4.2-f09c324de",
+    "@delon/theme": "^16.4.2",
+    "@delon/acl": "^16.4.2",
+    "@delon/util": "^16.4.2",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/form.mjs",
@@ -46,96 +46,6 @@
       "esm2022": "./esm2022/form.mjs",
       "esm": "./esm2022/form.mjs",
       "default": "./fesm2022/form.mjs"
-    },
-    "./widgets/autocomplete": {
-      "types": "./widgets/autocomplete/index.d.ts",
-      "esm2022": "./esm2022/widgets/autocomplete/widgets-auto-complete.mjs",
-      "esm": "./esm2022/widgets/autocomplete/widgets-auto-complete.mjs",
-      "default": "./fesm2022/widgets-auto-complete.mjs"
-    },
-    "./widgets/cascader": {
-      "types": "./widgets/cascader/index.d.ts",
-      "esm2022": "./esm2022/widgets/cascader/widgets-cascader.mjs",
-      "esm": "./esm2022/widgets/cascader/widgets-cascader.mjs",
-      "default": "./fesm2022/widgets-cascader.mjs"
-    },
-    "./widgets/color": {
-      "types": "./widgets/color/index.d.ts",
-      "esm2022": "./esm2022/widgets/color/widgets-color.mjs",
-      "esm": "./esm2022/widgets/color/widgets-color.mjs",
-      "default": "./fesm2022/widgets-color.mjs"
-    },
-    "./widgets/mention": {
-      "types": "./widgets/mention/index.d.ts",
-      "esm2022": "./esm2022/widgets/mention/widgets-mention.mjs",
-      "esm": "./esm2022/widgets/mention/widgets-mention.mjs",
-      "default": "./fesm2022/widgets-mention.mjs"
-    },
-    "./widgets/qr-code": {
-      "types": "./widgets/qr-code/index.d.ts",
-      "esm2022": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
-      "esm": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
-      "default": "./fesm2022/widgets-qr-code.mjs"
-    },
-    "./widgets/rate": {
-      "types": "./widgets/rate/index.d.ts",
-      "esm2022": "./esm2022/widgets/rate/widgets-rate.mjs",
-      "esm": "./esm2022/widgets/rate/widgets-rate.mjs",
-      "default": "./fesm2022/widgets-rate.mjs"
-    },
-    "./widgets/segmented": {
-      "types": "./widgets/segmented/index.d.ts",
-      "esm2022": "./esm2022/widgets/segmented/widgets-color.mjs",
-      "esm": "./esm2022/widgets/segmented/widgets-color.mjs",
-      "default": "./fesm2022/widgets-color.mjs"
-    },
-    "./widgets/slider": {
-      "types": "./widgets/slider/index.d.ts",
-      "esm2022": "./esm2022/widgets/slider/widgets-slider.mjs",
-      "esm": "./esm2022/widgets/slider/widgets-slider.mjs",
-      "default": "./fesm2022/widgets-slider.mjs"
-    },
-    "./widgets/tag": {
-      "types": "./widgets/tag/index.d.ts",
-      "esm2022": "./esm2022/widgets/tag/widgets-tag.mjs",
-      "esm": "./esm2022/widgets/tag/widgets-tag.mjs",
-      "default": "./fesm2022/widgets-tag.mjs"
-    },
-    "./widgets/time": {
-      "types": "./widgets/time/index.d.ts",
-      "esm2022": "./esm2022/widgets/time/widgets-time.mjs",
-      "esm": "./esm2022/widgets/time/widgets-time.mjs",
-      "default": "./fesm2022/widgets-time.mjs"
-    },
-    "./widgets/transfer": {
-      "types": "./widgets/transfer/index.d.ts",
-      "esm2022": "./esm2022/widgets/transfer/widgets-transfer.mjs",
-      "esm": "./esm2022/widgets/transfer/widgets-transfer.mjs",
-      "default": "./fesm2022/widgets-transfer.mjs"
-    },
-    "./widgets/tree-select": {
-      "types": "./widgets/tree-select/index.d.ts",
-      "esm2022": "./esm2022/widgets/tree-select/widgets-tree-select.mjs",
-      "esm": "./esm2022/widgets/tree-select/widgets-tree-select.mjs",
-      "default": "./fesm2022/widgets-tree-select.mjs"
-    },
-    "./widgets/upload": {
-      "types": "./widgets/upload/index.d.ts",
-      "esm2022": "./esm2022/widgets/upload/widgets-upload.mjs",
-      "esm": "./esm2022/widgets/upload/widgets-upload.mjs",
-      "default": "./fesm2022/widgets-upload.mjs"
-    },
-    "./widgets-third/monaco-editor": {
-      "types": "./widgets-third/monaco-editor/index.d.ts",
-      "esm2022": "./esm2022/widgets-third/monaco-editor/widgets-third-monaco-editor.mjs",
-      "esm": "./esm2022/widgets-third/monaco-editor/widgets-third-monaco-editor.mjs",
-      "default": "./fesm2022/widgets-third-monaco-editor.mjs"
-    },
-    "./widgets-third/tinymce": {
-      "types": "./widgets-third/tinymce/index.d.ts",
-      "esm2022": "./esm2022/widgets-third/tinymce/widgets-third-tinymce.mjs",
-      "esm": "./esm2022/widgets-third/tinymce/widgets-third-tinymce.mjs",
-      "default": "./fesm2022/widgets-third-tinymce.mjs"
     }
   },
   "sideEffects": false

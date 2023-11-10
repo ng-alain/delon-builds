@@ -14,10 +14,9 @@ const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
+const less_1 = require("../utils/less");
 const versions_1 = require("../utils/versions");
 let project;
-let projectName;
-let mulitProject = false;
 /** Remove files to be overwrite */
 function removeOrginalFiles() {
     return (tree) => {
@@ -39,25 +38,40 @@ function removeOrginalFiles() {
             .forEach(p => tree.delete(p));
     };
 }
-function fixAngularJson() {
+function fixAngularJson(options) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
         var _a;
-        const p = (0, utils_1.getProjectFromWorkspace)(workspace, projectName);
+        const p = (0, utils_1.getProjectFromWorkspace)(workspace, options.project);
         // Add proxy.conf.js
         const serveTarget = (_a = p.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_SERVE);
         if (serveTarget.options == null)
             serveTarget.options = {};
         serveTarget.options.proxyConfig = 'proxy.conf.js';
-        (0, utils_1.addStylePreprocessorOptions)(workspace, projectName);
+        // // 调整budgets, error in angular 15.1
+        // const budgets = (getProjectTarget(p, BUILD_TARGET_BUILD, 'configurations').production as JsonObject)
+        //   .budgets as Array<{
+        //   type: string;
+        //   maximumWarning: string;
+        //   maximumError: string;
+        // }>;
+        // if (budgets && budgets.length > 0) {
+        //   const initial = budgets.find(w => w.type === 'initial');
+        //   if (initial) {
+        //     initial.maximumWarning = '2mb';
+        //     initial.maximumError = '3mb';
+        //   }
+        // }
+        (0, utils_1.addStylePreprocessorOptionsToAllProject)(workspace);
         (0, utils_1.addSchematicCollections)(workspace);
-        (0, utils_1.addFileReplacements)(workspace, projectName);
+        (0, utils_1.addFileReplacements)(workspace);
     }));
 }
 /**
  * Fix https://github.com/ng-alain/ng-alain/issues/2359
  */
-function fixBrowserBuilderBudgets() {
+function fixBrowserBuilderBudgets(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
+        const projectName = (0, utils_1.getProjectName)(yield (0, workspace_1.getWorkspace)(tree), options.project);
         const json = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH);
         const budgets = json.projects[projectName].architect.build.configurations.production.budgets;
         if (budgets && budgets.length > 0) {
@@ -70,7 +84,7 @@ function fixBrowserBuilderBudgets() {
         }
     });
 }
-function addDependenciesToPackageJson() {
+function addDependenciesToPackageJson(options) {
     return (tree) => {
         (0, versions_1.UpgradeMainVersions)(tree);
         // 3rd
@@ -83,33 +97,24 @@ function addRunScriptToPackageJson() {
         const json = (0, utils_1.readPackage)(tree, 'scripts');
         if (json == null)
             return tree;
-        const commandPrefix = mulitProject ? `${projectName}:` : '';
-        const commandFragment = mulitProject ? ` ${projectName}` : '';
         json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
-        json.scripts[`${commandPrefix}start`] = `ng s${commandFragment} -o`;
-        json.scripts[`${commandPrefix}hmr`] = `ng s${commandFragment} -o --hmr`;
-        json.scripts[`${commandPrefix}build`] = `npm run ng-high-memory build${commandFragment}`;
-        json.scripts[`${commandPrefix}analyze`] = `npm run ng-high-memory build${commandFragment} -- --source-map`;
-        json.scripts[`${commandPrefix}analyze:view`] = `source-map-explorer dist/${mulitProject ? `${projectName}/` : ''}**/*.js`;
-        json.scripts[`${commandPrefix}test-coverage`] = `ng test${commandFragment} --code-coverage --watch=false`;
-        const themeCommand = mulitProject ? ` -n=${projectName}` : '';
-        json.scripts[`${commandPrefix}color-less`] = `ng-alain-plugin-theme -t=colorLess${themeCommand}`;
-        json.scripts[`${commandPrefix}theme`] = `ng-alain-plugin-theme -t=themeCss${themeCommand}`;
-        json.scripts[`${commandPrefix}icon`] = `ng g ng-alain:plugin icon${mulitProject ? ` --project ${projectName}` : ''}`;
+        json.scripts.start = `ng s -o`;
+        json.scripts.hmr = `ng s -o --hmr`;
+        json.scripts.build = `npm run ng-high-memory build`;
+        json.scripts.analyze = `npm run ng-high-memory build -- --source-map`;
+        json.scripts['analyze:view'] = `source-map-explorer dist/**/*.js`;
+        json.scripts['test-coverage'] = `ng test --code-coverage --watch=false`;
+        json.scripts['color-less'] = `ng-alain-plugin-theme -t=colorLess`;
+        json.scripts.theme = `ng-alain-plugin-theme -t=themeCss`;
+        json.scripts.icon = `ng g ng-alain:plugin icon`;
         json.scripts.prepare = `husky install`;
         (0, utils_1.writePackage)(tree, json);
         return tree;
     };
 }
-function addPathsToTsConfig(project) {
+function addPathsToTsConfig() {
     return (tree) => {
-        var _a, _b, _c;
-        if (project == null)
-            return;
-        const tsconfigPath = (_c = (_b = (_a = project.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_BUILD)) === null || _b === void 0 ? void 0 : _b.options) === null || _c === void 0 ? void 0 : _c.tsConfig;
-        if (tsconfigPath == null)
-            return;
-        const json = (0, utils_1.readJSON)(tree, tsconfigPath);
+        const json = (0, utils_1.readJSON)(tree, 'tsconfig.json', 'compilerOptions');
         if (json == null)
             return tree;
         if (!json.compilerOptions)
@@ -117,12 +122,10 @@ function addPathsToTsConfig(project) {
         if (!json.compilerOptions.paths)
             json.compilerOptions.paths = {};
         const paths = json.compilerOptions.paths;
-        const commandPrefix = mulitProject ? `projects/${projectName}/` : '';
-        paths['@shared'] = [`${commandPrefix}src/app/shared/index`];
-        paths['@core'] = [`${commandPrefix}src/app/core/index`];
-        paths['@env/*'] = [`${commandPrefix}src/environments/*`];
-        paths['@_mock'] = ['_mock/index'];
-        (0, utils_1.writeJSON)(tree, tsconfigPath, json);
+        paths['@shared'] = ['src/app/shared/index'];
+        paths['@core'] = ['src/app/core/index'];
+        paths['@env/*'] = ['src/environments/*'];
+        (0, utils_1.writeJSON)(tree, 'tsconfig.json', json);
         return tree;
     };
 }
@@ -146,11 +149,12 @@ function addCodeStylesToPackageJson() {
         (0, utils_1.addPackage)(tree, [
             `husky@^8.0.3`,
             `lint-staged@^14.0.1`,
-            `prettier@^3.0.3`,
-            `stylelint@^15.11.0`,
+            `prettier@^3.0.2`,
+            `stylelint@^15.10.3`,
+            `stylelint-config-rational-order@^0.1.2`,
             `stylelint-config-standard@^34.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.7.0`,
-            `stylelint-config-clean-order@^5.2.0`
+            `stylelint-order@^6.0.3`
         ], 'devDependencies');
         return tree;
     };
@@ -189,7 +193,9 @@ function addSchematics(options) {
     }));
 }
 function forceLess() {
-    return (0, utils_1.addAssetsToTarget)([{ type: 'style', value: `${mulitProject ? `projects/${projectName}/` : ''}src/styles.less` }], 'add', [utils_1.BUILD_TARGET_BUILD], projectName, false);
+    return () => {
+        (0, utils_1.addAssetsToTarget)([{ type: 'style', value: 'src/styles.less' }], 'add', [utils_1.BUILD_TARGET_BUILD], null, true);
+    };
 }
 function addStyle() {
     return (tree) => {
@@ -286,39 +292,25 @@ function fixVsCode() {
         (0, utils_1.writeJSON)(tree, filePath, json);
     };
 }
-function fixNgAlainJson() {
-    return (tree) => {
-        const json = (0, utils_1.getNgAlainJson)(tree);
-        if (json == null)
-            return;
-        if (typeof json.projects !== 'object')
-            json.projects = {};
-        if (!json.projects[projectName])
-            json.projects[projectName] = {};
-        (0, utils_1.writeNgAlainJson)(tree, json);
-    };
-}
 function default_1(options) {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
-        const res = yield (0, utils_1.getProject)(tree, options.project);
-        mulitProject = (0, utils_1.isMulitProject)(tree);
-        project = res.project;
-        projectName = res.name;
-        context.logger.info(`Generating NG-ALAIN scaffold to ${projectName} project...`);
+        project = (yield (0, utils_1.getProject)(tree, options.project)).project;
+        context.logger.info(`Generating NG-ALAIN scaffold...`);
         return (0, schematics_1.chain)([
             // @delon/* dependencies
-            addDependenciesToPackageJson(),
+            addDependenciesToPackageJson(options),
             // Configuring CommonJS dependencies
             // https://angular.io/guide/build#configuring-commonjs-dependencies
             (0, utils_1.addAllowedCommonJsDependencies)([]),
             (0, utils_1.addAllowSyntheticDefaultImports)(),
             // ci
             addRunScriptToPackageJson(),
-            addPathsToTsConfig(project),
+            addPathsToTsConfig(),
             // code style
             addCodeStylesToPackageJson(),
             addSchematics(options),
-            (0, versions_1.addESLintRule)(res.name),
+            (0, versions_1.addESLintRule)(context, false),
+            (0, less_1.addImportNotation)(),
             // files
             removeOrginalFiles(),
             addFilesToRoot(options),
@@ -326,9 +318,8 @@ function default_1(options) {
             addStyle(),
             fixLang(options),
             fixVsCode(),
-            fixAngularJson(),
-            fixBrowserBuilderBudgets(),
-            fixNgAlainJson()
+            fixAngularJson(options),
+            fixBrowserBuilderBudgets(options)
         ]);
     });
 }

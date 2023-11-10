@@ -6,5 +6,5 @@ export declare class I18nPipe implements PipeTransform {
     constructor(i18n: AlainI18NService);
     transform(key: string, params?: Record<string, unknown>): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<I18nPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<I18nPipe, "i18n", true>;
+    static ɵpipe: i0.ɵɵPipeDeclaration<I18nPipe, "i18n", false>;
 }

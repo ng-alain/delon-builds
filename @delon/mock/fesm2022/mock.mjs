@@ -2,7 +2,7 @@ import * as i0 from '@angular/core';
 import { Injectable, NgModule } from '@angular/core';
 import * as i1 from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { of, isObservable, from, map, throwError, switchMap, delay as delay$1 } from 'rxjs';
+import { throwError, of, delay } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
 
 class MockOptions {
@@ -151,13 +151,13 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: MockOptions }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: MockOptions }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: MockOptions }] });
+        }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: MockOptions }]; } });
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class HttpMockInterceptorHandler {
@@ -180,7 +180,7 @@ class MockInterceptor {
         if (!rule && !config.force) {
             return next.handle(req);
         }
-        let res$;
+        let res;
         switch (typeof rule.callback) {
             case 'function':
                 const mockRequest = {
@@ -211,40 +211,37 @@ class MockInterceptor {
                 req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
                 req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
                 try {
-                    const fnRes = rule.callback.call(this, mockRequest);
-                    res$ = isObservable(fnRes) ? fnRes : from(Promise.resolve(fnRes));
+                    res = rule.callback.call(this, mockRequest);
                 }
                 catch (e) {
-                    res$ = of(new HttpErrorResponse({
+                    res = new HttpErrorResponse({
                         url: req.url,
                         headers: req.headers,
                         status: e instanceof MockStatusError ? e.status : 400,
                         statusText: e.statusText || 'Unknown Error',
                         error: e.error
-                    }));
+                    });
                 }
                 break;
             default:
-                res$ = of(rule.callback);
+                res = rule.callback;
                 break;
         }
-        res$ = res$.pipe(map(res => res instanceof HttpResponseBase
-            ? res
-            : new HttpResponse({
+        if (!(res instanceof HttpResponseBase)) {
+            res = new HttpResponse({
                 status: 200,
                 url: req.url,
-                body: deepCopy(res)
-            })), map((res) => {
-            const anyRes = res;
-            if (anyRes.body) {
-                anyRes.body = deepCopy(anyRes.body);
-            }
-            if (config.log) {
-                console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
-                console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
-            }
-            return res;
-        }), switchMap((res) => (res instanceof HttpErrorResponse ? throwError(() => res) : of(res))));
+                body: res
+            });
+        }
+        if (res.body) {
+            res.body = deepCopy(res.body);
+        }
+        if (config.log) {
+            console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
+            console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
+        }
+        const res$ = res instanceof HttpErrorResponse ? throwError(() => res) : of(res);
         if (config.executeOtherInterceptors) {
             const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
             const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
@@ -252,17 +249,17 @@ class MockInterceptor {
                 const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor), {
                     handle: () => res$
                 });
-                return chain.handle(req).pipe(delay$1(config.delay));
+                return chain.handle(req).pipe(delay(config.delay));
             }
         }
-        return res$.pipe(delay$1(config.delay));
+        return res$.pipe(delay(config.delay));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: MockInterceptor, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector }] });
+        }], ctorParameters: function () { return [{ type: i0.Injector }]; } });
 
 class DelonMockModule {
     static forRoot(options) {
@@ -280,31 +277,18 @@ class DelonMockModule {
             providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }]
         };
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: DelonMockModule }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonMockModule }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonMockModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });
 
 /**
- * Used to simulate delays
- */
-function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-/**
- * Return a random number
- */
-function r(min = 1, max = 100) {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-/**
  * Generated bundle index. Do not edit.
  */
 
-export { DelonMockModule, MockInterceptor, MockOptions, MockService, MockStatusError, delay, r };
+export { DelonMockModule, MockInterceptor, MockOptions, MockService, MockStatusError };
 //# sourceMappingURL=mock.mjs.map

@@ -3,14 +3,14 @@
 
 @{se-prefix} {
   &__title {
+    display: block;
     float: none;
     clear: both;
-    display: block;
     width: 100%;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: @line-height-base;
     color: @heading-color;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: @line-height-base;
   }
 
   &__item {
@@ -23,8 +23,8 @@
 
     &-empty {
       &::before {
-        content: '';
         display: inline-block;
+        content: '';
       }
     }
 
@@ -37,8 +37,8 @@
     display: table-cell;
     flex: 0 0 auto;
     width: initial;
-    text-align: right;
     white-space: nowrap;
+    text-align: right;
 
     &-optional {
       margin-left: @se-optional-margin;

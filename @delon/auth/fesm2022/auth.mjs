@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, Inject, Optional, NgModule } from '@angular/core';
-import { Subject, BehaviorSubject, share, map, filter, interval, Observable } from 'rxjs';
+import { Subject, BehaviorSubject, share, interval, map, filter, Observable } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
@@ -128,15 +128,15 @@ class TokenService {
     ngOnDestroy() {
         this.cleanRefresh();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }, { token: DA_STORE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TokenService }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }, { token: DA_STORE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TokenService }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TokenService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: TokenService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
+        }], ctorParameters: function () { return [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_STORE_TOKEN]
-                }] }] });
+                }] }]; } });
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
@@ -231,18 +231,18 @@ class SocialService {
         clearInterval(this._winTime);
         this._winTime = null;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SocialService, deps: [{ token: DA_SERVICE_TOKEN }, { token: DOCUMENT }, { token: i1$1.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SocialService }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SocialService, deps: [{ token: DA_SERVICE_TOKEN }, { token: DOCUMENT }, { token: i1$1.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SocialService }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SocialService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SocialService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_SERVICE_TOKEN]
                 }] }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [DOCUMENT]
-                }] }, { type: i1$1.Router }] });
+                }] }, { type: i1$1.Router }]; } });
 
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
@@ -422,14 +422,14 @@ class BaseInterceptor {
         }
         return next.handle(req);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, deps: [{ token: i0.Injector, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BaseInterceptor, deps: [{ token: i0.Injector, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BaseInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: BaseInterceptor, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
+        }], ctorParameters: function () { return [{ type: i0.Injector, decorators: [{
                     type: Optional
-                }] }] });
+                }] }]; } });
 
 function urlBase64Decode(str) {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -540,10 +540,10 @@ class JWTInterceptor extends BaseInterceptor {
             }
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: JWTInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: JWTInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: JWTInterceptor, decorators: [{
             type: Injectable
         }] });
 
@@ -560,16 +560,16 @@ class AuthJWTGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthJWTGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthJWTGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthJWTGuardService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthJWTGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_SERVICE_TOKEN]
-                }] }, { type: i0.Injector }] });
+                }] }, { type: i0.Injector }]; } });
 /**
  * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
@@ -649,10 +649,10 @@ class SimpleInterceptor extends BaseInterceptor {
         }
         return req;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SimpleInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SimpleInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: SimpleInterceptor, decorators: [{
             type: Injectable
         }] });
 
@@ -668,16 +668,16 @@ class AuthSimpleGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthSimpleGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthSimpleGuardService, deps: [{ token: DA_SERVICE_TOKEN }, { token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AuthSimpleGuardService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: AuthSimpleGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
+        }], ctorParameters: function () { return [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [DA_SERVICE_TOKEN]
-                }] }, { type: i0.Injector }] });
+                }] }, { type: i0.Injector }]; } });
 /**
  * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
@@ -716,11 +716,11 @@ const authSimpleCanActivateChild = (_, state) => inject(AuthSimpleGuardService).
 const authSimpleCanMatch = route => inject(AuthSimpleGuardService).process(route.path);
 
 class DelonAuthModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "16.2.12", ngImport: i0, type: DelonAuthModule }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonAuthModule }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "16.2.12", ngImport: i0, type: DelonAuthModule, decorators: [{
             type: NgModule,
             args: [{}]
         }] });
