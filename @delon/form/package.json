@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "16.4.2-b9e0fadd4",
+  "version": "16.4.2-a26c52713",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
   "dependencies": {
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "@delon/theme": "^16.4.2-b9e0fadd4",
-    "@delon/acl": "^16.4.2-b9e0fadd4",
-    "@delon/util": "^16.4.2-b9e0fadd4",
+    "@delon/theme": "^16.4.2-a26c52713",
+    "@delon/acl": "^16.4.2-a26c52713",
+    "@delon/util": "^16.4.2-a26c52713",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/form.mjs",
@@ -71,17 +71,17 @@
       "esm": "./esm2022/widgets/mention/widgets-mention.mjs",
       "default": "./fesm2022/widgets-mention.mjs"
     },
-    "./widgets/qr-code": {
-      "types": "./widgets/qr-code/index.d.ts",
-      "esm2022": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
-      "esm": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
-      "default": "./fesm2022/widgets-qr-code.mjs"
-    },
     "./widgets/rate": {
       "types": "./widgets/rate/index.d.ts",
       "esm2022": "./esm2022/widgets/rate/widgets-rate.mjs",
       "esm": "./esm2022/widgets/rate/widgets-rate.mjs",
       "default": "./fesm2022/widgets-rate.mjs"
+    },
+    "./widgets/qr-code": {
+      "types": "./widgets/qr-code/index.d.ts",
+      "esm2022": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
+      "esm": "./esm2022/widgets/qr-code/widgets-qr-code.mjs",
+      "default": "./fesm2022/widgets-qr-code.mjs"
     },
     "./widgets/segmented": {
       "types": "./widgets/segmented/index.d.ts",
