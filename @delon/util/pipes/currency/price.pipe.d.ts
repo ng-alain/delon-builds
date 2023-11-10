@@ -15,5 +15,5 @@ export declare class CurrencyPricePipe implements PipeTransform {
      */
     transform(value: number | string, options?: CurrencyFormatOptions): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<CurrencyPricePipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyPricePipe, "price", false>;
+    static ɵpipe: i0.ɵɵPipeDeclaration<CurrencyPricePipe, "price", true>;
 }

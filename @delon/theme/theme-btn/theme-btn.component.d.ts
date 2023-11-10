@@ -15,7 +15,6 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private platform;
     private doc;
     private directionality;
-    private KEYS;
     private cdr;
     private theme;
     isDev: boolean;
@@ -25,12 +24,13 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     readonly themeChange: EventEmitter<string>;
     private dir$;
     dir: Direction;
+    private key;
     constructor(renderer: Renderer2, configSrv: AlainConfigService, platform: Platform, doc: NzSafeAny, directionality: Directionality, KEYS: string, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     private initTheme;
     private updateChartTheme;
     onThemeChange(theme: string): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnComponent, [null, null, null, null, { optional: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ThemeBtnComponent, "theme-btn", never, { "types": { "alias": "types"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "deployUrl": { "alias": "deployUrl"; "required": false; }; }, { "themeChange": "themeChange"; }, never, never, false, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnComponent, [null, null, null, null, { optional: true; }, { optional: true; }, null]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ThemeBtnComponent, "theme-btn", never, { "types": { "alias": "types"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "deployUrl": { "alias": "deployUrl"; "required": false; }; }, { "themeChange": "themeChange"; }, never, never, true, never>;
 }

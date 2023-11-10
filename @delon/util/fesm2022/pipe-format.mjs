@@ -26,23 +26,23 @@ class FormatMaskPipe {
         return formatMask(value, mask);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormatMaskPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FormatMaskPipe, name: "mask" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FormatMaskPipe, isStandalone: true, name: "mask" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormatMaskPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'mask' }]
+            args: [{ name: 'mask', standalone: true }]
         }] });
 
 const PIPES = [FormatMaskPipe];
 class FormatPipeModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormatPipeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FormatPipeModule, declarations: [FormatMaskPipe], exports: [FormatMaskPipe] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FormatPipeModule, imports: [FormatMaskPipe], exports: [FormatMaskPipe] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormatPipeModule }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FormatPipeModule, decorators: [{
             type: NgModule,
             args: [{
-                    declarations: PIPES,
+                    imports: PIPES,
                     exports: PIPES
                 }]
         }] });

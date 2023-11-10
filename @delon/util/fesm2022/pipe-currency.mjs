@@ -18,11 +18,11 @@ class CurrencyMegaPipe {
         return res.value + (this.isCN ? res.unitI18n : res.unit);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyMegaPipe, deps: [{ token: i1.CurrencyService }, { token: LOCALE_ID }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyMegaPipe, name: "mega" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyMegaPipe, isStandalone: true, name: "mega" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'mega' }]
+            args: [{ name: 'mega', standalone: true }]
         }], ctorParameters: () => [{ type: i1.CurrencyService }, { type: undefined, decorators: [{
                     type: Inject,
                     args: [LOCALE_ID]
@@ -45,11 +45,11 @@ class CurrencyPricePipe {
         return this.srv.format(value, options);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPricePipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPricePipe, name: "price" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPricePipe, isStandalone: true, name: "price" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPricePipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'price' }]
+            args: [{ name: 'price', standalone: true }]
         }], ctorParameters: () => [{ type: i1.CurrencyService }] });
 
 class CurrencyCNYPipe {
@@ -65,23 +65,23 @@ class CurrencyCNYPipe {
         return this.srv.cny(value, options);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyCNYPipe, name: "cny" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyCNYPipe, isStandalone: true, name: "cny" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'cny' }]
+            args: [{ name: 'cny', standalone: true }]
         }], ctorParameters: () => [{ type: i1.CurrencyService }] });
 
 const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];
 class CurrencyPipeModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPipeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPipeModule, declarations: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe], exports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPipeModule, imports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe], exports: [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPipeModule }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CurrencyPipeModule, decorators: [{
             type: NgModule,
             args: [{
-                    declarations: PIPES,
+                    imports: PIPES,
                     exports: PIPES
                 }]
         }] });
