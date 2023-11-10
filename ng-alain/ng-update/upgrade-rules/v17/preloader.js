@@ -8,7 +8,9 @@ function updatePreloader() {
         const angularJson = (0, utils_1.readJSON)(tree, utils_1.DEFAULT_WORKSPACE_PATH);
         const projectNames = Object.keys(angularJson.projects);
         for (const name of projectNames) {
-            run(tree, name, angularJson.projects[name].sourceRoot, context);
+            const sourceRoot = angularJson.projects[name].sourceRoot;
+            fixIndexHtml(tree, name, sourceRoot, context);
+            run(tree, name, sourceRoot, context);
         }
     };
 }
@@ -18,7 +20,19 @@ function addESLintIgnore(tree) {
     if (!tree.exists(filePath))
         return;
     const content = tree.readText(filePath);
-    tree.overwrite(filePath, `${content}\n**/src/index.html`);
+    if (!content.includes('**/src/index.html')) {
+        tree.overwrite(filePath, `${content}\n**/src/index.html`);
+    }
+}
+function fixIndexHtml(tree, _, sourceRoot, __) {
+    const indexPath = `${sourceRoot}/index.html`;
+    if (!tree.exists(indexPath))
+        return;
+    let indexContent = tree.readText(indexPath);
+    const selfClose = '<app-root />';
+    if (!indexContent.includes(selfClose))
+        return;
+    tree.overwrite(indexPath, indexContent.replace(selfClose, '<app-root></app-root>'));
 }
 function run(tree, name, sourceRoot, context) {
     // main.ts
@@ -36,15 +50,17 @@ function run(tree, name, sourceRoot, context) {
     if (!tree.exists(appPath))
         return;
     const appContent = tree.readText(appPath);
+    if (appContent.includes(', stepPreloader'))
+        return;
     const appContentLines = appContent.split('\n');
     const importIndex = appContentLines.findIndex(line => line.includes(', VERSION as VERSION_ALAIN'));
-    const eventIndex = appContentLines.findIndex(line => line.includes('this.router.events.subscribe('));
-    const eventEndIndex = appContentLines.findIndex(line => line.includes('if (ev instanceof NavigationEnd) {'));
-    if (importIndex === -1 || eventIndex === -1 || eventEndIndex === -1)
+    const addIndex = appContentLines.findIndex(line => line.includes('export class AppComponent'));
+    const callDoneIndex = appContentLines.findIndex(line => line.includes('if (ev instanceof NavigationEnd) {'));
+    if (importIndex === -1 || addIndex === -1 || callDoneIndex === -1)
         return;
     appContentLines[importIndex] = appContentLines[importIndex].replace(', VERSION as VERSION_ALAIN', ', VERSION as VERSION_ALAIN, stepPreloader');
-    appContentLines.splice(eventIndex, 0, 'const done = stepPreloader();');
-    appContentLines.splice(eventEndIndex + 2, 0, 'done();');
+    appContentLines.splice(addIndex + 1, 0, 'private donePreloader = stepPreloader();');
+    appContentLines.splice(callDoneIndex + 2, 0, 'this.donePreloader();');
     tree.overwrite(appPath, appContentLines.join('\n'));
     (0, utils_1.logWarn)(context, `Upgrade preloader in ${name} project`);
 }
