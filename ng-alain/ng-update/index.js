@@ -13,7 +13,7 @@ exports.updateToV17 = updateToV17;
 /** Post-update schematic to be called when update is finished. */
 function postUpdate(context, targetVersion, hasFailures) {
     context.logger.info('');
-    context.logger.info(`  ✓  Updated NG-ALAIN to ${targetVersion}`);
+    context.logger.info(`✓  Updated NG-ALAIN to ${targetVersion}`);
     context.logger.info('');
     if (hasFailures) {
         context.logger.warn('  ⚠  Some issues were detected but could not be fixed automatically. Please check the ' +

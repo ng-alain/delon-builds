@@ -6,5 +6,5 @@ export declare class URLPipe implements PipeTransform {
     constructor(dom: DomSanitizer);
     transform(url: string): string | SafeUrl;
     static ɵfac: i0.ɵɵFactoryDeclaration<URLPipe, never>;
-    static ɵpipe: i0.ɵɵPipeDeclaration<URLPipe, "url", false>;
+    static ɵpipe: i0.ɵɵPipeDeclaration<URLPipe, "url", true>;
 }

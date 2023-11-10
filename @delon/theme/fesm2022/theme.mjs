@@ -815,11 +815,11 @@ class I18nPipe {
         return this.i18n.fanyi(key, params);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: I18nPipe, deps: [{ token: ALAIN_I18N_TOKEN }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: I18nPipe, name: "i18n" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: I18nPipe, isStandalone: true, name: "i18n" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: I18nPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'i18n' }]
+            args: [{ name: 'i18n', standalone: true }]
         }], ctorParameters: () => [{ type: undefined, decorators: [{
                     type: Inject,
                     args: [ALAIN_I18N_TOKEN]
@@ -2627,11 +2627,11 @@ class DatePipe {
         return formatDate(value, formatString, this.nzI18n.getDateLocale());
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DatePipe, deps: [{ token: i1$8.NzI18nService }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DatePipe, name: "_date" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DatePipe, isStandalone: true, name: "_date" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DatePipe, decorators: [{
             type: Pipe,
-            args: [{ name: '_date' }]
+            args: [{ name: '_date', standalone: true }]
         }], ctorParameters: () => [{ type: i1$8.NzI18nService }] });
 
 /**
@@ -2646,11 +2646,11 @@ class KeysPipe {
         return ret;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: KeysPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: KeysPipe, name: "keys" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: KeysPipe, isStandalone: true, name: "keys" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: KeysPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'keys' }]
+            args: [{ name: 'keys', standalone: true }]
         }] });
 
 const ICON_YES = `<svg viewBox="64 64 896 896" fill="currentColor" width="1em" height="1em" aria-hidden="true"><path d="M912 190h-69.9c-9.8 0-19.1 4.5-25.1 12.2L404.7 724.5 207 474a32 32 0 0 0-25.1-12.2H112c-6.7 0-10.4 7.7-6.3 12.9l273.9 347c12.8 16.2 37.4 16.2 50.3 0l488.4-618.9c4.1-5.1.4-12.8-6.3-12.8z"></path></svg>`;
@@ -2686,11 +2686,11 @@ class YNPipe {
         return isSafeHtml ? this.dom.bypassSecurityTrustHtml(html) : html;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: YNPipe, deps: [{ token: i1$4.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: YNPipe, name: "yn" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: YNPipe, isStandalone: true, name: "yn" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: YNPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'yn' }]
+            args: [{ name: 'yn', standalone: true }]
         }], ctorParameters: () => [{ type: i1$4.DomSanitizer }] });
 
 class HTMLPipe {
@@ -2701,11 +2701,11 @@ class HTMLPipe {
         return html ? this.dom.bypassSecurityTrustHtml(html) : '';
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: HTMLPipe, deps: [{ token: i1$4.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: HTMLPipe, name: "html" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: HTMLPipe, isStandalone: true, name: "html" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: HTMLPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'html' }]
+            args: [{ name: 'html', standalone: true }]
         }], ctorParameters: () => [{ type: i1$4.DomSanitizer }] });
 
 class URLPipe {
@@ -2716,16 +2716,14 @@ class URLPipe {
         return url ? this.dom.bypassSecurityTrustUrl(url) : '';
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: URLPipe, deps: [{ token: i1$4.DomSanitizer }], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: URLPipe, name: "url" }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: URLPipe, isStandalone: true, name: "url" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: URLPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'url' }]
+            args: [{ name: 'url', standalone: true }]
         }], ctorParameters: () => [{ type: i1$4.DomSanitizer }] });
 
 /* eslint-disable import/order */
-// #region import
-const HELPERS = [ModalHelper, DrawerHelper];
 const PIPES = [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
 // #endregion
@@ -2733,20 +2731,8 @@ class AlainThemeModule {
     constructor(iconSrv) {
         iconSrv.addIcon(...ICONS);
     }
-    static forRoot() {
-        return {
-            ngModule: AlainThemeModule,
-            providers: HELPERS
-        };
-    }
-    static forChild() {
-        return {
-            ngModule: AlainThemeModule,
-            providers: HELPERS
-        };
-    }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1$9.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, declarations: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule], exports: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], exports: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, providers: [
             {
                 provide: ALAIN_SETTING_KEYS,
@@ -2761,8 +2747,7 @@ class AlainThemeModule {
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule],
-                    declarations: PIPES,
+                    imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, ...PIPES],
                     providers: [
                         {
                             provide: ALAIN_SETTING_KEYS,
