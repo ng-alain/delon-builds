@@ -14,7 +14,7 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const autoRegisterFormWidgets_1 = require("./autoRegisterFormWidgets");
 const removeAlainThemeModuleForRoot_1 = require("./removeAlainThemeModuleForRoot");
-const replaceProvideAlainConfig_1 = require("./replaceProvideAlainConfig");
+const replaceProvideConfig_1 = require("./replaceProvideConfig");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
 function qr() {
@@ -35,7 +35,7 @@ function v17Rule() {
         return (0, schematics_1.chain)([
             (0, removeAlainThemeModuleForRoot_1.removeAlainThemeModuleForRoot)(),
             (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(),
-            (0, replaceProvideAlainConfig_1.replaceProvideAlainConfig)(),
+            (0, replaceProvideConfig_1.replaceProvideConfig)(),
             qr(),
             finished()
         ]);
