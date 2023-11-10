@@ -1,4 +1,4 @@
-export * from './src/services/preloader/preloader';
+export { preloaderFinished } from './src/services/preloader/preloader';
 export * from './src/services/menu/interface';
 export * from './src/services/menu/menu.service';
 export * from './src/services/settings/types';
