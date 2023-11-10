@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, Injectable, Optional, Inject } from '@angular/core';
+import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject } from '@angular/core';
 import { deepMergeKey } from '@delon/util/other';
 
 class AlainSVConfig {
@@ -11,6 +11,9 @@ const ALAIN_CONFIG = new InjectionToken('alain-config', {
 });
 function ALAIN_CONFIG_FACTORY() {
     return {};
+}
+function provideAlainConfig(config) {
+    return makeEnvironmentProviders([{ provide: ALAIN_CONFIG, useValue: config }]);
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -51,5 +54,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig };
+export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, provideAlainConfig };
 //# sourceMappingURL=config.mjs.map
