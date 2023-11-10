@@ -37,32 +37,13 @@ function stepPreloader() {
         const preloader = doc.querySelector('.preloader');
         if (preloader == null)
             return;
+        const CLS = 'preloader-hidden';
         preloader.addEventListener('transitionend', () => {
-            preloader.className = 'preloader-hidden';
+            preloader.className = CLS;
         });
-        preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
+        preloader.className += ` ${CLS}-add ${CLS}-add-active`;
         const body = doc.querySelector('body');
         body.style.overflow = '';
-    };
-}
-function preloaderFinished() {
-    const body = document.querySelector('body');
-    body.style.overflow = 'hidden';
-    function remove() {
-        const preloader = document.querySelector('.preloader');
-        // preloader value null when running --hmr
-        if (!preloader)
-            return;
-        preloader.addEventListener('transitionend', () => {
-            preloader.className = 'preloader-hidden';
-        });
-        preloader.className += ' preloader-hidden-add preloader-hidden-add-active';
-    }
-    window.appBootstrap = () => {
-        setTimeout(() => {
-            remove();
-            body.style.overflow = '';
-        }, 25);
     };
 }
 
@@ -2808,5 +2789,5 @@ const VERSION = new Version('16.4.2');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, preloaderFinished, slSI as sl_SI, stepPreloader, trTR as tr_TR, yn, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, slSI as sl_SI, stepPreloader, trTR as tr_TR, yn, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
