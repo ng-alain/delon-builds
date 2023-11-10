@@ -13,6 +13,7 @@ exports.v17Rule = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const autoRegisterFormWidgets_1 = require("./autoRegisterFormWidgets");
+const preloader_1 = require("./preloader");
 const removeForRoot_1 = require("./removeForRoot");
 const replaceProvideConfig_1 = require("./replaceProvideConfig");
 const utils_1 = require("../../../utils");
@@ -32,7 +33,14 @@ function v17Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, versions_1.UpgradeMainVersions)(tree);
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
-        return (0, schematics_1.chain)([(0, removeForRoot_1.removeForRoot)(), (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(), (0, replaceProvideConfig_1.replaceProvideConfig)(), qr(), finished()]);
+        return (0, schematics_1.chain)([
+            (0, removeForRoot_1.removeForRoot)(),
+            (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(),
+            (0, replaceProvideConfig_1.replaceProvideConfig)(),
+            (0, preloader_1.updatePreloader)(),
+            qr(),
+            finished()
+        ]);
     });
 }
 exports.v17Rule = v17Rule;
