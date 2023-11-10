@@ -1,12 +1,11 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Injectable, NgModule } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@angular/common/http';
 import * as i2 from '@delon/util/other';
 import * as i3 from '@delon/util/config';
-import { CommonModule } from '@angular/common';
 
 class ZipService {
     constructor(http, lazy, configSrv, ngZone) {
@@ -116,21 +115,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [{ type: i1.HttpClient }, { type: i2.LazyService }, { type: i3.AlainConfigService }, { type: i0.NgZone }], propDecorators: { read: [] } });
 
-class ZipModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ZipModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ZipModule, imports: [CommonModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ZipModule, imports: [CommonModule] }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ZipModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [CommonModule]
-                }]
-        }] });
-
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ZipModule, ZipService };
+export { ZipService };
 //# sourceMappingURL=zip.mjs.map

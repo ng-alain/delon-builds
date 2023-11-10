@@ -6,7 +6,6 @@ import { ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@angular/common/http';
 import * as i2 from '@delon/util/other';
 import * as i3 from '@delon/util/config';
-import { CommonModule } from '@angular/common';
 
 class XlsxService {
     constructor(http, lazy, configSrv, ngZone) {
@@ -136,7 +135,7 @@ class XlsxDirective {
         this.srv.export(this.data);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxDirective, deps: [{ token: XlsxService }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: XlsxDirective, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: XlsxDirective, isStandalone: true, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxDirective, decorators: [{
             type: Directive,
@@ -145,7 +144,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                     exportAs: 'xlsx',
                     host: {
                         '(click)': '_click()'
-                    }
+                    },
+                    standalone: true
                 }]
         }], ctorParameters: () => [{ type: XlsxService }], propDecorators: { data: [{
                 type: Input,
@@ -155,14 +155,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
 const COMPONENTS = [XlsxDirective];
 class XlsxModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule, declarations: [XlsxDirective], imports: [CommonModule], exports: [XlsxDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule, imports: [CommonModule] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule, imports: [XlsxDirective], exports: [XlsxDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: XlsxModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule],
-                    declarations: COMPONENTS,
+                    imports: [COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });

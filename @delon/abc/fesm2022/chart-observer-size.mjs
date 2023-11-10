@@ -90,13 +90,14 @@ class ObserverSize {
         this._unsub();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ObserverSize, deps: [{ token: SizeObserver }, { token: i0.ElementRef }, { token: i0.NgZone }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ObserverSize, selector: "[observeSize]", outputs: { event: "observeSize" }, exportAs: ["observeSize"], ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.0.2", type: ObserverSize, isStandalone: true, selector: "[observeSize]", outputs: { event: "observeSize" }, exportAs: ["observeSize"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ObserverSize, decorators: [{
             type: Directive,
             args: [{
                     selector: '[observeSize]',
-                    exportAs: 'observeSize'
+                    exportAs: 'observeSize',
+                    standalone: true
                 }]
         }], ctorParameters: () => [{ type: SizeObserver }, { type: i0.ElementRef }, { type: i0.NgZone }], propDecorators: { event: [{
                 type: Output,
@@ -104,14 +105,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
             }] } });
 class ObserversModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ObserversModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ObserversModule, declarations: [ObserverSize], exports: [ObserverSize] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ObserversModule, imports: [ObserverSize], exports: [ObserverSize] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ObserversModule }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ObserversModule, decorators: [{
             type: NgModule,
             args: [{
                     exports: [ObserverSize],
-                    declarations: [ObserverSize]
+                    imports: [ObserverSize]
                 }]
         }] });
 

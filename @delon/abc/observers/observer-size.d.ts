@@ -23,10 +23,10 @@ export declare class ObserverSize implements AfterViewInit, OnDestroy {
     private _unsub;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ObserverSize, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ObserverSize, "[observeSize]", ["observeSize"], {}, { "event": "observeSize"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ObserverSize, "[observeSize]", ["observeSize"], {}, { "event": "observeSize"; }, never, never, true, never>;
 }
 export declare class ObserversModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<ObserversModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<ObserversModule, [typeof ObserverSize], never, [typeof ObserverSize]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<ObserversModule, never, [typeof ObserverSize], [typeof ObserverSize]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<ObserversModule>;
 }
