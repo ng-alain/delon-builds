@@ -22,5 +22,5 @@ export declare class ACLIfDirective implements OnDestroy {
     protected _updateView(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLIfDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLIfDirective, "[aclIf]", ["aclIf"], { "aclIf": { "alias": "aclIf"; "required": false; }; "aclIfThen": { "alias": "aclIfThen"; "required": false; }; "aclIfElse": { "alias": "aclIfElse"; "required": false; }; "except": { "alias": "except"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLIfDirective, "[aclIf]", ["aclIf"], { "aclIf": { "alias": "aclIf"; "required": false; }; "aclIfThen": { "alias": "aclIfThen"; "required": false; }; "aclIfElse": { "alias": "aclIfElse"; "required": false; }; "except": { "alias": "except"; "required": false; }; }, {}, never, never, true, never>;
 }

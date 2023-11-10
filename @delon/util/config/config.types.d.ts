@@ -1,4 +1,4 @@
-import { InjectionToken } from '@angular/core';
+import { EnvironmentProviders, InjectionToken } from '@angular/core';
 import { AlainCellConfig, AlainDateRangePickerConfig, AlainErrorCollectConfig, AlainExceptionType, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainQRConfig, AlainSEConfig, AlainSGConfig, AlainSTConfig, AlainSVConfig, AlainXlsxConfig, AlainZipConfig } from './abc/index';
 import { AlainACLConfig } from './acl/acl.type';
 import { AlainAuthConfig } from './auth/auth.type';
@@ -43,3 +43,4 @@ export interface AlainConfig {
 export type AlainConfigKey = keyof AlainConfig;
 export declare const ALAIN_CONFIG: InjectionToken<AlainConfig>;
 export declare function ALAIN_CONFIG_FACTORY(): AlainConfig;
+export declare function provideAlainConfig(config: AlainConfig): EnvironmentProviders;
