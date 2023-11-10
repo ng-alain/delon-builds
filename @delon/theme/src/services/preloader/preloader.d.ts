@@ -1,1 +1,1 @@
-export declare function preloaderFinished(): void;
+export declare function stepPreloader(): () => void;
