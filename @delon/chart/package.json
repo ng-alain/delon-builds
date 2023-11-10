@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "16.4.2-ed5b33027",
+  "version": "16.4.2-967674e36",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.10",
     "echarts": "^5.4.3",
-    "@delon/util": "^16.4.2-ed5b33027",
-    "@delon/theme": "^16.4.2-ed5b33027",
+    "@delon/util": "^16.4.2-967674e36",
+    "@delon/theme": "^16.4.2-967674e36",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -128,17 +128,17 @@
       "esm": "./esm2022/tag-cloud/tag-cloud.mjs",
       "default": "./fesm2022/tag-cloud.mjs"
     },
-    "./trend": {
-      "types": "./trend/index.d.ts",
-      "esm2022": "./esm2022/trend/trend.mjs",
-      "esm": "./esm2022/trend/trend.mjs",
-      "default": "./fesm2022/trend.mjs"
-    },
     "./timeline": {
       "types": "./timeline/index.d.ts",
       "esm2022": "./esm2022/timeline/timeline.mjs",
       "esm": "./esm2022/timeline/timeline.mjs",
       "default": "./fesm2022/timeline.mjs"
+    },
+    "./trend": {
+      "types": "./trend/index.d.ts",
+      "esm2022": "./esm2022/trend/trend.mjs",
+      "esm": "./esm2022/trend/trend.mjs",
+      "default": "./fesm2022/trend.mjs"
     },
     "./water-wave": {
       "types": "./water-wave/index.d.ts",
