@@ -1,6 +1,6 @@
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, NgModule, Injector, Version } from '@angular/core';
+import { inject, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
@@ -14,8 +14,10 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import * as i1$4 from '@angular/platform-browser';
 import { deepMerge } from '@delon/util/other';
 import * as i1$5 from 'ng-zorro-antd/modal';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 import * as i2 from '@angular/cdk/drag-drop';
 import * as i1$6 from 'ng-zorro-antd/drawer';
+import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import * as i1$7 from '@angular/common/http';
 import { HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDate } from '@delon/util/date-time';
@@ -435,6 +437,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }] }] });
 
 const ALAIN_SETTING_KEYS = new InjectionToken('ALAIN_SETTING_KEYS');
+const ALAIN_SETTING_DEFAULT = {
+    provide: ALAIN_SETTING_KEYS,
+    useValue: {
+        layout: 'layout',
+        user: 'user',
+        app: 'app'
+    }
+};
 class SettingsService {
     constructor(platform, KEYS) {
         this.platform = platform;
@@ -876,6 +886,653 @@ const alainI18nCanActivate = childRoute => inject(AlainI18NGuardService).process
  * ```
  */
 const alainI18nCanActivateChild = route => inject(AlainI18NGuardService).process(route);
+
+const CLS_DRAG = 'MODAL-DRAG';
+/**
+ * 对话框辅助类
+ */
+class ModalHelper {
+    constructor(srv, drag, doc) {
+        this.srv = srv;
+        this.drag = drag;
+        this.document = doc;
+    }
+    createDragRef(options, wrapCls) {
+        const wrapEl = this.document.querySelector(wrapCls);
+        const modalEl = wrapEl.firstChild;
+        const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
+        if (handelEl) {
+            handelEl.classList.add(`${CLS_DRAG}-HANDLE`);
+        }
+        return this.drag
+            .createDrag(handelEl ?? modalEl)
+            .withHandles([handelEl ?? modalEl])
+            .withBoundaryElement(wrapEl)
+            .withRootElement(modalEl);
+    }
+    /**
+     * 构建一个对话框
+     *
+     * @param comp 组件
+     * @param params 组件参数
+     * @param options 额外参数
+     *
+     * @example
+     * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+     * this.nzModalRef.close(data);
+     * this.nzModalRef.close();
+     * // 关闭
+     * this.nzModalRef.destroy();
+     */
+    create(comp, params, options) {
+        options = deepMerge({
+            size: 'lg',
+            exact: true,
+            includeTabs: false
+        }, options);
+        return new Observable((observer) => {
+            const { size, includeTabs, modalOptions, drag, useNzData } = options;
+            let cls = [];
+            let width = '';
+            if (size) {
+                if (typeof size === 'number') {
+                    width = `${size}px`;
+                }
+                else if (['sm', 'md', 'lg', 'xl'].includes(size)) {
+                    cls.push(`modal-${size}`);
+                }
+                else {
+                    width = size;
+                }
+            }
+            if (includeTabs) {
+                cls.push(`modal-include-tabs`);
+            }
+            if (modalOptions && modalOptions.nzWrapClassName) {
+                cls.push(modalOptions.nzWrapClassName);
+                delete modalOptions.nzWrapClassName;
+            }
+            let dragOptions;
+            let dragWrapCls = `${CLS_DRAG}-${+new Date()}`;
+            let dragRef;
+            if (drag != null && drag !== false) {
+                dragOptions = {
+                    handleCls: `.modal-header, .ant-modal-title`,
+                    ...(typeof drag === 'object' ? drag : {})
+                };
+                cls.push(CLS_DRAG, dragWrapCls);
+            }
+            const subject = this.srv.create({
+                nzWrapClassName: cls.join(' '),
+                nzContent: comp,
+                nzWidth: width ? width : undefined,
+                nzFooter: null,
+                nzData: params,
+                ...modalOptions
+            });
+            // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
+            if (useNzData !== true) {
+                Object.assign(subject.componentInstance, params);
+            }
+            subject.afterOpen
+                .pipe(take(1), filter(() => dragOptions != null))
+                .subscribe(() => {
+                dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
+            });
+            subject.afterClose.pipe(take(1)).subscribe((res) => {
+                if (options.exact === true) {
+                    if (res != null) {
+                        observer.next(res);
+                    }
+                }
+                else {
+                    observer.next(res);
+                }
+                observer.complete();
+                dragRef?.dispose();
+            });
+        });
+    }
+    /**
+     * 构建静态框，点击蒙层不允许关闭
+     *
+     * @param comp 组件
+     * @param params 组件参数
+     * @param options 额外参数
+     *
+     * @example
+     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
+     * // 对于组件的成功&关闭的处理说明
+     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
+     * this.nzModalRef.close(data);
+     * this.nzModalRef.close();
+     * // 关闭
+     * this.nzModalRef.destroy();
+     */
+    createStatic(comp, params, options) {
+        const modalOptions = {
+            nzMaskClosable: false,
+            ...(options && options.modalOptions)
+        };
+        return this.create(comp, params, { ...options, modalOptions });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, deps: [{ token: i1$5.NzModalService }, { token: i2.DragDrop }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, providedIn: 'root' }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, decorators: [{
+            type: Injectable,
+            args: [{ providedIn: 'root' }]
+        }], ctorParameters: () => [{ type: i1$5.NzModalService }, { type: i2.DragDrop }, { type: undefined, decorators: [{
+                    type: Inject,
+                    args: [DOCUMENT]
+                }] }] });
+
+/**
+ * 抽屉辅助类
+ *
+ * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
+ *
+ * @example
+ * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
+ * // 对于组件的成功&关闭的处理说明
+ * // 成功
+ * this.NzDrawerRef.close(data);
+ * this.NzDrawerRef.close(true);
+ * // 关闭
+ * this.NzDrawerRef.close();
+ * this.NzDrawerRef.close(false);
+ */
+class DrawerHelper {
+    get openDrawers() {
+        return this.parentDrawer ? this.parentDrawer.openDrawers : this.openDrawersAtThisLevel;
+    }
+    constructor(srv, parentDrawer) {
+        this.srv = srv;
+        this.parentDrawer = parentDrawer;
+        this.openDrawersAtThisLevel = [];
+    }
+    /**
+     * 构建一个抽屉
+     */
+    create(title, comp, params, options) {
+        options = deepMerge({
+            size: 'md',
+            footer: true,
+            footerHeight: 50,
+            exact: true,
+            drawerOptions: {
+                nzPlacement: 'right',
+                nzWrapClassName: ''
+            }
+        }, options);
+        return new Observable((observer) => {
+            const { size, footer, footerHeight, drawerOptions } = options;
+            const defaultOptions = {
+                nzContent: comp,
+                nzContentParams: params,
+                nzTitle: title
+            };
+            if (typeof size === 'number') {
+                defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
+            }
+            else if (!drawerOptions.nzWidth) {
+                defaultOptions.nzWrapClassName = `${drawerOptions.nzWrapClassName} drawer-${options.size}`.trim();
+                delete drawerOptions.nzWrapClassName;
+            }
+            if (footer) {
+                // The 24 value is @drawer-body-padding
+                defaultOptions.nzBodyStyle = {
+                    'padding-bottom.px': footerHeight + 24
+                };
+            }
+            const ref = this.srv.create({ ...defaultOptions, ...drawerOptions });
+            this.openDrawers.push(ref);
+            const afterClose$ = ref.afterClose.subscribe((res) => {
+                if (options.exact === true) {
+                    if (res != null) {
+                        observer.next(res);
+                    }
+                }
+                else {
+                    observer.next(res);
+                }
+                observer.complete();
+                afterClose$.unsubscribe();
+                this.close(ref);
+            });
+        });
+    }
+    close(ref) {
+        const idx = this.openDrawers.indexOf(ref);
+        if (idx === -1)
+            return;
+        this.openDrawers.splice(idx, 1);
+    }
+    closeAll() {
+        let i = this.openDrawers.length;
+        while (i--) {
+            this.openDrawers[i].close();
+        }
+    }
+    /**
+     * 构建一个抽屉，点击蒙层不允许关闭
+     */
+    static(title, comp, params, options) {
+        const drawerOptions = {
+            nzMaskClosable: false,
+            ...(options && options.drawerOptions)
+        };
+        return this.create(title, comp, params, { ...options, drawerOptions });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, deps: [{ token: i1$6.NzDrawerService }, { token: DrawerHelper, optional: true, skipSelf: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, providedIn: 'root' }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, decorators: [{
+            type: Injectable,
+            args: [{ providedIn: 'root' }]
+        }], ctorParameters: () => [{ type: i1$6.NzDrawerService }, { type: DrawerHelper, decorators: [{
+                    type: Optional
+                }, {
+                    type: SkipSelf
+                }] }] });
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/**
+ * 封装HttpClient，主要解决：
+ * + 优化HttpClient在参数上便利性
+ * + 统一实现 loading
+ * + 统一处理时间格式问题
+ */
+class _HttpClient {
+    constructor(http, cogSrv) {
+        this.http = http;
+        this.lc = 0;
+        this.cog = cogSrv.merge('themeHttp', {
+            nullValueHandling: 'include',
+            dateValueHandling: 'timestamp'
+        });
+    }
+    /**
+     * Get whether it's loading
+     *
+     * 获取是否正在加载中
+     */
+    get loading() {
+        return this.lc > 0;
+    }
+    /**
+     * Get the currently loading count
+     *
+     * 获取当前加载中的数量
+     */
+    get loadingCount() {
+        return this.lc;
+    }
+    parseParams(params) {
+        const newParams = {};
+        if (params instanceof HttpParams) {
+            return params;
+        }
+        const { nullValueHandling, dateValueHandling } = this.cog;
+        Object.keys(params).forEach(key => {
+            let paramValue = params[key];
+            // 忽略空值
+            if (nullValueHandling === 'ignore' && paramValue == null)
+                return;
+            // 将时间转化为：时间戳 (秒)
+            if (paramValue instanceof Date &&
+                (dateValueHandling === 'timestamp' || dateValueHandling === 'timestampSecond')) {
+                paramValue = dateValueHandling === 'timestamp' ? paramValue.valueOf() : Math.trunc(paramValue.valueOf() / 1000);
+            }
+            newParams[key] = paramValue;
+        });
+        return new HttpParams({ fromObject: newParams });
+    }
+    appliedUrl(url, params) {
+        if (!params)
+            return url;
+        url += ~url.indexOf('?') ? '' : '?';
+        const arr = [];
+        Object.keys(params).forEach(key => {
+            arr.push(`${key}=${params[key]}`);
+        });
+        return url + arr.join('&');
+    }
+    setCount(count) {
+        Promise.resolve(null).then(() => (this.lc = count <= 0 ? 0 : count));
+    }
+    push() {
+        this.setCount(++this.lc);
+    }
+    pop() {
+        this.setCount(--this.lc);
+    }
+    /**
+     * Clean loading count
+     *
+     * 清空加载中
+     */
+    cleanLoading() {
+        this.setCount(0);
+    }
+    get(url, params, options = {}) {
+        return this.request('GET', url, {
+            params,
+            ...options
+        });
+    }
+    post(url, body, params, options = {}) {
+        return this.request('POST', url, {
+            body,
+            params,
+            ...options
+        });
+    }
+    delete(url, params, options = {}) {
+        return this.request('DELETE', url, {
+            params,
+            ...options
+        });
+    }
+    // #endregion
+    // #region jsonp
+    /**
+     * **JSONP Request**
+     *
+     * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
+     */
+    jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
+        return of(null).pipe(
+        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+        delay(0), tap(() => this.push()), switchMap(() => this.http.jsonp(this.appliedUrl(url, params), callbackParam)), finalize(() => this.pop()));
+    }
+    patch(url, body, params, options = {}) {
+        return this.request('PATCH', url, {
+            body,
+            params,
+            ...options
+        });
+    }
+    put(url, body, params, options = {}) {
+        return this.request('PUT', url, {
+            body,
+            params,
+            ...options
+        });
+    }
+    form(url, body, params, options = {}) {
+        return this.request('POST', url, {
+            body,
+            params,
+            ...options,
+            headers: {
+                'content-type': `application/x-www-form-urlencoded`
+            }
+        });
+    }
+    request(method, url, options = {}) {
+        if (options.params)
+            options.params = this.parseParams(options.params);
+        return of(null).pipe(
+        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
+        delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, deps: [{ token: i1$7.HttpClient }, { token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, providedIn: 'root' }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, decorators: [{
+            type: Injectable,
+            args: [{ providedIn: 'root' }]
+        }], ctorParameters: () => [{ type: i1$7.HttpClient }, { type: i1.AlainConfigService }] });
+
+/**
+ * Every http decorator must be based on `BaseAPI`, Like this:
+ * ```ts
+ * \@Injectable()
+ * class DataService extends BaseApi {}
+ * ```
+ */
+class BaseApi {
+    constructor(injector) {
+        this.injector = injector;
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi, deps: [{ token: Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi, decorators: [{
+            type: Injectable
+        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
+                    type: Inject,
+                    args: [Injector]
+                }] }] });
+const paramKey = `__api_params`;
+function setParam(target, key = paramKey) {
+    let params = target[key];
+    if (typeof params === 'undefined') {
+        params = target[key] = {};
+    }
+    return params;
+}
+/**
+ * 默认基准URL
+ * - 有效范围：类
+ */
+function BaseUrl(url) {
+    return function (target) {
+        const params = setParam(target.prototype);
+        params.baseUrl = url;
+        return target;
+    };
+}
+/**
+ * 默认 `headers`
+ * - 有效范围：类
+ */
+function BaseHeaders(headers) {
+    return function (target) {
+        const params = setParam(target.prototype);
+        params.baseHeaders = headers;
+        return target;
+    };
+}
+function makeParam(paramName) {
+    return function (key) {
+        return function (target, propertyKey, index) {
+            const params = setParam(setParam(target), propertyKey);
+            let tParams = params[paramName];
+            if (typeof tParams === 'undefined') {
+                tParams = params[paramName] = [];
+            }
+            tParams.push({
+                key,
+                index
+            });
+        };
+    };
+}
+/**
+ * URL路由参数
+ * - 有效范围：方法参数
+ */
+const Path = makeParam('path');
+/**
+ * URL 参数 `QueryString`
+ * - 有效范围：方法参数
+ */
+const Query = makeParam('query');
+/**
+ * 参数 `Body`
+ * - 有效范围：方法参数
+ */
+const Body = makeParam('body')();
+/**
+ * 参数 `headers`
+ * - 有效范围：方法参数
+ * - 合并 `BaseHeaders`
+ */
+const Headers = makeParam('headers');
+/**
+ * Request Payload
+ * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `@Body`
+ * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
+ */
+const Payload = makeParam('payload')();
+function getValidArgs(data, key, args) {
+    if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
+        return undefined;
+    }
+    return args[data[key][0].index];
+}
+function genBody(data, payload) {
+    if (Array.isArray(data) || Array.isArray(payload)) {
+        return Object.assign([], data, payload);
+    }
+    return { ...data, ...payload };
+}
+function makeMethod(method) {
+    return function (url = '', options) {
+        return (_target, targetKey, descriptor) => {
+            descriptor.value = function (...args) {
+                options = options || {};
+                const injector = this.injector;
+                const http = injector.get(_HttpClient, null);
+                if (http == null) {
+                    throw new TypeError(`Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.`);
+                }
+                const baseData = setParam(this);
+                const data = setParam(baseData, targetKey);
+                let requestUrl = url || '';
+                requestUrl = [baseData.baseUrl || '', requestUrl.startsWith('/') ? requestUrl.substring(1) : requestUrl].join('/');
+                // fix last split
+                if (requestUrl.length > 1 && requestUrl.endsWith('/')) {
+                    requestUrl = requestUrl.substring(0, requestUrl.length - 1);
+                }
+                if (options.acl) {
+                    const aclSrv = injector.get(ACLService, null);
+                    if (aclSrv && !aclSrv.can(options.acl)) {
+                        return throwError(() => ({
+                            url: requestUrl,
+                            status: 401,
+                            statusText: `From Http Decorator`
+                        }));
+                    }
+                    delete options.acl;
+                }
+                requestUrl = requestUrl.replace(/::/g, '^^');
+                (data.path || [])
+                    .filter(w => typeof args[w.index] !== 'undefined')
+                    .forEach((i) => {
+                    requestUrl = requestUrl.replace(new RegExp(`:${i.key}`, 'g'), encodeURIComponent(args[i.index]));
+                });
+                requestUrl = requestUrl.replace(/\^\^/g, `:`);
+                const params = (data.query || []).reduce((p, i) => {
+                    p[i.key] = args[i.index];
+                    return p;
+                }, {});
+                const headers = (data.headers || []).reduce((p, i) => {
+                    p[i.key] = args[i.index];
+                    return p;
+                }, {});
+                if (method === 'FORM') {
+                    headers['content-type'] = 'application/x-www-form-urlencoded';
+                }
+                const payload = getValidArgs(data, 'payload', args);
+                const supportedBody = ['POST', 'PUT', 'PATCH', 'DELETE'].some(v => v === method);
+                return http.request(method, requestUrl, {
+                    body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null,
+                    params: !supportedBody ? { ...params, ...payload } : params,
+                    headers: { ...baseData.baseHeaders, ...headers },
+                    ...options
+                });
+            };
+            return descriptor;
+        };
+    };
+}
+/**
+ * `OPTIONS` 请求
+ * - 有效范围：方法
+ */
+const OPTIONS = makeMethod('OPTIONS');
+/**
+ * `GET` 请求
+ * - 有效范围：方法
+ */
+const GET = makeMethod('GET');
+/**
+ * `POST` 请求
+ * - 有效范围：方法
+ */
+const POST = makeMethod('POST');
+/**
+ * `DELETE` 请求
+ * - 有效范围：方法
+ */
+const DELETE = makeMethod('DELETE');
+/**
+ * `PUT` 请求
+ * - 有效范围：方法
+ */
+const PUT = makeMethod('PUT');
+/**
+ * `HEAD` 请求
+ * - 有效范围：方法
+ */
+const HEAD = makeMethod('HEAD');
+/**
+ * `PATCH` 请求
+ * - 有效范围：方法
+ */
+const PATCH = makeMethod('PATCH');
+/**
+ * `JSONP` 请求
+ * - 有效范围：方法
+ */
+const JSONP = makeMethod('JSONP');
+/**
+ * `FORM` 请求
+ * - 有效范围：方法
+ */
+const FORM = makeMethod('FORM');
+
+/**
+ * Whether to customize the handling of exception messages
+ *
+ * 是否自定义处理异常消息
+ *
+ * @example
+ * this.http.post(`login`, {
+ *  name: 'cipchk', pwd: '123456'
+ * }, {
+ *  context: new HttpContext()
+ *              .set(ALLOW_ANONYMOUS, true)
+ *              .set(CUSTOM_ERROR, true)
+ * }).subscribe({
+ *  next: console.log,
+ *  error: console.log
+ * });
+ */
+const CUSTOM_ERROR = new HttpContextToken(() => false);
+/**
+ * Whether to ignore API prefixes
+ *
+ * 是否忽略API前缀
+ *
+ * @example
+ * // When environment.api.baseUrl set '/api'
+ *
+ * this.http.get(`/path`) // Request Url: /api/path
+ * this.http.get(`/path`, { context: new HttpContext().set(IGNORE_BASE_URL, true) }) // Request Url: /path
+ */
+const IGNORE_BASE_URL = new HttpContextToken(() => false);
+/**
+ * Whether to return raw response body
+ *
+ * 是否原样返回请求Body
+ */
+const RAW_BODY = new HttpContextToken(() => false);
 
 const DELON_LOCALE = new InjectionToken('delon-locale');
 
@@ -1973,653 +2630,6 @@ var itIT = {
     }
 };
 
-const CLS_DRAG = 'MODAL-DRAG';
-/**
- * 对话框辅助类
- */
-class ModalHelper {
-    constructor(srv, drag, doc) {
-        this.srv = srv;
-        this.drag = drag;
-        this.document = doc;
-    }
-    createDragRef(options, wrapCls) {
-        const wrapEl = this.document.querySelector(wrapCls);
-        const modalEl = wrapEl.firstChild;
-        const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
-        if (handelEl) {
-            handelEl.classList.add(`${CLS_DRAG}-HANDLE`);
-        }
-        return this.drag
-            .createDrag(handelEl ?? modalEl)
-            .withHandles([handelEl ?? modalEl])
-            .withBoundaryElement(wrapEl)
-            .withRootElement(modalEl);
-    }
-    /**
-     * 构建一个对话框
-     *
-     * @param comp 组件
-     * @param params 组件参数
-     * @param options 额外参数
-     *
-     * @example
-     * this.modalHelper.create(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    create(comp, params, options) {
-        options = deepMerge({
-            size: 'lg',
-            exact: true,
-            includeTabs: false
-        }, options);
-        return new Observable((observer) => {
-            const { size, includeTabs, modalOptions, drag, useNzData } = options;
-            let cls = [];
-            let width = '';
-            if (size) {
-                if (typeof size === 'number') {
-                    width = `${size}px`;
-                }
-                else if (['sm', 'md', 'lg', 'xl'].includes(size)) {
-                    cls.push(`modal-${size}`);
-                }
-                else {
-                    width = size;
-                }
-            }
-            if (includeTabs) {
-                cls.push(`modal-include-tabs`);
-            }
-            if (modalOptions && modalOptions.nzWrapClassName) {
-                cls.push(modalOptions.nzWrapClassName);
-                delete modalOptions.nzWrapClassName;
-            }
-            let dragOptions;
-            let dragWrapCls = `${CLS_DRAG}-${+new Date()}`;
-            let dragRef;
-            if (drag != null && drag !== false) {
-                dragOptions = {
-                    handleCls: `.modal-header, .ant-modal-title`,
-                    ...(typeof drag === 'object' ? drag : {})
-                };
-                cls.push(CLS_DRAG, dragWrapCls);
-            }
-            const subject = this.srv.create({
-                nzWrapClassName: cls.join(' '),
-                nzContent: comp,
-                nzWidth: width ? width : undefined,
-                nzFooter: null,
-                nzData: params,
-                ...modalOptions
-            });
-            // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
-            if (useNzData !== true) {
-                Object.assign(subject.componentInstance, params);
-            }
-            subject.afterOpen
-                .pipe(take(1), filter(() => dragOptions != null))
-                .subscribe(() => {
-                dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
-            });
-            subject.afterClose.pipe(take(1)).subscribe((res) => {
-                if (options.exact === true) {
-                    if (res != null) {
-                        observer.next(res);
-                    }
-                }
-                else {
-                    observer.next(res);
-                }
-                observer.complete();
-                dragRef?.dispose();
-            });
-        });
-    }
-    /**
-     * 构建静态框，点击蒙层不允许关闭
-     *
-     * @param comp 组件
-     * @param params 组件参数
-     * @param options 额外参数
-     *
-     * @example
-     * this.modalHelper.open(FormEditComponent, { i }).subscribe(res => this.load());
-     * // 对于组件的成功&关闭的处理说明
-     * // 成功，其中 `nzModalRef` 指目标组件在构造函数 `NzModalRef` 变量名
-     * this.nzModalRef.close(data);
-     * this.nzModalRef.close();
-     * // 关闭
-     * this.nzModalRef.destroy();
-     */
-    createStatic(comp, params, options) {
-        const modalOptions = {
-            nzMaskClosable: false,
-            ...(options && options.modalOptions)
-        };
-        return this.create(comp, params, { ...options, modalOptions });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, deps: [{ token: i1$5.NzModalService }, { token: i2.DragDrop }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, providedIn: 'root' }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ModalHelper, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$5.NzModalService }, { type: i2.DragDrop }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }] });
-
-/**
- * 抽屉辅助类
- *
- * **注意：** 构建结果都可被订阅，但永远都不会触发 `observer.error`
- *
- * @example
- * this.drawerHelper.create('Edit', FormEditComponent, { i }).subscribe(res => this.load());
- * // 对于组件的成功&关闭的处理说明
- * // 成功
- * this.NzDrawerRef.close(data);
- * this.NzDrawerRef.close(true);
- * // 关闭
- * this.NzDrawerRef.close();
- * this.NzDrawerRef.close(false);
- */
-class DrawerHelper {
-    get openDrawers() {
-        return this.parentDrawer ? this.parentDrawer.openDrawers : this.openDrawersAtThisLevel;
-    }
-    constructor(srv, parentDrawer) {
-        this.srv = srv;
-        this.parentDrawer = parentDrawer;
-        this.openDrawersAtThisLevel = [];
-    }
-    /**
-     * 构建一个抽屉
-     */
-    create(title, comp, params, options) {
-        options = deepMerge({
-            size: 'md',
-            footer: true,
-            footerHeight: 50,
-            exact: true,
-            drawerOptions: {
-                nzPlacement: 'right',
-                nzWrapClassName: ''
-            }
-        }, options);
-        return new Observable((observer) => {
-            const { size, footer, footerHeight, drawerOptions } = options;
-            const defaultOptions = {
-                nzContent: comp,
-                nzContentParams: params,
-                nzTitle: title
-            };
-            if (typeof size === 'number') {
-                defaultOptions[drawerOptions.nzPlacement === 'top' || drawerOptions.nzPlacement === 'bottom' ? 'nzHeight' : 'nzWidth'] = options.size;
-            }
-            else if (!drawerOptions.nzWidth) {
-                defaultOptions.nzWrapClassName = `${drawerOptions.nzWrapClassName} drawer-${options.size}`.trim();
-                delete drawerOptions.nzWrapClassName;
-            }
-            if (footer) {
-                // The 24 value is @drawer-body-padding
-                defaultOptions.nzBodyStyle = {
-                    'padding-bottom.px': footerHeight + 24
-                };
-            }
-            const ref = this.srv.create({ ...defaultOptions, ...drawerOptions });
-            this.openDrawers.push(ref);
-            const afterClose$ = ref.afterClose.subscribe((res) => {
-                if (options.exact === true) {
-                    if (res != null) {
-                        observer.next(res);
-                    }
-                }
-                else {
-                    observer.next(res);
-                }
-                observer.complete();
-                afterClose$.unsubscribe();
-                this.close(ref);
-            });
-        });
-    }
-    close(ref) {
-        const idx = this.openDrawers.indexOf(ref);
-        if (idx === -1)
-            return;
-        this.openDrawers.splice(idx, 1);
-    }
-    closeAll() {
-        let i = this.openDrawers.length;
-        while (i--) {
-            this.openDrawers[i].close();
-        }
-    }
-    /**
-     * 构建一个抽屉，点击蒙层不允许关闭
-     */
-    static(title, comp, params, options) {
-        const drawerOptions = {
-            nzMaskClosable: false,
-            ...(options && options.drawerOptions)
-        };
-        return this.create(title, comp, params, { ...options, drawerOptions });
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, deps: [{ token: i1$6.NzDrawerService }, { token: DrawerHelper, optional: true, skipSelf: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, providedIn: 'root' }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DrawerHelper, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$6.NzDrawerService }, { type: DrawerHelper, decorators: [{
-                    type: Optional
-                }, {
-                    type: SkipSelf
-                }] }] });
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/**
- * 封装HttpClient，主要解决：
- * + 优化HttpClient在参数上便利性
- * + 统一实现 loading
- * + 统一处理时间格式问题
- */
-class _HttpClient {
-    constructor(http, cogSrv) {
-        this.http = http;
-        this.lc = 0;
-        this.cog = cogSrv.merge('themeHttp', {
-            nullValueHandling: 'include',
-            dateValueHandling: 'timestamp'
-        });
-    }
-    /**
-     * Get whether it's loading
-     *
-     * 获取是否正在加载中
-     */
-    get loading() {
-        return this.lc > 0;
-    }
-    /**
-     * Get the currently loading count
-     *
-     * 获取当前加载中的数量
-     */
-    get loadingCount() {
-        return this.lc;
-    }
-    parseParams(params) {
-        const newParams = {};
-        if (params instanceof HttpParams) {
-            return params;
-        }
-        const { nullValueHandling, dateValueHandling } = this.cog;
-        Object.keys(params).forEach(key => {
-            let paramValue = params[key];
-            // 忽略空值
-            if (nullValueHandling === 'ignore' && paramValue == null)
-                return;
-            // 将时间转化为：时间戳 (秒)
-            if (paramValue instanceof Date &&
-                (dateValueHandling === 'timestamp' || dateValueHandling === 'timestampSecond')) {
-                paramValue = dateValueHandling === 'timestamp' ? paramValue.valueOf() : Math.trunc(paramValue.valueOf() / 1000);
-            }
-            newParams[key] = paramValue;
-        });
-        return new HttpParams({ fromObject: newParams });
-    }
-    appliedUrl(url, params) {
-        if (!params)
-            return url;
-        url += ~url.indexOf('?') ? '' : '?';
-        const arr = [];
-        Object.keys(params).forEach(key => {
-            arr.push(`${key}=${params[key]}`);
-        });
-        return url + arr.join('&');
-    }
-    setCount(count) {
-        Promise.resolve(null).then(() => (this.lc = count <= 0 ? 0 : count));
-    }
-    push() {
-        this.setCount(++this.lc);
-    }
-    pop() {
-        this.setCount(--this.lc);
-    }
-    /**
-     * Clean loading count
-     *
-     * 清空加载中
-     */
-    cleanLoading() {
-        this.setCount(0);
-    }
-    get(url, params, options = {}) {
-        return this.request('GET', url, {
-            params,
-            ...options
-        });
-    }
-    post(url, body, params, options = {}) {
-        return this.request('POST', url, {
-            body,
-            params,
-            ...options
-        });
-    }
-    delete(url, params, options = {}) {
-        return this.request('DELETE', url, {
-            params,
-            ...options
-        });
-    }
-    // #endregion
-    // #region jsonp
-    /**
-     * **JSONP Request**
-     *
-     * @param callbackParam CALLBACK值，默认：JSONP_CALLBACK
-     */
-    jsonp(url, params, callbackParam = 'JSONP_CALLBACK') {
-        return of(null).pipe(
-        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
-        delay(0), tap(() => this.push()), switchMap(() => this.http.jsonp(this.appliedUrl(url, params), callbackParam)), finalize(() => this.pop()));
-    }
-    patch(url, body, params, options = {}) {
-        return this.request('PATCH', url, {
-            body,
-            params,
-            ...options
-        });
-    }
-    put(url, body, params, options = {}) {
-        return this.request('PUT', url, {
-            body,
-            params,
-            ...options
-        });
-    }
-    form(url, body, params, options = {}) {
-        return this.request('POST', url, {
-            body,
-            params,
-            ...options,
-            headers: {
-                'content-type': `application/x-www-form-urlencoded`
-            }
-        });
-    }
-    request(method, url, options = {}) {
-        if (options.params)
-            options.params = this.parseParams(options.params);
-        return of(null).pipe(
-        // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
-        delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, deps: [{ token: i1$7.HttpClient }, { token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, providedIn: 'root' }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: _HttpClient, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$7.HttpClient }, { type: i1.AlainConfigService }] });
-
-/**
- * Every http decorator must be based on `BaseAPI`, Like this:
- * ```ts
- * \@Injectable()
- * class DataService extends BaseApi {}
- * ```
- */
-class BaseApi {
-    constructor(injector) {
-        this.injector = injector;
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi, deps: [{ token: Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseApi, decorators: [{
-            type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
-                    type: Inject,
-                    args: [Injector]
-                }] }] });
-const paramKey = `__api_params`;
-function setParam(target, key = paramKey) {
-    let params = target[key];
-    if (typeof params === 'undefined') {
-        params = target[key] = {};
-    }
-    return params;
-}
-/**
- * 默认基准URL
- * - 有效范围：类
- */
-function BaseUrl(url) {
-    return function (target) {
-        const params = setParam(target.prototype);
-        params.baseUrl = url;
-        return target;
-    };
-}
-/**
- * 默认 `headers`
- * - 有效范围：类
- */
-function BaseHeaders(headers) {
-    return function (target) {
-        const params = setParam(target.prototype);
-        params.baseHeaders = headers;
-        return target;
-    };
-}
-function makeParam(paramName) {
-    return function (key) {
-        return function (target, propertyKey, index) {
-            const params = setParam(setParam(target), propertyKey);
-            let tParams = params[paramName];
-            if (typeof tParams === 'undefined') {
-                tParams = params[paramName] = [];
-            }
-            tParams.push({
-                key,
-                index
-            });
-        };
-    };
-}
-/**
- * URL路由参数
- * - 有效范围：方法参数
- */
-const Path = makeParam('path');
-/**
- * URL 参数 `QueryString`
- * - 有效范围：方法参数
- */
-const Query = makeParam('query');
-/**
- * 参数 `Body`
- * - 有效范围：方法参数
- */
-const Body = makeParam('body')();
-/**
- * 参数 `headers`
- * - 有效范围：方法参数
- * - 合并 `BaseHeaders`
- */
-const Headers = makeParam('headers');
-/**
- * Request Payload
- * - Supported body (like`POST`, `PUT`) as a body data, equivalent to `@Body`
- * - Not supported body (like `GET`, `DELETE` etc) as a `QueryString`
- */
-const Payload = makeParam('payload')();
-function getValidArgs(data, key, args) {
-    if (!data[key] || !Array.isArray(data[key]) || data[key].length <= 0) {
-        return undefined;
-    }
-    return args[data[key][0].index];
-}
-function genBody(data, payload) {
-    if (Array.isArray(data) || Array.isArray(payload)) {
-        return Object.assign([], data, payload);
-    }
-    return { ...data, ...payload };
-}
-function makeMethod(method) {
-    return function (url = '', options) {
-        return (_target, targetKey, descriptor) => {
-            descriptor.value = function (...args) {
-                options = options || {};
-                const injector = this.injector;
-                const http = injector.get(_HttpClient, null);
-                if (http == null) {
-                    throw new TypeError(`Not found '_HttpClient', You can import 'AlainThemeModule' && 'HttpClientModule' in your root module.`);
-                }
-                const baseData = setParam(this);
-                const data = setParam(baseData, targetKey);
-                let requestUrl = url || '';
-                requestUrl = [baseData.baseUrl || '', requestUrl.startsWith('/') ? requestUrl.substring(1) : requestUrl].join('/');
-                // fix last split
-                if (requestUrl.length > 1 && requestUrl.endsWith('/')) {
-                    requestUrl = requestUrl.substring(0, requestUrl.length - 1);
-                }
-                if (options.acl) {
-                    const aclSrv = injector.get(ACLService, null);
-                    if (aclSrv && !aclSrv.can(options.acl)) {
-                        return throwError(() => ({
-                            url: requestUrl,
-                            status: 401,
-                            statusText: `From Http Decorator`
-                        }));
-                    }
-                    delete options.acl;
-                }
-                requestUrl = requestUrl.replace(/::/g, '^^');
-                (data.path || [])
-                    .filter(w => typeof args[w.index] !== 'undefined')
-                    .forEach((i) => {
-                    requestUrl = requestUrl.replace(new RegExp(`:${i.key}`, 'g'), encodeURIComponent(args[i.index]));
-                });
-                requestUrl = requestUrl.replace(/\^\^/g, `:`);
-                const params = (data.query || []).reduce((p, i) => {
-                    p[i.key] = args[i.index];
-                    return p;
-                }, {});
-                const headers = (data.headers || []).reduce((p, i) => {
-                    p[i.key] = args[i.index];
-                    return p;
-                }, {});
-                if (method === 'FORM') {
-                    headers['content-type'] = 'application/x-www-form-urlencoded';
-                }
-                const payload = getValidArgs(data, 'payload', args);
-                const supportedBody = ['POST', 'PUT', 'PATCH', 'DELETE'].some(v => v === method);
-                return http.request(method, requestUrl, {
-                    body: supportedBody ? genBody(getValidArgs(data, 'body', args), payload) : null,
-                    params: !supportedBody ? { ...params, ...payload } : params,
-                    headers: { ...baseData.baseHeaders, ...headers },
-                    ...options
-                });
-            };
-            return descriptor;
-        };
-    };
-}
-/**
- * `OPTIONS` 请求
- * - 有效范围：方法
- */
-const OPTIONS = makeMethod('OPTIONS');
-/**
- * `GET` 请求
- * - 有效范围：方法
- */
-const GET = makeMethod('GET');
-/**
- * `POST` 请求
- * - 有效范围：方法
- */
-const POST = makeMethod('POST');
-/**
- * `DELETE` 请求
- * - 有效范围：方法
- */
-const DELETE = makeMethod('DELETE');
-/**
- * `PUT` 请求
- * - 有效范围：方法
- */
-const PUT = makeMethod('PUT');
-/**
- * `HEAD` 请求
- * - 有效范围：方法
- */
-const HEAD = makeMethod('HEAD');
-/**
- * `PATCH` 请求
- * - 有效范围：方法
- */
-const PATCH = makeMethod('PATCH');
-/**
- * `JSONP` 请求
- * - 有效范围：方法
- */
-const JSONP = makeMethod('JSONP');
-/**
- * `FORM` 请求
- * - 有效范围：方法
- */
-const FORM = makeMethod('FORM');
-
-/**
- * Whether to customize the handling of exception messages
- *
- * 是否自定义处理异常消息
- *
- * @example
- * this.http.post(`login`, {
- *  name: 'cipchk', pwd: '123456'
- * }, {
- *  context: new HttpContext()
- *              .set(ALLOW_ANONYMOUS, true)
- *              .set(CUSTOM_ERROR, true)
- * }).subscribe({
- *  next: console.log,
- *  error: console.log
- * });
- */
-const CUSTOM_ERROR = new HttpContextToken(() => false);
-/**
- * Whether to ignore API prefixes
- *
- * 是否忽略API前缀
- *
- * @example
- * // When environment.api.baseUrl set '/api'
- *
- * this.http.get(`/path`) // Request Url: /api/path
- * this.http.get(`/path`, { context: new HttpContext().set(IGNORE_BASE_URL, true) }) // Request Url: /path
- */
-const IGNORE_BASE_URL = new HttpContextToken(() => false);
-/**
- * Whether to return raw response body
- *
- * 是否原样返回请求Body
- */
-const RAW_BODY = new HttpContextToken(() => false);
-
 class DatePipe {
     constructor(nzI18n) {
         this.nzI18n = nzI18n;
@@ -2725,6 +2735,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
         }], ctorParameters: () => [{ type: i1$4.DomSanitizer }] });
 
 /* eslint-disable import/order */
+// #region import
+const HELPERS = [ModalHelper, DrawerHelper];
 const PIPES = [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe];
 const ICONS = [BellOutline, DeleteOutline, PlusOutline, InboxOutline];
 // #endregion
@@ -2732,36 +2744,39 @@ class AlainThemeModule {
     constructor(iconSrv) {
         iconSrv.addIcon(...ICONS);
     }
+    static forRoot() {
+        return {
+            ngModule: AlainThemeModule,
+            providers: HELPERS
+        };
+    }
+    static forChild() {
+        return {
+            ngModule: AlainThemeModule,
+            providers: HELPERS
+        };
+    }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1$9.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], exports: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, providers: [
-            {
-                provide: ALAIN_SETTING_KEYS,
-                useValue: {
-                    layout: 'layout',
-                    user: 'user',
-                    app: 'app'
-                }
-            }
-        ], imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DelonLocaleModule] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, providers: [ALAIN_SETTING_DEFAULT], imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DelonLocaleModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AlainThemeModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, ...PIPES],
-                    providers: [
-                        {
-                            provide: ALAIN_SETTING_KEYS,
-                            useValue: {
-                                layout: 'layout',
-                                user: 'user',
-                                app: 'app'
-                            }
-                        }
-                    ],
+                    providers: [ALAIN_SETTING_DEFAULT],
                     exports: [...PIPES, DelonLocaleModule]
                 }]
         }], ctorParameters: () => [{ type: i1$9.NzIconService }] });
+
+function provideAlain() {
+    return makeEnvironmentProviders([
+        { provide: DELON_LOCALE, useValue: zhCN },
+        DELON_LOCALE_SERVICE_PROVIDER,
+        importProvidersFrom([NzDrawerModule, NzModalModule]),
+        ALAIN_SETTING_DEFAULT
+    ]);
+}
 
 /**
  * Optional pre-loading module, when it's necessary to load the resource at the first page load for some lazy routes, [example](https://github.com/ng-alain/ng-alain/blob/master/src/app/routes/routes-routing.module.ts).
@@ -2789,5 +2804,5 @@ const VERSION = new Version('16.4.2');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, slSI as sl_SI, stepPreloader, trTR as tr_TR, yn, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, provideAlain, slSI as sl_SI, stepPreloader, trTR as tr_TR, yn, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map

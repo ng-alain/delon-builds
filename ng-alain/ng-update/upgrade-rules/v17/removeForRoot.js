@@ -20,8 +20,11 @@ function removeAlainThemeForRoot(tree, name, sourceRoot, context) {
     if (!tree.exists(modulePath))
         return;
     const forRoot = 'AlainThemeModule.forRoot()';
-    const content = tree.readText(modulePath);
-    tree.overwrite(modulePath, content.replace(/AlainThemeModule\.forRoot\(\),?/g, ''));
+    const content = tree
+        .readText(modulePath)
+        .replace(/AlainThemeModule\.forRoot\(\),?/g, '')
+        .replace('alainProvides = [', 'alainProvides = [ provideAlain(), ');
+    tree.overwrite(modulePath, content);
     (0, utils_1.logInfo)(context, `Remove ${forRoot} in ${name} project`);
 }
 function removeAlainThemeForChild(tree, name, sourceRoot, context) {
