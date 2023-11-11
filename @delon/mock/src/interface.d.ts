@@ -1,7 +1,7 @@
-import type { HttpRequest } from '@angular/common/http';
+import { type HttpRequest } from '@angular/common/http';
 import type { Observable } from 'rxjs';
 export type MockCallback = any | Observable<any> | Promise<any>;
-export declare class MockOptions {
+export interface MockOptions {
     data?: any;
 }
 export interface MockCachedRule {

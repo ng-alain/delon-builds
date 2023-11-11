@@ -5,7 +5,7 @@ import * as i0 from "@angular/core";
 export declare class MockService implements OnDestroy {
     private cached;
     readonly config: AlainMockConfig;
-    constructor(cogSrv: AlainConfigService, options: MockOptions);
+    constructor(cogSrv: AlainConfigService, options?: MockOptions);
     /**
      * Reset request data
      *
@@ -20,6 +20,6 @@ export declare class MockService implements OnDestroy {
     clearCache(): void;
     get rules(): MockCachedRule[];
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MockService, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MockService, [null, { optional: true; }]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MockService>;
 }

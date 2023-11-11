@@ -1,12 +1,9 @@
 import * as i0 from '@angular/core';
-import { Injectable, NgModule } from '@angular/core';
-import * as i1 from '@delon/util/config';
+import { Injectable, InjectionToken, makeEnvironmentProviders, Optional, Inject } from '@angular/core';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { of, isObservable, from, map, throwError, switchMap, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
-
-class MockOptions {
-}
+import * as i1 from '@delon/util/config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class MockStatusError {
@@ -22,6 +19,119 @@ const MOCK_DEFULAT_CONFIG = {
     log: true,
     executeOtherInterceptors: true
 };
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+class HttpMockInterceptorHandler {
+    constructor(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
+    }
+    handle(req) {
+        return this.interceptor.intercept(req, this.next);
+    }
+}
+class MockInterceptor {
+    constructor(injector) {
+        this.injector = injector;
+    }
+    intercept(req, next) {
+        const src = this.injector.get(MockService);
+        const config = src.config;
+        const rule = src.getRule(req.method, req.url.split('?')[0]);
+        if (!rule && !config.force) {
+            return next.handle(req);
+        }
+        let res$;
+        switch (typeof rule.callback) {
+            case 'function':
+                const mockRequest = {
+                    original: req,
+                    body: req.body,
+                    queryString: {},
+                    headers: {},
+                    params: rule.params
+                };
+                const urlParams = req.url.split('?');
+                if (urlParams.length > 1) {
+                    urlParams[1].split('&').forEach(item => {
+                        const itemArr = item.split('=');
+                        const key = itemArr[0];
+                        const value = itemArr[1];
+                        // is array
+                        if (Object.keys(mockRequest.queryString).includes(key)) {
+                            if (!Array.isArray(mockRequest.queryString[key])) {
+                                mockRequest.queryString[key] = [mockRequest.queryString[key]];
+                            }
+                            mockRequest.queryString[key].push(value);
+                        }
+                        else {
+                            mockRequest.queryString[key] = value;
+                        }
+                    });
+                }
+                req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
+                req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
+                try {
+                    const fnRes = rule.callback.call(this, mockRequest);
+                    res$ = isObservable(fnRes) ? fnRes : from(Promise.resolve(fnRes));
+                }
+                catch (e) {
+                    res$ = of(new HttpErrorResponse({
+                        url: req.url,
+                        headers: req.headers,
+                        status: e instanceof MockStatusError ? e.status : 400,
+                        statusText: e.statusText || 'Unknown Error',
+                        error: e.error
+                    }));
+                }
+                break;
+            default:
+                res$ = of(rule.callback);
+                break;
+        }
+        res$ = res$.pipe(map(res => res instanceof HttpResponseBase
+            ? res
+            : new HttpResponse({
+                status: 200,
+                url: req.url,
+                body: deepCopy(res)
+            })), map((res) => {
+            const anyRes = res;
+            if (anyRes.body) {
+                anyRes.body = deepCopy(anyRes.body);
+            }
+            if (config.log) {
+                console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
+                console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
+            }
+            return res;
+        }), switchMap((res) => (res instanceof HttpErrorResponse ? throwError(() => res) : of(res))));
+        if (config.executeOtherInterceptors) {
+            const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+            const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+            if (lastInterceptors.length > 0) {
+                const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor), {
+                    handle: () => res$
+                });
+                return chain.handle(req).pipe(delay$1(config.delay));
+            }
+        }
+        return res$.pipe(delay$1(config.delay));
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, decorators: [{
+            type: Injectable
+        }], ctorParameters: () => [{ type: i0.Injector }] });
+
+const DELON_MOCK_CONFIG = new InjectionToken('alain-mock-config');
+function provideDelonMockConfig(config) {
+    return makeEnvironmentProviders([
+        { provide: DELON_MOCK_CONFIG, useValue: config },
+        { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }
+    ]);
+}
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class MockService {
@@ -151,143 +261,18 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: MockOptions }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: MockOptions }] });
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-class HttpMockInterceptorHandler {
-    constructor(next, interceptor) {
-        this.next = next;
-        this.interceptor = interceptor;
-    }
-    handle(req) {
-        return this.interceptor.intercept(req, this.next);
-    }
-}
-class MockInterceptor {
-    constructor(injector) {
-        this.injector = injector;
-    }
-    intercept(req, next) {
-        const src = this.injector.get(MockService);
-        const config = src.config;
-        const rule = src.getRule(req.method, req.url.split('?')[0]);
-        if (!rule && !config.force) {
-            return next.handle(req);
-        }
-        let res$;
-        switch (typeof rule.callback) {
-            case 'function':
-                const mockRequest = {
-                    original: req,
-                    body: req.body,
-                    queryString: {},
-                    headers: {},
-                    params: rule.params
-                };
-                const urlParams = req.url.split('?');
-                if (urlParams.length > 1) {
-                    urlParams[1].split('&').forEach(item => {
-                        const itemArr = item.split('=');
-                        const key = itemArr[0];
-                        const value = itemArr[1];
-                        // is array
-                        if (Object.keys(mockRequest.queryString).includes(key)) {
-                            if (!Array.isArray(mockRequest.queryString[key])) {
-                                mockRequest.queryString[key] = [mockRequest.queryString[key]];
-                            }
-                            mockRequest.queryString[key].push(value);
-                        }
-                        else {
-                            mockRequest.queryString[key] = value;
-                        }
-                    });
-                }
-                req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
-                req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
-                try {
-                    const fnRes = rule.callback.call(this, mockRequest);
-                    res$ = isObservable(fnRes) ? fnRes : from(Promise.resolve(fnRes));
-                }
-                catch (e) {
-                    res$ = of(new HttpErrorResponse({
-                        url: req.url,
-                        headers: req.headers,
-                        status: e instanceof MockStatusError ? e.status : 400,
-                        statusText: e.statusText || 'Unknown Error',
-                        error: e.error
-                    }));
-                }
-                break;
-            default:
-                res$ = of(rule.callback);
-                break;
-        }
-        res$ = res$.pipe(map(res => res instanceof HttpResponseBase
-            ? res
-            : new HttpResponse({
-                status: 200,
-                url: req.url,
-                body: deepCopy(res)
-            })), map((res) => {
-            const anyRes = res;
-            if (anyRes.body) {
-                anyRes.body = deepCopy(anyRes.body);
-            }
-            if (config.log) {
-                console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
-                console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
-            }
-            return res;
-        }), switchMap((res) => (res instanceof HttpErrorResponse ? throwError(() => res) : of(res))));
-        if (config.executeOtherInterceptors) {
-            const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
-            const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
-            if (lastInterceptors.length > 0) {
-                const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor), {
-                    handle: () => res$
-                });
-                return chain.handle(req).pipe(delay$1(config.delay));
-            }
-        }
-        return res$.pipe(delay$1(config.delay));
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, deps: [{ token: i0.Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: MockInterceptor, decorators: [{
-            type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector }] });
-
-class DelonMockModule {
-    static forRoot(options) {
-        return {
-            ngModule: DelonMockModule,
-            providers: [
-                { provide: MockOptions, useValue: options },
-                { provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }
-            ]
-        };
-    }
-    static forChild() {
-        return {
-            ngModule: DelonMockModule,
-            providers: [{ provide: HTTP_INTERCEPTORS, useClass: MockInterceptor, multi: true }]
-        };
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonMockModule, decorators: [{
-            type: NgModule,
-            args: [{}]
-        }] });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
+                    type: Optional
+                }, {
+                    type: Inject,
+                    args: [DELON_MOCK_CONFIG]
+                }] }] });
 
 /**
  * Used to simulate delays
@@ -306,5 +291,5 @@ function r(min = 1, max = 100) {
  * Generated bundle index. Do not edit.
  */
 
-export { DelonMockModule, MockInterceptor, MockOptions, MockService, MockStatusError, delay, r };
+export { DELON_MOCK_CONFIG, MockInterceptor, MockService, MockStatusError, delay, provideDelonMockConfig, r };
 //# sourceMappingURL=mock.mjs.map
