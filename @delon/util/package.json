@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "16.4.2-2ad3d7394",
+  "version": "16.4.2-c63005954",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -53,17 +53,17 @@
       "esm": "./esm2022/config/config.mjs",
       "default": "./fesm2022/config.mjs"
     },
-    "./decorator": {
-      "types": "./decorator/index.d.ts",
-      "esm2022": "./esm2022/decorator/decorator.mjs",
-      "esm": "./esm2022/decorator/decorator.mjs",
-      "default": "./fesm2022/decorator.mjs"
-    },
     "./date-time": {
       "types": "./date-time/index.d.ts",
       "esm2022": "./esm2022/date-time/date-time.mjs",
       "esm": "./esm2022/date-time/date-time.mjs",
       "default": "./fesm2022/date-time.mjs"
+    },
+    "./decorator": {
+      "types": "./decorator/index.d.ts",
+      "esm2022": "./esm2022/decorator/decorator.mjs",
+      "esm": "./esm2022/decorator/decorator.mjs",
+      "default": "./fesm2022/decorator.mjs"
     },
     "./form": {
       "types": "./form/index.d.ts",
