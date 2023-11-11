@@ -20,7 +20,10 @@ function runAlain(tree, name, sourceRoot, context) {
     if (!tree.exists(filePath))
         return;
     const text = '{ provide: ALAIN_CONFIG, useValue: alainConfig }';
-    const content = tree.readText(filePath).replace(text, 'provideAlain(alainConfig)');
+    const content = tree
+        .readText(filePath)
+        .replace(text, 'provideAlain(alainConfig)')
+        .replace('AlainThemeModule', 'provideAlain');
     tree.overwrite(filePath, content);
     (0, utils_1.logInfo)(context, `  Use provideAlain instead of ALAIN_CONFIG in ${name} project`);
 }
@@ -43,15 +46,22 @@ function delonMock(tree, name, sourceRoot, context) {
         content = content.replace(text, '');
     content = content
         .replace('DelonMockModule.forRoot({ data: MOCKDATA })', '')
-        .replace('modules: [', 'providers: [provideDelonMockConfig({ data: MOCKDATA })],\nmodules: [')
-        .replace('DelonMockModule', 'provideDelonMockConfig');
+        .replace('modules: [', 'providers: [provideDelonMockConfig({ data: MOCKDATA })],\ninterceptorFns: [mockInterceptor],\nmodules: [')
+        .replace('DelonMockModule', 'mockInterceptor, provideDelonMockConfig');
     tree.overwrite(filePath, content);
+    // remove HttpClientModule
+    const appModuleFile = `${sourceRoot}/app/app.module.ts`;
+    if (tree.exists(appModuleFile)) {
+        tree.overwrite(appModuleFile, tree
+            .readText(appModuleFile)
+            .replace(`import { HttpClientModule } from '@angular/common/http';`, '')
+            .replace(/HttpClientModule,?/g, ''));
+    }
     const globalFile = `${sourceRoot}/app/global-config.module.ts`;
     if (tree.exists(globalFile)) {
-        const content = tree
+        tree.overwrite(globalFile, tree
             .readText(globalFile)
-            .replace(', ...zorroProvides', ', ...zorroProvides, ...(environment.providers || [])');
-        tree.overwrite(globalFile, content);
+            .replace(', ...zorroProvides', ', ...zorroProvides, ...(environment.providers || []), provideHttpClient(withInterceptors(environment.interceptorFns || []))'));
     }
     (0, utils_1.logInfo)(context, `  Use provideDelonMockConfig instead of DelonMockModule in ${name} project`);
 }

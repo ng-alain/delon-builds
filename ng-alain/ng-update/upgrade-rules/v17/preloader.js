@@ -40,7 +40,7 @@ function run(tree, name, sourceRoot, context) {
     if (!tree.exists(mainPath))
         return;
     let mainContent = tree.readText(mainPath);
-    ['preloaderFinished();'].forEach(item => {
+    [`import { preloaderFinished } from '@delon/theme';`, 'preloaderFinished();'].forEach(item => {
         if (mainContent.includes(item))
             mainContent = mainContent.replace(item, '');
     });
