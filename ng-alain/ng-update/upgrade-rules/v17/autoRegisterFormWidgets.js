@@ -29,13 +29,18 @@ function autoRegisterFormWidgetsRun(tree, name, sourceRoot, context) {
         { symbolName: 'TreeSelectWidgetModule', fileName: '@delon/form/widgets/tree-select' },
         { symbolName: 'UploadWidgetModule', fileName: '@delon/form/widgets/upload' }
     ];
-    const source = (0, utils_1.getSourceFile)(tree, modulePath);
-    const changes = [];
-    for (const item of list) {
-        changes.push((0, ast_utils_1.insertImport)(source, modulePath, item.symbolName, item.fileName));
-        changes.push(...(0, ast_utils_1.addSymbolToNgModuleMetadata)(source, modulePath, 'imports', item.symbolName));
+    try {
+        const source = (0, utils_1.getSourceFile)(tree, modulePath);
+        const changes = [];
+        for (const item of list) {
+            changes.push((0, ast_utils_1.insertImport)(source, modulePath, item.symbolName, item.fileName));
+            changes.push(...(0, ast_utils_1.addSymbolToNgModuleMetadata)(source, modulePath, 'imports', item.symbolName));
+        }
+        (0, utils_1.applyChanges)(tree, modulePath, changes);
+        (0, utils_1.logWarn)(context, `[@delon/form] Register all widgets in ${name} project, you can reduce package size by removing unnecessary parts in ${modulePath}`);
     }
-    (0, utils_1.applyChanges)(tree, modulePath, changes);
-    (0, utils_1.logWarn)(context, `[@delon/form] Register all widgets in ${name} project, you can reduce package size by removing unnecessary parts`);
+    catch (ex) {
+        (0, utils_1.logEx)(context, `Import all @delon/form/widgets/* errors, need to manually import the required modules. ERROR: ${ex.message}`);
+    }
 }
 //# sourceMappingURL=autoRegisterFormWidgets.js.map

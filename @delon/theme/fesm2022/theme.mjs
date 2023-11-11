@@ -3,7 +3,7 @@ import * as i0 from '@angular/core';
 import { inject, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
-import { AlainConfigService } from '@delon/util/config';
+import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
 import * as i1$1 from '@delon/acl';
 import { ACLService } from '@delon/acl';
 import * as i1$2 from '@angular/cdk/platform';
@@ -2769,8 +2769,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }], ctorParameters: () => [{ type: i1$9.NzIconService }] });
 
-function provideAlain() {
+function provideAlain(config) {
     return makeEnvironmentProviders([
+        { provide: ALAIN_CONFIG, useValue: config },
         { provide: DELON_LOCALE, useValue: zhCN },
         DELON_LOCALE_SERVICE_PROVIDER,
         importProvidersFrom([NzDrawerModule, NzModalModule]),

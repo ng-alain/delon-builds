@@ -1,2 +1,3 @@
 import { EnvironmentProviders } from '@angular/core';
-export declare function provideAlain(): EnvironmentProviders;
+import { AlainConfig } from '@delon/util/config';
+export declare function provideAlain(config?: AlainConfig): EnvironmentProviders;

@@ -20,9 +20,9 @@ function runAlain(tree, name, sourceRoot, context) {
     if (!tree.exists(filePath))
         return;
     const text = '{ provide: ALAIN_CONFIG, useValue: alainConfig }';
-    const content = tree.readText(filePath).replace(text, 'provideAlainConfig(alainConfig)');
+    const content = tree.readText(filePath).replace(text, 'provideAlain(alainConfig)');
     tree.overwrite(filePath, content);
-    (0, utils_1.logInfo)(context, `  Use provideAlainConfig instead of ALAIN_CONFIG in ${name} project`);
+    (0, utils_1.logInfo)(context, `  Use provideAlain instead of ALAIN_CONFIG in ${name} project`);
 }
 function runZorro(tree, name, sourceRoot, context) {
     const filePath = `${sourceRoot}/app/global-config.module.ts`;

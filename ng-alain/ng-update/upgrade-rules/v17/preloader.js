@@ -62,6 +62,6 @@ function run(tree, name, sourceRoot, context) {
     appContentLines.splice(addIndex + 1, 0, 'private donePreloader = stepPreloader();');
     appContentLines.splice(callDoneIndex + 2, 0, 'this.donePreloader();');
     tree.overwrite(appPath, appContentLines.join('\n'));
-    (0, utils_1.logWarn)(context, `Upgrade preloader in ${name} project`);
+    (0, utils_1.logInfo)(context, `Upgrade preloader in ${name} project`);
 }
 //# sourceMappingURL=preloader.js.map

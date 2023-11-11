@@ -18,11 +18,6 @@ const removeForRoot_1 = require("./removeForRoot");
 const replaceProvideConfig_1 = require("./replaceProvideConfig");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
-function qr() {
-    return (_, context) => {
-        (0, utils_1.logWarn)(context, `[qr] Will be removed in 18.0.0, please use [nz-qrcode](https://ng.ant.design/components/qr-code) instead.`);
-    };
-}
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -33,14 +28,7 @@ function v17Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, versions_1.UpgradeMainVersions)(tree);
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
-        return (0, schematics_1.chain)([
-            (0, removeForRoot_1.removeForRoot)(),
-            (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(),
-            (0, replaceProvideConfig_1.replaceProvideConfig)(),
-            (0, preloader_1.updatePreloader)(),
-            qr(),
-            finished()
-        ]);
+        return (0, schematics_1.chain)([(0, removeForRoot_1.removeForRoot)(), (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(), (0, replaceProvideConfig_1.replaceProvideConfig)(), (0, preloader_1.updatePreloader)(), finished()]);
     });
 }
 exports.v17Rule = v17Rule;
