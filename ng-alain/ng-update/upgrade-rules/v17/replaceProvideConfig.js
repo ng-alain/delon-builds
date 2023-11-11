@@ -10,6 +10,7 @@ function replaceProvideConfig() {
         for (const name of projectNames) {
             runAlain(tree, name, angularJson.projects[name].sourceRoot, context);
             runZorro(tree, name, angularJson.projects[name].sourceRoot, context);
+            delonMock(tree, name, angularJson.projects[name].sourceRoot, context);
         }
     };
 }
@@ -31,5 +32,20 @@ function runZorro(tree, name, sourceRoot, context) {
     const content = tree.readText(filePath).replace(text, 'provideNzConfig(ngZorroConfig)');
     tree.overwrite(filePath, content);
     (0, utils_1.logInfo)(context, `  Use provideNzConfig instead of NzConfig in ${name} project`);
+}
+function delonMock(tree, name, sourceRoot, context) {
+    const filePath = `${sourceRoot}/environments/environment.ts`;
+    if (!tree.exists(filePath))
+        return;
+    const text = 'DelonMockModule.forRoot({ data: MOCKDATA })';
+    let content = tree.readText(filePath);
+    if (content.includes('text'))
+        content = content.replace(text, '');
+    content = content
+        .replace('DelonMockModule.forRoot({ data: MOCKDATA })', '')
+        .replace('modules: [', 'providers: [provideDelonMockConfig({ data: MOCKDATA })],\nmodules: [')
+        .replace('DelonMockModule', 'provideDelonMockConfig');
+    tree.overwrite(filePath, content);
+    (0, utils_1.logInfo)(context, `  Use provideDelonMockConfig instead of DelonMockModule in ${name} project`);
 }
 //# sourceMappingURL=replaceProvideConfig.js.map
