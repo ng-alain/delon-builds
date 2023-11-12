@@ -189,6 +189,6 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, [null, null, { optional: true; }, { optional: true; }, { optional: true; }]>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
 }
