@@ -9,7 +9,9 @@ export declare function withAuthJWT(): Provider[];
  *
  * ```
  * // app.config.ts
- * withAuthSimple(),
+ * providers: [
+ *  withAuthJWT(),
+ * ]
  * ```
  */
 export declare class JWTInterceptor extends BaseInterceptor {

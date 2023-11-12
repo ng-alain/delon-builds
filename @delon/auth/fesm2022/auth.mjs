@@ -527,7 +527,9 @@ function withAuthJWT() {
  *
  * ```
  * // app.config.ts
- * withAuthSimple(),
+ * providers: [
+ *  withAuthJWT(),
+ * ]
  * ```
  */
 class JWTInterceptor extends BaseInterceptor {
@@ -622,7 +624,9 @@ function withAuthSimple() {
  *
  * ```
  * // app.config.ts
- * withAuthSimple(),
+ * providers: [
+ *  withAuthSimple(),
+ * ]
  * ```
  */
 class SimpleInterceptor extends BaseInterceptor {

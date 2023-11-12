@@ -9,7 +9,9 @@ export declare function withAuthSimple(): Provider[];
  *
  * ```
  * // app.config.ts
- * withAuthSimple(),
+ * providers: [
+ *  withAuthSimple(),
+ * ]
  * ```
  */
 export declare class SimpleInterceptor extends BaseInterceptor {
