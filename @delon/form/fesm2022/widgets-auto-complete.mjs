@@ -81,7 +81,10 @@ class AutoCompleteWidget extends ControlUIWidget {
         }
     }
     addEmailSuffix(value) {
-        return of(value?.indexOf('@') !== -1 ? this.fixData.map(domain => `${value}@${domain.label}`) : []);
+        const res = !value || typeof value !== 'string' || value?.indexOf('@') !== -1
+            ? []
+            : this.fixData.map(domain => `${value}@${domain.label}`);
+        return of(res);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: AutoCompleteWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.2", type: AutoCompleteWidget, isStandalone: true, selector: "sf-autocomplete", viewQueries: [{ propertyName: "ngModel", first: true, predicate: NgModel, descendants: true }], usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
@@ -99,7 +102,7 @@ class AutoCompleteWidget extends ControlUIWidget {
       [disabled]="disabled"
       [attr.disabled]="disabled"
       [nzSize]="ui.size!"
-      [(ngModel)]="typing"
+      [ngModel]="typing"
       (ngModelChange)="_setValue($event)"
       [attr.maxLength]="schema.maxLength || null"
       [attr.placeholder]="ui.placeholder"
@@ -140,7 +143,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       [disabled]="disabled"
       [attr.disabled]="disabled"
       [nzSize]="ui.size!"
-      [(ngModel)]="typing"
+      [ngModel]="typing"
       (ngModelChange)="_setValue($event)"
       [attr.maxLength]="schema.maxLength || null"
       [attr.placeholder]="ui.placeholder"
