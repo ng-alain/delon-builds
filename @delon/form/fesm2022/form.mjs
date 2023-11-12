@@ -1,6 +1,6 @@
 import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { NgZone, Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, ElementRef, NgModule } from '@angular/core';
+import { NgZone, Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, ElementRef, NgModule, ENVIRONMENT_INITIALIZER, inject, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, filter, merge, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
@@ -2727,8 +2727,33 @@ const ERRORSDEFAULT = {
 };
 
 /**
+ * Just only using Standalone widgets
+ */
+function provideSFConfig(options) {
+    const provides = [
+        {
+            provide: SchemaValidatorFactory,
+            useClass: AjvSchemaValidatorFactory,
+            deps: [AlainConfigService, NgZone]
+        },
+        { provide: WidgetRegistry, useClass: NzWidgetRegistry }
+    ];
+    if (options?.widgets) {
+        provides.push({
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue: () => {
+                const srv = inject(WidgetRegistry);
+                options?.widgets?.forEach(widget => srv.register(widget.KEY, widget.type));
+            }
+        });
+    }
+    return makeEnvironmentProviders(provides);
+}
+
+/**
  * Generated bundle index. Do not edit.
  */
 
-export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, BooleanProperty, BooleanWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, SFComponent, SFFixedDirective, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, StringProperty, StringWidget, TextWidget, TextareaWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, resolveIfSchema, retrieveSchema, toBool, useFactory };
+export { AjvSchemaValidatorFactory, ArrayLayoutWidget, ArrayProperty, ArrayWidget, AtomicProperty, BooleanProperty, BooleanWidget, CheckboxWidget, ControlUIWidget, ControlWidget, CustomWidget, DateWidget, DelonFormModule, ERRORSDEFAULT, FormProperty, FormPropertyFactory, NumberProperty, NumberWidget, NzWidgetRegistry, ObjectLayoutWidget, ObjectProperty, ObjectWidget, PropertyGroup, RadioWidget, SFComponent, SFFixedDirective, SFItemComponent, SFItemWrapComponent, SFTemplateDirective, SF_DEFAULT_CONFIG, SchemaValidatorFactory, SelectWidget, StringProperty, StringWidget, TextWidget, TextareaWidget, Widget, WidgetFactory, WidgetRegistry, di, getCopyEnum, getData, getEnum, isBlank, isDateFns, mergeConfig, orderProperties, provideSFConfig, resolveIfSchema, retrieveSchema, toBool, useFactory };
 //# sourceMappingURL=form.mjs.map
