@@ -1,6 +1,6 @@
-import { DOCUMENT, isPlatformServer, CommonModule } from '@angular/common';
+import { DOCUMENT, isPlatformServer, CommonModule, registerLocaleData } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, PLATFORM_ID, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, LOCALE_ID, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
@@ -22,7 +22,7 @@ import * as i1$7 from '@angular/common/http';
 import { HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDate } from '@delon/util/date-time';
 import * as i1$8 from 'ng-zorro-antd/i18n';
-import { NzI18nModule } from 'ng-zorro-antd/i18n';
+import { NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import * as i1$9 from 'ng-zorro-antd/icon';
@@ -2772,14 +2772,29 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }], ctorParameters: () => [{ type: i1$9.NzIconService }] });
 
-function provideAlain(config) {
-    return makeEnvironmentProviders([
-        { provide: ALAIN_CONFIG, useValue: config },
-        { provide: DELON_LOCALE, useValue: zhCN },
+function provideAlain(options) {
+    const lang = options.defaultLang;
+    if (typeof ngDevMode === 'undefined' || ngDevMode) {
+        if (lang == null) {
+            throw new Error(`Please provide language data for initialization`);
+        }
+    }
+    registerLocaleData(lang.ng, lang.abbr);
+    const provides = [
+        { provide: ALAIN_CONFIG, useValue: options?.config },
+        { provide: LOCALE_ID, useValue: lang.abbr },
+        provideNzI18n(lang.zorro),
+        { provide: NZ_DATE_LOCALE, useValue: lang.date },
+        { provide: DELON_LOCALE, useValue: lang.delon },
         DELON_LOCALE_SERVICE_PROVIDER,
         importProvidersFrom([NzDrawerModule, NzModalModule]),
         ALAIN_SETTING_DEFAULT
-    ]);
+    ];
+    const i18nCls = options?.i18nClass;
+    if (i18nCls) {
+        provides.push({ provide: ALAIN_I18N_TOKEN, useClass: i18nCls, multi: false });
+    }
+    return makeEnvironmentProviders(provides);
 }
 
 /**
