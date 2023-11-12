@@ -1,10 +1,11 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ControlUIWidget } from '@delon/form';
+import { FormsModule } from '@angular/forms';
+import { ControlUIWidget, DelonFormModule } from '@delon/form';
+import { NzColorPickerModule } from 'ng-zorro-antd/color-picker';
 import * as i0 from "@angular/core";
 import * as i1 from "@angular/forms";
-import * as i2 from "@angular/common";
-import * as i3 from "@delon/form";
-import * as i4 from "ng-zorro-antd/color-picker";
+import * as i2 from "@delon/form";
+import * as i3 from "ng-zorro-antd/color-picker";
 export class ColorWidget extends ControlUIWidget {
     static { this.KEY = 'color'; }
     _change(ev) {
@@ -16,7 +17,7 @@ export class ColorWidget extends ControlUIWidget {
             this.ui.formatChange(ev);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: ColorWidget, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.2", type: ColorWidget, isStandalone: true, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -24,9 +25,10 @@ export class ColorWidget extends ControlUIWidget {
     [error]="error"
     [showTitle]="schema.title"
   >
-    <nz-color-block *ngIf="ui.block" [nzColor]="value" [nzSize]="$any(ui.size)" />
+    @if (ui.block) {
+    <nz-color-block [nzColor]="value" [nzSize]="$any(ui.size)" />
+    } @else {
     <nz-color-picker
-      *ngIf="!ui.block"
       [ngModel]="value"
       (ngModelChange)="setValue($event)"
       [nzDisabled]="disabled"
@@ -41,7 +43,8 @@ export class ColorWidget extends ControlUIWidget {
       (nzOnChange)="_change($event)"
       (nzOnFormatChange)="_formatChange($event)"
     />
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i3.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: i4.NzColorPickerComponent, selector: "nz-color-picker", inputs: ["nzFormat", "nzValue", "nzSize", "nzDefaultValue", "nzTrigger", "nzTitle", "nzFlipFlop", "nzShowText", "nzOpen", "nzAllowClear", "nzDisabled"], outputs: ["nzOnChange", "nzOnFormatChange", "nzOnClear", "nzOnOpenChange"], exportAs: ["NzColorPicker"] }, { kind: "component", type: i4.NzColorBlockComponent, selector: "nz-color-block", inputs: ["nzColor", "nzSize"], outputs: ["nzOnClick"], exportAs: ["NzColorBlock"] }], encapsulation: i0.ViewEncapsulation.None }); }
+    }
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i2.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzColorPickerModule }, { kind: "component", type: i3.NzColorPickerComponent, selector: "nz-color-picker", inputs: ["nzFormat", "nzValue", "nzSize", "nzDefaultValue", "nzTrigger", "nzTitle", "nzFlipFlop", "nzShowText", "nzOpen", "nzAllowClear", "nzDisabled"], outputs: ["nzOnChange", "nzOnFormatChange", "nzOnClear", "nzOnOpenChange"], exportAs: ["NzColorPicker"] }, { kind: "component", type: i3.NzColorBlockComponent, selector: "nz-color-block", inputs: ["nzColor", "nzSize"], outputs: ["nzOnClick"], exportAs: ["NzColorBlock"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ColorWidget, decorators: [{
             type: Component,
@@ -55,9 +58,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
     [error]="error"
     [showTitle]="schema.title"
   >
-    <nz-color-block *ngIf="ui.block" [nzColor]="value" [nzSize]="$any(ui.size)" />
+    @if (ui.block) {
+    <nz-color-block [nzColor]="value" [nzSize]="$any(ui.size)" />
+    } @else {
     <nz-color-picker
-      *ngIf="!ui.block"
       [ngModel]="value"
       (ngModelChange)="setValue($event)"
       [nzDisabled]="disabled"
@@ -72,9 +76,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       (nzOnChange)="_change($event)"
       (nzOnFormatChange)="_formatChange($event)"
     />
+    }
   </sf-item-wrap>`,
                     preserveWhitespaces: false,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true,
+                    imports: [FormsModule, DelonFormModule, NzColorPickerModule]
                 }]
         }] });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2lkZ2V0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS93aWRnZXRzL2NvbG9yL3dpZGdldC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDO0FBRTdELE9BQU8sRUFBRSxlQUFlLEVBQUUsTUFBTSxhQUFhLENBQUM7Ozs7OztBQW9DOUMsTUFBTSxPQUFPLFdBQVksU0FBUSxlQUFvQzthQUNuRCxRQUFHLEdBQUcsT0FBTyxBQUFWLENBQVc7SUFFOUIsT0FBTyxDQUFDLEVBQXNDO1FBQzVDLElBQUksSUFBSSxDQUFDLEVBQUUsQ0FBQyxNQUFNO1lBQUUsSUFBSSxDQUFDLEVBQUUsQ0FBQyxNQUFNLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDekMsQ0FBQztJQUVELGFBQWEsQ0FBQyxFQUEyQjtRQUN2QyxJQUFJLElBQUksQ0FBQyxFQUFFLENBQUMsWUFBWTtZQUFFLElBQUksQ0FBQyxFQUFFLENBQUMsWUFBWSxDQUFDLEVBQUUsQ0FBQyxDQUFDO0lBQ3JELENBQUM7OEdBVFUsV0FBVztrR0FBWCxXQUFXLHVFQTdCWjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztrQkF5Qk07OzJGQUlMLFdBQVc7a0JBL0J2QixTQUFTO21CQUFDO29CQUNULFFBQVEsRUFBRSxVQUFVO29CQUNwQixRQUFRLEVBQUU7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBeUJNO29CQUNoQixtQkFBbUIsRUFBRSxLQUFLO29CQUMxQixhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTtpQkFDdEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIFZpZXdFbmNhcHN1bGF0aW9uIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IENvbnRyb2xVSVdpZGdldCB9IGZyb20gJ0BkZWxvbi9mb3JtJztcbmltcG9ydCB0eXBlIHsgTnpDb2xvciwgTnpDb2xvclBpY2tlckZvcm1hdFR5cGUgfSBmcm9tICduZy16b3Jyby1hbnRkL2NvbG9yLXBpY2tlcic7XG5cbmltcG9ydCB0eXBlIHsgU0ZDb2xvcldpZGdldFNjaGVtYSB9IGZyb20gJy4vc2NoZW1hJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnc2YtY29sb3InLFxuICB0ZW1wbGF0ZTogYDxzZi1pdGVtLXdyYXBcbiAgICBbaWRdPVwiaWRcIlxuICAgIFtzY2hlbWFdPVwic2NoZW1hXCJcbiAgICBbdWldPVwidWlcIlxuICAgIFtzaG93RXJyb3JdPVwic2hvd0Vycm9yXCJcbiAgICBbZXJyb3JdPVwiZXJyb3JcIlxuICAgIFtzaG93VGl0bGVdPVwic2NoZW1hLnRpdGxlXCJcbiAgPlxuICAgIDxuei1jb2xvci1ibG9jayAqbmdJZj1cInVpLmJsb2NrXCIgW256Q29sb3JdPVwidmFsdWVcIiBbbnpTaXplXT1cIiRhbnkodWkuc2l6ZSlcIiAvPlxuICAgIDxuei1jb2xvci1waWNrZXJcbiAgICAgICpuZ0lmPVwiIXVpLmJsb2NrXCJcbiAgICAgIFtuZ01vZGVsXT1cInZhbHVlXCJcbiAgICAgIChuZ01vZGVsQ2hhbmdlKT1cInNldFZhbHVlKCRldmVudClcIlxuICAgICAgW256RGlzYWJsZWRdPVwiZGlzYWJsZWRcIlxuICAgICAgW256U2l6ZV09XCIkYW55KHVpLnNpemUpXCJcbiAgICAgIFtuekRlZmF1bHRWYWx1ZV09XCJ1aS5kZWZhdWx0VmFsdWUgPz8gJydcIlxuICAgICAgW256Rm9ybWF0XT1cInVpLmZvcm1hdCA/PyBudWxsXCJcbiAgICAgIFtuelRyaWdnZXJdPVwidWkudHJpZ2dlciA/PyAnY2xpY2snXCJcbiAgICAgIFtuelRpdGxlXT1cInVpLnRpdGxlID8/ICcnXCJcbiAgICAgIFtuekZsaXBGbG9wXT1cIiRhbnkodWkuZmxpcEZsb3ApXCJcbiAgICAgIFtuelNob3dUZXh0XT1cInVpLnNob3dUZXh0XCJcbiAgICAgIFtuekFsbG93Q2xlYXJdPVwidWkuYWxsb3dDbGVhclwiXG4gICAgICAobnpPbkNoYW5nZSk9XCJfY2hhbmdlKCRldmVudClcIlxuICAgICAgKG56T25Gb3JtYXRDaGFuZ2UpPVwiX2Zvcm1hdENoYW5nZSgkZXZlbnQpXCJcbiAgICAvPlxuICA8L3NmLWl0ZW0td3JhcD5gLFxuICBwcmVzZXJ2ZVdoaXRlc3BhY2VzOiBmYWxzZSxcbiAgZW5jYXBzdWxhdGlvbjogVmlld0VuY2Fwc3VsYXRpb24uTm9uZVxufSlcbmV4cG9ydCBjbGFzcyBDb2xvcldpZGdldCBleHRlbmRzIENvbnRyb2xVSVdpZGdldDxTRkNvbG9yV2lkZ2V0U2NoZW1hPiB7XG4gIHN0YXRpYyByZWFkb25seSBLRVkgPSAnY29sb3InO1xuXG4gIF9jaGFuZ2UoZXY6IHsgY29sb3I6IE56Q29sb3I7IGZvcm1hdDogc3RyaW5nIH0pOiB2b2lkIHtcbiAgICBpZiAodGhpcy51aS5jaGFuZ2UpIHRoaXMudWkuY2hhbmdlKGV2KTtcbiAgfVxuXG4gIF9mb3JtYXRDaGFuZ2UoZXY6IE56Q29sb3JQaWNrZXJGb3JtYXRUeXBlKTogdm9pZCB7XG4gICAgaWYgKHRoaXMudWkuZm9ybWF0Q2hhbmdlKSB0aGlzLnVpLmZvcm1hdENoYW5nZShldik7XG4gIH1cbn1cbiJdfQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoid2lkZ2V0LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvZm9ybS93aWRnZXRzL2NvbG9yL3dpZGdldC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFFLGlCQUFpQixFQUFFLE1BQU0sZUFBZSxDQUFDO0FBQzdELE9BQU8sRUFBRSxXQUFXLEVBQUUsTUFBTSxnQkFBZ0IsQ0FBQztBQUU3QyxPQUFPLEVBQUUsZUFBZSxFQUFFLGVBQWUsRUFBRSxNQUFNLGFBQWEsQ0FBQztBQUMvRCxPQUFPLEVBQUUsbUJBQW1CLEVBQThDLE1BQU0sNEJBQTRCLENBQUM7Ozs7O0FBdUM3RyxNQUFNLE9BQU8sV0FBWSxTQUFRLGVBQW9DO2FBQ25ELFFBQUcsR0FBRyxPQUFPLEFBQVYsQ0FBVztJQUU5QixPQUFPLENBQUMsRUFBc0M7UUFDNUMsSUFBSSxJQUFJLENBQUMsRUFBRSxDQUFDLE1BQU07WUFBRSxJQUFJLENBQUMsRUFBRSxDQUFDLE1BQU0sQ0FBQyxFQUFFLENBQUMsQ0FBQztJQUN6QyxDQUFDO0lBRUQsYUFBYSxDQUFDLEVBQTJCO1FBQ3ZDLElBQUksSUFBSSxDQUFDLEVBQUUsQ0FBQyxZQUFZO1lBQUUsSUFBSSxDQUFDLEVBQUUsQ0FBQyxZQUFZLENBQUMsRUFBRSxDQUFDLENBQUM7SUFDckQsQ0FBQzs4R0FUVSxXQUFXO2tHQUFYLFdBQVcsMkZBakNaOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBMkJNLDJEQUlOLFdBQVcsOFZBQUUsZUFBZSx5TEFBRSxtQkFBbUI7OzJGQUVoRCxXQUFXO2tCQW5DdkIsU0FBUzttQkFBQztvQkFDVCxRQUFRLEVBQUUsVUFBVTtvQkFDcEIsUUFBUSxFQUFFOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7a0JBMkJNO29CQUNoQixtQkFBbUIsRUFBRSxLQUFLO29CQUMxQixhQUFhLEVBQUUsaUJBQWlCLENBQUMsSUFBSTtvQkFDckMsVUFBVSxFQUFFLElBQUk7b0JBQ2hCLE9BQU8sRUFBRSxDQUFDLFdBQVcsRUFBRSxlQUFlLEVBQUUsbUJBQW1CLENBQUM7aUJBQzdEIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBWaWV3RW5jYXBzdWxhdGlvbiB9IGZyb20gJ0Bhbmd1bGFyL2NvcmUnO1xuaW1wb3J0IHsgRm9ybXNNb2R1bGUgfSBmcm9tICdAYW5ndWxhci9mb3Jtcyc7XG5cbmltcG9ydCB7IENvbnRyb2xVSVdpZGdldCwgRGVsb25Gb3JtTW9kdWxlIH0gZnJvbSAnQGRlbG9uL2Zvcm0nO1xuaW1wb3J0IHsgTnpDb2xvclBpY2tlck1vZHVsZSwgdHlwZSBOekNvbG9yLCB0eXBlIE56Q29sb3JQaWNrZXJGb3JtYXRUeXBlIH0gZnJvbSAnbmctem9ycm8tYW50ZC9jb2xvci1waWNrZXInO1xuXG5pbXBvcnQgdHlwZSB7IFNGQ29sb3JXaWRnZXRTY2hlbWEgfSBmcm9tICcuL3NjaGVtYSc7XG5cbkBDb21wb25lbnQoe1xuICBzZWxlY3RvcjogJ3NmLWNvbG9yJyxcbiAgdGVtcGxhdGU6IGA8c2YtaXRlbS13cmFwXG4gICAgW2lkXT1cImlkXCJcbiAgICBbc2NoZW1hXT1cInNjaGVtYVwiXG4gICAgW3VpXT1cInVpXCJcbiAgICBbc2hvd0Vycm9yXT1cInNob3dFcnJvclwiXG4gICAgW2Vycm9yXT1cImVycm9yXCJcbiAgICBbc2hvd1RpdGxlXT1cInNjaGVtYS50aXRsZVwiXG4gID5cbiAgICBAaWYgKHVpLmJsb2NrKSB7XG4gICAgPG56LWNvbG9yLWJsb2NrIFtuekNvbG9yXT1cInZhbHVlXCIgW256U2l6ZV09XCIkYW55KHVpLnNpemUpXCIgLz5cbiAgICB9IEBlbHNlIHtcbiAgICA8bnotY29sb3ItcGlja2VyXG4gICAgICBbbmdNb2RlbF09XCJ2YWx1ZVwiXG4gICAgICAobmdNb2RlbENoYW5nZSk9XCJzZXRWYWx1ZSgkZXZlbnQpXCJcbiAgICAgIFtuekRpc2FibGVkXT1cImRpc2FibGVkXCJcbiAgICAgIFtuelNpemVdPVwiJGFueSh1aS5zaXplKVwiXG4gICAgICBbbnpEZWZhdWx0VmFsdWVdPVwidWkuZGVmYXVsdFZhbHVlID8/ICcnXCJcbiAgICAgIFtuekZvcm1hdF09XCJ1aS5mb3JtYXQgPz8gbnVsbFwiXG4gICAgICBbbnpUcmlnZ2VyXT1cInVpLnRyaWdnZXIgPz8gJ2NsaWNrJ1wiXG4gICAgICBbbnpUaXRsZV09XCJ1aS50aXRsZSA/PyAnJ1wiXG4gICAgICBbbnpGbGlwRmxvcF09XCIkYW55KHVpLmZsaXBGbG9wKVwiXG4gICAgICBbbnpTaG93VGV4dF09XCJ1aS5zaG93VGV4dFwiXG4gICAgICBbbnpBbGxvd0NsZWFyXT1cInVpLmFsbG93Q2xlYXJcIlxuICAgICAgKG56T25DaGFuZ2UpPVwiX2NoYW5nZSgkZXZlbnQpXCJcbiAgICAgIChuek9uRm9ybWF0Q2hhbmdlKT1cIl9mb3JtYXRDaGFuZ2UoJGV2ZW50KVwiXG4gICAgLz5cbiAgICB9XG4gIDwvc2YtaXRlbS13cmFwPmAsXG4gIHByZXNlcnZlV2hpdGVzcGFjZXM6IGZhbHNlLFxuICBlbmNhcHN1bGF0aW9uOiBWaWV3RW5jYXBzdWxhdGlvbi5Ob25lLFxuICBzdGFuZGFsb25lOiB0cnVlLFxuICBpbXBvcnRzOiBbRm9ybXNNb2R1bGUsIERlbG9uRm9ybU1vZHVsZSwgTnpDb2xvclBpY2tlck1vZHVsZV1cbn0pXG5leHBvcnQgY2xhc3MgQ29sb3JXaWRnZXQgZXh0ZW5kcyBDb250cm9sVUlXaWRnZXQ8U0ZDb2xvcldpZGdldFNjaGVtYT4ge1xuICBzdGF0aWMgcmVhZG9ubHkgS0VZID0gJ2NvbG9yJztcblxuICBfY2hhbmdlKGV2OiB7IGNvbG9yOiBOekNvbG9yOyBmb3JtYXQ6IHN0cmluZyB9KTogdm9pZCB7XG4gICAgaWYgKHRoaXMudWkuY2hhbmdlKSB0aGlzLnVpLmNoYW5nZShldik7XG4gIH1cblxuICBfZm9ybWF0Q2hhbmdlKGV2OiBOekNvbG9yUGlja2VyRm9ybWF0VHlwZSk6IHZvaWQge1xuICAgIGlmICh0aGlzLnVpLmZvcm1hdENoYW5nZSkgdGhpcy51aS5mb3JtYXRDaGFuZ2UoZXYpO1xuICB9XG59XG4iXX0=

@@ -1,21 +1,19 @@
-import * as i1 from '@angular/common';
-import { CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation, NgModule } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import * as i1$1 from '@delon/form';
-import { ControlUIWidget, toBool, getData, DelonFormModule } from '@delon/form';
-import * as i5 from 'ng-zorro-antd/button';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import * as i4 from 'ng-zorro-antd/icon';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import * as i3 from 'ng-zorro-antd/upload';
-import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { of } from 'rxjs';
+import * as i1 from '@delon/form';
+import { ControlUIWidget, toBool, getData, DelonFormModule } from '@delon/form';
 import { deepGet } from '@delon/util/other';
+import * as i4 from 'ng-zorro-antd/button';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import * as i3 from 'ng-zorro-antd/icon';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzModalService } from 'ng-zorro-antd/modal';
-import * as i6 from 'ng-zorro-antd/core/transition-patch';
-import * as i7 from 'ng-zorro-antd/core/wave';
+import * as i2 from 'ng-zorro-antd/upload';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import * as i5 from 'ng-zorro-antd/core/transition-patch';
+import * as i6 from 'ng-zorro-antd/core/wave';
 
 class UploadWidget extends ControlUIWidget {
     constructor() {
@@ -109,7 +107,7 @@ class UploadWidget extends ControlUIWidget {
         this.setValue(this.pureValue(fileList));
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: UploadWidget, selector: "sf-upload", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.2", type: UploadWidget, isStandalone: true, selector: "sf-upload", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -146,22 +144,18 @@ class UploadWidget extends ControlUIWidget {
       (nzChange)="change($event)"
       [nzShowButton]="fileList.length < i.limitFileCount"
     >
-      <ng-container [ngSwitch]="btnType">
-        <ng-container *ngSwitchCase="'plus'">
-          <i nz-icon nzType="plus"></i>
-          <div class="ant-upload-text" [innerHTML]="i.text"></div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'drag'">
-          <p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
-          <p class="ant-upload-text" [innerHTML]="i.text"></p>
-          <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <button type="button" nz-button><i nz-icon nzType="upload"></i><span [innerHTML]="i.text"></span></button>
-        </ng-container>
-      </ng-container>
+      @switch (btnType) { @case ('plus') {
+      <i nz-icon nzType="plus"></i>
+      <div class="ant-upload-text" [innerHTML]="i.text"></div>
+      } @case ('drag') {
+      <p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
+      <p class="ant-upload-text" [innerHTML]="i.text"></p>
+      <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
+      } @default {
+      <button type="button" nz-button><i nz-icon nzType="upload"></i><span [innerHTML]="i.text"></span></button>
+      } }
     </nz-upload>
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i1.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i1.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: i3.NzUploadComponent, selector: "nz-upload", inputs: ["nzType", "nzLimit", "nzSize", "nzFileType", "nzAccept", "nzAction", "nzDirectory", "nzOpenFileDialogOnClick", "nzBeforeUpload", "nzCustomRequest", "nzData", "nzFilter", "nzFileList", "nzDisabled", "nzHeaders", "nzListType", "nzMultiple", "nzName", "nzShowUploadList", "nzShowButton", "nzWithCredentials", "nzRemove", "nzPreview", "nzPreviewFile", "nzPreviewIsImage", "nzTransformFile", "nzDownload", "nzIconRender", "nzFileListRender"], outputs: ["nzChange", "nzFileListChange"], exportAs: ["nzUpload"] }, { kind: "directive", type: i4.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i5.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i6.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i7.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }], encapsulation: i0.ViewEncapsulation.None }); }
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzUploadModule }, { kind: "component", type: i2.NzUploadComponent, selector: "nz-upload", inputs: ["nzType", "nzLimit", "nzSize", "nzFileType", "nzAccept", "nzAction", "nzDirectory", "nzOpenFileDialogOnClick", "nzBeforeUpload", "nzCustomRequest", "nzData", "nzFilter", "nzFileList", "nzDisabled", "nzHeaders", "nzListType", "nzMultiple", "nzName", "nzShowUploadList", "nzShowButton", "nzWithCredentials", "nzRemove", "nzPreview", "nzPreviewFile", "nzPreviewIsImage", "nzTransformFile", "nzDownload", "nzIconRender", "nzFileListRender"], outputs: ["nzChange", "nzFileListChange"], exportAs: ["nzUpload"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "ngmodule", type: NzButtonModule }, { kind: "component", type: i4.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i5.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidget, decorators: [{
             type: Component,
@@ -204,46 +198,32 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       (nzChange)="change($event)"
       [nzShowButton]="fileList.length < i.limitFileCount"
     >
-      <ng-container [ngSwitch]="btnType">
-        <ng-container *ngSwitchCase="'plus'">
-          <i nz-icon nzType="plus"></i>
-          <div class="ant-upload-text" [innerHTML]="i.text"></div>
-        </ng-container>
-        <ng-container *ngSwitchCase="'drag'">
-          <p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
-          <p class="ant-upload-text" [innerHTML]="i.text"></p>
-          <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
-        </ng-container>
-        <ng-container *ngSwitchDefault>
-          <button type="button" nz-button><i nz-icon nzType="upload"></i><span [innerHTML]="i.text"></span></button>
-        </ng-container>
-      </ng-container>
+      @switch (btnType) { @case ('plus') {
+      <i nz-icon nzType="plus"></i>
+      <div class="ant-upload-text" [innerHTML]="i.text"></div>
+      } @case ('drag') {
+      <p class="ant-upload-drag-icon"><i nz-icon nzType="inbox"></i></p>
+      <p class="ant-upload-text" [innerHTML]="i.text"></p>
+      <p class="ant-upload-hint" [innerHTML]="i.hint"></p>
+      } @default {
+      <button type="button" nz-button><i nz-icon nzType="upload"></i><span [innerHTML]="i.text"></span></button>
+      } }
     </nz-upload>
   </sf-item-wrap>`,
                     preserveWhitespaces: false,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true,
+                    imports: [FormsModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule]
                 }]
         }] });
 
-class UploadWidgetModule {
-    constructor(widgetRegistry) {
-        widgetRegistry.register(UploadWidget.KEY, UploadWidget);
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, declarations: [UploadWidget], imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule] }); }
+function withUploadWidget() {
+    return { KEY: UploadWidget.KEY, type: UploadWidget };
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule],
-                    declarations: [UploadWidget]
-                }]
-        }], ctorParameters: () => [{ type: i1$1.WidgetRegistry }] });
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { UploadWidget, UploadWidgetModule };
+export { UploadWidget, withUploadWidget };
 //# sourceMappingURL=widgets-upload.mjs.map

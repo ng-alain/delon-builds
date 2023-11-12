@@ -1,4 +1,4 @@
 import type { SFWidgetProvideConfig } from '@delon/form';
 export * from './widget';
 export * from './schema';
-export declare function withAutoComplete(): SFWidgetProvideConfig;
+export declare function withAutoCompleteWidget(): SFWidgetProvideConfig;

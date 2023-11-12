@@ -131,7 +131,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
-function withCascader() {
+function withCascaderWidget() {
     return { KEY: CascaderWidget.KEY, type: CascaderWidget };
 }
 
@@ -139,5 +139,5 @@ function withCascader() {
  * Generated bundle index. Do not edit.
  */
 
-export { CascaderWidget, withCascader };
+export { CascaderWidget, withCascaderWidget };
 //# sourceMappingURL=widgets-cascader.mjs.map

@@ -171,7 +171,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 args: [NgModel, { static: false }]
             }] } });
 
-function withAutoComplete() {
+function withAutoCompleteWidget() {
     return { KEY: AutoCompleteWidget.KEY, type: AutoCompleteWidget };
 }
 
@@ -179,5 +179,5 @@ function withAutoComplete() {
  * Generated bundle index. Do not edit.
  */
 
-export { AutoCompleteWidget, withAutoComplete };
+export { AutoCompleteWidget, withAutoCompleteWidget };
 //# sourceMappingURL=widgets-auto-complete.mjs.map

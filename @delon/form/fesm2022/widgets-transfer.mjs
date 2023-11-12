@@ -1,11 +1,11 @@
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation, NgModule } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { of } from 'rxjs';
 import * as i1 from '@delon/form';
 import { ControlUIWidget, getData, DelonFormModule } from '@delon/form';
 import * as i2 from 'ng-zorro-antd/transfer';
 import { NzTransferModule } from 'ng-zorro-antd/transfer';
-import { of } from 'rxjs';
 
 class TransferWidget extends ControlUIWidget {
     constructor() {
@@ -68,7 +68,7 @@ class TransferWidget extends ControlUIWidget {
         this.detectChanges();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TransferWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: TransferWidget, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.2", type: TransferWidget, isStandalone: true, selector: "sf-transfer", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -92,7 +92,7 @@ class TransferWidget extends ControlUIWidget {
       (nzSearchChange)="_searchChange($event)"
       (nzSelectChange)="_selectChange($event)"
     />
-  </sf-item-wrap> `, isInline: true, dependencies: [{ kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: i2.NzTransferComponent, selector: "nz-transfer", inputs: ["nzDisabled", "nzDataSource", "nzTitles", "nzOperations", "nzListStyle", "nzShowSelectAll", "nzItemUnit", "nzItemsUnit", "nzCanMove", "nzRenderList", "nzRender", "nzFooter", "nzShowSearch", "nzFilterOption", "nzSearchPlaceholder", "nzNotFoundContent", "nzTargetKeys", "nzSelectedKeys", "nzStatus"], outputs: ["nzChange", "nzSearchChange", "nzSelectChange"], exportAs: ["nzTransfer"] }], encapsulation: i0.ViewEncapsulation.None }); }
+  </sf-item-wrap> `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTransferModule }, { kind: "component", type: i2.NzTransferComponent, selector: "nz-transfer", inputs: ["nzDisabled", "nzDataSource", "nzTitles", "nzOperations", "nzListStyle", "nzShowSelectAll", "nzItemUnit", "nzItemsUnit", "nzCanMove", "nzRenderList", "nzRender", "nzFooter", "nzShowSearch", "nzFilterOption", "nzSearchPlaceholder", "nzNotFoundContent", "nzTargetKeys", "nzSelectedKeys", "nzStatus"], outputs: ["nzChange", "nzSearchChange", "nzSelectChange"], exportAs: ["nzTransfer"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TransferWidget, decorators: [{
             type: Component,
@@ -124,29 +124,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
     />
   </sf-item-wrap> `,
                     preserveWhitespaces: false,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true,
+                    imports: [FormsModule, DelonFormModule, NzTransferModule]
                 }]
         }] });
 
-class TransferWidgetModule {
-    constructor(widgetRegistry) {
-        widgetRegistry.register(TransferWidget.KEY, TransferWidget);
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TransferWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: TransferWidgetModule, declarations: [TransferWidget], imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TransferWidgetModule, imports: [FormsModule, DelonFormModule, NzTransferModule] }); }
+function withTransferWidget() {
+    return { KEY: TransferWidget.KEY, type: TransferWidget };
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TransferWidgetModule, decorators: [{
-            type: NgModule,
-            args: [{
-                    imports: [FormsModule, DelonFormModule, NzTransferModule],
-                    declarations: [TransferWidget]
-                }]
-        }], ctorParameters: () => [{ type: i1.WidgetRegistry }] });
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { TransferWidget, TransferWidgetModule };
+export { TransferWidget, withTransferWidget };
 //# sourceMappingURL=widgets-transfer.mjs.map

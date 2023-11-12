@@ -7,5 +7,5 @@ export declare class TinymceWidget extends ControlUIWidget<TinymceWidgetSchema> 
     change(value: string): void;
     _ready(instance: NzSafeAny): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TinymceWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TinymceWidget, "sf-widget-tinymce", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TinymceWidget, "sf-widget-tinymce", never, {}, {}, never, never, true, never>;
 }

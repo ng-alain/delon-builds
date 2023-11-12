@@ -22,5 +22,5 @@ export declare class TransferWidget extends ControlUIWidget<SFTransferWidgetSche
     _searchChange(options: TransferSearchChange): void;
     _selectChange(options: TransferSelectChange): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TransferWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TransferWidget, "sf-transfer", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TransferWidget, "sf-transfer", never, {}, {}, never, never, true, never>;
 }

@@ -9,5 +9,5 @@ export declare class SegmentedWidget extends ControlUIWidget<SFSegmentedWidgetSc
     reset(value: SFValue): void;
     valueChange(index: number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SegmentedWidget, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SegmentedWidget, "sf-segmented", never, {}, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SegmentedWidget, "sf-segmented", never, {}, {}, never, never, true, never>;
 }
