@@ -5,8 +5,7 @@ export declare function DA_STORE_TOKEN_LOCAL_FACTORY(): IStore;
  * `localStorage` storage, **not lost after closing the browser**.
  *
  * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: LocalStorageStore }
+ * provideAuth(withJWT(), withLocalStorage())
  * ```
  */
 export declare class LocalStorageStore implements IStore {

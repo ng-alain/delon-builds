@@ -1,12 +1,13 @@
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Injectable, Inject, Optional, NgModule } from '@angular/core';
+import { InjectionToken, inject, Injectable, Inject, Optional, makeEnvironmentProviders } from '@angular/core';
 import { Subject, BehaviorSubject, share, map, filter, interval, Observable } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
 import { Router } from '@angular/router';
 import { HttpContextToken, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CookieService } from '@delon/util/browser';
 
 const AUTH_DEFAULT_CONFIG = {
     store_key: `_token`,
@@ -32,8 +33,7 @@ function DA_STORE_TOKEN_LOCAL_FACTORY() {
  * `localStorage` storage, **not lost after closing the browser**.
  *
  * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: LocalStorageStore }
+ * provideAuth(withJWT(), withLocalStorage())
  * ```
  */
 class LocalStorageStore {
@@ -246,11 +246,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
 
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
- *
- * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: MemoryStore }
- * ```
  */
 class MemoryStore {
     constructor() {
@@ -272,8 +267,7 @@ class MemoryStore {
  * `sessionStorage` storage, **lost after closing the browser**.
  *
  * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: SessionStorageStore }
+ * provideAuth(withJWT(), withSessionStorage())
  * ```
  */
 class SessionStorageStore {
@@ -293,8 +287,7 @@ class SessionStorageStore {
  * `cookie` storage
  *
  * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
+ * provideAuth(withJWT(), withCookie())
  * ```
  */
 class CookieStorageStore {
@@ -321,115 +314,6 @@ class CookieStorageStore {
         this.srv.remove(key);
     }
 }
-
-function CheckSimple(model) {
-    return model != null && typeof model.token === 'string' && model.token.length > 0;
-}
-function CheckJwt(model, offset) {
-    try {
-        return model != null && !!model.token && !model.isExpired(offset);
-    }
-    catch (err) {
-        if (typeof ngDevMode === 'undefined' || ngDevMode) {
-            console.warn(`${err.message}, jump to login_url`);
-        }
-        return false;
-    }
-}
-function ToLogin(options, injector, url) {
-    const router = injector.get(Router);
-    injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
-    if (options.token_invalid_redirect === true) {
-        setTimeout(() => {
-            if (/^https?:\/\//g.test(options.login_url)) {
-                injector.get(DOCUMENT).location.href = options.login_url;
-            }
-            else {
-                router.navigate([options.login_url]);
-            }
-        });
-    }
-}
-
-/**
- * Whether to allow anonymous login
- *
- * 是否允许匿名登录
- *
- * @example
- * this.http.post(`login`, {
- *  name: 'cipchk', pwd: '123456'
- * }, {
- *  context: new HttpContext().set(ALLOW_ANONYMOUS, true)
- * })
- */
-const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-class HttpAuthInterceptorHandler {
-    constructor(next, interceptor) {
-        this.next = next;
-        this.interceptor = interceptor;
-    }
-    handle(req) {
-        return this.interceptor.intercept(req, this.next);
-    }
-}
-class BaseInterceptor {
-    constructor(injector) {
-        this.injector = injector;
-    }
-    intercept(req, next) {
-        if (req.context.get(ALLOW_ANONYMOUS))
-            return next.handle(req);
-        const options = mergeConfig(this.injector.get(AlainConfigService));
-        if (Array.isArray(options.ignores)) {
-            for (const item of options.ignores) {
-                if (item.test(req.url))
-                    return next.handle(req);
-            }
-        }
-        if (this.isAuth(options)) {
-            req = this.setReq(req, options);
-        }
-        else {
-            ToLogin(options, this.injector);
-            // Interrupt Http request, so need to generate a new Observable
-            const err$ = new Observable((observer) => {
-                let statusText = '';
-                if (typeof ngDevMode === 'undefined' || ngDevMode) {
-                    statusText = `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`;
-                }
-                const res = new HttpErrorResponse({
-                    url: req.url,
-                    headers: req.headers,
-                    status: 401,
-                    statusText
-                });
-                observer.error(res);
-            });
-            if (options.executeOtherInterceptors) {
-                const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
-                const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
-                if (lastInterceptors.length > 0) {
-                    const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor), {
-                        handle: (_) => err$
-                    });
-                    return chain.handle(req);
-                }
-            }
-            return err$;
-        }
-        return next.handle(req);
-    }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, deps: [{ token: i0.Injector, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor }); }
-}
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, decorators: [{
-            type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
-                    type: Optional
-                }] }] });
 
 function urlBase64Decode(str) {
     let output = str.replace(/-/g, '+').replace(/_/g, '/');
@@ -519,38 +403,34 @@ class JWTTokenModel {
     }
 }
 
-function withAuthJWT() {
-    return [{ provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true }];
+function CheckSimple(model) {
+    return model != null && typeof model.token === 'string' && model.token.length > 0;
 }
-/**
- * JWT 拦截器
- *
- * ```
- * // app.config.ts
- * providers: [
- *  withAuthJWT(),
- * ]
- * ```
- */
-class JWTInterceptor extends BaseInterceptor {
-    isAuth(options) {
-        this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
-        return CheckJwt(this.model, options.token_exp_offset);
+function CheckJwt(model, offset) {
+    try {
+        return model != null && !!model.token && !model.isExpired(offset);
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setReq(req, _options) {
-        return req.clone({
-            setHeaders: {
-                Authorization: `Bearer ${this.model.token}`
+    catch (err) {
+        if (typeof ngDevMode === 'undefined' || ngDevMode) {
+            console.warn(`${err.message}, jump to login_url`);
+        }
+        return false;
+    }
+}
+function ToLogin(options, injector, url) {
+    const router = injector.get(Router);
+    injector.get(DA_SERVICE_TOKEN).referrer.url = url || router.url;
+    if (options.token_invalid_redirect === true) {
+        setTimeout(() => {
+            if (/^https?:\/\//g.test(options.login_url)) {
+                injector.get(DOCUMENT).location.href = options.login_url;
+            }
+            else {
+                router.navigate([options.login_url]);
             }
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, decorators: [{
-            type: Injectable
-        }] });
 
 class AuthJWTGuardService {
     constructor(srv, injector) {
@@ -612,58 +492,103 @@ const authJWTCanActivateChild = (_, state) => inject(AuthJWTGuardService).proces
  */
 const authJWTCanMatch = route => inject(AuthJWTGuardService).process(route.path);
 
-class SimpleTokenModel {
-}
+/**
+ * Whether to allow anonymous login
+ *
+ * 是否允许匿名登录
+ *
+ * @example
+ * this.http.post(`login`, {
+ *  name: 'cipchk', pwd: '123456'
+ * }, {
+ *  context: new HttpContext().set(ALLOW_ANONYMOUS, true)
+ * })
+ */
+const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-function withAuthSimple() {
-    return [{ provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true }];
-}
-/**
- * Simple 拦截器
- *
- * ```
- * // app.config.ts
- * providers: [
- *  withAuthSimple(),
- * ]
- * ```
- */
-class SimpleInterceptor extends BaseInterceptor {
-    isAuth(_options) {
-        this.model = this.injector.get(DA_SERVICE_TOKEN).get();
-        return CheckSimple(this.model);
+class HttpAuthInterceptorHandler {
+    constructor(next, interceptor) {
+        this.next = next;
+        this.interceptor = interceptor;
     }
-    setReq(req, options) {
-        const { token_send_template, token_send_key } = options;
-        const token = token_send_template.replace(/\$\{([\w]+)\}/g, (_, g) => this.model[g]);
-        switch (options.token_send_place) {
-            case 'header':
-                const obj = {};
-                obj[token_send_key] = token;
-                req = req.clone({
-                    setHeaders: obj
-                });
-                break;
-            case 'body':
-                const body = req.body || {};
-                body[token_send_key] = token;
-                req = req.clone({
-                    body
-                });
-                break;
-            case 'url':
-                req = req.clone({
-                    params: req.params.append(token_send_key, token)
-                });
-                break;
+    handle(req) {
+        return this.interceptor.intercept(req, this.next);
+    }
+}
+class BaseInterceptor {
+    constructor(injector) {
+        this.injector = injector;
+    }
+    intercept(req, next) {
+        if (req.context.get(ALLOW_ANONYMOUS))
+            return next.handle(req);
+        const options = mergeConfig(this.injector.get(AlainConfigService));
+        if (Array.isArray(options.ignores)) {
+            for (const item of options.ignores) {
+                if (item.test(req.url))
+                    return next.handle(req);
+            }
         }
-        return req;
+        if (this.isAuth(options)) {
+            req = this.setReq(req, options);
+        }
+        else {
+            ToLogin(options, this.injector);
+            // Interrupt Http request, so need to generate a new Observable
+            const err$ = new Observable((observer) => {
+                let statusText = '';
+                if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                    statusText = `来自 @delon/auth 的拦截，所请求URL未授权，若是登录API可加入 [url?_allow_anonymous=true] 来表示忽略校验，更多方法请参考： https://ng-alain.com/auth/getting-started#AlainAuthConfig\nThe interception from @delon/auth, the requested URL is not authorized. If the login API can add [url?_allow_anonymous=true] to ignore the check, please refer to: https://ng-alain.com/auth/getting-started#AlainAuthConfig`;
+                }
+                const res = new HttpErrorResponse({
+                    url: req.url,
+                    headers: req.headers,
+                    status: 401,
+                    statusText
+                });
+                observer.error(res);
+            });
+            if (options.executeOtherInterceptors) {
+                const interceptors = this.injector.get(HTTP_INTERCEPTORS, []);
+                const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+                if (lastInterceptors.length > 0) {
+                    const chain = lastInterceptors.reduceRight((_next, _interceptor) => new HttpAuthInterceptorHandler(_next, _interceptor), {
+                        handle: (_) => err$
+                    });
+                    return chain.handle(req);
+                }
+            }
+            return err$;
+        }
+        return next.handle(req);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, deps: [{ token: i0.Injector, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: BaseInterceptor, decorators: [{
+            type: Injectable
+        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
+                    type: Optional
+                }] }] });
+
+class JWTInterceptor extends BaseInterceptor {
+    isAuth(options) {
+        this.model = this.injector.get(DA_SERVICE_TOKEN).get(JWTTokenModel);
+        return CheckJwt(this.model, options.token_exp_offset);
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setReq(req, _options) {
+        return req.clone({
+            setHeaders: {
+                Authorization: `Bearer ${this.model.token}`
+            }
+        });
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: JWTInterceptor, decorators: [{
             type: Injectable
         }] });
 
@@ -726,19 +651,111 @@ const authSimpleCanActivateChild = (_, state) => inject(AuthSimpleGuardService).
  */
 const authSimpleCanMatch = route => inject(AuthSimpleGuardService).process(route.path);
 
-class DelonAuthModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule }); }
+class SimpleInterceptor extends BaseInterceptor {
+    isAuth(_options) {
+        this.model = this.injector.get(DA_SERVICE_TOKEN).get();
+        return CheckSimple(this.model);
+    }
+    setReq(req, options) {
+        const { token_send_template, token_send_key } = options;
+        const token = token_send_template.replace(/\$\{([\w]+)\}/g, (_, g) => this.model[g]);
+        switch (options.token_send_place) {
+            case 'header':
+                const obj = {};
+                obj[token_send_key] = token;
+                req = req.clone({
+                    setHeaders: obj
+                });
+                break;
+            case 'body':
+                const body = req.body || {};
+                body[token_send_key] = token;
+                req = req.clone({
+                    body
+                });
+                break;
+            case 'url':
+                req = req.clone({
+                    params: req.params.append(token_send_key, token)
+                });
+                break;
+        }
+        return req;
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, deps: null, target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonAuthModule, decorators: [{
-            type: NgModule,
-            args: [{}]
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: SimpleInterceptor, decorators: [{
+            type: Injectable
         }] });
+
+class SimpleTokenModel {
+}
+
+var AuthFeatureKind;
+(function (AuthFeatureKind) {
+    AuthFeatureKind[AuthFeatureKind["Token"] = 0] = "Token";
+    AuthFeatureKind[AuthFeatureKind["Store"] = 1] = "Store";
+})(AuthFeatureKind || (AuthFeatureKind = {}));
+function makeAuthFeature(kind, providers) {
+    return {
+        ɵkind: kind,
+        ɵproviders: providers
+    };
+}
+/**
+ * Configures authentication process service to be available for injection.
+ *
+ * @see {@link withSimple}
+ * @see {@link withJWT}
+ * @see {@link withCookie}
+ * @see {@link withLocalStorage}
+ * @see {@link withSessionStorage}
+ */
+function provideAuth(type, store) {
+    return makeEnvironmentProviders([type.ɵproviders, (store ?? withLocalStorage()).ɵproviders]);
+}
+/** Use simple auth type,  */
+function withSimple() {
+    return makeAuthFeature(AuthFeatureKind.Token, [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: SimpleInterceptor,
+            multi: true
+        }
+    ]);
+}
+function withJWT() {
+    return makeAuthFeature(AuthFeatureKind.Token, [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: JWTInterceptor,
+            multi: true
+        }
+    ]);
+}
+/** `cookie` storage */
+function withCookie() {
+    return makeAuthFeature(AuthFeatureKind.Store, [
+        { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
+    ]);
+}
+/** `localStorage` storage, **not lost after closing the browser**. */
+function withLocalStorage() {
+    return makeAuthFeature(AuthFeatureKind.Store, [{ provide: DA_STORE_TOKEN, useClass: LocalStorageStore }]);
+}
+/** `sessionStorage` storage, **lost after closing the browser**. */
+function withSessionStorage() {
+    return makeAuthFeature(AuthFeatureKind.Store, [{ provide: DA_STORE_TOKEN, useClass: SessionStorageStore }]);
+}
+/** Memory storage, **lost after closing the browser tab**. */
+function withMemoryStorage() {
+    return makeAuthFeature(AuthFeatureKind.Store, [{ provide: DA_STORE_TOKEN, useClass: MemoryStore }]);
+}
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthJWTGuardService, AuthSimpleGuardService, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, urlBase64Decode, withAuthJWT, withAuthSimple };
+export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthFeatureKind, AuthJWTGuardService, AuthSimpleGuardService, CookieStorageStore, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, provideAuth, urlBase64Decode, withCookie, withJWT, withLocalStorage, withMemoryStorage, withSessionStorage, withSimple };
 //# sourceMappingURL=auth.mjs.map

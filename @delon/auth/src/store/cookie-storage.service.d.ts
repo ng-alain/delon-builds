@@ -5,8 +5,7 @@ import { ITokenModel } from '../token/interface';
  * `cookie` storage
  *
  * ```ts
- * // global-config.module.ts
- * { provide: DA_STORE_TOKEN, useClass: CookieStorageStore, deps: [CookieService] }
+ * provideAuth(withJWT(), withCookie())
  * ```
  */
 export declare class CookieStorageStore implements IStore {
