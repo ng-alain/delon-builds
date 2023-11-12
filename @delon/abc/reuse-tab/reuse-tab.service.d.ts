@@ -12,7 +12,7 @@ export declare class ReuseTabService implements OnDestroy {
     private menuService;
     private cached;
     private stateKey;
-    private stateSrv?;
+    private stateSrv;
     private _inited;
     private _max;
     private _keepingScroll;
@@ -151,7 +151,7 @@ export declare class ReuseTabService implements OnDestroy {
     refresh(data?: NzSafeAny): void;
     private destroy;
     private di;
-    constructor(injector: Injector, menuService: MenuService, cached: ReuseTabCachedManager, stateKey: string, stateSrv?: ReuseTabStorageState | undefined);
+    constructor(injector: Injector, menuService: MenuService, cached: ReuseTabCachedManager, stateKey: string, stateSrv: ReuseTabStorageState);
     init(): void;
     private loadState;
     private getMenu;
@@ -189,6 +189,6 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, [null, null, null, { optional: true; }, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
 }
