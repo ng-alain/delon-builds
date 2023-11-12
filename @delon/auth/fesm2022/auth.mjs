@@ -519,12 +519,15 @@ class JWTTokenModel {
     }
 }
 
+function withAuthJWT() {
+    return [{ provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true }];
+}
 /**
  * JWT 拦截器
  *
  * ```
- * // app.module.ts
- * { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true}
+ * // app.config.ts
+ * withAuthSimple(),
  * ```
  */
 class JWTInterceptor extends BaseInterceptor {
@@ -610,12 +613,16 @@ const authJWTCanMatch = route => inject(AuthJWTGuardService).process(route.path)
 class SimpleTokenModel {
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
+function withAuthSimple() {
+    return [{ provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true }];
+}
 /**
  * Simple 拦截器
  *
  * ```
- * // app.module.ts
- * { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true}
+ * // app.config.ts
+ * withAuthSimple(),
  * ```
  */
 class SimpleInterceptor extends BaseInterceptor {
@@ -729,5 +736,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
  * Generated bundle index. Do not edit.
  */
 
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthJWTGuardService, AuthSimpleGuardService, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, urlBase64Decode };
+export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthJWTGuardService, AuthSimpleGuardService, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, DelonAuthModule, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, urlBase64Decode, withAuthJWT, withAuthSimple };
 //# sourceMappingURL=auth.mjs.map

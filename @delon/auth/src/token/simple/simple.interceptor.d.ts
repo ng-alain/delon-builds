@@ -1,13 +1,15 @@
 import { HttpRequest } from '@angular/common/http';
+import { Provider } from '@angular/core';
 import { AlainAuthConfig } from '@delon/util/config';
 import { BaseInterceptor } from '../base.interceptor';
 import * as i0 from "@angular/core";
+export declare function withAuthSimple(): Provider[];
 /**
  * Simple 拦截器
  *
  * ```
- * // app.module.ts
- * { provide: HTTP_INTERCEPTORS, useClass: SimpleInterceptor, multi: true}
+ * // app.config.ts
+ * withAuthSimple(),
  * ```
  */
 export declare class SimpleInterceptor extends BaseInterceptor {
