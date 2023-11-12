@@ -8,7 +8,7 @@ export interface AlainProvideOptions {
      *
      * 初始化默认语言
      */
-    defaultLang: AlainProvideLang;
+    defaultLang?: AlainProvideLang;
     i18nClass?: Type<NzSafeAny>;
 }
 export interface AlainProvideLang {
