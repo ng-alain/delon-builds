@@ -1,4 +1,5 @@
 import { EnvironmentProviders, Type } from '@angular/core';
+import type { IconDefinition } from '@ant-design/icons-angular';
 import { AlainConfig } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export interface AlainProvideOptions {
@@ -10,6 +11,7 @@ export interface AlainProvideOptions {
      */
     defaultLang?: AlainProvideLang;
     i18nClass?: Type<NzSafeAny>;
+    icons?: IconDefinition[];
 }
 export interface AlainProvideLang {
     abbr: string;

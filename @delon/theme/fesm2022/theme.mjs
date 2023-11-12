@@ -1,6 +1,6 @@
 import { DOCUMENT, isPlatformServer, CommonModule, registerLocaleData } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, LOCALE_ID, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, PLATFORM_ID, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, LOCALE_ID, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
@@ -26,6 +26,7 @@ import { NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n'
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
 import * as i1$9 from 'ng-zorro-antd/icon';
+import { NzIconService } from 'ng-zorro-antd/icon';
 
 function stepPreloader() {
     const doc = inject(DOCUMENT);
@@ -2792,6 +2793,14 @@ function provideAlain(options) {
     if (i18nCls) {
         provides.push({ provide: ALAIN_I18N_TOKEN, useClass: i18nCls, multi: false });
     }
+    const icons = [BellOutline, DeleteOutline, PlusOutline, InboxOutline, ...(options.icons ?? [])];
+    provides.push({
+        provide: ENVIRONMENT_INITIALIZER,
+        multi: true,
+        useValue: () => {
+            inject(NzIconService, { optional: true })?.addIcon(...icons);
+        }
+    });
     return makeEnvironmentProviders(provides);
 }
 
