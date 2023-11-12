@@ -41,5 +41,5 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     _showImg(img: string): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "options": { "alias": "options"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; }; "options": { "alias": "options"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, { "valueChange": "valueChange"; }, never, never, false, never>;
 }

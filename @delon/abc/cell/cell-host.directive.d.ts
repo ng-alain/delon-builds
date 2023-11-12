@@ -9,5 +9,5 @@ export declare class CellHostDirective implements OnInit {
     constructor(srv: CellService, viewContainerRef: ViewContainerRef);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<CellHostDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<CellHostDirective, "[cell-widget-host]", never, { "data": { "alias": "data"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<CellHostDirective, "[cell-widget-host]", never, { "data": { "alias": "data"; "required": false; }; }, {}, never, never, false, never>;
 }
