@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, Directive, Host, Input, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Output, DestroyRef, inject, ViewChild, NgModule } from '@angular/core';
+import { Injectable, Directive, Host, Input, Optional, Inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Output, DestroyRef, inject, ViewChild, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
 import * as i1$1 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DatePipe, YNPipe } from '@delon/theme';
 import { warn, deepCopy, deepGet, deepMergeKey } from '@delon/util/other';
@@ -2578,8 +2578,24 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
         }] });
 
 /**
+ * Just only using Standalone widgets
+ */
+function provideSTWidgets(...widgets) {
+    return makeEnvironmentProviders([
+        {
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue: () => {
+                const srv = inject(STWidgetRegistry);
+                widgets.forEach(widget => srv.register(widget.KEY, widget.type));
+            }
+        }
+    ]);
+}
+
+/**
  * Generated bundle index. Do not edit.
  */
 
-export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetHostDirective, STWidgetRegistry, ST_DEFAULT_CONFIG };
+export { STColumnSource, STComponent, STDataSource, STExport, STModule, STRowDirective, STWidgetHostDirective, STWidgetRegistry, ST_DEFAULT_CONFIG, provideSTWidgets };
 //# sourceMappingURL=st.mjs.map

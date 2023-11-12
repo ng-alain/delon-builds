@@ -512,6 +512,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
+/**
+ * Just only using Standalone widgets
+ */
 function provideCellWidgets(...widgets) {
     return makeEnvironmentProviders([
         {

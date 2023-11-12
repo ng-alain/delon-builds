@@ -3,7 +3,7 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 /**
  * Just only using Standalone widgets
  */
-export declare function provideCellWidgets(...widgets: Array<{
+export declare function provideSTWidgets(...widgets: Array<{
     KEY: string;
     type: NzSafeAny;
 }>): EnvironmentProviders;
