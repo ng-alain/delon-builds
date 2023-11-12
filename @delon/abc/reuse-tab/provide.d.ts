@@ -1,4 +1,5 @@
 import { EnvironmentProviders, Provider } from '@angular/core';
+import { ReuseTabMatchMode, ReuseTabRouteParamMatchMode } from './reuse-tab.interfaces';
 export declare enum ReuseTabFeatureKind {
     CacheManager = 0,
     Store = 1
@@ -14,6 +15,11 @@ export interface ReuseTabFeature<KindT extends ReuseTabFeatureKind> {
  * @see {@link withCacheManager}
  */
 export declare function provideReuseTabConfig(options?: {
+    debug?: boolean;
+    mode?: ReuseTabMatchMode;
+    routeParamMatchMode?: ReuseTabRouteParamMatchMode;
+    max?: number;
+    excludes?: RegExp[];
     storeKey?: string;
     cacheManager?: ReuseTabFeature<ReuseTabFeatureKind.CacheManager>;
     store?: ReuseTabFeature<ReuseTabFeatureKind.Store>;

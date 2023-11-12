@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Optional, Inject, DestroyRef, inject, ViewChild, NgModule, makeEnvironmentProviders } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Optional, Inject, DestroyRef, inject, ViewChild, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
 import * as i2 from 'ng-zorro-antd/menu';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import * as i1 from '@delon/theme';
@@ -1284,6 +1284,23 @@ function provideReuseTabConfig(options) {
             provide: RouteReuseStrategy,
             useClass: ReuseTabStrategy,
             deps: [ReuseTabService]
+        },
+        {
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue: () => {
+                const srv = inject(ReuseTabService);
+                if (options?.debug)
+                    srv.debug = options.debug;
+                if (options?.mode)
+                    srv.mode = options.mode;
+                if (options?.routeParamMatchMode)
+                    srv.routeParamMatchMode = options.routeParamMatchMode;
+                if (options?.max)
+                    srv.max = options.max;
+                if (options?.excludes)
+                    srv.excludes = options.excludes;
+            }
         }
     ];
     return makeEnvironmentProviders(providers);
