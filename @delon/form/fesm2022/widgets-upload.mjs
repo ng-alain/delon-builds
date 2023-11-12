@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { of } from 'rxjs';
 import * as i1 from '@delon/form';
@@ -14,6 +14,7 @@ import * as i2 from 'ng-zorro-antd/upload';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import * as i5 from 'ng-zorro-antd/core/transition-patch';
 import * as i6 from 'ng-zorro-antd/core/wave';
+import { CommonModule } from '@angular/common';
 
 class UploadWidget extends ControlUIWidget {
     constructor() {
@@ -214,6 +215,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
+class UploadWidgetModule {
+    constructor(widgetRegistry) {
+        widgetRegistry.register(UploadWidget.KEY, UploadWidget);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule, UploadWidget] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule, UploadWidget] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: UploadWidgetModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [FormsModule, CommonModule, DelonFormModule, NzUploadModule, NzIconModule, NzButtonModule, UploadWidget]
+                }]
+        }], ctorParameters: () => [{ type: i1.WidgetRegistry }] });
+
 function withUploadWidget() {
     return { KEY: UploadWidget.KEY, type: UploadWidget };
 }
@@ -222,5 +238,5 @@ function withUploadWidget() {
  * Generated bundle index. Do not edit.
  */
 
-export { UploadWidget, withUploadWidget };
+export { UploadWidget, UploadWidgetModule, withUploadWidget };
 //# sourceMappingURL=widgets-upload.mjs.map

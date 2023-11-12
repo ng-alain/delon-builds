@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import * as i1 from '@delon/form';
 import { ControlUIWidget, DelonFormModule } from '@delon/form';
@@ -70,6 +70,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
+class QrCodeWidgetModule {
+    constructor(widgetRegistry) {
+        widgetRegistry.register(QrCodeWidget.KEY, QrCodeWidget);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: QrCodeWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: QrCodeWidgetModule, imports: [FormsModule, DelonFormModule, NzQRCodeModule, QrCodeWidget] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: QrCodeWidgetModule, imports: [FormsModule, DelonFormModule, NzQRCodeModule, QrCodeWidget] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: QrCodeWidgetModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [FormsModule, DelonFormModule, NzQRCodeModule, QrCodeWidget]
+                }]
+        }], ctorParameters: () => [{ type: i1.WidgetRegistry }] });
+
 function withQrCodeWidget() {
     return { KEY: QrCodeWidget.KEY, type: QrCodeWidget };
 }
@@ -78,5 +93,5 @@ function withQrCodeWidget() {
  * Generated bundle index. Do not edit.
  */
 
-export { QrCodeWidget, withQrCodeWidget };
+export { QrCodeWidget, QrCodeWidgetModule, withQrCodeWidget };
 //# sourceMappingURL=widgets-qr-code.mjs.map

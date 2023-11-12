@@ -1,6 +1,6 @@
-import { NgTemplateOutlet } from '@angular/common';
+import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import * as i1 from '@delon/form';
 import { ControlUIWidget, getData, DelonFormModule } from '@delon/form';
@@ -120,6 +120,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
+class TagWidgetModule {
+    constructor(widgetRegistry) {
+        widgetRegistry.register(TagWidget.KEY, TagWidget);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TagWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: TagWidgetModule, imports: [FormsModule, DelonFormModule, NzTagModule, NzIconModule, CommonModule, TagWidget] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TagWidgetModule, imports: [FormsModule, DelonFormModule, NzTagModule, NzIconModule, CommonModule, TagWidget] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TagWidgetModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [FormsModule, DelonFormModule, NzTagModule, NzIconModule, CommonModule, TagWidget]
+                }]
+        }], ctorParameters: () => [{ type: i1.WidgetRegistry }] });
+
 function withTagWidget() {
     return { KEY: TagWidget.KEY, type: TagWidget };
 }
@@ -128,5 +143,5 @@ function withTagWidget() {
  * Generated bundle index. Do not edit.
  */
 
-export { TagWidget, withTagWidget };
+export { TagWidget, TagWidgetModule, withTagWidget };
 //# sourceMappingURL=widgets-tag.mjs.map

@@ -1,9 +1,9 @@
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { TinymceComponent } from 'ngx-tinymce';
-import * as i2 from '@delon/form';
+import { TinymceComponent, NgxTinymceModule } from 'ngx-tinymce';
+import * as i1$1 from '@delon/form';
 import { ControlUIWidget, DelonFormModule } from '@delon/form';
 
 class TinymceWidget extends ControlUIWidget {
@@ -37,7 +37,7 @@ class TinymceWidget extends ControlUIWidget {
         (ready)="_ready($event)"
       />
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i2.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: TinymceComponent, selector: "tinymce", inputs: ["config", "placeholder", "inline", "disabled", "loading", "delay"], outputs: ["ready"], exportAs: ["tinymce"] }], encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: TinymceComponent, selector: "tinymce", inputs: ["config", "placeholder", "inline", "disabled", "loading", "delay"], outputs: ["ready"], exportAs: ["tinymce"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TinymceWidget, decorators: [{
             type: Component,
@@ -70,6 +70,21 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                 }]
         }] });
 
+class TinymceWidgetModule {
+    constructor(widgetRegistry) {
+        widgetRegistry.register(TinymceWidget.KEY, TinymceWidget);
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TinymceWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: TinymceWidgetModule, imports: [FormsModule, DelonFormModule, NgxTinymceModule, TinymceWidget] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TinymceWidgetModule, imports: [FormsModule, DelonFormModule, NgxTinymceModule, TinymceWidget] }); }
+}
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: TinymceWidgetModule, decorators: [{
+            type: NgModule,
+            args: [{
+                    imports: [FormsModule, DelonFormModule, NgxTinymceModule, TinymceWidget]
+                }]
+        }], ctorParameters: () => [{ type: i1$1.WidgetRegistry }] });
+
 function withTinymceWidget() {
     return { KEY: TinymceWidget.KEY, type: TinymceWidget };
 }
@@ -78,5 +93,5 @@ function withTinymceWidget() {
  * Generated bundle index. Do not edit.
  */
 
-export { TinymceWidget, withTinymceWidget };
+export { TinymceWidget, TinymceWidgetModule, withTinymceWidget };
 //# sourceMappingURL=widgets-third-tinymce.mjs.map
