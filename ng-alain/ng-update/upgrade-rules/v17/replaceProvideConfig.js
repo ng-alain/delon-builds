@@ -46,8 +46,8 @@ function delonMock(tree, name, sourceRoot, context) {
         content = content.replace(text, '');
     content = content
         .replace('DelonMockModule.forRoot({ data: MOCKDATA })', '')
-        .replace('modules: [', 'providers: [provideDelonMockConfig({ data: MOCKDATA })],\ninterceptorFns: [mockInterceptor],\nmodules: [')
-        .replace('DelonMockModule', 'mockInterceptor, provideDelonMockConfig');
+        .replace('modules: [', 'providers: [provideMockConfig({ data: MOCKDATA })],\nmodules: [')
+        .replace('DelonMockModule', 'provideMockConfig');
     tree.overwrite(filePath, content);
     // remove HttpClientModule
     const appModuleFile = `${sourceRoot}/app/app.module.ts`;
@@ -61,8 +61,8 @@ function delonMock(tree, name, sourceRoot, context) {
     if (tree.exists(globalFile)) {
         tree.overwrite(globalFile, tree
             .readText(globalFile)
-            .replace(', ...zorroProvides', ', ...zorroProvides, ...(environment.providers || []), provideHttpClient(withInterceptors(environment.interceptorFns || []))'));
+            .replace(', ...zorroProvides', ', ...zorroProvides, ...(environment.providers || []), provideHttpClient()'));
     }
-    (0, utils_1.logInfo)(context, `  Use provideDelonMockConfig instead of DelonMockModule in ${name} project`);
+    (0, utils_1.logInfo)(context, `  Use provideMockConfig instead of DelonMockModule in ${name} project`);
 }
 //# sourceMappingURL=replaceProvideConfig.js.map
