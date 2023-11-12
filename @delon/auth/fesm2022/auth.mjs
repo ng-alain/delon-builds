@@ -757,5 +757,5 @@ function withMemoryStorage() {
  * Generated bundle index. Do not edit.
  */
 
-export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthFeatureKind, AuthJWTGuardService, AuthSimpleGuardService, CookieStorageStore, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, provideAuth, urlBase64Decode, withCookie, withJWT, withLocalStorage, withMemoryStorage, withSessionStorage, withSimple };
+export { ALLOW_ANONYMOUS, AUTH_DEFAULT_CONFIG, AuthFeatureKind, AuthJWTGuardService, AuthSimpleGuardService, BaseInterceptor, CookieStorageStore, DA_SERVICE_TOKEN, DA_SERVICE_TOKEN_FACTORY, DA_STORE_TOKEN, DA_STORE_TOKEN_LOCAL_FACTORY, JWTInterceptor, JWTTokenModel, LocalStorageStore, MemoryStore, SessionStorageStore, SimpleInterceptor, SimpleTokenModel, SocialService, TokenService, authJWTCanActivate, authJWTCanActivateChild, authJWTCanMatch, authSimpleCanActivate, authSimpleCanActivateChild, authSimpleCanMatch, mergeConfig, provideAuth, urlBase64Decode, withCookie, withJWT, withLocalStorage, withMemoryStorage, withSessionStorage, withSimple };
 //# sourceMappingURL=auth.mjs.map
