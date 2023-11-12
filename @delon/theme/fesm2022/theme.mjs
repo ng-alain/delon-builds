@@ -1,6 +1,6 @@
-import { DOCUMENT, isPlatformServer, CommonModule } from '@angular/common';
+import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, InjectionToken, Injectable, Optional, Inject, DestroyRef, Pipe, SkipSelf, Injector, NgModule, importProvidersFrom, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
@@ -29,10 +29,6 @@ import * as i1$9 from 'ng-zorro-antd/icon';
 
 function stepPreloader() {
     const doc = inject(DOCUMENT);
-    const ssr = isPlatformServer(inject(PLATFORM_ID));
-    if (ssr) {
-        return () => { };
-    }
     const body = doc.querySelector('body');
     body.style.overflow = 'hidden';
     let done = false;
@@ -48,6 +44,7 @@ function stepPreloader() {
             preloader.className = CLS;
         });
         preloader.className += ` ${CLS}-add ${CLS}-add-active`;
+        const body = doc.querySelector('body');
         body.style.overflow = '';
     };
 }
