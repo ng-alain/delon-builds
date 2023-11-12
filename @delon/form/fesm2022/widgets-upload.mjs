@@ -9,7 +9,7 @@ import * as i4 from 'ng-zorro-antd/button';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import * as i3 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzImageService } from 'ng-zorro-antd/image';
 import * as i2 from 'ng-zorro-antd/upload';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import * as i5 from 'ng-zorro-antd/core/transition-patch';
@@ -33,10 +33,7 @@ class UploadWidget extends ControlUIWidget {
             if (!_url) {
                 return;
             }
-            this.injector.get(NzModalService).create({
-                nzContent: `<img src="${_url}" class="img-fluid" />`,
-                nzFooter: null
-            });
+            this.injector.get(NzImageService, null)?.preview([{ src: _url }]);
         };
     }
     static { this.KEY = 'upload'; }
