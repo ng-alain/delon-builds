@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Optional, Inject, DestroyRef, inject, ViewChild, NgModule, makeEnvironmentProviders } from '@angular/core';
+import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, Injectable, Directive, InjectionToken, Inject, Optional, DestroyRef, inject, ViewChild, NgModule, makeEnvironmentProviders } from '@angular/core';
 import * as i2 from 'ng-zorro-antd/menu';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import * as i1 from '@delon/theme';
@@ -602,11 +602,12 @@ class ReuseTabService {
     loadState() {
         if (!this.storageState)
             return;
-        this.cached.list = this.stateSrv.get(this.stateKey).map(v => ({
-            title: { text: v.title },
-            url: v.url,
-            position: v.position
-        }));
+        this.cached.list =
+            this.stateSrv?.get(this.stateKey).map(v => ({
+                title: { text: v.title },
+                url: v.url,
+                position: v.position
+            })) ?? [];
         this._cachedChange.next({ active: 'loadState' });
     }
     getMenu(url) {
@@ -797,15 +798,13 @@ class ReuseTabService {
             _router$.unsubscribe();
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ReuseTabService, deps: [{ token: i0.Injector }, { token: i1.MenuService }, { token: REUSE_TAB_CACHED_MANAGER, optional: true }, { token: REUSE_TAB_STORAGE_KEY, optional: true }, { token: REUSE_TAB_STORAGE_STATE, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ReuseTabService, deps: [{ token: i0.Injector }, { token: i1.MenuService }, { token: REUSE_TAB_CACHED_MANAGER }, { token: REUSE_TAB_STORAGE_KEY, optional: true }, { token: REUSE_TAB_STORAGE_STATE, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ReuseTabService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ReuseTabService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [{ type: i0.Injector }, { type: i1.MenuService }, { type: undefined, decorators: [{
-                    type: Optional
-                }, {
                     type: Inject,
                     args: [REUSE_TAB_CACHED_MANAGER]
                 }] }, { type: undefined, decorators: [{
@@ -1257,7 +1256,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
 
 var ReuseTabFeatureKind;
 (function (ReuseTabFeatureKind) {
-    ReuseTabFeatureKind[ReuseTabFeatureKind["Cache"] = 0] = "Cache";
+    ReuseTabFeatureKind[ReuseTabFeatureKind["CacheManager"] = 0] = "CacheManager";
     ReuseTabFeatureKind[ReuseTabFeatureKind["Store"] = 1] = "Store";
 })(ReuseTabFeatureKind || (ReuseTabFeatureKind = {}));
 function makeFeature(kind, providers) {
@@ -1270,20 +1269,31 @@ function makeFeature(kind, providers) {
  * Configures reuse-tab to be available for injection.
  *
  * @see {@link withLocalStorage}
- * @see {@link withCache}
+ * @see {@link withCacheManager}
  */
 function provideReuseTabConfig(options) {
-    return makeEnvironmentProviders([
+    const providers = [
         {
             provide: REUSE_TAB_STORAGE_KEY,
             useValue: options?.storeKey ?? '_reuse-tab-state'
         },
-        (options?.cache ?? withCache()).ɵproviders,
-        (options?.store ?? withLocalStorage()).ɵproviders,
+        (options?.cacheManager ?? withCacheManager()).ɵproviders,
         {
             provide: RouteReuseStrategy,
             useClass: ReuseTabStrategy,
             deps: [ReuseTabService]
+        }
+    ];
+    if (options?.store) {
+        providers.push(options.store.ɵproviders);
+    }
+    return makeEnvironmentProviders(providers);
+}
+function withCacheManager() {
+    return makeFeature(ReuseTabFeatureKind.CacheManager, [
+        {
+            provide: REUSE_TAB_CACHED_MANAGER,
+            useFactory: () => new ReuseTabCachedManagerFactory()
         }
     ]);
 }
@@ -1295,18 +1305,10 @@ function withLocalStorage() {
         }
     ]);
 }
-function withCache() {
-    return makeFeature(ReuseTabFeatureKind.Cache, [
-        {
-            provide: REUSE_TAB_CACHED_MANAGER,
-            useFactory: () => new ReuseTabCachedManagerFactory()
-        }
-    ]);
-}
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCache, withLocalStorage };
+export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCacheManager, withLocalStorage };
 //# sourceMappingURL=reuse-tab.mjs.map

@@ -1,6 +1,6 @@
 import { EnvironmentProviders, Provider } from '@angular/core';
 export declare enum ReuseTabFeatureKind {
-    Cache = 0,
+    CacheManager = 0,
     Store = 1
 }
 export interface ReuseTabFeature<KindT extends ReuseTabFeatureKind> {
@@ -11,12 +11,12 @@ export interface ReuseTabFeature<KindT extends ReuseTabFeatureKind> {
  * Configures reuse-tab to be available for injection.
  *
  * @see {@link withLocalStorage}
- * @see {@link withCache}
+ * @see {@link withCacheManager}
  */
 export declare function provideReuseTabConfig(options?: {
     storeKey?: string;
-    cache?: ReuseTabFeature<ReuseTabFeatureKind.Cache>;
+    cacheManager?: ReuseTabFeature<ReuseTabFeatureKind.CacheManager>;
     store?: ReuseTabFeature<ReuseTabFeatureKind.Store>;
 }): EnvironmentProviders;
+export declare function withCacheManager(): ReuseTabFeature<ReuseTabFeatureKind.CacheManager>;
 export declare function withLocalStorage(): ReuseTabFeature<ReuseTabFeatureKind.Store>;
-export declare function withCache(): ReuseTabFeature<ReuseTabFeatureKind.Cache>;
