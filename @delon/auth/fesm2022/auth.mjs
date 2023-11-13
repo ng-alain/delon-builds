@@ -6,7 +6,7 @@ import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import * as i1$1 from '@angular/router';
 import { Router } from '@angular/router';
-import { HttpContextToken, HttpErrorResponse, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpContextToken, HttpErrorResponse, HTTP_INTERCEPTORS, ɵHTTP_ROOT_INTERCEPTOR_FNS } from '@angular/common/http';
 import { CookieService } from '@delon/util/browser';
 
 const AUTH_DEFAULT_CONFIG = {
@@ -719,7 +719,7 @@ function provideAuth(type, store) {
 function withSimple() {
     return makeAuthFeature(AuthFeatureKind.Token, [
         {
-            provide: HTTP_INTERCEPTORS,
+            provide: ɵHTTP_ROOT_INTERCEPTOR_FNS,
             useClass: SimpleInterceptor,
             multi: true
         }
@@ -728,7 +728,7 @@ function withSimple() {
 function withJWT() {
     return makeAuthFeature(AuthFeatureKind.Token, [
         {
-            provide: HTTP_INTERCEPTORS,
+            provide: ɵHTTP_ROOT_INTERCEPTOR_FNS,
             useClass: JWTInterceptor,
             multi: true
         }
