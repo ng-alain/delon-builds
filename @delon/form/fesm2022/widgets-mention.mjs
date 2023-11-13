@@ -86,34 +86,34 @@ class MentionWidget extends ControlUIWidget {
       (nzOnSearchChange)="_search($event)"
     >
       @if (ui.inputStyle === 'textarea') {
-      <textarea
-        nzMentionTrigger
-        nz-input
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size!"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.placeholder]="ui.placeholder"
-        [nzAutosize]="i.autosize"
-      >
-      </textarea>
+        <textarea
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength || null"
+          [attr.placeholder]="ui.placeholder"
+          [nzAutosize]="i.autosize"
+        >
+        </textarea>
       } @else {
-      <input
-        nzMentionTrigger
-        nz-input
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size!"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.placeholder]="ui.placeholder"
-        autocomplete="off"
-      />
+        <input
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength || null"
+          [attr.placeholder]="ui.placeholder"
+          autocomplete="off"
+        />
       }
     </nz-mention>
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzInputModule }, { kind: "directive", type: i3.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "nzStepperless", "nzStatus", "disabled"], exportAs: ["nzInput"] }, { kind: "directive", type: i3.NzAutosizeDirective, selector: "textarea[nzAutosize]", inputs: ["nzAutosize"], exportAs: ["nzAutosize"] }, { kind: "ngmodule", type: NzMentionModule }, { kind: "component", type: i4.NzMentionComponent, selector: "nz-mention", inputs: ["nzValueWith", "nzPrefix", "nzLoading", "nzNotFoundContent", "nzPlacement", "nzSuggestions", "nzStatus"], outputs: ["nzOnSelect", "nzOnSearchChange"], exportAs: ["nzMention"] }, { kind: "directive", type: i4.NzMentionTriggerDirective, selector: "input[nzMentionTrigger], textarea[nzMentionTrigger]", outputs: ["onFocusin", "onBlur", "onInput", "onKeydown", "onClick"], exportAs: ["nzMentionTrigger"] }], encapsulation: i0.ViewEncapsulation.None }); }
@@ -142,34 +142,34 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       (nzOnSearchChange)="_search($event)"
     >
       @if (ui.inputStyle === 'textarea') {
-      <textarea
-        nzMentionTrigger
-        nz-input
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size!"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.placeholder]="ui.placeholder"
-        [nzAutosize]="i.autosize"
-      >
-      </textarea>
+        <textarea
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength || null"
+          [attr.placeholder]="ui.placeholder"
+          [nzAutosize]="i.autosize"
+        >
+        </textarea>
       } @else {
-      <input
-        nzMentionTrigger
-        nz-input
-        [attr.id]="id"
-        [disabled]="disabled"
-        [attr.disabled]="disabled"
-        [nzSize]="ui.size!"
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.placeholder]="ui.placeholder"
-        autocomplete="off"
-      />
+        <input
+          nzMentionTrigger
+          nz-input
+          [attr.id]="id"
+          [disabled]="disabled"
+          [attr.disabled]="disabled"
+          [nzSize]="ui.size!"
+          [ngModel]="value"
+          (ngModelChange)="setValue($event)"
+          [attr.maxLength]="schema.maxLength || null"
+          [attr.placeholder]="ui.placeholder"
+          autocomplete="off"
+        />
       }
     </nz-mention>
   </sf-item-wrap>`,
