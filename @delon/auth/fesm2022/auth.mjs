@@ -550,7 +550,7 @@ const authJWTInterceptor = (req, next) => {
         return next(req);
     const model = inject(DA_SERVICE_TOKEN).get();
     if (CheckJwt(model, options.token_exp_offset))
-        next(newReq$1(req, model));
+        return next(newReq$1(req, model));
     return throwErr(req, options);
 };
 
@@ -644,7 +644,7 @@ const authSimpleInterceptor = (req, next) => {
         return next(req);
     const model = inject(DA_SERVICE_TOKEN).get();
     if (CheckSimple(model))
-        next(newReq(req, model, options));
+        return next(newReq(req, model, options));
     return throwErr(req, options);
 };
 
