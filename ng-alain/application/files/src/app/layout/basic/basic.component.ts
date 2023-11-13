@@ -32,10 +32,10 @@ import { environment } from '@env/environment';
         <nz-dropdown-menu #settingsMenu="nzDropdownMenu">
           <div nz-menu style="width: 200px;">
             <div nz-menu-item>
-              <header-fullscreen></header-fullscreen>
+              <header-fullscreen />
             </div>
             <div nz-menu-item>
-              <header-clear-storage></header-clear-storage>
+              <header-clear-storage />
             </div><% if (i18n) { %>
             <div nz-menu-item>
               <header-i18n></header-i18n>
@@ -44,7 +44,7 @@ import { environment } from '@env/environment';
         </nz-dropdown-menu>
       </layout-default-header-item>
       <layout-default-header-item direction="right">
-        <header-user></header-user>
+        <header-user />
       </layout-default-header-item>
       <ng-template #asideUserTpl>
         <div nz-dropdown nzTrigger="click" [nzDropdownMenu]="userMenu" class="alain-default__aside-user">
@@ -62,12 +62,12 @@ import { environment } from '@env/environment';
         </nz-dropdown-menu>
       </ng-template>
       <ng-template #contentTpl>
-        <router-outlet></router-outlet>
+        <router-outlet />
       </ng-template>
     </layout-default>
 
-    <setting-drawer *ngIf="showSettingDrawer"></setting-drawer>
-    <theme-btn></theme-btn>
+    <setting-drawer *ngIf="showSettingDrawer" />
+    <theme-btn />
   `,
 })
 export class LayoutBasicComponent {

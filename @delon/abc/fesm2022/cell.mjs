@@ -321,72 +321,56 @@ class CellComponent {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: CellComponent, deps: [{ token: CellService }, { token: i2$1.Router }, { token: i0.ChangeDetectorRef }, { token: i0.ElementRef }, { token: i0.Renderer2 }, { token: i3$1.NzImageService }, { token: WINDOW }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.2", type: CellComponent, isStandalone: true, selector: "cell, [cell]", inputs: { value: "value", options: "options", loading: "loading", disabled: "disabled" }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
-      @switch (safeOpt.type) {
-        @case ('checkbox') {
-          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
-            {{ safeOpt.checkbox?.label }}
-          </label>
-        }
-        @case ('radio') {
-          <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
-            {{ safeOpt.radio?.label }}
-          </label>
-        }
-        @case ('link') {
-          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
-        }
-        @case ('tag') {
-          <nz-tag [nzColor]="res?.result?.color">
-            <span [innerHTML]="_text"></span>
-          </nz-tag>
-        }
-        @case ('badge') {
-          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
-        }
-        @case ('widget') {
-          <ng-template cell-widget-host [data]="hostData" />
-        }
-        @case ('img') {
-          @for (i of $any(_text); track $index) {
-            <img
-              [attr.src]="i"
-              [attr.height]="safeOpt.img?.size"
-              [attr.width]="safeOpt.img?.size"
-              (click)="_showImg(i)"
-              class="img"
-              [class.point]="safeOpt.img?.big"
-            />
-          }
-        }
-        @default {
-          @if (isText) {
-            <span [innerText]="_text" [attr.title]="value"></span>
-          } @else {
-            <span [innerHTML]="_text" [attr.title]="value"></span>
-          }
-          @if (_unit) {
-            <span class="unit">{{ _unit }}</span>
-          }
-        }
-      }
+      @switch(safeOpt.type) { @case('checkbox') {
+      <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
+        {{ safeOpt.checkbox?.label }}
+      </label>
+      } @case('radio') {
+      <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
+        {{ safeOpt.radio?.label }}
+      </label>
+      } @case('link') {
+      <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
+      } @case('tag') {
+      <nz-tag [nzColor]="res?.result?.color">
+        <span [innerHTML]="_text"></span>
+      </nz-tag>
+      } @case('badge') {
+      <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
+      } @case('widget') {
+      <ng-template cell-widget-host [data]="hostData" />
+      } @case('img') { @for (i of $any(_text); track $index) {
+      <img
+        [attr.src]="i"
+        [attr.height]="safeOpt.img?.size"
+        [attr.width]="safeOpt.img?.size"
+        (click)="_showImg(i)"
+        class="img"
+        [class.point]="safeOpt.img?.big"
+      />
+      } } @default { @if(isText) {
+      <span [innerText]="_text" [attr.title]="value"></span>
+      } @else {
+      <span [innerHTML]="_text" [attr.title]="value"></span>
+      } @if(_unit) {
+      <span class="unit">{{ _unit }}</span>
+      } } }
     </ng-template>
     <ng-template #textWrap>
       @if (showDefault) {
-        {{ safeOpt.default?.text }}
+      {{ safeOpt.default?.text }}
+      } @else { @if (safeOpt.tooltip) {
+      <span [nz-tooltip]="safeOpt.tooltip">
+        <ng-template [ngTemplateOutlet]="text" />
+      </span>
       } @else {
-        @if (safeOpt.tooltip) {
-          <span [nz-tooltip]="safeOpt.tooltip">
-            <ng-template [ngTemplateOutlet]="text" />
-          </span>
-        } @else {
-          <ng-template [ngTemplateOutlet]="text" />
-        }
-      }
+      <ng-template [ngTemplateOutlet]="text" />
+      } }
     </ng-template>
     @if (loading) {
-      <span nz-icon nzType="loading"></span>
+    <span nz-icon nzType="loading"></span>
     } @else {
-      <ng-template [ngTemplateOutlet]="textWrap" />
+    <ng-template [ngTemplateOutlet]="textWrap" />
     }
   `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i4$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i4$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "ngmodule", type: NzCheckboxModule }, { kind: "component", type: i5.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "ngmodule", type: NzRadioModule }, { kind: "component", type: i6.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i7.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "ngmodule", type: NzTagModule }, { kind: "component", type: i8.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "ngmodule", type: NzBadgeModule }, { kind: "component", type: i9.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "ngmodule", type: NzToolTipModule }, { kind: "directive", type: i10.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
@@ -402,72 +386,56 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
                     selector: 'cell, [cell]',
                     template: `
     <ng-template #text>
-      @switch (safeOpt.type) {
-        @case ('checkbox') {
-          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
-            {{ safeOpt.checkbox?.label }}
-          </label>
-        }
-        @case ('radio') {
-          <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
-            {{ safeOpt.radio?.label }}
-          </label>
-        }
-        @case ('link') {
-          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
-        }
-        @case ('tag') {
-          <nz-tag [nzColor]="res?.result?.color">
-            <span [innerHTML]="_text"></span>
-          </nz-tag>
-        }
-        @case ('badge') {
-          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
-        }
-        @case ('widget') {
-          <ng-template cell-widget-host [data]="hostData" />
-        }
-        @case ('img') {
-          @for (i of $any(_text); track $index) {
-            <img
-              [attr.src]="i"
-              [attr.height]="safeOpt.img?.size"
-              [attr.width]="safeOpt.img?.size"
-              (click)="_showImg(i)"
-              class="img"
-              [class.point]="safeOpt.img?.big"
-            />
-          }
-        }
-        @default {
-          @if (isText) {
-            <span [innerText]="_text" [attr.title]="value"></span>
-          } @else {
-            <span [innerHTML]="_text" [attr.title]="value"></span>
-          }
-          @if (_unit) {
-            <span class="unit">{{ _unit }}</span>
-          }
-        }
-      }
+      @switch(safeOpt.type) { @case('checkbox') {
+      <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
+        {{ safeOpt.checkbox?.label }}
+      </label>
+      } @case('radio') {
+      <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
+        {{ safeOpt.radio?.label }}
+      </label>
+      } @case('link') {
+      <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
+      } @case('tag') {
+      <nz-tag [nzColor]="res?.result?.color">
+        <span [innerHTML]="_text"></span>
+      </nz-tag>
+      } @case('badge') {
+      <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
+      } @case('widget') {
+      <ng-template cell-widget-host [data]="hostData" />
+      } @case('img') { @for (i of $any(_text); track $index) {
+      <img
+        [attr.src]="i"
+        [attr.height]="safeOpt.img?.size"
+        [attr.width]="safeOpt.img?.size"
+        (click)="_showImg(i)"
+        class="img"
+        [class.point]="safeOpt.img?.big"
+      />
+      } } @default { @if(isText) {
+      <span [innerText]="_text" [attr.title]="value"></span>
+      } @else {
+      <span [innerHTML]="_text" [attr.title]="value"></span>
+      } @if(_unit) {
+      <span class="unit">{{ _unit }}</span>
+      } } }
     </ng-template>
     <ng-template #textWrap>
       @if (showDefault) {
-        {{ safeOpt.default?.text }}
+      {{ safeOpt.default?.text }}
+      } @else { @if (safeOpt.tooltip) {
+      <span [nz-tooltip]="safeOpt.tooltip">
+        <ng-template [ngTemplateOutlet]="text" />
+      </span>
       } @else {
-        @if (safeOpt.tooltip) {
-          <span [nz-tooltip]="safeOpt.tooltip">
-            <ng-template [ngTemplateOutlet]="text" />
-          </span>
-        } @else {
-          <ng-template [ngTemplateOutlet]="text" />
-        }
-      }
+      <ng-template [ngTemplateOutlet]="text" />
+      } }
     </ng-template>
     @if (loading) {
-      <span nz-icon nzType="loading"></span>
+    <span nz-icon nzType="loading"></span>
     } @else {
-      <ng-template [ngTemplateOutlet]="textWrap" />
+    <ng-template [ngTemplateOutlet]="textWrap" />
     }
   `,
                     exportAs: 'cell',

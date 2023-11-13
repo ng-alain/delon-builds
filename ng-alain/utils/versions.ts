@@ -30,7 +30,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `eslint-plugin-prefer-arrow@~1.2.3`,
       `eslint-plugin-prettier@~5.0.1`,
       `eslint-plugin-deprecation@~2.0.0`,
-      `prettier@^3.1.0`,
+      `prettier@^3.0.3`,
       `husky@^8.0.3`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^16.0.0`,
