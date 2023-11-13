@@ -56,20 +56,20 @@ class TagWidget extends ControlUIWidget {
       ></i>
     </ng-template>
     @for (i of data; track $index) {
-    <nz-tag
-      [nzMode]="ui.mode || 'checkable'"
-      [nzChecked]="i.checked"
-      (nzOnClose)="_close($event)"
-      (nzCheckedChange)="onChange(i)"
-    >
-      @if (i.prefixIcon) {
-      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
-      }
-      <span>{{ i.label }}</span>
-      @if (i.suffixIcon) {
-      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
-      }
-    </nz-tag>
+      <nz-tag
+        [nzMode]="ui.mode || 'checkable'"
+        [nzChecked]="i.checked"
+        (nzOnClose)="_close($event)"
+        (nzCheckedChange)="onChange(i)"
+      >
+        @if (i.prefixIcon) {
+          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
+        }
+        <span>{{ i.label }}</span>
+        @if (i.suffixIcon) {
+          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
+        }
+      </nz-tag>
     }
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzTagModule }, { kind: "component", type: i2.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i3.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
@@ -97,20 +97,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       ></i>
     </ng-template>
     @for (i of data; track $index) {
-    <nz-tag
-      [nzMode]="ui.mode || 'checkable'"
-      [nzChecked]="i.checked"
-      (nzOnClose)="_close($event)"
-      (nzCheckedChange)="onChange(i)"
-    >
-      @if (i.prefixIcon) {
-      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
-      }
-      <span>{{ i.label }}</span>
-      @if (i.suffixIcon) {
-      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
-      }
-    </nz-tag>
+      <nz-tag
+        [nzMode]="ui.mode || 'checkable'"
+        [nzChecked]="i.checked"
+        (nzOnClose)="_close($event)"
+        (nzCheckedChange)="onChange(i)"
+      >
+        @if (i.prefixIcon) {
+          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.prefixIcon }" />
+        }
+        <span>{{ i.label }}</span>
+        @if (i.suffixIcon) {
+          <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.suffixIcon }" />
+        }
+      </nz-tag>
     }
   </sf-item-wrap>`,
                     preserveWhitespaces: false,

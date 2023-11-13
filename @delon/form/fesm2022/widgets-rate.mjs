@@ -45,7 +45,7 @@ class RateWidget extends ControlUIWidget {
       [nzCount]="$any(count)"
     />
     @if (hasText && formProperty.value) {
-    <span class="ant-rate-text">{{ text }}</span>
+      <span class="ant-rate-text">{{ text }}</span>
     }
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzRateModule }, { kind: "component", type: i3.NzRateComponent, selector: "nz-rate", inputs: ["nzAllowClear", "nzAllowHalf", "nzDisabled", "nzAutoFocus", "nzCharacter", "nzCount", "nzTooltips"], outputs: ["nzOnBlur", "nzOnFocus", "nzOnHoverChange", "nzOnKeyDown"], exportAs: ["nzRate"] }], encapsulation: i0.ViewEncapsulation.None }); }
 }
@@ -72,7 +72,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImpor
       [nzCount]="$any(count)"
     />
     @if (hasText && formProperty.value) {
-    <span class="ant-rate-text">{{ text }}</span>
+      <span class="ant-rate-text">{{ text }}</span>
     }
   </sf-item-wrap>`,
                     preserveWhitespaces: false,
