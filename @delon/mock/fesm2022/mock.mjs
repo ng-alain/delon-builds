@@ -1,9 +1,9 @@
 import * as i0 from '@angular/core';
-import { inject, InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject } from '@angular/core';
-import { HttpErrorResponse, HttpResponseBase, HttpResponse, ɵHTTP_ROOT_INTERCEPTOR_FNS } from '@angular/common/http';
+import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject, inject } from '@angular/core';
+import * as i1 from '@delon/util/config';
+import { HttpErrorResponse, HttpResponseBase, HttpResponse } from '@angular/common/http';
 import { of, isObservable, from, map, throwError, switchMap, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
-import * as i1 from '@delon/util/config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class MockStatusError {
@@ -20,107 +20,9 @@ const MOCK_DEFULAT_CONFIG = {
     executeOtherInterceptors: false
 };
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-const mockInterceptor = (req, next) => {
-    const src = inject(MockService);
-    const config = src.config;
-    const rule = src.getRule(req.method, req.url.split('?')[0]);
-    if (!rule && !config.force) {
-        return next(req);
-    }
-    let res$;
-    switch (typeof rule.callback) {
-        case 'function':
-            const mockRequest = {
-                original: req,
-                body: req.body,
-                queryString: {},
-                headers: {},
-                params: rule.params
-            };
-            const urlParams = req.url.split('?');
-            if (urlParams.length > 1) {
-                urlParams[1].split('&').forEach(item => {
-                    const itemArr = item.split('=');
-                    const key = itemArr[0];
-                    const value = itemArr[1];
-                    // is array
-                    if (Object.keys(mockRequest.queryString).includes(key)) {
-                        if (!Array.isArray(mockRequest.queryString[key])) {
-                            mockRequest.queryString[key] = [mockRequest.queryString[key]];
-                        }
-                        mockRequest.queryString[key].push(value);
-                    }
-                    else {
-                        mockRequest.queryString[key] = value;
-                    }
-                });
-            }
-            req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
-            req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
-            try {
-                const fnRes = rule.callback.call(this, mockRequest);
-                res$ = isObservable(fnRes) ? fnRes : from(Promise.resolve(fnRes));
-            }
-            catch (e) {
-                res$ = of(new HttpErrorResponse({
-                    url: req.url,
-                    headers: req.headers,
-                    status: e instanceof MockStatusError ? e.status : 400,
-                    statusText: e.statusText || 'Unknown Error',
-                    error: e.error
-                }));
-            }
-            break;
-        default:
-            res$ = of(rule.callback);
-            break;
-    }
-    res$ = res$.pipe(map(res => res instanceof HttpResponseBase
-        ? res
-        : new HttpResponse({
-            status: 200,
-            url: req.url,
-            body: deepCopy(res)
-        })), map((res) => {
-        const anyRes = res;
-        if (anyRes.body) {
-            anyRes.body = deepCopy(anyRes.body);
-        }
-        if (config.log) {
-            console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
-            console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
-        }
-        return res;
-    }), switchMap((res) => (res instanceof HttpErrorResponse ? throwError(() => res) : of(res))));
-    // TODO: HTTP_INTERCEPTOR_FNS 不再公开，需要找到替代方案暂时标记为过期
-    // if (config.executeOtherInterceptors) {
-    //   const interceptors = inject(HTTP_INTERCEPTORS) ?? [];
-    //   const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
-    //   if (lastInterceptors.length > 0) {
-    //     const chain = lastInterceptors.reduceRight(
-    //       (_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor),
-    //       {
-    //         handle: () => res$
-    //       } as HttpBackend
-    //     );
-    //     return chain.handle(req).pipe(delay(config.delay!));
-    //   }
-    // }
-    return res$.pipe(delay$1(config.delay));
-};
-
 const DELON_MOCK_CONFIG = new InjectionToken('alain-mock-config');
 function provideMockConfig(config) {
-    return makeEnvironmentProviders([
-        { provide: DELON_MOCK_CONFIG, useValue: config },
-        {
-            provide: ɵHTTP_ROOT_INTERCEPTOR_FNS,
-            useValue: mockInterceptor,
-            multi: true,
-            deps: [MockService]
-        }
-    ]);
+    return makeEnvironmentProviders([{ provide: DELON_MOCK_CONFIG, useValue: config }]);
 }
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -263,6 +165,96 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                     type: Inject,
                     args: [DELON_MOCK_CONFIG]
                 }] }] });
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+const mockInterceptor = (req, next) => {
+    const src = inject(MockService);
+    const config = src.config;
+    const rule = src.getRule(req.method, req.url.split('?')[0]);
+    if (!rule && !config.force) {
+        return next(req);
+    }
+    let res$;
+    switch (typeof rule.callback) {
+        case 'function':
+            const mockRequest = {
+                original: req,
+                body: req.body,
+                queryString: {},
+                headers: {},
+                params: rule.params
+            };
+            const urlParams = req.url.split('?');
+            if (urlParams.length > 1) {
+                urlParams[1].split('&').forEach(item => {
+                    const itemArr = item.split('=');
+                    const key = itemArr[0];
+                    const value = itemArr[1];
+                    // is array
+                    if (Object.keys(mockRequest.queryString).includes(key)) {
+                        if (!Array.isArray(mockRequest.queryString[key])) {
+                            mockRequest.queryString[key] = [mockRequest.queryString[key]];
+                        }
+                        mockRequest.queryString[key].push(value);
+                    }
+                    else {
+                        mockRequest.queryString[key] = value;
+                    }
+                });
+            }
+            req.params.keys().forEach(key => (mockRequest.queryString[key] = req.params.get(key)));
+            req.headers.keys().forEach(key => (mockRequest.headers[key] = req.headers.get(key)));
+            try {
+                const fnRes = rule.callback.call(this, mockRequest);
+                res$ = isObservable(fnRes) ? fnRes : from(Promise.resolve(fnRes));
+            }
+            catch (e) {
+                res$ = of(new HttpErrorResponse({
+                    url: req.url,
+                    headers: req.headers,
+                    status: e instanceof MockStatusError ? e.status : 400,
+                    statusText: e.statusText || 'Unknown Error',
+                    error: e.error
+                }));
+            }
+            break;
+        default:
+            res$ = of(rule.callback);
+            break;
+    }
+    res$ = res$.pipe(map(res => res instanceof HttpResponseBase
+        ? res
+        : new HttpResponse({
+            status: 200,
+            url: req.url,
+            body: deepCopy(res)
+        })), map((res) => {
+        const anyRes = res;
+        if (anyRes.body) {
+            anyRes.body = deepCopy(anyRes.body);
+        }
+        if (config.log) {
+            console.log(`%c👽${req.method}->${req.urlWithParams}->request`, 'background:#000;color:#bada55', req);
+            console.log(`%c👽${req.method}->${req.urlWithParams}->response`, 'background:#000;color:#bada55', res);
+        }
+        return res;
+    }), switchMap((res) => (res instanceof HttpErrorResponse ? throwError(() => res) : of(res))));
+    // TODO: HTTP_INTERCEPTOR_FNS 不再公开，需要找到替代方案暂时标记为过期
+    // if (config.executeOtherInterceptors) {
+    //   const interceptors = inject(HTTP_INTERCEPTORS) ?? [];
+    //   const lastInterceptors = interceptors.slice(interceptors.indexOf(this) + 1);
+    //   if (lastInterceptors.length > 0) {
+    //     const chain = lastInterceptors.reduceRight(
+    //       (_next, _interceptor) => new HttpMockInterceptorHandler(_next, _interceptor),
+    //       {
+    //         handle: () => res$
+    //       } as HttpBackend
+    //     );
+    //     return chain.handle(req).pipe(delay(config.delay!));
+    //   }
+    // }
+    return res$.pipe(delay$1(config.delay));
+};
 
 /**
  * Used to simulate delays
