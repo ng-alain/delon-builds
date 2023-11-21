@@ -4,11 +4,11 @@ import { DELON_LOCALE_SERVICE_PROVIDER } from './locale.service';
 import { DELON_LOCALE } from './locale.tokens';
 import * as i0 from "@angular/core";
 export class DelonLocaleModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonLocaleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: DelonLocaleModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonLocaleModule, providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: DelonLocaleModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.4", ngImport: i0, type: DelonLocaleModule }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: DelonLocaleModule, providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: DelonLocaleModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: DelonLocaleModule, decorators: [{
             type: NgModule,
             args: [{
                     providers: [{ provide: DELON_LOCALE, useValue: zhCN }, DELON_LOCALE_SERVICE_PROVIDER]

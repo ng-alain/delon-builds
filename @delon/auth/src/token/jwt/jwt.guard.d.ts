@@ -1,9 +1,11 @@
+import { Injector } from '@angular/core';
 import { CanActivateChildFn, CanActivateFn, CanMatchFn } from '@angular/router';
 import { ITokenService } from '../interface';
 import * as i0 from "@angular/core";
 export declare class AuthJWTGuardService {
     private srv;
-    constructor(srv: ITokenService);
+    private injector;
+    constructor(srv: ITokenService, injector: Injector);
     process(url?: string): boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<AuthJWTGuardService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AuthJWTGuardService>;

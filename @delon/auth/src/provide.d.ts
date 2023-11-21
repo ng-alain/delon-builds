@@ -1,6 +1,7 @@
 import { EnvironmentProviders, Provider } from '@angular/core';
 export declare enum AuthFeatureKind {
-    Store = 0
+    Token = 0,
+    Store = 1
 }
 export interface AuthFeature<KindT extends AuthFeatureKind> {
     ɵkind: KindT;
@@ -9,11 +10,16 @@ export interface AuthFeature<KindT extends AuthFeatureKind> {
 /**
  * Configures authentication process service to be available for injection.
  *
+ * @see {@link withSimple}
+ * @see {@link withJWT}
  * @see {@link withCookie}
  * @see {@link withLocalStorage}
  * @see {@link withSessionStorage}
  */
-export declare function provideAuth(store?: AuthFeature<AuthFeatureKind.Store>): EnvironmentProviders;
+export declare function provideAuth(type: AuthFeature<AuthFeatureKind.Token>, store?: AuthFeature<AuthFeatureKind.Store>): EnvironmentProviders;
+/** Use simple auth type,  */
+export declare function withSimple(): AuthFeature<AuthFeatureKind.Token>;
+export declare function withJWT(): AuthFeature<AuthFeatureKind.Token>;
 /** `cookie` storage */
 export declare function withCookie(): AuthFeature<AuthFeatureKind.Store>;
 /** `localStorage` storage, **not lost after closing the browser**. */

@@ -7,11 +7,11 @@ import { G2CardComponent } from './card.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [G2CardComponent];
 export class G2CardModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: G2CardModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: G2CardModule, declarations: [G2CardComponent], imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule], exports: [G2CardComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: G2CardModule, imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: G2CardModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.4", ngImport: i0, type: G2CardModule, declarations: [G2CardComponent], imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule], exports: [G2CardComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: G2CardModule, imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: G2CardModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: G2CardModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzCardModule, NzSpinModule, NzOutletModule],

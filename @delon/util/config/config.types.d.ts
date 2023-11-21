@@ -7,6 +7,7 @@ import { AlainChartConfig } from './chart/chart.type';
 import { AlainMockConfig } from './mock/mock.type';
 import { AlainSFConfig } from './sf/sf.type';
 import { AlainThemeHttpClientConfig, AlainThemeResponsiveConfig, AlainThemeI18nConfig } from './theme/index';
+import { AlainThemePipeConfig } from './theme/pipe.type';
 import { AlainUtilArrayConfig } from './util/array.type';
 import { AlainUtilCurrencyConfig } from './util/currency.type';
 export interface AlainConfig {
@@ -39,6 +40,7 @@ export interface AlainConfig {
     themeHttp?: AlainThemeHttpClientConfig;
     themeResponsive?: AlainThemeResponsiveConfig;
     themeI18n?: AlainThemeI18nConfig;
+    themePipe?: AlainThemePipeConfig;
 }
 export type AlainConfigKey = keyof AlainConfig;
 export declare const ALAIN_CONFIG: InjectionToken<AlainConfig>;

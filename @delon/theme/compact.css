@@ -22838,37 +22838,6 @@ tr.ant-table-expanded-row .ant-descriptions-view table {
 .ant-table-sticky-scroll-bar-active {
   background-color: rgba(0, 0, 0, 0.8);
 }
-.ant-table-custom-column col {
-  width: auto !important;
-  min-width: auto !important;
-  display: none;
-}
-.ant-table-custom-column .ant-table-thead .ant-table-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.ant-table-custom-column .ant-table-thead .ant-table-row th {
-  overflow: hidden;
-}
-.ant-table-custom-column .ant-table-tbody .ant-table-row {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-.ant-table-custom-column .ant-table-tbody .ant-table-row td {
-  overflow: hidden;
-}
-.ant-table-custom-column .ant-table-tbody .ant-table-row .nz-disable-td {
-  width: 100%;
-}
-.ant-table-custom-column .ant-table-fixed tr .ant-table-cell-fix-left-last,
-.ant-table-custom-column .ant-table-fixed tr .ant-table-cell-fix-right-first {
-  overflow: visible;
-}
-.ant-table-custom-column .ant-table-fixed .ant-table-row {
-  width: 100%;
-}
 @media all and (-ms-high-contrast: none) {
   .ant-table-ping-left .ant-table-cell-fix-left-last::after {
     box-shadow: none !important;
@@ -23052,6 +23021,42 @@ cdk-virtual-scroll-viewport.ant-table-body {
 }
 .ant-table.ant-table-bordered.ant-table-small > .ant-table-container > .cdk-virtual-scroll-viewport > .cdk-virtual-scroll-content-wrapper > table > tbody > tr > td > .ant-table-expanded-row-fixed {
   margin: -4px -5px;
+}
+.ant-table-custom-column col {
+  width: auto !important;
+  min-width: auto !important;
+  display: none;
+}
+.ant-table-custom-column .ant-table-thead .ant-table-row,
+.ant-table-custom-column .ant-table-thead tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.ant-table-custom-column .ant-table-thead .ant-table-row th,
+.ant-table-custom-column .ant-table-thead tr th {
+  overflow: hidden;
+}
+.ant-table-custom-column .ant-table-tbody .ant-table-row,
+.ant-table-custom-column .ant-table-tbody tr {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.ant-table-custom-column .ant-table-tbody .ant-table-row td,
+.ant-table-custom-column .ant-table-tbody tr td {
+  overflow: hidden;
+}
+.ant-table-custom-column .ant-table-tbody .ant-table-row .nz-disable-td,
+.ant-table-custom-column .ant-table-tbody tr .nz-disable-td {
+  width: 100%;
+}
+.ant-table-custom-column .ant-table-fixed tr .ant-table-cell-fix-left-last,
+.ant-table-custom-column .ant-table-fixed tr .ant-table-cell-fix-right-first {
+  overflow: visible;
+}
+.ant-table-custom-column .ant-table-fixed .ant-table-row {
+  width: 100%;
 }
 .ant-tabs-small > .ant-tabs-nav .ant-tabs-tab {
   padding: 4px 0;
@@ -27731,9 +27736,6 @@ nz-space-item {
   align-items: center;
   padding-left: 8px;
 }
-.ant-cron-expression-preview-content-date {
-  flex: 1 1 auto;
-}
 .ant-cron-expression-preview-list,
 .ant-cron-expression-preview-icon {
   list-style: none;
@@ -27751,17 +27753,12 @@ nz-space-item {
   height: 132px;
 }
 .ant-cron-expression-preview-icon {
-  height: 100%;
+  flex: 0 0 16px;
+  display: flex;
+  justify-content: center;
 }
 .ant-cron-expression-error {
   color: #ff4d4f;
-}
-.ant-cron-expression-hint p {
-  display: flex;
-}
-.ant-cron-expression-hint span {
-  display: inline-block;
-  min-width: 40px;
 }
 .ant-qrcode {
   display: inline-block;
@@ -28022,6 +28019,130 @@ nz-space-item {
 .ant-color-picker-inline-sm .ant-color-picker-color-block {
   width: 16px;
   height: 16px;
+}
+.ant-hashCode {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 12px;
+  line-height: 1.66667;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.ant-hashCode-header-copy {
+  margin-left: 4px;
+  cursor: pointer;
+  opacity: 0.45;
+}
+.ant-hashCode-header {
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  height: 22px;
+  padding-bottom: 4px;
+}
+.ant-hashCode-header .ant-hashCode-header-title {
+  font-size: 12px;
+  line-height: 1.66667;
+  text-align: center;
+  opacity: 0.45;
+}
+.ant-hashCode-header .ant-hashCode-header-logo {
+  display: flex;
+  flex: 1;
+  justify-content: right;
+}
+.ant-hashCode-double {
+  width: 172px;
+}
+.ant-hashCode-double.ant-hashCode-primary {
+  width: 220px;
+}
+.ant-hashCode-single {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 236px;
+}
+.ant-hashCode-single.ant-hashCode-primary {
+  width: 284px;
+}
+.ant-hashCode-single .ant-hashCode-header-copy {
+  margin-top: 4px;
+}
+.ant-hashCode-strip {
+  width: 350px;
+}
+.ant-hashCode-strip.ant-hashCode-primary {
+  width: 398px;
+}
+.ant-hashCode-rect {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 196px;
+}
+.ant-hashCode-rect.ant-hashCode-primary {
+  width: 244px;
+}
+.ant-hashCode-primary {
+  padding: 16px;
+  background-color: #1890ff;
+  border-radius: 24px;
+}
+.ant-hashCode-primary .ant-hashCode-header-copy {
+  opacity: 1;
+}
+.ant-hashCode-primary .ant-hashCode-header-title,
+.ant-hashCode-primary .ant-hashCode-header-copy,
+.ant-hashCode-primary .ant-hashCode-header-logo {
+  color: rgba(255, 255, 255, 0.85);
+}
+.ant-hashCode-contant {
+  width: 100%;
+  height: 100%;
+}
+.ant-hashCode-code-value {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  justify-content: space-between;
+  height: 35px;
+  overflow: hidden;
+}
+.ant-hashCode-code-value-block {
+  height: 16px;
+  font-size: 12px;
+  font-family: Menlo;
+}
+.ant-hashCode-value-primary .ant-hashCode-code-value-block {
+  color: #fff;
+}
+.ant-hashCode-texaure-double {
+  width: 175px;
+  height: 36px;
+}
+.ant-hashCode-texaure {
+  position: absolute;
+  margin-top: -35px;
+  overflow: hidden;
+}
+.ant-hashCode-texaure-single {
+  width: 210px;
+  height: 28px;
+  margin-top: -21px;
+}
+.ant-hashCode-texaure-strip {
+  width: 350px;
+  height: 36px;
+}
+.ant-hashCode-texaure-rect {
+  width: 175px;
+  height: 72px;
+  margin-top: -71px;
 }
 sf + st {
   margin-top: 16px;
