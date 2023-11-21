@@ -548,7 +548,7 @@ const authJWTInterceptor = (req, next) => {
     const options = mergeConfig(inject(AlainConfigService));
     if (isAnonymous(req, options))
         return next(req);
-    const model = inject(DA_SERVICE_TOKEN).get();
+    const model = inject(DA_SERVICE_TOKEN).get(JWTTokenModel);
     if (CheckJwt(model, options.token_exp_offset))
         return next(newReq$1(req, model));
     return throwErr(req, options);
