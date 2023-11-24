@@ -1322,7 +1322,7 @@ class STFilterComponent {
         return this;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: STFilterComponent, deps: [{ token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: STFilterComponent, selector: "st-filter", inputs: { col: "col", locale: "locale", f: "f" }, outputs: { n: "n", handle: "handle" }, host: { properties: { "class.ant-table-filter-trigger-container": "true", "class.st__filter": "true", "class.ant-table-filter-trigger-container-open": "visible" } }, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: STFilterComponent, selector: "st-filter", inputs: { col: "col", locale: "locale", f: "f" }, outputs: { n: "n", handle: "handle" }, host: { properties: { "class.ant-table-filter-trigger-container": "true", "class.st__filter": "true", "class.ant-table-filter-trigger-container-open": "visible" } }, ngImport: i0, template: `
     <span
       class="ant-table-filter-trigger"
       [class.active]="visible || f.default"
@@ -1338,88 +1338,99 @@ class STFilterComponent {
     </span>
     <nz-dropdown-menu #filterMenu="nzDropdownMenu">
       <div class="ant-table-filter-dropdown">
-        <ng-container [ngSwitch]="f.type">
-          <div *ngSwitchCase="'keyword'" class="st__filter-keyword">
-            <input
-              type="text"
-              nz-input
-              [attr.placeholder]="f.placeholder"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              (keyup.enter)="confirm()"
-            />
+        @switch (f.type) {
+          @case ('keyword') {
+            <div class="st__filter-keyword">
+              <input
+                type="text"
+                nz-input
+                [attr.placeholder]="f.placeholder"
+                [(ngModel)]="f.menus![0]!.value"
+                (ngModelChange)="n.emit($event)"
+                (keyup.enter)="confirm()"
+              />
+            </div>
+          }
+          @case ('number') {
+            <div class="p-sm st__filter-number">
+              <nz-input-number
+                [(ngModel)]="f.menus![0]!.value"
+                (ngModelChange)="n.emit($event)"
+                [nzMin]="f.number!.min!"
+                [nzMax]="f.number!.max!"
+                [nzStep]="f.number!.step!"
+                [nzPrecision]="f.number!.precision"
+                [nzPlaceHolder]="f.placeholder!"
+                class="width-100"
+              />
+            </div>
+          }
+          @case ('date') {
+            <div class="p-sm st__filter-date">
+              @if (f.date!.range) {
+                <nz-range-picker
+                  nzInline
+                  [nzMode]="f.date!.mode"
+                  [(ngModel)]="f.menus![0]!.value"
+                  (ngModelChange)="n.emit($event)"
+                  [nzShowNow]="f.date!.showNow"
+                  [nzShowToday]="f.date!.showToday"
+                  [nzDisabledDate]="f.date!.disabledDate"
+                  [nzDisabledTime]="f.date!.disabledTime"
+                />
+              } @else {
+                <nz-date-picker
+                  nzInline
+                  [nzMode]="f.date!.mode"
+                  [(ngModel)]="f.menus![0]!.value"
+                  (ngModelChange)="n.emit($event)"
+                  [nzShowNow]="f.date!.showNow"
+                  [nzShowToday]="f.date!.showToday"
+                  [nzDisabledDate]="f.date!.disabledDate"
+                  [nzDisabledTime]="f.date!.disabledTime"
+                />
+              }
+            </div>
+          }
+          @case ('custom') {
+            <div class="st__filter-custom">
+              <ng-template
+                [ngTemplateOutlet]="f.custom!"
+                [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
+              />
+            </div>
+          }
+          @default {
+            <ul nz-menu>
+              @if (f.multiple) {
+                <li nz-menu-item *ngFor="let filter of f.menus">
+                  <label nz-checkbox [(ngModel)]="filter.checked" (ngModelChange)="checkboxChange()">
+                    {{ filter.text }}
+                  </label>
+                </li>
+              } @else {
+                <li nz-menu-item *ngFor="let filter of f.menus">
+                  <label nz-radio [ngModel]="filter.checked" (ngModelChange)="radioChange(filter)">
+                    {{ filter.text }}
+                  </label>
+                </li>
+              }
+            </ul>
+          }
+        }
+        @if (f.showOPArea) {
+          <div class="ant-table-filter-dropdown-btns">
+            <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
+              <span>{{ f.confirmText || locale.filterConfirm }}</span>
+            </a>
+            <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
+              <span>{{ f.clearText || locale.filterReset }}</span>
+            </a>
           </div>
-          <div *ngSwitchCase="'number'" class="p-sm st__filter-number">
-            <nz-input-number
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzMin]="f.number!.min!"
-              [nzMax]="f.number!.max!"
-              [nzStep]="f.number!.step!"
-              [nzPrecision]="f.number!.precision"
-              [nzPlaceHolder]="f.placeholder!"
-              class="width-100"
-            />
-          </div>
-          <div *ngSwitchCase="'date'" class="p-sm st__filter-date">
-            <nz-date-picker
-              *ngIf="!f.date!.range"
-              nzInline
-              [nzMode]="f.date!.mode"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzShowNow]="f.date!.showNow"
-              [nzShowToday]="f.date!.showToday"
-              [nzDisabledDate]="f.date!.disabledDate"
-              [nzDisabledTime]="f.date!.disabledTime"
-            />
-            <nz-range-picker
-              *ngIf="f.date!.range"
-              nzInline
-              [nzMode]="f.date!.mode"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzShowNow]="f.date!.showNow"
-              [nzShowToday]="f.date!.showToday"
-              [nzDisabledDate]="f.date!.disabledDate"
-              [nzDisabledTime]="f.date!.disabledTime"
-            />
-          </div>
-          <div *ngSwitchCase="'time'" class="p-sm st__filter-time"> </div>
-          <div *ngSwitchCase="'custom'" class="st__filter-custom">
-            <ng-template
-              [ngTemplateOutlet]="f.custom!"
-              [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
-            />
-          </div>
-          <ul *ngSwitchDefault nz-menu>
-            <ng-container *ngIf="f.multiple">
-              <li nz-menu-item *ngFor="let filter of f.menus">
-                <label nz-checkbox [(ngModel)]="filter.checked" (ngModelChange)="checkboxChange()">
-                  {{ filter.text }}
-                </label>
-              </li>
-            </ng-container>
-            <ng-container *ngIf="!f.multiple">
-              <li nz-menu-item *ngFor="let filter of f.menus">
-                <label nz-radio [ngModel]="filter.checked" (ngModelChange)="radioChange(filter)">
-                  {{ filter.text }}
-                </label>
-              </li>
-            </ng-container>
-          </ul>
-        </ng-container>
-        <div *ngIf="f.showOPArea" class="ant-table-filter-dropdown-btns">
-          <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
-            <span>{{ f.confirmText || locale.filterConfirm }}</span>
-          </a>
-          <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
-            <span>{{ f.clearText || locale.filterReset }}</span>
-          </a>
-        </div>
+        }
       </div>
     </nz-dropdown-menu>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i7.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i7.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i7.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i7.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "directive", type: i8.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i8.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i8.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i12.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "directive", type: i13.NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: i13.NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: i6.NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: i6.NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: i7$1.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "directive", type: i8$1.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "nzStepperless", "nzStatus", "disabled"], exportAs: ["nzInput"] }, { kind: "component", type: i9.NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzSize", "nzMin", "nzMax", "nzParser", "nzPrecision", "nzPrecisionMode", "nzPlaceHolder", "nzStatus", "nzStep", "nzInputMode", "nzId", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzBorderless", "nzFormatter"], outputs: ["nzBlur", "nzFocus"], exportAs: ["nzInputNumber"] }, { kind: "component", type: i10.NzDatePickerComponent, selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-year-picker,nz-range-picker", inputs: ["nzAllowClear", "nzAutoFocus", "nzDisabled", "nzBorderless", "nzInputReadOnly", "nzInline", "nzOpen", "nzDisabledDate", "nzLocale", "nzPlaceHolder", "nzPopupStyle", "nzDropdownClassName", "nzSize", "nzStatus", "nzFormat", "nzDateRender", "nzDisabledTime", "nzRenderExtraFooter", "nzShowToday", "nzMode", "nzShowNow", "nzRanges", "nzDefaultPickerValue", "nzSeparator", "nzSuffixIcon", "nzBackdrop", "nzId", "nzPlacement", "nzShowWeekNumber", "nzShowTime"], outputs: ["nzOnPanelChange", "nzOnCalendarChange", "nzOnOk", "nzOnOpenChange"], exportAs: ["nzDatePicker"] }, { kind: "directive", type: i10.NzRangePickerComponent, selector: "nz-range-picker", exportAs: ["nzRangePicker"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i7.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i8.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i8.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i8.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i12.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "directive", type: i13.NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: i13.NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: i6.NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: i6.NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: i7$1.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "directive", type: i8$1.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzSize", "nzStepperless", "nzStatus", "disabled"], exportAs: ["nzInput"] }, { kind: "component", type: i9.NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzSize", "nzMin", "nzMax", "nzParser", "nzPrecision", "nzPrecisionMode", "nzPlaceHolder", "nzStatus", "nzStep", "nzInputMode", "nzId", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzBorderless", "nzFormatter"], outputs: ["nzBlur", "nzFocus"], exportAs: ["nzInputNumber"] }, { kind: "component", type: i10.NzDatePickerComponent, selector: "nz-date-picker,nz-week-picker,nz-month-picker,nz-year-picker,nz-range-picker", inputs: ["nzAllowClear", "nzAutoFocus", "nzDisabled", "nzBorderless", "nzInputReadOnly", "nzInline", "nzOpen", "nzDisabledDate", "nzLocale", "nzPlaceHolder", "nzPopupStyle", "nzDropdownClassName", "nzSize", "nzStatus", "nzFormat", "nzDateRender", "nzDisabledTime", "nzRenderExtraFooter", "nzShowToday", "nzMode", "nzShowNow", "nzRanges", "nzDefaultPickerValue", "nzSeparator", "nzSuffixIcon", "nzBackdrop", "nzId", "nzPlacement", "nzShowWeekNumber", "nzShowTime"], outputs: ["nzOnPanelChange", "nzOnCalendarChange", "nzOnOk", "nzOnOpenChange"], exportAs: ["nzDatePicker"] }, { kind: "directive", type: i10.NzRangePickerComponent, selector: "nz-range-picker", exportAs: ["nzRangePicker"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: STFilterComponent, decorators: [{
             type: Component,
@@ -1441,85 +1452,96 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
     </span>
     <nz-dropdown-menu #filterMenu="nzDropdownMenu">
       <div class="ant-table-filter-dropdown">
-        <ng-container [ngSwitch]="f.type">
-          <div *ngSwitchCase="'keyword'" class="st__filter-keyword">
-            <input
-              type="text"
-              nz-input
-              [attr.placeholder]="f.placeholder"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              (keyup.enter)="confirm()"
-            />
+        @switch (f.type) {
+          @case ('keyword') {
+            <div class="st__filter-keyword">
+              <input
+                type="text"
+                nz-input
+                [attr.placeholder]="f.placeholder"
+                [(ngModel)]="f.menus![0]!.value"
+                (ngModelChange)="n.emit($event)"
+                (keyup.enter)="confirm()"
+              />
+            </div>
+          }
+          @case ('number') {
+            <div class="p-sm st__filter-number">
+              <nz-input-number
+                [(ngModel)]="f.menus![0]!.value"
+                (ngModelChange)="n.emit($event)"
+                [nzMin]="f.number!.min!"
+                [nzMax]="f.number!.max!"
+                [nzStep]="f.number!.step!"
+                [nzPrecision]="f.number!.precision"
+                [nzPlaceHolder]="f.placeholder!"
+                class="width-100"
+              />
+            </div>
+          }
+          @case ('date') {
+            <div class="p-sm st__filter-date">
+              @if (f.date!.range) {
+                <nz-range-picker
+                  nzInline
+                  [nzMode]="f.date!.mode"
+                  [(ngModel)]="f.menus![0]!.value"
+                  (ngModelChange)="n.emit($event)"
+                  [nzShowNow]="f.date!.showNow"
+                  [nzShowToday]="f.date!.showToday"
+                  [nzDisabledDate]="f.date!.disabledDate"
+                  [nzDisabledTime]="f.date!.disabledTime"
+                />
+              } @else {
+                <nz-date-picker
+                  nzInline
+                  [nzMode]="f.date!.mode"
+                  [(ngModel)]="f.menus![0]!.value"
+                  (ngModelChange)="n.emit($event)"
+                  [nzShowNow]="f.date!.showNow"
+                  [nzShowToday]="f.date!.showToday"
+                  [nzDisabledDate]="f.date!.disabledDate"
+                  [nzDisabledTime]="f.date!.disabledTime"
+                />
+              }
+            </div>
+          }
+          @case ('custom') {
+            <div class="st__filter-custom">
+              <ng-template
+                [ngTemplateOutlet]="f.custom!"
+                [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
+              />
+            </div>
+          }
+          @default {
+            <ul nz-menu>
+              @if (f.multiple) {
+                <li nz-menu-item *ngFor="let filter of f.menus">
+                  <label nz-checkbox [(ngModel)]="filter.checked" (ngModelChange)="checkboxChange()">
+                    {{ filter.text }}
+                  </label>
+                </li>
+              } @else {
+                <li nz-menu-item *ngFor="let filter of f.menus">
+                  <label nz-radio [ngModel]="filter.checked" (ngModelChange)="radioChange(filter)">
+                    {{ filter.text }}
+                  </label>
+                </li>
+              }
+            </ul>
+          }
+        }
+        @if (f.showOPArea) {
+          <div class="ant-table-filter-dropdown-btns">
+            <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
+              <span>{{ f.confirmText || locale.filterConfirm }}</span>
+            </a>
+            <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
+              <span>{{ f.clearText || locale.filterReset }}</span>
+            </a>
           </div>
-          <div *ngSwitchCase="'number'" class="p-sm st__filter-number">
-            <nz-input-number
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzMin]="f.number!.min!"
-              [nzMax]="f.number!.max!"
-              [nzStep]="f.number!.step!"
-              [nzPrecision]="f.number!.precision"
-              [nzPlaceHolder]="f.placeholder!"
-              class="width-100"
-            />
-          </div>
-          <div *ngSwitchCase="'date'" class="p-sm st__filter-date">
-            <nz-date-picker
-              *ngIf="!f.date!.range"
-              nzInline
-              [nzMode]="f.date!.mode"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzShowNow]="f.date!.showNow"
-              [nzShowToday]="f.date!.showToday"
-              [nzDisabledDate]="f.date!.disabledDate"
-              [nzDisabledTime]="f.date!.disabledTime"
-            />
-            <nz-range-picker
-              *ngIf="f.date!.range"
-              nzInline
-              [nzMode]="f.date!.mode"
-              [(ngModel)]="f.menus![0]!.value"
-              (ngModelChange)="n.emit($event)"
-              [nzShowNow]="f.date!.showNow"
-              [nzShowToday]="f.date!.showToday"
-              [nzDisabledDate]="f.date!.disabledDate"
-              [nzDisabledTime]="f.date!.disabledTime"
-            />
-          </div>
-          <div *ngSwitchCase="'time'" class="p-sm st__filter-time"> </div>
-          <div *ngSwitchCase="'custom'" class="st__filter-custom">
-            <ng-template
-              [ngTemplateOutlet]="f.custom!"
-              [ngTemplateOutletContext]="{ $implicit: f, col: col, handle: this }"
-            />
-          </div>
-          <ul *ngSwitchDefault nz-menu>
-            <ng-container *ngIf="f.multiple">
-              <li nz-menu-item *ngFor="let filter of f.menus">
-                <label nz-checkbox [(ngModel)]="filter.checked" (ngModelChange)="checkboxChange()">
-                  {{ filter.text }}
-                </label>
-              </li>
-            </ng-container>
-            <ng-container *ngIf="!f.multiple">
-              <li nz-menu-item *ngFor="let filter of f.menus">
-                <label nz-radio [ngModel]="filter.checked" (ngModelChange)="radioChange(filter)">
-                  {{ filter.text }}
-                </label>
-              </li>
-            </ng-container>
-          </ul>
-        </ng-container>
-        <div *ngIf="f.showOPArea" class="ant-table-filter-dropdown-btns">
-          <a class="ant-table-filter-dropdown-link confirm" (click)="confirm()">
-            <span>{{ f.confirmText || locale.filterConfirm }}</span>
-          </a>
-          <a class="ant-table-filter-dropdown-link clear" (click)="reset()">
-            <span>{{ f.clearText || locale.filterReset }}</span>
-          </a>
-        </div>
+        }
       </div>
     </nz-dropdown-menu>
   `,
@@ -2482,11 +2504,11 @@ class STTdComponent {
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: STTdComponent, deps: [{ token: STComponent, host: true }, { token: i17.Router }, { token: i1$1.ModalHelper }, { token: i1$1.DrawerHelper }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: STTdComponent, selector: "st-td", inputs: { c: "c", cIdx: "cIdx", data: "data", i: "i", index: "index" }, outputs: { n: "n" }, ngImport: i0, template: "<ng-template #btnTpl let-i let-child=\"child\">\n  <ng-container *ngIf=\"!i.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </ng-container>\n  <span *ngIf=\"i.tooltip\" nz-tooltip [nzTooltipTitle]=\"i.tooltip\" [class.d-block]=\"child\" [class.width-100]=\"child\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i>\n  <a\n    *ngIf=\"i.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"i.pop.title\"\n    [nzIcon]=\"i.pop.icon\"\n    [nzCondition]=\"i.pop.condition(i)\"\n    [nzCancelText]=\"i.pop.cancelText\"\n    [nzOkText]=\"i.pop.okText\"\n    [nzOkType]=\"i.pop.okType\"\n    (nzOnConfirm)=\"_btn(i)\"\n    class=\"st__btn-text\"\n    [ngClass]=\"i._className\"\n    (click)=\"_stopPropagation($event)\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </a>\n  <a *ngIf=\"!i.pop\" (click)=\"_btn(i, $event)\" class=\"st__btn-text\" [ngClass]=\"i._className\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i>\n  <ng-container *ngIf=\"i._icon\">\n    <i\n      *ngIf=\"!i._icon.iconfont\"\n      nz-icon\n      [nzType]=\"i._icon.type\"\n      [nzTheme]=\"i._icon.theme\"\n      [nzSpin]=\"i._icon.spin\"\n      [nzTwotoneColor]=\"i._icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"i._icon.iconfont\" nz-icon [nzIconfont]=\"i._icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"i._text\" [ngClass]=\"{ 'pl-xs': i._icon }\"></span>\n</ng-template>\n<ng-template\n  #render\n  [ngTemplateOutlet]=\"c.__render!\"\n  [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n/>\n<ng-container *ngIf=\"!c.__render; else render\">\n  <ng-container [ngSwitch]=\"c.type\">\n    <label\n      *ngSwitchCase=\"'checkbox'\"\n      nz-checkbox\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_checkbox($event)\"\n    ></label>\n    <label\n      *ngSwitchCase=\"'radio'\"\n      nz-radio\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_radio()\"\n    ></label>\n    <a\n      *ngSwitchCase=\"'link'\"\n      (click)=\"_link($event)\"\n      [innerHTML]=\"i._values[cIdx]._text\"\n      [attr.title]=\"i._values[cIdx].text\"\n    ></a>\n    <ng-container *ngIf=\"i._values[cIdx].text\">\n      <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\" [nz-tooltip]=\"i._values[cIdx].tooltip\">\n        <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n      </nz-tag>\n      <nz-badge\n        *ngSwitchCase=\"'badge'\"\n        [nzStatus]=\"i._values[cIdx].color\"\n        [nzText]=\"i._values[cIdx].text\"\n        [nz-tooltip]=\"i._values[cIdx].tooltip\"\n      />\n    </ng-container>\n    <cell *ngSwitchCase=\"'cell'\" [value]=\"i._values[cIdx].text\" [options]=\"i._values[cIdx].cell ?? c.cell\" />\n    <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\" />\n    <ng-container *ngSwitchDefault>\n      <span\n        *ngIf=\"c.safeType !== 'text'\"\n        [innerHTML]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n      <span\n        *ngIf=\"c.safeType === 'text'\"\n        [innerText]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n    </ng-container>\n  </ng-container>\n  <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n    <a *ngIf=\"btn.children!.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n      <span [innerHTML]=\"btn._text\"></span>\n      <i nz-icon nzType=\"down\"></i>\n    </a>\n    <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n      <ul nz-menu>\n        <ng-container *ngFor=\"let subBtn of btn.children!\">\n          <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n            <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: subBtn, child: true }\" />\n          </li>\n          <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n        </ng-container>\n      </ul>\n    </nz-dropdown-menu>\n    <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n      <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: btn, child: false }\" />\n    </span>\n    <nz-divider *ngIf=\"!last\" nzType=\"vertical\" />\n  </ng-container>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i7.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i7.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i7.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i7.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i7.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "directive", type: i8.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i8.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i18.CellComponent, selector: "cell, [cell]", inputs: ["value", "options", "loading", "disabled"], outputs: ["valueChange"], exportAs: ["cell"] }, { kind: "directive", type: i19.NzPopconfirmDirective, selector: "[nz-popconfirm]", inputs: ["nzPopconfirmArrowPointAtCenter", "nzPopconfirmTitle", "nz-popconfirm", "nzPopconfirmTrigger", "nzPopconfirmPlacement", "nzPopconfirmOrigin", "nzPopconfirmMouseEnterDelay", "nzPopconfirmMouseLeaveDelay", "nzPopconfirmOverlayClassName", "nzPopconfirmOverlayStyle", "nzPopconfirmVisible", "nzOkText", "nzOkType", "nzOkDanger", "nzCancelText", "nzBeforeConfirm", "nzIcon", "nzCondition", "nzPopconfirmShowArrow", "nzPopconfirmBackdrop", "nzAutofocus"], outputs: ["nzPopconfirmVisibleChange", "nzOnCancel", "nzOnConfirm"], exportAs: ["nzPopconfirm"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i20.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "component", type: i12.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i21.NzDividerComponent, selector: "nz-divider", inputs: ["nzText", "nzType", "nzOrientation", "nzDashed", "nzPlain"], exportAs: ["nzDivider"] }, { kind: "directive", type: i13.NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: i13.NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: i13.NzMenuDividerDirective, selector: "[nz-menu-divider]", exportAs: ["nzMenuDivider"] }, { kind: "directive", type: i6.NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "directive", type: i6.NzDropDownADirective, selector: "a[nz-dropdown]" }, { kind: "component", type: i6.NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: i7$1.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "component", type: i23.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "directive", type: i14.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: STWidgetHostDirective, selector: "[st-widget-host]", inputs: ["record", "column"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: STTdComponent, selector: "st-td", inputs: { c: "c", cIdx: "cIdx", data: "data", i: "i", index: "index" }, outputs: { n: "n" }, ngImport: i0, template: "<ng-template #btnTpl let-i let-child=\"child\">\n  @if (i.tooltip) {\n    <span nz-tooltip [nzTooltipTitle]=\"i.tooltip\" [class.d-block]=\"child\" [class.width-100]=\"child\">\n      <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </span>\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  }\n</ng-template>\n<ng-template #btnItemTpl let-i>\n  @if (i.pop) {\n    <a\n      nz-popconfirm\n      [nzPopconfirmTitle]=\"i.pop.title\"\n      [nzIcon]=\"i.pop.icon\"\n      [nzCondition]=\"i.pop.condition(i)\"\n      [nzCancelText]=\"i.pop.cancelText\"\n      [nzOkText]=\"i.pop.okText\"\n      [nzOkType]=\"i.pop.okType\"\n      (nzOnConfirm)=\"_btn(i)\"\n      class=\"st__btn-text\"\n      [ngClass]=\"i._className\"\n      (click)=\"_stopPropagation($event)\"\n    >\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </a>\n  } @else {\n    <a (click)=\"_btn(i, $event)\" class=\"st__btn-text\" [ngClass]=\"i._className\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </a>\n  }\n</ng-template>\n<ng-template #btnTextTpl let-i>\n  @if (i._icon) {\n    @if (i._icon.iconfont) {\n      <i nz-icon [nzIconfont]=\"i._icon.iconfont\"></i>\n    } @else {\n      <i\n        nz-icon\n        [nzType]=\"i._icon.type\"\n        [nzTheme]=\"i._icon.theme\"\n        [nzSpin]=\"i._icon.spin\"\n        [nzTwotoneColor]=\"i._icon.twoToneColor\"\n      ></i>\n    }\n  }\n  <span [innerHTML]=\"i._text\" [ngClass]=\"{ 'pl-xs': i._icon }\"></span>\n</ng-template>\n<ng-template\n  #render\n  [ngTemplateOutlet]=\"c.__render!\"\n  [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n/>\n<ng-container *ngIf=\"!c.__render; else render\">\n  <ng-container [ngSwitch]=\"c.type\">\n    <label\n      *ngSwitchCase=\"'checkbox'\"\n      nz-checkbox\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_checkbox($event)\"\n    ></label>\n    <label\n      *ngSwitchCase=\"'radio'\"\n      nz-radio\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_radio()\"\n    ></label>\n    <a\n      *ngSwitchCase=\"'link'\"\n      (click)=\"_link($event)\"\n      [innerHTML]=\"i._values[cIdx]._text\"\n      [attr.title]=\"i._values[cIdx].text\"\n    ></a>\n    <ng-container *ngIf=\"i._values[cIdx].text\">\n      <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\" [nz-tooltip]=\"i._values[cIdx].tooltip\">\n        <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n      </nz-tag>\n      <nz-badge\n        *ngSwitchCase=\"'badge'\"\n        [nzStatus]=\"i._values[cIdx].color\"\n        [nzText]=\"i._values[cIdx].text\"\n        [nz-tooltip]=\"i._values[cIdx].tooltip\"\n      />\n    </ng-container>\n    <cell *ngSwitchCase=\"'cell'\" [value]=\"i._values[cIdx].text\" [options]=\"i._values[cIdx].cell ?? c.cell\" />\n    <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\" />\n    <ng-container *ngSwitchDefault>\n      <span\n        *ngIf=\"c.safeType !== 'text'\"\n        [innerHTML]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n      <span\n        *ngIf=\"c.safeType === 'text'\"\n        [innerText]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n    </ng-container>\n  </ng-container>\n  <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n    <a *ngIf=\"btn.children!.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n      <span [innerHTML]=\"btn._text\"></span>\n      <i nz-icon nzType=\"down\"></i>\n    </a>\n    <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n      <ul nz-menu>\n        <ng-container *ngFor=\"let subBtn of btn.children!\">\n          <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n            <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: subBtn, child: true }\" />\n          </li>\n          <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n        </ng-container>\n      </ul>\n    </nz-dropdown-menu>\n    <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n      <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: btn, child: false }\" />\n    </span>\n    <nz-divider *ngIf=\"!last\" nzType=\"vertical\" />\n  </ng-container>\n</ng-container>\n", dependencies: [{ kind: "directive", type: i7.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i7.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }, { kind: "directive", type: i7.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i7.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i7.NgSwitch, selector: "[ngSwitch]", inputs: ["ngSwitch"] }, { kind: "directive", type: i7.NgSwitchCase, selector: "[ngSwitchCase]", inputs: ["ngSwitchCase"] }, { kind: "directive", type: i7.NgSwitchDefault, selector: "[ngSwitchDefault]" }, { kind: "directive", type: i8.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i8.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i18.CellComponent, selector: "cell, [cell]", inputs: ["value", "options", "loading", "disabled"], outputs: ["valueChange"], exportAs: ["cell"] }, { kind: "directive", type: i19.NzPopconfirmDirective, selector: "[nz-popconfirm]", inputs: ["nzPopconfirmArrowPointAtCenter", "nzPopconfirmTitle", "nz-popconfirm", "nzPopconfirmTrigger", "nzPopconfirmPlacement", "nzPopconfirmOrigin", "nzPopconfirmMouseEnterDelay", "nzPopconfirmMouseLeaveDelay", "nzPopconfirmOverlayClassName", "nzPopconfirmOverlayStyle", "nzPopconfirmVisible", "nzOkText", "nzOkType", "nzOkDanger", "nzCancelText", "nzBeforeConfirm", "nzIcon", "nzCondition", "nzPopconfirmShowArrow", "nzPopconfirmBackdrop", "nzAutofocus"], outputs: ["nzPopconfirmVisibleChange", "nzOnCancel", "nzOnConfirm"], exportAs: ["nzPopconfirm"] }, { kind: "directive", type: i11.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i20.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "component", type: i12.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: i21.NzDividerComponent, selector: "nz-divider", inputs: ["nzText", "nzType", "nzOrientation", "nzDashed", "nzPlain"], exportAs: ["nzDivider"] }, { kind: "directive", type: i13.NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: i13.NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: i13.NzMenuDividerDirective, selector: "[nz-menu-divider]", exportAs: ["nzMenuDivider"] }, { kind: "directive", type: i6.NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "directive", type: i6.NzDropDownADirective, selector: "a[nz-dropdown]" }, { kind: "component", type: i6.NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: i7$1.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "component", type: i23.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "directive", type: i14.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: STWidgetHostDirective, selector: "[st-widget-host]", inputs: ["record", "column"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: STTdComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'st-td', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-template #btnTpl let-i let-child=\"child\">\n  <ng-container *ngIf=\"!i.tooltip\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </ng-container>\n  <span *ngIf=\"i.tooltip\" nz-tooltip [nzTooltipTitle]=\"i.tooltip\" [class.d-block]=\"child\" [class.width-100]=\"child\">\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </span>\n</ng-template>\n<ng-template #btnItemTpl let-i>\n  <a\n    *ngIf=\"i.pop\"\n    nz-popconfirm\n    [nzPopconfirmTitle]=\"i.pop.title\"\n    [nzIcon]=\"i.pop.icon\"\n    [nzCondition]=\"i.pop.condition(i)\"\n    [nzCancelText]=\"i.pop.cancelText\"\n    [nzOkText]=\"i.pop.okText\"\n    [nzOkType]=\"i.pop.okType\"\n    (nzOnConfirm)=\"_btn(i)\"\n    class=\"st__btn-text\"\n    [ngClass]=\"i._className\"\n    (click)=\"_stopPropagation($event)\"\n  >\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </a>\n  <a *ngIf=\"!i.pop\" (click)=\"_btn(i, $event)\" class=\"st__btn-text\" [ngClass]=\"i._className\">\n    <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  </a>\n</ng-template>\n<ng-template #btnTextTpl let-i>\n  <ng-container *ngIf=\"i._icon\">\n    <i\n      *ngIf=\"!i._icon.iconfont\"\n      nz-icon\n      [nzType]=\"i._icon.type\"\n      [nzTheme]=\"i._icon.theme\"\n      [nzSpin]=\"i._icon.spin\"\n      [nzTwotoneColor]=\"i._icon.twoToneColor\"\n    ></i>\n    <i *ngIf=\"i._icon.iconfont\" nz-icon [nzIconfont]=\"i._icon.iconfont\"></i>\n  </ng-container>\n  <span [innerHTML]=\"i._text\" [ngClass]=\"{ 'pl-xs': i._icon }\"></span>\n</ng-template>\n<ng-template\n  #render\n  [ngTemplateOutlet]=\"c.__render!\"\n  [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n/>\n<ng-container *ngIf=\"!c.__render; else render\">\n  <ng-container [ngSwitch]=\"c.type\">\n    <label\n      *ngSwitchCase=\"'checkbox'\"\n      nz-checkbox\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_checkbox($event)\"\n    ></label>\n    <label\n      *ngSwitchCase=\"'radio'\"\n      nz-radio\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_radio()\"\n    ></label>\n    <a\n      *ngSwitchCase=\"'link'\"\n      (click)=\"_link($event)\"\n      [innerHTML]=\"i._values[cIdx]._text\"\n      [attr.title]=\"i._values[cIdx].text\"\n    ></a>\n    <ng-container *ngIf=\"i._values[cIdx].text\">\n      <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\" [nz-tooltip]=\"i._values[cIdx].tooltip\">\n        <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n      </nz-tag>\n      <nz-badge\n        *ngSwitchCase=\"'badge'\"\n        [nzStatus]=\"i._values[cIdx].color\"\n        [nzText]=\"i._values[cIdx].text\"\n        [nz-tooltip]=\"i._values[cIdx].tooltip\"\n      />\n    </ng-container>\n    <cell *ngSwitchCase=\"'cell'\" [value]=\"i._values[cIdx].text\" [options]=\"i._values[cIdx].cell ?? c.cell\" />\n    <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\" />\n    <ng-container *ngSwitchDefault>\n      <span\n        *ngIf=\"c.safeType !== 'text'\"\n        [innerHTML]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n      <span\n        *ngIf=\"c.safeType === 'text'\"\n        [innerText]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n    </ng-container>\n  </ng-container>\n  <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n    <a *ngIf=\"btn.children!.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n      <span [innerHTML]=\"btn._text\"></span>\n      <i nz-icon nzType=\"down\"></i>\n    </a>\n    <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n      <ul nz-menu>\n        <ng-container *ngFor=\"let subBtn of btn.children!\">\n          <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n            <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: subBtn, child: true }\" />\n          </li>\n          <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n        </ng-container>\n      </ul>\n    </nz-dropdown-menu>\n    <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n      <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: btn, child: false }\" />\n    </span>\n    <nz-divider *ngIf=\"!last\" nzType=\"vertical\" />\n  </ng-container>\n</ng-container>\n" }]
+            args: [{ selector: 'st-td', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, template: "<ng-template #btnTpl let-i let-child=\"child\">\n  @if (i.tooltip) {\n    <span nz-tooltip [nzTooltipTitle]=\"i.tooltip\" [class.d-block]=\"child\" [class.width-100]=\"child\">\n      <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </span>\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"btnItemTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n  }\n</ng-template>\n<ng-template #btnItemTpl let-i>\n  @if (i.pop) {\n    <a\n      nz-popconfirm\n      [nzPopconfirmTitle]=\"i.pop.title\"\n      [nzIcon]=\"i.pop.icon\"\n      [nzCondition]=\"i.pop.condition(i)\"\n      [nzCancelText]=\"i.pop.cancelText\"\n      [nzOkText]=\"i.pop.okText\"\n      [nzOkType]=\"i.pop.okType\"\n      (nzOnConfirm)=\"_btn(i)\"\n      class=\"st__btn-text\"\n      [ngClass]=\"i._className\"\n      (click)=\"_stopPropagation($event)\"\n    >\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </a>\n  } @else {\n    <a (click)=\"_btn(i, $event)\" class=\"st__btn-text\" [ngClass]=\"i._className\">\n      <ng-template [ngTemplateOutlet]=\"btnTextTpl\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n    </a>\n  }\n</ng-template>\n<ng-template #btnTextTpl let-i>\n  @if (i._icon) {\n    @if (i._icon.iconfont) {\n      <i nz-icon [nzIconfont]=\"i._icon.iconfont\"></i>\n    } @else {\n      <i\n        nz-icon\n        [nzType]=\"i._icon.type\"\n        [nzTheme]=\"i._icon.theme\"\n        [nzSpin]=\"i._icon.spin\"\n        [nzTwotoneColor]=\"i._icon.twoToneColor\"\n      ></i>\n    }\n  }\n  <span [innerHTML]=\"i._text\" [ngClass]=\"{ 'pl-xs': i._icon }\"></span>\n</ng-template>\n<ng-template\n  #render\n  [ngTemplateOutlet]=\"c.__render!\"\n  [ngTemplateOutletContext]=\"{ $implicit: i, index: index, column: c }\"\n/>\n<ng-container *ngIf=\"!c.__render; else render\">\n  <ng-container [ngSwitch]=\"c.type\">\n    <label\n      *ngSwitchCase=\"'checkbox'\"\n      nz-checkbox\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_checkbox($event)\"\n    ></label>\n    <label\n      *ngSwitchCase=\"'radio'\"\n      nz-radio\n      [nzDisabled]=\"i.disabled\"\n      [ngModel]=\"i.checked\"\n      (ngModelChange)=\"_radio()\"\n    ></label>\n    <a\n      *ngSwitchCase=\"'link'\"\n      (click)=\"_link($event)\"\n      [innerHTML]=\"i._values[cIdx]._text\"\n      [attr.title]=\"i._values[cIdx].text\"\n    ></a>\n    <ng-container *ngIf=\"i._values[cIdx].text\">\n      <nz-tag *ngSwitchCase=\"'tag'\" [nzColor]=\"i._values[cIdx].color\" [nz-tooltip]=\"i._values[cIdx].tooltip\">\n        <span [innerHTML]=\"i._values[cIdx]._text\"></span>\n      </nz-tag>\n      <nz-badge\n        *ngSwitchCase=\"'badge'\"\n        [nzStatus]=\"i._values[cIdx].color\"\n        [nzText]=\"i._values[cIdx].text\"\n        [nz-tooltip]=\"i._values[cIdx].tooltip\"\n      />\n    </ng-container>\n    <cell *ngSwitchCase=\"'cell'\" [value]=\"i._values[cIdx].text\" [options]=\"i._values[cIdx].cell ?? c.cell\" />\n    <ng-template *ngSwitchCase=\"'widget'\" st-widget-host [record]=\"i\" [column]=\"c\" />\n    <ng-container *ngSwitchDefault>\n      <span\n        *ngIf=\"c.safeType !== 'text'\"\n        [innerHTML]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n      <span\n        *ngIf=\"c.safeType === 'text'\"\n        [innerText]=\"i._values[cIdx]._text\"\n        [attr.title]=\"c._isTruncate ? i._values[cIdx].text : null\"\n      ></span>\n    </ng-container>\n  </ng-container>\n  <ng-container *ngFor=\"let btn of i._values[cIdx].buttons; let last = last\">\n    <a *ngIf=\"btn.children!.length > 0\" nz-dropdown [nzDropdownMenu]=\"btnMenu\" nzOverlayClassName=\"st__btn-sub\">\n      <span [innerHTML]=\"btn._text\"></span>\n      <i nz-icon nzType=\"down\"></i>\n    </a>\n    <nz-dropdown-menu #btnMenu=\"nzDropdownMenu\">\n      <ul nz-menu>\n        <ng-container *ngFor=\"let subBtn of btn.children!\">\n          <li *ngIf=\"subBtn.type !== 'divider'\" nz-menu-item [class.st__btn-disabled]=\"subBtn._disabled\">\n            <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: subBtn, child: true }\" />\n          </li>\n          <li *ngIf=\"subBtn.type === 'divider'\" nz-menu-divider></li>\n        </ng-container>\n      </ul>\n    </nz-dropdown-menu>\n    <span *ngIf=\"btn.children!.length === 0\" [class.st__btn-disabled]=\"btn._disabled\">\n      <ng-template [ngTemplateOutlet]=\"btnTpl\" [ngTemplateOutletContext]=\"{ $implicit: btn, child: false }\" />\n    </span>\n    <nz-divider *ngIf=\"!last\" nzType=\"vertical\" />\n  </ng-container>\n</ng-container>\n" }]
         }], ctorParameters: () => [{ type: STComponent, decorators: [{
                     type: Host
                 }] }, { type: i17.Router }, { type: i1$1.ModalHelper }, { type: i1$1.DrawerHelper }], propDecorators: { c: [{
