@@ -64,7 +64,10 @@ function addRoutingModuleToTop(options) {
             parentNode.initializer.getChildCount() === 0) {
             return tree;
         }
-        const childrenNode = (0, ast_utils_1.findNode)(parentNode.initializer, ts.SyntaxKind.Identifier, 'children');
+        let childrenNode = (0, ast_utils_1.findNode)(parentNode.initializer, ts.SyntaxKind.Identifier, 'children');
+        if (options.standalone && childrenNode == null) {
+            childrenNode = parentNode;
+        }
         if (childrenNode == null || childrenNode.parent == null) {
             return tree;
         }
@@ -89,10 +92,12 @@ function addServiceToNgModule(options) {
     return (tree) => {
         if (options.service !== 'none')
             return tree;
-        const basePath = `/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}${core_1.strings.dasherize(options.name)}`;
-        const servicePath = (0, core_1.normalize)(`${basePath}.service`);
+        const basePath = `/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}`;
+        const servicePath = (0, core_1.normalize)(`${basePath}${core_1.strings.dasherize(options.name)}.service`);
         const serviceName = core_1.strings.classify(`${options.name}Service`);
-        const importModulePath = (0, core_1.normalize)(`${basePath}.module`);
+        const importModulePath = (0, core_1.normalize)(options.standalone
+            ? `${basePath}${utils_1.ROUTINS_FILENAME.split('.')[0]}`
+            : `${basePath}${core_1.strings.dasherize(options.name)}.module`);
         const importServicePath = (0, find_module_1.buildRelativePath)(importModulePath, servicePath);
         (0, utils_1.addServiceToModuleOrStandalone)(tree, options.standalone, `${importModulePath}.ts`, serviceName, importServicePath);
         return tree;
