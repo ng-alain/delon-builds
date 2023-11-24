@@ -24,16 +24,14 @@ function removeOrginalFiles() {
         [
             `${project.root}/README.md`,
             `${project.sourceRoot}/main.ts`,
-            `${project.sourceRoot}/environments/environment.prod.ts`,
-            `${project.sourceRoot}/environments/environment.ts`,
             `${project.sourceRoot}/styles.less`,
             `${project.sourceRoot}/favicon.ico`,
-            `${project.sourceRoot}/app/app.module.ts`,
             `${project.sourceRoot}/app/app.component.spec.ts`,
             `${project.sourceRoot}/app/app.component.ts`,
             `${project.sourceRoot}/app/app.component.html`,
             `${project.sourceRoot}/app/app.component.less`,
-            `${project.sourceRoot}/app/app-routing.module.ts`
+            `${project.sourceRoot}/app/app.config.ts`,
+            `${project.sourceRoot}/app/app.routes.ts`
         ]
             .filter(p => tree.exists(p))
             .forEach(p => tree.delete(p));
@@ -101,28 +99,23 @@ function addRunScriptToPackageJson() {
         return tree;
     };
 }
-function addPathsToTsConfig(project) {
+function addPathsToTsConfig() {
     return (tree) => {
         var _a, _b, _c;
-        if (project == null)
-            return;
         const tsconfigPath = (_c = (_b = (_a = project.targets) === null || _a === void 0 ? void 0 : _a.get(utils_1.BUILD_TARGET_BUILD)) === null || _b === void 0 ? void 0 : _b.options) === null || _c === void 0 ? void 0 : _c.tsConfig;
-        if (tsconfigPath == null)
-            return;
-        const json = (0, utils_1.readJSON)(tree, tsconfigPath);
-        if (json == null)
+        if (tsconfigPath == null) {
+            console.warn(`Cannot find tsconfig file in project ${projectName}`);
             return tree;
-        if (!json.compilerOptions)
-            json.compilerOptions = {};
-        if (!json.compilerOptions.paths)
-            json.compilerOptions.paths = {};
-        const paths = json.compilerOptions.paths;
+        }
         const commandPrefix = mulitProject ? `projects/${projectName}/` : '';
-        paths['@shared'] = [`${commandPrefix}src/app/shared/index`];
-        paths['@core'] = [`${commandPrefix}src/app/core/index`];
-        paths['@env/*'] = [`${commandPrefix}src/environments/*`];
-        paths['@_mock'] = ['_mock/index'];
-        (0, utils_1.writeJSON)(tree, tsconfigPath, json);
+        const tsConfigPath = 'tsconfig.json';
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: ['compilerOptions', 'baseUrl'], value: './' });
+        const basePath = ['compilerOptions', 'paths'];
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: basePath, value: {} });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@shared`], value: [`${commandPrefix}src/app/shared/index`] });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@core`], value: [`${commandPrefix}src/app/core/index`] });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@env/*`], value: [`${commandPrefix}src/environments/*`] });
+        (0, utils_1.modifyJSON)(tree, tsConfigPath, { path: [...basePath, `@_mock`], value: [`_mock/index`] });
         return tree;
     };
 }
@@ -210,7 +203,7 @@ function addFilesToRoot(options) {
             (0, schematics_1.template)(Object.assign(Object.assign({ utils: core_1.strings }, options), { dot: '.', VERSION: utils_1.VERSION,
                 ZORROVERSION: utils_1.ZORROVERSION })),
             (0, schematics_1.move)(project.sourceRoot)
-        ])),
+        ]), schematics_1.MergeStrategy.Overwrite),
         (0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/root'), [
             options.i18n ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('i18n') === -1),
             options.form ? (0, schematics_1.noop)() : (0, schematics_1.filter)(p => p.indexOf('json-schema') === -1),
@@ -244,6 +237,11 @@ function fixLangInHtml(tree, p, langs) {
         ++matchCount;
         return `{{ status ? '${langs[key1] || key1}' : '${langs[key2] || key2}' }}`;
     });
+    // {{ 'app.register-result.msg' | i18n: { email } }}
+    html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| i18n: \{ [^ ]+ \} \}\}/g, (_word, key) => {
+        ++matchCount;
+        return langs[key] || key;
+    });
     // {{ 'app.register-result.msg' | i18n: params }}
     html = html.replace(/\{\{[ ]?'([^']+)'[ ]? \| i18n: [^ ]+ \}\}/g, (_word, key) => {
         ++matchCount;
@@ -266,25 +264,13 @@ function fixLangInHtml(tree, p, langs) {
         return langs[key] || key;
     });
     // removed `header-i18n`
-    if (~html.indexOf(`<header-i18n [showLang]="false" class="langs"></header-i18n>`)) {
+    if (~html.indexOf(`<header-i18n showLangText="false" class="langs" />`)) {
         ++matchCount;
-        html = html.replace(`<header-i18n [showLang]="false" class="langs"></header-i18n>`, ``);
+        html = html.replace(`<header-i18n showLangText="false" class="langs" />`, ``);
     }
     if (matchCount > 0) {
         tree.overwrite(p, html);
     }
-}
-function fixVsCode() {
-    return (tree) => {
-        const filePath = '.vscode/extensions.json';
-        let json = (0, utils_1.readJSON)(tree, filePath);
-        if (json == null) {
-            tree.create(filePath, '');
-            json = {};
-        }
-        json.recommendations = ['cipchk.ng-alain-extension-pack'];
-        (0, utils_1.writeJSON)(tree, filePath, json);
-    };
 }
 function fixNgAlainJson() {
     return (tree) => {
@@ -314,7 +300,7 @@ function default_1(options) {
             (0, utils_1.addAllowSyntheticDefaultImports)(),
             // ci
             addRunScriptToPackageJson(),
-            addPathsToTsConfig(project),
+            addPathsToTsConfig(),
             // code style
             addCodeStylesToPackageJson(),
             addSchematics(options),
@@ -325,7 +311,6 @@ function default_1(options) {
             forceLess(),
             addStyle(),
             fixLang(options),
-            fixVsCode(),
             fixAngularJson(),
             fixBrowserBuilderBudgets(),
             fixNgAlainJson()

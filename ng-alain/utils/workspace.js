@@ -119,13 +119,7 @@ function removeAllowedCommonJsDependencies(key, projectName) {
 exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
 function addAllowSyntheticDefaultImports(value = true) {
     return (tree) => {
-        const json = (0, json_1.readJSON)(tree, 'tsconfig.json', 'compilerOptions');
-        if (json == null)
-            return tree;
-        if (!json.compilerOptions)
-            json.compilerOptions = {};
-        json.compilerOptions['allowSyntheticDefaultImports'] = value;
-        (0, json_1.writeJSON)(tree, 'tsconfig.json', json);
+        (0, json_1.modifyJSON)(tree, 'tsconfig.json', { path: ['compilerOptions', 'allowSyntheticDefaultImports'], value });
         return tree;
     };
 }

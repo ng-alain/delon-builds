@@ -23,7 +23,7 @@ import { HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDate } from '@delon/util/date-time';
 import { NzI18nService, NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
-import { BellOutline, DeleteOutline, PlusOutline, InboxOutline } from '@ant-design/icons-angular/icons';
+import { BellOutline, DeleteOutline, PlusOutline, InboxOutline, MenuFoldOutline, MenuUnfoldOutline } from '@ant-design/icons-angular/icons';
 import * as i1$8 from 'ng-zorro-antd/icon';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
@@ -2793,7 +2793,15 @@ function provideAlain(options) {
     if (i18nCls) {
         provides.push({ provide: ALAIN_I18N_TOKEN, useClass: i18nCls, multi: false });
     }
-    const icons = [BellOutline, DeleteOutline, PlusOutline, InboxOutline, ...(options.icons ?? [])];
+    const icons = [
+        BellOutline,
+        DeleteOutline,
+        PlusOutline,
+        InboxOutline,
+        MenuFoldOutline,
+        MenuUnfoldOutline,
+        ...(options.icons ?? [])
+    ];
     provides.push({
         provide: ENVIRONMENT_INITIALIZER,
         multi: true,

@@ -1,8 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeJSON = exports.readJSON = void 0;
+exports.modifyJSON = exports.writeJSON = exports.readJSON = void 0;
 const jsonc_parser_1 = require("jsonc-parser");
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function readJSON(tree, jsonFile, type) {
     if (!tree.exists(jsonFile))
         return null;
@@ -20,9 +19,27 @@ function readJSON(tree, jsonFile, type) {
     }
 }
 exports.readJSON = readJSON;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeJSON(tree, jsonFile, json) {
     tree.overwrite(jsonFile, JSON.stringify(json, null, 2));
 }
 exports.writeJSON = writeJSON;
+function modifyJSON(tree, jsonPath, modifies, options) {
+    if (!tree.exists(jsonPath))
+        return null;
+    let sourceText = tree.read(jsonPath).toString('utf-8');
+    (Array.isArray(modifies) ? modifies : [modifies])
+        .map(item => (0, jsonc_parser_1.modify)(sourceText, item.path, item.value, options !== null && options !== void 0 ? options : {
+        formattingOptions: {
+            insertSpaces: true,
+            tabSize: 2,
+            eol: '\n',
+            keepLines: false
+        }
+    }))
+        .forEach(edit => {
+        sourceText = (0, jsonc_parser_1.applyEdits)(sourceText, edit);
+    });
+    tree.overwrite(jsonPath, sourceText);
+}
+exports.modifyJSON = modifyJSON;
 //# sourceMappingURL=json.js.map

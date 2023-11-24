@@ -22,16 +22,11 @@ function pluginDefaultLanguage(options) {
             throw new schematics_1.SchematicsException(`Must be specified the "defaultLanguage" parameter`);
         }
         const project = (yield (0, utils_1.getProject)(tree, options.project)).project;
-        const modulePath = `${project.sourceRoot}/app/app.module.ts`;
-        if (!tree.exists(modulePath)) {
-            throw new schematics_1.SchematicsException(`AppModule file (${modulePath}) not found`);
+        const appConfigPath = `${project.sourceRoot}/app/app.config.ts`;
+        if (!tree.exists(appConfigPath)) {
+            throw new schematics_1.SchematicsException(`App config file (${appConfigPath}) not found`);
         }
-        let content = tree.read(modulePath).toString('utf-8');
-        const start = content.indexOf(`#region default language`);
-        if (start === -1) {
-            console.warn(`[#region default language] area not found`);
-            return;
-        }
+        let content = tree.read(appConfigPath).toString('utf-8');
         const oldMatch = content.match(/@angular\/common\/locales\/([^']+)/);
         const oldLang = oldMatch != null ? oldMatch[1] : 'zh-Hans';
         if (oldLang === options.defaultLanguage) {
@@ -48,11 +43,11 @@ function pluginDefaultLanguage(options) {
             .replace(/@angular\/common\/locales\/([^']+)/, `@angular/common/locales/${options.defaultLanguage}`)
             .replace(/abbr: '([^']+)/, `abbr: '${options.defaultLanguage}`);
         // zorro
-        content = content.replace(/NZ_I18N, ([^ ]+)/, `NZ_I18N, ${targetLang.zorro}`);
-        content = content.replace(/provideNzI18n, ([^ ]+)/, `provideNzI18n, ${targetLang.zorro}`);
+        content = content.replace(/ ([^ ]+) as zorroLang/, ` ${targetLang.zorro} as zorroLang`);
+        content = content.replace(/ ([^ ]+) as dateLang/, ` ${targetLang.date} as dateLang`);
         // delon
-        content = content.replace(/DELON_LOCALE, ([^ ]+)/, `DELON_LOCALE, ${targetLang.zorro}`);
-        tree.overwrite(modulePath, content);
+        content = content.replace(/ ([^ ]+) as delonLang/, ` ${targetLang.delon} as delonLang`);
+        tree.overwrite(appConfigPath, content);
     });
 }
 exports.pluginDefaultLanguage = pluginDefaultLanguage;

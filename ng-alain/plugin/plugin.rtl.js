@@ -28,13 +28,6 @@ function fixImport() {
             (0, utils_1.addImportToModule)(tree, layoutModulePath, rtlComponentName, './basic/widgets/rtl.component');
             (0, utils_1.addValueToVariable)(tree, layoutModulePath, 'HEADERCOMPONENTS', rtlComponentName);
         }
-        // src/app/app.module.ts
-        const appModulePath = (0, core_1.normalize)(`${project.sourceRoot}/app/app.module.ts`);
-        if (tree.exists(appModulePath)) {
-            const bidiModuleName = 'BidiModule';
-            (0, utils_1.addImportToModule)(tree, appModulePath, bidiModuleName, '@angular/cdk/bidi');
-            (0, utils_1.addValueToVariable)(tree, appModulePath, 'GLOBAL_THIRD_MODULES', bidiModuleName);
-        }
         return tree;
     };
 }
