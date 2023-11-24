@@ -2,10 +2,9 @@ import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
-import * as i1 from '@angular/common';
-import { CommonModule } from '@angular/common';
-import * as i2 from 'ng-zorro-antd/icon';
+import * as i1 from 'ng-zorro-antd/icon';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { CommonModule } from '@angular/common';
 
 class TrendComponent {
     constructor() {
@@ -15,10 +14,12 @@ class TrendComponent {
         this.reverseColor = false;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: TrendComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: TrendComponent, selector: "trend", inputs: { flag: "flag", colorful: "colorful", reverseColor: "reverseColor" }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: TrendComponent, selector: "trend", inputs: { flag: "flag", colorful: "colorful", reverseColor: "reverseColor" }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
     <ng-content />
-    <span *ngIf="flag" class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i2.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    @if (flag) {
+      <span class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+    }
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputBoolean()
@@ -33,7 +34,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                     exportAs: 'trend',
                     template: `
     <ng-content />
-    <span *ngIf="flag" class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+    @if (flag) {
+      <span class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+    }
   `,
                     host: {
                         '[class.trend]': 'true',

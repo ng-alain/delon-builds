@@ -4,12 +4,11 @@ import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, In
 import { takeUntil, filter, debounceTime, fromEvent } from 'rxjs';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import * as i1 from '@angular/common';
-import { CommonModule } from '@angular/common';
-import * as i2 from 'ng-zorro-antd/core/outlet';
+import * as i1 from 'ng-zorro-antd/core/outlet';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
-import * as i3 from 'ng-zorro-antd/skeleton';
+import * as i2 from 'ng-zorro-antd/skeleton';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CommonModule } from '@angular/common';
 
 const TITLE_HEIGHT = 41;
 class G2BarComponent extends G2BaseComponent {
@@ -94,13 +93,15 @@ class G2BarComponent extends G2BaseComponent {
             .subscribe(() => this.ngZone.runOutsideAngular(() => this.updatelabel()));
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: G2BarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: G2BarComponent, selector: "g2-bar", inputs: { title: "title", color: "color", height: "height", padding: "padding", data: "data", autoLabel: "autoLabel", interaction: "interaction" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Bar"], usesInheritance: true, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: G2BarComponent, selector: "g2-bar", inputs: { title: "title", color: "color", height: "height", padding: "padding", data: "data", autoLabel: "autoLabel", interaction: "interaction" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Bar"], usesInheritance: true, ngImport: i0, template: `
     <ng-container *nzStringTemplateOutlet="title">
       <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded" />
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container></div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i2.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i3.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputNumber()
@@ -117,7 +118,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
     <ng-container *nzStringTemplateOutlet="title">
       <h4 style="margin-bottom: 20px;">{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded" />
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container></div>
   `,
                     host: {

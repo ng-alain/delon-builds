@@ -7,10 +7,9 @@ import { __decorate } from 'tslib';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from '@angular/cdk/platform';
-import * as i3 from '@angular/common';
-import { CommonModule } from '@angular/common';
-import * as i4 from 'ng-zorro-antd/skeleton';
+import * as i3 from 'ng-zorro-antd/skeleton';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CommonModule } from '@angular/common';
 
 class ChartEChartsService {
     get cog() {
@@ -172,10 +171,12 @@ class ChartEChartsComponent {
         this.destroy();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: ChartEChartsComponent, deps: [{ token: ChartEChartsService }, { token: i0.ChangeDetectorRef }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: ChartEChartsComponent, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
-    <nz-skeleton *ngIf="!loaded" />
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: ChartEChartsComponent, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container [style.width]="_width" [style.height]="_height"></div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i3.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i4.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "component", type: i3.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     ZoneOutside()
@@ -186,7 +187,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                     selector: 'chart-echarts, [chart-echarts]',
                     exportAs: 'chartECharts',
                     template: `
-    <nz-skeleton *ngIf="!loaded" />
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container [style.width]="_width" [style.height]="_height"></div>
   `,
                     host: {

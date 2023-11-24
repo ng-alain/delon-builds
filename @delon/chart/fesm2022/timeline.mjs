@@ -5,12 +5,11 @@ import { format } from 'date-fns';
 import { G2BaseComponent } from '@delon/chart/core';
 import { toDate } from '@delon/util/date-time';
 import { InputNumber, InputBoolean } from '@delon/util/decorator';
-import * as i1 from '@angular/common';
-import { CommonModule } from '@angular/common';
-import * as i2 from 'ng-zorro-antd/core/outlet';
+import * as i1 from 'ng-zorro-antd/core/outlet';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
-import * as i3 from 'ng-zorro-antd/skeleton';
+import * as i2 from 'ng-zorro-antd/skeleton';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { CommonModule } from '@angular/common';
 
 class G2TimelineComponent extends G2BaseComponent {
     constructor() {
@@ -143,13 +142,15 @@ class G2TimelineComponent extends G2BaseComponent {
         _chart.changeData(filterData);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: G2TimelineComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: G2TimelineComponent, selector: "g2-timeline", inputs: { title: "title", maxAxis: "maxAxis", data: "data", titleMap: "titleMap", colorMap: "colorMap", mask: "mask", maskSlider: "maskSlider", position: "position", height: "height", padding: "padding", borderWidth: "borderWidth", slider: "slider" }, outputs: { clickItem: "clickItem" }, exportAs: ["g2Timeline"], usesInheritance: true, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: G2TimelineComponent, selector: "g2-timeline", inputs: { title: "title", maxAxis: "maxAxis", data: "data", titleMap: "titleMap", colorMap: "colorMap", mask: "mask", maskSlider: "maskSlider", position: "position", height: "height", padding: "padding", borderWidth: "borderWidth", slider: "slider" }, outputs: { clickItem: "clickItem" }, exportAs: ["g2Timeline"], usesInheritance: true, ngImport: i0, template: `
     <ng-container *nzStringTemplateOutlet="title">
       <h4>{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded" />
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container></div>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "directive", type: i2.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i3.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: i2.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputNumber()
@@ -172,7 +173,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
     <ng-container *nzStringTemplateOutlet="title">
       <h4>{{ title }}</h4>
     </ng-container>
-    <nz-skeleton *ngIf="!loaded" />
+    @if (!loaded) {
+      <nz-skeleton />
+    }
     <div #container></div>
   `,
                     preserveWhitespaces: false,

@@ -7,16 +7,13 @@ export class RangePickerShortcutTplComponent {
     }
     click(_) { }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: RangePickerShortcutTplComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: RangePickerShortcutTplComponent, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, static: true }], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: RangePickerShortcutTplComponent, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, static: true }], ngImport: i0, template: `
     <ng-template #tpl>
-      <a
-        *ngFor="let i of list; let first = first"
-        (click)="click(i)"
-        [innerHTML]="i._text"
-        [ngClass]="{ 'ml-sm': !first }"
-      ></a>
+      @for (i of list; track $index) {
+        <a (click)="click(i)" [innerHTML]="i._text" [ngClass]="{ 'ml-sm': !$first }"></a>
+      }
     </ng-template>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgForOf, selector: "[ngFor][ngForOf]", inputs: ["ngForOf", "ngForTrackBy", "ngForTemplate"] }] }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: RangePickerShortcutTplComponent, decorators: [{
             type: Component,
@@ -24,12 +21,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                     selector: '',
                     template: `
     <ng-template #tpl>
-      <a
-        *ngFor="let i of list; let first = first"
-        (click)="click(i)"
-        [innerHTML]="i._text"
-        [ngClass]="{ 'ml-sm': !first }"
-      ></a>
+      @for (i of list; track $index) {
+        <a (click)="click(i)" [innerHTML]="i._text" [ngClass]="{ 'ml-sm': !$first }"></a>
+      }
     </ng-template>
   `
                 }]
@@ -37,4 +31,4 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                 type: ViewChild,
                 args: ['tpl', { static: true }]
             }] } });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmFuZ2Utc2hvcnRjdXQuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvYWJjL2RhdGUtcGlja2VyL3JhbmdlLXNob3J0Y3V0LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFlLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7O0FBaUJsRSxNQUFNLE9BQU8sK0JBQStCO0lBYjVDO1FBaUJFLFNBQUksR0FBdUMsRUFBRSxDQUFDO0tBRy9DO0lBREMsS0FBSyxDQUFDLENBQW1DLElBQVMsQ0FBQzs4R0FOeEMsK0JBQStCO2tHQUEvQiwrQkFBK0IsOEpBWGhDOzs7Ozs7Ozs7R0FTVDs7MkZBRVUsK0JBQStCO2tCQWIzQyxTQUFTO21CQUFDO29CQUNULFFBQVEsRUFBRSxFQUFFO29CQUNaLFFBQVEsRUFBRTs7Ozs7Ozs7O0dBU1Q7aUJBQ0Y7OEJBR0MsR0FBRztzQkFERixTQUFTO3VCQUFDLEtBQUssRUFBRSxFQUFFLE1BQU0sRUFBRSxJQUFJLEVBQUUiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIFRlbXBsYXRlUmVmLCBWaWV3Q2hpbGQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgQWxhaW5EYXRlUmFuZ2VQaWNrZXJTaG9ydGN1dEl0ZW0gfSBmcm9tICdAZGVsb24vdXRpbC9jb25maWcnO1xuXG5AQ29tcG9uZW50KHtcbiAgc2VsZWN0b3I6ICcnLFxuICB0ZW1wbGF0ZTogYFxuICAgIDxuZy10ZW1wbGF0ZSAjdHBsPlxuICAgICAgPGFcbiAgICAgICAgKm5nRm9yPVwibGV0IGkgb2YgbGlzdDsgbGV0IGZpcnN0ID0gZmlyc3RcIlxuICAgICAgICAoY2xpY2spPVwiY2xpY2soaSlcIlxuICAgICAgICBbaW5uZXJIVE1MXT1cImkuX3RleHRcIlxuICAgICAgICBbbmdDbGFzc109XCJ7ICdtbC1zbSc6ICFmaXJzdCB9XCJcbiAgICAgID48L2E+XG4gICAgPC9uZy10ZW1wbGF0ZT5cbiAgYFxufSlcbmV4cG9ydCBjbGFzcyBSYW5nZVBpY2tlclNob3J0Y3V0VHBsQ29tcG9uZW50IHtcbiAgQFZpZXdDaGlsZCgndHBsJywgeyBzdGF0aWM6IHRydWUgfSlcbiAgdHBsITogVGVtcGxhdGVSZWY8dm9pZD47XG5cbiAgbGlzdDogQWxhaW5EYXRlUmFuZ2VQaWNrZXJTaG9ydGN1dEl0ZW1bXSA9IFtdO1xuXG4gIGNsaWNrKF86IEFsYWluRGF0ZVJhbmdlUGlja2VyU2hvcnRjdXRJdGVtKTogdm9pZCB7fVxufVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmFuZ2Utc2hvcnRjdXQuY29tcG9uZW50LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvYWJjL2RhdGUtcGlja2VyL3JhbmdlLXNob3J0Y3V0LmNvbXBvbmVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxPQUFPLEVBQUUsU0FBUyxFQUFlLFNBQVMsRUFBRSxNQUFNLGVBQWUsQ0FBQzs7O0FBY2xFLE1BQU0sT0FBTywrQkFBK0I7SUFWNUM7UUFjRSxTQUFJLEdBQXVDLEVBQUUsQ0FBQztLQUcvQztJQURDLEtBQUssQ0FBQyxDQUFtQyxJQUFTLENBQUM7OEdBTnhDLCtCQUErQjtrR0FBL0IsK0JBQStCLDhKQVJoQzs7Ozs7O0dBTVQ7OzJGQUVVLCtCQUErQjtrQkFWM0MsU0FBUzttQkFBQztvQkFDVCxRQUFRLEVBQUUsRUFBRTtvQkFDWixRQUFRLEVBQUU7Ozs7OztHQU1UO2lCQUNGOzhCQUdDLEdBQUc7c0JBREYsU0FBUzt1QkFBQyxLQUFLLEVBQUUsRUFBRSxNQUFNLEVBQUUsSUFBSSxFQUFFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgQ29tcG9uZW50LCBUZW1wbGF0ZVJlZiwgVmlld0NoaWxkIH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEFsYWluRGF0ZVJhbmdlUGlja2VyU2hvcnRjdXRJdGVtIH0gZnJvbSAnQGRlbG9uL3V0aWwvY29uZmlnJztcblxuQENvbXBvbmVudCh7XG4gIHNlbGVjdG9yOiAnJyxcbiAgdGVtcGxhdGU6IGBcbiAgICA8bmctdGVtcGxhdGUgI3RwbD5cbiAgICAgIEBmb3IgKGkgb2YgbGlzdDsgdHJhY2sgJGluZGV4KSB7XG4gICAgICAgIDxhIChjbGljayk9XCJjbGljayhpKVwiIFtpbm5lckhUTUxdPVwiaS5fdGV4dFwiIFtuZ0NsYXNzXT1cInsgJ21sLXNtJzogISRmaXJzdCB9XCI+PC9hPlxuICAgICAgfVxuICAgIDwvbmctdGVtcGxhdGU+XG4gIGBcbn0pXG5leHBvcnQgY2xhc3MgUmFuZ2VQaWNrZXJTaG9ydGN1dFRwbENvbXBvbmVudCB7XG4gIEBWaWV3Q2hpbGQoJ3RwbCcsIHsgc3RhdGljOiB0cnVlIH0pXG4gIHRwbCE6IFRlbXBsYXRlUmVmPHZvaWQ+O1xuXG4gIGxpc3Q6IEFsYWluRGF0ZVJhbmdlUGlja2VyU2hvcnRjdXRJdGVtW10gPSBbXTtcblxuICBjbGljayhfOiBBbGFpbkRhdGVSYW5nZVBpY2tlclNob3J0Y3V0SXRlbSk6IHZvaWQge31cbn1cbiJdfQ==
