@@ -19,6 +19,9 @@ const ts = require("typescript");
 const utils_1 = require("../utils");
 function addDeclarationToNgModule(options) {
     return (tree) => {
+        if (options.standalone) {
+            return tree;
+        }
         if (!options.module) {
             return tree;
         }
@@ -46,7 +49,7 @@ function addDeclarationToNgModule(options) {
 function addRoutingModuleToTop(options) {
     return (tree) => {
         var _a;
-        const modulePath = (0, core_1.normalize)(`${options.path}/routes-routing.module.ts`);
+        const modulePath = (0, core_1.normalize)(`${options.path}/${options.standalone ? utils_1.ROUTINS_FILENAME : 'routes-routing.module.ts'}`);
         if (!tree.exists(modulePath)) {
             return tree;
         }
@@ -66,7 +69,7 @@ function addRoutingModuleToTop(options) {
             return tree;
         }
         const recorder = tree.beginUpdate(modulePath);
-        const moduleName = core_1.strings.classify(`${options.name}Module`);
+        const moduleName = options.standalone ? 'routes' : core_1.strings.classify(`${options.name}Module`);
         let pos = childrenNode.parent.end;
         const validLines = childrenNode.parent
             .getText()
@@ -75,7 +78,7 @@ function addRoutingModuleToTop(options) {
             .map(v => v.trim())
             .filter(v => v.length > 1 && !v.startsWith('//'));
         const comma = ((_a = validLines.pop()) === null || _a === void 0 ? void 0 : _a.endsWith(',')) === false ? ', ' : '';
-        const code = `${comma} { path: '${options.name}', loadChildren: () => import('./${options.name}/${options.name}.module').then((m) => m.${moduleName}) }`;
+        const code = `${comma} { path: '${options.name}', loadChildren: () => import('./${options.name}/${options.standalone ? 'routes' : `${options.name}.module`}').then((m) => m.${moduleName}) }`;
         // Insert it just before the `]`.
         recorder.insertRight(pos - 1, code);
         tree.commitUpdate(recorder);
@@ -88,9 +91,10 @@ function addServiceToNgModule(options) {
             return tree;
         const basePath = `/${options.path}/${options.flat ? '' : `${core_1.strings.dasherize(options.name)}/`}${core_1.strings.dasherize(options.name)}`;
         const servicePath = (0, core_1.normalize)(`${basePath}.service`);
+        const serviceName = core_1.strings.classify(`${options.name}Service`);
         const importModulePath = (0, core_1.normalize)(`${basePath}.module`);
         const importServicePath = (0, find_module_1.buildRelativePath)(importModulePath, servicePath);
-        (0, utils_1.addProviderToModule)(tree, `${importModulePath}.ts`, core_1.strings.classify(`${options.name}Service`), importServicePath);
+        (0, utils_1.addServiceToModuleOrStandalone)(tree, options.standalone, `${importModulePath}.ts`, serviceName, importServicePath);
         return tree;
     };
 }
@@ -106,17 +110,20 @@ function default_1(schema) {
         schema.path = parsedPath.path;
         schema.routing = true;
         schema.flat = false;
+        // standalone
+        schema.standalone = yield (0, utils_1.isStandalone)(tree, schema.standalone, proj.name);
         const templateSource = (0, schematics_1.apply)((0, schematics_1.url)('./files'), [
             schema.service === 'ignore' ? (0, schematics_1.filter)(filePath => !filePath.endsWith('.service.ts.template')) : (0, schematics_1.noop)(),
             schema.routing ? (0, schematics_1.noop)() : (0, schematics_1.filter)(path => !path.endsWith('-routing.module.ts')),
+            schema.standalone ? (0, schematics_1.filter)(path => !path.includes('.module.ts')) : (0, schematics_1.noop)(),
             (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             (0, schematics_1.move)(parsedPath.path)
         ]);
         return (0, schematics_1.chain)([
             (0, schematics_1.branchAndMerge)((0, schematics_1.chain)([
+                (0, schematics_1.mergeWith)(templateSource),
                 addDeclarationToNgModule(schema),
                 addRoutingModuleToTop(schema),
-                (0, schematics_1.mergeWith)(templateSource),
                 addServiceToNgModule(schema)
             ]))
         ]);

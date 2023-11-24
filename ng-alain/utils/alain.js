@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildAlain = exports.addValueToVariable = exports.addProviderToModule = exports.addImportToModule = exports.refreshPathRoot = void 0;
+exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = exports.refreshPathRoot = void 0;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -21,6 +21,7 @@ const fs = require("fs");
 const path = require("path");
 const ts = require("typescript");
 const ast_1 = require("./ast");
+const standalone_1 = require("./standalone");
 const workspace_1 = require("./workspace");
 const TEMPLATE_FILENAME_RE = /\.template$/;
 function buildSelector(schema, projectPrefix) {
@@ -81,7 +82,12 @@ function resolveSchema(tree, project, schema, alainProject) {
     if (fs.existsSync(fullPath) && fs.readdirSync(fullPath).length > 0) {
         throw new schematics_1.SchematicsException(`The directory (${fullPath}) already exists`);
     }
-    schema.importModulePath = (0, find_module_1.findModuleFromOptions)(tree, schema);
+    if (schema.standalone) {
+        schema.importModulePath = (0, core_1.normalize)(`${schema.path}/${schema.name}/${schema.name}.component.ts`);
+    }
+    else {
+        schema.importModulePath = (0, find_module_1.findModuleFromOptions)(tree, schema);
+    }
     if (!schema._filesPath) {
         // 若基础页尝试从 `_cli-tpl/_${schema.schematicName!}` 下查找该目录，若存在则优先使用
         if (['list', 'edit', 'view', 'empty'].includes(schema.schematicName)) {
@@ -98,7 +104,15 @@ function resolveSchema(tree, project, schema, alainProject) {
     if (schema.target) {
         schema.path += core_1.strings.dasherize(`/${schema.target}`);
     }
-    schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
+    if (schema.standalone) {
+        schema.routerModulePath = (0, ast_1.findRoutesPath)(tree, schema.path);
+        if (schema.routerModulePath.length <= 0) {
+            throw new schematics_1.SchematicsException(`Could not find a non Routing file: ${ast_1.ROUTINS_FILENAME}`);
+        }
+    }
+    else {
+        schema.routerModulePath = schema.importModulePath.replace('.module.ts', '-routing.module.ts');
+    }
     // html selector
     schema.selector = schema.selector || buildSelector(schema, project.prefix);
     (0, validation_1.validateHtmlSelector)(schema.selector);
@@ -113,20 +127,6 @@ function addImportToModule(tree, filePath, symbolName, fileName) {
     tree.commitUpdate(declarationRecorder);
 }
 exports.addImportToModule = addImportToModule;
-function addProviderToModule(tree, filePath, serviceName, importPath) {
-    const source = (0, ast_1.getSourceFile)(tree, filePath);
-    const changes = (0, ast_utils_1.addProviderToModule)(source, filePath, serviceName, importPath);
-    const declarationRecorder = tree.beginUpdate(filePath);
-    changes.forEach(change => {
-        if (change.path == null)
-            return;
-        if (change instanceof change_1.InsertChange) {
-            declarationRecorder.insertLeft(change.pos, change.toAdd);
-        }
-    });
-    tree.commitUpdate(declarationRecorder);
-}
-exports.addProviderToModule = addProviderToModule;
 function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
     const node = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, variableName);
@@ -142,7 +142,7 @@ function addValueToVariable(tree, filePath, variableName, text, needWrap = true)
 }
 exports.addValueToVariable = addValueToVariable;
 function getRelativePath(filePath, schema, prefix) {
-    const importPath = `/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.${prefix}`;
+    const importPath = (0, core_1.normalize)(`/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.${prefix}`);
     return (0, find_module_1.buildRelativePath)(filePath, importPath);
 }
 function addDeclaration(schema) {
@@ -151,8 +151,10 @@ function addDeclaration(schema) {
             return tree;
         }
         // imports
-        addImportToModule(tree, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema, 'component'));
-        addValueToVariable(tree, schema.importModulePath, 'COMPONENTS', schema.componentName);
+        if (!schema.standalone) {
+            addImportToModule(tree, schema.importModulePath, schema.componentName, getRelativePath(schema.importModulePath, schema, 'component'));
+            addValueToVariable(tree, schema.importModulePath, 'COMPONENTS', schema.componentName);
+        }
         // component
         if (schema.modal !== true) {
             // routing
@@ -161,7 +163,7 @@ function addDeclaration(schema) {
         }
         // service
         if (schema.service === 'none') {
-            addProviderToModule(tree, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
+            (0, ast_1.addServiceToModuleOrStandalone)(tree, schema.standalone, schema.importModulePath, schema.serviceName, getRelativePath(schema.importModulePath, schema, 'service'));
         }
         return tree;
     };
@@ -173,6 +175,8 @@ function buildAlain(schema) {
             throw new schematics_1.SchematicsException(`The specified project does not match '${schema.project}', current: ${res.name}`);
         }
         const project = res.project;
+        // standalone
+        schema.standalone = yield (0, standalone_1.isStandalone)(tree, schema.standalone, res.name);
         resolveSchema(tree, project, schema, res.alainProject);
         schema.componentName = buildName(schema, 'Component');
         schema.serviceName = buildName(schema, 'Service');
@@ -190,7 +194,7 @@ function buildAlain(schema) {
             (0, schematics_1.applyTemplates)(Object.assign(Object.assign(Object.assign({}, core_1.strings), { 'if-flat': (s) => (schema.flat ? '' : s) }), schema)),
             (0, schematics_1.move)(null, `${schema.path}/`)
         ]);
-        return (0, schematics_1.chain)([(0, schematics_1.branchAndMerge)((0, schematics_1.chain)([addDeclaration(schema), (0, schematics_1.mergeWith)(templateSource)]))]);
+        return (0, schematics_1.chain)([(0, schematics_1.branchAndMerge)((0, schematics_1.chain)([(0, schematics_1.mergeWith)(templateSource), addDeclaration(schema)]))]);
     });
 }
 exports.buildAlain = buildAlain;

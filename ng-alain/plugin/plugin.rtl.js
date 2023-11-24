@@ -10,36 +10,47 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.pluginRTL = void 0;
+const schematics_1 = require("@angular/cdk/schematics");
 const core_1 = require("@angular-devkit/core");
-const schematics_1 = require("@angular-devkit/schematics");
+const schematics_2 = require("@angular-devkit/schematics");
 const utils_1 = require("../utils");
 let project;
-function fixImport() {
-    return (tree) => {
+function fixImport(options) {
+    return (tree) => __awaiter(this, void 0, void 0, function* () {
         const basicComponentPath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/basic/basic.component.ts`);
         if (tree.exists(basicComponentPath)) {
-            const content = (0, utils_1.readContent)(tree, basicComponentPath).replace(`<div nz-menu style="width: 200px;">`, `<div nz-menu style="width: 200px;"><div nz-menu-item><header-rtl></header-rtl></div>`);
+            const content = (0, utils_1.readContent)(tree, basicComponentPath).replace(`<div nz-menu style="width: 200px;">`, `<div nz-menu style="width: 200px;"><div nz-menu-item><header-rtl /></div>`);
             tree.overwrite(basicComponentPath, content);
         }
-        // src/app/layout/layout.module.ts
-        const layoutModulePath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/layout.module.ts`);
-        if (tree.exists(layoutModulePath)) {
-            const rtlComponentName = 'HeaderRTLComponent';
-            (0, utils_1.addImportToModule)(tree, layoutModulePath, rtlComponentName, './basic/widgets/rtl.component');
-            (0, utils_1.addValueToVariable)(tree, layoutModulePath, 'HEADERCOMPONENTS', rtlComponentName);
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const isStandalone = yield (0, schematics_1.isStandaloneSchematic)(tree, options);
+        if (isStandalone) {
+            // import HeaderRTLComponent
+            (0, utils_1.importInStandalone)(tree, basicComponentPath, 'HeaderRTLComponent', './widgets/rtl.component');
         }
-        return tree;
-    };
+        else {
+            // src/app/layout/layout.module.ts
+            const layoutModulePath = (0, core_1.normalize)(`${project.sourceRoot}/app/layout/layout.module.ts`);
+            if (tree.exists(layoutModulePath)) {
+                const rtlComponentName = 'HeaderRTLComponent';
+                (0, utils_1.addImportToModule)(tree, layoutModulePath, rtlComponentName, './basic/widgets/rtl.component');
+                (0, utils_1.addValueToVariable)(tree, layoutModulePath, 'HEADERCOMPONENTS', rtlComponentName);
+            }
+        }
+    });
 }
 function pluginRTL(options) {
     return (tree) => __awaiter(this, void 0, void 0, function* () {
         if (options.type !== 'add') {
-            throw new schematics_1.SchematicsException(`Sorry, the plug-in does not support hot swap, if you need to remove it, please handle it manually`);
+            throw new schematics_2.SchematicsException(`Sorry, the plug-in does not support hot swap, if you need to remove it, please handle it manually`);
         }
-        project = (yield (0, utils_1.getProject)(tree, options.project)).project;
-        return (0, schematics_1.chain)([
-            (0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/rtl'), [(0, schematics_1.move)(`${project.sourceRoot}/app`), (0, utils_1.overwriteIfExists)(tree)])),
-            fixImport()
+        const res = yield (0, utils_1.getProject)(tree, options.project);
+        project = res.project;
+        if (options.project == null)
+            options.project = res.name;
+        return (0, schematics_2.chain)([
+            (0, schematics_2.mergeWith)((0, schematics_2.apply)((0, schematics_2.url)('./files/rtl'), [(0, schematics_2.move)(`${project.sourceRoot}/app`), (0, utils_1.overwriteIfExists)(tree)])),
+            fixImport(options)
         ]);
     });
 }

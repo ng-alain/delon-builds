@@ -1,0 +1,1 @@
+{"version":3,"file":"standalone.js","sourceRoot":"","sources":["../../../schematics/utils/standalone.ts"],"names":[],"mappings":";;;;;;;;;;;;AAAA,wDAAgE;AAIhE,SAAsB,YAAY,CAAC,IAAU,EAAE,gBAAyB,EAAE,WAAmB;;QAC3F,IAAI,gBAAgB,IAAI,IAAI;YAAE,OAAO,gBAAgB,CAAC;QACtD,OAAO,MAAM,IAAA,kCAAqB,EAAC,IAAI,EAAE,EAAE,OAAO,EAAE,WAAW,EAAE,IAAI,EAAE,WAAW,EAAE,CAAC,CAAC;IACxF,CAAC;CAAA;AAHD,oCAGC"}

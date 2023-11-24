@@ -23,4 +23,5 @@ __exportStar(require("./lib-versions"), exports);
 __exportStar(require("./log"), exports);
 __exportStar(require("./ast"), exports);
 __exportStar(require("./alain"), exports);
+__exportStar(require("./standalone"), exports);
 //# sourceMappingURL=index.js.map

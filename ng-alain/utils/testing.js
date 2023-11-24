@@ -49,13 +49,15 @@ function createAlainApp(ngAddOptions) {
     });
 }
 exports.createAlainApp = createAlainApp;
-function createAlainAndModuleApp(name = 'trade', ngAddOptions, alainData) {
+function createAlainAndModuleApp(options) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        const res = yield createAlainApp(ngAddOptions);
-        if (alainData != null) {
-            res.tree.create('ng-alain.json', JSON.stringify(alainData));
+        const res = yield createAlainApp(options === null || options === void 0 ? void 0 : options.ngAddSchema);
+        if ((options === null || options === void 0 ? void 0 : options.alainData) != null) {
+            res.tree.create('ng-alain.json', JSON.stringify(options === null || options === void 0 ? void 0 : options.alainData));
         }
-        res.tree = yield res.runner.runSchematic('module', { name, project: exports.APPNAME, routing: true }, res.tree);
+        const moduleOptions = Object.assign({ name: (_a = options === null || options === void 0 ? void 0 : options.name) !== null && _a !== void 0 ? _a : 'trade', project: exports.APPNAME, routing: true }, options === null || options === void 0 ? void 0 : options.moduleSchema);
+        res.tree = yield res.runner.runSchematic('module', moduleOptions, res.tree);
         return res;
     });
 }
