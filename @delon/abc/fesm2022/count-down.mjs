@@ -1,10 +1,9 @@
 import * as i0 from '@angular/core';
 import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { addSeconds, format } from 'date-fns';
-import * as i1 from '@angular/common';
-import { CommonModule } from '@angular/common';
-import * as i2 from 'ngx-countdown';
+import * as i1 from 'ngx-countdown';
 import { CountdownModule } from 'ngx-countdown';
+import { CommonModule } from '@angular/common';
 
 class CountDownComponent {
     constructor() {
@@ -23,14 +22,18 @@ class CountDownComponent {
         this.event.emit(e);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: CountDownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.4", type: CountDownComponent, selector: "count-down", inputs: { config: "config", target: "target" }, outputs: { event: "event" }, viewQueries: [{ propertyName: "instance", first: true, predicate: ["cd"], descendants: true }], exportAs: ["countDown"], ngImport: i0, template: `<countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)" />`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgIf, selector: "[ngIf]", inputs: ["ngIf", "ngIfThen", "ngIfElse"] }, { kind: "component", type: i2.CountdownComponent, selector: "countdown", inputs: ["config", "render"], outputs: ["event"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.4", type: CountDownComponent, selector: "count-down", inputs: { config: "config", target: "target" }, outputs: { event: "event" }, viewQueries: [{ propertyName: "instance", first: true, predicate: ["cd"], descendants: true }], exportAs: ["countDown"], ngImport: i0, template: `@if (config) {
+    <countdown #cd [config]="config" (event)="handleEvent($event)" />
+  }`, isInline: true, dependencies: [{ kind: "component", type: i1.CountdownComponent, selector: "countdown", inputs: ["config", "render"], outputs: ["event"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: CountDownComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'count-down',
                     exportAs: 'countDown',
-                    template: `<countdown #cd *ngIf="config" [config]="config" (event)="handleEvent($event)" />`,
+                    template: `@if (config) {
+    <countdown #cd [config]="config" (event)="handleEvent($event)" />
+  }`,
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
