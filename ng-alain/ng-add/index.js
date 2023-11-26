@@ -47,7 +47,7 @@ function default_1(options) {
         //   context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
         // }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
-        const allowNodeVersions = [16, 18];
+        const allowNodeVersions = [18, 20];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
             const versions = allowNodeVersions.join(', ');
             throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://angular.io/guide/versions`);
