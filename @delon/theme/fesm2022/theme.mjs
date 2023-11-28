@@ -822,22 +822,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                 }] }] });
 
 class I18nPipe {
-    constructor(i18n) {
-        this.i18n = i18n;
+    constructor() {
+        this.i18n = inject(ALAIN_I18N_TOKEN);
     }
     transform(key, params) {
         return this.i18n.fanyi(key, params);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, deps: [{ token: ALAIN_I18N_TOKEN }], target: i0.ɵɵFactoryTarget.Pipe }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
     static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, isStandalone: true, name: "i18n" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'i18n', standalone: true }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [ALAIN_I18N_TOKEN]
-                }] }] });
+        }] });
 
 class AlainI18NGuardService {
     constructor(i18nSrv, cogSrv) {
