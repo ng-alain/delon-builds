@@ -43,7 +43,7 @@ export interface AlainI18NService {
      * @param params 模板所需要的参数对象
      * @param isSafe 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`; Should be removed, If you need SafeHtml support, please use `| html` pipe instead.
      */
-    fanyi(path: string, params?: unknown | unknown[]): string;
+    fanyi(path: string, params?: unknown): string;
 }
 export declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 export declare abstract class AlainI18nBaseService implements AlainI18NService {
@@ -78,7 +78,7 @@ export declare abstract class AlainI18nBaseService implements AlainI18NService {
     flatData(data: Record<string, unknown>, parentKey: string[]): Record<string, string>;
     abstract use(lang: string, data?: Record<string, unknown>): void;
     abstract getLangs(): NzSafeAny[];
-    fanyi(path: string, params?: unknown | unknown[]): string;
+    fanyi(path: string, params?: Record<string, unknown>): string;
     static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18nBaseService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18nBaseService>;
 }

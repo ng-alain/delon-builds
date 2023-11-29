@@ -114,14 +114,10 @@ class AlainI18nBaseService {
         let content = this._data[path] || '';
         if (!content)
             return path;
-        if (!params)
-            return content;
-        if (typeof params === 'object') {
+        if (params) {
             const interpolation = this.cog.interpolation;
-            const objParams = params;
-            Object.keys(objParams).forEach(key => (content = content.replace(new RegExp(`${interpolation[0]}\\s?${key}\\s?${interpolation[1]}`, 'g'), `${objParams[key]}`)));
+            Object.keys(params).forEach(key => (content = content.replace(new RegExp(`${interpolation[0]}\s?${key}\s?${interpolation[1]}`, 'g'), `${params[key]}`)));
         }
-        (Array.isArray(params) ? params : [params]).forEach((item, index) => (content = content.replace(new RegExp(`\\{\\s?${index}\\s?\\}`, 'g'), `${item}`)));
         return content;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: AlainI18nBaseService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
@@ -826,19 +822,22 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImpor
                 }] }] });
 
 class I18nPipe {
-    constructor() {
-        this.i18n = inject(ALAIN_I18N_TOKEN);
+    constructor(i18n) {
+        this.i18n = i18n;
     }
     transform(key, params) {
         return this.i18n.fanyi(key, params);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, deps: [{ token: ALAIN_I18N_TOKEN }], target: i0.ɵɵFactoryTarget.Pipe }); }
     static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, isStandalone: true, name: "i18n" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.4", ngImport: i0, type: I18nPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'i18n', standalone: true }]
-        }] });
+        }], ctorParameters: () => [{ type: undefined, decorators: [{
+                    type: Inject,
+                    args: [ALAIN_I18N_TOKEN]
+                }] }] });
 
 class AlainI18NGuardService {
     constructor(i18nSrv, cogSrv) {
