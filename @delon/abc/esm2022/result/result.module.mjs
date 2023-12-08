@@ -6,11 +6,11 @@ import { ResultComponent } from './result.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [ResultComponent];
 export class ResultModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: ResultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.6", ngImport: i0, type: ResultModule, declarations: [ResultComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [ResultComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: ResultModule, imports: [CommonModule, NzIconModule, NzOutletModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: ResultModule, declarations: [ResultComponent], imports: [CommonModule, NzIconModule, NzOutletModule], exports: [ResultComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResultModule, imports: [CommonModule, NzIconModule, NzOutletModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: ResultModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: ResultModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzIconModule, NzOutletModule],
