@@ -5,11 +5,11 @@ import { FullContentComponent } from './full-content.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [FullContentComponent, FullContentToggleDirective];
 export class FullContentModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FullContentModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FullContentModule, declarations: [FullContentComponent, FullContentToggleDirective], imports: [CommonModule], exports: [FullContentComponent, FullContentToggleDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FullContentModule, imports: [CommonModule] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: FullContentModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.6", ngImport: i0, type: FullContentModule, declarations: [FullContentComponent, FullContentToggleDirective], imports: [CommonModule], exports: [FullContentComponent, FullContentToggleDirective] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: FullContentModule, imports: [CommonModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FullContentModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.6", ngImport: i0, type: FullContentModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule],
