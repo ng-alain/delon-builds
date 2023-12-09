@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "17.0.3-02db86ce1",
+  "version": "17.0.3-1869b5915",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^2.3.0",
     "ngx-countdown": "^17.0.0",
-    "@delon/theme": "^17.0.3-02db86ce1",
-    "@delon/util": "^17.0.3-02db86ce1",
-    "@delon/acl": "^17.0.3-02db86ce1",
+    "@delon/theme": "^17.0.3-1869b5915",
+    "@delon/util": "^17.0.3-1869b5915",
+    "@delon/acl": "^17.0.3-1869b5915",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -225,17 +225,17 @@
       "esm": "./esm2022/sv/sv.mjs",
       "default": "./fesm2022/sv.mjs"
     },
-    "./xlsx": {
-      "types": "./xlsx/index.d.ts",
-      "esm2022": "./esm2022/xlsx/xlsx.mjs",
-      "esm": "./esm2022/xlsx/xlsx.mjs",
-      "default": "./fesm2022/xlsx.mjs"
-    },
     "./tag-select": {
       "types": "./tag-select/index.d.ts",
       "esm2022": "./esm2022/tag-select/tag-select.mjs",
       "esm": "./esm2022/tag-select/tag-select.mjs",
       "default": "./fesm2022/tag-select.mjs"
+    },
+    "./xlsx": {
+      "types": "./xlsx/index.d.ts",
+      "esm2022": "./esm2022/xlsx/xlsx.mjs",
+      "esm": "./esm2022/xlsx/xlsx.mjs",
+      "default": "./fesm2022/xlsx.mjs"
     },
     "./zip": {
       "types": "./zip/index.d.ts",
