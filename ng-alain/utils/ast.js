@@ -143,7 +143,7 @@ exports.importInStandalone = importInStandalone;
 function addServiceToModuleOrStandalone(tree, standalone, filePath, serviceName, importPath) {
     const source = getSourceFile(tree, filePath);
     if (standalone) {
-        importInStandalone(tree, filePath, serviceName, importPath, 'provides');
+        importInStandalone(tree, filePath, serviceName, importPath, 'providers');
     }
     else {
         const changes = (0, ast_utils_1.addProviderToModule)(source, filePath, serviceName, importPath);
