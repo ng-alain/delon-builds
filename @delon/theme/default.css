@@ -33022,7 +33022,6 @@ body {
 .sv__bordered {
   overflow: hidden;
   border-top: 1px solid #f0f0f0;
-  border-bottom: 1px solid #f0f0f0;
   border-left: 1px solid #f0f0f0;
 }
 .sv__bordered .sv__item {
@@ -33044,6 +33043,9 @@ body {
 .sv__bordered.sv__small .sv__label,
 .sv__bordered.sv__small .sv__detail {
   padding: 8px 16px;
+}
+.sv__bordered .ant-row {
+  margin-bottom: 0;
 }
 .se__title {
   float: none;
