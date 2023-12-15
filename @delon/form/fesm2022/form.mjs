@@ -1206,47 +1206,6 @@ class SFComponent {
         return this;
     }
     /**
-     * Set form element new `disabled` based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素 `disabled` 状态
-     */
-    setDisabled(path, status) {
-        const property = this.getProperty(path);
-        if (!property) {
-            throw new Error(`Invalid path: ${path}`);
-        }
-        property.schema.readOnly = status;
-        property.widget.detectChanges();
-        return this;
-    }
-    /**
-     * Set form element new `required` based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素 `required` 状态
-     */
-    setRequired(path, status) {
-        const property = this.getProperty(path);
-        if (!property) {
-            throw new Error(`Invalid path: ${path}`);
-        }
-        const key = path.split(SF_SEQ).pop();
-        const parentRequired = property.parent?.schema.required || [];
-        const idx = parentRequired.findIndex(w => w === key);
-        if (status) {
-            if (idx === -1)
-                parentRequired.push(key);
-        }
-        else {
-            if (idx !== -1)
-                parentRequired.splice(idx, 1);
-        }
-        property.parent.schema.required = parentRequired;
-        property.ui._required = status;
-        property.widget.detectChanges();
-        this.validator({ onlyRoot: false });
-        return this;
-    }
-    /**
      * Update the feedback status of the widget
      *
      * 更新小部件的反馈状态

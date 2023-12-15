@@ -138,18 +138,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     setValue(path: string, value: NzSafeAny): this;
     /**
-     * Set form element new `disabled` based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素 `disabled` 状态
-     */
-    setDisabled(path: string, status: boolean): this;
-    /**
-     * Set form element new `required` based on [path](https://ng-alain.com/form/qa#path)
-     *
-     * 根据[路径](https://ng-alain.com/form/qa#path)设置某个表单元素 `required` 状态
-     */
-    setRequired(path: string, status: boolean): this;
-    /**
      * Update the feedback status of the widget
      *
      * 更新小部件的反馈状态
