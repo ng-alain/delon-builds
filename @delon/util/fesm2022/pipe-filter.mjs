@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
 import { Pipe, NgModule } from '@angular/core';
 
-// eslint-disable-next-line @angular-eslint/no-pipe-impure
 class FilterPipe {
     /**
      * Filter array
@@ -12,11 +11,11 @@ class FilterPipe {
         return array.filter(i => matcher(i, ...args));
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
-    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FilterPipe, isStandalone: true, name: "filter", pure: false }); }
+    static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.0.2", ngImport: i0, type: FilterPipe, isStandalone: true, name: "filter" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.2", ngImport: i0, type: FilterPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'filter', standalone: true, pure: false }]
+            args: [{ name: 'filter', standalone: true }]
         }] });
 
 const PIPES = [FilterPipe];
