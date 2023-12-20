@@ -7,7 +7,7 @@ import * as i1 from '@delon/util/config';
 import * as i2 from 'ng-zorro-antd/core/outlet';
 import { NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { RequiredValidator, NgModel, FormControlName } from '@angular/forms';
+import { Validators, RequiredValidator, NgModel, FormControlName } from '@angular/forms';
 import { isEmpty } from '@delon/util/browser';
 import { helpMotion } from 'ng-zorro-antd/core/animation';
 import * as i2$1 from 'ng-zorro-antd/core/form';
@@ -282,8 +282,12 @@ class SEComponent {
         }
         // auto required
         if (this.required !== true) {
-            const rawValidators = this.ngControl?._rawValidators;
-            this.required = rawValidators.find(w => w instanceof RequiredValidator) != null;
+            let required = this.ngControl?.control?.hasValidator(Validators.required);
+            if (required !== true) {
+                const rawValidators = this.ngControl?._rawValidators;
+                required = rawValidators.find(w => w instanceof RequiredValidator) != null;
+            }
+            this.required = required;
             this.cdr.detectChanges();
         }
     }
