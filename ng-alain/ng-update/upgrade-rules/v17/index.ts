@@ -3,7 +3,6 @@ import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
 import { fixAngularJson } from './angularJson';
 import { autoRegisterFormWidgets } from './autoRegisterFormWidgets';
-import { addNljep } from './nljep';
 import { updatePreloader } from './preloader';
 import { removeForRoot } from './removeForRoot';
 import { replaceProvideConfig } from './replaceProvideConfig';
@@ -35,7 +34,6 @@ export function v17Rule(): Rule {
       autoRegisterFormWidgets(),
       replaceProvideConfig(),
       updatePreloader(),
-      addNljep(),
       finished()
     ]);
   };

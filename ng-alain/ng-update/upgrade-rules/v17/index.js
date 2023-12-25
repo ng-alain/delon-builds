@@ -14,7 +14,6 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const angularJson_1 = require("./angularJson");
 const autoRegisterFormWidgets_1 = require("./autoRegisterFormWidgets");
-const nljep_1 = require("./nljep");
 const preloader_1 = require("./preloader");
 const removeForRoot_1 = require("./removeForRoot");
 const replaceProvideConfig_1 = require("./replaceProvideConfig");
@@ -39,7 +38,6 @@ function v17Rule() {
             (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(),
             (0, replaceProvideConfig_1.replaceProvideConfig)(),
             (0, preloader_1.updatePreloader)(),
-            (0, nljep_1.addNljep)(),
             finished()
         ]);
     });
