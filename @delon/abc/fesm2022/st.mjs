@@ -1131,7 +1131,7 @@ class STExport {
                 }
             }
         }
-        ret.v = ret.v ?? '';
+        ret.v = ret.v || '';
         return ret;
     }
     genSheet(opt) {

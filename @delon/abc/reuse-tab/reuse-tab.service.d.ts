@@ -161,6 +161,7 @@ export declare class ReuseTabService implements OnDestroy {
      * 决定是否允许路由复用，若 `true` 会触发 `store`
      */
     shouldDetach(route: ActivatedRouteSnapshot): boolean;
+    saveCache(snapshot: ActivatedRouteSnapshot, _handle?: NzSafeAny, pos?: number): void;
     /**
      * 存储
      */
