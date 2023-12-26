@@ -428,17 +428,13 @@ class ReuseTabService {
      */
     replace(newUrl) {
         const url = this.curUrl;
-        this.injector
-            .get(Router)
-            .navigateByUrl(newUrl)
-            .then(() => {
-            if (this.exists(url)) {
-                this.close(url, true);
-            }
-            else {
-                this.removeUrlBuffer = url;
-            }
-        });
+        if (this.exists(url)) {
+            this.close(url, true);
+        }
+        else {
+            this.removeUrlBuffer = url;
+        }
+        this.injector.get(Router).navigateByUrl(newUrl);
     }
     /**
      * 获取标题，顺序如下：
@@ -657,9 +653,7 @@ class ReuseTabService {
     store(_snapshot, _handle) {
         const url = this.getUrl(_snapshot);
         const idx = this.index(url);
-        if (idx === -1)
-            return;
-        const list = this.cached.list;
+        const isAdd = idx === -1;
         const item = {
             title: this.getTitle(url, _snapshot),
             closable: this.getClosable(url, _snapshot),
@@ -668,19 +662,32 @@ class ReuseTabService {
             _snapshot,
             _handle
         };
-        // Current handler is null when activate routes
-        // For better reliability, we need to wait for the component to be attached before call _onReuseInit
-        const cahcedComponentRef = list[idx]._handle?.componentRef;
-        if (_handle == null && cahcedComponentRef != null) {
-            timer(100).subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
+        if (isAdd) {
+            if (this.count >= this._max) {
+                // Get the oldest closable location
+                const closeIdx = this.cached.list.findIndex(w => w.closable);
+                if (closeIdx !== -1)
+                    this.remove(closeIdx, false);
+            }
+            this.cached.list.push(item);
         }
-        list[idx] = item;
+        else {
+            // Current handler is null when activate routes
+            // For better reliability, we need to wait for the component to be attached before call _onReuseInit
+            const cahcedComponentRef = this.cached.list[idx]._handle?.componentRef;
+            if (_handle == null && cahcedComponentRef != null) {
+                timer(100).subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
+            }
+            this.cached.list[idx] = item;
+        }
         this.removeUrlBuffer = null;
-        this.di('#store', '[override]', url);
+        this.di('#store', isAdd ? '[new]' : '[override]', url);
         if (_handle && _handle.componentRef) {
             this.runHook('_onReuseDestroy', _handle.componentRef);
         }
-        this._cachedChange.next({ active: 'override', item, list });
+        if (!isAdd) {
+            this._cachedChange.next({ active: 'override', item, list: this.cached.list });
+        }
     }
     /**
      * 决定是否允许应用缓存数据
@@ -693,12 +700,6 @@ class ReuseTabService {
         const ret = !!(data && data._handle);
         this.di('#shouldAttach', ret, url);
         if (!ret) {
-            if (this.count >= this._max) {
-                // Get the oldest closable location
-                const closeIdx = this.items.findIndex(w => w.url !== url && w.closable);
-                if (closeIdx !== -1)
-                    this.remove(closeIdx, false);
-            }
             this._cachedChange.next({ active: 'add', url, list: this.cached.list });
         }
         return ret;
@@ -875,15 +876,16 @@ class ReuseTabComponent {
         const ls = this.srv.items.map((item, index) => ({
             url: item.url,
             title: this.genTit(item.title),
-            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(item.url, item._snapshot),
+            closable: this.allowClose && item.closable && this.srv.count > 0,
             position: item.position,
             index,
             active: false,
             last: false
         }));
+        // debugger;
         const url = this.curUrl;
         let addCurrent = ls.findIndex(w => w.url === url) === -1;
-        if (ls.length && notify && notify.active === 'close' && notify.url === url) {
+        if (notify && notify.active === 'close' && notify.url === url) {
             addCurrent = false;
             let toPos = 0;
             const curItem = this.list.find(w => w.url === url);
@@ -898,16 +900,7 @@ class ReuseTabComponent {
             this.router.navigateByUrl(ls[toPos].url);
         }
         if (addCurrent) {
-            const addPos = this.pos + 1;
-            const curItem = this.genCurItem();
-            ls.splice(addPos, 0, curItem);
-            // Attach to cache
-            const snapshotTrue = this.srv.getTruthRoute(this.route.snapshot);
-            this.srv.items.splice(addPos, 0, {
-                title: this.srv.getTitle(url, snapshotTrue),
-                url,
-                closable: curItem.closable
-            });
+            ls.splice(this.pos + 1, 0, this.genCurItem());
         }
         ls.forEach((item, index) => (item.index = index));
         if (ls.length === 1) {
@@ -973,7 +966,9 @@ class ReuseTabComponent {
                 return;
             this.item = item;
             this.change.emit(item);
-            cb?.();
+            if (cb) {
+                cb();
+            }
         });
     }
     _close(e, idx, includeNonCloseable) {
