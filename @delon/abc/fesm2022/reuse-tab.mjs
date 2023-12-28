@@ -4,7 +4,7 @@ import * as i2 from 'ng-zorro-antd/menu';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import * as i1 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
-import { Subject, Subscription, BehaviorSubject, take, timer, filter, of, debounceTime } from 'rxjs';
+import { Subject, Subscription, BehaviorSubject, timer, filter, of, debounceTime } from 'rxjs';
 import * as i1$1 from '@angular/cdk/overlay';
 import { ConnectionPositionPair, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
@@ -428,17 +428,13 @@ class ReuseTabService {
      */
     replace(newUrl) {
         const url = this.curUrl;
-        this.injector
-            .get(Router)
-            .navigateByUrl(newUrl)
-            .then(() => {
-            if (this.exists(url)) {
-                this.close(url, true);
-            }
-            else {
-                this.removeUrlBuffer = url;
-            }
-        });
+        if (this.exists(url)) {
+            this.close(url, true);
+        }
+        else {
+            this.removeUrlBuffer = url;
+        }
+        this.injector.get(Router).navigateByUrl(newUrl);
     }
     /**
      * 获取标题，顺序如下：
@@ -651,47 +647,13 @@ class ReuseTabService {
         this.di('#shouldDetach', this.can(route), this.getUrl(route));
         return this.can(route);
     }
-    saveCache(snapshot, _handle, pos) {
-        const snapshotTrue = this.getTruthRoute(snapshot);
-        const url = this.getUrl(snapshot);
-        const idx = this.index(url);
-        const item = {
-            title: this.getTitle(url, snapshotTrue),
-            url,
-            closable: this.getClosable(url, snapshot),
-            _snapshot: snapshot,
-            _handle
-        };
-        if (idx < 0) {
-            this.items.splice(pos ?? this.items.length, 0, item);
-            if (this.count > this._max) {
-                // Get the oldest closable location
-                const closeIdx = this.items.findIndex(w => w.url !== url && w.closable);
-                if (closeIdx !== -1) {
-                    const closeItem = this.items[closeIdx];
-                    this.remove(closeIdx, false);
-                    timer(1)
-                        .pipe(take(1))
-                        .subscribe(() => this._cachedChange.next({ active: 'close', url: closeItem.url, list: this.cached.list }));
-                }
-            }
-        }
-        else {
-            this.items[idx] = item;
-        }
-    }
     /**
      * 存储
      */
     store(_snapshot, _handle) {
         const url = this.getUrl(_snapshot);
         const idx = this.index(url);
-        if (idx === -1)
-            return;
-        if (_handle != null) {
-            this.saveCache(_snapshot, _handle);
-        }
-        const list = this.cached.list;
+        const isAdd = idx === -1;
         const item = {
             title: this.getTitle(url, _snapshot),
             closable: this.getClosable(url, _snapshot),
@@ -700,21 +662,32 @@ class ReuseTabService {
             _snapshot,
             _handle
         };
-        // Current handler is null when activate routes
-        // For better reliability, we need to wait for the component to be attached before call _onReuseInit
-        const cahcedComponentRef = list[idx]._handle?.componentRef;
-        if (_handle == null && cahcedComponentRef != null) {
-            timer(100)
-                .pipe(take(1))
-                .subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
+        if (isAdd) {
+            if (this.count >= this._max) {
+                // Get the oldest closable location
+                const closeIdx = this.cached.list.findIndex(w => w.closable);
+                if (closeIdx !== -1)
+                    this.remove(closeIdx, false);
+            }
+            this.cached.list.push(item);
         }
-        list[idx] = item;
+        else {
+            // Current handler is null when activate routes
+            // For better reliability, we need to wait for the component to be attached before call _onReuseInit
+            const cahcedComponentRef = this.cached.list[idx]._handle?.componentRef;
+            if (_handle == null && cahcedComponentRef != null) {
+                timer(100).subscribe(() => this.runHook('_onReuseInit', cahcedComponentRef));
+            }
+            this.cached.list[idx] = item;
+        }
         this.removeUrlBuffer = null;
-        this.di('#store', '[override]', url);
+        this.di('#store', isAdd ? '[new]' : '[override]', url);
         if (_handle && _handle.componentRef) {
             this.runHook('_onReuseDestroy', _handle.componentRef);
         }
-        this._cachedChange.next({ active: 'override', item, list });
+        if (!isAdd) {
+            this._cachedChange.next({ active: 'override', item, list: this.cached.list });
+        }
     }
     /**
      * 决定是否允许应用缓存数据
@@ -903,12 +876,13 @@ class ReuseTabComponent {
         const ls = this.srv.items.map((item, index) => ({
             url: item.url,
             title: this.genTit(item.title),
-            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(item.url, item._snapshot),
+            closable: this.allowClose && item.closable && this.srv.count > 0,
             position: item.position,
             index,
             active: false,
             last: false
         }));
+        // debugger;
         const url = this.curUrl;
         let addCurrent = ls.findIndex(w => w.url === url) === -1;
         if (notify && notify.active === 'close' && notify.url === url) {
@@ -926,10 +900,7 @@ class ReuseTabComponent {
             this.router.navigateByUrl(ls[toPos].url);
         }
         if (addCurrent) {
-            const addPos = this.pos + 1;
-            ls.splice(addPos, 0, this.genCurItem());
-            // Attach to cache
-            this.srv.saveCache(this.route.snapshot, null, addPos);
+            ls.splice(this.pos + 1, 0, this.genCurItem());
         }
         ls.forEach((item, index) => (item.index = index));
         if (ls.length === 1) {
@@ -995,7 +966,9 @@ class ReuseTabComponent {
                 return;
             this.item = item;
             this.change.emit(item);
-            cb?.();
+            if (cb) {
+                cb();
+            }
         });
     }
     _close(e, idx, includeNonCloseable) {
