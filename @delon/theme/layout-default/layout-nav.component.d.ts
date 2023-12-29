@@ -24,7 +24,6 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     static ngAcceptInputType_disabledAcl: BooleanInput;
     static ngAcceptInputType_autoCloseUnderPad: BooleanInput;
     static ngAcceptInputType_recursivePath: BooleanInput;
-    static ngAcceptInputType_hideEmptyChildren: BooleanInput;
     static ngAcceptInputType_openStrictly: BooleanInput;
     static ngAcceptInputType_maxLevelIcon: NumberInput;
     private bodyEl;
@@ -35,7 +34,6 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
     recursivePath: boolean;
-    hideEmptyChildren: boolean;
     set openStrictly(value: boolean);
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
@@ -61,5 +59,5 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private underPad;
     private openAside;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; }; "recursivePath": { "alias": "recursivePath"; "required": false; }; "hideEmptyChildren": { "alias": "hideEmptyChildren"; "required": false; }; "openStrictly": { "alias": "openStrictly"; "required": false; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; }; "recursivePath": { "alias": "recursivePath"; "required": false; }; "openStrictly": { "alias": "openStrictly"; "required": false; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
 }
