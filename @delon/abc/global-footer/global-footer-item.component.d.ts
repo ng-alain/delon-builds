@@ -7,5 +7,5 @@ export declare class GlobalFooterItemComponent {
     href?: string;
     blankTarget?: boolean;
     static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterItemComponent, "global-footer-item", ["globalFooterItem"], { "href": { "alias": "href"; "required": false; }; "blankTarget": { "alias": "blankTarget"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterItemComponent, "global-footer-item", ["globalFooterItem"], { "href": { "alias": "href"; "required": false; }; "blankTarget": { "alias": "blankTarget"; "required": false; }; }, {}, never, ["*"], true, never>;
 }
