@@ -7,20 +7,12 @@ import { FormsModule } from '@angular/forms';
 import { updateHostClass } from '@delon/util/browser';
 import { InputBoolean } from '@delon/util/decorator';
 import { WINDOW } from '@delon/util/token';
-import * as i9 from 'ng-zorro-antd/badge';
-import { NzBadgeModule } from 'ng-zorro-antd/badge';
-import * as i5 from 'ng-zorro-antd/checkbox';
-import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
-import * as i7 from 'ng-zorro-antd/icon';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import * as i3$1 from 'ng-zorro-antd/image';
-import { NzImageModule } from 'ng-zorro-antd/image';
-import * as i6 from 'ng-zorro-antd/radio';
-import { NzRadioModule } from 'ng-zorro-antd/radio';
-import * as i8 from 'ng-zorro-antd/tag';
-import { NzTagModule } from 'ng-zorro-antd/tag';
-import * as i10 from 'ng-zorro-antd/tooltip';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
+import { NzBadgeComponent, NzBadgeModule } from 'ng-zorro-antd/badge';
+import { NzCheckboxComponent, NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
+import { NzRadioComponent, NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzTagComponent, NzTagModule } from 'ng-zorro-antd/tag';
+import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { deepMerge, warn } from '@delon/util/other';
 import { map, of } from 'rxjs';
 import { yn } from '@delon/theme';
@@ -31,7 +23,8 @@ import * as i1 from '@delon/util/config';
 import * as i2 from 'ng-zorro-antd/i18n';
 import * as i4 from '@angular/platform-browser';
 import * as i2$1 from '@angular/router';
-import { NzImageModule as NzImageModule$1 } from 'ng-zorro-antd/experimental/image';
+import * as i3$1 from 'ng-zorro-antd/image';
+import { NzImageModule } from 'ng-zorro-antd/experimental/image';
 
 class CellService {
     constructor(configSrv, nzI18n, currency, dom) {
@@ -389,7 +382,7 @@ class CellComponent {
     } @else {
       <ng-template [ngTemplateOutlet]="textWrap" />
     }
-  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i4$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i4$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "ngmodule", type: NzCheckboxModule }, { kind: "component", type: i5.NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "ngmodule", type: NzRadioModule }, { kind: "component", type: i6.NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "ngmodule", type: NzIconModule }, { kind: "directive", type: i7.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "ngmodule", type: NzTagModule }, { kind: "component", type: i8.NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "ngmodule", type: NzBadgeModule }, { kind: "component", type: i9.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "ngmodule", type: NzToolTipModule }, { kind: "directive", type: i10.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "ngmodule", type: NzImageModule }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i4$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i4$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzCheckboxComponent, selector: "[nz-checkbox]", inputs: ["nzValue", "nzAutoFocus", "nzDisabled", "nzIndeterminate", "nzChecked", "nzId"], outputs: ["nzCheckedChange"], exportAs: ["nzCheckbox"] }, { kind: "component", type: NzRadioComponent, selector: "[nz-radio],[nz-radio-button]", inputs: ["nzValue", "nzDisabled", "nzAutoFocus"], exportAs: ["nzRadio"] }, { kind: "directive", type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: NzTagComponent, selector: "nz-tag", inputs: ["nzMode", "nzColor", "nzChecked"], outputs: ["nzOnClose", "nzCheckedChange"], exportAs: ["nzTag"] }, { kind: "component", type: NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: CellHostDirective, selector: "[cell-widget-host]", inputs: ["data"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputBoolean()
@@ -479,13 +472,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                     imports: [
                         FormsModule,
                         NgTemplateOutlet,
-                        NzCheckboxModule,
-                        NzRadioModule,
-                        NzIconModule,
-                        NzTagModule,
-                        NzBadgeModule,
-                        NzToolTipModule,
-                        NzImageModule,
+                        NzCheckboxComponent,
+                        NzRadioComponent,
+                        NzIconDirective,
+                        NzTagComponent,
+                        NzBadgeComponent,
+                        NzTooltipDirective,
                         CellHostDirective
                     ]
                 }]
@@ -515,7 +507,7 @@ class CellModule {
             NzTagModule,
             NzToolTipModule,
             NzIconModule,
-            NzImageModule$1, CellComponent, CellHostDirective], exports: [CellComponent] }); }
+            NzImageModule, CellComponent, CellHostDirective], exports: [CellComponent] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: CellModule, imports: [CommonModule,
             FormsModule,
             NzCheckboxModule,
@@ -524,7 +516,7 @@ class CellModule {
             NzTagModule,
             NzToolTipModule,
             NzIconModule,
-            NzImageModule$1, COMPS] }); }
+            NzImageModule, COMPS] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: CellModule, decorators: [{
             type: NgModule,
@@ -538,7 +530,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                         NzTagModule,
                         NzToolTipModule,
                         NzIconModule,
-                        NzImageModule$1,
+                        NzImageModule,
                         ...COMPS,
                         CellHostDirective
                     ],
