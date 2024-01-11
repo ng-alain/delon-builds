@@ -13044,6 +13044,78 @@ nz-empty {
 .ant-row-rtl {
   direction: rtl;
 }
+.ant-flex {
+  display: flex;
+}
+.ant-flex-vertical {
+  flex-direction: column;
+}
+.ant-flex-justify-flex-start {
+  justify-content: flex-start;
+}
+.ant-flex-justify-center {
+  justify-content: center;
+}
+.ant-flex-justify-flex-end {
+  justify-content: flex-end;
+}
+.ant-flex-justify-space-between {
+  justify-content: space-between;
+}
+.ant-flex-justify-space-around {
+  justify-content: space-around;
+}
+.ant-flex-justify-space-evenly {
+  justify-content: space-evenly;
+}
+.ant-flex-justify-start {
+  justify-content: start;
+}
+.ant-flex-justify-end {
+  justify-content: end;
+}
+.ant-flex-justify-right {
+  justify-content: right;
+}
+.ant-flex-justify-left {
+  justify-content: left;
+}
+.ant-flex-justify-stretch {
+  justify-content: stretch;
+}
+.ant-flex-justify-normal {
+  justify-content: normal;
+}
+.ant-flex-align-flex-start {
+  align-items: flex-start;
+}
+.ant-flex-align-center {
+  align-items: center;
+}
+.ant-flex-align-flex-end {
+  align-items: flex-end;
+}
+.ant-flex-align-start {
+  align-items: start;
+}
+.ant-flex-align-end {
+  align-items: end;
+}
+.ant-flex-align-stretch {
+  align-items: stretch;
+}
+.ant-flex-align-normal {
+  align-items: normal;
+}
+.ant-flex-wrap-wrap {
+  flex-wrap: wrap;
+}
+.ant-flex-wrap-nowrap {
+  flex-wrap: nowrap;
+}
+.ant-flex-wrap-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
 .ant-input-affix-wrapper {
   position: relative;
   display: inline-block;
@@ -23664,6 +23736,10 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-tabs-dropdown-menu-item a[nz-tab-link] {
   position: relative;
 }
+.ant-tabs-tab-btn {
+  border: none;
+  background-color: unset;
+}
 .ant-tabs-tab a[nz-tab-link]::before {
   position: absolute;
   top: 0;
@@ -24278,7 +24354,7 @@ nz-tabs-nav {
   pointer-events: none;
 }
 .ant-tooltip-arrow-content {
-  --antd-arrow-background-color: linear-gradient(to right bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75));
+  --antd-arrow-background-color: var(--color, linear-gradient(to right bottom, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)));
   position: absolute;
   top: 0;
   right: 0;
@@ -27791,6 +27867,7 @@ nz-space-item {
   color: rgba(0, 0, 0, 0.85);
 }
 .ant-water-mark {
+  display: block;
   position: relative;
 }
 .ant-color-picker {
@@ -27845,13 +27922,16 @@ nz-space-item {
 }
 .ant-color-picker-slider {
   width: 100%;
-  margin-bottom: 12px;
+  border-radius: 2px;
 }
 .ant-color-picker-slider .ant-color-picker-palette {
   height: 8px;
 }
 .ant-color-picker-slider .ant-color-picker-gradient {
   border-radius: 2px;
+}
+.ant-color-picker-slider-hue {
+  margin-bottom: 12px;
 }
 .ant-color-picker-slider-alpha {
   background-image: conic-gradient(rgba(0, 0, 0, 0.06) 0 25%, transparent 0 50%, rgba(0, 0, 0, 0.06) 0 75%, transparent 0);
@@ -27891,7 +27971,6 @@ nz-space-item {
   position: relative;
   width: 28px;
   height: 28px;
-  margin-left: 8px;
   background-image: conic-gradient(rgba(0, 0, 0, 0.06) 0 25%, transparent 0 50%, rgba(0, 0, 0, 0.06) 0 75%, transparent 0);
   background-size: 50% 50%;
   overflow: hidden;
@@ -27905,6 +27984,8 @@ nz-space-item {
 }
 .ant-color-picker-slider-container {
   display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
 }
 .ant-color-picker-slider-container .ant-color-picker-slider-group {
   flex: 1;
@@ -27989,10 +28070,11 @@ nz-space-item {
   align-items: center;
 }
 .ant-color-picker-input-container .ant-color-picker-steppers {
-  flex: 0 0 44px;
+  flex: 1;
 }
 .ant-color-picker-input-container .ant-color-picker-alpha-input {
   flex: 0 0 44px;
+  margin-left: 4px;
 }
 .ant-color-picker-disabled {
   color: rgba(0, 0, 0, 0.25);
