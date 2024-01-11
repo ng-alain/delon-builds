@@ -28,7 +28,8 @@ exports.LANGS_CONFIG = [
     { langs: ['sl'], zorro: 'sl_SI', date: 'sl', delon: 'sl_SI', fileName: 'sl-SI.json' },
     { langs: ['fr'], zorro: 'fr_FR', date: 'fr', delon: 'fr_FR', fileName: 'fr-FR.json' },
     { langs: ['es'], zorro: 'es_ES', date: 'es', delon: 'es_ES', fileName: 'es-ES.json' },
-    { langs: ['it'], zorro: 'it_IT', date: 'it', delon: 'it_IT', fileName: 'it-IT.json' }
+    { langs: ['it'], zorro: 'it_IT', date: 'it', delon: 'it_IT', fileName: 'it-IT.json' },
+    { langs: ['vi'], zorro: 'vi_VI', date: 'vi', delon: 'vi_VI', fileName: 'vi_VI.json' }
 ];
 function getLangConfig(lang) {
     return exports.LANGS_CONFIG.find(w => w.langs.includes(lang));
