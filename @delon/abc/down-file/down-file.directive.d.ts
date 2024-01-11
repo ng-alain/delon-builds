@@ -20,5 +20,5 @@ export declare class DownFileDirective {
     private setDisabled;
     _click(ev: MouseEvent): Promise<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DownFileDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<DownFileDirective, "[down-file]", ["downFile"], { "httpData": { "alias": "http-data"; "required": false; }; "httpBody": { "alias": "http-body"; "required": false; }; "httpMethod": { "alias": "http-method"; "required": false; }; "httpUrl": { "alias": "http-url"; "required": true; }; "fileName": { "alias": "file-name"; "required": false; }; "pre": { "alias": "pre"; "required": false; }; }, { "success": "success"; "error": "error"; }, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<DownFileDirective, "[down-file]", ["downFile"], { "httpData": { "alias": "http-data"; "required": false; }; "httpBody": { "alias": "http-body"; "required": false; }; "httpMethod": { "alias": "http-method"; "required": false; }; "httpUrl": { "alias": "http-url"; "required": true; }; "fileName": { "alias": "file-name"; "required": false; }; "pre": { "alias": "pre"; "required": false; }; }, { "success": "success"; "error": "error"; }, never, never, true, never>;
 }
