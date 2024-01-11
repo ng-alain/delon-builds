@@ -20,5 +20,5 @@ export declare class G2CardComponent implements OnChanges {
     constructor(cdr: ChangeDetectorRef);
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2CardComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<G2CardComponent, "g2-card", ["g2Card"], { "bordered": { "alias": "bordered"; "required": false; }; "avatar": { "alias": "avatar"; "required": false; }; "title": { "alias": "title"; "required": false; }; "action": { "alias": "action"; "required": false; }; "total": { "alias": "total"; "required": false; }; "contentHeight": { "alias": "contentHeight"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<G2CardComponent, "g2-card", ["g2Card"], { "bordered": { "alias": "bordered"; "required": false; }; "avatar": { "alias": "avatar"; "required": false; }; "title": { "alias": "title"; "required": false; }; "action": { "alias": "action"; "required": false; }; "total": { "alias": "total"; "required": false; }; "contentHeight": { "alias": "contentHeight"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; }, {}, never, ["*"], true, never>;
 }
