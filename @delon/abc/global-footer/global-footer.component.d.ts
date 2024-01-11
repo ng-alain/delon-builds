@@ -17,10 +17,10 @@ export declare class GlobalFooterComponent implements OnInit {
     dir: Direction;
     set links(val: GlobalFooterLink[]);
     get links(): GlobalFooterLink[];
-    readonly items: QueryList<GlobalFooterItemComponent>;
+    items: QueryList<GlobalFooterItemComponent>;
     constructor(router: Router, win: NzSafeAny, dom: DomSanitizer, directionality: Directionality, cdr: ChangeDetectorRef);
     to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterComponent, [null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": { "alias": "links"; "required": false; }; }, {}, ["items"], ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": { "alias": "links"; "required": false; }; }, {}, ["items"], ["*"], false, never>;
 }

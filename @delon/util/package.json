@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "17.0.5-f3937f2",
+  "version": "17.0.5-c03a797",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -41,17 +41,17 @@
       "esm": "./esm2022/array/array.mjs",
       "default": "./fesm2022/array.mjs"
     },
-    "./config": {
-      "types": "./config/index.d.ts",
-      "esm2022": "./esm2022/config/config.mjs",
-      "esm": "./esm2022/config/config.mjs",
-      "default": "./fesm2022/config.mjs"
-    },
     "./browser": {
       "types": "./browser/index.d.ts",
       "esm2022": "./esm2022/browser/browser.mjs",
       "esm": "./esm2022/browser/browser.mjs",
       "default": "./fesm2022/browser.mjs"
+    },
+    "./config": {
+      "types": "./config/index.d.ts",
+      "esm2022": "./esm2022/config/config.mjs",
+      "esm": "./esm2022/config/config.mjs",
+      "default": "./fesm2022/config.mjs"
     },
     "./date-time": {
       "types": "./date-time/index.d.ts",
