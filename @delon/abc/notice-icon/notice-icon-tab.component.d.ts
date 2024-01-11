@@ -10,5 +10,5 @@ export declare class NoticeIconTabComponent {
     onClick(item: NoticeItem): void;
     onClear(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NoticeIconTabComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconTabComponent, "notice-icon-tab", ["noticeIconTab"], { "locale": { "alias": "locale"; "required": false; }; "data": { "alias": "data"; "required": false; }; }, { "select": "select"; "clear": "clear"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconTabComponent, "notice-icon-tab", ["noticeIconTab"], { "locale": { "alias": "locale"; "required": false; }; "data": { "alias": "data"; "required": false; }; }, { "select": "select"; "clear": "clear"; }, never, never, true, never>;
 }

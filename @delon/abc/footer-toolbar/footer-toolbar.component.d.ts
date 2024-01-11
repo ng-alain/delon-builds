@@ -14,5 +14,5 @@ export declare class FooterToolbarComponent implements OnInit, OnDestroy {
     ngOnInit(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FooterToolbarComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FooterToolbarComponent, "footer-toolbar", ["footerToolbar"], { "errorCollect": { "alias": "errorCollect"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FooterToolbarComponent, "footer-toolbar", ["footerToolbar"], { "errorCollect": { "alias": "errorCollect"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; }, {}, never, ["*"], true, never>;
 }
