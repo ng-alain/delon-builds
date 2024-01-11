@@ -32,5 +32,5 @@ export declare class ExceptionComponent implements OnInit {
     constructor(i18n: DelonLocaleService, dom: DomSanitizer, configSrv: AlainConfigService, directionality: Directionality, cdr: ChangeDetectorRef);
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ExceptionComponent, [null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": { "alias": "type"; "required": false; }; "img": { "alias": "img"; "required": false; }; "title": { "alias": "title"; "required": false; }; "desc": { "alias": "desc"; "required": false; }; "backRouterLink": { "alias": "backRouterLink"; "required": false; }; }, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": { "alias": "type"; "required": false; }; "img": { "alias": "img"; "required": false; }; "title": { "alias": "title"; "required": false; }; "desc": { "alias": "desc"; "required": false; }; "backRouterLink": { "alias": "backRouterLink"; "required": false; }; }, {}, never, ["*"], true, never>;
 }

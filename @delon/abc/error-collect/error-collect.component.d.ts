@@ -25,5 +25,5 @@ export declare class ErrorCollectComponent implements OnInit {
     private findParent;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ErrorCollectComponent, [null, null, null, null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ErrorCollectComponent, "error-collect, [error-collect]", ["errorCollect"], { "freq": { "alias": "freq"; "required": false; }; "offsetTop": { "alias": "offsetTop"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<ErrorCollectComponent, "error-collect, [error-collect]", ["errorCollect"], { "freq": { "alias": "freq"; "required": false; }; "offsetTop": { "alias": "offsetTop"; "required": false; }; }, {}, never, never, true, never>;
 }
