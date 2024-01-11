@@ -2,8 +2,7 @@ import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { InputBoolean } from '@delon/util/decorator';
-import * as i1 from 'ng-zorro-antd/icon';
-import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { CommonModule } from '@angular/common';
 
 class TrendComponent {
@@ -14,12 +13,12 @@ class TrendComponent {
         this.reverseColor = false;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: TrendComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.9", type: TrendComponent, selector: "trend", inputs: { flag: "flag", colorful: "colorful", reverseColor: "reverseColor" }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.9", type: TrendComponent, isStandalone: true, selector: "trend", inputs: { flag: "flag", colorful: "colorful", reverseColor: "reverseColor" }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
     <ng-content />
     @if (flag) {
       <span class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
     }
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputBoolean()
@@ -46,7 +45,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true,
+                    imports: [NzIconDirective]
                 }]
         }], propDecorators: { flag: [{
                 type: Input
@@ -59,14 +60,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
 const COMPONENTS = [TrendComponent];
 class TrendModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: TrendModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: TrendModule, declarations: [TrendComponent], imports: [CommonModule, NzIconModule], exports: [TrendComponent] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: TrendModule, imports: [CommonModule, NzIconModule, TrendComponent], exports: [TrendComponent] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: TrendModule, imports: [CommonModule, NzIconModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: TrendModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, NzIconModule],
-                    declarations: COMPONENTS,
+                    imports: [CommonModule, NzIconModule, ...COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });

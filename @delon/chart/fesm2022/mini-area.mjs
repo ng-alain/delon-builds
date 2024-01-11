@@ -74,7 +74,7 @@ class G2MiniAreaComponent extends G2BaseComponent {
         _chart.changeData(data);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.9", type: G2MiniAreaComponent, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: "borderWidth", height: "height", fit: "fit", line: "line", animate: "animate", xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.9", type: G2MiniAreaComponent, isStandalone: true, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: "borderWidth", height: "height", fit: "fit", line: "line", animate: "animate", xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputNumber()
@@ -102,7 +102,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true
                 }]
         }], propDecorators: { color: [{
                 type: Input
@@ -137,14 +138,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
 const COMPONENTS = [G2MiniAreaComponent];
 class G2MiniAreaModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaModule, declarations: [G2MiniAreaComponent], imports: [CommonModule], exports: [G2MiniAreaComponent] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaModule, imports: [CommonModule, G2MiniAreaComponent], exports: [G2MiniAreaComponent] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaModule, imports: [CommonModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2MiniAreaModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule],
-                    declarations: COMPONENTS,
+                    imports: [CommonModule, ...COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });

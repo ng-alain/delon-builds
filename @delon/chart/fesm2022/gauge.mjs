@@ -3,8 +3,7 @@ import * as i0 from '@angular/core';
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
 import { InputNumber } from '@delon/util/decorator';
-import * as i1 from 'ng-zorro-antd/skeleton';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
 class G2GaugeComponent extends G2BaseComponent {
@@ -133,9 +132,9 @@ class G2GaugeComponent extends G2BaseComponent {
         _chart.changeData(data);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.9", type: G2GaugeComponent, selector: "g2-gauge", inputs: { title: "title", height: "height", color: "color", bgColor: "bgColor", format: "format", percent: "percent", padding: "padding" }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0, template: `@if (!loaded) {
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.0.9", type: G2GaugeComponent, isStandalone: true, selector: "g2-gauge", inputs: { title: "title", height: "height", color: "color", bgColor: "bgColor", format: "format", percent: "percent", padding: "padding" }, host: { properties: { "class.g2-gauge": "true" } }, exportAs: ["g2Gauge"], usesInheritance: true, ngImport: i0, template: `@if (!loaded) {
     <nz-skeleton />
-  }`, isInline: true, dependencies: [{ kind: "component", type: i1.NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  }`, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputNumber()
@@ -156,7 +155,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true,
+                    imports: [NzSkeletonComponent]
                 }]
         }], propDecorators: { title: [{
                 type: Input
@@ -177,14 +178,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
 const COMPONENTS = [G2GaugeComponent];
 class G2GaugeModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, declarations: [G2GaugeComponent], imports: [CommonModule, NzSkeletonModule], exports: [G2GaugeComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, imports: [CommonModule, NzSkeletonModule] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, imports: [CommonModule, NzSkeletonModule, G2GaugeComponent], exports: [G2GaugeComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2GaugeModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, NzSkeletonModule],
-                    declarations: COMPONENTS,
+                    imports: [CommonModule, NzSkeletonModule, ...COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });

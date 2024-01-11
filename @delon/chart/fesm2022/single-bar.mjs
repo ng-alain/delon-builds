@@ -70,7 +70,7 @@ class G2SingleBarComponent extends G2BaseComponent {
         _chart.changeData([{ value }]);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.9", type: G2SingleBarComponent, selector: "g2-single-bar", inputs: { plusColor: "plusColor", minusColor: "minusColor", height: "height", barSize: "barSize", min: "min", max: "max", value: "value", line: "line", format: "format", padding: "padding", textStyle: "textStyle" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2SingleBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.0.9", type: G2SingleBarComponent, isStandalone: true, selector: "g2-single-bar", inputs: { plusColor: "plusColor", minusColor: "minusColor", height: "height", barSize: "barSize", min: "min", max: "max", value: "value", line: "line", format: "format", padding: "padding", textStyle: "textStyle" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2SingleBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     InputNumber()
@@ -101,7 +101,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None
+                    encapsulation: ViewEncapsulation.None,
+                    standalone: true
                 }]
         }], propDecorators: { plusColor: [{
                 type: Input
@@ -130,14 +131,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImpor
 const COMPONENTS = [G2SingleBarComponent];
 class G2SingleBarModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarModule, declarations: [G2SingleBarComponent], imports: [CommonModule], exports: [G2SingleBarComponent] }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarModule, imports: [CommonModule, G2SingleBarComponent], exports: [G2SingleBarComponent] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarModule, imports: [CommonModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.0.9", ngImport: i0, type: G2SingleBarModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule],
-                    declarations: COMPONENTS,
+                    imports: [CommonModule, ...COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });
