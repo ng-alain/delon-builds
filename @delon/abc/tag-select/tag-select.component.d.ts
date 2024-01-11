@@ -19,5 +19,5 @@ export declare class TagSelectComponent implements OnInit {
     ngOnInit(): void;
     trigger(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TagSelectComponent, [null, { optional: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<TagSelectComponent, "tag-select", ["tagSelect"], { "expandable": { "alias": "expandable"; "required": false; }; }, { "change": "change"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<TagSelectComponent, "tag-select", ["tagSelect"], { "expandable": { "alias": "expandable"; "required": false; }; }, { "change": "change"; }, never, ["*"], true, never>;
 }

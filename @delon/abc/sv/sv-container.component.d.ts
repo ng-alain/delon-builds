@@ -3,6 +3,16 @@ import type { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";
+export declare class SVTitleComponent implements OnInit {
+    private el;
+    private parent;
+    private ren;
+    constructor(el: ElementRef<HTMLElement>, parent: SVContainerComponent, ren: Renderer2);
+    private setClass;
+    ngOnInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, [null, { optional: true; host: true; }, null]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], true, never>;
+}
 export declare class SVContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_labelWidth: NumberInput;
@@ -28,15 +38,5 @@ export declare class SVContainerComponent {
     };
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; }, {}, never, ["*"], false, never>;
-}
-export declare class SVTitleComponent implements OnInit {
-    private el;
-    private parent;
-    private ren;
-    constructor(el: ElementRef<HTMLElement>, parent: SVContainerComponent, ren: Renderer2);
-    private setClass;
-    ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, [null, { optional: true; host: true; }, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; }, {}, never, ["*"], true, never>;
 }
