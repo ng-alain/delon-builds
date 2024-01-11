@@ -5,6 +5,16 @@ import { AlainConfigService } from '@delon/util/config';
 import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import { SEErrorRefresh, SELayout } from './se.types';
 import * as i0 from "@angular/core";
+export declare class SETitleComponent implements OnInit {
+    private parent;
+    private ren;
+    private el;
+    constructor(parent: SEContainerComponent, el: ElementRef, ren: Renderer2);
+    private setClass;
+    ngOnInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SETitleComponent, [{ optional: true; host: true; }, null, null]>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], true, never>;
+}
 export declare class SEContainerComponent {
     static ngAcceptInputType_gutter: NumberInput;
     static ngAcceptInputType_col: NumberInput;
@@ -36,15 +46,5 @@ export declare class SEContainerComponent {
     constructor(configSrv: AlainConfigService);
     setErrors(errors: SEErrorRefresh[]): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": { "alias": "se-container"; "required": false; }; "col": { "alias": "col"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "title": { "alias": "title"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "nzLayout": { "alias": "nzLayout"; "required": false; }; "size": { "alias": "size"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "ingoreDirty": { "alias": "ingoreDirty"; "required": false; }; "line": { "alias": "line"; "required": false; }; "errors": { "alias": "errors"; "required": false; }; }, {}, never, ["*"], false, never>;
-}
-export declare class SETitleComponent implements OnInit {
-    private parent;
-    private ren;
-    private el;
-    constructor(parent: SEContainerComponent, el: ElementRef, ren: Renderer2);
-    private setClass;
-    ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SETitleComponent, [{ optional: true; host: true; }, null, null]>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": { "alias": "se-container"; "required": false; }; "col": { "alias": "col"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "title": { "alias": "title"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "nzLayout": { "alias": "nzLayout"; "required": false; }; "size": { "alias": "size"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "ingoreDirty": { "alias": "ingoreDirty"; "required": false; }; "line": { "alias": "line"; "required": false; }; "errors": { "alias": "errors"; "required": false; }; }, {}, never, ["*"], true, never>;
 }

@@ -1,12 +1,12 @@
 import * as i0 from "@angular/core";
-import * as i1 from "./se-container.component";
-import * as i2 from "./se.component";
-import * as i3 from "@angular/common";
-import * as i4 from "ng-zorro-antd/tooltip";
-import * as i5 from "ng-zorro-antd/icon";
-import * as i6 from "ng-zorro-antd/core/outlet";
+import * as i1 from "@angular/common";
+import * as i2 from "ng-zorro-antd/tooltip";
+import * as i3 from "ng-zorro-antd/icon";
+import * as i4 from "ng-zorro-antd/core/outlet";
+import * as i5 from "./se-container.component";
+import * as i6 from "./se.component";
 export declare class SEModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<SEModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<SEModule, [typeof i1.SEContainerComponent, typeof i2.SEComponent, typeof i1.SETitleComponent], [typeof i3.CommonModule, typeof i4.NzToolTipModule, typeof i5.NzIconModule, typeof i6.NzOutletModule], [typeof i1.SEContainerComponent, typeof i2.SEComponent, typeof i1.SETitleComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<SEModule, never, [typeof i1.CommonModule, typeof i2.NzToolTipModule, typeof i3.NzIconModule, typeof i4.NzOutletModule, typeof i5.SEContainerComponent, typeof i6.SEComponent, typeof i5.SETitleComponent], [typeof i5.SEContainerComponent, typeof i6.SEComponent, typeof i5.SETitleComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<SEModule>;
 }

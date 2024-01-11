@@ -26,5 +26,5 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     ngOnInit(): void;
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<QuickMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<QuickMenuComponent, "quick-menu", ["quickMenu"], { "icon": { "alias": "icon"; "required": false; }; "top": { "alias": "top"; "required": false; }; "width": { "alias": "width"; "required": false; }; "bgColor": { "alias": "bgColor"; "required": false; }; "borderColor": { "alias": "borderColor"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; }, { "expandChange": "expandChange"; }, never, ["*"], false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<QuickMenuComponent, "quick-menu", ["quickMenu"], { "icon": { "alias": "icon"; "required": false; }; "top": { "alias": "top"; "required": false; }; "width": { "alias": "width"; "required": false; }; "bgColor": { "alias": "bgColor"; "required": false; }; "borderColor": { "alias": "borderColor"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; }, { "expandChange": "expandChange"; }, never, ["*"], true, never>;
 }
