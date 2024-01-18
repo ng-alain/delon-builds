@@ -41,7 +41,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `source-map-explorer@^2.5.3`,
         `@angular/language-service@^17.1.0`,
         `ngx-tinymce@^17.0.0`,
-        `@ng-util/monaco-editor@^17.0.0`,
+        `@ng-util/monaco-editor@^17.0.1`,
         `@delon/testing@${version}`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^17.1.0`]);

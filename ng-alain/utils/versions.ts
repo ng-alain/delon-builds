@@ -37,7 +37,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `source-map-explorer@^2.5.3`,
       `@angular/language-service@^17.1.0`,
       `ngx-tinymce@^17.0.0`,
-      `@ng-util/monaco-editor@^17.0.0`,
+      `@ng-util/monaco-editor@^17.0.1`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
