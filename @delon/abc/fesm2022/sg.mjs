@@ -1,9 +1,8 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Optional, Host, NgModule } from '@angular/core';
-import { InputNumber } from '@delon/util/decorator';
+import { numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ElementRef, inject, Renderer2, NgModule } from '@angular/core';
+import { toNumber } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
-import * as i2 from '@delon/theme';
+import { ResponsiveService } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
 class SGContainerComponent {
@@ -17,17 +16,8 @@ class SGContainerComponent {
         });
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SGContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: SGContainerComponent, isStandalone: true, selector: "sg-container, [sg-container]", inputs: { gutter: "gutter", colInCon: ["sg-container", "colInCon"], col: "col" }, host: { properties: { "style.margin-left.px": "marginValue", "style.margin-right.px": "marginValue", "class.ant-row": "true", "class.sg__wrap": "true" } }, exportAs: ["sgContainer"], ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: SGContainerComponent, isStandalone: true, selector: "sg-container, [sg-container]", inputs: { gutter: ["gutter", "gutter", numberAttribute], colInCon: ["sg-container", "colInCon", (v) => toNumber(v, null)], col: ["col", "col", (v) => toNumber(v, null)] }, host: { properties: { "style.margin-left.px": "marginValue", "style.margin-right.px": "marginValue", "class.ant-row": "true", "class.sg__wrap": "true" } }, exportAs: ["sgContainer"], ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], SGContainerComponent.prototype, "gutter", void 0);
-__decorate([
-    InputNumber(null)
-], SGContainerComponent.prototype, "colInCon", void 0);
-__decorate([
-    InputNumber(null)
-], SGContainerComponent.prototype, "col", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SGContainerComponent, decorators: [{
             type: Component,
             args: [{
@@ -46,12 +36,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     standalone: true
                 }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { gutter: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], colInCon: [{
                 type: Input,
-                args: ['sg-container']
+                args: [{ alias: 'sg-container', transform: (v) => toNumber(v, null) }]
             }], col: [{
-                type: Input
+                type: Input,
+                args: [{ transform: (v) => toNumber(v, null) }]
             }] } });
 
 const prefixCls = `sg`;
@@ -59,17 +51,17 @@ class SGComponent {
     get paddingValue() {
         return this.parent.gutter / 2;
     }
-    constructor(el, ren, parent, rep) {
-        this.ren = ren;
-        this.parent = parent;
-        this.rep = rep;
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.ren = inject(Renderer2);
+        this.rep = inject(ResponsiveService);
+        this.parent = inject(SGContainerComponent, { host: true, optional: true });
         this.clsMap = [];
         this.inited = false;
         this.col = null;
         if (parent == null) {
             throw new Error(`[sg] must include 'sg-container' component`);
         }
-        this.el = el.nativeElement;
     }
     setClass() {
         const { el, ren, clsMap, col, parent } = this;
@@ -88,12 +80,9 @@ class SGComponent {
         this.setClass();
         this.inited = true;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SGComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: SGContainerComponent, host: true, optional: true }, { token: i2.ResponsiveService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: SGComponent, isStandalone: true, selector: "sg", inputs: { col: "col" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, exportAs: ["sg"], usesOnChanges: true, ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SGComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: SGComponent, isStandalone: true, selector: "sg", inputs: { col: ["col", "col", (v) => toNumber(v, null)] }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, exportAs: ["sg"], usesOnChanges: true, ngImport: i0, template: ` <ng-content /> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber(null)
-], SGComponent.prototype, "col", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SGComponent, decorators: [{
             type: Component,
             args: [{
@@ -109,12 +98,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: SGContainerComponent, decorators: [{
-                    type: Optional
-                }, {
-                    type: Host
-                }] }, { type: i2.ResponsiveService }], propDecorators: { col: [{
-                type: Input
+        }], ctorParameters: () => [], propDecorators: { col: [{
+                type: Input,
+                args: [{ transform: (v) => toNumber(v, null) }]
             }] } });
 
 const COMPONENTS = [SGContainerComponent, SGComponent];

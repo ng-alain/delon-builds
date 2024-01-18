@@ -228,7 +228,10 @@ var ReuseTabMatchMode;
 /**
  * Storage manager that can change rules by implementing `get`, `set` accessors
  */
-const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER');
+const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER', {
+    providedIn: 'root',
+    factory: () => new ReuseTabCachedManagerFactory()
+});
 class ReuseTabCachedManagerFactory {
     constructor() {
         this.list = [];
@@ -237,8 +240,15 @@ class ReuseTabCachedManagerFactory {
     }
 }
 
-const REUSE_TAB_STORAGE_KEY = new InjectionToken('REUSE_TAB_STORAGE_KEY');
-const REUSE_TAB_STORAGE_STATE = new InjectionToken('REUSE_TAB_STORAGE_STATE');
+const REUSE_TAB_STORAGE_KEY_DEFAULT = '_reuse-tab-state';
+const REUSE_TAB_STORAGE_KEY = new InjectionToken('REUSE_TAB_STORAGE_KEY', {
+    providedIn: 'root',
+    factory: () => REUSE_TAB_STORAGE_KEY_DEFAULT
+});
+const REUSE_TAB_STORAGE_STATE = new InjectionToken('REUSE_TAB_STORAGE_STATE', {
+    providedIn: 'root',
+    factory: () => new ReuseTabLocalStorageState()
+});
 class ReuseTabLocalStorageState {
     get(key) {
         return JSON.parse(localStorage.getItem(key) || '[]') || [];
@@ -813,11 +823,10 @@ class ReuseTabService {
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ReuseTabService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ReuseTabService, providedIn: 'root' }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ReuseTabService }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ReuseTabService, decorators: [{
-            type: Injectable,
-            args: [{ providedIn: 'root' }]
+            type: Injectable
         }], ctorParameters: () => [] });
 
 class ReuseTabComponent {
@@ -1241,9 +1250,10 @@ function makeFeature(kind, providers) {
  */
 function provideReuseTabConfig(options) {
     const providers = [
+        ReuseTabService,
         {
             provide: REUSE_TAB_STORAGE_KEY,
-            useValue: options?.storeKey ?? '_reuse-tab-state'
+            useValue: options?.storeKey ?? REUSE_TAB_STORAGE_KEY_DEFAULT
         },
         (options?.cacheManager ?? withCacheManager()).ɵproviders,
         (options?.store ?? withLocalStorage()).ɵproviders,
@@ -1293,5 +1303,5 @@ function withLocalStorage() {
  * Generated bundle index. Do not edit.
  */
 
-export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCacheManager, withLocalStorage };
+export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_KEY_DEFAULT, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCacheManager, withLocalStorage };
 //# sourceMappingURL=reuse-tab.mjs.map

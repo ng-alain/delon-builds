@@ -1,5 +1,6 @@
 import { InjectionToken } from '@angular/core';
 import type { ReuseItem } from './reuse-tab.interfaces';
+export declare const REUSE_TAB_STORAGE_KEY_DEFAULT = "_reuse-tab-state";
 export declare const REUSE_TAB_STORAGE_KEY: InjectionToken<string>;
 export declare const REUSE_TAB_STORAGE_STATE: InjectionToken<ReuseTabStorageState>;
 export interface ReuseTabStorageState {

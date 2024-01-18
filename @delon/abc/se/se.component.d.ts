@@ -1,24 +1,15 @@
-import { AfterContentInit, AfterViewInit, ChangeDetectorRef, ElementRef, OnChanges, Renderer2, TemplateRef } from '@angular/core';
-import { ResponsiveService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import { NzFormStatusService } from 'ng-zorro-antd/core/form';
-import { SEContainerComponent } from './se-container.component';
+import { AfterContentInit, AfterViewInit, OnChanges, TemplateRef } from '@angular/core';
 import { SEErrorType } from './se.types';
 import * as i0 from "@angular/core";
+import * as i1 from "ng-zorro-antd/core/types";
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit {
-    private parent;
-    private statusSrv;
-    private rep;
-    private ren;
-    private cdr;
-    static ngAcceptInputType_col: NumberInput;
-    static ngAcceptInputType_required: BooleanInput;
-    static ngAcceptInputType_line: BooleanInput;
-    static ngAcceptInputType_labelWidth: NumberInput;
-    static ngAcceptInputType_noColon: BooleanInput;
-    static ngAcceptInputType_hideLabel: BooleanInput;
-    private el;
-    private destroy$;
+    private readonly parent;
+    private readonly el;
+    private readonly rep;
+    private readonly ren;
+    private readonly cdr;
+    private readonly statusSrv;
+    private readonly destroy$;
     private readonly ngModel?;
     private readonly formControlName?;
     private readonly contentElement;
@@ -51,7 +42,7 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     get showErr(): boolean;
     get compact(): boolean;
     private get ngControl();
-    constructor(el: ElementRef, parent: SEContainerComponent, statusSrv: NzFormStatusService, rep: ResponsiveService, ren: Renderer2, cdr: ChangeDetectorRef);
+    constructor();
     private setClass;
     private bindModel;
     private updateStatus;
@@ -59,6 +50,12 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngAfterContentInit(): void;
     ngOnChanges(): void;
     ngAfterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, [null, { optional: true; host: true; }, null, null, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": { "alias": "optional"; "required": false; }; "optionalHelp": { "alias": "optionalHelp"; "required": false; }; "optionalHelpColor": { "alias": "optionalHelpColor"; "required": false; }; "error": { "alias": "error"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "label": { "alias": "label"; "required": false; }; "col": { "alias": "col"; "required": false; }; "required": { "alias": "required"; "required": false; }; "controlClass": { "alias": "controlClass"; "required": false; }; "line": { "alias": "line"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "hideLabel": { "alias": "hideLabel"; "required": false; }; "id": { "alias": "id"; "required": false; }; }, {}, ["ngModel", "formControlName"], ["*"], true, never>;
+    static ngAcceptInputType_col: i1.NzSafeAny;
+    static ngAcceptInputType_required: unknown;
+    static ngAcceptInputType_line: i1.NzSafeAny;
+    static ngAcceptInputType_labelWidth: i1.NzSafeAny;
+    static ngAcceptInputType_noColon: i1.NzSafeAny;
+    static ngAcceptInputType_hideLabel: unknown;
 }
