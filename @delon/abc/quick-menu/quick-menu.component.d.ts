@@ -1,14 +1,9 @@
-import { ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import { EventEmitter, OnChanges, OnInit, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
 export declare class QuickMenuComponent implements OnInit, OnChanges {
-    private cdr;
-    private el;
-    private render;
-    static ngAcceptInputType_top: NumberInput;
-    static ngAcceptInputType_width: NumberInput;
-    static ngAcceptInputType_expand: BooleanInput;
-    constructor(cdr: ChangeDetectorRef, el: ElementRef, render: Renderer2);
+    private readonly cdr;
+    private readonly el;
+    private readonly render;
     ctrlStyle: {
         [key: string]: string | undefined;
     };
@@ -27,4 +22,7 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<QuickMenuComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<QuickMenuComponent, "quick-menu", ["quickMenu"], { "icon": { "alias": "icon"; "required": false; }; "top": { "alias": "top"; "required": false; }; "width": { "alias": "width"; "required": false; }; "bgColor": { "alias": "bgColor"; "required": false; }; "borderColor": { "alias": "borderColor"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; }, { "expandChange": "expandChange"; }, never, ["*"], true, never>;
+    static ngAcceptInputType_top: unknown;
+    static ngAcceptInputType_width: unknown;
+    static ngAcceptInputType_expand: unknown;
 }

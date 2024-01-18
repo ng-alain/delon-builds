@@ -1,9 +1,7 @@
 import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { ReuseTabService } from './reuse-tab.service';
 export declare class ReuseTabStrategy implements RouteReuseStrategy {
-    private srv;
-    constructor(srv: ReuseTabService);
+    private readonly srv;
     shouldDetach(route: ActivatedRouteSnapshot): boolean;
     store(route: ActivatedRouteSnapshot, handle: unknown): void;
     shouldAttach(route: ActivatedRouteSnapshot): boolean;

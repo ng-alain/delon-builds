@@ -1,11 +1,8 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
+import { Direction } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
-import { AfterViewInit, ChangeDetectorRef, OnChanges, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { AlainI18NService, MenuService, SettingsService, TitleService } from '@delon/theme';
+import { AfterViewInit, OnChanges, OnInit, TemplateRef } from '@angular/core';
+import { SettingsService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 interface PageHeaderPath {
@@ -13,28 +10,20 @@ interface PageHeaderPath {
     link?: string[];
 }
 export declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
-    private renderer;
-    private router;
-    private menuSrv;
-    private i18nSrv;
-    private titleSrv;
-    private reuseSrv;
-    private cdr;
-    private directionality;
-    static ngAcceptInputType_loading: BooleanInput;
-    static ngAcceptInputType_wide: BooleanInput;
-    static ngAcceptInputType_autoBreadcrumb: BooleanInput;
-    static ngAcceptInputType_autoTitle: BooleanInput;
-    static ngAcceptInputType_syncTitle: BooleanInput;
-    static ngAcceptInputType_fixed: BooleanInput;
-    static ngAcceptInputType_fixedOffsetTop: NumberInput;
-    static ngAcceptInputType_recursiveBreadcrumb: BooleanInput;
+    private readonly renderer;
+    private readonly router;
+    private readonly cdr;
+    private readonly menuSrv;
+    private readonly i18nSrv;
+    private readonly titleSrv;
+    private readonly reuseSrv;
+    private readonly directionality;
     private dir$;
     private conTpl;
     private affix;
     inited: boolean;
     isBrowser: boolean;
-    dir: Direction;
+    dir?: Direction;
     private get menus();
     _titleVal: string | null;
     paths: PageHeaderPath[];
@@ -59,7 +48,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     content?: TemplateRef<void> | null;
     extra?: TemplateRef<void> | null;
     tab?: TemplateRef<void> | null;
-    constructor(settings: SettingsService, renderer: Renderer2, router: Router, menuSrv: MenuService, i18nSrv: AlainI18NService, titleSrv: TitleService, reuseSrv: ReuseTabService, cdr: ChangeDetectorRef, configSrv: AlainConfigService, platform: Platform, directionality: Directionality);
+    constructor(settings: SettingsService, configSrv: AlainConfigService, platform: Platform);
     refresh(): void;
     private genBreadcrumb;
     private setTitle;
@@ -67,7 +56,15 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     ngOnInit(): void;
     ngAfterViewInit(): void;
     ngOnChanges(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<PageHeaderComponent, [null, null, null, null, { optional: true; }, { optional: true; }, { optional: true; }, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<PageHeaderComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<PageHeaderComponent, "page-header", ["pageHeader"], { "title": { "alias": "title"; "required": false; }; "titleSub": { "alias": "titleSub"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "wide": { "alias": "wide"; "required": false; }; "home": { "alias": "home"; "required": false; }; "homeLink": { "alias": "homeLink"; "required": false; }; "homeI18n": { "alias": "homeI18n"; "required": false; }; "autoBreadcrumb": { "alias": "autoBreadcrumb"; "required": false; }; "autoTitle": { "alias": "autoTitle"; "required": false; }; "syncTitle": { "alias": "syncTitle"; "required": false; }; "fixed": { "alias": "fixed"; "required": false; }; "fixedOffsetTop": { "alias": "fixedOffsetTop"; "required": false; }; "breadcrumb": { "alias": "breadcrumb"; "required": false; }; "recursiveBreadcrumb": { "alias": "recursiveBreadcrumb"; "required": false; }; "logo": { "alias": "logo"; "required": false; }; "action": { "alias": "action"; "required": false; }; "content": { "alias": "content"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "tab": { "alias": "tab"; "required": false; }; }, {}, never, ["*"], true, never>;
+    static ngAcceptInputType_loading: unknown;
+    static ngAcceptInputType_wide: unknown;
+    static ngAcceptInputType_autoBreadcrumb: unknown;
+    static ngAcceptInputType_autoTitle: unknown;
+    static ngAcceptInputType_syncTitle: unknown;
+    static ngAcceptInputType_fixed: unknown;
+    static ngAcceptInputType_fixedOffsetTop: unknown;
+    static ngAcceptInputType_recursiveBreadcrumb: unknown;
 }
 export {};

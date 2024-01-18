@@ -1,12 +1,20 @@
+import { Directionality } from '@angular/cdk/bidi';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, Input, NgModule } from '@angular/core';
+import { ChangeDetectorRef, inject, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
-import * as i1 from '@angular/cdk/bidi';
 import { CommonModule } from '@angular/common';
 
 class ResultComponent {
+    constructor() {
+        this.cdr = inject(ChangeDetectorRef);
+        this.directionality = inject(Directionality, { optional: true });
+        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
+        this._type = '';
+        this._icon = '';
+        this.dir = 'ltr';
+    }
     set type(value) {
         this._type = value;
         switch (value) {
@@ -21,22 +29,14 @@ class ResultComponent {
                 break;
         }
     }
-    constructor(directionality, cdr) {
-        this.directionality = directionality;
-        this.cdr = cdr;
-        this.dir$ = this.directionality.change?.pipe(takeUntilDestroyed());
-        this._type = '';
-        this._icon = '';
-        this.dir = 'ltr';
-    }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.dir$.subscribe((direction) => {
+        this.dir = this.directionality?.value;
+        this.dir$?.subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ResultComponent, deps: [{ token: i1.Directionality, optional: true }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ResultComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: ResultComponent, isStandalone: true, selector: "result", inputs: { type: "type", title: "title", description: "description", extra: "extra" }, host: { properties: { "class.result": "true", "class.result-rtl": "dir === 'rtl'" } }, exportAs: ["result"], ngImport: i0, template: "<div class=\"result__icon\">\n  <i nz-icon [nzType]=\"_icon\" class=\"result__icon-{{ _type }}\"></i>\n</div>\n<div class=\"result__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n@if (description) {\n  <div class=\"result__desc\">\n    <ng-container *nzStringTemplateOutlet=\"description\">{{ description }}</ng-container>\n  </div>\n}\n@if (extra) {\n  <div class=\"result__extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n}\n<div class=\"result__actions\">\n  <ng-content />\n</div>\n", dependencies: [{ kind: "directive", type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ResultComponent, decorators: [{
@@ -45,9 +45,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                         '[class.result]': 'true',
                         '[class.result-rtl]': `dir === 'rtl'`
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NzIconDirective, NzStringTemplateOutletDirective], template: "<div class=\"result__icon\">\n  <i nz-icon [nzType]=\"_icon\" class=\"result__icon-{{ _type }}\"></i>\n</div>\n<div class=\"result__title\">\n  <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n</div>\n@if (description) {\n  <div class=\"result__desc\">\n    <ng-container *nzStringTemplateOutlet=\"description\">{{ description }}</ng-container>\n  </div>\n}\n@if (extra) {\n  <div class=\"result__extra\">\n    <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n  </div>\n}\n<div class=\"result__actions\">\n  <ng-content />\n</div>\n" }]
-        }], ctorParameters: () => [{ type: i1.Directionality, decorators: [{
-                    type: Optional
-                }] }, { type: i0.ChangeDetectorRef }], propDecorators: { type: [{
+        }], propDecorators: { type: [{
                 type: Input
             }], title: [{
                 type: Input

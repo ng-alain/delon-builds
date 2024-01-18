@@ -1,18 +1,15 @@
-import { Platform } from '@angular/cdk/platform';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export declare class ScrollService {
-    private _doc;
-    private platform;
+    private readonly _doc;
+    private readonly platform;
     private _getDoc;
     private _getWin;
-    constructor(_doc: NzSafeAny, platform: Platform);
     /**
      * 获取滚动条位置
      *
      * @param element 指定元素，默认 `window`
      */
-    getScrollPosition(element?: Element | Window): [number, number];
+    getScrollPosition(element?: Element | Window | null): [number, number];
     /**
      * 设置滚动条位置
      *

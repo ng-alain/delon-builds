@@ -1,18 +1,15 @@
-import { Injector, OnDestroy } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MenuService } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { ReuseTabCachedManager } from './reuse-tab.cache';
 import { ReuseComponentRef, ReuseHookOnReuseInitType, ReuseHookTypes, ReuseTabCached, ReuseTabMatchMode, ReuseTabNotify, ReuseTabRouteParamMatchMode, ReuseTitle } from './reuse-tab.interfaces';
-import { ReuseTabStorageState } from './reuse-tab.state';
 import * as i0 from "@angular/core";
 export declare class ReuseTabService implements OnDestroy {
-    private injector;
-    private menuService;
-    private cached;
-    private stateKey;
-    private stateSrv;
+    private readonly injector;
+    private readonly menuService;
+    private readonly cached;
+    private readonly stateKey;
+    private readonly stateSrv;
     private _inited;
     private _max;
     private _keepingScroll;
@@ -46,7 +43,7 @@ export declare class ReuseTabService implements OnDestroy {
     set max(value: number);
     set keepingScroll(value: boolean);
     get keepingScroll(): boolean;
-    keepingScrollContainer?: Element;
+    keepingScrollContainer?: Element | null;
     /** 获取已缓存的路由 */
     get items(): ReuseTabCached[];
     /** 获取当前缓存的路由总数 */
@@ -151,7 +148,7 @@ export declare class ReuseTabService implements OnDestroy {
     refresh(data?: NzSafeAny): void;
     private destroy;
     private di;
-    constructor(injector: Injector, menuService: MenuService, cached: ReuseTabCachedManager, stateKey: string, stateSrv: ReuseTabStorageState);
+    constructor();
     init(): void;
     private loadState;
     private getMenu;
@@ -190,6 +187,6 @@ export declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, [null, null, { optional: true; }, { optional: true; }, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
 }

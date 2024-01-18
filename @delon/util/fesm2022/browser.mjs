@@ -1,7 +1,8 @@
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, inject } from '@angular/core';
 import * as i1 from '@angular/cdk/platform';
+import { Platform } from '@angular/cdk/platform';
 
 /**
  * A set of simple Cookie manipulation classes.
@@ -150,16 +151,16 @@ function isEmpty(element) {
 }
 
 class ScrollService {
+    constructor() {
+        this._doc = inject(DOCUMENT);
+        this.platform = inject(Platform);
+    }
     _getDoc() {
         return this._doc || document;
     }
     _getWin() {
         const doc = this._getDoc();
         return doc.defaultView || window;
-    }
-    constructor(_doc, platform) {
-        this._doc = _doc;
-        this.platform = platform;
     }
     /**
      * 获取滚动条位置
@@ -222,16 +223,13 @@ class ScrollService {
         }
         this.scrollToElement(this._getDoc().body, topOffset);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ScrollService, deps: [{ token: DOCUMENT }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ScrollService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ScrollService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ScrollService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }, { type: i1.Platform }] });
+        }] });
 
 function removeClass(el, classMap, renderer) {
     Object.keys(classMap).forEach(key => renderer.removeClass(el, key));
