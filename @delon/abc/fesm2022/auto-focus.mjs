@@ -1,29 +1,42 @@
-import { Platform } from '@angular/cdk/platform';
+import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { ElementRef, inject, DestroyRef, booleanAttribute, numberAttribute, Directive, Input, NgModule } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { timer } from 'rxjs';
+import { Directive, Input, NgModule } from '@angular/core';
+import { InputBoolean, InputNumber } from '@delon/util/decorator';
+import * as i1 from '@angular/cdk/platform';
 
 class AutoFocusDirective {
-    constructor() {
-        this.el = inject(ElementRef).nativeElement;
-        this.platform = inject(Platform);
-        this.d$ = inject(DestroyRef);
+    constructor(el, cdr, platform) {
+        this.el = el;
+        this.cdr = cdr;
+        this.platform = platform;
         this.enabled = true;
         this.delay = 300;
     }
     ngAfterViewInit() {
-        const el = this.el;
+        const el = this.el.nativeElement;
         if (!this.platform.isBrowser || !(el instanceof HTMLElement) || !this.enabled) {
             return;
         }
-        timer(this.delay)
-            .pipe(takeUntilDestroyed(this.d$))
-            .subscribe(() => el.focus({ preventScroll: false }));
+        this._focusoutTimeout = setTimeout(() => {
+            el.focus({ preventScroll: false });
+            this.cdr.markForCheck();
+        }, this.delay);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AutoFocusDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "17.1.0", type: AutoFocusDirective, isStandalone: true, selector: "[auto-focus], input[autofocus=\"autofocus\"], textarea[autofocus=\"autofocus\"]", inputs: { enabled: ["enabled", "enabled", booleanAttribute], delay: ["delay", "delay", numberAttribute] }, exportAs: ["autoFocus"], ngImport: i0 }); }
+    ngOnDestroy() {
+        if (this._focusoutTimeout) {
+            clearTimeout(this._focusoutTimeout);
+            this._focusoutTimeout = null;
+        }
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AutoFocusDirective, deps: [{ token: i0.ElementRef }, { token: i0.ChangeDetectorRef }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: AutoFocusDirective, isStandalone: true, selector: "[auto-focus], input[autofocus=\"autofocus\"], textarea[autofocus=\"autofocus\"]", inputs: { enabled: "enabled", delay: "delay" }, exportAs: ["autoFocus"], ngImport: i0 }); }
 }
+__decorate([
+    InputBoolean()
+], AutoFocusDirective.prototype, "enabled", void 0);
+__decorate([
+    InputNumber()
+], AutoFocusDirective.prototype, "delay", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AutoFocusDirective, decorators: [{
             type: Directive,
             args: [{
@@ -31,12 +44,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     exportAs: 'autoFocus',
                     standalone: true
                 }]
-        }], propDecorators: { enabled: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
+        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.ChangeDetectorRef }, { type: i1.Platform }], propDecorators: { enabled: [{
+                type: Input
             }], delay: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
+                type: Input
             }] } });
 
 const COMPONENTS = [AutoFocusDirective];
