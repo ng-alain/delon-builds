@@ -1,43 +1,33 @@
-import { __decorate } from 'tslib';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Inject, Input, NgModule } from '@angular/core';
+import { ElementRef, inject, Renderer2, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { ErrorCollectComponent, ErrorCollectModule } from '@delon/abc/error-collect';
-import { InputBoolean } from '@delon/util/decorator';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 
 const CLSBODY = 'footer-toolbar__body';
 class FooterToolbarComponent {
-    constructor(el, renderer, doc) {
-        this.el = el;
-        this.renderer = renderer;
-        this.doc = doc;
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.renderer = inject(Renderer2);
+        this.bodyCls = inject(DOCUMENT).querySelector('body')?.classList;
         this.errorCollect = false;
     }
-    get bodyCls() {
-        return this.doc.querySelector('body').classList;
-    }
     ngOnInit() {
-        this.renderer.addClass(this.el.nativeElement, 'footer-toolbar');
-        this.bodyCls.add(CLSBODY);
+        this.renderer.addClass(this.el, 'footer-toolbar');
+        this.bodyCls?.add(CLSBODY);
     }
     ngOnDestroy() {
-        this.bodyCls.remove(CLSBODY);
+        this.bodyCls?.remove(CLSBODY);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: FooterToolbarComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: FooterToolbarComponent, isStandalone: true, selector: "footer-toolbar", inputs: { errorCollect: "errorCollect", extra: "extra" }, exportAs: ["footerToolbar"], ngImport: i0, template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  @if (errorCollect) {\n    <error-collect />\n  }\n  <ng-content />\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: ["freq", "offsetTop"], exportAs: ["errorCollect"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: FooterToolbarComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: FooterToolbarComponent, isStandalone: true, selector: "footer-toolbar", inputs: { errorCollect: ["errorCollect", "errorCollect", booleanAttribute], extra: "extra" }, exportAs: ["footerToolbar"], ngImport: i0, template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  @if (errorCollect) {\n    <error-collect />\n  }\n  <ng-content />\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: ErrorCollectComponent, selector: "error-collect, [error-collect]", inputs: ["freq", "offsetTop"], exportAs: ["errorCollect"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputBoolean()
-], FooterToolbarComponent.prototype, "errorCollect", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: FooterToolbarComponent, decorators: [{
             type: Component,
             args: [{ selector: 'footer-toolbar', exportAs: 'footerToolbar', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NzStringTemplateOutletDirective, ErrorCollectComponent], template: "<div class=\"footer-toolbar__left\">\n  <ng-container *nzStringTemplateOutlet=\"extra\">{{ extra }}</ng-container>\n</div>\n<div class=\"footer-toolbar__right\">\n  @if (errorCollect) {\n    <error-collect />\n  }\n  <ng-content />\n</div>\n" }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }], propDecorators: { errorCollect: [{
-                type: Input
+        }], propDecorators: { errorCollect: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], extra: [{
                 type: Input
             }] } });

@@ -1,18 +1,15 @@
 import { Type } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
-import { CurrencyService } from '@delon/util/format';
-import { NzI18nService } from 'ng-zorro-antd/i18n';
 import type { CellOptions, CellTextResult, CellWidget } from './cell.types';
 import * as i0 from "@angular/core";
 export declare class CellService {
-    private nzI18n;
-    private currency;
-    private dom;
+    private readonly nzI18n;
+    private readonly currency;
+    private readonly dom;
     private globalOptions;
     private widgets;
-    constructor(configSrv: AlainConfigService, nzI18n: NzI18nService, currency: CurrencyService, dom: DomSanitizer);
+    constructor(configSrv: AlainConfigService);
     registerWidget(key: string, widget: Type<unknown>): void;
     getWidget(key: string): CellWidget | undefined;
     private genType;

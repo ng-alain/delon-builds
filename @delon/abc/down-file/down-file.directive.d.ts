@@ -1,12 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
-import { ElementRef, EventEmitter } from '@angular/core';
-import { _HttpClient } from '@delon/theme';
+import { EventEmitter } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export declare class DownFileDirective {
-    private el;
-    private _http;
-    private isFileSaverSupported;
+    private readonly el;
+    private readonly _http;
     httpData: NzSafeAny;
     httpBody: NzSafeAny;
     httpMethod: string;
@@ -16,7 +14,7 @@ export declare class DownFileDirective {
     readonly success: EventEmitter<HttpResponse<Blob>>;
     readonly error: EventEmitter<any>;
     private getDisposition;
-    constructor(el: ElementRef<HTMLButtonElement>, _http: _HttpClient);
+    constructor();
     private setDisabled;
     _click(ev: MouseEvent): Promise<void>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DownFileDirective, never>;

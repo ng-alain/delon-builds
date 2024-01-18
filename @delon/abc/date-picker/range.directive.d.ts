@@ -1,14 +1,12 @@
-import { AfterViewInit, EventEmitter, OnDestroy, ViewContainerRef } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { AlainConfigService, AlainDateRangePickerShortcut } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzRangePickerComponent } from 'ng-zorro-antd/date-picker';
 import * as i0 from "@angular/core";
 export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
-    private dom;
-    private nativeComp;
-    private vcr;
     static ngAcceptInputType_shortcut: AlainDateRangePickerShortcut | string | null;
+    private readonly dom;
+    private readonly vcr;
+    private readonly nativeComp;
     private defaultShortcuts;
     private _shortcut;
     private shortcutFactory;
@@ -20,13 +18,13 @@ export declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     readonly ngModelEndChange: EventEmitter<any>;
     private get dp();
     private get srv();
-    constructor(dom: DomSanitizer, configSrv: AlainConfigService, nativeComp: NzRangePickerComponent, vcr: ViewContainerRef);
+    constructor(configSrv: AlainConfigService);
     private cd;
     private overrideNative;
     private refreshShortcut;
     ngAfterViewInit(): void;
     private destoryShortcut;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<RangePickerDirective, [null, null, { optional: true; host: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<RangePickerDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<RangePickerDirective, "nz-range-picker[extend]", ["extendRangePicker"], { "shortcut": { "alias": "shortcut"; "required": false; }; "ngModelEnd": { "alias": "ngModelEnd"; "required": true; }; }, { "ngModelEndChange": "ngModelEndChange"; }, never, never, true, never>;
 }

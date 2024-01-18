@@ -1,18 +1,13 @@
-import { AfterViewInit, ChangeDetectorRef, ElementRef, NgZone, OnChanges } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AfterViewInit, OnChanges } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
 import * as i0 from "@angular/core";
+import * as i1 from "ng-zorro-antd/core/types";
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
-    private el;
-    private ngZone;
-    private dom;
-    private doc;
-    private cdr;
-    static ngAcceptInputType_tooltip: BooleanInput;
-    static ngAcceptInputType_length: NumberInput;
-    static ngAcceptInputType_lines: NumberInput;
-    static ngAcceptInputType_fullWidthRecognition: BooleanInput;
+    private readonly el;
+    private readonly ngZone;
+    private readonly dom;
+    private readonly doc;
+    private readonly cdr;
     private isSupportLineClamp;
     private orgEl;
     private shadowOrgEl;
@@ -30,7 +25,6 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     tail: string;
     get linsWord(): string;
     private get win();
-    constructor(el: ElementRef, ngZone: NgZone, dom: DomSanitizer, doc: NzSafeAny, cdr: ChangeDetectorRef);
     private getStrFullLength;
     private cutStrByFullLength;
     private bisection;
@@ -43,4 +37,8 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     ngOnChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<EllipsisComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<EllipsisComponent, "ellipsis", ["ellipsis"], { "tooltip": { "alias": "tooltip"; "required": false; }; "length": { "alias": "length"; "required": false; }; "lines": { "alias": "lines"; "required": false; }; "fullWidthRecognition": { "alias": "fullWidthRecognition"; "required": false; }; "tail": { "alias": "tail"; "required": false; }; }, {}, never, ["*"], true, never>;
+    static ngAcceptInputType_tooltip: unknown;
+    static ngAcceptInputType_length: i1.NzSafeAny;
+    static ngAcceptInputType_lines: i1.NzSafeAny;
+    static ngAcceptInputType_fullWidthRecognition: unknown;
 }

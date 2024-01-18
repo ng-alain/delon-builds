@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ViewChild, EventEmitter, Directive, Host, Optional, Input, Output, NgModule } from '@angular/core';
+import { Component, ViewChild, inject, ViewContainerRef, EventEmitter, Directive, Input, Output, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import * as i3 from 'ng-zorro-antd/date-picker';
-import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { DomSanitizer } from '@angular/platform-browser';
 import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
 import { deepMergeKey, assert } from '@delon/util/other';
-import * as i1 from '@angular/platform-browser';
-import * as i2 from '@delon/util/config';
+import * as i1 from '@delon/util/config';
 
 class RangePickerShortcutTplComponent {
     constructor() {
@@ -62,17 +61,17 @@ class RangePickerDirective {
     get srv() {
         return this.dp.datePickerService;
     }
-    constructor(dom, configSrv, nativeComp, vcr) {
-        this.dom = dom;
-        this.nativeComp = nativeComp;
-        this.vcr = vcr;
+    constructor(configSrv) {
+        this.dom = inject(DomSanitizer);
+        this.vcr = inject(ViewContainerRef);
+        this.nativeComp = inject(NzRangePickerComponent, { host: true, optional: true });
         this._shortcut = null;
         this.shortcutFactory = null;
         this.start = null;
         this.end = null;
         this.ngModelEndChange = new EventEmitter();
         if (typeof ngDevMode === 'undefined' || ngDevMode) {
-            assert(!!nativeComp, `It should be attached to nz-range-picker component, for example: '<nz-range-picker [(ngModel)]="i.start" extend [(ngModelEnd)]="i.end" shortcut></nz-range-picker>'`);
+            assert(!!this.nativeComp, `It should be attached to nz-range-picker component, for example: '<nz-range-picker [(ngModel)]="i.start" extend [(ngModelEnd)]="i.end" shortcut></nz-range-picker>'`);
         }
         const cog = configSrv.merge('dataRange', {
             nzFormat: 'yyyy-MM-dd',
@@ -182,7 +181,7 @@ class RangePickerDirective {
     ngOnDestroy() {
         this.destoryShortcut();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RangePickerDirective, deps: [{ token: i1.DomSanitizer }, { token: i2.AlainConfigService }, { token: i3.NzRangePickerComponent, host: true, optional: true }, { token: i0.ViewContainerRef }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RangePickerDirective, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: RangePickerDirective, isStandalone: true, selector: "nz-range-picker[extend]", inputs: { shortcut: "shortcut", ngModelEnd: "ngModelEnd" }, outputs: { ngModelEndChange: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RangePickerDirective, decorators: [{
@@ -192,11 +191,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     exportAs: 'extendRangePicker',
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: i1.DomSanitizer }, { type: i2.AlainConfigService }, { type: i3.NzRangePickerComponent, decorators: [{
-                    type: Host
-                }, {
-                    type: Optional
-                }] }, { type: i0.ViewContainerRef }], propDecorators: { shortcut: [{
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { shortcut: [{
                 type: Input
             }], ngModelEnd: [{
                 type: Input,

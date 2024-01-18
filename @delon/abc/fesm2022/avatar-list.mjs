@@ -1,12 +1,10 @@
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Optional, ContentChildren, NgModule } from '@angular/core';
-import { __decorate } from 'tslib';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, inject, numberAttribute, ContentChildren, NgModule } from '@angular/core';
+import { Directionality } from '@angular/cdk/bidi';
 import { NgStyle, NgClass, CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { InputNumber } from '@delon/util/decorator';
 import { NzAvatarComponent, NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import * as i1 from '@angular/cdk/bidi';
 
 class AvatarListItemComponent {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AvatarListItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
@@ -34,6 +32,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }] } });
 
 class AvatarListComponent {
+    constructor() {
+        this.cdr = inject(ChangeDetectorRef);
+        this.directionality = inject(Directionality, { optional: true });
+        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
+        this.inited = false;
+        this.items = [];
+        this.exceedCount = 0;
+        this.dir = 'ltr';
+        this.cls = '';
+        this.avatarSize = 'default';
+        this.maxLength = 0;
+        this.excessItemsStyle = null;
+    }
     set size(value) {
         this.cls = `avatar-list__item${value === 'default' ? '' : ` avatar-list__${value}`}`;
         switch (value) {
@@ -47,19 +58,6 @@ class AvatarListComponent {
                 break;
         }
     }
-    constructor(cdr, directionality) {
-        this.cdr = cdr;
-        this.directionality = directionality;
-        this.inited = false;
-        this.dir$ = this.directionality.change?.pipe(takeUntilDestroyed());
-        this.items = [];
-        this.exceedCount = 0;
-        this.dir = 'ltr';
-        this.cls = '';
-        this.avatarSize = 'default';
-        this.maxLength = 0;
-        this.excessItemsStyle = null;
-    }
     gen() {
         const { _items } = this;
         const maxLength = this.maxLength > 0 ? this.maxLength : _items.length;
@@ -70,8 +68,8 @@ class AvatarListComponent {
         this.cdr.detectChanges();
     }
     ngAfterViewInit() {
-        this.dir = this.directionality.value;
-        this.dir$.subscribe((direction) => {
+        this.dir = this.directionality?.value;
+        this.dir$?.subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
@@ -83,27 +81,23 @@ class AvatarListComponent {
             this.gen();
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AvatarListComponent, deps: [{ token: i0.ChangeDetectorRef }, { token: i1.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: AvatarListComponent, isStandalone: true, selector: "avatar-list", inputs: { size: "size", maxLength: "maxLength", excessItemsStyle: "excessItemsStyle" }, host: { properties: { "class.avatar-list": "true", "class.avatar-list-rtl": "dir === 'rtl'" } }, queries: [{ propertyName: "_items", predicate: AvatarListItemComponent }], exportAs: ["avatarList"], usesOnChanges: true, ngImport: i0, template: "<ul class=\"avatar-list__wrap\">\n  @for (i of items; track $index) {\n    <li [ngClass]=\"cls\">\n      @if (i.tips) {\n        <nz-avatar\n          nz-tooltip\n          [nzTooltipTitle]=\"i.tips\"\n          [nzSrc]=\"i.src\"\n          [nzText]=\"i.text\"\n          [nzIcon]=\"i.icon\"\n          [nzSize]=\"avatarSize\"\n        />\n      } @else {\n        <nz-avatar [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\" />\n      }\n    </li>\n  }\n  @if (exceedCount > 0) {\n    <li [ngClass]=\"cls\">\n      <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\" />\n    </li>\n  }\n</ul>\n", dependencies: [{ kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "component", type: NzAvatarComponent, selector: "nz-avatar", inputs: ["nzShape", "nzSize", "nzGap", "nzText", "nzSrc", "nzSrcSet", "nzAlt", "nzIcon"], outputs: ["nzError"], exportAs: ["nzAvatar"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AvatarListComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: AvatarListComponent, isStandalone: true, selector: "avatar-list", inputs: { size: "size", maxLength: ["maxLength", "maxLength", numberAttribute], excessItemsStyle: "excessItemsStyle" }, host: { properties: { "class.avatar-list": "true", "class.avatar-list-rtl": "dir === 'rtl'" } }, queries: [{ propertyName: "_items", predicate: AvatarListItemComponent }], exportAs: ["avatarList"], usesOnChanges: true, ngImport: i0, template: "<ul class=\"avatar-list__wrap\">\n  @for (i of items; track $index) {\n    <li [ngClass]=\"cls\">\n      @if (i.tips) {\n        <nz-avatar\n          nz-tooltip\n          [nzTooltipTitle]=\"i.tips\"\n          [nzSrc]=\"i.src\"\n          [nzText]=\"i.text\"\n          [nzIcon]=\"i.icon\"\n          [nzSize]=\"avatarSize\"\n        />\n      } @else {\n        <nz-avatar [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\" />\n      }\n    </li>\n  }\n  @if (exceedCount > 0) {\n    <li [ngClass]=\"cls\">\n      <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\" />\n    </li>\n  }\n</ul>\n", dependencies: [{ kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "directive", type: NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "component", type: NzAvatarComponent, selector: "nz-avatar", inputs: ["nzShape", "nzSize", "nzGap", "nzText", "nzSrc", "nzSrcSet", "nzAlt", "nzIcon"], outputs: ["nzError"], exportAs: ["nzAvatar"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], AvatarListComponent.prototype, "maxLength", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AvatarListComponent, decorators: [{
             type: Component,
             args: [{ selector: 'avatar-list', exportAs: 'avatarList', host: {
                         '[class.avatar-list]': 'true',
                         '[class.avatar-list-rtl]': `dir === 'rtl'`
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NgStyle, NgClass, NzAvatarComponent, NzTooltipDirective], template: "<ul class=\"avatar-list__wrap\">\n  @for (i of items; track $index) {\n    <li [ngClass]=\"cls\">\n      @if (i.tips) {\n        <nz-avatar\n          nz-tooltip\n          [nzTooltipTitle]=\"i.tips\"\n          [nzSrc]=\"i.src\"\n          [nzText]=\"i.text\"\n          [nzIcon]=\"i.icon\"\n          [nzSize]=\"avatarSize\"\n        />\n      } @else {\n        <nz-avatar [nzSrc]=\"i.src\" [nzText]=\"i.text\" [nzIcon]=\"i.icon\" [nzSize]=\"avatarSize\" />\n      }\n    </li>\n  }\n  @if (exceedCount > 0) {\n    <li [ngClass]=\"cls\">\n      <nz-avatar [nzSize]=\"avatarSize\" style=\"cursor: auto\" [ngStyle]=\"excessItemsStyle\" [nzText]=\"'+' + exceedCount\" />\n    </li>\n  }\n</ul>\n" }]
-        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef }, { type: i1.Directionality, decorators: [{
-                    type: Optional
-                }] }], propDecorators: { _items: [{
+        }], propDecorators: { _items: [{
                 type: ContentChildren,
                 args: [AvatarListItemComponent, { descendants: false }]
             }], size: [{
                 type: Input
             }], maxLength: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], excessItemsStyle: [{
                 type: Input
             }] } });

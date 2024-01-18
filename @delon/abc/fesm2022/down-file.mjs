@@ -1,11 +1,15 @@
 import * as i0 from '@angular/core';
-import { EventEmitter, Directive, Input, Output, NgModule } from '@angular/core';
+import { ElementRef, inject, EventEmitter, Directive, Input, Output, NgModule } from '@angular/core';
 import { finalize } from 'rxjs';
 import { saveAs } from 'file-saver';
-import * as i1 from '@delon/theme';
-import { AlainThemeModule } from '@delon/theme';
+import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
+let isFileSaverSupported = false;
+try {
+    isFileSaverSupported = !!new Blob();
+}
+catch { }
 class DownFileDirective {
     getDisposition(data) {
         const arr = (data || '')
@@ -21,30 +25,23 @@ class DownFileDirective {
         });
         return arr.reduce((_o, item) => item, {});
     }
-    constructor(el, _http) {
-        this.el = el;
-        this._http = _http;
-        this.isFileSaverSupported = true;
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this._http = inject(_HttpClient);
         this.httpMethod = 'get';
         this.success = new EventEmitter();
         this.error = new EventEmitter();
-        let isFileSaverSupported = false;
-        try {
-            isFileSaverSupported = !!new Blob();
-        }
-        catch { }
-        this.isFileSaverSupported = isFileSaverSupported;
         if (!isFileSaverSupported) {
-            el.nativeElement.classList.add(`down-file__not-support`);
+            this.el.classList.add(`down-file__not-support`);
         }
     }
     setDisabled(status) {
-        const el = this.el.nativeElement;
+        const el = this.el;
         el.disabled = status;
         el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
     async _click(ev) {
-        if (!this.isFileSaverSupported || (typeof this.pre === 'function' && !(await this.pre(ev)))) {
+        if (!isFileSaverSupported || (typeof this.pre === 'function' && !(await this.pre(ev)))) {
             ev.stopPropagation();
             ev.preventDefault();
             return;
@@ -80,7 +77,7 @@ class DownFileDirective {
             error: err => this.error.emit(err)
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DownFileDirective, deps: [{ token: i0.ElementRef }, { token: i1._HttpClient }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: ["http-data", "httpData"], httpBody: ["http-body", "httpBody"], httpMethod: ["http-method", "httpMethod"], httpUrl: ["http-url", "httpUrl"], fileName: ["file-name", "fileName"], pre: "pre" }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DownFileDirective, decorators: [{
@@ -93,7 +90,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     },
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i1._HttpClient }], propDecorators: { httpData: [{
+        }], ctorParameters: () => [], propDecorators: { httpData: [{
                 type: Input,
                 args: ['http-data']
             }], httpBody: [{

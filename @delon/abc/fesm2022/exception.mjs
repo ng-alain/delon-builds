@@ -1,15 +1,14 @@
+import { Directionality } from '@angular/cdk/bidi';
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
 import * as i0 from '@angular/core';
-import { DestroyRef, inject, Component, ChangeDetectionStrategy, ViewEncapsulation, Optional, ViewChild, Input, NgModule } from '@angular/core';
+import { inject, ChangeDetectorRef, DestroyRef, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DomSanitizer } from '@angular/platform-browser';
 import { RouterLink, RouterModule } from '@angular/router';
+import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
 import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
-import * as i1 from '@delon/theme';
-import { DelonLocaleModule } from '@delon/theme';
-import * as i2 from '@angular/platform-browser';
-import * as i3 from '@delon/util/config';
-import * as i4 from '@angular/cdk/bidi';
+import * as i1 from '@delon/util/config';
 import { CommonModule } from '@angular/common';
 
 class ExceptionComponent {
@@ -38,11 +37,11 @@ class ExceptionComponent {
         this.hasCon = !isEmpty(this.conTpl.nativeElement);
         this.cdr.detectChanges();
     }
-    constructor(i18n, dom, configSrv, directionality, cdr) {
-        this.i18n = i18n;
-        this.dom = dom;
-        this.directionality = directionality;
-        this.cdr = cdr;
+    constructor(configSrv) {
+        this.i18n = inject(DelonLocaleService);
+        this.dom = inject(DomSanitizer);
+        this.directionality = inject(Directionality, { optional: true });
+        this.cdr = inject(ChangeDetectorRef);
         this.destroy$ = inject(DestroyRef);
         this.locale = {};
         this.hasCon = false;
@@ -69,8 +68,8 @@ class ExceptionComponent {
         });
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
@@ -80,7 +79,7 @@ class ExceptionComponent {
         });
         this.checkContent();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ExceptionComponent, deps: [{ token: i1.DelonLocaleService }, { token: i2.DomSanitizer }, { token: i3.AlainConfigService }, { token: i4.Directionality, optional: true }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ExceptionComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: ExceptionComponent, isStandalone: true, selector: "exception", inputs: { type: "type", img: "img", title: "title", desc: "desc", backRouterLink: "backRouterLink" }, host: { properties: { "class.exception": "true", "class.exception-rtl": "dir === 'rtl'" } }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, static: true }], exportAs: ["exception"], ngImport: i0, template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content />\n    </div>\n    @if (!hasCon) {\n      <button nz-button [routerLink]=\"backRouterLink\" [nzType]=\"'primary'\">\n        {{ locale.backToHome }}\n      </button>\n    }\n  </div>\n</div>\n", dependencies: [{ kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { kind: "component", type: NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: RouterLink, selector: "[routerLink]", inputs: ["target", "queryParams", "fragment", "queryParamsHandling", "state", "info", "relativeTo", "preserveFragment", "skipLocationChange", "replaceUrl", "routerLink"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ExceptionComponent, decorators: [{
@@ -89,9 +88,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                         '[class.exception]': 'true',
                         '[class.exception-rtl]': `dir === 'rtl'`
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [CdkObserveContent, NzButtonComponent, RouterLink], template: "<div class=\"exception__img-block\">\n  <div class=\"exception__img\" [style.backgroundImage]=\"_img\"></div>\n</div>\n<div class=\"exception__cont\">\n  <h1 class=\"exception__cont-title\" [innerHTML]=\"_title\"></h1>\n  <div class=\"exception__cont-desc\" [innerHTML]=\"_desc || locale[_type]\"></div>\n  <div class=\"exception__cont-actions\">\n    <div (cdkObserveContent)=\"checkContent()\" #conTpl>\n      <ng-content />\n    </div>\n    @if (!hasCon) {\n      <button nz-button [routerLink]=\"backRouterLink\" [nzType]=\"'primary'\">\n        {{ locale.backToHome }}\n      </button>\n    }\n  </div>\n</div>\n" }]
-        }], ctorParameters: () => [{ type: i1.DelonLocaleService }, { type: i2.DomSanitizer }, { type: i3.AlainConfigService }, { type: i4.Directionality, decorators: [{
-                    type: Optional
-                }] }, { type: i0.ChangeDetectorRef }], propDecorators: { conTpl: [{
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { conTpl: [{
                 type: ViewChild,
                 args: ['conTpl', { static: true }]
             }], type: [{
