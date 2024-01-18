@@ -1,9 +1,14 @@
 import * as i0 from '@angular/core';
-import { Directive, Input, NgModule } from '@angular/core';
+import { ElementRef, inject, NgZone, Directive, Input, NgModule } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
 import { install, uninstall } from '@github/hotkey';
-import * as i1 from '@angular/cdk/platform';
 
 class HotkeyDirective {
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.ngZone = inject(NgZone);
+        this.platform = inject(Platform);
+    }
     /**
      * Specify [hotkey format](https://github.com/github/hotkey#hotkey-string-format)
      *
@@ -12,25 +17,20 @@ class HotkeyDirective {
     set hotkey(key) {
         if (!this.platform.isBrowser)
             return;
-        this.ngZone.runOutsideAngular(() => install(this.el.nativeElement, key));
-    }
-    constructor(el, ngZone, platform) {
-        this.el = el;
-        this.ngZone = ngZone;
-        this.platform = platform;
+        this.ngZone.runOutsideAngular(() => install(this.el, key));
     }
     ngOnDestroy() {
         if (!this.platform.isBrowser)
             return;
-        this.ngZone.runOutsideAngular(() => uninstall(this.el.nativeElement));
+        this.ngZone.runOutsideAngular(() => uninstall(this.el));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: HotkeyDirective, deps: [{ token: i0.ElementRef }, { token: i0.NgZone }, { token: i1.Platform }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: HotkeyDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: HotkeyDirective, isStandalone: true, selector: "[hotkey]", inputs: { hotkey: "hotkey" }, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: HotkeyDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[hotkey]', standalone: true }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.NgZone }, { type: i1.Platform }], propDecorators: { hotkey: [{
+        }], propDecorators: { hotkey: [{
                 type: Input,
                 args: ['hotkey']
             }] } });

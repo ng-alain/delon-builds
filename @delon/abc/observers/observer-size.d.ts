@@ -1,4 +1,4 @@
-import { AfterViewInit, ElementRef, EventEmitter, NgZone, OnDestroy } from '@angular/core';
+import { AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as i0 from "@angular/core";
 export declare class SizeObserver implements OnDestroy {
@@ -12,12 +12,11 @@ export declare class SizeObserver implements OnDestroy {
     static ɵprov: i0.ɵɵInjectableDeclaration<SizeObserver>;
 }
 export declare class ObserverSize implements AfterViewInit, OnDestroy {
-    private _obs;
-    private el;
-    private ngZone;
+    private readonly _obs;
+    private readonly el;
+    private readonly ngZone;
     private _sub$;
     readonly event: EventEmitter<MutationRecord[]>;
-    constructor(_obs: SizeObserver, el: ElementRef<HTMLElement>, ngZone: NgZone);
     ngAfterViewInit(): void;
     private _sub;
     private _unsub;

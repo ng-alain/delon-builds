@@ -1,26 +1,23 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, OnInit, QueryList } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Direction } from '@angular/cdk/bidi';
+import { OnInit, QueryList } from '@angular/core';
 import { GlobalFooterItemComponent } from './global-footer-item.component';
 import { GlobalFooterLink } from './global-footer.types';
 import * as i0 from "@angular/core";
 export declare class GlobalFooterComponent implements OnInit {
-    private router;
-    private win;
-    private dom;
-    private directionality;
-    private cdr;
+    private readonly router;
+    private readonly win;
+    private readonly dom;
+    private readonly directionality;
+    private readonly cdr;
+    private readonly destroy$;
     private dir$;
     private _links;
-    dir: Direction;
+    dir?: Direction;
     set links(val: GlobalFooterLink[]);
     get links(): GlobalFooterLink[];
     readonly items: QueryList<GlobalFooterItemComponent>;
-    constructor(router: Router, win: NzSafeAny, dom: DomSanitizer, directionality: Directionality, cdr: ChangeDetectorRef);
     to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
     ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterComponent, [null, null, null, { optional: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<GlobalFooterComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": { "alias": "links"; "required": false; }; }, {}, ["items"], ["*"], true, never>;
 }

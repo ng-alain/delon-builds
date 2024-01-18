@@ -1,14 +1,11 @@
-import { Directionality } from '@angular/cdk/bidi';
-import { Overlay } from '@angular/cdk/overlay';
 import { OnDestroy } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
 import { LoadingDefaultComponent } from './loading.component';
 import { LoadingShowOptions } from './loading.types';
 import * as i0 from "@angular/core";
 export declare class LoadingService implements OnDestroy {
-    private overlay;
-    private configSrv;
-    private directionality;
+    private readonly overlay;
+    private readonly configSrv;
+    private readonly directionality;
     private _overlayRef?;
     private compRef;
     private opt;
@@ -16,7 +13,7 @@ export declare class LoadingService implements OnDestroy {
     private n$;
     private loading$;
     get instance(): LoadingDefaultComponent | null;
-    constructor(overlay: Overlay, configSrv: AlainConfigService, directionality: Directionality);
+    constructor();
     private create;
     /**
      * Open a new loading indicator
@@ -32,6 +29,6 @@ export declare class LoadingService implements OnDestroy {
      */
     close(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LoadingService, [null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LoadingService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<LoadingService>;
 }

@@ -1,22 +1,16 @@
+import { Directionality } from '@angular/cdk/bidi';
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Inject, Optional, ContentChildren, NgModule } from '@angular/core';
+import { booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, inject, ChangeDetectorRef, DestroyRef, ContentChildren, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router, RouterModule } from '@angular/router';
 import { WINDOW } from '@delon/util/token';
-import { __decorate } from 'tslib';
-import { InputBoolean } from '@delon/util/decorator';
-import * as i1 from '@angular/router';
-import { RouterModule } from '@angular/router';
-import * as i2 from '@angular/platform-browser';
-import * as i3 from '@angular/cdk/bidi';
 
 class GlobalFooterItemComponent {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: GlobalFooterItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: GlobalFooterItemComponent, isStandalone: true, selector: "global-footer-item", inputs: { href: "href", blankTarget: "blankTarget" }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, static: true }], exportAs: ["globalFooterItem"], ngImport: i0, template: ` <ng-template #host><ng-content /></ng-template> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: GlobalFooterItemComponent, isStandalone: true, selector: "global-footer-item", inputs: { href: "href", blankTarget: ["blankTarget", "blankTarget", booleanAttribute] }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, static: true }], exportAs: ["globalFooterItem"], ngImport: i0, template: ` <ng-template #host><ng-content /></ng-template> `, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputBoolean()
-], GlobalFooterItemComponent.prototype, "blankTarget", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: GlobalFooterItemComponent, decorators: [{
             type: Component,
             args: [{
@@ -34,26 +28,28 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], href: [{
                 type: Input
             }], blankTarget: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }] } });
 
 class GlobalFooterComponent {
+    constructor() {
+        this.router = inject(Router);
+        this.win = inject(WINDOW);
+        this.dom = inject(DomSanitizer);
+        this.directionality = inject(Directionality, { optional: true });
+        this.cdr = inject(ChangeDetectorRef);
+        this.destroy$ = inject(DestroyRef);
+        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
+        this._links = [];
+        this.dir = 'ltr';
+    }
     set links(val) {
         val.forEach(i => (i._title = this.dom.bypassSecurityTrustHtml(i.title)));
         this._links = val;
     }
     get links() {
         return this._links;
-    }
-    constructor(router, win, dom, directionality, cdr) {
-        this.router = router;
-        this.win = win;
-        this.dom = dom;
-        this.directionality = directionality;
-        this.cdr = cdr;
-        this.dir$ = this.directionality.change?.pipe(takeUntilDestroyed());
-        this._links = [];
-        this.dir = 'ltr';
     }
     to(item) {
         if (!item.href) {
@@ -71,13 +67,13 @@ class GlobalFooterComponent {
         }
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.dir$.subscribe((direction) => {
+        this.dir = this.directionality?.value;
+        this.dir$?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: GlobalFooterComponent, deps: [{ token: i1.Router }, { token: WINDOW }, { token: i2.DomSanitizer }, { token: i3.Directionality, optional: true }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: GlobalFooterComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: GlobalFooterComponent, isStandalone: true, selector: "global-footer", inputs: { links: "links" }, host: { properties: { "class.global-footer": "true", "class.global-footer-rtl": "dir === 'rtl'" } }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent }], exportAs: ["globalFooter"], ngImport: i0, template: "@if (links.length > 0 || items.length > 0) {\n  <div class=\"global-footer__links\">\n    @for (i of links; track $index) {\n      <a class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n    }\n    @for (i of items; track $index) {\n      <a class=\"global-footer__links-item\" (click)=\"to(i)\">\n        <ng-container *ngTemplateOutlet=\"i.host\" />\n      </a>\n    }\n  </div>\n}\n<div class=\"global-footer__copyright\">\n  <ng-content />\n</div>\n", dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: GlobalFooterComponent, decorators: [{
@@ -86,12 +82,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                         '[class.global-footer]': 'true',
                         '[class.global-footer-rtl]': `dir === 'rtl'`
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NgTemplateOutlet], template: "@if (links.length > 0 || items.length > 0) {\n  <div class=\"global-footer__links\">\n    @for (i of links; track $index) {\n      <a class=\"global-footer__links-item\" (click)=\"to(i)\" [innerHTML]=\"i._title\"></a>\n    }\n    @for (i of items; track $index) {\n      <a class=\"global-footer__links-item\" (click)=\"to(i)\">\n        <ng-container *ngTemplateOutlet=\"i.host\" />\n      </a>\n    }\n  </div>\n}\n<div class=\"global-footer__copyright\">\n  <ng-content />\n</div>\n" }]
-        }], ctorParameters: () => [{ type: i1.Router }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [WINDOW]
-                }] }, { type: i2.DomSanitizer }, { type: i3.Directionality, decorators: [{
-                    type: Optional
-                }] }, { type: i0.ChangeDetectorRef }], propDecorators: { links: [{
+        }], propDecorators: { links: [{
                 type: Input
             }], items: [{
                 type: ContentChildren,

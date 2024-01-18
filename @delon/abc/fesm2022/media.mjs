@@ -1,12 +1,12 @@
 import { __decorate } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { Injectable, DestroyRef, inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { Injectable, DestroyRef, inject, ElementRef, Renderer2, NgZone, EventEmitter, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, share, timer, take } from 'rxjs';
-import { InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { ZoneOutside } from '@delon/util/decorator';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
-import * as i2$1 from '@angular/cdk/platform';
 import { CommonModule } from '@angular/common';
 
 class MediaService {
@@ -51,19 +51,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
         }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: i2.LazyService }] });
 
 class MediaComponent {
-    get player() {
-        return this._p;
-    }
-    constructor(el, renderer, srv, ngZone, platform) {
-        this.el = el;
-        this.renderer = renderer;
-        this.srv = srv;
-        this.ngZone = ngZone;
-        this.platform = platform;
+    constructor() {
         this.destroy$ = inject(DestroyRef);
+        this.el = inject(ElementRef).nativeElement;
+        this.renderer = inject(Renderer2);
+        this.ngZone = inject(NgZone);
+        this.srv = inject(MediaService);
+        this.platform = inject(Platform);
         this.type = 'video';
         this.delay = 0;
         this.ready = new EventEmitter();
+    }
+    get player() {
+        return this._p;
     }
     initDelay() {
         timer(this.delay)
@@ -84,11 +84,11 @@ class MediaComponent {
     }
     ensureElement() {
         const { type } = this;
-        let el = this.el.nativeElement.querySelector(type);
+        let el = this.el.querySelector(type);
         if (!el) {
             el = this.renderer.createElement(type);
             el.controls = true;
-            this.el.nativeElement.appendChild(el);
+            this.el.appendChild(el);
         }
         this.videoEl = el;
     }
@@ -123,12 +123,9 @@ class MediaComponent {
         this.destroy();
         this._p = null;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaComponent, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }, { token: MediaService }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: "type", source: "source", options: "options", delay: "delay" }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: "type", source: "source", options: "options", delay: ["delay", "delay", numberAttribute] }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], MediaComponent.prototype, "delay", void 0);
 __decorate([
     ZoneOutside()
 ], MediaComponent.prototype, "initDelay", null);
@@ -146,14 +143,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Renderer2 }, { type: MediaService }, { type: i0.NgZone }, { type: i2$1.Platform }], propDecorators: { type: [{
+        }], propDecorators: { type: [{
                 type: Input
             }], source: [{
                 type: Input
             }], options: [{
                 type: Input
             }], delay: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], ready: [{
                 type: Output
             }], initDelay: [] } });

@@ -1,14 +1,13 @@
 import { NgStyle, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Injectable, Optional, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, inject, Injectable, NgModule } from '@angular/core';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinComponent, NzSpinModule } from 'ng-zorro-antd/spin';
+import { Directionality } from '@angular/cdk/bidi';
+import { Overlay, OverlayModule } from '@angular/cdk/overlay';
 import { ComponentPortal, PortalModule } from '@angular/cdk/portal';
 import { Subject, timer, debounce } from 'rxjs';
-import * as i1 from '@angular/cdk/overlay';
-import { OverlayModule } from '@angular/cdk/overlay';
-import * as i2 from '@delon/util/config';
-import * as i3 from '@angular/cdk/bidi';
+import { AlainConfigService } from '@delon/util/config';
 
 class LoadingDefaultComponent {
     constructor() {
@@ -35,14 +34,14 @@ class LoadingService {
     get instance() {
         return this.compRef != null ? this.compRef.instance : null;
     }
-    constructor(overlay, configSrv, directionality) {
-        this.overlay = overlay;
-        this.configSrv = configSrv;
-        this.directionality = directionality;
+    constructor() {
+        this.overlay = inject(Overlay);
+        this.configSrv = inject(AlainConfigService);
+        this.directionality = inject(Directionality, { optional: true });
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
-        this.cog = configSrv.merge('loading', {
+        this.cog = this.configSrv.merge('loading', {
             type: 'spin',
             text: '加载中...',
             icon: {
@@ -68,7 +67,7 @@ class LoadingService {
             backdropClass: 'loading-backdrop'
         });
         this.compRef = this._overlayRef.attach(new ComponentPortal(LoadingDefaultComponent));
-        const dir = this.configSrv.get('loading').direction || this.directionality.value;
+        const dir = this.configSrv.get('loading').direction || this.directionality?.value;
         if (this.instance != null) {
             this.instance.options = this.opt;
             this.instance.dir = dir;
@@ -103,15 +102,13 @@ class LoadingService {
     ngOnDestroy() {
         this.loading$.unsubscribe();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LoadingService, deps: [{ token: i1.Overlay }, { token: i2.AlainConfigService }, { token: i3.Directionality, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LoadingService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LoadingService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LoadingService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.Overlay }, { type: i2.AlainConfigService }, { type: i3.Directionality, decorators: [{
-                    type: Optional
-                }] }] });
+        }], ctorParameters: () => [] });
 
 const COMPONENTS = [LoadingDefaultComponent];
 class LoadingModule {

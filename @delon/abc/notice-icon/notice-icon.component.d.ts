@@ -1,16 +1,11 @@
-import { ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { DelonLocaleService, LocaleData } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
+import { EventEmitter, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { LocaleData } from '@delon/theme';
 import type { NgClassType } from 'ng-zorro-antd/core/types';
 import { NoticeIconSelect, NoticeItem } from './notice-icon.types';
 import * as i0 from "@angular/core";
 export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy {
-    private i18n;
-    private cdr;
-    static ngAcceptInputType_count: NumberInput;
-    static ngAcceptInputType_loading: BooleanInput;
-    static ngAcceptInputType_popoverVisible: BooleanInput;
-    static ngAcceptInputType_centered: BooleanInput;
+    private readonly i18n;
+    private readonly cdr;
     private i18n$;
     locale: LocaleData;
     data: NoticeItem[];
@@ -24,7 +19,6 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;
     get overlayCls(): string;
-    constructor(i18n: DelonLocaleService, cdr: ChangeDetectorRef);
     onVisibleChange(result: boolean): void;
     onSelect(i: NoticeIconSelect): void;
     onClear(title: string): void;
@@ -33,4 +27,8 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NoticeIconComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": { "alias": "data"; "required": false; }; "count": { "alias": "count"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "popoverVisible": { "alias": "popoverVisible"; "required": false; }; "btnClass": { "alias": "btnClass"; "required": false; }; "btnIconClass": { "alias": "btnIconClass"; "required": false; }; "centered": { "alias": "centered"; "required": false; }; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never, true, never>;
+    static ngAcceptInputType_count: unknown;
+    static ngAcceptInputType_loading: unknown;
+    static ngAcceptInputType_popoverVisible: unknown;
+    static ngAcceptInputType_centered: unknown;
 }

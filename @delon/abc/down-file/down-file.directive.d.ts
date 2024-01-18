@@ -14,6 +14,7 @@ export declare class DownFileDirective {
     readonly success: EventEmitter<HttpResponse<Blob>>;
     readonly error: EventEmitter<any>;
     private getDisposition;
+    private isFileSaverSupported;
     constructor();
     private setDisabled;
     _click(ev: MouseEvent): Promise<void>;

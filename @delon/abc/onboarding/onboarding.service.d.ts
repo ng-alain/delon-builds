@@ -1,20 +1,14 @@
-import { Directionality } from '@angular/cdk/bidi';
-import { ApplicationRef, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { DelonLocaleService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { OnBoardingKeyStore } from './onboarding.storage';
+import { OnDestroy } from '@angular/core';
 import { OnboardingConfig } from './onboarding.types';
 import * as i0 from "@angular/core";
 export declare class OnboardingService implements OnDestroy {
-    private i18n;
-    private appRef;
-    private router;
-    private doc;
-    private configSrv;
-    private keyStoreSrv;
-    private directionality;
+    private readonly i18n;
+    private readonly appRef;
+    private readonly router;
+    private readonly doc;
+    private readonly configSrv;
+    private readonly keyStoreSrv;
+    private readonly directionality;
     private compRef;
     private op$;
     private config?;
@@ -29,7 +23,6 @@ export declare class OnboardingService implements OnDestroy {
      * 获取是否正在引导中
      */
     get running(): boolean;
-    constructor(i18n: DelonLocaleService, appRef: ApplicationRef, router: Router, doc: NzSafeAny, configSrv: AlainConfigService, keyStoreSrv: OnBoardingKeyStore, directionality: Directionality);
     private attach;
     private cancelRunning;
     private updateRunning;
@@ -60,6 +53,6 @@ export declare class OnboardingService implements OnDestroy {
      */
     done(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, [null, null, null, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<OnboardingService>;
 }

@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Directive, Output, NgModule } from '@angular/core';
+import { Injectable, inject, ElementRef, NgZone, EventEmitter, Directive, Output, NgModule } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 class SizeObserver {
@@ -64,10 +64,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             args: [{ providedIn: 'root' }]
         }] });
 class ObserverSize {
-    constructor(_obs, el, ngZone) {
-        this._obs = _obs;
-        this.el = el;
-        this.ngZone = ngZone;
+    constructor() {
+        this._obs = inject(SizeObserver);
+        this.el = inject(ElementRef).nativeElement;
+        this.ngZone = inject(NgZone);
         this._sub$ = null;
         this.event = new EventEmitter();
     }
@@ -78,7 +78,7 @@ class ObserverSize {
     }
     _sub() {
         this._unsub();
-        const stream = this._obs.observe(this.el.nativeElement);
+        const stream = this._obs.observe(this.el);
         this.ngZone.runOutsideAngular(() => {
             this._sub$ = stream.subscribe(this.event);
         });
@@ -89,7 +89,7 @@ class ObserverSize {
     ngOnDestroy() {
         this._unsub();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ObserverSize, deps: [{ token: SizeObserver }, { token: i0.ElementRef }, { token: i0.NgZone }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ObserverSize, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: ObserverSize, isStandalone: true, selector: "[observeSize]", outputs: { event: "observeSize" }, exportAs: ["observeSize"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ObserverSize, decorators: [{
@@ -99,7 +99,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     exportAs: 'observeSize',
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: SizeObserver }, { type: i0.ElementRef }, { type: i0.NgZone }], propDecorators: { event: [{
+        }], propDecorators: { event: [{
                 type: Output,
                 args: ['observeSize']
             }] } });

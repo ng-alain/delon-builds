@@ -5,11 +5,6 @@ import { saveAs } from 'file-saver';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
 import { CommonModule } from '@angular/common';
 
-let isFileSaverSupported = false;
-try {
-    isFileSaverSupported = !!new Blob();
-}
-catch { }
 class DownFileDirective {
     getDisposition(data) {
         const arr = (data || '')
@@ -31,7 +26,12 @@ class DownFileDirective {
         this.httpMethod = 'get';
         this.success = new EventEmitter();
         this.error = new EventEmitter();
-        if (!isFileSaverSupported) {
+        this.isFileSaverSupported = false;
+        try {
+            this.isFileSaverSupported = !!new Blob();
+        }
+        catch { }
+        if (!this.isFileSaverSupported) {
             this.el.classList.add(`down-file__not-support`);
         }
     }
@@ -41,7 +41,7 @@ class DownFileDirective {
         el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
     async _click(ev) {
-        if (!isFileSaverSupported || (typeof this.pre === 'function' && !(await this.pre(ev)))) {
+        if (!this.isFileSaverSupported || (typeof this.pre === 'function' && !(await this.pre(ev)))) {
             ev.stopPropagation();
             ev.preventDefault();
             return;

@@ -1,14 +1,12 @@
 import { Direction } from '@angular/cdk/bidi';
-import { Platform } from '@angular/cdk/platform';
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnDestroy } from '@angular/core';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AfterViewInit, EventEmitter, OnDestroy } from '@angular/core';
 import { OnboardingConfig, OnboardingItem, OnboardingOpType } from './onboarding.types';
 import * as i0 from "@angular/core";
 export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
-    private el;
-    private doc;
-    private platform;
-    private cdr;
+    private readonly el;
+    private readonly platform;
+    private readonly cdr;
+    private readonly doc;
     private time;
     private prevSelectorEl?;
     config: OnboardingConfig;
@@ -23,7 +21,6 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     get last(): boolean;
     private _getDoc;
     private _getWin;
-    constructor(el: ElementRef<HTMLElement>, doc: NzSafeAny, platform: Platform, cdr: ChangeDetectorRef);
     private getLightData;
     ngAfterViewInit(): void;
     private scroll;
@@ -33,6 +30,6 @@ export declare class OnboardingComponent implements OnDestroy, AfterViewInit {
     to(type: OnboardingOpType): void;
     handleMask(): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingComponent, [null, { optional: true; }, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<OnboardingComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<OnboardingComponent, "onboarding", never, {}, {}, never, never, true, never>;
 }
