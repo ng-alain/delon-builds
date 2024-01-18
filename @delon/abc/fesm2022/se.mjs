@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { inject, ElementRef, Renderer2, Component, ChangeDetectionStrategy, ViewEncapsulation, booleanAttribute, Input, TemplateRef, ChangeDetectorRef, DestroyRef, ContentChild, ViewChild, NgModule } from '@angular/core';
+import { inject, ElementRef, Renderer2, Component, ChangeDetectionStrategy, ViewEncapsulation, booleanAttribute, numberAttribute, Input, TemplateRef, ChangeDetectorRef, DestroyRef, ContentChild, ViewChild, NgModule } from '@angular/core';
 import { filter, BehaviorSubject } from 'rxjs';
 import { toNumber, toBoolean } from '@delon/util/decorator';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -56,7 +56,7 @@ class SEContainerComponent {
         return this.nzLayout === 'horizontal' ? this._gutter : 0;
     }
     set gutter(value) {
-        this._gutter = toNumber(value);
+        this._gutter = value;
     }
     get nzLayout() {
         return this._nzLayout;
@@ -96,7 +96,7 @@ class SEContainerComponent {
         }
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SEContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SEContainerComponent, isStandalone: true, selector: "se-container, [se-container]", inputs: { colInCon: ["se-container", "colInCon", (v) => toNumber(v, null)], col: ["col", "col", (v) => toNumber(v, null)], labelWidth: ["labelWidth", "labelWidth", (v) => toNumber(v, null)], noColon: ["noColon", "noColon", booleanAttribute], title: "title", gutter: "gutter", nzLayout: "nzLayout", size: "size", firstVisual: ["firstVisual", "firstVisual", booleanAttribute], ingoreDirty: ["ingoreDirty", "ingoreDirty", booleanAttribute], line: ["line", "line", booleanAttribute], errors: "errors" }, host: { properties: { "class.ant-row": "true", "class.se__container": "true", "class.se__horizontal": "nzLayout === 'horizontal'", "class.se__vertical": "nzLayout === 'vertical'", "class.se__inline": "nzLayout === 'inline'", "class.se__compact": "size === 'compact'", "style.margin-left.px": "margin", "style.margin-right.px": "margin" } }, exportAs: ["seContainer"], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SEContainerComponent, isStandalone: true, selector: "se-container, [se-container]", inputs: { colInCon: ["se-container", "colInCon", (v) => toNumber(v, null)], col: ["col", "col", (v) => toNumber(v, null)], labelWidth: ["labelWidth", "labelWidth", (v) => toNumber(v, null)], noColon: ["noColon", "noColon", booleanAttribute], title: "title", gutter: ["gutter", "gutter", numberAttribute], nzLayout: "nzLayout", size: "size", firstVisual: ["firstVisual", "firstVisual", booleanAttribute], ingoreDirty: ["ingoreDirty", "ingoreDirty", booleanAttribute], line: ["line", "line", booleanAttribute], errors: "errors" }, host: { properties: { "class.ant-row": "true", "class.se__container": "true", "class.se__horizontal": "nzLayout === 'horizontal'", "class.se__vertical": "nzLayout === 'vertical'", "class.se__inline": "nzLayout === 'inline'", "class.se__compact": "size === 'compact'", "style.margin-left.px": "margin", "style.margin-right.px": "margin" } }, exportAs: ["seContainer"], ngImport: i0, template: `
     @if (title) {
       <div se-title>
         <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
@@ -149,7 +149,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], title: [{
                 type: Input
             }], gutter: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], nzLayout: [{
                 type: Input
             }], size: [{

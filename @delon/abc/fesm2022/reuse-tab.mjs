@@ -228,10 +228,7 @@ var ReuseTabMatchMode;
 /**
  * Storage manager that can change rules by implementing `get`, `set` accessors
  */
-const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER', {
-    providedIn: 'root',
-    factory: () => new ReuseTabCachedManagerFactory()
-});
+const REUSE_TAB_CACHED_MANAGER = new InjectionToken('REUSE_TAB_CACHED_MANAGER');
 class ReuseTabCachedManagerFactory {
     constructor() {
         this.list = [];
@@ -240,15 +237,8 @@ class ReuseTabCachedManagerFactory {
     }
 }
 
-const REUSE_TAB_STORAGE_KEY_DEFAULT = '_reuse-tab-state';
-const REUSE_TAB_STORAGE_KEY = new InjectionToken('REUSE_TAB_STORAGE_KEY', {
-    providedIn: 'root',
-    factory: () => REUSE_TAB_STORAGE_KEY_DEFAULT
-});
-const REUSE_TAB_STORAGE_STATE = new InjectionToken('REUSE_TAB_STORAGE_STATE', {
-    providedIn: 'root',
-    factory: () => new ReuseTabLocalStorageState()
-});
+const REUSE_TAB_STORAGE_KEY = new InjectionToken('REUSE_TAB_STORAGE_KEY');
+const REUSE_TAB_STORAGE_STATE = new InjectionToken('REUSE_TAB_STORAGE_STATE');
 class ReuseTabLocalStorageState {
     get(key) {
         return JSON.parse(localStorage.getItem(key) || '[]') || [];
@@ -831,7 +821,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
 
 class ReuseTabComponent {
     constructor() {
-        this.srv = inject(ReuseTabService);
+        this.srv = inject(ReuseTabService, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
         this.router = inject(Router);
         this.route = inject(ActivatedRoute);
@@ -1001,6 +991,8 @@ class ReuseTabComponent {
      * <router-outlet (activate)="reuseTab.activate($event)" (attach)="reuseTab.activate($event)"></router-outlet>
      */
     activate(instance) {
+        if (this.srv == null)
+            return;
         this.srv.componentRef = { instance };
     }
     updatePos() {
@@ -1029,7 +1021,7 @@ class ReuseTabComponent {
             this.dir = direction;
             this.cdr.detectChanges();
         });
-        if (!this.platform.isBrowser) {
+        if (!this.platform.isBrowser || this.srv == null) {
             return;
         }
         this.srv.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(res => {
@@ -1052,7 +1044,7 @@ class ReuseTabComponent {
         this.srv.init();
     }
     ngOnChanges(changes) {
-        if (!this.platform.isBrowser) {
+        if (!this.platform.isBrowser || this.srv == null) {
             return;
         }
         if (changes.max)
@@ -1253,7 +1245,7 @@ function provideReuseTabConfig(options) {
         ReuseTabService,
         {
             provide: REUSE_TAB_STORAGE_KEY,
-            useValue: options?.storeKey ?? REUSE_TAB_STORAGE_KEY_DEFAULT
+            useValue: options?.storeKey ?? '_reuse-tab-state'
         },
         (options?.cacheManager ?? withCacheManager()).ɵproviders,
         (options?.store ?? withLocalStorage()).ɵproviders,
@@ -1303,5 +1295,5 @@ function withLocalStorage() {
  * Generated bundle index. Do not edit.
  */
 
-export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_KEY_DEFAULT, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCacheManager, withLocalStorage };
+export { REUSE_TAB_CACHED_MANAGER, REUSE_TAB_STORAGE_KEY, REUSE_TAB_STORAGE_STATE, ReuseTabComponent, ReuseTabContextComponent, ReuseTabContextDirective, ReuseTabContextMenuComponent, ReuseTabContextService, ReuseTabFeatureKind, ReuseTabLocalStorageState, ReuseTabMatchMode, ReuseTabModule, ReuseTabService, ReuseTabStrategy, provideReuseTabConfig, withCacheManager, withLocalStorage };
 //# sourceMappingURL=reuse-tab.mjs.map

@@ -43,6 +43,7 @@ export declare class SEContainerComponent {
     static ngAcceptInputType_col: i1.NzSafeAny;
     static ngAcceptInputType_labelWidth: i1.NzSafeAny;
     static ngAcceptInputType_noColon: unknown;
+    static ngAcceptInputType_gutter: unknown;
     static ngAcceptInputType_firstVisual: unknown;
     static ngAcceptInputType_ingoreDirty: unknown;
     static ngAcceptInputType_line: unknown;
