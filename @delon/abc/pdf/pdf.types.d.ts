@@ -20,7 +20,7 @@ export declare enum PdfTextLayerMode {
     ENABLE_ENHANCE = 2
 }
 export declare enum PdfExternalLinkTarget {
-    NONE = 0,
+    NONE = 0,// Default value.
     SELF = 1,
     BLANK = 2,
     PARENT = 3,
