@@ -1,14 +1,11 @@
 import { ActivatedRouteSnapshot, CanActivateChildFn, CanActivateFn } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AlainConfigService } from '@delon/util/config';
-import { AlainI18NService } from './i18n';
 import * as i0 from "@angular/core";
 export declare class AlainI18NGuardService {
-    private i18nSrv;
-    private cogSrv;
-    constructor(i18nSrv: AlainI18NService, cogSrv: AlainConfigService);
+    private readonly i18nSrv;
+    private readonly cogSrv;
     process(route: ActivatedRouteSnapshot): Observable<boolean>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18NGuardService, [{ optional: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AlainI18NGuardService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AlainI18NGuardService>;
 }
 /**

@@ -1,7 +1,7 @@
 import { TemplateRef, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzDrawerOptions, NzDrawerRef, NzDrawerService } from 'ng-zorro-antd/drawer';
+import { NzDrawerOptions, NzDrawerRef } from 'ng-zorro-antd/drawer';
 import * as i0 from "@angular/core";
 export interface DrawerHelperOptions {
     /**
@@ -46,11 +46,10 @@ export interface DrawerHelperOptions {
  * this.NzDrawerRef.close(false);
  */
 export declare class DrawerHelper {
-    private srv;
-    private parentDrawer;
+    private readonly srv;
+    private readonly parentDrawer;
     private openDrawersAtThisLevel;
     get openDrawers(): NzDrawerRef[];
-    constructor(srv: NzDrawerService, parentDrawer: DrawerHelper);
     /**
      * 构建一个抽屉
      */
@@ -67,6 +66,6 @@ export declare class DrawerHelper {
         $implicit: NzSafeAny;
         drawerRef: NzDrawerRef;
     }> | Type<NzSafeAny>, params?: NzSafeAny, options?: DrawerHelperOptions): Observable<NzSafeAny>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<DrawerHelper, [null, { optional: true; skipSelf: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<DrawerHelper, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DrawerHelper>;
 }

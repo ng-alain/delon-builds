@@ -1,4 +1,4 @@
-import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpContext, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -14,9 +14,9 @@ export type HttpObserve = 'body' | 'events' | 'response';
  * + 统一处理时间格式问题
  */
 export declare class _HttpClient {
-    private http;
+    private readonly http;
     private cog;
-    constructor(http: HttpClient, cogSrv: AlainConfigService);
+    constructor(cogSrv: AlainConfigService);
     private lc;
     /**
      * Get whether it's loading

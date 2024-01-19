@@ -1,23 +1,21 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ACLService } from '@delon/acl';
 import { Menu } from './interface';
-import { AlainI18NService } from '../i18n/i18n';
 import * as i0 from "@angular/core";
 /**
  * 菜单服务，[在线文档](https://ng-alain.com/theme/menu)
  */
 export declare class MenuService implements OnDestroy {
-    private i18nSrv;
-    private aclService;
+    private readonly i18nSrv;
+    private readonly aclService;
     private _change$;
-    private i18n$;
+    private i18n$?;
     private data;
     /**
      * 是否完全受控菜单打开状态，默认：`false`
      */
     openStrictly: boolean;
-    constructor(i18nSrv: AlainI18NService, aclService: ACLService);
+    constructor();
     get change(): Observable<Menu[]>;
     get menus(): Menu[];
     visit<T extends Menu = Menu>(data: T[], callback: (item: T, parentMenum: T | null, depth?: number) => void): void;
@@ -97,6 +95,6 @@ export declare class MenuService implements OnDestroy {
         emit?: boolean;
     }): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, [{ optional: true; }, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MenuService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MenuService>;
 }

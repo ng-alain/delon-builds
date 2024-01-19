@@ -1,5 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export interface CookieOptions {
     path?: string;
@@ -20,8 +18,8 @@ export interface CookieOptions {
  * 一组简单的 Cookie 操作类。
  */
 export declare class CookieService {
-    private _doc;
-    private platform;
+    private readonly _doc;
+    private readonly platform;
     private get doc();
     /**
      * Original cookie value
@@ -29,7 +27,6 @@ export declare class CookieService {
      * 原始Cookie值
      */
     get cookie(): string;
-    constructor(_doc: NzSafeAny, platform: Platform);
     /**
      * Get all cookie key-value pairs
      *
