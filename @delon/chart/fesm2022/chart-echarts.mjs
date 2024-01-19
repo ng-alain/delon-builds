@@ -1,13 +1,13 @@
 import * as i0 from '@angular/core';
-import { Injectable, DestroyRef, inject, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
+import { inject, Injectable, ChangeDetectorRef, NgZone, DestroyRef, EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, Output, NgModule } from '@angular/core';
 import { Subject, filter, debounceTime, fromEvent } from 'rxjs';
-import * as i1 from '@delon/util/config';
-import * as i2 from '@delon/util/other';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { __decorate } from 'tslib';
+import { Platform } from '@angular/cdk/platform';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ZoneOutside } from '@delon/util/decorator';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import * as i2$1 from '@angular/cdk/platform';
 import { CommonModule } from '@angular/common';
 
 class ChartEChartsService {
@@ -20,9 +20,9 @@ class ChartEChartsService {
             echartsLib: 'https://cdnjs.cloudflare.com/ajax/libs/echarts/5.1.0/echarts.min.js'
         }, val);
     }
-    constructor(cogSrv, lazySrv) {
-        this.cogSrv = cogSrv;
-        this.lazySrv = lazySrv;
+    constructor() {
+        this.cogSrv = inject(AlainConfigService);
+        this.lazySrv = inject(LazyService);
         this.loading = false;
         this.loaded = false;
         this.notify$ = new Subject();
@@ -57,13 +57,13 @@ class ChartEChartsService {
     ngOnDestroy() {
         this.notify$.unsubscribe();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsService, deps: [{ token: i1.AlainConfigService }, { token: i2.LazyService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: i2.LazyService }] });
+        }], ctorParameters: () => [] });
 
 class ChartEChartsComponent {
     set width(val) {
@@ -93,11 +93,11 @@ class ChartEChartsComponent {
     get chart() {
         return this._chart;
     }
-    constructor(srv, cdr, ngZone, platform) {
-        this.srv = srv;
-        this.cdr = cdr;
-        this.ngZone = ngZone;
-        this.platform = platform;
+    constructor() {
+        this.srv = inject(ChartEChartsService);
+        this.cdr = inject(ChangeDetectorRef);
+        this.ngZone = inject(NgZone);
+        this.platform = inject(Platform);
         this.destroy$ = inject(DestroyRef);
         this._chart = null;
         this._width = '100%';
@@ -108,7 +108,7 @@ class ChartEChartsComponent {
         this.srv.notify
             .pipe(takeUntilDestroyed(), filter(() => !this.loaded))
             .subscribe(() => this.load());
-        this.theme = srv.cog.echartsTheme;
+        this.theme = this.srv.cog.echartsTheme;
     }
     emit(type, other) {
         this.events.emit({ type, chart: this.chart, ...other });
@@ -169,7 +169,7 @@ class ChartEChartsComponent {
         this.on.forEach(item => this._chart?.off(item.eventName));
         this.destroy();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsComponent, deps: [{ token: ChartEChartsService }, { token: i0.ChangeDetectorRef }, { token: i0.NgZone }, { token: i2$1.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ChartEChartsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: ChartEChartsComponent, isStandalone: true, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
     @if (!loaded) {
       <nz-skeleton />
@@ -202,7 +202,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     standalone: true,
                     imports: [NzSkeletonComponent]
                 }]
-        }], ctorParameters: () => [{ type: ChartEChartsService }, { type: i0.ChangeDetectorRef }, { type: i0.NgZone }, { type: i2$1.Platform }], propDecorators: { node: [{
+        }], ctorParameters: () => [], propDecorators: { node: [{
                 type: ViewChild,
                 args: ['container', { static: true }]
             }], width: [{

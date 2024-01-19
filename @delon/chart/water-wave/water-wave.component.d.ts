@@ -1,12 +1,11 @@
-import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { OnChanges, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
 export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnInit {
-    private el;
-    private renderer;
-    private ngZone;
-    private cdr;
-    private platform;
+    private readonly el;
+    private readonly renderer;
+    private readonly ngZone;
+    private readonly cdr;
+    private readonly platform;
     private resize$;
     private node;
     private timer;
@@ -16,7 +15,6 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     color: string;
     height: number;
     percent?: number;
-    constructor(el: ElementRef, renderer: Renderer2, ngZone: NgZone, cdr: ChangeDetectorRef, platform: Platform);
     private renderChart;
     private updateRadio;
     render(): void;

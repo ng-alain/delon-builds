@@ -16,8 +16,7 @@ export declare class WidgetRegistry {
     getType(type: string): Widget<FormProperty, SFUISchemaItem>;
 }
 export declare class WidgetFactory {
-    private registry;
-    constructor(registry: WidgetRegistry);
+    private readonly registry;
     createWidget(container: ViewContainerRef, type: string): ComponentRef<Widget<FormProperty, SFUISchemaItem>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<WidgetFactory, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<WidgetFactory>;

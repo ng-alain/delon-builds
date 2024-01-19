@@ -1,14 +1,11 @@
-import { Injector } from '@angular/core';
-import { CanActivateChildFn, CanActivateFn, CanMatchFn, Router } from '@angular/router';
+import { CanActivateChildFn, CanActivateFn, CanMatchFn } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ACLService } from './acl.service';
 import type { ACLGuardData } from './acl.type';
 import * as i0 from "@angular/core";
 export declare class ACLGuardService {
-    private srv;
-    private router;
-    private injector;
-    constructor(srv: ACLService, router: Router, injector: Injector);
+    private readonly srv;
+    private readonly router;
+    private readonly injector;
     process(data?: ACLGuardData): Observable<boolean>;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLGuardService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ACLGuardService>;

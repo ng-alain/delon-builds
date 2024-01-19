@@ -1,18 +1,17 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AlainChartConfig, AlainConfigService } from '@delon/util/config';
-import { LazyService } from '@delon/util/other';
+import { AlainChartConfig } from '@delon/util/config';
 import * as i0 from "@angular/core";
 export declare class G2Service implements OnDestroy {
-    private cogSrv;
-    private lazySrv;
+    private readonly cogSrv;
+    private readonly lazySrv;
     private _cog;
     private loading;
     private loaded;
     private notify$;
     get cog(): AlainChartConfig;
     set cog(val: AlainChartConfig);
-    constructor(cogSrv: AlainConfigService, lazySrv: LazyService);
+    constructor();
     libLoad(): this;
     get notify(): Observable<void>;
     ngOnDestroy(): void;

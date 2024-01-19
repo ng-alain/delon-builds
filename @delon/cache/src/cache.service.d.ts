@@ -1,21 +1,19 @@
-import { Platform } from '@angular/cdk/platform';
-import { HttpClient } from '@angular/common/http';
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
-import { CacheNotifyResult, ICacheStore } from './interface';
+import { CacheNotifyResult } from './interface';
 import * as i0 from "@angular/core";
 export declare class CacheService implements OnDestroy {
-    private store;
-    private http;
-    private platform;
+    private readonly store;
+    private readonly http;
+    private readonly platform;
     private readonly memory;
     private readonly notifyBuffer;
     private meta;
     private freqTick;
     private freqTime;
     private cog;
-    constructor(cogSrv: AlainConfigService, store: ICacheStore, http: HttpClient, platform: Platform);
+    constructor(cogSrv: AlainConfigService);
     private pushMeta;
     private removeMeta;
     private loadMeta;

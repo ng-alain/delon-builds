@@ -1,15 +1,22 @@
 import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { Injectable, DestroyRef, inject, ElementRef, Renderer2, NgZone, EventEmitter, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { inject, Injectable, DestroyRef, ElementRef, Renderer2, NgZone, EventEmitter, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Subject, share, timer, take } from 'rxjs';
 import { ZoneOutside } from '@delon/util/decorator';
-import * as i1 from '@delon/util/config';
-import * as i2 from '@delon/util/other';
+import { AlainConfigService } from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 class MediaService {
+    constructor() {
+        this.cogSrv = inject(AlainConfigService);
+        this.lazySrv = inject(LazyService);
+        this.loading = false;
+        this.loaded = false;
+        this.notify$ = new Subject();
+    }
     get cog() {
         return this._cog;
     }
@@ -17,13 +24,6 @@ class MediaService {
         this._cog = this.cogSrv.merge('media', {
             urls: ['https://cdn.jsdelivr.net/npm/plyr/dist/plyr.min.js', 'https://cdn.jsdelivr.net/npm/plyr/dist/plyr.css']
         }, val);
-    }
-    constructor(cogSrv, lazySrv) {
-        this.cogSrv = cogSrv;
-        this.lazySrv = lazySrv;
-        this.loading = false;
-        this.loaded = false;
-        this.notify$ = new Subject();
     }
     load() {
         if (this.loading) {
@@ -42,13 +42,13 @@ class MediaService {
     notify() {
         return this.notify$.asObservable().pipe(share());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaService, deps: [{ token: i1.AlainConfigService }, { token: i2.LazyService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MediaService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: i2.LazyService }] });
+        }] });
 
 class MediaComponent {
     constructor() {

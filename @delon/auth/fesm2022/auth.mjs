@@ -1,13 +1,12 @@
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Injectable, Inject, makeEnvironmentProviders } from '@angular/core';
+import { InjectionToken, inject, Injectable, makeEnvironmentProviders } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject, BehaviorSubject, share, map, filter, interval, Observable } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
-import * as i1$1 from '@angular/router';
-import { Router } from '@angular/router';
-import { HttpContextToken, HttpErrorResponse } from '@angular/common/http';
 import { CookieService } from '@delon/util/browser';
+import { HttpContextToken, HttpErrorResponse } from '@angular/common/http';
 
 const AUTH_DEFAULT_CONFIG = {
     store_key: `_token`,
@@ -53,14 +52,14 @@ const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
 });
 
 function DA_SERVICE_TOKEN_FACTORY() {
-    return new TokenService(inject(AlainConfigService), inject(DA_STORE_TOKEN));
+    return new TokenService(inject(AlainConfigService));
 }
 /**
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
  */
 class TokenService {
-    constructor(configSrv, store) {
-        this.store = store;
+    constructor(configSrv) {
+        this.store = inject(DA_STORE_TOKEN);
         this.refresh$ = new Subject();
         this.change$ = new BehaviorSubject(null);
         this._referrer = {};
@@ -126,15 +125,12 @@ class TokenService {
     ngOnDestroy() {
         this.cleanRefresh();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }, { token: DA_STORE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TokenService }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TokenService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DA_STORE_TOKEN]
-                }] }] });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
@@ -146,10 +142,10 @@ const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
 const OPENTYPE = '_delonAuthSocialType';
 const HREFCALLBACK = '_delonAuthSocialCallbackByHref';
 class SocialService {
-    constructor(tokenService, doc, router) {
-        this.tokenService = tokenService;
-        this.doc = doc;
-        this.router = router;
+    constructor() {
+        this.tokenService = inject(DA_SERVICE_TOKEN);
+        this.doc = inject(DOCUMENT);
+        this.router = inject(Router);
         this._win = null;
     }
     /**
@@ -229,18 +225,12 @@ class SocialService {
         clearInterval(this._winTime);
         this._winTime = null;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SocialService, deps: [{ token: DA_SERVICE_TOKEN }, { token: DOCUMENT }, { token: i1$1.Router }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SocialService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SocialService }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SocialService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DA_SERVICE_TOKEN]
-                }] }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }, { type: i1$1.Router }] });
+        }] });
 
 /**
  * 内存存储，关掉浏览器标签后**丢失**。
@@ -289,8 +279,8 @@ class SessionStorageStore {
  * ```
  */
 class CookieStorageStore {
-    constructor(srv) {
-        this.srv = srv;
+    constructor() {
+        this.srv = inject(CookieService);
     }
     get(key) {
         try {
@@ -433,8 +423,8 @@ function ToLogin(options, url) {
 }
 
 class AuthJWTGuardService {
-    constructor(srv) {
-        this.srv = srv;
+    constructor() {
+        this.srv = inject(DA_SERVICE_TOKEN);
     }
     process(url) {
         const cog = this.srv.options;
@@ -444,16 +434,13 @@ class AuthJWTGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthJWTGuardService, deps: [{ token: DA_SERVICE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthJWTGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthJWTGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DA_SERVICE_TOKEN]
-                }] }] });
+        }] });
 /**
  * JWT 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *
@@ -553,8 +540,8 @@ const authJWTInterceptor = (req, next) => {
 };
 
 class AuthSimpleGuardService {
-    constructor(srv) {
-        this.srv = srv;
+    constructor() {
+        this.srv = inject(DA_SERVICE_TOKEN);
     }
     process(url) {
         const res = CheckSimple(this.srv.get());
@@ -563,16 +550,13 @@ class AuthSimpleGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthSimpleGuardService, deps: [{ token: DA_SERVICE_TOKEN }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthSimpleGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AuthSimpleGuardService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DA_SERVICE_TOKEN]
-                }] }] });
+        }] });
 /**
  * Simple 路由守卫, [ACL Document](https://ng-alain.com/auth/guard).
  *

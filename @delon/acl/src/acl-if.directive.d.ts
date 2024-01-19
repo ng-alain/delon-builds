@@ -1,10 +1,9 @@
-import { OnDestroy, TemplateRef, ViewContainerRef } from '@angular/core';
-import { ACLService } from './acl.service';
+import { OnDestroy, TemplateRef } from '@angular/core';
 import { ACLCanType } from './acl.type';
 import * as i0 from "@angular/core";
 export declare class ACLIfDirective implements OnDestroy {
-    private srv;
-    private _viewContainer;
+    private readonly srv;
+    private readonly _viewContainer;
     static ngAcceptInputType_except: boolean | string | undefined | null;
     private _value;
     private _change$;
@@ -13,7 +12,7 @@ export declare class ACLIfDirective implements OnDestroy {
     private _thenViewRef;
     private _elseViewRef;
     private _except;
-    constructor(templateRef: TemplateRef<void>, srv: ACLService, _viewContainer: ViewContainerRef);
+    constructor();
     set aclIf(value: ACLCanType);
     set aclIfThen(templateRef: TemplateRef<void> | null);
     set aclIfElse(templateRef: TemplateRef<void> | null);

@@ -1,22 +1,21 @@
+import { Platform } from '@angular/cdk/platform';
+import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { inject, InjectionToken, Injectable, Inject, NgModule } from '@angular/core';
+import { InjectionToken, inject, Injectable, NgModule } from '@angular/core';
 import { Observable, tap, map, of, BehaviorSubject } from 'rxjs';
 import { addSeconds } from 'date-fns';
 import { deepGet } from '@delon/util/other';
-import * as i3 from '@angular/cdk/platform';
-import { Platform } from '@angular/cdk/platform';
 import * as i1 from '@delon/util/config';
-import * as i2 from '@angular/common/http';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
     providedIn: 'root',
-    factory: () => new LocalStorageCacheService(inject(Platform))
+    factory: () => new LocalStorageCacheService()
 });
 class LocalStorageCacheService {
-    constructor(platform) {
-        this.platform = platform;
+    constructor() {
+        this.platform = inject(Platform);
     }
     get(key) {
         if (!this.platform.isBrowser) {
@@ -39,11 +38,12 @@ class LocalStorageCacheService {
     }
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 class CacheService {
-    constructor(cogSrv, store, http, platform) {
-        this.store = store;
-        this.http = http;
-        this.platform = platform;
+    constructor(cogSrv) {
+        this.store = inject(DC_STORE_STORAGE_TOKEN);
+        this.http = inject(HttpClient);
+        this.platform = inject(Platform);
         this.memory = new Map();
         this.notifyBuffer = new Map();
         this.meta = new Set();
@@ -54,7 +54,7 @@ class CacheService {
             prefix: '',
             meta_key: '__cache_meta'
         });
-        if (!platform.isBrowser)
+        if (!this.platform.isBrowser)
             return;
         this.loadMeta();
         this.startExpireNotify();
@@ -268,16 +268,13 @@ class CacheService {
         this.abortExpireNotify();
         this.clearNotify();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }, { token: DC_STORE_STORAGE_TOKEN }, { token: i2.HttpClient }, { token: i3.Platform }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DC_STORE_STORAGE_TOKEN]
-                }] }, { type: i2.HttpClient }, { type: i3.Platform }] });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
 class DelonCacheModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
