@@ -32,6 +32,10 @@ function toBoolean(value, defaultValue = false) {
     return value == null ? defaultValue : `${value}` !== 'false';
 }
 /**
+ * @deprecated Recommended to use the built-in `transform` and `static ngAcceptInputType_` can be removed
+ * - Use `@Input({ transform: booleanAttribute })` instead of `@InputBoolean()`
+ * - Use `@Input({ transform: (v: unknown) => (v == null ? null : booleanAttribute(v)) })` instead of `@InputBoolean(null)`
+ *
  * Input decorator that handle a prop to do get/set automatically with toBoolean
  *
  * ```ts
@@ -46,6 +50,10 @@ function toNumber(value, fallbackValue = 0) {
     return !isNaN(parseFloat(value)) && !isNaN(Number(value)) ? Number(value) : fallbackValue;
 }
 /**
+ * @deprecated Recommended to use the built-in `transform` and `static ngAcceptInputType_` can be removed
+ * - Use `@Input({ transform: numberAttribute })` instead of `@InputNumber()`
+ * - Use `@Input({ transform: (v: unknown) => (v == null ? null : numberAttribute(v)) })` instead of `@InputNumber(null)`
+ *
  * Input decorator that handle a prop to do get/set automatically with toNumber
  *
  * ```ts
