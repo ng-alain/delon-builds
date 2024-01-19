@@ -1,16 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { NgZone } from '@angular/core';
 import type jsZipType from 'jszip';
 import { AlainConfigService } from '@delon/util/config';
-import { LazyService } from '@delon/util/other';
 import { ZipSaveOptions } from './zip.types';
 import * as i0 from "@angular/core";
 export declare class ZipService {
-    private http;
-    private lazy;
-    private ngZone;
+    private readonly http;
+    private readonly lazy;
+    private readonly ngZone;
     private cog;
-    constructor(http: HttpClient, lazy: LazyService, configSrv: AlainConfigService, ngZone: NgZone);
+    constructor(configSrv: AlainConfigService);
     private init;
     private check;
     /** 解压 */

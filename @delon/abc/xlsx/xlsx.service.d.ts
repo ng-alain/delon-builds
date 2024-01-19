@@ -1,16 +1,13 @@
-import { HttpClient } from '@angular/common/http';
-import { NgZone } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { LazyService } from '@delon/util/other';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { XlsxExportOptions, XlsxExportResult } from './xlsx.types';
 import * as i0 from "@angular/core";
 export declare class XlsxService {
-    private http;
-    private lazy;
-    private ngZone;
-    constructor(http: HttpClient, lazy: LazyService, configSrv: AlainConfigService, ngZone: NgZone);
+    private readonly http;
+    private readonly lazy;
+    private readonly ngZone;
     private cog;
+    constructor(configSrv: AlainConfigService);
     private init;
     private read;
     /**

@@ -1,17 +1,17 @@
 import { __decorate } from 'tslib';
+import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { Injectable } from '@angular/core';
+import { inject, NgZone, Injectable } from '@angular/core';
 import { saveAs } from 'file-saver';
 import { ZoneOutside } from '@delon/util/decorator';
-import * as i1 from '@angular/common/http';
-import * as i2 from '@delon/util/other';
-import * as i3 from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
+import * as i1 from '@delon/util/config';
 
 class ZipService {
-    constructor(http, lazy, configSrv, ngZone) {
-        this.http = http;
-        this.lazy = lazy;
-        this.ngZone = ngZone;
+    constructor(configSrv) {
+        this.http = inject(HttpClient);
+        this.lazy = inject(LazyService);
+        this.ngZone = inject(NgZone);
         this.cog = configSrv.merge('zip', {
             url: 'https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js',
             utils: []
@@ -104,7 +104,7 @@ class ZipService {
             });
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ZipService, deps: [{ token: i1.HttpClient }, { token: i2.LazyService }, { token: i3.AlainConfigService }, { token: i0.NgZone }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ZipService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ZipService, providedIn: 'root' }); }
 }
 __decorate([
@@ -113,7 +113,7 @@ __decorate([
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ZipService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.HttpClient }, { type: i2.LazyService }, { type: i3.AlainConfigService }, { type: i0.NgZone }], propDecorators: { read: [] } });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { read: [] } });
 
 /**
  * Generated bundle index. Do not edit.

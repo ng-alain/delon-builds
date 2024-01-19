@@ -1,17 +1,17 @@
 import { __decorate } from 'tslib';
+import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { Injectable, Directive, Input, NgModule } from '@angular/core';
+import { inject, NgZone, Injectable, Directive, Input, NgModule } from '@angular/core';
 import isUtf8 from 'isutf8';
 import { ZoneOutside } from '@delon/util/decorator';
-import * as i1 from '@angular/common/http';
-import * as i2 from '@delon/util/other';
-import * as i3 from '@delon/util/config';
+import { LazyService } from '@delon/util/other';
+import * as i1 from '@delon/util/config';
 
 class XlsxService {
-    constructor(http, lazy, configSrv, ngZone) {
-        this.http = http;
-        this.lazy = lazy;
-        this.ngZone = ngZone;
+    constructor(configSrv) {
+        this.http = inject(HttpClient);
+        this.lazy = inject(LazyService);
+        this.ngZone = inject(NgZone);
         this.cog = configSrv.merge('xlsx', {
             url: 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js',
             modules: [`https://cdn.jsdelivr.net/npm/xlsx/dist/cpexcel.js`]
@@ -113,7 +113,7 @@ class XlsxService {
         } while (val > 0);
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxService, deps: [{ token: i1.HttpClient }, { token: i2.LazyService }, { token: i3.AlainConfigService }, { token: i0.NgZone }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxService, providedIn: 'root' }); }
 }
 __decorate([
@@ -125,16 +125,16 @@ __decorate([
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.HttpClient }, { type: i2.LazyService }, { type: i3.AlainConfigService }, { type: i0.NgZone }], propDecorators: { read: [], export: [] } });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { read: [], export: [] } });
 
 class XlsxDirective {
-    constructor(srv) {
-        this.srv = srv;
+    constructor() {
+        this.srv = inject(XlsxService);
     }
     _click() {
         this.srv.export(this.data);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxDirective, deps: [{ token: XlsxService }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: XlsxDirective, isStandalone: true, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: XlsxDirective, decorators: [{
@@ -147,7 +147,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     },
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: XlsxService }], propDecorators: { data: [{
+        }], propDecorators: { data: [{
                 type: Input,
                 args: ['xlsx']
             }] } });
