@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { LocaleData } from '@delon/theme';
 import { STColumnFilter, STColumnFilterMenu, STIcon } from './st.interfaces';
 import { _STColumn } from './st.types';
 import * as i0 from "@angular/core";
 export declare class STFilterComponent {
-    private cdr;
+    private readonly cdr;
     visible: boolean;
     col: _STColumn;
     locale: LocaleData;
@@ -12,7 +12,6 @@ export declare class STFilterComponent {
     readonly n: EventEmitter<unknown>;
     readonly handle: EventEmitter<boolean>;
     get icon(): STIcon;
-    constructor(cdr: ChangeDetectorRef);
     stopPropagation($event: MouseEvent): void;
     checkboxChange(): void;
     radioChange(item: STColumnFilterMenu): void;

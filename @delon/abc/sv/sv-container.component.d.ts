@@ -1,26 +1,18 @@
-import { ElementRef, OnInit, Renderer2, TemplateRef } from '@angular/core';
+import { OnInit, TemplateRef } from '@angular/core';
 import type { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";
 export declare class SVTitleComponent implements OnInit {
-    private el;
-    private parent;
-    private ren;
-    constructor(el: ElementRef<HTMLElement>, parent: SVContainerComponent, ren: Renderer2);
+    private readonly el;
+    private readonly parent;
+    private readonly ren;
+    constructor();
     private setClass;
     ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, [null, { optional: true; host: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SVTitleComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], true, never>;
 }
 export declare class SVContainerComponent {
-    static ngAcceptInputType_gutter: NumberInput;
-    static ngAcceptInputType_labelWidth: NumberInput;
-    static ngAcceptInputType_col: NumberInput;
-    static ngAcceptInputType_colInCon: NumberInput;
-    static ngAcceptInputType_default: BooleanInput;
-    static ngAcceptInputType_noColon: BooleanInput;
-    static ngAcceptInputType_bordered: BooleanInput;
     colInCon?: REP_TYPE;
     title?: string | TemplateRef<void>;
     size?: 'small' | 'large' | 'default';
@@ -39,4 +31,11 @@ export declare class SVContainerComponent {
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; }, {}, never, ["*"], true, never>;
+    static ngAcceptInputType_colInCon: unknown;
+    static ngAcceptInputType_gutter: unknown;
+    static ngAcceptInputType_labelWidth: unknown;
+    static ngAcceptInputType_col: unknown;
+    static ngAcceptInputType_default: unknown;
+    static ngAcceptInputType_noColon: unknown;
+    static ngAcceptInputType_bordered: unknown;
 }

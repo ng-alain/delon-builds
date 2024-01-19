@@ -1,35 +1,33 @@
-import { __decorate } from 'tslib';
 import { NgStyle, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Host, Optional, Input, ViewChild, NgModule } from '@angular/core';
-import { InputNumber, InputBoolean } from '@delon/util/decorator';
+import { ElementRef, inject, Renderer2, Component, ChangeDetectionStrategy, ViewEncapsulation, numberAttribute, booleanAttribute, Input, ViewChild, NgModule } from '@angular/core';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import * as i1 from '@delon/util/config';
 import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
+import { ResponsiveService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
-import * as i2 from '@delon/theme';
 
 class SVTitleComponent {
-    constructor(el, parent, ren) {
-        this.el = el;
-        this.parent = parent;
-        this.ren = ren;
-        if (parent == null) {
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.parent = inject(SVContainerComponent, { host: true, optional: true });
+        this.ren = inject(Renderer2);
+        if (this.parent == null) {
             throw new Error(`[sv-title] must include 'sv-container' component`);
         }
     }
     setClass() {
         const gutter = this.parent.gutter;
-        const el = this.el.nativeElement;
+        const el = this.el;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }
     ngOnInit() {
         this.setClass();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVTitleComponent, deps: [{ token: i0.ElementRef }, { token: SVContainerComponent, host: true, optional: true }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVTitleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: SVTitleComponent, isStandalone: true, selector: "sv-title, [sv-title]", host: { properties: { "class.sv__title": "true" } }, exportAs: ["svTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVTitleComponent, decorators: [{
@@ -46,11 +44,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     standalone: true
                 }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: SVContainerComponent, decorators: [{
-                    type: Host
-                }, {
-                    type: Optional
-                }] }, { type: i0.Renderer2 }] });
+        }], ctorParameters: () => [] });
 class SVContainerComponent {
     get margin() {
         return this.bordered ? {} : { 'margin-left.px': -(this.gutter / 2), 'margin-right.px': -(this.gutter / 2) };
@@ -67,7 +61,7 @@ class SVContainerComponent {
         });
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon"], title: "title", size: "size", gutter: "gutter", layout: "layout", labelWidth: "labelWidth", col: "col", default: "default", noColon: "noColon", bordered: "bordered" }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], title: "title", size: "size", gutter: ["gutter", "gutter", numberAttribute], layout: "layout", labelWidth: ["labelWidth", "labelWidth", numberAttribute], col: ["col", "col", numberAttribute], default: ["default", "default", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], bordered: ["bordered", "bordered", booleanAttribute] }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
     <div class="ant-row" [ngStyle]="margin">
       @if (title) {
         <sv-title>
@@ -78,27 +72,6 @@ class SVContainerComponent {
     </div>
   `, isInline: true, dependencies: [{ kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "component", type: SVTitleComponent, selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber(null)
-], SVContainerComponent.prototype, "colInCon", void 0);
-__decorate([
-    InputNumber()
-], SVContainerComponent.prototype, "gutter", void 0);
-__decorate([
-    InputNumber()
-], SVContainerComponent.prototype, "labelWidth", void 0);
-__decorate([
-    InputNumber()
-], SVContainerComponent.prototype, "col", void 0);
-__decorate([
-    InputBoolean()
-], SVContainerComponent.prototype, "default", void 0);
-__decorate([
-    InputBoolean()
-], SVContainerComponent.prototype, "noColon", void 0);
-__decorate([
-    InputBoolean()
-], SVContainerComponent.prototype, "bordered", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVContainerComponent, decorators: [{
             type: Component,
             args: [{
@@ -131,25 +104,31 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                 }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { colInCon: [{
                 type: Input,
-                args: ['sv-container']
+                args: [{ alias: 'sv-container', transform: (v) => (v == null ? null : numberAttribute(v)) }]
             }], title: [{
                 type: Input
             }], size: [{
                 type: Input
             }], gutter: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], layout: [{
                 type: Input
             }], labelWidth: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], col: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], default: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], noColon: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], bordered: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }] } });
 
 class SVValueComponent {
@@ -214,28 +193,29 @@ class SVComponent {
         const { labelWidth, layout } = this.parent;
         return layout === 'horizontal' ? labelWidth : null;
     }
-    constructor(el, parent, rep, ren) {
-        this.el = el;
-        this.parent = parent;
-        this.rep = rep;
-        this.ren = ren;
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.parent = inject(SVContainerComponent, { host: true, optional: true });
+        this.rep = inject(ResponsiveService);
+        this.ren = inject(Renderer2);
         this.clsMap = [];
         this._noColon = false;
         this.hideLabel = false;
-        if (parent == null) {
+        if (this.parent == null) {
             throw new Error(`[sv] must include 'sv-container' component`);
         }
     }
     setClass() {
-        const { ren, col, clsMap, type, rep, noColon, parent } = this;
-        const el = this.el.nativeElement;
+        const { ren, col, clsMap, type, rep, noColon } = this;
+        const parent = this.parent;
+        const el = this.el;
         this._noColon = parent.bordered ? true : noColon != null ? noColon : parent.noColon;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         const parentCol = parent.colInCon || parent.col;
         clsMap.push(...rep.genCls(col != null ? col : parentCol, parentCol));
         clsMap.push(`${prefixCls}__item`);
-        if (this.parent.labelWidth)
+        if (parent.labelWidth)
             clsMap.push(`${prefixCls}__item-fixed`);
         if (type)
             clsMap.push(`${prefixCls}__type-${type}`);
@@ -251,7 +231,7 @@ class SVComponent {
     checkContent() {
         const { conEl } = this;
         const def = this.default;
-        if (!(def != null ? def : this.parent.default)) {
+        if (!(def != null ? def : this.parent?.default)) {
             return;
         }
         const el = conEl.nativeElement;
@@ -263,32 +243,16 @@ class SVComponent {
             el.classList.add(cls);
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVComponent, deps: [{ token: i0.ElementRef }, { token: SVContainerComponent, host: true, optional: true }, { token: i2.ResponsiveService }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SVComponent, isStandalone: true, selector: "sv, [sv]", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", label: "label", unit: "unit", col: "col", default: "default", type: "type", noColon: "noColon", hideLabel: "hideLabel" }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, viewQueries: [{ propertyName: "conEl", first: true, predicate: ["conEl"], descendants: true }], exportAs: ["sv"], usesOnChanges: true, ngImport: i0, template: "@if (!hideLabel) {\n  <div\n    class=\"sv__label\"\n    [class.sv__label-empty]=\"!label\"\n    [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n    [class.sv__no-colon]=\"_noColon\"\n    [style.width.px]=\"labelWidth\"\n  >\n    <span class=\"sv__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    @if (optional || optionalHelp) {\n      <span class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n        <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n        @if (optionalHelp) {\n          <i\n            nz-tooltip\n            [nzTooltipTitle]=\"optionalHelp\"\n            [nzTooltipColor]=\"optionalHelpColor\"\n            nz-icon\n            nzType=\"question-circle\"\n          ></i>\n        }\n      </span>\n    }\n  </div>\n}\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content />\n  </span>\n  @if (!!unit) {\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  }\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SVComponent, isStandalone: true, selector: "sv, [sv]", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", label: "label", unit: "unit", col: ["col", "col", (v) => (v == null ? null : numberAttribute(v))], default: ["default", "default", (v) => (v == null ? null : booleanAttribute(v))], type: "type", noColon: ["noColon", "noColon", (v) => (v == null ? null : booleanAttribute(v))], hideLabel: ["hideLabel", "hideLabel", booleanAttribute] }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, viewQueries: [{ propertyName: "conEl", first: true, predicate: ["conEl"], descendants: true }], exportAs: ["sv"], usesOnChanges: true, ngImport: i0, template: "@if (!hideLabel) {\n  <div\n    class=\"sv__label\"\n    [class.sv__label-empty]=\"!label\"\n    [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n    [class.sv__no-colon]=\"_noColon\"\n    [style.width.px]=\"labelWidth\"\n  >\n    <span class=\"sv__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    @if (optional || optionalHelp) {\n      <span class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n        <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n        @if (optionalHelp) {\n          <i\n            nz-tooltip\n            [nzTooltipTitle]=\"optionalHelp\"\n            [nzTooltipColor]=\"optionalHelpColor\"\n            nz-icon\n            nzType=\"question-circle\"\n          ></i>\n        }\n      </span>\n    }\n  </div>\n}\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content />\n  </span>\n  @if (!!unit) {\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  }\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber(null)
-], SVComponent.prototype, "col", void 0);
-__decorate([
-    InputBoolean(null)
-], SVComponent.prototype, "default", void 0);
-__decorate([
-    InputBoolean(null)
-], SVComponent.prototype, "noColon", void 0);
-__decorate([
-    InputBoolean()
-], SVComponent.prototype, "hideLabel", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SVComponent, decorators: [{
             type: Component,
             args: [{ selector: 'sv, [sv]', exportAs: 'sv', host: {
                         '[style.padding-left.px]': 'paddingValue',
                         '[style.padding-right.px]': 'paddingValue'
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NzStringTemplateOutletDirective, NzTooltipDirective, NzIconDirective, CdkObserveContent], template: "@if (!hideLabel) {\n  <div\n    class=\"sv__label\"\n    [class.sv__label-empty]=\"!label\"\n    [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n    [class.sv__no-colon]=\"_noColon\"\n    [style.width.px]=\"labelWidth\"\n  >\n    <span class=\"sv__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    @if (optional || optionalHelp) {\n      <span class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n        <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n        @if (optionalHelp) {\n          <i\n            nz-tooltip\n            [nzTooltipTitle]=\"optionalHelp\"\n            [nzTooltipColor]=\"optionalHelpColor\"\n            nz-icon\n            nzType=\"question-circle\"\n          ></i>\n        }\n      </span>\n    }\n  </div>\n}\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content />\n  </span>\n  @if (!!unit) {\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  }\n</div>\n" }]
-        }], ctorParameters: () => [{ type: i0.ElementRef }, { type: SVContainerComponent, decorators: [{
-                    type: Host
-                }, {
-                    type: Optional
-                }] }, { type: i2.ResponsiveService }, { type: i0.Renderer2 }], propDecorators: { conEl: [{
+        }], ctorParameters: () => [], propDecorators: { conEl: [{
                 type: ViewChild,
                 args: ['conEl', { static: false }]
             }], optional: [{
@@ -302,15 +266,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], unit: [{
                 type: Input
             }], col: [{
-                type: Input
+                type: Input,
+                args: [{ transform: (v) => (v == null ? null : numberAttribute(v)) }]
             }], default: [{
-                type: Input
+                type: Input,
+                args: [{ transform: (v) => (v == null ? null : booleanAttribute(v)) }]
             }], type: [{
                 type: Input
             }], noColon: [{
-                type: Input
+                type: Input,
+                args: [{ transform: (v) => (v == null ? null : booleanAttribute(v)) }]
             }], hideLabel: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }] } });
 
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];

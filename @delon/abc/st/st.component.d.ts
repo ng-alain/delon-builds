@@ -1,43 +1,26 @@
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AfterViewInit, ChangeDetectorRef, ElementRef, EventEmitter, OnChanges, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewInit, EventEmitter, OnChanges, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AlainI18NService, DelonLocaleService, DrawerHelper, LocaleData, ModalHelper } from '@delon/theme';
+import { LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSTConfig } from '@delon/util/config';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzContextMenuService, NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
+import { NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { NzTableComponent } from 'ng-zorro-antd/table';
-import { STColumnSource } from './st-column-source';
-import { STDataSource } from './st-data-source';
-import { STExport } from './st-export';
-import { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
-import { _STColumn, _STHeader, _STTdNotify } from './st.types';
+import type { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
+import type { _STColumn, _STHeader, _STTdNotify } from './st.types';
 import * as i0 from "@angular/core";
 export declare class STComponent implements AfterViewInit, OnChanges {
-    private cdr;
-    private el;
-    private exportSrv;
-    private doc;
-    private columnSource;
-    private dataSource;
-    private delonI18n;
-    private cms;
-    static ngAcceptInputType_ps: NumberInput;
-    static ngAcceptInputType_pi: NumberInput;
-    static ngAcceptInputType_total: NumberInput;
-    static ngAcceptInputType_loadingDelay: NumberInput;
-    static ngAcceptInputType_bordered: BooleanInput;
-    static ngAcceptInputType_expandRowByClick: BooleanInput;
-    static ngAcceptInputType_expandAccordion: BooleanInput;
-    static ngAcceptInputType_responsive: BooleanInput;
-    static ngAcceptInputType_responsiveHideHeaderFooter: BooleanInput;
-    static ngAcceptInputType_virtualScroll: BooleanInput;
-    static ngAcceptInputType_virtualItemSize: NumberInput;
-    static ngAcceptInputType_virtualMaxBufferPx: NumberInput;
-    static ngAcceptInputType_virtualMinBufferPx: NumberInput;
-    private destroy$;
+    private readonly i18nSrv;
+    private readonly el;
+    private readonly cdr;
+    private readonly doc;
+    private readonly exportSrv;
+    private readonly columnSource;
+    private readonly dataSource;
+    private readonly delonI18n;
+    private readonly cms;
+    private readonly destroy$;
     private totalTpl;
     private inied;
     cog: AlainSTConfig;
@@ -128,7 +111,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
      */
     get list(): STData[];
     get noColumns(): boolean;
-    constructor(i18nSrv: AlainI18NService, cdr: ChangeDetectorRef, el: ElementRef, exportSrv: STExport, doc: NzSafeAny, columnSource: STColumnSource, dataSource: STDataSource, delonI18n: DelonLocaleService, configSrv: AlainConfigService, cms: NzContextMenuService);
+    constructor(configSrv: AlainConfigService);
     private setCog;
     cd(): this;
     private refreshData;
@@ -257,14 +240,28 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STComponent, [{ optional: true; }, null, null, null, null, null, null, null, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": { "alias": "req"; "required": false; }; "res": { "alias": "res"; "required": false; }; "page": { "alias": "page"; "required": false; }; "data": { "alias": "data"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "contextmenu": { "alias": "contextmenu"; "required": false; }; "ps": { "alias": "ps"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "total": { "alias": "total"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "loadingDelay": { "alias": "loadingDelay"; "required": false; }; "loadingIndicator": { "alias": "loadingIndicator"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; "size": { "alias": "size"; "required": false; }; "scroll": { "alias": "scroll"; "required": false; }; "singleSort": { "alias": "singleSort"; "required": false; }; "multiSort": { "alias": "multiSort"; "required": false; }; "rowClassName": { "alias": "rowClassName"; "required": false; }; "clickRowClassName": { "alias": "clickRowClassName"; "required": false; }; "widthMode": { "alias": "widthMode"; "required": false; }; "widthConfig": { "alias": "widthConfig"; "required": false; }; "resizable": { "alias": "resizable"; "required": false; }; "header": { "alias": "header"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "bodyHeader": { "alias": "bodyHeader"; "required": false; }; "body": { "alias": "body"; "required": false; }; "expandRowByClick": { "alias": "expandRowByClick"; "required": false; }; "expandAccordion": { "alias": "expandAccordion"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; "noResult": { "alias": "noResult"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "responsiveHideHeaderFooter": { "alias": "responsiveHideHeaderFooter"; "required": false; }; "virtualScroll": { "alias": "virtualScroll"; "required": false; }; "virtualItemSize": { "alias": "virtualItemSize"; "required": false; }; "virtualMaxBufferPx": { "alias": "virtualMaxBufferPx"; "required": false; }; "virtualMinBufferPx": { "alias": "virtualMinBufferPx"; "required": false; }; "customRequest": { "alias": "customRequest"; "required": false; }; "virtualForTrackBy": { "alias": "virtualForTrackBy"; "required": false; }; }, { "error": "error"; "change": "change"; }, never, never, false, never>;
+    static ngAcceptInputType_ps: unknown;
+    static ngAcceptInputType_pi: unknown;
+    static ngAcceptInputType_total: unknown;
+    static ngAcceptInputType_loadingDelay: unknown;
+    static ngAcceptInputType_bordered: unknown;
+    static ngAcceptInputType_showHeader: unknown;
+    static ngAcceptInputType_expandRowByClick: unknown;
+    static ngAcceptInputType_expandAccordion: unknown;
+    static ngAcceptInputType_responsive: unknown;
+    static ngAcceptInputType_responsiveHideHeaderFooter: unknown;
+    static ngAcceptInputType_virtualScroll: unknown;
+    static ngAcceptInputType_virtualItemSize: unknown;
+    static ngAcceptInputType_virtualMaxBufferPx: unknown;
+    static ngAcceptInputType_virtualMinBufferPx: unknown;
 }
 export declare class STTdComponent {
-    private stComp;
-    private router;
-    private modalHelper;
-    private drawerHelper;
+    private readonly stComp;
+    private readonly router;
+    private readonly modalHelper;
+    private readonly drawerHelper;
     c: _STColumn;
     cIdx: number;
     data: STData[];
@@ -272,7 +269,6 @@ export declare class STTdComponent {
     index: number;
     readonly n: EventEmitter<_STTdNotify>;
     private get routerState();
-    constructor(stComp: STComponent, router: Router, modalHelper: ModalHelper, drawerHelper: DrawerHelper);
     private report;
     _checkbox(value: boolean): void;
     _radio(): void;
@@ -280,6 +276,6 @@ export declare class STTdComponent {
     _stopPropagation(ev: Event): void;
     _btn(btn: STColumnButton, ev?: Event): void;
     private btnCallback;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STTdComponent, [{ host: true; }, null, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STTdComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<STTdComponent, "st-td", never, { "c": { "alias": "c"; "required": false; }; "cIdx": { "alias": "cIdx"; "required": false; }; "data": { "alias": "data"; "required": false; }; "i": { "alias": "i"; "required": false; }; "index": { "alias": "index"; "required": false; }; }, { "n": "n"; }, never, never, false, never>;
 }

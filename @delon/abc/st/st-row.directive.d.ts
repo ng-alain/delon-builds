@@ -10,12 +10,11 @@ export declare class STRowSource {
     static ɵprov: i0.ɵɵInjectableDeclaration<STRowSource>;
 }
 export declare class STRowDirective implements OnInit {
-    private ref;
-    private source;
+    private readonly source;
+    private readonly ref;
     id: string;
     type?: 'title';
-    constructor(ref: TemplateRef<void>, source: STRowSource);
     ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STRowDirective, [null, { host: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STRowDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<STRowDirective, "[st-row]", never, { "id": { "alias": "st-row"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, false, never>;
 }
