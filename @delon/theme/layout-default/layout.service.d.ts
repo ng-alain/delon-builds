@@ -1,15 +1,13 @@
 import { Observable } from 'rxjs';
-import { SettingsService } from '@delon/theme';
 import { LayoutDefaultOptions } from './types';
 import * as i0 from "@angular/core";
 export declare class LayoutDefaultService {
-    private settings;
+    private readonly settings;
     private _options$;
     private _options;
     get options(): LayoutDefaultOptions;
     get options$(): Observable<LayoutDefaultOptions>;
     get collapsedIcon(): string;
-    constructor(settings: SettingsService);
     private notify;
     /**
      * Set layout configuration

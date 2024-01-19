@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { InjectionToken, Provider } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
@@ -15,13 +14,12 @@ export interface SettingsKeys {
 export declare const ALAIN_SETTING_KEYS: InjectionToken<SettingsKeys>;
 export declare const ALAIN_SETTING_DEFAULT: Provider;
 export declare class SettingsService<L extends Layout = Layout, U extends User = User, A extends App = App> {
-    private platform;
-    private KEYS;
+    private readonly KEYS;
+    private readonly platform;
     private notify$;
     private _app;
     private _user;
     private _layout;
-    constructor(platform: Platform, KEYS: SettingsKeys);
     getData(key: string): NzSafeAny;
     setData(key: string, value: NzSafeAny): void;
     get layout(): L;

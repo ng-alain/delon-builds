@@ -10,8 +10,7 @@ import * as i0 from "@angular/core";
  * ```
  */
 export declare abstract class BaseApi {
-    protected injector: Injector;
-    constructor(injector: Injector);
+    protected readonly injector: Injector;
     static ɵfac: i0.ɵɵFactoryDeclaration<BaseApi, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<BaseApi>;
 }

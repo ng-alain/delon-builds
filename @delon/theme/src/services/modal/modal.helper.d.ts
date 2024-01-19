@@ -1,8 +1,7 @@
-import { DragDrop } from '@angular/cdk/drag-drop';
 import { TemplateRef, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { ModalOptions, NzModalService } from 'ng-zorro-antd/modal';
+import { ModalOptions } from 'ng-zorro-antd/modal';
 import * as i0 from "@angular/core";
 export interface ModalHelperOptions {
     /** 大小；例如：lg、600、80%，默认：`lg` */
@@ -32,10 +31,9 @@ export interface ModalHelperDragOptions {
  * 对话框辅助类
  */
 export declare class ModalHelper {
-    private srv;
-    private drag;
-    private document;
-    constructor(srv: NzModalService, drag: DragDrop, doc: NzSafeAny);
+    private readonly srv;
+    private readonly drag;
+    private readonly doc;
     private createDragRef;
     /**
      * 构建一个对话框

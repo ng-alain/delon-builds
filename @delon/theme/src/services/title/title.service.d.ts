@@ -1,20 +1,11 @@
-import { Injector, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { AlainI18NService } from '../i18n/i18n';
-import { MenuService } from '../menu/menu.service';
 import * as i0 from "@angular/core";
 export interface RouteTitle {
     title?: string | Observable<string>;
     titleI18n?: string;
 }
 export declare class TitleService implements OnDestroy {
-    private injector;
-    private title;
-    private menuSrv;
-    private i18nSrv;
-    private doc;
     private destroy$;
     private _prefix;
     private _suffix;
@@ -22,7 +13,12 @@ export declare class TitleService implements OnDestroy {
     private _reverse;
     private tit$?;
     readonly DELAY_TIME = 25;
-    constructor(injector: Injector, title: Title, menuSrv: MenuService, i18nSrv: AlainI18NService, doc: NzSafeAny);
+    private readonly doc;
+    private readonly injector;
+    private readonly title;
+    private readonly menuSrv;
+    private readonly i18nSrv;
+    constructor();
     /**
      * Set separator
      *
@@ -71,6 +67,6 @@ export declare class TitleService implements OnDestroy {
      */
     setTitleByI18n(key: string, params?: unknown): void;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<TitleService, [null, null, null, { optional: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<TitleService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<TitleService>;
 }

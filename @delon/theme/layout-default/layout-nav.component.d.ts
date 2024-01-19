@@ -1,29 +1,27 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Router } from '@angular/router';
-import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { Direction } from '@angular/cdk/bidi';
+import { EventEmitter, OnDestroy, OnInit } from '@angular/core';
+import { SafeHtml } from '@angular/platform-browser';
+import { Menu, MenuInner } from '@delon/theme';
 import * as i0 from "@angular/core";
 export interface Nav extends MenuInner {
     _needIcon?: boolean;
     _text?: SafeHtml;
 }
 export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
-    private menuSrv;
-    private settings;
-    private router;
-    private render;
-    private cdr;
-    private ngZone;
-    private sanitizer;
-    private doc;
-    private win;
-    private directionality;
+    private readonly doc;
+    private readonly win;
+    private readonly router;
+    private readonly render;
+    private readonly menuSrv;
+    private readonly settings;
+    private readonly cdr;
+    private readonly ngZone;
+    private readonly sanitizer;
+    private readonly directionality;
     private bodyEl;
     private destroy$;
     private floatingEl;
-    dir: Direction;
+    dir?: Direction;
     list: Nav[];
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;
@@ -33,7 +31,6 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     maxLevelIcon: number;
     readonly select: EventEmitter<Menu>;
     get collapsed(): boolean;
-    constructor(menuSrv: MenuService, settings: SettingsService, router: Router, render: Renderer2, cdr: ChangeDetectorRef, ngZone: NgZone, sanitizer: DomSanitizer, doc: NzSafeAny, win: NzSafeAny, directionality: Directionality);
     private getLinkNode;
     private floatingClickHandle;
     private clearFloating;
@@ -53,7 +50,7 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private get isPad();
     private underPad;
     private openAside;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; }; "recursivePath": { "alias": "recursivePath"; "required": false; }; "hideEmptyChildren": { "alias": "hideEmptyChildren"; "required": false; }; "openStrictly": { "alias": "openStrictly"; "required": false; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
     static ngAcceptInputType_disabledAcl: unknown;
     static ngAcceptInputType_autoCloseUnderPad: unknown;

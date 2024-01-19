@@ -1,28 +1,26 @@
 import { DOCUMENT, isPlatformServer, CommonModule, registerLocaleData } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, Inject, DestroyRef, Optional, Pipe, Injector, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, PLATFORM_ID, InjectionToken, Injectable, DestroyRef, Injector, Pipe, Inject, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders, Version } from '@angular/core';
 import { filter, BehaviorSubject, share, Subject, map, delay, of, isObservable, switchMap, take, Observable, tap, finalize, throwError, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import * as i1 from '@delon/util/config';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
-import * as i1$1 from '@angular/cdk/platform';
-import * as i1$2 from '@angular/cdk/bidi';
-import * as i3 from 'ng-zorro-antd/core/config';
+import { Platform } from '@angular/cdk/platform';
+import { Directionality } from '@angular/cdk/bidi';
+import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import * as i1$3 from '@angular/platform-browser';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DragDrop } from '@angular/cdk/drag-drop';
 import { deepMerge } from '@delon/util/other';
-import * as i1$4 from 'ng-zorro-antd/modal';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import * as i2 from '@angular/cdk/drag-drop';
+import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDrawerService, NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { HttpClient, HttpParams, HttpContextToken } from '@angular/common/http';
 import { formatDate } from '@delon/util/date-time';
 import { NzI18nService, NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline, MenuFoldOutline, MenuUnfoldOutline } from '@ant-design/icons-angular/icons';
-import * as i1$5 from 'ng-zorro-antd/icon';
+import * as i1$1 from 'ng-zorro-antd/icon';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 function stepPreloader() {
@@ -444,9 +442,9 @@ const ALAIN_SETTING_DEFAULT = {
     }
 };
 class SettingsService {
-    constructor(platform, KEYS) {
-        this.platform = platform;
-        this.KEYS = KEYS;
+    constructor() {
+        this.KEYS = inject(ALAIN_SETTING_KEYS);
+        this.platform = inject(Platform);
         this.notify$ = new Subject();
         this._app = null;
         this._user = null;
@@ -527,16 +525,13 @@ class SettingsService {
     getUser() {
         return this._user;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SettingsService, deps: [{ token: i1$1.Platform }, { token: ALAIN_SETTING_KEYS }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SettingsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SettingsService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SettingsService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$1.Platform }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [ALAIN_SETTING_KEYS]
-                }] }] });
+        }] });
 
 const REP_MAX = 6;
 const SPAN_MAX = 24;
@@ -630,15 +625,15 @@ class RTLService {
     get change() {
         return this.srv.notify.pipe(filter(w => w.name === RTL_DIRECTION), map(v => v.value));
     }
-    constructor(d, srv, nz, delon, platform, doc) {
-        this.d = d;
-        this.srv = srv;
-        this.nz = nz;
-        this.delon = delon;
-        this.platform = platform;
-        this.doc = doc;
+    constructor() {
+        this.d = inject(Directionality);
+        this.nz = inject(NzConfigService);
+        this.delon = inject(AlainConfigService);
+        this.platform = inject(Platform);
+        this.doc = inject(DOCUMENT);
+        this.srv = inject(SettingsService);
         this._dir = LTR;
-        this.dir = srv.layout.direction === RTL ? RTL : LTR;
+        this.dir = this.srv.layout.direction === RTL ? RTL : LTR;
     }
     /**
      * Toggle text direction
@@ -669,37 +664,34 @@ class RTLService {
             this.delon.set(name, { direction: this.dir });
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RTLService, deps: [{ token: i1$2.Directionality }, { token: SettingsService }, { token: i3.NzConfigService }, { token: i1.AlainConfigService }, { token: i1$1.Platform }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RTLService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RTLService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: RTLService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$2.Directionality }, { type: SettingsService }, { type: i3.NzConfigService }, { type: i1.AlainConfigService }, { type: i1$1.Platform }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }] });
+        }], ctorParameters: () => [] });
 
 class TitleService {
-    constructor(injector, title, menuSrv, i18nSrv, doc) {
-        this.injector = injector;
-        this.title = title;
-        this.menuSrv = menuSrv;
-        this.i18nSrv = i18nSrv;
-        this.doc = doc;
+    constructor() {
         this.destroy$ = inject(DestroyRef);
         this._prefix = '';
         this._suffix = '';
         this._separator = ' - ';
         this._reverse = false;
         this.DELAY_TIME = 25;
+        this.doc = inject(DOCUMENT);
+        this.injector = inject(Injector);
+        this.title = inject(Title);
+        this.menuSrv = inject(MenuService);
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
         /**
          * Set default title name
          *
          * 设置默认标题名
          */
         this.default = `Not Page Name`;
-        i18nSrv.change.pipe(takeUntilDestroyed()).subscribe(() => this.setTitle());
+        this.i18nSrv?.change.pipe(takeUntilDestroyed()).subscribe(() => this.setTitle());
     }
     /**
      * Set separator
@@ -795,26 +787,18 @@ class TitleService {
      * Set i18n key of the document title
      */
     setTitleByI18n(key, params) {
-        this.setTitle(this.i18nSrv.fanyi(key, params));
+        this.setTitle(this.i18nSrv?.fanyi(key, params));
     }
     ngOnDestroy() {
         this.tit$?.unsubscribe();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TitleService, deps: [{ token: i0.Injector }, { token: i1$3.Title }, { token: MenuService }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TitleService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TitleService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: TitleService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i0.Injector }, { type: i1$3.Title }, { type: MenuService }, { type: undefined, decorators: [{
-                    type: Optional
-                }, {
-                    type: Inject,
-                    args: [ALAIN_I18N_TOKEN]
-                }] }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }] });
+        }], ctorParameters: () => [] });
 
 class I18nPipe {
     constructor() {
@@ -882,13 +866,13 @@ const CLS_DRAG = 'MODAL-DRAG';
  * 对话框辅助类
  */
 class ModalHelper {
-    constructor(srv, drag, doc) {
-        this.srv = srv;
-        this.drag = drag;
-        this.document = doc;
+    constructor() {
+        this.srv = inject(NzModalService);
+        this.drag = inject(DragDrop);
+        this.doc = inject(DOCUMENT);
     }
     createDragRef(options, wrapCls) {
-        const wrapEl = this.document.querySelector(wrapCls);
+        const wrapEl = this.doc.querySelector(wrapCls);
         const modalEl = wrapEl.firstChild;
         const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
         if (handelEl) {
@@ -1008,16 +992,13 @@ class ModalHelper {
         };
         return this.create(comp, params, { ...options, modalOptions });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ModalHelper, deps: [{ token: i1$4.NzModalService }, { token: i2.DragDrop }, { token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ModalHelper, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ModalHelper, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ModalHelper, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1$4.NzModalService }, { type: i2.DragDrop }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }] });
+        }] });
 
 /**
  * 抽屉辅助类
@@ -1281,18 +1262,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
  * ```
  */
 class BaseApi {
-    constructor(injector) {
-        this.injector = injector;
+    constructor() {
+        this.injector = inject(Injector);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: BaseApi, deps: [{ token: Injector }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: BaseApi, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: BaseApi }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: BaseApi, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i0.Injector, decorators: [{
-                    type: Inject,
-                    args: [Injector]
-                }] }] });
+        }] });
 const paramKey = `__api_params`;
 function setParam(target, key = paramKey) {
     let params = target[key];
@@ -2826,7 +2804,7 @@ class AlainThemeModule {
             providers: HELPERS
         };
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1$5.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1$1.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.1.0", ngImport: i0, type: AlainThemeModule, imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], exports: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] }); }
     static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AlainThemeModule, providers: [ALAIN_SETTING_DEFAULT], imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DelonLocaleModule] }); }
 }
@@ -2837,7 +2815,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     providers: [ALAIN_SETTING_DEFAULT],
                     exports: [...PIPES, DelonLocaleModule]
                 }]
-        }], ctorParameters: () => [{ type: i1$5.NzIconService }] });
+        }], ctorParameters: () => [{ type: i1$1.NzIconService }] });
 
 function provideAlain(options) {
     const lang = options?.defaultLang;
