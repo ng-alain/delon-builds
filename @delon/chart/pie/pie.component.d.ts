@@ -1,7 +1,6 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import type { Event } from '@antv/g2';
 import { G2BaseComponent, G2InteractionType } from '@delon/chart/core';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export interface G2PieData {
@@ -24,14 +23,6 @@ export interface G2PieRatio {
     inverseColor: string;
 }
 export declare class G2PieComponent extends G2BaseComponent {
-    static ngAcceptInputType_height: NumberInput;
-    static ngAcceptInputType_animate: BooleanInput;
-    static ngAcceptInputType_hasLegend: BooleanInput;
-    static ngAcceptInputType_percent: NumberInput;
-    static ngAcceptInputType_tooltip: BooleanInput;
-    static ngAcceptInputType_lineWidth: NumberInput;
-    static ngAcceptInputType_blockMaxWidth: NumberInput;
-    static ngAcceptInputType_select: BooleanInput;
     private percentColor;
     legendData: NzSafeAny[];
     isPercent: boolean;
@@ -64,4 +55,12 @@ export declare class G2PieComponent extends G2BaseComponent {
     onChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2PieComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<G2PieComponent, "g2-pie", ["g2Pie"], { "animate": { "alias": "animate"; "required": false; }; "color": { "alias": "color"; "required": false; }; "subTitle": { "alias": "subTitle"; "required": false; }; "total": { "alias": "total"; "required": false; }; "height": { "alias": "height"; "required": false; }; "hasLegend": { "alias": "hasLegend"; "required": false; }; "inner": { "alias": "inner"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "percent": { "alias": "percent"; "required": false; }; "tooltip": { "alias": "tooltip"; "required": false; }; "lineWidth": { "alias": "lineWidth"; "required": false; }; "blockMaxWidth": { "alias": "blockMaxWidth"; "required": false; }; "select": { "alias": "select"; "required": false; }; "valueFormat": { "alias": "valueFormat"; "required": false; }; "data": { "alias": "data"; "required": false; }; "colors": { "alias": "colors"; "required": false; }; "interaction": { "alias": "interaction"; "required": false; }; "ratio": { "alias": "ratio"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
+    static ngAcceptInputType_animate: unknown;
+    static ngAcceptInputType_height: unknown;
+    static ngAcceptInputType_hasLegend: unknown;
+    static ngAcceptInputType_percent: unknown;
+    static ngAcceptInputType_tooltip: unknown;
+    static ngAcceptInputType_lineWidth: unknown;
+    static ngAcceptInputType_blockMaxWidth: unknown;
+    static ngAcceptInputType_select: unknown;
 }

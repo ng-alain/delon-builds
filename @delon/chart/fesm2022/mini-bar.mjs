@@ -1,8 +1,6 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent, genMiniTooltipOptions } from '@delon/chart/core';
-import { InputNumber } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
 class G2MiniBarComponent extends G2BaseComponent {
@@ -62,14 +60,8 @@ class G2MiniBarComponent extends G2BaseComponent {
         _chart.changeData(data);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2MiniBarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: G2MiniBarComponent, isStandalone: true, selector: "g2-mini-bar", inputs: { color: "color", height: "height", borderWidth: "borderWidth", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: G2MiniBarComponent, isStandalone: true, selector: "g2-mini-bar", inputs: { color: "color", height: ["height", "height", numberAttribute], borderWidth: ["borderWidth", "borderWidth", numberAttribute], padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], G2MiniBarComponent.prototype, "height", void 0);
-__decorate([
-    InputNumber()
-], G2MiniBarComponent.prototype, "borderWidth", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2MiniBarComponent, decorators: [{
             type: Component,
             args: [{
@@ -87,9 +79,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
         }], propDecorators: { color: [{
                 type: Input
             }], height: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], borderWidth: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], padding: [{
                 type: Input
             }], data: [{

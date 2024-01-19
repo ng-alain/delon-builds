@@ -1,7 +1,6 @@
 import { Platform } from '@angular/cdk/platform';
 import { AfterViewInit, ChangeDetectorRef, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { NumberInput } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import * as i0 from "@angular/core";
 /**
@@ -11,9 +10,6 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     private cdr;
     private lazySrv;
     private platform;
-    static ngAcceptInputType_padding: NumberInput;
-    static ngAcceptInputType_size: NumberInput;
-    static ngAcceptInputType_delay: NumberInput;
     private lazy$?;
     private qr;
     private cog;
@@ -40,4 +36,7 @@ export declare class QRComponent implements OnChanges, AfterViewInit, OnDestroy 
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<QRComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<QRComponent, "qr", ["qr"], { "background": { "alias": "background"; "required": false; }; "backgroundAlpha": { "alias": "backgroundAlpha"; "required": false; }; "foreground": { "alias": "foreground"; "required": false; }; "foregroundAlpha": { "alias": "foregroundAlpha"; "required": false; }; "level": { "alias": "level"; "required": false; }; "mime": { "alias": "mime"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "size": { "alias": "size"; "required": false; }; "value": { "alias": "value"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "change": "change"; }, never, never, false, never>;
+    static ngAcceptInputType_padding: unknown;
+    static ngAcceptInputType_size: unknown;
+    static ngAcceptInputType_delay: unknown;
 }

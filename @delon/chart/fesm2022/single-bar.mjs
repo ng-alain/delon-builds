@@ -1,8 +1,6 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
+import { numberAttribute, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
 class G2SingleBarComponent extends G2BaseComponent {
@@ -70,26 +68,8 @@ class G2SingleBarComponent extends G2BaseComponent {
         _chart.changeData([{ value }]);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2SingleBarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: G2SingleBarComponent, isStandalone: true, selector: "g2-single-bar", inputs: { plusColor: "plusColor", minusColor: "minusColor", height: "height", barSize: "barSize", min: "min", max: "max", value: "value", line: "line", format: "format", padding: "padding", textStyle: "textStyle" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2SingleBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: G2SingleBarComponent, isStandalone: true, selector: "g2-single-bar", inputs: { plusColor: "plusColor", minusColor: "minusColor", height: ["height", "height", numberAttribute], barSize: ["barSize", "barSize", numberAttribute], min: ["min", "min", numberAttribute], max: ["max", "max", numberAttribute], value: ["value", "value", numberAttribute], line: ["line", "line", booleanAttribute], format: "format", padding: "padding", textStyle: "textStyle" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2SingleBar"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], G2SingleBarComponent.prototype, "height", void 0);
-__decorate([
-    InputNumber()
-], G2SingleBarComponent.prototype, "barSize", void 0);
-__decorate([
-    InputNumber()
-], G2SingleBarComponent.prototype, "min", void 0);
-__decorate([
-    InputNumber()
-], G2SingleBarComponent.prototype, "max", void 0);
-__decorate([
-    InputNumber()
-], G2SingleBarComponent.prototype, "value", void 0);
-__decorate([
-    InputBoolean()
-], G2SingleBarComponent.prototype, "line", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2SingleBarComponent, decorators: [{
             type: Component,
             args: [{
@@ -109,17 +89,23 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], minusColor: [{
                 type: Input
             }], height: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], barSize: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], min: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], max: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], value: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], line: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], format: [{
                 type: Input
             }], padding: [{

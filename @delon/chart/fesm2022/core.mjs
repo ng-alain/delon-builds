@@ -1,10 +1,10 @@
 import * as i0 from '@angular/core';
-import { Injectable, EventEmitter, Directive, Input, ViewChild, Output } from '@angular/core';
+import { Injectable, EventEmitter, booleanAttribute, numberAttribute, Directive, Input, ViewChild, Output } from '@angular/core';
 import { Subject, takeUntil, filter } from 'rxjs';
 import * as i1 from '@delon/util/config';
 import * as i2 from '@delon/util/other';
 import { __decorate } from 'tslib';
-import { InputBoolean, InputNumber, ZoneOutside } from '@delon/util/decorator';
+import { ZoneOutside } from '@delon/util/decorator';
 import * as i2$1 from '@angular/cdk/platform';
 
 class G2Service {
@@ -134,14 +134,8 @@ class G2BaseComponent {
         this.destroyChart();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2BaseComponent, deps: [{ token: G2Service }, { token: i0.ElementRef }, { token: i0.NgZone }, { token: i2$1.Platform }, { token: i0.ChangeDetectorRef }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: G2BaseComponent, inputs: { repaint: "repaint", delay: "delay", theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "17.1.0", type: G2BaseComponent, inputs: { repaint: ["repaint", "repaint", booleanAttribute], delay: ["delay", "delay", numberAttribute], theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 }); }
 }
-__decorate([
-    InputBoolean()
-], G2BaseComponent.prototype, "repaint", void 0);
-__decorate([
-    InputNumber()
-], G2BaseComponent.prototype, "delay", void 0);
 __decorate([
     ZoneOutside()
 ], G2BaseComponent.prototype, "load", null);
@@ -151,12 +145,14 @@ __decorate([
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2BaseComponent, decorators: [{
             type: Directive
         }], ctorParameters: () => [{ type: G2Service }, { type: i0.ElementRef }, { type: i0.NgZone }, { type: i2$1.Platform }, { type: i0.ChangeDetectorRef }], propDecorators: { repaint: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], node: [{
                 type: ViewChild,
                 args: ['container', { static: true }]
             }], delay: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], theme: [{
                 type: Input
             }], ready: [{

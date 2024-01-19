@@ -1,8 +1,6 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, numberAttribute, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent, genMiniTooltipOptions } from '@delon/chart/core';
-import { InputNumber, InputBoolean } from '@delon/util/decorator';
 import { CommonModule } from '@angular/common';
 
 class G2MiniAreaComponent extends G2BaseComponent {
@@ -74,23 +72,8 @@ class G2MiniAreaComponent extends G2BaseComponent {
         _chart.changeData(data);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2MiniAreaComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "17.1.0", type: G2MiniAreaComponent, isStandalone: true, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: "borderWidth", height: "height", fit: "fit", line: "line", animate: "animate", xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "17.1.0", type: G2MiniAreaComponent, isStandalone: true, selector: "g2-mini-area", inputs: { color: "color", borderColor: "borderColor", borderWidth: ["borderWidth", "borderWidth", numberAttribute], height: ["height", "height", numberAttribute], fit: ["fit", "fit", booleanAttribute], line: ["line", "line", booleanAttribute], animate: ["animate", "animate", booleanAttribute], xAxis: "xAxis", yAxis: "yAxis", padding: "padding", data: "data", yTooltipSuffix: "yTooltipSuffix", tooltipType: "tooltipType" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2MiniArea"], usesInheritance: true, ngImport: i0, template: ``, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], G2MiniAreaComponent.prototype, "borderWidth", void 0);
-__decorate([
-    InputNumber()
-], G2MiniAreaComponent.prototype, "height", void 0);
-__decorate([
-    InputBoolean()
-], G2MiniAreaComponent.prototype, "fit", void 0);
-__decorate([
-    InputBoolean()
-], G2MiniAreaComponent.prototype, "line", void 0);
-__decorate([
-    InputBoolean()
-], G2MiniAreaComponent.prototype, "animate", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2MiniAreaComponent, decorators: [{
             type: Component,
             args: [{
@@ -110,15 +93,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], borderColor: [{
                 type: Input
             }], borderWidth: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], height: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], fit: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], line: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], animate: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], xAxis: [{
                 type: Input
             }], yAxis: [{

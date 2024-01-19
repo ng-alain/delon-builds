@@ -4,7 +4,6 @@ import type { REP_TYPE } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { SEErrorRefresh, SELayout } from './se.types';
 import * as i0 from "@angular/core";
-import * as i1 from "ng-zorro-antd/core/types";
 export declare class SETitleComponent implements OnInit {
     private readonly parent;
     private readonly el;
@@ -39,9 +38,9 @@ export declare class SEContainerComponent {
     setErrors(errors: SEErrorRefresh[]): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEContainerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": { "alias": "se-container"; "required": false; }; "col": { "alias": "col"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "title": { "alias": "title"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "nzLayout": { "alias": "nzLayout"; "required": false; }; "size": { "alias": "size"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "ingoreDirty": { "alias": "ingoreDirty"; "required": false; }; "line": { "alias": "line"; "required": false; }; "errors": { "alias": "errors"; "required": false; }; }, {}, never, ["*"], true, never>;
-    static ngAcceptInputType_colInCon: i1.NzSafeAny;
-    static ngAcceptInputType_col: i1.NzSafeAny;
-    static ngAcceptInputType_labelWidth: i1.NzSafeAny;
+    static ngAcceptInputType_colInCon: unknown;
+    static ngAcceptInputType_col: unknown;
+    static ngAcceptInputType_labelWidth: unknown;
     static ngAcceptInputType_noColon: unknown;
     static ngAcceptInputType_gutter: unknown;
     static ngAcceptInputType_firstVisual: unknown;

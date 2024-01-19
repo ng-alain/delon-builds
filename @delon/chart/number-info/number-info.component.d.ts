@@ -1,8 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { NumberInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";
 export declare class NumberInfoComponent {
-    static ngAcceptInputType_gap: NumberInput;
     /** 标题 */
     title?: string | TemplateRef<void> | null;
     /** 子标题 */
@@ -21,4 +19,5 @@ export declare class NumberInfoComponent {
     gap: number;
     static ɵfac: i0.ɵɵFactoryDeclaration<NumberInfoComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<NumberInfoComponent, "number-info", ["numberInfo"], { "title": { "alias": "title"; "required": false; }; "subTitle": { "alias": "subTitle"; "required": false; }; "total": { "alias": "total"; "required": false; }; "subTotal": { "alias": "subTotal"; "required": false; }; "suffix": { "alias": "suffix"; "required": false; }; "status": { "alias": "status"; "required": false; }; "theme": { "alias": "theme"; "required": false; }; "gap": { "alias": "gap"; "required": false; }; }, {}, never, never, true, never>;
+    static ngAcceptInputType_gap: unknown;
 }

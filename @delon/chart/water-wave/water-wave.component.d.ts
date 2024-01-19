@@ -1,6 +1,5 @@
 import { Platform } from '@angular/cdk/platform';
 import { ChangeDetectorRef, ElementRef, NgZone, OnChanges, OnDestroy, OnInit, Renderer2, TemplateRef } from '@angular/core';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import * as i0 from "@angular/core";
 export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnInit {
     private el;
@@ -8,10 +7,6 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     private ngZone;
     private cdr;
     private platform;
-    static ngAcceptInputType_animate: BooleanInput;
-    static ngAcceptInputType_delay: NumberInput;
-    static ngAcceptInputType_height: NumberInput;
-    static ngAcceptInputType_percent: NumberInput;
     private resize$;
     private node;
     private timer;
@@ -31,4 +26,8 @@ export declare class G2WaterWaveComponent implements OnDestroy, OnChanges, OnIni
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2WaterWaveComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<G2WaterWaveComponent, "g2-water-wave", ["g2WaterWave"], { "animate": { "alias": "animate"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; "title": { "alias": "title"; "required": false; }; "color": { "alias": "color"; "required": false; }; "height": { "alias": "height"; "required": false; }; "percent": { "alias": "percent"; "required": false; }; }, {}, never, never, true, never>;
+    static ngAcceptInputType_animate: unknown;
+    static ngAcceptInputType_delay: unknown;
+    static ngAcceptInputType_height: unknown;
+    static ngAcceptInputType_percent: unknown;
 }

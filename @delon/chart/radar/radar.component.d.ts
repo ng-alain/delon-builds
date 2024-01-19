@@ -1,7 +1,6 @@
 import { EventEmitter, TemplateRef } from '@angular/core';
 import type { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export interface G2RadarData {
@@ -15,9 +14,6 @@ export interface G2RadarClickItem {
     ev: Event;
 }
 export declare class G2RadarComponent extends G2BaseComponent {
-    static ngAcceptInputType_height: NumberInput;
-    static ngAcceptInputType_hasLegend: BooleanInput;
-    static ngAcceptInputType_tickCount: NumberInput;
     legendData: NzSafeAny[];
     title?: string | TemplateRef<void> | null;
     height: number;
@@ -35,4 +31,7 @@ export declare class G2RadarComponent extends G2BaseComponent {
     onChanges(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2RadarComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<G2RadarComponent, "g2-radar", ["g2Radar"], { "title": { "alias": "title"; "required": false; }; "height": { "alias": "height"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "hasLegend": { "alias": "hasLegend"; "required": false; }; "tickCount": { "alias": "tickCount"; "required": false; }; "data": { "alias": "data"; "required": false; }; "colors": { "alias": "colors"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
+    static ngAcceptInputType_height: unknown;
+    static ngAcceptInputType_hasLegend: unknown;
+    static ngAcceptInputType_tickCount: unknown;
 }

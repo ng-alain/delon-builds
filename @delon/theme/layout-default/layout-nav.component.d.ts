@@ -3,7 +3,6 @@ import { ChangeDetectorRef, EventEmitter, NgZone, OnDestroy, OnInit, Renderer2 }
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Menu, MenuInner, MenuService, SettingsService } from '@delon/theme';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export interface Nav extends MenuInner {
@@ -21,12 +20,6 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private doc;
     private win;
     private directionality;
-    static ngAcceptInputType_disabledAcl: BooleanInput;
-    static ngAcceptInputType_autoCloseUnderPad: BooleanInput;
-    static ngAcceptInputType_recursivePath: BooleanInput;
-    static ngAcceptInputType_hideEmptyChildren: BooleanInput;
-    static ngAcceptInputType_openStrictly: BooleanInput;
-    static ngAcceptInputType_maxLevelIcon: NumberInput;
     private bodyEl;
     private destroy$;
     private floatingEl;
@@ -62,4 +55,10 @@ export declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private openAside;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, [null, null, null, null, null, null, null, null, null, { optional: true; }]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; }; "recursivePath": { "alias": "recursivePath"; "required": false; }; "hideEmptyChildren": { "alias": "hideEmptyChildren"; "required": false; }; "openStrictly": { "alias": "openStrictly"; "required": false; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
+    static ngAcceptInputType_disabledAcl: unknown;
+    static ngAcceptInputType_autoCloseUnderPad: unknown;
+    static ngAcceptInputType_recursivePath: unknown;
+    static ngAcceptInputType_hideEmptyChildren: unknown;
+    static ngAcceptInputType_openStrictly: unknown;
+    static ngAcceptInputType_maxLevelIcon: unknown;
 }

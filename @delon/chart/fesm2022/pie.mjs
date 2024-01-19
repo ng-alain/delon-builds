@@ -1,9 +1,7 @@
-import { __decorate } from 'tslib';
 import { NgStyle, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, booleanAttribute, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputBoolean, InputNumber } from '@delon/util/decorator';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzDividerComponent, NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
@@ -147,32 +145,8 @@ class G2PieComponent extends G2BaseComponent {
         this.fixData();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2PieComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: G2PieComponent, isStandalone: true, selector: "g2-pie", inputs: { animate: "animate", color: "color", subTitle: "subTitle", total: "total", height: "height", hasLegend: "hasLegend", inner: "inner", padding: "padding", percent: "percent", tooltip: "tooltip", lineWidth: "lineWidth", blockMaxWidth: "blockMaxWidth", select: "select", valueFormat: "valueFormat", data: "data", colors: "colors", interaction: "interaction", ratio: "ratio" }, outputs: { clickItem: "clickItem" }, host: { properties: { "class.g2-pie": "true", "class.g2-pie__legend-has": "hasLegend", "class.g2-pie__legend-block": "block", "class.g2-pie__mini": "isPercent" } }, exportAs: ["g2Pie"], usesInheritance: true, ngImport: i0, template: "@if (!loaded) {\n  <nz-skeleton />\n}\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  @if (subTitle || total) {\n    <div class=\"g2-pie__total\">\n      @if (subTitle) {\n        <h4 class=\"g2-pie__total-title\">\n          <ng-container *nzStringTemplateOutlet=\"subTitle\">\n            <div [innerHTML]=\"subTitle\"></div>\n          </ng-container>\n        </h4>\n      }\n      @if (total) {\n        <div class=\"g2-pie__total-stat\">\n          <ng-container *nzStringTemplateOutlet=\"total\">\n            <div [innerHTML]=\"total\"></div>\n          </ng-container>\n        </div>\n      }\n    </div>\n  }\n</div>\n@if (hasLegend && legendData.length > 0) {\n  <ul class=\"g2-pie__legend\">\n    @for (item of legendData; track $index) {\n      <li (click)=\"_click($index)\" class=\"g2-pie__legend-item\">\n        <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n        <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n        <nz-divider nzType=\"vertical\" />\n        <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n        <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n      </li>\n    }\n  </ul>\n}\n", dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: NzDividerComponent, selector: "nz-divider", inputs: ["nzText", "nzType", "nzOrientation", "nzDashed", "nzPlain"], exportAs: ["nzDivider"] }, { kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: G2PieComponent, isStandalone: true, selector: "g2-pie", inputs: { animate: ["animate", "animate", booleanAttribute], color: "color", subTitle: "subTitle", total: "total", height: ["height", "height", numberAttribute], hasLegend: ["hasLegend", "hasLegend", booleanAttribute], inner: "inner", padding: "padding", percent: ["percent", "percent", numberAttribute], tooltip: ["tooltip", "tooltip", booleanAttribute], lineWidth: ["lineWidth", "lineWidth", numberAttribute], blockMaxWidth: ["blockMaxWidth", "blockMaxWidth", numberAttribute], select: ["select", "select", booleanAttribute], valueFormat: "valueFormat", data: "data", colors: "colors", interaction: "interaction", ratio: "ratio" }, outputs: { clickItem: "clickItem" }, host: { properties: { "class.g2-pie": "true", "class.g2-pie__legend-has": "hasLegend", "class.g2-pie__legend-block": "block", "class.g2-pie__mini": "isPercent" } }, exportAs: ["g2Pie"], usesInheritance: true, ngImport: i0, template: "@if (!loaded) {\n  <nz-skeleton />\n}\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  @if (subTitle || total) {\n    <div class=\"g2-pie__total\">\n      @if (subTitle) {\n        <h4 class=\"g2-pie__total-title\">\n          <ng-container *nzStringTemplateOutlet=\"subTitle\">\n            <div [innerHTML]=\"subTitle\"></div>\n          </ng-container>\n        </h4>\n      }\n      @if (total) {\n        <div class=\"g2-pie__total-stat\">\n          <ng-container *nzStringTemplateOutlet=\"total\">\n            <div [innerHTML]=\"total\"></div>\n          </ng-container>\n        </div>\n      }\n    </div>\n  }\n</div>\n@if (hasLegend && legendData.length > 0) {\n  <ul class=\"g2-pie__legend\">\n    @for (item of legendData; track $index) {\n      <li (click)=\"_click($index)\" class=\"g2-pie__legend-item\">\n        <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n        <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n        <nz-divider nzType=\"vertical\" />\n        <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n        <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n      </li>\n    }\n  </ul>\n}\n", dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "component", type: NzDividerComponent, selector: "nz-divider", inputs: ["nzText", "nzType", "nzOrientation", "nzDashed", "nzPlain"], exportAs: ["nzDivider"] }, { kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputBoolean()
-], G2PieComponent.prototype, "animate", void 0);
-__decorate([
-    InputNumber()
-], G2PieComponent.prototype, "height", void 0);
-__decorate([
-    InputBoolean()
-], G2PieComponent.prototype, "hasLegend", void 0);
-__decorate([
-    InputNumber()
-], G2PieComponent.prototype, "percent", void 0);
-__decorate([
-    InputBoolean()
-], G2PieComponent.prototype, "tooltip", void 0);
-__decorate([
-    InputNumber()
-], G2PieComponent.prototype, "lineWidth", void 0);
-__decorate([
-    InputNumber()
-], G2PieComponent.prototype, "blockMaxWidth", void 0);
-__decorate([
-    InputBoolean()
-], G2PieComponent.prototype, "select", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2PieComponent, decorators: [{
             type: Component,
             args: [{ selector: 'g2-pie', exportAs: 'g2Pie', host: {
@@ -182,7 +156,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                         '[class.g2-pie__mini]': 'isPercent'
                     }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: true, imports: [NzSkeletonComponent, NzStringTemplateOutletDirective, NzDividerComponent, NgStyle], template: "@if (!loaded) {\n  <nz-skeleton />\n}\n<div class=\"g2-pie__chart\">\n  <div #container></div>\n  @if (subTitle || total) {\n    <div class=\"g2-pie__total\">\n      @if (subTitle) {\n        <h4 class=\"g2-pie__total-title\">\n          <ng-container *nzStringTemplateOutlet=\"subTitle\">\n            <div [innerHTML]=\"subTitle\"></div>\n          </ng-container>\n        </h4>\n      }\n      @if (total) {\n        <div class=\"g2-pie__total-stat\">\n          <ng-container *nzStringTemplateOutlet=\"total\">\n            <div [innerHTML]=\"total\"></div>\n          </ng-container>\n        </div>\n      }\n    </div>\n  }\n</div>\n@if (hasLegend && legendData.length > 0) {\n  <ul class=\"g2-pie__legend\">\n    @for (item of legendData; track $index) {\n      <li (click)=\"_click($index)\" class=\"g2-pie__legend-item\">\n        <span class=\"g2-pie__legend-dot\" [ngStyle]=\"{ 'background-color': !item.checked ? '#aaa' : item.color }\"></span>\n        <span class=\"g2-pie__legend-title\">{{ item.x }}</span>\n        <nz-divider nzType=\"vertical\" />\n        <span class=\"g2-pie__legend-percent\">{{ item.percent }}%</span>\n        <span class=\"g2-pie__legend-value\" [innerHTML]=\"valueFormat ? valueFormat(item.y) : item.y\"></span>\n      </li>\n    }\n  </ul>\n}\n" }]
         }], propDecorators: { animate: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], color: [{
                 type: Input
             }], subTitle: [{
@@ -190,23 +165,30 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], total: [{
                 type: Input
             }], height: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], hasLegend: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], inner: [{
                 type: Input
             }], padding: [{
                 type: Input
             }], percent: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], tooltip: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], lineWidth: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], blockMaxWidth: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], select: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], valueFormat: [{
                 type: Input
             }], data: [{

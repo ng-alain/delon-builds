@@ -1,7 +1,6 @@
 import { AfterViewInit, OnChanges } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import * as i0 from "@angular/core";
-import * as i1 from "ng-zorro-antd/core/types";
 export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     private readonly el;
     private readonly ngZone;
@@ -38,7 +37,7 @@ export declare class EllipsisComponent implements AfterViewInit, OnChanges {
     static ɵfac: i0.ɵɵFactoryDeclaration<EllipsisComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<EllipsisComponent, "ellipsis", ["ellipsis"], { "tooltip": { "alias": "tooltip"; "required": false; }; "length": { "alias": "length"; "required": false; }; "lines": { "alias": "lines"; "required": false; }; "fullWidthRecognition": { "alias": "fullWidthRecognition"; "required": false; }; "tail": { "alias": "tail"; "required": false; }; }, {}, never, ["*"], true, never>;
     static ngAcceptInputType_tooltip: unknown;
-    static ngAcceptInputType_length: i1.NzSafeAny;
-    static ngAcceptInputType_lines: i1.NzSafeAny;
+    static ngAcceptInputType_length: unknown;
+    static ngAcceptInputType_lines: unknown;
     static ngAcceptInputType_fullWidthRecognition: unknown;
 }

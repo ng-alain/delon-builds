@@ -1,13 +1,11 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { NgZone, Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, Directive, EventEmitter, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, ElementRef, NgModule, ENVIRONMENT_INITIALIZER, inject, makeEnvironmentProviders } from '@angular/core';
+import { NgZone, Injectable, Inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, numberAttribute, Directive, EventEmitter, booleanAttribute, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, ElementRef, NgModule, ENVIRONMENT_INITIALIZER, inject, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, filter, merge, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
 import { ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import * as i6 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
-import { toBoolean, InputNumber, InputBoolean } from '@delon/util/decorator';
 import { deepCopy } from '@delon/util/other';
 import * as i1$1 from 'ng-zorro-antd/core/form';
 import { NzFormStatusService } from 'ng-zorro-antd/core/form';
@@ -99,7 +97,7 @@ function isBlank(o) {
     return o == null;
 }
 function toBool(value, defaultValue) {
-    return toBoolean(value, defaultValue);
+    return value == null ? defaultValue : `${value}` !== 'false';
 }
 function di(ui, ...args) {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {
@@ -1110,17 +1108,14 @@ class SFFixedDirective {
             this.init();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFFixedDirective, deps: [{ token: i0.ElementRef }, { token: i0.Renderer2 }], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: SFFixedDirective, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num"] }, usesOnChanges: true, ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "17.1.0", type: SFFixedDirective, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num", numberAttribute] }, usesOnChanges: true, ngImport: i0 }); }
 }
-__decorate([
-    InputNumber()
-], SFFixedDirective.prototype, "num", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFFixedDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[fixed-label]' }]
         }], ctorParameters: () => [{ type: i0.ElementRef }, { type: i0.Renderer2 }], propDecorators: { num: [{
                 type: Input,
-                args: ['fixed-label']
+                args: [{ alias: 'fixed-label', transform: numberAttribute }]
             }] } });
 
 function useFactory(injector, schemaValidatorFactory, cogSrv) {
@@ -1717,7 +1712,7 @@ class SFComponent {
         this.terminator.destroy();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFComponent, deps: [{ token: FormPropertyFactory }, { token: TerminatorService }, { token: i3.DomSanitizer }, { token: i0.ChangeDetectorRef }, { token: i4.DelonLocaleService }, { token: i5.ACLService, optional: true }, { token: ALAIN_I18N_TOKEN, optional: true }, { token: i6.AlainConfigService }, { token: i7.Platform }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: "liveValidate", autocomplete: "autocomplete", firstVisual: "firstVisual", onlyVisual: "onlyVisual", compact: "compact", mode: "mode", loading: "loading", disabled: "disabled", noColon: "noColon", cleanValue: "cleanValue", delay: "delay" }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: SFComponent, selector: "sf, [sf]", inputs: { layout: "layout", schema: "schema", ui: "ui", formData: "formData", button: "button", liveValidate: ["liveValidate", "liveValidate", booleanAttribute], autocomplete: "autocomplete", firstVisual: ["firstVisual", "firstVisual", booleanAttribute], onlyVisual: ["onlyVisual", "onlyVisual", booleanAttribute], compact: ["compact", "compact", booleanAttribute], mode: "mode", loading: ["loading", "loading", booleanAttribute], disabled: ["disabled", "disabled", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], cleanValue: ["cleanValue", "cleanValue", booleanAttribute], delay: ["delay", "delay", booleanAttribute] }, outputs: { formValueChange: "formValueChange", formChange: "formChange", formSubmit: "formSubmit", formReset: "formReset", formError: "formError" }, host: { properties: { "class.sf": "true", "class.sf__inline": "layout === 'inline'", "class.sf__horizontal": "layout === 'horizontal'", "class.sf__search": "mode === 'search'", "class.sf__edit": "mode === 'edit'", "class.sf__no-error": "onlyVisual", "class.sf__no-colon": "noColon", "class.sf__compact": "compact" } }, providers: [
             WidgetFactory,
             {
                 provide: FormPropertyFactory,
@@ -1727,33 +1722,6 @@ class SFComponent {
             TerminatorService
         ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @if (_btn && _btn.render) {\n      <nz-form-item [ngClass]=\"_btn.render!.class!\" class=\"sf-btns\" [fixed-label]=\"_btn.render!.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"_btn.render!.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <i\n                      nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    ></i>\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"_btn.render!.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @if (_btn.reset_icon) {\n                      <i\n                        nz-icon\n                        [nzType]=\"_btn.reset_icon.type!\"\n                        [nzTheme]=\"_btn.reset_icon.theme!\"\n                        [nzTwotoneColor]=\"_btn.reset_icon.twoToneColor!\"\n                        [nzIconfont]=\"_btn.reset_icon.iconfont!\"\n                      ></i>\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgClass, selector: "[ngClass]", inputs: ["class", "ngClass"] }, { kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i2.NgForm, selector: "form:not([ngNoForm]):not([formGroup]),ng-form,[ngForm]", inputs: ["ngFormOptions"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "component", type: i10.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2$1.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i12.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i13.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i13.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: i14.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap"], exportAs: ["nzForm"] }, { kind: "component", type: i14.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i5$1.NzIconDirective, selector: "[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "liveValidate", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "firstVisual", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "onlyVisual", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "compact", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "loading", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "disabled", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "noColon", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "cleanValue", void 0);
-__decorate([
-    InputBoolean()
-], SFComponent.prototype, "delay", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFComponent, decorators: [{
             type: Component,
             args: [{ selector: 'sf, [sf]', exportAs: 'sf', providers: [
@@ -1792,27 +1760,36 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }], button: [{
                 type: Input
             }], liveValidate: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], autocomplete: [{
                 type: Input
             }], firstVisual: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], onlyVisual: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], compact: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], mode: [{
                 type: Input
             }], loading: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], disabled: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], noColon: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], cleanValue: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], delay: [{
-                type: Input
+                type: Input,
+                args: [{ transform: booleanAttribute }]
             }], formValueChange: [{
                 type: Output
             }], formChange: [{

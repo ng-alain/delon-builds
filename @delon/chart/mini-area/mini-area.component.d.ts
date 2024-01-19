@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import type { Event } from '@antv/g2';
 import { G2BaseComponent } from '@delon/chart/core';
-import { BooleanInput, NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export interface G2MiniAreaData {
@@ -14,11 +13,6 @@ export interface G2MiniAreaClickItem {
     ev: Event;
 }
 export declare class G2MiniAreaComponent extends G2BaseComponent {
-    static ngAcceptInputType_borderWidth: NumberInput;
-    static ngAcceptInputType_height: NumberInput;
-    static ngAcceptInputType_fit: BooleanInput;
-    static ngAcceptInputType_line: BooleanInput;
-    static ngAcceptInputType_animate: BooleanInput;
     color: string;
     borderColor: string;
     borderWidth: number;
@@ -37,4 +31,9 @@ export declare class G2MiniAreaComponent extends G2BaseComponent {
     changeData(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<G2MiniAreaComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<G2MiniAreaComponent, "g2-mini-area", ["g2MiniArea"], { "color": { "alias": "color"; "required": false; }; "borderColor": { "alias": "borderColor"; "required": false; }; "borderWidth": { "alias": "borderWidth"; "required": false; }; "height": { "alias": "height"; "required": false; }; "fit": { "alias": "fit"; "required": false; }; "line": { "alias": "line"; "required": false; }; "animate": { "alias": "animate"; "required": false; }; "xAxis": { "alias": "xAxis"; "required": false; }; "yAxis": { "alias": "yAxis"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; "data": { "alias": "data"; "required": false; }; "yTooltipSuffix": { "alias": "yTooltipSuffix"; "required": false; }; "tooltipType": { "alias": "tooltipType"; "required": false; }; }, { "clickItem": "clickItem"; }, never, never, true, never>;
+    static ngAcceptInputType_borderWidth: unknown;
+    static ngAcceptInputType_height: unknown;
+    static ngAcceptInputType_fit: unknown;
+    static ngAcceptInputType_line: unknown;
+    static ngAcceptInputType_animate: unknown;
 }

@@ -1,9 +1,7 @@
-import { __decorate } from 'tslib';
 import * as i0 from '@angular/core';
-import { EventEmitter, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { EventEmitter, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
 import { takeUntil, debounceTime, fromEvent } from 'rxjs';
 import { G2BaseComponent } from '@delon/chart/core';
-import { InputNumber } from '@delon/util/decorator';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
@@ -29,19 +27,13 @@ class G2CustomComponent extends G2BaseComponent {
             .subscribe(() => this.resize.emit(this.el));
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2CustomComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: G2CustomComponent, isStandalone: true, selector: "g2,g2-custom", inputs: { height: "height", resizeTime: "resizeTime" }, outputs: { render: "render", resize: "resize", destroy: "destroy" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Custom"], usesInheritance: true, ngImport: i0, template: `
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "17.1.0", type: G2CustomComponent, isStandalone: true, selector: "g2,g2-custom", inputs: { height: ["height", "height", numberAttribute], resizeTime: ["resizeTime", "resizeTime", numberAttribute] }, outputs: { render: "render", resize: "resize", destroy: "destroy" }, host: { properties: { "style.height.px": "height" } }, exportAs: ["g2Custom"], usesInheritance: true, ngImport: i0, template: `
     @if (!loaded) {
       <nz-skeleton />
     }
     <ng-content />
   `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
-__decorate([
-    InputNumber()
-], G2CustomComponent.prototype, "height", void 0);
-__decorate([
-    InputNumber()
-], G2CustomComponent.prototype, "resizeTime", void 0);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: G2CustomComponent, decorators: [{
             type: Component,
             args: [{
@@ -63,9 +55,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
                     imports: [NzSkeletonComponent]
                 }]
         }], propDecorators: { height: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], resizeTime: [{
-                type: Input
+                type: Input,
+                args: [{ transform: numberAttribute }]
             }], render: [{
                 type: Output
             }], resize: [{

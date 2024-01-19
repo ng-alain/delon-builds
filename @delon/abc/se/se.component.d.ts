@@ -1,7 +1,6 @@
 import { AfterContentInit, AfterViewInit, OnChanges, TemplateRef } from '@angular/core';
 import { SEErrorType } from './se.types';
 import * as i0 from "@angular/core";
-import * as i1 from "ng-zorro-antd/core/types";
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit {
     private readonly parent;
     private readonly el;
@@ -52,10 +51,10 @@ export declare class SEComponent implements OnChanges, AfterContentInit, AfterVi
     ngAfterViewInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEComponent, "se", ["se"], { "optional": { "alias": "optional"; "required": false; }; "optionalHelp": { "alias": "optionalHelp"; "required": false; }; "optionalHelpColor": { "alias": "optionalHelpColor"; "required": false; }; "error": { "alias": "error"; "required": false; }; "extra": { "alias": "extra"; "required": false; }; "label": { "alias": "label"; "required": false; }; "col": { "alias": "col"; "required": false; }; "required": { "alias": "required"; "required": false; }; "controlClass": { "alias": "controlClass"; "required": false; }; "line": { "alias": "line"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "hideLabel": { "alias": "hideLabel"; "required": false; }; "id": { "alias": "id"; "required": false; }; }, {}, ["ngModel", "formControlName"], ["*"], true, never>;
-    static ngAcceptInputType_col: i1.NzSafeAny;
+    static ngAcceptInputType_col: unknown;
     static ngAcceptInputType_required: unknown;
-    static ngAcceptInputType_line: i1.NzSafeAny;
-    static ngAcceptInputType_labelWidth: i1.NzSafeAny;
-    static ngAcceptInputType_noColon: i1.NzSafeAny;
+    static ngAcceptInputType_line: unknown;
+    static ngAcceptInputType_labelWidth: unknown;
+    static ngAcceptInputType_noColon: unknown;
     static ngAcceptInputType_hideLabel: unknown;
 }

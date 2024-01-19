@@ -4,7 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ACLService } from '@delon/acl';
 import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
-import { BooleanInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { NzFormControlStatusType } from 'ng-zorro-antd/form';
 import type { ErrorData } from './errors';
@@ -26,15 +25,6 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private aclSrv;
     private i18nSrv;
     private platform;
-    static ngAcceptInputType_liveValidate: BooleanInput;
-    static ngAcceptInputType_firstVisual: BooleanInput;
-    static ngAcceptInputType_onlyVisual: BooleanInput;
-    static ngAcceptInputType_compact: BooleanInput;
-    static ngAcceptInputType_loading: BooleanInput;
-    static ngAcceptInputType_disabled: BooleanInput;
-    static ngAcceptInputType_noColon: BooleanInput;
-    static ngAcceptInputType_cleanValue: BooleanInput;
-    static ngAcceptInputType_delay: BooleanInput;
     private _renders;
     private _item;
     private _valid;
@@ -212,4 +202,13 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, [null, null, null, null, null, { optional: true; }, { optional: true; }, null, null]>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": { "alias": "layout"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "button": { "alias": "button"; "required": false; }; "liveValidate": { "alias": "liveValidate"; "required": false; }; "autocomplete": { "alias": "autocomplete"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; }; "compact": { "alias": "compact"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "cleanValue": { "alias": "cleanValue"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
+    static ngAcceptInputType_liveValidate: unknown;
+    static ngAcceptInputType_firstVisual: unknown;
+    static ngAcceptInputType_onlyVisual: unknown;
+    static ngAcceptInputType_compact: unknown;
+    static ngAcceptInputType_loading: unknown;
+    static ngAcceptInputType_disabled: unknown;
+    static ngAcceptInputType_noColon: unknown;
+    static ngAcceptInputType_cleanValue: unknown;
+    static ngAcceptInputType_delay: unknown;
 }
