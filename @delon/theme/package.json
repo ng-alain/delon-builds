@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "17.0.5-f09927b",
+  "version": "17.0.5-0e238e7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,8 +22,8 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^17.1.0",
-    "@delon/acl": "^17.0.5-f09927b",
-    "@delon/util": "^17.0.5-f09927b",
+    "@delon/acl": "^17.0.5-0e238e7",
+    "@delon/util": "^17.0.5-0e238e7",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/theme.mjs",
@@ -38,17 +38,17 @@
       "esm": "./esm2022/theme.mjs",
       "default": "./fesm2022/theme.mjs"
     },
-    "./layout-default": {
-      "types": "./layout-default/index.d.ts",
-      "esm2022": "./esm2022/layout-default/layout-default.mjs",
-      "esm": "./esm2022/layout-default/layout-default.mjs",
-      "default": "./fesm2022/layout-default.mjs"
-    },
     "./layout-blank": {
       "types": "./layout-blank/index.d.ts",
       "esm2022": "./esm2022/layout-blank/layout-blank.mjs",
       "esm": "./esm2022/layout-blank/layout-blank.mjs",
       "default": "./fesm2022/layout-blank.mjs"
+    },
+    "./layout-default": {
+      "types": "./layout-default/index.d.ts",
+      "esm2022": "./esm2022/layout-default/layout-default.mjs",
+      "esm": "./esm2022/layout-default/layout-default.mjs",
+      "default": "./fesm2022/layout-default.mjs"
     },
     "./setting-drawer": {
       "types": "./setting-drawer/index.d.ts",
