@@ -1,6 +1,6 @@
 {
   "name": "@delon/mock",
-  "version": "17.0.5-6a02e22",
+  "version": "17.0.5-56326c1",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "mockjs": "^1.1.0",
     "@types/mockjs": "^1.0.10",
-    "@delon/util": "^17.0.5-6a02e22",
+    "@delon/util": "^17.0.5-56326c1",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/mock.mjs",
