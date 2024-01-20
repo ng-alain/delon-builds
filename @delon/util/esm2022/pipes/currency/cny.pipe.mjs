@@ -1,23 +1,23 @@
-import { Pipe } from '@angular/core';
+import { Pipe, inject } from '@angular/core';
+import { CurrencyService } from '@delon/util/format';
 import * as i0 from "@angular/core";
-import * as i1 from "@delon/util/format";
+/**
+ * Converted into RMB notation.
+ *
+ * 转化成人民币表示法
+ */
 export class CurrencyCNYPipe {
-    constructor(srv) {
-        this.srv = srv;
+    constructor() {
+        this.srv = inject(CurrencyService);
     }
-    /**
-     * Converted into RMB notation.
-     *
-     * 转化成人民币表示法
-     */
     transform(value, options) {
         return this.srv.cny(value, options);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyCNYPipe, deps: [{ token: i1.CurrencyService }], target: i0.ɵɵFactoryTarget.Pipe }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyCNYPipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
     static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "17.1.0", ngImport: i0, type: CurrencyCNYPipe, isStandalone: true, name: "cny" }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
             type: Pipe,
             args: [{ name: 'cny', standalone: true }]
-        }], ctorParameters: () => [{ type: i1.CurrencyService }] });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY255LnBpcGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy91dGlsL3BpcGVzL2N1cnJlbmN5L2NueS5waXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxJQUFJLEVBQWlCLE1BQU0sZUFBZSxDQUFDOzs7QUFLcEQsTUFBTSxPQUFPLGVBQWU7SUFDMUIsWUFBb0IsR0FBb0I7UUFBcEIsUUFBRyxHQUFILEdBQUcsQ0FBaUI7SUFBRyxDQUFDO0lBRTVDOzs7O09BSUc7SUFDSCxTQUFTLENBQUMsS0FBc0IsRUFBRSxPQUE0QjtRQUM1RCxPQUFPLElBQUksQ0FBQyxHQUFHLENBQUMsR0FBRyxDQUFDLEtBQUssRUFBRSxPQUFPLENBQUMsQ0FBQztJQUN0QyxDQUFDOzhHQVZVLGVBQWU7NEdBQWYsZUFBZTs7MkZBQWYsZUFBZTtrQkFEM0IsSUFBSTttQkFBQyxFQUFFLElBQUksRUFBRSxLQUFLLEVBQUUsVUFBVSxFQUFFLElBQUksRUFBRSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IFBpcGUsIFBpcGVUcmFuc2Zvcm0gfSBmcm9tICdAYW5ndWxhci9jb3JlJztcblxuaW1wb3J0IHsgQ3VycmVuY3lDTllPcHRpb25zLCBDdXJyZW5jeVNlcnZpY2UgfSBmcm9tICdAZGVsb24vdXRpbC9mb3JtYXQnO1xuXG5AUGlwZSh7IG5hbWU6ICdjbnknLCBzdGFuZGFsb25lOiB0cnVlIH0pXG5leHBvcnQgY2xhc3MgQ3VycmVuY3lDTllQaXBlIGltcGxlbWVudHMgUGlwZVRyYW5zZm9ybSB7XG4gIGNvbnN0cnVjdG9yKHByaXZhdGUgc3J2OiBDdXJyZW5jeVNlcnZpY2UpIHt9XG5cbiAgLyoqXG4gICAqIENvbnZlcnRlZCBpbnRvIFJNQiBub3RhdGlvbi5cbiAgICpcbiAgICog6L2s5YyW5oiQ5Lq65rCR5biB6KGo56S65rOVXG4gICAqL1xuICB0cmFuc2Zvcm0odmFsdWU6IG51bWJlciB8IHN0cmluZywgb3B0aW9ucz86IEN1cnJlbmN5Q05ZT3B0aW9ucyk6IHN0cmluZyB7XG4gICAgcmV0dXJuIHRoaXMuc3J2LmNueSh2YWx1ZSwgb3B0aW9ucyk7XG4gIH1cbn1cbiJdfQ==
+        }] });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY255LnBpcGUuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy91dGlsL3BpcGVzL2N1cnJlbmN5L2NueS5waXBlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBRSxJQUFJLEVBQWlCLE1BQU0sRUFBRSxNQUFNLGVBQWUsQ0FBQztBQUU1RCxPQUFPLEVBQXNCLGVBQWUsRUFBRSxNQUFNLG9CQUFvQixDQUFDOztBQUV6RTs7OztHQUlHO0FBRUgsTUFBTSxPQUFPLGVBQWU7SUFENUI7UUFFbUIsUUFBRyxHQUFHLE1BQU0sQ0FBQyxlQUFlLENBQUMsQ0FBQztLQUtoRDtJQUhDLFNBQVMsQ0FBQyxLQUFzQixFQUFFLE9BQTRCO1FBQzVELE9BQU8sSUFBSSxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsS0FBSyxFQUFFLE9BQU8sQ0FBQyxDQUFDO0lBQ3RDLENBQUM7OEdBTFUsZUFBZTs0R0FBZixlQUFlOzsyRkFBZixlQUFlO2tCQUQzQixJQUFJO21CQUFDLEVBQUUsSUFBSSxFQUFFLEtBQUssRUFBRSxVQUFVLEVBQUUsSUFBSSxFQUFFIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUGlwZSwgUGlwZVRyYW5zZm9ybSwgaW5qZWN0IH0gZnJvbSAnQGFuZ3VsYXIvY29yZSc7XG5cbmltcG9ydCB7IEN1cnJlbmN5Q05ZT3B0aW9ucywgQ3VycmVuY3lTZXJ2aWNlIH0gZnJvbSAnQGRlbG9uL3V0aWwvZm9ybWF0JztcblxuLyoqXG4gKiBDb252ZXJ0ZWQgaW50byBSTUIgbm90YXRpb24uXG4gKlxuICog6L2s5YyW5oiQ5Lq65rCR5biB6KGo56S65rOVXG4gKi9cbkBQaXBlKHsgbmFtZTogJ2NueScsIHN0YW5kYWxvbmU6IHRydWUgfSlcbmV4cG9ydCBjbGFzcyBDdXJyZW5jeUNOWVBpcGUgaW1wbGVtZW50cyBQaXBlVHJhbnNmb3JtIHtcbiAgcHJpdmF0ZSByZWFkb25seSBzcnYgPSBpbmplY3QoQ3VycmVuY3lTZXJ2aWNlKTtcblxuICB0cmFuc2Zvcm0odmFsdWU6IG51bWJlciB8IHN0cmluZywgb3B0aW9ucz86IEN1cnJlbmN5Q05ZT3B0aW9ucyk6IHN0cmluZyB7XG4gICAgcmV0dXJuIHRoaXMuc3J2LmNueSh2YWx1ZSwgb3B0aW9ucyk7XG4gIH1cbn1cbiJdfQ==

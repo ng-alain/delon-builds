@@ -2,10 +2,11 @@ import { AlainConfigService } from '@delon/util/config';
 import { CurrencyCNYOptions, CurrencyFormatOptions, CurrencyMegaOptions, CurrencyMegaResult } from './currency.types';
 import * as i0 from "@angular/core";
 export declare class CurrencyService {
-    private locale;
+    private readonly locale;
+    private readonly defCurrencyCode;
     private c;
     private readonly currencyPipe;
-    constructor(cog: AlainConfigService, locale: string, _defaultCurrencyCode?: string);
+    constructor(cog: AlainConfigService);
     /**
      * Format a number with commas as thousands separators
      *

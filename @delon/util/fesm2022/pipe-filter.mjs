@@ -1,13 +1,13 @@
 import * as i0 from '@angular/core';
 import { Pipe, NgModule } from '@angular/core';
 
+/**
+ * Filter array
+ *
+ * 过滤数组
+ */
 // eslint-disable-next-line @angular-eslint/no-pipe-impure
 class FilterPipe {
-    /**
-     * Filter array
-     *
-     * 过滤数组
-     */
     transform(array, matcher, ...args) {
         return array.filter(i => matcher(i, ...args));
     }

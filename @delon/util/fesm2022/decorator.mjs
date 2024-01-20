@@ -93,7 +93,7 @@ function makeFn(type, options) {
  *
  * ```ts
  * class MockClass {
- *  constructor(public ngZone: NgZone) {}
+ *  readonly ngZone = inject(NgZone);
  *
  *  {AT}ZoneOutside()
  *  runOutsideAngular(): void {}
@@ -110,7 +110,7 @@ function ZoneOutside(options) {
  *
  * ```ts
  * class MockClass {
- *  constructor(public ngZone: NgZone) {}
+ *  readonly ngZone = inject(NgZone);
  *
  *  {AT}ZoneRun()
  *  run(): void {}

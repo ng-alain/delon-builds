@@ -1,7 +1,7 @@
 import extend from 'extend';
 import { DOCUMENT } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Injectable, Inject } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, share, filter, isObservable } from 'rxjs';
 
 /**
@@ -120,8 +120,8 @@ const log = (...args) => {
  * 延迟加载资源（js 或 css）服务
  */
 class LazyService {
-    constructor(doc) {
-        this.doc = doc;
+    constructor() {
+        this.doc = inject(DOCUMENT);
         this.list = {};
         this.cached = {};
         this._notify = new BehaviorSubject([]);
@@ -231,16 +231,13 @@ class LazyService {
             resolve(item);
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LazyService, deps: [{ token: DOCUMENT }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LazyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LazyService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: LazyService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DOCUMENT]
-                }] }] });
+        }] });
 
 function throwError(msg, actual, expected, comparison) {
     if (typeof ngDevMode === 'undefined' || ngDevMode) {

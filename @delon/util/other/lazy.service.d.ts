@@ -23,11 +23,10 @@ export interface LazyLoadOptions {
  * 延迟加载资源（js 或 css）服务
  */
 export declare class LazyService {
-    private doc;
+    private readonly doc;
     private list;
     private cached;
     private _notify;
-    constructor(doc: NzSafeAny);
     get change(): Observable<LazyResult[]>;
     clear(): void;
     private attachAttributes;

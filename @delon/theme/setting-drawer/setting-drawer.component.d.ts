@@ -1,25 +1,23 @@
-import { Direction, Directionality } from '@angular/cdk/bidi';
-import { ChangeDetectorRef, NgZone, OnInit } from '@angular/core';
-import { Layout, SettingsService } from '@delon/theme';
-import { LazyService } from '@delon/util/other';
+import { Direction } from '@angular/cdk/bidi';
+import { OnInit } from '@angular/core';
+import { Layout } from '@delon/theme';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import * as i0 from "@angular/core";
 export declare class SettingDrawerComponent implements OnInit {
-    private cdr;
-    private msg;
-    private settingSrv;
-    private lazy;
-    private ngZone;
-    private doc;
-    private directionality;
+    private readonly cdr;
+    private readonly msg;
+    private readonly settingSrv;
+    private readonly lazy;
+    private readonly ngZone;
+    private readonly doc;
+    private readonly directionality;
     autoApplyColor: boolean;
     compilingText: string;
     devTips: string;
     lessJs: string;
     private loadedLess;
     private dir$;
-    dir: Direction;
+    dir?: Direction;
     isDev: boolean;
     collapse: boolean;
     get layout(): Layout;
@@ -29,7 +27,7 @@ export declare class SettingDrawerComponent implements OnInit {
         key: string;
         color: string;
     }[];
-    constructor(cdr: ChangeDetectorRef, msg: NzMessageService, settingSrv: SettingsService, lazy: LazyService, ngZone: NgZone, doc: NzSafeAny, directionality: Directionality);
+    constructor();
     private get cachedData();
     private get DEFAULT_PRIMARY();
     ngOnInit(): void;
@@ -44,7 +42,7 @@ export declare class SettingDrawerComponent implements OnInit {
     apply(): void;
     reset(): void;
     copyVar(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SettingDrawerComponent, [null, null, null, null, null, null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SettingDrawerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": { "alias": "autoApplyColor"; "required": false; }; "compilingText": { "alias": "compilingText"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "lessJs": { "alias": "lessJs"; "required": false; }; }, {}, never, never, false, never>;
     static ngAcceptInputType_autoApplyColor: unknown;
 }

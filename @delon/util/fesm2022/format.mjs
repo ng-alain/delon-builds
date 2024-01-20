@@ -1,7 +1,7 @@
 import { deepGet } from '@delon/util/other';
 import { CurrencyPipe, formatNumber } from '@angular/common';
 import * as i0 from '@angular/core';
-import { LOCALE_ID, DEFAULT_CURRENCY_CODE, Injectable, Inject } from '@angular/core';
+import { LOCALE_ID, inject, DEFAULT_CURRENCY_CODE, Injectable } from '@angular/core';
 import * as i1 from '@delon/util/config';
 
 /**
@@ -191,9 +191,10 @@ const CurrencyMega_Powers = [
 ];
 
 class CurrencyService {
-    constructor(cog, locale, _defaultCurrencyCode = 'USD') {
-        this.locale = locale;
-        this.currencyPipe = new CurrencyPipe(locale, _defaultCurrencyCode);
+    constructor(cog) {
+        this.locale = inject(LOCALE_ID);
+        this.defCurrencyCode = inject(DEFAULT_CURRENCY_CODE, { optional: true }) ?? 'USD';
+        this.currencyPipe = new CurrencyPipe(this.locale, this.defCurrencyCode);
         this.c = cog.merge('utilCurrency', {
             startingUnit: 'yuan',
             megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
@@ -409,19 +410,13 @@ class CurrencyService {
                 : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
         return ret;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyService, deps: [{ token: i1.AlainConfigService }, { token: LOCALE_ID }, { token: DEFAULT_CURRENCY_CODE }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CurrencyService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [LOCALE_ID]
-                }] }, { type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DEFAULT_CURRENCY_CODE]
-                }] }] });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
 /**
  * Generated bundle index. Do not edit.

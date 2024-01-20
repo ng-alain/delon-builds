@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { NgZone, Injectable, Inject, inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, ElementRef, Renderer2, numberAttribute, Directive, EventEmitter, booleanAttribute, Injector, ChangeDetectionStrategy, Optional, Output, ChangeDetectorRef, HostBinding, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
+import { NgZone, Injectable, inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, ElementRef, Renderer2, numberAttribute, Directive, EventEmitter, booleanAttribute, Injector, ChangeDetectionStrategy, Optional, Inject, Output, ChangeDetectorRef, HostBinding, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, filter, merge, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
@@ -911,13 +911,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             type: Injectable
         }] });
 class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
-    constructor(cogSrv, ngZone) {
+    constructor() {
         super();
-        this.ngZone = ngZone;
+        this.ngZone = inject(NgZone);
+        this.cogSrv = inject(AlainConfigService);
         if (!(typeof document === 'object' && !!document)) {
             return;
         }
-        this.options = mergeConfig(cogSrv);
+        this.options = mergeConfig(this.cogSrv);
         const customOptions = this.options.ajv || {};
         this.ngZone.runOutsideAngular(() => {
             this.ajv = new Ajv({
@@ -960,15 +961,12 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
             return errors;
         };
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AjvSchemaValidatorFactory, deps: [{ token: AlainConfigService }, { token: i0.NgZone }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AjvSchemaValidatorFactory, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AjvSchemaValidatorFactory }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AjvSchemaValidatorFactory, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i6.AlainConfigService, decorators: [{
-                    type: Inject,
-                    args: [AlainConfigService]
-                }] }, { type: i0.NgZone }] });
+        }], ctorParameters: () => [] });
 
 class WidgetRegistry {
     constructor() {
