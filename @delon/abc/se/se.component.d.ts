@@ -2,7 +2,7 @@ import { AfterContentInit, AfterViewInit, OnChanges, TemplateRef } from '@angula
 import { SEErrorType } from './se.types';
 import * as i0 from "@angular/core";
 export declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit {
-    private readonly parent;
+    private readonly parentComp;
     private readonly el;
     private readonly rep;
     private readonly ren;

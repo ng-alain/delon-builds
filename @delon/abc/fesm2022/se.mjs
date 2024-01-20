@@ -16,16 +16,16 @@ import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 
 class SETitleComponent {
     constructor() {
-        this.parent = inject(SEContainerComponent, { host: true, optional: true });
+        this.parentComp = inject(SEContainerComponent, { host: true, optional: true });
         this.el = inject(ElementRef).nativeElement;
         this.ren = inject(Renderer2);
-        if (parent == null) {
+        if (this.parentComp == null) {
             throw new Error(`[se-title] must include 'se-container' component`);
         }
     }
     setClass() {
         const { el } = this;
-        const gutter = this.parent.gutter;
+        const gutter = this.parentComp.gutter;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
     }
@@ -179,19 +179,19 @@ class SEComponent {
     }
     // #endregion
     get paddingValue() {
-        return this.parent.gutter / 2;
+        return this.parentComp.gutter / 2;
     }
     get showErr() {
         return this.invalid && !!this._error && !this.compact;
     }
     get compact() {
-        return this.parent.size === 'compact';
+        return this.parentComp.size === 'compact';
     }
     get ngControl() {
         return this.ngModel || this.formControlName;
     }
     constructor() {
-        this.parent = inject(SEContainerComponent, { host: true, optional: true });
+        this.parentComp = inject(SEContainerComponent, { host: true, optional: true });
         this.el = inject(ElementRef).nativeElement;
         this.rep = inject(ResponsiveService);
         this.ren = inject(Renderer2);
@@ -214,10 +214,10 @@ class SEComponent {
         this.hideLabel = false;
         this._id = `_se-${++nextUniqueId}`;
         this._autoId = true;
-        if (this.parent == null) {
+        if (this.parentComp == null) {
             throw new Error(`[se] must include 'se-container' component`);
         }
-        this.parent.errorNotify
+        this.parentComp.errorNotify
             .pipe(takeUntilDestroyed(), filter(w => this.inited && this.ngControl != null && this.ngControl.name === w.name))
             .subscribe(item => {
             this.error = item.error;
@@ -225,7 +225,7 @@ class SEComponent {
         });
     }
     setClass() {
-        const { el, ren, clsMap, col, parent, cdr, line, labelWidth, rep, noColon } = this;
+        const { el, ren, clsMap, col, parentComp: parent, cdr, line, labelWidth, rep, noColon } = this;
         this._noColon = noColon != null ? noColon : parent.noColon;
         this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
         clsMap.forEach(cls => ren.removeClass(el, cls));
@@ -275,7 +275,7 @@ class SEComponent {
             return;
         }
         this.invalid =
-            !this.onceFlag && invalid && this.parent.ingoreDirty === false && !this.ngControl?.dirty ? false : invalid;
+            !this.onceFlag && invalid && this.parentComp.ingoreDirty === false && !this.ngControl?.dirty ? false : invalid;
         const errors = this.ngControl?.errors;
         if (errors != null && Object.keys(errors).length > 0) {
             const key = Object.keys(errors)[0] || '';
@@ -299,7 +299,7 @@ class SEComponent {
         this.checkContent();
     }
     ngOnChanges() {
-        this.onceFlag = this.parent.firstVisual;
+        this.onceFlag = this.parentComp.firstVisual;
         if (this.inited) {
             this.setClass().bindModel();
         }

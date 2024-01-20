@@ -48,22 +48,22 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
 const prefixCls = `sg`;
 class SGComponent {
     get paddingValue() {
-        return this.parent.gutter / 2;
+        return this.parentComp.gutter / 2;
     }
     constructor() {
         this.el = inject(ElementRef).nativeElement;
         this.ren = inject(Renderer2);
         this.rep = inject(ResponsiveService);
-        this.parent = inject(SGContainerComponent, { host: true, optional: true });
+        this.parentComp = inject(SGContainerComponent, { host: true, optional: true });
         this.clsMap = [];
         this.inited = false;
         this.col = null;
-        if (parent == null) {
+        if (this.parentComp == null) {
             throw new Error(`[sg] must include 'sg-container' component`);
         }
     }
     setClass() {
-        const { el, ren, clsMap, col, parent } = this;
+        const { el, ren, clsMap, col, parentComp: parent } = this;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
         const parentCol = parent.colInCon || parent.col;

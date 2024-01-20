@@ -4,7 +4,7 @@ import { AlainConfigService } from '@delon/util/config';
 import * as i0 from "@angular/core";
 export declare class SVTitleComponent implements OnInit {
     private readonly el;
-    private readonly parent;
+    private readonly parentComp;
     private readonly ren;
     constructor();
     private setClass;

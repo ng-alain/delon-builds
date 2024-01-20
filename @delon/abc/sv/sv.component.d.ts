@@ -2,7 +2,7 @@ import { AfterViewInit, OnChanges, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
 export declare class SVComponent implements AfterViewInit, OnChanges {
     private readonly el;
-    private readonly parent;
+    private readonly parentComp;
     private readonly rep;
     private readonly ren;
     private readonly conEl;

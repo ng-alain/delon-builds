@@ -5,7 +5,7 @@ import { AlainConfigService } from '@delon/util/config';
 import { SEErrorRefresh, SELayout } from './se.types';
 import * as i0 from "@angular/core";
 export declare class SETitleComponent implements OnInit {
-    private readonly parent;
+    private readonly parentComp;
     private readonly el;
     private readonly ren;
     constructor();

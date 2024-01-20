@@ -12,14 +12,14 @@ import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 class SVTitleComponent {
     constructor() {
         this.el = inject(ElementRef).nativeElement;
-        this.parent = inject(SVContainerComponent, { host: true, optional: true });
+        this.parentComp = inject(SVContainerComponent, { host: true, optional: true });
         this.ren = inject(Renderer2);
-        if (this.parent == null) {
+        if (this.parentComp == null) {
             throw new Error(`[sv-title] must include 'sv-container' component`);
         }
     }
     setClass() {
-        const gutter = this.parent.gutter;
+        const gutter = this.parentComp.gutter;
         const el = this.el;
         this.ren.setStyle(el, 'padding-left', `${gutter / 2}px`);
         this.ren.setStyle(el, 'padding-right', `${gutter / 2}px`);
@@ -185,29 +185,29 @@ const prefixCls = `sv`;
 class SVComponent {
     // #endregion
     get paddingValue() {
-        if (this.parent.bordered)
+        if (this.parentComp.bordered)
             return null;
-        return this.parent.gutter / 2;
+        return this.parentComp.gutter / 2;
     }
     get labelWidth() {
-        const { labelWidth, layout } = this.parent;
+        const { labelWidth, layout } = this.parentComp;
         return layout === 'horizontal' ? labelWidth : null;
     }
     constructor() {
         this.el = inject(ElementRef).nativeElement;
-        this.parent = inject(SVContainerComponent, { host: true, optional: true });
+        this.parentComp = inject(SVContainerComponent, { host: true, optional: true });
         this.rep = inject(ResponsiveService);
         this.ren = inject(Renderer2);
         this.clsMap = [];
         this._noColon = false;
         this.hideLabel = false;
-        if (this.parent == null) {
+        if (this.parentComp == null) {
             throw new Error(`[sv] must include 'sv-container' component`);
         }
     }
     setClass() {
         const { ren, col, clsMap, type, rep, noColon } = this;
-        const parent = this.parent;
+        const parent = this.parentComp;
         const el = this.el;
         this._noColon = parent.bordered ? true : noColon != null ? noColon : parent.noColon;
         clsMap.forEach(cls => ren.removeClass(el, cls));
@@ -231,7 +231,7 @@ class SVComponent {
     checkContent() {
         const { conEl } = this;
         const def = this.default;
-        if (!(def != null ? def : this.parent?.default)) {
+        if (!(def != null ? def : this.parentComp?.default)) {
             return;
         }
         const el = conEl.nativeElement;
