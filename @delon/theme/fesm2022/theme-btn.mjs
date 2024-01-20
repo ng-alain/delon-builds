@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Renderer2, ChangeDetectorRef, isDevMode, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, NgModule } from '@angular/core';
+import { InjectionToken, inject, Renderer2, ChangeDetectorRef, DestroyRef, isDevMode, EventEmitter, Component, ChangeDetectionStrategy, Input, Output, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AlainConfigService } from '@delon/util/config';
 import { NzDropDownDirective, NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -18,6 +18,7 @@ class ThemeBtnComponent {
         this.configSrv = inject(AlainConfigService);
         this.directionality = inject(Directionality, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
+        this.destroy$ = inject(DestroyRef);
         this.theme = 'default';
         this.isDev = isDevMode();
         this.types = [
@@ -33,7 +34,7 @@ class ThemeBtnComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

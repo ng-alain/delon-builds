@@ -13,6 +13,7 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private readonly configSrv;
     private readonly directionality;
     private readonly cdr;
+    private readonly destroy$;
     private theme;
     isDev: boolean;
     types: ThemeBtnType[];

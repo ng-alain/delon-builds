@@ -1,6 +1,6 @@
 import { Directionality } from '@angular/cdk/bidi';
 import * as i0 from '@angular/core';
-import { ChangeDetectorRef, inject, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
+import { ChangeDetectorRef, inject, DestroyRef, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
@@ -10,6 +10,7 @@ class ResultComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
         this.directionality = inject(Directionality, { optional: true });
+        this.destroy$ = inject(DestroyRef);
         this._type = '';
         this._icon = '';
         this.dir = 'ltr';
@@ -30,7 +31,7 @@ class ResultComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

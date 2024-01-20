@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, Input, ChangeDetectorRef, inject, NgZone, isDevMode, booleanAttribute, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { Component, Input, ChangeDetectorRef, inject, NgZone, DestroyRef, isDevMode, booleanAttribute, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i3 from 'ng-zorro-antd/drawer';
@@ -267,6 +267,7 @@ class SettingDrawerComponent {
         this.ngZone = inject(NgZone);
         this.doc = inject(DOCUMENT);
         this.directionality = inject(Directionality, { optional: true });
+        this.destroy$ = inject(DestroyRef);
         this.autoApplyColor = true;
         this.compilingText = 'Compiling...';
         this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
@@ -288,7 +289,7 @@ class SettingDrawerComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

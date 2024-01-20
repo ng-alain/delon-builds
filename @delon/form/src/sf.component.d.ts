@@ -1,8 +1,5 @@
-import { Platform } from '@angular/cdk/platform';
-import { ChangeDetectorRef, EventEmitter, Injector, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import { ACLService } from '@delon/acl';
-import { AlainI18NService, DelonLocaleService, LocaleData } from '@delon/theme';
+import { EventEmitter, Injector, OnChanges, OnDestroy, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { LocaleData } from '@delon/theme';
 import { AlainConfigService, AlainSFConfig } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { NzFormControlStatusType } from 'ng-zorro-antd/form';
@@ -12,19 +9,18 @@ import { FormProperty } from './model/form.property';
 import { FormPropertyFactory } from './model/form.property.factory';
 import type { SFSchema } from './schema/index';
 import type { SFUISchema } from './schema/ui';
-import { TerminatorService } from './terminator.service';
 import { SchemaValidatorFactory } from './validator.factory';
 import * as i0 from "@angular/core";
 export declare function useFactory(injector: Injector, schemaValidatorFactory: SchemaValidatorFactory, cogSrv: AlainConfigService): FormPropertyFactory;
 export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
-    private formPropertyFactory;
-    private terminator;
-    private dom;
-    private cdr;
-    private localeSrv;
-    private aclSrv;
-    private i18nSrv;
-    private platform;
+    private readonly formPropertyFactory;
+    private readonly terminator;
+    private readonly dom;
+    private readonly cdr;
+    private readonly localeSrv;
+    private readonly aclSrv;
+    private readonly i18nSrv;
+    private readonly platform;
     private _renders;
     private _item;
     private _valid;
@@ -153,7 +149,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     updateFeedback(path: string, status?: NzFormControlStatusType): this;
     onSubmit(e: Event): void;
-    constructor(formPropertyFactory: FormPropertyFactory, terminator: TerminatorService, dom: DomSanitizer, cdr: ChangeDetectorRef, localeSrv: DelonLocaleService, aclSrv: ACLService, i18nSrv: AlainI18NService, cogSrv: AlainConfigService, platform: Platform);
+    constructor(cogSrv: AlainConfigService);
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;
@@ -200,7 +196,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     reset(emit?: boolean): this;
     private cleanRootSub;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, [null, null, null, null, null, { optional: true; }, { optional: true; }, null, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SFComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SFComponent, "sf, [sf]", ["sf"], { "layout": { "alias": "layout"; "required": false; }; "schema": { "alias": "schema"; "required": false; }; "ui": { "alias": "ui"; "required": false; }; "formData": { "alias": "formData"; "required": false; }; "button": { "alias": "button"; "required": false; }; "liveValidate": { "alias": "liveValidate"; "required": false; }; "autocomplete": { "alias": "autocomplete"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "onlyVisual": { "alias": "onlyVisual"; "required": false; }; "compact": { "alias": "compact"; "required": false; }; "mode": { "alias": "mode"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "cleanValue": { "alias": "cleanValue"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "formValueChange": "formValueChange"; "formChange": "formChange"; "formSubmit": "formSubmit"; "formReset": "formReset"; "formError": "formError"; }, never, ["*"], false, never>;
     static ngAcceptInputType_liveValidate: unknown;
     static ngAcceptInputType_firstVisual: unknown;

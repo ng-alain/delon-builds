@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { TemplateRef, Renderer2, inject, ChangeDetectorRef, booleanAttribute, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
+import { TemplateRef, Renderer2, inject, ChangeDetectorRef, DestroyRef, booleanAttribute, numberAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, ViewChild, Input, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd, RouterLink, RouterModule } from '@angular/router';
 import { filter, merge } from 'rxjs';
@@ -42,6 +42,7 @@ class PageHeaderComponent {
         this.titleSrv = inject(TitleService, { optional: true });
         this.reuseSrv = inject(ReuseTabService, { optional: true });
         this.directionality = inject(Directionality, { optional: true });
+        this.destroy$ = inject(DestroyRef);
         this.inited = false;
         this.isBrowser = true;
         this.dir = 'ltr';
@@ -137,7 +138,7 @@ class PageHeaderComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

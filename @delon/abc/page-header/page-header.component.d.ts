@@ -18,6 +18,7 @@ export declare class PageHeaderComponent implements OnInit, OnChanges, AfterView
     private readonly titleSrv;
     private readonly reuseSrv;
     private readonly directionality;
+    private readonly destroy$;
     private conTpl;
     private affix;
     inited: boolean;
