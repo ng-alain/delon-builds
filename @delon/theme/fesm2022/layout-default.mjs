@@ -311,7 +311,7 @@ class LayoutDefaultNavComponent {
             .subscribe(() => this.clearFloating());
         this.underPad();
         this.dir = this.directionality?.value;
-        this.directionality?.change?.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

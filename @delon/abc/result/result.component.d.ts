@@ -4,7 +4,6 @@ import * as i0 from "@angular/core";
 export declare class ResultComponent implements OnInit {
     private readonly cdr;
     private readonly directionality;
-    private dir$;
     _type: string;
     _icon: string;
     set type(value: string);

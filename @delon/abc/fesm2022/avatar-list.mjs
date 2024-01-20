@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, inject, numberAttribute, ContentChildren, NgModule } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, inject, DestroyRef, numberAttribute, ContentChildren, NgModule } from '@angular/core';
 import { Directionality } from '@angular/cdk/bidi';
 import { NgStyle, NgClass, CommonModule } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -35,7 +35,7 @@ class AvatarListComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
         this.directionality = inject(Directionality, { optional: true });
-        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
+        this.destroy$ = inject(DestroyRef);
         this.inited = false;
         this.items = [];
         this.exceedCount = 0;
@@ -69,7 +69,7 @@ class AvatarListComponent {
     }
     ngAfterViewInit() {
         this.dir = this.directionality?.value;
-        this.dir$?.subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

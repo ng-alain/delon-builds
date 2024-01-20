@@ -28,13 +28,12 @@ class ThemeBtnComponent {
         this.devTips = `When the dark.css file can't be found, you need to run it once: npm run theme`;
         this.deployUrl = '';
         this.themeChange = new EventEmitter();
-        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
         this.dir = 'ltr';
         this.key = inject(ALAIN_THEME_BTN_KEYS, { optional: true }) ?? 'site-theme';
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.dir$?.subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

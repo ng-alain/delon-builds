@@ -6,7 +6,7 @@ import * as i0 from "@angular/core";
 export declare class AvatarListComponent implements AfterViewInit, OnChanges {
     private readonly cdr;
     private readonly directionality;
-    private dir$;
+    private readonly destroy$;
     private inited;
     private readonly _items;
     items: AvatarListItemComponent[];

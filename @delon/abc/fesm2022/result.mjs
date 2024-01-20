@@ -10,7 +10,6 @@ class ResultComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
         this.directionality = inject(Directionality, { optional: true });
-        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
         this._type = '';
         this._icon = '';
         this.dir = 'ltr';
@@ -31,7 +30,7 @@ class ResultComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.dir$?.subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

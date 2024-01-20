@@ -3,7 +3,7 @@ import * as i0 from "@angular/core";
 export declare class AutoFocusDirective implements AfterViewInit {
     private readonly el;
     private readonly platform;
-    private readonly d$;
+    private readonly destroy$;
     enabled: boolean;
     delay: number;
     ngAfterViewInit(): void;

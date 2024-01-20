@@ -272,7 +272,6 @@ class SettingDrawerComponent {
         this.devTips = `When the color can't be switched, you need to run it once: npm run color-less`;
         this.lessJs = 'https://cdn.jsdelivr.net/npm/less';
         this.loadedLess = false;
-        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
         this.dir = 'ltr';
         this.isDev = isDevMode();
         this.collapse = false;
@@ -289,7 +288,7 @@ class SettingDrawerComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.dir$?.subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

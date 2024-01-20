@@ -42,7 +42,6 @@ class PageHeaderComponent {
         this.titleSrv = inject(TitleService, { optional: true });
         this.reuseSrv = inject(ReuseTabService, { optional: true });
         this.directionality = inject(Directionality, { optional: true });
-        this.dir$ = this.directionality?.change?.pipe(takeUntilDestroyed());
         this.inited = false;
         this.isBrowser = true;
         this.dir = 'ltr';
@@ -138,7 +137,7 @@ class PageHeaderComponent {
     }
     ngOnInit() {
         this.dir = this.directionality?.value;
-        this.dir$?.subscribe((direction) => {
+        this.directionality?.change.pipe(takeUntilDestroyed()).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

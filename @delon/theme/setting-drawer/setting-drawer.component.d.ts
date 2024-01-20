@@ -16,7 +16,6 @@ export declare class SettingDrawerComponent implements OnInit {
     devTips: string;
     lessJs: string;
     private loadedLess;
-    private dir$;
     dir?: Direction;
     isDev: boolean;
     collapse: boolean;

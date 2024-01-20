@@ -19,7 +19,6 @@ export declare class ThemeBtnComponent implements OnInit, OnDestroy {
     devTips: string;
     deployUrl: string;
     readonly themeChange: EventEmitter<string>;
-    private dir$;
     dir?: Direction;
     private key;
     ngOnInit(): void;

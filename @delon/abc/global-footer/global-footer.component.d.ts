@@ -10,7 +10,6 @@ export declare class GlobalFooterComponent implements OnInit {
     private readonly directionality;
     private readonly cdr;
     private readonly destroy$;
-    private dir$;
     private _links;
     dir?: Direction;
     set links(val: GlobalFooterLink[]);

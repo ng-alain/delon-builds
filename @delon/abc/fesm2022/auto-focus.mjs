@@ -8,7 +8,7 @@ class AutoFocusDirective {
     constructor() {
         this.el = inject(ElementRef).nativeElement;
         this.platform = inject(Platform);
-        this.d$ = inject(DestroyRef);
+        this.destroy$ = inject(DestroyRef);
         this.enabled = true;
         this.delay = 300;
     }
@@ -18,7 +18,7 @@ class AutoFocusDirective {
             return;
         }
         timer(this.delay)
-            .pipe(takeUntilDestroyed(this.d$))
+            .pipe(takeUntilDestroyed(this.destroy$))
             .subscribe(() => el.focus({ preventScroll: false }));
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: AutoFocusDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
