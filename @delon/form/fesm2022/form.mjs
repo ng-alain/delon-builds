@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { NgZone, Injectable, inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, ElementRef, Renderer2, numberAttribute, Directive, EventEmitter, booleanAttribute, Injector, ChangeDetectionStrategy, Optional, Inject, Output, ChangeDetectorRef, HostBinding, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
+import { NgZone, Injectable, inject, ViewContainerRef, Component, ViewEncapsulation, Input, ViewChild, ElementRef, Renderer2, numberAttribute, Directive, EventEmitter, booleanAttribute, Injector, ChangeDetectionStrategy, Optional, Inject, Output, TemplateRef, ChangeDetectorRef, HostBinding, NgModule, ENVIRONMENT_INITIALIZER, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, filter, merge, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import * as i4 from '@delon/theme';
@@ -1841,14 +1841,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             }] } });
 
 class SFTemplateDirective {
-    constructor(templateRef, table) {
-        this.templateRef = templateRef;
-        this.table = table;
+    constructor() {
+        this.table = inject(SFComponent);
+        this.templateRef = inject(TemplateRef);
     }
     ngOnInit() {
         this.table._addTpl(this.path.startsWith(SF_SEQ) ? this.path : SF_SEQ + this.path, this.templateRef);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFTemplateDirective, deps: [{ token: i0.TemplateRef }, { token: SFComponent }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFTemplateDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: SFTemplateDirective, selector: "[sf-template]", inputs: { path: ["sf-template", "path"] }, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFTemplateDirective, decorators: [{
@@ -1856,12 +1856,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
             args: [{
                     selector: '[sf-template]'
                 }]
-        }], ctorParameters: () => [{ type: i0.TemplateRef }, { type: SFComponent }], propDecorators: { path: [{
+        }], propDecorators: { path: [{
                 type: Input,
                 args: ['sf-template']
             }] } });
 
 class Widget {
+    constructor() {
+        this.cd = inject(ChangeDetectorRef);
+        this.injector = inject(Injector);
+        this.sfItemComp = inject(SFItemComponent);
+        this.sfComp = inject(SFComponent);
+        this.showError = false;
+        this.id = '';
+    }
     get cls() {
         return this.ui.class || '';
     }
@@ -1882,14 +1890,6 @@ class Widget {
     }
     get cleanValue() {
         return this.sfComp?.cleanValue;
-    }
-    constructor(cd, injector, sfItemComp, sfComp) {
-        this.cd = cd;
-        this.injector = injector;
-        this.sfItemComp = sfItemComp;
-        this.sfComp = sfComp;
-        this.showError = false;
-        this.id = '';
     }
     ngAfterViewInit() {
         this.formProperty.errorsChanges
@@ -1923,24 +1923,12 @@ class Widget {
             this.formProperty.root.widget?.cd.markForCheck();
         }
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: Widget, deps: [{ token: ChangeDetectorRef }, { token: Injector }, { token: SFItemComponent }, { token: SFComponent }], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: Widget, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
     static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.1.0", type: Widget, host: { properties: { "class": "this.cls" } }, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: Widget, decorators: [{
             type: Directive
-        }], ctorParameters: () => [{ type: i0.ChangeDetectorRef, decorators: [{
-                    type: Inject,
-                    args: [ChangeDetectorRef]
-                }] }, { type: i0.Injector, decorators: [{
-                    type: Inject,
-                    args: [Injector]
-                }] }, { type: SFItemComponent, decorators: [{
-                    type: Inject,
-                    args: [SFItemComponent]
-                }] }, { type: SFComponent, decorators: [{
-                    type: Inject,
-                    args: [SFComponent]
-                }] }], propDecorators: { cls: [{
+        }], propDecorators: { cls: [{
                 type: HostBinding,
                 args: ['class']
             }] } });

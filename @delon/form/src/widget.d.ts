@@ -15,8 +15,8 @@ import * as i0 from "@angular/core";
 export declare abstract class Widget<T extends FormProperty, UIT extends SFUISchemaItem> implements AfterViewInit {
     readonly cd: ChangeDetectorRef;
     readonly injector: Injector;
-    readonly sfItemComp?: SFItemComponent | undefined;
-    readonly sfComp?: SFComponent | undefined;
+    readonly sfItemComp: SFItemComponent;
+    readonly sfComp: SFComponent;
     formProperty: T;
     error?: string;
     showError: boolean;
@@ -29,7 +29,6 @@ export declare abstract class Widget<T extends FormProperty, UIT extends SFUISch
     get oh(): SFOptionalHelp;
     get dom(): DomSanitizer;
     get cleanValue(): boolean;
-    constructor(cd: ChangeDetectorRef, injector: Injector, sfItemComp?: SFItemComponent | undefined, sfComp?: SFComponent | undefined);
     ngAfterViewInit(): void;
     setValue(value: SFValue): void;
     get value(): NzSafeAny;
