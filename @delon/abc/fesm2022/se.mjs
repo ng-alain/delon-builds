@@ -225,7 +225,8 @@ class SEComponent {
         });
     }
     setClass() {
-        const { el, ren, clsMap, col, parentComp: parent, cdr, line, labelWidth, rep, noColon } = this;
+        const { el, ren, clsMap, col, cdr, line, labelWidth, rep, noColon } = this;
+        const parent = this.parentComp;
         this._noColon = noColon != null ? noColon : parent.noColon;
         this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
         clsMap.forEach(cls => ren.removeClass(el, cls));

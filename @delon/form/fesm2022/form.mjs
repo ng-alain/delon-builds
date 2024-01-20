@@ -1105,14 +1105,14 @@ class SFFixedDirective {
             this.init();
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFFixedDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "17.1.0", type: SFFixedDirective, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num", (v) => (v == null ? 0 : numberAttribute(v))] }, usesOnChanges: true, ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "17.1.0", type: SFFixedDirective, selector: "[fixed-label]", inputs: { num: ["fixed-label", "num", (v) => numberAttribute(v, 0)] }, usesOnChanges: true, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: SFFixedDirective, decorators: [{
             type: Directive,
             args: [{ selector: '[fixed-label]' }]
         }], propDecorators: { num: [{
                 type: Input,
-                args: [{ alias: 'fixed-label', transform: (v) => (v == null ? 0 : numberAttribute(v)) }]
+                args: [{ alias: 'fixed-label', transform: (v) => numberAttribute(v, 0) }]
             }] } });
 
 function useFactory(injector, schemaValidatorFactory, cogSrv) {
