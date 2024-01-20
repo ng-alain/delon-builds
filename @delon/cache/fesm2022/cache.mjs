@@ -1,11 +1,11 @@
 import { Platform } from '@angular/cdk/platform';
-import { HttpClient, HttpContextToken, HttpResponseBase } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Injectable } from '@angular/core';
+import { InjectionToken, inject, Injectable, NgModule } from '@angular/core';
 import { Observable, tap, map, of, BehaviorSubject } from 'rxjs';
 import { addSeconds } from 'date-fns';
-import { AlainConfigService } from '@delon/util/config';
 import { deepGet } from '@delon/util/other';
+import * as i1 from '@delon/util/config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
@@ -40,7 +40,7 @@ class LocalStorageCacheService {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class CacheService {
-    constructor() {
+    constructor(cogSrv) {
         this.store = inject(DC_STORE_STORAGE_TOKEN);
         this.http = inject(HttpClient);
         this.platform = inject(Platform);
@@ -48,7 +48,7 @@ class CacheService {
         this.notifyBuffer = new Map();
         this.meta = new Set();
         this.freqTick = 3000;
-        this.cog = inject(AlainConfigService).merge('cache', {
+        this.cog = cogSrv.merge('cache', {
             mode: 'promise',
             reName: '',
             prefix: '',
@@ -268,83 +268,27 @@ class CacheService {
         this.abortExpireNotify();
         this.clearNotify();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
     static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: CacheService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [] });
+        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
-/**
- * Cache options (Don't forget to register `CacheInterceptor`)
- *
- * 缓存配置项（不要忘记注册 `CacheInterceptor`）
- *
- * @example
- * this.http.get(`my`, {
- *  context: new HttpContext().set(CACHE, { key: 'user-data' })
- * })
- */
-const CACHE = new HttpContextToken(() => ({}));
-
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/**
- * Cache interceptor
- *
- * 缓存拦截器
- *
- * @example
- * provideHttpClient(withInterceptors([httpCacheInterceptor])),
- */
-const httpCacheInterceptor = (req, next) => {
-    const cog = inject(AlainConfigService).merge('cache', {}).interceptor;
-    const options = {
-        enabled: true,
-        emitNotify: true,
-        saveType: 'm',
-        ...cog,
-        ...req.context.get(CACHE)
-    };
-    const srv = inject(CacheService);
-    const mapPipe = map(ev => save(srv, ev, options));
-    if (options.enabled === false) {
-        return next(req).pipe(mapPipe);
-    }
-    if (options.key == null) {
-        options.key = req.urlWithParams;
-    }
-    const cacheData = srv.getNone(options.key);
-    if (cacheData != null) {
-        if (typeof ngDevMode === 'undefined' || ngDevMode) {
-            console.log(`%c👽${req.method}->${req.urlWithParams}->from cache(onle in development)`, 'background:#000;color:#1890ff', req, cacheData);
-        }
-        return of(cacheData);
-    }
-    return next(req).pipe(mapPipe);
-};
-function save(srv, ev, options) {
-    if (!(ev instanceof HttpResponseBase) || !(ev.status >= 200 && ev.status < 300))
-        return ev;
-    let expire = options.expire;
-    if (expire == null) {
-        const ageMatch = /max-age=(\d+)/g.exec(ev.headers.get('cache-control')?.toLowerCase() ?? '');
-        if (ageMatch == null)
-            return ev;
-        expire = +ageMatch[1];
-    }
-    if (expire > 0) {
-        srv.set(options.key, ev, {
-            type: options.saveType,
-            expire: expire
-        });
-    }
-    return ev;
+class DelonCacheModule {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DelonCacheModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.1.0", ngImport: i0, type: DelonCacheModule }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DelonCacheModule }); }
 }
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: DelonCacheModule, decorators: [{
+            type: NgModule,
+            args: [{}]
+        }] });
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { CACHE, CacheService, httpCacheInterceptor };
+export { CacheService, DelonCacheModule };
 //# sourceMappingURL=cache.mjs.map
