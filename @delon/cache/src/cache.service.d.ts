@@ -1,5 +1,6 @@
 import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { CacheNotifyResult } from './interface';
 import * as i0 from "@angular/core";
 export declare class CacheService implements OnDestroy {
@@ -12,7 +13,7 @@ export declare class CacheService implements OnDestroy {
     private freqTick;
     private freqTime;
     private cog;
-    constructor();
+    constructor(cogSrv: AlainConfigService);
     private pushMeta;
     private removeMeta;
     private loadMeta;
