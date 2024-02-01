@@ -738,7 +738,7 @@ class ArrayProperty extends PropertyGroup {
             // TODO: 受限于 sf 的设计思路，对于移除数组项需要重新对每个子项进行校验，防止错误被父级合并后引起始终是错误的现象
             if (property instanceof ObjectProperty) {
                 property.forEachChild(p => {
-                    p.updateValueAndValidity({ emitValueEvent: false });
+                    p.updateValueAndValidity();
                 });
             }
         });
@@ -1992,13 +1992,8 @@ class ArrayWidget extends ArrayLayoutWidget {
         this.addType = addType || 'dashed';
         this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
     }
-    reValid(options) {
-        this.formProperty.updateValueAndValidity({
-            onlySelf: false,
-            emitValueEvent: false,
-            emitValidator: true,
-            ...options
-        });
+    reValid() {
+        this.formProperty.updateValueAndValidity({ onlySelf: false, emitValueEvent: false, emitValidator: true });
     }
     addItem() {
         const property = this.formProperty.add({});
@@ -2006,9 +2001,8 @@ class ArrayWidget extends ArrayLayoutWidget {
         this.ui.add?.(property);
     }
     removeItem(index) {
-        const updatePath = this.formProperty.properties[index].path;
         this.formProperty.remove(index);
-        this.reValid({ updatePath, emitValueEvent: true });
+        this.reValid();
         this.ui.remove?.(index);
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: ArrayWidget, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
