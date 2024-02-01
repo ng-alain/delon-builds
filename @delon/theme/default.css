@@ -23891,6 +23891,9 @@ nz-tabs-nav {
   background: #fff0f6;
   border-color: #ffadd2;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-pink-inverse {
   color: #fff;
   background: #eb2f96;
@@ -23900,6 +23903,9 @@ nz-tabs-nav {
   color: #c41d7f;
   background: #fff0f6;
   border-color: #ffadd2;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-magenta-inverse {
   color: #fff;
@@ -23911,6 +23917,9 @@ nz-tabs-nav {
   background: #fff1f0;
   border-color: #ffa39e;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-red-inverse {
   color: #fff;
   background: #f5222d;
@@ -23920,6 +23929,9 @@ nz-tabs-nav {
   color: #d4380d;
   background: #fff2e8;
   border-color: #ffbb96;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-volcano-inverse {
   color: #fff;
@@ -23931,6 +23943,9 @@ nz-tabs-nav {
   background: #fff7e6;
   border-color: #ffd591;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-orange-inverse {
   color: #fff;
   background: #fa8c16;
@@ -23940,6 +23955,9 @@ nz-tabs-nav {
   color: #d4b106;
   background: #feffe6;
   border-color: #fffb8f;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-yellow-inverse {
   color: #fff;
@@ -23951,6 +23969,9 @@ nz-tabs-nav {
   background: #fffbe6;
   border-color: #ffe58f;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-gold-inverse {
   color: #fff;
   background: #faad14;
@@ -23960,6 +23981,9 @@ nz-tabs-nav {
   color: #08979c;
   background: #e6fffb;
   border-color: #87e8de;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-cyan-inverse {
   color: #fff;
@@ -23971,6 +23995,9 @@ nz-tabs-nav {
   background: #fcffe6;
   border-color: #eaff8f;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-lime-inverse {
   color: #fff;
   background: #a0d911;
@@ -23980,6 +24007,9 @@ nz-tabs-nav {
   color: #389e0d;
   background: #f6ffed;
   border-color: #b7eb8f;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-green-inverse {
   color: #fff;
@@ -23991,6 +24021,9 @@ nz-tabs-nav {
   background: #e6f7ff;
   border-color: #91d5ff;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-blue-inverse {
   color: #fff;
   background: #1890ff;
@@ -24001,6 +24034,9 @@ nz-tabs-nav {
   background: #f0f5ff;
   border-color: #adc6ff;
 }
+.ant-tag-borderless {
+  border-color: transparent;
+}
 .ant-tag-geekblue-inverse {
   color: #fff;
   background: #2f54eb;
@@ -24010,6 +24046,9 @@ nz-tabs-nav {
   color: #531dab;
   background: #f9f0ff;
   border-color: #d3adf7;
+}
+.ant-tag-borderless {
+  border-color: transparent;
 }
 .ant-tag-purple-inverse {
   color: #fff;
@@ -32010,7 +32049,7 @@ body,
 .ant-drawer-wrapper-body,
 .ant-anchor-wrapper,
 textarea.ant-input {
-  scrollbar-color: rgba(0, 0, 0, 0.3) #6e6e6e;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
   scrollbar-width: thin;
 }
 body::-webkit-scrollbar,
@@ -32039,7 +32078,7 @@ body::-webkit-scrollbar-thumb,
 .ant-drawer-wrapper-body::-webkit-scrollbar-thumb,
 .ant-anchor-wrapper::-webkit-scrollbar-thumb,
 textarea.ant-input::-webkit-scrollbar-thumb {
-  background-color: #6e6e6e;
+  background-color: transparent;
   outline: 1px solid #333;
 }
 html {
