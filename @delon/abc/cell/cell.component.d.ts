@@ -1,7 +1,7 @@
 import { EventEmitter, OnChanges, OnDestroy, SimpleChange } from '@angular/core';
 import type { SafeValue } from '@angular/platform-browser';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import type { CellOptions, CellTextResult, CellValue, CellWidgetData } from './cell.types';
+import type { CellOptions, CellTextResult, CellValue } from './cell.types';
 import * as i0 from "@angular/core";
 export declare class CellComponent implements OnChanges, OnDestroy {
     private readonly srv;
@@ -23,7 +23,6 @@ export declare class CellComponent implements OnChanges, OnDestroy {
     disabled: boolean;
     get safeOpt(): CellOptions;
     get isText(): boolean;
-    get hostData(): CellWidgetData;
     private updateValue;
     private setClass;
     ngOnChanges(changes: {
