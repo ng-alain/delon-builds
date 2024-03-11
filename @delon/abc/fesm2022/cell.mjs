@@ -327,7 +327,7 @@ class CellComponent {
           <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
-          @if (res != null) {
+          @if (res) {
             <ng-template cell-widget-host [data]="res" />
           }
         }
@@ -404,7 +404,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.4", ngImpor
           <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
-          @if (res != null) {
+          @if (res) {
             <ng-template cell-widget-host [data]="res" />
           }
         }
