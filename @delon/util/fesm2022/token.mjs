@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { inject, InjectionToken } from '@angular/core';
-import { startWith, map, distinctUntilChanged, share, fromEvent } from 'rxjs';
+import { InjectionToken, inject } from '@angular/core';
+import { fromEvent, startWith, map, distinctUntilChanged, share } from 'rxjs';
 
 /**
  * Access to global `window` object

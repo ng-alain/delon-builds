@@ -26,8 +26,8 @@ import { STComponent, STTdComponent } from './st.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [STComponent, STRowDirective, STWidgetHostDirective];
 export class STModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.1.0", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.4", ngImport: i0, type: STModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "17.2.4", ngImport: i0, type: STModule, declarations: [STComponent, STRowDirective, STWidgetHostDirective, STFilterComponent, STTdComponent], imports: [CommonModule,
             FormsModule,
             DelonACLModule,
             LetModule,
@@ -47,7 +47,7 @@ export class STModule {
             NzResizableModule,
             NzInputNumberModule,
             NzDatePickerModule], exports: [STComponent, STRowDirective, STWidgetHostDirective] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: STModule, imports: [CommonModule,
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "17.2.4", ngImport: i0, type: STModule, imports: [CommonModule,
             FormsModule,
             DelonACLModule,
             LetModule,
@@ -68,7 +68,7 @@ export class STModule {
             NzInputNumberModule,
             NzDatePickerModule] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: STModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.4", ngImport: i0, type: STModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
