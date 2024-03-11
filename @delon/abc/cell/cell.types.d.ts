@@ -229,6 +229,10 @@ export interface CellDefaultText {
     text?: string;
     condition?: unknown;
 }
+export interface CellWidgetData {
+    value?: unknown;
+    options?: CellOptions;
+}
 export interface CellWidgetInstance {
-    readonly data: CellTextResult;
+    readonly data: CellWidgetData;
 }

@@ -203,7 +203,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
         refreshSchema?: boolean;
         emitReload?: boolean;
     }): this;
-    sort(col: _STColumn, idx: number, value: NzSafeAny): void;
+    sort(col: _STColumn, value: NzSafeAny): void;
     clearSort(): this;
     _handleFilter(col: _STColumn, confirm: boolean): void;
     handleFilterNotify(value?: unknown): void;
