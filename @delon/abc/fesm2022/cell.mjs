@@ -231,12 +231,6 @@ class CellComponent {
     get isText() {
         return this.res?.safeHtml === 'text';
     }
-    get hostData() {
-        return {
-            value: this.value,
-            options: this.srv.fixOptions(this.options)
-        };
-    }
     updateValue() {
         this.destroy$?.unsubscribe();
         this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
@@ -333,7 +327,9 @@ class CellComponent {
           <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
-          <ng-template cell-widget-host [data]="hostData" />
+          @if (res != null) {
+            <ng-template cell-widget-host [data]="res" />
+          }
         }
         @case ('img') {
           @for (i of $any(_text); track $index) {
@@ -408,7 +404,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImpor
           <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
-          <ng-template cell-widget-host [data]="hostData" />
+          @if (res != null) {
+            <ng-template cell-widget-host [data]="res" />
+          }
         }
         @case ('img') {
           @for (i of $any(_text); track $index) {
