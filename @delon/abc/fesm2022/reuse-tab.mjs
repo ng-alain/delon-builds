@@ -673,9 +673,6 @@ class ReuseTabService {
      */
     store(_snapshot, _handle) {
         const url = this.getUrl(_snapshot);
-        const idx = this.index(url);
-        if (idx === -1)
-            return;
         if (_handle != null) {
             this.saveCache(_snapshot, _handle);
         }
@@ -688,9 +685,10 @@ class ReuseTabService {
             _snapshot,
             _handle
         };
+        const idx = this.index(url);
         // Current handler is null when activate routes
         // For better reliability, we need to wait for the component to be attached before call _onReuseInit
-        const cahcedComponentRef = list[idx]._handle?.componentRef;
+        const cahcedComponentRef = list[idx]?._handle?.componentRef;
         if (_handle == null && cahcedComponentRef != null) {
             timer(100)
                 .pipe(take(1))
