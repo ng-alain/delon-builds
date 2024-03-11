@@ -17,7 +17,8 @@ const AUTH_DEFAULT_CONFIG = {
     token_send_place: 'header',
     login_url: '/login',
     refreshTime: 3000,
-    refreshOffset: 6000
+    refreshOffset: 6000,
+    ignores: [/\/assets\//]
 };
 function mergeConfig(srv) {
     return srv.merge('auth', AUTH_DEFAULT_CONFIG);
