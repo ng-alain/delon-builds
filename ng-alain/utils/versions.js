@@ -44,7 +44,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@ng-util/monaco-editor@^17.0.1`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^17.2.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^17.3.0`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(projectName) {
