@@ -33586,6 +33586,7 @@ body {
 }
 .sv__container {
   display: block;
+  /** offset the padding-bottom of last row */
 }
 .sv__container .ant-row {
   overflow: hidden;
@@ -33671,6 +33672,9 @@ body {
   display: inline;
   margin-left: 8px;
   color: #8c8c8c;
+}
+.sv__small {
+  /** offset the padding-bottom of last row */
 }
 .sv__small .ant-row {
   margin-bottom: -8px;
