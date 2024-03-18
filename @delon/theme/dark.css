@@ -33514,8 +33514,22 @@ body {
 .st__filter-date .ant-picker-panel-container .ant-picker-panel {
   border: none;
 }
+.st__has-filter .ant-table-column-sorters {
+  padding-right: 16px;
+}
 .st__has-filter .st__filter {
-  display: inline-flex;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  place-items: center center;
+}
+.st__has-filter .ant-table-filter-trigger {
+  height: 100%;
+}
+.st__has-filter.ant-table-column-has-sorters .st__filter {
+  right: -32px;
 }
 .st__head-optional,
 .st__head-tip {
