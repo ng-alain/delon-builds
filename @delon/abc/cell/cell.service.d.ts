@@ -11,7 +11,7 @@ export declare class CellService {
     private widgets;
     constructor(configSrv: AlainConfigService);
     registerWidget(key: string, widget: Type<unknown>): void;
-    getWidget(key: string): CellWidget | undefined;
+    getWidget(key?: string): CellWidget | undefined;
     private genType;
     fixOptions(options?: CellOptions): CellOptions;
     get(value: unknown, options?: CellOptions): Observable<CellTextResult>;

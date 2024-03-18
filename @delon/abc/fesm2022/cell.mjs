@@ -77,7 +77,7 @@ class CellService {
         this.widgets[key] = { type: 'widget', ref: widget };
     }
     getWidget(key) {
-        return this.widgets[key];
+        return key ? this.widgets[key] : undefined;
     }
     genType(value, options) {
         if (options.type != null)
@@ -183,9 +183,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.4", ngImpor
 class CellHostDirective {
     constructor() {
         this.srv = inject(CellService);
-        this.viewContainerRef = inject(ViewContainerRef);
+        this.vcr = inject(ViewContainerRef);
     }
-    ngOnInit() {
+    ngOnChanges() {
         const widget = this.data.options.widget;
         const componentType = this.srv.getWidget(widget.key)?.ref;
         if (componentType == null) {
@@ -194,12 +194,12 @@ class CellHostDirective {
             }
             return;
         }
-        this.viewContainerRef.clear();
-        const componentRef = this.viewContainerRef.createComponent(componentType);
+        this.vcr.clear();
+        const componentRef = this.vcr.createComponent(componentType);
         componentRef.instance.data = this.data;
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.2.4", ngImport: i0, type: CellHostDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
-    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.2.4", type: CellHostDirective, isStandalone: true, selector: "[cell-widget-host]", inputs: { data: "data" }, ngImport: i0 }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "17.2.4", type: CellHostDirective, isStandalone: true, selector: "[cell-widget-host]", inputs: { data: "data" }, usesOnChanges: true, ngImport: i0 }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.2.4", ngImport: i0, type: CellHostDirective, decorators: [{
             type: Directive,
