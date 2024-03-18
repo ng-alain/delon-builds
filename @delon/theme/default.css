@@ -2,8 +2,6 @@
 /* stylelint-disable no-duplicate-selectors */
 /* stylelint-disable */
 /* stylelint-disable declaration-bang-space-before,no-duplicate-selectors,string-no-newline */
-/** font-size https://ant.design/docs/spec/font-cn#字号 */
-/** antd: base */
 [class^=ant-]::-ms-clear,
 [class*= ant-]::-ms-clear,
 [class^=ant-] input::-ms-clear,
@@ -1746,7 +1744,6 @@ html {
 .nz-animate-disabled.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
   transition: none;
 }
-/** antd: all components */
 .ant-affix {
   position: fixed;
   z-index: 10;
@@ -28302,7 +28299,6 @@ nz-space-item {
   height: 72px;
   margin-top: -71px;
 }
-/** system */
 sf + st {
   margin-top: 16px;
 }
@@ -28659,7 +28655,7 @@ a:focus {
     background: #f0f0f0;
   }
   .ant-table-rep .ant-table-tbody > tr:nth-child(4n + 3) {
-    background: #f5f5f5;
+    background: #f9f9f9;
   }
   .ant-table-rep .ant-table-tbody > tr > td {
     display: flex;
@@ -29728,8 +29724,8 @@ code {
   margin: 0 4px;
   padding: 2px 4px;
   font-size: 90%;
-  background-color: #fafafa;
-  border: 1px solid #d9d9d9;
+  background-color: #f7f7f7;
+  border: 1px solid #eee;
   border-radius: 2px;
 }
 /**
@@ -30616,19 +30612,19 @@ code {
   color: #f5f5f5 !important;
 }
 .bg-grey-darker {
-  /* AUTOGENERATE: Set the background light color to "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)|SPLIT|设置背景颜色为 "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)*/
-  background-color: #434343 !important;
+  /* AUTOGENERATE: Set the background light color to "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)|SPLIT|设置背景颜色为 "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)*/
+  background-color: #262626 !important;
 }
 .bg-grey-darker-h {
-  /* AUTOGENERATE: Set the hover background color to "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)|SPLIT|设置悬停时背景颜色为 "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)*/
+  /* AUTOGENERATE: Set the hover background color to "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)|SPLIT|设置悬停时背景颜色为 "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)*/
   transition: background-color 300ms;
 }
 .bg-grey-darker-h:hover {
-  background-color: #434343 !important;
+  background-color: #262626 !important;
 }
 .text-grey-darker {
-  /* AUTOGENERATE: Set the text color to "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)|SPLIT|设置文本颜色为 "#434343" ![Color](https://dummyimage.com/20x20/434343/fff.png&text=+)*/
-  color: #434343 !important;
+  /* AUTOGENERATE: Set the text color to "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)|SPLIT|设置文本颜色为 "#262626" ![Color](https://dummyimage.com/20x20/262626/fff.png&text=+)*/
+  color: #262626 !important;
 }
 /**
  * Turns off the display of an element
@@ -32130,7 +32126,7 @@ app-root {
 }
 body {
   color: rgba(0, 0, 0, 0.85);
-  background-color: var(--alain-default-content-bg, #f5f7fa);
+  background-color: #f5f7fa;
 }
 .alain-default {
   position: relative;
@@ -32164,8 +32160,8 @@ body {
   padding-top: 12px;
   padding-bottom: 12px;
   color: #929292;
-  background-color: var(--alain-default-heading-bg, #fafbfc);
-  border-bottom: 1px solid var(--alain-default-heading-border, #efe3e5);
+  background-color: #fafbfc;
+  border-bottom: 1px solid #efe3e5;
 }
 .alain-default__content-title > h1 {
   margin-bottom: 0;
@@ -32405,7 +32401,7 @@ body {
   width: 200px;
   margin-top: 64px;
   backface-visibility: hidden;
-  background-color: var(--alain-default-aside-bg, #fff);
+  background-color: #fff;
   transition: width 0.2s cubic-bezier(0.25, 0, 0.15, 1), translate 0.2s cubic-bezier(0.25, 0, 0.15, 1);
   -webkit-overflow-scrolling: touch;
 }
@@ -32415,7 +32411,7 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  border-right: 1px solid var(--alain-default-heading-border, #efe3e5);
+  border-right: 1px solid #efe3e5;
 }
 .alain-default__aside-wrap {
   display: flex;
@@ -32441,7 +32437,7 @@ body {
   background-color: transparent;
 }
 .alain-default__aside-link {
-  border-top: 1px solid var(--alain-default-heading-border, #efe3e5);
+  border-top: 1px solid #efe3e5;
 }
 .alain-default__aside-link-collapsed {
   cursor: pointer;
@@ -32575,7 +32571,7 @@ body {
   color: rgba(0, 0, 0, 0.85);
 }
 .sidebar-nav__selected {
-  background-color: var(--alain-default-aside-nav-selected-bg, #fcfcfc);
+  background-color: #fcfcfc;
   border-left-color: #1890ff;
 }
 .sidebar-nav__selected > .sidebar-nav__item-link {
@@ -32658,8 +32654,8 @@ body {
   z-index: 16;
   display: none;
   min-width: 160px;
-  background-color: var(--alain-default-aside-bg, #fff);
-  border: 1px solid var(--alain-default-heading-border, #efe3e5);
+  background-color: #fff;
+  border: 1px solid #efe3e5;
   border-radius: 4px;
 }
 .sidebar-nav__floating .sidebar-nav__item-link {
@@ -32761,7 +32757,7 @@ body {
   margin-bottom: 24px;
   margin-left: -24px;
   padding: 12px 24px 0 24px;
-  border-bottom: 1px solid var(--alain-default-heading-border, #efe3e5);
+  border-bottom: 1px solid #efe3e5;
 }
 @media (max-width: 767px) {
   .quick-menu {
@@ -33009,7 +33005,6 @@ body {
 }
 .sv__container {
   display: block;
-  /** offset the padding-bottom of last row */
 }
 .sv__container .ant-row {
   overflow: hidden;
@@ -33064,7 +33059,6 @@ body {
   margin-left: 2px;
 }
 .sv__detail {
-  /** contents 对 ie, edge 不支持，但对于子组件的支持会更友好 */
   display: table-cell;
   width: 100%;
   padding-bottom: 16px;
@@ -33095,9 +33089,6 @@ body {
   display: inline;
   margin-left: 8px;
   color: #8c8c8c;
-}
-.sv__small {
-  /** offset the padding-bottom of last row */
 }
 .sv__small .ant-row {
   margin-bottom: -8px;
@@ -34039,7 +34030,8 @@ ellipsis {
   position: fixed;
   z-index: 99998;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0.5;
+  background-color: #000;
 }
 .onboarding__item {
   position: absolute;
