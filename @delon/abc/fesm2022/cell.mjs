@@ -77,7 +77,7 @@ class CellService {
         this.widgets[key] = { type: 'widget', ref: widget };
     }
     getWidget(key) {
-        return key ? this.widgets[key] : undefined;
+        return this.widgets[key];
     }
     genType(value, options) {
         if (options.type != null)
