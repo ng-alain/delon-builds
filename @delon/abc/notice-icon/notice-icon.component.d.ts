@@ -6,7 +6,7 @@ import * as i0 from "@angular/core";
 export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy {
     private readonly i18n;
     private readonly cdr;
-    private i18n$;
+    private i18n$?;
     locale: LocaleData;
     data: NoticeItem[];
     count?: number;
