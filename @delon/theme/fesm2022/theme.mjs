@@ -2677,6 +2677,89 @@ var viVI = {
     }
 };
 
+var arSA = {
+    abbr: 'ar-SA',
+    exception: {
+        403: `عذراً، ليس لديك إذن للوصول إلى هذه الصفحة`,
+        404: `عذراً، الصفحة التي تبحث عنها غير موجودة`,
+        500: `عذراً، خطأ في الخادم`,
+        backToHome: 'العودة إلى الصفحة الرئيسية'
+    },
+    noticeIcon: {
+        emptyText: 'لا توجد بيانات',
+        clearText: 'مسح'
+    },
+    reuseTab: {
+        close: 'إغلاق العلامة',
+        closeOther: 'إغلاق العلامات الأخرى',
+        closeRight: 'إغلاق العلامات اليمنى',
+        refresh: 'تحديث'
+    },
+    tagSelect: {
+        expand: 'توسيع',
+        collapse: 'طي'
+    },
+    miniProgress: {
+        target: 'الهدف: '
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} من {{total}}',
+        filterConfirm: 'تأكيد',
+        filterReset: 'إعادة تعيين'
+    },
+    sf: {
+        submit: 'حفظ',
+        reset: 'إعادة تعيين',
+        search: 'بحث',
+        edit: 'تعديل',
+        addText: 'إضافة',
+        removeText: 'حذف',
+        checkAllText: 'تحديد الكل',
+        error: {
+            'false schema': `القيمة المنطقية خاطئة`,
+            $ref: `المرجع "{{ref}}" غير موجود`,
+            additionalItems: `يجب ألا يحتوي على عناصر إضافية`,
+            additionalProperties: `يجب ألا يحتوي على خصائص إضافية`,
+            anyOf: `يجب أن يتطابق مع أحد النماذج في "anyOf"`,
+            dependencies: `يجب أن يحتوي على الخصائص {{deps}} عندما تكون الخاصية {{property}} موجودة`,
+            enum: `يجب أن يكون واحدًا من القيم المحددة`,
+            format: `يجب أن يتوافق مع النمط "{{format}}"`,
+            type: `يجب أن يكون {{type}}`,
+            required: `مطلوب`,
+            maxLength: `يجب ألا يكون أطول من {limit} حرف`,
+            minLength: `يجب ألا يكون أقصر من {limit} حرف`,
+            minimum: `يجب أن يكون أكبر من أو يساوي {comparison} {limit}`,
+            formatMinimum: `يجب أن يكون أكبر من أو يساوي {comparison} {limit}`,
+            maximum: `يجب أن يكون أقل من أو يساوي {comparison} {limit}`,
+            formatMaximum: `يجب أن يكون أقل من أو يساوي {comparison} {limit}`,
+            maxItems: `يجب ألا يكون أكثر من {limit} عنصر`,
+            minItems: `يجب ألا يكون أقل من {limit} عنصر`,
+            maxProperties: `يجب ألا يكون أكثر من {limit} خاصية`,
+            minProperties: `يجب ألا يكون أقل من {limit} خاصية`,
+            multipleOf: `يجب أن يكون مضاعفًا لـ {multipleOf}`,
+            not: `لا يجب أن يتطابق مع النمط (not)`,
+            oneOf: `يجب أن يتطابق مع أحد النماذج في "oneOf"`,
+            pattern: `يجب أن يتطابق مع النمط "{pattern}"`,
+            uniqueItems: `يجب ألا يحتوي على عناصر مكررة`,
+            custom: `يجب أن يكون صالحًا`,
+            propertyNames: `يجب أن تكون الخاصية صالحة`,
+            patternRequired: `يجب أن تحتوي على خاصية تطابق النمط "{missingPattern}"`,
+            switch: `يجب أن يكون {caseIndex} صالحًا`,
+            const: `يجب أن يكون ثابتًا`,
+            contains: `يجب أن يحتوي على قيمة صالحة`,
+            formatExclusiveMaximum: `formatExclusiveMaximum يجب أن يكون قيمة منطقية`,
+            formatExclusiveMinimum: `formatExclusiveMinimum يجب أن يكون قيمة منطقية`,
+            if: `يجب أن يتوافق مع "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `تخطي`,
+        prev: `السابق`,
+        next: `التالي`,
+        done: `تم`
+    }
+};
+
 class DatePipe {
     constructor() {
         this.nzI18n = inject(NzI18nService);
@@ -2882,5 +2965,5 @@ const VERSION = new Version('17.3.1');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, provideAlain, slSI as sl_SI, stepPreloader, trTR as tr_TR, viVI as vi_VI, yn, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, arSA as ar_SA, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, provideAlain, slSI as sl_SI, stepPreloader, trTR as tr_TR, viVI as vi_VI, yn, zhCN as zh_CN, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map
