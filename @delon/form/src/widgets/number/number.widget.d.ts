@@ -1,6 +1,6 @@
 import { OnInit } from '@angular/core';
-import { SFNumberWidgetSchema } from './schema';
 import { ControlUIWidget } from '../../widget';
+import { SFNumberWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> implements OnInit {
     min: number;

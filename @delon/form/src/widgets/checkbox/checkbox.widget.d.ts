@@ -1,7 +1,7 @@
-import { SFCheckboxWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
+import { SFCheckboxWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class CheckboxWidget extends ControlUIWidget<SFCheckboxWidgetSchema> {
     data: SFSchemaEnum[];

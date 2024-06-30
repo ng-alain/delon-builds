@@ -1,8 +1,8 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { SFDateWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { ControlUIWidget } from '../../widget';
+import { SFDateWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class DateWidget extends ControlUIWidget<SFDateWidgetSchema> implements OnInit {
     private startFormat;

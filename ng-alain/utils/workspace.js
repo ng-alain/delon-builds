@@ -43,8 +43,8 @@ function isMulitProject(tree) {
 }
 exports.isMulitProject = isMulitProject;
 function getProject(tree, projectName) {
-    var _a, _b, _c;
     return __awaiter(this, void 0, void 0, function* () {
+        var _a, _b, _c;
         const workspace = yield (0, workspace_1.getWorkspace)(tree);
         projectName = getProjectName(workspace, projectName);
         if (!projectName || !workspace.projects.has(projectName)) {

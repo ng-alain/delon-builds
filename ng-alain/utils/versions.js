@@ -20,31 +20,31 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `@angular-eslint/builder@^17.2.0`,
-        `@angular-eslint/eslint-plugin@^17.2.0`,
-        `@angular-eslint/eslint-plugin-template@^17.2.0`,
-        `@angular-eslint/schematics@^17.2.0`,
-        `@angular-eslint/template-parser@^17.2.0`,
-        `@typescript-eslint/eslint-plugin@^7.0.0`,
-        `@typescript-eslint/parser@^7.0.0`,
-        `eslint@^8.57.0`,
+        `@angular-eslint/builder@^18.0.1`,
+        `@angular-eslint/eslint-plugin@^18.0.0`,
+        `@angular-eslint/eslint-plugin-template@^18.0.0`,
+        `@angular-eslint/schematics@^18.0.0`,
+        `@angular-eslint/template-parser@^18.0.0`,
+        `@typescript-eslint/eslint-plugin@^7.11.0`,
+        `@typescript-eslint/parser@^7.11.0`,
+        `eslint@^8.28.0`,
         `eslint-config-prettier@~9.1.0`,
-        `eslint-plugin-import@~2.29.1`,
-        `eslint-plugin-jsdoc@~48.0.6`,
-        `eslint-plugin-prefer-arrow@~1.2.3`,
-        `eslint-plugin-prettier@~5.1.3`,
-        `eslint-plugin-deprecation@~2.0.0`,
-        `prettier@^3.2.5`,
-        `husky@^8.0.3`,
+        `eslint-plugin-import@~2.25.3`,
+        `eslint-plugin-jsdoc@~46.8.2`,
+        `eslint-plugin-prefer-arrow@~1.2.2`,
+        `eslint-plugin-prettier@~5.0.0`,
+        `eslint-plugin-deprecation@^3.0.0`,
+        `prettier@^3.3.2`,
+        `husky@^9.0.11`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^16.0.2`,
         `source-map-explorer@^2.5.3`,
-        `@angular/language-service@^17.2.0`,
-        `ngx-tinymce@^17.0.0`,
-        `@ng-util/monaco-editor@^17.0.1`,
+        `@angular/language-service@^18.0.0`,
+        `ngx-tinymce@^18.0.0`,
+        `@ng-util/monaco-editor@^18.0.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^17.3.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^18.0.1`]);
 }
 exports.UpgradeMainVersions = UpgradeMainVersions;
 function addESLintRule(projectName) {

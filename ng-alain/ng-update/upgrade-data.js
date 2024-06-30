@@ -13,6 +13,7 @@ exports.ruleUpgradeData = {
     methodCallChecks: data_1.methodCallChecks,
     outputNames: data_1.outputNames,
     propertyNames: data_1.propertyNames,
-    symbolRemoval: schematics_1.symbolRemoval
+    symbolRemoval: schematics_1.symbolRemoval,
+    cssTokens: data_1.cssTokens
 };
 //# sourceMappingURL=upgrade-data.js.map
