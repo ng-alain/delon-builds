@@ -156,7 +156,7 @@ export declare class _HttpClient {
      */
     post<T>(url: string, body?: any, params?: any, options?: {
         headers?: _HttpHeaders;
-        observe: 'response';
+        observe: 'body' | 'response';
         reportProgress?: boolean;
         responseType?: 'json';
         withCredentials?: boolean;

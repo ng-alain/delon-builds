@@ -6,7 +6,7 @@ import * as i0 from "@angular/core";
 export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy {
     private readonly i18n;
     private readonly cdr;
-    private i18n$;
+    private i18n$?;
     locale: LocaleData;
     data: NoticeItem[];
     count?: number;
@@ -19,6 +19,7 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;
     get overlayCls(): string;
+    delayShow: boolean;
     onVisibleChange(result: boolean): void;
     onSelect(i: NoticeIconSelect): void;
     onClear(title: string): void;

@@ -1,5 +1,5 @@
-import { IStore } from './interface';
 import { ITokenModel } from '../token/interface';
+import { IStore } from './interface';
 export declare function DA_STORE_TOKEN_LOCAL_FACTORY(): IStore;
 /**
  * `localStorage` storage, **not lost after closing the browser**.

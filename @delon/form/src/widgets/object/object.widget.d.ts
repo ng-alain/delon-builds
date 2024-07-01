@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import type { SFObjectWidgetRenderType } from './schema';
 import { ObjectLayoutWidget } from '../../widget';
+import type { SFObjectWidgetRenderType } from './schema';
 import * as i0 from "@angular/core";
 export declare class ObjectWidget extends ObjectLayoutWidget implements OnInit {
     grid: NzSafeAny;

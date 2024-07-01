@@ -1,9 +1,9 @@
 import { OnInit } from '@angular/core';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { SFSelectWidgetSchema } from './schema';
 import { SFValue } from '../../interface';
 import { SFSchemaEnum } from '../../schema';
 import { ControlUIWidget } from '../../widget';
+import { SFSelectWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class SelectWidget extends ControlUIWidget<SFSelectWidgetSchema> implements OnInit {
     private search$;

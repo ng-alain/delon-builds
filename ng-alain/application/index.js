@@ -137,13 +137,13 @@ function addCodeStylesToPackageJson() {
         }
         // dependencies
         (0, utils_1.addPackage)(tree, [
-            `husky@^8.0.3`,
-            `lint-staged@^15.2.0`,
-            `prettier@^3.2.4`,
-            `stylelint@^16.1.0`,
+            `husky@^9.0.11`,
+            `lint-staged@^15.2.7`,
+            `prettier@^3.3.2`,
+            `stylelint@^16.6.1`,
             `stylelint-config-standard@^36.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
-            `stylelint-config-clean-order@^5.4.0`
+            `stylelint-config-clean-order@^6.0.0`
         ], 'devDependencies');
         return tree;
     };

@@ -2,7 +2,7 @@ import * as i0 from '@angular/core';
 import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject, inject } from '@angular/core';
 import * as i1 from '@delon/util/config';
 import { HttpErrorResponse, HttpResponseBase, HttpResponse } from '@angular/common/http';
-import { of, isObservable, from, map, throwError, switchMap, delay as delay$1 } from 'rxjs';
+import { of, isObservable, from, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -152,10 +152,10 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MockService, providedIn: 'root' }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: MockService, providedIn: 'root' }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "17.1.0", ngImport: i0, type: MockService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{

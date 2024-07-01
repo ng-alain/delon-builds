@@ -8,6 +8,6 @@ const schematics_1 = require("@angular/cdk/schematics");
  * automatically through type checking.
  */
 exports.constructorChecks = {
-    [schematics_1.TargetVersion.V17]: []
+    [schematics_1.TargetVersion.V18]: []
 };
 //# sourceMappingURL=constructor-checks.js.map
