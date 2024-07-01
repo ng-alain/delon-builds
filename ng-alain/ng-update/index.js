@@ -4,9 +4,10 @@ exports.postUpdate = exports.updateToV18 = void 0;
 const schematics_1 = require("@angular/cdk/schematics");
 const schematics_2 = require("@angular-devkit/schematics");
 const upgrade_data_1 = require("./upgrade-data");
+const V18_1 = require("./upgrade-rules/V18");
 const migrations = [];
 function updateToV18() {
-    return (0, schematics_2.chain)([(0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V18, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
+    return (0, schematics_2.chain)([(0, V18_1.v18Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V18, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
 }
 exports.updateToV18 = updateToV18;
 /** Post-update schematic to be called when update is finished. */

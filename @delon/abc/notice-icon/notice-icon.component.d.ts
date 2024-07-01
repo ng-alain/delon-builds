@@ -19,7 +19,6 @@ export declare class NoticeIconComponent implements OnInit, OnChanges, OnDestroy
     readonly clear: EventEmitter<string>;
     readonly popoverVisibleChange: EventEmitter<boolean>;
     get overlayCls(): string;
-    delayShow: boolean;
     onVisibleChange(result: boolean): void;
     onSelect(i: NoticeIconSelect): void;
     onClear(title: string): void;

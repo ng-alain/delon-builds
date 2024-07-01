@@ -37,7 +37,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `prettier@^3.3.2`,
         `husky@^9.0.11`,
         `ng-alain@${version}`,
-        `ng-alain-plugin-theme@^16.0.2`,
+        `ng-alain-plugin-theme@^18.0.0`,
         `source-map-explorer@^2.5.3`,
         `@angular/language-service@^18.0.0`,
         `ngx-tinymce@^18.0.0`,
