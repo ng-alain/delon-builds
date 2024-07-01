@@ -40,7 +40,7 @@ class ExceptionComponent {
     constructor(configSrv) {
         this.i18n = inject(DelonLocaleService);
         this.dom = inject(DomSanitizer);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
         this.destroy$ = inject(DestroyRef);
         this.locale = {};
@@ -68,8 +68,8 @@ class ExceptionComponent {
         });
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

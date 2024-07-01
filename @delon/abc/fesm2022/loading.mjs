@@ -37,7 +37,7 @@ class LoadingService {
     constructor() {
         this.overlay = inject(Overlay);
         this.configSrv = inject(AlainConfigService);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.compRef = null;
         this.opt = null;
         this.n$ = new Subject();
@@ -67,7 +67,7 @@ class LoadingService {
             backdropClass: 'loading-backdrop'
         });
         this.compRef = this._overlayRef.attach(new ComponentPortal(LoadingDefaultComponent));
-        const dir = this.configSrv.get('loading').direction || this.directionality.value;
+        const dir = this.configSrv.get('loading').direction || this.directionality?.value;
         if (this.instance != null) {
             this.instance.options = this.opt;
             this.instance.dir = dir;

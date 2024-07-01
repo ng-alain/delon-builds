@@ -823,10 +823,10 @@ class ReuseTabComponent {
         this.cdr = inject(ChangeDetectorRef);
         this.router = inject(Router);
         this.route = inject(ActivatedRoute);
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
         this.doc = inject(DOCUMENT);
         this.platform = inject(Platform);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.stateKey = inject(REUSE_TAB_STORAGE_KEY);
         this.stateSrv = inject(REUSE_TAB_STORAGE_STATE);
         this.destroy$ = inject(DestroyRef);
@@ -852,7 +852,7 @@ class ReuseTabComponent {
     }
     // #endregion
     genTit(title) {
-        return title.i18n ? this.i18nSrv.fanyi(title.i18n) : title.text;
+        return title.i18n && this.i18nSrv ? this.i18nSrv.fanyi(title.i18n) : title.text;
     }
     get curUrl() {
         return this.srv.getUrl(this.route.snapshot);
@@ -1014,8 +1014,8 @@ class ReuseTabComponent {
     }
     // #endregion
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
@@ -1036,7 +1036,7 @@ class ReuseTabComponent {
             }
             this.genList(res);
         });
-        this.i18nSrv.change
+        this.i18nSrv?.change
             .pipe(filter(() => this.srv.inited), takeUntilDestroyed(this.destroy$), debounceTime(100))
             .subscribe(() => this.genList({ active: 'title' }));
         this.srv.init();

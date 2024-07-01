@@ -13,7 +13,7 @@ class ErrorCollectComponent {
         this.el = inject(ElementRef).nativeElement;
         this.cdr = inject(ChangeDetectorRef);
         this.doc = inject(DOCUMENT);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.platform = inject(Platform);
         this.destroy$ = inject(DestroyRef);
         this.formEl = null;
@@ -45,8 +45,8 @@ class ErrorCollectComponent {
         return true;
     }
     install() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

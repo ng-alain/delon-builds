@@ -37,7 +37,7 @@ class GlobalFooterComponent {
         this.router = inject(Router);
         this.win = inject(WINDOW);
         this.dom = inject(DomSanitizer);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
         this.destroy$ = inject(DestroyRef);
         this._links = [];
@@ -66,8 +66,8 @@ class GlobalFooterComponent {
         }
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

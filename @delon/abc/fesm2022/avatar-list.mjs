@@ -34,7 +34,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImpor
 class AvatarListComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.destroy$ = inject(DestroyRef);
         this.inited = false;
         this.items = [];
@@ -68,8 +68,8 @@ class AvatarListComponent {
         this.cdr.detectChanges();
     }
     ngAfterViewInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

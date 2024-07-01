@@ -155,7 +155,7 @@ class OnboardingService {
         this.doc = inject(DOCUMENT);
         this.configSrv = inject(AlainConfigService);
         this.keyStoreSrv = inject(ONBOARDING_STORE_TOKEN);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.active = 0;
         this.running$ = null;
         this._running = false;
@@ -234,7 +234,7 @@ class OnboardingService {
             ...this.i18n.getData('onboarding'),
             ...items[this.active]
         };
-        const dir = this.configSrv.get('onboarding').direction || this.directionality.value;
+        const dir = this.configSrv.get('onboarding').direction || this.directionality?.value;
         Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length, dir });
         const pipes = [
             switchMap(() => (item.url ? this.router.navigateByUrl(item.url) : of(true))),

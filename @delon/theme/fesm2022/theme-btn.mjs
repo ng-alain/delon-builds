@@ -16,7 +16,7 @@ class ThemeBtnComponent {
         this.platform = inject(Platform);
         this.renderer = inject(Renderer2);
         this.configSrv = inject(AlainConfigService);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
         this.destroy$ = inject(DestroyRef);
         this.theme = 'default';
@@ -33,8 +33,8 @@ class ThemeBtnComponent {
         this.key = inject(ALAIN_THEME_BTN_KEYS, { optional: true }) ?? 'site-theme';
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe((direction) => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

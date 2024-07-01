@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 class TagSelectComponent {
     constructor() {
         this.i18n = inject(DelonLocaleService);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.cdr = inject(ChangeDetectorRef);
         this.destroy$ = inject(DestroyRef);
         this.locale = {};
@@ -20,8 +20,8 @@ class TagSelectComponent {
         this.change = new EventEmitter();
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

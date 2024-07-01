@@ -1267,8 +1267,8 @@ class SFComponent {
         this.dom = inject(DomSanitizer);
         this.cdr = inject(ChangeDetectorRef);
         this.localeSrv = inject(DelonLocaleService);
-        this.aclSrv = inject(ACLService);
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
+        this.aclSrv = inject(ACLService, { optional: true });
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
         this.platform = inject(Platform);
         this._renders = new Map();
         this._valid = true;
@@ -1330,12 +1330,18 @@ class SFComponent {
                 this.cdr.markForCheck();
             }
         });
-        merge(this.aclSrv.change, this.i18nSrv.change)
-            .pipe(filter(() => this._inited), takeUntilDestroyed())
-            .subscribe(() => this.refreshSchema());
+        const refSchemas = [
+            this.aclSrv ? this.aclSrv.change : null,
+            this.i18nSrv ? this.i18nSrv.change : null
+        ].filter(o => o != null);
+        if (refSchemas.length > 0) {
+            merge(...refSchemas)
+                .pipe(filter(() => this._inited), takeUntilDestroyed())
+                .subscribe(() => this.refreshSchema());
+        }
     }
     fanyi(key) {
-        return this.i18nSrv.fanyi(key) || key;
+        return (this.i18nSrv ? this.i18nSrv.fanyi(key) : '') || key;
     }
     inheritUI(ui) {
         ['optionalHelp'].filter(key => !!this._defUi[key]).forEach(key => (ui[key] = { ...this._defUi[key], ...ui[key] }));

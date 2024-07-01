@@ -266,7 +266,7 @@ class SettingDrawerComponent {
         this.lazy = inject(LazyService);
         this.ngZone = inject(NgZone);
         this.doc = inject(DOCUMENT);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.destroy$ = inject(DestroyRef);
         this.autoApplyColor = true;
         this.compilingText = 'Compiling...';
@@ -288,8 +288,8 @@ class SettingDrawerComponent {
         return DEFAULT_VARS['primary-color'].default;
     }
     ngOnInit() {
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });

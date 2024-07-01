@@ -130,7 +130,7 @@ class LayoutDefaultNavComponent {
         this.cdr = inject(ChangeDetectorRef);
         this.ngZone = inject(NgZone);
         this.sanitizer = inject(DomSanitizer);
-        this.directionality = inject(Directionality);
+        this.directionality = inject(Directionality, { optional: true });
         this.destroy$ = inject(DestroyRef);
         this.dir = 'ltr';
         this.list = [];
@@ -310,8 +310,8 @@ class LayoutDefaultNavComponent {
             .pipe(takeUntilDestroyed(this.destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
             .subscribe(() => this.clearFloating());
         this.underPad();
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality?.value;
+        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
