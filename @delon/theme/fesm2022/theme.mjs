@@ -148,15 +148,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImpor
  */
 class MenuService {
     constructor() {
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
-        this.aclService = inject(ACLService, { optional: true });
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
+        this.aclService = inject(ACLService);
         this._change$ = new BehaviorSubject([]);
         this.data = [];
         /**
          * 是否完全受控菜单打开状态，默认：`false`
          */
         this.openStrictly = false;
-        this.i18n$ = this.i18nSrv?.change.subscribe(() => this.resume());
+        this.i18n$ = this.i18nSrv.change.subscribe(() => this.resume());
     }
     get change() {
         return this._change$.pipe(share());
@@ -217,7 +217,7 @@ class MenuService {
         if (item.icon != null) {
             item.icon = { theme: 'outline', spin: false, ...item.icon };
         }
-        item.text = item.i18n && this.i18nSrv ? this.i18nSrv.fanyi(item.i18n) : item.text;
+        item.text = item.i18n ? this.i18nSrv.fanyi(item.i18n) : item.text;
         // group
         item.group = item.group !== false;
         // hidden
@@ -225,7 +225,7 @@ class MenuService {
         // disabled
         item.disabled = typeof item.disabled === 'undefined' ? false : item.disabled;
         // acl
-        item._aclResult = item.acl && this.aclService ? this.aclService.can(item.acl) : true;
+        item._aclResult = item.acl ? this.aclService.can(item.acl) : true;
         item.open = item.open != null ? item.open : false;
     }
     resume(callback) {
@@ -271,7 +271,7 @@ class MenuService {
             this.data[0].children.splice(pos, 0, shortcutMenu);
         }
         let _data = this.data[0].children[pos];
-        if (_data.i18n && this.i18nSrv)
+        if (_data.i18n)
             _data.text = this.i18nSrv.fanyi(_data.i18n);
         _data = Object.assign(_data, {
             shortcutRoot: true,
@@ -684,14 +684,14 @@ class TitleService {
         this.injector = inject(Injector);
         this.title = inject(Title);
         this.menuSrv = inject(MenuService);
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
         /**
          * Set default title name
          *
          * 设置默认标题名
          */
         this.default = `Not Page Name`;
-        this.i18nSrv?.change.pipe(takeUntilDestroyed()).subscribe(() => this.setTitle());
+        this.i18nSrv.change.pipe(takeUntilDestroyed()).subscribe(() => this.setTitle());
     }
     /**
      * Set separator
@@ -747,7 +747,7 @@ class TitleService {
         while (next.firstChild)
             next = next.firstChild;
         const data = (next.snapshot && next.snapshot.data) || {};
-        if (data.titleI18n && this.i18nSrv)
+        if (data.titleI18n)
             data.title = this.i18nSrv.fanyi(data.titleI18n);
         return isObservable(data.title) ? data.title : of(data.title);
     }
@@ -757,7 +757,7 @@ class TitleService {
             return of('');
         const item = menus[menus.length - 1];
         let title;
-        if (item.i18n && this.i18nSrv)
+        if (item.i18n)
             title = this.i18nSrv.fanyi(item.i18n);
         return of(title || item.text);
     }
@@ -787,7 +787,7 @@ class TitleService {
      * Set i18n key of the document title
      */
     setTitleByI18n(key, params) {
-        this.setTitle(this.i18nSrv?.fanyi(key, params));
+        this.setTitle(this.i18nSrv.fanyi(key, params));
     }
     ngOnDestroy() {
         this.tit$?.unsubscribe();

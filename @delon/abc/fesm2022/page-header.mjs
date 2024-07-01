@@ -38,10 +38,10 @@ class PageHeaderComponent {
         this.router = inject(Router);
         this.cdr = inject(ChangeDetectorRef);
         this.menuSrv = inject(MenuService);
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
-        this.titleSrv = inject(TitleService, { optional: true });
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
+        this.titleSrv = inject(TitleService);
         this.reuseSrv = inject(ReuseTabService, { optional: true });
-        this.directionality = inject(Directionality, { optional: true });
+        this.directionality = inject(Directionality);
         this.destroy$ = inject(DestroyRef);
         this.inited = false;
         this.isBrowser = true;
@@ -76,8 +76,7 @@ class PageHeaderComponent {
         const obsList = [this.router.events.pipe(filter(ev => ev instanceof NavigationEnd))];
         if (this.menuSrv != null)
             obsList.push(this.menuSrv.change);
-        if (this.i18nSrv != null)
-            obsList.push(this.i18nSrv.change);
+        obsList.push(this.i18nSrv.change);
         merge(...obsList)
             .pipe(takeUntilDestroyed(), filter(() => this.inited))
             .subscribe(() => this.refresh());
@@ -96,14 +95,14 @@ class PageHeaderComponent {
             if (typeof item.hideInBreadcrumb !== 'undefined' && item.hideInBreadcrumb)
                 return;
             let title = item.text;
-            if (item.i18n && this.i18nSrv)
+            if (item.i18n)
                 title = this.i18nSrv.fanyi(item.i18n);
             paths.push({ title, link: (item.link && [item.link]) });
         });
         // add home
         if (this.home) {
             paths.splice(0, 0, {
-                title: (this.homeI18n && this.i18nSrv && this.i18nSrv.fanyi(this.homeI18n)) || this.home,
+                title: (this.homeI18n && this.i18nSrv.fanyi(this.homeI18n)) || this.home,
                 link: [this.homeLink]
             });
         }
@@ -113,15 +112,13 @@ class PageHeaderComponent {
         if (this._title == null && this._titleTpl == null && this.autoTitle && this.menus.length > 0) {
             const item = this.menus[this.menus.length - 1];
             let title = item.text;
-            if (item.i18n && this.i18nSrv) {
+            if (item.i18n) {
                 title = this.i18nSrv.fanyi(item.i18n);
             }
             this._titleVal = title;
         }
         if (this._titleVal && this.syncTitle) {
-            if (this.titleSrv) {
-                this.titleSrv.setTitle(this._titleVal);
-            }
+            this.titleSrv.setTitle(this._titleVal);
             if (!this.inited && this.reuseSrv) {
                 this.reuseSrv.title = this._titleVal;
             }
@@ -137,8 +134,8 @@ class PageHeaderComponent {
         }
     }
     ngOnInit() {
-        this.dir = this.directionality?.value;
-        this.directionality?.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
+        this.dir = this.directionality.value;
+        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
             this.dir = direction;
             this.cdr.detectChanges();
         });
