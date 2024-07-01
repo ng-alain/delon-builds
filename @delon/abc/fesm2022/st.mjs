@@ -1102,7 +1102,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImpor
 
 class STExport {
     constructor() {
-        this.xlsxSrv = inject(XlsxService, { optional: true });
+        this.xlsxSrv = inject(XlsxService);
     }
     _stGet(item, col, index, colIndex) {
         const ret = { t: 's', v: '' };
@@ -1169,12 +1169,6 @@ class STExport {
         return sheets;
     }
     async export(opt) {
-        if (this.xlsxSrv == null) {
-            if (typeof ngDevMode === 'undefined' || ngDevMode) {
-                console.warn(`XlsxService service not found`);
-            }
-            return Promise.reject();
-        }
         const sheets = this.genSheet(opt);
         return this.xlsxSrv.export({
             sheets,
@@ -1648,7 +1642,7 @@ class STComponent {
         return this.columns == null;
     }
     constructor(configSrv) {
-        this.i18nSrv = inject(ALAIN_I18N_TOKEN, { optional: true });
+        this.i18nSrv = inject(ALAIN_I18N_TOKEN);
         this.el = inject(ElementRef).nativeElement;
         this.cdr = inject(ChangeDetectorRef);
         this.doc = inject(DOCUMENT);
@@ -1701,7 +1695,7 @@ class STComponent {
                 this.cd();
             }
         });
-        this.i18nSrv?.change
+        this.i18nSrv.change
             .pipe(takeUntilDestroyed(), filter(() => this._columns.length > 0))
             .subscribe(() => this.refreshColumns());
         this.setCog(configSrv.merge('st', ST_DEFAULT_CONFIG));
