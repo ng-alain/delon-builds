@@ -1,6 +1,6 @@
 {
   "name": "@delon/acl",
-  "version": "17.3.1-7225b35",
+  "version": "17.3.1-73608d1",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -26,7 +26,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^17.3.1-7225b35",
+    "@delon/util": "^17.3.1-73608d1",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/acl.mjs",
