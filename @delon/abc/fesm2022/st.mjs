@@ -1650,7 +1650,7 @@ class STComponent {
         this.columnSource = inject(STColumnSource);
         this.dataSource = inject(STDataSource);
         this.delonI18n = inject(DelonLocaleService);
-        this.cms = inject(NzContextMenuService);
+        this.cms = inject(NzContextMenuService, { optional: true });
         this.destroy$ = inject(DestroyRef);
         this.totalTpl = ``;
         this.inied = false;
@@ -2180,7 +2180,7 @@ class STComponent {
                 return i;
             });
             this.cdr.detectChanges();
-            this.cms.create(event, this.contextmenuTpl);
+            this.cms?.create(event, this.contextmenuTpl);
         });
     }
     // #endregion
