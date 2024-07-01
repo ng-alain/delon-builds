@@ -50,8 +50,8 @@ function createAlainApp(ngAddOptions) {
 }
 exports.createAlainApp = createAlainApp;
 function createAlainAndModuleApp(options) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
-        var _a;
         const res = yield createAlainApp(options === null || options === void 0 ? void 0 : options.ngAddSchema);
         if ((options === null || options === void 0 ? void 0 : options.alainData) != null) {
             res.tree.create('ng-alain.json', JSON.stringify(options === null || options === void 0 ? void 0 : options.alainData));

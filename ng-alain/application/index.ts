@@ -16,6 +16,7 @@ import {
 } from '@angular-devkit/schematics';
 import { updateWorkspace } from '@schematics/angular/utility/workspace';
 
+import { Schema as ApplicationOptions } from './schema';
 import { getLangData } from '../core/lang.config';
 import {
   addAllowedCommonJsDependencies,
@@ -46,7 +47,6 @@ import {
   ZORROVERSION
 } from '../utils';
 import { addESLintRule, UpgradeMainVersions } from '../utils/versions';
-import { Schema as ApplicationOptions } from './schema';
 
 let project: ProjectDefinition;
 let projectName: string;
@@ -187,13 +187,13 @@ function addCodeStylesToPackageJson(): Rule {
     addPackage(
       tree,
       [
-        `husky@^9.0.11`,
-        `lint-staged@^15.2.7`,
-        `prettier@^3.3.2`,
-        `stylelint@^16.6.1`,
+        `husky@^8.0.3`,
+        `lint-staged@^15.2.0`,
+        `prettier@^3.2.4`,
+        `stylelint@^16.1.0`,
         `stylelint-config-standard@^36.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
-        `stylelint-config-clean-order@^6.0.0`
+        `stylelint-config-clean-order@^5.4.0`
       ],
       'devDependencies'
     );

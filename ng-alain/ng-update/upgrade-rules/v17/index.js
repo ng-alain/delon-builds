@@ -9,27 +9,40 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.v18Rule = void 0;
+exports.v17Rule = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
+const angularJson_1 = require("./angularJson");
+const autoRegisterFormWidgets_1 = require("./autoRegisterFormWidgets");
+const nljep_1 = require("./nljep");
+const preloader_1 = require("./preloader");
+const removeForRoot_1 = require("./removeForRoot");
+const replaceProvideConfig_1 = require("./replaceProvideConfig");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
-const remove_ng_less_javascript_enabled_patch_1 = require("./remove-ng-less-javascript-enabled-patch");
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
         (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
         (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
         (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
-        (0, utils_1.logFinished)(context, `Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2502`);
+        (0, utils_1.logFinished)(context, `Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2390`);
     };
 }
-function v18Rule() {
+function v17Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, versions_1.UpgradeMainVersions)(tree);
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
-        return (0, schematics_1.chain)([(0, remove_ng_less_javascript_enabled_patch_1.removeNljep)(), finished()]);
+        return (0, schematics_1.chain)([
+            (0, angularJson_1.fixAngularJson)(),
+            (0, removeForRoot_1.removeForRoot)(),
+            (0, autoRegisterFormWidgets_1.autoRegisterFormWidgets)(),
+            (0, replaceProvideConfig_1.replaceProvideConfig)(),
+            (0, preloader_1.updatePreloader)(),
+            (0, nljep_1.addNljep)(),
+            finished()
+        ]);
     });
 }
-exports.v18Rule = v18Rule;
+exports.v17Rule = v17Rule;
 //# sourceMappingURL=index.js.map

@@ -1,9 +1,14 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
+import { fixAngularJson } from './angularJson';
+import { autoRegisterFormWidgets } from './autoRegisterFormWidgets';
+import { addNljep } from './nljep';
+import { updatePreloader } from './preloader';
+import { removeForRoot } from './removeForRoot';
+import { replaceProvideConfig } from './replaceProvideConfig';
 import { logFinished, logInfo, logWarn } from '../../../utils';
 import { UpgradeMainVersions } from '../../../utils/versions';
-import { removeNljep } from './remove-ng-less-javascript-enabled-patch';
 
 function finished(): Rule {
   return (_tree: Tree, context: SchematicContext) => {
@@ -15,15 +20,23 @@ function finished(): Rule {
 
     logFinished(
       context,
-      `Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2502`
+      `Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2390`
     );
   };
 }
 
-export function v18Rule(): Rule {
+export function v17Rule(): Rule {
   return async (tree: Tree, context: SchematicContext) => {
     UpgradeMainVersions(tree);
     logInfo(context, `Upgrade dependency version number`);
-    return chain([removeNljep(), finished()]);
+    return chain([
+      fixAngularJson(),
+      removeForRoot(),
+      autoRegisterFormWidgets(),
+      replaceProvideConfig(),
+      updatePreloader(),
+      addNljep(),
+      finished()
+    ]);
   };
 }

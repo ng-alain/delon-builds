@@ -1,9 +1,9 @@
 import { Injector } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
+import { FormProperty, PropertyGroup } from './form.property';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
-import { FormProperty, PropertyGroup } from './form.property';
 export declare class FormPropertyFactory {
     private injector;
     private schemaValidatorFactory;

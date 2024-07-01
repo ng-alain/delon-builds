@@ -1,12 +1,12 @@
 import { Injector } from '@angular/core';
 import { AlainSFConfig } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { PropertyGroup } from './form.property';
+import { FormPropertyFactory } from './form.property.factory';
 import { SFValue } from '../interface';
 import { SFSchema } from '../schema/index';
 import { SFUISchema, SFUISchemaItem } from '../schema/ui';
 import { SchemaValidatorFactory } from '../validator.factory';
-import { PropertyGroup } from './form.property';
-import { FormPropertyFactory } from './form.property.factory';
 export declare class ObjectProperty extends PropertyGroup {
     private formPropertyFactory;
     private _propertiesId;

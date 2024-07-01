@@ -35,7 +35,7 @@ body {
   }
 
   &__content {
-    margin: 0 @alain-default-content-padding @alain-default-content-padding;
+    margin: 0 @alain-default-content-padding @alain-default-content-padding @alain-default-content-padding;
     .router-ant();
 
     &-title {
@@ -52,19 +52,18 @@ body {
       background-color: @alain-default-content-heading-bg;
       border-bottom: 1px solid @alain-default-content-heading-border;
 
-      >h1 {
+      > h1 {
         margin-bottom: 0;
         font-size: 18px;
         font-weight: normal;
 
-        >small {
+        > small {
           display: block;
           font-size: 12px;
           color: @muted-color;
         }
       }
     }
-
     // fix width
     nz-input-group {
       width: auto;
@@ -90,7 +89,6 @@ body {
   @{alain-default-prefix}__content {
     margin-left: (@alain-default-aside-wd + @alain-default-content-padding);
   }
-
   @{alain-default-prefix}__collapsed {
     @{alain-default-prefix} {
       &__sidebar {
@@ -111,7 +109,6 @@ body {
         margin-right: (@alain-default-aside-wd + @alain-default-content-padding);
         margin-left: 0;
       }
-
       @{alain-default-prefix}__collapsed {
         @{alain-default-prefix} {
           &__content {
@@ -123,5 +120,4 @@ body {
     }
   }
 }
-
 .layout-default-rtl-mixin(@rtl-enabled);

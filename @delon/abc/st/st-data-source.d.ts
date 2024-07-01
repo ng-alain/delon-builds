@@ -6,7 +6,7 @@ import type { AlainSTConfig } from '@delon/util/config';
 import { CurrencyService } from '@delon/util/format';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { STColumn, STCustomRequestOptions, STData, STMultiSort, STMultiSortResultType, STOnCellResult, STPage, STReq, STRes, STRowClassName, STSingleSort, STStatisticalResults } from './st.interfaces';
-import type { _STColumn, _STHeader } from './st.types';
+import { _STColumn } from './st.types';
 import * as i0 from "@angular/core";
 export interface STDataSourceOptions {
     pi: number;
@@ -18,7 +18,6 @@ export interface STDataSourceOptions {
     res: STRes;
     page: STPage;
     columns: _STColumn[];
-    headers: _STHeader[][];
     singleSort?: STSingleSort | null;
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName | null;
@@ -64,7 +63,7 @@ export declare class STDataSource {
     private getValidSort;
     private getSorterFn;
     get nextSortTick(): number;
-    getReqSortMap(singleSort: STSingleSort | undefined | null, multiSort: STMultiSort | undefined, headers: _STHeader[][]): STMultiSortResultType;
+    getReqSortMap(singleSort: STSingleSort | undefined | null, multiSort: STMultiSort | undefined, columns: _STColumn[]): STMultiSortResultType;
     private getFilteredData;
     private getReqFilterMap;
     private genStatistical;

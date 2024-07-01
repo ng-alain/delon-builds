@@ -1,7 +1,6 @@
 import { chain, Rule, SchematicContext, SchematicsException, Tree } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
 
-import { getProject } from '../utils';
 import { PluginOptions } from './interface';
 import { pluginAsdf } from './plugin.asdf';
 import { pluginCodeStyle } from './plugin.code-style';
@@ -11,6 +10,7 @@ import { pluginIcon } from './plugin.icon';
 import { pluginRTL } from './plugin.rtl';
 import { pluginSTS } from './plugin.sts';
 import { Schema as PluginSchema } from './schema';
+import { getProject } from '../utils';
 
 function installPackages(): (_host: Tree, context: SchematicContext) => void {
   return (_host: Tree, context: SchematicContext) => {

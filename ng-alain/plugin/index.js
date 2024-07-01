@@ -11,7 +11,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
-const utils_1 = require("../utils");
 const plugin_asdf_1 = require("./plugin.asdf");
 const plugin_code_style_1 = require("./plugin.code-style");
 const plugin_default_language_1 = require("./plugin.default-language");
@@ -19,6 +18,7 @@ const plugin_docker_1 = require("./plugin.docker");
 const plugin_icon_1 = require("./plugin.icon");
 const plugin_rtl_1 = require("./plugin.rtl");
 const plugin_sts_1 = require("./plugin.sts");
+const utils_1 = require("../utils");
 function installPackages() {
     return (_host, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
