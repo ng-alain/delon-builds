@@ -25,7 +25,7 @@ function removeOrginalFiles() {
             `${project.root}/README.md`,
             `${project.sourceRoot}/main.ts`,
             `${project.sourceRoot}/styles.less`,
-            `${project.sourceRoot}/favicon.ico`,
+            `${project.sourceRoot}/public/favicon.ico`,
             `${project.sourceRoot}/app/app.component.spec.ts`,
             `${project.sourceRoot}/app/app.component.ts`,
             `${project.sourceRoot}/app/app.component.html`,
