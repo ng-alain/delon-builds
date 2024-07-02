@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFileReplacements = exports.addSchematicCollections = exports.addStylePreprocessorOptions = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.isMulitProject = exports.writeNgAlainJson = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.addFileReplacements = exports.addSchematicCollections = exports.addStyleResources = exports.addStylePreprocessorOptions = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.isMulitProject = exports.writeNgAlainJson = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -165,6 +165,18 @@ function addStylePreprocessorOptions(workspace, projectName) {
     build.options.stylePreprocessorOptions['includePaths'] = includePaths;
 }
 exports.addStylePreprocessorOptions = addStylePreprocessorOptions;
+function addStyleResources(workspace, projectName) {
+    const project = getProjectFromWorkspace(workspace, projectName);
+    if (project == null)
+        return;
+    const build = project.targets.get(exports.BUILD_TARGET_BUILD);
+    if (build == null || build.options == null)
+        return;
+    if (!Array.isArray(build.options.assets))
+        build.options.assets = [];
+    build.options.assets.push(`src/assets`);
+}
+exports.addStyleResources = addStyleResources;
 function addSchematicCollections(workspace) {
     const cli = workspace.extensions.cli;
     if (cli && cli.schematicCollections)

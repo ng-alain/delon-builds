@@ -46,6 +46,7 @@ function fixAngularJson() {
         if (serveTarget.options == null)
             serveTarget.options = {};
         serveTarget.options.proxyConfig = 'proxy.conf.js';
+        (0, utils_1.addStyleResources)(workspace, projectName);
         (0, utils_1.addStylePreprocessorOptions)(workspace, projectName);
         (0, utils_1.addSchematicCollections)(workspace);
         (0, utils_1.addFileReplacements)(workspace, projectName);
