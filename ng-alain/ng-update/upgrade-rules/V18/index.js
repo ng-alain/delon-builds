@@ -18,9 +18,6 @@ const remove_ng_less_javascript_enabled_patch_1 = require("./remove-ng-less-java
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
-        (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
-        (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
-        (0, utils_1.logWarn)(context, `Please check the modified files. Some upgrades may have incorrect formats or missing imports.`);
         (0, utils_1.logFinished)(context, `Congratulations, Abort more detail please refer to upgrade guide https://github.com/ng-alain/ng-alain/issues/2502`);
     };
 }
