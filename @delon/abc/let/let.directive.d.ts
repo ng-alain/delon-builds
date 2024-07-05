@@ -7,9 +7,6 @@ export declare class LetContext<T> {
     get $implicit(): T;
     get let(): T;
 }
-/**
- * @deprecated Will be removed in v19, Please use `@let` instead.
- */
 export declare class LetDirective<T> {
     let: T;
     constructor(vc: ViewContainerRef, ref: TemplateRef<LetContext<T>>);

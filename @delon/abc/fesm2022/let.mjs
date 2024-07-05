@@ -12,9 +12,6 @@ class LetContext {
         return this.dir.let;
     }
 }
-/**
- * @deprecated Will be removed in v19, Please use `@let` instead.
- */
 class LetDirective {
     constructor(vc, ref) {
         vc.createEmbeddedView(ref, new LetContext(this));
@@ -40,9 +37,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImpor
             }] } });
 
 const DIRECTIVES = [LetDirective];
-/**
- * @deprecated Will be removed in v19, Please use `@let` instead.
- */
 class LetModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: LetModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.0.5", ngImport: i0, type: LetModule, imports: [LetDirective], exports: [LetDirective] }); }
