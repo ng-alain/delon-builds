@@ -3224,10 +3224,10 @@ class SelectWidget extends ControlUIWidget {
             mode: mode || 'default',
             showSearch: toBool(showSearch, true),
             tokenSeparators: tokenSeparators || [],
-            maxTagCount: maxTagCount || Infinity,
+            maxTagCount: maxTagCount || undefined,
             optionHeightPx: optionHeightPx || 32,
             optionOverflowSize: optionOverflowSize || 8,
-            showArrow: typeof showArrow !== 'boolean' ? undefined : showArrow,
+            showArrow: toBool(showArrow, true),
             compareWith: compareWith || ((o1, o2) => o1 === o2)
         };
         const onSearch = this.ui.onSearch;
