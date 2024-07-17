@@ -1,6 +1,9 @@
 import { Direction } from '@angular/cdk/bidi';
 import { OnInit, TemplateRef } from '@angular/core';
 import * as i0 from "@angular/core";
+/**
+ * @deprecated Will be removed in v20, Please use `nz-result` instead.
+ */
 export declare class ResultComponent implements OnInit {
     private readonly cdr;
     private readonly directionality;
