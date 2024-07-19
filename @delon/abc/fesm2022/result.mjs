@@ -6,9 +6,6 @@ import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/c
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { CommonModule } from '@angular/common';
 
-/**
- * @deprecated Will be removed in v20, Please use `nz-result` instead.
- */
 class ResultComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
@@ -59,9 +56,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImpor
             }] } });
 
 const COMPONENTS = [ResultComponent];
-/**
- * @deprecated Will be removed in v20, Please use `nz-result` instead.
- */
 class ResultModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: ResultModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.0.5", ngImport: i0, type: ResultModule, imports: [CommonModule, NzIconModule, NzOutletModule, ResultComponent], exports: [ResultComponent] }); }
