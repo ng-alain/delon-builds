@@ -97,7 +97,9 @@ function formatDate(value, formatString, options) {
     if (isNaN(value))
         return '';
     const langOpt = { locale: options?.locale };
-    return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
+    return formatString === 'fn'
+        ? formatDistanceToNow(value, langOpt)
+        : (options?.customFormat ?? format)(value, formatString, langOpt);
 }
 
 // TODO: timezone process
