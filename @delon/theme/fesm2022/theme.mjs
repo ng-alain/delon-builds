@@ -2763,13 +2763,10 @@ var arSA = {
 class DatePipe {
     constructor() {
         this.nzI18n = inject(NzI18nService);
-        this.cog = inject(AlainConfigService).get('themePipe');
+        this.defFormat = inject(AlainConfigService).get('themePipe')?.dateFormat ?? 'yyyy-MM-dd HH:mm';
     }
     transform(value, formatString) {
-        const formatStr = formatString ?? this.cog?.dateFormat ?? 'yyyy-MM-dd HH:mm';
-        if (this.cog?.custom)
-            return this.cog.custom(value, formatStr);
-        return formatDate(value, formatStr, this.nzI18n.getDateLocale());
+        return formatDate(value, formatString ?? this.defFormat, this.nzI18n.getDateLocale());
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: DatePipe, deps: [], target: i0.ɵɵFactoryTarget.Pipe }); }
     static { this.ɵpipe = i0.ɵɵngDeclarePipe({ minVersion: "14.0.0", version: "18.0.5", ngImport: i0, type: DatePipe, isStandalone: true, name: "_date" }); }
