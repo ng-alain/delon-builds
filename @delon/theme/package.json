@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "18.0.2-4a5d896",
+  "version": "18.0.2-306d17d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -22,10 +22,10 @@
   ],
   "dependencies": {
     "ng-zorro-antd": "^18.0.1",
-    "@delon/acl": "^18.0.2-4a5d896",
-    "@delon/abc": "^18.0.2-4a5d896",
-    "@delon/form": "^18.0.2-4a5d896",
-    "@delon/util": "^18.0.2-4a5d896",
+    "@delon/acl": "^18.0.2-306d17d",
+    "@delon/abc": "^18.0.2-306d17d",
+    "@delon/form": "^18.0.2-306d17d",
+    "@delon/util": "^18.0.2-306d17d",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/theme.mjs",
