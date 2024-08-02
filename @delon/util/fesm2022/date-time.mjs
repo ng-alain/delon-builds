@@ -92,11 +92,11 @@ function toDate(value, options) {
  * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
  * @param dateLocale Recommended to be consistent with NG-ZORRO by using `inject(NZ_DATE_LOCALE)`
  */
-function formatDate(value, formatString, dateLocale) {
+function formatDate(value, formatString, options) {
     value = toDate(value);
     if (isNaN(value))
         return '';
-    const langOpt = { locale: dateLocale };
+    const langOpt = { locale: options?.locale };
     return formatString === 'fn' ? formatDistanceToNow(value, langOpt) : format(value, formatString, langOpt);
 }
 

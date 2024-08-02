@@ -1,3 +1,4 @@
+import type { AlainThemePipeDateFormatCustom } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DateLocale } from 'ng-zorro-antd/i18n';
 /**
@@ -36,4 +37,7 @@ export declare function toDate(value?: Date | string | number | null, options?: 
  * @param formatString Please refer to [date-fnd format](https://date-fns.org/v2.30.0/docs/format) for string format
  * @param dateLocale Recommended to be consistent with NG-ZORRO by using `inject(NZ_DATE_LOCALE)`
  */
-export declare function formatDate(value: Date | string | number, formatString: string, dateLocale?: DateLocale): string;
+export declare function formatDate(value: Date | string | number, formatString: string, options?: {
+    locale?: DateLocale;
+    customFormat?: AlainThemePipeDateFormatCustom;
+}): string;

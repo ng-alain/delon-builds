@@ -1,15 +1,14 @@
 import { Type } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AlainConfigService } from '@delon/util/config';
 import type { CellOptions, CellTextResult, CellWidget } from './cell.types';
 import * as i0 from "@angular/core";
 export declare class CellService {
     private readonly nzI18n;
     private readonly currency;
     private readonly dom;
+    private readonly configSrv;
     private globalOptions;
     private widgets;
-    constructor(configSrv: AlainConfigService);
     registerWidget(key: string, widget: Type<unknown>): void;
     getWidget(key: string): CellWidget | undefined;
     private genType;
