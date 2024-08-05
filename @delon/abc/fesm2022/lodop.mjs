@@ -13,7 +13,7 @@ class LodopService {
         this._events = new Subject();
         this.printBuffer = [];
         this.defaultConfig = configSrv.merge('lodop', {
-            url: '//localhost:8443/CLodopfuncs.js',
+            url: 'http://localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
             companyName: '',
             checkMaxCount: 100
@@ -75,7 +75,9 @@ class LodopService {
     }
     request() {
         this.pending = true;
-        const url = `${this.cog.url}?name=${this.cog.name}`;
+        const urlObj = new URL(this.cog.url);
+        urlObj.searchParams.set('name', this.cog.name);
+        const url = urlObj.toString();
         let checkMaxCount = this.cog.checkMaxCount;
         const onResolve = (status, error) => {
             this._init.next({
