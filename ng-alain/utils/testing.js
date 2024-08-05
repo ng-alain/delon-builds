@@ -9,7 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTestApp = exports.createAlainAndModuleApp = exports.createAlainApp = exports.createAlainRunner = exports.createNgRunner = exports.FILE_PREFIX = exports.APPNAME = exports.migrationCollection = exports.collectionPath = void 0;
+exports.FILE_PREFIX = exports.APPNAME = exports.migrationCollection = exports.collectionPath = void 0;
+exports.createNgRunner = createNgRunner;
+exports.createAlainRunner = createAlainRunner;
+exports.createAlainApp = createAlainApp;
+exports.createAlainAndModuleApp = createAlainAndModuleApp;
+exports.createTestApp = createTestApp;
 const testing_1 = require("@angular-devkit/schematics/testing");
 const path_1 = require("path");
 /** Path to the collection file for the Material schematics */
@@ -21,11 +26,9 @@ exports.FILE_PREFIX = `/projects/${exports.APPNAME}`;
 function createNgRunner() {
     return new testing_1.SchematicTestRunner('schematics', (0, path_1.join)('./node_modules/@schematics/angular/collection.json'));
 }
-exports.createNgRunner = createNgRunner;
 function createAlainRunner() {
     return new testing_1.SchematicTestRunner('schematics', exports.collectionPath);
 }
-exports.createAlainRunner = createAlainRunner;
 function createAlainApp(ngAddOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         const baseRunner = createNgRunner();
@@ -48,7 +51,6 @@ function createAlainApp(ngAddOptions) {
         return { runner: alainRunner, tree };
     });
 }
-exports.createAlainApp = createAlainApp;
 function createAlainAndModuleApp(options) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
@@ -61,7 +63,6 @@ function createAlainAndModuleApp(options) {
         return res;
     });
 }
-exports.createAlainAndModuleApp = createAlainAndModuleApp;
 function createTestApp() {
     return __awaiter(this, void 0, void 0, function* () {
         const runner = yield createNgRunner();
@@ -82,5 +83,4 @@ function createTestApp() {
         return { runner, tree: appTree };
     });
 }
-exports.createTestApp = createTestApp;
 //# sourceMappingURL=testing.js.map

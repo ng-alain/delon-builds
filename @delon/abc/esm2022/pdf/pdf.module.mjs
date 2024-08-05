@@ -5,11 +5,11 @@ import { PdfComponent } from './pdf.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [PdfComponent];
 export class PdfModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.0.5", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.1.3", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: PdfModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: PdfModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzSkeletonModule, ...COMPONENTS],

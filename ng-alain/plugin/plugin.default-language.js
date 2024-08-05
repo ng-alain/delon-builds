@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pluginDefaultLanguage = void 0;
+exports.pluginDefaultLanguage = pluginDefaultLanguage;
 const schematics_1 = require("@angular-devkit/schematics");
 const lang_config_1 = require("../core/lang.config");
 const utils_1 = require("../utils");
@@ -50,5 +50,4 @@ function pluginDefaultLanguage(options) {
         tree.overwrite(appConfigPath, content);
     });
 }
-exports.pluginDefaultLanguage = pluginDefaultLanguage;
 //# sourceMappingURL=plugin.default-language.js.map

@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLangData = exports.getLangConfig = exports.LANGS_CONFIG = void 0;
+exports.LANGS_CONFIG = void 0;
+exports.getLangConfig = getLangConfig;
+exports.getLangData = getLangData;
 const fs = require("fs");
 const path = require("path");
 exports.LANGS_CONFIG = [
@@ -35,7 +37,6 @@ exports.LANGS_CONFIG = [
 function getLangConfig(lang) {
     return exports.LANGS_CONFIG.find(w => w.langs.includes(lang));
 }
-exports.getLangConfig = getLangConfig;
 function getLangData(lang) {
     let langCog = getLangConfig(lang);
     if (!langCog || !langCog.fileName) {
@@ -48,5 +49,4 @@ function getLangData(lang) {
     }
     return JSON.parse(fs.readFileSync(langFilePath).toString('utf8')) || null;
 }
-exports.getLangData = getLangData;
 //# sourceMappingURL=lang.config.js.map

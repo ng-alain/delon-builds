@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeNljep = void 0;
+exports.removeNljep = removeNljep;
 const utils_1 = require("../../../utils");
 const PACKAGE_NAME = 'ng-less-javascript-enabled-patch';
 function removeNljep() {
@@ -19,5 +19,4 @@ function removeNljep() {
         (0, utils_1.logInfo)(context, `Remove [https://github.com/cipchk/${PACKAGE_NAME}] for devDependencies`);
     };
 }
-exports.removeNljep = removeNljep;
 //# sourceMappingURL=remove-ng-less-javascript-enabled-patch.js.map

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.v18Rule = void 0;
+exports.v18Rule = v18Rule;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const utils_1 = require("../../../utils");
@@ -28,5 +28,4 @@ function v18Rule() {
         return (0, schematics_1.chain)([(0, remove_ng_less_javascript_enabled_patch_1.removeNljep)(), finished()]);
     });
 }
-exports.v18Rule = v18Rule;
 //# sourceMappingURL=index.js.map

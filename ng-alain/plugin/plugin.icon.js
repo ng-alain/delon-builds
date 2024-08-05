@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pluginIcon = void 0;
+exports.pluginIcon = pluginIcon;
 const core_1 = require("@angular-devkit/core");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
 const parse5_1 = require("parse5");
@@ -294,5 +294,4 @@ function pluginIcon(options) {
         console.log(`\n\n`);
     };
 }
-exports.pluginIcon = pluginIcon;
 //# sourceMappingURL=plugin.icon.js.map

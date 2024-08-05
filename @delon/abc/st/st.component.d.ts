@@ -1,4 +1,4 @@
-import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import type { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { AfterViewInit, EventEmitter, OnChanges, SimpleChange, SimpleChanges, TemplateRef, TrackByFunction } from '@angular/core';
 import { Observable } from 'rxjs';
 import { LocaleData } from '@delon/theme';

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path = require("path");
@@ -51,5 +52,4 @@ function default_1(options) {
         return runFixJS(options).then(() => (0, utils_1.buildAlain)(Object.assign({ schematicName: 'tpl' }, options)));
     };
 }
-exports.default = default_1;
 //# sourceMappingURL=index.js.map

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isStandalone = void 0;
+exports.isStandalone = isStandalone;
 const schematics_1 = require("@angular/cdk/schematics");
 function isStandalone(tree, schemaStandalone, projectName) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -18,5 +18,4 @@ function isStandalone(tree, schemaStandalone, projectName) {
         return yield (0, schematics_1.isStandaloneSchematic)(tree, { project: projectName, name: projectName });
     });
 }
-exports.isStandalone = isStandalone;
 //# sourceMappingURL=standalone.js.map

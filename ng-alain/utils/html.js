@@ -1,6 +1,12 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addHtmlToBody = exports.addHeadStyle = exports.addHeadLink = exports.getIndexHtmlContent = exports.getTagInV4 = exports.getTag = exports.getIndexHtmlPath = void 0;
+exports.getIndexHtmlPath = getIndexHtmlPath;
+exports.getTag = getTag;
+exports.getTagInV4 = getTagInV4;
+exports.getIndexHtmlContent = getIndexHtmlContent;
+exports.addHeadLink = addHeadLink;
+exports.addHeadStyle = addHeadStyle;
+exports.addHtmlToBody = addHtmlToBody;
 const schematics_1 = require("@angular-devkit/schematics");
 const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
@@ -13,7 +19,6 @@ function getIndexHtmlPath(_host, project) {
     }
     throw new schematics_1.SchematicsException('No index.html file was found.');
 }
-exports.getIndexHtmlPath = getIndexHtmlPath;
 /**
  * Parses the index.html file to get the HEAD tag position.
  */
@@ -47,7 +52,6 @@ function getTag(tree, src, tagName) {
         endOffset: resNode.sourceCodeLocation.endTag.startOffset
     };
 }
-exports.getTag = getTag;
 function getTagInV4(_host, src, tagName) {
     const document = parse5.parse(src, {
         locationInfo: true
@@ -75,7 +79,6 @@ function getTagInV4(_host, src, tagName) {
         endOffset: resNode.__location.endTag.startOffset
     };
 }
-exports.getTagInV4 = getTagInV4;
 /**
  * Get index.html content
  */
@@ -90,7 +93,6 @@ function getIndexHtmlContent(tree, project) {
         src: buffer.toString()
     };
 }
-exports.getIndexHtmlContent = getIndexHtmlContent;
 /**
  * Adds a link to the index.html head tag
  */
@@ -104,7 +106,6 @@ function addHeadLink(tree, project, link) {
         tree.commitUpdate(recorder);
     }
 }
-exports.addHeadLink = addHeadLink;
 /**
  * Adds a style to the index.html head end tag
  */
@@ -118,7 +119,6 @@ function addHeadStyle(tree, project, style) {
         tree.commitUpdate(recorder);
     }
 }
-exports.addHeadStyle = addHeadStyle;
 /**
  * Adds a html to the index.html body end tag
  */
@@ -132,5 +132,4 @@ function addHtmlToBody(tree, project, html) {
         tree.commitUpdate(recorder);
     }
 }
-exports.addHtmlToBody = addHtmlToBody;
 //# sourceMappingURL=html.js.map

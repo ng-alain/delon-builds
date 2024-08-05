@@ -9,7 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildAlain = exports.addValueToVariable = exports.addImportToModule = exports.refreshPathRoot = void 0;
+exports.refreshPathRoot = refreshPathRoot;
+exports.addImportToModule = addImportToModule;
+exports.addValueToVariable = addValueToVariable;
+exports.buildAlain = buildAlain;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const ast_utils_1 = require("@schematics/angular/utility/ast-utils");
@@ -65,7 +68,6 @@ function refreshPathRoot(project, schema, alainProject) {
         schema.path = `/${path.join(project.sourceRoot, (_a = alainProject === null || alainProject === void 0 ? void 0 : alainProject.routesRoot) !== null && _a !== void 0 ? _a : 'app/routes')}`;
     }
 }
-exports.refreshPathRoot = refreshPathRoot;
 function resolveSchema(tree, project, schema, alainProject) {
     // module name
     if (!schema.module) {
@@ -126,7 +128,6 @@ function addImportToModule(tree, filePath, symbolName, fileName) {
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     tree.commitUpdate(declarationRecorder);
 }
-exports.addImportToModule = addImportToModule;
 function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
     const node = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, variableName);
@@ -140,7 +141,6 @@ function addValueToVariable(tree, filePath, variableName, text, needWrap = true)
     declarationRecorder.insertLeft(change.pos, change.toAdd);
     tree.commitUpdate(declarationRecorder);
 }
-exports.addValueToVariable = addValueToVariable;
 function getRelativePath(filePath, schema, prefix) {
     const importPath = (0, core_1.normalize)(`/${schema.path}/${schema.flat ? '' : `${core_1.strings.dasherize(schema.name)}/`}${core_1.strings.dasherize(schema.name)}.${prefix}`);
     return (0, find_module_1.buildRelativePath)(filePath, importPath);
@@ -197,5 +197,4 @@ function buildAlain(schema) {
         return (0, schematics_1.chain)([(0, schematics_1.branchAndMerge)((0, schematics_1.chain)([(0, schematics_1.mergeWith)(templateSource), addDeclaration(schema)]))]);
     });
 }
-exports.buildAlain = buildAlain;
 //# sourceMappingURL=alain.js.map

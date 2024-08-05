@@ -1,6 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeFile = exports.overwriteIfExists = exports.overwriteFile = exports.getFileContentInApplicationFiles = exports.findFile = exports.readContent = exports.tryAddFile = exports.tryDelFile = void 0;
+exports.tryDelFile = tryDelFile;
+exports.tryAddFile = tryAddFile;
+exports.readContent = readContent;
+exports.findFile = findFile;
+exports.getFileContentInApplicationFiles = getFileContentInApplicationFiles;
+exports.overwriteFile = overwriteFile;
+exports.overwriteIfExists = overwriteIfExists;
+exports.writeFile = writeFile;
 const schematics_1 = require("@angular-devkit/schematics");
 const fs = require("fs");
 const path_1 = require("path");
@@ -9,18 +16,15 @@ function tryDelFile(tree, filePath) {
         tree.delete(filePath);
     }
 }
-exports.tryDelFile = tryDelFile;
 function tryAddFile(tree, filePath, content) {
     tryDelFile(tree, filePath);
     tree.create(filePath, content);
 }
-exports.tryAddFile = tryAddFile;
 function readContent(tree, filePath) {
     if (!tree.exists(filePath))
         return '';
     return tree.read(filePath).toString('utf-8');
 }
-exports.readContent = readContent;
 function findFile(tree, fileName) {
     let res = undefined;
     tree.visit(path => {
@@ -30,7 +34,6 @@ function findFile(tree, fileName) {
     });
     return res;
 }
-exports.findFile = findFile;
 function getFileContentInApplicationFiles(fileName) {
     const filePath = (0, path_1.join)(__dirname, `../application/files/${fileName}`);
     if (fs.existsSync(filePath)) {
@@ -41,7 +44,6 @@ function getFileContentInApplicationFiles(fileName) {
         return '';
     }
 }
-exports.getFileContentInApplicationFiles = getFileContentInApplicationFiles;
 /**
  * Overwrite files to the project
  */
@@ -74,7 +76,6 @@ function overwriteFile(options) {
     }
     return options.tree;
 }
-exports.overwriteFile = overwriteFile;
 function overwriteIfExists(tree) {
     return (0, schematics_1.forEach)(fileEntry => {
         if (tree.exists(fileEntry.path)) {
@@ -84,7 +85,6 @@ function overwriteIfExists(tree) {
         return fileEntry;
     });
 }
-exports.overwriteIfExists = overwriteIfExists;
 function writeFile(tree, filePath, content) {
     if (tree.exists(filePath)) {
         tree.overwrite(filePath, content);
@@ -93,5 +93,4 @@ function writeFile(tree, filePath, content) {
         tree.create(filePath, content);
     }
 }
-exports.writeFile = writeFile;
 //# sourceMappingURL=file.js.map

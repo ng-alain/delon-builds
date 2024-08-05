@@ -1,16 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removePackage = exports.addPackage = exports.writePackage = exports.readPackage = exports.PACCKAGE_PATH = void 0;
+exports.PACCKAGE_PATH = void 0;
+exports.readPackage = readPackage;
+exports.writePackage = writePackage;
+exports.addPackage = addPackage;
+exports.removePackage = removePackage;
 const json_1 = require("./json");
 exports.PACCKAGE_PATH = 'package.json';
 function readPackage(tree, type) {
     return (0, json_1.readJSON)(tree, exports.PACCKAGE_PATH, type);
 }
-exports.readPackage = readPackage;
 function writePackage(tree, json) {
     return (0, json_1.writeJSON)(tree, exports.PACCKAGE_PATH, json);
 }
-exports.writePackage = writePackage;
 /**
  * Adds a package to the package.json
  *
@@ -34,7 +36,6 @@ function addPackage(tree, pkg, type = 'dependencies') {
     writePackage(tree, json);
     return tree;
 }
-exports.addPackage = addPackage;
 /**
  * Removes a package to the package.json
  *
@@ -53,5 +54,4 @@ function removePackage(tree, pkg, type = 'dependencies') {
     writePackage(tree, json);
     return tree;
 }
-exports.removePackage = removePackage;
 //# sourceMappingURL=package.js.map

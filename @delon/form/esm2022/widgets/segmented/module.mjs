@@ -9,11 +9,11 @@ export class SegmentedWidgetModule {
     constructor(widgetRegistry) {
         widgetRegistry.register(SegmentedWidget.KEY, SegmentedWidget);
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: SegmentedWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.0.5", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] }); }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: SegmentedWidgetModule, deps: [{ token: i1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.1.3", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.0.5", ngImport: i0, type: SegmentedWidgetModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: SegmentedWidgetModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget]

@@ -9,7 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.addFileReplacements = exports.addSchematicCollections = exports.addStyleResources = exports.addStylePreprocessorOptions = exports.getProjectTarget = exports.getProjectFromWorkspace = exports.addAllowSyntheticDefaultImports = exports.removeAllowedCommonJsDependencies = exports.addAllowedCommonJsDependencies = exports.addAssetsToTarget = exports.getProject = exports.isMulitProject = exports.writeNgAlainJson = exports.getNgAlainJson = exports.getProjectName = exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.DEFAULT_WORKSPACE_PATH = exports.NG_ALAIN_JSON = exports.BUILD_TARGET_LINT = exports.BUILD_TARGET_SERVE = exports.BUILD_TARGET_TEST = exports.BUILD_TARGET_BUILD = void 0;
+exports.getProjectName = getProjectName;
+exports.getNgAlainJson = getNgAlainJson;
+exports.writeNgAlainJson = writeNgAlainJson;
+exports.isMulitProject = isMulitProject;
+exports.getProject = getProject;
+exports.addAssetsToTarget = addAssetsToTarget;
+exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
+exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
+exports.addAllowSyntheticDefaultImports = addAllowSyntheticDefaultImports;
+exports.getProjectFromWorkspace = getProjectFromWorkspace;
+exports.getProjectTarget = getProjectTarget;
+exports.addStylePreprocessorOptions = addStylePreprocessorOptions;
+exports.addStyleResources = addStyleResources;
+exports.addSchematicCollections = addSchematicCollections;
+exports.addFileReplacements = addFileReplacements;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -26,22 +41,18 @@ function getProjectName(workspace, name) {
     }
     return (_a = Array.from(workspace.projects.keys()).pop()) !== null && _a !== void 0 ? _a : null;
 }
-exports.getProjectName = getProjectName;
 function getNgAlainJson(tree) {
     if (!tree.exists(exports.NG_ALAIN_JSON))
         return undefined;
     return (0, json_1.readJSON)(tree, exports.NG_ALAIN_JSON);
 }
-exports.getNgAlainJson = getNgAlainJson;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function writeNgAlainJson(tree, json) {
     return (0, json_1.writeJSON)(tree, exports.NG_ALAIN_JSON, json);
 }
-exports.writeNgAlainJson = writeNgAlainJson;
 function isMulitProject(tree) {
     return !tree.exists('src/main.ts');
 }
-exports.isMulitProject = isMulitProject;
 function getProject(tree, projectName) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a, _b, _c;
@@ -55,7 +66,6 @@ function getProject(tree, projectName) {
         return { project, name: projectName, alainProject };
     });
 }
-exports.getProject = getProject;
 function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BUILD, exports.BUILD_TARGET_TEST], projectName, clean = false) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
@@ -83,7 +93,6 @@ function addAssetsToTarget(resources, behavior, types = [exports.BUILD_TARGET_BU
         });
     }));
 }
-exports.addAssetsToTarget = addAssetsToTarget;
 function addAllowedCommonJsDependencies(items, projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
@@ -100,7 +109,6 @@ function addAllowedCommonJsDependencies(items, projectName) {
         targetOptions.allowedCommonJsDependencies = Array.from(result).sort();
     }));
 }
-exports.addAllowedCommonJsDependencies = addAllowedCommonJsDependencies;
 function removeAllowedCommonJsDependencies(key, projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {
         const project = getProjectFromWorkspace(workspace, projectName);
@@ -116,14 +124,12 @@ function removeAllowedCommonJsDependencies(key, projectName) {
         targetOptions.allowedCommonJsDependencies = list.sort();
     }));
 }
-exports.removeAllowedCommonJsDependencies = removeAllowedCommonJsDependencies;
 function addAllowSyntheticDefaultImports(value = true) {
     return (tree) => {
         (0, json_1.modifyJSON)(tree, 'tsconfig.json', { path: ['compilerOptions', 'allowSyntheticDefaultImports'], value });
         return tree;
     };
 }
-exports.addAllowSyntheticDefaultImports = addAllowSyntheticDefaultImports;
 function getProjectFromWorkspace(workspace, projectName) {
     var _a;
     if (!projectName) {
@@ -135,7 +141,6 @@ function getProjectFromWorkspace(workspace, projectName) {
     }
     return project;
 }
-exports.getProjectFromWorkspace = getProjectFromWorkspace;
 function getProjectTarget(project, buildTarget, type = 'options') {
     var _a, _b;
     const options = (_b = (_a = project.targets) === null || _a === void 0 ? void 0 : _a.get(buildTarget)) === null || _b === void 0 ? void 0 : _b[type];
@@ -144,7 +149,6 @@ function getProjectTarget(project, buildTarget, type = 'options') {
     }
     return options;
 }
-exports.getProjectTarget = getProjectTarget;
 function addStylePreprocessorOptions(workspace, projectName) {
     var _a;
     const project = getProjectFromWorkspace(workspace, projectName);
@@ -164,7 +168,6 @@ function addStylePreprocessorOptions(workspace, projectName) {
     includePaths.push(`node_modules/`);
     build.options.stylePreprocessorOptions['includePaths'] = includePaths;
 }
-exports.addStylePreprocessorOptions = addStylePreprocessorOptions;
 function addStyleResources(workspace, projectName) {
     const project = getProjectFromWorkspace(workspace, projectName);
     if (project == null)
@@ -176,7 +179,6 @@ function addStyleResources(workspace, projectName) {
         build.options.assets = [];
     build.options.assets.push(`src/assets`);
 }
-exports.addStyleResources = addStyleResources;
 function addSchematicCollections(workspace) {
     const cli = workspace.extensions.cli;
     if (cli && cli.schematicCollections)
@@ -192,7 +194,6 @@ function addSchematicCollections(workspace) {
         schematicCollections.push(`ng-alain`);
     workspace.extensions.cli['schematicCollections'] = schematicCollections;
 }
-exports.addSchematicCollections = addSchematicCollections;
 function addFileReplacements(workspace, projectName) {
     const project = getProjectFromWorkspace(workspace, projectName);
     if (project == null)
@@ -211,5 +212,4 @@ function addFileReplacements(workspace, projectName) {
         with: 'src/environments/environment.prod.ts'
     });
 }
-exports.addFileReplacements = addFileReplacements;
 //# sourceMappingURL=workspace.js.map

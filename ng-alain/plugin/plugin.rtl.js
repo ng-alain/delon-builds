@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pluginRTL = void 0;
+exports.pluginRTL = pluginRTL;
 const schematics_1 = require("@angular/cdk/schematics");
 const core_1 = require("@angular-devkit/core");
 const schematics_2 = require("@angular-devkit/schematics");
@@ -54,5 +54,4 @@ function pluginRTL(options) {
         ]);
     });
 }
-exports.pluginRTL = pluginRTL;
 //# sourceMappingURL=plugin.rtl.js.map

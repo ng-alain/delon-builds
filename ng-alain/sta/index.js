@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = default_1;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
 const colors = require("ansi-colors");
@@ -222,5 +223,4 @@ function default_1(options) {
         return (0, schematics_1.chain)([addPathInTsConfig(config.name), genProxy(config), finished()]);
     });
 }
-exports.default = default_1;
 //# sourceMappingURL=index.js.map
