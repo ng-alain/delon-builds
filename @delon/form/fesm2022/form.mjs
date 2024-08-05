@@ -2839,7 +2839,7 @@ class NumberWidget extends ControlUIWidget {
             this.formatter = ui.formatter;
         if (ui.parser)
             this.parser = ui.parser;
-        this.width = typeof ui.widgetWidth === 'number' ? `${ui.widgetWidth}px` : ui.widgetWidth ?? '90px';
+        this.width = typeof ui.widgetWidth === 'number' ? `${ui.widgetWidth}px` : (ui.widgetWidth ?? '90px');
     }
     _setValue(val) {
         this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
