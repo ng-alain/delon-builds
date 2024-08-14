@@ -1,7 +1,6 @@
 import { OnInit } from '@angular/core';
 import { ControlUIWidget, SFSchemaEnum, SFValue } from '@delon/form';
 import { NzFormatEmitEvent } from 'ng-zorro-antd/core/tree';
-import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { SFTreeSelectWidgetSchema } from './schema';
 import * as i0 from "@angular/core";
 export declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidgetSchema> implements OnInit {
@@ -11,7 +10,7 @@ export declare class TreeSelectWidget extends ControlUIWidget<SFTreeSelectWidget
     asyncData: boolean;
     ngOnInit(): void;
     reset(value: SFValue): void;
-    change(value: NzSafeAny[] | NzSafeAny): void;
+    change(value: string[] | string): void;
     expandChange(e: NzFormatEmitEvent): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<TreeSelectWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<TreeSelectWidget, "sf-tree-select", never, {}, {}, never, never, true, never>;
