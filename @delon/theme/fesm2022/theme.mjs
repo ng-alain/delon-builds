@@ -901,14 +901,13 @@ class ModalHelper {
      * this.nzModalRef.destroy();
      */
     create(comp, params, options) {
-        const isBuildIn = typeof comp === 'string';
         options = deepMerge({
             size: 'lg',
             exact: true,
             includeTabs: false
-        }, isBuildIn && arguments.length === 2 ? params : options);
+        }, options);
         return new Observable((observer) => {
-            const { size, includeTabs, modalOptions, drag, useNzData, focus } = options;
+            const { size, includeTabs, modalOptions, drag, useNzData } = options;
             let cls = [];
             let width = '';
             if (size) {
@@ -939,42 +938,22 @@ class ModalHelper {
                 };
                 cls.push(CLS_DRAG, dragWrapCls);
             }
-            const mth = isBuildIn ? this.srv[comp] : this.srv.create;
-            const subject = mth.call(this.srv, {
+            const subject = this.srv.create({
                 nzWrapClassName: cls.join(' '),
-                nzContent: isBuildIn ? undefined : comp,
+                nzContent: comp,
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
                 nzData: params,
                 ...modalOptions
             });
             // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
-            if (subject.componentInstance != null && useNzData !== true) {
+            if (useNzData !== true) {
                 Object.assign(subject.componentInstance, params);
             }
             subject.afterOpen
-                .pipe(take(1), tap(() => {
-                if (dragOptions != null) {
-                    dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
-                }
-            }), filter(() => focus != null), delay(modalOptions?.nzNoAnimation ? 10 : 200))
+                .pipe(take(1), filter(() => dragOptions != null))
                 .subscribe(() => {
-                const btns = subject
-                    .getElement()
-                    .querySelector('.ant-modal-confirm-btns, .modal-footer')
-                    ?.querySelectorAll('.ant-btn');
-                const btnSize = btns?.length ?? 0;
-                let el = null;
-                if (btnSize === 1) {
-                    el = btns[0];
-                }
-                else if (btnSize > 1) {
-                    el = btns[focus === 'ok' ? 1 : 0];
-                }
-                if (el != null) {
-                    el.focus();
-                    el.dataset.focused = focus;
-                }
+                dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
             });
             subject.afterClose.pipe(take(1)).subscribe((res) => {
                 if (options.exact === true) {
