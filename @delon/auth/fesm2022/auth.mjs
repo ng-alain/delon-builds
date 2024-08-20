@@ -31,7 +31,8 @@ function DA_STORE_TOKEN_LOCAL_FACTORY() {
  * `localStorage` storage, **not lost after closing the browser**.
  *
  * ```ts
- * provideAuth(withJWT(), withLocalStorage())
+  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), authJWTInterceptor, defaultInterceptor])),
+  provideAuth(withLocalStorage()),
  * ```
  */
 class LocalStorageStore {
@@ -256,7 +257,8 @@ class MemoryStore {
  * `sessionStorage` storage, **lost after closing the browser**.
  *
  * ```ts
- * provideAuth(withJWT(), withSessionStorage())
+  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), authJWTInterceptor, defaultInterceptor])),
+  provideAuth(withSessionStorage()),
  * ```
  */
 class SessionStorageStore {
@@ -276,7 +278,8 @@ class SessionStorageStore {
  * `cookie` storage
  *
  * ```ts
- * provideAuth(withJWT(), withCookie())
+  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), authJWTInterceptor, defaultInterceptor])),
+  provideAuth(withCookie()),
  * ```
  */
 class CookieStorageStore {

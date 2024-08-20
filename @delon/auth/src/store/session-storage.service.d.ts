@@ -4,7 +4,8 @@ import { IStore } from './interface';
  * `sessionStorage` storage, **lost after closing the browser**.
  *
  * ```ts
- * provideAuth(withJWT(), withSessionStorage())
+  provideHttpClient(withInterceptors([...(environment.interceptorFns ?? []), authJWTInterceptor, defaultInterceptor])),
+  provideAuth(withSessionStorage()),
  * ```
  */
 export declare class SessionStorageStore implements IStore {
