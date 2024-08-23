@@ -9,14 +9,14 @@ import { OnboardingComponent } from './onboarding.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [OnboardingComponent];
 export class OnboardingModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: OnboardingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.1.3", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: OnboardingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.1", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
             DelonLocaleModule,
             NzPopoverModule,
             NzOutletModule,
             NzButtonModule,
             NzNoAnimationModule, OnboardingComponent], exports: [OnboardingComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
             DelonLocaleModule,
             NzPopoverModule,
             NzOutletModule,
@@ -24,7 +24,7 @@ export class OnboardingModule {
             NzNoAnimationModule,
             COMPONENTS] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.1.3", ngImport: i0, type: OnboardingModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: OnboardingModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
