@@ -30,7 +30,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@typescript-eslint/parser@^8.2.0`,
         `eslint@^8.57.0`,
         `eslint-config-prettier@~9.1.0`,
-        `eslint-plugin-import@~2.29.1`,
+        `eslint-plugin-import@~2.25.3`,
         `eslint-plugin-jsdoc@~50.2.2`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@~5.2.1`,
