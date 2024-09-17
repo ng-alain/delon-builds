@@ -33295,6 +33295,24 @@ textarea.ant-input::-webkit-scrollbar-thumb {
   background-color: transparent;
   outline: 1px solid #333;
 }
+/**
+ * Hide scrollbar
+ *
+ * 隐藏滚动条
+ */
+.hide-scrollbar {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+.hide-scrollbar::-webkit-scrollbar {
+  width: 1px;
+}
+.hide-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
 html {
   touch-action: manipulation;
   direction: ltr;
