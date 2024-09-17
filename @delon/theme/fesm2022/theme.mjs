@@ -298,7 +298,7 @@ class MenuService {
      * 利用 `url` 或 `key` 查找菜单
      */
     find(options) {
-        const opt = { recursive: false, ignoreHide: false, ...options };
+        const opt = { recursive: false, ignoreHide: false, last: false, ...options };
         if (opt.key != null) {
             return this.getItem(opt.key);
         }
@@ -306,12 +306,15 @@ class MenuService {
         let item = null;
         while (!item && url) {
             this.visit(opt.data ?? this.data, i => {
+                if (!opt.last && item != null) {
+                    return;
+                }
                 if (opt.ignoreHide && i.hide) {
                     return;
                 }
                 if (opt.cb) {
                     const res = opt.cb(i);
-                    if (!item && typeof res === 'boolean' && res) {
+                    if (typeof res === 'boolean' && res) {
                         item = i;
                     }
                 }
