@@ -20,6 +20,10 @@ export interface ModalHelperOptions {
      * 是否强制使用 `nzData` 传递参数，若为 `false` 表示参数会直接映射到组件实例中，其他值只能通过 `NZ_MODAL_DATA` 的方式来获取参数，默认：`false`
      */
     useNzData?: boolean;
+    /**
+     * 设置焦点按钮
+     */
+    focus?: 'ok' | 'cancel';
 }
 export interface ModalHelperDragOptions {
     /**
@@ -51,7 +55,7 @@ export declare class ModalHelper {
      * // 关闭
      * this.nzModalRef.destroy();
      */
-    create(comp: TemplateRef<NzSafeAny> | Type<NzSafeAny>, params?: NzSafeAny, options?: ModalHelperOptions): Observable<NzSafeAny>;
+    create(comp?: TemplateRef<NzSafeAny> | Type<NzSafeAny> | 'confirm' | 'info' | 'success' | 'error' | 'warning', params?: NzSafeAny | ModalHelperOptions | null, options?: ModalHelperOptions): Observable<NzSafeAny>;
     /**
      * 构建静态框，点击蒙层不允许关闭
      *
