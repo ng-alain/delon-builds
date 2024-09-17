@@ -34094,13 +34094,9 @@ body {
   display: block;
   text-align: center;
 }
-.st__btn-sub .ant-menu-title-content {
-  width: 100%;
-}
 .st__btn-sub .st__btn-text {
   width: 100%;
   color: inherit;
-  display: block;
 }
 .st__btn-disabled .st__btn-text {
   pointer-events: none;
