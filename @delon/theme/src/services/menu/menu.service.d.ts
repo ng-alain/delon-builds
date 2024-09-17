@@ -66,6 +66,12 @@ export declare class MenuService implements OnDestroy {
          * 是否忽略隐藏的项，默认：`false`
          */
         ignoreHide?: boolean;
+        /**
+         * Whether to return the last one, default: `false`
+         *
+         * 是否返回最后一个，默认：`false`
+         */
+        last?: boolean;
     }): Menu | null;
     /**
      * 根据url获取菜单列表
