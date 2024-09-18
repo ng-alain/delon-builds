@@ -26,7 +26,6 @@ const ts = require("typescript");
 const ast_1 = require("./ast");
 const standalone_1 = require("./standalone");
 const workspace_1 = require("./workspace");
-const TEMPLATE_FILENAME_RE = /\.template$/;
 function buildSelector(schema, projectPrefix) {
     const ret = [];
     if (!schema.withoutPrefix) {
@@ -130,7 +129,7 @@ function addImportToModule(tree, filePath, symbolName, fileName) {
 }
 function addValueToVariable(tree, filePath, variableName, text, needWrap = true) {
     const source = (0, ast_1.getSourceFile)(tree, filePath);
-    const node = (0, ast_utils_1.findNode)(source, ts.SyntaxKind.Identifier, variableName);
+    const node = (0, ast_utils_1.getSourceNodes)(source).find(node => node.kind == ts.SyntaxKind.Identifier && node.getText() === variableName);
     if (!node) {
         throw new schematics_1.SchematicsException(`Could not find any [${variableName}] variable in path '${filePath}'.`);
     }
