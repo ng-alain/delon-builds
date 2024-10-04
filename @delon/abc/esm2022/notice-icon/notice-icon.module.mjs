@@ -14,8 +14,8 @@ import { NoticeIconComponent } from './notice-icon.component';
 import * as i0 from "@angular/core";
 const COMPONENTS = [NoticeIconComponent];
 export class NoticeIconModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.1", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.7", ngImport: i0, type: NoticeIconModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.7", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
             NzDropDownModule,
@@ -25,7 +25,7 @@ export class NoticeIconModule {
             NzTabsModule,
             NzTagModule,
             NzOutletModule, NoticeIconComponent, NoticeIconTabComponent], exports: [NoticeIconComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "18.2.7", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
             NzDropDownModule,
@@ -36,7 +36,7 @@ export class NoticeIconModule {
             NzTagModule,
             NzOutletModule, COMPONENTS, NoticeIconTabComponent] }); }
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.1", ngImport: i0, type: NoticeIconModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.7", ngImport: i0, type: NoticeIconModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [
