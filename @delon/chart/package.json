@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "18.1.0-c9075a6",
+  "version": "18.1.0-4519194",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.10",
     "echarts": "^5.5.1",
-    "@delon/util": "^18.1.0-c9075a6",
-    "@delon/theme": "^18.1.0-c9075a6",
+    "@delon/util": "^18.1.0-4519194",
+    "@delon/theme": "^18.1.0-4519194",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -50,17 +50,17 @@
       "esm": "./esm2022/bar/bar.mjs",
       "default": "./fesm2022/bar.mjs"
     },
-    "./card": {
-      "types": "./card/index.d.ts",
-      "esm2022": "./esm2022/card/card.mjs",
-      "esm": "./esm2022/card/card.mjs",
-      "default": "./fesm2022/card.mjs"
-    },
     "./chart-echarts": {
       "types": "./chart-echarts/index.d.ts",
       "esm2022": "./esm2022/chart-echarts/chart-echarts.mjs",
       "esm": "./esm2022/chart-echarts/chart-echarts.mjs",
       "default": "./fesm2022/chart-echarts.mjs"
+    },
+    "./card": {
+      "types": "./card/index.d.ts",
+      "esm2022": "./esm2022/card/card.mjs",
+      "esm": "./esm2022/card/card.mjs",
+      "default": "./fesm2022/card.mjs"
     },
     "./core": {
       "types": "./core/index.d.ts",
