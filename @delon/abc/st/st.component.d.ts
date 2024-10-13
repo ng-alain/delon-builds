@@ -88,10 +88,13 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     expandRowByClick: boolean;
     expandAccordion: boolean;
     expand: TemplateRef<{
-        $implicit: NzSafeAny;
+        $implicit: STData;
         index: number;
     }> | null;
-    expandIcon: TemplateRef<void> | null;
+    expandIcon: TemplateRef<{
+        $implicit: STData;
+        index: number;
+    }> | null;
     noResult?: string | TemplateRef<void> | null;
     responsive: boolean;
     responsiveHideHeaderFooter?: boolean;
