@@ -33474,7 +33474,7 @@ body {
   color: #fff;
   background-color: rgba(255, 255, 255, 0.2);
 }
-.alain-default__nav-item > i,
+.alain-default__nav-item > .anticon,
 .alain-default__nav-item-icon {
   transform: none !important;
   font-size: 16px !important;
@@ -33526,7 +33526,8 @@ body {
 .alain-default__search .ant-input-group-addon i,
 .alain-default__search .ant-input-affix-wrapper i {
   color: #fff;
-  transition: color 300ms, transform 400ms;
+  transition: color 300ms,
+          transform 400ms;
 }
 .alain-default__search-focus .ant-input,
 .alain-default__search-focus .ant-input-group-addon,
