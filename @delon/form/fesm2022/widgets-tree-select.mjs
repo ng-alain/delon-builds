@@ -39,10 +39,9 @@ class TreeSelectWidget extends ControlUIWidget {
         });
     }
     change(value) {
-        console.log(value);
         if (this.ui.change)
             this.ui.change(value);
-        this.setValue(value);
+        this.setValue(value == null ? this.ui.clearValue : value);
     }
     expandChange(e) {
         const { ui } = this;

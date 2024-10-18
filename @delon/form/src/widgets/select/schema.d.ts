@@ -108,6 +108,10 @@ export interface SFSelectWidgetSchema extends SFUISchemaItem {
      */
     clearIcon?: TemplateRef<NzSafeAny>;
     /**
+     * 清空时默认值，默认：`undefined`
+     */
+    clearValue?: NzSafeAny;
+    /**
      * 自定义当前选中的条目图标
      */
     menuItemSelectedIcon?: TemplateRef<NzSafeAny>;

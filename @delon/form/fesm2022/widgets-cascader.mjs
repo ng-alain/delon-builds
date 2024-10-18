@@ -34,7 +34,7 @@ class CascaderWidget extends ControlUIWidget {
             this.ui.visibleChange(status);
     }
     _change(value) {
-        this.setValue(value);
+        this.setValue(value == null ? this.ui.clearValue : value);
         if (this.ui.change) {
             this.ui.change(value);
         }
