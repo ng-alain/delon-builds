@@ -15,6 +15,10 @@ export interface SFTreeSelectWidgetSchema extends SFUISchemaItem {
      */
     allowClear?: boolean;
     /**
+     * 清空时默认值，默认：`undefined`
+     */
+    clearValue?: NzSafeAny;
+    /**
      * 下拉菜单和选择器同宽，默认：`true`
      */
     dropdownMatchSelectWidth?: boolean;
