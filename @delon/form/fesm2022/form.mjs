@@ -3258,7 +3258,7 @@ class SelectWidget extends ControlUIWidget {
         if (this.ui.change) {
             this.ui.change(values, this.getOrgData(values));
         }
-        this.setValue(values == null ? this.ui.clearValue : values);
+        this.setValue(values == null ? undefined : values);
     }
     getOrgData(values) {
         const srv = this.injector.get(ArrayService);
