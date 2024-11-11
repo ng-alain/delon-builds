@@ -42,7 +42,7 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^18.1.1`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^18.2.0`]);
 }
 
 export function addESLintRule(projectName: string): Rule {
