@@ -31,9 +31,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.11", ngImpo
                 type: Input
             }] } });
 
-/**
- * @deprecated Will be removed in v20, Please use `nz-avatar-group` instead.
- */
 class AvatarListComponent {
     constructor() {
         this.cdr = inject(ChangeDetectorRef);
@@ -106,9 +103,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.11", ngImpo
             }] } });
 
 const COMPONENTS = [AvatarListComponent, AvatarListItemComponent];
-/**
- * @deprecated Will be removed in v20, Please use `nz-avatar-group` instead.
- */
 class AvatarListModule {
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.11", ngImport: i0, type: AvatarListModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
     static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "18.2.11", ngImport: i0, type: AvatarListModule, imports: [CommonModule, NzAvatarModule, NzToolTipModule, AvatarListComponent, AvatarListItemComponent], exports: [AvatarListComponent, AvatarListItemComponent] }); }

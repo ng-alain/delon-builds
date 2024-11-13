@@ -3,9 +3,6 @@ import { AfterViewInit, OnChanges } from '@angular/core';
 import type { NgStyleInterface, NzSizeLDSType } from 'ng-zorro-antd/core/types';
 import { AvatarListItemComponent } from './avatar-list-item.component';
 import * as i0 from "@angular/core";
-/**
- * @deprecated Will be removed in v20, Please use `nz-avatar-group` instead.
- */
 export declare class AvatarListComponent implements AfterViewInit, OnChanges {
     private readonly cdr;
     private readonly directionality;

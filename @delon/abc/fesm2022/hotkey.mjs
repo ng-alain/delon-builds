@@ -10,9 +10,9 @@ class HotkeyDirective {
         this.platform = inject(Platform);
     }
     /**
-     * Specify [hotkey format](https://github.com/github/hotkey#hotkey-string-format)
+     * Specify [hotkey format](https://github.com/github/hotkey#hotkey-string-format), you can get the code through [Hotkey Code](https://github.github.com/hotkey/hotkey_mapper.html)
      *
-     * 指定[热键格式](https://github.com/github/hotkey#hotkey-string-format)
+     * 指定[热键格式](https://github.com/github/hotkey#hotkey-string-format)，可以通过 [Hotkey Code](https://github.github.com/hotkey/hotkey_mapper.html) 来获取代码。
      */
     set hotkey(key) {
         if (!this.platform.isBrowser)
