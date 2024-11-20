@@ -164,23 +164,6 @@ class MenuService {
     get menus() {
         return this.data;
     }
-    /**
-     * Returns a default menu link
-     *
-     * 返回一个默认跳转的菜单链接
-     */
-    getDefaultRedirect(opt = {}) {
-        let ret;
-        this.visit(this.menus, (item) => {
-            if (typeof item.link !== 'string' || item.link.length <= 0 || !item._aclResult || item._hidden === true) {
-                return;
-            }
-            if (ret == null || ret.length <= 0 || item.link == opt?.redirectUrl) {
-                ret = item.link;
-            }
-        });
-        return ret;
-    }
     visit(data, callback) {
         const inFn = (list, parentMenu, depth) => {
             for (const item of list) {

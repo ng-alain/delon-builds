@@ -18,14 +18,6 @@ export declare class MenuService implements OnDestroy {
     constructor();
     get change(): Observable<Menu[]>;
     get menus(): Menu[];
-    /**
-     * Returns a default menu link
-     *
-     * 返回一个默认跳转的菜单链接
-     */
-    getDefaultRedirect(opt?: {
-        redirectUrl?: string;
-    }): string | null | undefined;
     visit<T extends Menu = Menu>(data: T[], callback: (item: T, parentMenum: T | null, depth?: number) => void): void;
     visit(data: Menu[], callback: (item: Menu, parentMenum: Menu | null, depth?: number) => void): void;
     add(items: Menu[]): void;
