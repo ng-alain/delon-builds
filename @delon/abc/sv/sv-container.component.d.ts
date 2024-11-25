@@ -26,7 +26,7 @@ export declare class SVContainerComponent {
     noColon: boolean;
     bordered: boolean;
     get margin(): {
-        [k: string]: number;
+        [k: string]: string;
     };
     constructor(configSrv: AlainConfigService);
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
