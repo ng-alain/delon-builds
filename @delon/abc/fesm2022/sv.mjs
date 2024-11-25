@@ -1,3 +1,4 @@
+import { NgStyle, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { inject, ElementRef, Renderer2, Component, ChangeDetectionStrategy, ViewEncapsulation, numberAttribute, booleanAttribute, Input, ViewChild, NgModule } from '@angular/core';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
@@ -7,7 +8,6 @@ import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
 import { ResponsiveService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
-import { CommonModule } from '@angular/common';
 
 class SVTitleComponent {
     constructor() {
@@ -62,7 +62,7 @@ class SVContainerComponent {
     }
     static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "18.2.11", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
     static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "18.2.11", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], title: "title", size: "size", gutter: ["gutter", "gutter", numberAttribute], layout: "layout", labelWidth: ["labelWidth", "labelWidth", numberAttribute], col: ["col", "col", numberAttribute], default: ["default", "default", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], bordered: ["bordered", "bordered", booleanAttribute] }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
-    <div class="ant-row" [style]="margin">
+    <div class="ant-row" [ngStyle]="margin">
       @if (title) {
         <sv-title>
           <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
@@ -70,7 +70,7 @@ class SVContainerComponent {
       }
       <ng-content />
     </div>
-  `, isInline: true, dependencies: [{ kind: "component", type: SVTitleComponent, selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgStyle, selector: "[ngStyle]", inputs: ["ngStyle"] }, { kind: "component", type: SVTitleComponent, selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.11", ngImport: i0, type: SVContainerComponent, decorators: [{
             type: Component,
@@ -78,7 +78,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.11", ngImpo
                     selector: 'sv-container, [sv-container]',
                     exportAs: 'svContainer',
                     template: `
-    <div class="ant-row" [style]="margin">
+    <div class="ant-row" [ngStyle]="margin">
       @if (title) {
         <sv-title>
           <ng-container *nzStringTemplateOutlet="title">{{ title }}</ng-container>
@@ -100,7 +100,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "18.2.11", ngImpo
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     standalone: true,
-                    imports: [SVTitleComponent, NzStringTemplateOutletDirective]
+                    imports: [NgStyle, SVTitleComponent, NzStringTemplateOutletDirective]
                 }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { colInCon: [{
                 type: Input,
