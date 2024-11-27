@@ -2023,7 +2023,7 @@ class STComponent {
         if (typeof index !== 'number') {
             index = this._data.indexOf(index);
         }
-        this._data[index] = deepMergeKey(this._data[index], false, item);
+        this._data[index] = deepMergeKey(this._data[index], options?.arrayProcessMethod ?? false, item);
         this.optimizeData();
         if (options.refreshSchema) {
             this.resetColumns({ emitReload: options.emitReload });

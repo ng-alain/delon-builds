@@ -206,6 +206,13 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     setRow(index: number | STData, item: STData, options?: {
         refreshSchema?: boolean;
         emitReload?: boolean;
+        /**
+         *
+         * @param arrayProcessMethod 数组处理方式
+         *  - `true` 表示替换新值，不管新值为哪种类型
+         *  - `false` 表示会合并整个数组（将旧数据与新数据合并成新数组）
+         */
+        arrayProcessMethod?: boolean;
     }): this;
     sort(col: _STColumn, value: NzSafeAny): void;
     clearSort(): this;
