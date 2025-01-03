@@ -16,7 +16,7 @@ class FilterPipe {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: FilterPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'filter', standalone: true, pure: false }]
+            args: [{ name: 'filter', pure: false }]
         }] });
 
 const PIPES = [FilterPipe];
