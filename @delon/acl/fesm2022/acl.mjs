@@ -263,8 +263,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Directive,
             args: [{
                     selector: '[aclIf]',
-                    exportAs: 'aclIf',
-                    standalone: true
+                    exportAs: 'aclIf'
                 }]
         }], ctorParameters: () => [], propDecorators: { aclIf: [{
                 type: Input
@@ -312,8 +311,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Directive,
             args: [{
                     selector: '[acl]',
-                    exportAs: 'acl',
-                    standalone: true
+                    exportAs: 'acl'
                 }]
         }], ctorParameters: () => [], propDecorators: { acl: [{
                 type: Input,

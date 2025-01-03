@@ -31,8 +31,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    standalone: true
+                    encapsulation: ViewEncapsulation.None
                 }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { gutter: [{
                 type: Input,
@@ -95,8 +94,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     },
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    standalone: true
+                    encapsulation: ViewEncapsulation.None
                 }]
         }], ctorParameters: () => [], propDecorators: { col: [{
                 type: Input,

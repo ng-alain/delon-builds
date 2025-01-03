@@ -144,8 +144,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     exportAs: 'xlsx',
                     host: {
                         '(click)': '_click()'
-                    },
-                    standalone: true
+                    }
                 }]
         }], propDecorators: { data: [{
                 type: Input,

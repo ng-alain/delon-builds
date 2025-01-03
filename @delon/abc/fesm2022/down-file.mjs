@@ -87,8 +87,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     exportAs: 'downFile',
                     host: {
                         '(click)': '_click($event)'
-                    },
-                    standalone: true
+                    }
                 }]
         }], ctorParameters: () => [], propDecorators: { httpData: [{
                 type: Input,

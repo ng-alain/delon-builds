@@ -18,8 +18,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     template: `<ng-content />`,
                     preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
-                    encapsulation: ViewEncapsulation.None,
-                    standalone: true
+                    encapsulation: ViewEncapsulation.None
                 }]
         }], propDecorators: { src: [{
                 type: Input

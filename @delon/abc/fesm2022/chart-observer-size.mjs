@@ -96,8 +96,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Directive,
             args: [{
                     selector: '[observeSize]',
-                    exportAs: 'observeSize',
-                    standalone: true
+                    exportAs: 'observeSize'
                 }]
         }], propDecorators: { event: [{
                 type: Output,

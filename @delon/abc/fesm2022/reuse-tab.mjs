@@ -150,8 +150,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Component,
             args: [{
                     selector: 'reuse-tab-context',
-                    template: ``,
-                    standalone: true
+                    template: ``
                 }]
         }], ctorParameters: () => [], propDecorators: { i18n: [{
                 type: Input
@@ -182,8 +181,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
                     exportAs: 'reuseTabContextMenu',
                     host: {
                         '(contextmenu)': '_onContextMenu($event)'
-                    },
-                    standalone: true
+                    }
                 }]
         }], propDecorators: { item: [{
                 type: Input,

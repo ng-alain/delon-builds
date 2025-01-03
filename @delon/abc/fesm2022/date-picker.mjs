@@ -32,8 +32,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
         <a (click)="click(i)" [innerHTML]="i._text" [class.ml-sm]="!$first"></a>
       }
     </ng-template>
-  `,
-                    standalone: true
+  `
                 }]
         }], propDecorators: { tpl: [{
                 type: ViewChild,
@@ -188,8 +187,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Directive,
             args: [{
                     selector: 'nz-range-picker[extend]',
-                    exportAs: 'extendRangePicker',
-                    standalone: true
+                    exportAs: 'extendRangePicker'
                 }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { shortcut: [{
                 type: Input

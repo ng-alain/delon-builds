@@ -21,7 +21,7 @@ class CurrencyMegaPipe {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: CurrencyMegaPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'mega', standalone: true }]
+            args: [{ name: 'mega' }]
         }] });
 
 /**
@@ -45,7 +45,7 @@ class CurrencyPricePipe {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: CurrencyPricePipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'price', standalone: true }]
+            args: [{ name: 'price' }]
         }] });
 
 /**
@@ -65,7 +65,7 @@ class CurrencyCNYPipe {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: CurrencyCNYPipe, decorators: [{
             type: Pipe,
-            args: [{ name: 'cny', standalone: true }]
+            args: [{ name: 'cny' }]
         }] });
 
 const PIPES = [CurrencyMegaPipe, CurrencyPricePipe, CurrencyCNYPipe];

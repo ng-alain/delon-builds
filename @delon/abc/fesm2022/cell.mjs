@@ -210,8 +210,7 @@ class CellHostDirective {
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: CellHostDirective, decorators: [{
             type: Directive,
             args: [{
-                    selector: '[cell-widget-host]',
-                    standalone: true
+                    selector: '[cell-widget-host]'
                 }]
         }], propDecorators: { data: [{
                 type: Input

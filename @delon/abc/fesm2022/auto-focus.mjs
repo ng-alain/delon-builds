@@ -28,8 +28,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
             type: Directive,
             args: [{
                     selector: '[auto-focus], input[autofocus="autofocus"], textarea[autofocus="autofocus"]',
-                    exportAs: 'autoFocus',
-                    standalone: true
+                    exportAs: 'autoFocus'
                 }]
         }], propDecorators: { enabled: [{
                 type: Input,

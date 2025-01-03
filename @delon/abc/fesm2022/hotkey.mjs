@@ -29,7 +29,7 @@ class HotkeyDirective {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImport: i0, type: HotkeyDirective, decorators: [{
             type: Directive,
-            args: [{ selector: '[hotkey]', standalone: true }]
+            args: [{ selector: '[hotkey]' }]
         }], propDecorators: { hotkey: [{
                 type: Input,
                 args: ['hotkey']
