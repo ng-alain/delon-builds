@@ -2309,7 +2309,7 @@ class CheckboxWidget extends ControlUIWidget {
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group [ngModel]="data" (ngModelChange)="notifySet()" />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="notifySet()" />
           } @else {
             <nz-checkbox-wrapper class="sf__checkbox-list" (nzOnChange)="groupInGridChange($event)">
               <div nz-row>
@@ -2383,7 +2383,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group [ngModel]="data" (ngModelChange)="notifySet()" />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="notifySet()" />
           } @else {
             <nz-checkbox-wrapper class="sf__checkbox-list" (nzOnChange)="groupInGridChange($event)">
               <div nz-row>
@@ -2847,11 +2847,11 @@ class NumberWidget extends ControlUIWidget {
         const ui = this.ui;
         if (ui.prefix != null) {
             ui.formatter = value => (value == null ? '' : `${ui.prefix} ${value}`);
-            ui.parser = value => numberAttribute(value.replace(`${ui.prefix} `, ''));
+            ui.parser = value => +value.replace(`${ui.prefix} `, '');
         }
         if (ui.unit != null) {
             ui.formatter = value => (value == null ? '' : `${value} ${ui.unit}`);
-            ui.parser = value => numberAttribute(value.replace(` ${ui.unit}`, ''));
+            ui.parser = value => +value.replace(` ${ui.unit}`, '');
         }
         if (ui.formatter)
             this.formatter = ui.formatter;
@@ -2873,6 +2873,7 @@ class NumberWidget extends ControlUIWidget {
     [error]="error"
     [showTitle]="schema.title"
   >
+    min - {{ min }}, {{ max }}
     <nz-input-number
       [nzId]="id"
       [ngModel]="value"
@@ -2903,6 +2904,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.0.5", ngImpor
     [error]="error"
     [showTitle]="schema.title"
   >
+    min - {{ min }}, {{ max }}
     <nz-input-number
       [nzId]="id"
       [ngModel]="value"

@@ -3,7 +3,7 @@ import { OnInit } from '@angular/core';
 import { SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { LocaleData } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
 export type ExceptionType = 403 | 404 | 500;
 export declare class ExceptionComponent implements OnInit {

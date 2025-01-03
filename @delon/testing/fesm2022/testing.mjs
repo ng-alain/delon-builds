@@ -104,6 +104,7 @@ function typeInElement(value, element) {
     element.focus();
     element.value = value;
     dispatchFakeEvent(element, 'input');
+    dispatchFakeEvent(element, 'change');
 }
 
 const DROPDOWN_MIN_TIME = 1000;

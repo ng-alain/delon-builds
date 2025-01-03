@@ -966,6 +966,7 @@ class ModalHelper {
                 nzWidth: width ? width : undefined,
                 nzFooter: null,
                 nzData: params,
+                nzDraggable: false,
                 ...modalOptions
             });
             // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
@@ -1096,7 +1097,7 @@ class DrawerHelper {
             if (footer) {
                 // The 24 value is @drawer-body-padding
                 defaultOptions.nzBodyStyle = {
-                    'padding-bottom.px': footerHeight + 24
+                    'padding-bottom': `${footerHeight + 24}px`
                 };
             }
             const ref = this.srv.create({ ...defaultOptions, ...drawerOptions });
