@@ -7,7 +7,7 @@ export declare class SegmentedWidget extends ControlUIWidget<SFSegmentedWidgetSc
     private _list?;
     get list(): NzSegmentedOptions;
     reset(value: SFValue): void;
-    valueChange(index: number): void;
+    valueChange(index: string | number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SegmentedWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SegmentedWidget, "sf-segmented", never, {}, {}, never, never, true, never>;
 }

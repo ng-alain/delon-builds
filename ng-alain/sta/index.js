@@ -50,7 +50,7 @@ function addPathInTsConfig(name) {
 }
 function cleanOutput(p) {
     try {
-        (0, fs_1.rmdirSync)(p, { recursive: true });
+        (0, fs_1.rmSync)(p, { recursive: true });
         (0, fs_1.mkdirSync)(p);
     }
     catch (e) { }

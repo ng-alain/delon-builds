@@ -1,9 +1,0 @@
-export * from './src/services/index';
-export * from './src/locale/index';
-export * from './src/pipes/index';
-export * from './src/config';
-export * from './src/theme.module';
-export * from './src/provide';
-export * from './src/router/optional-preloader';
-export { VERSION } from './src/version';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3BhY2thZ2VzL3RoZW1lL3B1YmxpY19hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsY0FBYyxzQkFBc0IsQ0FBQztBQUNyQyxjQUFjLG9CQUFvQixDQUFDO0FBQ25DLGNBQWMsbUJBQW1CLENBQUM7QUFDbEMsY0FBYyxjQUFjLENBQUM7QUFDN0IsY0FBYyxvQkFBb0IsQ0FBQztBQUNuQyxjQUFjLGVBQWUsQ0FBQztBQUM5QixjQUFjLGlDQUFpQyxDQUFDO0FBQ2hELE9BQU8sRUFBRSxPQUFPLEVBQUUsTUFBTSxlQUFlLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tICcuL3NyYy9zZXJ2aWNlcy9pbmRleCc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9sb2NhbGUvaW5kZXgnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvcGlwZXMvaW5kZXgnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvY29uZmlnJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3RoZW1lLm1vZHVsZSc7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9wcm92aWRlJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3JvdXRlci9vcHRpb25hbC1wcmVsb2FkZXInO1xuZXhwb3J0IHsgVkVSU0lPTiB9IGZyb20gJy4vc3JjL3ZlcnNpb24nO1xuIl19

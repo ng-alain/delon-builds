@@ -1,7 +1,7 @@
 import { EventEmitter } from '@angular/core';
-import { LocaleData } from '@delon/theme';
-import { STColumnFilter, STColumnFilterMenu, STIcon } from './st.interfaces';
-import { _STColumn } from './st.types';
+import type { LocaleData } from '@delon/theme';
+import type { STColumnFilter, STColumnFilterMenu, STIcon } from './st.interfaces';
+import type { _STColumn } from './st.types';
 import * as i0 from "@angular/core";
 export declare class STFilterComponent {
     private readonly cdr;

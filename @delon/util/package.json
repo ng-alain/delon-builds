@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "18.3.0-f057dd6",
+  "version": "18.3.0-d886508",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -31,92 +31,62 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/delon-util.mjs",
-      "esm": "./esm2022/delon-util.mjs",
       "default": "./fesm2022/delon-util.mjs"
     },
     "./array": {
       "types": "./array/index.d.ts",
-      "esm2022": "./esm2022/array/array.mjs",
-      "esm": "./esm2022/array/array.mjs",
       "default": "./fesm2022/array.mjs"
     },
     "./browser": {
       "types": "./browser/index.d.ts",
-      "esm2022": "./esm2022/browser/browser.mjs",
-      "esm": "./esm2022/browser/browser.mjs",
       "default": "./fesm2022/browser.mjs"
     },
     "./config": {
       "types": "./config/index.d.ts",
-      "esm2022": "./esm2022/config/config.mjs",
-      "esm": "./esm2022/config/config.mjs",
       "default": "./fesm2022/config.mjs"
     },
     "./date-time": {
       "types": "./date-time/index.d.ts",
-      "esm2022": "./esm2022/date-time/date-time.mjs",
-      "esm": "./esm2022/date-time/date-time.mjs",
       "default": "./fesm2022/date-time.mjs"
     },
     "./decorator": {
       "types": "./decorator/index.d.ts",
-      "esm2022": "./esm2022/decorator/decorator.mjs",
-      "esm": "./esm2022/decorator/decorator.mjs",
       "default": "./fesm2022/decorator.mjs"
     },
     "./form": {
       "types": "./form/index.d.ts",
-      "esm2022": "./esm2022/form/form.mjs",
-      "esm": "./esm2022/form/form.mjs",
       "default": "./fesm2022/form.mjs"
     },
     "./format": {
       "types": "./format/index.d.ts",
-      "esm2022": "./esm2022/format/format.mjs",
-      "esm": "./esm2022/format/format.mjs",
       "default": "./fesm2022/format.mjs"
     },
     "./math": {
       "types": "./math/index.d.ts",
-      "esm2022": "./esm2022/math/math.mjs",
-      "esm": "./esm2022/math/math.mjs",
       "default": "./fesm2022/math.mjs"
     },
     "./other": {
       "types": "./other/index.d.ts",
-      "esm2022": "./esm2022/other/other.mjs",
-      "esm": "./esm2022/other/other.mjs",
       "default": "./fesm2022/other.mjs"
     },
     "./pipes": {
       "types": "./pipes/index.d.ts",
-      "esm2022": "./esm2022/pipes/pipes.mjs",
-      "esm": "./esm2022/pipes/pipes.mjs",
       "default": "./fesm2022/pipes.mjs"
     },
     "./token": {
       "types": "./token/index.d.ts",
-      "esm2022": "./esm2022/token/token.mjs",
-      "esm": "./esm2022/token/token.mjs",
       "default": "./fesm2022/token.mjs"
     },
     "./pipes/currency": {
       "types": "./pipes/currency/index.d.ts",
-      "esm2022": "./esm2022/pipes/currency/pipe-currency.mjs",
-      "esm": "./esm2022/pipes/currency/pipe-currency.mjs",
       "default": "./fesm2022/pipe-currency.mjs"
     },
     "./pipes/filter": {
       "types": "./pipes/filter/index.d.ts",
-      "esm2022": "./esm2022/pipes/filter/pipe-filter.mjs",
-      "esm": "./esm2022/pipes/filter/pipe-filter.mjs",
       "default": "./fesm2022/pipe-filter.mjs"
     },
     "./pipes/format": {
       "types": "./pipes/format/index.d.ts",
-      "esm2022": "./esm2022/pipes/format/pipe-format.mjs",
-      "esm": "./esm2022/pipes/format/pipe-format.mjs",
       "default": "./fesm2022/pipe-format.mjs"
     }
   },

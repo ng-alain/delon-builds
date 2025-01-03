@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.v18Rule = v18Rule;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
+const remove_ng_less_javascript_enabled_patch_1 = require("./remove-ng-less-javascript-enabled-patch");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
-const remove_ng_less_javascript_enabled_patch_1 = require("./remove-ng-less-javascript-enabled-patch");
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());

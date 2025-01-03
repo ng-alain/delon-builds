@@ -1,8 +1,0 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-export class MockStatusError {
-    constructor(status, error) {
-        this.status = status;
-        this.error = error;
-    }
-}
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoic3RhdHVzLmVycm9yLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vcGFja2FnZXMvbW9jay9zcmMvc3RhdHVzLmVycm9yLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLHVEQUF1RDtBQUV2RCxNQUFNLE9BQU8sZUFBZTtJQUcxQixZQUNTLE1BQWMsRUFDZCxLQUFXO1FBRFgsV0FBTSxHQUFOLE1BQU0sQ0FBUTtRQUNkLFVBQUssR0FBTCxLQUFLLENBQU07SUFDakIsQ0FBQztDQUNMIiwic291cmNlc0NvbnRlbnQiOlsiLyogZXNsaW50LWRpc2FibGUgQHR5cGVzY3JpcHQtZXNsaW50L25vLWV4cGxpY2l0LWFueSAqL1xuXG5leHBvcnQgY2xhc3MgTW9ja1N0YXR1c0Vycm9yIHtcbiAgc3RhdHVzVGV4dD86IHN0cmluZztcblxuICBjb25zdHJ1Y3RvcihcbiAgICBwdWJsaWMgc3RhdHVzOiBudW1iZXIsXG4gICAgcHVibGljIGVycm9yPzogYW55XG4gICkge31cbn1cbiJdfQ==

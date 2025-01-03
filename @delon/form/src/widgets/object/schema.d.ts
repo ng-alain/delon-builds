@@ -33,10 +33,6 @@ export interface SFObjectWidgetSchema extends SFUISchemaItem {
         [key: string]: string;
     };
     /**
-     * 等同 `nzBorderless` 属性，是否移除边框，默认：`false`
-     */
-    cardBorderless?: boolean;
-    /**
      * 等同 `nzExtra` 属性
      */
     cardExtra?: string | TemplateRef<void>;

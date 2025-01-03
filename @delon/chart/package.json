@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "18.3.0-f057dd6",
+  "version": "18.3.0-d886508",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,9 +27,9 @@
   "dependencies": {
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.10",
-    "echarts": "^5.5.1",
-    "@delon/util": "^18.3.0-f057dd6",
-    "@delon/theme": "^18.3.0-f057dd6",
+    "echarts": "^5.6.0",
+    "@delon/util": "^18.3.0-d886508",
+    "@delon/theme": "^18.3.0-d886508",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -40,110 +40,74 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/chart.mjs",
-      "esm": "./esm2022/chart.mjs",
       "default": "./fesm2022/chart.mjs"
     },
     "./bar": {
       "types": "./bar/index.d.ts",
-      "esm2022": "./esm2022/bar/bar.mjs",
-      "esm": "./esm2022/bar/bar.mjs",
       "default": "./fesm2022/bar.mjs"
     },
     "./card": {
       "types": "./card/index.d.ts",
-      "esm2022": "./esm2022/card/card.mjs",
-      "esm": "./esm2022/card/card.mjs",
       "default": "./fesm2022/card.mjs"
     },
     "./chart-echarts": {
       "types": "./chart-echarts/index.d.ts",
-      "esm2022": "./esm2022/chart-echarts/chart-echarts.mjs",
-      "esm": "./esm2022/chart-echarts/chart-echarts.mjs",
       "default": "./fesm2022/chart-echarts.mjs"
     },
     "./core": {
       "types": "./core/index.d.ts",
-      "esm2022": "./esm2022/core/core.mjs",
-      "esm": "./esm2022/core/core.mjs",
       "default": "./fesm2022/core.mjs"
     },
     "./custom": {
       "types": "./custom/index.d.ts",
-      "esm2022": "./esm2022/custom/custom.mjs",
-      "esm": "./esm2022/custom/custom.mjs",
       "default": "./fesm2022/custom.mjs"
     },
     "./gauge": {
       "types": "./gauge/index.d.ts",
-      "esm2022": "./esm2022/gauge/gauge.mjs",
-      "esm": "./esm2022/gauge/gauge.mjs",
       "default": "./fesm2022/gauge.mjs"
     },
     "./mini-area": {
       "types": "./mini-area/index.d.ts",
-      "esm2022": "./esm2022/mini-area/mini-area.mjs",
-      "esm": "./esm2022/mini-area/mini-area.mjs",
       "default": "./fesm2022/mini-area.mjs"
     },
     "./mini-bar": {
       "types": "./mini-bar/index.d.ts",
-      "esm2022": "./esm2022/mini-bar/mini-bar.mjs",
-      "esm": "./esm2022/mini-bar/mini-bar.mjs",
       "default": "./fesm2022/mini-bar.mjs"
     },
     "./mini-progress": {
       "types": "./mini-progress/index.d.ts",
-      "esm2022": "./esm2022/mini-progress/mini-progress.mjs",
-      "esm": "./esm2022/mini-progress/mini-progress.mjs",
       "default": "./fesm2022/mini-progress.mjs"
     },
     "./number-info": {
       "types": "./number-info/index.d.ts",
-      "esm2022": "./esm2022/number-info/number-info.mjs",
-      "esm": "./esm2022/number-info/number-info.mjs",
       "default": "./fesm2022/number-info.mjs"
     },
     "./pie": {
       "types": "./pie/index.d.ts",
-      "esm2022": "./esm2022/pie/pie.mjs",
-      "esm": "./esm2022/pie/pie.mjs",
       "default": "./fesm2022/pie.mjs"
     },
     "./radar": {
       "types": "./radar/index.d.ts",
-      "esm2022": "./esm2022/radar/radar.mjs",
-      "esm": "./esm2022/radar/radar.mjs",
       "default": "./fesm2022/radar.mjs"
     },
     "./single-bar": {
       "types": "./single-bar/index.d.ts",
-      "esm2022": "./esm2022/single-bar/single-bar.mjs",
-      "esm": "./esm2022/single-bar/single-bar.mjs",
       "default": "./fesm2022/single-bar.mjs"
     },
     "./tag-cloud": {
       "types": "./tag-cloud/index.d.ts",
-      "esm2022": "./esm2022/tag-cloud/tag-cloud.mjs",
-      "esm": "./esm2022/tag-cloud/tag-cloud.mjs",
       "default": "./fesm2022/tag-cloud.mjs"
     },
     "./timeline": {
       "types": "./timeline/index.d.ts",
-      "esm2022": "./esm2022/timeline/timeline.mjs",
-      "esm": "./esm2022/timeline/timeline.mjs",
       "default": "./fesm2022/timeline.mjs"
     },
     "./trend": {
       "types": "./trend/index.d.ts",
-      "esm2022": "./esm2022/trend/trend.mjs",
-      "esm": "./esm2022/trend/trend.mjs",
       "default": "./fesm2022/trend.mjs"
     },
     "./water-wave": {
       "types": "./water-wave/index.d.ts",
-      "esm2022": "./esm2022/water-wave/water-wave.mjs",
-      "esm": "./esm2022/water-wave/water-wave.mjs",
       "default": "./fesm2022/water-wave.mjs"
     }
   },

@@ -6,7 +6,7 @@ const tasks_1 = require("@angular-devkit/schematics/tasks");
 const colors = require("ansi-colors");
 const utils_1 = require("../utils");
 const node_1 = require("../utils/node");
-const V = 18;
+const V = 19;
 function genRules(options) {
     return () => {
         const rules = [];
@@ -48,10 +48,10 @@ function default_1(options) {
         //   context.logger.warn(`TIPS:: Please use yarn instead of NPM to install dependencies`);
         // }
         const nodeVersion = (0, node_1.getNodeMajorVersion)();
-        const allowNodeVersions = [18, 20];
+        const allowNodeVersions = [18, 20, 22];
         if (!allowNodeVersions.some(v => nodeVersion === v)) {
             const versions = allowNodeVersions.join(', ');
-            throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://angular.io/guide/versions`);
+            throw new schematics_1.SchematicsException(`Sorry, currently only supports ${versions} major version number of node (Got ${process.version}), pls refer to https://angular.dev/reference/versions#actively-supported-versions`);
         }
         const pkg = (0, utils_1.readPackage)(tree);
         if (options.project) {

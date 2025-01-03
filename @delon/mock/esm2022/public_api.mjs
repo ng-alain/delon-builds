@@ -1,7 +1,0 @@
-export * from './src/interface';
-export * from './src/status.error';
-export * from './src/mock.service';
-export * from './src/mock.interceptor';
-export * from './src/provide';
-export * from './src/utils';
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljX2FwaS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uL3BhY2thZ2VzL21vY2svcHVibGljX2FwaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxjQUFjLGlCQUFpQixDQUFDO0FBQ2hDLGNBQWMsb0JBQW9CLENBQUM7QUFDbkMsY0FBYyxvQkFBb0IsQ0FBQztBQUNuQyxjQUFjLHdCQUF3QixDQUFDO0FBQ3ZDLGNBQWMsZUFBZSxDQUFDO0FBQzlCLGNBQWMsYUFBYSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0ICogZnJvbSAnLi9zcmMvaW50ZXJmYWNlJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3N0YXR1cy5lcnJvcic7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9tb2NrLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9zcmMvbW9jay5pbnRlcmNlcHRvcic7XG5leHBvcnQgKiBmcm9tICcuL3NyYy9wcm92aWRlJztcbmV4cG9ydCAqIGZyb20gJy4vc3JjL3V0aWxzJztcbiJdfQ==

@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "18.3.0-f057dd6",
+  "version": "18.3.0-d886508",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,11 +21,11 @@
     "component"
   ],
   "dependencies": {
-    "ng-zorro-antd": "^18.2.0",
-    "@delon/acl": "^18.3.0-f057dd6",
-    "@delon/abc": "^18.3.0-f057dd6",
-    "@delon/form": "^18.3.0-f057dd6",
-    "@delon/util": "^18.3.0-f057dd6",
+    "ng-zorro-antd": "^19.0.0",
+    "@delon/acl": "^18.3.0-d886508",
+    "@delon/abc": "^18.3.0-d886508",
+    "@delon/form": "^18.3.0-d886508",
+    "@delon/util": "^18.3.0-d886508",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/theme.mjs",
@@ -36,32 +36,22 @@
     },
     ".": {
       "types": "./index.d.ts",
-      "esm2022": "./esm2022/theme.mjs",
-      "esm": "./esm2022/theme.mjs",
       "default": "./fesm2022/theme.mjs"
     },
     "./layout-blank": {
       "types": "./layout-blank/index.d.ts",
-      "esm2022": "./esm2022/layout-blank/layout-blank.mjs",
-      "esm": "./esm2022/layout-blank/layout-blank.mjs",
       "default": "./fesm2022/layout-blank.mjs"
     },
     "./layout-default": {
       "types": "./layout-default/index.d.ts",
-      "esm2022": "./esm2022/layout-default/layout-default.mjs",
-      "esm": "./esm2022/layout-default/layout-default.mjs",
       "default": "./fesm2022/layout-default.mjs"
     },
     "./setting-drawer": {
       "types": "./setting-drawer/index.d.ts",
-      "esm2022": "./esm2022/setting-drawer/setting-drawer.mjs",
-      "esm": "./esm2022/setting-drawer/setting-drawer.mjs",
       "default": "./fesm2022/setting-drawer.mjs"
     },
     "./theme-btn": {
       "types": "./theme-btn/index.d.ts",
-      "esm2022": "./esm2022/theme-btn/theme-btn.mjs",
-      "esm": "./esm2022/theme-btn/theme-btn.mjs",
       "default": "./fesm2022/theme-btn.mjs"
     }
   },
