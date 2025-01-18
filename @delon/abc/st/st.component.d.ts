@@ -10,6 +10,28 @@ import { NzTableComponent } from 'ng-zorro-antd/table';
 import type { STChange, STClickRowClassName, STColumn, STColumnButton, STColumnSelection, STContextmenuFn, STContextmenuItem, STCustomRequestOptions, STData, STError, STExportOptions, STLoadOptions, STPage, STReq, STRes, STResetColumnsOption, STResizable, STRowClassName, STSingleSort, STStatisticalResults, STWidthMode } from './st.interfaces';
 import type { _STColumn, _STHeader, _STTdNotify } from './st.types';
 import * as i0 from "@angular/core";
+export declare class STTdComponent {
+    private readonly stComp;
+    private readonly router;
+    private readonly modalHelper;
+    private readonly drawerHelper;
+    c: _STColumn;
+    cIdx: number;
+    data: STData[];
+    i: STData;
+    index: number;
+    readonly n: EventEmitter<_STTdNotify>;
+    private get routerState();
+    private report;
+    _checkbox(value: boolean): void;
+    _radio(): void;
+    _link(e: Event): boolean;
+    _stopPropagation(ev: Event): void;
+    _btn(btn: STColumnButton, ev?: Event): void;
+    private btnCallback;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STTdComponent, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STTdComponent, "st-td", never, { "c": { "alias": "c"; "required": false; }; "cIdx": { "alias": "cIdx"; "required": false; }; "data": { "alias": "data"; "required": false; }; "i": { "alias": "i"; "required": false; }; "index": { "alias": "index"; "required": false; }; }, { "n": "n"; }, never, never, true, never>;
+}
 export declare class STComponent implements AfterViewInit, OnChanges {
     private readonly i18nSrv;
     private readonly el;
@@ -253,7 +275,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": { "alias": "req"; "required": false; }; "res": { "alias": "res"; "required": false; }; "page": { "alias": "page"; "required": false; }; "data": { "alias": "data"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "contextmenu": { "alias": "contextmenu"; "required": false; }; "ps": { "alias": "ps"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "total": { "alias": "total"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "loadingDelay": { "alias": "loadingDelay"; "required": false; }; "loadingIndicator": { "alias": "loadingIndicator"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; "size": { "alias": "size"; "required": false; }; "scroll": { "alias": "scroll"; "required": false; }; "singleSort": { "alias": "singleSort"; "required": false; }; "multiSort": { "alias": "multiSort"; "required": false; }; "rowClassName": { "alias": "rowClassName"; "required": false; }; "clickRowClassName": { "alias": "clickRowClassName"; "required": false; }; "widthMode": { "alias": "widthMode"; "required": false; }; "widthConfig": { "alias": "widthConfig"; "required": false; }; "resizable": { "alias": "resizable"; "required": false; }; "header": { "alias": "header"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "bodyHeader": { "alias": "bodyHeader"; "required": false; }; "body": { "alias": "body"; "required": false; }; "expandRowByClick": { "alias": "expandRowByClick"; "required": false; }; "expandAccordion": { "alias": "expandAccordion"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; "expandIcon": { "alias": "expandIcon"; "required": false; }; "noResult": { "alias": "noResult"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "responsiveHideHeaderFooter": { "alias": "responsiveHideHeaderFooter"; "required": false; }; "virtualScroll": { "alias": "virtualScroll"; "required": false; }; "virtualItemSize": { "alias": "virtualItemSize"; "required": false; }; "virtualMaxBufferPx": { "alias": "virtualMaxBufferPx"; "required": false; }; "virtualMinBufferPx": { "alias": "virtualMinBufferPx"; "required": false; }; "customRequest": { "alias": "customRequest"; "required": false; }; "virtualForTrackBy": { "alias": "virtualForTrackBy"; "required": false; }; "trackBy": { "alias": "trackBy"; "required": false; }; }, { "error": "error"; "change": "change"; }, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<STComponent, "st", ["st"], { "req": { "alias": "req"; "required": false; }; "res": { "alias": "res"; "required": false; }; "page": { "alias": "page"; "required": false; }; "data": { "alias": "data"; "required": false; }; "columns": { "alias": "columns"; "required": false; }; "contextmenu": { "alias": "contextmenu"; "required": false; }; "ps": { "alias": "ps"; "required": false; }; "pi": { "alias": "pi"; "required": false; }; "total": { "alias": "total"; "required": false; }; "loading": { "alias": "loading"; "required": false; }; "loadingDelay": { "alias": "loadingDelay"; "required": false; }; "loadingIndicator": { "alias": "loadingIndicator"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; "size": { "alias": "size"; "required": false; }; "scroll": { "alias": "scroll"; "required": false; }; "singleSort": { "alias": "singleSort"; "required": false; }; "multiSort": { "alias": "multiSort"; "required": false; }; "rowClassName": { "alias": "rowClassName"; "required": false; }; "clickRowClassName": { "alias": "clickRowClassName"; "required": false; }; "widthMode": { "alias": "widthMode"; "required": false; }; "widthConfig": { "alias": "widthConfig"; "required": false; }; "resizable": { "alias": "resizable"; "required": false; }; "header": { "alias": "header"; "required": false; }; "showHeader": { "alias": "showHeader"; "required": false; }; "footer": { "alias": "footer"; "required": false; }; "bodyHeader": { "alias": "bodyHeader"; "required": false; }; "body": { "alias": "body"; "required": false; }; "expandRowByClick": { "alias": "expandRowByClick"; "required": false; }; "expandAccordion": { "alias": "expandAccordion"; "required": false; }; "expand": { "alias": "expand"; "required": false; }; "expandIcon": { "alias": "expandIcon"; "required": false; }; "noResult": { "alias": "noResult"; "required": false; }; "responsive": { "alias": "responsive"; "required": false; }; "responsiveHideHeaderFooter": { "alias": "responsiveHideHeaderFooter"; "required": false; }; "virtualScroll": { "alias": "virtualScroll"; "required": false; }; "virtualItemSize": { "alias": "virtualItemSize"; "required": false; }; "virtualMaxBufferPx": { "alias": "virtualMaxBufferPx"; "required": false; }; "virtualMinBufferPx": { "alias": "virtualMinBufferPx"; "required": false; }; "customRequest": { "alias": "customRequest"; "required": false; }; "virtualForTrackBy": { "alias": "virtualForTrackBy"; "required": false; }; "trackBy": { "alias": "trackBy"; "required": false; }; }, { "error": "error"; "change": "change"; }, never, never, true, never>;
     static ngAcceptInputType_ps: unknown;
     static ngAcceptInputType_pi: unknown;
     static ngAcceptInputType_total: unknown;
@@ -268,26 +290,4 @@ export declare class STComponent implements AfterViewInit, OnChanges {
     static ngAcceptInputType_virtualItemSize: unknown;
     static ngAcceptInputType_virtualMaxBufferPx: unknown;
     static ngAcceptInputType_virtualMinBufferPx: unknown;
-}
-export declare class STTdComponent {
-    private readonly stComp;
-    private readonly router;
-    private readonly modalHelper;
-    private readonly drawerHelper;
-    c: _STColumn;
-    cIdx: number;
-    data: STData[];
-    i: STData;
-    index: number;
-    readonly n: EventEmitter<_STTdNotify>;
-    private get routerState();
-    private report;
-    _checkbox(value: boolean): void;
-    _radio(): void;
-    _link(e: Event): boolean;
-    _stopPropagation(ev: Event): void;
-    _btn(btn: STColumnButton, ev?: Event): void;
-    private btnCallback;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STTdComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<STTdComponent, "st-td", never, { "c": { "alias": "c"; "required": false; }; "cIdx": { "alias": "cIdx"; "required": false; }; "data": { "alias": "data"; "required": false; }; "i": { "alias": "i"; "required": false; }; "index": { "alias": "index"; "required": false; }; }, { "n": "n"; }, never, never, false, never>;
 }

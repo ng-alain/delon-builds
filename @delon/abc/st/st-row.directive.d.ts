@@ -16,5 +16,5 @@ export declare class STRowDirective implements OnInit {
     type?: 'title';
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STRowDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<STRowDirective, "[st-row]", never, { "id": { "alias": "st-row"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<STRowDirective, "[st-row]", never, { "id": { "alias": "st-row"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, true, never>;
 }

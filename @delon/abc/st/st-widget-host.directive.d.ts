@@ -8,5 +8,5 @@ export declare class STWidgetHostDirective implements OnInit {
     column: STColumn;
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STWidgetHostDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<STWidgetHostDirective, "[st-widget-host]", never, { "record": { "alias": "record"; "required": false; }; "column": { "alias": "column"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<STWidgetHostDirective, "[st-widget-host]", never, { "record": { "alias": "record"; "required": false; }; "column": { "alias": "column"; "required": false; }; }, {}, never, never, true, never>;
 }
