@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "18.3.0-b518a38",
+  "version": "18.3.0-1a346c7",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^19.0.0",
-    "@delon/theme": "^18.3.0-b518a38",
-    "@delon/util": "^18.3.0-b518a38",
-    "@delon/acl": "^18.3.0-b518a38",
+    "@delon/theme": "^18.3.0-1a346c7",
+    "@delon/util": "^18.3.0-1a346c7",
+    "@delon/acl": "^18.3.0-1a346c7",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -147,13 +147,13 @@
       "types": "./sg/index.d.ts",
       "default": "./fesm2022/sg.mjs"
     },
-    "./st": {
-      "types": "./st/index.d.ts",
-      "default": "./fesm2022/st.mjs"
-    },
     "./sv": {
       "types": "./sv/index.d.ts",
       "default": "./fesm2022/sv.mjs"
+    },
+    "./st": {
+      "types": "./st/index.d.ts",
+      "default": "./fesm2022/st.mjs"
     },
     "./tag-select": {
       "types": "./tag-select/index.d.ts",
