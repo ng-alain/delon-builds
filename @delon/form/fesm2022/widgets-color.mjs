@@ -3,23 +3,28 @@ import { Component, ViewEncapsulation, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i1$1 from '@delon/form';
-import { ControlUIWidget, DelonFormModule } from '@delon/form';
-import * as i3 from 'ng-zorro-antd/color-picker';
-import { NzColorPickerModule } from 'ng-zorro-antd/color-picker';
-import { CommonModule } from '@angular/common';
+import { ControlUIWidget, getData, DelonFormModule } from '@delon/form';
+import { NzSegmentedComponent, NzSegmentedModule } from 'ng-zorro-antd/segmented';
 
-class ColorWidget extends ControlUIWidget {
-    static KEY = 'color';
-    _change(ev) {
-        if (this.ui.change)
-            this.ui.change(ev);
+class SegmentedWidget extends ControlUIWidget {
+    static KEY = 'segmented';
+    _list;
+    get list() {
+        return this._list ?? [];
     }
-    _formatChange(ev) {
-        if (this.ui.formatChange)
-            this.ui.formatChange(ev);
+    reset(value) {
+        getData(this.schema, this.ui, value).subscribe(list => {
+            this._list = list;
+            this.detectChanges();
+        });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ColorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: ColorWidget, isStandalone: true, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    valueChange(index) {
+        if (this.ui.valueChange) {
+            this.ui.valueChange({ index, item: typeof index === 'number' ? this.list[index] : null });
+        }
+    }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.1.1", type: SegmentedWidget, isStandalone: true, selector: "sf-segmented", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -27,31 +32,21 @@ class ColorWidget extends ControlUIWidget {
     [error]="error"
     [showTitle]="schema.title"
   >
-    @if (ui.block) {
-      <nz-color-block [nzColor]="value" [nzSize]="$any(ui.size)" />
-    } @else {
-      <nz-color-picker
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [nzDisabled]="disabled"
-        [nzSize]="$any(ui.size)"
-        [nzDefaultValue]="ui.defaultValue ?? ''"
-        [nzFormat]="ui.format ?? null"
-        [nzTrigger]="ui.trigger ?? 'click'"
-        [nzTitle]="ui.title ?? ''"
-        [nzFlipFlop]="$any(ui.flipFlop)"
-        [nzShowText]="ui.showText"
-        [nzAllowClear]="ui.allowClear"
-        (nzOnChange)="_change($event)"
-        (nzOnFormatChange)="_formatChange($event)"
-      />
-    }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzColorPickerModule }, { kind: "component", type: i3.NzColorPickerComponent, selector: "nz-color-picker", inputs: ["nzFormat", "nzValue", "nzSize", "nzDefaultValue", "nzTrigger", "nzTitle", "nzFlipFlop", "nzShowText", "nzOpen", "nzAllowClear", "nzDisabled", "nzDisabledAlpha"], outputs: ["nzOnChange", "nzOnFormatChange", "nzOnClear", "nzOnOpenChange"], exportAs: ["NzColorPicker"] }, { kind: "component", type: i3.NzColorBlockComponent, selector: "nz-color-block", inputs: ["nzColor", "nzSize"], outputs: ["nzOnClick"], exportAs: ["NzColorBlock"] }], encapsulation: i0.ViewEncapsulation.None });
+    <nz-segmented
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzSize]="$any(ui.size)"
+      [nzBlock]="ui.block ?? false"
+      [nzOptions]="list"
+      (nzValueChange)="valueChange($event)"
+    />
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "component", type: NzSegmentedComponent, selector: "nz-segmented", inputs: ["nzBlock", "nzDisabled", "nzOptions", "nzSize"], outputs: ["nzValueChange"], exportAs: ["nzSegmented"] }], encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ColorWidget, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidget, decorators: [{
             type: Component,
             args: [{
-                    selector: 'sf-color',
+                    selector: 'sf-segmented',
                     template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
@@ -60,54 +55,44 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
     [error]="error"
     [showTitle]="schema.title"
   >
-    @if (ui.block) {
-      <nz-color-block [nzColor]="value" [nzSize]="$any(ui.size)" />
-    } @else {
-      <nz-color-picker
-        [ngModel]="value"
-        (ngModelChange)="setValue($event)"
-        [nzDisabled]="disabled"
-        [nzSize]="$any(ui.size)"
-        [nzDefaultValue]="ui.defaultValue ?? ''"
-        [nzFormat]="ui.format ?? null"
-        [nzTrigger]="ui.trigger ?? 'click'"
-        [nzTitle]="ui.title ?? ''"
-        [nzFlipFlop]="$any(ui.flipFlop)"
-        [nzShowText]="ui.showText"
-        [nzAllowClear]="ui.allowClear"
-        (nzOnChange)="_change($event)"
-        (nzOnFormatChange)="_formatChange($event)"
-      />
-    }
+    <nz-segmented
+      [ngModel]="value"
+      (ngModelChange)="setValue($event)"
+      [nzDisabled]="disabled"
+      [nzSize]="$any(ui.size)"
+      [nzBlock]="ui.block ?? false"
+      [nzOptions]="list"
+      (nzValueChange)="valueChange($event)"
+    />
   </sf-item-wrap>`,
                     preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None,
-                    imports: [FormsModule, DelonFormModule, NzColorPickerModule]
+                    imports: [FormsModule, DelonFormModule, NzSegmentedComponent]
                 }]
         }] });
 
-class ColorWidgetModule {
+class SegmentedWidgetModule {
     constructor(widgetRegistry) {
-        widgetRegistry.register(ColorWidget.KEY, ColorWidget);
+        widgetRegistry.register(SegmentedWidget.KEY, SegmentedWidget);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ColorWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidgetModule, imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ColorWidgetModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SegmentedWidgetModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget]
+                    imports: [FormsModule, DelonFormModule, NzSegmentedModule, SegmentedWidget]
                 }]
         }], ctorParameters: () => [{ type: i1$1.WidgetRegistry }] });
 
-function withColorWidget() {
-    return { KEY: ColorWidget.KEY, type: ColorWidget };
+function withSegmentedWidget() {
+    return { KEY: SegmentedWidget.KEY, type: SegmentedWidget };
 }
 
 /**
  * Generated bundle index. Do not edit.
  */
 
-export { ColorWidget, ColorWidgetModule, withColorWidget };
+export { SegmentedWidget, SegmentedWidgetModule, withSegmentedWidget };
 //# sourceMappingURL=widgets-color.mjs.map
