@@ -1,4 +1,3 @@
-import { BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { LayoutDefaultOptions } from './types';
 import * as i0 from "@angular/core";
@@ -9,8 +8,6 @@ export declare class LayoutDefaultService {
     get options(): LayoutDefaultOptions;
     get options$(): Observable<LayoutDefaultOptions>;
     get collapsedIcon(): string;
-    constructor(bm: BreakpointObserver);
-    private checkMedia;
     private notify;
     /**
      * Set layout configuration

@@ -1,6 +1,6 @@
 {
   "name": "@delon/form",
-  "version": "18.3.0-f9f5899",
+  "version": "18.3.0-1e1a837",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -30,9 +30,9 @@
   "dependencies": {
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
-    "@delon/theme": "^18.3.0-f9f5899",
-    "@delon/acl": "^18.3.0-f9f5899",
-    "@delon/util": "^18.3.0-f9f5899",
+    "@delon/theme": "^18.3.0-1e1a837",
+    "@delon/acl": "^18.3.0-1e1a837",
+    "@delon/util": "^18.3.0-1e1a837",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/form.mjs",
@@ -71,7 +71,7 @@
     },
     "./widgets/segmented": {
       "types": "./widgets/segmented/index.d.ts",
-      "default": "./fesm2022/widgets-color.mjs"
+      "default": "./fesm2022/widgets-segmented.mjs"
     },
     "./widgets/slider": {
       "types": "./widgets/slider/index.d.ts",
