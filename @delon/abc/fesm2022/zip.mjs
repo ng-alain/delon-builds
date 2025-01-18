@@ -8,10 +8,11 @@ import { LazyService } from '@delon/util/other';
 import * as i1 from '@delon/util/config';
 
 class ZipService {
+    http = inject(HttpClient);
+    lazy = inject(LazyService);
+    ngZone = inject(NgZone);
+    cog;
     constructor(configSrv) {
-        this.http = inject(HttpClient);
-        this.lazy = inject(LazyService);
-        this.ngZone = inject(NgZone);
         this.cog = configSrv.merge('zip', {
             url: 'https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js',
             utils: []
@@ -104,8 +105,8 @@ class ZipService {
             });
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ZipService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ZipService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ZipService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ZipService, providedIn: 'root' });
 }
 __decorate([
     ZoneOutside()

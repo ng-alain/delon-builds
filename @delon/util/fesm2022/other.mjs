@@ -120,12 +120,10 @@ const log = (...args) => {
  * 延迟加载资源（js 或 css）服务
  */
 class LazyService {
-    constructor() {
-        this.doc = inject(DOCUMENT);
-        this.list = {};
-        this.cached = {};
-        this._notify = new BehaviorSubject([]);
-    }
+    doc = inject(DOCUMENT);
+    list = {};
+    cached = {};
+    _notify = new BehaviorSubject([]);
     get change() {
         return this._notify.asObservable().pipe(share(), filter(ls => ls.length !== 0));
     }
@@ -231,8 +229,8 @@ class LazyService {
             resolve(item);
         });
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LazyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LazyService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LazyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LazyService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LazyService, decorators: [{
             type: Injectable,
