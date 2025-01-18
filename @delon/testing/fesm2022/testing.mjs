@@ -146,22 +146,11 @@ class PageG2 {
     get chart() {
         return this.comp.chart;
     }
-    genModule(module, comp) {
-        TestBed.configureTestingModule({
-            imports: [module],
-            declarations: [comp]
-        });
-        return this;
-    }
     genComp(comp, dc = false) {
         this.fixture = TestBed.createComponent(comp);
         if (dc) {
             this.dcFirst();
         }
-        return this;
-    }
-    makeModule(module, comp, options = { dc: true }) {
-        this.genModule(module, comp).genComp(comp, options.dc);
         return this;
     }
     dcFirst() {
@@ -264,9 +253,9 @@ class PageG2 {
         return this;
     }
 }
-function checkDelay(module, comp, page = null) {
+function checkDelay(comp, page = null) {
     if (page == null) {
-        page = new PageG2().makeModule(module, comp, { dc: false });
+        page = new PageG2().genComp(comp, false);
     }
     const context = page.context;
     if (typeof context.delay === 'undefined') {

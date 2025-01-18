@@ -1,8 +1,7 @@
 import { OnChanges } from '@angular/core';
-import { DelonLocaleService } from '@delon/theme';
 import * as i0 from "@angular/core";
 export declare class G2MiniProgressComponent implements OnChanges {
-    readonly i18n: DelonLocaleService;
+    readonly targetSuffix: any;
     private readonly cdr;
     color: string;
     target?: number | null;

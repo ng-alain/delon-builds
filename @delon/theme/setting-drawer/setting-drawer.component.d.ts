@@ -43,6 +43,6 @@ export declare class SettingDrawerComponent implements OnInit {
     reset(): void;
     copyVar(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SettingDrawerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": { "alias": "autoApplyColor"; "required": false; }; "compilingText": { "alias": "compilingText"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "lessJs": { "alias": "lessJs"; "required": false; }; }, {}, never, never, false, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<SettingDrawerComponent, "setting-drawer", never, { "autoApplyColor": { "alias": "autoApplyColor"; "required": false; }; "compilingText": { "alias": "compilingText"; "required": false; }; "devTips": { "alias": "devTips"; "required": false; }; "lessJs": { "alias": "lessJs"; "required": false; }; }, {}, never, never, true, never>;
     static ngAcceptInputType_autoApplyColor: unknown;
 }

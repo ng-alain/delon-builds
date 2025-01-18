@@ -12,11 +12,7 @@ export declare class PageG2<T> {
     get context(): T;
     get comp(): NzSafeAny;
     get chart(): Chart;
-    genModule<M>(module: M, comp: Type<T>): this;
     genComp(comp: Type<T>, dc?: boolean): this;
-    makeModule<M>(module: M, comp: Type<T>, options?: {
-        dc: boolean;
-    }): PageG2<T>;
     dcFirst(): this;
     dc(): this;
     end(): this;
@@ -43,4 +39,4 @@ export declare class PageG2<T> {
     }): this;
     checkClickItem(): this;
 }
-export declare function checkDelay<M, T>(module: M, comp: Type<T>, page?: PageG2<T> | null): void;
+export declare function checkDelay<T>(comp: Type<T>, page?: PageG2<T> | null): void;
