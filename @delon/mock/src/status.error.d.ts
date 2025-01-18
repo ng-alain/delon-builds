@@ -1,6 +1,6 @@
 export declare class MockStatusError {
     status: number;
-    error?: any;
+    error?: any | undefined;
     statusText?: string;
-    constructor(status: number, error?: any);
+    constructor(status: number, error?: any | undefined);
 }
