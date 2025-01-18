@@ -60,11 +60,13 @@ function DA_SERVICE_TOKEN_FACTORY() {
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
  */
 class TokenService {
+    store = inject(DA_STORE_TOKEN);
+    refresh$ = new Subject();
+    change$ = new BehaviorSubject(null);
+    interval$;
+    _referrer = {};
+    _options;
     constructor(configSrv) {
-        this.store = inject(DA_STORE_TOKEN);
-        this.refresh$ = new Subject();
-        this.change$ = new BehaviorSubject(null);
-        this._referrer = {};
         this._options = mergeConfig(configSrv);
     }
     get refresh() {
@@ -127,8 +129,8 @@ class TokenService {
     ngOnDestroy() {
         this.cleanRefresh();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TokenService }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TokenService });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TokenService, decorators: [{
             type: Injectable
@@ -144,12 +146,12 @@ const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
 const OPENTYPE = '_delonAuthSocialType';
 const HREFCALLBACK = '_delonAuthSocialCallbackByHref';
 class SocialService {
-    constructor() {
-        this.tokenService = inject(DA_SERVICE_TOKEN);
-        this.doc = inject(DOCUMENT);
-        this.router = inject(Router);
-        this._win = null;
-    }
+    tokenService = inject(DA_SERVICE_TOKEN);
+    doc = inject(DOCUMENT);
+    router = inject(Router);
+    _win = null;
+    _winTime;
+    observer;
     /**
      * 跳转至登录页，若为 `type=window` 时，返回值是 `Observable<ITokenModel>`
      *
@@ -227,8 +229,8 @@ class SocialService {
         clearInterval(this._winTime);
         this._winTime = null;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SocialService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SocialService }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SocialService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SocialService });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SocialService, decorators: [{
             type: Injectable
@@ -238,9 +240,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
  * 内存存储，关掉浏览器标签后**丢失**。
  */
 class MemoryStore {
-    constructor() {
-        this.cache = {};
-    }
+    cache = {};
     get(key) {
         return this.cache[key] || {};
     }
@@ -283,9 +283,7 @@ class SessionStorageStore {
  * ```
  */
 class CookieStorageStore {
-    constructor() {
-        this.srv = inject(CookieService);
-    }
+    srv = inject(CookieService);
     get(key) {
         try {
             return JSON.parse(this.srv.get(key) || '{}');
@@ -391,6 +389,8 @@ function b64DecodeUnicode(str) {
 }
 
 class JWTTokenModel {
+    token;
+    expired;
     /**
      * 获取载荷信息
      */
@@ -426,9 +426,7 @@ class JWTTokenModel {
 }
 
 class AuthJWTGuardService {
-    constructor() {
-        this.srv = inject(DA_SERVICE_TOKEN);
-    }
+    srv = inject(DA_SERVICE_TOKEN);
     process(url) {
         const cog = this.srv.options;
         const res = CheckJwt(this.srv.get(JWTTokenModel), cog.token_exp_offset);
@@ -437,8 +435,8 @@ class AuthJWTGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthJWTGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthJWTGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthJWTGuardService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthJWTGuardService, decorators: [{
             type: Injectable,
@@ -543,9 +541,7 @@ const authJWTInterceptor = (req, next) => {
 };
 
 class AuthSimpleGuardService {
-    constructor() {
-        this.srv = inject(DA_SERVICE_TOKEN);
-    }
+    srv = inject(DA_SERVICE_TOKEN);
     process(url) {
         const res = CheckSimple(this.srv.get());
         if (!res) {
@@ -553,8 +549,8 @@ class AuthSimpleGuardService {
         }
         return res;
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthSimpleGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthSimpleGuardService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthSimpleGuardService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AuthSimpleGuardService, decorators: [{
             type: Injectable,
@@ -634,6 +630,8 @@ const authSimpleInterceptor = (req, next) => {
 };
 
 class SimpleTokenModel {
+    token;
+    expired;
 }
 
 var AuthFeatureKind;

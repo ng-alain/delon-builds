@@ -3,6 +3,18 @@ import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject 
 import { deepMergeKey } from '@delon/util/other';
 
 class AlainSVConfig {
+    /** 大小，默认：`large` */
+    size;
+    /** 间距，默认：`32` */
+    gutter;
+    /** 布局，默认：`horizontal` */
+    layout;
+    /** 列数，默认：`3` */
+    col;
+    /** 是否显示默认值，当内容为空值时显示 `-`，默认：`true` */
+    default;
+    /** `label` 固定宽度，若 `null` 或 `undefined` 表示非固定，默认：`null` */
+    labelWidth;
 }
 
 const ALAIN_CONFIG = new InjectionToken('alain-config', {
@@ -18,6 +30,7 @@ function provideAlainConfig(config) {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class AlainConfigService {
+    config;
     constructor(defaultConfig) {
         this.config = { ...defaultConfig };
     }
@@ -37,8 +50,8 @@ class AlainConfigService {
     set(componentName, value) {
         this.config[componentName] = { ...this.config[componentName], ...value };
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, deps: [{ token: ALAIN_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, deps: [{ token: ALAIN_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, decorators: [{
             type: Injectable,

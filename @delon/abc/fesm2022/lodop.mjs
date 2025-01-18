@@ -5,13 +5,15 @@ import { LazyService } from '@delon/util/other';
 import * as i1 from '@delon/util/config';
 
 class LodopService {
+    scriptSrv = inject(LazyService);
+    defaultConfig;
+    _cog;
+    pending = false;
+    _lodop = null;
+    _init = new Subject();
+    _events = new Subject();
+    printBuffer = [];
     constructor(configSrv) {
-        this.scriptSrv = inject(LazyService);
-        this.pending = false;
-        this._lodop = null;
-        this._init = new Subject();
-        this._events = new Subject();
-        this.printBuffer = [];
         this.defaultConfig = configSrv.merge('lodop', {
             url: 'http://localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
@@ -215,8 +217,8 @@ class LodopService {
         this._init.unsubscribe();
         this._events.unsubscribe();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopService, decorators: [{
             type: Injectable,
@@ -224,9 +226,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
 class LodopModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: LodopModule }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopModule }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: LodopModule });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopModule });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: LodopModule, decorators: [{
             type: NgModule,
