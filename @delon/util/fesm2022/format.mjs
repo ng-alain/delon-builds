@@ -191,11 +191,9 @@ const CurrencyMega_Powers = [
 ];
 
 class CurrencyService {
-    locale = inject(LOCALE_ID);
-    defCurrencyCode = inject(DEFAULT_CURRENCY_CODE, { optional: true }) ?? 'USD';
-    c;
-    currencyPipe;
     constructor(cog) {
+        this.locale = inject(LOCALE_ID);
+        this.defCurrencyCode = inject(DEFAULT_CURRENCY_CODE, { optional: true }) ?? 'USD';
         this.currencyPipe = new CurrencyPipe(this.locale, this.defCurrencyCode);
         this.c = cog.merge('utilCurrency', {
             startingUnit: 'yuan',
@@ -412,8 +410,8 @@ class CurrencyService {
                 : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
         return ret;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CurrencyService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CurrencyService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CurrencyService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CurrencyService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CurrencyService, decorators: [{
             type: Injectable,

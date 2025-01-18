@@ -9,19 +9,17 @@ import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import * as i1 from '@delon/util/config';
 
 class ErrorCollectComponent {
-    el = inject(ElementRef).nativeElement;
-    cdr = inject(ChangeDetectorRef);
-    doc = inject(DOCUMENT);
-    directionality = inject(Directionality);
-    platform = inject(Platform);
-    destroy$ = inject(DestroyRef);
-    formEl = null;
-    _hiden = true;
-    count = 0;
-    dir = 'ltr';
-    freq;
-    offsetTop;
     constructor(configSrv) {
+        this.el = inject(ElementRef).nativeElement;
+        this.cdr = inject(ChangeDetectorRef);
+        this.doc = inject(DOCUMENT);
+        this.directionality = inject(Directionality);
+        this.platform = inject(Platform);
+        this.destroy$ = inject(DestroyRef);
+        this.formEl = null;
+        this._hiden = true;
+        this.count = 0;
+        this.dir = 'ltr';
         configSrv.attach(this, 'errorCollect', { freq: 500, offsetTop: 65 + 64 + 8 * 2 });
     }
     get errEls() {
@@ -76,11 +74,11 @@ class ErrorCollectComponent {
             throw new Error('No found form element');
         this.install();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "19.1.1", type: ErrorCollectComponent, isStandalone: true, selector: "error-collect, [error-collect]", inputs: { freq: ["freq", "freq", numberAttribute], offsetTop: ["offsetTop", "offsetTop", numberAttribute] }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir === 'rtl'", "class.d-none": "_hiden" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "19.1.1", type: ErrorCollectComponent, isStandalone: true, selector: "error-collect, [error-collect]", inputs: { freq: ["freq", "freq", numberAttribute], offsetTop: ["offsetTop", "offsetTop", numberAttribute] }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir === 'rtl'", "class.d-none": "_hiden" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
     <i nz-icon nzType="exclamation-circle"></i>
     <span class="error-collect__count">{{ count }}</span>
-  `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectComponent, decorators: [{
             type: Component,
@@ -112,9 +110,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [ErrorCollectComponent];
 class ErrorCollectModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, imports: [CommonModule, NzIconModule, ErrorCollectComponent], exports: [ErrorCollectComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, imports: [CommonModule, NzIconModule] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, imports: [CommonModule, NzIconModule, ErrorCollectComponent], exports: [ErrorCollectComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, imports: [CommonModule, NzIconModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ErrorCollectModule, decorators: [{
             type: NgModule,

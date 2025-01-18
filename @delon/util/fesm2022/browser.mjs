@@ -9,8 +9,10 @@ import { inject, Injectable } from '@angular/core';
  * 一组简单的 Cookie 操作类。
  */
 class CookieService {
-    _doc = inject(DOCUMENT);
-    platform = inject(Platform);
+    constructor() {
+        this._doc = inject(DOCUMENT);
+        this.platform = inject(Platform);
+    }
     get doc() {
         return this._doc || document;
     }
@@ -89,8 +91,8 @@ class CookieService {
     removeAll() {
         this.doc.cookie = '';
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CookieService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CookieService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CookieService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CookieService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CookieService, decorators: [{
             type: Injectable,
@@ -145,8 +147,10 @@ function isEmpty(element) {
 }
 
 class ScrollService {
-    _doc = inject(DOCUMENT);
-    platform = inject(Platform);
+    constructor() {
+        this._doc = inject(DOCUMENT);
+        this.platform = inject(Platform);
+    }
     _getDoc() {
         return this._doc || document;
     }
@@ -215,8 +219,8 @@ class ScrollService {
         }
         this.scrollToElement(this._getDoc().body, topOffset);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ScrollService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ScrollService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ScrollService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ScrollService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ScrollService, decorators: [{
             type: Injectable,

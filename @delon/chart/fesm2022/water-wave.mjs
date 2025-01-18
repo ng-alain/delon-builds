@@ -6,21 +6,19 @@ import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/c
 import { CommonModule } from '@angular/common';
 
 class G2WaterWaveComponent {
-    el = inject(ElementRef).nativeElement;
-    renderer = inject(Renderer2);
-    ngZone = inject(NgZone);
-    cdr = inject(ChangeDetectorRef);
-    platform = inject(Platform);
-    resize$ = null;
-    node;
-    timer;
-    // #region fields
-    animate = true;
-    delay = 0;
-    title;
-    color = '#1890FF';
-    height = 160;
-    percent;
+    constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.renderer = inject(Renderer2);
+        this.ngZone = inject(NgZone);
+        this.cdr = inject(ChangeDetectorRef);
+        this.platform = inject(Platform);
+        this.resize$ = null;
+        // #region fields
+        this.animate = true;
+        this.delay = 0;
+        this.color = '#1890FF';
+        this.height = 160;
+    }
     // #endregion
     renderChart(isUpdate) {
         if (!this.resize$)
@@ -184,8 +182,8 @@ class G2WaterWaveComponent {
             this.resize$.unsubscribe();
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: G2WaterWaveComponent, isStandalone: true, selector: "g2-water-wave", inputs: { animate: ["animate", "animate", booleanAttribute], delay: ["delay", "delay", numberAttribute], title: "title", color: "color", height: ["height", "height", numberAttribute], percent: ["percent", "percent", numberAttribute] }, host: { properties: { "class.g2-water-wave": "true" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["g2WaterWave"], usesOnChanges: true, ngImport: i0, template: "<div [style]=\"{ height: height + 'px', width: height + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height * 2\" [attr.height]=\"height * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height + 'px' }\">\n  @if (title) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: G2WaterWaveComponent, isStandalone: true, selector: "g2-water-wave", inputs: { animate: ["animate", "animate", booleanAttribute], delay: ["delay", "delay", numberAttribute], title: "title", color: "color", height: ["height", "height", numberAttribute], percent: ["percent", "percent", numberAttribute] }, host: { properties: { "class.g2-water-wave": "true" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["g2WaterWave"], usesOnChanges: true, ngImport: i0, template: "<div [style]=\"{ height: height + 'px', width: height + 'px', overflow: 'hidden' }\">\n  <canvas #container class=\"g2-water-wave__canvas\" [attr.width]=\"height * 2\" [attr.height]=\"height * 2\"></canvas>\n</div>\n<div class=\"g2-water-wave__desc\" [style]=\"{ width: height + 'px' }\">\n  @if (title) {\n    <span class=\"g2-water-wave__desc-title\">\n      <ng-container *nzStringTemplateOutlet=\"title\">{{ title }}</ng-container>\n    </span>\n  }\n  <h4 class=\"g2-water-wave__desc-percent\">{{ percent }}%</h4>\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveComponent, decorators: [{
             type: Component,
@@ -213,9 +211,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [G2WaterWaveComponent];
 class G2WaterWaveModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, imports: [CommonModule, NzOutletModule, G2WaterWaveComponent], exports: [G2WaterWaveComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, imports: [CommonModule, NzOutletModule] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, imports: [CommonModule, NzOutletModule, G2WaterWaveComponent], exports: [G2WaterWaveComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, imports: [CommonModule, NzOutletModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2WaterWaveModule, decorators: [{
             type: NgModule,

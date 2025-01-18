@@ -8,12 +8,6 @@ import { Platform } from '@angular/cdk/platform';
 import { ZoneOutside } from '@delon/util/decorator';
 
 class G2Service {
-    cogSrv = inject(AlainConfigService);
-    lazySrv = inject(LazyService);
-    _cog;
-    loading = false;
-    loaded = false;
-    notify$ = new Subject();
     get cog() {
         return this._cog;
     }
@@ -27,6 +21,11 @@ class G2Service {
         }, val);
     }
     constructor() {
+        this.cogSrv = inject(AlainConfigService);
+        this.lazySrv = inject(LazyService);
+        this.loading = false;
+        this.loaded = false;
+        this.notify$ = new Subject();
         this.cog = { theme: '' };
     }
     libLoad() {
@@ -49,8 +48,8 @@ class G2Service {
     ngOnDestroy() {
         this.notify$.unsubscribe();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2Service, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2Service, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2Service, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2Service, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2Service, decorators: [{
             type: Injectable,
@@ -58,11 +57,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }], ctorParameters: () => [] });
 
 class G2BaseComponent {
-    srv = inject(G2Service);
-    el = inject((ElementRef));
-    ngZone = inject(NgZone);
-    platform = inject(Platform);
-    cdr = inject(ChangeDetectorRef);
     get chart() {
         return this._chart;
     }
@@ -70,22 +64,21 @@ class G2BaseComponent {
         return window.G2;
     }
     constructor() {
+        this.srv = inject(G2Service);
+        this.el = inject((ElementRef));
+        this.ngZone = inject(NgZone);
+        this.platform = inject(Platform);
+        this.cdr = inject(ChangeDetectorRef);
+        this.repaint = true;
+        this.destroy$ = new Subject();
+        this.loaded = false;
+        this.delay = 0;
+        this.ready = new EventEmitter();
         this.theme = this.srv.cog.theme;
         this.srv.notify
             .pipe(takeUntil(this.destroy$), filter(() => !this.loaded))
             .subscribe(() => this.load());
     }
-    repaint = true;
-    node;
-    resize$;
-    destroy$ = new Subject();
-    _chart;
-    loaded = false;
-    delay = 0;
-    theme;
-    ready = new EventEmitter();
-    /** 检查是否只变更数据 */
-    onlyChangeData;
     /** G2数据变更 */
     changeData() { }
     /** 等同 `ngOnInit` */
@@ -140,8 +133,8 @@ class G2BaseComponent {
         this.destroy$.complete();
         this.destroyChart();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2BaseComponent, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "19.1.1", type: G2BaseComponent, isStandalone: true, inputs: { repaint: ["repaint", "repaint", booleanAttribute], delay: ["delay", "delay", numberAttribute], theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2BaseComponent, deps: [], target: i0.ɵɵFactoryTarget.Directive }); }
+    static { this.ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "16.1.0", version: "19.1.1", type: G2BaseComponent, isStandalone: true, inputs: { repaint: ["repaint", "repaint", booleanAttribute], delay: ["delay", "delay", numberAttribute], theme: "theme" }, outputs: { ready: "ready" }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], usesOnChanges: true, ngImport: i0 }); }
 }
 __decorate([
     ZoneOutside()
