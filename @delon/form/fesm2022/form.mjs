@@ -1744,7 +1744,7 @@ class SFComponent {
                 deps: [Injector, SchemaValidatorFactory, AlainConfigService]
             },
             TerminatorService
-        ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <i\n                      nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    ></i>\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <i\n                        nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      ></i>\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.NgForm, selector: "form:not([ngNoForm]):not([formGroup]),ng-form,[ngForm]", inputs: ["ngFormOptions"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "component", type: i4.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: i8.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap"], exportAs: ["nzForm"] }, { kind: "component", type: i8.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i9.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+        ], exportAs: ["sf"], usesOnChanges: true, ngImport: i0, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n", dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$2.ɵNgNoValidate, selector: "form:not([ngNoForm]):not([ngNativeValidate])" }, { kind: "directive", type: i1$2.NgControlStatusGroup, selector: "[formGroupName],[formArrayName],[ngModelGroup],[formGroup],form:not([ngNoForm]),[ngForm]" }, { kind: "directive", type: i1$2.NgForm, selector: "form:not([ngNoForm]):not([formGroup]),ng-form,[ngForm]", inputs: ["ngFormOptions"], outputs: ["ngSubmit"], exportAs: ["ngForm"] }, { kind: "component", type: i4.NzButtonComponent, selector: "button[nz-button], a[nz-button]", inputs: ["nzBlock", "nzGhost", "nzSearch", "nzLoading", "nzDanger", "disabled", "tabIndex", "nzType", "nzShape", "nzSize"], exportAs: ["nzButton"] }, { kind: "directive", type: i2.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i6.NzWaveDirective, selector: "[nz-wave],button[nz-button]:not([nzType=\"link\"]):not([nzType=\"text\"])", inputs: ["nzWaveExtraNode"], exportAs: ["nzWave"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: i8.NzFormDirective, selector: "[nz-form]", inputs: ["nzLayout", "nzNoColon", "nzAutoTips", "nzDisableAutoTips", "nzTooltipIcon", "nzLabelAlign", "nzLabelWrap"], exportAs: ["nzForm"] }, { kind: "component", type: i8.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i9.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: SFItemComponent, selector: "sf-item", inputs: ["formProperty", "footer"], exportAs: ["sfItem"] }, { kind: "directive", type: SFFixedDirective, selector: "[fixed-label]", inputs: ["fixed-label"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SFComponent, decorators: [{
             type: Component,
@@ -1765,7 +1765,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                         '[class.sf__no-error]': `onlyVisual`,
                         '[class.sf__no-colon]': `noColon`,
                         '[class.sf__compact]': `compact`
-                    }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <i\n                      nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    ></i>\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <i\n                        nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      ></i>\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n" }]
+                    }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "<ng-template #con>\n  <ng-content />\n</ng-template>\n<ng-template #btnTpl>\n  @if (button !== 'none') {\n    @let btnRender = _btn.render;\n    @if (btnRender) {\n      <nz-form-item [class]=\"btnRender.class!\" class=\"sf-btns\" [fixed-label]=\"btnRender.spanLabelFixed!\">\n        <div\n          nz-col\n          class=\"ant-form-item-control\"\n          [nzSpan]=\"btnGrid.span\"\n          [nzOffset]=\"btnGrid.offset\"\n          [nzXs]=\"btnGrid.xs\"\n          [nzSm]=\"btnGrid.sm\"\n          [nzMd]=\"btnGrid.md\"\n          [nzLg]=\"btnGrid.lg\"\n          [nzXl]=\"btnGrid.xl\"\n          [nzXXl]=\"btnGrid.xxl\"\n        >\n          <div class=\"ant-form-item-control-input\">\n            <div class=\"ant-form-item-control-input-content\">\n              @if (button) {\n                <button\n                  type=\"submit\"\n                  nz-button\n                  data-type=\"submit\"\n                  [nzType]=\"_btn.submit_type!\"\n                  [nzSize]=\"btnRender.size!\"\n                  [nzLoading]=\"loading\"\n                  [disabled]=\"liveValidate && !valid\"\n                >\n                  @if (_btn.submit_icon) {\n                    <nz-icon\n                      [nzType]=\"_btn.submit_icon.type!\"\n                      [nzTheme]=\"_btn.submit_icon.theme!\"\n                      [nzTwotoneColor]=\"_btn.submit_icon.twoToneColor!\"\n                      [nzIconfont]=\"_btn.submit_icon.iconfont!\"\n                    />\n                  }\n                  {{ _btn.submit }}\n                </button>\n                @if (_btn.reset) {\n                  <button\n                    type=\"button\"\n                    nz-button\n                    data-type=\"reset\"\n                    [nzType]=\"_btn.reset_type!\"\n                    [nzSize]=\"btnRender.size!\"\n                    [disabled]=\"loading\"\n                    (click)=\"reset(true)\"\n                  >\n                    @let resetIcon = _btn.reset_icon;\n                    @if (resetIcon) {\n                      <nz-icon\n                        [nzType]=\"resetIcon.type!\"\n                        [nzTheme]=\"resetIcon.theme!\"\n                        [nzTwotoneColor]=\"resetIcon.twoToneColor!\"\n                        [nzIconfont]=\"resetIcon.iconfont!\"\n                      />\n                    }\n                    {{ _btn.reset }}\n                  </button>\n                }\n              } @else {\n                <ng-template [ngTemplateOutlet]=\"con\" />\n              }\n            </div>\n          </div>\n        </div>\n      </nz-form-item>\n    }\n  } @else {\n    <ng-template [ngTemplateOutlet]=\"con\" />\n  }\n</ng-template>\n<form nz-form [nzLayout]=\"layout\" (submit)=\"onSubmit($event)\" [attr.autocomplete]=\"autocomplete\">\n  @if (rootProperty) {\n    <sf-item [formProperty]=\"rootProperty\" [footer]=\"btnTpl\" />\n  }\n</form>\n" }]
         }], ctorParameters: () => [{ type: i1$1.AlainConfigService }], propDecorators: { layout: [{
                 type: Input
             }], schema: [{
@@ -1842,11 +1842,11 @@ class SFItemWrapComponent {
         this.statusSrv.formStatusChanges.next({ status: hasError ? 'error' : '', hasFeedback: !!this.ui.feedback });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SFItemWrapComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SFItemWrapComponent, isStandalone: false, selector: "sf-item-wrap", inputs: { id: "id", schema: "schema", ui: "ui", showError: "showError", error: "error", showTitle: "showTitle", title: "title" }, usesOnChanges: true, ngImport: i0, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <i\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  nz-icon\n                  [nzType]=\"oh.icon!\"\n                ></i>\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div @helpMotion class=\"ant-form-item-explain ant-form-item-explain-connected\">\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n", dependencies: [{ kind: "directive", type: i2.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "component", type: i8.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i9.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], animations: [helpMotion], encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SFItemWrapComponent, isStandalone: false, selector: "sf-item-wrap", inputs: { id: "id", schema: "schema", ui: "ui", showError: "showError", error: "error", showTitle: "showTitle", title: "title" }, usesOnChanges: true, ngImport: i0, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div @helpMotion class=\"ant-form-item-explain ant-form-item-explain-connected\">\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n", dependencies: [{ kind: "directive", type: i2.ɵNzTransitionPatchDirective, selector: "[nz-button], nz-button-group, [nz-icon], nz-icon, [nz-menu-item], [nz-submenu], nz-select-top-control, nz-select-placeholder, nz-input-group", inputs: ["hidden"] }, { kind: "directive", type: i5.NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }, { kind: "directive", type: i5.NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "component", type: i8.NzFormItemComponent, selector: "nz-form-item", exportAs: ["nzFormItem"] }, { kind: "directive", type: i9.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: i5$1.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], animations: [helpMotion], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SFItemWrapComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'sf-item-wrap', animations: [helpMotion], preserveWhitespaces: false, encapsulation: ViewEncapsulation.None, standalone: false, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <i\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  nz-icon\n                  [nzType]=\"oh.icon!\"\n                ></i>\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div @helpMotion class=\"ant-form-item-explain ant-form-item-explain-connected\">\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n" }]
+            args: [{ selector: 'sf-item-wrap', animations: [helpMotion], preserveWhitespaces: false, encapsulation: ViewEncapsulation.None, standalone: false, template: "<nz-form-item\n  [style.width.px]=\"ui.width\"\n  [class.ant-form-item-has-error]=\"showError\"\n  [class.ant-form-item-with-help]=\"showError\"\n  [class.ant-form-item-has-success]=\"ui.feedback === 'success'\"\n  [class.ant-form-item-has-warning]=\"ui.feedback === 'warning'\"\n  [class.ant-form-item-has-error]=\"ui.feedback === 'error'\"\n  [class.ant-form-item-is-validating]=\"ui.feedback === 'validating'\"\n  [class.ant-form-item-has-feedback]=\"ui.feedback\"\n>\n  @if (_showTitle) {\n    <div nz-col [nzSpan]=\"ui.spanLabel!\" class=\"ant-form-item-label\">\n      @if (t) {\n        <label [attr.for]=\"id\" [class.ant-form-item-required]=\"ui._required\">\n          <span class=\"sf__label-text\">{{ t }}</span>\n          @if (ui.optional || oh) {\n            <span class=\"sf__optional\">\n              {{ ui.optional }}\n              @if (oh) {\n                <nz-icon\n                  nz-tooltip\n                  [nzTooltipTitle]=\"oh.text\"\n                  [nzTooltipPlacement]=\"oh.placement\"\n                  [nzTooltipTrigger]=\"oh.trigger\"\n                  [nzTooltipColor]=\"oh.bgColor\"\n                  [nzTooltipOverlayClassName]=\"oh.overlayClassName\"\n                  [nzTooltipOverlayStyle]=\"oh.overlayStyle\"\n                  [nzTooltipMouseEnterDelay]=\"oh.mouseEnterDelay\"\n                  [nzTooltipMouseLeaveDelay]=\"oh.mouseLeaveDelay\"\n                  [nzType]=\"oh.icon!\"\n                />\n              }\n            </span>\n          }\n        </label>\n      }\n    </div>\n  }\n  <div nz-col class=\"ant-form-item-control\" [nzSpan]=\"ui.spanControl!\" [nzOffset]=\"ui.offsetControl!\">\n    <div class=\"ant-form-item-control-input\">\n      <div class=\"ant-form-item-control-input-content\">\n        <ng-content />\n      </div>\n    </div>\n    @if (!ui.onlyVisual && showError) {\n      <div @helpMotion class=\"ant-form-item-explain ant-form-item-explain-connected\">\n        <div role=\"alert\" class=\"ant-form-item-explain-error\">\n          {{ error }}\n        </div>\n      </div>\n    }\n    @if (schema.description) {\n      <div class=\"ant-form-item-extra\" [innerHTML]=\"ui._description\"></div>\n    }\n  </div>\n</nz-form-item>\n" }]
         }], propDecorators: { id: [{
                 type: Input
             }], schema: [{
@@ -2055,7 +2055,7 @@ class ArrayWidget extends ArrayLayoutWidget {
           <span class="sf__optional">
             {{ ui.optional }}
             @if (oh) {
-              <i
+              <nz-icon
                 nz-tooltip
                 [nzTooltipTitle]="oh.text"
                 [nzTooltipPlacement]="oh.placement"
@@ -2064,9 +2064,8 @@ class ArrayWidget extends ArrayLayoutWidget {
                 [nzTooltipOverlayStyle]="oh.overlayStyle"
                 [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                 [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                nz-icon
                 [nzType]="oh.icon!"
-              ></i>
+              />
             }
           </span>
         </label>
@@ -2092,7 +2091,7 @@ class ArrayWidget extends ArrayLayoutWidget {
                   <sf-item [formProperty]="i" />
                   @if (showRemove) {
                     <span class="sf__array-remove" (click)="removeItem($index)" [attr.title]="removeTitle">
-                      <i nz-icon nzType="delete"></i>
+                      <nz-icon nzType="delete" />
                     </span>
                   }
                 </nz-card>
@@ -2122,7 +2121,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
           <span class="sf__optional">
             {{ ui.optional }}
             @if (oh) {
-              <i
+              <nz-icon
                 nz-tooltip
                 [nzTooltipTitle]="oh.text"
                 [nzTooltipPlacement]="oh.placement"
@@ -2131,9 +2130,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                 [nzTooltipOverlayStyle]="oh.overlayStyle"
                 [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                 [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                nz-icon
                 [nzType]="oh.icon!"
-              ></i>
+              />
             }
           </span>
         </label>
@@ -2159,7 +2157,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                   <sf-item [formProperty]="i" />
                   @if (showRemove) {
                     <span class="sf__array-remove" (click)="removeItem($index)" [attr.title]="removeTitle">
-                      <i nz-icon nzType="delete"></i>
+                      <nz-icon nzType="delete" />
                     </span>
                   }
                 </nz-card>
@@ -2322,7 +2320,7 @@ class CheckboxWidget extends ControlUIWidget {
             <span class="sf__optional">
               {{ ui.optional }}
               @if (oh) {
-                <i
+                <nz-icon
                   nz-tooltip
                   [nzTooltipTitle]="oh.text"
                   [nzTooltipPlacement]="oh.placement"
@@ -2331,9 +2329,8 @@ class CheckboxWidget extends ControlUIWidget {
                   [nzTooltipOverlayStyle]="oh.overlayStyle"
                   [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                   [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                  nz-icon
                   [nzType]="oh.icon!"
-                ></i>
+                />
               }
             </span>
           </label>
@@ -2396,7 +2393,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             <span class="sf__optional">
               {{ ui.optional }}
               @if (oh) {
-                <i
+                <nz-icon
                   nz-tooltip
                   [nzTooltipTitle]="oh.text"
                   [nzTooltipPlacement]="oh.placement"
@@ -2405,9 +2402,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                   [nzTooltipOverlayStyle]="oh.overlayStyle"
                   [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                   [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                  nz-icon
                   [nzType]="oh.icon!"
-                ></i>
+                />
               }
             </span>
           </label>
@@ -3045,15 +3041,14 @@ class ObjectWidget extends ObjectLayoutWidget {
         <ng-template #cardTitleTpl>
           <div [class.point]="showExpand" (click)="changeExpand()">
             @if (showExpand) {
-              <i nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs"></i>
+              <nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs" />
             }
             {{ title }}
             @if (ui.optional || oh) {
               <span class="sf__optional">
                 {{ ui.optional }}
                 @if (oh) {
-                  <i
-                    s
+                  <nz-icon
                     nz-tooltip
                     [nzTooltipTitle]="oh.text"
                     [nzTooltipPlacement]="oh.placement"
@@ -3063,9 +3058,8 @@ class ObjectWidget extends ObjectLayoutWidget {
                     [nzTooltipOverlayStyle]="oh.overlayStyle"
                     [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                     [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                    nz-icon
                     [nzType]="oh.icon!"
-                  ></i>
+                  />
                 }
               </span>
             }
@@ -3127,15 +3121,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         <ng-template #cardTitleTpl>
           <div [class.point]="showExpand" (click)="changeExpand()">
             @if (showExpand) {
-              <i nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs"></i>
+              <nz-icon [nzType]="expand ? 'down' : 'up'" class="mr-xs text-xs" />
             }
             {{ title }}
             @if (ui.optional || oh) {
               <span class="sf__optional">
                 {{ ui.optional }}
                 @if (oh) {
-                  <i
-                    s
+                  <nz-icon
                     nz-tooltip
                     [nzTooltipTitle]="oh.text"
                     [nzTooltipPlacement]="oh.placement"
@@ -3145,9 +3138,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                     [nzTooltipOverlayStyle]="oh.overlayStyle"
                     [nzTooltipMouseEnterDelay]="oh.mouseEnterDelay"
                     [nzTooltipMouseLeaveDelay]="oh.mouseLeaveDelay"
-                    nz-icon
                     [nzType]="oh.icon!"
-                  ></i>
+                  />
                 }
               </span>
             }
@@ -3395,7 +3387,7 @@ class SelectWidget extends ControlUIWidget {
       }
       @if (loading) {
         <nz-option nzDisabled nzCustomContent>
-          <i nz-icon nzType="loading"></i>
+          <nz-icon nzType="loading" />
           {{ ui.searchLoadingText }}
         </nz-option>
       }
@@ -3466,7 +3458,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
       }
       @if (loading) {
         <nz-option nzDisabled nzCustomContent>
-          <i nz-icon nzType="loading"></i>
+          <nz-icon nzType="loading" />
           {{ ui.searchLoadingText }}
         </nz-option>
       }

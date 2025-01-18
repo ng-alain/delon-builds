@@ -14,7 +14,7 @@ class TrendComponent {
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: TrendComponent, isStandalone: true, selector: "trend", inputs: { flag: "flag", colorful: ["colorful", "colorful", booleanAttribute], reverseColor: ["reverseColor", "reverseColor", booleanAttribute] }, host: { properties: { "class.trend": "true", "class.trend__grey": "!colorful", "class.trend__reverse": "colorful && reverseColor", "attr.data-flag": "flag" } }, exportAs: ["trend"], ngImport: i0, template: `
     <ng-content />
     @if (flag) {
-      <span class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+      <span class="trend__{{ flag }}"><nz-icon nzType="caret-{{ flag }}" /></span>
     }
   `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
@@ -26,7 +26,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                     template: `
     <ng-content />
     @if (flag) {
-      <span class="trend__{{ flag }}"><i nz-icon nzType="caret-{{ flag }}"></i></span>
+      <span class="trend__{{ flag }}"><nz-icon nzType="caret-{{ flag }}" /></span>
     }
   `,
                     host: {

@@ -376,7 +376,7 @@ class CellComponent {
       }
     </ng-template>
     @if (loading) {
-      <span nz-icon nzType="loading"></span>
+      <nz-icon nzType="loading" />
     } @else {
       <ng-template [ngTemplateOutlet]="textWrap" />
     }
@@ -454,7 +454,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
       }
     </ng-template>
     @if (loading) {
-      <span nz-icon nzType="loading"></span>
+      <nz-icon nzType="loading" />
     } @else {
       <ng-template [ngTemplateOutlet]="textWrap" />
     }

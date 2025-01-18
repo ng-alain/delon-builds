@@ -42,15 +42,14 @@ class TagWidget extends ControlUIWidget {
     [showTitle]="schema.title"
   >
     <ng-template #icon let-i>
-      <i
-        nz-icon
+      <nz-icon
         [nzType]="i.type"
         [nzTheme]="i.theme"
         [nzTwotoneColor]="i.twotoneColor"
         [nzRotate]="i.rotate"
         [nzIconfont]="i.iconfont"
         [nzSpin]="i.spin"
-      ></i>
+      />
     </ng-template>
     @for (i of data; track $index) {
       <nz-tag
@@ -83,15 +82,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
     [showTitle]="schema.title"
   >
     <ng-template #icon let-i>
-      <i
-        nz-icon
+      <nz-icon
         [nzType]="i.type"
         [nzTheme]="i.theme"
         [nzTwotoneColor]="i.twotoneColor"
         [nzRotate]="i.rotate"
         [nzIconfont]="i.iconfont"
         [nzSpin]="i.spin"
-      ></i>
+      />
     </ng-template>
     @for (i of data; track $index) {
       <nz-tag

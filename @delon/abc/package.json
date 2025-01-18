@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "18.3.0-9c8ea60",
+  "version": "18.3.0-f97ee2b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^19.0.0",
-    "@delon/theme": "^18.3.0-9c8ea60",
-    "@delon/util": "^18.3.0-9c8ea60",
-    "@delon/acl": "^18.3.0-9c8ea60",
+    "@delon/theme": "^18.3.0-f97ee2b",
+    "@delon/util": "^18.3.0-f97ee2b",
+    "@delon/acl": "^18.3.0-f97ee2b",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
