@@ -39,6 +39,33 @@ var PdfExternalLinkTarget;
 const CSS_UNITS = 96.0 / 72.0;
 const BORDER_WIDTH = 9;
 class PdfComponent {
+    lazySrv = inject(LazyService);
+    platform = inject(Platform);
+    _el = inject(ElementRef).nativeElement;
+    doc = inject(DOCUMENT);
+    cdr = inject(ChangeDetectorRef);
+    ngZone = inject(NgZone);
+    destroy$ = inject(DestroyRef);
+    inited = false;
+    lib = '';
+    _pdf;
+    loadingTask;
+    _src;
+    lastSrc;
+    _pi = 1;
+    _total = 0;
+    _showAll = true;
+    _rotation = 0;
+    _zoom = 1;
+    _renderText = true;
+    _loading = false;
+    multiPageViewer;
+    multiPageLinkService;
+    multiPageFindController;
+    singlePageViewer;
+    singlePageLinkService;
+    singlePageFindController;
+    _eventBus;
     set src(dataOrBuffer) {
         this._src = dataOrBuffer;
         this.load();
@@ -59,11 +86,17 @@ class PdfComponent {
             this.resetDoc();
         }
     }
+    textLayerMode = PdfTextLayerMode.ENABLE;
+    showBorders = false;
+    stickToPage = false;
+    originalSize = true;
+    fitToPage = false;
     set zoom(val) {
         if (val <= 0)
             return;
         this._zoom = val;
     }
+    zoomScale = 'page-width';
     set rotation(val) {
         if (val % 90 !== 0) {
             console.warn(`Invalid rotation angle, shoule be divisible by 90.`);
@@ -71,6 +104,10 @@ class PdfComponent {
         }
         this._rotation = val;
     }
+    autoReSize = true;
+    externalLinkTarget = PdfExternalLinkTarget.BLANK;
+    delay;
+    change = new EventEmitter();
     get loading() {
         return this._loading;
     }
@@ -99,31 +136,6 @@ class PdfComponent {
         return this._el.querySelector('.pdf-container');
     }
     constructor(configSrv) {
-        this.lazySrv = inject(LazyService);
-        this.platform = inject(Platform);
-        this._el = inject(ElementRef).nativeElement;
-        this.doc = inject(DOCUMENT);
-        this.cdr = inject(ChangeDetectorRef);
-        this.ngZone = inject(NgZone);
-        this.destroy$ = inject(DestroyRef);
-        this.inited = false;
-        this.lib = '';
-        this._pi = 1;
-        this._total = 0;
-        this._showAll = true;
-        this._rotation = 0;
-        this._zoom = 1;
-        this._renderText = true;
-        this._loading = false;
-        this.textLayerMode = PdfTextLayerMode.ENABLE;
-        this.showBorders = false;
-        this.stickToPage = false;
-        this.originalSize = true;
-        this.fitToPage = false;
-        this.zoomScale = 'page-width';
-        this.autoReSize = true;
-        this.externalLinkTarget = PdfExternalLinkTarget.BLANK;
-        this.change = new EventEmitter();
         const cog = configSrv.merge('pdf', PDF_DEFULAT_CONFIG);
         Object.assign(this, cog);
         const lib = cog.lib;
@@ -383,15 +395,15 @@ class PdfComponent {
     ngOnDestroy() {
         this.destroy();
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: PdfComponent, isStandalone: true, selector: "pdf", inputs: { src: "src", pi: ["pi", "pi", numberAttribute], showAll: ["showAll", "showAll", booleanAttribute], renderText: ["renderText", "renderText", booleanAttribute], textLayerMode: "textLayerMode", showBorders: ["showBorders", "showBorders", booleanAttribute], stickToPage: ["stickToPage", "stickToPage", booleanAttribute], originalSize: ["originalSize", "originalSize", booleanAttribute], fitToPage: ["fitToPage", "fitToPage", booleanAttribute], zoom: ["zoom", "zoom", numberAttribute], zoomScale: "zoomScale", rotation: ["rotation", "rotation", numberAttribute], autoReSize: ["autoReSize", "autoReSize", booleanAttribute], externalLinkTarget: "externalLinkTarget", delay: ["delay", "delay", numberAttribute] }, outputs: { change: "change" }, host: { properties: { "class.d-block": "true" } }, exportAs: ["pdf"], usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: PdfComponent, isStandalone: true, selector: "pdf", inputs: { src: "src", pi: ["pi", "pi", numberAttribute], showAll: ["showAll", "showAll", booleanAttribute], renderText: ["renderText", "renderText", booleanAttribute], textLayerMode: "textLayerMode", showBorders: ["showBorders", "showBorders", booleanAttribute], stickToPage: ["stickToPage", "stickToPage", booleanAttribute], originalSize: ["originalSize", "originalSize", booleanAttribute], fitToPage: ["fitToPage", "fitToPage", booleanAttribute], zoom: ["zoom", "zoom", numberAttribute], zoomScale: "zoomScale", rotation: ["rotation", "rotation", numberAttribute], autoReSize: ["autoReSize", "autoReSize", booleanAttribute], externalLinkTarget: "externalLinkTarget", delay: ["delay", "delay", numberAttribute] }, outputs: { change: "change" }, host: { properties: { "class.d-block": "true" } }, exportAs: ["pdf"], usesOnChanges: true, ngImport: i0, template: `
     @if (!inited || loading) {
       <nz-skeleton />
     }
     <div class="pdf-container">
       <div class="pdfViewer"></div>
     </div>
-  `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+  `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 __decorate([
     ZoneOutside()
@@ -473,9 +485,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [PdfComponent];
 class PdfModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: PdfModule, decorators: [{
             type: NgModule,

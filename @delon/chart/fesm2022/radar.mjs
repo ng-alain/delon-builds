@@ -7,17 +7,16 @@ import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
 class G2RadarComponent extends G2BaseComponent {
-    constructor() {
-        super(...arguments);
-        this.legendData = [];
-        this.height = 0;
-        this.padding = [44, 30, 16, 30];
-        this.hasLegend = true;
-        this.tickCount = 4;
-        this.data = [];
-        this.colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
-        this.clickItem = new EventEmitter();
-    }
+    legendData = [];
+    // #region fields
+    title;
+    height = 0;
+    padding = [44, 30, 16, 30];
+    hasLegend = true;
+    tickCount = 4;
+    data = [];
+    colors = ['#1890FF', '#FACC14', '#2FC25B', '#8543E0', '#F04864', '#13C2C2', '#fa8c16', '#a0d911'];
+    clickItem = new EventEmitter();
     // #endregion
     getHeight() {
         return this.height - (this.hasLegend ? 80 : 22);
@@ -110,8 +109,8 @@ class G2RadarComponent extends G2BaseComponent {
     onChanges() {
         this.legendData.forEach(i => (i.checked = true));
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component }); }
-    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: G2RadarComponent, isStandalone: true, selector: "g2-radar", inputs: { title: "title", height: ["height", "height", numberAttribute], padding: "padding", hasLegend: ["hasLegend", "hasLegend", booleanAttribute], tickCount: ["tickCount", "tickCount", numberAttribute], data: "data", colors: "colors" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height", "class.g2-radar": "true" } }, exportAs: ["g2Radar"], usesInheritance: true, ngImport: i0, template: "@if (!loaded) {\n  <nz-skeleton />\n}\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n@if (hasLegend) {\n  <div nz-row class=\"g2-radar__legend\">\n    @for (i of legendData; track $index) {\n      <div nz-col [nzSpan]=\"24 / legendData.length\" (click)=\"_click($index)\" class=\"g2-radar__legend-item\">\n        <i class=\"g2-radar__legend-dot\" [style]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n        {{ i.name }}\n        <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n      </div>\n    }\n  </div>\n}\n", dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarComponent, deps: null, target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: G2RadarComponent, isStandalone: true, selector: "g2-radar", inputs: { title: "title", height: ["height", "height", numberAttribute], padding: "padding", hasLegend: ["hasLegend", "hasLegend", booleanAttribute], tickCount: ["tickCount", "tickCount", numberAttribute], data: "data", colors: "colors" }, outputs: { clickItem: "clickItem" }, host: { properties: { "style.height.px": "height", "class.g2-radar": "true" } }, exportAs: ["g2Radar"], usesInheritance: true, ngImport: i0, template: "@if (!loaded) {\n  <nz-skeleton />\n}\n<ng-container *nzStringTemplateOutlet=\"title\">\n  <h4>{{ title }}</h4>\n</ng-container>\n<div #container></div>\n@if (hasLegend) {\n  <div nz-row class=\"g2-radar__legend\">\n    @for (i of legendData; track $index) {\n      <div nz-col [nzSpan]=\"24 / legendData.length\" (click)=\"_click($index)\" class=\"g2-radar__legend-item\">\n        <i class=\"g2-radar__legend-dot\" [style]=\"{ 'background-color': !i.checked ? '#aaa' : i.color }\"></i>\n        {{ i.name }}\n        <h6 class=\"g2-radar__legend-title\">{{ i.value }}</h6>\n      </div>\n    }\n  </div>\n}\n", dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzRowDirective, selector: "[nz-row],nz-row,nz-form-item", inputs: ["nzAlign", "nzJustify", "nzGutter"], exportAs: ["nzRow"] }, { kind: "directive", type: NzColDirective, selector: "[nz-col],nz-col,nz-form-control,nz-form-label", inputs: ["nzFlex", "nzSpan", "nzOrder", "nzOffset", "nzPush", "nzPull", "nzXs", "nzSm", "nzMd", "nzLg", "nzXl", "nzXXl"], exportAs: ["nzCol"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarComponent, decorators: [{
             type: Component,
@@ -142,9 +141,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [G2RadarComponent];
 class G2RadarModule {
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
-    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule, G2RadarComponent], exports: [G2RadarComponent] }); }
-    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule, COMPONENTS] }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule, G2RadarComponent], exports: [G2RadarComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, imports: [CommonModule, NzGridModule, NzOutletModule, NzSkeletonModule, COMPONENTS] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: G2RadarModule, decorators: [{
             type: NgModule,

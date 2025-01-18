@@ -5,6 +5,7 @@ import * as i1 from '@delon/util/config';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class ArrayService {
+    c;
     constructor(cog) {
         this.c = cog.merge('utilArray', {
             deepMapName: 'deep',
@@ -269,8 +270,8 @@ class ArrayService {
         }, new Map())
             .values());
     }
-    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ArrayService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable }); }
-    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ArrayService, providedIn: 'root' }); }
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ArrayService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ArrayService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ArrayService, decorators: [{
             type: Injectable,
