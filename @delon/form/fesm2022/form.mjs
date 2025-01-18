@@ -2906,7 +2906,6 @@ class NumberWidget extends ControlUIWidget {
     [error]="error"
     [showTitle]="schema.title"
   >
-    min - {{ min }}, {{ max }}
     <nz-input-number
       [nzId]="id"
       [ngModel]="value"
@@ -2937,7 +2936,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
     [error]="error"
     [showTitle]="schema.title"
   >
-    min - {{ min }}, {{ max }}
     <nz-input-number
       [nzId]="id"
       [ngModel]="value"
