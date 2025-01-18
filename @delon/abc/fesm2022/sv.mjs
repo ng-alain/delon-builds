@@ -10,10 +10,10 @@ import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { CommonModule } from '@angular/common';
 
 class SVTitleComponent {
-    el = inject(ElementRef).nativeElement;
-    parentComp = inject(SVContainerComponent, { host: true, optional: true });
-    ren = inject(Renderer2);
     constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.parentComp = inject(SVContainerComponent, { host: true, optional: true });
+        this.ren = inject(Renderer2);
         if (this.parentComp == null) {
             throw new Error(`[sv-title] must include 'sv-container' component`);
         }
@@ -27,8 +27,8 @@ class SVTitleComponent {
     ngOnInit() {
         this.setClass();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVTitleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.1.1", type: SVTitleComponent, isStandalone: true, selector: "sv-title, [sv-title]", host: { properties: { "class.sv__title": "true" } }, exportAs: ["svTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVTitleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.1.1", type: SVTitleComponent, isStandalone: true, selector: "sv-title, [sv-title]", host: { properties: { "class.sv__title": "true" } }, exportAs: ["svTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVTitleComponent, decorators: [{
             type: Component,
@@ -45,22 +45,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                 }]
         }], ctorParameters: () => [] });
 class SVContainerComponent {
-    colInCon;
-    title;
-    size;
-    /** 列表项间距，单位为 `px` */
-    gutter;
-    layout;
-    labelWidth;
-    /** 指定信息最多分几列展示，最终一行几列由 col 配置结合响应式规则决定 */
-    col;
-    default;
-    noColon = false;
-    bordered = false;
     get margin() {
         return this.bordered ? {} : { 'margin-left': `${-(this.gutter / 2)}px`, 'margin-right': `${-(this.gutter / 2)}px` };
     }
     constructor(configSrv) {
+        this.noColon = false;
+        this.bordered = false;
         configSrv.attach(this, 'sv', {
             size: 'large',
             gutter: 32,
@@ -69,8 +59,8 @@ class SVContainerComponent {
             default: true
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], title: "title", size: "size", gutter: ["gutter", "gutter", numberAttribute], layout: "layout", labelWidth: ["labelWidth", "labelWidth", numberAttribute], col: ["col", "col", numberAttribute], default: ["default", "default", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], bordered: ["bordered", "bordered", booleanAttribute] }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], title: "title", size: "size", gutter: ["gutter", "gutter", numberAttribute], layout: "layout", labelWidth: ["labelWidth", "labelWidth", numberAttribute], col: ["col", "col", numberAttribute], default: ["default", "default", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], bordered: ["bordered", "bordered", booleanAttribute] }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
     <div class="ant-row" [style]="margin">
       @if (title) {
         <sv-title>
@@ -79,7 +69,7 @@ class SVContainerComponent {
       }
       <ng-content />
     </div>
-  `, isInline: true, dependencies: [{ kind: "component", type: SVTitleComponent, selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "component", type: SVTitleComponent, selector: "sv-title, [sv-title]", exportAs: ["svTitle"] }, { kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVContainerComponent, decorators: [{
             type: Component,
@@ -140,12 +130,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             }] } });
 
 class SVValueComponent {
-    prefix;
-    unit;
-    tooltip;
-    size = 'default';
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVValueComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVValueComponent, isStandalone: true, selector: "sv-value, [sv-value]", inputs: { prefix: "prefix", unit: "unit", tooltip: "tooltip", size: "size" }, host: { properties: { "class.sv__value": "true", "class.sv__value-small": "size === 'small'", "class.sv__value-large": "size === 'large'" } }, exportAs: ["svValue"], ngImport: i0, template: `
+    constructor() {
+        this.size = 'default';
+    }
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVValueComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVValueComponent, isStandalone: true, selector: "sv-value, [sv-value]", inputs: { prefix: "prefix", unit: "unit", tooltip: "tooltip", size: "size" }, host: { properties: { "class.sv__value": "true", "class.sv__value-small": "size === 'small'", "class.sv__value-large": "size === 'large'" } }, exportAs: ["svValue"], ngImport: i0, template: `
     @if (prefix) {
       <em class="sv__value-prefix" [innerHTML]="prefix"></em>
     }
@@ -153,7 +142,7 @@ class SVValueComponent {
     @if (unit) {
       <em class="sv__value-unit" [innerHTML]="unit"></em>
     }
-  `, isInline: true, dependencies: [{ kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVValueComponent, decorators: [{
             type: Component,
@@ -191,24 +180,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const prefixCls = `sv`;
 class SVComponent {
-    el = inject(ElementRef).nativeElement;
-    parentComp = inject(SVContainerComponent, { host: true, optional: true });
-    rep = inject(ResponsiveService);
-    ren = inject(Renderer2);
-    conEl;
-    clsMap = [];
-    _noColon = false;
-    // #region fields
-    optional;
-    optionalHelp;
-    optionalHelpColor;
-    label;
-    unit;
-    col;
-    default;
-    type;
-    noColon;
-    hideLabel = false;
     // #endregion
     get paddingValue() {
         if (this.parentComp.bordered)
@@ -220,6 +191,13 @@ class SVComponent {
         return layout === 'horizontal' ? labelWidth : null;
     }
     constructor() {
+        this.el = inject(ElementRef).nativeElement;
+        this.parentComp = inject(SVContainerComponent, { host: true, optional: true });
+        this.rep = inject(ResponsiveService);
+        this.ren = inject(Renderer2);
+        this.clsMap = [];
+        this._noColon = false;
+        this.hideLabel = false;
         if (this.parentComp == null) {
             throw new Error(`[sv] must include 'sv-container' component`);
         }
@@ -262,8 +240,8 @@ class SVComponent {
             el.classList.add(cls);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVComponent, isStandalone: true, selector: "sv, [sv]", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", label: "label", unit: "unit", col: ["col", "col", (v) => (v == null ? null : numberAttribute(v))], default: ["default", "default", (v) => (v == null ? null : booleanAttribute(v))], type: "type", noColon: ["noColon", "noColon", (v) => (v == null ? null : booleanAttribute(v))], hideLabel: ["hideLabel", "hideLabel", booleanAttribute] }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, viewQueries: [{ propertyName: "conEl", first: true, predicate: ["conEl"], descendants: true }], exportAs: ["sv"], usesOnChanges: true, ngImport: i0, template: "@if (!hideLabel) {\n  <div\n    class=\"sv__label\"\n    [class.sv__label-empty]=\"!label\"\n    [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n    [class.sv__no-colon]=\"_noColon\"\n    [style.width.px]=\"labelWidth\"\n  >\n    <span class=\"sv__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    @if (optional || optionalHelp) {\n      <span class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n        <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n        @if (optionalHelp) {\n          <i\n            nz-tooltip\n            [nzTooltipTitle]=\"optionalHelp\"\n            [nzTooltipColor]=\"optionalHelpColor\"\n            nz-icon\n            nzType=\"question-circle\"\n          ></i>\n        }\n      </span>\n    }\n  </div>\n}\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content />\n  </span>\n  @if (!!unit) {\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  }\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: SVComponent, isStandalone: true, selector: "sv, [sv]", inputs: { optional: "optional", optionalHelp: "optionalHelp", optionalHelpColor: "optionalHelpColor", label: "label", unit: "unit", col: ["col", "col", (v) => (v == null ? null : numberAttribute(v))], default: ["default", "default", (v) => (v == null ? null : booleanAttribute(v))], type: "type", noColon: ["noColon", "noColon", (v) => (v == null ? null : booleanAttribute(v))], hideLabel: ["hideLabel", "hideLabel", booleanAttribute] }, host: { properties: { "style.padding-left.px": "paddingValue", "style.padding-right.px": "paddingValue" } }, viewQueries: [{ propertyName: "conEl", first: true, predicate: ["conEl"], descendants: true }], exportAs: ["sv"], usesOnChanges: true, ngImport: i0, template: "@if (!hideLabel) {\n  <div\n    class=\"sv__label\"\n    [class.sv__label-empty]=\"!label\"\n    [class.sv__label-width]=\"labelWidth !== null && labelWidth !== undefined\"\n    [class.sv__no-colon]=\"_noColon\"\n    [style.width.px]=\"labelWidth\"\n  >\n    <span class=\"sv__label-text\">\n      <ng-container *nzStringTemplateOutlet=\"label\">{{ label }}</ng-container>\n    </span>\n    @if (optional || optionalHelp) {\n      <span class=\"sv__label-optional\" [class.sv__label-optional-no-text]=\"!optional\">\n        <ng-container *nzStringTemplateOutlet=\"optional\">{{ optional }}</ng-container>\n        @if (optionalHelp) {\n          <i\n            nz-tooltip\n            [nzTooltipTitle]=\"optionalHelp\"\n            [nzTooltipColor]=\"optionalHelpColor\"\n            nz-icon\n            nzType=\"question-circle\"\n          ></i>\n        }\n      </span>\n    }\n  </div>\n}\n<div class=\"sv__detail\">\n  <span (cdkObserveContent)=\"checkContent()\" #conEl>\n    <ng-content />\n  </span>\n  @if (!!unit) {\n    <span class=\"sv__unit\" *nzStringTemplateOutlet=\"unit\">{{ unit }}</span>\n  }\n</div>\n", dependencies: [{ kind: "directive", type: NzStringTemplateOutletDirective, selector: "[nzStringTemplateOutlet]", inputs: ["nzStringTemplateOutletContext", "nzStringTemplateOutlet"], exportAs: ["nzStringTemplateOutlet"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVComponent, decorators: [{
             type: Component,
@@ -302,9 +280,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent];
 class SVModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: SVModule, imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule, SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent], exports: [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVModule, imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: SVModule, imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule, SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent], exports: [SVContainerComponent, SVComponent, SVTitleComponent, SVValueComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVModule, imports: [CommonModule, ObserversModule, NzToolTipModule, NzIconModule, NzOutletModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: SVModule, decorators: [{
             type: NgModule,

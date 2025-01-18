@@ -5,8 +5,9 @@ import { CountdownComponent, CountdownModule } from 'ngx-countdown';
 import { CommonModule } from '@angular/common';
 
 class CountDownComponent {
-    instance;
-    config;
+    constructor() {
+        this.event = new EventEmitter();
+    }
     /**
      * 目标时间
      */
@@ -16,14 +17,13 @@ class CountDownComponent {
             stopTime: typeof value === 'number' ? addSeconds(new Date(), value).valueOf() : +format(value, 't')
         };
     }
-    event = new EventEmitter();
     handleEvent(e) {
         this.event.emit(e);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: CountDownComponent, isStandalone: true, selector: "count-down", inputs: { config: "config", target: "target" }, outputs: { event: "event" }, viewQueries: [{ propertyName: "instance", first: true, predicate: ["cd"], descendants: true }], exportAs: ["countDown"], ngImport: i0, template: `@if (config) {
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: CountDownComponent, isStandalone: true, selector: "count-down", inputs: { config: "config", target: "target" }, outputs: { event: "event" }, viewQueries: [{ propertyName: "instance", first: true, predicate: ["cd"], descendants: true }], exportAs: ["countDown"], ngImport: i0, template: `@if (config) {
     <countdown #cd [config]="config" (event)="handleEvent($event)" />
-  }`, isInline: true, dependencies: [{ kind: "component", type: CountdownComponent, selector: "countdown", inputs: ["config", "render"], outputs: ["event"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  }`, isInline: true, dependencies: [{ kind: "component", type: CountdownComponent, selector: "countdown", inputs: ["config", "render"], outputs: ["event"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownComponent, decorators: [{
             type: Component,
@@ -51,9 +51,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [CountDownComponent];
 class CountDownModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule, CountDownComponent], exports: [CountDownComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule, COMPONENTS] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule, CountDownComponent], exports: [CountDownComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, imports: [CommonModule, CountdownModule, COMPONENTS] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CountDownModule, decorators: [{
             type: NgModule,

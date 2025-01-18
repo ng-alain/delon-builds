@@ -130,7 +130,6 @@ function dispatchDropDown(dl, trigger, allowNull = true) {
 const PageG2DataCount = 2;
 const PageG2Height = 100;
 class PageG2 {
-    fixture;
     constructor(fixture = null) {
         this.fixture = fixture;
     }
@@ -282,7 +281,6 @@ function checkDelay(module, comp, page = null) {
 }
 
 class TestContext {
-    fixture;
     constructor(fixture) {
         this.fixture = fixture;
     }

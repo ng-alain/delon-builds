@@ -7,16 +7,18 @@ import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { CommonModule } from '@angular/common';
 
 class TagSelectComponent {
-    i18n = inject(DelonLocaleService);
-    directionality = inject(Directionality);
-    cdr = inject(ChangeDetectorRef);
-    destroy$ = inject(DestroyRef);
-    locale = {};
-    expand = false;
-    dir = 'ltr';
-    /** 是否启用 `展开与收进` */
-    expandable = true;
-    change = new EventEmitter();
+    constructor() {
+        this.i18n = inject(DelonLocaleService);
+        this.directionality = inject(Directionality);
+        this.cdr = inject(ChangeDetectorRef);
+        this.destroy$ = inject(DestroyRef);
+        this.locale = {};
+        this.expand = false;
+        this.dir = 'ltr';
+        /** 是否启用 `展开与收进` */
+        this.expandable = true;
+        this.change = new EventEmitter();
+    }
     ngOnInit() {
         this.dir = this.directionality.value;
         this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
@@ -32,8 +34,8 @@ class TagSelectComponent {
         this.expand = !this.expand;
         this.change.emit(this.expand);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: TagSelectComponent, isStandalone: true, selector: "tag-select", inputs: { expandable: ["expandable", "expandable", booleanAttribute] }, outputs: { change: "change" }, host: { properties: { "class.tag-select": "true", "class.tag-select-rtl": "dir === 'rtl'", "class.tag-select-rtl__has-expand": "dir === 'rtl' && expandable", "class.tag-select__has-expand": "expandable", "class.tag-select__expanded": "expand" } }, exportAs: ["tagSelect"], ngImport: i0, template: "<ng-content />\n@if (expandable) {\n  <a class=\"ant-tag ant-tag-checkable tag-select__trigger\" (click)=\"trigger()\">\n    {{ expand ? locale.collapse : locale.expand }}\n    <i nz-icon nzType=\"down\" [style.transform]=\"expand ? 'rotate(-180deg)' : null\"></i>\n  </a>\n}\n", dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: TagSelectComponent, isStandalone: true, selector: "tag-select", inputs: { expandable: ["expandable", "expandable", booleanAttribute] }, outputs: { change: "change" }, host: { properties: { "class.tag-select": "true", "class.tag-select-rtl": "dir === 'rtl'", "class.tag-select-rtl__has-expand": "dir === 'rtl' && expandable", "class.tag-select__has-expand": "expandable", "class.tag-select__expanded": "expand" } }, exportAs: ["tagSelect"], ngImport: i0, template: "<ng-content />\n@if (expandable) {\n  <a class=\"ant-tag ant-tag-checkable tag-select__trigger\" (click)=\"trigger()\">\n    {{ expand ? locale.collapse : locale.expand }}\n    <i nz-icon nzType=\"down\" [style.transform]=\"expand ? 'rotate(-180deg)' : null\"></i>\n  </a>\n}\n", dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectComponent, decorators: [{
             type: Component,
@@ -53,9 +55,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [TagSelectComponent];
 class TagSelectModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, imports: [CommonModule, NzIconModule, DelonLocaleModule, TagSelectComponent], exports: [TagSelectComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, imports: [CommonModule, NzIconModule, DelonLocaleModule] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, imports: [CommonModule, NzIconModule, DelonLocaleModule, TagSelectComponent], exports: [TagSelectComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, imports: [CommonModule, NzIconModule, DelonLocaleModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: TagSelectModule, decorators: [{
             type: NgModule,

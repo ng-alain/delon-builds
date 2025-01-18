@@ -7,9 +7,6 @@ import { deepCopy } from '@delon/util/other';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class MockStatusError {
-    status;
-    error;
-    statusText;
     constructor(status, error) {
         this.status = status;
         this.error = error;
@@ -29,9 +26,8 @@ function provideMockConfig(config) {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class MockService {
-    cached = [];
-    config;
     constructor(cogSrv, options) {
+        this.cached = [];
         this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
         this.setData(options?.data);
     }
@@ -156,8 +152,8 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MockService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MockService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,

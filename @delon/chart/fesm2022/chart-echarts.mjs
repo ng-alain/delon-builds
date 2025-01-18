@@ -11,12 +11,6 @@ import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { CommonModule } from '@angular/common';
 
 class ChartEChartsService {
-    cogSrv = inject(AlainConfigService);
-    lazySrv = inject(LazyService);
-    _cog;
-    loading = false;
-    loaded = false;
-    notify$ = new Subject();
     get cog() {
         return this._cog;
     }
@@ -27,6 +21,11 @@ class ChartEChartsService {
         }, val);
     }
     constructor() {
+        this.cogSrv = inject(AlainConfigService);
+        this.lazySrv = inject(LazyService);
+        this.loading = false;
+        this.loaded = false;
+        this.notify$ = new Subject();
         this.cog = { theme: '' };
     }
     libLoad() {
@@ -58,8 +57,8 @@ class ChartEChartsService {
     ngOnDestroy() {
         this.notify$.unsubscribe();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsService, decorators: [{
             type: Injectable,
@@ -67,20 +66,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }], ctorParameters: () => [] });
 
 class ChartEChartsComponent {
-    static ngAcceptInputType_width;
-    static ngAcceptInputType_height;
-    srv = inject(ChartEChartsService);
-    cdr = inject(ChangeDetectorRef);
-    ngZone = inject(NgZone);
-    platform = inject(Platform);
-    node;
-    destroy$ = inject(DestroyRef);
-    _chart = null;
-    _theme;
-    _initOpt;
-    _option;
-    _width = '100%';
-    _height = '400px';
     set width(val) {
         this._width = typeof val === 'number' ? `${val}px` : `${val}`;
     }
@@ -105,13 +90,21 @@ class ChartEChartsComponent {
             this.setOption(value, true);
         }
     }
-    on = [];
-    events = new EventEmitter();
     get chart() {
         return this._chart;
     }
-    loaded = false;
     constructor() {
+        this.srv = inject(ChartEChartsService);
+        this.cdr = inject(ChangeDetectorRef);
+        this.ngZone = inject(NgZone);
+        this.platform = inject(Platform);
+        this.destroy$ = inject(DestroyRef);
+        this._chart = null;
+        this._width = '100%';
+        this._height = '400px';
+        this.on = [];
+        this.events = new EventEmitter();
+        this.loaded = false;
         this.srv.notify
             .pipe(takeUntilDestroyed(), filter(() => !this.loaded))
             .subscribe(() => this.load());
@@ -176,13 +169,13 @@ class ChartEChartsComponent {
         this.on.forEach(item => this._chart?.off(item.eventName));
         this.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: ChartEChartsComponent, isStandalone: true, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: ChartEChartsComponent, isStandalone: true, selector: "chart-echarts, [chart-echarts]", inputs: { width: "width", height: "height", theme: "theme", initOpt: "initOpt", option: "option", on: "on" }, outputs: { events: "events" }, host: { properties: { "style.display": "'inline-block'", "style.width": "_width", "style.height": "_height" } }, viewQueries: [{ propertyName: "node", first: true, predicate: ["container"], descendants: true, static: true }], exportAs: ["chartECharts"], ngImport: i0, template: `
     @if (!loaded) {
       <nz-skeleton />
     }
     <div #container [style.width]="_width" [style.height]="_height"></div>
-  `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "component", type: NzSkeletonComponent, selector: "nz-skeleton", inputs: ["nzActive", "nzLoading", "nzRound", "nzTitle", "nzAvatar", "nzParagraph"], exportAs: ["nzSkeleton"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     ZoneOutside()
@@ -229,9 +222,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [ChartEChartsComponent];
 class ChartEChartsModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule, ChartEChartsComponent], exports: [ChartEChartsComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule, ChartEChartsComponent], exports: [ChartEChartsComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ChartEChartsModule, decorators: [{
             type: NgModule,

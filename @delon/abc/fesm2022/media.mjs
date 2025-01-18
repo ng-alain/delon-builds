@@ -10,12 +10,13 @@ import { LazyService } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
 
 class MediaService {
-    cogSrv = inject(AlainConfigService);
-    lazySrv = inject(LazyService);
-    _cog;
-    loading = false;
-    loaded = false;
-    notify$ = new Subject();
+    constructor() {
+        this.cogSrv = inject(AlainConfigService);
+        this.lazySrv = inject(LazyService);
+        this.loading = false;
+        this.loaded = false;
+        this.notify$ = new Subject();
+    }
     get cog() {
         return this._cog;
     }
@@ -41,8 +42,8 @@ class MediaService {
     notify() {
         return this.notify$.asObservable().pipe(share());
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaService, providedIn: 'root' });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaService, deps: [], target: i0.ɵɵFactoryTarget.Injectable }); }
+    static { this.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaService, providedIn: 'root' }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaService, decorators: [{
             type: Injectable,
@@ -50,19 +51,17 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }] });
 
 class MediaComponent {
-    destroy$ = inject(DestroyRef);
-    el = inject(ElementRef).nativeElement;
-    renderer = inject(Renderer2);
-    ngZone = inject(NgZone);
-    srv = inject(MediaService);
-    platform = inject(Platform);
-    _p;
-    videoEl;
-    type = 'video';
-    source;
-    options;
-    delay = 0;
-    ready = new EventEmitter();
+    constructor() {
+        this.destroy$ = inject(DestroyRef);
+        this.el = inject(ElementRef).nativeElement;
+        this.renderer = inject(Renderer2);
+        this.ngZone = inject(NgZone);
+        this.srv = inject(MediaService);
+        this.platform = inject(Platform);
+        this.type = 'video';
+        this.delay = 0;
+        this.ready = new EventEmitter();
+    }
     get player() {
         return this._p;
     }
@@ -124,8 +123,8 @@ class MediaComponent {
         this.destroy();
         this._p = null;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "19.1.1", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: "type", source: "source", options: "options", delay: ["delay", "delay", numberAttribute] }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component }); }
+    static { this.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "19.1.1", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: "type", source: "source", options: "options", delay: ["delay", "delay", numberAttribute] }, outputs: { ready: "ready" }, host: { properties: { "style.display": "'block'" } }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None }); }
 }
 __decorate([
     ZoneOutside()
@@ -158,9 +157,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 
 const COMPONENTS = [MediaComponent];
 class MediaModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, imports: [CommonModule, MediaComponent], exports: [MediaComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, imports: [CommonModule] });
+    static { this.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule }); }
+    static { this.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, imports: [CommonModule, MediaComponent], exports: [MediaComponent] }); }
+    static { this.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, imports: [CommonModule] }); }
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: MediaModule, decorators: [{
             type: NgModule,

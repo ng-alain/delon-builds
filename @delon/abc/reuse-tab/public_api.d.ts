@@ -9,6 +9,5 @@ export { ReuseTabModule } from './reuse-tab.module';
 export * from './reuse-tab.interfaces';
 export * from './lifecycle_hooks';
 export * from './reuse-tab.state';
-export { REUSE_TAB_CACHED_MANAGER } from './reuse-tab.cache';
-export type { ReuseTabCachedManager } from './reuse-tab.cache';
+export { REUSE_TAB_CACHED_MANAGER, ReuseTabCachedManager } from './reuse-tab.cache';
 export * from './provide';
