@@ -1,6 +1,7 @@
-import { HttpHeaders, HttpParams } from '@angular/common/http';
-import { ElementRef, TemplateRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import type { CdkDragDrop, CdkDragEnter, CdkDragExit, CdkDragSortEvent } from '@angular/cdk/drag-drop';
+import type { HttpHeaders, HttpParams } from '@angular/common/http';
+import type { ElementRef, TemplateRef } from '@angular/core';
+import type { Observable } from 'rxjs';
 import type { ThemeType } from '@ant-design/icons-angular';
 import type { CellOptions } from '@delon/abc/cell';
 import type { ACLCanType } from '@delon/acl';
@@ -1179,4 +1180,22 @@ export interface STCustomRequestOptions {
 export interface STOnCellResult {
     rowSpan?: number | null;
     colSpan?: number | null;
+}
+export interface STDragOptions {
+    /**
+     * Emits when the user drops an item inside the container, default: `moveItemInArray()`
+     */
+    dropped?: (e: CdkDragDrop<any, any, any>) => void;
+    /**
+     * Emits when the user has moved a new drag item into this container.
+     */
+    entered?: (e: CdkDragEnter<any>) => void;
+    /**
+     * Emits when the user removes an item from the container by dragging it into another container.
+     */
+    exited?: (e: CdkDragExit<any>) => void;
+    /**
+     * Emits as the user is swapping items while actively dragging.
+     */
+    sorted?: (e: CdkDragSortEvent<any>) => void;
 }
