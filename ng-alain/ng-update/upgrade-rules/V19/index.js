@@ -14,6 +14,28 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
+function addDPVNU() {
+    return (tree) => {
+        const filePath = '.stylelintrc.js';
+        const content = tree.read(filePath);
+        if (!content) {
+            return;
+        }
+        let contentStr = content.toString('utf-8');
+        if (contentStr.includes('declaration-property-value-no-unknown')) {
+            return;
+        }
+        // 在 'order/order' 之前插入 'declaration-property-value-no-unknown': null,
+        const findContent = `    'order/order'`;
+        const idx = contentStr.indexOf(findContent.trim());
+        if (idx === -1) {
+            return;
+        }
+        const insertContent = `    'declaration-property-value-no-unknown': null,\n`;
+        contentStr = contentStr.replace(findContent, `${insertContent}${findContent}`);
+        tree.overwrite(filePath, contentStr);
+    };
+}
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -24,7 +46,7 @@ function v19Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, versions_1.UpgradeMainVersions)(tree);
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
-        return (0, schematics_1.chain)([finished()]);
+        return (0, schematics_1.chain)([addDPVNU(), finished()]);
     });
 }
 //# sourceMappingURL=index.js.map
