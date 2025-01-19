@@ -137,6 +137,14 @@ class STColumnSource {
         if (typeof pop.condition !== 'function') {
             pop.condition = () => false;
         }
+        if (this.i18nSrv) {
+            if (pop.titleI18n)
+                pop.title = this.i18nSrv.fanyi(pop.titleI18n);
+            if (pop.okTextI18n)
+                pop.okText = this.i18nSrv.fanyi(pop.okTextI18n);
+            if (pop.cancelTextI18n)
+                pop.cancelText = this.i18nSrv.fanyi(pop.cancelTextI18n);
+        }
         i.pop = pop;
     }
     btnCoerce(list) {
