@@ -1,4 +1,4 @@
-import { InputSignalWithTransform, OnInit } from '@angular/core';
+import { OnInit } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import * as i0 from "@angular/core";
 export declare class ErrorCollectComponent implements OnInit {
@@ -10,8 +10,8 @@ export declare class ErrorCollectComponent implements OnInit {
     _hiden: import("@angular/core").WritableSignal<boolean>;
     count: import("@angular/core").WritableSignal<number>;
     dir: import("@angular/core").Signal<import("@angular/cdk/bidi").Direction | undefined>;
-    readonly freq: InputSignalWithTransform<number, unknown>;
-    readonly offsetTop: InputSignalWithTransform<number, unknown>;
+    readonly freq: import("@angular/core").InputSignalWithTransform<number, unknown>;
+    readonly offsetTop: import("@angular/core").InputSignalWithTransform<number, unknown>;
     constructor(configSrv: AlainConfigService);
     private get errEls();
     private update;
