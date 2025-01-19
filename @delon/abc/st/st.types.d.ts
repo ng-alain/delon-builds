@@ -34,8 +34,8 @@ export interface _STColumn extends STColumn {
     } | null;
     _sort: STSortMap;
     _width?: number;
-    _left: string | boolean;
-    _right: string | boolean;
+    _left?: string | boolean;
+    _right?: string | boolean;
     __renderTitle?: TemplateRef<any>;
     __render?: TemplateRef<any>;
 }
