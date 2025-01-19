@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject } from '@angular/core';
+import { InjectionToken, makeEnvironmentProviders, inject, Injectable } from '@angular/core';
+import { SIGNAL } from '@angular/core/primitives/signals';
 import { deepMergeKey } from '@delon/util/other';
 
 class AlainSVConfig {
@@ -30,10 +31,7 @@ function provideAlainConfig(config) {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 class AlainConfigService {
-    config;
-    constructor(defaultConfig) {
-        this.config = { ...defaultConfig };
-    }
+    config = { ...inject(ALAIN_CONFIG, { optional: true }) };
     get(componentName, key) {
         const res = (this.config[componentName] || {});
         return key ? { [key]: res[key] } : res;
@@ -41,27 +39,32 @@ class AlainConfigService {
     merge(componentName, ...defaultValues) {
         return deepMergeKey({}, true, ...defaultValues, this.get(componentName));
     }
+    /**
+     * 将配置附加到当前实例中，支持 Signal 信号
+     */
     attach(componentThis, componentName, defaultValues) {
-        Object.assign(componentThis, this.merge(componentName, defaultValues));
-    }
-    attachKey(componentThis, componentName, key) {
-        Object.assign(componentThis, this.get(componentName, key));
+        const data = this.merge(componentName, defaultValues);
+        Object.entries(data).forEach(([key, value]) => {
+            const t = componentThis;
+            const s = t[key]?.[SIGNAL];
+            if (s != null) {
+                s.value = value;
+            }
+            else {
+                t[key] = value;
+            }
+        });
     }
     set(componentName, value) {
         this.config[componentName] = { ...this.config[componentName], ...value };
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, deps: [{ token: ALAIN_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: AlainConfigService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Optional
-                }, {
-                    type: Inject,
-                    args: [ALAIN_CONFIG]
-                }] }] });
+        }] });
 
 /**
  * Generated bundle index. Do not edit.
