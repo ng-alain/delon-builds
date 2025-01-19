@@ -30434,12 +30434,6 @@ nz-button-group + nz-popconfirm {
   margin-right: 8px;
   margin-left: inherit;
 }
-.cdk-drag-preview {
-  display: table;
-}
-.cdk-drag-placeholder {
-  opacity: 0;
-}
 a:focus {
   text-decoration: none;
 }
