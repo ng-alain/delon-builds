@@ -11,7 +11,6 @@ export interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
     resizable?: STResizable;
     safeType: STColumnSafeType;
-    expand: boolean;
 }
 export declare class STColumnSource {
     private dom;
