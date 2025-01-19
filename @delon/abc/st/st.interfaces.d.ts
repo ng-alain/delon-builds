@@ -854,7 +854,6 @@ export interface STColumnButtonPop<T extends STData = any> {
      * Title of the popover, default: `确认删除吗？`
      */
     title?: string;
-    titleI18n?: string;
     /**
      * Popover trigger mode, default: `click`
      */
@@ -875,12 +874,10 @@ export interface STColumnButtonPop<T extends STData = any> {
      * Text of the Cancel button
      */
     cancelText?: string;
-    cancelTextI18n?: string;
     /**
      * Text of the Confirm button
      */
     okText?: string;
-    okTextI18n?: string;
     /**
      * Button `type` of the Confirm button
      */
