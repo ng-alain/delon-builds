@@ -26,6 +26,7 @@ export declare class STTdComponent {
     _checkbox(value: boolean): void;
     _radio(): void;
     _link(e: Event): boolean;
+    _client(): void;
     _stopPropagation(ev: Event): void;
     _btn(btn: STColumnButton, ev?: Event): void;
     private btnCallback;

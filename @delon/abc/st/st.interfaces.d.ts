@@ -256,7 +256,7 @@ export interface STColumn<T extends STData = any> {
      * - `currency` 货币且居右(若 `className` 存在则优先)
      * - `date` 日期格式且居中(若 `className` 存在则优先)，使用 `dateFormat` 自定义格式
      * - `yn` 将`boolean`类型徽章化 [document](https://ng-alain.com/docs/data-render#yn)
-     * - `cell` 使用 `cell` 组件渲染 [document](https://ng-alain.com/components/cell)
+     * - `cell` 可指定 `click`，使用 `cell` 组件渲染 [document](https://ng-alain.com/components/cell)
      * - `widget` 使用自定义小部件动态创建
      */
     type?: '' | 'checkbox' | 'link' | 'badge' | 'tag' | 'enum' | 'radio' | 'img' | 'currency' | 'number' | 'date' | 'yn' | 'no' | 'cell' | 'widget';
@@ -854,6 +854,7 @@ export interface STColumnButtonPop<T extends STData = any> {
      * Title of the popover, default: `确认删除吗？`
      */
     title?: string;
+    titleI18n?: string;
     /**
      * Popover trigger mode, default: `click`
      */
@@ -874,10 +875,12 @@ export interface STColumnButtonPop<T extends STData = any> {
      * Text of the Cancel button
      */
     cancelText?: string;
+    cancelTextI18n?: string;
     /**
      * Text of the Confirm button
      */
     okText?: string;
+    okTextI18n?: string;
     /**
      * Button `type` of the Confirm button
      */
