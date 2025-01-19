@@ -443,7 +443,6 @@ class STColumnSource {
         const { noIndex } = this.cog;
         let checkboxCount = 0;
         let radioCount = 0;
-        let point = 0;
         const columns = [];
         const processItem = (item) => {
             // index
@@ -537,7 +536,6 @@ class STColumnSource {
                 ...options.resizable,
                 ...(typeof item.resizable === 'boolean' ? { disabled: !item.resizable } : item.resizable)
             };
-            item.__point = point++;
             return item;
         };
         const processList = (data) => {
@@ -2119,19 +2117,19 @@ class STComponent {
         ev.stopPropagation();
     }
     _refColAndData() {
-        this._columns.forEach(c => {
+        this._columns.forEach((c, cIdx) => {
             this._data.forEach((i, idx) => {
                 const values = i._values;
                 if (c.type === 'no') {
                     const text = `${this.dataSource.getNoIndex(i, c, idx)}`;
-                    values[c.__point] = {
+                    values[cIdx] = {
                         text,
                         _text: text,
                         org: idx,
                         safeType: 'text'
                     };
                 }
-                values[c.__point].props = this.dataSource.getCell(c, i, idx);
+                values[cIdx].props = this.dataSource.getCell(c, i, idx);
             });
         });
         return this.refreshData();
