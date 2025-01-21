@@ -88,7 +88,7 @@ export declare class STComponent implements AfterViewInit, OnChanges {
         x?: string | null;
         y?: string | null;
     };
-    drag: import("@angular/core").InputSignalWithTransform<STDragOptions | null, unknown>;
+    drag: import("@angular/core").InputSignalWithTransform<STDragOptions | null, string | boolean | STDragOptions | null | undefined>;
     singleSort?: STSingleSort | null;
     private _multiSort?;
     get multiSort(): NzSafeAny;
