@@ -1,11 +1,9 @@
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { input, output, Component, ViewEncapsulation, inject, numberAttribute, booleanAttribute, signal, effect, ChangeDetectionStrategy, NgModule } from '@angular/core';
+import { input, output, Component, ViewEncapsulation, inject, signal, numberAttribute, booleanAttribute, effect, ChangeDetectionStrategy, NgModule } from '@angular/core';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzListComponent, NzListItemComponent, NzListItemMetaComponent, NzListModule } from 'ng-zorro-antd/list';
 import { NzTagComponent, NzTagModule } from 'ng-zorro-antd/tag';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NzBadgeComponent, NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzDropDownDirective, NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -40,9 +38,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }] });
 
 class NoticeIconComponent {
-    locale = toSignal(inject(DelonLocaleService).change.pipe(map(data => data['noticeIcon'])), {
-        requireSync: true
-    });
+    i18n = inject(DelonLocaleService);
+    i18n$;
+    locale = signal({});
     data = input([]);
     count = input(undefined, { transform: numberAttribute });
     loading = input(false, { transform: booleanAttribute });
@@ -71,6 +69,14 @@ class NoticeIconComponent {
     }
     onClear(title) {
         this.clear.emit(title);
+    }
+    ngOnInit() {
+        this.i18n$ = this.i18n.change.subscribe(() => {
+            this.locale.set(this.i18n.getData('noticeIcon'));
+        });
+    }
+    ngOnDestroy() {
+        this.i18n$?.unsubscribe();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: NoticeIconComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: NoticeIconComponent, isStandalone: true, selector: "notice-icon", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: false, transformFunction: null }, count: { classPropertyName: "count", publicName: "count", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, popoverVisible: { classPropertyName: "popoverVisible", publicName: "popoverVisible", isSignal: true, isRequired: false, transformFunction: null }, btnClass: { classPropertyName: "btnClass", publicName: "btnClass", isSignal: true, isRequired: false, transformFunction: null }, btnIconClass: { classPropertyName: "btnIconClass", publicName: "btnIconClass", isSignal: true, isRequired: false, transformFunction: null }, centered: { classPropertyName: "centered", publicName: "centered", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { select: "select", clear: "clear", popoverVisibleChange: "popoverVisibleChange" }, host: { properties: { "class.notice-icon__btn": "true" } }, exportAs: ["noticeIcon"], ngImport: i0, template: "<ng-template #badgeTpl>\n  <nz-badge [nzCount]=\"count()\" [class]=\"btnClass()\" [nzStyle]=\"{ 'box-shadow': 'none' }\">\n    <nz-icon nzType=\"bell\" [class]=\"btnIconClass()\" />\n  </nz-badge>\n</ng-template>\n@let d = data();\n@if (d.length <= 0) {\n  <ng-template [ngTemplateOutlet]=\"badgeTpl\" />\n} @else {\n  <div\n    nz-dropdown\n    [nzVisible]=\"popoverVisible()\"\n    (nzVisibleChange)=\"onVisibleChange($event)\"\n    nzTrigger=\"click\"\n    nzPlacement=\"bottomRight\"\n    [nzOverlayClassName]=\"overlayCls()\"\n    [nzDropdownMenu]=\"noticeMenu\"\n  >\n    <ng-template [ngTemplateOutlet]=\"badgeTpl\" />\n  </div>\n  <nz-dropdown-menu #noticeMenu=\"nzDropdownMenu\">\n    <nz-spin [nzSpinning]=\"loading()\" [nzDelay]=\"0\">\n      @if (delayShow()) {\n        <nz-tabset [nzSelectedIndex]=\"0\" [nzCentered]=\"centered()\">\n          @for (i of d; track $index) {\n            <nz-tab [nzTitle]=\"i.title\">\n              <notice-icon-tab [locale]=\"locale()\" [item]=\"i\" (select)=\"onSelect($event)\" (clear)=\"onClear($event)\" />\n            </nz-tab>\n          }\n        </nz-tabset>\n      }\n    </nz-spin>\n  </nz-dropdown-menu>\n}\n", dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "directive", type: NzDropDownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "component", type: NzTabSetComponent, selector: "nz-tabset", inputs: ["nzSelectedIndex", "nzTabPosition", "nzTabBarExtraContent", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzDestroyInactiveTabPane"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabset"] }, { kind: "component", type: NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { kind: "component", type: NoticeIconTabComponent, selector: "notice-icon-tab", inputs: ["locale", "item"], outputs: ["select", "clear"], exportAs: ["noticeIconTab"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });

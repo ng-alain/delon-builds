@@ -1,11 +1,9 @@
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, Injectable, ViewContainerRef, input, effect, Directive, Renderer2, ElementRef, signal, computed, model, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
-import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { inject, Injectable, ViewContainerRef, Directive, Input, ChangeDetectorRef, Renderer2, ElementRef, EventEmitter, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Output, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { of, map, combineLatest, take } from 'rxjs';
 import { updateHostClass } from '@delon/util/browser';
 import { WINDOW } from '@delon/util/token';
 import { NzBadgeComponent, NzBadgeModule } from 'ng-zorro-antd/badge';
@@ -17,6 +15,7 @@ import { NzTagComponent, NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { deepMerge, warn } from '@delon/util/other';
 import { DomSanitizer } from '@angular/platform-browser';
+import { of, map } from 'rxjs';
 import { yn } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { formatDate } from '@delon/util/date-time';
@@ -188,70 +187,65 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
 class CellHostDirective {
     srv = inject(CellService);
     vcr = inject(ViewContainerRef);
-    data = input.required();
-    constructor() {
-        effect(() => {
-            const data = this.data();
-            const widget = data.options.widget;
-            const componentType = this.srv.getWidget(widget.key)?.ref;
-            if (componentType == null) {
-                if (typeof ngDevMode === 'undefined' || ngDevMode) {
-                    warn(`cell: No widget for type "${widget.key}"`);
-                }
-                return;
+    data;
+    ngOnChanges() {
+        const widget = this.data.options.widget;
+        const componentType = this.srv.getWidget(widget.key)?.ref;
+        if (componentType == null) {
+            if (typeof ngDevMode === 'undefined' || ngDevMode) {
+                warn(`cell: No widget for type "${widget.key}"`);
             }
-            this.vcr.clear();
-            const componentRef = this.vcr.createComponent(componentType);
-            componentRef.instance.data = data;
-        });
+            return;
+        }
+        this.vcr.clear();
+        const componentRef = this.vcr.createComponent(componentType);
+        componentRef.instance.data = this.data;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CellHostDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "19.1.1", type: CellHostDirective, isStandalone: true, selector: "[cell-widget-host]", inputs: { data: { classPropertyName: "data", publicName: "data", isSignal: true, isRequired: true, transformFunction: null } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "19.1.1", type: CellHostDirective, isStandalone: true, selector: "[cell-widget-host]", inputs: { data: "data" }, usesOnChanges: true, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CellHostDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[cell-widget-host]'
                 }]
-        }], ctorParameters: () => [] });
+        }], propDecorators: { data: [{
+                type: Input
+            }] } });
 
 class CellComponent {
     srv = inject(CellService);
     router = inject(Router);
+    cdr = inject(ChangeDetectorRef);
     renderer = inject(Renderer2);
     imgSrv = inject(NzImageService);
     win = inject(WINDOW);
     el = inject(ElementRef).nativeElement;
     destroy$;
-    _text = signal('');
-    _unit = signal(undefined);
-    _res = signal(undefined);
-    showDefault = computed(() => this.value() == this.safeOpt.default?.condition);
-    value = model();
-    options = input();
-    loading = input(false, { transform: booleanAttribute });
-    disabled = input(false, { transform: booleanAttribute });
+    _text;
+    _unit;
+    res;
+    showDefault = false;
+    value;
+    valueChange = new EventEmitter();
+    options;
+    loading = false;
+    disabled = false;
     get safeOpt() {
-        return this._res()?.options ?? {};
+        return this.res?.options ?? {};
     }
-    isText = computed(() => this._res()?.safeHtml === 'text');
-    constructor() {
-        combineLatest([toObservable(this.loading), toObservable(this.disabled)])
-            .pipe(takeUntilDestroyed())
-            .subscribe(() => this.setClass());
-        effect(() => {
-            const v = this.value();
-            const o = this.options();
-            this.destroy$?.unsubscribe();
-            this.destroy$ = this.srv
-                .get(v, o)
-                .pipe(take(1))
-                .subscribe(res => {
-                this._res.set(res);
-                this._text.set(res.result?.text ?? '');
-                this._unit.set(res.result?.unit ?? this.safeOpt?.unit);
-                this.setClass();
-            });
+    get isText() {
+        return this.res?.safeHtml === 'text';
+    }
+    updateValue() {
+        this.destroy$?.unsubscribe();
+        this.destroy$ = this.srv.get(this.value, this.options).subscribe(res => {
+            this.res = res;
+            this.showDefault = this.value == this.safeOpt.default.condition;
+            this._text = res.result?.text ?? '';
+            this._unit = res.result?.unit ?? this.safeOpt?.unit;
+            this.cdr.detectChanges();
+            this.setClass();
         });
     }
     setClass() {
@@ -261,16 +255,29 @@ class CellComponent {
             [`cell`]: true,
             [`cell__${renderType}`]: renderType != null,
             [`cell__${size}`]: size != null,
-            [`cell__has-unit`]: this._unit(),
-            [`cell__has-default`]: this.showDefault(),
-            [`cell__disabled`]: this.disabled()
+            [`cell__has-unit`]: this._unit,
+            [`cell__has-default`]: this.showDefault,
+            [`cell__disabled`]: this.disabled
         });
         el.setAttribute('data-type', `${type}`);
+    }
+    ngOnChanges(changes) {
+        // Do not call updateValue when only updating loading, disabled
+        if (Object.keys(changes).every(k => ['loading', 'disabled'].includes(k))) {
+            this.setClass();
+        }
+        else {
+            this.updateValue();
+        }
+    }
+    change(value) {
+        this.value = value;
+        this.valueChange.emit(value);
     }
     _link(e) {
         e.preventDefault();
         e.stopPropagation();
-        if (this.disabled())
+        if (this.disabled)
             return;
         const link = this.safeOpt.link;
         const url = link?.url;
@@ -288,7 +295,7 @@ class CellComponent {
         if (config == null || config.big == null)
             return;
         let idx = -1;
-        const list = this._text().map((p, index) => {
+        const list = this._text.map((p, index) => {
             if (idx === -1 && p === img)
                 idx = index;
             return typeof config.big === 'function' ? config.big(p) : p;
@@ -301,31 +308,29 @@ class CellComponent {
         this.destroy$?.unsubscribe();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: CellComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: CellComponent, isStandalone: true, selector: "cell, [cell]", inputs: { value: { classPropertyName: "value", publicName: "value", isSignal: true, isRequired: false, transformFunction: null }, options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { value: "valueChange" }, exportAs: ["cell"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.1.1", type: CellComponent, isStandalone: true, selector: "cell, [cell]", inputs: { value: "value", options: "options", loading: ["loading", "loading", booleanAttribute], disabled: ["disabled", "disabled", booleanAttribute] }, outputs: { valueChange: "valueChange" }, exportAs: ["cell"], usesOnChanges: true, ngImport: i0, template: `
     <ng-template #text>
-      @let res = _res();
-      @let text = _text();
       @switch (safeOpt.type) {
         @case ('checkbox') {
-          <label nz-checkbox [nzDisabled]="disabled()" [ngModel]="value()" (ngModelChange)="value.set($event)">
+          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
             {{ safeOpt.checkbox?.label }}
           </label>
         }
         @case ('radio') {
-          <label nz-radio [nzDisabled]="disabled()" [ngModel]="value()" (ngModelChange)="value.set($event)">
+          <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
             {{ safeOpt.radio?.label }}
           </label>
         }
         @case ('link') {
-          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value()" [innerHTML]="text"></a>
+          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
         }
         @case ('tag') {
           <nz-tag [nzColor]="res?.result?.color">
-            <span [innerHTML]="text"></span>
+            <span [innerHTML]="_text"></span>
           </nz-tag>
         }
         @case ('badge') {
-          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ text }}" />
+          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
           @if (res) {
@@ -333,7 +338,7 @@ class CellComponent {
           }
         }
         @case ('img') {
-          @for (i of $any(text); track $index) {
+          @for (i of $any(_text); track $index) {
             @let img = safeOpt.img;
             <img
               [attr.src]="i"
@@ -346,19 +351,19 @@ class CellComponent {
           }
         }
         @default {
-          @if (isText()) {
-            <span [innerText]="text" [attr.title]="value()"></span>
+          @if (isText) {
+            <span [innerText]="_text" [attr.title]="value"></span>
           } @else {
-            <span [innerHTML]="text" [attr.title]="value()"></span>
+            <span [innerHTML]="_text" [attr.title]="value"></span>
           }
-          @if (_unit()) {
-            <span class="unit">{{ _unit() }}</span>
+          @if (_unit) {
+            <span class="unit">{{ _unit }}</span>
           }
         }
       }
     </ng-template>
     <ng-template #textWrap>
-      @if (showDefault()) {
+      @if (showDefault) {
         {{ safeOpt.default?.text }}
       } @else {
         @if (safeOpt.tooltip) {
@@ -370,7 +375,7 @@ class CellComponent {
         }
       }
     </ng-template>
-    @if (loading()) {
+    @if (loading) {
       <nz-icon nzType="loading" />
     } @else {
       <ng-template [ngTemplateOutlet]="textWrap" />
@@ -383,29 +388,27 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                     selector: 'cell, [cell]',
                     template: `
     <ng-template #text>
-      @let res = _res();
-      @let text = _text();
       @switch (safeOpt.type) {
         @case ('checkbox') {
-          <label nz-checkbox [nzDisabled]="disabled()" [ngModel]="value()" (ngModelChange)="value.set($event)">
+          <label nz-checkbox [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
             {{ safeOpt.checkbox?.label }}
           </label>
         }
         @case ('radio') {
-          <label nz-radio [nzDisabled]="disabled()" [ngModel]="value()" (ngModelChange)="value.set($event)">
+          <label nz-radio [nzDisabled]="disabled" [ngModel]="value" (ngModelChange)="change($event)">
             {{ safeOpt.radio?.label }}
           </label>
         }
         @case ('link') {
-          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value()" [innerHTML]="text"></a>
+          <a (click)="_link($event)" [attr.target]="safeOpt.link?.target" [attr.title]="value" [innerHTML]="_text"></a>
         }
         @case ('tag') {
           <nz-tag [nzColor]="res?.result?.color">
-            <span [innerHTML]="text"></span>
+            <span [innerHTML]="_text"></span>
           </nz-tag>
         }
         @case ('badge') {
-          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ text }}" />
+          <nz-badge [nzStatus]="res?.result?.color" nzText="{{ _text }}" />
         }
         @case ('widget') {
           @if (res) {
@@ -413,7 +416,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
           }
         }
         @case ('img') {
-          @for (i of $any(text); track $index) {
+          @for (i of $any(_text); track $index) {
             @let img = safeOpt.img;
             <img
               [attr.src]="i"
@@ -426,19 +429,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
           }
         }
         @default {
-          @if (isText()) {
-            <span [innerText]="text" [attr.title]="value()"></span>
+          @if (isText) {
+            <span [innerText]="_text" [attr.title]="value"></span>
           } @else {
-            <span [innerHTML]="text" [attr.title]="value()"></span>
+            <span [innerHTML]="_text" [attr.title]="value"></span>
           }
-          @if (_unit()) {
-            <span class="unit">{{ _unit() }}</span>
+          @if (_unit) {
+            <span class="unit">{{ _unit }}</span>
           }
         }
       }
     </ng-template>
     <ng-template #textWrap>
-      @if (showDefault()) {
+      @if (showDefault) {
         {{ safeOpt.default?.text }}
       } @else {
         @if (safeOpt.tooltip) {
@@ -450,7 +453,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
         }
       }
     </ng-template>
-    @if (loading()) {
+    @if (loading) {
       <nz-icon nzType="loading" />
     } @else {
       <ng-template [ngTemplateOutlet]="textWrap" />
@@ -473,7 +476,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                         CellHostDirective
                     ]
                 }]
-        }], ctorParameters: () => [] });
+        }], propDecorators: { value: [{
+                type: Input
+            }], valueChange: [{
+                type: Output
+            }], options: [{
+                type: Input
+            }], loading: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }], disabled: [{
+                type: Input,
+                args: [{ transform: booleanAttribute }]
+            }] } });
 
 const COMPS = [CellComponent];
 class CellModule {
