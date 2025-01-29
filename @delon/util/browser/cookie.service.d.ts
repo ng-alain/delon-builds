@@ -32,9 +32,7 @@ export declare class CookieService {
      *
      * 获取所有Cookie键值对
      */
-    getAll(): {
-        [key: string]: string;
-    };
+    getAll(): Record<string, string>;
     /**
      * Get the value of given cookie `key`
      *

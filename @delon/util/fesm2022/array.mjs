@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import * as i1 from '@delon/util/config';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class ArrayService {
     c;
     constructor(cog) {

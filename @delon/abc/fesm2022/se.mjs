@@ -269,7 +269,7 @@ class SEComponent {
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
             const control = (controlAccessor?.elementRef || controlAccessor?._elementRef)?.nativeElement;
-            if (!!control) {
+            if (control) {
                 if (control.id) {
                     this._id = control.id;
                 }
@@ -328,7 +328,7 @@ class SEComponent {
         this.inited = true;
         if (this.onceFlag) {
             Promise.resolve().then(() => {
-                this.updateStatus(this.ngControl?.invalid);
+                this.updateStatus(this.ngControl.invalid);
                 this.onceFlag = false;
             });
         }

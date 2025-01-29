@@ -112,7 +112,7 @@ function findSchemaDefinition($ref, definitions) {
         let current = definitions;
         for (let part of parts) {
             part = part.replace(/~1/g, SF_SEQ).replace(/~0/g, '~');
-            if (current.hasOwnProperty(part)) {
+            if (Object.prototype.hasOwnProperty.call(current, part)) {
                 current = current[part];
             }
             else {
@@ -127,9 +127,10 @@ function findSchemaDefinition($ref, definitions) {
  * 取回Schema，并处理 `$ref` 的关系
  */
 function retrieveSchema(schema, definitions = {}) {
-    if (schema.hasOwnProperty('$ref')) {
+    if (Object.prototype.hasOwnProperty.call(schema, '$ref')) {
         const $refSchema = findSchemaDefinition(schema.$ref, definitions);
         // remove $ref property
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { $ref, ...localSchema } = schema;
         return retrieveSchema({ ...$refSchema, ...localSchema }, definitions);
     }
@@ -152,7 +153,7 @@ function resolveIfSchema(_schema, _ui) {
     fn(_schema, _ui);
 }
 function resolveIf(schema, ui) {
-    if (!(schema.hasOwnProperty('if') && schema.hasOwnProperty('then')))
+    if (!(Object.prototype.hasOwnProperty.call(schema, 'if') && Object.prototype.hasOwnProperty.call(schema, 'then')))
         return null;
     if (!schema.if.properties)
         throw new Error(`if: does not contain 'properties'`);
@@ -161,7 +162,7 @@ function resolveIf(schema, ui) {
     detectKey(allKeys, ifKeys);
     detectKey(allKeys, schema.then.required);
     schema.required = schema.required.concat(schema.then.required);
-    const hasElse = schema.hasOwnProperty('else');
+    const hasElse = Object.prototype.hasOwnProperty.call(schema, 'else');
     if (hasElse) {
         detectKey(allKeys, schema.else.required);
         schema.required = schema.required.concat(schema.else.required);
@@ -465,7 +466,7 @@ class FormProperty {
                 }
                 if (message) {
                     if (~message.indexOf('{') && err.params) {
-                        message = message.replace(/{([\.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] || '');
+                        message = message.replace(/{([.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] || '');
                     }
                     err.message = message;
                 }
@@ -518,7 +519,7 @@ class FormProperty {
         else if (visibleIf != null) {
             const propertiesBinding = [];
             for (const dependencyPath in visibleIf) {
-                if (visibleIf.hasOwnProperty(dependencyPath)) {
+                if (Object.prototype.hasOwnProperty.call(visibleIf, dependencyPath)) {
                     const property = this.searchProperty(dependencyPath);
                     if (property) {
                         const valueCheck = property.valueChanges.pipe(map(res => {
@@ -588,8 +589,9 @@ class PropertyGroup extends FormProperty {
         return property;
     }
     forEachChild(fn) {
+        // eslint-disable-next-line @typescript-eslint/no-for-in-array
         for (const propertyId in this.properties) {
-            if (this.properties.hasOwnProperty(propertyId)) {
+            if (Object.prototype.hasOwnProperty.call(this.properties, propertyId)) {
                 const property = this.properties[propertyId];
                 fn(property, propertyId);
             }
@@ -646,7 +648,7 @@ class ObjectProperty extends PropertyGroup {
     setValue(value, onlySelf) {
         const properties = this.properties;
         for (const propertyId in value) {
-            if (value.hasOwnProperty(propertyId) && properties[propertyId]) {
+            if (Object.prototype.hasOwnProperty.call(value, propertyId) && properties[propertyId]) {
                 properties[propertyId].setValue(value[propertyId], true);
             }
         }
@@ -657,7 +659,7 @@ class ObjectProperty extends PropertyGroup {
         value = value || this.schema.default || {};
         const properties = this.properties;
         for (const propertyId in this.schema.properties) {
-            if (this.schema.properties.hasOwnProperty(propertyId)) {
+            if (Object.prototype.hasOwnProperty.call(this.schema.properties, propertyId)) {
                 properties[propertyId].resetValue(value[propertyId], true);
             }
         }
@@ -995,7 +997,7 @@ class WidgetRegistry {
         this._widgets[type] = widget;
     }
     has(type) {
-        return this._widgets.hasOwnProperty(type);
+        return Object.prototype.hasOwnProperty.call(this._widgets, type);
     }
     getType(type) {
         if (this.has(type)) {
@@ -1915,7 +1917,7 @@ class Widget {
         return this.injector.get(DomSanitizer);
     }
     get cleanValue() {
-        return this.sfComp?.cleanValue;
+        return this.sfComp.cleanValue;
     }
     ngAfterViewInit() {
         this.formProperty.errorsChanges
@@ -1959,6 +1961,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                 args: ['class']
             }] } });
 class ControlWidget extends Widget {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ControlWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1968,6 +1971,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             type: Directive
         }] });
 class ControlUIWidget extends Widget {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.1.1", ngImport: i0, type: ControlUIWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1977,6 +1981,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             type: Directive
         }] });
 class ArrayLayoutWidget extends Widget {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {
@@ -1989,6 +1994,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             type: Directive
         }] });
 class ObjectLayoutWidget extends Widget {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {
@@ -3476,16 +3482,10 @@ class StringWidget extends ControlUIWidget {
     change$ = null;
     ngOnInit() {
         const { addOnAfter, addOnAfterIcon, addOnBefore, addOnBeforeIcon, prefix, prefixIcon, suffix, suffixIcon, autofocus } = this.ui;
-        this.type = !!(addOnAfter ||
-            addOnBefore ||
-            addOnAfterIcon ||
-            addOnBeforeIcon ||
-            prefix ||
-            prefixIcon ||
-            suffix ||
-            suffixIcon)
-            ? 'addon'
-            : '';
+        this.type =
+            addOnAfter || addOnBefore || addOnAfterIcon || addOnBeforeIcon || prefix || prefixIcon || suffix || suffixIcon
+                ? 'addon'
+                : '';
         if (autofocus === true) {
             setTimeout(() => {
                 this.injector.get(ElementRef).nativeElement.querySelector(`#${this.id}`).focus();

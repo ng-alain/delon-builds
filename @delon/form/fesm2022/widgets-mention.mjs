@@ -42,7 +42,7 @@ class MentionWidget extends ControlUIWidget {
             });
         }
     }
-    reset(_value) {
+    reset() {
         getData(this.schema, this.ui, null).subscribe(list => {
             this.data = list;
             this.detectChanges();

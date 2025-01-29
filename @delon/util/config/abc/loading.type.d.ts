@@ -18,9 +18,7 @@ export interface AlainLoadingConfig {
     };
     custom?: {
         html?: string | SafeHtml;
-        style?: {
-            [klass: string]: unknown;
-        };
+        style?: Record<string, unknown>;
     };
     /**
      * 延迟，默认：`0`

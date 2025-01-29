@@ -5,7 +5,6 @@ import { HttpErrorResponse, HttpResponseBase, HttpResponse } from '@angular/comm
 import { of, isObservable, from, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class MockStatusError {
     status;
     error;
@@ -27,7 +26,6 @@ function provideMockConfig(config) {
     return makeEnvironmentProviders([{ provide: DELON_MOCK_CONFIG, useValue: config }]);
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class MockService {
     cached = [];
     config;
@@ -169,7 +167,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
                     args: [DELON_MOCK_CONFIG]
                 }] }] });
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const mockInterceptor = (req, next) => {
     const src = inject(MockService);
     const config = src.config;
@@ -179,7 +176,7 @@ const mockInterceptor = (req, next) => {
     }
     let res$;
     switch (typeof rule.callback) {
-        case 'function':
+        case 'function': {
             const mockRequest = {
                 original: req,
                 body: req.body,
@@ -221,17 +218,20 @@ const mockInterceptor = (req, next) => {
                 }));
             }
             break;
+        }
         default:
             res$ = of(rule.callback);
             break;
     }
-    res$ = res$.pipe(map(res => res instanceof HttpResponseBase
-        ? res
-        : new HttpResponse({
-            status: 200,
-            url: req.url,
-            body: deepCopy(res)
-        })), map((res) => {
+    res$ = res$.pipe(map(res => {
+        return res instanceof HttpResponseBase
+            ? res
+            : new HttpResponse({
+                status: 200,
+                url: req.url,
+                body: deepCopy(res)
+            });
+    }), map((res) => {
         const anyRes = res;
         if (anyRes.body) {
             anyRes.body = deepCopy(anyRes.body);

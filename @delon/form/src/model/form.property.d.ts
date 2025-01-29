@@ -18,9 +18,7 @@ export declare abstract class FormProperty {
     private _visibilityChanges;
     private _root;
     private _parent;
-    _objErrors: {
-        [key: string]: ErrorData[];
-    };
+    _objErrors: Record<string, ErrorData[]>;
     schemaValidator: (value: SFValue) => ErrorData[];
     schema: SFSchema;
     ui: SFUISchema | SFUISchemaItemRun;
@@ -87,9 +85,7 @@ export declare abstract class FormProperty {
     updateFeedback(status?: NzFormControlStatusType): void;
 }
 export declare abstract class PropertyGroup extends FormProperty {
-    properties: {
-        [key: string]: FormProperty;
-    } | FormProperty[] | null;
+    properties: Record<string, FormProperty> | FormProperty[] | null;
     getProperty(path: string): FormProperty | undefined;
     forEachChild(fn: (formProperty: FormProperty, str: string) => void): void;
     forEachChildRecursive(fn: (formProperty: FormProperty) => void): void;

@@ -84,7 +84,7 @@ class FullContentComponent {
         this.router.events
             .pipe(takeUntilDestroyed(this.destroy$), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
             .subscribe(() => {
-            if (!!this.doc.querySelector(`#${this.id}`)) {
+            if (this.doc.querySelector(`#${this.id}`)) {
                 this.bodyEl.classList.add(wrapCls);
                 this.updateCls();
             }

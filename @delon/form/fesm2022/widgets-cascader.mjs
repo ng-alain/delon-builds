@@ -21,7 +21,7 @@ class CascaderWidget extends ControlUIWidget {
         this.showArrow = toBool(showArrow, true);
         this.showInput = toBool(showInput, true);
         this.triggerAction = triggerAction || ['click'];
-        if (!!asyncData) {
+        if (asyncData) {
             this.loadData = (node, index) => asyncData(node, index, this).then(() => this.detectChanges());
         }
     }

@@ -12,9 +12,7 @@ export declare function deepGet(obj: NzSafeAny, path: string | string[] | null |
  *
  * NOTE: Don't a lot of recursion, maybe performance issues
  */
-export declare function deepCopy<T extends {
-    [key: string]: NzSafeAny;
-} = NzSafeAny>(obj: T | null | undefined): T;
+export declare function deepCopy<T extends Record<string, NzSafeAny> = NzSafeAny>(obj: T | null | undefined): T;
 /**
  * Deep merge object.
  *

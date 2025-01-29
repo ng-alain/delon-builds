@@ -13,9 +13,7 @@ export declare class G2SingleBarComponent extends G2BaseComponent {
     line: boolean;
     format?: (value: number, item: NzSafeAny, index: number) => string;
     padding: number | number[] | 'auto';
-    textStyle: {
-        [key: string]: NzSafeAny;
-    };
+    textStyle: Record<string, NzSafeAny>;
     install(): void;
     onlyChangeData: (changes: SimpleChanges) => boolean;
     changeData(): void;

@@ -59,7 +59,7 @@ export interface STReq {
      *
      * 是否忽略参数中 `null` 或 `undefind` 值
      */
-    ignoreParamNull?: Boolean;
+    ignoreParamNull?: boolean;
     /** 请求方法，默认：`GET` */
     method?: string;
     /** 请求体 `body` */
@@ -86,12 +86,8 @@ export interface STReq {
 }
 export interface STRequestOptions {
     body?: any;
-    headers?: HttpHeaders | {
-        [header: string]: string | string[];
-    };
-    params?: HttpParams | {
-        [param: string]: string | string[];
-    };
+    headers?: HttpHeaders | Record<string, string | string[]>;
+    params?: HttpParams | Record<string, string | string[]>;
     observe?: 'body' | 'events' | 'response';
     reportProgress?: boolean;
     responseType?: 'arraybuffer' | 'blob' | 'json' | 'text';
@@ -963,9 +959,7 @@ export interface STMultiSort {
      */
     global?: boolean;
 }
-export interface STMultiSortResultType {
-    [key: string]: string | string[];
-}
+export type STMultiSortResultType = Record<string, string | string[]>;
 /**
  * 徽标信息
  */
@@ -1079,9 +1073,7 @@ export interface STChange<T extends STData = any> {
 /** 行单击参数 */
 export interface STChangeSort {
     value?: 'ascend' | 'descend';
-    map?: {
-        [key: string]: string;
-    };
+    map?: Record<string, string>;
     column?: STColumn;
 }
 /** 行单击参数 */

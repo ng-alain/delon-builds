@@ -1,8 +1,6 @@
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { SFUISchemaItem } from './ui';
-export interface SFSchemaDefinition {
-    [key: string]: SFSchema;
-}
+export type SFSchemaDefinition = Record<string, SFSchema>;
 export interface SFSchemaEnum {
     [key: string]: NzSafeAny;
     /** 是否禁用状态 */
@@ -151,9 +149,7 @@ export interface SFSchema {
     /**
      * 定义属性
      */
-    properties?: {
-        [key: string]: SFSchema;
-    };
+    properties?: Record<string, SFSchema>;
     /**
      * 条件验证
      * - 必须包含 `properties` 节点

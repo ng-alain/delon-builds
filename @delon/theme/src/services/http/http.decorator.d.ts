@@ -32,9 +32,7 @@ export declare function BaseUrl(url: string): <TClass extends new (...args: any[
  * 默认 `headers`
  * - 有效范围：类
  */
-export declare function BaseHeaders(headers: HttpHeaders | {
-    [header: string]: string | string[];
-}): <TClass extends new (...args: any[]) => BaseApi>(target: TClass) => TClass;
+export declare function BaseHeaders(headers: HttpHeaders | Record<string, string | string[]>): <TClass extends new (...args: any[]) => BaseApi>(target: TClass) => TClass;
 /**
  * URL路由参数
  * - 有效范围：方法参数

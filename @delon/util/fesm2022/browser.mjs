@@ -30,6 +30,7 @@ class CookieService {
     getAll() {
         const ret = {};
         const arr = this.cookie.split('; ');
+        // eslint-disable-next-line @typescript-eslint/prefer-for-of
         for (let i = 0; i < arr.length; i++) {
             const cookie = arr[i];
             const index = cookie.indexOf('=');
@@ -71,7 +72,8 @@ class CookieService {
             .filter(k => optStr[k] && optStr[k] !== true)
             .map(k => `${k}=${optStr[k].split(';')[0]}`)
             .join(';');
-        this.doc.cookie = `${encodeURIComponent(String(key))}=${encodeURIComponent(String(value))}${attributes ? `; ${attributes}` : ''}`;
+        const keyValue = `${encodeURIComponent(String(key))}=${encodeURIComponent(String(value))}`;
+        this.doc.cookie = `${keyValue}${attributes ? `; ${attributes}` : ''}`;
     }
     /**
      * Remove given cookie
@@ -113,7 +115,6 @@ function copy(value) {
             document.body.appendChild(copyTextArea);
             copyTextArea.value = value;
             copyTextArea.select();
-            // eslint-disable-next-line deprecation/deprecation
             document.execCommand('copy');
             resolve(value);
         }

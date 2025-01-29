@@ -102,9 +102,7 @@ export declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      *
      * 表单值
      */
-    get value(): {
-        [key: string]: NzSafeAny;
-    };
+    get value(): Record<string, NzSafeAny>;
     /**
      * Get form element property based on [path](https://ng-alain.com/form/qa#path)
      *

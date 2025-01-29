@@ -4,6 +4,4 @@ export declare const DEFAULT_COLORS: {
     key: string;
     color: string;
 }[];
-export declare const DEFAULT_VARS: {
-    [key: string]: NzSafeAny;
-};
+export declare const DEFAULT_VARS: Record<string, NzSafeAny>;

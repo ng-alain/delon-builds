@@ -29,7 +29,6 @@ function provideAlainConfig(config) {
     return makeEnvironmentProviders([{ provide: ALAIN_CONFIG, useValue: config }]);
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class AlainConfigService {
     config = { ...inject(ALAIN_CONFIG, { optional: true }) };
     get(componentName, key) {

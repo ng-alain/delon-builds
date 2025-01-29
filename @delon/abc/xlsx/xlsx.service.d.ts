@@ -13,9 +13,7 @@ export declare class XlsxService {
     /**
      * 导入Excel并输出JSON，支持 `<input type="file">`、URL 形式
      */
-    import(fileOrUrl: File | string): Promise<{
-        [key: string]: NzSafeAny[][];
-    }>;
+    import(fileOrUrl: File | string): Promise<Record<string, NzSafeAny[][]>>;
     export(options: XlsxExportOptions): Promise<XlsxExportResult>;
     /**
      * 数据转符号名

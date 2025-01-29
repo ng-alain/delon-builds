@@ -230,7 +230,7 @@ class OnboardingService {
         }
     }
     showItem(isStart = false) {
-        const items = this.config?.items;
+        const items = this.config.items;
         const item = {
             position: 'bottomLeft',
             before: of(true),

@@ -4,9 +4,7 @@ export declare class QuickMenuComponent implements OnInit, OnChanges {
     private readonly cdr;
     private readonly el;
     private readonly render;
-    ctrlStyle: {
-        [key: string]: string | undefined;
-    };
+    ctrlStyle: Record<string, string | undefined>;
     icon: string | TemplateRef<void>;
     top: number;
     width: number;

@@ -13,9 +13,7 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 export declare function format(str: string | null | undefined, obj: NzSafeAny | null | undefined, needDeepGet?: boolean): string;
 export interface FormatMaskOption {
     mask: string;
-    tokens?: {
-        [key: string]: FormatMaskToken;
-    };
+    tokens?: Record<string, FormatMaskToken>;
 }
 export interface FormatMaskToken {
     pattern: RegExp;

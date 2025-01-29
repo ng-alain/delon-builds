@@ -12,9 +12,7 @@ export interface LazyLoadItem {
 }
 export interface LazyLoadOptions {
     innerContent?: string;
-    attributes?: {
-        [qualifiedName: string]: string;
-    };
+    attributes?: Record<string, string>;
     rel?: string;
 }
 /**

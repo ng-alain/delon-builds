@@ -186,13 +186,7 @@ class LayoutDefaultNavComponent {
         if (!this.floatingEl)
             return;
         this.floatingEl.removeEventListener('click', this.floatingClickHandle.bind(this));
-        // fix ie: https://github.com/ng-alain/delon/issues/52
-        if (this.floatingEl.hasOwnProperty('remove')) {
-            this.floatingEl.remove();
-        }
-        else if (this.floatingEl.parentNode) {
-            this.floatingEl.parentNode.removeChild(this.floatingEl);
-        }
+        this.floatingEl.parentNode?.removeChild(this.floatingEl);
     }
     genFloating() {
         this.clearFloating();
@@ -215,9 +209,7 @@ class LayoutDefaultNavComponent {
     }
     hideAll() {
         const allNode = this.floatingEl.querySelectorAll(`.${FLOATINGCLS}`);
-        for (let i = 0; i < allNode.length; i++) {
-            allNode[i].classList.remove(SHOWCLS);
-        }
+        allNode.forEach(node => node.classList.remove(SHOWCLS));
     }
     // calculate the node position values.
     calPos(linkNode, node) {

@@ -3,9 +3,7 @@ import { Observable } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from "@angular/core";
-export type _HttpHeaders = HttpHeaders | {
-    [header: string]: string | string[];
-};
+export type _HttpHeaders = HttpHeaders | Record<string, string | string[]>;
 export type HttpObserve = 'body' | 'events' | 'response';
 /**
  * 封装HttpClient，主要解决：

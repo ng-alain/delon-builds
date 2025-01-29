@@ -34,9 +34,7 @@ export declare class ReuseTabComponent implements OnInit, OnChanges {
     customContextMenu: ReuseCustomContextMenu[];
     tabBarExtraContent?: TemplateRef<void>;
     tabBarGutter?: number;
-    tabBarStyle: {
-        [key: string]: string;
-    } | null;
+    tabBarStyle: Record<string, string> | null;
     tabType: 'line' | 'card';
     routeParamMatchMode: ReuseTabRouteParamMatchMode;
     disabled: boolean;

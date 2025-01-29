@@ -7,9 +7,7 @@ import * as i0 from "@angular/core";
 export declare class WidgetRegistry {
     private _widgets;
     private defaultWidget;
-    get widgets(): {
-        [type: string]: Widget<FormProperty, SFUISchemaItem>;
-    };
+    get widgets(): Record<string, Widget<FormProperty, SFUISchemaItem>>;
     setDefault(widget: NzSafeAny): void;
     register(type: string, widget: NzSafeAny): void;
     has(type: string): boolean;

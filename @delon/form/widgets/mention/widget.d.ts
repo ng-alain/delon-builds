@@ -1,5 +1,5 @@
 import { OnInit } from '@angular/core';
-import { ControlUIWidget, SFSchemaEnum, SFValue } from '@delon/form';
+import { ControlUIWidget, SFSchemaEnum } from '@delon/form';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import type { SFMentionWidgetSchema } from './schema';
@@ -11,7 +11,7 @@ export declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema
     i: NzSafeAny;
     loading: boolean;
     ngOnInit(): void;
-    reset(_value: SFValue): void;
+    reset(): void;
     _select(options: NzSafeAny): void;
     _search(option: MentionOnSearchTypes): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MentionWidget, never>;

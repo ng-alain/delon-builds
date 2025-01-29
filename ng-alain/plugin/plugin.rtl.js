@@ -22,7 +22,6 @@ function fixImport(options) {
             const content = (0, utils_1.readContent)(tree, basicComponentPath).replace(`<div nz-menu style="width: 200px;">`, `<div nz-menu style="width: 200px;"><div nz-menu-item><header-rtl /></div>`);
             tree.overwrite(basicComponentPath, content);
         }
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const isStandalone = yield (0, schematics_1.isStandaloneSchematic)(tree, options);
         if (isStandalone) {
             // import HeaderRTLComponent

@@ -7,8 +7,6 @@ import { addSeconds } from 'date-fns';
 import { AlainConfigService } from '@delon/util/config';
 import { deepGet } from '@delon/util/other';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 const DC_STORE_STORAGE_TOKEN = new InjectionToken('DC_STORE_STORAGE_TOKEN', {
     providedIn: 'root',
     factory: () => new LocalStorageCacheService()
@@ -36,7 +34,6 @@ class LocalStorageCacheService {
     }
 }
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 class CacheService {
     store = inject(DC_STORE_STORAGE_TOKEN);
     http = inject(HttpClient);
@@ -287,7 +284,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
  */
 const CACHE = new HttpContextToken(() => ({}));
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Cache interceptor
  *

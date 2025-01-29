@@ -136,13 +136,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             type: Injectable
         }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
     providedIn: 'root',
     factory: DA_SERVICE_TOKEN_FACTORY
 });
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 const OPENTYPE = '_delonAuthSocialType';
 const HREFCALLBACK = '_delonAuthSocialCallbackByHref';
 class SocialService {
@@ -362,7 +360,6 @@ function b64decode(str) {
     str = String(str).replace(/=+$/, '');
     for (
     // initialize result and counters
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let bc = 0, bs, buffer, idx = 0; 
     // get next character
     (buffer = str.charAt(idx++)); 
@@ -406,7 +403,7 @@ class JWTTokenModel {
      */
     get exp() {
         const decoded = this.payload;
-        if (!decoded.hasOwnProperty('exp'))
+        if (!Object.prototype.hasOwnProperty.call(decoded, 'exp'))
             return null;
         const date = new Date(0);
         date.setUTCSeconds(decoded.exp);
@@ -493,7 +490,6 @@ const authJWTCanMatch = route => inject(AuthJWTGuardService).process(route.path)
  */
 const ALLOW_ANONYMOUS = new HttpContextToken(() => false);
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function isAnonymous(req, options) {
     if (req.context.get(ALLOW_ANONYMOUS))
         return true;
@@ -598,19 +594,21 @@ function newReq(req, model, options) {
     const token = token_send_template.replace(/\$\{([\w]+)\}/g, (_, g) => model[g]);
     switch (options.token_send_place) {
         case 'header':
+            // eslint-disable-next-line no-case-declarations
             const obj = {};
             obj[token_send_key] = token;
             req = req.clone({
                 setHeaders: obj
             });
             break;
-        case 'body':
+        case 'body': {
             const body = req.body || {};
             body[token_send_key] = token;
             req = req.clone({
                 body
             });
             break;
+        }
         case 'url':
             req = req.clone({
                 params: req.params.append(token_send_key, token)

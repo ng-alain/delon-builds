@@ -65,7 +65,7 @@ function default_1(options) {
             }
         }
         let ngCoreVersion = pkg.dependencies['@angular/core'];
-        if (/^[\^|\~]/g.test(ngCoreVersion)) {
+        if (/^[\^|~]/g.test(ngCoreVersion)) {
             ngCoreVersion = ngCoreVersion.substring(1);
         }
         if (!ngCoreVersion.startsWith(`${V}.`)) {

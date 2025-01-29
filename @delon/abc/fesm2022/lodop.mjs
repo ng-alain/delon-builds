@@ -109,7 +109,7 @@ class LodopService {
                 return;
             }
             const win = window;
-            if (win.hasOwnProperty(this.cog.name)) {
+            if (Object.prototype.hasOwnProperty.call(win, this.cog.name)) {
                 this._lodop = win[this.cog.name];
             }
             if (this._lodop === null) {

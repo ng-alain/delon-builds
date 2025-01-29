@@ -89,7 +89,7 @@ class STWidgetRegistry {
         this._widgets[type] = widget;
     }
     has(type) {
-        return this._widgets.hasOwnProperty(type);
+        return Object.prototype.hasOwnProperty.call(this._widgets, type);
     }
     get(type) {
         return this._widgets[type];
@@ -778,7 +778,7 @@ class STDataSource {
                     text = col.enum[value];
                     break;
                 case 'tag':
-                case 'badge':
+                case 'badge': {
                     const data = col.type === 'tag' ? col.tag : col.badge;
                     if (data && data[text]) {
                         const dataItem = data[text];
@@ -790,6 +790,7 @@ class STDataSource {
                         text = '';
                     }
                     break;
+                }
             }
             if (text == null)
                 text = '';
@@ -812,7 +813,6 @@ class STDataSource {
     getByRemote(url, options) {
         const { req, page, paginator, pi, ps, singleSort, multiSort, columns, headers } = options;
         const method = (req.method || 'GET').toUpperCase();
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         let params = {};
         const reName = req.reName;
         if (paginator) {
@@ -1132,10 +1132,11 @@ class STExport {
                             ret.z = col.dateFormat;
                         }
                         break;
-                    case 'yn':
+                    case 'yn': {
                         const yn = col.yn;
                         ret.v = val === yn.truth ? yn.yes : yn.no;
                         break;
+                    }
                 }
             }
         }
@@ -2184,7 +2185,7 @@ class STComponent {
                 data = [data];
             }
             const curData = this._data;
-            for (var i = curData.length; i--;) {
+            for (let i = curData.length; i >= 0; i--) {
                 if (data.indexOf(curData[i]) !== -1) {
                     curData.splice(i, 1);
                 }

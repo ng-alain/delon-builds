@@ -116,7 +116,9 @@ class AlainI18nBaseService {
         if (typeof params === 'object') {
             const interpolation = this.cog.interpolation;
             const objParams = params;
-            Object.keys(objParams).forEach(key => (content = content.replace(new RegExp(`${interpolation[0]}\\s?${key}\\s?${interpolation[1]}`, 'g'), `${objParams[key]}`)));
+            Object.keys(objParams).forEach(key => {
+                content = content.replace(new RegExp(`${interpolation[0]}\\s?${key}\\s?${interpolation[1]}`, 'g'), `${objParams[key]}`);
+            });
         }
         (Array.isArray(params) ? params : [params]).forEach((item, index) => (content = content.replace(new RegExp(`\\{\\s?${index}\\s?\\}`, 'g'), `${item}`)));
         return content;
@@ -1147,7 +1149,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.1.1", ngImpor
             args: [{ providedIn: 'root' }]
         }] });
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * 封装HttpClient，主要解决：
  * + 优化HttpClient在参数上便利性
