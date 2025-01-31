@@ -129,7 +129,7 @@ function addCodeStylesToPackageJson() {
         if (json == null)
             return tree;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-        json.scripts['lint:ts'] = `ng lint --fix`;
+        json.scripts['lint:ts'] = `npx eslint --cache --fix`;
         json.scripts['lint:style'] = `npx stylelint \\"src/**/*.less\\" --fix`;
         json.scripts['prepare'] = 'husky install';
         (0, utils_1.writePackage)(tree, json);
@@ -147,7 +147,19 @@ function addCodeStylesToPackageJson() {
             `stylelint@^16.14.1`,
             `stylelint-config-standard@^37.0.0`,
             `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
-            `stylelint-config-clean-order@^7.0.0`
+            `stylelint-config-clean-order@^7.0.0`,
+            `angular-eslint@19.0.2`,
+            `@typescript-eslint/eslint-plugin@^8.22.0`,
+            `@typescript-eslint/parser@^8.22.0`,
+            `@typescript-eslint/utils@^8.22.0`,
+            `eslint@^9.19.0`,
+            `eslint-config-prettier@^10.0.1`,
+            `eslint-plugin-import@~2.31.0`,
+            `eslint-plugin-jsdoc@~50.6.3`,
+            `eslint-plugin-prefer-arrow@~1.2.3`,
+            `eslint-plugin-prettier@~5.2.3`,
+            `eslint-plugin-unused-imports@^4.1.4`,
+            `typescript-eslint@^9.19.0`
         ], 'devDependencies');
         return tree;
     };

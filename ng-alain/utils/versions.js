@@ -21,11 +21,11 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `@angular-eslint/builder@undefined`,
-        `@angular-eslint/eslint-plugin@undefined`,
-        `@angular-eslint/eslint-plugin-template@undefined`,
-        `@angular-eslint/schematics@undefined`,
-        `@angular-eslint/template-parser@undefined`,
+        `@angular-eslint/builder@DEP-19.0.1`,
+        `@angular-eslint/eslint-plugin@DEP-19.0.1`,
+        `@angular-eslint/eslint-plugin-template@DEP-19.0.1`,
+        `@angular-eslint/schematics@DEP-19.0.1`,
+        `@angular-eslint/template-parser@DEP-19.0.1`,
         `@typescript-eslint/eslint-plugin@^8.22.0`,
         `@typescript-eslint/parser@^8.22.0`,
         `eslint@^9.19.0`,
@@ -34,7 +34,6 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint-plugin-jsdoc@~50.6.3`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@~5.2.3`,
-        `eslint-plugin-deprecation@undefined`,
         `prettier@^3.4.2`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
