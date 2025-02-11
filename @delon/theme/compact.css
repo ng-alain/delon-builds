@@ -35649,6 +35649,9 @@ ellipsis {
   font-weight: normal;
   color: rgba(0, 0, 0, 0.45);
 }
+.notice-icon__item-extra .ant-tag {
+  margin-right: 0;
+}
 .page-header {
   display: block;
   padding: 8px 16px 0 16px;
