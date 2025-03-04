@@ -244,7 +244,7 @@ function getCopyEnum(list, formData, readOnly) {
 }
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
-        return ui.asyncData(asyncArgs).pipe(map((list) => getEnum(list, formData, schema.readOnly)));
+        return ui.asyncData(asyncArgs).pipe(map((list) => getCopyEnum(list, formData, schema.readOnly)));
     }
     return of(getCopyEnum(schema.enum, formData, schema.readOnly));
 }
