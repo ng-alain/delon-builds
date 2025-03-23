@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "19.0.1-e35c6fb",
+  "version": "19.0.1-9538891",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.10",
     "echarts": "^5.6.0",
-    "@delon/util": "^19.0.1-e35c6fb",
-    "@delon/theme": "^19.0.1-e35c6fb",
+    "@delon/util": "^19.0.1-9538891",
+    "@delon/theme": "^19.0.1-9538891",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -62,13 +62,13 @@
       "types": "./custom/index.d.ts",
       "default": "./fesm2022/custom.mjs"
     },
-    "./mini-area": {
-      "types": "./mini-area/index.d.ts",
-      "default": "./fesm2022/mini-area.mjs"
-    },
     "./gauge": {
       "types": "./gauge/index.d.ts",
       "default": "./fesm2022/gauge.mjs"
+    },
+    "./mini-area": {
+      "types": "./mini-area/index.d.ts",
+      "default": "./fesm2022/mini-area.mjs"
     },
     "./mini-bar": {
       "types": "./mini-bar/index.d.ts",
