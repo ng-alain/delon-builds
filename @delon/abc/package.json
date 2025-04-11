@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "19.1.0-24f19cc",
+  "version": "19.1.0-38592ba",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^19.0.0",
-    "@delon/theme": "^19.1.0-24f19cc",
-    "@delon/util": "^19.1.0-24f19cc",
-    "@delon/acl": "^19.1.0-24f19cc",
+    "@delon/theme": "^19.1.0-38592ba",
+    "@delon/util": "^19.1.0-38592ba",
+    "@delon/acl": "^19.1.0-38592ba",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -67,13 +67,13 @@
       "types": "./down-file/index.d.ts",
       "default": "./fesm2022/down-file.mjs"
     },
-    "./error-collect": {
-      "types": "./error-collect/index.d.ts",
-      "default": "./fesm2022/error-collect.mjs"
-    },
     "./ellipsis": {
       "types": "./ellipsis/index.d.ts",
       "default": "./fesm2022/ellipsis.mjs"
+    },
+    "./error-collect": {
+      "types": "./error-collect/index.d.ts",
+      "default": "./fesm2022/error-collect.mjs"
     },
     "./exception": {
       "types": "./exception/index.d.ts",

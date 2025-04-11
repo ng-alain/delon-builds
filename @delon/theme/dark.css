@@ -31440,10 +31440,10 @@ a:focus {
   left: 0;
   width: 100%;
   padding: 10px 24px;
-  text-align: right;
-  background: #1f1f1f;
   border-top: 1px solid #303030;
   border-radius: 0 0 2px 2px;
+  text-align: right;
+  background: #1f1f1f;
 }
 .ant-form-item-label em {
   color: #bfbfbf;
@@ -31499,9 +31499,9 @@ a:focus {
   justify-content: space-between;
   margin: -24px -24px 24px -24px;
   padding: 16px 24px;
-  background: #141414;
   border-bottom: 1px solid #303030;
   border-radius: 2px 2px 0 0;
+  background: #141414;
 }
 .modal-title {
   /**
@@ -31540,9 +31540,9 @@ a:focus {
       */
   margin: 24px -24px -24px -24px;
   padding: 10px 16px;
-  text-align: right;
   border-top: 1px solid #303030;
   border-radius: 0 0 2px 2px;
+  text-align: right;
 }
 .modal-include-tabs {
   /**
@@ -31571,8 +31571,8 @@ a:focus {
 .ant-table td .img {
   max-width: 32px;
   max-height: 32px;
-  vertical-align: middle;
   border-radius: 4px;
+  vertical-align: middle;
 }
 .ant-table td > img:not(:last-child),
 .ant-table td .img:not(:last-child) {
@@ -31625,9 +31625,9 @@ a:focus {
     align-items: center;
     width: 100%;
     padding: 8px 8px;
+    border-bottom: none;
     text-align: left !important;
     white-space: inherit;
-    border-bottom: none;
   }
   .ant-table-rep .ant-table-tbody > tr > td .ant-table-rep__title + *:not(.ant-avatar) {
     flex: 1;
@@ -31642,8 +31642,8 @@ a:focus {
       */
 }
 .ant-tag__plus .ant-tag {
-  background: #fff;
   border-style: dashed;
+  background: #fff;
 }
 /**
   * Corrected `ng-tag` list line wrapping spacing
@@ -32007,8 +32007,8 @@ fieldset {
   }
 }
 .header-dropdown {
-  background-color: #1f1f1f;
   border-radius: 4px;
+  background-color: #1f1f1f;
   box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.32), 0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12);
 }
 @media screen and (max-width: 480px) {
@@ -32067,11 +32067,11 @@ fieldset {
   display: none;
   width: 32px;
   height: 32px;
+  border-radius: 50%;
   font-size: 20px;
   line-height: 32px;
   text-align: center;
   background: rgba(0, 0, 0, 0.66);
-  border-radius: 50%;
 }
 .sf__array-container .ant-card .sf__array-remove i {
   color: #fff;
@@ -32232,10 +32232,10 @@ fieldset {
   width: 20px;
   height: 20px;
   margin-right: 8px;
+  border-radius: 2px;
   font-weight: bold;
   color: #fff;
   text-align: center;
-  border-radius: 2px;
 }
 .setting-drawer__handle {
   pointer-events: auto;
@@ -32249,10 +32249,10 @@ fieldset {
   justify-content: center;
   width: 48px;
   height: 48px;
+  border-radius: 4px 0 0 4px;
   font-size: 16px;
   text-align: center;
   background: #177ddc;
-  border-radius: 4px 0 0 4px;
   transition: right 0.3s cubic-bezier(0.9, 0, 0.3, 0.7);
 }
 .setting-drawer__handle-icon {
@@ -32686,10 +32686,10 @@ fieldset {
 code {
   margin: 0 4px;
   padding: 2px 4px;
-  font-size: 90%;
-  background-color: rgba(255, 255, 255, 0.04);
   border: 1px solid #434343;
   border-radius: 2px;
+  font-size: 90%;
+  background-color: rgba(255, 255, 255, 0.04);
 }
 /**
  * Set the background to white
@@ -35084,8 +35084,8 @@ textarea.ant-input::-webkit-scrollbar-thumb {
  * 隐藏滚动条
  */
 .hide-scrollbar {
-  scrollbar-width: none;
   scrollbar-color: transparent transparent;
+  scrollbar-width: none;
 }
 .hide-scrollbar::-webkit-scrollbar {
   width: 1px;
@@ -35141,9 +35141,9 @@ body {
   padding: 24px;
   padding-top: 12px;
   padding-bottom: 12px;
+  border-bottom: 1px solid #303030;
   color: #929292;
   background-color: #141414;
-  border-bottom: 1px solid #303030;
 }
 .alain-default__content-title > h1 {
   margin-bottom: 0;
@@ -35248,9 +35248,9 @@ body {
   display: block;
   min-width: 50px;
   padding: 8px 2px;
+  border-radius: 2px;
   line-height: 100%;
   text-align: center;
-  border-radius: 2px;
   outline: none;
   transition: background-color 300ms;
 }
@@ -35294,9 +35294,9 @@ body {
 .alain-default__search .ant-input,
 .alain-default__search .ant-input-group-addon,
 .alain-default__search .ant-input-affix-wrapper {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.2);
   border: none;
+  color: #fff;
+  background-color: #ffffff;
 }
 .alain-default__search .ant-input::placeholder,
 .alain-default__search .ant-input-group-addon::placeholder,
@@ -35554,8 +35554,8 @@ body {
   color: rgba(255, 255, 255, 0.85);
 }
 .sidebar-nav__selected {
-  background-color: #141414;
   border-left-color: #177ddc;
+  background-color: #141414;
 }
 .sidebar-nav__selected > .sidebar-nav__item-link {
   color: #177ddc;
@@ -35597,9 +35597,9 @@ body {
   position: absolute;
   width: 6px;
   height: 1.5px;
+  border-radius: 2px;
   background: #fff;
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85));
-  border-radius: 2px;
   transition: background-color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), top 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .sidebar-nav__sub-arrow::before {
@@ -35637,9 +35637,9 @@ body {
   z-index: 16;
   display: none;
   min-width: 160px;
-  background-color: #141414;
   border: 1px solid #303030;
   border-radius: 4px;
+  background-color: #141414;
 }
 .sidebar-nav__floating .sidebar-nav__item-link {
   padding-left: 16px;
@@ -35797,8 +35797,8 @@ body {
 .app-icons .ant-col-6 {
   cursor: pointer;
   padding: 16px 0;
-  text-align: center;
   border-radius: 4px;
+  text-align: center;
   transition: background-color 300ms;
 }
 .app-icons .ant-col-6:hover {
@@ -35806,8 +35806,8 @@ body {
 }
 .app-icons i {
   padding: 15px;
-  font-size: 22px;
   border-radius: 50%;
+  font-size: 22px;
 }
 .app-icons small {
   display: block;
@@ -35901,9 +35901,9 @@ body {
   width: 100%;
 }
 .st__btn-sub .st__btn-text {
+  display: block;
   width: 100%;
   color: inherit;
-  display: block;
 }
 .st__btn-disabled .st__btn-text {
   pointer-events: none;
@@ -36158,8 +36158,8 @@ body {
   border-bottom: 1px solid #303030;
 }
 .sv__bordered .sv__label {
-  background-color: rgba(255, 255, 255, 0.04);
   border-right: 1px solid #303030;
+  background-color: rgba(255, 255, 255, 0.04);
 }
 .sv__bordered .sv__label,
 .sv__bordered .sv__detail {
@@ -36476,9 +36476,9 @@ ellipsis {
   width: 100%;
   height: 56px;
   padding: 0 24px;
+  border-top: 1px solid #303030;
   line-height: 56px;
   background: #1f1f1f;
-  border-top: 1px solid #303030;
   box-shadow: 0 -6px 16px -8px rgba(0, 0, 0, 0.32), 0 -9px 28px 0 rgba(0, 0, 0, 0.2), 0 -12px 48px 16px rgba(0, 0, 0, 0.12);
   transition: all 0.3s;
 }
@@ -36582,11 +36582,11 @@ ellipsis {
 .notice-icon__clear {
   cursor: pointer;
   height: 46px;
+  border-top: 1px solid #303030;
+  border-radius: 0 0 2px 2px;
   line-height: 46px;
   color: rgba(255, 255, 255, 0.85);
   text-align: center;
-  border-top: 1px solid #303030;
-  border-radius: 0 0 2px 2px;
   transition: all 0.3s;
 }
 .notice-icon__clear:hover {
@@ -36620,8 +36620,8 @@ ellipsis {
 .page-header {
   display: block;
   padding: 24px;
-  background-color: #141414;
   border-bottom: 1px solid #303030;
+  background-color: #141414;
 }
 .page-header__wide {
   max-width: 1200px;
@@ -36780,8 +36780,8 @@ ellipsis {
 }
 .quick-menu,
 .quick-menu__ctrl {
-  background-color: #1f1f1f;
   border: 1px solid #303030;
+  background-color: #1f1f1f;
   box-shadow: 0 6px 16px -8px rgba(0, 0, 0, 0.32), 0 9px 28px 0 rgba(0, 0, 0, 0.2), 0 12px 48px 16px rgba(0, 0, 0, 0.12);
 }
 .quick-menu__inner {
@@ -36795,9 +36795,9 @@ ellipsis {
   left: -50px;
   width: 50px;
   height: 50px;
-  text-align: center;
   border-right: 0;
   border-radius: 3px 0 0 3px;
+  text-align: center;
 }
 .quick-menu__ctrl-icon {
   font-size: 20px;
@@ -36835,9 +36835,9 @@ ellipsis {
 }
 .result__extra {
   padding: 24px 40px;
+  border-radius: 2px;
   text-align: left;
   background: rgba(255, 255, 255, 0.04);
-  border-radius: 2px;
 }
 @media screen and (max-width: 480px) {
   .result__extra {
@@ -37094,8 +37094,8 @@ ellipsis {
   margin-right: 4px;
 }
 .cell .img {
-  vertical-align: middle;
   border-radius: 4px;
+  vertical-align: middle;
 }
 .cell .unit {
   margin-left: 2px;
@@ -37200,8 +37200,8 @@ g2-tag-cloud {
 .g2-mini-progress__value {
   width: 0;
   height: 100%;
-  background-color: #177ddc;
   border-radius: 1px 0 0 1px;
+  background-color: #177ddc;
   transition: all 0.4s cubic-bezier(0.08, 0.82, 0.17, 1) 0s;
 }
 .g2-mini-progress__target {
