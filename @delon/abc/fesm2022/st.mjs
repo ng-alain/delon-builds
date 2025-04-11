@@ -166,7 +166,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.modal = { ...{ paramsName: 'record', size: 'lg' }, ...modal, ...item.modal };
+                    item.modal = { paramsName: 'record', size: 'lg', ...modal, ...item.modal };
                 }
             }
             if (item.type === 'drawer') {
@@ -177,7 +177,7 @@ class STColumnSource {
                     item.type = 'none';
                 }
                 else {
-                    item.drawer = { ...{ paramsName: 'record', size: 'lg' }, ...drawer, ...item.drawer };
+                    item.drawer = { paramsName: 'record', size: 'lg', ...drawer, ...item.drawer };
                 }
             }
             if (item.type === 'del' && typeof item.pop === 'undefined') {
