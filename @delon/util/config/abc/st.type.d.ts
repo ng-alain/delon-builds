@@ -5,6 +5,7 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import type { NzDrawerOptions } from 'ng-zorro-antd/drawer';
 import type { ModalOptions } from 'ng-zorro-antd/modal';
 import type { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
+import type { NzTableSortOrder } from 'ng-zorro-antd/table';
 export interface AlainSTConfig {
     /**
      * 起始页码，默认为：`1`
@@ -162,6 +163,10 @@ export interface AlainSTConfig {
         ascend?: string;
         descend?: string;
     };
+    /**
+     * 排序状态
+     */
+    sortDirections?: NzTableSortOrder[];
     /**
      * 单排序规则
      * - 若不指定，则返回：`columnName=ascend|descend`
