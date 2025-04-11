@@ -2896,8 +2896,7 @@ class NumberWidget extends ControlUIWidget {
     }
     _setValue(val) {
         this.setValue(this.schema.type === 'integer' ? Math.floor(val) : val);
-        if (this.ui.change)
-            this.ui.change(this.value);
+        this.ui.change?.(this.value);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: NumberWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "19.2.6", type: NumberWidget, isStandalone: false, selector: "sf-number", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
