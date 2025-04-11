@@ -9,7 +9,7 @@ export declare class ErrorCollectComponent implements OnInit {
     private formEl;
     _hiden: import("@angular/core").WritableSignal<boolean>;
     count: import("@angular/core").WritableSignal<number>;
-    dir: import("@angular/core").Signal<import("@angular/cdk/bidi").Direction | undefined>;
+    dir: import("@angular/core").Signal<import("@angular/cdk/bidi-module.d-dc5464ba").a | undefined>;
     readonly freq: import("@angular/core").InputSignalWithTransform<number, unknown>;
     readonly offsetTop: import("@angular/core").InputSignalWithTransform<number, unknown>;
     constructor(configSrv: AlainConfigService);

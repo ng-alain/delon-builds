@@ -188,10 +188,10 @@ function addCodeStylesToPackageJson(): Rule {
       tree,
       [
         `husky@^9.1.7`,
-        `lint-staged@^15.4.3`,
-        `prettier@^3.4.2`,
-        `stylelint@^16.14.1`,
-        `stylelint-config-standard@^37.0.0`,
+        `lint-staged@^15.5.0`,
+        `prettier@^3.5.3`,
+        `stylelint@^16.18.0`,
+        `stylelint-config-standard@^38.0.0`,
         `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
         `stylelint-config-clean-order@^7.0.0`
       ],
