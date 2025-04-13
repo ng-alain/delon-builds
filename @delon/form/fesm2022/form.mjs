@@ -1510,6 +1510,7 @@ class SFComponent {
                         ...ui.$items
                     };
                     inFn(property.items, property.items, uiSchema[uiKey]?.$items ?? {}, ui.$items, ui.$items);
+                    delete property.items.ui;
                 }
                 if (property.properties && Object.keys(property.properties).length) {
                     inFn(property, schema, uiSchema[uiKey] || {}, ui, ui);
