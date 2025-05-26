@@ -6,7 +6,7 @@ import { SFUISchemaItem } from '../../schema/ui';
 export interface SFDateWidgetSchema extends SFUISchemaItem {
     mode?: 'date' | 'week' | 'month' | 'year' | 'range';
     size?: NzDatePickerSizeType;
-    placeholder?: string;
+    placeholder?: string | string[];
     /**
      * Inline mode of the date picker
      *
