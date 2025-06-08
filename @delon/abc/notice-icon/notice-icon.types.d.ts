@@ -33,5 +33,4 @@ export interface NoticeIconList {
 export interface NoticeIconSelect {
     title: string;
     item: NoticeItem;
-    event?: Event;
 }

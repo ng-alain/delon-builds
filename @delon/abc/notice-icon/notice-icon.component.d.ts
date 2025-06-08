@@ -18,6 +18,8 @@ export declare class NoticeIconComponent {
     constructor();
     delayShow: import("@angular/core").WritableSignal<boolean>;
     onVisibleChange(result: boolean): void;
+    onSelect(i: NoticeIconSelect): void;
+    onClear(title: string): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<NoticeIconComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": { "alias": "data"; "required": false; "isSignal": true; }; "count": { "alias": "count"; "required": false; "isSignal": true; }; "loading": { "alias": "loading"; "required": false; "isSignal": true; }; "popoverVisible": { "alias": "popoverVisible"; "required": false; "isSignal": true; }; "btnClass": { "alias": "btnClass"; "required": false; "isSignal": true; }; "btnIconClass": { "alias": "btnIconClass"; "required": false; "isSignal": true; }; "centered": { "alias": "centered"; "required": false; "isSignal": true; }; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never, true, never>;
 }
