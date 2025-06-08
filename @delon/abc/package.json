@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "19.2.0-9260460",
+  "version": "19.2.0-5f96218",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^19.0.0",
-    "@delon/theme": "^19.2.0-9260460",
-    "@delon/util": "^19.2.0-9260460",
-    "@delon/acl": "^19.2.0-9260460",
+    "@delon/theme": "^19.2.0-5f96218",
+    "@delon/util": "^19.2.0-5f96218",
+    "@delon/acl": "^19.2.0-5f96218",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -46,10 +46,6 @@
     "./auto-focus": {
       "types": "./auto-focus/index.d.ts",
       "default": "./fesm2022/auto-focus.mjs"
-    },
-    "./avatar-list": {
-      "types": "./avatar-list/index.d.ts",
-      "default": "./fesm2022/avatar-list.mjs"
     },
     "./cell": {
       "types": "./cell/index.d.ts",
@@ -130,10 +126,6 @@
     "./quick-menu": {
       "types": "./quick-menu/index.d.ts",
       "default": "./fesm2022/quick-menu.mjs"
-    },
-    "./result": {
-      "types": "./result/index.d.ts",
-      "default": "./fesm2022/result.mjs"
     },
     "./reuse-tab": {
       "types": "./reuse-tab/index.d.ts",

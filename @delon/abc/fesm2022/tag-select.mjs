@@ -43,7 +43,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
                         '[class.tag-select-rtl__has-expand]': `dir === 'rtl' && expandable`,
                         '[class.tag-select__has-expand]': 'expandable',
                         '[class.tag-select__expanded]': 'expand'
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzIconDirective], template: "<ng-content />\n@if (expandable) {\n  <a class=\"ant-tag ant-tag-checkable tag-select__trigger\" (click)=\"trigger()\">\n    {{ expand ? locale.collapse : locale.expand }}\n    <nz-icon nzType=\"down\" [style.transform]=\"expand ? 'rotate(-180deg)' : null\" />\n  </a>\n}\n" }]
+                    }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzIconDirective], template: "<ng-content />\n@if (expandable) {\n  <a class=\"ant-tag ant-tag-checkable tag-select__trigger\" (click)=\"trigger()\">\n    {{ expand ? locale.collapse : locale.expand }}\n    <nz-icon nzType=\"down\" [style.transform]=\"expand ? 'rotate(-180deg)' : null\" />\n  </a>\n}\n" }]
         }], propDecorators: { expandable: [{
                 type: Input,
                 args: [{ transform: booleanAttribute }]

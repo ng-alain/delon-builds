@@ -167,7 +167,7 @@ class PageHeaderComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PageHeaderComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'page-header', exportAs: 'pageHeader', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
+            args: [{ selector: 'page-header', exportAs: 'pageHeader', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
                         NzAffixComponent,
                         NgTemplateOutlet,
                         NzSkeletonComponent,

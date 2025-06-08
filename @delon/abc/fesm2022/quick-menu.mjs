@@ -60,7 +60,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
             args: [{ selector: 'quick-menu', exportAs: 'quickMenu', host: {
                         '[class.quick-menu]': 'true',
                         '(click)': '_click()'
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzIconDirective, NzStringTemplateOutletDirective], template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [style]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *nzStringTemplateOutlet=\"icon\">\n        <nz-icon [nzType]=\"$any(icon)\" />\n      </ng-container>\n    </div>\n  </div>\n  <ng-content />\n</div>\n" }]
+                    }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzIconDirective, NzStringTemplateOutletDirective], template: "<div class=\"quick-menu__inner\">\n  <div class=\"quick-menu__ctrl\" [style]=\"ctrlStyle\">\n    <div class=\"quick-menu__ctrl-icon\">\n      <ng-container *nzStringTemplateOutlet=\"icon\">\n        <nz-icon [nzType]=\"$any(icon)\" />\n      </ng-container>\n    </div>\n  </div>\n  <ng-content />\n</div>\n" }]
         }], propDecorators: { icon: [{
                 type: Input
             }], top: [{
