@@ -67,6 +67,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
         }], ctorParameters: () => [] });
 
 class ChartEChartsComponent {
+    static ngAcceptInputType_width;
+    static ngAcceptInputType_height;
     srv = inject(ChartEChartsService);
     cdr = inject(ChangeDetectorRef);
     ngZone = inject(NgZone);
