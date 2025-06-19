@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "19.2.0-4f9025d",
+  "version": "19.2.0-fff828d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^20.0.0",
-    "@delon/theme": "^19.2.0-4f9025d",
-    "@delon/util": "^19.2.0-4f9025d",
-    "@delon/acl": "^19.2.0-4f9025d",
+    "@delon/theme": "^19.2.0-fff828d",
+    "@delon/util": "^19.2.0-fff828d",
+    "@delon/acl": "^19.2.0-fff828d",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -43,13 +43,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/abc.mjs"
     },
-    "./cell": {
-      "types": "./cell/index.d.ts",
-      "default": "./fesm2022/cell.mjs"
-    },
     "./auto-focus": {
       "types": "./auto-focus/index.d.ts",
       "default": "./fesm2022/auto-focus.mjs"
+    },
+    "./cell": {
+      "types": "./cell/index.d.ts",
+      "default": "./fesm2022/cell.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",
@@ -63,13 +63,13 @@
       "types": "./down-file/index.d.ts",
       "default": "./fesm2022/down-file.mjs"
     },
-    "./ellipsis": {
-      "types": "./ellipsis/index.d.ts",
-      "default": "./fesm2022/ellipsis.mjs"
-    },
     "./error-collect": {
       "types": "./error-collect/index.d.ts",
       "default": "./fesm2022/error-collect.mjs"
+    },
+    "./ellipsis": {
+      "types": "./ellipsis/index.d.ts",
+      "default": "./fesm2022/ellipsis.mjs"
     },
     "./exception": {
       "types": "./exception/index.d.ts",

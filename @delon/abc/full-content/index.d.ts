@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { AfterViewInit, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { AfterViewInit, OnInit, OnChanges, OnDestroy, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as i1 from '@angular/common';
 
@@ -14,9 +14,10 @@ declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, 
     private inited;
     private id;
     _height: number;
-    hideTitle: i0.InputSignalWithTransform<boolean, unknown>;
-    padding: i0.InputSignalWithTransform<number, unknown>;
-    fullscreen: i0.ModelSignal<boolean | undefined>;
+    fullscreen?: boolean;
+    hideTitle: boolean;
+    padding: number;
+    readonly fullscreenChange: EventEmitter<boolean>;
     private updateCls;
     private update;
     private updateHeight;
@@ -27,7 +28,10 @@ declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, 
     ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "hideTitle": { "alias": "hideTitle"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; "fullscreen": { "alias": "fullscreen"; "required": false; "isSignal": true; }; }, { "fullscreen": "fullscreenChange"; }, never, ["*"], true, never>;
+    static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "fullscreen": { "alias": "fullscreen"; "required": false; }; "hideTitle": { "alias": "hideTitle"; "required": false; }; "padding": { "alias": "padding"; "required": false; }; }, { "fullscreenChange": "fullscreenChange"; }, never, ["*"], true, never>;
+    static ngAcceptInputType_fullscreen: unknown;
+    static ngAcceptInputType_hideTitle: unknown;
+    static ngAcceptInputType_padding: unknown;
 }
 
 declare class FullContentService {
