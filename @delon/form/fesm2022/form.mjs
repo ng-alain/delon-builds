@@ -1,11 +1,11 @@
 import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { NgZone, Injectable, inject, ViewContainerRef, ViewChild, Input, ViewEncapsulation, Component, ElementRef, Renderer2, numberAttribute, Directive, ChangeDetectorRef, EventEmitter, effect, Injector, booleanAttribute, Output, ChangeDetectionStrategy, TemplateRef, HostBinding, NgModule, provideEnvironmentInitializer, makeEnvironmentProviders } from '@angular/core';
+import { NgZone, Injectable, inject, ViewContainerRef, ViewChild, Input, ViewEncapsulation, Component, ElementRef, Renderer2, numberAttribute, Directive, ChangeDetectorRef, EventEmitter, Injector, booleanAttribute, Output, ChangeDetectionStrategy, TemplateRef, HostBinding, NgModule, provideEnvironmentInitializer, makeEnvironmentProviders } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DomSanitizer } from '@angular/platform-browser';
 import { map, of, BehaviorSubject, Observable, take, combineLatest, distinctUntilChanged, Subject, merge, filter, takeUntil, debounceTime, switchMap, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
-import { ALAIN_I18N_TOKEN, DelonLocaleService, DelonLocaleModule } from '@delon/theme';
+import { DelonLocaleService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { deepCopy } from '@delon/util/other';
 import { NzFormStatusService } from 'ng-zorro-antd/core/form';
@@ -1140,6 +1140,7 @@ class SFComponent {
     terminator = inject(TerminatorService);
     dom = inject(DomSanitizer);
     cdr = inject(ChangeDetectorRef);
+    localeSrv = inject(DelonLocaleService);
     aclSrv = inject(ACLService);
     i18nSrv = inject(ALAIN_I18N_TOKEN);
     platform = inject(Platform);
@@ -1150,7 +1151,7 @@ class SFComponent {
     _defUi;
     options;
     _inited = false;
-    locale = inject(DelonLocaleService).valueSignal('sf');
+    locale = {};
     rootProperty = null;
     _formData;
     _btn;
@@ -1357,13 +1358,13 @@ class SFComponent {
         this.firstVisual = this.options.firstVisual;
         this.autocomplete = this.options.autocomplete;
         this.delay = this.options.delay;
-        effect(() => {
-            this.locale();
-            if (!this._inited)
-                return;
-            this.validator({ emitError: false, onlyRoot: false });
-            this.coverButtonProperty();
-            this.cdr.markForCheck();
+        this.localeSrv.change.pipe(takeUntilDestroyed()).subscribe(() => {
+            this.locale = this.localeSrv.getData('sf');
+            if (this._inited) {
+                this.validator({ emitError: false, onlyRoot: false });
+                this.coverButtonProperty();
+                this.cdr.markForCheck();
+            }
         });
         merge(this.aclSrv.change, this.i18nSrv.change)
             .pipe(filter(() => this._inited), takeUntilDestroyed())
@@ -1544,7 +1545,7 @@ class SFComponent {
     coverButtonProperty() {
         this._btn = {
             render: { size: 'default' },
-            ...this.locale(),
+            ...this.locale,
             ...this.options.button,
             ...this.button
         };
@@ -1907,7 +1908,7 @@ class Widget {
         return false;
     }
     get l() {
-        return this.formProperty.root.widget.sfComp.locale();
+        return this.formProperty.root.widget.sfComp.locale;
     }
     get oh() {
         return this.ui.optionalHelp;
