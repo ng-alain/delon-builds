@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "19.2.0-1517651",
+  "version": "19.2.0-dac298d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^20.0.0",
-    "@delon/theme": "^19.2.0-1517651",
-    "@delon/util": "^19.2.0-1517651",
-    "@delon/acl": "^19.2.0-1517651",
+    "@delon/theme": "^19.2.0-dac298d",
+    "@delon/util": "^19.2.0-dac298d",
+    "@delon/acl": "^19.2.0-dac298d",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -43,13 +43,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/abc.mjs"
     },
-    "./auto-focus": {
-      "types": "./auto-focus/index.d.ts",
-      "default": "./fesm2022/auto-focus.mjs"
-    },
     "./cell": {
       "types": "./cell/index.d.ts",
       "default": "./fesm2022/cell.mjs"
+    },
+    "./auto-focus": {
+      "types": "./auto-focus/index.d.ts",
+      "default": "./fesm2022/auto-focus.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",
