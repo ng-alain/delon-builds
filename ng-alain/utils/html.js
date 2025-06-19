@@ -12,10 +12,14 @@ const change_1 = require("@schematics/angular/utility/change");
 const parse5 = require("parse5");
 const workspace_1 = require("./workspace");
 /** Gets the app index.html file */
-function getIndexHtmlPath(_host, project) {
+function getIndexHtmlPath(host, project) {
     const targetOptions = (0, workspace_1.getProjectTarget)(project, workspace_1.BUILD_TARGET_BUILD);
     if (typeof targetOptions.index === 'string' && targetOptions.index.endsWith('index.html')) {
         return targetOptions.index;
+    }
+    const htmlPath = `${project.sourceRoot}/index.html`;
+    if (host.exists(htmlPath)) {
+        return htmlPath;
     }
     throw new schematics_1.SchematicsException('No index.html file was found.');
 }

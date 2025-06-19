@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { Component, ViewEncapsulation, NgModule } from '@angular/core';
+import { ViewEncapsulation, Component, NgModule } from '@angular/core';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import * as i1$1 from '@delon/form';
@@ -18,8 +18,8 @@ class ColorWidget extends ControlUIWidget {
         if (this.ui.formatChange)
             this.ui.formatChange(ev);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: ColorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.2.6", type: ColorWidget, isStandalone: true, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ColorWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.0.4", type: ColorWidget, isStandalone: true, selector: "sf-color", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -48,7 +48,7 @@ class ColorWidget extends ControlUIWidget {
     }
   </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "ngmodule", type: DelonFormModule }, { kind: "component", type: i1$1.SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }, { kind: "ngmodule", type: NzColorPickerModule }, { kind: "component", type: i3.NzColorPickerComponent, selector: "nz-color-picker", inputs: ["nzFormat", "nzValue", "nzSize", "nzDefaultValue", "nzTrigger", "nzTitle", "nzFlipFlop", "nzShowText", "nzOpen", "nzAllowClear", "nzDisabled", "nzDisabledAlpha"], outputs: ["nzOnChange", "nzOnFormatChange", "nzOnClear", "nzOnOpenChange"], exportAs: ["NzColorPicker"] }, { kind: "component", type: i3.NzColorBlockComponent, selector: "nz-color-block", inputs: ["nzColor", "nzSize"], outputs: ["nzOnClick"], exportAs: ["NzColorBlock"] }], encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: ColorWidget, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ColorWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-color',
@@ -89,11 +89,11 @@ class ColorWidgetModule {
     constructor(widgetRegistry) {
         widgetRegistry.register(ColorWidget.KEY, ColorWidget);
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: ColorWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.2.6", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ColorWidgetModule, deps: [{ token: i1$1.WidgetRegistry }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.0.4", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ColorWidgetModule, imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: ColorWidgetModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ColorWidgetModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [FormsModule, CommonModule, DelonFormModule, NzColorPickerModule, ColorWidget]

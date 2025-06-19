@@ -1,8 +1,8 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, makeEnvironmentProviders, Injectable, Optional, Inject, inject } from '@angular/core';
+import { InjectionToken, makeEnvironmentProviders, Optional, Inject, Injectable, inject } from '@angular/core';
 import * as i1 from '@delon/util/config';
-import { HttpErrorResponse, HttpResponseBase, HttpResponse } from '@angular/common/http';
-import { of, isObservable, from, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
+import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
+import { of, from, isObservable, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
 
 class MockStatusError {
@@ -154,10 +154,10 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
-    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: MockService, providedIn: 'root' });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, providedIn: 'root' });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: MockService, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
         }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{

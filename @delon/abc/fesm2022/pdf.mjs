@@ -2,7 +2,7 @@ import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, ElementRef, ChangeDetectorRef, NgZone, DestroyRef, EventEmitter, numberAttribute, booleanAttribute, Component, ChangeDetectionStrategy, ViewEncapsulation, Input, Output, NgModule } from '@angular/core';
+import { inject, ElementRef, ChangeDetectorRef, NgZone, DestroyRef, EventEmitter, numberAttribute, booleanAttribute, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { timer, fromEvent, debounceTime, filter } from 'rxjs';
 import { ZoneOutside } from '@delon/util/decorator';
@@ -395,8 +395,8 @@ class PdfComponent {
     ngOnDestroy() {
         this.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PdfComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "19.2.6", type: PdfComponent, isStandalone: true, selector: "pdf", inputs: { src: "src", pi: ["pi", "pi", numberAttribute], showAll: ["showAll", "showAll", booleanAttribute], renderText: ["renderText", "renderText", booleanAttribute], textLayerMode: "textLayerMode", showBorders: ["showBorders", "showBorders", booleanAttribute], stickToPage: ["stickToPage", "stickToPage", booleanAttribute], originalSize: ["originalSize", "originalSize", booleanAttribute], fitToPage: ["fitToPage", "fitToPage", booleanAttribute], zoom: ["zoom", "zoom", numberAttribute], zoomScale: "zoomScale", rotation: ["rotation", "rotation", numberAttribute], autoReSize: ["autoReSize", "autoReSize", booleanAttribute], externalLinkTarget: "externalLinkTarget", delay: ["delay", "delay", numberAttribute] }, outputs: { change: "change" }, host: { properties: { "class.d-block": "true" } }, exportAs: ["pdf"], usesOnChanges: true, ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.0.4", type: PdfComponent, isStandalone: true, selector: "pdf", inputs: { src: "src", pi: ["pi", "pi", numberAttribute], showAll: ["showAll", "showAll", booleanAttribute], renderText: ["renderText", "renderText", booleanAttribute], textLayerMode: "textLayerMode", showBorders: ["showBorders", "showBorders", booleanAttribute], stickToPage: ["stickToPage", "stickToPage", booleanAttribute], originalSize: ["originalSize", "originalSize", booleanAttribute], fitToPage: ["fitToPage", "fitToPage", booleanAttribute], zoom: ["zoom", "zoom", numberAttribute], zoomScale: "zoomScale", rotation: ["rotation", "rotation", numberAttribute], autoReSize: ["autoReSize", "autoReSize", booleanAttribute], externalLinkTarget: "externalLinkTarget", delay: ["delay", "delay", numberAttribute] }, outputs: { change: "change" }, host: { properties: { "class.d-block": "true" } }, exportAs: ["pdf"], usesOnChanges: true, ngImport: i0, template: `
     @if (!inited || loading) {
       <nz-skeleton />
     }
@@ -417,7 +417,7 @@ __decorate([
 __decorate([
     ZoneOutside()
 ], PdfComponent.prototype, "destroy", null);
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PdfComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'pdf',
@@ -484,11 +484,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
 
 const COMPONENTS = [PdfComponent];
 class PdfModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "19.2.6", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.0.4", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, PdfComponent], exports: [PdfComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfModule, imports: [CommonModule, NzSkeletonModule, COMPONENTS] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: PdfModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, NzSkeletonModule, ...COMPONENTS],
