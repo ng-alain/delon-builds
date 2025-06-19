@@ -2,7 +2,7 @@ import { SafeHtml, SafeUrl } from '@angular/platform-browser';
 import { ACLCanType } from '@delon/acl';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from '@angular/core';
-import { OnDestroy, InjectionToken, Provider, PipeTransform, TemplateRef, Type, Injector, ModuleWithProviders, EnvironmentProviders, Version } from '@angular/core';
+import { OnDestroy, InjectionToken, Provider, PipeTransform, TemplateRef, Type, Injector, Signal, ModuleWithProviders, EnvironmentProviders, Version } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { Direction } from '@angular/cdk/bidi';
 import { AlainConfigService, AlainConfig } from '@delon/util/config';
@@ -1481,17 +1481,19 @@ interface FullLocaleData {
 declare const DELON_LOCALE: InjectionToken<FullLocaleData>;
 
 declare class DelonLocaleService {
+    private defLocale;
     private _locale;
     private change$;
-    constructor(locale: FullLocaleData | null);
+    constructor();
     get change(): Observable<FullLocaleData>;
     setLocale(locale: FullLocaleData): void;
+    valueSignal<K extends keyof FullLocaleData>(key: K): Signal<FullLocaleData[K]>;
     get locale(): FullLocaleData;
-    getData(path: keyof FullLocaleData): LocaleData;
+    getData<K extends keyof FullLocaleData>(key: K): FullLocaleData[K];
     static ɵfac: i0.ɵɵFactoryDeclaration<DelonLocaleService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<DelonLocaleService>;
 }
-declare function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist: DelonLocaleService, locale: FullLocaleData): DelonLocaleService;
+declare function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist: DelonLocaleService): DelonLocaleService;
 declare const DELON_LOCALE_SERVICE_PROVIDER: Provider;
 
 declare class DelonLocaleModule {

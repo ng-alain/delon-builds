@@ -1,7 +1,7 @@
 import { AlainSFConfig, AlainConfigService } from '@delon/util/config';
 import * as i0 from '@angular/core';
 import { Injector, OnInit, OnChanges, OnDestroy, TemplateRef, ViewContainerRef, ComponentRef, AfterViewInit, ChangeDetectorRef, EventEmitter, SimpleChange, SimpleChanges, ModuleWithProviders, EnvironmentProviders } from '@angular/core';
-import * as i20 from '@delon/theme';
+import * as _delon_theme from '@delon/theme';
 import { LocaleData } from '@delon/theme';
 import { NzSafeAny, NzSizeLDSType, NzSizeDSType, NgClassType, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import * as i25 from 'ng-zorro-antd/form';
@@ -1593,7 +1593,6 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private readonly terminator;
     private readonly dom;
     private readonly cdr;
-    private readonly localeSrv;
     private readonly aclSrv;
     private readonly i18nSrv;
     private readonly platform;
@@ -1604,7 +1603,7 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private _defUi;
     readonly options: AlainSFConfig;
     _inited: boolean;
-    locale: LocaleData;
+    locale: i0.Signal<_delon_theme.SFLocaleData>;
     rootProperty: FormProperty | null;
     _formData: Record<string, unknown>;
     _btn: SFButton;
@@ -1817,7 +1816,7 @@ declare class SFItemWrapComponent implements OnChanges {
 declare class DelonFormModule {
     static forRoot(): ModuleWithProviders<DelonFormModule>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DelonFormModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.NzButtonModule, typeof i22.NzCardModule, typeof i23.NzCheckboxModule, typeof i24.NzDatePickerModule, typeof i25.NzFormModule, typeof i26.NzGridModule, typeof i27.NzIconModule, typeof i28.NzInputModule, typeof i29.NzInputNumberModule, typeof i30.NzModalModule, typeof i31.NzRadioModule, typeof i32.NzSelectModule, typeof i33.NzSwitchModule, typeof i34.NzToolTipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof _delon_theme.DelonLocaleModule, typeof i21.NzButtonModule, typeof i22.NzCardModule, typeof i23.NzCheckboxModule, typeof i24.NzDatePickerModule, typeof i25.NzFormModule, typeof i26.NzGridModule, typeof i27.NzIconModule, typeof i28.NzInputModule, typeof i29.NzInputNumberModule, typeof i30.NzModalModule, typeof i31.NzRadioModule, typeof i32.NzSelectModule, typeof i33.NzSwitchModule, typeof i34.NzToolTipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<DelonFormModule>;
 }
 

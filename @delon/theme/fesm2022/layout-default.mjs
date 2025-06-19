@@ -139,11 +139,10 @@ class LayoutDefaultNavComponent {
     cdr = inject(ChangeDetectorRef);
     ngZone = inject(NgZone);
     sanitizer = inject(DomSanitizer);
-    directionality = inject(Directionality);
     bodyEl;
     destroy$ = inject(DestroyRef);
     floatingEl;
-    dir = 'ltr';
+    dir = inject(Directionality).valueSignal;
     list = [];
     disabledAcl = false;
     autoCloseUnderPad = true;
@@ -224,7 +223,7 @@ class LayoutDefaultNavComponent {
             offsetHeight = rect.top + node.clientHeight - docHeight + spacing;
         }
         node.style.top = `${rect.top + scrollTop - offsetHeight}px`;
-        if (this.dir === 'rtl') {
+        if (this.dir() === 'rtl') {
             node.style.right = `${rect.width + spacing}px`;
         }
         else {
@@ -312,11 +311,6 @@ class LayoutDefaultNavComponent {
             .pipe(takeUntilDestroyed(this.destroy$), filter(t => t.type === 'layout' && t.name === 'collapsed'))
             .subscribe(() => this.clearFloating());
         this.underPad();
-        this.dir = this.directionality.value;
-        this.directionality.change.pipe(takeUntilDestroyed(this.destroy$)).subscribe(direction => {
-            this.dir = direction;
-            this.cdr.detectChanges();
-        });
         this.openByUrl(router.url);
         this.ngZone.runOutsideAngular(() => this.genFloating());
     }

@@ -5,7 +5,7 @@ import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { CommonModule } from '@angular/common';
 
 class G2MiniProgressComponent {
-    targetSuffix = inject(DelonLocaleService).getData('miniProgress').target;
+    locale = inject(DelonLocaleService).valueSignal('miniProgress');
     cdr = inject(ChangeDetectorRef);
     color = '#1890FF';
     target;
@@ -23,7 +23,7 @@ class G2MiniProgressComponent {
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "20.0.4", type: G2MiniProgressComponent, isStandalone: true, selector: "g2-mini-progress", inputs: { color: "color", target: ["target", "target", numberAttribute], percent: ["percent", "percent", numberAttribute], strokeWidth: ["strokeWidth", "strokeWidth", numberAttribute] }, host: { properties: { "class.g2-mini-progress": "true" } }, exportAs: ["g2MiniProgress"], usesOnChanges: true, ngImport: i0, template: `
     <div
       nz-tooltip
-      [nzTooltipTitle]="targetSuffix + target + '%'"
+      [nzTooltipTitle]="locale().targetSuffix + target + '%'"
       class="g2-mini-progress__target"
       [style]="{ left: target + '%' }"
     >
@@ -46,7 +46,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     template: `
     <div
       nz-tooltip
-      [nzTooltipTitle]="targetSuffix + target + '%'"
+      [nzTooltipTitle]="locale().targetSuffix + target + '%'"
       class="g2-mini-progress__target"
       [style]="{ left: target + '%' }"
     >

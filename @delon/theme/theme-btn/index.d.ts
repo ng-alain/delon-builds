@@ -1,6 +1,6 @@
-import { Direction } from '@angular/cdk/bidi';
 import * as i0 from '@angular/core';
 import { InjectionToken, OnInit, OnDestroy, EventEmitter } from '@angular/core';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as i1 from '@angular/common';
 import * as i2 from 'ng-zorro-antd/dropdown';
 import * as i3 from 'ng-zorro-antd/tooltip';
@@ -15,16 +15,13 @@ declare class ThemeBtnComponent implements OnInit, OnDestroy {
     private readonly platform;
     private readonly renderer;
     private readonly configSrv;
-    private readonly directionality;
-    private readonly cdr;
-    private readonly destroy$;
     private theme;
     isDev: boolean;
     types: ThemeBtnType[];
     devTips: string;
     deployUrl: string;
     readonly themeChange: EventEmitter<string>;
-    dir?: Direction;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     private key;
     ngOnInit(): void;
     private initTheme;

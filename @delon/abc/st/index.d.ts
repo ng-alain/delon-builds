@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
 import { ThemeType } from '@ant-design/icons-angular';
 import { CellOptions } from '@delon/abc/cell';
 import { ACLCanType } from '@delon/acl';
-import { LocaleData, ModalHelperOptions, DrawerHelperOptions, YNMode, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
+import * as _delon_theme from '@delon/theme';
+import { ModalHelperOptions, DrawerHelperOptions, YNMode, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
 import { CurrencyFormatOptions, CurrencyService } from '@delon/util/format';
 import { NgClassType, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import { DisabledTimeFn } from 'ng-zorro-antd/date-picker';
@@ -103,7 +104,6 @@ declare class STComponent implements AfterViewInit, OnChanges {
     private readonly exportSrv;
     private readonly columnSource;
     private readonly dataSource;
-    private readonly delonI18n;
     private readonly cms;
     private readonly destroy$;
     private readonly cogSrv;
@@ -116,7 +116,7 @@ declare class STComponent implements AfterViewInit, OnChanges {
     private _widthMode;
     private customWidthConfig;
     _widthConfig: string[];
-    locale: LocaleData;
+    locale: i0.Signal<_delon_theme.STLocaleData>;
     _loading: boolean;
     _data: STData[];
     _statistical: STStatisticalResults;

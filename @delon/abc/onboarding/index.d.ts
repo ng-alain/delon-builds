@@ -104,7 +104,6 @@ interface OnboardingItem {
 }
 
 declare class OnboardingService implements OnDestroy {
-    private readonly i18n;
     private readonly appRef;
     private readonly router;
     private readonly doc;
@@ -118,6 +117,7 @@ declare class OnboardingService implements OnDestroy {
     private running$;
     private _running;
     private type;
+    private locale;
     private _getDoc;
     /**
      * Get whether it is booting

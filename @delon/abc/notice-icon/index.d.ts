@@ -1,7 +1,7 @@
 import * as _angular_core from '@angular/core';
 import { TemplateRef } from '@angular/core';
 import { NzSafeAny, NgClassType } from 'ng-zorro-antd/core/types';
-import * as i2 from '@delon/theme';
+import * as _delon_theme from '@delon/theme';
 import { LocaleData } from '@delon/theme';
 import * as i1 from '@angular/common';
 import * as i3 from 'ng-zorro-antd/badge';
@@ -61,7 +61,7 @@ declare class NoticeIconTabComponent {
 }
 
 declare class NoticeIconComponent {
-    locale: _angular_core.Signal<LocaleData>;
+    locale: _angular_core.Signal<_delon_theme.NoticeIconLocaleData>;
     data: _angular_core.InputSignal<NoticeItem[]>;
     count: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
     loading: _angular_core.InputSignalWithTransform<boolean, unknown>;
@@ -82,7 +82,7 @@ declare class NoticeIconComponent {
 
 declare class NoticeIconModule {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NoticeIconModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<NoticeIconModule, never, [typeof i1.CommonModule, typeof i2.DelonLocaleModule, typeof i3.NzBadgeModule, typeof i4.NzDropDownModule, typeof i5.NzIconModule, typeof i6.NzListModule, typeof i7.NzSpinModule, typeof i8.NzTabsModule, typeof i9.NzTagModule, typeof i10.NzOutletModule, typeof NoticeIconComponent, typeof NoticeIconTabComponent], [typeof NoticeIconComponent]>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<NoticeIconModule, never, [typeof i1.CommonModule, typeof _delon_theme.DelonLocaleModule, typeof i3.NzBadgeModule, typeof i4.NzDropDownModule, typeof i5.NzIconModule, typeof i6.NzListModule, typeof i7.NzSpinModule, typeof i8.NzTabsModule, typeof i9.NzTagModule, typeof i10.NzOutletModule, typeof NoticeIconComponent, typeof NoticeIconTabComponent], [typeof NoticeIconComponent]>;
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<NoticeIconModule>;
 }
 

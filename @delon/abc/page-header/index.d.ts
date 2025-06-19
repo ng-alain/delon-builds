@@ -1,6 +1,6 @@
-import { Direction } from '@angular/cdk/bidi';
 import * as i0 from '@angular/core';
 import { OnInit, OnChanges, AfterViewInit, TemplateRef } from '@angular/core';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/router';
@@ -22,8 +22,6 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly i18nSrv;
     private readonly titleSrv;
     private readonly reuseSrv;
-    private readonly directionality;
-    private readonly destroy$;
     private readonly settings;
     private readonly platform;
     private readonly cogSrv;
@@ -31,7 +29,7 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     private affix;
     inited: boolean;
     isBrowser: boolean;
-    dir?: Direction;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     private get menus();
     _titleVal: string | null;
     paths: PageHeaderPath[];

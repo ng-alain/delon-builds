@@ -4,7 +4,7 @@ import * as i2 from '@angular/router';
 import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { Direction } from '@angular/cdk/bidi';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as i1 from '@angular/common';
 import * as i3 from '@delon/theme';
 import * as i4 from 'ng-zorro-antd/menu';
@@ -129,7 +129,7 @@ type ReuseCanClose = (options: {
 }) => Observable<boolean>;
 
 declare class ReuseTabContextMenuComponent implements OnInit {
-    private readonly i18nSrv;
+    private locale;
     private _i18n;
     set i18n(value: ReuseContextI18n);
     get i18n(): ReuseContextI18n;
@@ -176,7 +176,6 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     private readonly i18nSrv;
     private readonly doc;
     private readonly platform;
-    private readonly directionality;
     private readonly stateKey;
     private readonly stateSrv;
     private tabset;
@@ -185,7 +184,7 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     list: ReuseItem[];
     item?: ReuseItem;
     pos: number;
-    dir?: Direction;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     mode: ReuseTabMatchMode;
     i18n?: ReuseContextI18n;
     debug: boolean;

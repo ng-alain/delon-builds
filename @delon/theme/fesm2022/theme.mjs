@@ -1,13 +1,13 @@
 import { DOCUMENT, isPlatformServer, CommonModule, registerLocaleData } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, DestroyRef, Injector, Pipe, Inject, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, provideEnvironmentInitializer, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, PLATFORM_ID, InjectionToken, Injectable, DestroyRef, Injector, Pipe, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, provideEnvironmentInitializer, makeEnvironmentProviders, Version } from '@angular/core';
 import { BehaviorSubject, filter, share, Subject, map, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
 import { Directionality } from '@angular/cdk/bidi';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DragDrop } from '@angular/cdk/drag-drop';
@@ -1630,11 +1630,11 @@ var zhCN = {
 };
 
 class DelonLocaleService {
+    defLocale = inject(DELON_LOCALE, { optional: true });
     _locale = zhCN;
     change$ = new BehaviorSubject(this._locale);
-    // eslint-disable-next-line @angular-eslint/prefer-inject
-    constructor(locale) {
-        this.setLocale(locale || zhCN);
+    constructor() {
+        this.setLocale(this.defLocale || zhCN);
     }
     get change() {
         return this.change$.asObservable();
@@ -1646,28 +1646,31 @@ class DelonLocaleService {
         this._locale = locale;
         this.change$.next(locale);
     }
+    valueSignal(key) {
+        const ret = toSignal(this.change.pipe(map(() => this.getData(key))), {
+            initialValue: this._locale[key]
+        });
+        return ret;
+    }
     get locale() {
         return this._locale;
     }
-    getData(path) {
-        return (this._locale[path] || {});
+    getData(key) {
+        return (this._locale[key] || {});
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: DelonLocaleService, deps: [{ token: DELON_LOCALE }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: DelonLocaleService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: DelonLocaleService });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: DelonLocaleService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: undefined, decorators: [{
-                    type: Inject,
-                    args: [DELON_LOCALE]
-                }] }] });
-function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist, locale) {
-    return exist || new DelonLocaleService(locale);
+        }], ctorParameters: () => [] });
+function DELON_LOCALE_SERVICE_PROVIDER_FACTORY(exist) {
+    return exist || new DelonLocaleService();
 }
 const DELON_LOCALE_SERVICE_PROVIDER = {
     provide: DelonLocaleService,
     useFactory: DELON_LOCALE_SERVICE_PROVIDER_FACTORY,
-    deps: [[new Optional(), new SkipSelf(), DelonLocaleService], DELON_LOCALE]
+    deps: [[new Optional(), new SkipSelf(), DelonLocaleService]]
 };
 
 class DelonLocaleModule {

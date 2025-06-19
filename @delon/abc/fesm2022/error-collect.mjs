@@ -3,7 +3,7 @@ import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { inject, ElementRef, DestroyRef, signal, input, numberAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
-import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { interval } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
@@ -17,7 +17,7 @@ class ErrorCollectComponent {
     formEl = null;
     _hiden = signal(true);
     count = signal(0);
-    dir = toSignal(inject(Directionality).change);
+    dir = inject(Directionality).valueSignal;
     freq = input(0, { transform: numberAttribute });
     offsetTop = input(0, { transform: numberAttribute });
     constructor() {

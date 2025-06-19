@@ -151,7 +151,6 @@ class LocalStorageStore {
 }
 
 class OnboardingService {
-    i18n = inject(DelonLocaleService);
     appRef = inject(ApplicationRef);
     router = inject(Router);
     doc = inject(DOCUMENT);
@@ -165,6 +164,7 @@ class OnboardingService {
     running$ = null;
     _running = false;
     type = null;
+    locale = inject(DelonLocaleService).valueSignal('onboarding');
     _getDoc() {
         return this.doc;
     }
@@ -235,7 +235,7 @@ class OnboardingService {
             position: 'bottomLeft',
             before: of(true),
             after: of(true),
-            ...this.i18n.getData('onboarding'),
+            ...this.locale(),
             ...items[this.active]
         };
         const dir = this.configSrv.get('onboarding').direction || this.directionality.value;

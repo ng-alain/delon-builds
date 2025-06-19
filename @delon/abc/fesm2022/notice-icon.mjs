@@ -4,8 +4,6 @@ import { input, output, ViewEncapsulation, Component, inject, numberAttribute, b
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzListComponent, NzListItemComponent, NzListItemMetaComponent, NzListModule } from 'ng-zorro-antd/list';
 import { NzTagComponent, NzTagModule } from 'ng-zorro-antd/tag';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NzBadgeComponent, NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzDropDownDirective, NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -40,9 +38,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
         }] });
 
 class NoticeIconComponent {
-    locale = toSignal(inject(DelonLocaleService).change.pipe(map(data => data['noticeIcon'])), {
-        requireSync: true
-    });
+    locale = inject(DelonLocaleService).valueSignal('noticeIcon');
     data = input([]);
     count = input(undefined, { transform: numberAttribute });
     loading = input(false, { transform: booleanAttribute });

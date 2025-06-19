@@ -1,7 +1,7 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i0 from '@angular/core';
 import { OnInit } from '@angular/core';
-import { Direction } from '@angular/cdk/bidi';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import { Layout } from '@delon/theme';
 
 declare class SettingDrawerItemComponent {
@@ -21,14 +21,12 @@ declare class SettingDrawerComponent implements OnInit {
     private readonly lazy;
     private readonly ngZone;
     private readonly doc;
-    private readonly directionality;
-    private readonly destroy$;
     autoApplyColor: boolean;
     compilingText: string;
     devTips: string;
     lessJs: string;
     private loadedLess;
-    dir?: Direction;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     isDev: boolean;
     collapse: boolean;
     get layout(): Layout;

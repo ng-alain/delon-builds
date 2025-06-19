@@ -1,8 +1,7 @@
 import * as _angular_platform_browser from '@angular/platform-browser';
 import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as _angular_core from '@angular/core';
-import * as i4 from '@delon/theme';
-import { LocaleData } from '@delon/theme';
+import * as _delon_theme from '@delon/theme';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/cdk/observers';
 import * as i3 from '@angular/router';
@@ -10,13 +9,11 @@ import * as i5 from 'ng-zorro-antd/button';
 
 type ExceptionType = 403 | 404 | 500;
 declare class ExceptionComponent {
-    private readonly i18n;
     private readonly dom;
-    private readonly directionality;
     private readonly cogSrv;
     private readonly conTpl;
-    locale: _angular_core.Signal<LocaleData>;
-    dir: _angular_core.Signal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
+    locale: _angular_core.Signal<_delon_theme.ExceptionLocaleData>;
+    dir: _angular_core.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     hasCon: _angular_core.WritableSignal<boolean>;
     private typeDict;
     typeItem: _angular_core.WritableSignal<{
@@ -40,7 +37,7 @@ declare class ExceptionComponent {
 
 declare class ExceptionModule {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<ExceptionModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<ExceptionModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.RouterModule, typeof i4.DelonLocaleModule, typeof i5.NzButtonModule, typeof ExceptionComponent], [typeof ExceptionComponent]>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<ExceptionModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.RouterModule, typeof _delon_theme.DelonLocaleModule, typeof i5.NzButtonModule, typeof ExceptionComponent], [typeof ExceptionComponent]>;
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<ExceptionModule>;
 }
 
