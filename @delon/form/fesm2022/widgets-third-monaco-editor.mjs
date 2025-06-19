@@ -67,7 +67,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
       />
     </sf-item-wrap>
   `,
-                    preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None,
                     imports: [FormsModule, DelonFormModule, NuMonacoEditorComponent]
                 }]

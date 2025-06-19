@@ -1493,7 +1493,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
                         '[class.st__filter]': `true`,
                         '[class.ant-table-filter-trigger-container-open]': `visible`
                     },
-                    preserveWhitespaces: false,
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None,
                     imports: [
@@ -1701,7 +1700,7 @@ class STTdComponent {
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImport: i0, type: STTdComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'st-td', preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
+            args: [{ selector: 'st-td', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
                         FormsModule,
                         NzTooltipDirective,
                         NgTemplateOutlet,
@@ -2484,7 +2483,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
                         '[class.st__row-class]': `rowClassName`,
                         '[class.ant-table-rep]': `responsive`,
                         '[class.ant-table-rep__hide-header-footer]': `responsiveHideHeaderFooter`
-                    }, preserveWhitespaces: false, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
+                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
                         FormsModule,
                         NzTableModule,
                         NzTooltipDirective,

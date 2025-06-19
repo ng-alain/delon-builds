@@ -164,7 +164,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "19.2.6", ngImpor
       }
     </nz-autocomplete>
   </sf-item-wrap>`,
-                    preserveWhitespaces: false,
                     encapsulation: ViewEncapsulation.None,
                     imports: [AsyncPipe, FormsModule, DelonFormModule, NzInputModule, NzAutocompleteModule]
                 }]
