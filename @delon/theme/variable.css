@@ -35097,13 +35097,6 @@ body {
 .sidebar-nav__item-disabled:hover {
   color: rgba(0, 0, 0, 0.85);
 }
-.sidebar-nav__divider {
-  height: 1px;
-  margin: 4px 0;
-  overflow: hidden;
-  line-height: 0;
-  background-color: var(--alain-default-aside-nav-divider, #efe3e5);
-}
 .sidebar-nav__selected {
   border-left-color: var(--ant-primary-color);
   background-color: var(--alain-default-aside-nav-selected-bg, #fcfcfc);

@@ -205,8 +205,6 @@ class MenuService {
     }
     fixItem(item) {
         item._aclResult = true;
-        if (!item.render_type)
-            item.render_type = 'item';
         if (!item.link)
             item.link = '';
         if (!item.externalLink)
