@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
-import { InjectionToken, makeEnvironmentProviders, Optional, Inject, Injectable, inject } from '@angular/core';
-import * as i1 from '@delon/util/config';
+import { InjectionToken, makeEnvironmentProviders, inject, Injectable } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 import { HttpErrorResponse, HttpResponse, HttpResponseBase } from '@angular/common/http';
 import { of, from, isObservable, map, switchMap, throwError, delay as delay$1 } from 'rxjs';
 import { deepCopy } from '@delon/util/other';
@@ -27,11 +27,13 @@ function provideMockConfig(config) {
 }
 
 class MockService {
+    cogSrv = inject(AlainConfigService);
+    options = inject(DELON_MOCK_CONFIG, { optional: true });
     cached = [];
     config;
-    constructor(cogSrv, options) {
-        this.config = cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
-        this.setData(options?.data);
+    constructor() {
+        this.config = this.cogSrv.merge('mock', MOCK_DEFULAT_CONFIG);
+        this.setData(this.options?.data);
     }
     /**
      * Reset request data
@@ -154,18 +156,13 @@ class MockService {
     ngOnDestroy() {
         this.clearCache();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, deps: [{ token: i1.AlainConfigService }, { token: DELON_MOCK_CONFIG, optional: true }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: MockService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }, { type: undefined, decorators: [{
-                    type: Optional
-                }, {
-                    type: Inject,
-                    args: [DELON_MOCK_CONFIG]
-                }] }] });
+        }], ctorParameters: () => [] });
 
 const mockInterceptor = (req, next) => {
     const src = inject(MockService);

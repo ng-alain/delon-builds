@@ -5,8 +5,8 @@ import { TemplateRef, AfterViewInit, OnChanges, EventEmitter, TrackByFunction, S
 import { Observable } from 'rxjs';
 import { ThemeType } from '@ant-design/icons-angular';
 import { CellOptions } from '@delon/abc/cell';
-import { ACLCanType, ACLService } from '@delon/acl';
-import { LocaleData, ModalHelperOptions, DrawerHelperOptions, YNMode, AlainI18NService, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
+import { ACLCanType } from '@delon/acl';
+import { LocaleData, ModalHelperOptions, DrawerHelperOptions, YNMode, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
 import { CurrencyFormatOptions, CurrencyService } from '@delon/util/format';
 import { NgClassType, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import { DisabledTimeFn } from 'ng-zorro-antd/date-picker';
@@ -15,7 +15,7 @@ import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { NzTableComponent, NzTableSortOrder, NzTablePaginationType } from 'ng-zorro-antd/table';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
-import { AlainSTConfig, AlainConfigService } from '@delon/util/config';
+import { AlainSTConfig } from '@delon/util/config';
 import { NzDropdownMenuComponent } from 'ng-zorro-antd/dropdown';
 import { NzResizeEvent } from 'ng-zorro-antd/resizable';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
@@ -106,6 +106,7 @@ declare class STComponent implements AfterViewInit, OnChanges {
     private readonly delonI18n;
     private readonly cms;
     private readonly destroy$;
+    private readonly cogSrv;
     private totalTpl;
     private inied;
     cog: AlainSTConfig;
@@ -202,7 +203,7 @@ declare class STComponent implements AfterViewInit, OnChanges {
      */
     get list(): STData[];
     get noColumns(): boolean;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private setCog;
     cd(): this;
     private refreshData;
@@ -1542,35 +1543,6 @@ interface STDragOptions {
     sorted?: (e: CdkDragSortEvent<any>) => void;
 }
 
-declare class STRowSource {
-    private titles;
-    private rows;
-    add(type: string | undefined, path: string, ref: TemplateRef<void>): void;
-    getTitle(path: string): TemplateRef<void>;
-    getRow(path: string): TemplateRef<void>;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STRowSource, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<STRowSource>;
-}
-declare class STRowDirective implements OnInit {
-    private readonly source;
-    private readonly ref;
-    id: string;
-    type?: 'title';
-    ngOnInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STRowDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<STRowDirective, "[st-row]", never, { "id": { "alias": "st-row"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, true, never>;
-}
-
-declare class STWidgetRegistry {
-    private _widgets;
-    get widgets(): NzSafeAny;
-    register(type: string, widget: NzSafeAny): void;
-    has(type: string): boolean;
-    get(type: string): NzSafeAny;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STWidgetRegistry, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<STWidgetRegistry>;
-}
-
 interface STColumnSourceProcessOptions {
     widthMode: STWidthMode;
     resizable?: STResizable;
@@ -1578,13 +1550,12 @@ interface STColumnSourceProcessOptions {
     expand: boolean;
 }
 declare class STColumnSource {
-    private dom;
-    private rowSource;
-    private acl;
-    private i18nSrv;
-    private stWidgetRegistry;
+    private readonly dom;
+    private readonly rowSource;
+    private readonly acl;
+    private readonly i18nSrv;
+    private readonly stWidgetRegistry;
     private cog;
-    constructor(dom: DomSanitizer, rowSource: STRowSource, acl: ACLService, i18nSrv: AlainI18NService, stWidgetRegistry: STWidgetRegistry);
     setCog(val: AlainSTConfig): void;
     private fixPop;
     private btnCoerce;
@@ -1606,7 +1577,7 @@ declare class STColumnSource {
     restoreAllRender(columns: _STColumn[]): void;
     updateDefault(filter: STColumnFilter): this;
     cleanFilter(col: _STColumn): this;
-    static ɵfac: i0.ɵɵFactoryDeclaration<STColumnSource, [null, { host: true; }, { optional: true; }, { optional: true; }, null]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STColumnSource, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<STColumnSource>;
 }
 
@@ -1687,6 +1658,16 @@ declare class STExport {
     static ɵprov: i0.ɵɵInjectableDeclaration<STExport>;
 }
 
+declare class STWidgetRegistry {
+    private _widgets;
+    get widgets(): NzSafeAny;
+    register(type: string, widget: NzSafeAny): void;
+    has(type: string): boolean;
+    get(type: string): NzSafeAny;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STWidgetRegistry, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<STWidgetRegistry>;
+}
+
 declare class STWidgetHostDirective implements OnInit {
     private readonly stWidgetRegistry;
     private readonly viewContainerRef;
@@ -1695,6 +1676,16 @@ declare class STWidgetHostDirective implements OnInit {
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<STWidgetHostDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<STWidgetHostDirective, "[st-widget-host]", never, { "record": { "alias": "record"; "required": false; }; "column": { "alias": "column"; "required": false; }; }, {}, never, never, true, never>;
+}
+
+declare class STRowDirective implements OnInit {
+    private readonly source;
+    private readonly ref;
+    id: string;
+    type?: 'title';
+    ngOnInit(): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<STRowDirective, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<STRowDirective, "[st-row]", never, { "id": { "alias": "st-row"; "required": false; }; "type": { "alias": "type"; "required": false; }; }, {}, never, never, true, never>;
 }
 
 declare const ST_DEFAULT_CONFIG: AlainSTConfig;

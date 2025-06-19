@@ -3,17 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
 import { inject, NgZone, Injectable, Input, Directive, NgModule } from '@angular/core';
 import isUtf8 from 'isutf8';
+import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
-import * as i1 from '@delon/util/config';
 
 class XlsxService {
     http = inject(HttpClient);
     lazy = inject(LazyService);
     ngZone = inject(NgZone);
+    cogSrv = inject(AlainConfigService);
     cog;
-    constructor(configSrv) {
-        this.cog = configSrv.merge('xlsx', {
+    constructor() {
+        this.cog = this.cogSrv.merge('xlsx', {
             url: 'https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js',
             modules: [`https://cdn.jsdelivr.net/npm/xlsx/dist/cpexcel.js`]
         });
@@ -114,7 +115,7 @@ class XlsxService {
         } while (val > 0);
         return res;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: XlsxService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: XlsxService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: XlsxService, providedIn: 'root' });
 }
 __decorate([
@@ -126,7 +127,7 @@ __decorate([
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: XlsxService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { read: [], export: [] } });
+        }], ctorParameters: () => [], propDecorators: { read: [], export: [] } });
 
 class XlsxDirective {
     srv = inject(XlsxService);

@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
-import { Injectable, inject, ViewContainerRef, TemplateRef, Input, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
+import { inject, Injectable, ViewContainerRef, TemplateRef, Input, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
 import { BehaviorSubject, filter, of, Observable, map, tap } from 'rxjs';
-import * as i1 from '@delon/util/config';
+import { AlainConfigService } from '@delon/util/config';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -14,6 +14,7 @@ const ACL_DEFAULT_CONFIG = {
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
  */
 class ACLService {
+    cogSrv = inject(AlainConfigService);
     options;
     roles = [];
     abilities = [];
@@ -34,8 +35,8 @@ class ACLService {
     get guard_url() {
         return this.options.guard_url;
     }
-    constructor(configSrv) {
-        this.options = configSrv.merge('acl', ACL_DEFAULT_CONFIG);
+    constructor() {
+        this.options = this.cogSrv.merge('acl', ACL_DEFAULT_CONFIG);
     }
     parseACLType(val) {
         let t;
@@ -192,13 +193,13 @@ class ACLService {
     canAbility(value) {
         return this.can(this.parseAbility(value));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ACLService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ACLService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ACLService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ACLService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 class ACLIfDirective {
     srv = inject(ACLService);

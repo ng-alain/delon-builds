@@ -1,12 +1,13 @@
 import * as i0 from '@angular/core';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
-import * as i1 from '@delon/util/config';
 
 class ArrayService {
+    cogSrv = inject(AlainConfigService);
     c;
-    constructor(cog) {
-        this.c = cog.merge('utilArray', {
+    constructor() {
+        this.c = this.cogSrv.merge('utilArray', {
             deepMapName: 'deep',
             parentMapName: 'parent',
             idMapName: 'id',
@@ -269,13 +270,13 @@ class ArrayService {
         }, new Map())
             .values());
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ArrayService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ArrayService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ArrayService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ArrayService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 /**
  * Generated bundle index. Do not edit.

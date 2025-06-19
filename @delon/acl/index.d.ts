@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
-import { AlainConfigService, AlainACLConfig } from '@delon/util/config';
 import * as i0 from '@angular/core';
 import { Injector, OnDestroy, TemplateRef } from '@angular/core';
+import { AlainACLConfig } from '@delon/util/config';
 import { CanActivateFn, CanActivateChildFn, CanMatchFn } from '@angular/router';
 import * as i1 from '@angular/common';
 
@@ -44,6 +44,7 @@ interface ACLGuardData {
  * ACL 控制服务，[在线文档](https://ng-alain.com/acl)
  */
 declare class ACLService {
+    private readonly cogSrv;
     private options;
     private roles;
     private abilities;
@@ -58,7 +59,7 @@ declare class ACLService {
         abilities: Array<string | number>;
     };
     get guard_url(): string;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private parseACLType;
     /**
      * 设置当前用户角色或权限能力（会先清除所有）

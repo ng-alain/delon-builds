@@ -1,11 +1,12 @@
 import * as i0 from '@angular/core';
 import { inject, Injectable, NgModule } from '@angular/core';
 import { Subject, of } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
-import * as i1 from '@delon/util/config';
 
 class LodopService {
     scriptSrv = inject(LazyService);
+    cogSrv = inject(AlainConfigService);
     defaultConfig;
     _cog;
     pending = false;
@@ -13,8 +14,8 @@ class LodopService {
     _init = new Subject();
     _events = new Subject();
     printBuffer = [];
-    constructor(configSrv) {
-        this.defaultConfig = configSrv.merge('lodop', {
+    constructor() {
+        this.defaultConfig = this.cogSrv.merge('lodop', {
             url: 'http://localhost:8443/CLodopfuncs.js',
             name: 'CLODOP',
             companyName: '',
@@ -217,13 +218,13 @@ class LodopService {
         this._init.unsubscribe();
         this._events.unsubscribe();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: LodopService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: LodopService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: LodopService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: LodopService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 class LodopModule {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: LodopModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });

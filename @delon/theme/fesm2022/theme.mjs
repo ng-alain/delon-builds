@@ -3,7 +3,6 @@ import * as i0 from '@angular/core';
 import { inject, PLATFORM_ID, InjectionToken, Injectable, DestroyRef, Injector, Pipe, Inject, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, provideEnvironmentInitializer, makeEnvironmentProviders, Version } from '@angular/core';
 import { BehaviorSubject, filter, share, Subject, map, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
-import * as i1 from '@delon/util/config';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
 import { Directionality } from '@angular/cdk/bidi';
@@ -20,7 +19,7 @@ import { formatDate } from '@delon/util/date-time';
 import { NzI18nService, NzI18nModule, provideNzI18n, NZ_DATE_LOCALE } from 'ng-zorro-antd/i18n';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { BellOutline, DeleteOutline, PlusOutline, InboxOutline, MenuFoldOutline, MenuUnfoldOutline } from '@ant-design/icons-angular/icons';
-import * as i1$1 from 'ng-zorro-antd/icon';
+import * as i1 from 'ng-zorro-antd/icon';
 import { NzIconService } from 'ng-zorro-antd/icon';
 
 function stepPreloader() {
@@ -50,9 +49,10 @@ function stepPreloader() {
 
 const ALAIN_I18N_TOKEN = new InjectionToken('alainI18nToken', {
     providedIn: 'root',
-    factory: () => new AlainI18NServiceFake(inject(AlainConfigService))
+    factory: () => new AlainI18NServiceFake()
 });
 class AlainI18nBaseService {
+    cogSrv = inject(AlainConfigService);
     cog;
     _change$ = new BehaviorSubject(null);
     _currentLang = '';
@@ -70,8 +70,8 @@ class AlainI18nBaseService {
     get data() {
         return this._data;
     }
-    constructor(cogSrv) {
-        this.cog = cogSrv.merge('themeI18n', {
+    constructor() {
+        this.cog = this.cogSrv.merge('themeI18n', {
             interpolation: ['{{', '}}']
         });
     }
@@ -123,12 +123,12 @@ class AlainI18nBaseService {
         (Array.isArray(params) ? params : [params]).forEach((item, index) => (content = content.replace(new RegExp(`\\{\\s?${index}\\s?\\}`, 'g'), `${item}`)));
         return content;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainI18nBaseService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainI18nBaseService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainI18nBaseService });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainI18nBaseService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 class AlainI18NServiceFake extends AlainI18nBaseService {
     use(lang, data) {
         this._data = this.flatData(data ?? {}, []);
@@ -560,9 +560,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
 const REP_MAX = 6;
 const SPAN_MAX = 24;
 class ResponsiveService {
+    cogSrv = inject(AlainConfigService);
     cog;
-    constructor(cogSrv) {
-        this.cog = cogSrv.merge('themeResponsive', {
+    constructor() {
+        this.cog = this.cogSrv.merge('themeResponsive', {
             rules: {
                 1: { xs: 24 },
                 2: { xs: 24, sm: 12 },
@@ -600,13 +601,13 @@ class ResponsiveService {
             clsMap.push(`${antColClass}-xxl-${paddingSpan(rule.xxl)}`);
         return clsMap;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ResponsiveService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ResponsiveService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ResponsiveService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ResponsiveService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 const HTML_DIR = 'dir';
 const RTL_DIRECTION = 'direction';
@@ -1159,9 +1160,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
  */
 class _HttpClient {
     http = inject(HttpClient);
+    cogSrv = inject(AlainConfigService);
     cog;
-    constructor(cogSrv) {
-        this.cog = cogSrv.merge('themeHttp', {
+    constructor() {
+        this.cog = this.cogSrv.merge('themeHttp', {
             nullValueHandling: 'include',
             dateValueHandling: 'timestamp'
         });
@@ -1292,13 +1294,13 @@ class _HttpClient {
         // Make sure to always be asynchronous, see issues: https://github.com/ng-alain/ng-alain/issues/1954
         delay(0), tap(() => this.push()), switchMap(() => this.http.request(method, url, options)), finalize(() => this.pop()));
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: _HttpClient, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: _HttpClient, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: _HttpClient, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: _HttpClient, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 /**
  * Every http decorator must be based on `BaseAPI`, Like this:
@@ -1630,6 +1632,7 @@ var zhCN = {
 class DelonLocaleService {
     _locale = zhCN;
     change$ = new BehaviorSubject(this._locale);
+    // eslint-disable-next-line @angular-eslint/prefer-inject
     constructor(locale) {
         this.setLocale(locale || zhCN);
     }
@@ -2927,7 +2930,7 @@ class AlainThemeModule {
             providers: HELPERS
         };
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1$1.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainThemeModule, deps: [{ token: i1.NzIconService }], target: i0.ɵɵFactoryTarget.NgModule });
     static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.0.4", ngImport: i0, type: AlainThemeModule, imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe], exports: [DatePipe, KeysPipe, YNPipe, I18nPipe, HTMLPipe, URLPipe, DelonLocaleModule] });
     static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: AlainThemeModule, providers: [ALAIN_SETTING_DEFAULT], imports: [CommonModule, RouterModule, OverlayModule, NzI18nModule, DelonLocaleModule] });
 }
@@ -2938,7 +2941,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     providers: [ALAIN_SETTING_DEFAULT],
                     exports: [...PIPES, DelonLocaleModule]
                 }]
-        }], ctorParameters: () => [{ type: i1$1.NzIconService }] });
+        }], ctorParameters: () => [{ type: i1.NzIconService }] });
 
 function provideAlain(options) {
     const lang = options?.defaultLang;

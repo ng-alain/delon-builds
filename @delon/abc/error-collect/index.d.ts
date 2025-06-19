@@ -1,7 +1,6 @@
 import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as _angular_core from '@angular/core';
 import { OnInit } from '@angular/core';
-import { AlainConfigService } from '@delon/util/config';
 import * as i1 from '@angular/common';
 import * as i2 from 'ng-zorro-antd/icon';
 
@@ -10,13 +9,14 @@ declare class ErrorCollectComponent implements OnInit {
     private readonly doc;
     private readonly platform;
     private readonly destroy$;
+    private readonly cogSrv;
     private formEl;
     _hiden: _angular_core.WritableSignal<boolean>;
     count: _angular_core.WritableSignal<number>;
     dir: _angular_core.Signal<_angular_cdk_bidi_module_d_IN1Vp56w.a | undefined>;
     readonly freq: _angular_core.InputSignalWithTransform<number, unknown>;
     readonly offsetTop: _angular_core.InputSignalWithTransform<number, unknown>;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private get errEls();
     private update;
     _click(): boolean;

@@ -2,7 +2,7 @@ import { HttpRequest, HttpInterceptorFn } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import * as i0 from '@angular/core';
 import { OnDestroy, InjectionToken, EnvironmentProviders } from '@angular/core';
-import { AlainMockConfig, AlainConfigService } from '@delon/util/config';
+import { AlainMockConfig } from '@delon/util/config';
 
 type MockCallback = any | Observable<any> | Promise<any>;
 interface MockOptions {
@@ -43,9 +43,11 @@ declare class MockStatusError {
 }
 
 declare class MockService implements OnDestroy {
+    private readonly cogSrv;
+    private readonly options;
     private cached;
     readonly config: AlainMockConfig;
-    constructor(cogSrv: AlainConfigService, options?: MockOptions);
+    constructor();
     /**
      * Reset request data
      *
@@ -60,7 +62,7 @@ declare class MockService implements OnDestroy {
     clearCache(): void;
     get rules(): MockCachedRule[];
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<MockService, [null, { optional: true; }]>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<MockService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<MockService>;
 }
 

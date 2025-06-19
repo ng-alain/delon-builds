@@ -1,20 +1,18 @@
 import * as i0 from '@angular/core';
-import { TemplateRef, QueryList, ElementRef, Renderer2, OnInit, OnDestroy, EventEmitter, AfterViewInit } from '@angular/core';
+import { TemplateRef, QueryList, OnInit, OnDestroy, EventEmitter, AfterViewInit } from '@angular/core';
 import * as i8 from '@angular/router';
-import { Router, Event } from '@angular/router';
-import { SettingsService, MenuInner, Menu, App } from '@delon/theme';
+import { Event } from '@angular/router';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { NzMessageService } from 'ng-zorro-antd/message';
-import { BreakpointObserver } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
 import { Direction } from '@angular/cdk/bidi';
 import { SafeHtml } from '@angular/platform-browser';
+import { MenuInner, Menu, App } from '@delon/theme';
 import * as i7 from '@angular/common';
 import * as i9 from 'ng-zorro-antd/tooltip';
 import * as i10 from 'ng-zorro-antd/icon';
 import * as i11 from 'ng-zorro-antd/avatar';
 import * as i12 from 'ng-zorro-antd/dropdown';
 import * as i13 from 'ng-zorro-antd/badge';
+import { Observable } from 'rxjs';
 
 type LayoutDefaultHeaderItemHidden = 'pc' | 'mobile' | 'none';
 type LayoutDefaultHeaderItemDirection = 'left' | 'middle' | 'right';
@@ -83,39 +81,7 @@ declare class LayoutDefaultHeaderItemComponent {
     static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderItemComponent, "layout-default-header-item", never, { "hidden": { "alias": "hidden"; "required": false; }; "direction": { "alias": "direction"; "required": false; }; }, {}, never, ["*"], false, never>;
 }
 
-declare class LayoutDefaultService {
-    private readonly settings;
-    private _options$;
-    private _options;
-    get options(): LayoutDefaultOptions;
-    get options$(): Observable<LayoutDefaultOptions>;
-    get collapsedIcon(): string;
-    constructor(bm: BreakpointObserver);
-    private checkMedia;
-    private notify;
-    /**
-     * Set layout configuration
-     *
-     * 设置布局配置
-     */
-    setOptions(options?: LayoutDefaultOptions | null): void;
-    /**
-     * Toggle the collapsed state of the sidebar menu bar
-     *
-     * 切换侧边栏菜单栏折叠状态
-     */
-    toggleCollapsed(status?: boolean): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<LayoutDefaultService>;
-}
-
 declare class LayoutDefaultComponent {
-    private msgSrv;
-    private settings;
-    private el;
-    private renderer;
-    private doc;
-    private srv;
     headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
     get opt(): LayoutDefaultOptions;
     set options(value: LayoutDefaultOptions | null | undefined);
@@ -131,7 +97,14 @@ declare class LayoutDefaultComponent {
     get collapsed(): boolean;
     get collapsedIcon(): string;
     toggleCollapsed(): void;
-    constructor(router: Router, msgSrv: NzMessageService, settings: SettingsService, el: ElementRef, renderer: Renderer2, doc: NzSafeAny, srv: LayoutDefaultService);
+    private readonly router;
+    private readonly msgSrv;
+    private readonly settings;
+    private readonly el;
+    private readonly renderer;
+    private readonly doc;
+    private readonly srv;
+    constructor();
     processEv(ev: Event): void;
     private setClass;
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
@@ -240,6 +213,33 @@ declare class LayoutDefaultModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultModule, never>;
     static ɵmod: i0.ɵɵNgModuleDeclaration<LayoutDefaultModule, [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent], [typeof i7.CommonModule, typeof i8.RouterModule, typeof i9.NzToolTipModule, typeof i10.NzIconModule, typeof i11.NzAvatarModule, typeof i12.NzDropDownModule, typeof i13.NzBadgeModule], [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<LayoutDefaultModule>;
+}
+
+declare class LayoutDefaultService {
+    private readonly settings;
+    private readonly bm;
+    private _options$;
+    private _options;
+    get options(): LayoutDefaultOptions;
+    get options$(): Observable<LayoutDefaultOptions>;
+    get collapsedIcon(): string;
+    constructor();
+    private checkMedia;
+    private notify;
+    /**
+     * Set layout configuration
+     *
+     * 设置布局配置
+     */
+    setOptions(options?: LayoutDefaultOptions | null): void;
+    /**
+     * Toggle the collapsed state of the sidebar menu bar
+     *
+     * 切换侧边栏菜单栏折叠状态
+     */
+    toggleCollapsed(status?: boolean): void;
+    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<LayoutDefaultService>;
 }
 
 export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent, LayoutDefaultService, LayoutDefaultTopMenuItemComponent };

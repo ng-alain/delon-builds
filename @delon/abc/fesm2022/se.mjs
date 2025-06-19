@@ -1,8 +1,8 @@
 import * as i0 from '@angular/core';
 import { inject, ElementRef, Renderer2, ViewEncapsulation, ChangeDetectionStrategy, Component, booleanAttribute, numberAttribute, Input, ChangeDetectorRef, DestroyRef, TemplateRef, ViewChild, ContentChild, NgModule } from '@angular/core';
 import { BehaviorSubject, filter } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
-import * as i1 from '@delon/util/config';
 import { CdkObserveContent } from '@angular/cdk/observers';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Validators, RequiredValidator, NgModel, FormControlName } from '@angular/forms';
@@ -49,6 +49,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                 }]
         }], ctorParameters: () => [] });
 class SEContainerComponent {
+    cogSrv = inject(AlainConfigService);
     errorNotify$ = new BehaviorSubject(null);
     colInCon;
     col;
@@ -85,8 +86,8 @@ class SEContainerComponent {
     get errorNotify() {
         return this.errorNotify$.pipe(filter(v => v != null));
     }
-    constructor(configSrv) {
-        configSrv.attach(this, 'se', {
+    constructor() {
+        this.cogSrv.attach(this, 'se', {
             size: 'default',
             nzLayout: 'horizontal',
             gutter: 32,
@@ -101,7 +102,7 @@ class SEContainerComponent {
             this.errorNotify$.next(error);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: SEContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: SEContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.0.4", type: SEContainerComponent, isStandalone: true, selector: "se-container, [se-container]", inputs: { colInCon: ["se-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], col: ["col", "col", (v) => (v == null ? null : numberAttribute(v))], labelWidth: ["labelWidth", "labelWidth", (v) => (v == null ? null : numberAttribute(v))], noColon: ["noColon", "noColon", booleanAttribute], title: "title", gutter: ["gutter", "gutter", numberAttribute], nzLayout: "nzLayout", size: "size", firstVisual: ["firstVisual", "firstVisual", booleanAttribute], ingoreDirty: ["ingoreDirty", "ingoreDirty", booleanAttribute], line: ["line", "line", booleanAttribute], errors: "errors" }, host: { properties: { "class.ant-row": "true", "class.se__container": "true", "class.se__horizontal": "nzLayout === 'horizontal'", "class.se__vertical": "nzLayout === 'vertical'", "class.se__inline": "nzLayout === 'inline'", "class.se__compact": "size === 'compact'", "style.margin-left.px": "margin", "style.margin-right.px": "margin" } }, exportAs: ["seContainer"], ngImport: i0, template: `
     @if (title) {
       <div se-title>
@@ -138,7 +139,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [SETitleComponent, NzStringTemplateOutletDirective]
                 }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { colInCon: [{
+        }], ctorParameters: () => [], propDecorators: { colInCon: [{
                 type: Input,
                 args: [{ alias: 'se-container', transform: (v) => (v == null ? null : numberAttribute(v)) }]
             }], col: [{

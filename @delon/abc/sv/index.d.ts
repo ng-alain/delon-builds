@@ -1,7 +1,6 @@
 import * as i0 from '@angular/core';
 import { OnInit, TemplateRef, AfterViewInit, OnChanges } from '@angular/core';
 import { REP_TYPE } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
 import { NzTSType } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/cdk/observers';
@@ -20,6 +19,7 @@ declare class SVTitleComponent implements OnInit {
     static ɵcmp: i0.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], true, never>;
 }
 declare class SVContainerComponent {
+    private readonly cogSrv;
     colInCon?: REP_TYPE;
     title?: string | TemplateRef<void>;
     size?: 'small' | 'large' | 'default';
@@ -33,7 +33,7 @@ declare class SVContainerComponent {
     noColon: boolean;
     bordered: boolean;
     get margin(): Record<string, string>;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     static ɵfac: i0.ɵɵFactoryDeclaration<SVContainerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; }; "title": { "alias": "title"; "required": false; }; "size": { "alias": "size"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "layout": { "alias": "layout"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "col": { "alias": "col"; "required": false; }; "default": { "alias": "default"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "bordered": { "alias": "bordered"; "required": false; }; }, {}, never, ["*"], true, never>;
     static ngAcceptInputType_colInCon: unknown;

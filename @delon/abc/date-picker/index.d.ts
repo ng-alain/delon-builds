@@ -3,7 +3,7 @@ import { OnDestroy, AfterViewInit, EventEmitter, TemplateRef } from '@angular/co
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/forms';
 import * as i3 from 'ng-zorro-antd/date-picker';
-import { AlainDateRangePickerShortcut, AlainConfigService, AlainDateRangePickerShortcutItem } from '@delon/util/config';
+import { AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 
 declare class RangePickerDirective implements OnDestroy, AfterViewInit {
@@ -11,6 +11,7 @@ declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     private readonly dom;
     private readonly vcr;
     private readonly nativeComp;
+    private readonly cogSrv;
     private defaultShortcuts;
     private _shortcut;
     private shortcutFactory;
@@ -22,7 +23,7 @@ declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     readonly ngModelEndChange: EventEmitter<any>;
     private get dp();
     private get srv();
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private cd;
     private overrideNative;
     private refreshShortcut;

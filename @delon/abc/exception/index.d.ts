@@ -4,7 +4,6 @@ import { OnInit } from '@angular/core';
 import { SafeUrl, SafeHtml } from '@angular/platform-browser';
 import * as i4 from '@delon/theme';
 import { LocaleData } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/cdk/observers';
@@ -19,6 +18,7 @@ declare class ExceptionComponent implements OnInit {
     private readonly directionality;
     private readonly cdr;
     private readonly destroy$;
+    private readonly cogSrv;
     private conTpl;
     _type: ExceptionType;
     locale: LocaleData;
@@ -35,7 +35,7 @@ declare class ExceptionComponent implements OnInit {
     set desc(value: string);
     backRouterLink: string | NzSafeAny[];
     checkContent(): void;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     ngOnInit(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<ExceptionComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<ExceptionComponent, "exception", ["exception"], { "type": { "alias": "type"; "required": false; }; "img": { "alias": "img"; "required": false; }; "title": { "alias": "title"; "required": false; }; "desc": { "alias": "desc"; "required": false; }; "backRouterLink": { "alias": "backRouterLink"; "required": false; }; }, {}, never, ["*"], true, never>;

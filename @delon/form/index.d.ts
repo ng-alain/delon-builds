@@ -1597,6 +1597,7 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
     private readonly aclSrv;
     private readonly i18nSrv;
     private readonly platform;
+    private readonly cogSrv;
     private _renders;
     private _item;
     private _valid;
@@ -1723,7 +1724,7 @@ declare class SFComponent implements OnInit, OnChanges, OnDestroy {
      */
     updateFeedback(path: string, status?: NzFormControlStatusType): this;
     onSubmit(e: Event): void;
-    constructor(cogSrv: AlainConfigService);
+    constructor();
     protected fanyi(key: string): string;
     private inheritUI;
     private coverProperty;

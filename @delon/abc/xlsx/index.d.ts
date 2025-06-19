@@ -1,5 +1,4 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { AlainConfigService } from '@delon/util/config';
 import * as i0 from '@angular/core';
 
 interface XlsxExportOptions {
@@ -33,8 +32,9 @@ declare class XlsxService {
     private readonly http;
     private readonly lazy;
     private readonly ngZone;
+    private readonly cogSrv;
     private cog;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private init;
     private read;
     /**

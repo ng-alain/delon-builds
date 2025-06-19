@@ -5,22 +5,23 @@ import * as i0 from '@angular/core';
 import { inject, ElementRef, DestroyRef, signal, input, numberAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { interval } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
-import * as i1 from '@delon/util/config';
 
 class ErrorCollectComponent {
     el = inject(ElementRef).nativeElement;
     doc = inject(DOCUMENT);
     platform = inject(Platform);
     destroy$ = inject(DestroyRef);
+    cogSrv = inject(AlainConfigService);
     formEl = null;
     _hiden = signal(true);
     count = signal(0);
     dir = toSignal(inject(Directionality).change);
     freq = input(0, { transform: numberAttribute });
     offsetTop = input(0, { transform: numberAttribute });
-    constructor(configSrv) {
-        configSrv.attach(this, 'errorCollect', { freq: 250, offsetTop: 65 + 64 + 8 * 2 });
+    constructor() {
+        this.cogSrv.attach(this, 'errorCollect', { freq: 250, offsetTop: 65 + 64 + 8 * 2 });
     }
     get errEls() {
         return this.formEl.querySelectorAll('.ant-form-item-has-error');
@@ -65,7 +66,7 @@ class ErrorCollectComponent {
             .subscribe(() => this.update());
         this.update();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ErrorCollectComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: ErrorCollectComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "20.0.4", type: ErrorCollectComponent, isStandalone: true, selector: "error-collect, [error-collect]", inputs: { freq: { classPropertyName: "freq", publicName: "freq", isSignal: true, isRequired: false, transformFunction: null }, offsetTop: { classPropertyName: "offsetTop", publicName: "offsetTop", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir() === 'rtl'", "class.d-none": "_hiden()" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
     <nz-icon nzType="exclamation-circle" />
     <span class="error-collect__count">{{ count() }}</span>
@@ -90,7 +91,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzIconDirective]
                 }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 const COMPONENTS = [ErrorCollectComponent];
 class ErrorCollectModule {

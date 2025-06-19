@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { OnChanges, AfterViewInit, OnDestroy, EventEmitter, SimpleChange } from '@angular/core';
-import { AlainConfigService, AlainPdfConfig } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import { AlainPdfConfig } from '@delon/util/config';
 import * as i1 from '@angular/common';
 import * as i2 from 'ng-zorro-antd/skeleton';
 
@@ -46,6 +46,7 @@ declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy {
     private readonly cdr;
     private readonly ngZone;
     private readonly destroy$;
+    private readonly cogSrv;
     inited: boolean;
     private lib;
     private _pdf?;
@@ -91,7 +92,7 @@ declare class PdfComponent implements OnChanges, AfterViewInit, OnDestroy {
     private get _textLayerMode();
     private get win();
     private get el();
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private getValidPi;
     private emit;
     private initDelay;

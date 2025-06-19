@@ -5,10 +5,10 @@ import * as i0 from '@angular/core';
 import { inject, ElementRef, ChangeDetectorRef, NgZone, DestroyRef, EventEmitter, numberAttribute, booleanAttribute, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { timer, fromEvent, debounceTime, filter } from 'rxjs';
+import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
 import { LazyService } from '@delon/util/other';
 import { NzSkeletonComponent, NzSkeletonModule } from 'ng-zorro-antd/skeleton';
-import * as i1 from '@delon/util/config';
 
 const PDF_DEFULAT_CONFIG = {
     lib: `https://cdn.jsdelivr.net/npm/pdfjs-dist@3.6.x/`,
@@ -46,6 +46,7 @@ class PdfComponent {
     cdr = inject(ChangeDetectorRef);
     ngZone = inject(NgZone);
     destroy$ = inject(DestroyRef);
+    cogSrv = inject(AlainConfigService);
     inited = false;
     lib = '';
     _pdf;
@@ -135,8 +136,8 @@ class PdfComponent {
     get el() {
         return this._el.querySelector('.pdf-container');
     }
-    constructor(configSrv) {
-        const cog = configSrv.merge('pdf', PDF_DEFULAT_CONFIG);
+    constructor() {
+        const cog = this.cogSrv.merge('pdf', PDF_DEFULAT_CONFIG);
         Object.assign(this, cog);
         const lib = cog.lib;
         this.lib = lib.endsWith('/') ? lib : `${lib}/`;
@@ -395,7 +396,7 @@ class PdfComponent {
     ngOnDestroy() {
         this.destroy();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: PdfComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.0.4", type: PdfComponent, isStandalone: true, selector: "pdf", inputs: { src: "src", pi: ["pi", "pi", numberAttribute], showAll: ["showAll", "showAll", booleanAttribute], renderText: ["renderText", "renderText", booleanAttribute], textLayerMode: "textLayerMode", showBorders: ["showBorders", "showBorders", booleanAttribute], stickToPage: ["stickToPage", "stickToPage", booleanAttribute], originalSize: ["originalSize", "originalSize", booleanAttribute], fitToPage: ["fitToPage", "fitToPage", booleanAttribute], zoom: ["zoom", "zoom", numberAttribute], zoomScale: "zoomScale", rotation: ["rotation", "rotation", numberAttribute], autoReSize: ["autoReSize", "autoReSize", booleanAttribute], externalLinkTarget: "externalLinkTarget", delay: ["delay", "delay", numberAttribute] }, outputs: { change: "change" }, host: { properties: { "class.d-block": "true" } }, exportAs: ["pdf"], usesOnChanges: true, ngImport: i0, template: `
     @if (!inited || loading) {
       <nz-skeleton />
@@ -437,7 +438,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [NzSkeletonComponent]
                 }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { src: [{
+        }], ctorParameters: () => [], propDecorators: { src: [{
                 type: Input
             }], pi: [{
                 type: Input,

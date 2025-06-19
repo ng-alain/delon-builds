@@ -115,6 +115,7 @@ function copy(value) {
             document.body.appendChild(copyTextArea);
             copyTextArea.value = value;
             copyTextArea.select();
+            // eslint-disable-next-line @typescript-eslint/no-deprecated
             document.execCommand('copy');
             resolve(value);
         }

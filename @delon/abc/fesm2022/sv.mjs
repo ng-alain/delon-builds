@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { inject, ElementRef, Renderer2, ViewEncapsulation, ChangeDetectionStrategy, Component, booleanAttribute, numberAttribute, Input, ViewChild, NgModule } from '@angular/core';
+import { AlainConfigService } from '@delon/util/config';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
-import * as i1 from '@delon/util/config';
 import { NzTooltipDirective, NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
 import { ResponsiveService } from '@delon/theme';
@@ -44,6 +44,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                 }]
         }], ctorParameters: () => [] });
 class SVContainerComponent {
+    cogSrv = inject(AlainConfigService);
     colInCon;
     title;
     size;
@@ -59,8 +60,8 @@ class SVContainerComponent {
     get margin() {
         return this.bordered ? {} : { 'margin-left': `${-(this.gutter / 2)}px`, 'margin-right': `${-(this.gutter / 2)}px` };
     }
-    constructor(configSrv) {
-        configSrv.attach(this, 'sv', {
+    constructor() {
+        this.cogSrv.attach(this, 'sv', {
             size: 'large',
             gutter: 32,
             layout: 'horizontal',
@@ -68,7 +69,7 @@ class SVContainerComponent {
             default: true
         });
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: SVContainerComponent, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Component });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: SVContainerComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.0.4", type: SVContainerComponent, isStandalone: true, selector: "sv-container, [sv-container]", inputs: { colInCon: ["sv-container", "colInCon", (v) => (v == null ? null : numberAttribute(v))], title: "title", size: "size", gutter: ["gutter", "gutter", numberAttribute], layout: "layout", labelWidth: ["labelWidth", "labelWidth", numberAttribute], col: ["col", "col", numberAttribute], default: ["default", "default", booleanAttribute], noColon: ["noColon", "noColon", booleanAttribute], bordered: ["bordered", "bordered", booleanAttribute] }, host: { properties: { "class.sv__container": "true", "class.sv__horizontal": "layout === 'horizontal'", "class.sv__vertical": "layout === 'vertical'", "class.sv__small": "size === 'small'", "class.sv__large": "size === 'large'", "class.sv__bordered": "bordered", "class.clearfix": "true" } }, exportAs: ["svContainer"], ngImport: i0, template: `
     <div class="ant-row" [style]="margin">
       @if (title) {
@@ -108,7 +109,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
                     encapsulation: ViewEncapsulation.None,
                     imports: [SVTitleComponent, NzStringTemplateOutletDirective]
                 }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }], propDecorators: { colInCon: [{
+        }], ctorParameters: () => [], propDecorators: { colInCon: [{
                 type: Input,
                 args: [{ alias: 'sv-container', transform: (v) => (v == null ? null : numberAttribute(v)) }]
             }], title: [{

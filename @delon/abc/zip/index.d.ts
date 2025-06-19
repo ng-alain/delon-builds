@@ -1,5 +1,4 @@
 import jsZipType from 'jszip';
-import { AlainConfigService } from '@delon/util/config';
 import * as i0 from '@angular/core';
 
 interface ZipWriteOptions {
@@ -34,8 +33,9 @@ declare class ZipService {
     private readonly http;
     private readonly lazy;
     private readonly ngZone;
+    private readonly cogSrv;
     private cog;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     private init;
     private check;
     /** 解压 */

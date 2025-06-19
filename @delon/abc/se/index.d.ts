@@ -2,7 +2,6 @@ import * as i0 from '@angular/core';
 import { TemplateRef, OnInit, OnChanges, AfterContentInit, AfterViewInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { REP_TYPE } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
 import * as i1 from '@angular/common';
 import * as i2 from 'ng-zorro-antd/tooltip';
 import * as i3 from 'ng-zorro-antd/icon';
@@ -28,6 +27,7 @@ declare class SETitleComponent implements OnInit {
     static ɵcmp: i0.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], true, never>;
 }
 declare class SEContainerComponent {
+    private readonly cogSrv;
     private errorNotify$;
     colInCon?: REP_TYPE;
     col: REP_TYPE;
@@ -47,7 +47,7 @@ declare class SEContainerComponent {
     set errors(val: SEErrorRefresh[]);
     get margin(): number;
     get errorNotify(): Observable<SEErrorRefresh>;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     setErrors(errors: SEErrorRefresh[]): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SEContainerComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": { "alias": "se-container"; "required": false; }; "col": { "alias": "col"; "required": false; }; "labelWidth": { "alias": "labelWidth"; "required": false; }; "noColon": { "alias": "noColon"; "required": false; }; "title": { "alias": "title"; "required": false; }; "gutter": { "alias": "gutter"; "required": false; }; "nzLayout": { "alias": "nzLayout"; "required": false; }; "size": { "alias": "size"; "required": false; }; "firstVisual": { "alias": "firstVisual"; "required": false; }; "ingoreDirty": { "alias": "ingoreDirty"; "required": false; }; "line": { "alias": "line"; "required": false; }; "errors": { "alias": "errors"; "required": false; }; }, {}, never, ["*"], true, never>;

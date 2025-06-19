@@ -1,5 +1,4 @@
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import { AlainConfigService } from '@delon/util/config';
 import * as i0 from '@angular/core';
 
 /**
@@ -203,9 +202,10 @@ interface CurrencyCNYOptions extends CurrencyStartingUnitOptions {
 declare class CurrencyService {
     private readonly locale;
     private readonly defCurrencyCode;
+    private readonly cogSrv;
     private c;
     private readonly currencyPipe;
-    constructor(cog: AlainConfigService);
+    constructor();
     /**
      * Format a number with commas as thousands separators
      *

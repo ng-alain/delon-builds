@@ -283,8 +283,9 @@ declare const REP_MAX = 6;
 declare const SPAN_MAX = 24;
 type REP_TYPE = 1 | 2 | 3 | 4 | 5 | 6;
 declare class ResponsiveService {
+    private readonly cogSrv;
     private cog;
-    constructor(cogSrv: AlainConfigService);
+    constructor();
     genCls(count: number, defaultCol?: number): string[];
     static ɵfac: i0.ɵɵFactoryDeclaration<ResponsiveService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<ResponsiveService>;
@@ -450,6 +451,7 @@ interface AlainI18NService {
 }
 declare const ALAIN_I18N_TOKEN: InjectionToken<AlainI18NService>;
 declare abstract class AlainI18nBaseService implements AlainI18NService {
+    protected readonly cogSrv: AlainConfigService;
     private cog;
     protected _change$: BehaviorSubject<string | null>;
     protected _currentLang: string;
@@ -459,7 +461,7 @@ declare abstract class AlainI18nBaseService implements AlainI18NService {
     get defaultLang(): string;
     get currentLang(): string;
     get data(): Record<string, string>;
-    constructor(cogSrv: AlainConfigService);
+    constructor();
     /**
      * Flattened data source
      *
@@ -684,8 +686,9 @@ type HttpObserve = 'body' | 'events' | 'response';
  */
 declare class _HttpClient {
     private readonly http;
+    private readonly cogSrv;
     private cog;
-    constructor(cogSrv: AlainConfigService);
+    constructor();
     private lc;
     /**
      * Get whether it's loading

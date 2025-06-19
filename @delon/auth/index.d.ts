@@ -327,12 +327,13 @@ declare function DA_SERVICE_TOKEN_FACTORY(): ITokenService;
  */
 declare class TokenService implements ITokenService, OnDestroy {
     private readonly store;
+    private readonly cogSrv;
     private refresh$;
     private change$;
     private interval$?;
     private _referrer;
     private _options;
-    constructor(configSrv: AlainConfigService);
+    constructor();
     get refresh(): Observable<ITokenModel>;
     get login_url(): string | undefined;
     get referrer(): AuthReferrer;

@@ -2,7 +2,7 @@ import { deepGet } from '@delon/util/other';
 import { CurrencyPipe, formatNumber } from '@angular/common';
 import * as i0 from '@angular/core';
 import { inject, LOCALE_ID, DEFAULT_CURRENCY_CODE, Injectable } from '@angular/core';
-import * as i1 from '@delon/util/config';
+import { AlainConfigService } from '@delon/util/config';
 
 /**
  * String formatting
@@ -193,11 +193,12 @@ const CurrencyMega_Powers = [
 class CurrencyService {
     locale = inject(LOCALE_ID);
     defCurrencyCode = inject(DEFAULT_CURRENCY_CODE, { optional: true }) ?? 'USD';
+    cogSrv = inject(AlainConfigService);
     c;
     currencyPipe;
-    constructor(cog) {
+    constructor() {
         this.currencyPipe = new CurrencyPipe(this.locale, this.defCurrencyCode);
-        this.c = cog.merge('utilCurrency', {
+        this.c = this.cogSrv.merge('utilCurrency', {
             startingUnit: 'yuan',
             megaUnit: { Q: '京', T: '兆', B: '亿', M: '万', K: '千' },
             precision: 2,
@@ -412,13 +413,13 @@ class CurrencyService {
                 : integerRes + (decimalRes === '' ? '' : `点${decimalRes}`));
         return ret;
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: CurrencyService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: CurrencyService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: CurrencyService, providedIn: 'root' });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: CurrencyService, decorators: [{
             type: Injectable,
             args: [{ providedIn: 'root' }]
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 /**
  * Generated bundle index. Do not edit.

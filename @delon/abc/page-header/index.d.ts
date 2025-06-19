@@ -1,9 +1,6 @@
 import { Direction } from '@angular/cdk/bidi';
-import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
 import { OnInit, OnChanges, AfterViewInit, TemplateRef } from '@angular/core';
-import { SettingsService } from '@delon/theme';
-import { AlainConfigService } from '@delon/util/config';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/router';
@@ -27,6 +24,9 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     private readonly reuseSrv;
     private readonly directionality;
     private readonly destroy$;
+    private readonly settings;
+    private readonly platform;
+    private readonly cogSrv;
     private conTpl;
     private affix;
     inited: boolean;
@@ -56,7 +56,7 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     content?: TemplateRef<void> | null;
     extra?: TemplateRef<void> | null;
     tab?: TemplateRef<void> | null;
-    constructor(settings: SettingsService, configSrv: AlainConfigService, platform: Platform);
+    constructor();
     refresh(): void;
     private genBreadcrumb;
     private setTitle;

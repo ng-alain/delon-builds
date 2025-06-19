@@ -3,7 +3,6 @@ import * as i0 from '@angular/core';
 import { InjectionToken, inject, Injectable, makeEnvironmentProviders } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, BehaviorSubject, share, interval, map, filter, Observable } from 'rxjs';
-import * as i1 from '@delon/util/config';
 import { AlainConfigService } from '@delon/util/config';
 import { CookieService } from '@delon/util/browser';
 import { HttpContextToken, HttpErrorResponse } from '@angular/common/http';
@@ -54,20 +53,21 @@ const DA_STORE_TOKEN = new InjectionToken('AUTH_STORE_TOKEN', {
 });
 
 function DA_SERVICE_TOKEN_FACTORY() {
-    return new TokenService(inject(AlainConfigService));
+    return new TokenService();
 }
 /**
  * 维护Token信息服务，[在线文档](https://ng-alain.com/auth)
  */
 class TokenService {
     store = inject(DA_STORE_TOKEN);
+    cogSrv = inject(AlainConfigService);
     refresh$ = new Subject();
     change$ = new BehaviorSubject(null);
     interval$;
     _referrer = {};
     _options;
-    constructor(configSrv) {
-        this._options = mergeConfig(configSrv);
+    constructor() {
+        this._options = mergeConfig(this.cogSrv);
     }
     get refresh() {
         this.builderRefresh();
@@ -129,12 +129,12 @@ class TokenService {
     ngOnDestroy() {
         this.cleanRefresh();
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: TokenService, deps: [{ token: i1.AlainConfigService }], target: i0.ɵɵFactoryTarget.Injectable });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: TokenService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: TokenService });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImport: i0, type: TokenService, decorators: [{
             type: Injectable
-        }], ctorParameters: () => [{ type: i1.AlainConfigService }] });
+        }], ctorParameters: () => [] });
 
 const DA_SERVICE_TOKEN = new InjectionToken('DA_SERVICE_TOKEN', {
     providedIn: 'root',

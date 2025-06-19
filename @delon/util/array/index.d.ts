@@ -1,4 +1,3 @@
-import { AlainConfigService } from '@delon/util/config';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree';
 import * as i0 from '@angular/core';
 
@@ -71,8 +70,9 @@ interface ArrayServiceGroupByResult {
 }
 
 declare class ArrayService {
+    private readonly cogSrv;
     private c;
-    constructor(cog: AlainConfigService);
+    constructor();
     /**
      * Convert tree structure to array structure
      *
