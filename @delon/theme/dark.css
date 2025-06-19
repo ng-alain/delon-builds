@@ -35553,6 +35553,13 @@ body {
 .sidebar-nav__item-disabled:hover {
   color: rgba(255, 255, 255, 0.85);
 }
+.sidebar-nav__divider {
+  height: 1px;
+  margin: 4px 0;
+  overflow: hidden;
+  line-height: 0;
+  background-color: #303030;
+}
 .sidebar-nav__selected {
   border-left-color: #177ddc;
   background-color: #141414;
