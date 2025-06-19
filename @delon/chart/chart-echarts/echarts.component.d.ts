@@ -1,11 +1,8 @@
 import { EventEmitter, OnDestroy, OnInit } from '@angular/core';
-import { NumberInput } from '@delon/util/decorator';
 import type { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { ChartECharts, ChartEChartsEvent, ChartEChartsOn, ChartEChartsOption } from './echarts.types';
 import * as i0 from "@angular/core";
 export declare class ChartEChartsComponent implements OnInit, OnDestroy {
-    static ngAcceptInputType_width: NumberInput;
-    static ngAcceptInputType_height: NumberInput;
     private readonly srv;
     private readonly cdr;
     private readonly ngZone;
@@ -18,8 +15,8 @@ export declare class ChartEChartsComponent implements OnInit, OnDestroy {
     private _option;
     _width: string;
     _height: string;
-    set width(val: NumberInput);
-    set height(val: NumberInput);
+    set width(val: number | string | null | undefined);
+    set height(val: number | string | null | undefined);
     set theme(value: string | Record<string, unknown> | null | undefined);
     set initOpt(value: NzSafeAny);
     set option(value: ChartEChartsOption);

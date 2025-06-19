@@ -35740,50 +35740,6 @@ body {
     width: 100% !important;
   }
 }
-.avatar-list {
-  display: inline-block;
-}
-.avatar-list__wrap {
-  display: inline-block;
-  margin-left: 8px;
-  padding: 0;
-  font-size: 0;
-}
-.avatar-list__item {
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  margin-left: -8px;
-  font-size: 14px;
-}
-.avatar-list__item .ant-avatar {
-  cursor: pointer;
-  border: 1px solid #fff;
-}
-.avatar-list__large {
-  width: 40px;
-  height: 40px;
-}
-.avatar-list__small {
-  width: 24px;
-  height: 24px;
-}
-.avatar-list__mini {
-  width: 20px;
-  height: 20px;
-}
-.avatar-list__mini .ant-avatar {
-  width: 20px;
-  height: 20px;
-  line-height: 20px;
-}
-.avatar-list__mini .ant-avatar-string {
-  font-size: 12px;
-  line-height: 18px;
-}
-.avatar-list-rtl {
-  direction: rtl;
-}
 ellipsis {
   display: inline;
 }
@@ -36239,65 +36195,6 @@ ellipsis {
 .quick-menu__ctrl-icon {
   font-size: 20px;
   line-height: 49px;
-}
-.result {
-  display: block;
-  width: 72%;
-  margin: 0 auto;
-  text-align: center;
-}
-.result__icon {
-  margin-bottom: 24px;
-  font-size: 72px;
-  line-height: 72px;
-}
-.result__icon-success {
-  color: #52c41a;
-}
-.result__icon-error {
-  color: #ff4d4f;
-}
-.result__title {
-  margin-bottom: 16px;
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 32px;
-  color: rgba(0, 0, 0, 0.85);
-}
-.result__desc {
-  margin-bottom: 24px;
-  font-size: 14px;
-  line-height: 22px;
-  color: rgba(0, 0, 0, 0.45);
-}
-.result__extra {
-  padding: 24px 40px;
-  border-radius: 2px;
-  text-align: left;
-  background: #fafafa;
-}
-@media screen and (max-width: 480px) {
-  .result__extra {
-    padding: 18px 20px;
-  }
-}
-.result__actions {
-  margin-top: 32px;
-}
-.result__actions button:not(:last-child) {
-  margin-right: 8px;
-}
-.result .ant-steps .ant-steps-head,
-.result .ant-steps .ant-steps-title {
-  background: #fafafa;
-}
-@media screen and (max-width: 480px) {
-  .result {
-    width: 100%;
-  }
-}
-.result-rtl {
-  direction: rtl;
 }
 .reuse-tab {
   user-select: none;
