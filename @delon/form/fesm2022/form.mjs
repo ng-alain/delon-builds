@@ -2341,7 +2341,7 @@ class CheckboxWidget extends ControlUIWidget {
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="notifySet()" />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="groupInGridChange($event)" />
           } @else {
             <nz-checkbox-wrapper class="sf__checkbox-list" (nzOnChange)="groupInGridChange($event)">
               <div nz-row>
@@ -2414,7 +2414,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.0.4", ngImpor
         } @else {
           @if (grid_span === 0) {
             <ng-template [ngTemplateOutlet]="all" />
-            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="notifySet()" />
+            <nz-checkbox-group [ngModel]="value" [nzOptions]="$any(data)" (ngModelChange)="groupInGridChange($event)" />
           } @else {
             <nz-checkbox-wrapper class="sf__checkbox-list" (nzOnChange)="groupInGridChange($event)">
               <div nz-row>
