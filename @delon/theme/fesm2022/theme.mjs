@@ -11,6 +11,7 @@ import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DragDrop } from '@angular/cdk/drag-drop';
+import { SIGNAL } from '@angular/core/primitives/signals';
 import { deepMerge } from '@delon/util/other';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
 import { NzDrawerService, NzDrawerModule } from 'ng-zorro-antd/drawer';
@@ -978,7 +979,16 @@ class ModalHelper {
             });
             // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
             if (subject.componentInstance != null && useNzData !== true) {
-                Object.assign(subject.componentInstance, params);
+                Object.entries(params).forEach(([key, value]) => {
+                    const t = subject.componentInstance;
+                    const s = t[key]?.[SIGNAL];
+                    if (s != null) {
+                        s.value = value;
+                    }
+                    else {
+                        t[key] = value;
+                    }
+                });
             }
             subject.afterOpen
                 .pipe(take(1), tap(() => {
