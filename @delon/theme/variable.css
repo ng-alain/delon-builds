@@ -6464,12 +6464,12 @@ nz-comment-content {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-picker-input > input-filled.ant-picker-input > input {
+.ant-picker-input > input-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-picker-input > input-filled:hover {
+.ant-picker-input > input-filled:hover.ant-picker-input > input:not(.ant-picker-input > input-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -13963,12 +13963,12 @@ nz-empty {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-input-affix-wrapper-filled.ant-input-affix-wrapper {
+.ant-input-affix-wrapper-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-input-affix-wrapper-filled:hover {
+.ant-input-affix-wrapper-filled:hover.ant-input-affix-wrapper:not(.ant-input-affix-wrapper-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -14297,12 +14297,12 @@ textarea.ant-input-affix-wrapper {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-input-filled.ant-input {
+.ant-input-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-input-filled:hover {
+.ant-input-filled:hover.ant-input:not(.ant-input-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -15458,12 +15458,12 @@ nz-form-item-feedback-icon.ant-input-suffix {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-input-number-affix-wrapper-filled.ant-input-number-affix-wrapper {
+.ant-input-number-affix-wrapper-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-input-number-affix-wrapper-filled:hover {
+.ant-input-number-affix-wrapper-filled:hover.ant-input-number-affix-wrapper:not(.ant-input-number-affix-wrapper-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -15754,12 +15754,12 @@ textarea.ant-input-number-affix-wrapper {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-input-number-filled.ant-input-number {
+.ant-input-number-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-input-number-filled:hover {
+.ant-input-number-filled:hover.ant-input-number:not(.ant-input-number-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -19016,12 +19016,12 @@ nz-list-item-extra {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-mentions-filled.ant-mentions {
+.ant-mentions-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-mentions-filled:hover {
+.ant-mentions-filled:hover.ant-mentions:not(.ant-mentions-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -20418,12 +20418,12 @@ nz-page-header-footer {
   border: none !important;
   box-shadow: none !important;
 }
-.ant-pagination-options-quick-jumper input-filled.ant-pagination-options-quick-jumper input {
+.ant-pagination-options-quick-jumper input-filled {
   background-color: #f5f5f5 !important;
-  border-color: transparent !important;
+  border-color: transparent;
   box-shadow: none !important;
 }
-.ant-pagination-options-quick-jumper input-filled:hover {
+.ant-pagination-options-quick-jumper input-filled:hover.ant-pagination-options-quick-jumper input:not(.ant-pagination-options-quick-jumper input-focused) {
   background-color: #f0f0f0 !important;
   border-color: transparent !important;
 }
@@ -31538,7 +31538,8 @@ a:focus {
       * 模态框内容是否包裹 `nz-tabs`，清除带来的多余边距
       */
 }
-.modal-include-tabs nz-tabset {
+.modal-include-tabs nz-tabset,
+.modal-include-tabs nz-tabs {
   margin-top: -16px;
 }
 .modal-body-nopadding {
