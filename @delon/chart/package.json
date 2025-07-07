@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "19.2.0-f93f492",
+  "version": "19.2.0-d23358c",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,8 +28,8 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.11",
     "echarts": "^5.6.0",
-    "@delon/util": "^19.2.0-f93f492",
-    "@delon/theme": "^19.2.0-f93f492",
+    "@delon/util": "^19.2.0-d23358c",
+    "@delon/theme": "^19.2.0-d23358c",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
@@ -42,6 +42,10 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/chart.mjs"
     },
+    "./card": {
+      "types": "./card/index.d.ts",
+      "default": "./fesm2022/card.mjs"
+    },
     "./bar": {
       "types": "./bar/index.d.ts",
       "default": "./fesm2022/bar.mjs"
@@ -49,10 +53,6 @@
     "./chart-echarts": {
       "types": "./chart-echarts/index.d.ts",
       "default": "./fesm2022/chart-echarts.mjs"
-    },
-    "./card": {
-      "types": "./card/index.d.ts",
-      "default": "./fesm2022/card.mjs"
     },
     "./core": {
       "types": "./core/index.d.ts",

@@ -119,6 +119,7 @@ class STColumnSource {
             return;
         }
         let pop = {
+            okType: 'primary',
             ...def
         };
         if (typeof i.pop === 'string') {
