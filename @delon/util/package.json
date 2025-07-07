@@ -33,10 +33,6 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/delon-util.mjs"
     },
-    "./array": {
-      "types": "./array/index.d.ts",
-      "default": "./fesm2022/array.mjs"
-    },
     "./browser": {
       "types": "./browser/index.d.ts",
       "default": "./fesm2022/browser.mjs"
@@ -45,9 +41,9 @@
       "types": "./config/index.d.ts",
       "default": "./fesm2022/config.mjs"
     },
-    "./date-time": {
-      "types": "./date-time/index.d.ts",
-      "default": "./fesm2022/date-time.mjs"
+    "./array": {
+      "types": "./array/index.d.ts",
+      "default": "./fesm2022/array.mjs"
     },
     "./decorator": {
       "types": "./decorator/index.d.ts",
@@ -76,6 +72,10 @@
     "./token": {
       "types": "./token/index.d.ts",
       "default": "./fesm2022/token.mjs"
+    },
+    "./date-time": {
+      "types": "./date-time/index.d.ts",
+      "default": "./fesm2022/date-time.mjs"
     },
     "./pipes/currency": {
       "types": "./pipes/currency/index.d.ts",
