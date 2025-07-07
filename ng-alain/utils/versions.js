@@ -38,7 +38,6 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
         `source-map-explorer@^2.5.3`,
-        `@angular/language-service@undefined`,
         `ngx-tinymce@^20.0.0`,
         `@ng-util/monaco-editor@^20.0.0`,
         `@delon/testing@${version}`
