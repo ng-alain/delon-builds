@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "20.0.0-beta.0-0ddc561",
+  "version": "20.0.0-beta.0-907dd0e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "^3.7.8",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^20.0.0",
-    "@delon/theme": "^20.0.0-beta.0-0ddc561",
-    "@delon/util": "^20.0.0-beta.0-0ddc561",
-    "@delon/acl": "^20.0.0-beta.0-0ddc561",
+    "@delon/theme": "^20.0.0-beta.0-907dd0e",
+    "@delon/util": "^20.0.0-beta.0-907dd0e",
+    "@delon/acl": "^20.0.0-beta.0-907dd0e",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -47,13 +47,13 @@
       "types": "./cell/index.d.ts",
       "default": "./fesm2022/cell.mjs"
     },
-    "./count-down": {
-      "types": "./count-down/index.d.ts",
-      "default": "./fesm2022/count-down.mjs"
-    },
     "./auto-focus": {
       "types": "./auto-focus/index.d.ts",
       "default": "./fesm2022/auto-focus.mjs"
+    },
+    "./count-down": {
+      "types": "./count-down/index.d.ts",
+      "default": "./fesm2022/count-down.mjs"
     },
     "./date-picker": {
       "types": "./date-picker/index.d.ts",
