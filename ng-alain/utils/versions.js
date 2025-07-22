@@ -21,10 +21,10 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `angular-eslint@^20.0.0`,
-        `@typescript-eslint/eslint-plugin@^8.29.1`,
-        `@typescript-eslint/parser@^8.29.1`,
-        `@typescript-eslint/utils@^8.29.1`,
+        `angular-eslint@^20.1.1`,
+        `@typescript-eslint/eslint-plugin@^8.38.0`,
+        `@typescript-eslint/parser@^8.38.0`,
+        `@typescript-eslint/utils@^8.38.0`,
         `eslint@^9.31.0`,
         `eslint-config-prettier@^10.1.8`,
         `eslint-plugin-import@~2.32.0`,
@@ -33,7 +33,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint-plugin-prettier@~5.5.3`,
         `eslint-plugin-unused-imports@^4.1.4`,
         `typescript-eslint@^8.38.0`,
-        `prettier@^3.5.3`,
+        `prettier@^3.6.2`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
