@@ -121,7 +121,7 @@ declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit 
 
 declare class SEModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<SEModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<SEModule, never, [typeof i1.CommonModule, typeof i2.NzToolTipModule, typeof i3.NzIconModule, typeof i4.NzOutletModule, typeof SEContainerComponent, typeof SEComponent, typeof SETitleComponent], [typeof SEContainerComponent, typeof SEComponent, typeof SETitleComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<SEModule, never, [typeof i1.CommonModule, typeof i2.NzTooltipModule, typeof i3.NzIconModule, typeof i4.NzOutletModule, typeof SEContainerComponent, typeof SEComponent, typeof SETitleComponent], [typeof SEContainerComponent, typeof SEComponent, typeof SETitleComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<SEModule>;
 }
 

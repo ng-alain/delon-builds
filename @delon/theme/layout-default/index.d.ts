@@ -210,7 +210,7 @@ declare class LayoutDefaultTopMenuItemComponent {
 
 declare class LayoutDefaultModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<LayoutDefaultModule, [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent], [typeof i7.CommonModule, typeof i8.RouterModule, typeof i9.NzToolTipModule, typeof i10.NzIconModule, typeof i11.NzAvatarModule, typeof i12.NzDropDownModule, typeof i13.NzBadgeModule], [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<LayoutDefaultModule, [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent], [typeof i7.CommonModule, typeof i8.RouterModule, typeof i9.NzTooltipModule, typeof i10.NzIconModule, typeof i11.NzAvatarModule, typeof i12.NzDropDownModule, typeof i13.NzBadgeModule], [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<LayoutDefaultModule>;
 }
 

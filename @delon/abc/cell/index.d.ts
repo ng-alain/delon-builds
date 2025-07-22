@@ -283,7 +283,7 @@ declare class CellHostDirective {
 
 declare class CellModule {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CellModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<CellModule, never, [typeof i1.CommonModule, typeof i2.FormsModule, typeof i3.NzCheckboxModule, typeof i4.NzRadioModule, typeof i5.NzBadgeModule, typeof i6.NzTagModule, typeof i7.NzToolTipModule, typeof i8.NzIconModule, typeof i9.NzImageModule, typeof CellComponent, typeof CellHostDirective], [typeof CellComponent]>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<CellModule, never, [typeof i1.CommonModule, typeof i2.FormsModule, typeof i3.NzCheckboxModule, typeof i4.NzRadioModule, typeof i5.NzBadgeModule, typeof i6.NzTagModule, typeof i7.NzTooltipModule, typeof i8.NzIconModule, typeof i9.NzImageModule, typeof CellComponent, typeof CellHostDirective], [typeof CellComponent]>;
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<CellModule>;
 }
 

@@ -30865,10 +30865,14 @@ nz-space-item {
 }
 .ant-float-btn-group {
   position: fixed;
+  bottom: 48px;
   z-index: 99;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
-  width: 40px;
+  min-width: 40px;
   height: auto;
   min-height: 40px;
   margin: 0;
@@ -30882,22 +30886,73 @@ nz-space-item {
   border-radius: 2px;
   box-shadow: none;
   inset-inline-end: 24px;
-  inset-block-end: 48px;
 }
 .ant-float-btn-group-wrap {
-  position: relative;
+  position: absolute;
   z-index: -1;
-  display: block;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.ant-float-btn-group-rtl {
+.ant-float-btn-group.ant-float-btn-group-rtl {
   direction: rtl;
 }
 .ant-float-btn-group .ant-float-btn {
   position: static;
 }
-.ant-float-btn-group-circle .ant-float-btn-circle:not(:last-child) {
-  margin-bottom: 8px;
+.ant-float-btn-group-top > .ant-float-btn-group-wrap {
+  top: auto;
+  bottom: calc(40px + 8px);
+  flex-direction: column;
+}
+.ant-float-btn-group-top > .ant-float-btn-group-wrap::after {
+  position: absolute;
+  bottom: -8px;
+  width: 100%;
+  height: 8px;
+  content: '';
+}
+.ant-float-btn-group-bottom > .ant-float-btn-group-wrap {
+  top: calc(40px + 8px);
+  bottom: auto;
+  flex-direction: column;
+}
+.ant-float-btn-group-bottom > .ant-float-btn-group-wrap::after {
+  position: absolute;
+  top: -8px;
+  width: 100%;
+  height: 8px;
+  content: '';
+}
+.ant-float-btn-group-left > .ant-float-btn-group-wrap {
+  right: calc(40px + 8px);
+  left: auto;
+  flex-direction: row;
+}
+.ant-float-btn-group-left > .ant-float-btn-group-wrap::after {
+  position: absolute;
+  right: -8px;
+  width: 8px;
+  height: 100%;
+  content: '';
+}
+.ant-float-btn-group-right > .ant-float-btn-group-wrap {
+  right: auto;
+  left: calc(40px + 8px);
+  flex-direction: row;
+}
+.ant-float-btn-group-right > .ant-float-btn-group-wrap::after {
+  position: absolute;
+  left: -8px;
+  width: 8px;
+  height: 100%;
+  content: '';
+}
+.ant-float-btn-group-circle {
+  gap: 8px;
+}
+.ant-float-btn-group-circle .ant-float-btn-group-wrap {
+  gap: 8px;
 }
 .ant-float-btn-group-circle .ant-float-btn-body {
   width: 40px;
@@ -30907,43 +30962,61 @@ nz-space-item {
   padding: 0;
   border-radius: 0;
 }
+.ant-float-btn-group-square .ant-float-btn-square.ant-float-btn-group-trigger {
+  border-radius: 2px;
+}
 .ant-float-btn-group-square .ant-float-btn-square:first-child {
   border-start-start-radius: 2px;
   border-start-end-radius: 2px;
 }
 .ant-float-btn-group-square .ant-float-btn-square:last-child {
-  border-start-start-radius: 2px;
-  border-start-end-radius: 2px;
+  border-end-start-radius: 2px;
+  border-end-end-radius: 2px;
 }
 .ant-float-btn-group-square .ant-float-btn-square:not(:last-child) {
   border-bottom: 1px solid #d9d9d9;
 }
 .ant-float-btn-group-square .ant-float-btn-group-wrap {
-  display: block;
-  overflow: hidden;
   border-radius: 2px;
   box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }
 .ant-float-btn-group-square .ant-float-btn-group-wrap .ant-float-btn-square {
-  margin-top: 0;
   padding: 0px;
   border-radius: 0;
   box-shadow: none;
 }
-.ant-float-btn-group-square .ant-float-btn-group-wrap .ant-float-btn-square:first-child {
-  border-start-start-radius: 2px;
-  border-start-end-radius: 2px;
-}
-.ant-float-btn-group-square .ant-float-btn-group-wrap .ant-float-btn-square:last-child {
-  border-start-start-radius: 2px;
-  border-start-end-radius: 2px;
-}
-.ant-float-btn-group-square .ant-float-btn-group-wrap .ant-float-btn-square:not(:last-child) {
-  border-bottom: 1px solid #d9d9d9;
-}
 .ant-float-btn-group-square .ant-float-btn-group-wrap .ant-float-btn-square .ant-float-btn-body {
   width: 32px;
   height: 32px;
+}
+.ant-float-btn-group-top > .ant-float-btn-group-wrap > .ant-float-btn-square:first-child,
+.ant-float-btn-group-bottom > .ant-float-btn-group-wrap > .ant-float-btn-square:first-child {
+  border-start-start-radius: 2px;
+  border-start-end-radius: 2px;
+}
+.ant-float-btn-group-top > .ant-float-btn-group-wrap > .ant-float-btn-square:last-child,
+.ant-float-btn-group-bottom > .ant-float-btn-group-wrap > .ant-float-btn-square:last-child {
+  border-end-start-radius: 2px;
+  border-end-end-radius: 2px;
+}
+.ant-float-btn-group-top > .ant-float-btn-group-wrap > .ant-float-btn-square:not(:last-child),
+.ant-float-btn-group-bottom > .ant-float-btn-group-wrap > .ant-float-btn-square:not(:last-child) {
+  border-bottom: 1px solid #d9d9d9;
+}
+.ant-float-btn-group-left > .ant-float-btn-group-wrap > .ant-float-btn-square:first-child,
+.ant-float-btn-group-right > .ant-float-btn-group-wrap > .ant-float-btn-square:first-child {
+  border-start-start-radius: 2px;
+  border-end-start-radius: 2px;
+}
+.ant-float-btn-group-left > .ant-float-btn-group-wrap > .ant-float-btn-square:last-child,
+.ant-float-btn-group-right > .ant-float-btn-group-wrap > .ant-float-btn-square:last-child {
+  border-start-end-radius: 2px;
+  border-end-end-radius: 2px;
+}
+.ant-float-btn-group-left > .ant-float-btn-group-wrap > .ant-float-btn-square:not(:last-child),
+.ant-float-btn-group-right > .ant-float-btn-group-wrap > .ant-float-btn-square:not(:last-child) {
+  border-inline-end: 1px solid #d9d9d9;
+  border-bottom: none;
 }
 .ant-float-btn-group-circle-shadow {
   box-shadow: none;

@@ -20,26 +20,26 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `@typescript-eslint/eslint-plugin@^8.29.1`,
       `@typescript-eslint/parser@^8.29.1`,
       `@typescript-eslint/utils@^8.29.1`,
-      `eslint@^9.28.0`,
-      `eslint-config-prettier@^10.1.2`,
-      `eslint-plugin-import@~2.31.0`,
-      `eslint-plugin-jsdoc@~51.0.3`,
+      `eslint@^9.31.0`,
+      `eslint-config-prettier@^10.1.8`,
+      `eslint-plugin-import@~2.32.0`,
+      `eslint-plugin-jsdoc@~51.4.1`,
       `eslint-plugin-prefer-arrow@~1.2.3`,
-      `eslint-plugin-prettier@~5.5.0`,
+      `eslint-plugin-prettier@~5.5.3`,
       `eslint-plugin-unused-imports@^4.1.4`,
-      `typescript-eslint@^8.34.1`,
+      `typescript-eslint@^8.38.0`,
       `prettier@^3.5.3`,
       `husky@^9.1.7`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^18.0.0`,
       `source-map-explorer@^2.5.3`,
       `ngx-tinymce@^20.0.0`,
-      `@ng-util/monaco-editor@^20.0.0`,
+      `@ng-util/monaco-editor@^20.0.3`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^20.0.0`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^20.1.0`]);
 }
 
 export function addESLintRule(projectName: string): Rule {

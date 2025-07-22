@@ -48,7 +48,7 @@ declare class EllipsisComponent implements AfterViewInit, OnChanges {
 
 declare class EllipsisModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<EllipsisModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<EllipsisModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.NzToolTipModule, typeof EllipsisComponent], [typeof EllipsisComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<EllipsisModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.NzTooltipModule, typeof EllipsisComponent], [typeof EllipsisComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<EllipsisModule>;
 }
 

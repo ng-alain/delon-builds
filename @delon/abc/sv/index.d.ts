@@ -89,7 +89,7 @@ declare class SVComponent implements AfterViewInit, OnChanges {
 
 declare class SVModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<SVModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<SVModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.NzToolTipModule, typeof i4.NzIconModule, typeof i5.NzOutletModule, typeof SVContainerComponent, typeof SVComponent, typeof SVTitleComponent, typeof SVValueComponent], [typeof SVContainerComponent, typeof SVComponent, typeof SVTitleComponent, typeof SVValueComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<SVModule, never, [typeof i1.CommonModule, typeof i2.ObserversModule, typeof i3.NzTooltipModule, typeof i4.NzIconModule, typeof i5.NzOutletModule, typeof SVContainerComponent, typeof SVComponent, typeof SVTitleComponent, typeof SVValueComponent], [typeof SVContainerComponent, typeof SVComponent, typeof SVTitleComponent, typeof SVValueComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<SVModule>;
 }
 
