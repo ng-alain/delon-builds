@@ -1,6 +1,6 @@
 {
   "name": "@delon/cache",
-  "version": "20.0.1-15c26e0",
+  "version": "20.0.1-b0c5c6e",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "component"
   ],
   "dependencies": {
-    "@delon/util": "^20.0.1-15c26e0",
+    "@delon/util": "^20.0.1-b0c5c6e",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/cache.mjs",
