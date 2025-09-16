@@ -1,4 +1,4 @@
-import * as _angular_cdk_bidi from '@angular/cdk/bidi';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as i0 from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import * as _delon_theme from '@delon/theme';
@@ -8,7 +8,7 @@ import * as i2 from 'ng-zorro-antd/icon';
 declare class TagSelectComponent {
     locale: i0.Signal<_delon_theme.TagSelectLocaleData>;
     expand: boolean;
-    dir: i0.WritableSignal<_angular_cdk_bidi.Direction>;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     /** 是否启用 `展开与收进` */
     expandable: boolean;
     readonly change: EventEmitter<boolean>;

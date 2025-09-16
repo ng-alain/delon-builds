@@ -3,7 +3,7 @@ import { TemplateRef, QueryList, OnInit, OnDestroy, EventEmitter, AfterViewInit 
 import * as i8 from '@angular/router';
 import { Event } from '@angular/router';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as _angular_cdk_bidi from '@angular/cdk/bidi';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import { SafeHtml } from '@angular/platform-browser';
 import { MenuInner, Menu, App } from '@delon/theme';
 import * as i7 from '@angular/common';
@@ -130,7 +130,7 @@ declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
     private bodyEl;
     private destroy$;
     private floatingEl;
-    dir: i0.WritableSignal<_angular_cdk_bidi.Direction>;
+    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     list: Nav[];
     disabledAcl: boolean;
     autoCloseUnderPad: boolean;

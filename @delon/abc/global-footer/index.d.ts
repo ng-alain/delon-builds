@@ -2,7 +2,7 @@ import { SafeHtml } from '@angular/platform-browser';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as _angular_core from '@angular/core';
 import { TemplateRef } from '@angular/core';
-import * as _angular_cdk_bidi from '@angular/cdk/bidi';
+import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/router';
 
@@ -25,7 +25,7 @@ declare class GlobalFooterComponent {
     private readonly router;
     private readonly win;
     private readonly dom;
-    dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
+    dir: _angular_core.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
     links: _angular_core.InputSignal<GlobalFooterLink[]>;
     readonly items: _angular_core.Signal<readonly GlobalFooterItemComponent[]>;
     linkHtmls: _angular_core.Signal<GlobalFooterLink[]>;
