@@ -21,28 +21,28 @@ const workspace_2 = require("./workspace");
 function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
     (0, package_1.addPackage)(tree, ['abc', 'acl', 'auth', 'cache', 'form', 'mock', 'theme', 'util', 'chart'].map(name => `@delon/${name}@${version}`));
     (0, package_1.addPackage)(tree, [
-        `angular-eslint@^20.1.1`,
-        `@typescript-eslint/eslint-plugin@^8.38.0`,
-        `@typescript-eslint/parser@^8.38.0`,
-        `@typescript-eslint/utils@^8.38.0`,
-        `eslint@^9.31.0`,
+        `angular-eslint@^20.3.0`,
+        `@typescript-eslint/eslint-plugin@^8.44.0`,
+        `@typescript-eslint/parser@^8.44.0`,
+        `@typescript-eslint/utils@^8.44.0`,
+        `eslint@^9.35.0`,
         `eslint-config-prettier@^10.1.8`,
         `eslint-plugin-import@~2.32.0`,
-        `eslint-plugin-jsdoc@~51.4.1`,
+        `eslint-plugin-jsdoc@~58.1.0`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
-        `eslint-plugin-prettier@~5.5.3`,
-        `eslint-plugin-unused-imports@^4.1.4`,
-        `typescript-eslint@^8.38.0`,
+        `eslint-plugin-prettier@~5.5.4`,
+        `eslint-plugin-unused-imports@^4.2.0`,
+        `typescript-eslint@^8.44.0`,
         `prettier@^3.6.2`,
         `husky@^9.1.7`,
         `ng-alain@${version}`,
         `ng-alain-plugin-theme@^18.0.0`,
         `source-map-explorer@^2.5.3`,
         `ngx-tinymce@^20.0.0`,
-        `@ng-util/monaco-editor@^20.0.3`,
+        `@ng-util/monaco-editor@^20.1.0`,
         `@delon/testing@${version}`
     ], 'devDependencies');
-    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^20.1.0`]);
+    (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^20.3.0`]);
 }
 function addESLintRule(projectName) {
     return (0, workspace_1.updateWorkspace)((workspace) => __awaiter(this, void 0, void 0, function* () {

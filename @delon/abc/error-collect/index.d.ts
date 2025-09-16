@@ -1,4 +1,4 @@
-import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
+import * as _angular_cdk_bidi from '@angular/cdk/bidi';
 import * as _angular_core from '@angular/core';
 import { OnInit } from '@angular/core';
 import * as i1 from '@angular/common';
@@ -13,7 +13,7 @@ declare class ErrorCollectComponent implements OnInit {
     private formEl;
     _hiden: _angular_core.WritableSignal<boolean>;
     count: _angular_core.WritableSignal<number>;
-    dir: _angular_core.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
+    dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
     readonly freq: _angular_core.InputSignalWithTransform<number, unknown>;
     readonly offsetTop: _angular_core.InputSignalWithTransform<number, unknown>;
     constructor();
