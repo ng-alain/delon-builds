@@ -43,13 +43,13 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/abc.mjs"
     },
-    "./cell": {
-      "types": "./cell/index.d.ts",
-      "default": "./fesm2022/cell.mjs"
-    },
     "./auto-focus": {
       "types": "./auto-focus/index.d.ts",
       "default": "./fesm2022/auto-focus.mjs"
+    },
+    "./cell": {
+      "types": "./cell/index.d.ts",
+      "default": "./fesm2022/cell.mjs"
     },
     "./count-down": {
       "types": "./count-down/index.d.ts",
