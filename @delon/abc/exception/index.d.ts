@@ -1,5 +1,5 @@
 import * as _angular_platform_browser from '@angular/platform-browser';
-import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
+import * as _angular_cdk_bidi from '@angular/cdk/bidi';
 import * as _angular_core from '@angular/core';
 import * as _delon_theme from '@delon/theme';
 import * as i1 from '@angular/common';
@@ -13,7 +13,7 @@ declare class ExceptionComponent {
     private readonly cogSrv;
     private readonly conTpl;
     locale: _angular_core.Signal<_delon_theme.ExceptionLocaleData>;
-    dir: _angular_core.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
+    dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
     hasCon: _angular_core.WritableSignal<boolean>;
     private typeDict;
     typeItem: _angular_core.WritableSignal<{

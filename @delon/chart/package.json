@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "20.0.1-727018b",
+  "version": "20.0.1-441819d",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -27,9 +27,9 @@
   "dependencies": {
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.11",
-    "echarts": "^5.6.0",
-    "@delon/util": "^20.0.1-727018b",
-    "@delon/theme": "^20.0.1-727018b",
+    "echarts": "^6.0.0",
+    "@delon/util": "^20.0.1-441819d",
+    "@delon/theme": "^20.0.1-441819d",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",

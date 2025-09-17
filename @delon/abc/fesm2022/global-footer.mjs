@@ -11,10 +11,10 @@ class GlobalFooterItemComponent {
     // @ViewChild('host', { static: true }) host!: TemplateRef<void>;
     href = input(...(ngDevMode ? [undefined, { debugName: "href" }] : []));
     blankTarget = input(false, ...(ngDevMode ? [{ debugName: "blankTarget", transform: booleanAttribute }] : [{ transform: booleanAttribute }]));
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "20.1.2", type: GlobalFooterItemComponent, isStandalone: true, selector: "global-footer-item", inputs: { href: { classPropertyName: "href", publicName: "href", isSignal: true, isRequired: false, transformFunction: null }, blankTarget: { classPropertyName: "blankTarget", publicName: "blankTarget", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, isSignal: true }], exportAs: ["globalFooterItem"], ngImport: i0, template: `<ng-template #host><ng-content /></ng-template>`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.2.0", version: "20.3.0", type: GlobalFooterItemComponent, isStandalone: true, selector: "global-footer-item", inputs: { href: { classPropertyName: "href", publicName: "href", isSignal: true, isRequired: false, transformFunction: null }, blankTarget: { classPropertyName: "blankTarget", publicName: "blankTarget", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "host", first: true, predicate: ["host"], descendants: true, isSignal: true }], exportAs: ["globalFooterItem"], ngImport: i0, template: `<ng-template #host><ng-content /></ng-template>`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterItemComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterItemComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'global-footer-item',
@@ -57,8 +57,8 @@ class GlobalFooterComponent {
             this.router.navigateByUrl(href);
         }
     }
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.1.2", type: GlobalFooterComponent, isStandalone: true, selector: "global-footer", inputs: { links: { classPropertyName: "links", publicName: "links", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.global-footer": "true", "class.global-footer-rtl": "dir() === 'rtl'" } }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent, isSignal: true }], exportAs: ["globalFooter"], ngImport: i0, template: `
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.0", type: GlobalFooterComponent, isStandalone: true, selector: "global-footer", inputs: { links: { classPropertyName: "links", publicName: "links", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.global-footer": "true", "class.global-footer-rtl": "dir() === 'rtl'" } }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent, isSignal: true }], exportAs: ["globalFooter"], ngImport: i0, template: `
     @if (linkHtmls().length > 0 || items().length > 0) {
       <div class="global-footer__links">
         @for (i of linkHtmls(); track $index) {
@@ -76,7 +76,7 @@ class GlobalFooterComponent {
     </div>
   `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterComponent, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterComponent, decorators: [{
             type: Component,
             args: [{
                     selector: 'global-footer',
@@ -110,11 +110,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.1.2", ngImpor
 
 const COMPONENTS = [GlobalFooterComponent, GlobalFooterItemComponent];
 class GlobalFooterModule {
-    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterModule, imports: [CommonModule, RouterModule, GlobalFooterComponent, GlobalFooterItemComponent], exports: [GlobalFooterComponent, GlobalFooterItemComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterModule, imports: [CommonModule, RouterModule] });
+    static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterModule, imports: [CommonModule, RouterModule, GlobalFooterComponent, GlobalFooterItemComponent], exports: [GlobalFooterComponent, GlobalFooterItemComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterModule, imports: [CommonModule, RouterModule] });
 }
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.1.2", ngImport: i0, type: GlobalFooterModule, decorators: [{
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: GlobalFooterModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, RouterModule, ...COMPONENTS],

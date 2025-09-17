@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { OnInit, OnChanges, AfterViewInit, TemplateRef } from '@angular/core';
-import * as _angular_cdk_bidi_module_d_IN1Vp56w from '@angular/cdk/bidi-module.d-IN1Vp56w';
+import * as _angular_cdk_bidi from '@angular/cdk/bidi';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i1 from '@angular/common';
 import * as i2 from '@angular/router';
@@ -29,7 +29,7 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     private affix;
     inited: boolean;
     isBrowser: boolean;
-    dir: i0.WritableSignal<_angular_cdk_bidi_module_d_IN1Vp56w.a>;
+    dir: i0.WritableSignal<_angular_cdk_bidi.Direction>;
     private get menus();
     _titleVal: string | null;
     paths: PageHeaderPath[];
