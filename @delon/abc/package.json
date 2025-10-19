@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "20.0.2-618b9cc",
+  "version": "20.0.2-4ed8e5f",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,9 +28,9 @@
     "plyr": "~3.7.0",
     "@github/hotkey": "^3.1.1",
     "ngx-countdown": "^20.0.0",
-    "@delon/theme": "^20.0.2-618b9cc",
-    "@delon/util": "^20.0.2-618b9cc",
-    "@delon/acl": "^20.0.2-618b9cc",
+    "@delon/theme": "^20.0.2-4ed8e5f",
+    "@delon/util": "^20.0.2-4ed8e5f",
+    "@delon/acl": "^20.0.2-4ed8e5f",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
@@ -127,13 +127,13 @@
       "types": "./quick-menu/index.d.ts",
       "default": "./fesm2022/quick-menu.mjs"
     },
-    "./se": {
-      "types": "./se/index.d.ts",
-      "default": "./fesm2022/se.mjs"
-    },
     "./reuse-tab": {
       "types": "./reuse-tab/index.d.ts",
       "default": "./fesm2022/reuse-tab.mjs"
+    },
+    "./se": {
+      "types": "./se/index.d.ts",
+      "default": "./fesm2022/se.mjs"
     },
     "./sg": {
       "types": "./sg/index.d.ts",
