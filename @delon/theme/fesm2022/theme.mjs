@@ -1778,6 +1778,89 @@ var enUS = {
     }
 };
 
+var zhHK = {
+    abbr: 'zh-HK',
+    exception: {
+        403: '抱歉，你無權訪問該頁面',
+        404: '抱歉，你訪問的頁面不存在',
+        500: '抱歉，伺服器出錯了',
+        backToHome: '返回主頁'
+    },
+    noticeIcon: {
+        emptyText: '暫無數據',
+        clearText: '清空'
+    },
+    reuseTab: {
+        close: '關閉標籤',
+        closeOther: '關閉其他標籤',
+        closeRight: '關閉右側標籤',
+        refresh: '重新整理'
+    },
+    tagSelect: {
+        expand: '展開',
+        collapse: '收合'
+    },
+    miniProgress: {
+        target: '目標值：'
+    },
+    st: {
+        total: '共 {{total}} 條',
+        filterConfirm: '確定',
+        filterReset: '重設'
+    },
+    sf: {
+        submit: '提交',
+        reset: '重設',
+        search: '搜尋',
+        edit: '儲存',
+        addText: '新增',
+        removeText: '移除',
+        checkAllText: '全選',
+        error: {
+            'false schema': `布爾模式出錯`,
+            $ref: `無法找到引用{ref}`,
+            additionalItems: `不允許超過{limit}個元素`,
+            additionalProperties: `不允許有額外的屬性`,
+            anyOf: `數據應為 anyOf 所指定的其中一個`,
+            dependencies: `應當擁有屬性{property}的依賴屬性{deps}`,
+            enum: `應當是預設的枚舉值之一`,
+            format: `格式不正確`,
+            type: `類型應當是 {type}`,
+            required: `必填項`,
+            maxLength: `最多 {limit} 個字元`,
+            minLength: `至少 {limit} 個字元以上`,
+            minimum: `必須 {comparison}{limit}`,
+            formatMinimum: `必須 {comparison}{limit}`,
+            maximum: `必須 {comparison}{limit}`,
+            formatMaximum: `必須 {comparison}{limit}`,
+            maxItems: `不應多於 {limit} 個項目`,
+            minItems: `不應少於 {limit} 個項目`,
+            maxProperties: `不應多於 {limit} 個屬性`,
+            minProperties: `不應少於 {limit} 個屬性`,
+            multipleOf: `應當是 {multipleOf} 的整數倍`,
+            not: `不應當匹配 "not" schema`,
+            oneOf: `只能匹配一個 "oneOf" 中的 schema`,
+            pattern: `數據格式不正確`,
+            uniqueItems: `不應當含有重複項 (第 {j} 項與第 {i} 項是重複的)`,
+            custom: `格式不正確`,
+            propertyNames: `屬性名 "{propertyName}" 無效`,
+            patternRequired: `應當有屬性匹配模式 {missingPattern}`,
+            switch: `由於 {caseIndex} 失敗，未通過 "switch" 驗證`,
+            const: `應當等於常量`,
+            contains: `應當包含一個有效項目`,
+            formatExclusiveMaximum: `formatExclusiveMaximum 應當是布爾值`,
+            formatExclusiveMinimum: `formatExclusiveMinimum 應當是布爾值`,
+            if: `應當匹配模式 "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `跳過`,
+        prev: `上一項`,
+        next: `下一項`,
+        done: `完成`
+    }
+};
+
 var zhTW = {
     abbr: 'zh-TW',
     exception: {
@@ -2654,8 +2737,8 @@ var itIT = {
     }
 };
 
-var viVI = {
-    abbr: 'vi-VI',
+var viVN = {
+    abbr: 'vi-VN',
     exception: {
         403: `Xin lỗi, bạn không có quyền truy cập vào trang này`,
         404: `Xin lỗi, trang bạn truy cập không tồn tại`,
@@ -2817,6 +2900,338 @@ var arSA = {
         prev: `السابق`,
         next: `التالي`,
         done: `تم`
+    }
+};
+
+var idID = {
+    abbr: 'id-ID',
+    exception: {
+        403: `Maaf, Anda tidak memiliki akses ke halaman ini`,
+        404: `Maaf, halaman yang Anda kunjungi tidak ada`,
+        500: `Maaf, server melaporkan kesalahan`,
+        backToHome: 'Kembali ke Beranda'
+    },
+    noticeIcon: {
+        emptyText: 'Tidak ada data',
+        clearText: 'Bersihkan'
+    },
+    reuseTab: {
+        close: 'Tutup tab',
+        closeOther: 'Tutup tab lainnya',
+        closeRight: 'Tutup tab di sebelah kanan',
+        refresh: 'Segarkan'
+    },
+    tagSelect: {
+        expand: 'Perluas',
+        collapse: 'Ciutkan'
+    },
+    miniProgress: {
+        target: 'Target: '
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} dari {{total}}',
+        filterConfirm: 'OK',
+        filterReset: 'Atur ulang'
+    },
+    sf: {
+        submit: 'Kirim',
+        reset: 'Atur ulang',
+        search: 'Cari',
+        edit: 'Simpan',
+        addText: 'Tambah',
+        removeText: 'Hapus',
+        checkAllText: 'Pilih semua',
+        error: {
+            'false schema': `Skema boolean salah`,
+            $ref: `Tidak dapat menyelesaikan referensi {ref}`,
+            additionalItems: `Tidak boleh memiliki lebih dari {limit} item`,
+            additionalProperties: `Tidak boleh memiliki properti tambahan`,
+            anyOf: `Harus cocok dengan salah satu skema di "anyOf"`,
+            dependencies: `harus memiliki properti {deps} ketika properti {property} ada`,
+            enum: `Harus sama dengan salah satu nilai yang telah ditentukan`,
+            format: `Harus sesuai dengan format "{format}"`,
+            type: `Harus berupa {type}`,
+            required: `Diperlukan`,
+            maxLength: `Tidak boleh lebih panjang dari {limit} karakter`,
+            minLength: `Tidak boleh lebih pendek dari {limit} karakter`,
+            minimum: `Harus {comparison} {limit}`,
+            formatMinimum: `Harus {comparison} {limit}`,
+            maximum: `Harus {comparison} {limit}`,
+            formatMaximum: `Harus {comparison} {limit}`,
+            maxItems: `Tidak boleh memiliki lebih dari {limit} item`,
+            minItems: `Tidak boleh memiliki kurang dari {limit} item`,
+            maxProperties: `Tidak boleh memiliki lebih dari {limit} properti`,
+            minProperties: `Tidak boleh memiliki kurang dari {limit} properti`,
+            multipleOf: `Harus kelipatan dari {multipleOf}`,
+            not: `Tidak boleh valid menurut skema dalam "not"`,
+            oneOf: `Harus cocok dengan tepat satu skema dalam "oneOf"`,
+            pattern: `Harus cocok dengan pola "{pattern}"`,
+            uniqueItems: `Tidak boleh memiliki item duplikat (item ## {j} dan {i} identik)`,
+            custom: `Harus sesuai dengan format`,
+            propertyNames: `Nama properti "{propertyName}" tidak valid`,
+            patternRequired: `Harus memiliki properti yang cocok dengan pola "{missingPattern}"`,
+            switch: `Harus lulus validasi kata kunci "switch", kasus {caseIndex} gagal`,
+            const: `Harus sama dengan konstanta`,
+            contains: `Harus berisi item yang valid`,
+            formatExclusiveMaximum: `formatExclusiveMaximum harus berupa boolean`,
+            formatExclusiveMinimum: `formatExclusiveMinimum harus berupa boolean`,
+            if: `Harus cocok dengan skema "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `Lewati`,
+        prev: `Sebelumnya`,
+        next: `Berikutnya`,
+        done: `Selesai`
+    }
+};
+
+var kmKH = {
+    abbr: 'km-KH',
+    exception: {
+        403: `សូមអភ័យទោស អ្នកមិនមានសិទ្ធិចូលទំព័រនេះទេ`,
+        404: `សូមអភ័យទោស ទំព័រដែលអ្នកចូលមិនមានទេ`,
+        500: `សូមអភ័យទោស ម៉ាស៊ីនមេកំពុងរាយការណ៍កំហុស`,
+        backToHome: 'ត្រឡប់ទៅទំព័រដើម'
+    },
+    noticeIcon: {
+        emptyText: 'គ្មានទិន្នន័យ',
+        clearText: 'សម្អាត'
+    },
+    reuseTab: {
+        close: 'បិទផ្ទាំង',
+        closeOther: 'បិទផ្ទាំងផ្សេងទៀត',
+        closeRight: 'បិទផ្ទាំងខាងស្ដាំ',
+        refresh: 'ផ្ទុកឡើងវិញ'
+    },
+    tagSelect: {
+        expand: 'ពង្រីក',
+        collapse: 'បង្រួម'
+    },
+    miniProgress: {
+        target: 'គោលដៅ៖ '
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} នៃ {{total}}',
+        filterConfirm: 'យល់ព្រម',
+        filterReset: 'កំណត់ឡើងវិញ'
+    },
+    sf: {
+        submit: 'ដាក់ស្នើ',
+        reset: 'កំណត់ឡើងវិញ',
+        search: 'ស្វែងរក',
+        edit: 'រក្សាទុក',
+        addText: 'បន្ថែម',
+        removeText: 'លុបចេញ',
+        checkAllText: 'ពិនិត្យទាំងអស់',
+        error: {
+            'false schema': `ស្កីម៉ាមិនត្រឹមត្រូវទេ`,
+            $ref: `មិនអាចដោះស្រាយយោង {ref} បានទេ`,
+            additionalItems: `មិនគួរមានធាតុលើស {limit}`,
+            additionalProperties: `មិនគួរមានលក្ខណៈបន្ថែមទេ`,
+            anyOf: `ត្រូវតែត្រូវនឹងស្កីម៉ាណាមួយក្នុង "anyOf"`,
+            dependencies: `ត្រូវមានលក្ខណៈ {deps} នៅពេលដែលមានលក្ខណៈ {property}`,
+            enum: `ត្រូវតែស្មើនឹងតម្លៃដែលបានកំណត់ជាមុន`,
+            format: `ត្រូវតែស្របនឹងទ្រង់ទ្រាយ "{format}"`,
+            type: `ត្រូវតែជា {type}`,
+            required: `ត្រូវការបំពេញ`,
+            maxLength: `មិនគួរលើសពី {limit} តួអក្សរ`,
+            minLength: `មិនគួរតិចជាង {limit} តួអក្សរ`,
+            minimum: `ត្រូវជា {comparison} {limit}`,
+            formatMinimum: `ត្រូវជា {comparison} {limit}`,
+            maximum: `ត្រូវជា {comparison} {limit}`,
+            formatMaximum: `ត្រូវជា {comparison} {limit}`,
+            maxItems: `មិនគួរមានធាតុលើសពី {limit}`,
+            minItems: `មិនគួរមានធាតុតិចជាង {limit}`,
+            maxProperties: `មិនគួរមានលក្ខណៈលើសពី {limit}`,
+            minProperties: `មិនគួរមានលក្ខណៈតិចជាង {limit}`,
+            multipleOf: `ត្រូវជាចំនួនគុណនៃ {multipleOf}`,
+            not: `មិនគួរត្រូវនឹងស្កីម៉ានៅក្នុង "not" ទេ`,
+            oneOf: `ត្រូវតែត្រូវតែមួយស្កីម៉ានៅក្នុង "oneOf" ប៉ុណ្ណោះ`,
+            pattern: `ត្រូវតែត្រូវនឹងលំនាំ "{pattern}"`,
+            uniqueItems: `មិនគួរមានធាតុស្ទួន (ធាតុ ## {j} និង {i} ដូចគ្នា)`,
+            custom: `ត្រូវតែស្របនឹងទ្រង់ទ្រាយ`,
+            propertyNames: `ឈ្មោះលក្ខណៈ "{propertyName}" មិនត្រឹមត្រូវទេ`,
+            patternRequired: `ត្រូវមានលក្ខណៈដែលត្រូវនឹងលំនាំ "{missingPattern}"`,
+            switch: `មិនជោគជ័យក្នុងការផ្ទៀងផ្ទាត់តាមពាក្យគន្លឹះ "switch" ករណី {caseIndex} បរាជ័យ`,
+            const: `ត្រូវស្មើនឹងតម្លៃថេរ`,
+            contains: `ត្រូវមានធាតុត្រឹមត្រូវមួយ`,
+            formatExclusiveMaximum: `formatExclusiveMaximum ត្រូវជាប៊ូលីន`,
+            formatExclusiveMinimum: `formatExclusiveMinimum ត្រូវជាប៊ូលីន`,
+            if: `ត្រូវតែត្រូវនឹងស្កីម៉ា "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `រំលង`,
+        prev: `ថយក្រោយ`,
+        next: `បន្ទាប់`,
+        done: `រួចរាល់`
+    }
+};
+
+var msMY = {
+    abbr: 'ms-MY',
+    exception: {
+        403: `Maaf, anda tidak mempunyai akses ke halaman ini`,
+        404: `Maaf, halaman yang anda lawati tidak wujud`,
+        500: `Maaf, pelayan melaporkan ralat`,
+        backToHome: 'Kembali ke Laman Utama'
+    },
+    noticeIcon: {
+        emptyText: 'Tiada data',
+        clearText: 'Padam'
+    },
+    reuseTab: {
+        close: 'Tutup tab',
+        closeOther: 'Tutup tab lain',
+        closeRight: 'Tutup tab di sebelah kanan',
+        refresh: 'Segar semula'
+    },
+    tagSelect: {
+        expand: 'Kembangkan',
+        collapse: 'Lipat'
+    },
+    miniProgress: {
+        target: 'Sasaran: '
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} daripada {{total}}',
+        filterConfirm: 'OK',
+        filterReset: 'Set Semula'
+    },
+    sf: {
+        submit: 'Hantar',
+        reset: 'Set Semula',
+        search: 'Cari',
+        edit: 'Simpan',
+        addText: 'Tambah',
+        removeText: 'Padam',
+        checkAllText: 'Tanda semua',
+        error: {
+            'false schema': `Skema boolean adalah palsu`,
+            $ref: `Tidak dapat menyelesaikan rujukan {ref}`,
+            additionalItems: `Tidak sepatutnya mempunyai lebih daripada {limit} item`,
+            additionalProperties: `Tidak sepatutnya mempunyai sifat tambahan`,
+            anyOf: `Perlu sepadan dengan beberapa skema dalam "anyOf"`,
+            dependencies: `Perlu mempunyai sifat {deps} apabila sifat {property} wujud`,
+            enum: `Perlu sama dengan salah satu nilai yang telah ditetapkan`,
+            format: `Perlu sepadan dengan format "{format}"`,
+            type: `Perlu menjadi {type}`,
+            required: `Diperlukan`,
+            maxLength: `Tidak boleh lebih panjang daripada {limit} aksara`,
+            minLength: `Tidak boleh lebih pendek daripada {limit} aksara`,
+            minimum: `Perlu {comparison} {limit}`,
+            formatMinimum: `Perlu {comparison} {limit}`,
+            maximum: `Perlu {comparison} {limit}`,
+            formatMaximum: `Perlu {comparison} {limit}`,
+            maxItems: `Tidak boleh mempunyai lebih daripada {limit} item`,
+            minItems: `Tidak boleh mempunyai kurang daripada {limit} item`,
+            maxProperties: `Tidak boleh mempunyai lebih daripada {limit} sifat`,
+            minProperties: `Tidak boleh mempunyai kurang daripada {limit} sifat`,
+            multipleOf: `Perlu menjadi gandaan bagi {multipleOf}`,
+            not: `Tidak sepatutnya sah mengikut skema dalam "not"`,
+            oneOf: `Perlu sepadan tepat dengan satu skema dalam "oneOf"`,
+            pattern: `Perlu sepadan dengan corak "{pattern}"`,
+            uniqueItems: `Tidak boleh mempunyai item yang sama (item ## {j} dan {i} adalah sama)`,
+            custom: `Perlu sepadan dengan format`,
+            propertyNames: `Nama sifat "{propertyName}" tidak sah`,
+            patternRequired: `Perlu mempunyai sifat yang sepadan dengan corak "{missingPattern}"`,
+            switch: `Perlu melepasi pengesahan kata kunci "switch", kes {caseIndex} gagal`,
+            const: `Perlu sama dengan nilai tetap`,
+            contains: `Perlu mengandungi item yang sah`,
+            formatExclusiveMaximum: `formatExclusiveMaximum mesti boolean`,
+            formatExclusiveMinimum: `formatExclusiveMinimum mesti boolean`,
+            if: `Perlu sepadan dengan skema "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `Langkau`,
+        prev: `Sebelum`,
+        next: `Seterusnya`,
+        done: `Selesai`
+    }
+};
+
+var thTH = {
+    abbr: 'th-TH',
+    exception: {
+        403: `ขอโทษค่ะ คุณไม่มีสิทธิ์เข้าถึงหน้านี้`,
+        404: `ขอโทษค่ะ หน้าที่คุณเข้าชมไม่มีอยู่`,
+        500: `ขอโทษค่ะ เซิร์ฟเวอร์รายงานข้อผิดพลาด`,
+        backToHome: 'กลับไปหน้าหลัก'
+    },
+    noticeIcon: {
+        emptyText: 'ไม่มีข้อมูล',
+        clearText: 'ล้างข้อมูล'
+    },
+    reuseTab: {
+        close: 'ปิดแท็บ',
+        closeOther: 'ปิดแท็บอื่น',
+        closeRight: 'ปิดแท็บทางขวา',
+        refresh: 'รีเฟรช'
+    },
+    tagSelect: {
+        expand: 'ขยาย',
+        collapse: 'ย่อ'
+    },
+    miniProgress: {
+        target: 'เป้าหมาย: '
+    },
+    st: {
+        total: '{{range[0]}} - {{range[1]}} จาก {{total}}',
+        filterConfirm: 'ตกลง',
+        filterReset: 'รีเซ็ต'
+    },
+    sf: {
+        submit: 'ส่งข้อมูล',
+        reset: 'รีเซ็ต',
+        search: 'ค้นหา',
+        edit: 'บันทึก',
+        addText: 'เพิ่ม',
+        removeText: 'ลบ',
+        checkAllText: 'เลือกทั้งหมด',
+        error: {
+            'false schema': `สคีมาแบบบูลีนเป็นเท็จ`,
+            $ref: `ไม่สามารถแก้ไขการอ้างอิง {ref} ได้`,
+            additionalItems: `ไม่ควรมีมากกว่า {limit} รายการ`,
+            additionalProperties: `ไม่ควรมีคุณสมบัติเพิ่มเติม`,
+            anyOf: `ควรตรงกับบางสคีมาใน "anyOf"`,
+            dependencies: `ควรมีคุณสมบัติ {deps} เมื่อมีคุณสมบัติ {property}`,
+            enum: `ควรมีค่าเท่ากับค่าที่กำหนดไว้ล่วงหน้า`,
+            format: `ควรตรงกับรูปแบบ "{format}"`,
+            type: `ควรเป็น {type}`,
+            required: `จำเป็นต้องกรอก`,
+            maxLength: `ไม่ควรยาวเกิน {limit} ตัวอักษร`,
+            minLength: `ไม่ควรสั้นกว่า {limit} ตัวอักษร`,
+            minimum: `ควรเป็น {comparison} {limit}`,
+            formatMinimum: `ควรเป็น {comparison} {limit}`,
+            maximum: `ควรเป็น {comparison} {limit}`,
+            formatMaximum: `ควรเป็น {comparison} {limit}`,
+            maxItems: `ไม่ควรมีมากกว่า {limit} รายการ`,
+            minItems: `ไม่ควรมีน้อยกว่า {limit} รายการ`,
+            maxProperties: `ไม่ควรมีมากกว่า {limit} คุณสมบัติ`,
+            minProperties: `ไม่ควรมีน้อยกว่า {limit} คุณสมบัติ`,
+            multipleOf: `ควรเป็นผลคูณของ {multipleOf}`,
+            not: `ไม่ควรถูกต้องตามสคีมาใน "not"`,
+            oneOf: `ควรตรงกับเพียงหนึ่งสคีมาใน "oneOf"`,
+            pattern: `ควรตรงกับรูปแบบ "{pattern}"`,
+            uniqueItems: `ไม่ควรมีรายการซ้ำกัน (รายการ ## {j} และ {i} เหมือนกัน)`,
+            custom: `ควรตรงกับรูปแบบ`,
+            propertyNames: `ชื่อคุณสมบัติ "{propertyName}" ไม่ถูกต้อง`,
+            patternRequired: `ควรมีคุณสมบัติที่ตรงกับรูปแบบ "{missingPattern}"`,
+            switch: `ควรผ่านการตรวจสอบคำสำคัญ "switch" กรณี {caseIndex} ล้มเหลว`,
+            const: `ควรเท่ากับค่าคงที่`,
+            contains: `ควรมีรายการที่ถูกต้อง`,
+            formatExclusiveMaximum: `formatExclusiveMaximum ควรเป็นบูลีน`,
+            formatExclusiveMinimum: `formatExclusiveMinimum ควรเป็นบูลีน`,
+            if: `ควรตรงกับสคีมา "{failingKeyword}"`
+        }
+    },
+    onboarding: {
+        skip: `ข้าม`,
+        prev: `ก่อนหน้า`,
+        next: `ถัดไป`,
+        done: `เสร็จสิ้น`
     }
 };
 
@@ -3017,5 +3432,5 @@ const VERSION = new Version('20.0.2');
  * Generated bundle index. Do not edit.
  */
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, arSA as ar_SA, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, itIT as it_IT, jaJP as ja_JP, koKR as ko_KR, plPL as pl_PL, provideAlain, slSI as sl_SI, stepPreloader, trTR as tr_TR, viVI as vi_VI, yn, zhCN as zh_CN, zhTW as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, arSA as ar_SA, elGR as el_GR, enUS as en_US, esES as es_ES, frFR as fr_FR, hrHR as hr_HR, idID as id_ID, itIT as it_IT, jaJP as ja_JP, kmKH as km_KH, koKR as ko_KR, msMY as ms_MY, plPL as pl_PL, provideAlain, slSI as sl_SI, stepPreloader, thTH as th_TH, trTR as tr_TR, viVN as vi_VN, yn, zhCN as zh_CN, zhHK as zh_HK, zhTW as zh_TW };
 //# sourceMappingURL=theme.mjs.map

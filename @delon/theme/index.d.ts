@@ -1502,6 +1502,16 @@ declare class DelonLocaleModule {
     static ɵinj: i0.ɵɵInjectorDeclaration<DelonLocaleModule>;
 }
 
+declare const _default$j: FullLocaleData;
+
+declare const _default$i: FullLocaleData;
+
+declare const _default$h: FullLocaleData;
+
+declare const _default$g: FullLocaleData;
+
+declare const _default$f: FullLocaleData;
+
 declare const _default$e: FullLocaleData;
 
 declare const _default$d: FullLocaleData;
@@ -1687,5 +1697,5 @@ declare class PreloadOptionalModules implements PreloadingStrategy {
 
 declare const VERSION: Version;
 
-export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, _default as ar_SA, _default$9 as el_GR, _default$e as en_US, _default$3 as es_ES, _default$4 as fr_FR, _default$7 as hr_HR, _default$2 as it_IT, _default$6 as ja_JP, _default$8 as ko_KR, _default$a as pl_PL, provideAlain, _default$5 as sl_SI, stepPreloader, _default$b as tr_TR, _default$1 as vi_VI, yn, _default$d as zh_CN, _default$c as zh_TW };
+export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, _default$4 as ar_SA, _default$d as el_GR, _default$j as en_US, _default$7 as es_ES, _default$8 as fr_FR, _default$b as hr_HR, _default$3 as id_ID, _default$6 as it_IT, _default$a as ja_JP, _default$2 as km_KH, _default$c as ko_KR, _default$1 as ms_MY, _default$e as pl_PL, provideAlain, _default$9 as sl_SI, stepPreloader, _default as th_TH, _default$f as tr_TR, _default$5 as vi_VN, yn, _default$i as zh_CN, _default$h as zh_HK, _default$g as zh_TW };
 export type { AlainI18NService, AlainProvideLang, AlainProvideOptions, ApiConfig, App, DrawerHelperOptions, Environment, ExceptionLocaleData, FullLocaleData, HttpObserve, HttpOptions, Layout, LocaleData, METHOD_TYPE, Menu, MenuIcon, MenuInner, MiniProgressLocaleData, ModalHelperDragOptions, ModalHelperOptions, NoticeIconLocaleData, OnboardingLocaleData, REP_TYPE, ReuseTabLocaleData, RouteTitle, SFErrorLocaleData, SFLocaleData, STLocaleData, SettingsKeys, SettingsNotify, TagSelectLocaleData, User, YNMode, YNOptions, _HttpHeaders };
