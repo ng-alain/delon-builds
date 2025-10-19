@@ -28,7 +28,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint@^9.35.0`,
         `eslint-config-prettier@^10.1.8`,
         `eslint-plugin-import@~2.32.0`,
-        `eslint-plugin-jsdoc@~58.1.0`,
+        `eslint-plugin-jsdoc@~61.1.4`,
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@~5.5.4`,
         `eslint-plugin-unused-imports@^4.2.0`,
