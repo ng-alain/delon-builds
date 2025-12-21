@@ -36,7 +36,7 @@ function DA_STORE_TOKEN_LOCAL_FACTORY() {
  */
 class LocalStorageStore {
     get(key) {
-        return JSON.parse(localStorage.getItem(key) || '{}') || {};
+        return JSON.parse(localStorage.getItem(key) ?? '{}') ?? {};
     }
     set(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
@@ -112,7 +112,7 @@ class TokenService {
         this.interval$ = interval(refreshTime)
             .pipe(map(() => {
             const item = this.get();
-            const expired = item.expired || item.exp || 0;
+            const expired = item.expired ?? item.exp ?? 0;
             if (expired <= 0) {
                 return null;
             }
@@ -211,7 +211,7 @@ class SocialService {
         if (!data || !data.token)
             throw new Error(`invalide token data`);
         this.tokenService.set(data);
-        const url = localStorage.getItem(HREFCALLBACK) || '/';
+        const url = localStorage.getItem(HREFCALLBACK) ?? '/';
         localStorage.removeItem(HREFCALLBACK);
         const type = localStorage.getItem(OPENTYPE);
         localStorage.removeItem(OPENTYPE);
@@ -240,7 +240,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
 class MemoryStore {
     cache = {};
     get(key) {
-        return this.cache[key] || {};
+        return this.cache[key] ?? {};
     }
     set(key, value) {
         this.cache[key] = value;
@@ -261,7 +261,7 @@ class MemoryStore {
  */
 class SessionStorageStore {
     get(key) {
-        return JSON.parse(sessionStorage.getItem(key) || '{}') || {};
+        return JSON.parse(sessionStorage.getItem(key) ?? '{}') ?? {};
     }
     set(key, value) {
         sessionStorage.setItem(key, JSON.stringify(value));
@@ -284,7 +284,7 @@ class CookieStorageStore {
     srv = inject(CookieService);
     get(key) {
         try {
-            return JSON.parse(this.srv.get(key) || '{}');
+            return JSON.parse(this.srv.get(key) ?? '{}');
         }
         catch (ex) {
             if (typeof ngDevMode === 'undefined' || ngDevMode) {
@@ -321,7 +321,7 @@ function ToLogin(options, url) {
     const router = inject(Router);
     const token = inject(DA_SERVICE_TOKEN);
     const doc = inject(DOCUMENT);
-    token.referrer.url = url || router.url;
+    token.referrer.url = url ?? router.url;
     if (options.token_invalid_redirect === true) {
         setTimeout(() => {
             if (/^https?:\/\//g.test(options.login_url)) {
@@ -392,7 +392,7 @@ class JWTTokenModel {
      * 获取载荷信息
      */
     get payload() {
-        const parts = (this.token || '').split('.');
+        const parts = (this.token ?? '').split('.');
         if (parts.length !== 3)
             throw new Error('JWT must have 3 parts');
         const decoded = urlBase64Decode(parts[1]);
@@ -602,7 +602,7 @@ function newReq(req, model, options) {
             });
             break;
         case 'body': {
-            const body = req.body || {};
+            const body = req.body ?? {};
             body[token_send_key] = token;
             req = req.clone({
                 body
