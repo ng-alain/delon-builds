@@ -2854,11 +2854,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
         }] });
 
 class NumberWidget extends ControlUIWidget {
-    min;
-    max;
+    min = Number.MIN_SAFE_INTEGER;
+    max = Number.MAX_SAFE_INTEGER;
     step;
-    formatter = value => value.toString();
-    parser = value => +value;
+    formatter;
+    parser;
     width = '';
     ngOnInit() {
         const { minimum, exclusiveMinimum, maximum, exclusiveMaximum, multipleOf, type } = this.schema;
@@ -2913,8 +2913,8 @@ class NumberWidget extends ControlUIWidget {
       [nzStep]="step"
       [nzFormatter]="formatter"
       [nzParser]="parser"
-      [nzPrecision]="ui.precision || null"
-      [nzPlaceHolder]="ui.placeholder || ''"
+      [nzPrecision]="ui.precision ?? null"
+      [nzPlaceHolder]="ui.placeholder ?? ''"
       [style.width]="width"
       [class.ant-input-number__hide-step]="ui.hideStep"
     />
@@ -2943,8 +2943,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzStep]="step"
       [nzFormatter]="formatter"
       [nzParser]="parser"
-      [nzPrecision]="ui.precision || null"
-      [nzPlaceHolder]="ui.placeholder || ''"
+      [nzPrecision]="ui.precision ?? null"
+      [nzPlaceHolder]="ui.placeholder ?? ''"
       [style.width]="width"
       [class.ant-input-number__hide-step]="ui.hideStep"
     />
