@@ -229,7 +229,7 @@ class SVComponent {
         this._noColon = parent.bordered ? true : noColon != null ? noColon : parent.noColon;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        const parentCol = parent.colInCon || parent.col;
+        const parentCol = parent.colInCon ?? parent.col;
         clsMap.push(...rep.genCls(col != null ? col : parentCol, parentCol));
         clsMap.push(`${prefixCls}__item`);
         if (parent.labelWidth)

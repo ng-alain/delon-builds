@@ -131,7 +131,7 @@ class PdfComponent {
         return this._renderText ? this.textLayerMode : PdfTextLayerMode.DISABLE;
     }
     get win() {
-        return this.doc.defaultView || window;
+        return this.doc.defaultView ?? window;
     }
     get el() {
         return this._el.querySelector('.pdf-container');
@@ -253,7 +253,7 @@ class PdfComponent {
             return;
         this._pdf.getPage(currentViewer.currentPageNumber).then((page) => {
             const { _rotation, _zoom } = this;
-            const rotation = _rotation || page.rotate;
+            const rotation = _rotation ?? page.rotate;
             const viewportWidth = page.getViewport({
                 scale: _zoom,
                 rotation

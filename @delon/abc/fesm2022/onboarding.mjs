@@ -37,7 +37,7 @@ class OnboardingComponent {
         return this.doc;
     }
     _getWin() {
-        return this._getDoc().defaultView || window;
+        return this._getDoc().defaultView ?? window;
     }
     getLightData() {
         const doc = this._getDoc();
@@ -46,8 +46,8 @@ class OnboardingComponent {
         if (!el) {
             return null;
         }
-        const scrollTop = win.scrollY || doc.documentElement.scrollTop || doc.body.scrollTop;
-        const scrollLeft = win.scrollX || doc.documentElement.scrollLeft || doc.body.scrollLeft;
+        const scrollTop = win.scrollY ?? doc.documentElement.scrollTop ?? doc.body.scrollTop;
+        const scrollLeft = win.scrollX ?? doc.documentElement.scrollLeft ?? doc.body.scrollLeft;
         const rect = el.getBoundingClientRect();
         const top = rect.top + scrollTop;
         const left = rect.left + scrollLeft;
@@ -238,7 +238,7 @@ class OnboardingService {
             ...this.locale(),
             ...items[this.active]
         };
-        const dir = this.configSrv.get('onboarding').direction || this.directionality.value;
+        const dir = this.configSrv.get('onboarding').direction ?? this.directionality.value;
         Object.assign(this.compRef.instance, { item, config: this.config, active: this.active, max: items.length, dir });
         const pipes = [
             switchMap(() => (item.url ? this.router.navigateByUrl(item.url) : of(true))),

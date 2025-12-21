@@ -228,7 +228,7 @@ class SEComponent {
         return this.parentComp.size === 'compact';
     }
     get ngControl() {
-        return this.ngModel || this.formControlName;
+        return this.ngModel ?? this.formControlName;
     }
     constructor() {
         if (this.parentComp == null) {
@@ -248,7 +248,7 @@ class SEComponent {
         this._labelWidth = parent.nzLayout === 'horizontal' ? (labelWidth != null ? labelWidth : parent.labelWidth) : null;
         clsMap.forEach(cls => ren.removeClass(el, cls));
         clsMap.length = 0;
-        const parentCol = parent.colInCon || parent.col;
+        const parentCol = parent.colInCon ?? parent.col;
         const repCls = parent.nzLayout === 'horizontal' ? rep.genCls(col != null ? col : parentCol, parentCol) : [];
         clsMap.push(`ant-form-item`, ...repCls, `${prefixCls}__item`);
         if (line || parent.line) {
@@ -267,7 +267,7 @@ class SEComponent {
             .subscribe(res => this.updateStatus(res === 'INVALID'));
         if (this._autoId) {
             const controlAccessor = this.ngControl.valueAccessor;
-            const control = (controlAccessor?.elementRef || controlAccessor?._elementRef)?.nativeElement;
+            const control = (controlAccessor?.elementRef ?? controlAccessor?._elementRef)?.nativeElement;
             if (control) {
                 if (control.id) {
                     this._id = control.id;
@@ -296,9 +296,9 @@ class SEComponent {
             !this.onceFlag && invalid && this.parentComp.ingoreDirty === false && !this.ngControl?.dirty ? false : invalid;
         const errors = this.ngControl?.errors;
         if (errors != null && Object.keys(errors).length > 0) {
-            const key = Object.keys(errors)[0] || '';
+            const key = Object.keys(errors)[0] ?? '';
             const err = this.errorData[key];
-            this._error = err != null ? err : this.errorData[''] || '';
+            this._error = err != null ? err : (this.errorData[''] ?? '');
         }
         this.statusSrv.formStatusChanges.next({ status: this.invalid ? 'error' : '', hasFeedback: false });
         this.cdr.detectChanges();

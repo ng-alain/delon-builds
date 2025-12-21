@@ -17,7 +17,7 @@ class DownFileDirective {
     success = new EventEmitter();
     error = new EventEmitter();
     getDisposition(data) {
-        const arr = (data || '')
+        const arr = (data ?? '')
             .split(';')
             .filter(i => i.includes('='))
             .map(v => {
@@ -54,7 +54,7 @@ class DownFileDirective {
         this.setDisabled(true);
         this._http
             .request(this.httpMethod, this.httpUrl, {
-            params: this.httpData || {},
+            params: this.httpData ?? {},
             responseType: 'blob',
             observe: 'response',
             body: this.httpBody

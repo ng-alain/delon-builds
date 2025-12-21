@@ -55,7 +55,7 @@ class RangePickerDirective {
         if (typeof val !== 'object') {
             item.enabled = val !== false;
         }
-        (item.list || []).forEach(i => {
+        (item.list ?? []).forEach(i => {
             i._text = this.dom.bypassSecurityTrustHtml(i.text);
         });
         this._shortcut = item;

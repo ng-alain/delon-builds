@@ -238,7 +238,7 @@ const REUSE_TAB_STORAGE_KEY = new InjectionToken('REUSE_TAB_STORAGE_KEY');
 const REUSE_TAB_STORAGE_STATE = new InjectionToken('REUSE_TAB_STORAGE_STATE');
 class ReuseTabLocalStorageState {
     get(key) {
-        return JSON.parse(localStorage.getItem(key) || '[]') || [];
+        return JSON.parse(localStorage.getItem(key) ?? '[]') ?? [];
     }
     update(key, value) {
         localStorage.setItem(key, JSON.stringify(value));
@@ -342,7 +342,7 @@ class ReuseTabService {
     }
     /** 获取指定路径缓存 */
     get(url) {
-        return url ? this.cached.list.find(w => w.url === url) || null : null;
+        return url ? (this.cached.list.find(w => w.url === url) ?? null) : null;
     }
     remove(url, includeNonCloseable) {
         const idx = typeof url === 'string' ? this.index(url) : url;
@@ -726,7 +726,7 @@ class ReuseTabService {
             return null;
         const url = this.getUrl(route);
         const data = this.get(url);
-        const ret = (data && data._handle) || null;
+        const ret = data && data._handle;
         this.di('#retrieve', url, ret);
         return ret;
     }
@@ -737,13 +737,13 @@ class ReuseTabService {
         let ret = future.routeConfig === curr.routeConfig;
         if (!ret)
             return false;
-        const path = ((future.routeConfig && future.routeConfig.path) || '');
+        const path = ((future.routeConfig && future.routeConfig.path) ?? '');
         if (path.length > 0 && ~path.indexOf(':')) {
             if (this.routeParamMatchMode === 'strict') {
                 ret = this.getUrl(future) === this.getUrl(curr);
             }
             else {
-                ret = path === ((curr.routeConfig && curr.routeConfig.path) || '');
+                ret = path === ((curr.routeConfig && curr.routeConfig.path) ?? '');
             }
         }
         this.di('=====================');

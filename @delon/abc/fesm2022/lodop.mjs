@@ -156,7 +156,7 @@ class LodopService {
                 if (arr != null && Array.isArray(arr) && contextObj) {
                     for (let i = 0; i < arr.length; i++) {
                         if (typeof arr[i] === 'string') {
-                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (_match, key) => contextObj[key.trim()] || '');
+                            arr[i] = arr[i].replace(/{{(.*?)}}/g, (_match, key) => contextObj[key.trim()] ?? '');
                         }
                     }
                 }

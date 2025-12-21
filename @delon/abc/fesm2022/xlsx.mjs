@@ -78,7 +78,7 @@ class XlsxService {
                 if (Array.isArray(options.sheets)) {
                     options.sheets.forEach((value, index) => {
                         const ws = aoa_to_sheet(value.data);
-                        book_append_sheet(wb, ws, value.name || `Sheet${index + 1}`);
+                        book_append_sheet(wb, ws, value.name ?? `Sheet${index + 1}`);
                     });
                 }
                 else {
@@ -87,7 +87,7 @@ class XlsxService {
                 }
                 if (options.callback)
                     options.callback(wb);
-                const filename = options.filename || `export.${options.format}`;
+                const filename = options.filename ?? `export.${options.format}`;
                 writeFile(wb, filename, {
                     bookType: options.format,
                     bookSST: false,
