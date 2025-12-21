@@ -26,7 +26,7 @@ class TreeSelectWidget extends ControlUIWidget {
             checkStrictly: toBool(ui.checkStrictly, false),
             hideUnMatched: toBool(ui.hideUnMatched, false),
             defaultExpandAll: toBool(ui.defaultExpandAll, false),
-            displayWith: ui.displayWith || ((node) => node.title)
+            displayWith: ui.displayWith ?? ((node) => node.title)
         };
         this.asyncData = typeof ui.expandChange === 'function';
     }
@@ -70,7 +70,7 @@ class TreeSelectWidget extends ControlUIWidget {
       [nzExpandedKeys]="ui.expandedKeys!"
       [nzNotFoundContent]="ui.notFoundContent"
       [nzMaxTagCount]="ui.maxTagCount!"
-      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder || null"
+      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
       [nzTreeTemplate]="ui.treeTemplate!"
       [nzDisabled]="disabled"
       [nzShowSearch]="i.showSearch"
@@ -88,9 +88,9 @@ class TreeSelectWidget extends ControlUIWidget {
       [nzDisplayWith]="i.displayWith!"
       [ngModel]="value"
       [nzVirtualHeight]="ui.virtualHeight!"
-      [nzVirtualItemSize]="ui.virtualItemSize || 28"
-      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx || 500"
-      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx || 28"
+      [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
+      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
+      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
       (ngModelChange)="change($event)"
       (nzExpandChange)="expandChange($event)"
     />
@@ -118,7 +118,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzExpandedKeys]="ui.expandedKeys!"
       [nzNotFoundContent]="ui.notFoundContent"
       [nzMaxTagCount]="ui.maxTagCount!"
-      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder || null"
+      [nzMaxTagPlaceholder]="ui.maxTagPlaceholder ?? null"
       [nzTreeTemplate]="ui.treeTemplate!"
       [nzDisabled]="disabled"
       [nzShowSearch]="i.showSearch"
@@ -136,9 +136,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzDisplayWith]="i.displayWith!"
       [ngModel]="value"
       [nzVirtualHeight]="ui.virtualHeight!"
-      [nzVirtualItemSize]="ui.virtualItemSize || 28"
-      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx || 500"
-      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx || 28"
+      [nzVirtualItemSize]="ui.virtualItemSize ?? 28"
+      [nzVirtualMaxBufferPx]="ui.virtualMaxBufferPx ?? 500"
+      [nzVirtualMinBufferPx]="ui.virtualMinBufferPx ?? 28"
       (ngModelChange)="change($event)"
       (nzExpandChange)="expandChange($event)"
     />

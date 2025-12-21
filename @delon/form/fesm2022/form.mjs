@@ -239,7 +239,7 @@ function getEnum(list, formData, readOnly) {
     return list;
 }
 function getCopyEnum(list, formData, readOnly) {
-    return getEnum(deepCopy(list || []), formData, readOnly);
+    return getEnum(deepCopy(list ?? []), formData, readOnly);
 }
 function getData(schema, ui, formData, asyncArgs) {
     if (typeof ui.asyncData === 'function') {
@@ -286,7 +286,7 @@ class FormProperty {
             ingoreKeywords: this.ui.ingoreKeywords,
             debug: ui.debug
         });
-        this.formData = formData || schema.default;
+        this.formData = formData ?? schema.default;
         this._parent = parent;
         if (parent) {
             this._root = parent.root;
@@ -343,7 +343,7 @@ class FormProperty {
         };
         this._updateValue();
         if (options.emitValueEvent) {
-            options.updatePath = options.updatePath || this.path;
+            options.updatePath = options.updatePath ?? this.path;
             options.updateValue = options.updateValue == null ? this.value : options.updateValue;
             this.valueChanges.next({ value: this.value, path: options.updatePath, pathValue: options.updateValue });
         }
@@ -408,7 +408,7 @@ class FormProperty {
             errors = [];
         }
         else {
-            errors = this.schemaValidator(this._value) || [];
+            errors = this.schemaValidator(this._value) ?? [];
         }
         const customValidator = this.ui.validator;
         if (typeof customValidator === 'function') {
@@ -455,17 +455,17 @@ class FormProperty {
     setErrors(errors = [], emitFormat = true) {
         let arrErrs = Array.isArray(errors) ? errors : [errors];
         if (emitFormat && arrErrs && !this.ui.onlyVisual) {
-            const l = (this.widget && this.widget.l.error) || {};
+            const l = (this.widget && this.widget.l.error) ?? {};
             arrErrs = arrErrs.map((err) => {
                 let message = err.keyword == null && err.message
                     ? err.message
-                    : (this.ui.errors || {})[err.keyword] || this._options.errors[err.keyword] || l[err.keyword] || ``;
+                    : ((this.ui.errors ?? {})[err.keyword] ?? this._options.errors[err.keyword] ?? l[err.keyword] ?? ``);
                 if (message && typeof message === 'function') {
                     message = message(err);
                 }
                 if (message) {
                     if (~message.indexOf('{') && err.params) {
-                        message = message.replace(/{([.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] || '');
+                        message = message.replace(/{([.a-zA-Z0-9]+)}/g, (_v, key) => err.params[key] ?? '');
                     }
                     err.message = message;
                 }
@@ -637,10 +637,10 @@ class ObjectProperty extends PropertyGroup {
             orderedProperties = orderProperties(Object.keys(this.schema.properties), this.ui.order);
         }
         catch (e) {
-            console.error(`Invalid ${this.schema.title || 'root'} object field configuration:`, e);
+            console.error(`Invalid ${this.schema.title ?? 'root'} object field configuration:`, e);
         }
         orderedProperties.forEach(propertyId => {
-            this.properties[propertyId] = this.formPropertyFactory.createProperty(this.schema.properties[propertyId], this.ui[`$${propertyId}`], (this.formData || {})[propertyId], this, propertyId);
+            this.properties[propertyId] = this.formPropertyFactory.createProperty(this.schema.properties[propertyId], this.ui[`$${propertyId}`], (this.formData ?? {})[propertyId], this, propertyId);
             this._propertiesId.push(propertyId);
         });
     }
@@ -655,7 +655,7 @@ class ObjectProperty extends PropertyGroup {
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
-        value = value || this.schema.default || {};
+        value = value ?? this.schema.default ?? {};
         const properties = this.properties;
         for (const propertyId in this.schema.properties) {
             if (Object.prototype.hasOwnProperty.call(this.schema.properties, propertyId)) {
@@ -704,7 +704,7 @@ class ArrayProperty extends PropertyGroup {
         this.updateValueAndValidity({ onlySelf, emitValueEvent: true });
     }
     resetValue(value, onlySelf) {
-        this._value = value || this.schema.default || [];
+        this._value = value ?? this.schema.default ?? [];
         this.setValue(this._value, onlySelf);
     }
     _hasValue() {
@@ -934,7 +934,7 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
             return;
         }
         this.options = mergeConfig(this.cogSrv);
-        const customOptions = this.options.ajv || {};
+        const customOptions = this.options.ajv ?? {};
         this.ngZone.runOutsideAngular(() => {
             this.ajv = new Ajv({
                 allErrors: true,
@@ -954,7 +954,7 @@ class AjvSchemaValidatorFactory extends SchemaValidatorFactory {
     createValidatorFn(schema, extraOptions) {
         const ingoreKeywords = [
             ...this.options.ingoreKeywords,
-            ...(extraOptions.ingoreKeywords || [])
+            ...(extraOptions.ingoreKeywords ?? [])
         ];
         return (value) => {
             try {
@@ -1048,7 +1048,7 @@ class SFItemComponent {
     }
     ngOnChanges() {
         const p = this.formProperty;
-        this.ref = this.widgetFactory.createWidget(this.container, (p.ui.widget || p.schema.type));
+        this.ref = this.widgetFactory.createWidget(this.container, (p.ui.widget ?? p.schema.type));
         this.onWidgetInstanciated(this.ref.instance);
     }
     ngOnDestroy() {
@@ -1096,7 +1096,7 @@ class SFFixedDirective {
         if (!this._inited || this.num == null || this.num <= 0)
             return;
         const el = this.el;
-        const widgetEl = el.querySelector('.ant-row') || el;
+        const widgetEl = el.querySelector('.ant-row') ?? el;
         this.render.addClass(widgetEl, 'sf__fixed');
         const labelEl = widgetEl.querySelector('.ant-form-item-label');
         const controlEl = widgetEl.querySelector('.ant-form-item-control-wrapper,.ant-form-item-control');
@@ -1311,7 +1311,7 @@ class SFComponent {
             throw new Error(`Invalid path: ${path}`);
         }
         const key = path.split(SF_SEQ).pop();
-        const parentRequired = property.parent?.schema.required || [];
+        const parentRequired = property.parent?.schema.required ?? [];
         const idx = parentRequired.findIndex(w => w === key);
         if (status) {
             if (idx === -1)
@@ -1371,7 +1371,7 @@ class SFComponent {
             .subscribe(() => this.refreshSchema());
     }
     fanyi(key) {
-        return this.i18nSrv.fanyi(key) || key;
+        return this.i18nSrv.fanyi(key) ?? key;
     }
     inheritUI(ui) {
         ['optionalHelp'].filter(key => !!this._defUi[key]).forEach(key => (ui[key] = { ...this._defUi[key], ...ui[key] }));
@@ -1512,7 +1512,7 @@ class SFComponent {
                     delete property.items.ui;
                 }
                 if (property.properties && Object.keys(property.properties).length) {
-                    inFn(property, schema, uiSchema[uiKey] || {}, ui, ui);
+                    inFn(property, schema, uiSchema[uiKey] ?? {}, ui, ui);
                 }
             });
         };
@@ -1899,7 +1899,7 @@ class Widget {
     schema;
     ui;
     get cls() {
-        return this.ui.class || '';
+        return this.ui.class ?? '';
     }
     get disabled() {
         if (this.schema.readOnly === true || this.sfComp.disabled) {
@@ -2029,9 +2029,9 @@ class ArrayWidget extends ArrayLayoutWidget {
         if (grid && grid.arraySpan) {
             this.arraySpan = grid.arraySpan;
         }
-        this.addTitle = this.dom.bypassSecurityTrustHtml(addTitle || this.l.addText);
-        this.addType = addType || 'dashed';
-        this.removeTitle = removable === false ? null : removeTitle || this.l.removeText;
+        this.addTitle = this.dom.bypassSecurityTrustHtml(addTitle ?? this.l.addText);
+        this.addType = addType ?? 'dashed';
+        this.removeTitle = removable === false ? null : (removeTitle ?? this.l.removeText);
     }
     reValid(options) {
         this.formProperty.updateValueAndValidity({
@@ -2304,7 +2304,7 @@ class CheckboxWidget extends ControlUIWidget {
           (ngModelChange)="onAllChecked()"
           [nzIndeterminate]="indeterminate"
         >
-          {{ ui.checkAllText || l.checkAllText }}
+          {{ ui.checkAllText ?? l.checkAllText }}
         </label>
       }
     </ng-template>
@@ -2377,7 +2377,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           (ngModelChange)="onAllChecked()"
           [nzIndeterminate]="indeterminate"
         >
-          {{ ui.checkAllText || l.checkAllText }}
+          {{ ui.checkAllText ?? l.checkAllText }}
         </label>
       }
     </ng-template>
@@ -2495,7 +2495,7 @@ class DateWidget extends ControlUIWidget {
     i;
     ngOnInit() {
         const { mode, end, displayFormat, allowClear, showToday } = this.ui;
-        this.mode = mode || 'date';
+        this.mode = mode ?? 'date';
         this.flatRange = end != null;
         // 构建属性对象时会对默认值进行校验，因此可以直接使用 format 作为格式化属性
         this.startFormat = this.ui._format;
@@ -2536,7 +2536,7 @@ class DateWidget extends ControlUIWidget {
         }
         if (this.flatRange) {
             const endValue = toDate(this.endProperty.formData, {
-                formatString: this.endFormat || this.startFormat,
+                formatString: this.endFormat ?? this.startFormat,
                 defaultValue: null
             });
             this.displayValue = value == null || endValue == null ? [] : [value, endValue];
@@ -2560,7 +2560,7 @@ class DateWidget extends ControlUIWidget {
             return;
         }
         const res = Array.isArray(value)
-            ? [format(value[0], this.startFormat), format(value[1], this.endFormat || this.startFormat)]
+            ? [format(value[0], this.startFormat), format(value[1], this.endFormat ?? this.startFormat)]
             : format(value, this.startFormat);
         if (this.flatRange) {
             this.setValue(res[0]);
@@ -2680,7 +2680,7 @@ class DateWidget extends ControlUIWidget {
           [nzRanges]="ui.ranges"
           [nzShowTime]="ui.showTime"
           [nzSeparator]="ui.separator"
-          [nzShowWeekNumber]="ui.showWeekNumber || false"
+          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
           [nzMode]="$any(ui.rangeMode)"
           [nzInputReadOnly]="ui.inputReadOnly"
           [nzInline]="ui.inline!"
@@ -2707,7 +2707,7 @@ class DateWidget extends ControlUIWidget {
           [nzRenderExtraFooter]="ui.renderExtraFooter"
           [nzShowTime]="ui.showTime"
           [nzShowToday]="i.showToday"
-          [nzShowWeekNumber]="ui.showWeekNumber || false"
+          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
           [nzInputReadOnly]="ui.inputReadOnly"
           [nzInline]="ui.inline!"
           (nzOnOk)="_ok($event)"
@@ -2812,7 +2812,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           [nzRanges]="ui.ranges"
           [nzShowTime]="ui.showTime"
           [nzSeparator]="ui.separator"
-          [nzShowWeekNumber]="ui.showWeekNumber || false"
+          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
           [nzMode]="$any(ui.rangeMode)"
           [nzInputReadOnly]="ui.inputReadOnly"
           [nzInline]="ui.inline!"
@@ -2839,7 +2839,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           [nzRenderExtraFooter]="ui.renderExtraFooter"
           [nzShowTime]="ui.showTime"
           [nzShowToday]="i.showToday"
-          [nzShowWeekNumber]="ui.showWeekNumber || false"
+          [nzShowWeekNumber]="ui.showWeekNumber ?? false"
           [nzInputReadOnly]="ui.inputReadOnly"
           [nzInline]="ui.inline!"
           (nzOnOk)="_ok($event)"
@@ -2862,7 +2862,7 @@ class NumberWidget extends ControlUIWidget {
     width = '';
     ngOnInit() {
         const { minimum, exclusiveMinimum, maximum, exclusiveMaximum, multipleOf, type } = this.schema;
-        this.step = multipleOf || 1;
+        this.step = multipleOf ?? 1;
         if (typeof minimum !== 'undefined') {
             this.min = exclusiveMinimum ? minimum + this.step : minimum;
         }
@@ -2978,7 +2978,7 @@ class ObjectWidget extends ObjectLayoutWidget {
             const property = formProperty.properties[key];
             const item = {
                 property,
-                grid: property.ui.grid || grid || {},
+                grid: property.ui.grid ?? grid ?? {},
                 spanLabelFixed: property.ui.spanLabelFixed,
                 show: property.ui.hidden === false
             };
@@ -3030,10 +3030,10 @@ class ObjectWidget extends ObjectLayoutWidget {
       <nz-card
         [nzTitle]="cardTitleTpl"
         [nzExtra]="ui.cardExtra"
-        [nzSize]="ui.cardSize || 'small'"
-        [nzActions]="ui.cardActions || []"
+        [nzSize]="ui.cardSize ?? 'small'"
+        [nzActions]="ui.cardActions ?? []"
         [nzBodyStyle]="ui.cardBodyStyle!"
-        [nzBordered]="ui.cardBordered || true"
+        [nzBordered]="ui.cardBordered ?? true"
         class="sf__object-card"
         [class.sf__object-card-fold]="!expand"
       >
@@ -3110,10 +3110,10 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       <nz-card
         [nzTitle]="cardTitleTpl"
         [nzExtra]="ui.cardExtra"
-        [nzSize]="ui.cardSize || 'small'"
-        [nzActions]="ui.cardActions || []"
+        [nzSize]="ui.cardSize ?? 'small'"
+        [nzActions]="ui.cardActions ?? []"
         [nzBodyStyle]="ui.cardBodyStyle!"
-        [nzBordered]="ui.cardBordered || true"
+        [nzBordered]="ui.cardBordered ?? true"
         class="sf__object-card"
         [class.sf__object-card-fold]="!expand"
       >
@@ -3159,7 +3159,7 @@ class RadioWidget extends ControlUIWidget {
     data = [];
     styleType;
     reset(value) {
-        this.styleType = (this.ui.styleType || 'default') === 'default';
+        this.styleType = (this.ui.styleType ?? 'default') === 'default';
         getData(this.schema, this.ui, value).subscribe(list => {
             this.data = list;
             this.detectChanges();
@@ -3184,7 +3184,7 @@ class RadioWidget extends ControlUIWidget {
       [nzName]="id"
       [ngModel]="value"
       (ngModelChange)="_setValue($event)"
-      [nzButtonStyle]="ui.buttonStyle || 'outline'"
+      [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
     >
       @if (styleType) {
         @for (option of data; track $index) {
@@ -3219,7 +3219,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzName]="id"
       [ngModel]="value"
       (ngModelChange)="_setValue($event)"
-      [nzButtonStyle]="ui.buttonStyle || 'outline'"
+      [nzButtonStyle]="ui.buttonStyle ?? 'outline'"
     >
       @if (styleType) {
         @for (option of data; track $index) {
@@ -3250,7 +3250,7 @@ class SelectWidget extends ControlUIWidget {
     hasGroup = false;
     loading = false;
     checkGroup(list) {
-        this.hasGroup = (list || []).filter(w => w.group === true).length > 0;
+        this.hasGroup = (list ?? []).filter(w => w.group === true).length > 0;
     }
     ngOnInit() {
         const { autoClearSearchValue, borderless, autoFocus, dropdownMatchSelectWidth, serverSearch, maxMultipleCount, mode, showSearch, tokenSeparators, maxTagCount, compareWith, optionHeightPx, optionOverflowSize, showArrow } = this.ui;
@@ -3260,20 +3260,20 @@ class SelectWidget extends ControlUIWidget {
             autoFocus: toBool(autoFocus, false),
             dropdownMatchSelectWidth: toBool(dropdownMatchSelectWidth, true),
             serverSearch: toBool(serverSearch, false),
-            maxMultipleCount: maxMultipleCount || Infinity,
-            mode: mode || 'default',
+            maxMultipleCount: maxMultipleCount ?? Infinity,
+            mode: mode ?? 'default',
             showSearch: toBool(showSearch, true),
-            tokenSeparators: tokenSeparators || [],
-            maxTagCount: maxTagCount || Infinity,
-            optionHeightPx: optionHeightPx || 32,
-            optionOverflowSize: optionOverflowSize || 8,
+            tokenSeparators: tokenSeparators ?? [],
+            maxTagCount: maxTagCount ?? Infinity,
+            optionHeightPx: optionHeightPx ?? 32,
+            optionOverflowSize: optionOverflowSize ?? 8,
             showArrow: toBool(showArrow, true),
-            compareWith: compareWith || ((o1, o2) => o1 === o2)
+            compareWith: compareWith ?? ((o1, o2) => o1 === o2)
         };
         const onSearch = this.ui.onSearch;
         if (onSearch) {
             this.search$
-                .pipe(takeUntil(this.sfItemComp.destroy$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime || 300), switchMap(text => onSearch(text)), catchError(() => []))
+                .pipe(takeUntil(this.sfItemComp.destroy$), distinctUntilChanged(), debounceTime(this.ui.searchDebounceTime ?? 300), switchMap(text => onSearch(text)), catchError(() => []))
                 .subscribe(list => {
                 this.data = list;
                 this.checkGroup(list);
@@ -3540,8 +3540,8 @@ class StringWidget extends ControlUIWidget {
         [nzBorderless]="ui.borderless"
         [ngModel]="value"
         (ngModelChange)="change($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.type]="ui.type || 'text'"
+        [attr.maxLength]="schema.maxLength ?? null"
+        [attr.type]="ui.type ?? 'text'"
         [attr.placeholder]="ui.placeholder"
         [attr.autocomplete]="ui.autocomplete"
         [attr.autoFocus]="ui.autofocus"
@@ -3591,8 +3591,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
         [nzBorderless]="ui.borderless"
         [ngModel]="value"
         (ngModelChange)="change($event)"
-        [attr.maxLength]="schema.maxLength || null"
-        [attr.type]="ui.type || 'text'"
+        [attr.maxLength]="schema.maxLength ?? null"
+        [attr.type]="ui.type ?? 'text'"
         [attr.placeholder]="ui.placeholder"
         [attr.autocomplete]="ui.autocomplete"
         [attr.autoFocus]="ui.autofocus"
@@ -3632,7 +3632,7 @@ class TextWidget extends ControlUIWidget {
         this.ui.html = toBool(this.ui.html, true);
     }
     reset(value) {
-        this.text = value || this.ui.defaultText || '-';
+        this.text = value ?? this.ui.defaultText ?? '-';
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.0", ngImport: i0, type: TextWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.0", type: TextWidget, isStandalone: false, selector: "sf-text", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
@@ -3717,7 +3717,7 @@ class TextareaWidget extends ControlUIWidget {
         [nzSize]="ui.size!"
         [ngModel]="value"
         (ngModelChange)="change($event)"
-        [attr.maxLength]="schema.maxLength || null"
+        [attr.maxLength]="schema.maxLength ?? null"
         [attr.placeholder]="ui.placeholder"
         [nzAutosize]="autosize"
         [nzBorderless]="ui.borderless"
@@ -3740,7 +3740,7 @@ class TextareaWidget extends ControlUIWidget {
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           [nzAutosize]="autosize"
           [nzBorderless]="ui.borderless"
@@ -3775,7 +3775,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
         [nzSize]="ui.size!"
         [ngModel]="value"
         (ngModelChange)="change($event)"
-        [attr.maxLength]="schema.maxLength || null"
+        [attr.maxLength]="schema.maxLength ?? null"
         [attr.placeholder]="ui.placeholder"
         [nzAutosize]="autosize"
         [nzBorderless]="ui.borderless"
@@ -3798,7 +3798,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="change($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           [nzAutosize]="autosize"
           [nzBorderless]="ui.borderless"

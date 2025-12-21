@@ -40,16 +40,16 @@ class AutoCompleteWidget extends ControlUIWidget {
         this.i = {
             backfill: toBool(backfill, false),
             defaultActiveFirstOption: toBool(defaultActiveFirstOption, true),
-            width: nzWidth || undefined,
-            compareWith: compareWith || ((o1, o2) => o1 === o2)
+            width: nzWidth ?? undefined,
+            compareWith: compareWith ?? ((o1, o2) => o1 === o2)
         };
         let filterOptionValue = filterOption == null ? true : filterOption;
         if (typeof filterOptionValue === 'boolean') {
-            filterOptionValue = (input, option) => option.label.toLowerCase().indexOf((input || '').toLowerCase()) > -1;
+            filterOptionValue = (input, option) => option.label.toLowerCase().indexOf((input ?? '').toLowerCase()) > -1;
         }
         this.filterOption = filterOptionValue;
         this.isAsync = !!asyncData;
-        const orgTime = +(this.ui.debounceTime || 0);
+        const orgTime = +(this.ui.debounceTime ?? 0);
         const time = Math.max(0, this.isAsync ? Math.max(50, orgTime) : orgTime);
         this.list = this.ngModel.valueChanges.pipe(debounceTime(time), startWith(''), mergeMap(input => (this.isAsync ? asyncData(input) : this.filterData(input))), map(res => getEnum(res, null, this.schema.readOnly)));
     }
@@ -65,7 +65,7 @@ class AutoCompleteWidget extends ControlUIWidget {
         this.typing = value;
         switch (this.ui.type) {
             case 'email':
-                this.fixData = getCopyEnum(this.schema.enum || this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
+                this.fixData = getCopyEnum(this.schema.enum ?? this.formProperty.options.uiEmailSuffixes, null, this.schema.readOnly);
                 break;
             default:
                 this.fixData = getCopyEnum(this.schema.enum, value, this.schema.readOnly);
@@ -104,7 +104,7 @@ class AutoCompleteWidget extends ControlUIWidget {
       [nzSize]="ui.size!"
       [ngModel]="typing"
       (ngModelChange)="_setValue($event)"
-      [attr.maxLength]="schema.maxLength || null"
+      [attr.maxLength]="schema.maxLength ?? null"
       [attr.placeholder]="ui.placeholder"
       autocomplete="off"
     />
@@ -113,8 +113,8 @@ class AutoCompleteWidget extends ControlUIWidget {
       [nzBackfill]="i.backfill"
       [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
       [nzWidth]="i.width"
-      [nzOverlayStyle]="ui.overlayStyle || {}"
-      [nzOverlayClassName]="ui.overlayClassName || ''"
+      [nzOverlayStyle]="ui.overlayStyle ?? {}"
+      [nzOverlayClassName]="ui.overlayClassName ?? ''"
       [compareWith]="i.compareWith"
       (selectionChange)="updateValue($event)"
     >
@@ -145,7 +145,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzSize]="ui.size!"
       [ngModel]="typing"
       (ngModelChange)="_setValue($event)"
-      [attr.maxLength]="schema.maxLength || null"
+      [attr.maxLength]="schema.maxLength ?? null"
       [attr.placeholder]="ui.placeholder"
       autocomplete="off"
     />
@@ -154,8 +154,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzBackfill]="i.backfill"
       [nzDefaultActiveFirstOption]="i.defaultActiveFirstOption"
       [nzWidth]="i.width"
-      [nzOverlayStyle]="ui.overlayStyle || {}"
-      [nzOverlayClassName]="ui.overlayClassName || ''"
+      [nzOverlayStyle]="ui.overlayStyle ?? {}"
+      [nzOverlayClassName]="ui.overlayClassName ?? ''"
       [compareWith]="i.compareWith"
       (selectionChange)="updateValue($event)"
     >

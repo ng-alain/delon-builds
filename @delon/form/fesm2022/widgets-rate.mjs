@@ -20,8 +20,8 @@ class RateWidget extends ControlUIWidget {
     }
     ngOnInit() {
         const { schema, ui } = this;
-        this.count = schema.maximum || 5;
-        this.allowHalf = (schema.multipleOf || 0.5) === 0.5;
+        this.count = schema.maximum ?? 5;
+        this.allowHalf = (schema.multipleOf ?? 0.5) === 0.5;
         this.allowClear = toBool(ui.allowClear, true);
         this.autoFocus = toBool(ui.autoFocus, false);
         this.hasText = !!ui.text;
@@ -41,7 +41,7 @@ class RateWidget extends ControlUIWidget {
       (ngModelChange)="setValue($event)"
       [nzAllowClear]="allowClear"
       [nzAllowHalf]="allowHalf"
-      [nzTooltips]="ui.tooltips || []"
+      [nzTooltips]="ui.tooltips ?? []"
       [nzAutoFocus]="autoFocus"
       [nzCount]="$any(count)"
     />
@@ -68,7 +68,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       (ngModelChange)="setValue($event)"
       [nzAllowClear]="allowClear"
       [nzAllowHalf]="allowHalf"
-      [nzTooltips]="ui.tooltips || []"
+      [nzTooltips]="ui.tooltips ?? []"
       [nzAutoFocus]="autoFocus"
       [nzCount]="$any(count)"
     />

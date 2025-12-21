@@ -16,11 +16,11 @@ class SliderWidget extends ControlUIWidget {
     included;
     ngOnInit() {
         const { minimum, maximum, multipleOf } = this.schema;
-        this.min = minimum || 0;
-        this.max = maximum || 100;
-        this.step = multipleOf || 1;
+        this.min = minimum ?? 0;
+        this.max = maximum ?? 100;
+        this.step = multipleOf ?? 1;
         const { marks, included } = this.ui;
-        this.marks = marks || null;
+        this.marks = marks ?? null;
         this.included = typeof included === 'undefined' ? true : included;
     }
     _formatter = (value) => {

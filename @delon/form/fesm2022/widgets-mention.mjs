@@ -20,10 +20,10 @@ class MentionWidget extends ControlUIWidget {
     ngOnInit() {
         const { valueWith, notFoundContent, placement, prefix, autosize } = this.ui;
         this.i = {
-            valueWith: valueWith || (item => item.label),
-            notFoundContent: notFoundContent || '无匹配结果，轻敲空格完成输入',
-            placement: placement || 'bottom',
-            prefix: prefix || '@',
+            valueWith: valueWith ?? (item => item.label),
+            notFoundContent: notFoundContent ?? '无匹配结果，轻敲空格完成输入',
+            placement: placement ?? 'bottom',
+            prefix: prefix ?? '@',
             autosize: typeof autosize === 'undefined' ? true : this.ui.autosize
         };
         const { minimum, maximum } = this.schema;
@@ -94,7 +94,7 @@ class MentionWidget extends ControlUIWidget {
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="setValue($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           [nzAutosize]="i.autosize"
         >
@@ -109,7 +109,7 @@ class MentionWidget extends ControlUIWidget {
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="setValue($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           autocomplete="off"
         />
@@ -150,7 +150,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="setValue($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           [nzAutosize]="i.autosize"
         >
@@ -165,7 +165,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
           [nzSize]="ui.size!"
           [ngModel]="value"
           (ngModelChange)="setValue($event)"
-          [attr.maxLength]="schema.maxLength || null"
+          [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
           autocomplete="off"
         />

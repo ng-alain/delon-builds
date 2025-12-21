@@ -17,10 +17,10 @@ class CascaderWidget extends ControlUIWidget {
     loadData;
     ngOnInit() {
         const { clearText, showArrow, showInput, triggerAction, asyncData } = this.ui;
-        this.clearText = clearText || '清除';
+        this.clearText = clearText ?? '清除';
         this.showArrow = toBool(showArrow, true);
         this.showInput = toBool(showInput, true);
-        this.triggerAction = triggerAction || ['click'];
+        this.triggerAction = triggerAction ?? ['click'];
         if (asyncData) {
             this.loadData = (node, index) => asyncData(node, index, this).then(() => this.detectChanges());
         }
@@ -74,8 +74,8 @@ class CascaderWidget extends ControlUIWidget {
       [nzMenuClassName]="ui.menuClassName"
       [nzMenuStyle]="ui.menuStyle!"
       [nzNotFoundContent]="ui.notFoundContent"
-      [nzLabelProperty]="ui.labelProperty || 'label'"
-      [nzValueProperty]="ui.valueProperty || 'value'"
+      [nzLabelProperty]="ui.labelProperty ?? 'label'"
+      [nzValueProperty]="ui.valueProperty ?? 'value'"
       [nzLoadData]="loadData"
       [nzPlaceHolder]="ui.placeholder!"
       [nzPlacement]="ui.placement ?? 'bottomLeft'"
@@ -116,8 +116,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzMenuClassName]="ui.menuClassName"
       [nzMenuStyle]="ui.menuStyle!"
       [nzNotFoundContent]="ui.notFoundContent"
-      [nzLabelProperty]="ui.labelProperty || 'label'"
-      [nzValueProperty]="ui.valueProperty || 'value'"
+      [nzLabelProperty]="ui.labelProperty ?? 'label'"
+      [nzValueProperty]="ui.valueProperty ?? 'value'"
       [nzLoadData]="loadData"
       [nzPlaceHolder]="ui.placeholder!"
       [nzPlacement]="ui.placement ?? 'bottomLeft'"

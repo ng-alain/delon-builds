@@ -15,10 +15,10 @@ class TransferWidget extends ControlUIWidget {
     ngOnInit() {
         const { titles, operations, itemUnit, itemsUnit } = this.ui;
         this.i = {
-            titles: titles || ['', ''],
-            operations: operations || ['', ''],
-            itemUnit: itemUnit || '项',
-            itemsUnit: itemsUnit || '项'
+            titles: titles ?? ['', ''],
+            operations: operations ?? ['', ''],
+            itemUnit: itemUnit ?? '项',
+            itemsUnit: itemsUnit ?? '项'
         };
     }
     reset(value) {
