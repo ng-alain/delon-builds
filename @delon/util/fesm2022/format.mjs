@@ -16,7 +16,7 @@ import { AlainConfigService } from '@delon/util/config';
  * ```
  */
 function format(str, obj, needDeepGet = false) {
-    return (str || '').replace(/\${([^}]+)}/g, (_work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : (obj || {})[key] || '');
+    return (str ?? '').replace(/\${([^}]+)}/g, (_work, key) => needDeepGet ? deepGet(obj, key.split('.'), '') : ((obj ?? {})[key] ?? ''));
 }
 /**
  * Format mask
@@ -231,7 +231,7 @@ class CurrencyService {
         }
         if (options.ngCurrency != null) {
             const cur = options.ngCurrency;
-            return this.currencyPipe.transform(truthValue, cur.currencyCode, cur.display, cur.digitsInfo, cur.locale || this.locale);
+            return this.currencyPipe.transform(truthValue, cur.currencyCode, cur.display, cur.digitsInfo, cur.locale ?? this.locale);
         }
         const res = formatNumber(truthValue, this.locale, `.${options.ingoreZeroPrecision ? 1 : options.precision}-${options.precision}`);
         return options.ingoreZeroPrecision ? res.replace(/(?:\.[0]+)$/g, '') : res;

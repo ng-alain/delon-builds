@@ -12,7 +12,7 @@ class CookieService {
     _doc = inject(DOCUMENT);
     platform = inject(Platform);
     get doc() {
-        return this._doc || document;
+        return this._doc ?? document;
     }
     /**
      * Original cookie value
@@ -150,11 +150,11 @@ class ScrollService {
     _doc = inject(DOCUMENT);
     platform = inject(Platform);
     _getDoc() {
-        return this._doc || document;
+        return this._doc ?? document;
     }
     _getWin() {
         const doc = this._getDoc();
-        return doc.defaultView || window;
+        return doc.defaultView ?? window;
     }
     /**
      * 获取滚动条位置
@@ -182,7 +182,7 @@ class ScrollService {
         if (!this.platform.isBrowser) {
             return;
         }
-        (element || this._getWin()).scrollTo(position[0], position[1]);
+        (element ?? this._getWin()).scrollTo(position[0], position[1]);
     }
     /**
      * 设置滚动条至指定元素

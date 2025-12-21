@@ -19,7 +19,7 @@ function deepGet(obj, path, defaultValue) {
         const checkObj = obj[path[0]];
         return typeof checkObj === 'undefined' ? defaultValue : checkObj;
     }
-    const res = path.reduce((o, k) => (o || {})[k], obj);
+    const res = path.reduce((o, k) => (o ?? {})[k], obj);
     return typeof res === 'undefined' ? defaultValue : res;
 }
 /**

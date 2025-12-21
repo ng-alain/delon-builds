@@ -32,7 +32,7 @@ function provideAlainConfig(config) {
 class AlainConfigService {
     config = { ...inject(ALAIN_CONFIG, { optional: true }) };
     get(componentName, key) {
-        const res = (this.config[componentName] || {});
+        const res = (this.config[componentName] ?? {});
         return key ? { [key]: res[key] } : res;
     }
     merge(componentName, ...defaultValues) {

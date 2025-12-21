@@ -83,13 +83,13 @@ class ArrayService {
         for (const item of arrType) {
             const id = item[opt.idMapName];
             const pid = item[opt.parentIdMapName];
-            childrenOf[id] = childrenOf[id] || [];
+            childrenOf[id] = childrenOf[id] ?? [];
             item[opt.childrenMapName] = childrenOf[id];
             if (opt.cb) {
                 opt.cb(item);
             }
             if (pid !== rootPid) {
-                childrenOf[pid] = childrenOf[pid] || [];
+                childrenOf[pid] = childrenOf[pid] ?? [];
                 childrenOf[pid].push(item);
             }
             else {

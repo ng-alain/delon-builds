@@ -145,7 +145,7 @@ class DateTimePickerUtil {
      * 计算两个日期相差天数，`0` 表示同一天
      */
     getDiffDays(dateLeft, dateRight) {
-        return differenceInCalendarDays(dateLeft, typeof dateRight === 'number' ? addDays(this.date, dateRight) : dateRight || this.date);
+        return differenceInCalendarDays(dateLeft, typeof dateRight === 'number' ? addDays(this.date, dateRight) : (dateRight ?? this.date));
     }
     /**
      * Disabled Before date (Default: today), Generally serves `nzDisabledDate`
@@ -171,7 +171,7 @@ class DateTimePickerUtil {
             if (cur == null) {
                 return {};
             }
-            const now = addSeconds(this.now, offsetSeconds || 0);
+            const now = addSeconds(this.now, offsetSeconds ?? 0);
             const nowHours = now.getHours();
             const nowMinutes = now.getMinutes();
             const curHours = cur.getHours();

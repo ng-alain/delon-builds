@@ -5,7 +5,7 @@ function makeFn(type, options) {
         const source = descriptor.value;
         descriptor.value = function (...data) {
             const that = this;
-            const ngZone = that[options?.ngZoneName || 'ngZone'];
+            const ngZone = that[options?.ngZoneName ?? 'ngZone'];
             if (!ngZone) {
                 if (typeof ngDevMode === 'undefined' || ngDevMode) {
                     warn(`ZoneOutside: Decorator should have 'ngZone' property with 'NgZone' class.`);
