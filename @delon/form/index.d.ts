@@ -588,8 +588,8 @@ declare class NumberWidget extends ControlUIWidget<SFNumberWidgetSchema> impleme
     min: number;
     max: number;
     step: number;
-    formatter?: ((value: number) => string) | null;
-    parser?: ((value: string) => number) | null;
+    formatter: (value: number) => string;
+    parser: (value: string) => number;
     width: string;
     ngOnInit(): void;
     _setValue(val: number): void;

@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = default_1;
 const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
-const colors = require("ansi-colors");
+const listr2_1 = require("listr2");
 const utils_1 = require("../utils");
 const node_1 = require("../utils/node");
 const V = 20;
@@ -35,7 +35,7 @@ function isValidProjectName(tree, name) {
 function finished() {
     return (_, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
-        context.logger.info(colors.green(`
+        context.logger.info(listr2_1.color.green(`
 ✓  Congratulations, NG-ALAIN scaffold generation complete 🎉.
 
 NG-ALAIN documentation site: https://ng-alain.com

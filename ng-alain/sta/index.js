@@ -12,9 +12,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.default = default_1;
 const core_1 = require("@angular-devkit/core");
 const schematics_1 = require("@angular-devkit/schematics");
-const colors = require("ansi-colors");
 const fs_1 = require("fs");
 const jsonc_parser_1 = require("jsonc-parser");
+const listr2_1 = require("listr2");
 const path_1 = require("path");
 const swagger_typescript_api_1 = require("swagger-typescript-api");
 const json_1 = require("../utils/json");
@@ -110,18 +110,18 @@ function fix(output, res, tree, context, config) {
 function genProxy(config) {
     return (tree, context) => {
         var _a;
-        context.logger.info(colors.blue(`- Name: ${config.name}`));
+        context.logger.info(listr2_1.color.blue(`- Name: ${config.name}`));
         const output = (config.output = (0, path_1.resolve)(process.cwd(), (_a = config.output) !== null && _a !== void 0 ? _a : `./src/app/_${config.name}`));
         const templates = (0, path_1.resolve)(__dirname, './templates');
         if (config.url) {
-            context.logger.info(colors.blue(`- Using url data: ${config.url}`));
+            context.logger.info(listr2_1.color.blue(`- Using url data: ${config.url}`));
         }
         else if (config.filePath) {
-            context.logger.info(colors.blue(`- Using file data: ${config.filePath}`));
+            context.logger.info(listr2_1.color.blue(`- Using file data: ${config.filePath}`));
         }
-        context.logger.info(colors.blue(`- Output: ${output}`));
+        context.logger.info(listr2_1.color.blue(`- Output: ${output}`));
         return new Promise(resolve => {
-            context.logger.info(colors.blue(`Start generating...`));
+            context.logger.info(listr2_1.color.blue(`Start generating...`));
             const options = Object.assign({ name: `${config.name}.ts`, url: config.url, input: config.filePath, spec: config.spec, output,
                 templates, toJS: false, modular: true, cleanOutput: true, generateUnionEnums: true, generateClient: true, extractRequestParams: false, generateResponses: false, generateRouteTypes: true, generateApi: true, silent: true, disableStrictSSL: true, moduleNameFirstTag: true, defaultResponseType: 'any', typePrefix: config.modelTypePrefix, hooks: {
                     onInit: (c) => {
@@ -188,7 +188,7 @@ function genProxy(config) {
 }
 function finished() {
     return (_, context) => {
-        context.logger.info(colors.green(`✓  Finished, refer to: https://ng-alain.com/cli/sta`));
+        context.logger.info(listr2_1.color.green(`✓  Finished, refer to: https://ng-alain.com/cli/sta`));
     };
 }
 function tryLoadConfig(context, configPath) {
@@ -196,7 +196,7 @@ function tryLoadConfig(context, configPath) {
         return null;
     try {
         const configFile = (0, path_1.resolve)(process.cwd(), configPath);
-        context.logger.info(colors.blue(`- Use config file: ${configFile}`));
+        context.logger.info(listr2_1.color.blue(`- Use config file: ${configFile}`));
         if ((0, fs_1.existsSync)(configFile)) {
             return (0, jsonc_parser_1.parse)((0, fs_1.readFileSync)(configFile).toString('utf8'));
         }
