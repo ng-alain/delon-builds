@@ -33,7 +33,7 @@ class ThemeBtnComponent {
         if (!this.platform.isBrowser) {
             return;
         }
-        this.theme = localStorage.getItem(this.key) || 'default';
+        this.theme = localStorage.getItem(this.key) ?? 'default';
         this.updateChartTheme();
         this.onThemeChange(this.theme);
     }

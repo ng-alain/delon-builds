@@ -17,7 +17,7 @@ class LocalStorageCacheService {
         if (!this.platform.isBrowser) {
             return null;
         }
-        return JSON.parse(localStorage.getItem(key) || 'null') || null;
+        return JSON.parse(localStorage.getItem(key) ?? 'null') ?? null;
     }
     set(key, value) {
         if (!this.platform.isBrowser) {
@@ -160,7 +160,7 @@ class CacheService {
     // #region has
     /** 是否缓存 `key` */
     has(key) {
-        return this.memory.has(key) || this.meta.has(key);
+        return this.memory.has(key) ?? this.meta.has(key);
     }
     // #endregion
     // #region remove

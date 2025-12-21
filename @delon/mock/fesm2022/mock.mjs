@@ -79,7 +79,7 @@ class MockService {
             });
         });
         // regular ordering
-        this.cached.sort((a, b) => (b.martcher || '').toString().length - (a.martcher || '').toString().length);
+        this.cached.sort((a, b) => (b.martcher ?? '').toString().length - (a.martcher ?? '').toString().length);
     }
     genRule(key, callback) {
         let method = 'GET';
@@ -128,12 +128,12 @@ class MockService {
     }
     // #endregion
     getRule(method, url) {
-        method = (method || 'GET').toUpperCase();
+        method = (method ?? 'GET').toUpperCase();
         const params = {};
         const list = this.cached.filter(w => w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url));
         if (list.length === 0)
             return null;
-        const ret = list.find(w => w.url === url) || list[0];
+        const ret = list.find(w => w.url === url) ?? list[0];
         if (ret.martcher) {
             const execArr = ret.martcher.exec(url);
             execArr.slice(1).map((value, index) => {
@@ -210,7 +210,7 @@ const mockInterceptor = (req, next) => {
                     url: req.url,
                     headers: req.headers,
                     status: e instanceof MockStatusError ? e.status : 400,
-                    statusText: e.statusText || 'Unknown Error',
+                    statusText: e.statusText ?? 'Unknown Error',
                     error: e.error
                 }));
             }

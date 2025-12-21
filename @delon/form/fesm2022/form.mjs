@@ -731,7 +731,7 @@ class ArrayProperty extends PropertyGroup {
         }
     }
     clearErrors(property) {
-        (property || this)._objErrors = {};
+        (property ?? this)._objErrors = {};
     }
     // #region actions
     add(formData) {
