@@ -128,7 +128,7 @@ class MockService {
     }
     // #endregion
     getRule(method, url) {
-        method = (method ?? 'GET').toUpperCase();
+        method = (method || 'GET').toUpperCase();
         const params = {};
         const list = this.cached.filter(w => w.method === method && (w.martcher ? w.martcher.test(url) : w.url === url));
         if (list.length === 0)

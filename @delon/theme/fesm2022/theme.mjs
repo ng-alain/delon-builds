@@ -771,7 +771,7 @@ class TitleService {
                         text = val.textContent.trim();
                     }
                 });
-                return text ?? el.firstChild.textContent.trim();
+                return text || el.firstChild.textContent.trim();
             }
             return '';
         }));
@@ -801,7 +801,7 @@ class TitleService {
     setTitle(title) {
         this.tit$?.unsubscribe();
         this.tit$ = of(title)
-            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map(tit => tit ?? this.default), map(title => (!Array.isArray(title) ? [title] : title)), takeUntilDestroyed(this.destroy$))
+            .pipe(switchMap(tit => (tit ? of(tit) : this.getByRoute())), switchMap(tit => (tit ? of(tit) : this.getByMenu())), switchMap(tit => (tit ? of(tit) : this.getByElement())), map(tit => tit || this.default), map(title => (!Array.isArray(title) ? [title] : title)), takeUntilDestroyed(this.destroy$))
             .subscribe(titles => {
             let newTitles = [];
             if (this._prefix) {

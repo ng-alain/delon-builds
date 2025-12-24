@@ -58,7 +58,7 @@ declare class MockService implements OnDestroy {
     private realApplyMock;
     private genRule;
     private outputError;
-    getRule(method: string, url: string): MockRule | null;
+    getRule(method: string | null | undefined, url: string): MockRule | null;
     clearCache(): void;
     get rules(): MockCachedRule[];
     ngOnDestroy(): void;

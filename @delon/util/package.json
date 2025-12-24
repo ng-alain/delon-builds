@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "20.1.0-075d8a3",
+  "version": "20.1.0-139124b",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -33,10 +33,6 @@
       "types": "./index.d.ts",
       "default": "./fesm2022/delon-util.mjs"
     },
-    "./array": {
-      "types": "./array/index.d.ts",
-      "default": "./fesm2022/array.mjs"
-    },
     "./browser": {
       "types": "./browser/index.d.ts",
       "default": "./fesm2022/browser.mjs"
@@ -44,6 +40,10 @@
     "./config": {
       "types": "./config/index.d.ts",
       "default": "./fesm2022/config.mjs"
+    },
+    "./array": {
+      "types": "./array/index.d.ts",
+      "default": "./fesm2022/array.mjs"
     },
     "./date-time": {
       "types": "./date-time/index.d.ts",

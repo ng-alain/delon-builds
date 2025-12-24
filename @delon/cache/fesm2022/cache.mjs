@@ -160,7 +160,7 @@ class CacheService {
     // #region has
     /** 是否缓存 `key` */
     has(key) {
-        return this.memory.has(key) ?? this.meta.has(key);
+        return this.memory.has(key) || this.meta.has(key);
     }
     // #endregion
     // #region remove
