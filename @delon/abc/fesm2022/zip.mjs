@@ -50,7 +50,7 @@ class ZipService {
                 reader.onload = (e) => {
                     JSZip.loadAsync(e.target.result, options).then((ret) => resolveCallback(ret));
                 };
-                reader.readAsBinaryString(fileOrUrl);
+                reader.readAsArrayBuffer(fileOrUrl);
             });
         });
     }
