@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "20.1.1-86fb2f3",
+  "version": "20.1.1-4cddee1",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -41,13 +41,13 @@
       "types": "./browser/index.d.ts",
       "default": "./fesm2022/browser.mjs"
     },
-    "./date-time": {
-      "types": "./date-time/index.d.ts",
-      "default": "./fesm2022/date-time.mjs"
-    },
     "./config": {
       "types": "./config/index.d.ts",
       "default": "./fesm2022/config.mjs"
+    },
+    "./date-time": {
+      "types": "./date-time/index.d.ts",
+      "default": "./fesm2022/date-time.mjs"
     },
     "./decorator": {
       "types": "./decorator/index.d.ts",
@@ -73,10 +73,6 @@
       "types": "./pipes/index.d.ts",
       "default": "./fesm2022/pipes.mjs"
     },
-    "./token": {
-      "types": "./token/index.d.ts",
-      "default": "./fesm2022/token.mjs"
-    },
     "./pipes/currency": {
       "types": "./pipes/currency/index.d.ts",
       "default": "./fesm2022/pipe-currency.mjs"
@@ -88,6 +84,10 @@
     "./pipes/format": {
       "types": "./pipes/format/index.d.ts",
       "default": "./fesm2022/pipe-format.mjs"
+    },
+    "./token": {
+      "types": "./token/index.d.ts",
+      "default": "./fesm2022/token.mjs"
     }
   },
   "sideEffects": false
