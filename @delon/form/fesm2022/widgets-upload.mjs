@@ -136,7 +136,6 @@ class UploadWidget extends ControlUIWidget {
       [nzPreview]="handlePreview"
       [nzPreviewFile]="ui.previewFile"
       [nzDownload]="ui.download"
-      [nzTransformFile]="ui.transformFile"
       (nzChange)="change($event)"
       [nzShowButton]="fileList.length < i.limitFileCount"
     >
@@ -194,7 +193,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.0", ngImpor
       [nzPreview]="handlePreview"
       [nzPreviewFile]="ui.previewFile"
       [nzDownload]="ui.download"
-      [nzTransformFile]="ui.transformFile"
       (nzChange)="change($event)"
       [nzShowButton]="fileList.length < i.limitFileCount"
     >
