@@ -431,8 +431,6 @@ interface AlainI18NService {
      * Change language
      *
      * 变更语言
-     *
-     * @param emit 是否触发 `change`，默认：true ; Should be removed, please use `change` event instead.
      */
     use(lang: string, data?: Record<string, unknown>): void;
     /**
@@ -445,7 +443,6 @@ interface AlainI18NService {
      * Translate 翻译
      *
      * @param params 模板所需要的参数对象
-     * @param isSafe 是否返回安全字符，自动调用 `bypassSecurityTrustHtml`; Should be removed, If you need SafeHtml support, please use `| html` pipe instead.
      */
     fanyi(path: string, params?: unknown | unknown[]): string;
 }
@@ -462,6 +459,10 @@ declare abstract class AlainI18nBaseService implements AlainI18NService {
     get currentLang(): string;
     get data(): Record<string, string>;
     constructor();
+    /**
+     * Merge the data into the current language data.
+     */
+    mergeData(data?: Record<string, unknown>): void;
     /**
      * Flattened data source
      *

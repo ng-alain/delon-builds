@@ -77,6 +77,15 @@ class AlainI18nBaseService {
         });
     }
     /**
+     * Merge the data into the current language data.
+     */
+    mergeData(data) {
+        if (!data)
+            return;
+        const flatData = this.flatData(data, []);
+        this._data = { ...this._data, ...flatData };
+    }
+    /**
      * Flattened data source
      *
      * @example
