@@ -3357,7 +3357,7 @@ class SelectWidget extends ControlUIWidget {
       [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
       [nzDropdownRender]="ui.dropdownRender!"
       [nzAutoClearSearchValue]="i.autoClearSearchValue"
-      [nzBorderless]="i.borderless"
+      [nzVariant]="i.variant ?? 'outlined'"
       [nzAutoFocus]="i.autoFocus"
       [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
       [nzServerSearch]="i.serverSearch"
@@ -3428,7 +3428,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
       [nzMaxTagPlaceholder]="ui.maxTagPlaceholder!"
       [nzDropdownRender]="ui.dropdownRender!"
       [nzAutoClearSearchValue]="i.autoClearSearchValue"
-      [nzBorderless]="i.borderless"
+      [nzVariant]="i.variant ?? 'outlined'"
       [nzAutoFocus]="i.autoFocus"
       [nzDropdownMatchSelectWidth]="i.dropdownMatchSelectWidth!"
       [nzServerSearch]="i.serverSearch"
@@ -3551,7 +3551,6 @@ class StringWidget extends ControlUIWidget {
             [attr.disabled]="disabled"
             [nzSize]="ui.size!"
             [nzVariant]="ui.variant!"
-            [nzBorderless]="ui.borderless"
             [ngModel]="value"
             (ngModelChange)="change($event)"
             [attr.maxLength]="schema.maxLength ?? null"
@@ -3572,7 +3571,6 @@ class StringWidget extends ControlUIWidget {
           [attr.disabled]="disabled"
           [nzSize]="ui.size!"
           [nzVariant]="ui.variant!"
-          [nzBorderless]="ui.borderless"
           [ngModel]="value"
           (ngModelChange)="change($event)"
           [attr.maxLength]="schema.maxLength ?? null"
@@ -3615,7 +3613,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
             [attr.disabled]="disabled"
             [nzSize]="ui.size!"
             [nzVariant]="ui.variant!"
-            [nzBorderless]="ui.borderless"
             [ngModel]="value"
             (ngModelChange)="change($event)"
             [attr.maxLength]="schema.maxLength ?? null"
@@ -3636,7 +3633,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
           [attr.disabled]="disabled"
           [nzSize]="ui.size!"
           [nzVariant]="ui.variant!"
-          [nzBorderless]="ui.borderless"
           [ngModel]="value"
           (ngModelChange)="change($event)"
           [attr.maxLength]="schema.maxLength ?? null"
@@ -3756,7 +3752,7 @@ class TextareaWidget extends ControlUIWidget {
         cdkTextareaAutosize
         [cdkAutosizeMinRows]="minRows"
         [cdkAutosizeMaxRows]="maxRows"
-        [nzBorderless]="ui.borderless"
+        [nzVariant]="ui.variant ?? 'outlined'"
         (focus)="focus($event)"
         (blur)="blur($event)"
       >
@@ -3781,7 +3777,7 @@ class TextareaWidget extends ControlUIWidget {
           cdkTextareaAutosize
           [cdkAutosizeMinRows]="minRows"
           [cdkAutosizeMaxRows]="maxRows"
-          [nzBorderless]="ui.borderless"
+          [nzVariant]="ui.variant ?? 'outlined'"
           (focus)="focus($event)"
           (blur)="blur($event)"
         >
@@ -3820,7 +3816,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
         cdkTextareaAutosize
         [cdkAutosizeMinRows]="minRows"
         [cdkAutosizeMaxRows]="maxRows"
-        [nzBorderless]="ui.borderless"
+        [nzVariant]="ui.variant ?? 'outlined'"
         (focus)="focus($event)"
         (blur)="blur($event)"
       >
@@ -3845,7 +3841,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
           cdkTextareaAutosize
           [cdkAutosizeMinRows]="minRows"
           [cdkAutosizeMaxRows]="maxRows"
-          [nzBorderless]="ui.borderless"
+          [nzVariant]="ui.variant ?? 'outlined'"
           (focus)="focus($event)"
           (blur)="blur($event)"
         >

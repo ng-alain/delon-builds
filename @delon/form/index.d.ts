@@ -3,7 +3,7 @@ import * as i0 from '@angular/core';
 import { Injector, OnInit, OnChanges, OnDestroy, TemplateRef, ViewContainerRef, ComponentRef, AfterViewInit, ChangeDetectorRef, EventEmitter, SimpleChange, SimpleChanges, ModuleWithProviders, EnvironmentProviders } from '@angular/core';
 import * as i20 from '@delon/theme';
 import { LocaleData } from '@delon/theme';
-import { NzSafeAny, NzSizeLDSType, NzSizeDSType, NgClassType, NgStyleInterface } from 'ng-zorro-antd/core/types';
+import { NzSafeAny, NzVariant, NzSizeLDSType, NzSizeDSType, NgClassType, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import * as i26 from 'ng-zorro-antd/form';
 import { NzFormControlStatusType } from 'ng-zorro-antd/form';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
@@ -474,13 +474,10 @@ interface SFStringWidgetSchema extends SFUISchemaItem {
      * 带有后缀图标的 input，等同 `nzSuffix`
      */
     suffix?: string;
-    variant?: 'outlined' | 'borderless' | 'filled' | 'underlined';
     /**
-     * Whether hide border, Default: `false`
-     *
-     * @deprecated Will be removed in v21. It is recommended to use `variant` instead.
+     * 变体
      */
-    borderless?: boolean;
+    variant?: NzVariant;
     /**
      * `change` event throttling and sequence control threshold
      *
@@ -809,9 +806,9 @@ interface SFTextareaWidgetSchema extends SFUISchemaItem {
         maxRows?: number;
     };
     /**
-     * Whether hide border, Default: `false`
+     * 变体
      */
-    borderless?: boolean;
+    variant?: NzVariant;
     /**
      * `textarea` maximum character count displayed
      */
@@ -870,9 +867,9 @@ interface SFSelectWidgetSchema extends SFUISchemaItem {
      */
     allowClear?: boolean;
     /**
-     * 是否无边框，默认：`false`
+     * 变体，默认：`outlined`
      */
-    borderless?: boolean;
+    variant?: NzVariant;
     /**
      * 默认获取焦点，默认：`false`
      */
