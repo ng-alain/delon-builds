@@ -33694,6 +33694,9 @@ fieldset {
 .sf .ant-transfer .ant-btn + .ant-btn {
   margin-left: 0;
 }
+.sf .ant-mentions {
+  display: inline-flex;
+}
 .sf__no-error .ant-form-item {
   margin-bottom: 8px;
 }

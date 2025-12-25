@@ -6,9 +6,8 @@ import { NzSizeLDSType, NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i3 from 'ng-zorro-antd/mention';
 import { MentionOnSearchTypes } from 'ng-zorro-antd/mention';
 import { Observable } from 'rxjs';
-import * as i4 from 'ng-zorro-antd/input';
-import { AutoSizeType } from 'ng-zorro-antd/input';
 import * as i1 from '@angular/forms';
+import * as i4 from 'ng-zorro-antd/input';
 import * as i5 from '@angular/common';
 
 interface SFMentionWidgetSchema extends SFUISchemaItem {
@@ -50,9 +49,12 @@ interface SFMentionWidgetSchema extends SFUISchemaItem {
      */
     inputStyle?: 'text' | 'textarea';
     /**
-     * 自适应内容高度，可设置为 `true|false` 或对象：`{ minRows: 2, maxRows: 6 }`
+     * 自适应内容高度
      */
-    autosize?: boolean | AutoSizeType;
+    autosize?: {
+        minRows?: number;
+        maxRows?: number;
+    };
 }
 
 declare class MentionWidget extends ControlUIWidget<SFMentionWidgetSchema> implements OnInit {

@@ -4,32 +4,32 @@ import { Injector, OnInit, OnChanges, OnDestroy, TemplateRef, ViewContainerRef, 
 import * as i20 from '@delon/theme';
 import { LocaleData } from '@delon/theme';
 import { NzSafeAny, NzSizeLDSType, NzSizeDSType, NgClassType, NgStyleInterface } from 'ng-zorro-antd/core/types';
-import * as i25 from 'ng-zorro-antd/form';
+import * as i26 from 'ng-zorro-antd/form';
 import { NzFormControlStatusType } from 'ng-zorro-antd/form';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import * as i21 from 'ng-zorro-antd/button';
+import * as i22 from 'ng-zorro-antd/button';
 import { NzButtonType } from 'ng-zorro-antd/button';
 import { ACLCanType } from '@delon/acl';
 import Ajv from 'ajv';
 import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
-import * as i24 from 'ng-zorro-antd/date-picker';
+import * as i25 from 'ng-zorro-antd/date-picker';
 import { NzDatePickerSizeType, DisabledDateFn, DisabledTimeFn, SupportTimeOptions } from 'ng-zorro-antd/date-picker';
 import { NzDatePickerI18nInterface, NzI18nService } from 'ng-zorro-antd/i18n';
-import * as i28 from 'ng-zorro-antd/input';
-import { AutoSizeType } from 'ng-zorro-antd/input';
-import * as i32 from 'ng-zorro-antd/select';
+import * as i33 from 'ng-zorro-antd/select';
 import { NzSelectModeType, NzOptionComponent } from 'ng-zorro-antd/select';
 import * as i18 from '@angular/common';
 import * as i19 from '@angular/forms';
-import * as i22 from 'ng-zorro-antd/card';
-import * as i23 from 'ng-zorro-antd/checkbox';
-import * as i26 from 'ng-zorro-antd/grid';
-import * as i27 from 'ng-zorro-antd/icon';
-import * as i29 from 'ng-zorro-antd/input-number';
-import * as i30 from 'ng-zorro-antd/modal';
-import * as i31 from 'ng-zorro-antd/radio';
-import * as i33 from 'ng-zorro-antd/switch';
-import * as i34 from 'ng-zorro-antd/tooltip';
+import * as i21 from '@angular/cdk/text-field';
+import * as i23 from 'ng-zorro-antd/card';
+import * as i24 from 'ng-zorro-antd/checkbox';
+import * as i27 from 'ng-zorro-antd/grid';
+import * as i28 from 'ng-zorro-antd/icon';
+import * as i29 from 'ng-zorro-antd/input';
+import * as i30 from 'ng-zorro-antd/input-number';
+import * as i31 from 'ng-zorro-antd/modal';
+import * as i32 from 'ng-zorro-antd/radio';
+import * as i34 from 'ng-zorro-antd/switch';
+import * as i35 from 'ng-zorro-antd/tooltip';
 
 declare const SF_DEFAULT_CONFIG: AlainSFConfig;
 declare function mergeConfig(srv: AlainConfigService): AlainSFConfig;
@@ -802,9 +802,12 @@ interface SFTextareaWidgetSchema extends SFUISchemaItem {
      */
     placeholder?: string;
     /**
-     * 自适应内容高度，可设置为 `true|false` 或对象：`{ minRows: 2, maxRows: 6 }`
+     * 自适应内容高度
      */
-    autosize?: string | boolean | AutoSizeType;
+    autosize?: {
+        minRows?: number;
+        maxRows?: number;
+    };
     /**
      * Whether hide border, Default: `false`
      */
@@ -832,7 +835,10 @@ interface SFTextareaWidgetSchema extends SFUISchemaItem {
 }
 
 declare class TextareaWidget extends ControlUIWidget<SFTextareaWidgetSchema> implements OnInit {
-    autosize: string | boolean | AutoSizeType;
+    autosize?: {
+        minRows?: number;
+        maxRows?: number;
+    };
     ngOnInit(): void;
     change(val: string): void;
     focus(e: FocusEvent): void;
@@ -1796,7 +1802,7 @@ declare class SFItemWrapComponent implements OnChanges {
 declare class DelonFormModule {
     static forRoot(): ModuleWithProviders<DelonFormModule>;
     static ɵfac: i0.ɵɵFactoryDeclaration<DelonFormModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.NzButtonModule, typeof i22.NzCardModule, typeof i23.NzCheckboxModule, typeof i24.NzDatePickerModule, typeof i25.NzFormModule, typeof i26.NzGridModule, typeof i27.NzIconModule, typeof i28.NzInputModule, typeof i29.NzInputNumberModule, typeof i30.NzModalModule, typeof i31.NzRadioModule, typeof i32.NzSelectModule, typeof i33.NzSwitchModule, typeof i34.NzTooltipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<DelonFormModule, [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective, typeof ObjectWidget, typeof ArrayWidget, typeof StringWidget, typeof NumberWidget, typeof DateWidget, typeof RadioWidget, typeof CheckboxWidget, typeof BooleanWidget, typeof TextareaWidget, typeof SelectWidget, typeof CustomWidget, typeof TextWidget], [typeof i18.CommonModule, typeof i19.FormsModule, typeof i20.DelonLocaleModule, typeof i21.CdkTextareaAutosize, typeof i22.NzButtonModule, typeof i23.NzCardModule, typeof i24.NzCheckboxModule, typeof i25.NzDatePickerModule, typeof i26.NzFormModule, typeof i27.NzGridModule, typeof i28.NzIconModule, typeof i29.NzInputModule, typeof i30.NzInputNumberModule, typeof i31.NzModalModule, typeof i32.NzRadioModule, typeof i33.NzSelectModule, typeof i34.NzSwitchModule, typeof i35.NzTooltipModule], [typeof SFComponent, typeof SFItemComponent, typeof SFItemWrapComponent, typeof SFTemplateDirective, typeof SFFixedDirective]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<DelonFormModule>;
 }
 

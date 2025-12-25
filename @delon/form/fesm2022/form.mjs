@@ -35,7 +35,7 @@ import * as i4$1 from 'ng-zorro-antd/checkbox';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import * as i2$2 from 'ng-zorro-antd/date-picker';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
-import * as i3$1 from 'ng-zorro-antd/input';
+import * as i2$5 from 'ng-zorro-antd/input';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import * as i2$3 from 'ng-zorro-antd/input-number';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
@@ -46,6 +46,8 @@ import * as i4$2 from 'ng-zorro-antd/select';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import * as i2$1 from 'ng-zorro-antd/switch';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import * as i3$1 from '@angular/cdk/text-field';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { format } from 'date-fns';
 import { toDate } from '@delon/util/date-time';
 import { ArrayService } from '@delon/util/array';
@@ -3584,7 +3586,7 @@ class StringWidget extends ControlUIWidget {
         />
       }
     </sf-item-wrap>
-  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3$1.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i3$1.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i2$5.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: i2$5.NzInputWrapperComponent, selector: "nz-input-wrapper,nz-input-password,nz-input-search", inputs: ["nzAllowClear", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzClear"], exportAs: ["nzInputWrapper"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: StringWidget, decorators: [{
             type: Component,
@@ -3707,7 +3709,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
         }] });
 
 class TextareaWidget extends ControlUIWidget {
-    autosize = true;
+    autosize;
     ngOnInit() {
         if (this.ui.autosize != null) {
             this.autosize = this.ui.autosize;
@@ -3730,7 +3732,7 @@ class TextareaWidget extends ControlUIWidget {
             this.ui.blur(e);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: TextareaWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.15", type: TextareaWidget, isStandalone: false, selector: "sf-textarea", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "20.3.15", type: TextareaWidget, isStandalone: false, selector: "sf-textarea", usesInheritance: true, ngImport: i0, template: ` <sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -3738,6 +3740,8 @@ class TextareaWidget extends ControlUIWidget {
     [error]="error"
     [showTitle]="schema.title"
   >
+    @let minRows = autosize?.minRows ?? 1;
+    @let maxRows = autosize?.maxRows ?? 0;
     <ng-template #ipt>
       <textarea
         nz-input
@@ -3749,7 +3753,9 @@ class TextareaWidget extends ControlUIWidget {
         (ngModelChange)="change($event)"
         [attr.maxLength]="schema.maxLength ?? null"
         [attr.placeholder]="ui.placeholder"
-        [nzAutosize]="autosize"
+        cdkTextareaAutosize
+        [cdkAutosizeMinRows]="minRows"
+        [cdkAutosizeMaxRows]="maxRows"
         [nzBorderless]="ui.borderless"
         (focus)="focus($event)"
         (blur)="blur($event)"
@@ -3772,7 +3778,9 @@ class TextareaWidget extends ControlUIWidget {
           (ngModelChange)="change($event)"
           [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
-          [nzAutosize]="autosize"
+          cdkTextareaAutosize
+          [cdkAutosizeMinRows]="minRows"
+          [cdkAutosizeMaxRows]="maxRows"
           [nzBorderless]="ui.borderless"
           (focus)="focus($event)"
           (blur)="blur($event)"
@@ -3782,13 +3790,13 @@ class TextareaWidget extends ControlUIWidget {
     } @else {
       <ng-template [ngTemplateOutlet]="ipt" />
     }
-  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "component", type: i3$1.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i3$1.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "directive", type: i3$1.NzAutosizeDirective, selector: "textarea[nzAutosize]", inputs: ["nzAutosize"], exportAs: ["nzAutosize"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
+  </sf-item-wrap>`, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i1$1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1$1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1$1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: i3$1.CdkTextareaAutosize, selector: "textarea[cdkTextareaAutosize]", inputs: ["cdkAutosizeMinRows", "cdkAutosizeMaxRows", "cdkTextareaAutosize", "placeholder"], exportAs: ["cdkTextareaAutosize"] }, { kind: "component", type: i2$5.NzTextareaCountComponent, selector: "nz-textarea-count", inputs: ["nzMaxCharacterCount", "nzComputeCharacterCount", "nzFormatter"] }, { kind: "directive", type: i2$5.NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzBorderless", "nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: SFItemWrapComponent, selector: "sf-item-wrap", inputs: ["id", "schema", "ui", "showError", "error", "showTitle", "title"] }], encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: TextareaWidget, decorators: [{
             type: Component,
             args: [{
                     selector: 'sf-textarea',
-                    template: `<sf-item-wrap
+                    template: ` <sf-item-wrap
     [id]="id"
     [schema]="schema"
     [ui]="ui"
@@ -3796,6 +3804,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
     [error]="error"
     [showTitle]="schema.title"
   >
+    @let minRows = autosize?.minRows ?? 1;
+    @let maxRows = autosize?.maxRows ?? 0;
     <ng-template #ipt>
       <textarea
         nz-input
@@ -3807,7 +3817,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
         (ngModelChange)="change($event)"
         [attr.maxLength]="schema.maxLength ?? null"
         [attr.placeholder]="ui.placeholder"
-        [nzAutosize]="autosize"
+        cdkTextareaAutosize
+        [cdkAutosizeMinRows]="minRows"
+        [cdkAutosizeMaxRows]="maxRows"
         [nzBorderless]="ui.borderless"
         (focus)="focus($event)"
         (blur)="blur($event)"
@@ -3830,7 +3842,9 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImpo
           (ngModelChange)="change($event)"
           [attr.maxLength]="schema.maxLength ?? null"
           [attr.placeholder]="ui.placeholder"
-          [nzAutosize]="autosize"
+          cdkTextareaAutosize
+          [cdkAutosizeMinRows]="minRows"
+          [cdkAutosizeMaxRows]="maxRows"
           [nzBorderless]="ui.borderless"
           (focus)="focus($event)"
           (blur)="blur($event)"
@@ -3926,7 +3940,7 @@ class DelonFormModule {
             TextareaWidget,
             SelectWidget,
             CustomWidget,
-            TextWidget], imports: [CommonModule, FormsModule, DelonLocaleModule, NzButtonModule,
+            TextWidget], imports: [CommonModule, FormsModule, DelonLocaleModule, CdkTextareaAutosize, NzButtonModule,
             NzCardModule,
             NzCheckboxModule,
             NzDatePickerModule,
@@ -3945,7 +3959,7 @@ class DelonFormModule {
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "20.3.15", ngImport: i0, type: DelonFormModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, FormsModule, DelonLocaleModule, ...ZORROS],
+                    imports: [CommonModule, FormsModule, DelonLocaleModule, CdkTextareaAutosize, ...ZORROS],
                     declarations: [...COMPONENTS, ...WIDGETS],
                     exports: COMPONENTS
                 }]
