@@ -4,7 +4,7 @@ import * as i0 from '@angular/core';
 import { OnInit } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import * as i4 from 'ng-zorro-antd/upload';
-import { NzUploadFile, UploadFilter, NzShowUploadList, NzUploadXHRArgs, NzUploadChangeParam } from 'ng-zorro-antd/upload';
+import { NzUploadFile, UploadFilter, NzShowUploadList, NzUploadXHRArgs, NzUploadTransformFileType, NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import { Observable, Subscription } from 'rxjs';
 import * as i1 from '@angular/forms';
 import * as i2 from '@angular/common';
@@ -128,6 +128,10 @@ interface SFUploadWidgetSchema extends SFUISchemaItem {
      * 点击下载文件时的回调，如果没有指定，则默认跳转到文件 url 对应的标签页
      */
     download?: (file: NzUploadFile) => void;
+    /**
+     * 在上传之前转换文件。支持返回一个 Observable 对象
+     */
+    transformFile?: (file: NzUploadFile) => NzUploadTransformFileType;
     /**
      * 上传文件改变时的状态
      */
