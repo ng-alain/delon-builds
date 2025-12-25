@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/trend.mjs"
+  "module": "../fesm2022/trend.mjs",
+  "typings": "../types/trend.d.ts"
 }

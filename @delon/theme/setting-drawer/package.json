@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/setting-drawer.mjs"
+  "module": "../fesm2022/setting-drawer.mjs",
+  "typings": "../types/setting-drawer.d.ts"
 }

@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/number-info.mjs"
+  "module": "../fesm2022/number-info.mjs",
+  "typings": "../types/number-info.d.ts"
 }

@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateToV20 = updateToV20;
+exports.updateToV21 = updateToV21;
 exports.postUpdate = postUpdate;
 const schematics_1 = require("@angular/cdk/schematics");
 const schematics_2 = require("@angular-devkit/schematics");
 const upgrade_data_1 = require("./upgrade-data");
-const V20_1 = require("./upgrade-rules/V20");
+const V21_1 = require("./upgrade-rules/V21");
 const migrations = [];
-function updateToV20() {
-    return (0, schematics_2.chain)([(0, V20_1.v20Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V20, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
+function updateToV21() {
+    return (0, schematics_2.chain)([(0, V21_1.v21Rule)(), (0, schematics_1.createMigrationSchematicRule)(schematics_1.TargetVersion.V21, migrations, upgrade_data_1.ruleUpgradeData, postUpdate)]);
 }
 /** Post-update schematic to be called when update is finished. */
 function postUpdate(context, targetVersion, hasFailures) {

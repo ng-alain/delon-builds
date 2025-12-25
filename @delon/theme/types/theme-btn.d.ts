@@ -34,7 +34,7 @@ declare class ThemeBtnComponent implements OnInit, OnDestroy {
 
 declare class ThemeBtnModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<ThemeBtnModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<ThemeBtnModule, never, [typeof i1.CommonModule, typeof i2.NzDropDownModule, typeof i3.NzTooltipModule, typeof ThemeBtnComponent], [typeof ThemeBtnComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<ThemeBtnModule, never, [typeof i1.CommonModule, typeof i2.NzDropdownModule, typeof i3.NzTooltipModule, typeof ThemeBtnComponent], [typeof ThemeBtnComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<ThemeBtnModule>;
 }
 

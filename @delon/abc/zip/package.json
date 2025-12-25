@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/zip.mjs"
+  "module": "../fesm2022/zip.mjs",
+  "typings": "../types/zip.d.ts"
 }

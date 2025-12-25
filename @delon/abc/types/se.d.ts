@@ -101,6 +101,8 @@ declare class SEComponent implements OnChanges, AfterContentInit, AfterViewInit 
     get showErr(): boolean;
     get compact(): boolean;
     private get ngControl();
+    protected readonly nzValidateAnimationEnter: i0.Signal<string>;
+    protected readonly nzValidateAnimationLeave: i0.Signal<string>;
     constructor();
     private setClass;
     private bindModel;

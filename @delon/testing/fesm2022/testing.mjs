@@ -1,6 +1,6 @@
 import { tick, TestBed, flush, discardPeriodicTasks } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { NzDropDownDirective } from 'ng-zorro-antd/dropdown';
+import { NzDropdownDirective } from 'ng-zorro-antd/dropdown';
 
 /**
  * @license
@@ -113,11 +113,11 @@ const DROPDOWN_MIN_TIME = 1000;
  * 触发 dropdown
  */
 function dispatchDropDown(dl, trigger, allowNull = true) {
-    const directive = dl.query(By.directive(NzDropDownDirective));
+    const directive = dl.query(By.directive(NzDropdownDirective));
     if (allowNull && directive == null) {
         return false;
     }
-    const el = directive.injector.get(NzDropDownDirective).elementRef.nativeElement;
+    const el = directive.injector.get(NzDropdownDirective).elementRef.nativeElement;
     if (trigger === 'click') {
         dispatchFakeEvent(el, 'click');
     }

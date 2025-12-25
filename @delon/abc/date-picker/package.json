@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/date-picker.mjs"
+  "module": "../fesm2022/date-picker.mjs",
+  "typings": "../types/date-picker.d.ts"
 }

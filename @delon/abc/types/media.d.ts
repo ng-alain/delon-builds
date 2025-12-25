@@ -1,6 +1,6 @@
 import * as i0 from '@angular/core';
 import { OnChanges, AfterViewInit, OnDestroy, EventEmitter, SimpleChange } from '@angular/core';
-import Plyr from 'plyr';
+import * as Plyr from 'plyr';
 import { Observable } from 'rxjs';
 import { AlainMediaConfig } from '@delon/util/config';
 import * as i1 from '@angular/common';

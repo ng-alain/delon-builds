@@ -9,7 +9,7 @@ import * as i2 from '@delon/theme';
 import * as i3 from 'ng-zorro-antd/popover';
 import * as i4 from 'ng-zorro-antd/core/outlet';
 import * as i5 from 'ng-zorro-antd/button';
-import * as i6 from 'ng-zorro-antd/core/no-animation';
+import * as i6 from 'ng-zorro-antd/core/animation';
 
 type OnboardingOpType = 'next' | 'prev' | 'skip' | 'done';
 interface OnboardingConfig {

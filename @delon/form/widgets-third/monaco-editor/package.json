@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-third-monaco-editor.mjs"
+  "module": "../../fesm2022/widgets-third-monaco-editor.mjs",
+  "typings": "../../types/widgets-third-monaco-editor.d.ts"
 }

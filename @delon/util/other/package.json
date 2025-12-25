@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/other.mjs"
+  "module": "../fesm2022/other.mjs",
+  "typings": "../types/other.d.ts"
 }

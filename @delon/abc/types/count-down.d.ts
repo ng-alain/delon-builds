@@ -19,7 +19,7 @@ declare class CountDownComponent {
 
 declare class CountDownModule {
     static ɵfac: i0.ɵɵFactoryDeclaration<CountDownModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<CountDownModule, never, [typeof i1.CommonModule, typeof i2.CountdownModule, typeof CountDownComponent], [typeof CountDownComponent]>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<CountDownModule, never, [typeof i1.CommonModule, typeof i2.CountdownComponent, typeof CountDownComponent], [typeof CountDownComponent]>;
     static ɵinj: i0.ɵɵInjectorDeclaration<CountDownModule>;
 }
 

@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/onboarding.mjs"
+  "module": "../fesm2022/onboarding.mjs",
+  "typings": "../types/onboarding.d.ts"
 }

@@ -3,6 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.attributeSelectors = void 0;
 const schematics_1 = require("@angular/cdk/schematics");
 exports.attributeSelectors = {
-    [schematics_1.TargetVersion.V20]: []
+    [schematics_1.TargetVersion.V21]: []
 };
 //# sourceMappingURL=attribute-selectors.js.map

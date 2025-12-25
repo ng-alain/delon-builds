@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/core.mjs"
+  "module": "../fesm2022/core.mjs",
+  "typings": "../types/core.d.ts"
 }

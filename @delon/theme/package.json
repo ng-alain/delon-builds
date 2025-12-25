@@ -1,6 +1,6 @@
 {
   "name": "@delon/theme",
-  "version": "20.1.1-4f1a351",
+  "version": "20.1.1-a17fc47",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -21,37 +21,37 @@
     "component"
   ],
   "dependencies": {
-    "ng-zorro-antd": "^20.4.2",
-    "@delon/acl": "^20.1.1-4f1a351",
-    "@delon/abc": "^20.1.1-4f1a351",
-    "@delon/form": "^20.1.1-4f1a351",
-    "@delon/util": "^20.1.1-4f1a351",
+    "ng-zorro-antd": "^21.0.0-next.2",
+    "@delon/acl": "^20.1.1-a17fc47",
+    "@delon/abc": "^20.1.1-a17fc47",
+    "@delon/form": "^20.1.1-a17fc47",
+    "@delon/util": "^20.1.1-a17fc47",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/theme.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/theme.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/theme.d.ts",
       "default": "./fesm2022/theme.mjs"
     },
     "./layout-blank": {
-      "types": "./layout-blank/index.d.ts",
+      "types": "./types/layout-blank.d.ts",
       "default": "./fesm2022/layout-blank.mjs"
     },
     "./layout-default": {
-      "types": "./layout-default/index.d.ts",
+      "types": "./types/layout-default.d.ts",
       "default": "./fesm2022/layout-default.mjs"
     },
     "./setting-drawer": {
-      "types": "./setting-drawer/index.d.ts",
+      "types": "./types/setting-drawer.d.ts",
       "default": "./fesm2022/setting-drawer.mjs"
     },
     "./theme-btn": {
-      "types": "./theme-btn/index.d.ts",
+      "types": "./types/theme-btn.d.ts",
       "default": "./fesm2022/theme-btn.mjs"
     }
   },

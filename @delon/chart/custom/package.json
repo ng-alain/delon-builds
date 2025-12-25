@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/custom.mjs"
+  "module": "../fesm2022/custom.mjs",
+  "typings": "../types/custom.d.ts"
 }

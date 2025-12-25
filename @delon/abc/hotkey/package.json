@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/hotkey.mjs"
+  "module": "../fesm2022/hotkey.mjs",
+  "typings": "../types/hotkey.d.ts"
 }

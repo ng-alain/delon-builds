@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/page-header.mjs"
+  "module": "../fesm2022/page-header.mjs",
+  "typings": "../types/page-header.d.ts"
 }

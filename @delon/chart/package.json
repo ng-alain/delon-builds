@@ -1,6 +1,6 @@
 {
   "name": "@delon/chart",
-  "version": "20.1.1-4f1a351",
+  "version": "20.1.1-a17fc47",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -28,86 +28,86 @@
     "@antv/data-set": "^0.11.8",
     "@antv/g2": "^4.2.11",
     "echarts": "^6.0.0",
-    "@delon/util": "^20.1.1-4f1a351",
-    "@delon/theme": "^20.1.1-4f1a351",
+    "@delon/util": "^20.1.1-a17fc47",
+    "@delon/theme": "^20.1.1-a17fc47",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/chart.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/chart.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/chart.d.ts",
       "default": "./fesm2022/chart.mjs"
     },
     "./bar": {
-      "types": "./bar/index.d.ts",
+      "types": "./types/bar.d.ts",
       "default": "./fesm2022/bar.mjs"
     },
     "./card": {
-      "types": "./card/index.d.ts",
+      "types": "./types/card.d.ts",
       "default": "./fesm2022/card.mjs"
     },
     "./chart-echarts": {
-      "types": "./chart-echarts/index.d.ts",
+      "types": "./types/chart-echarts.d.ts",
       "default": "./fesm2022/chart-echarts.mjs"
     },
     "./core": {
-      "types": "./core/index.d.ts",
+      "types": "./types/core.d.ts",
       "default": "./fesm2022/core.mjs"
     },
     "./custom": {
-      "types": "./custom/index.d.ts",
+      "types": "./types/custom.d.ts",
       "default": "./fesm2022/custom.mjs"
     },
     "./gauge": {
-      "types": "./gauge/index.d.ts",
+      "types": "./types/gauge.d.ts",
       "default": "./fesm2022/gauge.mjs"
     },
     "./mini-area": {
-      "types": "./mini-area/index.d.ts",
+      "types": "./types/mini-area.d.ts",
       "default": "./fesm2022/mini-area.mjs"
     },
     "./mini-bar": {
-      "types": "./mini-bar/index.d.ts",
+      "types": "./types/mini-bar.d.ts",
       "default": "./fesm2022/mini-bar.mjs"
     },
     "./mini-progress": {
-      "types": "./mini-progress/index.d.ts",
+      "types": "./types/mini-progress.d.ts",
       "default": "./fesm2022/mini-progress.mjs"
     },
     "./number-info": {
-      "types": "./number-info/index.d.ts",
+      "types": "./types/number-info.d.ts",
       "default": "./fesm2022/number-info.mjs"
     },
     "./pie": {
-      "types": "./pie/index.d.ts",
+      "types": "./types/pie.d.ts",
       "default": "./fesm2022/pie.mjs"
     },
     "./radar": {
-      "types": "./radar/index.d.ts",
+      "types": "./types/radar.d.ts",
       "default": "./fesm2022/radar.mjs"
     },
     "./single-bar": {
-      "types": "./single-bar/index.d.ts",
+      "types": "./types/single-bar.d.ts",
       "default": "./fesm2022/single-bar.mjs"
     },
     "./tag-cloud": {
-      "types": "./tag-cloud/index.d.ts",
+      "types": "./types/tag-cloud.d.ts",
       "default": "./fesm2022/tag-cloud.mjs"
     },
     "./timeline": {
-      "types": "./timeline/index.d.ts",
+      "types": "./types/timeline.d.ts",
       "default": "./fesm2022/timeline.mjs"
     },
     "./trend": {
-      "types": "./trend/index.d.ts",
+      "types": "./types/trend.d.ts",
       "default": "./fesm2022/trend.mjs"
     },
     "./water-wave": {
-      "types": "./water-wave/index.d.ts",
+      "types": "./types/water-wave.d.ts",
       "default": "./fesm2022/water-wave.mjs"
     }
   },

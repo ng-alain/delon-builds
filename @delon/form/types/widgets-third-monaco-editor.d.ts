@@ -33,7 +33,7 @@ declare class MonacoEditorWidget extends ControlUIWidget<MonacoEditorWidgetSchem
 declare class MonacoEditorWidgetModule {
     constructor(widgetRegistry: WidgetRegistry);
     static ɵfac: i0.ɵɵFactoryDeclaration<MonacoEditorWidgetModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<MonacoEditorWidgetModule, never, [typeof i1.FormsModule, typeof i2.DelonFormModule, typeof i3.NuMonacoEditorModule, typeof MonacoEditorWidget], never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<MonacoEditorWidgetModule, never, [typeof i1.FormsModule, typeof i2.DelonFormModule, typeof i3.NuMonacoEditorComponent, typeof MonacoEditorWidget], never>;
     static ɵinj: i0.ɵɵInjectorDeclaration<MonacoEditorWidgetModule>;
 }
 

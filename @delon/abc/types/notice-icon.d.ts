@@ -82,7 +82,7 @@ declare class NoticeIconComponent {
 
 declare class NoticeIconModule {
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NoticeIconModule, never>;
-    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<NoticeIconModule, never, [typeof i1.CommonModule, typeof _delon_theme.DelonLocaleModule, typeof i3.NzBadgeModule, typeof i4.NzDropDownModule, typeof i5.NzIconModule, typeof i6.NzListModule, typeof i7.NzSpinModule, typeof i8.NzTabsModule, typeof i9.NzTagModule, typeof i10.NzOutletModule, typeof NoticeIconComponent, typeof NoticeIconTabComponent], [typeof NoticeIconComponent]>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<NoticeIconModule, never, [typeof i1.CommonModule, typeof _delon_theme.DelonLocaleModule, typeof i3.NzBadgeModule, typeof i4.NzDropdownModule, typeof i5.NzIconModule, typeof i6.NzListModule, typeof i7.NzSpinModule, typeof i8.NzTabsModule, typeof i9.NzTagModule, typeof i10.NzOutletModule, typeof NoticeIconComponent, typeof NoticeIconTabComponent], [typeof NoticeIconComponent]>;
     static ɵinj: _angular_core.ɵɵInjectorDeclaration<NoticeIconModule>;
 }
 

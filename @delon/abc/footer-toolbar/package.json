@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/footer-toolbar.mjs"
+  "module": "../fesm2022/footer-toolbar.mjs",
+  "typings": "../types/footer-toolbar.d.ts"
 }

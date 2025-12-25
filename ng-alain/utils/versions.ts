@@ -16,30 +16,30 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
   addPackage(
     tree,
     [
-      `angular-eslint@^20.3.0`,
-      `@typescript-eslint/eslint-plugin@^8.44.0`,
-      `@typescript-eslint/parser@^8.44.0`,
-      `@typescript-eslint/utils@^8.44.0`,
-      `eslint@^9.35.0`,
+      `angular-eslint@21.1.0`,
+      `@typescript-eslint/eslint-plugin@^8.50.1`,
+      `@typescript-eslint/parser@^8.50.1`,
+      `@typescript-eslint/utils@^8.50.1`,
+      `eslint@^9.39.1`,
       `eslint-config-prettier@^10.1.8`,
       `eslint-plugin-import@~2.32.0`,
-      `eslint-plugin-jsdoc@~61.1.4`,
+      `eslint-plugin-jsdoc@~61.5.0`,
       `eslint-plugin-prefer-arrow@~1.2.3`,
       `eslint-plugin-prettier@~5.5.4`,
-      `eslint-plugin-unused-imports@^4.2.0`,
-      `typescript-eslint@^8.44.0`,
-      `prettier@^3.6.2`,
+      `eslint-plugin-unused-imports@^4.3.0`,
+      `typescript-eslint@8.47.0`,
+      `prettier@^3.7.4`,
       `husky@^9.1.7`,
       `ng-alain@${version}`,
       `ng-alain-plugin-theme@^18.0.0`,
       `source-map-explorer@^2.5.3`,
-      `ngx-tinymce@^20.0.0`,
-      `@ng-util/monaco-editor@^20.1.0`,
+      `ngx-tinymce@^21.0.0`,
+      `@ng-util/monaco-editor@^21.0.1`,
       `@delon/testing@${version}`
     ],
     'devDependencies'
   );
-  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^20.4.2`]);
+  addPackage(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.0.0-next.2`]);
 }
 
 export function addESLintRule(projectName: string): Rule {

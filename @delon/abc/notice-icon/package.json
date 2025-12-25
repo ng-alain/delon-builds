@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/notice-icon.mjs"
+  "module": "../fesm2022/notice-icon.mjs",
+  "typings": "../types/notice-icon.d.ts"
 }

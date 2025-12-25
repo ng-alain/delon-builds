@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/exception.mjs"
+  "module": "../fesm2022/exception.mjs",
+  "typings": "../types/exception.d.ts"
 }

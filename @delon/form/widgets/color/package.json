@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-color.mjs"
+  "module": "../../fesm2022/widgets-color.mjs",
+  "typings": "../../types/widgets-color.d.ts"
 }

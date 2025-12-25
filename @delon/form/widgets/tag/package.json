@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-tag.mjs"
+  "module": "../../fesm2022/widgets-tag.mjs",
+  "typings": "../../types/widgets-tag.d.ts"
 }

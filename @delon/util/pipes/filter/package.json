@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/pipe-filter.mjs"
+  "module": "../../fesm2022/pipe-filter.mjs",
+  "typings": "../../types/pipe-filter.d.ts"
 }

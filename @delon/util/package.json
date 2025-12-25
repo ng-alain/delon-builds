@@ -1,6 +1,6 @@
 {
   "name": "@delon/util",
-  "version": "20.1.1-4f1a351",
+  "version": "20.1.1-a17fc47",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -24,69 +24,69 @@
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/delon-util.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/delon-util.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/delon-util.d.ts",
       "default": "./fesm2022/delon-util.mjs"
     },
     "./array": {
-      "types": "./array/index.d.ts",
+      "types": "./types/array.d.ts",
       "default": "./fesm2022/array.mjs"
     },
     "./browser": {
-      "types": "./browser/index.d.ts",
+      "types": "./types/browser.d.ts",
       "default": "./fesm2022/browser.mjs"
     },
     "./config": {
-      "types": "./config/index.d.ts",
+      "types": "./types/config.d.ts",
       "default": "./fesm2022/config.mjs"
     },
     "./date-time": {
-      "types": "./date-time/index.d.ts",
+      "types": "./types/date-time.d.ts",
       "default": "./fesm2022/date-time.mjs"
     },
     "./decorator": {
-      "types": "./decorator/index.d.ts",
+      "types": "./types/decorator.d.ts",
       "default": "./fesm2022/decorator.mjs"
     },
     "./form": {
-      "types": "./form/index.d.ts",
+      "types": "./types/form.d.ts",
       "default": "./fesm2022/form.mjs"
     },
     "./format": {
-      "types": "./format/index.d.ts",
+      "types": "./types/format.d.ts",
       "default": "./fesm2022/format.mjs"
     },
     "./math": {
-      "types": "./math/index.d.ts",
+      "types": "./types/math.d.ts",
       "default": "./fesm2022/math.mjs"
     },
     "./other": {
-      "types": "./other/index.d.ts",
+      "types": "./types/other.d.ts",
       "default": "./fesm2022/other.mjs"
     },
     "./pipes": {
-      "types": "./pipes/index.d.ts",
+      "types": "./types/pipes.d.ts",
       "default": "./fesm2022/pipes.mjs"
     },
     "./pipes/currency": {
-      "types": "./pipes/currency/index.d.ts",
+      "types": "./types/pipe-currency.d.ts",
       "default": "./fesm2022/pipe-currency.mjs"
     },
     "./pipes/filter": {
-      "types": "./pipes/filter/index.d.ts",
+      "types": "./types/pipe-filter.d.ts",
       "default": "./fesm2022/pipe-filter.mjs"
     },
     "./pipes/format": {
-      "types": "./pipes/format/index.d.ts",
+      "types": "./types/pipe-format.d.ts",
       "default": "./fesm2022/pipe-format.mjs"
     },
     "./token": {
-      "types": "./token/index.d.ts",
+      "types": "./types/token.d.ts",
       "default": "./fesm2022/token.mjs"
     }
   },

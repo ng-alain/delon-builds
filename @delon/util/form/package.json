@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/form.mjs"
+  "module": "../fesm2022/form.mjs",
+  "typings": "../types/form.d.ts"
 }

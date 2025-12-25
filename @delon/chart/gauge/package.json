@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/gauge.mjs"
+  "module": "../fesm2022/gauge.mjs",
+  "typings": "../types/gauge.d.ts"
 }

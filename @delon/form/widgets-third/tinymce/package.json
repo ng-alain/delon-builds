@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-third-tinymce.mjs"
+  "module": "../../fesm2022/widgets-third-tinymce.mjs",
+  "typings": "../../types/widgets-third-tinymce.d.ts"
 }

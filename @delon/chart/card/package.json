@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/card.mjs"
+  "module": "../fesm2022/card.mjs",
+  "typings": "../types/card.d.ts"
 }

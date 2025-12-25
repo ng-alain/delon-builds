@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/chart-echarts.mjs"
+  "module": "../fesm2022/chart-echarts.mjs",
+  "typings": "../types/chart-echarts.d.ts"
 }

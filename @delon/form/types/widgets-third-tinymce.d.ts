@@ -26,7 +26,7 @@ declare class TinymceWidget extends ControlUIWidget<TinymceWidgetSchema> {
 declare class TinymceWidgetModule {
     constructor(widgetRegistry: WidgetRegistry);
     static ɵfac: i0.ɵɵFactoryDeclaration<TinymceWidgetModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<TinymceWidgetModule, never, [typeof i1.FormsModule, typeof i2.DelonFormModule, typeof i3.NgxTinymceModule, typeof TinymceWidget], never>;
+    static ɵmod: i0.ɵɵNgModuleDeclaration<TinymceWidgetModule, never, [typeof i1.FormsModule, typeof i2.DelonFormModule, typeof i3.TinymceComponent, typeof TinymceWidget], never>;
     static ɵinj: i0.ɵɵInjectorDeclaration<TinymceWidgetModule>;
 }
 

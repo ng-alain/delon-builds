@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/decorator.mjs"
+  "module": "../fesm2022/decorator.mjs",
+  "typings": "../types/decorator.d.ts"
 }

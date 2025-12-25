@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/water-wave.mjs"
+  "module": "../fesm2022/water-wave.mjs",
+  "typings": "../types/water-wave.d.ts"
 }

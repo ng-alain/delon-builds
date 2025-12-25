@@ -1,6 +1,6 @@
 {
   "name": "@delon/abc",
-  "version": "20.1.1-4f1a351",
+  "version": "20.1.1-a17fc47",
   "author": "cipchk<cipchk@qq.com>",
   "license": "MIT",
   "repository": {
@@ -25,138 +25,138 @@
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "xlsx": "^0.18.5",
-    "plyr": "~3.7.0",
+    "plyr": "^3.8.3",
     "@github/hotkey": "^3.1.1",
-    "ngx-countdown": "^20.0.0",
-    "@delon/theme": "^20.1.1-4f1a351",
-    "@delon/util": "^20.1.1-4f1a351",
-    "@delon/acl": "^20.1.1-4f1a351",
+    "ngx-countdown": "^21.0.0",
+    "@delon/theme": "^20.1.1-a17fc47",
+    "@delon/util": "^20.1.1-a17fc47",
+    "@delon/acl": "^20.1.1-a17fc47",
     "tslib": "^2.3.0"
   },
   "module": "fesm2022/abc.mjs",
-  "typings": "index.d.ts",
+  "typings": "types/abc.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./index.d.ts",
+      "types": "./types/abc.d.ts",
       "default": "./fesm2022/abc.mjs"
     },
     "./auto-focus": {
-      "types": "./auto-focus/index.d.ts",
+      "types": "./types/auto-focus.d.ts",
       "default": "./fesm2022/auto-focus.mjs"
     },
     "./cell": {
-      "types": "./cell/index.d.ts",
+      "types": "./types/cell.d.ts",
       "default": "./fesm2022/cell.mjs"
     },
     "./count-down": {
-      "types": "./count-down/index.d.ts",
+      "types": "./types/count-down.d.ts",
       "default": "./fesm2022/count-down.mjs"
     },
     "./date-picker": {
-      "types": "./date-picker/index.d.ts",
+      "types": "./types/date-picker.d.ts",
       "default": "./fesm2022/date-picker.mjs"
     },
     "./down-file": {
-      "types": "./down-file/index.d.ts",
+      "types": "./types/down-file.d.ts",
       "default": "./fesm2022/down-file.mjs"
     },
     "./ellipsis": {
-      "types": "./ellipsis/index.d.ts",
+      "types": "./types/ellipsis.d.ts",
       "default": "./fesm2022/ellipsis.mjs"
     },
     "./error-collect": {
-      "types": "./error-collect/index.d.ts",
+      "types": "./types/error-collect.d.ts",
       "default": "./fesm2022/error-collect.mjs"
     },
     "./exception": {
-      "types": "./exception/index.d.ts",
+      "types": "./types/exception.d.ts",
       "default": "./fesm2022/exception.mjs"
     },
     "./footer-toolbar": {
-      "types": "./footer-toolbar/index.d.ts",
+      "types": "./types/footer-toolbar.d.ts",
       "default": "./fesm2022/footer-toolbar.mjs"
     },
     "./full-content": {
-      "types": "./full-content/index.d.ts",
+      "types": "./types/full-content.d.ts",
       "default": "./fesm2022/full-content.mjs"
     },
     "./global-footer": {
-      "types": "./global-footer/index.d.ts",
+      "types": "./types/global-footer.d.ts",
       "default": "./fesm2022/global-footer.mjs"
     },
     "./hotkey": {
-      "types": "./hotkey/index.d.ts",
+      "types": "./types/hotkey.d.ts",
       "default": "./fesm2022/hotkey.mjs"
     },
     "./loading": {
-      "types": "./loading/index.d.ts",
+      "types": "./types/loading.d.ts",
       "default": "./fesm2022/loading.mjs"
     },
     "./lodop": {
-      "types": "./lodop/index.d.ts",
+      "types": "./types/lodop.d.ts",
       "default": "./fesm2022/lodop.mjs"
     },
     "./media": {
-      "types": "./media/index.d.ts",
+      "types": "./types/media.d.ts",
       "default": "./fesm2022/media.mjs"
     },
     "./notice-icon": {
-      "types": "./notice-icon/index.d.ts",
+      "types": "./types/notice-icon.d.ts",
       "default": "./fesm2022/notice-icon.mjs"
     },
     "./observers": {
-      "types": "./observers/index.d.ts",
+      "types": "./types/chart-observer-size.d.ts",
       "default": "./fesm2022/chart-observer-size.mjs"
     },
     "./onboarding": {
-      "types": "./onboarding/index.d.ts",
+      "types": "./types/onboarding.d.ts",
       "default": "./fesm2022/onboarding.mjs"
     },
     "./page-header": {
-      "types": "./page-header/index.d.ts",
+      "types": "./types/page-header.d.ts",
       "default": "./fesm2022/page-header.mjs"
     },
     "./pdf": {
-      "types": "./pdf/index.d.ts",
+      "types": "./types/pdf.d.ts",
       "default": "./fesm2022/pdf.mjs"
     },
     "./quick-menu": {
-      "types": "./quick-menu/index.d.ts",
+      "types": "./types/quick-menu.d.ts",
       "default": "./fesm2022/quick-menu.mjs"
     },
     "./reuse-tab": {
-      "types": "./reuse-tab/index.d.ts",
+      "types": "./types/reuse-tab.d.ts",
       "default": "./fesm2022/reuse-tab.mjs"
     },
     "./se": {
-      "types": "./se/index.d.ts",
+      "types": "./types/se.d.ts",
       "default": "./fesm2022/se.mjs"
     },
     "./sg": {
-      "types": "./sg/index.d.ts",
+      "types": "./types/sg.d.ts",
       "default": "./fesm2022/sg.mjs"
     },
     "./st": {
-      "types": "./st/index.d.ts",
+      "types": "./types/st.d.ts",
       "default": "./fesm2022/st.mjs"
     },
     "./sv": {
-      "types": "./sv/index.d.ts",
+      "types": "./types/sv.d.ts",
       "default": "./fesm2022/sv.mjs"
     },
     "./tag-select": {
-      "types": "./tag-select/index.d.ts",
+      "types": "./types/tag-select.d.ts",
       "default": "./fesm2022/tag-select.mjs"
     },
     "./xlsx": {
-      "types": "./xlsx/index.d.ts",
+      "types": "./types/xlsx.d.ts",
       "default": "./fesm2022/xlsx.mjs"
     },
     "./zip": {
-      "types": "./zip/index.d.ts",
+      "types": "./types/zip.d.ts",
       "default": "./fesm2022/zip.mjs"
     }
   },

@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/mini-bar.mjs"
+  "module": "../fesm2022/mini-bar.mjs",
+  "typings": "../types/mini-bar.d.ts"
 }

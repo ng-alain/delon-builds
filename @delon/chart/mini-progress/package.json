@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/mini-progress.mjs"
+  "module": "../fesm2022/mini-progress.mjs",
+  "typings": "../types/mini-progress.d.ts"
 }

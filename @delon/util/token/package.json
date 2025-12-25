@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/token.mjs"
+  "module": "../fesm2022/token.mjs",
+  "typings": "../types/token.d.ts"
 }

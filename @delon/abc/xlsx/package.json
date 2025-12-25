@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/xlsx.mjs"
+  "module": "../fesm2022/xlsx.mjs",
+  "typings": "../types/xlsx.d.ts"
 }

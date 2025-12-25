@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/browser.mjs"
+  "module": "../fesm2022/browser.mjs",
+  "typings": "../types/browser.d.ts"
 }

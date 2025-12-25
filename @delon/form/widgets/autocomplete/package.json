@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-auto-complete.mjs"
+  "module": "../../fesm2022/widgets-auto-complete.mjs",
+  "typings": "../../types/widgets-auto-complete.d.ts"
 }

@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/array.mjs"
+  "module": "../fesm2022/array.mjs",
+  "typings": "../types/array.d.ts"
 }

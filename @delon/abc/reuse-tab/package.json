@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/reuse-tab.mjs"
+  "module": "../fesm2022/reuse-tab.mjs",
+  "typings": "../types/reuse-tab.d.ts"
 }

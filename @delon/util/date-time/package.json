@@ -1,3 +1,4 @@
 {
-  "module": "../fesm2022/date-time.mjs"
+  "module": "../fesm2022/date-time.mjs",
+  "typings": "../types/date-time.d.ts"
 }

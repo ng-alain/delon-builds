@@ -1,3 +1,4 @@
 {
-  "module": "../../fesm2022/widgets-segmented.mjs"
+  "module": "../../fesm2022/widgets-segmented.mjs",
+  "typings": "../../types/widgets-segmented.d.ts"
 }
