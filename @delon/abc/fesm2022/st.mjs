@@ -1990,13 +1990,12 @@ class STComponent {
             }
             this._data = result.list ?? [];
             this._statistical = result.statistical;
-            this._restoreCheck();
-            this._refCheck();
             // Should be re-render in next tike when using virtual scroll
             // https://github.com/ng-alain/ng-alain/issues/1836
             if (this.cdkVirtualScrollViewport != null) {
                 Promise.resolve().then(() => this.cdkVirtualScrollViewport?.checkViewportSize());
             }
+            this._refCheck();
             this.changeEmit('loaded', result.list);
             return this;
         }));
@@ -2007,7 +2006,6 @@ class STComponent {
             this.clearStatus();
         }
         this._data = [];
-        this.checklist = [];
         return this.cd();
     }
     /** 清空所有状态 */
@@ -2262,10 +2260,8 @@ class STComponent {
     }
     // #endregion
     // #region checkbox
-    checklist = [];
     /** 清除所有 `checkbox` */
     clearCheck() {
-        this.checklist = [];
         return this.checkAll(false);
     }
     _refCheck() {
@@ -2288,22 +2284,8 @@ class STComponent {
     }
     _checkNotify() {
         const res = this._data.filter(w => !w.disabled && w.checked === true);
-        const idMap = this.page.checkbox_id_map;
-        if (idMap != null) {
-            const rowIds = this.list.map(w => w[idMap]);
-            this.checklist = this.checklist.filter(w => rowIds.indexOf(w[idMap]) === -1).concat(res);
-        }
-        else {
-            this.checklist = res;
-        }
-        this.changeEmit('checkbox', this.checklist);
+        this.changeEmit('checkbox', res);
         return this;
-    }
-    _restoreCheck() {
-        const idMap = this.page.checkbox_id_map;
-        if (idMap == null)
-            return;
-        this.list.forEach(u => (u.checked = this.checklist.some(w => w[idMap] === u[idMap])));
     }
     // #endregion
     // #region radio
