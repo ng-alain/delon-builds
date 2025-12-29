@@ -2007,7 +2007,7 @@ class STComponent {
             this.clearStatus();
         }
         this._data = [];
-        this.checkboxList = [];
+        this.checkList = [];
         return this.cd();
     }
     /** 清空所有状态 */
@@ -2262,10 +2262,10 @@ class STComponent {
     }
     // #endregion
     // #region checkbox
-    checkboxList = [];
+    checkList = [];
     /** 清除所有 `checkbox` */
     clearCheck() {
-        this.checkboxList = [];
+        this.checkList = [];
         return this.checkAll(false);
     }
     _refCheck() {
@@ -2291,19 +2291,19 @@ class STComponent {
         const idMap = this.page.checkboxIdMap;
         if (idMap != null) {
             const rowIds = this.list.map(w => w[idMap]);
-            this.checkboxList = this.checkboxList.filter(w => rowIds.indexOf(w[idMap]) === -1).concat(res);
+            this.checkList = this.checkList.filter(w => rowIds.indexOf(w[idMap]) === -1).concat(res);
         }
         else {
-            this.checkboxList = res;
+            this.checkList = res;
         }
-        this.changeEmit('checkbox', this.checkboxList);
+        this.changeEmit('checkbox', this.checkList);
         return this;
     }
     _restoreCheck() {
         const idMap = this.page.checkboxIdMap;
         if (idMap == null)
             return;
-        this.list.forEach(u => (u.checked = this.checkboxList.some(w => w[idMap] === u[idMap])));
+        this.list.forEach(u => (u.checked = this.checkList.some(w => w[idMap] === u[idMap])));
     }
     // #endregion
     // #region radio

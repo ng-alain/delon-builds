@@ -307,7 +307,7 @@ declare class STComponent implements AfterViewInit, OnChanges {
     _handleFilter(col: _STColumn, confirm: boolean): void;
     handleFilterNotify(value?: unknown): void;
     clearFilter(): this;
-    checkboxList: STData[];
+    checkList: STData[];
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;
