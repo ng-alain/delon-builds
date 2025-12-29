@@ -52,7 +52,7 @@ declare enum ReuseTabMatchMode {
      */
     URL = 2
 }
-type ReuseTabRouteParamMatchMode = 'strict' | 'loose' | ((future: ActivatedRouteSnapshot, curr: ActivatedRouteSnapshot) => boolean);
+type ReuseTabRouteParamMatchMode = 'strict' | 'loose';
 interface ReuseTitle {
     text?: string;
     i18n?: string;

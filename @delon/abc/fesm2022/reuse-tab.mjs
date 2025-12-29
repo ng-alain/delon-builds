@@ -739,11 +739,7 @@ class ReuseTabService {
             return false;
         const path = ((future.routeConfig && future.routeConfig.path) ?? '');
         if (path.length > 0 && ~path.indexOf(':')) {
-            const mode = this.routeParamMatchMode;
-            if (typeof mode === 'function') {
-                ret = mode(future, curr);
-            }
-            else if (mode === 'strict') {
+            if (this.routeParamMatchMode === 'strict') {
                 ret = this.getUrl(future) === this.getUrl(curr);
             }
             else {
