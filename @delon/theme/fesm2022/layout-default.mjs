@@ -22,7 +22,7 @@ import { NzTooltipModule } from 'ng-zorro-antd/tooltip';
 import * as i4 from 'ng-zorro-antd/badge';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownModule } from 'ng-zorro-antd/dropdown';
 
 class LayoutDefaultHeaderItemComponent {
     host;
@@ -751,18 +751,18 @@ class LayoutDefaultModule {
             LayoutDefaultHeaderComponent,
             LayoutDefaultHeaderItemComponent,
             LayoutDefaultHeaderItemTriggerDirective,
-            LayoutDefaultTopMenuItemComponent], imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropDownModule, NzBadgeModule], exports: [LayoutDefaultComponent,
+            LayoutDefaultTopMenuItemComponent], imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropdownModule, NzBadgeModule], exports: [LayoutDefaultComponent,
             LayoutDefaultNavComponent,
             LayoutDefaultHeaderComponent,
             LayoutDefaultHeaderItemComponent,
             LayoutDefaultHeaderItemTriggerDirective,
             LayoutDefaultTopMenuItemComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropDownModule, NzBadgeModule] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultModule, imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropdownModule, NzBadgeModule] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropDownModule, NzBadgeModule],
+                    imports: [CommonModule, RouterModule, NzTooltipModule, NzIconModule, NzAvatarModule, NzDropdownModule, NzBadgeModule],
                     declarations: COMPONENTS,
                     exports: COMPONENTS
                 }]
