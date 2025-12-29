@@ -307,12 +307,14 @@ declare class STComponent implements AfterViewInit, OnChanges {
     _handleFilter(col: _STColumn, confirm: boolean): void;
     handleFilterNotify(value?: unknown): void;
     clearFilter(): this;
+    checklist: STData[];
     /** 清除所有 `checkbox` */
     clearCheck(): this;
     private _refCheck;
     checkAll(checked?: boolean): this;
     _rowSelection(row: STColumnSelection): this;
     _checkNotify(): this;
+    _restoreCheck(): void;
     /** 清除所有 `radio` */
     clearRadio(): this;
     _handleTd(ev: _STTdNotify): void;
@@ -525,6 +527,10 @@ interface STPage {
      * 返回顶部偏移值，默认：`100`
      */
     toTopOffset?: number;
+    /**
+     * 缓存 checkbox 列表的标识列，数值表示列索引，默认：`0`
+     */
+    checkbox_id_map?: string | number;
 }
 /**
  * 数据源
