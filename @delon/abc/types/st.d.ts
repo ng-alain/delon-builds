@@ -1090,7 +1090,7 @@ interface STColumnButton<T extends STData = any> {
      * 下拉菜单，当存在时以 `dropdown` 形式渲染
      * - 只支持一级
      */
-    children?: Array<STColumnButton<T>> | null;
+    children?: Array<STColumnButton<T>>;
     /**
      * 权限，等同 [ACLCanType](https://ng-alain.com/acl/getting-started/#ACLCanType) 参数值
      */

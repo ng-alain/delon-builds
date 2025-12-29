@@ -4,7 +4,7 @@ import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
 import { InjectionToken, inject, Renderer2, isDevMode, EventEmitter, Output, Input, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
-import { NzDropdownDirective, NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownDirective, NzDropdownMenuComponent, NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
 import { NzTooltipDirective, NzTooltipModule } from 'ng-zorro-antd/tooltip';
 
@@ -91,13 +91,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 const COMPONENTS = [ThemeBtnComponent];
 class ThemeBtnModule {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropDownModule, NzTooltipModule, ThemeBtnComponent], exports: [ThemeBtnComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropDownModule, NzTooltipModule, COMPONENTS] });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, ThemeBtnComponent], exports: [ThemeBtnComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, imports: [CommonModule, NzDropdownModule, NzTooltipModule, COMPONENTS] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [CommonModule, NzDropDownModule, NzTooltipModule, ...COMPONENTS],
+                    imports: [CommonModule, NzDropdownModule, NzTooltipModule, ...COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });
