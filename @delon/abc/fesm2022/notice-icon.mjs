@@ -6,7 +6,7 @@ import { NzListComponent, NzListItemComponent, NzListItemMetaComponent, NzListMo
 import { NzTagComponent, NzTagModule } from 'ng-zorro-antd/tag';
 import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { NzBadgeComponent, NzBadgeModule } from 'ng-zorro-antd/badge';
-import { NzDropdownDirective, NzDropdownMenuComponent, NzDropdownModule } from 'ng-zorro-antd/dropdown';
+import { NzDropdownDirective, NzDropdownMenuComponent, NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconDirective, NzIconModule } from 'ng-zorro-antd/icon';
 import { NzSpinComponent, NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTabsComponent, NzTabComponent, NzTabsModule } from 'ng-zorro-antd/tabs';
@@ -86,7 +86,7 @@ class NoticeIconModule {
     static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
-            NzDropdownModule,
+            NzDropDownModule,
             NzIconModule,
             NzListModule,
             NzSpinModule,
@@ -96,7 +96,7 @@ class NoticeIconModule {
     static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: NoticeIconModule, imports: [CommonModule,
             DelonLocaleModule,
             NzBadgeModule,
-            NzDropdownModule,
+            NzDropDownModule,
             NzIconModule,
             NzListModule,
             NzSpinModule,
@@ -111,7 +111,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                         CommonModule,
                         DelonLocaleModule,
                         NzBadgeModule,
-                        NzDropdownModule,
+                        NzDropDownModule,
                         NzIconModule,
                         NzListModule,
                         NzSpinModule,
