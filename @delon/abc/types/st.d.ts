@@ -1360,7 +1360,7 @@ interface STColumnTagValue {
      */
     tooltip?: string;
 }
-type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'click' | 'dblClick' | 'expand' | 'resize';
+type STChangeType = 'loaded' | 'pi' | 'ps' | 'checkbox' | 'radio' | 'sort' | 'filter' | 'filterChange' | 'filterReset' | 'click' | 'dblClick' | 'expand' | 'resize';
 /**
  * 回调数据
  */
