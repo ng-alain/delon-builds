@@ -1,5 +1,5 @@
 import * as _angular_core from '@angular/core';
-import { Type, OnDestroy, EnvironmentProviders } from '@angular/core';
+import { Type, EnvironmentProviders } from '@angular/core';
 import { SafeValue } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { FormatMaskOption, CurrencyMegaOptions, CurrencyFormatOptions, CurrencyCNYOptions } from '@delon/util/format';
@@ -245,29 +245,28 @@ interface CellWidgetInstance {
     readonly data: CellTextResult;
 }
 
-declare class CellComponent implements OnDestroy {
+declare class CellComponent {
     private readonly srv;
     private readonly router;
     private readonly renderer;
     private readonly imgSrv;
     private readonly win;
     private readonly el;
-    private destroy$?;
-    _text: _angular_core.WritableSignal<string | number | SafeValue | string[]>;
-    _unit: _angular_core.WritableSignal<string | undefined>;
-    _res: _angular_core.WritableSignal<CellTextResult | undefined>;
-    showDefault: _angular_core.Signal<boolean>;
+    private d$;
+    protected _text: _angular_core.WritableSignal<string | number | SafeValue | string[]>;
+    protected _unit: _angular_core.WritableSignal<string | undefined>;
+    protected _res: _angular_core.WritableSignal<CellTextResult | undefined>;
+    protected showDefault: _angular_core.Signal<boolean>;
     value: _angular_core.ModelSignal<CellValue>;
     options: _angular_core.InputSignal<CellOptions | undefined>;
     loading: _angular_core.InputSignalWithTransform<boolean, unknown>;
     disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    get safeOpt(): CellOptions;
-    isText: _angular_core.Signal<boolean>;
+    protected get safeOpt(): CellOptions;
+    protected isText: _angular_core.Signal<boolean>;
     constructor();
     private setClass;
-    _link(e: Event): void;
-    _showImg(img: string): void;
-    ngOnDestroy(): void;
+    protected _link(e: Event): void;
+    protected _showImg(img: string): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CellComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<CellComponent, "cell, [cell]", ["cell"], { "value": { "alias": "value"; "required": false; "isSignal": true; }; "options": { "alias": "options"; "required": false; "isSignal": true; }; "loading": { "alias": "loading"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; }, { "value": "valueChange"; }, never, never, true, never>;
 }
@@ -275,7 +274,7 @@ declare class CellComponent implements OnDestroy {
 declare class CellHostDirective {
     private readonly srv;
     private readonly vcr;
-    data: _angular_core.InputSignal<CellTextResult>;
+    readonly data: _angular_core.InputSignal<CellTextResult>;
     constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<CellHostDirective, never>;
     static ɵdir: _angular_core.ɵɵDirectiveDeclaration<CellHostDirective, "[cell-widget-host]", never, { "data": { "alias": "data"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
