@@ -91,6 +91,7 @@ class G2BaseComponent {
     /** 等同 `ngOnInit` */
     onInit() { }
     /** 等同 `ngOnChanges` */
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     onChanges(_) { }
     load() {
         this.ngZone.run(() => {
