@@ -1645,17 +1645,6 @@ var zhCN = {
         prev: `上一项`,
         next: `下一项`,
         done: `完成`
-    },
-    datePicker: {
-        today: '今天',
-        yesterday: '昨天',
-        last3Days: '近3天',
-        last7Days: '近7天',
-        thisWeek: '本周',
-        lastWeek: '上周',
-        thisMonth: '本月',
-        lastMonth: '上个月',
-        thisYear: '今年'
     }
 };
 
@@ -1795,25 +1784,14 @@ var enUS = {
         prev: `Prev`,
         next: `Next`,
         done: `Done`
-    },
-    datePicker: {
-        today: 'Today',
-        yesterday: 'Yesterday',
-        last3Days: 'Last 3 Days',
-        last7Days: 'Last 7 Days',
-        thisWeek: 'This Week',
-        lastWeek: 'Last Week',
-        thisMonth: 'This Month',
-        lastMonth: 'Last Month',
-        thisYear: 'This Year'
     }
 };
 
 var zhHK = {
     abbr: 'zh-HK',
     exception: {
-        403: '抱歉，你無權訪問該頁麵',
-        404: '抱歉，你訪問的頁麵不存在',
+        403: '抱歉，你無權訪問該頁面',
+        404: '抱歉，你訪問的頁面不存在',
         500: '抱歉，伺服器出錯了',
         backToHome: '返回主頁'
     },
@@ -1848,7 +1826,7 @@ var zhHK = {
         removeText: '移除',
         checkAllText: '全選',
         error: {
-            'false schema': `佈爾模式出錯`,
+            'false schema': `布爾模式出錯`,
             $ref: `無法找到引用{ref}`,
             additionalItems: `不允許超過{limit}個元素`,
             additionalProperties: `不允許有額外的屬性`,
@@ -1870,7 +1848,7 @@ var zhHK = {
             minProperties: `不應少於 {limit} 個屬性`,
             multipleOf: `應當是 {multipleOf} 的整數倍`,
             not: `不應當匹配 "not" schema`,
-            oneOf: `隻能匹配一個 "oneOf" 中的 schema`,
+            oneOf: `只能匹配一個 "oneOf" 中的 schema`,
             pattern: `數據格式不正確`,
             uniqueItems: `不應當含有重複項 (第 {j} 項與第 {i} 項是重複的)`,
             custom: `格式不正確`,
@@ -1879,8 +1857,8 @@ var zhHK = {
             switch: `由於 {caseIndex} 失敗，未通過 "switch" 驗證`,
             const: `應當等於常量`,
             contains: `應當包含一個有效項目`,
-            formatExclusiveMaximum: `formatExclusiveMaximum 應當是佈爾值`,
-            formatExclusiveMinimum: `formatExclusiveMinimum 應當是佈爾值`,
+            formatExclusiveMaximum: `formatExclusiveMaximum 應當是布爾值`,
+            formatExclusiveMinimum: `formatExclusiveMinimum 應當是布爾值`,
             if: `應當匹配模式 "{failingKeyword}"`
         }
     },
@@ -1889,25 +1867,14 @@ var zhHK = {
         prev: `上一項`,
         next: `下一項`,
         done: `完成`
-    },
-    datePicker: {
-        today: '今日',
-        yesterday: '昨日',
-        last3Days: '近3日',
-        last7Days: '近7日',
-        thisWeek: '本星期',
-        lastWeek: '上星期',
-        thisMonth: '本月',
-        lastMonth: '上個月',
-        thisYear: '今年'
     }
 };
 
 var zhTW = {
     abbr: 'zh-TW',
     exception: {
-        403: '抱歉，你無權訪問該頁麵',
-        404: '抱歉，你訪問的頁麵不存在',
+        403: '抱歉，你無權訪問該頁面',
+        404: '抱歉，你訪問的頁面不存在',
         500: '抱歉，服務器出錯了',
         backToHome: '返回首頁'
     },
@@ -1983,17 +1950,6 @@ var zhTW = {
         prev: `上一項`,
         next: `下一項`,
         done: `完成`
-    },
-    datePicker: {
-        today: '今天',
-        yesterday: '昨天',
-        last3Days: '近3天',
-        last7Days: '近7天',
-        thisWeek: '本週',
-        lastWeek: '上週',
-        thisMonth: '本月',
-        lastMonth: '上個月',
-        thisYear: '今年'
     }
 };
 
@@ -2077,17 +2033,6 @@ var trTR = {
         prev: `Önceki`,
         next: `Sonraki`,
         done: `Bitti`
-    },
-    datePicker: {
-        today: 'Bugün',
-        yesterday: 'Dün',
-        last3Days: 'Son 3 Gün',
-        last7Days: 'Son 7 Gün',
-        thisWeek: 'Bu Hafta',
-        lastWeek: 'Geçen Hafta',
-        thisMonth: 'Bu Ay',
-        lastMonth: 'Geçen Ay',
-        thisYear: 'Bu Yıl'
     }
 };
 
@@ -2171,17 +2116,6 @@ var plPL = {
         prev: `Poprzedni`,
         next: `Kolejny`,
         done: `Gotowe`
-    },
-    datePicker: {
-        today: 'Dzisiaj',
-        yesterday: 'Wczoraj',
-        last3Days: 'Ost. 3 dni',
-        last7Days: 'Ost. 7 dni',
-        thisWeek: 'Ten tydzień',
-        lastWeek: 'Poprz. tydzień',
-        thisMonth: 'Ten miesiąc',
-        lastMonth: 'Poprz. miesiąc',
-        thisYear: 'Ten rok'
     }
 };
 
@@ -2265,17 +2199,6 @@ var elGR = {
         prev: `Προηγούμενο`,
         next: `Επόμενο`,
         done: `Ολοκληρώθηκε`
-    },
-    datePicker: {
-        today: 'Σήμερα',
-        yesterday: 'Χθές',
-        last3Days: 'Τελ. 3 ημ.',
-        last7Days: 'Τελ. 7 ημ.',
-        thisWeek: 'Αυτή την εβδ.',
-        lastWeek: 'Προηγ. εβδ.',
-        thisMonth: 'Αυτό το μήνα',
-        lastMonth: 'Προηγ. μήνα',
-        thisYear: 'Αυτό το έτος'
     }
 };
 
@@ -2359,17 +2282,6 @@ var koKR = {
         prev: `이전`,
         next: `다음`,
         done: `끝난`
-    },
-    datePicker: {
-        today: '오늘',
-        yesterday: '어제',
-        last3Days: '지난 3일',
-        last7Days: '지난 7일',
-        thisWeek: '이번 주',
-        lastWeek: '지난주',
-        thisMonth: '이번 달',
-        lastMonth: '지난달',
-        thisYear: '올해'
     }
 };
 
@@ -2417,17 +2329,6 @@ var hrHR = {
         prev: `Prethodna`,
         next: `Sljedeći`,
         done: `Sastavljeno`
-    },
-    datePicker: {
-        today: 'Danas',
-        yesterday: 'Jučer',
-        last3Days: 'Posl. 3 dana',
-        last7Days: 'Posl. 7 dana',
-        thisWeek: 'Ovaj tjedan',
-        lastWeek: 'Prošli tjedan',
-        thisMonth: 'Ovaj mjesec',
-        lastMonth: 'Prošli mjesec',
-        thisYear: 'Ova godina'
     }
 };
 
@@ -2511,17 +2412,6 @@ var jaJP = {
         prev: `前へ`,
         next: `次`,
         done: `できた`
-    },
-    datePicker: {
-        today: '今日',
-        yesterday: '昨日',
-        last3Days: '直近3日',
-        last7Days: '直近7日',
-        thisWeek: '今週',
-        lastWeek: '先週',
-        thisMonth: '今月',
-        lastMonth: '先月',
-        thisYear: '今年'
     }
 };
 
@@ -2604,17 +2494,6 @@ var slSI = {
         prev: `Prejšnje`,
         next: `Naslednji`,
         done: `Končano`
-    },
-    datePicker: {
-        today: 'Danes',
-        yesterday: 'Včeraj',
-        last3Days: 'Zadnji 3 dnevi',
-        last7Days: 'Zadnjih 7 dni',
-        thisWeek: 'Ta teden',
-        lastWeek: 'Prejšnji teden',
-        thisMonth: 'Ta mesec',
-        lastMonth: 'Prejšnji mesec',
-        thisYear: 'Letos'
     }
 };
 
@@ -2698,17 +2577,6 @@ var frFR = {
         prev: `Précédent`,
         next: `Suivant`,
         done: `Terminé`
-    },
-    datePicker: {
-        today: 'Auj.',
-        yesterday: 'Hier',
-        last3Days: '3 derniers j.',
-        last7Days: '7 derniers j.',
-        thisWeek: 'Sem. en cours',
-        lastWeek: 'Sem. dernière',
-        thisMonth: 'Mois en cours',
-        lastMonth: 'Mois dernier',
-        thisYear: 'Année en cours'
     }
 };
 
@@ -2792,17 +2660,6 @@ var esES = {
         prev: `Previo`,
         next: `Siguiente`,
         done: `Terminado`
-    },
-    datePicker: {
-        today: 'Hoy',
-        yesterday: 'Ayer',
-        last3Days: 'Últ. 3 días',
-        last7Days: 'Últ. 7 días',
-        thisWeek: 'Esta sem.',
-        lastWeek: 'Sem. pasada',
-        thisMonth: 'Este mes',
-        lastMonth: 'Mes pasado',
-        thisYear: 'Este año'
     }
 };
 
@@ -2886,17 +2743,6 @@ var itIT = {
         prev: `Precedente`,
         next: `Successivo`,
         done: `Fatto`
-    },
-    datePicker: {
-        today: 'Oggi',
-        yesterday: 'Ieri',
-        last3Days: 'Ultimi 3 gg',
-        last7Days: 'Ultimi 7 gg',
-        thisWeek: 'Questa sett.',
-        lastWeek: 'Sett. scorsa',
-        thisMonth: 'Questo mese',
-        lastMonth: 'Mese scorso',
-        thisYear: "Quest'anno"
     }
 };
 
@@ -2980,17 +2826,6 @@ var viVN = {
         prev: `Trước`,
         next: `Tiếp`,
         done: `Hoàn thành`
-    },
-    datePicker: {
-        today: 'Hôm nay',
-        yesterday: 'Hôm qua',
-        last3Days: '3 ngày qua',
-        last7Days: '7 ngày qua',
-        thisWeek: 'Tuần này',
-        lastWeek: 'Tuần trước',
-        thisMonth: 'Tháng này',
-        lastMonth: 'Tháng trước',
-        thisYear: 'Năm nay'
     }
 };
 
@@ -3074,17 +2909,6 @@ var arSA = {
         prev: `السابق`,
         next: `التالي`,
         done: `تم`
-    },
-    datePicker: {
-        today: 'اليوم',
-        yesterday: 'أمس',
-        last3Days: 'آخر 3 أيام',
-        last7Days: 'آخر 7 أيام',
-        thisWeek: 'هذا الأسبوع',
-        lastWeek: 'الأسبوع الماضي',
-        thisMonth: 'هذا الشهر',
-        lastMonth: 'الشهر الماضي',
-        thisYear: 'هذا العام'
     }
 };
 
@@ -3168,17 +2992,6 @@ var idID = {
         prev: `Sebelumnya`,
         next: `Berikutnya`,
         done: `Selesai`
-    },
-    datePicker: {
-        today: 'Hari Ini',
-        yesterday: 'Kemarin',
-        last3Days: '3 Hari Terakhir',
-        last7Days: '7 Hari Terakhir',
-        thisWeek: 'Minggu Ini',
-        lastWeek: 'Minggu Lalu',
-        thisMonth: 'Bulan Ini',
-        lastMonth: 'Bulan Lalu',
-        thisYear: 'Tahun Ini'
     }
 };
 
@@ -3262,17 +3075,6 @@ var kmKH = {
         prev: `ថយក្រោយ`,
         next: `បន្ទាប់`,
         done: `រួចរាល់`
-    },
-    datePicker: {
-        today: 'ថ្ងៃនេះ',
-        yesterday: 'ម្សិលមិញ',
-        last3Days: '៣ថ្ងៃចុងក្រោយ',
-        last7Days: '៧ថ្ងៃចុងក្រោយ',
-        thisWeek: 'សប្តាហ៍នេះ',
-        lastWeek: 'សប្តាហ៍មុន',
-        thisMonth: 'ខែនេះ',
-        lastMonth: 'ខែមុន',
-        thisYear: 'ឆ្នាំនេះ'
     }
 };
 
@@ -3356,17 +3158,6 @@ var msMY = {
         prev: `Sebelum`,
         next: `Seterusnya`,
         done: `Selesai`
-    },
-    datePicker: {
-        today: 'Hari Ini',
-        yesterday: 'Semalam',
-        last3Days: '3 Hari Lalu',
-        last7Days: '7 Hari Lalu',
-        thisWeek: 'Minggu Ini',
-        lastWeek: 'Minggu Lalu',
-        thisMonth: 'Bulan Ini',
-        lastMonth: 'Bulan Lalu',
-        thisYear: 'Tahun Ini'
     }
 };
 
@@ -3450,17 +3241,6 @@ var thTH = {
         prev: `ก่อนหน้า`,
         next: `ถัดไป`,
         done: `เสร็จสิ้น`
-    },
-    datePicker: {
-        today: 'วันนี้',
-        yesterday: 'เมื่อวาน',
-        last3Days: '3 วันที่ผ่านมา',
-        last7Days: '7 วันที่ผ่านมา',
-        thisWeek: 'สัปดาห์นี้',
-        lastWeek: 'สัปดาห์ที่แล้ว',
-        thisMonth: 'เดือนนี้',
-        lastMonth: 'เดือนที่แล้ว',
-        thisYear: 'ปีนี้'
     }
 };
 

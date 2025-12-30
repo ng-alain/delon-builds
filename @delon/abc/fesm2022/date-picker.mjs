@@ -4,9 +4,8 @@ import { ViewChild, Component, inject, ViewContainerRef, EventEmitter, Output, I
 import { FormsModule } from '@angular/forms';
 import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { DomSanitizer } from '@angular/platform-browser';
-import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
-import { fixEndTimeOfRange, getTimeDistance } from '@delon/util/date-time';
+import { getTimeDistance, fixEndTimeOfRange } from '@delon/util/date-time';
 import { deepMergeKey, assert } from '@delon/util/other';
 
 class RangePickerShortcutTplComponent {
@@ -51,13 +50,15 @@ class RangePickerDirective {
     shortcutFactory = null;
     start = null;
     end = null;
-    locale = inject(DelonLocaleService).getData('datePicker');
     set shortcut(val) {
-        const cog = deepMergeKey({ list: [] }, true, this.defaultShortcuts, val == null ? {} : val);
+        const item = deepMergeKey({ list: [] }, true, this.defaultShortcuts, val == null ? {} : val);
         if (typeof val !== 'object') {
-            cog.enabled = val !== false;
+            item.enabled = val !== false;
         }
-        this._shortcut = cog;
+        (item.list ?? []).forEach(i => {
+            i._text = this.dom.bypassSecurityTrustHtml(i.text);
+        });
+        this._shortcut = item;
         this.refreshShortcut();
     }
     get shortcut() {
@@ -84,7 +85,36 @@ class RangePickerDirective {
             shortcuts: {
                 enabled: false,
                 closed: true,
-                list: ['today', 'yesterday', '-3', '-7', 'week', 'lastWeek', 'month', 'lastMonth', 'year']
+                list: [
+                    {
+                        text: '今天',
+                        fn: () => getTimeDistance('today')
+                    },
+                    {
+                        text: '昨天',
+                        fn: () => getTimeDistance('yesterday')
+                    },
+                    {
+                        text: '近3天',
+                        fn: () => getTimeDistance(-2)
+                    },
+                    {
+                        text: '近7天',
+                        fn: () => getTimeDistance(-6)
+                    },
+                    {
+                        text: '本周',
+                        fn: () => getTimeDistance('week')
+                    },
+                    {
+                        text: '本月',
+                        fn: () => getTimeDistance('month')
+                    },
+                    {
+                        text: '全年',
+                        fn: () => getTimeDistance('year')
+                    }
+                ]
             }
         });
         this.defaultShortcuts = { ...cog.shortcuts };
@@ -120,61 +150,7 @@ class RangePickerDirective {
         if (!this._shortcut) {
             return;
         }
-        const { enabled } = this._shortcut;
-        const list = (this._shortcut.list ?? []).map(i => {
-            let item = typeof i === 'string' ? {} : i;
-            if (typeof i === 'string') {
-                switch (i) {
-                    case 'today': {
-                        item.fn = () => getTimeDistance('today');
-                        item.text = this.locale.today;
-                        break;
-                    }
-                    case 'yesterday': {
-                        item.fn = () => getTimeDistance('yesterday');
-                        item.text = this.locale.yesterday;
-                        break;
-                    }
-                    case '-3': {
-                        item.fn = () => getTimeDistance(-2);
-                        item.text = this.locale.last3Days;
-                        break;
-                    }
-                    case '-7': {
-                        item.fn = () => getTimeDistance(-6);
-                        item.text = this.locale.last7Days;
-                        break;
-                    }
-                    case 'week': {
-                        item.fn = () => getTimeDistance('week');
-                        item.text = this.locale.thisWeek;
-                        break;
-                    }
-                    case 'lastWeek': {
-                        item.fn = () => getTimeDistance('-week');
-                        item.text = this.locale.lastWeek;
-                        break;
-                    }
-                    case 'month': {
-                        item.fn = () => getTimeDistance('month');
-                        item.text = this.locale.thisMonth;
-                        break;
-                    }
-                    case 'lastMonth': {
-                        item.fn = () => getTimeDistance('-month');
-                        item.text = this.locale.lastMonth;
-                        break;
-                    }
-                    case 'year': {
-                        item.fn = () => getTimeDistance('year');
-                        item.text = this.locale.thisYear;
-                        break;
-                    }
-                }
-            }
-            item._text = this.dom.bypassSecurityTrustHtml(item.text);
-            return item;
-        });
+        const { enabled, list } = this._shortcut;
         let extraFooter;
         if (!this.nativeComp || !enabled) {
             extraFooter = undefined;

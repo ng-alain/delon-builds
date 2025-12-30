@@ -1393,17 +1393,6 @@ interface ExceptionLocaleData extends LocaleData {
     500: string;
     backToHome: string;
 }
-interface DatePickerLocaleData extends LocaleData {
-    today: string;
-    yesterday: string;
-    last3Days: string;
-    last7Days: string;
-    thisWeek: string;
-    lastWeek: string;
-    thisMonth: string;
-    lastMonth: string;
-    thisYear: string;
-}
 interface NoticeIconLocaleData extends LocaleData {
     emptyText: string;
     clearText: string;
@@ -1485,7 +1474,6 @@ interface FullLocaleData {
     reuseTab: ReuseTabLocaleData;
     tagSelect: TagSelectLocaleData;
     onboarding: OnboardingLocaleData;
-    datePicker: DatePickerLocaleData;
     miniProgress: MiniProgressLocaleData;
     st: STLocaleData;
     sf: SFLocaleData;
@@ -1711,4 +1699,4 @@ declare class PreloadOptionalModules implements PreloadingStrategy {
 declare const VERSION: Version;
 
 export { ALAIN_I18N_TOKEN, ALAIN_SETTING_DEFAULT, ALAIN_SETTING_KEYS, AlainI18NGuardService, AlainI18NServiceFake, AlainI18nBaseService, AlainThemeModule, BaseApi, BaseHeaders, BaseUrl, Body, CUSTOM_ERROR, DELETE, DELON_LOCALE, DELON_LOCALE_SERVICE_PROVIDER, DELON_LOCALE_SERVICE_PROVIDER_FACTORY, DatePipe, DelonLocaleModule, DelonLocaleService, DrawerHelper, FORM, GET, HEAD, HTMLPipe, HTML_DIR, Headers, I18nPipe, IGNORE_BASE_URL, JSONP, KeysPipe, LTR, MenuService, ModalHelper, OPTIONS, PATCH, POST, PUT, Path, Payload, PreloadOptionalModules, Query, RAW_BODY, REP_MAX, RTL, RTLService, RTL_DELON_COMPONENTS, RTL_DIRECTION, RTL_NZ_COMPONENTS, ResponsiveService, SPAN_MAX, SettingsService, TitleService, URLPipe, VERSION, YNPipe, _HttpClient, alainI18nCanActivate, alainI18nCanActivateChild, _default$4 as ar_SA, _default$d as el_GR, _default$j as en_US, _default$7 as es_ES, _default$8 as fr_FR, _default$b as hr_HR, _default$3 as id_ID, _default$6 as it_IT, _default$a as ja_JP, _default$2 as km_KH, _default$c as ko_KR, _default$1 as ms_MY, _default$e as pl_PL, provideAlain, _default$9 as sl_SI, stepPreloader, _default as th_TH, _default$f as tr_TR, _default$5 as vi_VN, yn, _default$i as zh_CN, _default$h as zh_HK, _default$g as zh_TW };
-export type { AlainI18NService, AlainProvideLang, AlainProvideOptions, ApiConfig, App, DatePickerLocaleData, DrawerHelperOptions, Environment, ExceptionLocaleData, FullLocaleData, HttpObserve, HttpOptions, Layout, LocaleData, METHOD_TYPE, Menu, MenuIcon, MenuInner, MiniProgressLocaleData, ModalHelperDragOptions, ModalHelperOptions, NoticeIconLocaleData, OnboardingLocaleData, REP_TYPE, ReuseTabLocaleData, RouteTitle, SFErrorLocaleData, SFLocaleData, STLocaleData, SettingsKeys, SettingsNotify, TagSelectLocaleData, User, YNMode, YNOptions, _HttpHeaders };
+export type { AlainI18NService, AlainProvideLang, AlainProvideOptions, ApiConfig, App, DrawerHelperOptions, Environment, ExceptionLocaleData, FullLocaleData, HttpObserve, HttpOptions, Layout, LocaleData, METHOD_TYPE, Menu, MenuIcon, MenuInner, MiniProgressLocaleData, ModalHelperDragOptions, ModalHelperOptions, NoticeIconLocaleData, OnboardingLocaleData, REP_TYPE, ReuseTabLocaleData, RouteTitle, SFErrorLocaleData, SFLocaleData, STLocaleData, SettingsKeys, SettingsNotify, TagSelectLocaleData, User, YNMode, YNOptions, _HttpHeaders };
