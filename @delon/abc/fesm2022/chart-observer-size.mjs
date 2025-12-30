@@ -1,5 +1,6 @@
 import * as i0 from '@angular/core';
-import { Injectable, inject, ElementRef, NgZone, EventEmitter, Output, Directive, NgModule } from '@angular/core';
+import { Injectable, inject, ElementRef, DestroyRef, output, afterNextRender, Directive, NgModule } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Observable, Subject } from 'rxjs';
 
 class SizeObserver {
@@ -64,26 +65,15 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 class ObserverSize {
     _obs = inject(SizeObserver);
     el = inject(ElementRef).nativeElement;
-    ngZone = inject(NgZone);
-    _sub$ = null;
-    event = new EventEmitter();
-    ngAfterViewInit() {
-        if (!this._sub$) {
-            this._sub();
-        }
-    }
-    _sub() {
-        this._unsub();
-        const stream = this._obs.observe(this.el);
-        this.ngZone.runOutsideAngular(() => {
-            this._sub$ = stream.subscribe(this.event);
+    d$ = inject(DestroyRef);
+    event = output({ alias: 'observeSize' });
+    constructor() {
+        afterNextRender(() => {
+            this._obs
+                .observe(this.el)
+                .pipe(takeUntilDestroyed(this.d$))
+                .subscribe(res => this.event.emit(res));
         });
-    }
-    _unsub() {
-        this._sub$?.unsubscribe();
-    }
-    ngOnDestroy() {
-        this._unsub();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ObserverSize, deps: [], target: i0.ɵɵFactoryTarget.Directive });
     static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: ObserverSize, isStandalone: true, selector: "[observeSize]", outputs: { event: "observeSize" }, exportAs: ["observeSize"], ngImport: i0 });
@@ -94,10 +84,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     selector: '[observeSize]',
                     exportAs: 'observeSize'
                 }]
-        }], propDecorators: { event: [{
-                type: Output,
-                args: ['observeSize']
-            }] } });
+        }], ctorParameters: () => [], propDecorators: { event: [{ type: i0.Output, args: ["observeSize"] }] } });
 class ObserversModule {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ObserversModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
     static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: ObserversModule, imports: [ObserverSize], exports: [ObserverSize] });
