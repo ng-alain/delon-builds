@@ -17,6 +17,7 @@ declare class RangePickerDirective implements OnDestroy, AfterViewInit {
     private shortcutFactory;
     start: Date | null;
     end: Date | null;
+    private locale;
     set shortcut(val: AlainDateRangePickerShortcut | null);
     get shortcut(): AlainDateRangePickerShortcut | null;
     ngModelEnd: NzSafeAny;
