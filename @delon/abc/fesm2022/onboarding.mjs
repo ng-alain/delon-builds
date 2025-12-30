@@ -8,7 +8,7 @@ import { DelonLocaleService, DelonLocaleModule } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
 import { NzButtonComponent, NzButtonModule } from 'ng-zorro-antd/button';
-import { NzNoAnimationDirective, NzNoAnimationModule } from 'ng-zorro-antd/core/animation';
+import { NzNoAnimationDirective, provideNzNoAnimation } from 'ng-zorro-antd/core/animation';
 import { NzStringTemplateOutletDirective, NzOutletModule } from 'ng-zorro-antd/core/outlet';
 import { NzPopoverDirective, NzPopoverModule } from 'ng-zorro-antd/popover';
 
@@ -336,32 +336,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 const COMPONENTS = [OnboardingComponent];
 class OnboardingModule {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
-            DelonLocaleModule,
-            NzPopoverModule,
-            NzOutletModule,
-            NzButtonModule,
-            NzNoAnimationModule, OnboardingComponent], exports: [OnboardingComponent] });
-    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, imports: [CommonModule,
-            DelonLocaleModule,
-            NzPopoverModule,
-            NzOutletModule,
-            NzButtonModule,
-            NzNoAnimationModule,
-            COMPONENTS] });
+    static ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, OnboardingComponent], exports: [OnboardingComponent] });
+    static ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, providers: [provideNzNoAnimation()], imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, COMPONENTS] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: OnboardingModule, decorators: [{
             type: NgModule,
             args: [{
-                    imports: [
-                        CommonModule,
-                        DelonLocaleModule,
-                        NzPopoverModule,
-                        NzOutletModule,
-                        NzButtonModule,
-                        NzNoAnimationModule,
-                        COMPONENTS
-                    ],
+                    providers: [provideNzNoAnimation()],
+                    imports: [CommonModule, DelonLocaleModule, NzPopoverModule, NzOutletModule, NzButtonModule, COMPONENTS],
                     exports: COMPONENTS
                 }]
         }] });
