@@ -54,6 +54,7 @@ declare class PageHeaderComponent implements OnInit, OnChanges, AfterViewInit {
     content?: TemplateRef<void> | null;
     extra?: TemplateRef<void> | null;
     tab?: TemplateRef<void> | null;
+    private locale;
     constructor();
     refresh(): void;
     private genBreadcrumb;

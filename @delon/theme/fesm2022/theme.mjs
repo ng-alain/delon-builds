@@ -1593,7 +1593,8 @@ var zhCN = {
     st: {
         total: '共 {{total}} 条',
         filterConfirm: '确定',
-        filterReset: '重置'
+        filterReset: '重置',
+        more: '更多'
     },
     sf: {
         submit: '提交',
@@ -1656,6 +1657,9 @@ var zhCN = {
         thisMonth: '本月',
         lastMonth: '上个月',
         thisYear: '今年'
+    },
+    pageHeader: {
+        home: '首页'
     }
 };
 
@@ -1743,7 +1747,8 @@ var enUS = {
     st: {
         total: '{{range[0]}} - {{range[1]}} of {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Reset'
+        filterReset: 'Reset',
+        more: 'More'
     },
     sf: {
         submit: 'Submit',
@@ -1806,6 +1811,9 @@ var enUS = {
         thisMonth: 'This Month',
         lastMonth: 'Last Month',
         thisYear: 'This Year'
+    },
+    pageHeader: {
+        home: 'Home'
     }
 };
 
@@ -1837,7 +1845,8 @@ var zhHK = {
     st: {
         total: '共 {{total}} 條',
         filterConfirm: '確定',
-        filterReset: '重設'
+        filterReset: '重設',
+        more: '更多'
     },
     sf: {
         submit: '提交',
@@ -1900,6 +1909,9 @@ var zhHK = {
         thisMonth: '本月',
         lastMonth: '上個月',
         thisYear: '今年'
+    },
+    pageHeader: {
+        home: '主頁'
     }
 };
 
@@ -1931,7 +1943,8 @@ var zhTW = {
     st: {
         total: '共 {{total}} 條',
         filterConfirm: '確定',
-        filterReset: '重置'
+        filterReset: '重置',
+        more: '更多'
     },
     sf: {
         submit: '提交',
@@ -1994,6 +2007,9 @@ var zhTW = {
         thisMonth: '本月',
         lastMonth: '上個月',
         thisYear: '今年'
+    },
+    pageHeader: {
+        home: '首頁'
     }
 };
 
@@ -2025,7 +2041,8 @@ var trTR = {
     st: {
         total: '{{range[0]}} ile {{range[1]}} arasında {{total}}',
         filterConfirm: 'Tamam',
-        filterReset: 'Sıfırla'
+        filterReset: 'Sıfırla',
+        more: 'Daha fazla'
     },
     sf: {
         submit: 'Gönder',
@@ -2088,6 +2105,9 @@ var trTR = {
         thisMonth: 'Bu Ay',
         lastMonth: 'Geçen Ay',
         thisYear: 'Bu Yıl'
+    },
+    pageHeader: {
+        home: 'Ana Sayfa'
     }
 };
 
@@ -2119,7 +2139,8 @@ var plPL = {
     st: {
         total: '{{range[0]}} - {{range[1]}} z {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Wyczyść'
+        filterReset: 'Wyczyść',
+        more: 'Więcej'
     },
     sf: {
         submit: 'Wyślij',
@@ -2182,6 +2203,9 @@ var plPL = {
         thisMonth: 'Ten miesiąc',
         lastMonth: 'Poprz. miesiąc',
         thisYear: 'Ten rok'
+    },
+    pageHeader: {
+        home: 'Strona główna'
     }
 };
 
@@ -2213,7 +2237,8 @@ var elGR = {
     st: {
         total: '{{range[0]}} - {{range[1]}} από {{total}}',
         filterConfirm: 'ΟΚ',
-        filterReset: 'Επαναφορά'
+        filterReset: 'Επαναφορά',
+        more: 'Περισσότερα'
     },
     sf: {
         submit: 'Υποβολή',
@@ -2276,6 +2301,9 @@ var elGR = {
         thisMonth: 'Αυτό το μήνα',
         lastMonth: 'Προηγ. μήνα',
         thisYear: 'Αυτό το έτος'
+    },
+    pageHeader: {
+        home: 'Αρχική'
     }
 };
 
@@ -2307,7 +2335,8 @@ var koKR = {
     st: {
         total: '전체 {{total}}건',
         filterConfirm: '확인',
-        filterReset: '초기화'
+        filterReset: '초기화',
+        more: '더보기'
     },
     sf: {
         submit: '제출',
@@ -2370,6 +2399,9 @@ var koKR = {
         thisMonth: '이번 달',
         lastMonth: '지난달',
         thisYear: '올해'
+    },
+    pageHeader: {
+        home: '홈'
     }
 };
 
@@ -2401,7 +2433,8 @@ var hrHR = {
     st: {
         total: '{{range[0]}} - {{range[1]}} od {{total}}',
         filterConfirm: 'U redu',
-        filterReset: 'Poništi'
+        filterReset: 'Poništi',
+        more: 'Više'
     },
     sf: {
         submit: 'Pošalji',
@@ -2428,6 +2461,9 @@ var hrHR = {
         thisMonth: 'Ovaj mjesec',
         lastMonth: 'Prošli mjesec',
         thisYear: 'Ova godina'
+    },
+    pageHeader: {
+        home: 'Početna'
     }
 };
 
@@ -2459,7 +2495,8 @@ var jaJP = {
     st: {
         total: '{{range[0]}} - {{range[1]}} / {{total}}',
         filterConfirm: '確定',
-        filterReset: 'リセット'
+        filterReset: 'リセット',
+        more: 'もっと'
     },
     sf: {
         submit: '送信',
@@ -2522,6 +2559,9 @@ var jaJP = {
         thisMonth: '今月',
         lastMonth: '先月',
         thisYear: '今年'
+    },
+    pageHeader: {
+        home: 'ホーム'
     }
 };
 
@@ -2552,7 +2592,8 @@ var slSI = {
     st: {
         total: '{{range[0]}} - {{range[1]}} of {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Reset'
+        filterReset: 'Reset',
+        more: 'Več'
     },
     sf: {
         submit: 'Pošlji',
@@ -2615,6 +2656,9 @@ var slSI = {
         thisMonth: 'Ta mesec',
         lastMonth: 'Prejšnji mesec',
         thisYear: 'Letos'
+    },
+    pageHeader: {
+        home: 'Domov'
     }
 };
 
@@ -2646,7 +2690,8 @@ var frFR = {
     st: {
         total: '{{range[0]}} - {{range[1]}} de {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Réinitialiser'
+        filterReset: 'Réinitialiser',
+        more: 'Plus'
     },
     sf: {
         submit: 'Soumettre',
@@ -2709,6 +2754,9 @@ var frFR = {
         thisMonth: 'Mois en cours',
         lastMonth: 'Mois dernier',
         thisYear: 'Année en cours'
+    },
+    pageHeader: {
+        home: 'Accueil'
     }
 };
 
@@ -2740,7 +2788,8 @@ var esES = {
     st: {
         total: '{{rango[0]}} - {{rango[1]}} de {{total}}',
         filterConfirm: 'Aceptar',
-        filterReset: 'Reiniciar'
+        filterReset: 'Reiniciar',
+        more: 'Más'
     },
     sf: {
         submit: 'Submit',
@@ -2803,6 +2852,9 @@ var esES = {
         thisMonth: 'Este mes',
         lastMonth: 'Mes pasado',
         thisYear: 'Este año'
+    },
+    pageHeader: {
+        home: 'Inicio'
     }
 };
 
@@ -2834,7 +2886,8 @@ var itIT = {
     st: {
         total: '{{range[0]}} - {{range[1]}} di {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Reimposta'
+        filterReset: 'Reimposta',
+        more: 'Altro'
     },
     sf: {
         submit: 'Invia',
@@ -2897,6 +2950,9 @@ var itIT = {
         thisMonth: 'Questo mese',
         lastMonth: 'Mese scorso',
         thisYear: "Quest'anno"
+    },
+    pageHeader: {
+        home: 'Home'
     }
 };
 
@@ -2928,7 +2984,8 @@ var viVN = {
     st: {
         total: '{{range[0]}} - {{range[1]}} của {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Đặt lại'
+        filterReset: 'Đặt lại',
+        more: 'Thêm'
     },
     sf: {
         submit: 'Gửi',
@@ -2991,6 +3048,9 @@ var viVN = {
         thisMonth: 'Tháng này',
         lastMonth: 'Tháng trước',
         thisYear: 'Năm nay'
+    },
+    pageHeader: {
+        home: 'Trang chủ'
     }
 };
 
@@ -3022,7 +3082,8 @@ var arSA = {
     st: {
         total: '{{range[0]}} - {{range[1]}} من {{total}}',
         filterConfirm: 'تأكيد',
-        filterReset: 'إعادة تعيين'
+        filterReset: 'إعادة تعيين',
+        more: 'المزيد'
     },
     sf: {
         submit: 'حفظ',
@@ -3085,6 +3146,9 @@ var arSA = {
         thisMonth: 'هذا الشهر',
         lastMonth: 'الشهر الماضي',
         thisYear: 'هذا العام'
+    },
+    pageHeader: {
+        home: 'الرئيسية'
     }
 };
 
@@ -3116,7 +3180,8 @@ var idID = {
     st: {
         total: '{{range[0]}} - {{range[1]}} dari {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Atur ulang'
+        filterReset: 'Atur ulang',
+        more: 'Lainnya'
     },
     sf: {
         submit: 'Kirim',
@@ -3179,6 +3244,9 @@ var idID = {
         thisMonth: 'Bulan Ini',
         lastMonth: 'Bulan Lalu',
         thisYear: 'Tahun Ini'
+    },
+    pageHeader: {
+        home: 'Beranda'
     }
 };
 
@@ -3210,7 +3278,8 @@ var kmKH = {
     st: {
         total: '{{range[0]}} - {{range[1]}} នៃ {{total}}',
         filterConfirm: 'យល់ព្រម',
-        filterReset: 'កំណត់ឡើងវិញ'
+        filterReset: 'កំណត់ឡើងវិញ',
+        more: 'ច្រើនទៀត'
     },
     sf: {
         submit: 'ដាក់ស្នើ',
@@ -3273,6 +3342,9 @@ var kmKH = {
         thisMonth: 'ខែនេះ',
         lastMonth: 'ខែមុន',
         thisYear: 'ឆ្នាំនេះ'
+    },
+    pageHeader: {
+        home: 'ទំព័រដើម'
     }
 };
 
@@ -3304,7 +3376,8 @@ var msMY = {
     st: {
         total: '{{range[0]}} - {{range[1]}} daripada {{total}}',
         filterConfirm: 'OK',
-        filterReset: 'Set Semula'
+        filterReset: 'Set Semula',
+        more: 'Lagi'
     },
     sf: {
         submit: 'Hantar',
@@ -3367,6 +3440,9 @@ var msMY = {
         thisMonth: 'Bulan Ini',
         lastMonth: 'Bulan Lalu',
         thisYear: 'Tahun Ini'
+    },
+    pageHeader: {
+        home: 'Laman Utama'
     }
 };
 
@@ -3398,7 +3474,8 @@ var thTH = {
     st: {
         total: '{{range[0]}} - {{range[1]}} จาก {{total}}',
         filterConfirm: 'ตกลง',
-        filterReset: 'รีเซ็ต'
+        filterReset: 'รีเซ็ต',
+        more: 'เพิ่มเติม'
     },
     sf: {
         submit: 'ส่งข้อมูล',
@@ -3461,6 +3538,9 @@ var thTH = {
         thisMonth: 'เดือนนี้',
         lastMonth: 'เดือนที่แล้ว',
         thisYear: 'ปีนี้'
+    },
+    pageHeader: {
+        home: 'หน้าหลัก'
     }
 };
 

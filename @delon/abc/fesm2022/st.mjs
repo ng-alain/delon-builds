@@ -617,7 +617,7 @@ class STDataSource {
     process(options) {
         let data$;
         let isRemote = false;
-        const { data, res, total, page, pi, ps, paginator, columns, headers } = options;
+        const { data, res, total, page, pi, ps, paginator, columns, headers, locale } = options;
         let retTotal;
         let retPs;
         let retList;
@@ -712,7 +712,7 @@ class STDataSource {
         if (typeof res.process === 'function') {
             data$ = data$.pipe(map(result => res.process(result, rawData)));
         }
-        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName })));
+        data$ = data$.pipe(map(result => this.optimizeData({ result, columns, rowClassName: options.rowClassName, locale })));
         return data$.pipe(map(result => {
             retList = result;
             const realTotal = retTotal ?? total;
@@ -864,12 +864,12 @@ class STDataSource {
         };
     }
     optimizeData(options) {
-        const { result, columns, rowClassName } = options;
+        const { result, columns, rowClassName, locale } = options;
         for (let i = 0, len = result.length; i < len; i++) {
             result[i]._values = columns.map(c => {
                 const props = this.getCell(c, result[i], i);
                 if (Array.isArray(c.buttons) && c.buttons.length > 0) {
-                    return { buttons: this.genButtons(c.buttons, result[i], c), _text: '', props };
+                    return { buttons: this.genButtons(c.buttons, result[i], c, locale), _text: '', props };
                 }
                 let cell;
                 if (typeof c.cell === 'function') {
@@ -886,7 +886,7 @@ class STDataSource {
     getNoIndex(item, col, idx) {
         return typeof col.noIndex === 'function' ? col.noIndex(item, col, idx) : col.noIndex + idx;
     }
-    genButtons(_btns, item, col) {
+    genButtons(_btns, item, col, locale) {
         const fn = (btns) => {
             return deepCopy(btns).filter(btn => {
                 const result = typeof btn.iif === 'function' ? btn.iif(item, btn, col) : true;
@@ -916,9 +916,9 @@ class STDataSource {
             }
             return btns;
         };
-        return this.fixMaxMultiple(fnText(res), col);
+        return this.fixMaxMultiple(fnText(res), col, locale);
     }
-    fixMaxMultiple(btns, col) {
+    fixMaxMultiple(btns, col, locale) {
         const curCog = col.maxMultipleButton;
         const btnSize = btns.length;
         if (curCog == null || btnSize <= 0)
@@ -930,7 +930,7 @@ class STDataSource {
         if (cog.count >= btnSize)
             return btns;
         const newBtns = btns.slice(0, cog.count);
-        newBtns.push({ _text: cog.text, children: btns.slice(cog.count) });
+        newBtns.push({ _text: cog.text ?? locale.more, children: btns.slice(cog.count) });
         return newBtns;
     }
     // #region sort
@@ -1965,6 +1965,7 @@ class STComponent {
             rowClassName,
             paginator: true,
             customRequest: this.customRequest ?? this.cog.customRequest,
+            locale: this.locale(),
             ...options
         })
             .pipe(takeUntilDestroyed(this.destroy$));
@@ -2334,7 +2335,7 @@ class STComponent {
      */
     export(newData, opt) {
         const data = Array.isArray(newData)
-            ? this.dataSource.optimizeData({ columns: this._columns, result: newData })
+            ? this.dataSource.optimizeData({ columns: this._columns, result: newData, locale: this.locale() })
             : this._data;
         (newData === true ? this.filteredData : of(data)).subscribe((res) => this.exportSrv.export({
             columens: this._columns,
@@ -2436,7 +2437,8 @@ class STComponent {
         this._data = this.dataSource.optimizeData({
             columns: this._columns,
             result: this._data,
-            rowClassName: this.rowClassName
+            rowClassName: this.rowClassName,
+            locale: this.locale()
         });
         return this;
     }

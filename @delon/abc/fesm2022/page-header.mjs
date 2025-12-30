@@ -8,7 +8,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, NavigationEnd, RouterLink, RouterModule } from '@angular/router';
 import { filter, merge } from 'rxjs';
 import { ReuseTabService } from '@delon/abc/reuse-tab';
-import { MenuService, ALAIN_I18N_TOKEN, TitleService, SettingsService } from '@delon/theme';
+import { MenuService, ALAIN_I18N_TOKEN, TitleService, SettingsService, DelonLocaleService } from '@delon/theme';
 import { isEmpty } from '@delon/util/browser';
 import { AlainConfigService } from '@delon/util/config';
 import { NzAffixComponent, NzAffixModule } from 'ng-zorro-antd/affix';
@@ -70,10 +70,11 @@ class PageHeaderComponent {
     extra = null;
     tab = null;
     // #endregion
+    locale = inject(DelonLocaleService).getData('pageHeader');
     constructor() {
         this.isBrowser = this.platform.isBrowser;
         this.cogSrv.attach(this, 'pageHeader', {
-            home: '首页',
+            home: this.locale.home,
             homeLink: '/',
             autoBreadcrumb: true,
             recursiveBreadcrumb: false,

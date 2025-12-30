@@ -7,7 +7,7 @@ import { ThemeType } from '@ant-design/icons-angular';
 import { CellOptions } from '@delon/abc/cell';
 import { ACLCanType } from '@delon/acl';
 import * as _delon_theme from '@delon/theme';
-import { ModalHelperOptions, DrawerHelperOptions, YNMode, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
+import { ModalHelperOptions, DrawerHelperOptions, YNMode, STLocaleData, _HttpClient, DatePipe, YNPipe } from '@delon/theme';
 import { CurrencyFormatOptions, CurrencyService } from '@delon/util/format';
 import { NgClassType, NzSafeAny, NgStyleInterface } from 'ng-zorro-antd/core/types';
 import { DisabledTimeFn } from 'ng-zorro-antd/date-picker';
@@ -1603,6 +1603,7 @@ interface STDataSourceOptions {
     multiSort?: STMultiSort;
     rowClassName?: STRowClassName | null;
     customRequest?: (options: STCustomRequestOptions) => Observable<NzSafeAny>;
+    locale: STLocaleData;
 }
 interface STDataSourceResult {
     /** 是否需要显示分页器 */
@@ -1637,6 +1638,7 @@ declare class STDataSource {
         columns: _STColumn[];
         result: STData[];
         rowClassName?: STRowClassName | null;
+        locale: STLocaleData;
     }): STData[];
     getNoIndex(item: STData, col: _STColumn, idx: number): number;
     private genButtons;
