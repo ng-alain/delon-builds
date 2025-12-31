@@ -1,13 +1,12 @@
 import * as i0 from '@angular/core';
-import { OnChanges, AfterViewInit, OnDestroy, EventEmitter, SimpleChange } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import * as Plyr from 'plyr';
 import { Observable } from 'rxjs';
 import { AlainMediaConfig } from '@delon/util/config';
 import * as i1 from '@angular/common';
 
 type MediaType = 'html5' | 'youtube' | 'video' | 'audio';
-declare class MediaComponent implements OnChanges, AfterViewInit, OnDestroy {
-    private readonly destroy$;
+declare class MediaComponent implements OnDestroy {
     private readonly el;
     private readonly renderer;
     private readonly ngZone;
@@ -15,25 +14,20 @@ declare class MediaComponent implements OnChanges, AfterViewInit, OnDestroy {
     private readonly platform;
     private _p?;
     private videoEl?;
-    type: MediaType;
-    source?: string | Plyr.SourceInfo;
-    options?: Plyr.Options;
-    delay: number;
-    readonly ready: EventEmitter<Plyr>;
+    readonly type: i0.InputSignal<MediaType>;
+    readonly source: i0.InputSignal<string | Plyr.SourceInfo | undefined>;
+    readonly options: i0.InputSignal<Plyr.Options | undefined>;
+    readonly delay: i0.InputSignalWithTransform<number, unknown>;
+    readonly ready: i0.OutputEmitterRef<Plyr>;
     get player(): Plyr | undefined | null;
-    private initDelay;
+    constructor();
     private init;
     private ensureElement;
     private destroy;
     private uploadSource;
-    ngAfterViewInit(): void;
-    ngOnChanges(changes: {
-        [p in keyof MediaComponent]?: SimpleChange;
-    }): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<MediaComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<MediaComponent, "media, [media]", ["mediaComponent"], { "type": { "alias": "type"; "required": false; }; "source": { "alias": "source"; "required": false; }; "options": { "alias": "options"; "required": false; }; "delay": { "alias": "delay"; "required": false; }; }, { "ready": "ready"; }, never, ["*"], true, never>;
-    static ngAcceptInputType_delay: unknown;
+    static ɵcmp: i0.ɵɵComponentDeclaration<MediaComponent, "media, [media]", ["mediaComponent"], { "type": { "alias": "type"; "required": false; "isSignal": true; }; "source": { "alias": "source"; "required": false; "isSignal": true; }; "options": { "alias": "options"; "required": false; "isSignal": true; }; "delay": { "alias": "delay"; "required": false; "isSignal": true; }; }, { "ready": "ready"; }, never, ["*"], true, never>;
 }
 
 declare class MediaService {

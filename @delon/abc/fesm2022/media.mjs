@@ -1,10 +1,8 @@
-import { __decorate } from 'tslib';
 import { Platform } from '@angular/cdk/platform';
 import * as i0 from '@angular/core';
-import { inject, Injectable, DestroyRef, ElementRef, Renderer2, NgZone, EventEmitter, numberAttribute, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { inject, Injectable, ElementRef, Renderer2, NgZone, input, numberAttribute, output, afterNextRender, effect, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subject, share, timer, take } from 'rxjs';
-import { ZoneOutside } from '@delon/util/decorator';
+import { Subject, share, take, delay } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { LazyService } from '@delon/util/other';
 import { CommonModule } from '@angular/common';
@@ -50,7 +48,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
         }] });
 
 class MediaComponent {
-    destroy$ = inject(DestroyRef);
     el = inject(ElementRef).nativeElement;
     renderer = inject(Renderer2);
     ngZone = inject(NgZone);
@@ -58,18 +55,29 @@ class MediaComponent {
     platform = inject(Platform);
     _p;
     videoEl;
-    type = 'video';
-    source;
-    options;
-    delay = 0;
-    ready = new EventEmitter();
+    type = input('video', ...(ngDevMode ? [{ debugName: "type" }] : []));
+    source = input(...(ngDevMode ? [undefined, { debugName: "source" }] : []));
+    options = input(...(ngDevMode ? [undefined, { debugName: "options" }] : []));
+    delay = input(0, { ...(ngDevMode ? { debugName: "delay" } : {}), transform: numberAttribute });
+    ready = output();
     get player() {
         return this._p;
     }
-    initDelay() {
-        timer(this.delay)
-            .pipe(takeUntilDestroyed(this.destroy$))
+    constructor() {
+        this.srv
+            .notify()
+            .pipe(takeUntilDestroyed(), take(1), delay(this.delay()))
             .subscribe(() => this.ngZone.runOutsideAngular(() => this.init()));
+        afterNextRender(() => {
+            if (!this.platform.isBrowser) {
+                return;
+            }
+            this.srv.load();
+        });
+        effect(() => {
+            this.srv.cog = { options: this.options };
+            this.uploadSource();
+        });
     }
     init() {
         const winPlyr = window.Plyr;
@@ -80,11 +88,11 @@ class MediaComponent {
         const player = (this._p = new winPlyr(this.videoEl, {
             ...this.srv.cog.options
         }));
-        player.on('ready', () => this.ngZone.run(() => this.ready.next(player)));
+        player.on('ready', () => this.ngZone.run(() => this.ready.emit(player)));
         this.uploadSource();
     }
     ensureElement() {
-        const { type } = this;
+        const type = this.type();
         let el = this.el.querySelector(type);
         if (!el) {
             el = this.renderer.createElement(type);
@@ -94,42 +102,21 @@ class MediaComponent {
         this.videoEl = el;
     }
     destroy() {
-        if (this._p) {
-            this._p.destroy();
-        }
+        this._p?.destroy();
     }
     uploadSource() {
+        const source = this.source();
+        const type = this.type();
         if (this._p == null)
             return;
-        const { source, type } = this;
         this._p.source = (typeof source === 'string' ? { type, sources: [{ src: source }] } : source);
-    }
-    ngAfterViewInit() {
-        if (!this.platform.isBrowser) {
-            return;
-        }
-        this.srv
-            .notify()
-            .pipe(takeUntilDestroyed(this.destroy$), take(1))
-            .subscribe(() => this.initDelay());
-        this.srv.load();
-    }
-    ngOnChanges(changes) {
-        this.srv.cog = { options: this.options };
-        if (changes.source) {
-            this.uploadSource();
-        }
     }
     ngOnDestroy() {
         this.destroy();
-        this._p = null;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: MediaComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "16.1.0", version: "21.0.6", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: "type", source: "source", options: "options", delay: ["delay", "delay", numberAttribute] }, outputs: { ready: "ready" }, host: { classAttribute: "d-block" }, exportAs: ["mediaComponent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.0.6", type: MediaComponent, isStandalone: true, selector: "media, [media]", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, source: { classPropertyName: "source", publicName: "source", isSignal: true, isRequired: false, transformFunction: null }, options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, delay: { classPropertyName: "delay", publicName: "delay", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { ready: "ready" }, host: { classAttribute: "d-block" }, exportAs: ["mediaComponent"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
-__decorate([
-    ZoneOutside()
-], MediaComponent.prototype, "initDelay", null);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: MediaComponent, decorators: [{
             type: Component,
             args: [{
@@ -142,18 +129,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], propDecorators: { type: [{
-                type: Input
-            }], source: [{
-                type: Input
-            }], options: [{
-                type: Input
-            }], delay: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], ready: [{
-                type: Output
-            }], initDelay: [] } });
+        }], ctorParameters: () => [], propDecorators: { type: [{ type: i0.Input, args: [{ isSignal: true, alias: "type", required: false }] }], source: [{ type: i0.Input, args: [{ isSignal: true, alias: "source", required: false }] }], options: [{ type: i0.Input, args: [{ isSignal: true, alias: "options", required: false }] }], delay: [{ type: i0.Input, args: [{ isSignal: true, alias: "delay", required: false }] }], ready: [{ type: i0.Output, args: ["ready"] }] } });
 
 const COMPONENTS = [MediaComponent];
 class MediaModule {
