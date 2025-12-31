@@ -1,7 +1,7 @@
 import { __decorate } from 'tslib';
 import { HttpClient } from '@angular/common/http';
 import * as i0 from '@angular/core';
-import { inject, NgZone, Injectable, Input, Directive, NgModule } from '@angular/core';
+import { inject, NgZone, Injectable, input, Directive, NgModule } from '@angular/core';
 import isUtf8 from 'isutf8';
 import { AlainConfigService } from '@delon/util/config';
 import { ZoneOutside } from '@delon/util/decorator';
@@ -131,12 +131,12 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 
 class XlsxDirective {
     srv = inject(XlsxService);
-    data;
+    xlsx = input.required(...(ngDevMode ? [{ debugName: "xlsx" }] : []));
     _click() {
-        this.srv.export(this.data);
+        this.srv.export(this.xlsx());
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: XlsxDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: XlsxDirective, isStandalone: true, selector: "[xlsx]", inputs: { data: ["xlsx", "data"] }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: XlsxDirective, isStandalone: true, selector: "[xlsx]", inputs: { xlsx: { classPropertyName: "xlsx", publicName: "xlsx", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "click": "_click()" } }, exportAs: ["xlsx"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: XlsxDirective, decorators: [{
             type: Directive,
@@ -147,10 +147,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                         '(click)': '_click()'
                     }
                 }]
-        }], propDecorators: { data: [{
-                type: Input,
-                args: ['xlsx']
-            }] } });
+        }], propDecorators: { xlsx: [{ type: i0.Input, args: [{ isSignal: true, alias: "xlsx", required: true }] }] } });
 
 const COMPONENTS = [XlsxDirective];
 class XlsxModule {

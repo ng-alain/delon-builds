@@ -1,44 +1,31 @@
+import * as _angular_core from '@angular/core';
 import { REP_TYPE } from '@delon/theme';
-import * as i0 from '@angular/core';
-import { OnChanges, AfterViewInit } from '@angular/core';
 import * as i1 from '@angular/common';
 
 declare class SGContainerComponent {
-    private readonly cogSrv;
-    gutter: number;
-    colInCon?: REP_TYPE;
-    col: REP_TYPE;
-    get marginValue(): number;
-    constructor();
-    static ɵfac: i0.ɵɵFactoryDeclaration<SGContainerComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SGContainerComponent, "sg-container, [sg-container]", ["sgContainer"], { "gutter": { "alias": "gutter"; "required": false; }; "colInCon": { "alias": "sg-container"; "required": false; }; "col": { "alias": "col"; "required": false; }; }, {}, never, ["*"], true, never>;
-    static ngAcceptInputType_gutter: unknown;
-    static ngAcceptInputType_colInCon: unknown;
-    static ngAcceptInputType_col: unknown;
+    readonly gutter: _angular_core.InputSignalWithTransform<number, unknown>;
+    readonly colInCon: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
+    readonly col: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
+    protected marginValue: _angular_core.Signal<number>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SGContainerComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SGContainerComponent, "sg-container, [sg-container]", ["sgContainer"], { "gutter": { "alias": "gutter"; "required": false; "isSignal": true; }; "colInCon": { "alias": "sg-container"; "required": false; "isSignal": true; }; "col": { "alias": "col"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
-declare class SGComponent implements OnChanges, AfterViewInit {
-    private readonly el;
-    private readonly ren;
+declare class SGComponent {
     private readonly rep;
     private readonly parentComp;
-    private clsMap;
-    private inited;
-    col: number | null;
-    get paddingValue(): number;
+    protected paddingValue: _angular_core.Signal<number>;
+    readonly col: _angular_core.InputSignalWithTransform<number | null, unknown>;
+    readonly cls: _angular_core.Signal<string[]>;
     constructor();
-    private setClass;
-    ngOnChanges(): void;
-    ngAfterViewInit(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<SGComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<SGComponent, "sg", ["sg"], { "col": { "alias": "col"; "required": false; }; }, {}, never, ["*"], true, never>;
-    static ngAcceptInputType_col: unknown;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SGComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<SGComponent, "sg", ["sg"], { "col": { "alias": "col"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
 declare class SGModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<SGModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<SGModule, never, [typeof i1.CommonModule, typeof SGContainerComponent, typeof SGComponent], [typeof SGContainerComponent, typeof SGComponent]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<SGModule>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<SGModule, never>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<SGModule, never, [typeof i1.CommonModule, typeof SGContainerComponent, typeof SGComponent], [typeof SGContainerComponent, typeof SGComponent]>;
+    static ɵinj: _angular_core.ɵɵInjectorDeclaration<SGModule>;
 }
 
 export { SGComponent, SGContainerComponent, SGModule };

@@ -55,10 +55,10 @@ declare class XlsxService {
 
 declare class XlsxDirective {
     private readonly srv;
-    data: XlsxExportOptions;
-    _click(): void;
+    readonly xlsx: i0.InputSignal<XlsxExportOptions>;
+    protected _click(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<XlsxDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<XlsxDirective, "[xlsx]", ["xlsx"], { "data": { "alias": "xlsx"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<XlsxDirective, "[xlsx]", ["xlsx"], { "xlsx": { "alias": "xlsx"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 declare class XlsxModule {
