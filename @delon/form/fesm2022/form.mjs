@@ -1964,7 +1964,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                 args: ['class']
             }] } });
 class ControlWidget extends Widget {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ControlWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1974,7 +1973,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
             type: Directive
         }] });
 class ControlUIWidget extends Widget {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ControlUIWidget, deps: null, target: i0.ɵɵFactoryTarget.Directive });
@@ -1984,7 +1982,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
             type: Directive
         }] });
 class ArrayLayoutWidget extends Widget {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {
@@ -1997,7 +1994,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
             type: Directive
         }] });
 class ObjectLayoutWidget extends Widget {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     reset(_value) { }
     afterViewInit() { }
     ngAfterViewInit() {

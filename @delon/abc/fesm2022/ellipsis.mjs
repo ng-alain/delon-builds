@@ -1,39 +1,41 @@
 import { CdkObserveContent, ObserversModule } from '@angular/cdk/observers';
 import { DOCUMENT, NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, ElementRef, NgZone, ChangeDetectorRef, booleanAttribute, numberAttribute, Input, ViewChild, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { inject, ElementRef, Injector, viewChild, signal, input, booleanAttribute, numberAttribute, effect, runInInjectionContext, afterNextRender, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { take } from 'rxjs';
 import { NzTooltipDirective, NzTooltipModule } from 'ng-zorro-antd/tooltip';
 
 class EllipsisComponent {
     el = inject(ElementRef).nativeElement;
-    ngZone = inject(NgZone);
+    injector = inject(Injector);
     dom = inject(DomSanitizer);
     doc = inject(DOCUMENT);
-    cdr = inject(ChangeDetectorRef);
     isSupportLineClamp = this.doc.body.style['webkitLineClamp'] !== undefined;
-    orgEl;
-    shadowOrgEl;
-    shadowTextEl;
-    inited = false;
-    orgHtml;
-    type = 'default';
-    cls = {};
-    text = '';
+    orgEl = viewChild.required('orgEl');
+    shadowOrgEl = viewChild('shadowOrgEl', ...(ngDevMode ? [{ debugName: "shadowOrgEl" }] : []));
+    shadowTextEl = viewChild('shadowTextEl', ...(ngDevMode ? [{ debugName: "shadowTextEl" }] : []));
+    orgHtml = signal(null, ...(ngDevMode ? [{ debugName: "orgHtml" }] : []));
+    type = signal('default', ...(ngDevMode ? [{ debugName: "type" }] : []));
+    cls = signal({}, ...(ngDevMode ? [{ debugName: "cls" }] : []));
+    text = signal('', ...(ngDevMode ? [{ debugName: "text" }] : []));
     targetCount = 0;
-    tooltip = false;
-    length;
-    lines;
-    fullWidthRecognition = false;
-    tail = '...';
+    tooltip = input(false, { ...(ngDevMode ? { debugName: "tooltip" } : {}), transform: booleanAttribute });
+    length = input(null, { ...(ngDevMode ? { debugName: "length" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
+    lines = input(null, { ...(ngDevMode ? { debugName: "lines" } : {}), transform: (v) => (v == null ? null : numberAttribute(v)) });
+    fullWidthRecognition = input(false, { ...(ngDevMode ? { debugName: "fullWidthRecognition" } : {}), transform: booleanAttribute });
+    tail = input('...', ...(ngDevMode ? [{ debugName: "tail" }] : []));
     get linsWord() {
         const { targetCount, text, tail } = this;
-        return ((targetCount > 0 ? text.substring(0, targetCount) : '') +
-            (targetCount > 0 && targetCount < text.length ? tail : ''));
+        return ((targetCount > 0 ? text().substring(0, targetCount) : '') +
+            (targetCount > 0 && targetCount < text().length ? tail() : ''));
     }
     get win() {
         return this.doc.defaultView ?? window;
+    }
+    constructor() {
+        effect(() => {
+            this.refresh();
+        });
     }
     getStrFullLength(str) {
         return str.split('').reduce((pre, cur) => {
@@ -61,7 +63,7 @@ class EllipsisComponent {
         }, '');
     }
     bisection(targetHeight, mid, begin, end, text, node) {
-        const suffix = this.tail;
+        const suffix = this.tail();
         node.innerHTML = text.substring(0, mid) + suffix;
         let sh = node.offsetHeight;
         if (sh <= targetHeight) {
@@ -87,140 +89,197 @@ class EllipsisComponent {
         return this.bisection(targetHeight, mid, begin, end, text, node);
     }
     genType() {
-        const { lines, length, isSupportLineClamp } = this;
-        this.cls = {
+        const lines = this.lines();
+        const length = this.length();
+        const isSupportLineClamp = this.isSupportLineClamp;
+        this.cls.set({
             ellipsis: true,
             ellipsis__lines: lines && !isSupportLineClamp,
             'ellipsis__line-clamp': lines && isSupportLineClamp
-        };
+        });
         if (!lines && !length) {
-            this.type = 'default';
+            this.type.set('default');
         }
         else if (!lines) {
-            this.type = 'length';
+            this.type.set('length');
         }
         else if (isSupportLineClamp) {
-            this.type = 'line-clamp';
+            this.type.set('line-clamp');
         }
         else {
-            this.type = 'line';
+            this.type.set('line');
         }
     }
     gen() {
-        const { type, lines, length, fullWidthRecognition, tail, orgEl, cdr, ngZone } = this;
+        const lines = this.lines();
+        const length = this.length();
+        const type = this.type();
+        const { fullWidthRecognition, tail, orgEl } = this;
         if (type === 'length') {
-            const el = orgEl.nativeElement;
-            if (el.children.length > 0) {
-                throw new Error('Ellipsis content must be string.');
-            }
-            const lengthText = el.textContent;
-            const textLength = fullWidthRecognition ? this.getStrFullLength(lengthText) : lengthText.length;
-            if (textLength <= length || length < 0) {
-                this.text = lengthText;
+            const lengthText = orgEl().nativeElement.textContent;
+            const textLength = fullWidthRecognition() ? this.getStrFullLength(lengthText) : lengthText.length;
+            if (length == null || textLength <= length || length < 0) {
+                this.text.set(lengthText);
             }
             else {
                 let displayText;
-                if (length - tail.length <= 0) {
+                if (length - tail().length <= 0) {
                     displayText = '';
                 }
                 else {
-                    displayText = fullWidthRecognition
+                    displayText = fullWidthRecognition()
                         ? this.cutStrByFullLength(lengthText, length)
                         : lengthText.slice(0, length);
                 }
-                this.text = displayText + tail;
+                this.text.set(displayText + tail());
             }
-            ngZone.run(() => cdr.detectChanges());
         }
         else if (type === 'line') {
             const { shadowOrgEl, shadowTextEl } = this;
-            const orgNode = shadowOrgEl.nativeElement;
+            const orgNode = shadowOrgEl().nativeElement;
             const lineText = orgNode.innerText ?? orgNode.textContent;
             const lineHeight = parseInt(this.win.getComputedStyle(this.getEl('.ellipsis')).lineHeight, 10);
             const targetHeight = lines * lineHeight;
             const handleEl = this.getEl('.ellipsis__handle');
             handleEl.style.height = `${targetHeight}px`;
             if (orgNode.offsetHeight <= targetHeight) {
-                this.text = lineText;
+                this.text.set(lineText);
                 this.targetCount = lineText.length;
             }
             else {
                 // bisection
                 const len = lineText.length;
                 const mid = Math.ceil(len / 2);
-                const count = this.bisection(targetHeight, mid, 0, len, lineText, shadowTextEl.nativeElement.firstChild);
-                this.text = lineText;
+                const firstChild = shadowTextEl().nativeElement.firstChild;
+                const count = this.bisection(targetHeight, mid, 0, len, lineText, firstChild);
+                this.text.set(lineText);
                 this.targetCount = count;
             }
-            ngZone.run(() => cdr.detectChanges());
         }
     }
     getEl(cls) {
         return this.el.querySelector(cls);
     }
-    executeOnStable(fn) {
-        if (this.ngZone.isStable) {
-            fn();
-        }
-        else {
-            this.ngZone.onStable.asObservable().pipe(take(1)).subscribe(fn);
-        }
-    }
     refresh() {
         this.genType();
-        const { type, dom, orgEl, cdr } = this;
-        const html = orgEl.nativeElement.innerHTML;
-        this.orgHtml = dom.bypassSecurityTrustHtml(html);
-        cdr.detectChanges();
-        this.executeOnStable(() => {
-            this.gen();
-            if (type !== 'line') {
-                const el = this.getEl('.ellipsis');
-                if (el) {
-                    el.innerHTML = html;
+        const { dom, orgEl } = this;
+        const html = orgEl().nativeElement.innerHTML;
+        this.orgHtml.set(dom.bypassSecurityTrustHtml(html));
+        const type = this.type();
+        runInInjectionContext(this.injector, () => {
+            afterNextRender(() => {
+                this.gen();
+                if (type !== 'line') {
+                    const el = this.getEl('.ellipsis');
+                    if (el) {
+                        el.innerHTML = html;
+                    }
                 }
-            }
+            });
         });
     }
-    ngAfterViewInit() {
-        this.inited = true;
-        this.refresh();
-    }
-    ngOnChanges() {
-        if (this.inited) {
-            this.refresh();
-        }
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: EllipsisComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: EllipsisComponent, isStandalone: true, selector: "ellipsis", inputs: { tooltip: ["tooltip", "tooltip", booleanAttribute], length: ["length", "length", (v) => (v == null ? null : numberAttribute(v))], lines: ["lines", "lines", (v) => (v == null ? null : numberAttribute(v))], fullWidthRecognition: ["fullWidthRecognition", "fullWidthRecognition", booleanAttribute], tail: "tail" }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], descendants: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], descendants: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], descendants: true }], exportAs: ["ellipsis"], usesOnChanges: true, ngImport: i0, template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none\"><ng-content /></div>\n<ng-template #tooltipTpl let-con>\n  @if (tooltip) {\n    <span\n      nz-tooltip\n      [nzTooltipTitle]=\"titleTpl\"\n      [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\"\n    >\n      <ng-container *ngTemplateOutlet=\"con\" />\n      <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n    </span>\n  } @else {\n    <ng-container *ngTemplateOutlet=\"con\" />\n  }\n</ng-template>\n@switch (type) {\n  @case ('default') {\n    <span [class]=\"cls\"></span>\n  }\n  @case ('length') {\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\" />\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  }\n  @case ('line-clamp') {\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\" />\n    <ng-template #lineClampTpl>\n      <div [class]=\"cls\" [style]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  }\n  @case ('line') {\n    <div [class]=\"cls\">\n      <div class=\"ellipsis__handle\">\n        <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\" />\n        <ng-template #lineTpl>{{ linsWord }}</ng-template>\n        <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n        <div class=\"ellipsis__shadow\" #shadowTextEl>\n          <span>{{ text }}</span>\n        </div>\n      </div>\n    </div>\n  }\n}\n", dependencies: [{ kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: EllipsisComponent, isStandalone: true, selector: "ellipsis", inputs: { tooltip: { classPropertyName: "tooltip", publicName: "tooltip", isSignal: true, isRequired: false, transformFunction: null }, length: { classPropertyName: "length", publicName: "length", isSignal: true, isRequired: false, transformFunction: null }, lines: { classPropertyName: "lines", publicName: "lines", isSignal: true, isRequired: false, transformFunction: null }, fullWidthRecognition: { classPropertyName: "fullWidthRecognition", publicName: "fullWidthRecognition", isSignal: true, isRequired: false, transformFunction: null }, tail: { classPropertyName: "tail", publicName: "tail", isSignal: true, isRequired: false, transformFunction: null } }, viewQueries: [{ propertyName: "orgEl", first: true, predicate: ["orgEl"], descendants: true, isSignal: true }, { propertyName: "shadowOrgEl", first: true, predicate: ["shadowOrgEl"], descendants: true, isSignal: true }, { propertyName: "shadowTextEl", first: true, predicate: ["shadowTextEl"], descendants: true, isSignal: true }], exportAs: ["ellipsis"], ngImport: i0, template: `
+    <div (cdkObserveContent)="refresh()" #orgEl style="display: none"><ng-content /></div>
+    <ng-template #tooltipTpl let-con>
+      @if (tooltip()) {
+        <span
+          nz-tooltip
+          [nzTooltipTitle]="titleTpl"
+          [nzTooltipOverlayStyle]="{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }"
+        >
+          <ng-container *ngTemplateOutlet="con" />
+          <ng-template #titleTpl><div [innerHTML]="orgHtml()"></div></ng-template>
+        </span>
+      } @else {
+        <ng-container *ngTemplateOutlet="con" />
+      }
+    </ng-template>
+    @let c = cls();
+    @switch (type()) {
+      @case ('default') {
+        <span [class]="c"></span>
+      }
+      @case ('length') {
+        <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lengthTpl }" />
+        <ng-template #lengthTpl>{{ text() }}</ng-template>
+      }
+      @case ('line-clamp') {
+        <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lineClampTpl }" />
+        <ng-template #lineClampTpl>
+          <div [class]="c" [style]="{ '-webkit-line-clamp': lines(), '-webkit-box-orient': 'vertical' }"></div>
+        </ng-template>
+      }
+      @case ('line') {
+        <div [class]="c">
+          <div class="ellipsis__handle">
+            <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lineTpl }" />
+            <ng-template #lineTpl>{{ linsWord }}</ng-template>
+            <div class="ellipsis__shadow" #shadowOrgEl [innerHTML]="orgHtml()"></div>
+            <div class="ellipsis__shadow" #shadowTextEl>
+              <span>{{ text() }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  `, isInline: true, dependencies: [{ kind: "directive", type: CdkObserveContent, selector: "[cdkObserveContent]", inputs: ["cdkObserveContentDisabled", "debounce"], outputs: ["cdkObserveContent"], exportAs: ["cdkObserveContent"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: EllipsisComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'ellipsis', exportAs: 'ellipsis', changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [CdkObserveContent, NzTooltipDirective, NgTemplateOutlet], template: "<div (cdkObserveContent)=\"refresh()\" #orgEl style=\"display: none\"><ng-content /></div>\n<ng-template #tooltipTpl let-con>\n  @if (tooltip) {\n    <span\n      nz-tooltip\n      [nzTooltipTitle]=\"titleTpl\"\n      [nzTooltipOverlayStyle]=\"{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }\"\n    >\n      <ng-container *ngTemplateOutlet=\"con\" />\n      <ng-template #titleTpl><div [innerHTML]=\"orgHtml\"></div></ng-template>\n    </span>\n  } @else {\n    <ng-container *ngTemplateOutlet=\"con\" />\n  }\n</ng-template>\n@switch (type) {\n  @case ('default') {\n    <span [class]=\"cls\"></span>\n  }\n  @case ('length') {\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lengthTpl }\" />\n    <ng-template #lengthTpl>{{ text }}</ng-template>\n  }\n  @case ('line-clamp') {\n    <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineClampTpl }\" />\n    <ng-template #lineClampTpl>\n      <div [class]=\"cls\" [style]=\"{ '-webkit-line-clamp': lines, '-webkit-box-orient': 'vertical' }\"></div>\n    </ng-template>\n  }\n  @case ('line') {\n    <div [class]=\"cls\">\n      <div class=\"ellipsis__handle\">\n        <ng-template [ngTemplateOutlet]=\"tooltipTpl\" [ngTemplateOutletContext]=\"{ $implicit: lineTpl }\" />\n        <ng-template #lineTpl>{{ linsWord }}</ng-template>\n        <div class=\"ellipsis__shadow\" #shadowOrgEl [innerHTML]=\"orgHtml\"></div>\n        <div class=\"ellipsis__shadow\" #shadowTextEl>\n          <span>{{ text }}</span>\n        </div>\n      </div>\n    </div>\n  }\n}\n" }]
-        }], propDecorators: { orgEl: [{
-                type: ViewChild,
-                args: ['orgEl', { static: false }]
-            }], shadowOrgEl: [{
-                type: ViewChild,
-                args: ['shadowOrgEl', { static: false }]
-            }], shadowTextEl: [{
-                type: ViewChild,
-                args: ['shadowTextEl', { static: false }]
-            }], tooltip: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], length: [{
-                type: Input,
-                args: [{ transform: (v) => (v == null ? null : numberAttribute(v)) }]
-            }], lines: [{
-                type: Input,
-                args: [{ transform: (v) => (v == null ? null : numberAttribute(v)) }]
-            }], fullWidthRecognition: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], tail: [{
-                type: Input
-            }] } });
+            args: [{
+                    selector: 'ellipsis',
+                    exportAs: 'ellipsis',
+                    template: `
+    <div (cdkObserveContent)="refresh()" #orgEl style="display: none"><ng-content /></div>
+    <ng-template #tooltipTpl let-con>
+      @if (tooltip()) {
+        <span
+          nz-tooltip
+          [nzTooltipTitle]="titleTpl"
+          [nzTooltipOverlayStyle]="{ 'overflow-wrap': 'break-word', 'word-wrap': 'break-word' }"
+        >
+          <ng-container *ngTemplateOutlet="con" />
+          <ng-template #titleTpl><div [innerHTML]="orgHtml()"></div></ng-template>
+        </span>
+      } @else {
+        <ng-container *ngTemplateOutlet="con" />
+      }
+    </ng-template>
+    @let c = cls();
+    @switch (type()) {
+      @case ('default') {
+        <span [class]="c"></span>
+      }
+      @case ('length') {
+        <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lengthTpl }" />
+        <ng-template #lengthTpl>{{ text() }}</ng-template>
+      }
+      @case ('line-clamp') {
+        <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lineClampTpl }" />
+        <ng-template #lineClampTpl>
+          <div [class]="c" [style]="{ '-webkit-line-clamp': lines(), '-webkit-box-orient': 'vertical' }"></div>
+        </ng-template>
+      }
+      @case ('line') {
+        <div [class]="c">
+          <div class="ellipsis__handle">
+            <ng-template [ngTemplateOutlet]="tooltipTpl" [ngTemplateOutletContext]="{ $implicit: lineTpl }" />
+            <ng-template #lineTpl>{{ linsWord }}</ng-template>
+            <div class="ellipsis__shadow" #shadowOrgEl [innerHTML]="orgHtml()"></div>
+            <div class="ellipsis__shadow" #shadowTextEl>
+              <span>{{ text() }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  `,
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    imports: [CdkObserveContent, NzTooltipDirective, NgTemplateOutlet]
+                }]
+        }], ctorParameters: () => [], propDecorators: { orgEl: [{ type: i0.ViewChild, args: ['orgEl', { isSignal: true }] }], shadowOrgEl: [{ type: i0.ViewChild, args: ['shadowOrgEl', { isSignal: true }] }], shadowTextEl: [{ type: i0.ViewChild, args: ['shadowTextEl', { isSignal: true }] }], tooltip: [{ type: i0.Input, args: [{ isSignal: true, alias: "tooltip", required: false }] }], length: [{ type: i0.Input, args: [{ isSignal: true, alias: "length", required: false }] }], lines: [{ type: i0.Input, args: [{ isSignal: true, alias: "lines", required: false }] }], fullWidthRecognition: [{ type: i0.Input, args: [{ isSignal: true, alias: "fullWidthRecognition", required: false }] }], tail: [{ type: i0.Input, args: [{ isSignal: true, alias: "tail", required: false }] }] } });
 
 const COMPONENTS = [EllipsisComponent];
 class EllipsisModule {

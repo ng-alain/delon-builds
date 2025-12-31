@@ -20,14 +20,59 @@ class LoadingDefaultComponent {
         return this.options.custom;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LoadingDefaultComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: LoadingDefaultComponent, isStandalone: true, selector: "loading-default", host: { properties: { "class.loading-default": "true", "class.loading-default-rtl": "dir === 'rtl'" } }, ngImport: i0, template: "@if (options.type! !== 'text') {\n  <div class=\"loading-default__icon\">\n    @switch (options.type) {\n      @case ('spin') {\n        <nz-spin nzSimple />\n      }\n      @case ('icon') {\n        <nz-icon [nzType]=\"icon.type!\" [nzTheme]=\"icon.theme!\" [nzSpin]=\"icon.spin\" />\n      }\n      @default {\n        <div class=\"loading-default__custom\" [style]=\"custom.style!\" [innerHTML]=\"custom.html\"></div>\n      }\n    }\n  </div>\n}\n@if (options.text) {\n  <div class=\"loading-default__text\">{{ options.text }}</div>\n}\n", dependencies: [{ kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: LoadingDefaultComponent, isStandalone: true, selector: "loading-default", host: { properties: { "class.loading-default-rtl": "dir === 'rtl'" }, classAttribute: "loading-default" }, ngImport: i0, template: `
+    @if (options.type! !== 'text') {
+      <div class="loading-default__icon">
+        @switch (options.type) {
+          @case ('spin') {
+            <nz-spin nzSimple />
+          }
+          @case ('icon') {
+            <nz-icon [nzType]="icon.type!" [nzTheme]="icon.theme!" [nzSpin]="icon.spin" />
+          }
+          @default {
+            <div class="loading-default__custom" [style]="custom.style!" [innerHTML]="custom.html"></div>
+          }
+        }
+      </div>
+    }
+    @if (options.text) {
+      <div class="loading-default__text">{{ options.text }}</div>
+    }
+  `, isInline: true, dependencies: [{ kind: "component", type: NzSpinComponent, selector: "nz-spin", inputs: ["nzIndicator", "nzSize", "nzTip", "nzDelay", "nzSimple", "nzSpinning"], exportAs: ["nzSpin"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LoadingDefaultComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'loading-default', host: {
-                        '[class.loading-default]': 'true',
+            args: [{
+                    selector: 'loading-default',
+                    template: `
+    @if (options.type! !== 'text') {
+      <div class="loading-default__icon">
+        @switch (options.type) {
+          @case ('spin') {
+            <nz-spin nzSimple />
+          }
+          @case ('icon') {
+            <nz-icon [nzType]="icon.type!" [nzTheme]="icon.theme!" [nzSpin]="icon.spin" />
+          }
+          @default {
+            <div class="loading-default__custom" [style]="custom.style!" [innerHTML]="custom.html"></div>
+          }
+        }
+      </div>
+    }
+    @if (options.text) {
+      <div class="loading-default__text">{{ options.text }}</div>
+    }
+  `,
+                    host: {
+                        class: 'loading-default',
                         '[class.loading-default-rtl]': `dir === 'rtl'`
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzSpinComponent, NzIconDirective], template: "@if (options.type! !== 'text') {\n  <div class=\"loading-default__icon\">\n    @switch (options.type) {\n      @case ('spin') {\n        <nz-spin nzSimple />\n      }\n      @case ('icon') {\n        <nz-icon [nzType]=\"icon.type!\" [nzTheme]=\"icon.theme!\" [nzSpin]=\"icon.spin\" />\n      }\n      @default {\n        <div class=\"loading-default__custom\" [style]=\"custom.style!\" [innerHTML]=\"custom.html\"></div>\n      }\n    }\n  </div>\n}\n@if (options.text) {\n  <div class=\"loading-default__text\">{{ options.text }}</div>\n}\n" }]
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    imports: [NzSpinComponent, NzIconDirective]
+                }]
         }] });
 
 class LoadingService {

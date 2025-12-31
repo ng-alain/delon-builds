@@ -8,7 +8,6 @@ import { WINDOW } from '@delon/util/token';
 
 class GlobalFooterItemComponent {
     host = viewChild.required('host');
-    // @ViewChild('host', { static: true }) host!: TemplateRef<void>;
     href = input(...(ngDevMode ? [undefined, { debugName: "href" }] : []));
     blankTarget = input(false, { ...(ngDevMode ? { debugName: "blankTarget" } : {}), transform: booleanAttribute });
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: GlobalFooterItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
@@ -58,7 +57,7 @@ class GlobalFooterComponent {
         }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: GlobalFooterComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: GlobalFooterComponent, isStandalone: true, selector: "global-footer", inputs: { links: { classPropertyName: "links", publicName: "links", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.global-footer": "true", "class.global-footer-rtl": "dir() === 'rtl'" } }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent, isSignal: true }], exportAs: ["globalFooter"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: GlobalFooterComponent, isStandalone: true, selector: "global-footer", inputs: { links: { classPropertyName: "links", publicName: "links", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.global-footer-rtl": "dir() === 'rtl'" }, classAttribute: "global-footer" }, queries: [{ propertyName: "items", predicate: GlobalFooterItemComponent, isSignal: true }], exportAs: ["globalFooter"], ngImport: i0, template: `
     @if (linkHtmls().length > 0 || items().length > 0) {
       <div class="global-footer__links">
         @for (i of linkHtmls(); track $index) {
@@ -99,7 +98,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
     </div>
   `,
                     host: {
-                        '[class.global-footer]': 'true',
+                        class: 'global-footer',
                         '[class.global-footer-rtl]': `dir() === 'rtl'`
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
