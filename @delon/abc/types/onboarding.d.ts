@@ -1,12 +1,13 @@
 import * as i0 from '@angular/core';
-import { TemplateRef, OnDestroy, AfterViewInit, EventEmitter, InjectionToken } from '@angular/core';
+import { TemplateRef, OnDestroy, EventEmitter, InjectionToken } from '@angular/core';
 import { SafeHtml } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { Direction } from '@angular/cdk/bidi';
+import * as i3 from 'ng-zorro-antd/popover';
+import { NzPopoverDirective } from 'ng-zorro-antd/popover';
 import * as i1 from '@angular/common';
 import * as i2 from '@delon/theme';
-import * as i3 from 'ng-zorro-antd/popover';
 import * as i4 from 'ng-zorro-antd/core/outlet';
 import * as i5 from 'ng-zorro-antd/button';
 
@@ -158,27 +159,25 @@ declare class OnboardingService implements OnDestroy {
     static ɵprov: i0.ɵɵInjectableDeclaration<OnboardingService>;
 }
 
-declare class OnboardingComponent implements OnDestroy, AfterViewInit {
+declare class OnboardingComponent implements OnDestroy {
     private readonly el;
+    private readonly injector;
     private readonly platform;
-    private readonly cdr;
     private readonly doc;
-    private time;
     private prevSelectorEl?;
     config: OnboardingConfig;
     item: OnboardingItem;
     active: number;
     max: number;
     readonly op: EventEmitter<OnboardingOpType>;
-    running: boolean;
+    running: i0.WritableSignal<boolean>;
     dir: Direction;
-    private popover;
-    get first(): boolean;
-    get last(): boolean;
-    private _getDoc;
-    private _getWin;
+    popover: i0.Signal<NzPopoverDirective>;
+    protected get first(): boolean;
+    protected get last(): boolean;
+    private get _getWin();
     private getLightData;
-    ngAfterViewInit(): void;
+    constructor();
     private scroll;
     updateRunning(status: boolean): void;
     private updatePosition;
