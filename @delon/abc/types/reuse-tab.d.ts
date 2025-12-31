@@ -206,7 +206,6 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     readonly canClose: _angular_core.InputSignal<ReuseCanClose | undefined>;
     readonly change: _angular_core.OutputEmitterRef<ReuseItem>;
     readonly close: _angular_core.OutputEmitterRef<ReuseItem | null>;
-    constructor();
     private genTit;
     private get curUrl();
     private genCurItem;

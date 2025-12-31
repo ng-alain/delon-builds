@@ -20,15 +20,9 @@ class SETitleComponent {
             throw new Error(`[se-title] must include 'se-container' component`);
         }
     }
-    cls = computed(() => {
-        const gutter = this.parentComp._gutter();
-        return {
-            'padding-left': `${gutter / 2}px`,
-            'padding-right': `${gutter / 2}px`
-        };
-    }, ...(ngDevMode ? [{ debugName: "cls" }] : []));
+    paddingValue = computed(() => this.parentComp._gutter() / 2, ...(ngDevMode ? [{ debugName: "paddingValue" }] : []));
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SETitleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.0.6", type: SETitleComponent, isStandalone: true, selector: "se-title, [se-title]", host: { properties: { "class": "cls()" }, classAttribute: "se__title" }, exportAs: ["seTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.0.6", type: SETitleComponent, isStandalone: true, selector: "se-title, [se-title]", host: { properties: { "style.padding-left.px": "paddingValue()", "style.padding-right.px": "paddingValue()" }, classAttribute: "se__title" }, exportAs: ["seTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SETitleComponent, decorators: [{
             type: Component,
@@ -38,7 +32,8 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     template: '<ng-content />',
                     host: {
                         class: 'se__title',
-                        '[class]': 'cls()'
+                        '[style.padding-left.px]': 'paddingValue()',
+                        '[style.padding-right.px]': 'paddingValue()'
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None

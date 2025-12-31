@@ -10,10 +10,7 @@ import * as i5 from 'ng-zorro-antd/core/outlet';
 
 declare class SVTitleComponent {
     private readonly parentComp;
-    protected padding: _angular_core.Signal<{
-        'padding-left': string;
-        'padding-right': string;
-    }>;
+    protected paddingValue: _angular_core.Signal<number>;
     constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SVTitleComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], true, never>;

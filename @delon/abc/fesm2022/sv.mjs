@@ -10,17 +10,14 @@ import { CommonModule } from '@angular/common';
 
 class SVTitleComponent {
     parentComp = inject(SVContainerComponent, { host: true, optional: true });
-    padding = computed(() => {
-        const gutter = this.parentComp.gutter();
-        return { 'padding-left': `${gutter / 2}px`, 'padding-right': `${gutter / 2}px` };
-    }, ...(ngDevMode ? [{ debugName: "padding" }] : []));
+    paddingValue = computed(() => this.parentComp.gutter() / 2, ...(ngDevMode ? [{ debugName: "paddingValue" }] : []));
     constructor() {
         if (this.parentComp == null) {
             throw new Error(`[sv-title] must include 'sv-container' component`);
         }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SVTitleComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.0.6", type: SVTitleComponent, isStandalone: true, selector: "sv-title, [sv-title]", host: { properties: { "style": "padding()" }, classAttribute: "sv__title" }, exportAs: ["svTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.0.6", type: SVTitleComponent, isStandalone: true, selector: "sv-title, [sv-title]", host: { properties: { "style.padding-left.px": "paddingValue()", "style.padding-right.px": "paddingValue()" }, classAttribute: "sv__title" }, exportAs: ["svTitle"], ngImport: i0, template: '<ng-content />', isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SVTitleComponent, decorators: [{
             type: Component,
@@ -28,7 +25,11 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     selector: 'sv-title, [sv-title]',
                     exportAs: 'svTitle',
                     template: '<ng-content />',
-                    host: { class: 'sv__title', '[style]': `padding()` },
+                    host: {
+                        class: 'sv__title',
+                        '[style.padding-left.px]': 'paddingValue()',
+                        '[style.padding-right.px]': 'paddingValue()'
+                    },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]

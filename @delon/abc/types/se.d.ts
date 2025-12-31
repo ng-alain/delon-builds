@@ -19,10 +19,7 @@ interface SEErrorRefresh {
 declare class SETitleComponent {
     private readonly parentComp;
     constructor();
-    protected cls: _angular_core.Signal<{
-        'padding-left': string;
-        'padding-right': string;
-    }>;
+    protected paddingValue: _angular_core.Signal<number>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SETitleComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], true, never>;
 }
