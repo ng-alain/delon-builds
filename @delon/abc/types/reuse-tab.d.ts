@@ -1,4 +1,4 @@
-import * as i0 from '@angular/core';
+import * as _angular_core from '@angular/core';
 import { EventEmitter, OnInit, OnChanges, TemplateRef, SimpleChange, SimpleChanges, OnDestroy, InjectionToken, Provider, EnvironmentProviders } from '@angular/core';
 import * as i2 from '@angular/router';
 import { ActivatedRouteSnapshot, RouteReuseStrategy } from '@angular/router';
@@ -17,8 +17,8 @@ declare class ReuseTabContextComponent {
     set i18n(value: ReuseContextI18n | undefined);
     readonly change: EventEmitter<ReuseContextCloseEvent>;
     constructor();
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextComponent, "reuse-tab-context", never, { "i18n": { "alias": "i18n"; "required": false; }; }, { "change": "change"; }, never, never, true, never>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabContextComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ReuseTabContextComponent, "reuse-tab-context", never, { "i18n": { "alias": "i18n"; "required": false; }; }, { "change": "change"; }, never, never, true, never>;
 }
 
 /**
@@ -143,17 +143,17 @@ declare class ReuseTabContextMenuComponent implements OnInit {
     click(e: MouseEvent, type: CloseType, custom?: ReuseCustomContextMenu): void;
     isDisabled(custom: ReuseCustomContextMenu): boolean;
     closeMenu(event: MouseEvent): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextMenuComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabContextMenuComponent, "reuse-tab-context-menu", never, { "i18n": { "alias": "i18n"; "required": false; }; "item": { "alias": "item"; "required": false; }; "event": { "alias": "event"; "required": false; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; }; }, { "close": "close"; }, never, never, true, never>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabContextMenuComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ReuseTabContextMenuComponent, "reuse-tab-context-menu", never, { "i18n": { "alias": "i18n"; "required": false; }; "item": { "alias": "item"; "required": false; }; "event": { "alias": "event"; "required": false; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; }; }, { "close": "close"; }, never, never, true, never>;
 }
 
 declare class ReuseTabContextDirective {
     private readonly srv;
-    item: ReuseItem;
-    customContextMenu: ReuseCustomContextMenu[];
-    _onContextMenu(event: MouseEvent): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ReuseTabContextDirective, "[reuse-tab-context-menu]", ["reuseTabContextMenu"], { "item": { "alias": "reuse-tab-context-menu"; "required": false; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; }; }, {}, never, never, true, never>;
+    readonly item: _angular_core.InputSignal<ReuseItem>;
+    readonly customContextMenu: _angular_core.InputSignal<ReuseCustomContextMenu[]>;
+    protected _onContextMenu(event: MouseEvent): void;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabContextDirective, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<ReuseTabContextDirective, "[reuse-tab-context-menu]", ["reuseTabContextMenu"], { "item": { "alias": "reuse-tab-context-menu"; "required": true; "isSignal": true; }; "customContextMenu": { "alias": "customContextMenu"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 declare class ReuseTabContextService {
@@ -164,13 +164,12 @@ declare class ReuseTabContextService {
     close: Subject<ReuseContextCloseEvent>;
     remove(): void;
     open(context: ReuseContextEvent): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabContextService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabContextService>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabContextService, never>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<ReuseTabContextService>;
 }
 
 declare class ReuseTabComponent implements OnInit, OnChanges {
     private readonly srv;
-    private readonly cdr;
     private readonly router;
     private readonly route;
     private readonly i18nSrv;
@@ -178,36 +177,36 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     private readonly platform;
     private readonly stateKey;
     private readonly stateSrv;
-    private tabset;
+    private readonly tabset;
     private destroy$;
-    private _keepingScrollContainer?;
-    list: ReuseItem[];
+    protected dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
+    list: _angular_core.WritableSignal<ReuseItem[]>;
     item?: ReuseItem;
-    pos: number;
-    dir: i0.WritableSignal<_angular_cdk_bidi.Direction>;
-    mode: ReuseTabMatchMode;
-    i18n?: ReuseContextI18n;
-    debug: boolean;
-    max?: number;
-    tabMaxWidth?: number;
-    excludes?: RegExp[];
-    allowClose: boolean;
-    keepingScroll: boolean;
-    storageState: boolean;
-    set keepingScrollContainer(value: string | Element);
-    customContextMenu: ReuseCustomContextMenu[];
-    tabBarExtraContent?: TemplateRef<void>;
-    tabBarGutter?: number;
-    tabBarStyle: Record<string, string> | null;
-    tabType: 'line' | 'card';
-    routeParamMatchMode: ReuseTabRouteParamMatchMode;
-    disabled: boolean;
-    titleRender?: TemplateRef<{
+    protected pos: _angular_core.WritableSignal<number>;
+    readonly mode: _angular_core.InputSignal<ReuseTabMatchMode>;
+    readonly i18n: _angular_core.InputSignal<ReuseContextI18n | undefined>;
+    readonly debug: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly max: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
+    readonly tabMaxWidth: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
+    readonly excludes: _angular_core.InputSignal<RegExp[] | undefined>;
+    readonly allowClose: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly keepingScroll: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly storageState: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly keepingScrollContainer: _angular_core.InputSignal<string | Element | undefined>;
+    readonly customContextMenu: _angular_core.InputSignal<ReuseCustomContextMenu[]>;
+    readonly tabBarExtraContent: _angular_core.InputSignal<TemplateRef<void> | undefined>;
+    readonly tabBarGutter: _angular_core.InputSignal<number | undefined>;
+    readonly tabBarStyle: _angular_core.InputSignal<Record<string, string> | null>;
+    readonly tabType: _angular_core.InputSignal<"line" | "card">;
+    readonly routeParamMatchMode: _angular_core.InputSignal<ReuseTabRouteParamMatchMode>;
+    readonly disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly titleRender: _angular_core.InputSignal<TemplateRef<{
         $implicit: ReuseItem;
-    }>;
-    canClose?: ReuseCanClose;
-    readonly change: EventEmitter<ReuseItem>;
-    readonly close: EventEmitter<ReuseItem | null>;
+    }> | undefined>;
+    readonly canClose: _angular_core.InputSignal<ReuseCanClose | undefined>;
+    readonly change: _angular_core.OutputEmitterRef<ReuseItem>;
+    readonly close: _angular_core.OutputEmitterRef<ReuseItem | null>;
+    constructor();
     private genTit;
     private get curUrl();
     private genCurItem;
@@ -231,15 +230,8 @@ declare class ReuseTabComponent implements OnInit, OnChanges {
     ngOnChanges(changes: {
         [P in keyof this]?: SimpleChange;
     } & SimpleChanges): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": { "alias": "mode"; "required": false; }; "i18n": { "alias": "i18n"; "required": false; }; "debug": { "alias": "debug"; "required": false; }; "max": { "alias": "max"; "required": false; }; "tabMaxWidth": { "alias": "tabMaxWidth"; "required": false; }; "excludes": { "alias": "excludes"; "required": false; }; "allowClose": { "alias": "allowClose"; "required": false; }; "keepingScroll": { "alias": "keepingScroll"; "required": false; }; "storageState": { "alias": "storageState"; "required": false; }; "keepingScrollContainer": { "alias": "keepingScrollContainer"; "required": false; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; }; "tabBarExtraContent": { "alias": "tabBarExtraContent"; "required": false; }; "tabBarGutter": { "alias": "tabBarGutter"; "required": false; }; "tabBarStyle": { "alias": "tabBarStyle"; "required": false; }; "tabType": { "alias": "tabType"; "required": false; }; "routeParamMatchMode": { "alias": "routeParamMatchMode"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; "titleRender": { "alias": "titleRender"; "required": false; }; "canClose": { "alias": "canClose"; "required": false; }; }, { "change": "change"; "close": "close"; }, never, never, true, never>;
-    static ngAcceptInputType_debug: unknown;
-    static ngAcceptInputType_max: unknown;
-    static ngAcceptInputType_tabMaxWidth: unknown;
-    static ngAcceptInputType_allowClose: unknown;
-    static ngAcceptInputType_keepingScroll: unknown;
-    static ngAcceptInputType_storageState: unknown;
-    static ngAcceptInputType_disabled: unknown;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<ReuseTabComponent, "reuse-tab, [reuse-tab]", ["reuseTab"], { "mode": { "alias": "mode"; "required": false; "isSignal": true; }; "i18n": { "alias": "i18n"; "required": false; "isSignal": true; }; "debug": { "alias": "debug"; "required": false; "isSignal": true; }; "max": { "alias": "max"; "required": false; "isSignal": true; }; "tabMaxWidth": { "alias": "tabMaxWidth"; "required": false; "isSignal": true; }; "excludes": { "alias": "excludes"; "required": false; "isSignal": true; }; "allowClose": { "alias": "allowClose"; "required": false; "isSignal": true; }; "keepingScroll": { "alias": "keepingScroll"; "required": false; "isSignal": true; }; "storageState": { "alias": "storageState"; "required": false; "isSignal": true; }; "keepingScrollContainer": { "alias": "keepingScrollContainer"; "required": false; "isSignal": true; }; "customContextMenu": { "alias": "customContextMenu"; "required": false; "isSignal": true; }; "tabBarExtraContent": { "alias": "tabBarExtraContent"; "required": false; "isSignal": true; }; "tabBarGutter": { "alias": "tabBarGutter"; "required": false; "isSignal": true; }; "tabBarStyle": { "alias": "tabBarStyle"; "required": false; "isSignal": true; }; "tabType": { "alias": "tabType"; "required": false; "isSignal": true; }; "routeParamMatchMode": { "alias": "routeParamMatchMode"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; "titleRender": { "alias": "titleRender"; "required": false; "isSignal": true; }; "canClose": { "alias": "canClose"; "required": false; "isSignal": true; }; }, { "change": "change"; "close": "close"; }, never, never, true, never>;
 }
 
 declare class ReuseTabService implements OnDestroy {
@@ -425,8 +417,8 @@ declare class ReuseTabService implements OnDestroy {
     private get ss();
     private initScroll;
     ngOnDestroy(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<ReuseTabService>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabService, never>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<ReuseTabService>;
 }
 
 declare class ReuseTabStrategy implements RouteReuseStrategy {
@@ -439,9 +431,9 @@ declare class ReuseTabStrategy implements RouteReuseStrategy {
 }
 
 declare class ReuseTabModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<ReuseTabModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<ReuseTabModule, never, [typeof i1.CommonModule, typeof i2.RouterModule, typeof i3.DelonLocaleModule, typeof i4.NzMenuModule, typeof i5.NzTabsModule, typeof i6.NzIconModule, typeof i7.OverlayModule, typeof ReuseTabComponent, typeof ReuseTabContextMenuComponent, typeof ReuseTabContextComponent, typeof ReuseTabContextDirective], [typeof ReuseTabComponent]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<ReuseTabModule>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<ReuseTabModule, never>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<ReuseTabModule, never, [typeof i1.CommonModule, typeof i2.RouterModule, typeof i3.DelonLocaleModule, typeof i4.NzMenuModule, typeof i5.NzTabsModule, typeof i6.NzIconModule, typeof i7.OverlayModule, typeof ReuseTabComponent, typeof ReuseTabContextMenuComponent, typeof ReuseTabContextComponent, typeof ReuseTabContextDirective], [typeof ReuseTabComponent]>;
+    static ɵinj: _angular_core.ɵɵInjectorDeclaration<ReuseTabModule>;
 }
 
 /**

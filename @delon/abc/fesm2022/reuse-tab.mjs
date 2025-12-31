@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { inject, EventEmitter, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, Injectable, Directive, InjectionToken, Injector, ChangeDetectorRef, DestroyRef, booleanAttribute, numberAttribute, ViewChild, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
+import { inject, EventEmitter, Output, Input, ViewEncapsulation, ChangeDetectionStrategy, Component, Injectable, input, Directive, InjectionToken, Injector, viewChild, DestroyRef, signal, booleanAttribute, numberAttribute, output, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
 import { DelonLocaleService, MenuService, ALAIN_I18N_TOKEN, DelonLocaleModule } from '@delon/theme';
 import { NzMenuDirective, NzMenuItemComponent, NzMenuModule } from 'ng-zorro-antd/menu';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -67,14 +67,87 @@ class ReuseTabContextMenuComponent {
         this.notify(null);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabContextMenuComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ReuseTabContextMenuComponent, isStandalone: true, selector: "reuse-tab-context-menu", inputs: { i18n: "i18n", item: "item", event: "event", customContextMenu: "customContextMenu" }, outputs: { close: "close" }, host: { listeners: { "document:click": "closeMenu($event)", "document:contextmenu": "closeMenu($event)" } }, ngImport: i0, template: "<ul nz-menu>\n  @if (item.active) {\n    <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  }\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  @if (customContextMenu!.length > 0) {\n    <li nz-menu-divider></li>\n    @for (i of customContextMenu; track $index) {\n      <li\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"\n      ></li>\n    }\n  }\n</ul>\n", dependencies: [{ kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ReuseTabContextMenuComponent, isStandalone: true, selector: "reuse-tab-context-menu", inputs: { i18n: "i18n", item: "item", event: "event", customContextMenu: "customContextMenu" }, outputs: { close: "close" }, host: { listeners: { "document:click": "closeMenu($event)", "document:contextmenu": "closeMenu($event)" } }, ngImport: i0, template: `
+    <ul nz-menu>
+      @if (item.active) {
+        <li nz-menu-item (click)="click($event, 'refresh')" data-type="refresh" [innerHTML]="i18n.refresh"></li>
+      }
+      <li
+        nz-menu-item
+        (click)="click($event, 'close')"
+        data-type="close"
+        [nzDisabled]="!item.closable"
+        [innerHTML]="i18n.close"
+      ></li>
+      <li nz-menu-item (click)="click($event, 'closeOther')" data-type="closeOther" [innerHTML]="i18n.closeOther"></li>
+      <li
+        nz-menu-item
+        (click)="click($event, 'closeRight')"
+        data-type="closeRight"
+        [nzDisabled]="item.last"
+        [innerHTML]="i18n.closeRight"
+      ></li>
+      @if (customContextMenu!.length > 0) {
+        <li nz-menu-divider></li>
+        @for (i of customContextMenu; track $index) {
+          <li
+            nz-menu-item
+            [attr.data-type]="i.id"
+            [nzDisabled]="isDisabled(i)"
+            (click)="click($event, 'custom', i)"
+            [innerHTML]="i.title"
+          ></li>
+        }
+      }
+    </ul>
+  `, isInline: true, dependencies: [{ kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabContextMenuComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'reuse-tab-context-menu', host: {
+            args: [{
+                    selector: 'reuse-tab-context-menu',
+                    template: `
+    <ul nz-menu>
+      @if (item.active) {
+        <li nz-menu-item (click)="click($event, 'refresh')" data-type="refresh" [innerHTML]="i18n.refresh"></li>
+      }
+      <li
+        nz-menu-item
+        (click)="click($event, 'close')"
+        data-type="close"
+        [nzDisabled]="!item.closable"
+        [innerHTML]="i18n.close"
+      ></li>
+      <li nz-menu-item (click)="click($event, 'closeOther')" data-type="closeOther" [innerHTML]="i18n.closeOther"></li>
+      <li
+        nz-menu-item
+        (click)="click($event, 'closeRight')"
+        data-type="closeRight"
+        [nzDisabled]="item.last"
+        [innerHTML]="i18n.closeRight"
+      ></li>
+      @if (customContextMenu!.length > 0) {
+        <li nz-menu-divider></li>
+        @for (i of customContextMenu; track $index) {
+          <li
+            nz-menu-item
+            [attr.data-type]="i.id"
+            [nzDisabled]="isDisabled(i)"
+            (click)="click($event, 'custom', i)"
+            [innerHTML]="i.title"
+          ></li>
+        }
+      }
+    </ul>
+  `,
+                    host: {
                         '(document:click)': 'closeMenu($event)',
                         '(document:contextmenu)': 'closeMenu($event)'
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [NzMenuDirective, NzMenuItemComponent], template: "<ul nz-menu>\n  @if (item.active) {\n    <li nz-menu-item (click)=\"click($event, 'refresh')\" data-type=\"refresh\" [innerHTML]=\"i18n.refresh\"></li>\n  }\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'close')\"\n    data-type=\"close\"\n    [nzDisabled]=\"!item.closable\"\n    [innerHTML]=\"i18n.close\"\n  ></li>\n  <li nz-menu-item (click)=\"click($event, 'closeOther')\" data-type=\"closeOther\" [innerHTML]=\"i18n.closeOther\"></li>\n  <li\n    nz-menu-item\n    (click)=\"click($event, 'closeRight')\"\n    data-type=\"closeRight\"\n    [nzDisabled]=\"item.last\"\n    [innerHTML]=\"i18n.closeRight\"\n  ></li>\n  @if (customContextMenu!.length > 0) {\n    <li nz-menu-divider></li>\n    @for (i of customContextMenu; track $index) {\n      <li\n        nz-menu-item\n        [attr.data-type]=\"i.id\"\n        [nzDisabled]=\"isDisabled(i)\"\n        (click)=\"click($event, 'custom', i)\"\n        [innerHTML]=\"i.title\"\n      ></li>\n    }\n  }\n</ul>\n" }]
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    imports: [NzMenuDirective, NzMenuItemComponent]
+                }]
         }], propDecorators: { i18n: [{
                 type: Input
             }], item: [{
@@ -161,19 +234,19 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 
 class ReuseTabContextDirective {
     srv = inject(ReuseTabContextService);
-    item;
-    customContextMenu;
+    item = input.required({ ...(ngDevMode ? { debugName: "item" } : {}), alias: 'reuse-tab-context-menu' });
+    customContextMenu = input.required(...(ngDevMode ? [{ debugName: "customContextMenu" }] : []));
     _onContextMenu(event) {
         this.srv.show.next({
             event,
-            item: this.item,
-            customContextMenu: this.customContextMenu
+            item: this.item(),
+            customContextMenu: this.customContextMenu()
         });
         event.preventDefault();
         event.stopPropagation();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabContextDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: ReuseTabContextDirective, isStandalone: true, selector: "[reuse-tab-context-menu]", inputs: { item: ["reuse-tab-context-menu", "item"], customContextMenu: "customContextMenu" }, host: { listeners: { "contextmenu": "_onContextMenu($event)" } }, exportAs: ["reuseTabContextMenu"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: ReuseTabContextDirective, isStandalone: true, selector: "[reuse-tab-context-menu]", inputs: { item: { classPropertyName: "item", publicName: "reuse-tab-context-menu", isSignal: true, isRequired: true, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: true, transformFunction: null } }, host: { listeners: { "contextmenu": "_onContextMenu($event)" } }, exportAs: ["reuseTabContextMenu"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabContextDirective, decorators: [{
             type: Directive,
@@ -184,12 +257,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                         '(contextmenu)': '_onContextMenu($event)'
                     }
                 }]
-        }], propDecorators: { item: [{
-                type: Input,
-                args: ['reuse-tab-context-menu']
-            }], customContextMenu: [{
-                type: Input
-            }] } });
+        }], propDecorators: { item: [{ type: i0.Input, args: [{ isSignal: true, alias: "reuse-tab-context-menu", required: true }] }], customContextMenu: [{ type: i0.Input, args: [{ isSignal: true, alias: "customContextMenu", required: true }] }] } });
 
 /**
  * 复用匹配模式
@@ -824,7 +892,6 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 
 class ReuseTabComponent {
     srv = inject(ReuseTabService, { optional: true });
-    cdr = inject(ChangeDetectorRef);
     router = inject(Router);
     route = inject(ActivatedRoute);
     i18nSrv = inject(ALAIN_I18N_TOKEN);
@@ -832,38 +899,36 @@ class ReuseTabComponent {
     platform = inject(Platform);
     stateKey = inject(REUSE_TAB_STORAGE_KEY);
     stateSrv = inject(REUSE_TAB_STORAGE_STATE);
-    tabset;
+    tabset = viewChild.required(NzTabsComponent);
     destroy$ = inject(DestroyRef);
-    _keepingScrollContainer;
-    list = [];
-    item;
-    pos = 0;
     dir = inject(Directionality).valueSignal;
+    list = signal([], ...(ngDevMode ? [{ debugName: "list" }] : []));
+    item;
+    pos = signal(0, ...(ngDevMode ? [{ debugName: "pos" }] : []));
     // #region fields
-    mode = ReuseTabMatchMode.Menu;
-    i18n;
-    debug = false;
-    max;
-    tabMaxWidth;
-    excludes;
-    allowClose = true;
-    keepingScroll = false;
-    storageState = false;
-    set keepingScrollContainer(value) {
-        this._keepingScrollContainer = typeof value === 'string' ? this.doc.querySelector(value) : value;
-    }
-    customContextMenu = [];
-    tabBarExtraContent;
-    tabBarGutter;
-    tabBarStyle = null;
-    tabType = 'line';
-    routeParamMatchMode = 'strict';
-    disabled = false;
-    titleRender;
-    canClose;
-    change = new EventEmitter();
-    close = new EventEmitter();
+    mode = input(ReuseTabMatchMode.Menu, ...(ngDevMode ? [{ debugName: "mode" }] : []));
+    i18n = input(...(ngDevMode ? [undefined, { debugName: "i18n" }] : []));
+    debug = input(false, { ...(ngDevMode ? { debugName: "debug" } : {}), transform: booleanAttribute });
+    max = input(undefined, { ...(ngDevMode ? { debugName: "max" } : {}), transform: numberAttribute });
+    tabMaxWidth = input(undefined, { ...(ngDevMode ? { debugName: "tabMaxWidth" } : {}), transform: numberAttribute });
+    excludes = input(...(ngDevMode ? [undefined, { debugName: "excludes" }] : []));
+    allowClose = input(true, { ...(ngDevMode ? { debugName: "allowClose" } : {}), transform: booleanAttribute });
+    keepingScroll = input(false, { ...(ngDevMode ? { debugName: "keepingScroll" } : {}), transform: booleanAttribute });
+    storageState = input(false, { ...(ngDevMode ? { debugName: "storageState" } : {}), transform: booleanAttribute });
+    keepingScrollContainer = input(...(ngDevMode ? [undefined, { debugName: "keepingScrollContainer" }] : []));
+    customContextMenu = input([], ...(ngDevMode ? [{ debugName: "customContextMenu" }] : []));
+    tabBarExtraContent = input(...(ngDevMode ? [undefined, { debugName: "tabBarExtraContent" }] : []));
+    tabBarGutter = input(...(ngDevMode ? [undefined, { debugName: "tabBarGutter" }] : []));
+    tabBarStyle = input(null, ...(ngDevMode ? [{ debugName: "tabBarStyle" }] : []));
+    tabType = input('line', ...(ngDevMode ? [{ debugName: "tabType" }] : []));
+    routeParamMatchMode = input('strict', ...(ngDevMode ? [{ debugName: "routeParamMatchMode" }] : []));
+    disabled = input(false, { ...(ngDevMode ? { debugName: "disabled" } : {}), transform: booleanAttribute });
+    titleRender = input(...(ngDevMode ? [undefined, { debugName: "titleRender" }] : []));
+    canClose = input(...(ngDevMode ? [undefined, { debugName: "canClose" }] : []));
+    change = output();
+    close = output();
     // #endregion
+    constructor() { }
     genTit(title) {
         return title.i18n ? this.i18nSrv.fanyi(title.i18n) : title.text;
     }
@@ -876,7 +941,7 @@ class ReuseTabComponent {
         return {
             url,
             title: this.genTit(this.srv.getTitle(url, snapshotTrue)),
-            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
+            closable: this.allowClose() && this.srv.count > 0 && this.srv.getClosable(url, snapshotTrue),
             active: false,
             last: false,
             index: 0
@@ -886,7 +951,7 @@ class ReuseTabComponent {
         const ls = this.srv.items.map((item, index) => ({
             url: item.url,
             title: this.genTit(item.title),
-            closable: this.allowClose && this.srv.count > 0 && this.srv.getClosable(item.url, item._snapshot),
+            closable: this.allowClose() && this.srv.count > 0 && this.srv.getClosable(item.url, item._snapshot),
             position: item.position,
             index,
             active: false,
@@ -897,7 +962,7 @@ class ReuseTabComponent {
         if (notify && notify.active === 'close' && notify.url === url) {
             addCurrent = false;
             let toPos = 0;
-            const curItem = this.list.find(w => w.url === url);
+            const curItem = this.list().find(w => w.url === url);
             if (curItem.index === ls.length) {
                 // When closed is last
                 toPos = ls.length - 1;
@@ -909,7 +974,7 @@ class ReuseTabComponent {
             this.router.navigateByUrl(ls[toPos].url);
         }
         if (addCurrent) {
-            const addPos = this.pos + 1;
+            const addPos = this.pos() + 1;
             ls.splice(addPos, 0, this.genCurItem());
             // Attach to cache
             this.srv.saveCache(this.route.snapshot, null, addPos);
@@ -918,24 +983,25 @@ class ReuseTabComponent {
         if (ls.length === 1) {
             ls[0].closable = false;
         }
-        this.list = ls;
-        this.cdr.detectChanges();
+        this.list.set(ls);
         this.updatePos();
     }
     updateTitle(res) {
-        const item = this.list.find(w => w.url === res.url);
-        if (!item)
-            return;
-        item.title = this.genTit(res.title);
-        this.cdr.detectChanges();
+        this.list.update(ls => {
+            const item = ls.find(w => w.url === res.url);
+            if (!item)
+                return ls;
+            item.title = this.genTit(res.title);
+            return [...ls];
+        });
     }
     refresh(item) {
-        this.srv.runHook('_onReuseInit', this.pos === item.index ? this.srv.componentRef : item.index, 'refresh');
+        this.srv.runHook('_onReuseInit', this.pos() === item.index ? this.srv.componentRef : item.index, 'refresh');
     }
     saveState() {
-        if (!this.srv.inited || !this.storageState)
+        if (!this.srv.inited || !this.storageState())
             return;
-        this.stateSrv?.update(this.stateKey, this.list);
+        this.stateSrv?.update(this.stateKey, this.list());
     }
     // #region UI
     contextMenuChange(res) {
@@ -963,7 +1029,7 @@ class ReuseTabComponent {
         if (!fn) {
             return;
         }
-        if (!res.item.active && res.item.index <= this.list.find(w => w.active).index) {
+        if (!res.item.active && res.item.index <= this.list().find(w => w.active).index) {
             this._to(res.item.index, fn);
         }
         else {
@@ -971,8 +1037,8 @@ class ReuseTabComponent {
         }
     }
     _to(index, cb) {
-        index = Math.max(0, Math.min(index, this.list.length - 1));
-        const item = this.list[index];
+        index = Math.max(0, Math.min(index, this.list().length - 1));
+        const item = this.list()[index];
         this.router.navigateByUrl(item.url).then(res => {
             if (!res)
                 return;
@@ -986,11 +1052,11 @@ class ReuseTabComponent {
             e.preventDefault();
             e.stopPropagation();
         }
-        const item = this.list[idx];
-        (this.canClose ? this.canClose({ item, includeNonCloseable }) : of(true)).pipe(filter(v => v)).subscribe(() => {
+        const item = this.list()[idx];
+        const canClose = this.canClose();
+        (canClose ? canClose({ item, includeNonCloseable }) : of(true)).pipe(filter(v => v)).subscribe(() => {
             this.srv.close(item.url, includeNonCloseable);
             this.close.emit(item);
-            this.cdr.detectChanges();
         });
         return false;
     }
@@ -1008,7 +1074,7 @@ class ReuseTabComponent {
     }
     updatePos() {
         const url = this.srv.getUrl(this.route.snapshot);
-        const ls = this.list.filter(w => w.url === url || !this.srv.isExclude(w.url));
+        const ls = this.list().filter(w => w.url === url || !this.srv.isExclude(w.url));
         if (ls.length === 0) {
             return;
         }
@@ -1017,12 +1083,11 @@ class ReuseTabComponent {
         last.last = true;
         const pos = item == null ? last.index : item.index;
         ls.forEach((i, idx) => (i.active = pos === idx));
-        this.pos = pos;
+        this.pos.set(pos);
         // TODO: 目前无法知道为什么 `pos` 无法通过 `nzSelectedIndex` 生效，因此强制使用组件实例的方式来修改，这种方式是安全的
         // https://github.com/ng-alain/ng-alain/issues/1736
-        this.tabset.nzSelectedIndex = pos;
-        this.list = ls;
-        this.cdr.detectChanges();
+        this.tabset().nzSelectedIndex = pos;
+        this.list.set(ls);
         this.saveState();
     }
     // #endregion
@@ -1054,94 +1119,123 @@ class ReuseTabComponent {
             return;
         }
         if (changes.max)
-            this.srv.max = this.max;
+            this.srv.max = this.max();
         if (changes.excludes)
-            this.srv.excludes = this.excludes;
+            this.srv.excludes = this.excludes();
         if (changes.mode)
-            this.srv.mode = this.mode;
+            this.srv.mode = this.mode();
         if (changes.routeParamMatchMode)
-            this.srv.routeParamMatchMode = this.routeParamMatchMode;
+            this.srv.routeParamMatchMode = this.routeParamMatchMode();
         if (changes.keepingScroll) {
-            this.srv.keepingScroll = this.keepingScroll;
-            this.srv.keepingScrollContainer = this._keepingScrollContainer;
+            this.srv.keepingScroll = this.keepingScroll();
+            const keepingScrollContainer = this.keepingScrollContainer();
+            this.srv.keepingScrollContainer =
+                typeof keepingScrollContainer === 'string'
+                    ? this.doc.querySelector(keepingScrollContainer)
+                    : keepingScrollContainer;
         }
         if (changes.storageState)
-            this.srv.storageState = this.storageState;
-        this.srv.debug = this.debug;
-        this.cdr.detectChanges();
+            this.srv.storageState = this.storageState();
+        ``;
+        this.srv.debug = this.debug();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ReuseTabComponent, isStandalone: true, selector: "reuse-tab, [reuse-tab]", inputs: { mode: "mode", i18n: "i18n", debug: ["debug", "debug", booleanAttribute], max: ["max", "max", numberAttribute], tabMaxWidth: ["tabMaxWidth", "tabMaxWidth", numberAttribute], excludes: "excludes", allowClose: ["allowClose", "allowClose", booleanAttribute], keepingScroll: ["keepingScroll", "keepingScroll", booleanAttribute], storageState: ["storageState", "storageState", booleanAttribute], keepingScrollContainer: "keepingScrollContainer", customContextMenu: "customContextMenu", tabBarExtraContent: "tabBarExtraContent", tabBarGutter: "tabBarGutter", tabBarStyle: "tabBarStyle", tabType: "tabType", routeParamMatchMode: "routeParamMatchMode", disabled: ["disabled", "disabled", booleanAttribute], titleRender: "titleRender", canClose: "canClose" }, outputs: { change: "change", close: "close" }, host: { properties: { "class.reuse-tab": "true", "class.reuse-tab__line": "tabType === 'line'", "class.reuse-tab__card": "tabType === 'card'", "class.reuse-tab__disabled": "disabled", "class.reuse-tab-rtl": "dir() === 'rtl'" } }, providers: [ReuseTabContextService], viewQueries: [{ propertyName: "tabset", first: true, predicate: ["tabset"], descendants: true }], exportAs: ["reuseTab"], usesOnChanges: true, ngImport: i0, template: "<nz-tabs\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  @for (i of list; track $index) {\n    <nz-tab [nzTitle]=\"titleTemplate\" (nzClick)=\"_to($index)\">\n      <ng-template #titleTemplate>\n        <div\n          [reuse-tab-context-menu]=\"i\"\n          [customContextMenu]=\"customContextMenu\"\n          class=\"reuse-tab__name\"\n          [attr.title]=\"i.title\"\n        >\n          <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n            @if (titleRender) {\n              <ng-template [ngTemplateOutlet]=\"titleRender\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n            } @else {\n              {{ i.title }}\n            }\n          </span>\n        </div>\n        @if (i.closable) {\n          <nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, $index, false)\" />\n        }\n      </ng-template>\n    </nz-tab>\n  }\n</nz-tabs>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\" />\n", dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzTabsComponent, selector: "nz-tabs", inputs: ["nzSelectedIndex", "nzTabPosition", "nzTabBarExtraContent", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzDestroyInactiveTabPane"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabs"] }, { kind: "component", type: NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { kind: "directive", type: ReuseTabContextDirective, selector: "[reuse-tab-context-menu]", inputs: ["reuse-tab-context-menu", "customContextMenu"], exportAs: ["reuseTabContextMenu"] }, { kind: "component", type: ReuseTabContextComponent, selector: "reuse-tab-context", inputs: ["i18n"], outputs: ["change"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ReuseTabComponent, isStandalone: true, selector: "reuse-tab, [reuse-tab]", inputs: { mode: { classPropertyName: "mode", publicName: "mode", isSignal: true, isRequired: false, transformFunction: null }, i18n: { classPropertyName: "i18n", publicName: "i18n", isSignal: true, isRequired: false, transformFunction: null }, debug: { classPropertyName: "debug", publicName: "debug", isSignal: true, isRequired: false, transformFunction: null }, max: { classPropertyName: "max", publicName: "max", isSignal: true, isRequired: false, transformFunction: null }, tabMaxWidth: { classPropertyName: "tabMaxWidth", publicName: "tabMaxWidth", isSignal: true, isRequired: false, transformFunction: null }, excludes: { classPropertyName: "excludes", publicName: "excludes", isSignal: true, isRequired: false, transformFunction: null }, allowClose: { classPropertyName: "allowClose", publicName: "allowClose", isSignal: true, isRequired: false, transformFunction: null }, keepingScroll: { classPropertyName: "keepingScroll", publicName: "keepingScroll", isSignal: true, isRequired: false, transformFunction: null }, storageState: { classPropertyName: "storageState", publicName: "storageState", isSignal: true, isRequired: false, transformFunction: null }, keepingScrollContainer: { classPropertyName: "keepingScrollContainer", publicName: "keepingScrollContainer", isSignal: true, isRequired: false, transformFunction: null }, customContextMenu: { classPropertyName: "customContextMenu", publicName: "customContextMenu", isSignal: true, isRequired: false, transformFunction: null }, tabBarExtraContent: { classPropertyName: "tabBarExtraContent", publicName: "tabBarExtraContent", isSignal: true, isRequired: false, transformFunction: null }, tabBarGutter: { classPropertyName: "tabBarGutter", publicName: "tabBarGutter", isSignal: true, isRequired: false, transformFunction: null }, tabBarStyle: { classPropertyName: "tabBarStyle", publicName: "tabBarStyle", isSignal: true, isRequired: false, transformFunction: null }, tabType: { classPropertyName: "tabType", publicName: "tabType", isSignal: true, isRequired: false, transformFunction: null }, routeParamMatchMode: { classPropertyName: "routeParamMatchMode", publicName: "routeParamMatchMode", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null }, titleRender: { classPropertyName: "titleRender", publicName: "titleRender", isSignal: true, isRequired: false, transformFunction: null }, canClose: { classPropertyName: "canClose", publicName: "canClose", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { change: "change", close: "close" }, host: { properties: { "class.reuse-tab__line": "tabType() === 'line'", "class.reuse-tab__card": "tabType() === 'card'", "class.reuse-tab__disabled": "disabled()", "class.reuse-tab-rtl": "dir() === 'rtl'" }, classAttribute: "reuse-tab" }, providers: [ReuseTabContextService], viewQueries: [{ propertyName: "tabset", first: true, predicate: NzTabsComponent, descendants: true, isSignal: true }], exportAs: ["reuseTab"], usesOnChanges: true, ngImport: i0, template: `
+    <nz-tabs
+      [nzSelectedIndex]="pos()"
+      [nzAnimated]="false"
+      [nzType]="tabType()"
+      [nzTabBarExtraContent]="tabBarExtraContent()"
+      [nzTabBarGutter]="tabBarGutter()"
+      [nzTabBarStyle]="tabBarStyle()"
+    >
+      @for (i of list(); track i) {
+        <nz-tab [nzTitle]="titleTemplate" (nzClick)="_to($index)">
+          <ng-template #titleTemplate>
+            <div
+              [reuse-tab-context-menu]="i"
+              [customContextMenu]="customContextMenu()"
+              class="reuse-tab__name"
+              [attr.title]="i.title"
+            >
+              <span [class.reuse-tab__name-width]="tabMaxWidth()" [style.max-width.px]="tabMaxWidth()">
+                @if (titleRender()) {
+                  <ng-template [ngTemplateOutlet]="titleRender()" [ngTemplateOutletContext]="{ $implicit: i }" />
+                } @else {
+                  {{ i.title }}
+                }
+              </span>
+            </div>
+            @if (i.closable) {
+              <nz-icon nzType="close" class="reuse-tab__op" (click)="_close($event, $index, false)" />
+            }
+          </ng-template>
+        </nz-tab>
+      }
+    </nz-tabs>
+    <reuse-tab-context [i18n]="i18n()" (change)="contextMenuChange($event)" />
+  `, isInline: true, dependencies: [{ kind: "directive", type: NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "component", type: NzTabsComponent, selector: "nz-tabs", inputs: ["nzSelectedIndex", "nzTabPosition", "nzTabBarExtraContent", "nzCanDeactivate", "nzAddIcon", "nzTabBarStyle", "nzType", "nzSize", "nzAnimated", "nzTabBarGutter", "nzHideAdd", "nzCentered", "nzHideAll", "nzLinkRouter", "nzLinkExact", "nzDestroyInactiveTabPane"], outputs: ["nzSelectChange", "nzSelectedIndexChange", "nzTabListScroll", "nzClose", "nzAdd"], exportAs: ["nzTabs"] }, { kind: "component", type: NzTabComponent, selector: "nz-tab", inputs: ["nzTitle", "nzClosable", "nzCloseIcon", "nzDisabled", "nzForceRender"], outputs: ["nzSelect", "nzDeselect", "nzClick", "nzContextmenu"], exportAs: ["nzTab"] }, { kind: "directive", type: ReuseTabContextDirective, selector: "[reuse-tab-context-menu]", inputs: ["reuse-tab-context-menu", "customContextMenu"], exportAs: ["reuseTabContextMenu"] }, { kind: "component", type: ReuseTabContextComponent, selector: "reuse-tab-context", inputs: ["i18n"], outputs: ["change"] }, { kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ReuseTabComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'reuse-tab, [reuse-tab]', exportAs: 'reuseTab', host: {
-                        '[class.reuse-tab]': 'true',
-                        '[class.reuse-tab__line]': `tabType === 'line'`,
-                        '[class.reuse-tab__card]': `tabType === 'card'`,
-                        '[class.reuse-tab__disabled]': `disabled`,
+            args: [{
+                    selector: 'reuse-tab, [reuse-tab]',
+                    exportAs: 'reuseTab',
+                    template: `
+    <nz-tabs
+      [nzSelectedIndex]="pos()"
+      [nzAnimated]="false"
+      [nzType]="tabType()"
+      [nzTabBarExtraContent]="tabBarExtraContent()"
+      [nzTabBarGutter]="tabBarGutter()"
+      [nzTabBarStyle]="tabBarStyle()"
+    >
+      @for (i of list(); track i) {
+        <nz-tab [nzTitle]="titleTemplate" (nzClick)="_to($index)">
+          <ng-template #titleTemplate>
+            <div
+              [reuse-tab-context-menu]="i"
+              [customContextMenu]="customContextMenu()"
+              class="reuse-tab__name"
+              [attr.title]="i.title"
+            >
+              <span [class.reuse-tab__name-width]="tabMaxWidth()" [style.max-width.px]="tabMaxWidth()">
+                @if (titleRender()) {
+                  <ng-template [ngTemplateOutlet]="titleRender()" [ngTemplateOutletContext]="{ $implicit: i }" />
+                } @else {
+                  {{ i.title }}
+                }
+              </span>
+            </div>
+            @if (i.closable) {
+              <nz-icon nzType="close" class="reuse-tab__op" (click)="_close($event, $index, false)" />
+            }
+          </ng-template>
+        </nz-tab>
+      }
+    </nz-tabs>
+    <reuse-tab-context [i18n]="i18n()" (change)="contextMenuChange($event)" />
+  `,
+                    host: {
+                        class: 'reuse-tab',
+                        '[class.reuse-tab__line]': `tabType() === 'line'`,
+                        '[class.reuse-tab__card]': `tabType() === 'card'`,
+                        '[class.reuse-tab__disabled]': `disabled()`,
                         '[class.reuse-tab-rtl]': `dir() === 'rtl'`
-                    }, providers: [ReuseTabContextService], changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, imports: [
+                    },
+                    providers: [ReuseTabContextService],
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    imports: [
                         NgTemplateOutlet,
                         NzTabsComponent,
                         NzTabComponent,
                         ReuseTabContextDirective,
                         ReuseTabContextComponent,
                         NzIconDirective
-                    ], template: "<nz-tabs\n  #tabset\n  [nzSelectedIndex]=\"pos\"\n  [nzAnimated]=\"false\"\n  [nzType]=\"tabType\"\n  [nzTabBarExtraContent]=\"tabBarExtraContent\"\n  [nzTabBarGutter]=\"tabBarGutter\"\n  [nzTabBarStyle]=\"tabBarStyle\"\n>\n  @for (i of list; track $index) {\n    <nz-tab [nzTitle]=\"titleTemplate\" (nzClick)=\"_to($index)\">\n      <ng-template #titleTemplate>\n        <div\n          [reuse-tab-context-menu]=\"i\"\n          [customContextMenu]=\"customContextMenu\"\n          class=\"reuse-tab__name\"\n          [attr.title]=\"i.title\"\n        >\n          <span [class.reuse-tab__name-width]=\"tabMaxWidth\" [style.max-width.px]=\"tabMaxWidth\">\n            @if (titleRender) {\n              <ng-template [ngTemplateOutlet]=\"titleRender\" [ngTemplateOutletContext]=\"{ $implicit: i }\" />\n            } @else {\n              {{ i.title }}\n            }\n          </span>\n        </div>\n        @if (i.closable) {\n          <nz-icon nzType=\"close\" class=\"reuse-tab__op\" (click)=\"_close($event, $index, false)\" />\n        }\n      </ng-template>\n    </nz-tab>\n  }\n</nz-tabs>\n<reuse-tab-context [i18n]=\"i18n\" (change)=\"contextMenuChange($event)\" />\n" }]
-        }], propDecorators: { tabset: [{
-                type: ViewChild,
-                args: ['tabset']
-            }], mode: [{
-                type: Input
-            }], i18n: [{
-                type: Input
-            }], debug: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], max: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], tabMaxWidth: [{
-                type: Input,
-                args: [{ transform: numberAttribute }]
-            }], excludes: [{
-                type: Input
-            }], allowClose: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], keepingScroll: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], storageState: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], keepingScrollContainer: [{
-                type: Input
-            }], customContextMenu: [{
-                type: Input
-            }], tabBarExtraContent: [{
-                type: Input
-            }], tabBarGutter: [{
-                type: Input
-            }], tabBarStyle: [{
-                type: Input
-            }], tabType: [{
-                type: Input
-            }], routeParamMatchMode: [{
-                type: Input
-            }], disabled: [{
-                type: Input,
-                args: [{ transform: booleanAttribute }]
-            }], titleRender: [{
-                type: Input
-            }], canClose: [{
-                type: Input
-            }], change: [{
-                type: Output
-            }], close: [{
-                type: Output
-            }] } });
+                    ]
+                }]
+        }], ctorParameters: () => [], propDecorators: { tabset: [{ type: i0.ViewChild, args: [i0.forwardRef(() => NzTabsComponent), { isSignal: true }] }], mode: [{ type: i0.Input, args: [{ isSignal: true, alias: "mode", required: false }] }], i18n: [{ type: i0.Input, args: [{ isSignal: true, alias: "i18n", required: false }] }], debug: [{ type: i0.Input, args: [{ isSignal: true, alias: "debug", required: false }] }], max: [{ type: i0.Input, args: [{ isSignal: true, alias: "max", required: false }] }], tabMaxWidth: [{ type: i0.Input, args: [{ isSignal: true, alias: "tabMaxWidth", required: false }] }], excludes: [{ type: i0.Input, args: [{ isSignal: true, alias: "excludes", required: false }] }], allowClose: [{ type: i0.Input, args: [{ isSignal: true, alias: "allowClose", required: false }] }], keepingScroll: [{ type: i0.Input, args: [{ isSignal: true, alias: "keepingScroll", required: false }] }], storageState: [{ type: i0.Input, args: [{ isSignal: true, alias: "storageState", required: false }] }], keepingScrollContainer: [{ type: i0.Input, args: [{ isSignal: true, alias: "keepingScrollContainer", required: false }] }], customContextMenu: [{ type: i0.Input, args: [{ isSignal: true, alias: "customContextMenu", required: false }] }], tabBarExtraContent: [{ type: i0.Input, args: [{ isSignal: true, alias: "tabBarExtraContent", required: false }] }], tabBarGutter: [{ type: i0.Input, args: [{ isSignal: true, alias: "tabBarGutter", required: false }] }], tabBarStyle: [{ type: i0.Input, args: [{ isSignal: true, alias: "tabBarStyle", required: false }] }], tabType: [{ type: i0.Input, args: [{ isSignal: true, alias: "tabType", required: false }] }], routeParamMatchMode: [{ type: i0.Input, args: [{ isSignal: true, alias: "routeParamMatchMode", required: false }] }], disabled: [{ type: i0.Input, args: [{ isSignal: true, alias: "disabled", required: false }] }], titleRender: [{ type: i0.Input, args: [{ isSignal: true, alias: "titleRender", required: false }] }], canClose: [{ type: i0.Input, args: [{ isSignal: true, alias: "canClose", required: false }] }], change: [{ type: i0.Output, args: ["change"] }], close: [{ type: i0.Output, args: ["close"] }] } });
 
 class ReuseTabStrategy {
     srv = inject(ReuseTabService);
