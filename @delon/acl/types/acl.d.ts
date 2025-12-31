@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import * as i0 from '@angular/core';
-import { Injector, OnDestroy, TemplateRef } from '@angular/core';
+import { Injector, TemplateRef } from '@angular/core';
 import { AlainACLConfig } from '@delon/util/config';
 import { CanActivateFn, CanActivateChildFn, CanMatchFn } from '@angular/router';
 import * as i1 from '@angular/common';
@@ -114,42 +114,32 @@ declare class ACLService {
     static ɵprov: i0.ɵɵInjectableDeclaration<ACLService>;
 }
 
-declare class ACLIfDirective implements OnDestroy {
+declare class ACLIfDirective {
     private readonly srv;
     private readonly _viewContainer;
-    static ngAcceptInputType_except: boolean | string | undefined | null;
-    private _value;
-    private _change$;
-    private _thenTemplateRef;
-    private _elseTemplateRef;
     private _thenViewRef;
     private _elseViewRef;
-    private _except;
+    readonly aclIf: i0.InputSignal<ACLCanType>;
+    readonly aclIfThen: i0.InputSignal<TemplateRef<void> | null>;
+    readonly aclIfElse: i0.InputSignal<TemplateRef<void> | null | undefined>;
+    readonly except: i0.InputSignalWithTransform<boolean, unknown>;
     constructor();
-    set aclIf(value: ACLCanType);
-    set aclIfThen(templateRef: TemplateRef<void> | null);
-    set aclIfElse(templateRef: TemplateRef<void> | null);
-    set except(value: boolean);
-    get except(): boolean;
-    protected _updateView(): void;
-    ngOnDestroy(): void;
+    private updateView;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLIfDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLIfDirective, "[aclIf]", ["aclIf"], { "aclIf": { "alias": "aclIf"; "required": false; }; "aclIfThen": { "alias": "aclIfThen"; "required": false; }; "aclIfElse": { "alias": "aclIfElse"; "required": false; }; "except": { "alias": "except"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLIfDirective, "[aclIf]", ["aclIf"], { "aclIf": { "alias": "aclIf"; "required": true; "isSignal": true; }; "aclIfThen": { "alias": "aclIfThen"; "required": false; "isSignal": true; }; "aclIfElse": { "alias": "aclIfElse"; "required": false; "isSignal": true; }; "except": { "alias": "except"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
-declare class ACLDirective implements OnDestroy {
+declare class ACLDirective {
     private readonly el;
     private readonly renderer;
     private readonly srv;
     private _value;
-    private change$;
-    set acl(value: ACLCanType);
-    set ability(value: ACLCanType);
-    private set;
+    readonly acl: i0.InputSignalWithTransform<void | undefined, ACLCanType>;
+    readonly ability: i0.InputSignalWithTransform<void | undefined, ACLCanType>;
     constructor();
-    ngOnDestroy(): void;
+    private set;
     static ɵfac: i0.ɵɵFactoryDeclaration<ACLDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLDirective, "[acl]", ["acl"], { "acl": { "alias": "acl"; "required": false; }; "ability": { "alias": "acl-ability"; "required": false; }; }, {}, never, never, true, never>;
+    static ɵdir: i0.ɵɵDirectiveDeclaration<ACLDirective, "[acl]", ["acl"], { "acl": { "alias": "acl"; "required": false; "isSignal": true; }; "ability": { "alias": "acl-ability"; "required": false; "isSignal": true; }; }, {}, never, never, true, never>;
 }
 
 declare const ACL_DEFAULT_CONFIG: AlainACLConfig;

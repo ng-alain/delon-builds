@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { inject, Injectable, ViewContainerRef, TemplateRef, Input, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
+import { inject, Injectable, ViewContainerRef, input, TemplateRef, booleanAttribute, effect, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
 import { BehaviorSubject, filter, of, Observable, map, tap } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -204,47 +204,29 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 class ACLIfDirective {
     srv = inject(ACLService);
     _viewContainer = inject(ViewContainerRef);
-    static ngAcceptInputType_except;
-    _value;
-    _change$;
-    _thenTemplateRef = inject((TemplateRef));
-    _elseTemplateRef = null;
     _thenViewRef = null;
     _elseViewRef = null;
-    _except = false;
+    aclIf = input.required(...(ngDevMode ? [{ debugName: "aclIf" }] : []));
+    aclIfThen = input(inject((TemplateRef)), ...(ngDevMode ? [{ debugName: "aclIfThen" }] : []));
+    aclIfElse = input(...(ngDevMode ? [undefined, { debugName: "aclIfElse" }] : []));
+    except = input(false, { ...(ngDevMode ? { debugName: "except" } : {}), transform: booleanAttribute });
     constructor() {
-        this._change$ = this.srv.change
+        this.srv.change
             .pipe(takeUntilDestroyed(), filter(r => r != null))
-            .subscribe(() => this._updateView());
+            .subscribe(() => this.updateView());
+        effect(() => this.updateView());
     }
-    set aclIf(value) {
-        this._value = value;
-        this._updateView();
-    }
-    set aclIfThen(templateRef) {
-        this._thenTemplateRef = templateRef;
-        this._thenViewRef = null;
-        this._updateView();
-    }
-    set aclIfElse(templateRef) {
-        this._elseTemplateRef = templateRef;
-        this._elseViewRef = null;
-        this._updateView();
-    }
-    set except(value) {
-        this._except = value != null && `${value}` !== 'false';
-    }
-    get except() {
-        return this._except;
-    }
-    _updateView() {
-        const res = this.srv.can(this._value);
-        if ((res && !this.except) || (!res && this.except)) {
+    updateView() {
+        const res = this.srv.can(this.aclIf());
+        const except = this.except();
+        const then = this.aclIfThen();
+        const els = this.aclIfElse();
+        if ((res && !except) || (!res && except)) {
             if (!this._thenViewRef) {
                 this._viewContainer.clear();
                 this._elseViewRef = null;
-                if (this._thenTemplateRef) {
-                    this._thenViewRef = this._viewContainer.createEmbeddedView(this._thenTemplateRef);
+                if (then) {
+                    this._thenViewRef = this._viewContainer.createEmbeddedView(then);
                 }
             }
         }
@@ -252,17 +234,14 @@ class ACLIfDirective {
             if (!this._elseViewRef) {
                 this._viewContainer.clear();
                 this._thenViewRef = null;
-                if (this._elseTemplateRef) {
-                    this._elseViewRef = this._viewContainer.createEmbeddedView(this._elseTemplateRef);
+                if (els) {
+                    this._elseViewRef = this._viewContainer.createEmbeddedView(els);
                 }
             }
         }
     }
-    ngOnDestroy() {
-        this._change$.unsubscribe();
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ACLIfDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: ACLIfDirective, isStandalone: true, selector: "[aclIf]", inputs: { aclIf: "aclIf", aclIfThen: "aclIfThen", aclIfElse: "aclIfElse", except: "except" }, exportAs: ["aclIf"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: ACLIfDirective, isStandalone: true, selector: "[aclIf]", inputs: { aclIf: { classPropertyName: "aclIf", publicName: "aclIf", isSignal: true, isRequired: true, transformFunction: null }, aclIfThen: { classPropertyName: "aclIfThen", publicName: "aclIfThen", isSignal: true, isRequired: false, transformFunction: null }, aclIfElse: { classPropertyName: "aclIfElse", publicName: "aclIfElse", isSignal: true, isRequired: false, transformFunction: null }, except: { classPropertyName: "except", publicName: "except", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["aclIf"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ACLIfDirective, decorators: [{
             type: Directive,
@@ -270,27 +249,20 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     selector: '[aclIf]',
                     exportAs: 'aclIf'
                 }]
-        }], ctorParameters: () => [], propDecorators: { aclIf: [{
-                type: Input
-            }], aclIfThen: [{
-                type: Input
-            }], aclIfElse: [{
-                type: Input
-            }], except: [{
-                type: Input
-            }] } });
+        }], ctorParameters: () => [], propDecorators: { aclIf: [{ type: i0.Input, args: [{ isSignal: true, alias: "aclIf", required: true }] }], aclIfThen: [{ type: i0.Input, args: [{ isSignal: true, alias: "aclIfThen", required: false }] }], aclIfElse: [{ type: i0.Input, args: [{ isSignal: true, alias: "aclIfElse", required: false }] }], except: [{ type: i0.Input, args: [{ isSignal: true, alias: "except", required: false }] }] } });
 
 class ACLDirective {
     el = inject(ElementRef).nativeElement;
     renderer = inject(Renderer2);
     srv = inject(ACLService);
     _value;
-    change$;
-    set acl(value) {
-        this.set(value);
-    }
-    set ability(value) {
-        this.set(this.srv.parseAbility(value));
+    acl = input(undefined, { ...(ngDevMode ? { debugName: "acl" } : {}), transform: (v) => this.set(v) });
+    ability = input(undefined, { ...(ngDevMode ? { debugName: "ability" } : {}), alias: 'acl-ability',
+        transform: (v) => this.set(this.srv.parseAbility(v)) });
+    constructor() {
+        this.srv.change
+            .pipe(takeUntilDestroyed(), filter(r => r != null))
+            .subscribe(() => this.set(this._value));
     }
     set(value) {
         this._value = value;
@@ -303,16 +275,8 @@ class ACLDirective {
             this.renderer.addClass(el, CLS);
         }
     }
-    constructor() {
-        this.change$ = this.srv.change
-            .pipe(takeUntilDestroyed(), filter(r => r != null))
-            .subscribe(() => this.set(this._value));
-    }
-    ngOnDestroy() {
-        this.change$.unsubscribe();
-    }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ACLDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: ACLDirective, isStandalone: true, selector: "[acl]", inputs: { acl: "acl", ability: ["acl-ability", "ability"] }, exportAs: ["acl"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: ACLDirective, isStandalone: true, selector: "[acl]", inputs: { acl: { classPropertyName: "acl", publicName: "acl", isSignal: true, isRequired: false, transformFunction: null }, ability: { classPropertyName: "ability", publicName: "acl-ability", isSignal: true, isRequired: false, transformFunction: null } }, exportAs: ["acl"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ACLDirective, decorators: [{
             type: Directive,
@@ -320,13 +284,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     selector: '[acl]',
                     exportAs: 'acl'
                 }]
-        }], ctorParameters: () => [], propDecorators: { acl: [{
-                type: Input,
-                args: ['acl']
-            }], ability: [{
-                type: Input,
-                args: ['acl-ability']
-            }] } });
+        }], ctorParameters: () => [], propDecorators: { acl: [{ type: i0.Input, args: [{ isSignal: true, alias: "acl", required: false }] }], ability: [{ type: i0.Input, args: [{ isSignal: true, alias: "acl-ability", required: false }] }] } });
 
 /**
  * NOTE：`ACLType` 类型可能会被其他类库所引用，为了减少类库间彼此的依赖性，其他类库会以复制的形式存在
