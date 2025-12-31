@@ -343,18 +343,224 @@ class LayoutDefaultNavComponent {
         this.settings.setLayout('collapsed', status);
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultNavComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: LayoutDefaultNavComponent, isStandalone: false, selector: "layout-default-nav", inputs: { disabledAcl: ["disabledAcl", "disabledAcl", booleanAttribute], autoCloseUnderPad: ["autoCloseUnderPad", "autoCloseUnderPad", booleanAttribute], recursivePath: ["recursivePath", "recursivePath", booleanAttribute], hideEmptyChildren: ["hideEmptyChildren", "hideEmptyChildren", booleanAttribute], openStrictly: ["openStrictly", "openStrictly", booleanAttribute], maxLevelIcon: ["maxLevelIcon", "maxLevelIcon", numberAttribute] }, outputs: { select: "select" }, host: { listeners: { "click": "_click()", "document:click": "closeSubMenu()" }, properties: { "class.d-block": "true" } }, ngImport: i0, template: "<ng-template #icon let-i>\n  @if (i) {\n    @switch (i.type) {\n      @case ('icon') {\n        <nz-icon\n          class=\"sidebar-nav__item-icon\"\n          [nzType]=\"i.value\"\n          [nzTheme]=\"i.theme\"\n          [nzSpin]=\"i.spin\"\n          [nzTwotoneColor]=\"i.twoToneColor\"\n          [nzIconfont]=\"i.iconfont\"\n          [nzRotate]=\"i.rotate\"\n        />\n      }\n      @case ('iconfont') {\n        <nz-icon class=\"sidebar-nav__item-icon\" [nzIconfont]=\"i.iconfont\" />\n      }\n      @case ('img') {\n        <img [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n      }\n      @case ('svg') {\n        <span class=\"sidebar-nav__item-icon sidebar-nav__item-svg\" [innerHTML]=\"i.value\"></span>\n      }\n      @default {\n        <i class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n      }\n    }\n  }\n</ng-template>\n<ng-template #tree let-ls>\n  @for (i of ls; track $index) {\n    @if (i._hidden !== true) {\n      @if (i.render_type === 'divider') {\n        <li class=\"sidebar-nav__divider\"></li>\n      }@else {\n        <li class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i.open\">\n          <!-- link -->\n          @if (i.children.length === 0) {\n            <a\n              (click)=\"to(i)\"\n              [attr.data-id]=\"i._id\"\n              class=\"sidebar-nav__item-link\"\n              [class.sidebar-nav__item-disabled]=\"i.disabled\"\n              (mouseenter)=\"closeSubMenu()\"\n            >\n              @if (i._needIcon) {\n                @if (collapsed) {\n                  <span nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n                    <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n                  </span>\n                } @else {\n                  <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n                }\n              }\n              <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n            </a>\n          }\n          <!-- has children link -->\n          @if (i.children.length > 0) {\n            <a (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n              <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n              <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n              <i class=\"sidebar-nav__sub-arrow\"></i>\n            </a>\n          }\n          <!-- badge -->\n          @if (i.badge) {\n            <nz-badge\n              [nzCount]=\"i.badge\"\n              [nzDot]=\"i.badgeDot\"\n              nzStandalone\n              [nzOverflowCount]=\"i.badgeOverflowCount ? i.badgeOverflowCount : 9\"\n            />\n          }\n          @if (i.children.length > 0) {\n            <ul class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n              <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\" />\n            </ul>\n          }\n        </li>\n      }\n    }\n  }\n</ng-template>\n<ul class=\"sidebar-nav\">\n  @for (group of list; track $index) {\n    @if (group.group) {\n      <li class=\"sidebar-nav__item sidebar-nav__group-title\">\n        <span [innerHTML]=\"group._text\"></span>\n      </li>\n    }\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\" />\n  }\n</ul>\n", dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i2.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i4.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: LayoutDefaultNavComponent, isStandalone: false, selector: "layout-default-nav", inputs: { disabledAcl: ["disabledAcl", "disabledAcl", booleanAttribute], autoCloseUnderPad: ["autoCloseUnderPad", "autoCloseUnderPad", booleanAttribute], recursivePath: ["recursivePath", "recursivePath", booleanAttribute], hideEmptyChildren: ["hideEmptyChildren", "hideEmptyChildren", booleanAttribute], openStrictly: ["openStrictly", "openStrictly", booleanAttribute], maxLevelIcon: ["maxLevelIcon", "maxLevelIcon", numberAttribute] }, outputs: { select: "select" }, host: { listeners: { "click": "_click()", "document:click": "closeSubMenu()" }, classAttribute: "d-block" }, ngImport: i0, template: `
+    <ng-template #icon let-i>
+      @if (i) {
+        @switch (i.type) {
+          @case ('icon') {
+            <nz-icon
+              class="sidebar-nav__item-icon"
+              [nzType]="i.value"
+              [nzTheme]="i.theme"
+              [nzSpin]="i.spin"
+              [nzTwotoneColor]="i.twoToneColor"
+              [nzIconfont]="i.iconfont"
+              [nzRotate]="i.rotate"
+            />
+          }
+          @case ('iconfont') {
+            <nz-icon class="sidebar-nav__item-icon" [nzIconfont]="i.iconfont" />
+          }
+          @case ('img') {
+            <img [src]="i.value" class="sidebar-nav__item-icon sidebar-nav__item-img" />
+          }
+          @case ('svg') {
+            <span class="sidebar-nav__item-icon sidebar-nav__item-svg" [innerHTML]="i.value"></span>
+          }
+          @default {
+            <i class="sidebar-nav__item-icon {{ i.value }}"></i>
+          }
+        }
+      }
+    </ng-template>
+    <ng-template #tree let-ls>
+      @for (i of ls; track $index) {
+        @if (i._hidden !== true) {
+          @if (i.render_type === 'divider') {
+            <li class="sidebar-nav__divider"></li>
+          } @else {
+            <li
+              class="sidebar-nav__item"
+              [class.sidebar-nav__selected]="i._selected"
+              [class.sidebar-nav__open]="i.open"
+            >
+              <!-- link -->
+              @if (i.children.length === 0) {
+                <a
+                  (click)="to(i)"
+                  [attr.data-id]="i._id"
+                  class="sidebar-nav__item-link"
+                  [class.sidebar-nav__item-disabled]="i.disabled"
+                  (mouseenter)="closeSubMenu()"
+                >
+                  @if (i._needIcon) {
+                    @if (collapsed) {
+                      <span nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="i.text">
+                        <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                      </span>
+                    } @else {
+                      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                    }
+                  }
+                  <span class="sidebar-nav__item-text" [innerHTML]="i._text" [attr.title]="i.text"></span>
+                </a>
+              }
+              <!-- has children link -->
+              @if (i.children.length > 0) {
+                <a (click)="toggleOpen(i)" (mouseenter)="showSubMenu($event, i)" class="sidebar-nav__item-link">
+                  <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                  <span class="sidebar-nav__item-text" [innerHTML]="i._text" [attr.title]="i.text"></span>
+                  <i class="sidebar-nav__sub-arrow"></i>
+                </a>
+              }
+              <!-- badge -->
+              @if (i.badge) {
+                <nz-badge
+                  [nzCount]="i.badge"
+                  [nzDot]="i.badgeDot"
+                  nzStandalone
+                  [nzOverflowCount]="i.badgeOverflowCount ? i.badgeOverflowCount : 9"
+                />
+              }
+              @if (i.children.length > 0) {
+                <ul class="sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}">
+                  <ng-template [ngTemplateOutlet]="tree" [ngTemplateOutletContext]="{ $implicit: i.children }" />
+                </ul>
+              }
+            </li>
+          }
+        }
+      }
+    </ng-template>
+    <ul class="sidebar-nav">
+      @for (group of list; track $index) {
+        @if (group.group) {
+          <li class="sidebar-nav__item sidebar-nav__group-title">
+            <span [innerHTML]="group._text"></span>
+          </li>
+        }
+        <ng-template [ngTemplateOutlet]="tree" [ngTemplateOutletContext]="{ $implicit: group.children }" />
+      }
+    </ul>
+  `, isInline: true, dependencies: [{ kind: "directive", type: i1.NgTemplateOutlet, selector: "[ngTemplateOutlet]", inputs: ["ngTemplateOutletContext", "ngTemplateOutlet", "ngTemplateOutletInjector"] }, { kind: "directive", type: i2.NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }, { kind: "directive", type: i3.NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }, { kind: "component", type: i4.NzBadgeComponent, selector: "nz-badge", inputs: ["nzShowZero", "nzShowDot", "nzStandalone", "nzDot", "nzOverflowCount", "nzColor", "nzStyle", "nzText", "nzTitle", "nzStatus", "nzCount", "nzOffset", "nzSize"], exportAs: ["nzBadge"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 __decorate([
     ZoneOutside()
 ], LayoutDefaultNavComponent.prototype, "showSubMenu", null);
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultNavComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'layout-default-nav', host: {
+            args: [{
+                    selector: 'layout-default-nav',
+                    template: `
+    <ng-template #icon let-i>
+      @if (i) {
+        @switch (i.type) {
+          @case ('icon') {
+            <nz-icon
+              class="sidebar-nav__item-icon"
+              [nzType]="i.value"
+              [nzTheme]="i.theme"
+              [nzSpin]="i.spin"
+              [nzTwotoneColor]="i.twoToneColor"
+              [nzIconfont]="i.iconfont"
+              [nzRotate]="i.rotate"
+            />
+          }
+          @case ('iconfont') {
+            <nz-icon class="sidebar-nav__item-icon" [nzIconfont]="i.iconfont" />
+          }
+          @case ('img') {
+            <img [src]="i.value" class="sidebar-nav__item-icon sidebar-nav__item-img" />
+          }
+          @case ('svg') {
+            <span class="sidebar-nav__item-icon sidebar-nav__item-svg" [innerHTML]="i.value"></span>
+          }
+          @default {
+            <i class="sidebar-nav__item-icon {{ i.value }}"></i>
+          }
+        }
+      }
+    </ng-template>
+    <ng-template #tree let-ls>
+      @for (i of ls; track $index) {
+        @if (i._hidden !== true) {
+          @if (i.render_type === 'divider') {
+            <li class="sidebar-nav__divider"></li>
+          } @else {
+            <li
+              class="sidebar-nav__item"
+              [class.sidebar-nav__selected]="i._selected"
+              [class.sidebar-nav__open]="i.open"
+            >
+              <!-- link -->
+              @if (i.children.length === 0) {
+                <a
+                  (click)="to(i)"
+                  [attr.data-id]="i._id"
+                  class="sidebar-nav__item-link"
+                  [class.sidebar-nav__item-disabled]="i.disabled"
+                  (mouseenter)="closeSubMenu()"
+                >
+                  @if (i._needIcon) {
+                    @if (collapsed) {
+                      <span nz-tooltip nzTooltipPlacement="right" [nzTooltipTitle]="i.text">
+                        <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                      </span>
+                    } @else {
+                      <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                    }
+                  }
+                  <span class="sidebar-nav__item-text" [innerHTML]="i._text" [attr.title]="i.text"></span>
+                </a>
+              }
+              <!-- has children link -->
+              @if (i.children.length > 0) {
+                <a (click)="toggleOpen(i)" (mouseenter)="showSubMenu($event, i)" class="sidebar-nav__item-link">
+                  <ng-template [ngTemplateOutlet]="icon" [ngTemplateOutletContext]="{ $implicit: i.icon }" />
+                  <span class="sidebar-nav__item-text" [innerHTML]="i._text" [attr.title]="i.text"></span>
+                  <i class="sidebar-nav__sub-arrow"></i>
+                </a>
+              }
+              <!-- badge -->
+              @if (i.badge) {
+                <nz-badge
+                  [nzCount]="i.badge"
+                  [nzDot]="i.badgeDot"
+                  nzStandalone
+                  [nzOverflowCount]="i.badgeOverflowCount ? i.badgeOverflowCount : 9"
+                />
+              }
+              @if (i.children.length > 0) {
+                <ul class="sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}">
+                  <ng-template [ngTemplateOutlet]="tree" [ngTemplateOutletContext]="{ $implicit: i.children }" />
+                </ul>
+              }
+            </li>
+          }
+        }
+      }
+    </ng-template>
+    <ul class="sidebar-nav">
+      @for (group of list; track $index) {
+        @if (group.group) {
+          <li class="sidebar-nav__item sidebar-nav__group-title">
+            <span [innerHTML]="group._text"></span>
+          </li>
+        }
+        <ng-template [ngTemplateOutlet]="tree" [ngTemplateOutletContext]="{ $implicit: group.children }" />
+      }
+    </ul>
+  `,
+                    host: {
+                        class: 'd-block',
                         '(click)': '_click()',
-                        '(document:click)': 'closeSubMenu()',
-                        '[class.d-block]': `true`
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, encapsulation: ViewEncapsulation.None, standalone: false, template: "<ng-template #icon let-i>\n  @if (i) {\n    @switch (i.type) {\n      @case ('icon') {\n        <nz-icon\n          class=\"sidebar-nav__item-icon\"\n          [nzType]=\"i.value\"\n          [nzTheme]=\"i.theme\"\n          [nzSpin]=\"i.spin\"\n          [nzTwotoneColor]=\"i.twoToneColor\"\n          [nzIconfont]=\"i.iconfont\"\n          [nzRotate]=\"i.rotate\"\n        />\n      }\n      @case ('iconfont') {\n        <nz-icon class=\"sidebar-nav__item-icon\" [nzIconfont]=\"i.iconfont\" />\n      }\n      @case ('img') {\n        <img [src]=\"i.value\" class=\"sidebar-nav__item-icon sidebar-nav__item-img\" />\n      }\n      @case ('svg') {\n        <span class=\"sidebar-nav__item-icon sidebar-nav__item-svg\" [innerHTML]=\"i.value\"></span>\n      }\n      @default {\n        <i class=\"sidebar-nav__item-icon {{ i.value }}\"></i>\n      }\n    }\n  }\n</ng-template>\n<ng-template #tree let-ls>\n  @for (i of ls; track $index) {\n    @if (i._hidden !== true) {\n      @if (i.render_type === 'divider') {\n        <li class=\"sidebar-nav__divider\"></li>\n      }@else {\n        <li class=\"sidebar-nav__item\" [class.sidebar-nav__selected]=\"i._selected\" [class.sidebar-nav__open]=\"i.open\">\n          <!-- link -->\n          @if (i.children.length === 0) {\n            <a\n              (click)=\"to(i)\"\n              [attr.data-id]=\"i._id\"\n              class=\"sidebar-nav__item-link\"\n              [class.sidebar-nav__item-disabled]=\"i.disabled\"\n              (mouseenter)=\"closeSubMenu()\"\n            >\n              @if (i._needIcon) {\n                @if (collapsed) {\n                  <span nz-tooltip nzTooltipPlacement=\"right\" [nzTooltipTitle]=\"i.text\">\n                    <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n                  </span>\n                } @else {\n                  <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n                }\n              }\n              <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n            </a>\n          }\n          <!-- has children link -->\n          @if (i.children.length > 0) {\n            <a (click)=\"toggleOpen(i)\" (mouseenter)=\"showSubMenu($event, i)\" class=\"sidebar-nav__item-link\">\n              <ng-template [ngTemplateOutlet]=\"icon\" [ngTemplateOutletContext]=\"{ $implicit: i.icon }\" />\n              <span class=\"sidebar-nav__item-text\" [innerHTML]=\"i._text\" [attr.title]=\"i.text\"></span>\n              <i class=\"sidebar-nav__sub-arrow\"></i>\n            </a>\n          }\n          <!-- badge -->\n          @if (i.badge) {\n            <nz-badge\n              [nzCount]=\"i.badge\"\n              [nzDot]=\"i.badgeDot\"\n              nzStandalone\n              [nzOverflowCount]=\"i.badgeOverflowCount ? i.badgeOverflowCount : 9\"\n            />\n          }\n          @if (i.children.length > 0) {\n            <ul class=\"sidebar-nav sidebar-nav__sub sidebar-nav__depth{{ i._depth }}\">\n              <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: i.children }\" />\n            </ul>\n          }\n        </li>\n      }\n    }\n  }\n</ng-template>\n<ul class=\"sidebar-nav\">\n  @for (group of list; track $index) {\n    @if (group.group) {\n      <li class=\"sidebar-nav__item sidebar-nav__group-title\">\n        <span [innerHTML]=\"group._text\"></span>\n      </li>\n    }\n    <ng-template [ngTemplateOutlet]=\"tree\" [ngTemplateOutletContext]=\"{ $implicit: group.children }\" />\n  }\n</ul>\n" }]
+                        '(document:click)': 'closeSubMenu()'
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    encapsulation: ViewEncapsulation.None,
+                    // eslint-disable-next-line @angular-eslint/prefer-standalone
+                    standalone: false
+                }]
         }], propDecorators: { disabledAcl: [{
                 type: Input,
                 args: [{ transform: booleanAttribute }]
@@ -692,15 +898,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
 
 class LayoutDefaultHeaderItemTriggerDirective {
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: LayoutDefaultHeaderItemTriggerDirective, isStandalone: false, selector: "[layout-default-header-item-trigger]", host: { properties: { "class.alain-default__nav-item": "true" } }, ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: LayoutDefaultHeaderItemTriggerDirective, isStandalone: false, selector: "[layout-default-header-item-trigger]", host: { classAttribute: "alain-default__nav-item" }, ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: LayoutDefaultHeaderItemTriggerDirective, decorators: [{
             type: Directive,
             args: [{
                     selector: '[layout-default-header-item-trigger]',
-                    host: {
-                        '[class.alain-default__nav-item]': `true`
-                    },
+                    host: { class: 'alain-default__nav-item' },
                     // eslint-disable-next-line @angular-eslint/prefer-standalone
                     standalone: false
                 }]

@@ -2,7 +2,7 @@ import { Directionality } from '@angular/cdk/bidi';
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { InjectionToken, inject, Renderer2, isDevMode, EventEmitter, Output, Input, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { InjectionToken, inject, Renderer2, isDevMode, input, output, afterNextRender, ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
 import { AlainConfigService } from '@delon/util/config';
 import { NzDropdownDirective, NzDropdownMenuComponent, NzDropdownModule } from 'ng-zorro-antd/dropdown';
 import { NzMenuDirective, NzMenuItemComponent } from 'ng-zorro-antd/menu';
@@ -14,20 +14,20 @@ class ThemeBtnComponent {
     platform = inject(Platform);
     renderer = inject(Renderer2);
     configSrv = inject(AlainConfigService);
+    dir = inject(Directionality).valueSignal;
+    key = inject(ALAIN_THEME_BTN_KEYS, { optional: true }) ?? 'site-theme';
     theme = 'default';
     isDev = isDevMode();
-    types = [
+    types = input([
         { key: 'default', text: 'Default Theme' },
         { key: 'dark', text: 'Dark Theme' },
         { key: 'compact', text: 'Compact Theme' }
-    ];
-    devTips = `When the dark.css file can't be found, you need to run it once: npm run theme`;
-    deployUrl = '';
-    themeChange = new EventEmitter();
-    dir = inject(Directionality).valueSignal;
-    key = inject(ALAIN_THEME_BTN_KEYS, { optional: true }) ?? 'site-theme';
-    ngOnInit() {
-        this.initTheme();
+    ], ...(ngDevMode ? [{ debugName: "types" }] : []));
+    devTips = input(`When the dark.css file can't be found, you need to run it once: npm run theme`, ...(ngDevMode ? [{ debugName: "devTips" }] : []));
+    deployUrl = input('', ...(ngDevMode ? [{ debugName: "deployUrl" }] : []));
+    themeChange = output();
+    constructor() {
+        afterNextRender(() => this.initTheme());
     }
     initTheme() {
         if (!this.platform.isBrowser) {
@@ -57,7 +57,7 @@ class ThemeBtnComponent {
             el.type = 'text/css';
             el.rel = 'stylesheet';
             el.id = this.key;
-            el.href = `${this.deployUrl}assets/style.${theme}.css`;
+            el.href = `${this.deployUrl()}assets/style.${theme}.css`;
             localStorage.setItem(this.key, theme);
             this.doc.body.append(el);
         }
@@ -70,23 +70,87 @@ class ThemeBtnComponent {
         }
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ThemeBtnComponent, isStandalone: true, selector: "theme-btn", inputs: { types: "types", devTips: "devTips", deployUrl: "deployUrl" }, outputs: { themeChange: "themeChange" }, host: { properties: { "class.theme-btn": "true", "class.theme-btn-rtl": "dir() === 'rtl'" } }, ngImport: i0, template: "<div\n  class=\"ant-avatar ant-avatar-circle ant-avatar-icon\"\n  nz-dropdown\n  nzPlacement=\"topCenter\"\n  [nzDropdownMenu]=\"types.length > 0 ? menu : null\"\n>\n  <svg\n    nz-tooltip\n    [nzTooltipTitle]=\"isDev ? devTips : null\"\n    class=\"anticon\"\n    role=\"img\"\n    width=\"21\"\n    height=\"21\"\n    viewBox=\"0 0 21 21\"\n    fill=\"currentColor\"\n  >\n    <g fill-rule=\"evenodd\">\n      <g fill-rule=\"nonzero\">\n        <path\n          d=\"M7.02 3.635l12.518 12.518a1.863 1.863 0 010 2.635l-1.317 1.318a1.863 1.863 0 01-2.635 0L3.068 7.588A2.795 2.795 0 117.02 3.635zm2.09 14.428a.932.932 0 110 1.864.932.932 0 010-1.864zm-.043-9.747L7.75 9.635l9.154 9.153 1.318-1.317-9.154-9.155zM3.52 12.473c.514 0 .931.417.931.931v.932h.932a.932.932 0 110 1.864h-.932v.931a.932.932 0 01-1.863 0l-.001-.931h-.93a.932.932 0 010-1.864h.93v-.932c0-.514.418-.931.933-.931zm15.374-3.727a1.398 1.398 0 110 2.795 1.398 1.398 0 010-2.795zM4.385 4.953a.932.932 0 000 1.317l2.046 2.047L7.75 7 5.703 4.953a.932.932 0 00-1.318 0zM14.701.36a.932.932 0 01.931.932v.931h.932a.932.932 0 010 1.864h-.933l.001.932a.932.932 0 11-1.863 0l-.001-.932h-.93a.932.932 0 110-1.864h.93v-.931a.932.932 0 01.933-.932z\"\n        />\n      </g>\n    </g>\n  </svg>\n  <nz-dropdown-menu #menu=\"nzDropdownMenu\">\n    <ul nz-menu nzSelectable>\n      @for (i of types; track $index) {\n        <li nz-menu-item (click)=\"onThemeChange(i.key)\">{{ i.text }}</li>\n      }\n    </ul>\n  </nz-dropdown-menu>\n</div>\n", dependencies: [{ kind: "directive", type: NzDropdownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzArrow", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ThemeBtnComponent, isStandalone: true, selector: "theme-btn", inputs: { types: { classPropertyName: "types", publicName: "types", isSignal: true, isRequired: false, transformFunction: null }, devTips: { classPropertyName: "devTips", publicName: "devTips", isSignal: true, isRequired: false, transformFunction: null }, deployUrl: { classPropertyName: "deployUrl", publicName: "deployUrl", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { themeChange: "themeChange" }, host: { properties: { "class.theme-btn-rtl": "dir() === 'rtl'" }, classAttribute: "theme-btn" }, ngImport: i0, template: `
+    <div
+      class="ant-avatar ant-avatar-circle ant-avatar-icon"
+      nz-dropdown
+      nzPlacement="topCenter"
+      [nzDropdownMenu]="types().length > 0 ? menu : null"
+    >
+      <svg
+        nz-tooltip
+        [nzTooltipTitle]="isDev ? devTips() : null"
+        class="anticon"
+        role="img"
+        width="21"
+        height="21"
+        viewBox="0 0 21 21"
+        fill="currentColor"
+      >
+        <g fill-rule="evenodd">
+          <g fill-rule="nonzero">
+            <path
+              d="M7.02 3.635l12.518 12.518a1.863 1.863 0 010 2.635l-1.317 1.318a1.863 1.863 0 01-2.635 0L3.068 7.588A2.795 2.795 0 117.02 3.635zm2.09 14.428a.932.932 0 110 1.864.932.932 0 010-1.864zm-.043-9.747L7.75 9.635l9.154 9.153 1.318-1.317-9.154-9.155zM3.52 12.473c.514 0 .931.417.931.931v.932h.932a.932.932 0 110 1.864h-.932v.931a.932.932 0 01-1.863 0l-.001-.931h-.93a.932.932 0 010-1.864h.93v-.932c0-.514.418-.931.933-.931zm15.374-3.727a1.398 1.398 0 110 2.795 1.398 1.398 0 010-2.795zM4.385 4.953a.932.932 0 000 1.317l2.046 2.047L7.75 7 5.703 4.953a.932.932 0 00-1.318 0zM14.701.36a.932.932 0 01.931.932v.931h.932a.932.932 0 010 1.864h-.933l.001.932a.932.932 0 11-1.863 0l-.001-.932h-.93a.932.932 0 110-1.864h.93v-.931a.932.932 0 01.933-.932z"
+            />
+          </g>
+        </g>
+      </svg>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          @for (i of types(); track $index) {
+            <li nz-menu-item (click)="onThemeChange(i.key)">{{ i.text }}</li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  `, isInline: true, dependencies: [{ kind: "directive", type: NzDropdownDirective, selector: "[nz-dropdown]", inputs: ["nzDropdownMenu", "nzTrigger", "nzMatchWidthElement", "nzBackdrop", "nzClickHide", "nzDisabled", "nzVisible", "nzArrow", "nzOverlayClassName", "nzOverlayStyle", "nzPlacement"], outputs: ["nzVisibleChange"], exportAs: ["nzDropdown"] }, { kind: "component", type: NzDropdownMenuComponent, selector: "nz-dropdown-menu", exportAs: ["nzDropdownMenu"] }, { kind: "directive", type: NzMenuDirective, selector: "[nz-menu]", inputs: ["nzInlineIndent", "nzTheme", "nzMode", "nzInlineCollapsed", "nzSelectable"], outputs: ["nzClick"], exportAs: ["nzMenu"] }, { kind: "component", type: NzMenuItemComponent, selector: "[nz-menu-item]", inputs: ["nzPaddingLeft", "nzDisabled", "nzSelected", "nzDanger", "nzMatchRouterExact", "nzMatchRouter"], exportAs: ["nzMenuItem"] }, { kind: "directive", type: NzTooltipDirective, selector: "[nz-tooltip]", inputs: ["nzTooltipTitle", "nzTooltipTitleContext", "nz-tooltip", "nzTooltipTrigger", "nzTooltipPlacement", "nzTooltipOrigin", "nzTooltipVisible", "nzTooltipMouseEnterDelay", "nzTooltipMouseLeaveDelay", "nzTooltipOverlayClassName", "nzTooltipOverlayStyle", "nzTooltipArrowPointAtCenter", "cdkConnectedOverlayPush", "nzTooltipColor"], outputs: ["nzTooltipVisibleChange"], exportAs: ["nzTooltip"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ThemeBtnComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'theme-btn', host: {
-                        '[class.theme-btn]': `true`,
+            args: [{
+                    selector: 'theme-btn',
+                    template: `
+    <div
+      class="ant-avatar ant-avatar-circle ant-avatar-icon"
+      nz-dropdown
+      nzPlacement="topCenter"
+      [nzDropdownMenu]="types().length > 0 ? menu : null"
+    >
+      <svg
+        nz-tooltip
+        [nzTooltipTitle]="isDev ? devTips() : null"
+        class="anticon"
+        role="img"
+        width="21"
+        height="21"
+        viewBox="0 0 21 21"
+        fill="currentColor"
+      >
+        <g fill-rule="evenodd">
+          <g fill-rule="nonzero">
+            <path
+              d="M7.02 3.635l12.518 12.518a1.863 1.863 0 010 2.635l-1.317 1.318a1.863 1.863 0 01-2.635 0L3.068 7.588A2.795 2.795 0 117.02 3.635zm2.09 14.428a.932.932 0 110 1.864.932.932 0 010-1.864zm-.043-9.747L7.75 9.635l9.154 9.153 1.318-1.317-9.154-9.155zM3.52 12.473c.514 0 .931.417.931.931v.932h.932a.932.932 0 110 1.864h-.932v.931a.932.932 0 01-1.863 0l-.001-.931h-.93a.932.932 0 010-1.864h.93v-.932c0-.514.418-.931.933-.931zm15.374-3.727a1.398 1.398 0 110 2.795 1.398 1.398 0 010-2.795zM4.385 4.953a.932.932 0 000 1.317l2.046 2.047L7.75 7 5.703 4.953a.932.932 0 00-1.318 0zM14.701.36a.932.932 0 01.931.932v.931h.932a.932.932 0 010 1.864h-.933l.001.932a.932.932 0 11-1.863 0l-.001-.932h-.93a.932.932 0 110-1.864h.93v-.931a.932.932 0 01.933-.932z"
+            />
+          </g>
+        </g>
+      </svg>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <ul nz-menu nzSelectable>
+          @for (i of types(); track $index) {
+            <li nz-menu-item (click)="onThemeChange(i.key)">{{ i.text }}</li>
+          }
+        </ul>
+      </nz-dropdown-menu>
+    </div>
+  `,
+                    host: {
+                        class: 'theme-btn',
                         '[class.theme-btn-rtl]': `dir() === 'rtl'`
-                    }, changeDetection: ChangeDetectionStrategy.OnPush, imports: [NzDropdownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent, NzTooltipDirective], template: "<div\n  class=\"ant-avatar ant-avatar-circle ant-avatar-icon\"\n  nz-dropdown\n  nzPlacement=\"topCenter\"\n  [nzDropdownMenu]=\"types.length > 0 ? menu : null\"\n>\n  <svg\n    nz-tooltip\n    [nzTooltipTitle]=\"isDev ? devTips : null\"\n    class=\"anticon\"\n    role=\"img\"\n    width=\"21\"\n    height=\"21\"\n    viewBox=\"0 0 21 21\"\n    fill=\"currentColor\"\n  >\n    <g fill-rule=\"evenodd\">\n      <g fill-rule=\"nonzero\">\n        <path\n          d=\"M7.02 3.635l12.518 12.518a1.863 1.863 0 010 2.635l-1.317 1.318a1.863 1.863 0 01-2.635 0L3.068 7.588A2.795 2.795 0 117.02 3.635zm2.09 14.428a.932.932 0 110 1.864.932.932 0 010-1.864zm-.043-9.747L7.75 9.635l9.154 9.153 1.318-1.317-9.154-9.155zM3.52 12.473c.514 0 .931.417.931.931v.932h.932a.932.932 0 110 1.864h-.932v.931a.932.932 0 01-1.863 0l-.001-.931h-.93a.932.932 0 010-1.864h.93v-.932c0-.514.418-.931.933-.931zm15.374-3.727a1.398 1.398 0 110 2.795 1.398 1.398 0 010-2.795zM4.385 4.953a.932.932 0 000 1.317l2.046 2.047L7.75 7 5.703 4.953a.932.932 0 00-1.318 0zM14.701.36a.932.932 0 01.931.932v.931h.932a.932.932 0 010 1.864h-.933l.001.932a.932.932 0 11-1.863 0l-.001-.932h-.93a.932.932 0 110-1.864h.93v-.931a.932.932 0 01.933-.932z\"\n        />\n      </g>\n    </g>\n  </svg>\n  <nz-dropdown-menu #menu=\"nzDropdownMenu\">\n    <ul nz-menu nzSelectable>\n      @for (i of types; track $index) {\n        <li nz-menu-item (click)=\"onThemeChange(i.key)\">{{ i.text }}</li>\n      }\n    </ul>\n  </nz-dropdown-menu>\n</div>\n" }]
-        }], propDecorators: { types: [{
-                type: Input
-            }], devTips: [{
-                type: Input
-            }], deployUrl: [{
-                type: Input
-            }], themeChange: [{
-                type: Output
-            }] } });
+                    },
+                    changeDetection: ChangeDetectionStrategy.OnPush,
+                    imports: [NzDropdownDirective, NzDropdownMenuComponent, NzMenuDirective, NzMenuItemComponent, NzTooltipDirective]
+                }]
+        }], ctorParameters: () => [], propDecorators: { types: [{ type: i0.Input, args: [{ isSignal: true, alias: "types", required: false }] }], devTips: [{ type: i0.Input, args: [{ isSignal: true, alias: "devTips", required: false }] }], deployUrl: [{ type: i0.Input, args: [{ isSignal: true, alias: "deployUrl", required: false }] }], themeChange: [{ type: i0.Output, args: ["themeChange"] }] } });
 
 const COMPONENTS = [ThemeBtnComponent];
 class ThemeBtnModule {

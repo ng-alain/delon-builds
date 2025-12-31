@@ -39,13 +39,86 @@ class SettingDrawerItemComponent {
     }
     format = (value) => `${value} px`;
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SettingDrawerItemComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: SettingDrawerItemComponent, isStandalone: true, selector: "setting-drawer-item", inputs: { data: "data" }, host: { properties: { "class.setting-drawer__body-item": "true" } }, ngImport: i0, template: "<span>\n  {{ i.label }}\n  <span class=\"pl-sm text-grey\">{{ i.tip }}</span>\n</span>\n@switch (i.type) {\n  @case ('color') {\n    <input nz-input type=\"color\" style=\"width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @case ('input') {\n    <input nz-input style=\"width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @case ('px') {\n    <nz-input-number\n      [(ngModel)]=\"pxVal\"\n      (ngModelChange)=\"pxChange($event)\"\n      [nzMin]=\"i.min\"\n      [nzMax]=\"i.max\"\n      [nzStep]=\"i.step ?? 2\"\n      [nzFormatter]=\"format\"\n    />\n  }\n  @case ('switch') {\n    <nz-switch nzSize=\"small\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @default {\n    <ng-template nzDrawerContent />\n  }\n}\n", dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzId", "nzSize", "nzPlaceHolder", "nzStatus", "nzVariant", "nzStep", "nzMin", "nzMax", "nzPrecision", "nzParser", "nzFormatter", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzKeyboard", "nzControls", "nzChangeOnWheel", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzBlur", "nzFocus", "nzOnStep"], exportAs: ["nzInputNumber"] }, { kind: "component", type: NzSwitchComponent, selector: "nz-switch", inputs: ["nzLoading", "nzDisabled", "nzControl", "nzCheckedChildren", "nzUnCheckedChildren", "nzSize", "nzId"], exportAs: ["nzSwitch"] }, { kind: "ngmodule", type: NzDrawerModule }, { kind: "directive", type: i2.NzDrawerContentDirective, selector: "[nzDrawerContent]", exportAs: ["nzDrawerContent"] }] });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: SettingDrawerItemComponent, isStandalone: true, selector: "setting-drawer-item", inputs: { data: "data" }, host: { classAttribute: "setting-drawer__body-item" }, ngImport: i0, template: `
+    <span>
+      {{ i.label }}
+      <span class="pl-sm text-grey">{{ i.tip }}</span>
+    </span>
+    @switch (i.type) {
+      @case ('color') {
+        <input
+          nz-input
+          type="color"
+          style="width: 88px"
+          [(ngModel)]="i.value"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      }
+      @case ('input') {
+        <input nz-input style="width: 88px" [(ngModel)]="i.value" [ngModelOptions]="{ standalone: true }" />
+      }
+      @case ('px') {
+        <nz-input-number
+          [(ngModel)]="pxVal"
+          (ngModelChange)="pxChange($event)"
+          [nzMin]="i.min"
+          [nzMax]="i.max"
+          [nzStep]="i.step ?? 2"
+          [nzFormatter]="format"
+        />
+      }
+      @case ('switch') {
+        <nz-switch nzSize="small" [(ngModel)]="i.value" [ngModelOptions]="{ standalone: true }" />
+      }
+      @default {
+        <ng-template nzDrawerContent />
+      }
+    }
+  `, isInline: true, dependencies: [{ kind: "ngmodule", type: FormsModule }, { kind: "directive", type: i1.DefaultValueAccessor, selector: "input:not([type=checkbox])[formControlName],textarea[formControlName],input:not([type=checkbox])[formControl],textarea[formControl],input:not([type=checkbox])[ngModel],textarea[ngModel],[ngDefaultControl]" }, { kind: "directive", type: i1.NgControlStatus, selector: "[formControlName],[ngModel],[formControl]" }, { kind: "directive", type: i1.NgModel, selector: "[ngModel]:not([formControlName]):not([formControl])", inputs: ["name", "disabled", "ngModel", "ngModelOptions"], outputs: ["ngModelChange"], exportAs: ["ngModel"] }, { kind: "directive", type: NzInputDirective, selector: "input[nz-input],textarea[nz-input]", inputs: ["nzVariant", "nzSize", "nzStepperless", "nzStatus", "disabled", "readonly"], exportAs: ["nzInput"] }, { kind: "component", type: NzInputNumberComponent, selector: "nz-input-number", inputs: ["nzId", "nzSize", "nzPlaceHolder", "nzStatus", "nzVariant", "nzStep", "nzMin", "nzMax", "nzPrecision", "nzParser", "nzFormatter", "nzDisabled", "nzReadOnly", "nzAutoFocus", "nzKeyboard", "nzControls", "nzChangeOnWheel", "nzPrefix", "nzSuffix", "nzAddonBefore", "nzAddonAfter"], outputs: ["nzBlur", "nzFocus", "nzOnStep"], exportAs: ["nzInputNumber"] }, { kind: "component", type: NzSwitchComponent, selector: "nz-switch", inputs: ["nzLoading", "nzDisabled", "nzControl", "nzCheckedChildren", "nzUnCheckedChildren", "nzSize", "nzId"], exportAs: ["nzSwitch"] }, { kind: "ngmodule", type: NzDrawerModule }, { kind: "directive", type: i2.NzDrawerContentDirective, selector: "[nzDrawerContent]", exportAs: ["nzDrawerContent"] }] });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SettingDrawerItemComponent, decorators: [{
             type: Component,
-            args: [{ selector: 'setting-drawer-item', host: {
-                        '[class.setting-drawer__body-item]': 'true'
-                    }, imports: [FormsModule, NzInputDirective, NzInputNumberComponent, NzSwitchComponent, NzDrawerModule], template: "<span>\n  {{ i.label }}\n  <span class=\"pl-sm text-grey\">{{ i.tip }}</span>\n</span>\n@switch (i.type) {\n  @case ('color') {\n    <input nz-input type=\"color\" style=\"width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @case ('input') {\n    <input nz-input style=\"width: 88px\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @case ('px') {\n    <nz-input-number\n      [(ngModel)]=\"pxVal\"\n      (ngModelChange)=\"pxChange($event)\"\n      [nzMin]=\"i.min\"\n      [nzMax]=\"i.max\"\n      [nzStep]=\"i.step ?? 2\"\n      [nzFormatter]=\"format\"\n    />\n  }\n  @case ('switch') {\n    <nz-switch nzSize=\"small\" [(ngModel)]=\"i.value\" [ngModelOptions]=\"{ standalone: true }\" />\n  }\n  @default {\n    <ng-template nzDrawerContent />\n  }\n}\n" }]
+            args: [{
+                    selector: 'setting-drawer-item',
+                    template: `
+    <span>
+      {{ i.label }}
+      <span class="pl-sm text-grey">{{ i.tip }}</span>
+    </span>
+    @switch (i.type) {
+      @case ('color') {
+        <input
+          nz-input
+          type="color"
+          style="width: 88px"
+          [(ngModel)]="i.value"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      }
+      @case ('input') {
+        <input nz-input style="width: 88px" [(ngModel)]="i.value" [ngModelOptions]="{ standalone: true }" />
+      }
+      @case ('px') {
+        <nz-input-number
+          [(ngModel)]="pxVal"
+          (ngModelChange)="pxChange($event)"
+          [nzMin]="i.min"
+          [nzMax]="i.max"
+          [nzStep]="i.step ?? 2"
+          [nzFormatter]="format"
+        />
+      }
+      @case ('switch') {
+        <nz-switch nzSize="small" [(ngModel)]="i.value" [ngModelOptions]="{ standalone: true }" />
+      }
+      @default {
+        <ng-template nzDrawerContent />
+      }
+    }
+  `,
+                    host: { class: 'setting-drawer__body-item' },
+                    imports: [FormsModule, NzInputDirective, NzInputNumberComponent, NzSwitchComponent, NzDrawerModule]
+                }]
         }], propDecorators: { data: [{
                 type: Input
             }] } });
