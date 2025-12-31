@@ -16,7 +16,7 @@ declare class ObserverSize {
     private readonly _obs;
     private readonly el;
     private readonly d$;
-    protected readonly event: i0.OutputEmitterRef<MutationRecord[]>;
+    readonly event: i0.OutputEmitterRef<MutationRecord[]>;
     constructor();
     static ɵfac: i0.ɵɵFactoryDeclaration<ObserverSize, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<ObserverSize, "[observeSize]", ["observeSize"], {}, { "event": "observeSize"; }, never, never, true, never>;

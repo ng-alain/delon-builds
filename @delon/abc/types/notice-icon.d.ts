@@ -50,31 +50,31 @@ interface NoticeIconSelect {
 }
 
 declare class NoticeIconTabComponent {
-    locale: _angular_core.InputSignal<LocaleData>;
-    item: _angular_core.InputSignal<NoticeItem>;
+    readonly locale: _angular_core.InputSignal<LocaleData>;
+    readonly item: _angular_core.InputSignal<NoticeItem>;
     readonly select: _angular_core.OutputEmitterRef<NoticeIconSelect>;
     readonly clear: _angular_core.OutputEmitterRef<string>;
-    onClick(item: NoticeItem, event: Event): void;
-    onClear(): void;
+    protected onClick(item: NoticeItem, event: Event): void;
+    protected onClear(): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NoticeIconTabComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<NoticeIconTabComponent, "notice-icon-tab", ["noticeIconTab"], { "locale": { "alias": "locale"; "required": true; "isSignal": true; }; "item": { "alias": "item"; "required": true; "isSignal": true; }; }, { "select": "select"; "clear": "clear"; }, never, never, true, never>;
 }
 
 declare class NoticeIconComponent {
-    locale: _angular_core.Signal<_delon_theme.NoticeIconLocaleData>;
-    data: _angular_core.InputSignal<NoticeItem[]>;
-    count: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
-    loading: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    popoverVisible: _angular_core.InputSignalWithTransform<boolean, unknown>;
-    btnClass: _angular_core.InputSignal<NgClassType | undefined>;
-    btnIconClass: _angular_core.InputSignal<NgClassType | undefined>;
-    centered: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    protected locale: _angular_core.Signal<_delon_theme.NoticeIconLocaleData>;
+    readonly data: _angular_core.InputSignal<NoticeItem[]>;
+    readonly count: _angular_core.InputSignalWithTransform<number | undefined, unknown>;
+    readonly loading: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly popoverVisible: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly btnClass: _angular_core.InputSignal<NgClassType | undefined>;
+    readonly btnIconClass: _angular_core.InputSignal<NgClassType | undefined>;
+    readonly centered: _angular_core.InputSignalWithTransform<boolean, unknown>;
     readonly select: _angular_core.OutputEmitterRef<NoticeIconSelect>;
     readonly clear: _angular_core.OutputEmitterRef<string>;
     readonly popoverVisibleChange: _angular_core.OutputEmitterRef<boolean>;
-    overlayCls: _angular_core.WritableSignal<string>;
+    protected overlayCls: _angular_core.WritableSignal<string>;
     constructor();
-    delayShow: _angular_core.WritableSignal<boolean>;
+    protected delayShow: _angular_core.WritableSignal<boolean>;
     onVisibleChange(result: boolean): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<NoticeIconComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<NoticeIconComponent, "notice-icon", ["noticeIcon"], { "data": { "alias": "data"; "required": false; "isSignal": true; }; "count": { "alias": "count"; "required": false; "isSignal": true; }; "loading": { "alias": "loading"; "required": false; "isSignal": true; }; "popoverVisible": { "alias": "popoverVisible"; "required": false; "isSignal": true; }; "btnClass": { "alias": "btnClass"; "required": false; "isSignal": true; }; "btnIconClass": { "alias": "btnIconClass"; "required": false; "isSignal": true; }; "centered": { "alias": "centered"; "required": false; "isSignal": true; }; }, { "select": "select"; "clear": "clear"; "popoverVisibleChange": "popoverVisibleChange"; }, never, never, true, never>;
