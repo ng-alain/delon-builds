@@ -1658,6 +1658,9 @@ var zhCN = {
         lastMonth: '上个月',
         thisYear: '今年'
     },
+    loading: {
+        text: '加载中...'
+    },
     pageHeader: {
         home: '首页'
     }
@@ -1812,6 +1815,9 @@ var enUS = {
         lastMonth: 'Last Month',
         thisYear: 'This Year'
     },
+    loading: {
+        text: 'Loading...'
+    },
     pageHeader: {
         home: 'Home'
     }
@@ -1909,6 +1915,9 @@ var zhHK = {
         thisMonth: '本月',
         lastMonth: '上個月',
         thisYear: '今年'
+    },
+    loading: {
+        text: '加載中...'
     },
     pageHeader: {
         home: '主頁'
@@ -2008,6 +2017,9 @@ var zhTW = {
         lastMonth: '上個月',
         thisYear: '今年'
     },
+    loading: {
+        text: '加載中...'
+    },
     pageHeader: {
         home: '首頁'
     }
@@ -2105,6 +2117,9 @@ var trTR = {
         thisMonth: 'Bu Ay',
         lastMonth: 'Geçen Ay',
         thisYear: 'Bu Yıl'
+    },
+    loading: {
+        text: 'Yükleniyor...'
     },
     pageHeader: {
         home: 'Ana Sayfa'
@@ -2204,6 +2219,9 @@ var plPL = {
         lastMonth: 'Poprz. miesiąc',
         thisYear: 'Ten rok'
     },
+    loading: {
+        text: 'Ładowanie...'
+    },
     pageHeader: {
         home: 'Strona główna'
     }
@@ -2301,6 +2319,9 @@ var elGR = {
         thisMonth: 'Αυτό το μήνα',
         lastMonth: 'Προηγ. μήνα',
         thisYear: 'Αυτό το έτος'
+    },
+    loading: {
+        text: 'Φόρτωση...'
     },
     pageHeader: {
         home: 'Αρχική'
@@ -2400,6 +2421,9 @@ var koKR = {
         lastMonth: '지난달',
         thisYear: '올해'
     },
+    loading: {
+        text: '로딩 중...'
+    },
     pageHeader: {
         home: '홈'
     }
@@ -2461,6 +2485,9 @@ var hrHR = {
         thisMonth: 'Ovaj mjesec',
         lastMonth: 'Prošli mjesec',
         thisYear: 'Ova godina'
+    },
+    loading: {
+        text: 'Učitavanje...'
     },
     pageHeader: {
         home: 'Početna'
@@ -2560,6 +2587,9 @@ var jaJP = {
         lastMonth: '先月',
         thisYear: '今年'
     },
+    loading: {
+        text: '読み込み中...'
+    },
     pageHeader: {
         home: 'ホーム'
     }
@@ -2656,6 +2686,9 @@ var slSI = {
         thisMonth: 'Ta mesec',
         lastMonth: 'Prejšnji mesec',
         thisYear: 'Letos'
+    },
+    loading: {
+        text: 'Nalaganje...'
     },
     pageHeader: {
         home: 'Domov'
@@ -2755,6 +2788,9 @@ var frFR = {
         lastMonth: 'Mois dernier',
         thisYear: 'Année en cours'
     },
+    loading: {
+        text: 'Chargement...'
+    },
     pageHeader: {
         home: 'Accueil'
     }
@@ -2852,6 +2888,9 @@ var esES = {
         thisMonth: 'Este mes',
         lastMonth: 'Mes pasado',
         thisYear: 'Este año'
+    },
+    loading: {
+        text: 'Cargando...'
     },
     pageHeader: {
         home: 'Inicio'
@@ -2951,6 +2990,9 @@ var itIT = {
         lastMonth: 'Mese scorso',
         thisYear: "Quest'anno"
     },
+    loading: {
+        text: 'Caricamento...'
+    },
     pageHeader: {
         home: 'Home'
     }
@@ -3048,6 +3090,9 @@ var viVN = {
         thisMonth: 'Tháng này',
         lastMonth: 'Tháng trước',
         thisYear: 'Năm nay'
+    },
+    loading: {
+        text: 'Đang tải...'
     },
     pageHeader: {
         home: 'Trang chủ'
@@ -3147,6 +3192,9 @@ var arSA = {
         lastMonth: 'الشهر الماضي',
         thisYear: 'هذا العام'
     },
+    loading: {
+        text: 'جاري التحميل...'
+    },
     pageHeader: {
         home: 'الرئيسية'
     }
@@ -3244,6 +3292,9 @@ var idID = {
         thisMonth: 'Bulan Ini',
         lastMonth: 'Bulan Lalu',
         thisYear: 'Tahun Ini'
+    },
+    loading: {
+        text: 'Memuat...'
     },
     pageHeader: {
         home: 'Beranda'
@@ -3343,6 +3394,9 @@ var kmKH = {
         lastMonth: 'ខែមុន',
         thisYear: 'ឆ្នាំនេះ'
     },
+    loading: {
+        text: 'កំពុងផ្ទុក...'
+    },
     pageHeader: {
         home: 'ទំព័រដើម'
     }
@@ -3441,6 +3495,9 @@ var msMY = {
         lastMonth: 'Bulan Lalu',
         thisYear: 'Tahun Ini'
     },
+    loading: {
+        text: 'Memuat...'
+    },
     pageHeader: {
         home: 'Laman Utama'
     }
@@ -3538,6 +3595,9 @@ var thTH = {
         thisMonth: 'เดือนนี้',
         lastMonth: 'เดือนที่แล้ว',
         thisYear: 'ปีนี้'
+    },
+    loading: {
+        text: 'กำลังโหลด...'
     },
     pageHeader: {
         home: 'หน้าหลัก'

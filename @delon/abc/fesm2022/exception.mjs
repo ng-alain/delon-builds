@@ -65,7 +65,7 @@ class ExceptionComponent {
         this.hasCon.set(!isEmpty(this.conTpl().nativeElement));
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ExceptionComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ExceptionComponent, isStandalone: true, selector: "exception", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, img: { classPropertyName: "img", publicName: "img", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, desc: { classPropertyName: "desc", publicName: "desc", isSignal: true, isRequired: false, transformFunction: null }, backRouterLink: { classPropertyName: "backRouterLink", publicName: "backRouterLink", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.exception-rtl": "dir() === 'rtl'" }, classAttribute: "exception" }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, isSignal: true }], exportAs: ["exception"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: ExceptionComponent, isStandalone: true, selector: "exception", inputs: { type: { classPropertyName: "type", publicName: "type", isSignal: true, isRequired: false, transformFunction: null }, img: { classPropertyName: "img", publicName: "img", isSignal: true, isRequired: false, transformFunction: null }, title: { classPropertyName: "title", publicName: "title", isSignal: true, isRequired: false, transformFunction: null }, desc: { classPropertyName: "desc", publicName: "desc", isSignal: true, isRequired: false, transformFunction: null }, backRouterLink: { classPropertyName: "backRouterLink", publicName: "backRouterLink", isSignal: true, isRequired: false, transformFunction: null } }, host: { properties: { "class.exception": "true", "class.exception-rtl": "dir() === 'rtl'" } }, viewQueries: [{ propertyName: "conTpl", first: true, predicate: ["conTpl"], descendants: true, isSignal: true }], exportAs: ["exception"], ngImport: i0, template: `
     <div class="exception__img-block">
       <div class="exception__img" [style.backgroundImage]="_img()"></div>
     </div>
@@ -114,7 +114,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
     </div>
   `,
                     host: {
-                        class: 'exception',
+                        '[class.exception]': 'true',
                         '[class.exception-rtl]': `dir() === 'rtl'`
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,

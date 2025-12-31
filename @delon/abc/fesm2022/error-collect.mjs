@@ -15,6 +15,7 @@ class ErrorCollectComponent {
     destroy$ = inject(DestroyRef);
     cogSrv = inject(AlainConfigService);
     formEl = null;
+    _hiden = signal(true, ...(ngDevMode ? [{ debugName: "_hiden" }] : []));
     count = signal(0, ...(ngDevMode ? [{ debugName: "count" }] : []));
     dir = inject(Directionality).valueSignal;
     freq = input(0, { ...(ngDevMode ? { debugName: "freq" } : {}), transform: numberAttribute });
@@ -30,6 +31,7 @@ class ErrorCollectComponent {
         if (count === this.count())
             return;
         this.count.set(count);
+        this._hiden.set(count === 0);
     }
     _click() {
         if (this.count() === 0)
@@ -65,7 +67,7 @@ class ErrorCollectComponent {
         this.update();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: ErrorCollectComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.0.6", type: ErrorCollectComponent, isStandalone: true, selector: "error-collect, [error-collect]", inputs: { freq: { classPropertyName: "freq", publicName: "freq", isSignal: true, isRequired: false, transformFunction: null }, offsetTop: { classPropertyName: "offsetTop", publicName: "offsetTop", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir() === 'rtl'", "class.d-none": "count() === 0" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.0.6", type: ErrorCollectComponent, isStandalone: true, selector: "error-collect, [error-collect]", inputs: { freq: { classPropertyName: "freq", publicName: "freq", isSignal: true, isRequired: false, transformFunction: null }, offsetTop: { classPropertyName: "offsetTop", publicName: "offsetTop", isSignal: true, isRequired: false, transformFunction: null } }, host: { listeners: { "click": "_click()" }, properties: { "class.error-collect": "true", "class.error-collect-rtl": "dir() === 'rtl'", "class.d-none": "_hiden()" } }, exportAs: ["errorCollect"], ngImport: i0, template: `
     <nz-icon nzType="exclamation-circle" />
     <span class="error-collect__count">{{ count() }}</span>
   `, isInline: true, dependencies: [{ kind: "directive", type: NzIconDirective, selector: "nz-icon,[nz-icon]", inputs: ["nzSpin", "nzRotate", "nzType", "nzTheme", "nzTwotoneColor", "nzIconfont"], exportAs: ["nzIcon"] }], changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
@@ -82,7 +84,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     host: {
                         '[class.error-collect]': 'true',
                         '[class.error-collect-rtl]': `dir() === 'rtl'`,
-                        '[class.d-none]': 'count() === 0',
+                        '[class.d-none]': '_hiden()',
                         '(click)': '_click()'
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,

@@ -2,8 +2,8 @@ import * as i0 from '@angular/core';
 
 declare class AutoFocusDirective {
     private readonly el;
-    readonly enabled: i0.InputSignalWithTransform<boolean, unknown>;
-    readonly delay: i0.InputSignalWithTransform<number, unknown>;
+    enabled: i0.InputSignalWithTransform<boolean, unknown>;
+    delay: i0.InputSignalWithTransform<number, unknown>;
     readonly focus: i0.OutputEmitterRef<void>;
     constructor();
     static ɵfac: i0.ɵɵFactoryDeclaration<AutoFocusDirective, never>;

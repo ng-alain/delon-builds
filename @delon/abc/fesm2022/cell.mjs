@@ -1,6 +1,6 @@
 import { NgTemplateOutlet, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, Injectable, ViewContainerRef, input, effect, Directive, Renderer2, ElementRef, DestroyRef, signal, computed, model, booleanAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
+import { inject, Injectable, ViewContainerRef, input, effect, Directive, Renderer2, ElementRef, signal, computed, model, booleanAttribute, ViewEncapsulation, ChangeDetectionStrategy, Component, NgModule, makeEnvironmentProviders, provideEnvironmentInitializer } from '@angular/core';
 import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import * as i1 from '@angular/forms';
 import { FormsModule } from '@angular/forms';
@@ -222,7 +222,7 @@ class CellComponent {
     imgSrv = inject(NzImageService);
     win = inject(WINDOW);
     el = inject(ElementRef).nativeElement;
-    d$ = inject(DestroyRef);
+    destroy$;
     _text = signal('', ...(ngDevMode ? [{ debugName: "_text" }] : []));
     _unit = signal(undefined, ...(ngDevMode ? [{ debugName: "_unit" }] : []));
     _res = signal(undefined, ...(ngDevMode ? [{ debugName: "_res" }] : []));
@@ -239,14 +239,13 @@ class CellComponent {
         combineLatest([toObservable(this.loading), toObservable(this.disabled)])
             .pipe(takeUntilDestroyed())
             .subscribe(() => this.setClass());
-        let sub = null;
         effect(() => {
             const v = this.value();
             const o = this.options();
-            sub?.unsubscribe();
-            sub = this.srv
+            this.destroy$?.unsubscribe();
+            this.destroy$ = this.srv
                 .get(v, o)
-                .pipe(take(1), takeUntilDestroyed(this.d$))
+                .pipe(take(1))
                 .subscribe(res => {
                 this._res.set(res);
                 this._text.set(res.result?.text ?? '');
@@ -297,6 +296,9 @@ class CellComponent {
         this.imgSrv
             .preview(list.map(p => ({ src: p })), config.previewOptions)
             .switchTo(idx);
+    }
+    ngOnDestroy() {
+        this.destroy$?.unsubscribe();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: CellComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: CellComponent, isStandalone: true, selector: "cell, [cell]", inputs: { value: { classPropertyName: "value", publicName: "value", isSignal: true, isRequired: false, transformFunction: null }, options: { classPropertyName: "options", publicName: "options", isSignal: true, isRequired: false, transformFunction: null }, loading: { classPropertyName: "loading", publicName: "loading", isSignal: true, isRequired: false, transformFunction: null }, disabled: { classPropertyName: "disabled", publicName: "disabled", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { value: "valueChange" }, exportAs: ["cell"], ngImport: i0, template: `

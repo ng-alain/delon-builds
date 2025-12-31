@@ -6,8 +6,8 @@ import * as i3 from 'ng-zorro-antd/core/outlet';
 
 declare class FooterToolbarComponent implements OnDestroy {
     private readonly bodyCls;
-    readonly errorCollect: i0.InputSignalWithTransform<boolean, unknown>;
-    readonly extra: i0.InputSignal<string | TemplateRef<void> | undefined>;
+    errorCollect: i0.InputSignalWithTransform<boolean, unknown>;
+    extra: i0.InputSignal<string | TemplateRef<void> | undefined>;
     constructor();
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FooterToolbarComponent, never>;

@@ -56,6 +56,7 @@ declare class LoadingService implements OnDestroy {
     private readonly overlay;
     private readonly configSrv;
     private readonly directionality;
+    private locale;
     private _overlayRef?;
     private compRef;
     private opt;

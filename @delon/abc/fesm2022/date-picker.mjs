@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { viewChild, Component, inject, ViewContainerRef, input, model, Directive, NgModule } from '@angular/core';
+import { ViewChild, Component, inject, ViewContainerRef, EventEmitter, Output, Input, Directive, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NzRangePickerComponent, NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -8,14 +8,14 @@ import { DelonLocaleService } from '@delon/theme';
 import { AlainConfigService } from '@delon/util/config';
 import { fixEndTimeOfRange, getTimeDistance } from '@delon/util/date-time';
 import { deepMergeKey, assert } from '@delon/util/other';
-import { toBoolean } from 'ng-zorro-antd/core/util';
 
 class RangePickerShortcutTplComponent {
-    tpl = viewChild.required('tpl');
+    tpl;
     list = [];
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     click(_) { }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: RangePickerShortcutTplComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: RangePickerShortcutTplComponent, isStandalone: true, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, isSignal: true }], ngImport: i0, template: `
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.0.0", version: "21.0.6", type: RangePickerShortcutTplComponent, isStandalone: true, selector: "ng-component", viewQueries: [{ propertyName: "tpl", first: true, predicate: ["tpl"], descendants: true, static: true }], ngImport: i0, template: `
     <ng-template #tpl>
       @for (i of list; track $index) {
         <a (click)="click(i)" [innerHTML]="i._text" [class.ml-sm]="!$first"></a>
@@ -35,9 +35,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
     </ng-template>
   `
                 }]
-        }], propDecorators: { tpl: [{ type: i0.ViewChild, args: ['tpl', { isSignal: true }] }] } });
+        }], propDecorators: { tpl: [{
+                type: ViewChild,
+                args: ['tpl', { static: true }]
+            }] } });
 
 class RangePickerDirective {
+    static ngAcceptInputType_shortcut;
     dom = inject(DomSanitizer);
     vcr = inject(ViewContainerRef);
     nativeComp = inject(NzRangePickerComponent, { host: true, optional: true });
@@ -48,16 +52,19 @@ class RangePickerDirective {
     start = null;
     end = null;
     locale = inject(DelonLocaleService).getData('datePicker');
-    shortcut = input(null, { ...(ngDevMode ? { debugName: "shortcut" } : {}), transform: (v) => {
-            const cog = deepMergeKey({ list: [] }, true, this.defaultShortcuts, v == null ? {} : v);
-            if (typeof v !== 'object') {
-                cog.enabled = toBoolean(v) !== false;
-            }
-            this._shortcut = cog;
-            this.refreshShortcut();
-            return cog;
-        } });
-    ngModelEnd = model.required(...(ngDevMode ? [{ debugName: "ngModelEnd" }] : []));
+    set shortcut(val) {
+        const cog = deepMergeKey({ list: [] }, true, this.defaultShortcuts, val == null ? {} : val);
+        if (typeof val !== 'object') {
+            cog.enabled = val !== false;
+        }
+        this._shortcut = cog;
+        this.refreshShortcut();
+    }
+    get shortcut() {
+        return this._shortcut;
+    }
+    ngModelEnd;
+    ngModelEndChange = new EventEmitter();
     get dp() {
         return this.nativeComp.datePicker;
     }
@@ -89,7 +96,7 @@ class RangePickerDirective {
     overrideNative() {
         const dp = this.dp;
         dp.writeValue = (value) => {
-            const dates = (value && this.ngModelEnd() ? [value, this.ngModelEnd()] : []).filter(w => !!w);
+            const dates = (value && this.ngModelEnd ? [value, this.ngModelEnd] : []).filter(w => !!w);
             this.srv.setValue(this.srv.makeValue(dates));
             this.start = dates.length > 0 ? dates[0] : null;
             this.end = dates.length > 0 ? dates[1] : null;
@@ -105,7 +112,8 @@ class RangePickerDirective {
             this.start = start;
             this.end = end;
             oldOnChangeFn(start);
-            this.ngModelEnd.set(end);
+            this.ngModelEnd = end;
+            this.ngModelEndChange.emit(end);
         };
     }
     refreshShortcut() {
@@ -175,7 +183,7 @@ class RangePickerDirective {
             if (!this.shortcutFactory) {
                 this.shortcutFactory = this.vcr.createComponent(RangePickerShortcutTplComponent);
             }
-            const instance = this.shortcutFactory.instance;
+            const { instance } = this.shortcutFactory;
             instance.list = list;
             instance.click = (item) => {
                 const res = item.fn([this.start, this.end]);
@@ -183,7 +191,7 @@ class RangePickerDirective {
                 this.dp.onChangeFn(res);
                 this.dp.close();
             };
-            extraFooter = instance.tpl();
+            extraFooter = instance.tpl;
         }
         this.nativeComp.datePicker.extraFooter = extraFooter;
         Promise.resolve().then(() => this.cd());
@@ -192,11 +200,16 @@ class RangePickerDirective {
         this.overrideNative();
         this.refreshShortcut();
     }
+    destoryShortcut() {
+        if (this.shortcutFactory != null) {
+            this.shortcutFactory.destroy();
+        }
+    }
     ngOnDestroy() {
-        this.shortcutFactory?.destroy();
+        this.destoryShortcut();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: RangePickerDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: RangePickerDirective, isStandalone: true, selector: "nz-range-picker[extend]", inputs: { shortcut: { classPropertyName: "shortcut", publicName: "shortcut", isSignal: true, isRequired: false, transformFunction: null }, ngModelEnd: { classPropertyName: "ngModelEnd", publicName: "ngModelEnd", isSignal: true, isRequired: true, transformFunction: null } }, outputs: { ngModelEnd: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: RangePickerDirective, isStandalone: true, selector: "nz-range-picker[extend]", inputs: { shortcut: "shortcut", ngModelEnd: "ngModelEnd" }, outputs: { ngModelEndChange: "ngModelEndChange" }, exportAs: ["extendRangePicker"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: RangePickerDirective, decorators: [{
             type: Directive,
@@ -204,7 +217,14 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     selector: 'nz-range-picker[extend]',
                     exportAs: 'extendRangePicker'
                 }]
-        }], ctorParameters: () => [], propDecorators: { shortcut: [{ type: i0.Input, args: [{ isSignal: true, alias: "shortcut", required: false }] }], ngModelEnd: [{ type: i0.Input, args: [{ isSignal: true, alias: "ngModelEnd", required: true }] }, { type: i0.Output, args: ["ngModelEndChange"] }] } });
+        }], ctorParameters: () => [], propDecorators: { shortcut: [{
+                type: Input
+            }], ngModelEnd: [{
+                type: Input,
+                args: [{ required: true }]
+            }], ngModelEndChange: [{
+                type: Output
+            }] } });
 
 const COMPONENTS = [RangePickerDirective, RangePickerShortcutTplComponent];
 class DatePickerModule {

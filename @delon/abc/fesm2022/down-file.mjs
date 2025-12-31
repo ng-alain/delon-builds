@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { inject, ElementRef, input, output, Directive, NgModule } from '@angular/core';
+import { inject, ElementRef, EventEmitter, Output, Input, Directive, NgModule } from '@angular/core';
 import { finalize } from 'rxjs';
 import { saveAs } from 'file-saver';
 import { _HttpClient, AlainThemeModule } from '@delon/theme';
@@ -8,14 +8,14 @@ import { CommonModule } from '@angular/common';
 class DownFileDirective {
     el = inject(ElementRef).nativeElement;
     _http = inject(_HttpClient);
-    httpData = input(undefined, { ...(ngDevMode ? { debugName: "httpData" } : {}), alias: 'http-data' });
-    httpBody = input(undefined, { ...(ngDevMode ? { debugName: "httpBody" } : {}), alias: 'http-body' });
-    httpMethod = input('get', { ...(ngDevMode ? { debugName: "httpMethod" } : {}), alias: 'http-method' });
-    httpUrl = input.required({ ...(ngDevMode ? { debugName: "httpUrl" } : {}), alias: 'http-url' });
-    fileName = input(undefined, { ...(ngDevMode ? { debugName: "fileName" } : {}), alias: 'file-name' });
-    pre = input(...(ngDevMode ? [undefined, { debugName: "pre" }] : []));
-    success = output();
-    error = output();
+    httpData;
+    httpBody;
+    httpMethod = 'get';
+    httpUrl;
+    fileName;
+    pre;
+    success = new EventEmitter();
+    error = new EventEmitter();
     getDisposition(data) {
         const arr = (data ?? '')
             .split(';')
@@ -46,19 +46,18 @@ class DownFileDirective {
         el.classList[status ? 'add' : 'remove'](`down-file__disabled`);
     }
     async _click(ev) {
-        const pre = this.pre();
-        if (!this.isFileSaverSupported || (typeof pre === 'function' && !(await pre(ev)))) {
+        if (!this.isFileSaverSupported || (typeof this.pre === 'function' && !(await this.pre(ev)))) {
             ev.stopPropagation();
             ev.preventDefault();
             return;
         }
         this.setDisabled(true);
         this._http
-            .request(this.httpMethod(), this.httpUrl(), {
-            params: this.httpData() ?? {},
+            .request(this.httpMethod, this.httpUrl, {
+            params: this.httpData ?? {},
             responseType: 'blob',
             observe: 'response',
-            body: this.httpBody()
+            body: this.httpBody
         })
             .pipe(finalize(() => this.setDisabled(false)))
             .subscribe({
@@ -68,7 +67,7 @@ class DownFileDirective {
                     return;
                 }
                 const disposition = this.getDisposition(res.headers.get('content-disposition'));
-                let fileName = this.fileName();
+                let fileName = this.fileName;
                 if (typeof fileName === 'function')
                     fileName = fileName(res);
                 fileName =
@@ -84,7 +83,7 @@ class DownFileDirective {
         });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: DownFileDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
-    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "17.1.0", version: "21.0.6", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: { classPropertyName: "httpData", publicName: "http-data", isSignal: true, isRequired: false, transformFunction: null }, httpBody: { classPropertyName: "httpBody", publicName: "http-body", isSignal: true, isRequired: false, transformFunction: null }, httpMethod: { classPropertyName: "httpMethod", publicName: "http-method", isSignal: true, isRequired: false, transformFunction: null }, httpUrl: { classPropertyName: "httpUrl", publicName: "http-url", isSignal: true, isRequired: true, transformFunction: null }, fileName: { classPropertyName: "fileName", publicName: "file-name", isSignal: true, isRequired: false, transformFunction: null }, pre: { classPropertyName: "pre", publicName: "pre", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
+    static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: DownFileDirective, isStandalone: true, selector: "[down-file]", inputs: { httpData: ["http-data", "httpData"], httpBody: ["http-body", "httpBody"], httpMethod: ["http-method", "httpMethod"], httpUrl: ["http-url", "httpUrl"], fileName: ["file-name", "fileName"], pre: "pre" }, outputs: { success: "success", error: "error" }, host: { listeners: { "click": "_click($event)" } }, exportAs: ["downFile"], ngImport: i0 });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: DownFileDirective, decorators: [{
             type: Directive,
@@ -95,7 +94,28 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                         '(click)': '_click($event)'
                     }
                 }]
-        }], ctorParameters: () => [], propDecorators: { httpData: [{ type: i0.Input, args: [{ isSignal: true, alias: "http-data", required: false }] }], httpBody: [{ type: i0.Input, args: [{ isSignal: true, alias: "http-body", required: false }] }], httpMethod: [{ type: i0.Input, args: [{ isSignal: true, alias: "http-method", required: false }] }], httpUrl: [{ type: i0.Input, args: [{ isSignal: true, alias: "http-url", required: true }] }], fileName: [{ type: i0.Input, args: [{ isSignal: true, alias: "file-name", required: false }] }], pre: [{ type: i0.Input, args: [{ isSignal: true, alias: "pre", required: false }] }], success: [{ type: i0.Output, args: ["success"] }], error: [{ type: i0.Output, args: ["error"] }] } });
+        }], ctorParameters: () => [], propDecorators: { httpData: [{
+                type: Input,
+                args: ['http-data']
+            }], httpBody: [{
+                type: Input,
+                args: ['http-body']
+            }], httpMethod: [{
+                type: Input,
+                args: ['http-method']
+            }], httpUrl: [{
+                type: Input,
+                args: [{ alias: 'http-url', required: true }]
+            }], fileName: [{
+                type: Input,
+                args: ['file-name']
+            }], pre: [{
+                type: Input
+            }], success: [{
+                type: Output
+            }], error: [{
+                type: Output
+            }] } });
 
 const DIRECTIVES = [DownFileDirective];
 class DownFileModule {

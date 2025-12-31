@@ -1,6 +1,6 @@
 import { DOCUMENT, CommonModule } from '@angular/common';
 import * as i0 from '@angular/core';
-import { Injectable, inject, ElementRef, signal, input, booleanAttribute, numberAttribute, model, afterNextRender, effect, ViewEncapsulation, ChangeDetectionStrategy, Component, Directive, NgModule } from '@angular/core';
+import { Injectable, inject, DestroyRef, ElementRef, ChangeDetectorRef, input, booleanAttribute, numberAttribute, model, ViewEncapsulation, ChangeDetectionStrategy, Component, Directive, NgModule } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router, ActivationStart, ActivationEnd } from '@angular/router';
 import { BehaviorSubject, share, fromEvent, debounceTime, filter } from 'rxjs';
@@ -26,45 +26,19 @@ const wrapCls = `full-content__body`;
 const openedCls = `full-content__opened`;
 const hideTitleCls = `full-content__hidden-title`;
 class FullContentComponent {
+    destroy$ = inject(DestroyRef);
     el = inject(ElementRef).nativeElement;
+    cdr = inject(ChangeDetectorRef);
     srv = inject(FullContentService);
     router = inject(Router);
     doc = inject(DOCUMENT);
     bodyEl = this.doc.querySelector('body');
+    inited = false;
     id = `_full-content-${Math.random().toString(36).substring(2)}`;
-    _height = signal(0, ...(ngDevMode ? [{ debugName: "_height" }] : []));
+    _height = 0;
     hideTitle = input(true, { ...(ngDevMode ? { debugName: "hideTitle" } : {}), transform: booleanAttribute });
     padding = input(24, { ...(ngDevMode ? { debugName: "padding" } : {}), transform: numberAttribute });
     fullscreen = model(...(ngDevMode ? [undefined, { debugName: "fullscreen" }] : []));
-    constructor() {
-        // when window resize
-        fromEvent(window, 'resize')
-            .pipe(takeUntilDestroyed(), debounceTime(200))
-            .subscribe(() => this.updateHeight());
-        // when servier changed
-        this.srv.change
-            .pipe(takeUntilDestroyed(), filter(res => res !== null))
-            .subscribe(() => this.toggle());
-        // when router changed
-        this.router.events
-            .pipe(takeUntilDestroyed(), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
-            .subscribe(() => {
-            if (this.doc.querySelector(`#${this.id}`)) {
-                this.bodyEl.classList.add(wrapCls);
-                this.updateCls();
-            }
-            else {
-                this.removeInBody();
-            }
-        });
-        afterNextRender(() => {
-            this.bodyEl.classList.add(wrapCls);
-            this.el.id = this.id;
-            this.updateCls();
-            this.updateHeight();
-        });
-        effect(() => this.update());
-    }
     updateCls() {
         const clss = this.bodyEl.classList;
         if (this.fullscreen()) {
@@ -86,21 +60,55 @@ class FullContentComponent {
         this.fullscreen.set(this.fullscreen());
     }
     updateHeight() {
-        this._height.set(this.bodyEl.getBoundingClientRect().height - this.el.getBoundingClientRect().top - this.padding());
+        this._height = this.bodyEl.getBoundingClientRect().height - this.el.getBoundingClientRect().top - this.padding();
+        this.cdr.detectChanges();
     }
     removeInBody() {
         this.bodyEl.classList.remove(wrapCls, openedCls, hideTitleCls);
+    }
+    ngOnInit() {
+        this.inited = true;
+        this.bodyEl.classList.add(wrapCls);
+        this.el.id = this.id;
+        this.updateCls();
+        // when window resize
+        fromEvent(window, 'resize')
+            .pipe(takeUntilDestroyed(this.destroy$), debounceTime(200))
+            .subscribe(() => this.updateHeight());
+        // when servier changed
+        this.srv.change
+            .pipe(takeUntilDestroyed(this.destroy$), filter(res => res !== null))
+            .subscribe(() => this.toggle());
+        // when router changed
+        this.router.events
+            .pipe(takeUntilDestroyed(this.destroy$), filter((e) => e instanceof ActivationStart || e instanceof ActivationEnd), debounceTime(200))
+            .subscribe(() => {
+            if (this.doc.querySelector(`#${this.id}`)) {
+                this.bodyEl.classList.add(wrapCls);
+                this.updateCls();
+            }
+            else {
+                this.removeInBody();
+            }
+        });
     }
     toggle() {
         this.fullscreen.set(!this.fullscreen());
         this.update();
         this.updateHeight();
     }
+    ngAfterViewInit() {
+        setTimeout(() => this.updateHeight());
+    }
+    ngOnChanges() {
+        if (this.inited)
+            this.update();
+    }
     ngOnDestroy() {
         this.removeInBody();
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: FullContentComponent, deps: [], target: i0.ɵɵFactoryTarget.Component });
-    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.0.6", type: FullContentComponent, isStandalone: true, selector: "full-content", inputs: { hideTitle: { classPropertyName: "hideTitle", publicName: "hideTitle", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null }, fullscreen: { classPropertyName: "fullscreen", publicName: "fullscreen", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { fullscreen: "fullscreenChange" }, host: { properties: { "style.height.px": "_height()" }, classAttribute: "full-content" }, exportAs: ["fullContent"], ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
+    static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "17.1.0", version: "21.0.6", type: FullContentComponent, isStandalone: true, selector: "full-content", inputs: { hideTitle: { classPropertyName: "hideTitle", publicName: "hideTitle", isSignal: true, isRequired: false, transformFunction: null }, padding: { classPropertyName: "padding", publicName: "padding", isSignal: true, isRequired: false, transformFunction: null }, fullscreen: { classPropertyName: "fullscreen", publicName: "fullscreen", isSignal: true, isRequired: false, transformFunction: null } }, outputs: { fullscreen: "fullscreenChange" }, host: { properties: { "class.full-content": "true", "style.height.px": "_height" } }, exportAs: ["fullContent"], usesOnChanges: true, ngImport: i0, template: `<ng-content />`, isInline: true, changeDetection: i0.ChangeDetectionStrategy.OnPush, encapsulation: i0.ViewEncapsulation.None });
 }
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: FullContentComponent, decorators: [{
             type: Component,
@@ -109,13 +117,13 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.6", ngImpor
                     exportAs: 'fullContent',
                     template: `<ng-content />`,
                     host: {
-                        class: 'full-content',
-                        '[style.height.px]': '_height()'
+                        '[class.full-content]': 'true',
+                        '[style.height.px]': '_height'
                     },
                     changeDetection: ChangeDetectionStrategy.OnPush,
                     encapsulation: ViewEncapsulation.None
                 }]
-        }], ctorParameters: () => [], propDecorators: { hideTitle: [{ type: i0.Input, args: [{ isSignal: true, alias: "hideTitle", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }], fullscreen: [{ type: i0.Input, args: [{ isSignal: true, alias: "fullscreen", required: false }] }, { type: i0.Output, args: ["fullscreenChange"] }] } });
+        }], propDecorators: { hideTitle: [{ type: i0.Input, args: [{ isSignal: true, alias: "hideTitle", required: false }] }], padding: [{ type: i0.Input, args: [{ isSignal: true, alias: "padding", required: false }] }], fullscreen: [{ type: i0.Input, args: [{ isSignal: true, alias: "fullscreen", required: false }] }, { type: i0.Output, args: ["fullscreenChange"] }] } });
 
 class FullContentToggleDirective {
     parent = inject(FullContentComponent);
