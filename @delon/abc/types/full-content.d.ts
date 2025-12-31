@@ -1,30 +1,25 @@
 import * as i0 from '@angular/core';
-import { AfterViewInit, OnInit, OnChanges, OnDestroy } from '@angular/core';
+import { OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as i1 from '@angular/common';
 
-declare class FullContentComponent implements AfterViewInit, OnInit, OnChanges, OnDestroy {
-    private readonly destroy$;
+declare class FullContentComponent implements OnDestroy {
     private readonly el;
-    private readonly cdr;
     private readonly srv;
     private readonly router;
     private readonly doc;
     private bodyEl;
-    private inited;
     private id;
-    _height: number;
-    hideTitle: i0.InputSignalWithTransform<boolean, unknown>;
-    padding: i0.InputSignalWithTransform<number, unknown>;
-    fullscreen: i0.ModelSignal<boolean | undefined>;
+    _height: i0.WritableSignal<number>;
+    readonly hideTitle: i0.InputSignalWithTransform<boolean, unknown>;
+    readonly padding: i0.InputSignalWithTransform<number, unknown>;
+    readonly fullscreen: i0.ModelSignal<boolean | undefined>;
+    constructor();
     private updateCls;
     private update;
     private updateHeight;
     private removeInBody;
-    ngOnInit(): void;
     toggle(): void;
-    ngAfterViewInit(): void;
-    ngOnChanges(): void;
     ngOnDestroy(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentComponent, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<FullContentComponent, "full-content", ["fullContent"], { "hideTitle": { "alias": "hideTitle"; "required": false; "isSignal": true; }; "padding": { "alias": "padding"; "required": false; "isSignal": true; }; "fullscreen": { "alias": "fullscreen"; "required": false; "isSignal": true; }; }, { "fullscreen": "fullscreenChange"; }, never, ["*"], true, never>;
@@ -41,7 +36,7 @@ declare class FullContentService {
 
 declare class FullContentToggleDirective {
     private readonly parent;
-    _click(): void;
+    protected _click(): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<FullContentToggleDirective, never>;
     static ɵdir: i0.ɵɵDirectiveDeclaration<FullContentToggleDirective, "[full-toggle]", ["fullToggle"], {}, {}, never, never, true, never>;
 }

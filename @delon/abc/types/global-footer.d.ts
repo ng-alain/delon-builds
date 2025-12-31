@@ -14,9 +14,9 @@ interface GlobalFooterLink {
 }
 
 declare class GlobalFooterItemComponent {
-    host: _angular_core.Signal<TemplateRef<void>>;
-    href: _angular_core.InputSignal<string | undefined>;
-    blankTarget: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly host: _angular_core.Signal<TemplateRef<void>>;
+    readonly href: _angular_core.InputSignal<string | undefined>;
+    readonly blankTarget: _angular_core.InputSignalWithTransform<boolean, unknown>;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<GlobalFooterItemComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<GlobalFooterItemComponent, "global-footer-item", ["globalFooterItem"], { "href": { "alias": "href"; "required": false; "isSignal": true; }; "blankTarget": { "alias": "blankTarget"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
@@ -25,11 +25,11 @@ declare class GlobalFooterComponent {
     private readonly router;
     private readonly win;
     private readonly dom;
-    dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
-    links: _angular_core.InputSignal<GlobalFooterLink[]>;
+    protected dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
+    readonly links: _angular_core.InputSignal<GlobalFooterLink[]>;
     readonly items: _angular_core.Signal<readonly GlobalFooterItemComponent[]>;
-    linkHtmls: _angular_core.Signal<GlobalFooterLink[]>;
-    to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
+    protected linkHtmls: _angular_core.Signal<GlobalFooterLink[]>;
+    protected to(item: GlobalFooterLink | GlobalFooterItemComponent): void;
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<GlobalFooterComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<GlobalFooterComponent, "global-footer", ["globalFooter"], { "links": { "alias": "links"; "required": false; "isSignal": true; }; }, {}, ["items"], ["*"], true, never>;
 }
