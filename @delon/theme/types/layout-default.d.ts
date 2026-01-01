@@ -1,18 +1,19 @@
-import * as i0 from '@angular/core';
-import { TemplateRef, QueryList, OnInit, OnDestroy, EventEmitter, AfterViewInit } from '@angular/core';
-import * as i8 from '@angular/router';
+import * as _delon_theme from '@delon/theme';
+import { MenuInner, Menu } from '@delon/theme';
+import * as _angular_core from '@angular/core';
+import { TemplateRef, OnDestroy } from '@angular/core';
+import * as i2 from '@angular/router';
 import { Event } from '@angular/router';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
+import * as i1 from '@angular/common';
+import * as i3 from 'ng-zorro-antd/tooltip';
+import * as i4 from 'ng-zorro-antd/icon';
+import * as i5 from 'ng-zorro-antd/avatar';
+import * as i6 from 'ng-zorro-antd/dropdown';
+import * as i7 from 'ng-zorro-antd/badge';
 import * as _angular_cdk_bidi from '@angular/cdk/bidi';
 import { SafeHtml } from '@angular/platform-browser';
-import { MenuInner, Menu, App } from '@delon/theme';
-import * as i7 from '@angular/common';
-import * as i9 from 'ng-zorro-antd/tooltip';
-import * as i10 from 'ng-zorro-antd/icon';
-import * as i11 from 'ng-zorro-antd/avatar';
-import * as i12 from 'ng-zorro-antd/dropdown';
-import * as i13 from 'ng-zorro-antd/badge';
-import { Observable } from 'rxjs';
+import * as _delon_theme_layout_default from '@delon/theme/layout-default';
 
 type LayoutDefaultHeaderItemHidden = 'pc' | 'mobile' | 'none';
 type LayoutDefaultHeaderItemDirection = 'left' | 'middle' | 'right';
@@ -74,157 +75,20 @@ interface LayoutDefaultOptions {
 }
 
 declare class LayoutDefaultHeaderItemComponent {
-    host: TemplateRef<void>;
-    hidden: LayoutDefaultHeaderItemHidden;
-    direction: LayoutDefaultHeaderItemDirection;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderItemComponent, "layout-default-header-item", never, { "hidden": { "alias": "hidden"; "required": false; }; "direction": { "alias": "direction"; "required": false; }; }, {}, never, ["*"], false, never>;
-}
-
-declare class LayoutDefaultComponent {
-    headerItems: QueryList<LayoutDefaultHeaderItemComponent>;
-    get opt(): LayoutDefaultOptions;
-    set options(value: LayoutDefaultOptions | null | undefined);
-    asideUser: TemplateRef<void> | null;
-    asideBottom: TemplateRef<NzSafeAny> | null;
-    nav: TemplateRef<void> | null;
-    content: TemplateRef<void> | null;
-    customError?: string | null;
-    fetchingStrictly: boolean;
-    fetching: boolean;
-    private isFetching;
-    get showFetching(): boolean;
-    get collapsed(): boolean;
-    get collapsedIcon(): string;
-    toggleCollapsed(): void;
-    private readonly router;
-    private readonly msgSrv;
-    private readonly settings;
-    private readonly el;
-    private readonly renderer;
-    private readonly doc;
-    private readonly srv;
-    constructor();
-    processEv(ev: Event): void;
-    private setClass;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": { "alias": "options"; "required": false; }; "asideUser": { "alias": "asideUser"; "required": false; }; "asideBottom": { "alias": "asideBottom"; "required": false; }; "nav": { "alias": "nav"; "required": false; }; "content": { "alias": "content"; "required": false; }; "customError": { "alias": "customError"; "required": false; }; "fetchingStrictly": { "alias": "fetchingStrictly"; "required": false; }; "fetching": { "alias": "fetching"; "required": false; }; }, {}, ["headerItems"], ["*"], false, never>;
-    static ngAcceptInputType_fetchingStrictly: unknown;
-    static ngAcceptInputType_fetching: unknown;
-}
-
-interface Nav extends MenuInner {
-    _needIcon?: boolean;
-    _text?: SafeHtml;
-}
-declare class LayoutDefaultNavComponent implements OnInit, OnDestroy {
-    private readonly doc;
-    private readonly win;
-    private readonly router;
-    private readonly render;
-    private readonly menuSrv;
-    private readonly settings;
-    private readonly cdr;
-    private readonly ngZone;
-    private readonly sanitizer;
-    private bodyEl;
-    private destroy$;
-    private floatingEl;
-    dir: i0.WritableSignal<_angular_cdk_bidi.Direction>;
-    list: Nav[];
-    disabledAcl: boolean;
-    autoCloseUnderPad: boolean;
-    recursivePath: boolean;
-    hideEmptyChildren: boolean;
-    set openStrictly(value: boolean);
-    maxLevelIcon: number;
-    readonly select: EventEmitter<Menu>;
-    get collapsed(): boolean;
-    private getLinkNode;
-    private floatingClickHandle;
-    private clearFloating;
-    private genFloating;
-    private genSubNode;
-    private hideAll;
-    private calPos;
-    showSubMenu(e: MouseEvent, item: Nav): void;
-    to(item: Menu): void;
-    toggleOpen(item: Nav): void;
-    _click(): void;
-    closeSubMenu(): void;
-    private openByUrl;
-    ngOnInit(): void;
-    private fixHide;
-    ngOnDestroy(): void;
-    private get isPad();
-    private underPad;
-    private openAside;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; }; "recursivePath": { "alias": "recursivePath"; "required": false; }; "hideEmptyChildren": { "alias": "hideEmptyChildren"; "required": false; }; "openStrictly": { "alias": "openStrictly"; "required": false; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; }; }, { "select": "select"; }, never, never, false, never>;
-    static ngAcceptInputType_disabledAcl: unknown;
-    static ngAcceptInputType_autoCloseUnderPad: unknown;
-    static ngAcceptInputType_recursivePath: unknown;
-    static ngAcceptInputType_hideEmptyChildren: unknown;
-    static ngAcceptInputType_openStrictly: unknown;
-    static ngAcceptInputType_maxLevelIcon: unknown;
-}
-
-interface LayoutDefaultHeaderItem {
-    host: TemplateRef<NzSafeAny>;
-    hidden?: LayoutDefaultHeaderItemHidden;
-    direction?: LayoutDefaultHeaderItemDirection;
-}
-declare class LayoutDefaultHeaderComponent implements AfterViewInit {
-    private readonly settings;
-    private readonly srv;
-    private readonly cdr;
-    private readonly destroy$;
-    items: QueryList<LayoutDefaultHeaderItemComponent>;
-    left: LayoutDefaultHeaderItem[];
-    middle: LayoutDefaultHeaderItem[];
-    right: LayoutDefaultHeaderItem[];
-    get opt(): LayoutDefaultOptions;
-    get app(): App;
-    get collapsed(): boolean;
-    get collapsedIcon(): string;
-    private refresh;
-    ngAfterViewInit(): void;
-    toggleCollapsed(): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": { "alias": "items"; "required": false; }; }, {}, never, never, false, never>;
-}
-
-declare class LayoutDefaultHeaderItemTriggerDirective {
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultHeaderItemTriggerDirective, never>;
-    static ɵdir: i0.ɵɵDirectiveDeclaration<LayoutDefaultHeaderItemTriggerDirective, "[layout-default-header-item-trigger]", never, {}, {}, never, never, false, never>;
-}
-
-declare class LayoutDefaultTopMenuItemComponent {
-    selected: boolean;
-    disabled: boolean;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultTopMenuItemComponent, never>;
-    static ɵcmp: i0.ɵɵComponentDeclaration<LayoutDefaultTopMenuItemComponent, "layout-default-top-menu-item", never, { "selected": { "alias": "selected"; "required": false; }; "disabled": { "alias": "disabled"; "required": false; }; }, {}, never, ["*"], false, never>;
-    static ngAcceptInputType_selected: unknown;
-    static ngAcceptInputType_disabled: unknown;
-}
-
-declare class LayoutDefaultModule {
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultModule, never>;
-    static ɵmod: i0.ɵɵNgModuleDeclaration<LayoutDefaultModule, [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent], [typeof i7.CommonModule, typeof i8.RouterModule, typeof i9.NzTooltipModule, typeof i10.NzIconModule, typeof i11.NzAvatarModule, typeof i12.NzDropdownModule, typeof i13.NzBadgeModule], [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent]>;
-    static ɵinj: i0.ɵɵInjectorDeclaration<LayoutDefaultModule>;
+    readonly host: _angular_core.Signal<TemplateRef<void> | undefined>;
+    readonly hidden: _angular_core.InputSignal<LayoutDefaultHeaderItemHidden>;
+    readonly direction: _angular_core.InputSignal<LayoutDefaultHeaderItemDirection>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultHeaderItemComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<LayoutDefaultHeaderItemComponent, "layout-default-header-item", never, { "hidden": { "alias": "hidden"; "required": false; "isSignal": true; }; "direction": { "alias": "direction"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
 
 declare class LayoutDefaultService {
     private readonly settings;
     private readonly bm;
-    private _options$;
-    private _options;
-    get options(): LayoutDefaultOptions;
-    get options$(): Observable<LayoutDefaultOptions>;
-    get collapsedIcon(): string;
+    readonly options: _angular_core.WritableSignal<LayoutDefaultOptions>;
+    readonly collapsedIcon: _angular_core.WritableSignal<string>;
     constructor();
     private checkMedia;
-    private notify;
     /**
      * Set layout configuration
      *
@@ -237,8 +101,110 @@ declare class LayoutDefaultService {
      * 切换侧边栏菜单栏折叠状态
      */
     toggleCollapsed(status?: boolean): void;
-    static ɵfac: i0.ɵɵFactoryDeclaration<LayoutDefaultService, never>;
-    static ɵprov: i0.ɵɵInjectableDeclaration<LayoutDefaultService>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultService, never>;
+    static ɵprov: _angular_core.ɵɵInjectableDeclaration<LayoutDefaultService>;
+}
+
+declare class LayoutDefaultComponent {
+    private readonly router;
+    private readonly msgSrv;
+    private readonly settings;
+    private readonly doc;
+    protected readonly srv: LayoutDefaultService;
+    protected readonly headerItems: _angular_core.Signal<readonly LayoutDefaultHeaderItemComponent[]>;
+    protected opt: _angular_core.WritableSignal<LayoutDefaultOptions>;
+    protected layout: _angular_core.Signal<_delon_theme.Layout>;
+    readonly options: _angular_core.InputSignal<LayoutDefaultOptions | undefined>;
+    readonly asideUser: _angular_core.InputSignal<TemplateRef<void> | null | undefined>;
+    readonly asideBottom: _angular_core.InputSignal<TemplateRef<any> | null | undefined>;
+    readonly nav: _angular_core.InputSignal<TemplateRef<void> | null | undefined>;
+    readonly content: _angular_core.InputSignal<TemplateRef<void> | null | undefined>;
+    readonly customError: _angular_core.InputSignal<string | null | undefined>;
+    readonly fetchingStrictly: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly fetching: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    private isFetching;
+    readonly showFetching: _angular_core.Signal<boolean>;
+    constructor();
+    processEv(ev: Event): void;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<LayoutDefaultComponent, "layout-default", ["layoutDefault"], { "options": { "alias": "options"; "required": false; "isSignal": true; }; "asideUser": { "alias": "asideUser"; "required": false; "isSignal": true; }; "asideBottom": { "alias": "asideBottom"; "required": false; "isSignal": true; }; "nav": { "alias": "nav"; "required": false; "isSignal": true; }; "content": { "alias": "content"; "required": false; "isSignal": true; }; "customError": { "alias": "customError"; "required": false; "isSignal": true; }; "fetchingStrictly": { "alias": "fetchingStrictly"; "required": false; "isSignal": true; }; "fetching": { "alias": "fetching"; "required": false; "isSignal": true; }; }, {}, ["headerItems"], ["*"], true, never>;
+}
+
+interface Nav extends MenuInner {
+    _needIcon?: boolean;
+    _text?: SafeHtml;
+}
+declare class LayoutDefaultNavComponent implements OnDestroy {
+    private readonly doc;
+    private readonly win;
+    private readonly router;
+    private readonly render;
+    private readonly menuSrv;
+    private readonly settings;
+    private readonly sanitizer;
+    private bodyEl;
+    private floatingEl;
+    dir: _angular_core.WritableSignal<_angular_cdk_bidi.Direction>;
+    list: _angular_core.WritableSignal<Nav[]>;
+    readonly disabledAcl: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly autoCloseUnderPad: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly recursivePath: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly hideEmptyChildren: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly openStrictly: _angular_core.InputSignal<boolean | undefined>;
+    readonly maxLevelIcon: _angular_core.InputSignalWithTransform<number, unknown>;
+    readonly select: _angular_core.OutputEmitterRef<Menu>;
+    get collapsed(): boolean;
+    constructor();
+    private getLinkNode;
+    private floatingClickHandle;
+    private clearFloating;
+    private genFloating;
+    private genSubNode;
+    private hideAll;
+    private calPos;
+    protected showSubMenu(e: MouseEvent, item: Nav): void;
+    protected to(item: Menu): void;
+    protected toggleOpen(item: Nav): void;
+    protected _click(): void;
+    protected closeSubMenu(): void;
+    private openByUrl;
+    private fixHide;
+    private get isPad();
+    private underPad;
+    private openAside;
+    ngOnDestroy(): void;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultNavComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<LayoutDefaultNavComponent, "layout-default-nav", never, { "disabledAcl": { "alias": "disabledAcl"; "required": false; "isSignal": true; }; "autoCloseUnderPad": { "alias": "autoCloseUnderPad"; "required": false; "isSignal": true; }; "recursivePath": { "alias": "recursivePath"; "required": false; "isSignal": true; }; "hideEmptyChildren": { "alias": "hideEmptyChildren"; "required": false; "isSignal": true; }; "openStrictly": { "alias": "openStrictly"; "required": false; "isSignal": true; }; "maxLevelIcon": { "alias": "maxLevelIcon"; "required": false; "isSignal": true; }; }, { "select": "select"; }, never, never, true, never>;
+}
+
+declare class LayoutDefaultHeaderComponent {
+    protected readonly app: any;
+    protected readonly srv: LayoutDefaultService;
+    readonly items: _angular_core.InputSignal<readonly LayoutDefaultHeaderItemComponent[]>;
+    protected left: _angular_core.Signal<LayoutDefaultHeaderItemComponent[]>;
+    protected middle: _angular_core.Signal<LayoutDefaultHeaderItemComponent[]>;
+    protected right: _angular_core.Signal<LayoutDefaultHeaderItemComponent[]>;
+    protected opt: _angular_core.WritableSignal<_delon_theme_layout_default.LayoutDefaultOptions>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultHeaderComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<LayoutDefaultHeaderComponent, "layout-default-header", never, { "items": { "alias": "items"; "required": true; "isSignal": true; }; }, {}, never, never, true, never>;
+}
+
+declare class LayoutDefaultHeaderItemTriggerDirective {
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultHeaderItemTriggerDirective, never>;
+    static ɵdir: _angular_core.ɵɵDirectiveDeclaration<LayoutDefaultHeaderItemTriggerDirective, "[layout-default-header-item-trigger]", never, {}, {}, never, never, true, never>;
+}
+
+declare class LayoutDefaultTopMenuItemComponent {
+    readonly selected: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    readonly disabled: _angular_core.InputSignalWithTransform<boolean, unknown>;
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultTopMenuItemComponent, never>;
+    static ɵcmp: _angular_core.ɵɵComponentDeclaration<LayoutDefaultTopMenuItemComponent, "layout-default-top-menu-item", never, { "selected": { "alias": "selected"; "required": false; "isSignal": true; }; "disabled": { "alias": "disabled"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
+}
+
+declare class LayoutDefaultModule {
+    static ɵfac: _angular_core.ɵɵFactoryDeclaration<LayoutDefaultModule, never>;
+    static ɵmod: _angular_core.ɵɵNgModuleDeclaration<LayoutDefaultModule, never, [typeof i1.CommonModule, typeof i2.RouterModule, typeof i3.NzTooltipModule, typeof i4.NzIconModule, typeof i5.NzAvatarModule, typeof i6.NzDropdownModule, typeof i7.NzBadgeModule, typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent], [typeof LayoutDefaultComponent, typeof LayoutDefaultNavComponent, typeof LayoutDefaultHeaderComponent, typeof LayoutDefaultHeaderItemComponent, typeof LayoutDefaultHeaderItemTriggerDirective, typeof LayoutDefaultTopMenuItemComponent]>;
+    static ɵinj: _angular_core.ɵɵInjectorDeclaration<LayoutDefaultModule>;
 }
 
 export { LayoutDefaultComponent, LayoutDefaultHeaderComponent, LayoutDefaultHeaderItemComponent, LayoutDefaultHeaderItemTriggerDirective, LayoutDefaultModule, LayoutDefaultNavComponent, LayoutDefaultService, LayoutDefaultTopMenuItemComponent };

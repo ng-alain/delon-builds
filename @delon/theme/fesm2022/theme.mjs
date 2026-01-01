@@ -5,9 +5,9 @@ import { BehaviorSubject, filter, share, Subject, map, of, delay, isObservable, 
 import { ACLService } from '@delon/acl';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
+import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Directionality } from '@angular/cdk/bidi';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
-import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DragDrop } from '@angular/cdk/drag-drop';
@@ -509,6 +509,10 @@ class SettingsService {
         }
         return this._layout;
     }
+    get layoutSignal() {
+        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'layout'), map(() => ({ ...this.layout }))), { initialValue: this.layout });
+        return ret;
+    }
     get app() {
         if (!this._app) {
             this._app = {
@@ -519,12 +523,20 @@ class SettingsService {
         }
         return this._app;
     }
+    get appSignal() {
+        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'app'), map(() => ({ ...this.app }))), { initialValue: this.app });
+        return ret;
+    }
     get user() {
         if (!this._user) {
             this._user = { ...this.getData(this.KEYS.user) };
             this.setData(this.KEYS.user, this._user);
         }
         return this._user;
+    }
+    get userSignal() {
+        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'user'), map(() => ({ ...this.user }))), { initialValue: this.user });
+        return ret;
     }
     get notify() {
         return this.notify$.asObservable();
