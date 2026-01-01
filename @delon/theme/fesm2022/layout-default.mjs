@@ -78,11 +78,10 @@ class LayoutDefaultService {
      * 设置布局配置
      */
     setOptions(options) {
-        this.options.update(v => ({
+        this.options.set({
             ...DEFAULT,
-            ...v,
             ...options
-        }));
+        });
     }
     /**
      * Toggle the collapsed state of the sidebar menu bar

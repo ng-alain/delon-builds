@@ -1,13 +1,13 @@
 import { DOCUMENT, isPlatformServer, CommonModule, registerLocaleData } from '@angular/common';
 import * as i0 from '@angular/core';
-import { inject, PLATFORM_ID, InjectionToken, Injectable, DestroyRef, Injector, Pipe, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, provideEnvironmentInitializer, makeEnvironmentProviders, Version } from '@angular/core';
+import { inject, PLATFORM_ID, InjectionToken, Injectable, signal, DestroyRef, Injector, Pipe, Optional, SkipSelf, NgModule, importProvidersFrom, LOCALE_ID, provideEnvironmentInitializer, makeEnvironmentProviders, Version } from '@angular/core';
 import { BehaviorSubject, filter, share, Subject, map, of, delay, isObservable, switchMap, Observable, take, tap, finalize, throwError, catchError } from 'rxjs';
 import { ACLService } from '@delon/acl';
 import { AlainConfigService, ALAIN_CONFIG } from '@delon/util/config';
 import { Platform } from '@angular/cdk/platform';
-import { toSignal, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Directionality } from '@angular/cdk/bidi';
 import { NzConfigService } from 'ng-zorro-antd/core/config';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { DragDrop } from '@angular/cdk/drag-drop';
@@ -481,9 +481,18 @@ class SettingsService {
     KEYS = inject(ALAIN_SETTING_KEYS);
     platform = inject(Platform);
     notify$ = new Subject();
-    _app = null;
-    _user = null;
-    _layout = null;
+    appSignal = signal({
+        year: new Date().getFullYear(),
+        ...this.getData(this.KEYS.app)
+    }, ...(ngDevMode ? [{ debugName: "appSignal" }] : []));
+    userSignal = signal({ ...this.getData(this.KEYS.user) }, ...(ngDevMode ? [{ debugName: "userSignal" }] : []));
+    layoutSignal = signal({
+        fixed: true,
+        collapsed: false,
+        boxed: false,
+        lang: null,
+        ...this.getData(this.KEYS.layout)
+    }, ...(ngDevMode ? [{ debugName: "layoutSignal" }] : []));
     getData(key) {
         if (!this.platform.isBrowser) {
             return null;
@@ -497,79 +506,47 @@ class SettingsService {
         localStorage.setItem(key, JSON.stringify(value));
     }
     get layout() {
-        if (!this._layout) {
-            this._layout = {
-                fixed: true,
-                collapsed: false,
-                boxed: false,
-                lang: null,
-                ...this.getData(this.KEYS.layout)
-            };
-            this.setData(this.KEYS.layout, this._layout);
-        }
-        return this._layout;
-    }
-    get layoutSignal() {
-        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'layout'), map(() => ({ ...this.layout }))), { initialValue: this.layout });
-        return ret;
+        return this.layoutSignal();
     }
     get app() {
-        if (!this._app) {
-            this._app = {
-                year: new Date().getFullYear(),
-                ...this.getData(this.KEYS.app)
-            };
-            this.setData(this.KEYS.app, this._app);
-        }
-        return this._app;
-    }
-    get appSignal() {
-        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'app'), map(() => ({ ...this.app }))), { initialValue: this.app });
-        return ret;
+        return this.appSignal();
     }
     get user() {
-        if (!this._user) {
-            this._user = { ...this.getData(this.KEYS.user) };
-            this.setData(this.KEYS.user, this._user);
-        }
-        return this._user;
-    }
-    get userSignal() {
-        const ret = toSignal(this.notify$.pipe(filter(v => v.type === 'user'), map(() => ({ ...this.user }))), { initialValue: this.user });
-        return ret;
+        return this.userSignal();
     }
     get notify() {
         return this.notify$.asObservable();
     }
     setLayout(name, value) {
-        if (typeof name === 'string') {
-            this.layout[name] = value;
-        }
-        else {
-            this._layout = name;
-        }
-        this.setData(this.KEYS.layout, this._layout);
+        this.layoutSignal.update(l => {
+            if (typeof name === 'string') {
+                l[name] = value;
+                return { ...l };
+            }
+            return { ...name };
+        });
+        this.setData(this.KEYS.layout, this.layout);
         this.notify$.next({ type: 'layout', name, value });
         return true;
     }
     getLayout() {
-        return this._layout;
+        return this.layout;
     }
     setApp(value) {
-        this._app = value;
+        this.appSignal.set(value);
         this.setData(this.KEYS.app, value);
         this.notify$.next({ type: 'app', value });
     }
     getApp() {
-        return this._app;
+        return this.app;
     }
     setUser(value) {
-        this._user = value;
+        this.userSignal.set(value);
         this.setData(this.KEYS.user, value);
         this.notify$.next({ type: 'user', value });
     }
     getUser() {
-        return this._user;
+        return this.user;
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SettingsService, deps: [], target: i0.ɵɵFactoryTarget.Injectable });
     static ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: SettingsService, providedIn: 'root' });

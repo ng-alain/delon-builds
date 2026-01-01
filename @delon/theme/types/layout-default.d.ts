@@ -1,5 +1,3 @@
-import * as _delon_theme from '@delon/theme';
-import { MenuInner, Menu } from '@delon/theme';
 import * as _angular_core from '@angular/core';
 import { TemplateRef, OnDestroy } from '@angular/core';
 import * as i2 from '@angular/router';
@@ -13,6 +11,7 @@ import * as i6 from 'ng-zorro-antd/dropdown';
 import * as i7 from 'ng-zorro-antd/badge';
 import * as _angular_cdk_bidi from '@angular/cdk/bidi';
 import { SafeHtml } from '@angular/platform-browser';
+import { MenuInner, Menu } from '@delon/theme';
 import * as _delon_theme_layout_default from '@delon/theme/layout-default';
 
 type LayoutDefaultHeaderItemHidden = 'pc' | 'mobile' | 'none';
@@ -113,7 +112,7 @@ declare class LayoutDefaultComponent {
     protected readonly srv: LayoutDefaultService;
     protected readonly headerItems: _angular_core.Signal<readonly LayoutDefaultHeaderItemComponent[]>;
     protected opt: _angular_core.WritableSignal<LayoutDefaultOptions>;
-    protected layout: _angular_core.Signal<_delon_theme.Layout>;
+    protected layout: _angular_core.WritableSignal<any>;
     readonly options: _angular_core.InputSignal<LayoutDefaultOptions | undefined>;
     readonly asideUser: _angular_core.InputSignal<TemplateRef<void> | null | undefined>;
     readonly asideBottom: _angular_core.InputSignal<TemplateRef<any> | null | undefined>;
