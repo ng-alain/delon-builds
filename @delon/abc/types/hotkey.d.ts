@@ -3,8 +3,6 @@ import { OnDestroy } from '@angular/core';
 
 declare class HotkeyDirective implements OnDestroy {
     private readonly el;
-    private readonly ngZone;
-    private readonly platform;
     /**
      * Specify [hotkey format](https://github.com/github/hotkey#hotkey-string-format), you can get the code through [Hotkey Code](https://github.github.com/hotkey/hotkey_mapper.html)
      *
