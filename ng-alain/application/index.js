@@ -199,9 +199,6 @@ function addStyle() {
         return tree;
     };
 }
-function addReuseTab() {
-    return (_tree) => { };
-}
 function addFilesToRoot(options) {
     return (0, schematics_1.chain)([
         (0, schematics_1.mergeWith)((0, schematics_1.apply)((0, schematics_1.url)('./files/src'), [
@@ -317,7 +314,6 @@ function default_1(options) {
             addFilesToRoot(options),
             forceLess(),
             addStyle(),
-            addReuseTab(),
             fixLang(options),
             fixAngularJson(),
             fixBrowserBuilderBudgets(),
