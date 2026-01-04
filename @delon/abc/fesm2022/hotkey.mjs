@@ -1,19 +1,26 @@
 import * as i0 from '@angular/core';
-import { inject, ElementRef, Input, Directive, NgModule } from '@angular/core';
+import { inject, ElementRef, NgZone, Input, Directive, NgModule } from '@angular/core';
+import { Platform } from '@angular/cdk/platform';
 import { install, uninstall } from '@github/hotkey';
 
 class HotkeyDirective {
     el = inject(ElementRef).nativeElement;
+    ngZone = inject(NgZone);
+    platform = inject(Platform);
     /**
      * Specify [hotkey format](https://github.com/github/hotkey#hotkey-string-format), you can get the code through [Hotkey Code](https://github.github.com/hotkey/hotkey_mapper.html)
      *
      * 指定[热键格式](https://github.com/github/hotkey#hotkey-string-format)，可以通过 [Hotkey Code](https://github.github.com/hotkey/hotkey_mapper.html) 来获取代码。
      */
     set hotkey(key) {
-        install(this.el, key);
+        if (!this.platform.isBrowser)
+            return;
+        this.ngZone.runOutsideAngular(() => install(this.el, key));
     }
     ngOnDestroy() {
-        uninstall(this.el);
+        if (!this.platform.isBrowser)
+            return;
+        this.ngZone.runOutsideAngular(() => uninstall(this.el));
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.6", ngImport: i0, type: HotkeyDirective, deps: [], target: i0.ɵɵFactoryTarget.Directive });
     static ɵdir = i0.ɵɵngDeclareDirective({ minVersion: "14.0.0", version: "21.0.6", type: HotkeyDirective, isStandalone: true, selector: "[hotkey]", inputs: { hotkey: "hotkey" }, ngImport: i0 });
