@@ -1,7 +1,7 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, SFValue, ControlUIWidget, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
 import * as i3 from 'ng-zorro-antd/segmented';
-import { NzSegmentedOptions } from 'ng-zorro-antd/segmented';
+import { NzSegmentedOptions, NzSegmentedOption } from 'ng-zorro-antd/segmented';
 import { Observable } from 'rxjs';
 import * as i0 from '@angular/core';
 import * as i1 from '@angular/forms';
@@ -27,9 +27,9 @@ interface SFSegmentedWidgetSchema extends SFUISchemaItem {
 declare class SegmentedWidget extends ControlUIWidget<SFSegmentedWidgetSchema> {
     static readonly KEY = "segmented";
     private _list?;
-    get list(): NzSegmentedOptions;
+    get list(): NzSegmentedOption[];
     reset(value: SFValue): void;
-    valueChange(index: string | number): void;
+    valueChange(v: string | number): void;
     static ɵfac: i0.ɵɵFactoryDeclaration<SegmentedWidget, never>;
     static ɵcmp: i0.ɵɵComponentDeclaration<SegmentedWidget, "sf-segmented", never, {}, {}, never, never, true, never>;
 }

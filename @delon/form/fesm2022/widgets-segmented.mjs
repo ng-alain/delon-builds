@@ -18,10 +18,12 @@ class SegmentedWidget extends ControlUIWidget {
             this.detectChanges();
         });
     }
-    valueChange(index) {
-        if (this.ui.valueChange) {
-            this.ui.valueChange({ index, item: typeof index === 'number' ? this.list[index] : null });
-        }
+    valueChange(v) {
+        const list = this.list;
+        this.ui.valueChange?.({
+            index: v,
+            item: typeof v === 'number' ? list[v] : list.find(w => w.value === v)
+        });
     }
     static ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "21.0.8", ngImport: i0, type: SegmentedWidget, deps: null, target: i0.ɵɵFactoryTarget.Component });
     static ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "14.0.0", version: "21.0.8", type: SegmentedWidget, isStandalone: true, selector: "sf-segmented", usesInheritance: true, ngImport: i0, template: `<sf-item-wrap
