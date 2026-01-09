@@ -1061,517 +1061,6 @@ html {
     opacity: 0;
   }
 }
-.ant-zoom-enter,
-.ant-zoom-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-enter.ant-zoom-enter-active,
-.ant-zoom-appear.ant-zoom-appear-active {
-  animation-name: antZoomIn;
-  animation-play-state: running;
-}
-.ant-zoom-leave.ant-zoom-leave-active {
-  animation-name: antZoomOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-enter,
-.ant-zoom-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-enter.ant-zoom-enter-active,
-.ant-zoom-appear.ant-zoom-appear-active {
-  animation-name: antZoomIn;
-  animation-play-state: running;
-}
-.ant-zoom-leave.ant-zoom-leave-active {
-  animation-name: antZoomOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-enter,
-.ant-zoom-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-enter-prepare,
-.ant-zoom-appear-prepare {
-  transform: none;
-}
-.ant-zoom-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-big-enter,
-.ant-zoom-big-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-enter.ant-zoom-big-enter-active,
-.ant-zoom-big-appear.ant-zoom-big-appear-active {
-  animation-name: antZoomBigIn;
-  animation-play-state: running;
-}
-.ant-zoom-big-leave.ant-zoom-big-leave-active {
-  animation-name: antZoomBigOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-big-enter,
-.ant-zoom-big-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-enter.ant-zoom-big-enter-active,
-.ant-zoom-big-appear.ant-zoom-big-appear-active {
-  animation-name: antZoomBigIn;
-  animation-play-state: running;
-}
-.ant-zoom-big-leave.ant-zoom-big-leave-active {
-  animation-name: antZoomBigOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-big-enter,
-.ant-zoom-big-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-big-enter-prepare,
-.ant-zoom-big-appear-prepare {
-  transform: none;
-}
-.ant-zoom-big-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-big-fast-enter,
-.ant-zoom-big-fast-appear {
-  animation-duration: 0.1s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-fast-leave {
-  animation-duration: 0.1s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-fast-enter.ant-zoom-big-fast-enter-active,
-.ant-zoom-big-fast-appear.ant-zoom-big-fast-appear-active {
-  animation-name: antZoomBigIn;
-  animation-play-state: running;
-}
-.ant-zoom-big-fast-leave.ant-zoom-big-fast-leave-active {
-  animation-name: antZoomBigOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-big-fast-enter,
-.ant-zoom-big-fast-appear {
-  animation-duration: 0.1s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-fast-leave {
-  animation-duration: 0.1s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-big-fast-enter.ant-zoom-big-fast-enter-active,
-.ant-zoom-big-fast-appear.ant-zoom-big-fast-appear-active {
-  animation-name: antZoomBigIn;
-  animation-play-state: running;
-}
-.ant-zoom-big-fast-leave.ant-zoom-big-fast-leave-active {
-  animation-name: antZoomBigOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-big-fast-enter,
-.ant-zoom-big-fast-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-big-fast-enter-prepare,
-.ant-zoom-big-fast-appear-prepare {
-  transform: none;
-}
-.ant-zoom-big-fast-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-up-enter,
-.ant-zoom-up-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-up-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-up-enter.ant-zoom-up-enter-active,
-.ant-zoom-up-appear.ant-zoom-up-appear-active {
-  animation-name: antZoomUpIn;
-  animation-play-state: running;
-}
-.ant-zoom-up-leave.ant-zoom-up-leave-active {
-  animation-name: antZoomUpOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-up-enter,
-.ant-zoom-up-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-up-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-up-enter.ant-zoom-up-enter-active,
-.ant-zoom-up-appear.ant-zoom-up-appear-active {
-  animation-name: antZoomUpIn;
-  animation-play-state: running;
-}
-.ant-zoom-up-leave.ant-zoom-up-leave-active {
-  animation-name: antZoomUpOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-up-enter,
-.ant-zoom-up-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-up-enter-prepare,
-.ant-zoom-up-appear-prepare {
-  transform: none;
-}
-.ant-zoom-up-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-down-enter,
-.ant-zoom-down-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-down-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-down-enter.ant-zoom-down-enter-active,
-.ant-zoom-down-appear.ant-zoom-down-appear-active {
-  animation-name: antZoomDownIn;
-  animation-play-state: running;
-}
-.ant-zoom-down-leave.ant-zoom-down-leave-active {
-  animation-name: antZoomDownOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-down-enter,
-.ant-zoom-down-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-down-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-down-enter.ant-zoom-down-enter-active,
-.ant-zoom-down-appear.ant-zoom-down-appear-active {
-  animation-name: antZoomDownIn;
-  animation-play-state: running;
-}
-.ant-zoom-down-leave.ant-zoom-down-leave-active {
-  animation-name: antZoomDownOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-down-enter,
-.ant-zoom-down-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-down-enter-prepare,
-.ant-zoom-down-appear-prepare {
-  transform: none;
-}
-.ant-zoom-down-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-left-enter,
-.ant-zoom-left-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-left-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-left-enter.ant-zoom-left-enter-active,
-.ant-zoom-left-appear.ant-zoom-left-appear-active {
-  animation-name: antZoomLeftIn;
-  animation-play-state: running;
-}
-.ant-zoom-left-leave.ant-zoom-left-leave-active {
-  animation-name: antZoomLeftOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-left-enter,
-.ant-zoom-left-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-left-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-left-enter.ant-zoom-left-enter-active,
-.ant-zoom-left-appear.ant-zoom-left-appear-active {
-  animation-name: antZoomLeftIn;
-  animation-play-state: running;
-}
-.ant-zoom-left-leave.ant-zoom-left-leave-active {
-  animation-name: antZoomLeftOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-left-enter,
-.ant-zoom-left-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-left-enter-prepare,
-.ant-zoom-left-appear-prepare {
-  transform: none;
-}
-.ant-zoom-left-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-.ant-zoom-right-enter,
-.ant-zoom-right-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-right-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-right-enter.ant-zoom-right-enter-active,
-.ant-zoom-right-appear.ant-zoom-right-appear-active {
-  animation-name: antZoomRightIn;
-  animation-play-state: running;
-}
-.ant-zoom-right-leave.ant-zoom-right-leave-active {
-  animation-name: antZoomRightOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-right-enter,
-.ant-zoom-right-appear {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-right-leave {
-  animation-duration: 0.2s;
-  animation-fill-mode: both;
-  animation-play-state: paused;
-}
-.ant-zoom-right-enter.ant-zoom-right-enter-active,
-.ant-zoom-right-appear.ant-zoom-right-appear-active {
-  animation-name: antZoomRightIn;
-  animation-play-state: running;
-}
-.ant-zoom-right-leave.ant-zoom-right-leave-active {
-  animation-name: antZoomRightOut;
-  animation-play-state: running;
-  pointer-events: none;
-}
-.ant-zoom-right-enter,
-.ant-zoom-right-appear {
-  transform: scale(0);
-  opacity: 0;
-  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
-}
-.ant-zoom-right-enter-prepare,
-.ant-zoom-right-appear-prepare {
-  transform: none;
-}
-.ant-zoom-right-leave {
-  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
-}
-@keyframes antZoomIn {
-  0% {
-    transform: scale(0.2);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes antZoomOut {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.2);
-    opacity: 0;
-  }
-}
-@keyframes antZoomBigIn {
-  0% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes antZoomBigOut {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.8);
-    opacity: 0;
-  }
-}
-@keyframes antZoomUpIn {
-  0% {
-    transform: scale(0.8);
-    transform-origin: 50% 0%;
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 50% 0%;
-  }
-}
-@keyframes antZoomUpOut {
-  0% {
-    transform: scale(1);
-    transform-origin: 50% 0%;
-  }
-  100% {
-    transform: scale(0.8);
-    transform-origin: 50% 0%;
-    opacity: 0;
-  }
-}
-@keyframes antZoomLeftIn {
-  0% {
-    transform: scale(0.8);
-    transform-origin: 0% 50%;
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 0% 50%;
-  }
-}
-@keyframes antZoomLeftOut {
-  0% {
-    transform: scale(1);
-    transform-origin: 0% 50%;
-  }
-  100% {
-    transform: scale(0.8);
-    transform-origin: 0% 50%;
-    opacity: 0;
-  }
-}
-@keyframes antZoomRightIn {
-  0% {
-    transform: scale(0.8);
-    transform-origin: 100% 50%;
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 100% 50%;
-  }
-}
-@keyframes antZoomRightOut {
-  0% {
-    transform: scale(1);
-    transform-origin: 100% 50%;
-  }
-  100% {
-    transform: scale(0.8);
-    transform-origin: 100% 50%;
-    opacity: 0;
-  }
-}
-@keyframes antZoomDownIn {
-  0% {
-    transform: scale(0.8);
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    transform-origin: 50% 100%;
-  }
-}
-@keyframes antZoomDownOut {
-  0% {
-    transform: scale(1);
-    transform-origin: 50% 100%;
-  }
-  100% {
-    transform: scale(0.8);
-    transform-origin: 50% 100%;
-    opacity: 0;
-  }
-}
 .ant-motion-collapse-legacy {
   overflow: hidden;
 }
@@ -1773,6 +1262,18 @@ html {
 }
 .nz-animate-disabled.ant-collapse > .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow svg {
   transition: none;
+}
+.nz-animate-disabled.ant-tooltip,
+.nz-animate-disabled.ant-popover {
+  animation: none;
+}
+.ant-tooltip.ant-zoom-big-fast-enter .ant-tooltip-arrow,
+.ant-tooltip.ant-zoom-big-fast-leave .ant-tooltip-arrow {
+  will-change: transform;
+}
+.ant-popover.ant-zoom-big-enter .ant-popover-arrow,
+.ant-popover.ant-zoom-big-leave .ant-popover-arrow {
+  will-change: transform;
 }
 /** antd: all components */
 .ant-affix {
@@ -19573,9 +19074,42 @@ textarea.ant-mentions {
   margin-right: 8px;
   font-size: 16px;
 }
-.ant-message-notice.ant-move-up-leave.ant-move-up-leave-active {
+.ant-message-rtl {
+  direction: rtl;
+}
+.ant-message-rtl span {
+  direction: rtl;
+}
+.ant-message-rtl .anticon {
+  margin-right: 0;
+  margin-left: 8px;
+}
+.ant-message .ant-message-move-up {
+  animation-fill-mode: forwards;
+}
+.ant-message .ant-message-move-up-enter {
+  animation-name: MessageMoveIn;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  animation-fill-mode: both;
+}
+.ant-message .ant-message-move-up-leave {
   animation-name: MessageMoveOut;
   animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+  animation-fill-mode: both;
+}
+@keyframes MessageMoveIn {
+  0% {
+    padding: 0;
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    padding: 8px;
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes MessageMoveOut {
   0% {
@@ -19588,16 +19122,6 @@ textarea.ant-mentions {
     padding: 0;
     opacity: 0;
   }
-}
-.ant-message-rtl {
-  direction: rtl;
-}
-.ant-message-rtl span {
-  direction: rtl;
-}
-.ant-message-rtl .anticon {
-  margin-right: 0;
-  margin-left: 8px;
 }
 .ant-modal {
   box-sizing: border-box;
@@ -19903,6 +19427,61 @@ textarea.ant-mentions {
 .ant-modal-wrap-rtl.ant-modal-centered .ant-modal {
   text-align: right;
 }
+.ant-zoom-enter,
+.ant-zoom-appear {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-leave {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-enter.ant-zoom-enter-active,
+.ant-zoom-appear.ant-zoom-appear-active {
+  animation-name: antZoomIn;
+  animation-play-state: running;
+}
+.ant-zoom-leave.ant-zoom-leave-active {
+  animation-name: antZoomOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-enter,
+.ant-zoom-appear {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-leave {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-enter.ant-zoom-enter-active,
+.ant-zoom-appear.ant-zoom-appear-active {
+  animation-name: antZoomIn;
+  animation-play-state: running;
+}
+.ant-zoom-leave.ant-zoom-leave-active {
+  animation-name: antZoomOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-enter,
+.ant-zoom-appear {
+  transform: scale(0);
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.ant-zoom-enter-prepare,
+.ant-zoom-appear-prepare {
+  transform: none;
+}
+.ant-zoom-leave {
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
+}
 .ant-notification {
   box-sizing: border-box;
   margin: 0;
@@ -20012,59 +19591,6 @@ textarea.ant-mentions {
   float: right;
   margin-top: 16px;
 }
-.ant-notification .notification-fade-effect {
-  animation-duration: 0.24s;
-  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  animation-fill-mode: both;
-}
-.ant-notification-fade-enter,
-.ant-notification-fade-appear {
-  animation-duration: 0.24s;
-  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  animation-fill-mode: both;
-  opacity: 0;
-  animation-play-state: paused;
-}
-.ant-notification-fade-leave {
-  animation-duration: 0.24s;
-  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
-  animation-fill-mode: both;
-  animation-duration: 0.2s;
-  animation-play-state: paused;
-}
-.ant-notification-fade-enter.ant-notification-fade-enter-active,
-.ant-notification-fade-appear.ant-notification-fade-appear-active {
-  animation-name: NotificationFadeIn;
-  animation-play-state: running;
-}
-.ant-notification-fade-leave.ant-notification-fade-leave-active {
-  animation-name: NotificationFadeOut;
-  animation-play-state: running;
-}
-@keyframes NotificationFadeIn {
-  0% {
-    left: 384px;
-    opacity: 0;
-  }
-  100% {
-    left: 0;
-    opacity: 1;
-  }
-}
-@keyframes NotificationFadeOut {
-  0% {
-    max-height: 150px;
-    margin-bottom: 16px;
-    opacity: 1;
-  }
-  100% {
-    max-height: 0;
-    margin-bottom: 0;
-    padding-top: 0;
-    padding-bottom: 0;
-    opacity: 0;
-  }
-}
 .ant-notification-rtl {
   direction: rtl;
 }
@@ -20091,58 +19617,93 @@ textarea.ant-mentions {
 .ant-notification-rtl .ant-notification-notice-btn {
   float: left;
 }
+.ant-notification .ant-notification-fade-enter {
+  animation-name: antNotificationFadeIn;
+  animation-duration: 0.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: both;
+}
+.ant-notification .ant-notification-fade-leave {
+  animation-name: antNotificationFadeOut;
+  animation-duration: 0.2s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: both;
+}
+.ant-notification .notification-fade-effect {
+  animation-duration: 0.24s;
+  animation-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1);
+  animation-fill-mode: both;
+}
 .ant-notification-top,
 .ant-notification-bottom {
-  margin-right: 0;
-  margin-left: 0;
+  margin-inline: 0;
 }
-.ant-notification-top .ant-notification-fade-enter.ant-notification-fade-enter-active,
-.ant-notification-top .ant-notification-fade-appear.ant-notification-fade-appear-active {
-  animation-name: NotificationTopFadeIn;
+.ant-notification-top .ant-notification-fade-enter {
+  animation-name: antNotificationTopFadeIn;
 }
-.ant-notification-bottom .ant-notification-fade-enter.ant-notification-fade-enter-active,
-.ant-notification-bottom .ant-notification-fade-appear.ant-notification-fade-appear-active {
-  animation-name: NotificationBottomFadeIn;
+.ant-notification-bottom .ant-notification-fade-enter {
+  animation-name: antNotificationBottomFadeIn;
 }
 .ant-notification-topLeft,
 .ant-notification-bottomLeft {
   margin-right: 0;
   margin-left: 24px;
 }
-.ant-notification-topLeft .ant-notification-fade-enter.ant-notification-fade-enter-active,
-.ant-notification-bottomLeft .ant-notification-fade-enter.ant-notification-fade-enter-active,
-.ant-notification-topLeft .ant-notification-fade-appear.ant-notification-fade-appear-active,
-.ant-notification-bottomLeft .ant-notification-fade-appear.ant-notification-fade-appear-active {
-  animation-name: NotificationLeftFadeIn;
+.ant-notification-topLeft .ant-notification-fade-enter,
+.ant-notification-bottomLeft .ant-notification-fade-enter {
+  animation-name: antNotificationLeftFadeIn;
 }
-@keyframes NotificationTopFadeIn {
+@keyframes antNotificationFadeIn {
   0% {
-    margin-top: -100%;
+    transform: translate3d(100%, 0, 0);
     opacity: 0;
   }
   100% {
-    margin-top: 0;
+    transform: translate3d(0, 0, 0);
     opacity: 1;
   }
 }
-@keyframes NotificationBottomFadeIn {
+@keyframes antNotificationTopFadeIn {
   0% {
-    margin-bottom: -100%;
+    top: -150px;
     opacity: 0;
   }
   100% {
+    top: 0;
+    opacity: 1;
+  }
+}
+@keyframes antNotificationBottomFadeIn {
+  0% {
+    bottom: -150px;
+    opacity: 0;
+  }
+  100% {
+    bottom: 0;
+    opacity: 1;
+  }
+}
+@keyframes antNotificationLeftFadeIn {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes antNotificationFadeOut {
+  0% {
+    max-height: 150px;
+    margin-bottom: 16px;
+  }
+  100% {
+    max-height: 0;
     margin-bottom: 0;
-    opacity: 1;
-  }
-}
-@keyframes NotificationLeftFadeIn {
-  0% {
-    right: 384px;
+    padding-top: 0;
+    padding-bottom: 0;
     opacity: 0;
-  }
-  100% {
-    right: 0;
-    opacity: 1;
   }
 }
 .ant-page-header {
@@ -21343,6 +20904,61 @@ nz-pagination {
 }
 .ant-popover-purple .ant-popover-arrow {
   background-color: #722ed1;
+}
+.ant-zoom-big-enter,
+.ant-zoom-big-appear {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-leave {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-enter.ant-zoom-big-enter-active,
+.ant-zoom-big-appear.ant-zoom-big-appear-active {
+  animation-name: antZoomBigIn;
+  animation-play-state: running;
+}
+.ant-zoom-big-leave.ant-zoom-big-leave-active {
+  animation-name: antZoomBigOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-big-enter,
+.ant-zoom-big-appear {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-leave {
+  animation-duration: 0.2s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-enter.ant-zoom-big-enter-active,
+.ant-zoom-big-appear.ant-zoom-big-appear-active {
+  animation-name: antZoomBigIn;
+  animation-play-state: running;
+}
+.ant-zoom-big-leave.ant-zoom-big-leave-active {
+  animation-name: antZoomBigOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-big-enter,
+.ant-zoom-big-appear {
+  transform: scale(0);
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.ant-zoom-big-enter-prepare,
+.ant-zoom-big-appear-prepare {
+  transform: none;
+}
+.ant-zoom-big-leave {
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
 }
 .ant-popover-rtl {
   direction: rtl;
@@ -23437,8 +23053,8 @@ span.ant-radio + * {
   height: 0;
 }
 .ant-segmented-vertical .ant-segmented-thumb-motion-appear-active {
-  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), width 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-  will-change: transform, width, height;
+  transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1), height 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  will-change: transform, height;
 }
 .ant-segmented-shape-round {
   border-radius: 9999px;
@@ -23519,8 +23135,8 @@ span.ant-radio + * {
   border-radius: 2px;
   box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.05), 0 1px 4px -1px rgba(0, 0, 0, 0.07), 0 0 1px 0 rgba(0, 0, 0, 0.08);
   position: absolute;
-  top: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   width: 0;
   height: 100%;
   padding: 4px 0;
@@ -26812,7 +26428,6 @@ cdk-virtual-scroll-viewport.ant-table-body {
 .ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap,
 .ant-tabs > div > .ant-tabs-nav .ant-tabs-nav-wrap {
   position: relative;
-  display: inline-block;
   display: flex;
   flex: auto;
   align-self: stretch;
@@ -27918,6 +27533,61 @@ cdk-virtual-scroll-viewport.ant-table-body {
 }
 .ant-tooltip-purple .ant-tooltip-arrow {
   --antd-arrow-background-color: #722ed1;
+}
+.ant-zoom-big-fast-enter,
+.ant-zoom-big-fast-appear {
+  animation-duration: 0.1s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-fast-leave {
+  animation-duration: 0.1s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-fast-enter.ant-zoom-big-fast-enter-active,
+.ant-zoom-big-fast-appear.ant-zoom-big-fast-appear-active {
+  animation-name: antZoomBigIn;
+  animation-play-state: running;
+}
+.ant-zoom-big-fast-leave.ant-zoom-big-fast-leave-active {
+  animation-name: antZoomBigOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-big-fast-enter,
+.ant-zoom-big-fast-appear {
+  animation-duration: 0.1s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-fast-leave {
+  animation-duration: 0.1s;
+  animation-fill-mode: both;
+  animation-play-state: paused;
+}
+.ant-zoom-big-fast-enter.ant-zoom-big-fast-enter-active,
+.ant-zoom-big-fast-appear.ant-zoom-big-fast-appear-active {
+  animation-name: antZoomBigIn;
+  animation-play-state: running;
+}
+.ant-zoom-big-fast-leave.ant-zoom-big-fast-leave-active {
+  animation-name: antZoomBigOut;
+  animation-play-state: running;
+  pointer-events: none;
+}
+.ant-zoom-big-fast-enter,
+.ant-zoom-big-fast-appear {
+  transform: scale(0);
+  opacity: 0;
+  animation-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+}
+.ant-zoom-big-fast-enter-prepare,
+.ant-zoom-big-fast-appear-prepare {
+  transform: none;
+}
+.ant-zoom-big-fast-leave {
+  animation-timing-function: cubic-bezier(0.78, 0.14, 0.15, 0.86);
 }
 .ant-tooltip-rtl {
   direction: rtl;
@@ -30032,7 +29702,7 @@ nz-tree-view .ant-tree-list-holder-inner {
 .ant-tree .ant-tree-treenode {
   display: flex;
   align-items: flex-start;
-  padding: 0 0 4px 0;
+  margin-bottom: 4px;
   outline: none;
 }
 .ant-tree .ant-tree-treenode-disabled .ant-tree-node-content-wrapper {
@@ -30524,7 +30194,7 @@ nz-tree {
 .ant-select-tree .ant-select-tree-treenode {
   display: flex;
   align-items: flex-start;
-  padding: 0 0 4px 0;
+  margin-bottom: 4px;
   outline: none;
 }
 .ant-select-tree .ant-select-tree-treenode-disabled .ant-select-tree-node-content-wrapper {
