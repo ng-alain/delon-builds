@@ -36452,7 +36452,7 @@ body {
 .alain-default__search .ant-input-affix-wrapper {
   border: none;
   color: #fff;
-  background-color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .alain-default__search .ant-input::placeholder,
 .alain-default__search .ant-input-group-addon::placeholder,
@@ -36463,8 +36463,8 @@ body {
 .alain-default__search .ant-input-affix-wrapper .ant-input {
   background-color: transparent;
 }
-.alain-default__search .ant-input-group-addon i,
-.alain-default__search .ant-input-affix-wrapper i {
+.alain-default__search .ant-input-group-addon .anticon,
+.alain-default__search .ant-input-affix-wrapper .anticon {
   color: #fff;
   transition: color 300ms,
           transform 400ms;
@@ -36481,8 +36481,8 @@ body {
   color: #595959;
   opacity: 1;
 }
-.alain-default__search-focus .ant-input-group-addon i,
-.alain-default__search-focus .ant-input-affix-wrapper i {
+.alain-default__search-focus .ant-input-group-addon .anticon,
+.alain-default__search-focus .ant-input-affix-wrapper .anticon {
   transform: rotate(90deg);
   color: #595959;
 }
