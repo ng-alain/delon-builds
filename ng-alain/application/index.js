@@ -90,14 +90,12 @@ function addRunScriptToPackageJson() {
         json.scripts[`${commandPrefix}hmr`] = `ng s${commandFragment} -o --hmr`;
         json.scripts[`${commandPrefix}build`] = `npm run ng-high-memory build${commandFragment}`;
         json.scripts[`${commandPrefix}analyze`] = `npm run ng-high-memory build${commandFragment} -- --source-map`;
-        json.scripts[`${commandPrefix}analyze:view`] =
-            `source-map-explorer dist/${mulitProject ? `${projectName}/` : ''}**/*.js`;
+        json.scripts[`${commandPrefix}analyze:view`] = `source-map-explorer dist/${mulitProject ? `${projectName}/` : ''}**/*.js`;
         json.scripts[`${commandPrefix}test-coverage`] = `ng test${commandFragment} --code-coverage --watch=false`;
         const themeCommand = mulitProject ? ` -n=${projectName}` : '';
         json.scripts[`${commandPrefix}color-less`] = `ng-alain-plugin-theme -t=colorLess${themeCommand}`;
         json.scripts[`${commandPrefix}theme`] = `ng-alain-plugin-theme -t=themeCss${themeCommand}`;
-        json.scripts[`${commandPrefix}icon`] =
-            `ng g ng-alain:plugin icon${mulitProject ? ` --project ${projectName}` : ''}`;
+        json.scripts[`${commandPrefix}icon`] = `ng g ng-alain:plugin icon${mulitProject ? ` --project ${projectName}` : ''}`;
         json.scripts.prepare = `husky install`;
         (0, utils_1.writePackage)(tree, json);
         return tree;
@@ -147,7 +145,8 @@ function addCodeStylesToPackageJson() {
             `stylelint@^16.26.1`,
             `stylelint-config-standard@^39.0.1`,
             `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
-            `stylelint-config-clean-order@^8.0.0`
+            `stylelint-config-clean-order@^8.0.0`,
+            `stylelint-order@DEP-21.0.0-next.1`
         ], 'devDependencies');
         return tree;
     };

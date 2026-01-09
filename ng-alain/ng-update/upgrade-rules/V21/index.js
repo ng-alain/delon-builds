@@ -14,6 +14,19 @@ const schematics_1 = require("@angular-devkit/schematics");
 const tasks_1 = require("@angular-devkit/schematics/tasks");
 const utils_1 = require("../../../utils");
 const versions_1 = require("../../../utils/versions");
+function addStylelintOrderLib() {
+    return (tree) => {
+        const json = (0, utils_1.readPackage)(tree);
+        if (!json.devDependencies) {
+            json.devDependencies = {};
+        }
+        if (!json.devDependencies['stylelint-order']) {
+            json.devDependencies['stylelint-order'] = '@DEP-21.0.0-next.1';
+        }
+        (0, utils_1.writePackage)(tree, json);
+        return tree;
+    };
+}
 function finished() {
     return (_tree, context) => {
         context.addTask(new tasks_1.NodePackageInstallTask());
@@ -24,7 +37,7 @@ function v21Rule() {
     return (tree, context) => __awaiter(this, void 0, void 0, function* () {
         (0, versions_1.UpgradeMainVersions)(tree);
         (0, utils_1.logInfo)(context, `Upgrade dependency version number`);
-        return (0, schematics_1.chain)([finished()]);
+        return (0, schematics_1.chain)([addStylelintOrderLib(), finished()]);
     });
 }
 //# sourceMappingURL=index.js.map
