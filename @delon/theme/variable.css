@@ -38256,7 +38256,7 @@ ellipsis {
 .cell__small {
   font-size: 12px;
 }
-.cell[data-type="img"] .img:not(:last-child) {
+.cell[data-type='img'] .img:not(:last-child) {
   margin-right: 4px;
 }
 .cell .img {
@@ -38268,10 +38268,10 @@ ellipsis {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.45);
 }
-.cell__disabled[data-type="link"] {
+.cell__disabled[data-type='link'] {
   pointer-events: none;
 }
-.cell__disabled[data-type="link"] > a {
+.cell__disabled[data-type='link'] > a {
   color: rgba(0, 0, 0, 0.85);
 }
 g2-chart,
