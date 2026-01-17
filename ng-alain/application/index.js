@@ -148,7 +148,7 @@ function addCodeStylesToPackageJson() {
             `stylelint-config-standard@^39.0.1`,
             `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
             `stylelint-config-clean-order@^8.0.0`,
-            `stylelint-order@DEP-21.0.0`
+            `stylelint-order@DEP-21.0.1`
         ], 'devDependencies');
         return tree;
     };
