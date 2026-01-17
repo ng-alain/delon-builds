@@ -10,7 +10,7 @@ import { NzConfigService } from 'ng-zorro-antd/core/config';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Title, DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { DragDrop } from '@angular/cdk/drag-drop';
+import { createDragRef } from '@angular/cdk/drag-drop';
 import { SIGNAL } from '@angular/core/primitives/signals';
 import { deepMerge } from '@delon/util/other';
 import { NzModalService, NzModalModule } from 'ng-zorro-antd/modal';
@@ -895,17 +895,16 @@ const CLS_DRAG = 'MODAL-DRAG';
  */
 class ModalHelper {
     srv = inject(NzModalService);
-    drag = inject(DragDrop);
+    injector = inject(Injector);
     doc = inject(DOCUMENT);
-    createDragRef(options, wrapCls) {
+    buildDrag(options, wrapCls) {
         const wrapEl = this.doc.querySelector(wrapCls);
         const modalEl = wrapEl.firstChild;
         const handelEl = options.handleCls ? wrapEl.querySelector(options.handleCls) : null;
         if (handelEl) {
             handelEl.classList.add(`${CLS_DRAG}-HANDLE`);
         }
-        return this.drag
-            .createDrag(handelEl ?? modalEl)
+        return createDragRef(this.injector, handelEl ?? modalEl)
             .withHandles([handelEl ?? modalEl])
             .withBoundaryElement(wrapEl)
             .withRootElement(modalEl);
@@ -966,19 +965,22 @@ class ModalHelper {
                 cls.push(CLS_DRAG, dragWrapCls);
             }
             const mth = isBuildIn ? this.srv[comp] : this.srv.create;
-            const subject = mth.call(this.srv, {
+            const callOptions = {
                 nzWrapClassName: cls.join(' '),
-                nzContent: isBuildIn ? undefined : comp,
-                nzWidth: width ? width : undefined,
                 nzFooter: null,
                 nzData: params,
                 nzDraggable: false,
                 ...modalOptions
-            });
+            };
+            if (!isBuildIn)
+                callOptions.nzContent = comp;
+            if (width)
+                callOptions.nzWidth = width;
+            const modalRef = mth.call(this.srv, callOptions);
             // 保留 nzComponentParams 原有风格，但依然可以通过 @Inject(NZ_MODAL_DATA) 获取
-            if (subject.componentInstance != null && useNzData !== true) {
+            if (modalRef.componentInstance != null && useNzData !== true && params != null) {
                 Object.entries(params).forEach(([key, value]) => {
-                    const t = subject.componentInstance;
+                    const t = modalRef.componentInstance;
                     const s = t[key]?.[SIGNAL];
                     if (s != null) {
                         s.value = value;
@@ -988,14 +990,16 @@ class ModalHelper {
                     }
                 });
             }
-            subject.afterOpen
-                .pipe(take(1), tap(() => {
+            modalRef.afterOpen
+                .pipe(take(1), delay(modalOptions?.nzNoAnimation ? 10 : 341), tap(() => {
                 if (dragOptions != null) {
-                    dragRef = this.createDragRef(dragOptions, `.${dragWrapCls}`);
+                    dragRef = this.buildDrag(dragOptions, `.${dragWrapCls}`);
                 }
-            }), filter(() => focus != null), delay(modalOptions?.nzNoAnimation ? 10 : 241))
+            }))
                 .subscribe(() => {
-                const btns = subject
+                if (focus == null)
+                    return;
+                const btns = modalRef
                     .getElement()
                     .querySelector('.ant-modal-confirm-btns, .modal-footer')
                     ?.querySelectorAll('.ant-btn');
@@ -1012,7 +1016,7 @@ class ModalHelper {
                     el.dataset.focused = focus;
                 }
             });
-            subject.afterClose.pipe(take(1)).subscribe((res) => {
+            modalRef.afterClose.pipe(take(1)).subscribe((res) => {
                 if (options.exact === true) {
                     if (res != null) {
                         observer.next(res);

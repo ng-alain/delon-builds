@@ -569,9 +569,9 @@ interface ModalHelperDragOptions {
  */
 declare class ModalHelper {
     private readonly srv;
-    private readonly drag;
+    private readonly injector;
     private readonly doc;
-    private createDragRef;
+    private buildDrag;
     /**
      * 构建一个对话框
      *
