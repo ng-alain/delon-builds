@@ -33298,7 +33298,6 @@ fieldset {
 }
 .setting-drawer__theme {
   overflow: hidden;
-  margin-top: 24px;
 }
 .setting-drawer__theme-tag {
   cursor: pointer;
@@ -33332,10 +33331,6 @@ fieldset {
 .setting-drawer__handle-icon {
   font-size: 20px;
   color: #fff;
-}
-.setting-drawer__handle-opened {
-  z-index: 1001;
-  right: 500px;
 }
 .setting-drawer-rtl {
   direction: rtl;
