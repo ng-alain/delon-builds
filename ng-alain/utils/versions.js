@@ -32,7 +32,7 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `eslint-plugin-prefer-arrow@~1.2.3`,
         `eslint-plugin-prettier@~5.5.4`,
         `eslint-plugin-unused-imports@^4.3.0`,
-        `typescript@DEP-21.0.1`,
+        `typescript@DEP-21.0.2`,
         `typescript-eslint@8.52.0`,
         `prettier@^3.7.4`,
         `prettier-eslint@^9.39.2`,
@@ -44,11 +44,11 @@ function UpgradeMainVersions(tree, version = lib_versions_1.VERSION) {
         `@ng-util/monaco-editor@^21.0.1`,
         `@delon/testing@${version}`,
         // vi test
-        `@playwright/test@DEP-21.0.1`,
-        `@vitest/browser-playwright@DEP-21.0.1`,
-        `@vitest/coverage-v8@DEP-21.0.1`,
-        `vitest@DEP-21.0.1`,
-        `jsdom@DEP-21.0.1`
+        `@playwright/test@DEP-21.0.2`,
+        `@vitest/browser-playwright@DEP-21.0.2`,
+        `@vitest/coverage-v8@DEP-21.0.2`,
+        `vitest@DEP-21.0.2`,
+        `jsdom@DEP-21.0.2`
     ], 'devDependencies');
     (0, package_1.addPackage)(tree, [`rxjs@~7.8.0`, `ng-zorro-antd@^21.0.1`]);
 }
