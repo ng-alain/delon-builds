@@ -1,5 +1,5 @@
 import * as i0 from '@angular/core';
-import { inject, Injectable, ViewContainerRef, input, TemplateRef, booleanAttribute, effect, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
+import { inject, Injectable, ViewContainerRef, DestroyRef, input, TemplateRef, booleanAttribute, effect, afterNextRender, Directive, ElementRef, Renderer2, Injector, NgModule } from '@angular/core';
 import { BehaviorSubject, filter, of, Observable, map, tap } from 'rxjs';
 import { AlainConfigService } from '@delon/util/config';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -204,6 +204,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "21.0.8", ngImpor
 class ACLIfDirective {
     srv = inject(ACLService);
     _viewContainer = inject(ViewContainerRef);
+    d$ = inject(DestroyRef);
     _thenViewRef = null;
     _elseViewRef = null;
     aclIf = input.required(...(ngDevMode ? [{ debugName: "aclIf" }] : []));
@@ -211,10 +212,12 @@ class ACLIfDirective {
     aclIfElse = input(...(ngDevMode ? [undefined, { debugName: "aclIfElse" }] : []));
     except = input(false, { ...(ngDevMode ? { debugName: "except" } : {}), transform: booleanAttribute });
     constructor() {
-        this.srv.change
-            .pipe(takeUntilDestroyed(), filter(r => r != null))
-            .subscribe(() => this.updateView());
         effect(() => this.updateView());
+        afterNextRender(() => {
+            this.srv.change
+                .pipe(takeUntilDestroyed(this.d$), filter(r => r != null))
+                .subscribe(() => this.updateView());
+        });
     }
     updateView() {
         const res = this.srv.can(this.aclIf());

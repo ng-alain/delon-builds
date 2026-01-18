@@ -117,6 +117,7 @@ declare class ACLService {
 declare class ACLIfDirective {
     private readonly srv;
     private readonly _viewContainer;
+    private readonly d$;
     private _thenViewRef;
     private _elseViewRef;
     readonly aclIf: i0.InputSignal<ACLCanType>;
