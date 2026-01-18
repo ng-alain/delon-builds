@@ -24,9 +24,9 @@ function removeOrginalFiles() {
     return (tree) => {
         [
             `${project.root}/README.md`,
+            `${project.root}/public/favicon.ico`,
             `${project.sourceRoot}/main.ts`,
             `${project.sourceRoot}/styles.less`,
-            `${project.sourceRoot}/public/favicon.ico`,
             `${project.sourceRoot}/app/app.spec.ts`,
             `${project.sourceRoot}/app/app.ts`,
             `${project.sourceRoot}/app/app.html`,
@@ -51,6 +51,7 @@ function fixAngularJson() {
         (0, utils_1.addStylePreprocessorOptions)(workspace, projectName);
         (0, utils_1.addSchematicCollections)(workspace);
         (0, utils_1.addFileReplacements)(workspace, projectName);
+        (0, utils_1.addViTestConfig)(workspace, projectName);
     }));
 }
 /**
@@ -85,20 +86,18 @@ function addRunScriptToPackageJson() {
             return tree;
         const commandPrefix = mulitProject ? `${projectName}:` : '';
         const commandFragment = mulitProject ? ` ${projectName}` : '';
-        json.scripts['ng-high-memory'] = `node --max_old_space_size=8000 ./node_modules/@angular/cli/bin/ng`;
         json.scripts[commandFragment ? commandFragment.trim() : 'start'] = `ng s${commandFragment} -o`;
         json.scripts[`${commandPrefix}hmr`] = `ng s${commandFragment} -o --hmr`;
-        json.scripts[`${commandPrefix}build`] = `npm run ng-high-memory build${commandFragment}`;
-        json.scripts[`${commandPrefix}analyze`] = `npm run ng-high-memory build${commandFragment} -- --source-map`;
+        json.scripts[`${commandPrefix}build`] = `ng b${commandFragment}`;
+        json.scripts[`${commandPrefix}analyze`] = `ng b${commandFragment} --source-map`;
         json.scripts[`${commandPrefix}analyze:view`] =
-            `source-map-explorer dist/${mulitProject ? `${projectName}/` : ''}**/*.js`;
-        json.scripts[`${commandPrefix}test-coverage`] = `ng test${commandFragment} --code-coverage --watch=false`;
+            `source-map-explorer dist/${mulitProject ? `${projectName}/` : ''}**/*.js --no-border-checks`;
+        json.scripts[`${commandPrefix}test-coverage`] = `ng test${commandFragment} -c coverage --coverage --watch=false`;
         const themeCommand = mulitProject ? ` -n=${projectName}` : '';
         json.scripts[`${commandPrefix}color-less`] = `ng-alain-plugin-theme -t=colorLess${themeCommand}`;
         json.scripts[`${commandPrefix}theme`] = `ng-alain-plugin-theme -t=themeCss${themeCommand}`;
         json.scripts[`${commandPrefix}icon`] =
             `ng g ng-alain:plugin icon${mulitProject ? ` --project ${projectName}` : ''}`;
-        json.scripts.prepare = `husky install`;
         (0, utils_1.writePackage)(tree, json);
         return tree;
     };
@@ -129,7 +128,7 @@ function addCodeStylesToPackageJson() {
         if (json == null)
             return tree;
         json.scripts.lint = `npm run lint:ts && npm run lint:style`;
-        json.scripts['lint:ts'] = `npx eslint --cache --fix`;
+        json.scripts['lint:ts'] = `ng lint`;
         json.scripts['lint:style'] = `npx stylelint \\"src/**/*.less\\" --fix`;
         json.scripts['prepare'] = 'husky install';
         (0, utils_1.writePackage)(tree, json);

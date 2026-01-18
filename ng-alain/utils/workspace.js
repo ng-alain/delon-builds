@@ -25,6 +25,7 @@ exports.addStylePreprocessorOptions = addStylePreprocessorOptions;
 exports.addStyleResources = addStyleResources;
 exports.addSchematicCollections = addSchematicCollections;
 exports.addFileReplacements = addFileReplacements;
+exports.addViTestConfig = addViTestConfig;
 const schematics_1 = require("@angular-devkit/schematics");
 const workspace_1 = require("@schematics/angular/utility/workspace");
 const json_1 = require("./json");
@@ -210,5 +211,23 @@ function addFileReplacements(workspace, projectName) {
         replace: 'src/environments/environment.ts',
         with: 'src/environments/environment.prod.ts'
     });
+}
+function addViTestConfig(workspace, projectName) {
+    const project = getProjectFromWorkspace(workspace, projectName);
+    if (project == null)
+        return;
+    const test = project.targets.get(exports.BUILD_TARGET_TEST);
+    if (test == null)
+        return;
+    if (test.options == null)
+        test.options = {};
+    test.options['browsers'] = 'chromium';
+    test.options['runnerConfig'] = 'vitest.config.ts';
+    if (test.configurations == null)
+        test.configurations = {};
+    if (test.configurations['coverage'] == null)
+        test.configurations['coverage'] = {};
+    test.configurations['coverage']['coverageReporters'] = ['lcov'];
+    test.configurations['coverage']['browsers'] = ['ChromiumHeadless'];
 }
 //# sourceMappingURL=workspace.js.map
