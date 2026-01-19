@@ -1060,7 +1060,7 @@ class ReuseTabComponent {
         return false;
     }
     /**
-     * 设置激活路由的实例，在 `src/app/layout/basic/basic.component.ts` 修改：
+     * 设置激活路由的实例，在 `src/app/layout/basic/basic.ts` 修改：
      *
      * @example
      * <reuse-tab #reuseTab></reuse-tab>
