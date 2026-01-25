@@ -39,11 +39,17 @@ export function UpgradeMainVersions(tree: Tree, version: string = VERSION): void
       `@ng-util/monaco-editor@^21.0.1`,
       `@delon/testing@${version}`,
       // vi test
-      `@playwright/test@undefined`,
-      `@vitest/browser-playwright@undefined`,
-      `@vitest/coverage-v8@undefined`,
-      `vitest@undefined`,
-      `jsdom@undefined`
+      // `@playwright/test@undefined`,
+      // `@vitest/browser-playwright@undefined`,
+      // `@vitest/coverage-v8@undefined`,
+      // `vitest@undefined`,
+      // `jsdom@undefined`,
+      // When use vitest
+      `@playwright/test@^1.57.0`,
+      `@vitest/browser-playwright@^4.0.17`,
+      `@vitest/coverage-v8@^4.0.16`,
+      `vitest@^4.0.16`,
+      `jsdom@^27.4.0`
     ],
     'devDependencies'
   );
