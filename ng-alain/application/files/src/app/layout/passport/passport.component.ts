@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { GlobalFooterModule } from '@delon/abc/global-footer';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
@@ -28,11 +28,11 @@ import { HeaderI18nComponent } from '../basic/widgets/i18n.component';<% } %>
       </div>
     </div>
   `,
-  styleUrls: ['./passport.less'],
+  styleUrls: ['./passport.component.less'],
   imports: [RouterOutlet<% if (i18n) { %>, HeaderI18nComponent<% } %>, GlobalFooterModule, NzIconModule]
 })
-export class LayoutPassport {
-  private tokenSrv = inject(DA_SERVICE_TOKEN);
+export class LayoutPassportComponent implements OnInit {
+  private tokenService = inject(DA_SERVICE_TOKEN);
 
   links = [
     {
@@ -49,7 +49,7 @@ export class LayoutPassport {
     }
   ];
 
-  constructor() {
-    this.tokenSrv.clear();
+  ngOnInit(): void {
+    this.tokenService.clear();
   }
 }

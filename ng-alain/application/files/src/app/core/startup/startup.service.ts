@@ -1,4 +1,4 @@
-import { EnvironmentProviders, Injectable, Provider, inject, provideAppInitializer } from '@angular/core';
+import { APP_INITIALIZER, Injectable, Provider, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DA_SERVICE_TOKEN } from '@delon/auth';
@@ -12,16 +12,15 @@ import type { NzSafeAny } from 'ng-zorro-antd/core/types';
  * Used for application startup
  * Generally used to get the basic data of the application, like: Menu Data, User Data, etc.
  */
-export function provideStartup(): Array<Provider | EnvironmentProviders> {
+export function provideStartup(): Provider[] {
   return [
     StartupService,
-    provideAppInitializer(() => {
-      const initializerFn = (
-        (startupService: StartupService) => () =>
-          startupService.load()
-      )(inject(StartupService));
-      return initializerFn();
-    })
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (startupService: StartupService) => () => startupService.load(),
+      deps: [StartupService],
+      multi: true
+    }
   ];
 }
 
@@ -44,14 +43,6 @@ export class StartupService {
       return of({});
     })
   );
-
-  load(): Observable<void> {
-    // http
-    // return this.viaHttp();
-    // mock: Don’t use it in a production environment. ViaMock is just to simulate some data to make the scaffolding work normally
-    // mock：请勿在生产环境中这么使用，viaMock 单纯只是为了模拟一些数据使脚手架一开始能正常运行
-    return <% if (i18n) { %>this.viaMockI18n();<% } else { %>this.viaMock();<% } %>
-  }
 
   private handleAppData(res: NzSafeAny): void {
     // Application information: including site name, description, year
@@ -137,5 +128,13 @@ export class StartupService {
     this.titleService.suffix = app.name;
 
     return of(void 0);
+  }
+
+  load(): Observable<void> {
+    // http
+    // return this.viaHttp();
+    // mock: Don’t use it in a production environment. ViaMock is just to simulate some data to make the scaffolding work normally
+    // mock：请勿在生产环境中这么使用，viaMock 单纯只是为了模拟一些数据使脚手架一开始能正常运行
+    return <% if (i18n) { %>this.viaMockI18n();<% } else { %>this.viaMock();<% } %>
   }
 }

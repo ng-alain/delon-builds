@@ -131,6 +131,10 @@ function addCodeStylesToPackageJson() {
         json.scripts['lint:ts'] = `ng lint`;
         json.scripts['lint:style'] = `npx stylelint \\"src/**/*.less\\" --fix`;
         json.scripts['prepare'] = 'husky install';
+        // remove prettier node
+        if (json.prettier) {
+            delete json.prettier;
+        }
         (0, utils_1.writePackage)(tree, json);
         // fix polyfills.ts
         const polyfillsPath = `${project.sourceRoot}/polyfills.ts`;
@@ -147,7 +151,7 @@ function addCodeStylesToPackageJson() {
             `stylelint-config-standard@^39.0.1`,
             `stylelint-declaration-block-no-ignored-properties@^2.8.0`,
             `stylelint-config-clean-order@^8.0.0`,
-            `stylelint-order@DEP-21.0.2`
+            `stylelint-order@^7.0.1`
         ], 'devDependencies');
         return tree;
     };
