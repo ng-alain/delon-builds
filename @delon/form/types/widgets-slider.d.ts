@@ -1,9 +1,9 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, ControlUIWidget, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
-import * as i0 from '@angular/core';
-import { OnInit } from '@angular/core';
 import * as i3 from 'ng-zorro-antd/slider';
 import { NzMarks, NzSliderValue } from 'ng-zorro-antd/slider';
+import * as i0 from '@angular/core';
+import { OnInit } from '@angular/core';
 import * as i1 from '@angular/forms';
 
 interface SFSliderWidgetSchema extends SFUISchemaItem {

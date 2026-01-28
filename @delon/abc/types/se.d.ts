@@ -24,7 +24,6 @@ declare class SETitleComponent {
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SETitleComponent, "se-title, [se-title]", ["seTitle"], {}, {}, never, ["*"], true, never>;
 }
 declare class SEContainerComponent {
-    private readonly cogSrv;
     readonly colInCon: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
     readonly labelWidth: _angular_core.InputSignalWithTransform<REP_TYPE | 150 | null, unknown>;
     readonly col: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
@@ -40,7 +39,6 @@ declare class SEContainerComponent {
     readonly _gutter: _angular_core.Signal<number>;
     readonly _size: _angular_core.Signal<"default" | "compact">;
     protected margin: _angular_core.Signal<number>;
-    constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SEContainerComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SEContainerComponent, "se-container, [se-container]", ["seContainer"], { "colInCon": { "alias": "se-container"; "required": false; "isSignal": true; }; "labelWidth": { "alias": "labelWidth"; "required": false; "isSignal": true; }; "col": { "alias": "col"; "required": false; "isSignal": true; }; "noColon": { "alias": "noColon"; "required": false; "isSignal": true; }; "title": { "alias": "title"; "required": false; "isSignal": true; }; "gutter": { "alias": "gutter"; "required": false; "isSignal": true; }; "nzLayout": { "alias": "nzLayout"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "firstVisual": { "alias": "firstVisual"; "required": false; "isSignal": true; }; "ingoreDirty": { "alias": "ingoreDirty"; "required": false; "isSignal": true; }; "line": { "alias": "line"; "required": false; "isSignal": true; }; "errors": { "alias": "errors"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }

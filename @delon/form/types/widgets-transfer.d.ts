@@ -1,11 +1,11 @@
 import * as i2 from '@delon/form';
 import { SFUISchemaItem, SFSchemaEnumType, ControlUIWidget, SFSchemaEnum, SFValue, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
-import * as i0 from '@angular/core';
-import { OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { NgStyleInterface } from 'ng-zorro-antd/core/types';
 import * as i3 from 'ng-zorro-antd/transfer';
 import { TransferItem, TransferCanMove, TransferChange, TransferSearchChange, TransferSelectChange } from 'ng-zorro-antd/transfer';
-import { NgStyleInterface } from 'ng-zorro-antd/core/types';
+import * as i0 from '@angular/core';
+import { OnInit } from '@angular/core';
 import * as i1 from '@angular/forms';
 
 interface SFTransferWidgetSchema extends SFUISchemaItem {

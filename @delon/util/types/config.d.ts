@@ -1,3 +1,4 @@
+import { ModalOptions } from 'ng-zorro-antd/modal';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
 import { DisabledTimeFn, SupportTimeOptions, NzDateMode, PresetRanges } from 'ng-zorro-antd/date-picker';
 import { SafeHtml } from '@angular/platform-browser';
@@ -6,7 +7,6 @@ import * as i0 from '@angular/core';
 import { TemplateRef, TrackByFunction, InjectionToken, EnvironmentProviders } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NzDrawerOptions } from 'ng-zorro-antd/drawer';
-import { ModalOptions } from 'ng-zorro-antd/modal';
 import { PaginationItemRenderContext } from 'ng-zorro-antd/pagination';
 import { NzTableSortOrder } from 'ng-zorro-antd/table';
 import { NzImagePreviewOptions } from 'ng-zorro-antd/image';
@@ -21,6 +21,21 @@ interface AlainErrorCollectConfig {
      * 顶部偏移值，默认：`145`
      */
     offsetTop?: number;
+}
+
+interface AlainImageConfig {
+    /**
+     * 默认大小，默认值：`64`，单位：px
+     */
+    size?: number;
+    /**
+     * 错误图片，默认：`./assets/img/logo.svg`
+     */
+    error?: string;
+    /**
+     * 预览大图对话框参数
+     */
+    previewModalOptions?: ModalOptions;
 }
 
 interface AlainDateRangePickerConfig {
@@ -1340,6 +1355,7 @@ interface AlainConfig {
     dataRange?: AlainDateRangePickerConfig;
     exception?: AlainExceptionType;
     errorCollect?: AlainErrorCollectConfig;
+    image?: AlainImageConfig;
     loading?: AlainLoadingConfig;
     onboarding?: AlainOnboardingConfig;
     lodop?: AlainLodopConfig;
@@ -1385,4 +1401,4 @@ declare class AlainConfigService {
 }
 
 export { ALAIN_CONFIG, ALAIN_CONFIG_FACTORY, AlainConfigService, AlainSVConfig, provideAlainConfig };
-export type { AlainACLConfig, AlainACLType, AlainAuthConfig, AlainCacheConfig, AlainCacheInterceptor, AlainCellConfig, AlainChartConfig, AlainConfig, AlainConfigKey, AlainDateRangePickerConfig, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem, AlainErrorCollectConfig, AlainExceptionType, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainMockConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainSEConfig, AlainSFConfig, AlainSFConfigFormatMap, AlainSGConfig, AlainSTConfig, AlainThemeHttpClientConfig, AlainThemeI18nConfig, AlainThemePipeConfig, AlainThemePipeDateFormatCustom, AlainThemeResponsiveConfig, AlainUtilArrayConfig, AlainUtilCurrencyConfig, AlainXlsxConfig, AlainZipConfig };
+export type { AlainACLConfig, AlainACLType, AlainAuthConfig, AlainCacheConfig, AlainCacheInterceptor, AlainCellConfig, AlainChartConfig, AlainConfig, AlainConfigKey, AlainDateRangePickerConfig, AlainDateRangePickerShortcut, AlainDateRangePickerShortcutItem, AlainErrorCollectConfig, AlainExceptionType, AlainImageConfig, AlainLoadingConfig, AlainLodopConfig, AlainMediaConfig, AlainMockConfig, AlainOnboardingConfig, AlainPageHeaderConfig, AlainPdfConfig, AlainSEConfig, AlainSFConfig, AlainSFConfigFormatMap, AlainSGConfig, AlainSTConfig, AlainThemeHttpClientConfig, AlainThemeI18nConfig, AlainThemePipeConfig, AlainThemePipeDateFormatCustom, AlainThemeResponsiveConfig, AlainUtilArrayConfig, AlainUtilCurrencyConfig, AlainXlsxConfig, AlainZipConfig };

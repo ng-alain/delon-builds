@@ -1,11 +1,11 @@
 import * as i3 from '@delon/form';
 import { SFUISchemaItem, SFSchemaEnumType, ControlUIWidget, SFValue, WidgetRegistry, SFWidgetProvideConfig } from '@delon/form';
+import { Observable, Subscription } from 'rxjs';
+import * as i4 from 'ng-zorro-antd/upload';
+import { NzUploadFile, UploadFilter, NzShowUploadList, NzUploadXHRArgs, NzUploadChangeParam } from 'ng-zorro-antd/upload';
 import * as i0 from '@angular/core';
 import { OnInit } from '@angular/core';
 import { NzSafeAny } from 'ng-zorro-antd/core/types';
-import * as i4 from 'ng-zorro-antd/upload';
-import { NzUploadFile, UploadFilter, NzShowUploadList, NzUploadXHRArgs, NzUploadChangeParam } from 'ng-zorro-antd/upload';
-import { Observable, Subscription } from 'rxjs';
 import * as i1 from '@angular/forms';
 import * as i2 from '@angular/common';
 import * as i5 from 'ng-zorro-antd/icon';

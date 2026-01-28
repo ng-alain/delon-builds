@@ -16,7 +16,6 @@ declare class SVTitleComponent {
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SVTitleComponent, "sv-title, [sv-title]", ["svTitle"], {}, {}, never, ["*"], true, never>;
 }
 declare class SVContainerComponent {
-    private readonly cogSrv;
     readonly colInCon: _angular_core.InputSignalWithTransform<REP_TYPE | null, unknown>;
     readonly title: _angular_core.InputSignal<string | TemplateRef<void> | undefined>;
     readonly size: _angular_core.InputSignal<"small" | "large" | "default">;
@@ -36,7 +35,6 @@ declare class SVContainerComponent {
         'margin-left': string;
         'margin-right': string;
     }>;
-    constructor();
     static ɵfac: _angular_core.ɵɵFactoryDeclaration<SVContainerComponent, never>;
     static ɵcmp: _angular_core.ɵɵComponentDeclaration<SVContainerComponent, "sv-container, [sv-container]", ["svContainer"], { "colInCon": { "alias": "sv-container"; "required": false; "isSignal": true; }; "title": { "alias": "title"; "required": false; "isSignal": true; }; "size": { "alias": "size"; "required": false; "isSignal": true; }; "gutter": { "alias": "gutter"; "required": false; "isSignal": true; }; "layout": { "alias": "layout"; "required": false; "isSignal": true; }; "labelWidth": { "alias": "labelWidth"; "required": false; "isSignal": true; }; "col": { "alias": "col"; "required": false; "isSignal": true; }; "default": { "alias": "default"; "required": false; "isSignal": true; }; "noColon": { "alias": "noColon"; "required": false; "isSignal": true; }; "bordered": { "alias": "bordered"; "required": false; "isSignal": true; }; }, {}, never, ["*"], true, never>;
 }
